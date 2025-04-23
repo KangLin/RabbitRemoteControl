@@ -27,12 +27,10 @@ Q_SIGNALS:
     void sigExitFullScreen();
     void sigExit();
     void sigDisconnect();
-    void sigShowTabBar(bool check);
 
 private Q_SLOTS:
     void slotTimeOut();
     void slotNail();
-    void slotShowTabBar();
     void slotConnecterMenuChanged(QAction* pAction);
     
 protected:

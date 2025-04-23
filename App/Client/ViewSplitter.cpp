@@ -89,6 +89,7 @@ int CViewSplitter::AddView(QWidget *pView)
         m_nIdxRow = i;
         m_nIdxCol = sp->count();
         sp->addWidget(pContainer);
+        pContainer->SetVisibleTab(m_pParameterApp->GetTabBar());
         pContainer->show();
         m_Container.insert(pView, pContainer);
         if(m_pParameterApp)
@@ -228,6 +229,7 @@ int CViewSplitter::SetFullScreen(bool bFull)
 {
     int nRet = 0;
     if(0 >= m_nCount) return 0;
+
     QWidget* p = GetCurrentView();
     qDebug(log) << "CurrentView:" << p;
     if(!p) return 0;
@@ -245,8 +247,10 @@ int CViewSplitter::SetFullScreen(bool bFull)
             }
             sp->setHandleWidth(0);
             for(int j = 0; j < m_nRow; j++) {
-                if(m_nIdxRow == i && m_nIdxCol == j)
+                if(m_nIdxRow == i && m_nIdxCol == j) {
+                    SetVisibleTab(false);
                     continue;
+                }
                 auto p = sp->widget(j);
                 if(p) {
                     p->hide();
@@ -265,12 +269,23 @@ int CViewSplitter::SetFullScreen(bool bFull)
             if(!sp) continue;
             for(int j = 0; j < m_nRow; j++) {
                 auto p = sp->widget(j);
-                if(p)
+                if(p) {
+                    SetVisibleTab(m_pParameterApp->GetTabBar());
                     p->show();
+                }
             }
         }
     }
     return nRet;
+}
+
+int CViewSplitter::SetVisibleTab(bool bVisible)
+{
+    foreach (auto c, m_Container) {
+        if(c)
+            c->SetVisibleTab(bVisible);
+    }
+    return 0;
 }
 
 int CViewSplitter::GetIndex(QWidget* pView, int &nRow, int &nCol)

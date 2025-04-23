@@ -18,6 +18,7 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     m_pTab->VisibleFloatButton(false);
     m_pTab->VisibleMaximizeButton(false);
     m_pTab->VisibleMinimizeButton(false);
+    SetVisibleTab(true);
     m_pTab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     if(m_pView) {
         m_pView->show();
@@ -47,6 +48,17 @@ QWidget* CViewSplitterContainer::GetView()
 void CViewSplitterContainer::SetPrompt(const QString &szPrompt)
 {
     m_pTab->setToolTip(szPrompt);
+}
+
+int CViewSplitterContainer::SetVisibleTab(bool bVisible)
+{
+    m_pTab->setVisible(bVisible);
+    return 0;
+}
+
+bool CViewSplitterContainer::GetVisibleTab()
+{
+    return m_pTab->isVisible();
 }
 
 void CViewSplitterContainer::slotTabPositionChanged()

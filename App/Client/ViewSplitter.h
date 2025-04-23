@@ -29,6 +29,7 @@ public:
         QWidget *pView, const QString &szTitle,
         const QIcon &icon, const QString &szToolTip) override;
     virtual int SetFullScreen(bool bFull) override;
+    virtual int SetVisibleTab(bool bVisible) override;
 
 private:
     int m_nRow;   // Row number

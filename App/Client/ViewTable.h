@@ -27,7 +27,7 @@ public:
     virtual int SetCurrentView(QWidget* pView) override;
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QIcon& icon, const QString& szToolTip) override;
     virtual int SetFullScreen(bool bFull) override;
-    int ShowTabBar(bool bShow);
+    virtual int SetVisibleTab(bool bVisible) override;
 
 private Q_SLOTS:
     void slotCurrentChanged(int index);

@@ -19,6 +19,8 @@ public:
     
     QWidget* GetView();
     void SetPrompt(const QString& szPrompt);
+    int SetVisibleTab(bool bVisible);
+    bool GetVisibleTab();
 
 public Q_SLOTS:
     void slotTabPositionChanged();

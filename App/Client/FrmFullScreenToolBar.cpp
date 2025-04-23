@@ -54,12 +54,6 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
         m_pConnecterMenu = m_pMain->m_pActionConnecterMenu;
         m_ToolBar.addAction(m_pConnecterMenu);
     }
-    //m_ToolBar.addAction(m_pMain->ui->actionTabBar_B);
-    m_pShowTabBar = m_ToolBar.addAction(QIcon::fromTheme("tabbar"), tr("TabBar"),
-                                        this, SLOT(slotShowTabBar()));
-    m_pShowTabBar->setCheckable(true);
-    m_pShowTabBar->setStatusTip(tr("Tab bar"));
-    m_pShowTabBar->setToolTip(tr("Tab bar"));
 
     m_ToolBar.addAction(m_pMain->ui->actionDisconnect_D);
     m_ToolBar.addSeparator();
@@ -70,9 +64,9 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     check = connect(&m_Timer, SIGNAL(timeout()),
                     this, SLOT(slotTimeOut()));
     Q_ASSERT(check);
-    
+
     m_Timer.start(m_TimeOut);
-    
+
     ReToolBarSize();
 }
 
@@ -85,7 +79,7 @@ CFrmFullScreenToolBar::~CFrmFullScreenToolBar()
 }
 
 void CFrmFullScreenToolBar::mouseMoveEvent(QMouseEvent *event)
-{    
+{
     if(Qt::LeftButton != event->buttons())
         return;
 
@@ -158,11 +152,6 @@ void CFrmFullScreenToolBar::leaveEvent(QEvent *event)
     if(m_pNail->isChecked()) return;
     m_Timer.stop();
     m_Timer.start(m_TimeOut);
-}
-
-void CFrmFullScreenToolBar::slotShowTabBar()
-{
-    emit sigShowTabBar(m_pShowTabBar->isChecked());
 }
 
 void CFrmFullScreenToolBar::slotNail()

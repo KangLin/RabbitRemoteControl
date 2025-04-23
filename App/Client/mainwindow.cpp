@@ -112,10 +112,9 @@ MainWindow::MainWindow(QWidget *parent)
     tbConnect->setStatusTip(tr("Connect"));
     m_pActionConnect = ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
 
-    EnableMenu(false);
-
     m_Client.EnumPlugins(this);
     m_Parameter.Load();
+    EnableMenu(false);
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));
@@ -329,22 +328,23 @@ void MainWindow::SetView(CView* pView)
         m_pView->SetWidowsTitle(
             c->GetViewer(), c->Name(), c->Icon(), c->Description());
     }
+    m_pView->SetVisibleTab(m_Parameter.GetTabBar());
 }
 
 void MainWindow::on_actionViewTab_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!ui->actionViewTab->isChecked()) return;
-    SetView(new CViewTable(&m_Parameter, this));
     m_Parameter.SetViewType(CParameterApp::ViewType::Tab);
+    SetView(new CViewTable(&m_Parameter, this));
 }
 
 void MainWindow::on_actionViewSplit_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!ui->actionViewSplit->isChecked()) return;
-    SetView(new CViewSplitter(&m_Parameter, this));
     m_Parameter.SetViewType(CParameterApp::ViewType::Splitter);
+    SetView(new CViewSplitter(&m_Parameter, this));
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -385,10 +385,10 @@ void MainWindow::on_actionUpdate_triggered()
 
 void MainWindow::on_actionFull_screen_F_triggered()
 {
-    CView* pTab = qobject_cast<CView*>(this->centralWidget());
-    if(pTab)
+    CView* pView = qobject_cast<CView*>(this->centralWidget());
+    if(pView)
     {
-        pTab->SetFullScreen(!isFullScreen());
+        pView->SetFullScreen(!isFullScreen());
     }
 
     if(isFullScreen())
@@ -487,13 +487,6 @@ void MainWindow::on_actionFull_screen_F_triggered()
                     m_pFullScreenToolBar,
                     SLOT(slotConnecterMenuChanged(QAction*)));
     Q_ASSERT(check);
-    CViewTable* p = dynamic_cast<CViewTable*>(pTab);
-    if(p)
-    {
-        check = connect(m_pFullScreenToolBar, SIGNAL(sigShowTabBar(bool)),
-                        SLOT(on_actionTabBar_B_toggled(bool)));
-        Q_ASSERT(check);
-    }
 
     m_pFullScreenToolBar->show();
 }
@@ -529,6 +522,7 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
+    ui->actionTabBar_B->setEnabled(bEnable);
     slotLoadConnecterMenu();
 }
 
@@ -1036,10 +1030,9 @@ int MainWindow::SaveConnectLasterClose()
 
 void MainWindow::on_actionTabBar_B_toggled(bool bShow)
 {
-    CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
-    if(p)
+    if(m_pView)
     {
-        p->ShowTabBar(bShow);
+        m_pView->SetVisibleTab(bShow);
         m_Parameter.SetTabBar(bShow);
     } else {
         if(m_pDockListConnecters)

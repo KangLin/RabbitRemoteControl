@@ -129,23 +129,24 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
 int CViewTable::SetFullScreen(bool bFull)
 {
     if(!m_pTab) return -1;
-    ShowTabBar(!bFull);
     if(bFull)
     {
         m_szStyleSheet = m_pTab->styleSheet();
+        SetVisibleTab(false);
         //qDebug(log) << m_szStyleSheet;
         m_pTab->setStyleSheet("QTabWidget::pane{top:0px;left:0px;border:none;}");
         m_pTab->showFullScreen();
     } else {
+        SetVisibleTab(m_pParameterApp->GetTabBar());
         m_pTab->setStyleSheet(m_szStyleSheet);
         m_pTab->showNormal();
     }
     return 0;
 }
 
-int CViewTable::ShowTabBar(bool bShow)
+int CViewTable::SetVisibleTab(bool bVisible)
 {
-    m_pTab->tabBar()->setVisible(bShow);
+    m_pTab->tabBar()->setVisible(bVisible);
     return 0;
 }
 
