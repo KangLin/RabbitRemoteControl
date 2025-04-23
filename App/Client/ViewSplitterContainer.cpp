@@ -6,7 +6,7 @@
 
 static Q_LOGGING_CATEGORY(log, "App.View.Splitter.Container")
 CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pPara)
-    : QWidget{}
+    : QFrame{}
     , m_pTab(nullptr)
     , m_pView(pView)
     , m_pParameterApp(pPara)

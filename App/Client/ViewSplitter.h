@@ -47,6 +47,15 @@ private:
     int GetIndex(QWidget* pView, int &nRow, int &nCol);
     CViewSplitterContainer* GetContainer(const int &nRow, const int &nCol);
     CViewSplitterContainer* GetContainer(QWidget* pView);
+    /*!
+     * \chinese 突出当前视图
+     * \param pView 需要突出的视图。如果为　nullptr　,则重置所有视图为普通
+     * \english
+     * \brief Highlight the current view
+     * \param pView: A view that needs to be highlighted.
+     *               If nullptr is used, all views are reset to normal
+     */
+    int ActiveContainer(QWidget* pView);
 };
 
 #endif // VIEWSPLITTER_H

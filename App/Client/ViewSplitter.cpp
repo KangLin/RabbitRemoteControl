@@ -92,6 +92,7 @@ int CViewSplitter::AddView(QWidget *pView)
         pContainer->SetVisibleTab(m_pParameterApp->GetTabBar());
         pContainer->show();
         m_Container.insert(pView, pContainer);
+        ActiveContainer(pView);
         bool check = connect(
             pContainer,
             SIGNAL(customContextMenuRequested(const QPoint&)),
@@ -205,6 +206,7 @@ int CViewSplitter::SetCurrentView(QWidget *pView)
     m_nIdxRow = nRow;
     m_nIdxCol = nCol;
     pView->setFocus();
+    ActiveContainer(pView);
     emit sigCurrentChanged(pView);
 
     return nRet;
@@ -253,6 +255,7 @@ int CViewSplitter::SetFullScreen(bool bFull)
             sp->setHandleWidth(0);
             for(int j = 0; j < m_nRow; j++) {
                 if(m_nIdxRow == i && m_nIdxCol == j) {
+                    ActiveContainer(nullptr);
                     SetVisibleTab(false);
                     continue;
                 }
@@ -277,6 +280,11 @@ int CViewSplitter::SetFullScreen(bool bFull)
                 if(p) {
                     SetVisibleTab(m_pParameterApp->GetTabBar());
                     p->show();
+                    if(m_nIdxRow == i && m_nIdxCol == j) {
+                        CViewSplitterContainer* pView = qobject_cast<CViewSplitterContainer*>(p);
+                        if(pView)
+                            ActiveContainer(pView->GetView());
+                    }
                 }
             }
         }
@@ -333,4 +341,20 @@ CViewSplitterContainer* CViewSplitter::GetContainer(QWidget *pView)
     if(m_Container.end() == it)
         return nullptr;
     return *it;
+}
+
+int CViewSplitter::ActiveContainer(QWidget *pView)
+{
+    foreach (auto c, m_Container) {
+        if(c->GetView() == pView && nullptr != pView) {
+            c->setFrameStyle(QFrame::Panel|QFrame::Raised);
+            c->setLineWidth(5);
+            c->setMidLineWidth(5);
+        } else {
+            c->setFrameStyle(QFrame::NoFrame);
+            c->setLineWidth(0);
+            c->setMidLineWidth(0);
+        }
+    }
+    return 0;
 }

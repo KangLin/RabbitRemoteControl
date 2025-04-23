@@ -10,7 +10,7 @@
 /*!
  * \note only used by CViewSplitter
  */
-class CViewSplitterContainer : public QWidget
+class CViewSplitterContainer : public QFrame
 {
     Q_OBJECT
 public:
