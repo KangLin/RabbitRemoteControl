@@ -92,9 +92,14 @@ int CViewSplitter::AddView(QWidget *pView)
         pContainer->SetVisibleTab(m_pParameterApp->GetTabBar());
         pContainer->show();
         m_Container.insert(pView, pContainer);
+        bool check = connect(
+            pContainer,
+            SIGNAL(customContextMenuRequested(const QPoint&)),
+            this, SIGNAL(customContextMenuRequested(const QPoint&)));
+        Q_ASSERT(check);
         if(m_pParameterApp)
         {
-            bool check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),
+            check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),
                             pContainer, SLOT(slotTabPositionChanged()));
             Q_ASSERT(check);
             check = connect(pContainer, SIGNAL(sigCloseView(const QWidget*)),

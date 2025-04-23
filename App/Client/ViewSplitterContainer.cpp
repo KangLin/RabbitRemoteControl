@@ -18,12 +18,19 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     m_pTab->VisibleFloatButton(false);
     m_pTab->VisibleMaximizeButton(false);
     m_pTab->VisibleMinimizeButton(false);
+
     SetVisibleTab(true);
     m_pTab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     if(m_pView) {
         m_pView->show();
         m_pTab->setWindowTitle(m_pView->windowTitle());
     }
+
+    m_pTab->setContextMenuPolicy(Qt::CustomContextMenu);
+    bool check = connect(m_pTab,
+                    SIGNAL(customContextMenuRequested(const QPoint&)),
+                    this, SIGNAL(customContextMenuRequested(const QPoint&)));
+    Q_ASSERT(check);
 
     auto pLayout = new QVBoxLayout(this);
     if(pLayout)
