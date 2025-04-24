@@ -348,5 +348,3 @@ apps:
      - pkcs11
      - appstream-metadata
      - hardware-observe
-     - block-devices
-     - multipass-support
