@@ -57,8 +57,6 @@ private:
     QTimer m_Timer;
     int m_TimeOut;
     bool m_isHide;
-    
-    QAction* m_pShowTabBar;
 };
 
 #endif // FRMFULLSCREENTOOLBAR_H

@@ -165,6 +165,6 @@ void CFrmFullScreenToolBar::slotConnecterMenuChanged(QAction* pAction)
     if(m_pConnecterMenu) {
         m_ToolBar.removeAction(m_pConnecterMenu);
         m_pConnecterMenu = pAction;
-        m_ToolBar.insertAction(m_pShowTabBar, m_pConnecterMenu);
+        m_ToolBar.insertAction(m_pMain->ui->actionDisconnect_D, m_pConnecterMenu);
     }
 }

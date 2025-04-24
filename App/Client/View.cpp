@@ -8,6 +8,7 @@ CView::CView(CParameterApp *pPara, QWidget *parent) : QWidget(parent)
     , m_pParameterApp(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
+    Q_ASSERT(m_pParameterApp);
     setFocusPolicy(Qt::NoFocus);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }

@@ -164,6 +164,12 @@ public:
     void SetDockListRecentShowToolBar(bool bEnable);
 private:
     bool m_bDockListRecentShowToolBar;
+
+public:
+    bool GetKeepSplitViewWhenFullScreen() const;
+    void SetKeepSplitViewWhenFullScreen(bool newKeepSplitViewWhenFullScreen);
+private:
+    bool m_bKeepSplitViewWhenFullScreen;
 };
 
 #endif // CPARAMETERAPP_H

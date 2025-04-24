@@ -239,6 +239,9 @@ int CViewSplitter::SetFullScreen(bool bFull)
     int nRet = 0;
     if(0 >= m_nCount) return 0;
 
+    if(m_pParameterApp && m_pParameterApp->GetKeepSplitViewWhenFullScreen())
+        return 0;
+
     QWidget* p = GetCurrentView();
     qDebug(log) << "CurrentView:" << p;
     if(!p) return 0;

@@ -98,6 +98,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     
     ui->cbFavoriteDoubleEdit->setChecked(m_pParameters->GetFavoriteEdit());
     ui->cbMessageBoxDisplayInfo->setChecked(m_pParameters->GetMessageBoxDisplayInformation());
+    ui->cbKeepSplitView->setChecked(m_pParameters->GetKeepSplitViewWhenFullScreen());
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()
@@ -135,7 +136,8 @@ void CParameterDlgSettings::on_pbOk_clicked()
 
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
     m_pParameters->SetMessageBoxDisplayInformation(ui->cbMessageBoxDisplayInfo->isChecked());
-
+    
+    m_pParameters->SetKeepSplitViewWhenFullScreen(ui->cbKeepSplitView->isChecked());
     accept();
 }
 

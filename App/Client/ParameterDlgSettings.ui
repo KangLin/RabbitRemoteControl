@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>484</width>
-    <height>410</height>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -264,6 +264,13 @@
         <widget class="QCheckBox" name="cbSaveMainWindowStatus">
          <property name="text">
           <string>Save main window status</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="cbKeepSplitView">
+         <property name="text">
+          <string>When the split view is full-screen, the split view is maintained</string>
          </property>
         </widget>
        </item>

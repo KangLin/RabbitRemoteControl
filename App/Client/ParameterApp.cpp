@@ -23,7 +23,8 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bMenuBar(true),
     m_bMessageBoxDisplayInfomation(true),
     m_bDockListConnectersShowToolBar(true),
-    m_bDockListRecentShowToolBar(true)
+    m_bDockListRecentShowToolBar(true),
+    m_bKeepSplitViewWhenFullScreen(false)
 {
 }
 
@@ -90,6 +91,11 @@ int CParameterApp::OnLoad(QSettings &set)
     SetDockListRecentShowToolBar(
         set.value("Recent/ToolBar/Show",
                   GetDockListRecentShowToolBar()).toBool());
+
+    SetKeepSplitViewWhenFullScreen(
+        set.value("KeepSplitViewWhenFullScreen",
+                  GetKeepSplitViewWhenFullScreen()).toBool());
+
     set.endGroup();
 
 #ifdef HAVE_ICE
@@ -138,6 +144,10 @@ int CParameterApp::OnSave(QSettings &set)
                  GetDockListConnectersShowToolBar());
     set.setValue("Recent/ToolBar/Show",
                  GetDockListRecentShowToolBar());
+
+    set.setValue("KeepSplitViewWhenFullScreen",
+                 GetKeepSplitViewWhenFullScreen());
+
     set.endGroup();
 
 #ifdef HAVE_ICE
@@ -377,5 +387,18 @@ void CParameterApp::SetDockListRecentShowToolBar(bool bEnable)
     if(m_bDockListRecentShowToolBar == bEnable)
         return;
     m_bDockListRecentShowToolBar = bEnable;
+    SetModified(true);
+}
+
+bool CParameterApp::GetKeepSplitViewWhenFullScreen() const
+{
+    return m_bKeepSplitViewWhenFullScreen;
+}
+
+void CParameterApp::SetKeepSplitViewWhenFullScreen(bool newKeepSplitViewWhenFullScreen)
+{
+    if(m_bKeepSplitViewWhenFullScreen == newKeepSplitViewWhenFullScreen)
+        return;
+    m_bKeepSplitViewWhenFullScreen = newKeepSplitViewWhenFullScreen;
     SetModified(true);
 }
