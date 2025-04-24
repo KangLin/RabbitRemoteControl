@@ -175,9 +175,12 @@ int CViewSplitter::RemoveView(QWidget *pView)
     qDebug(log) << "Row:" << m_nRow << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol;
 
-    if(pContainerNext)
+    if(pContainerNext) {
         pCurView = pContainerNext->GetView();
-
+        // When full screen
+        if(pContainerNext->isHidden())
+            pContainerNext->show();
+    }
     if(pCurView)
         pCurView->setFocus();
 
