@@ -34,7 +34,7 @@ description: |
 base: core24 # the base snap is the execution environment for this snap
 platforms:
   amd64:
-  arm64:
+#  arm64:
 #base: core22
 #architectures:
 #  - build-on: amd64
