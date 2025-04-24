@@ -4,6 +4,7 @@
 #include <QVBoxLayout>
 #include <QLoggingCategory>
 #include <QEvent>
+#include <QTimer>
 #include "ViewSplitterContainer.h"
 
 static Q_LOGGING_CATEGORY(log, "App.View.Splitter")
