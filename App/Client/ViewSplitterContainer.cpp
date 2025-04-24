@@ -102,3 +102,18 @@ void CViewSplitterContainer::closeEvent(QCloseEvent *event)
     emit sigCloseView(m_pView);
 }
 
+QSize CViewSplitterContainer::minimumSizeHint() const
+{
+    int w = 0, h = 0;
+    if(m_pTab) {
+        w = m_pTab->minimumSizeHint().width();
+        h = m_pTab->minimumSizeHint().height();
+    }
+
+    if(m_pView) {
+        w = qMax(w, m_pView->minimumSizeHint().width());
+        h = h + m_pView->minimumSizeHint().height();
+    }
+    //qDebug(log) << "Width:" << w << "Height:" << h;
+    return QSize(w, h);
+}

@@ -56,6 +56,7 @@ private:
      *               If nullptr is used, all views are reset to normal
      */
     int ActiveContainer(QWidget* pView);
+    int SetSizes();
 };
 
 #endif // VIEWSPLITTER_H

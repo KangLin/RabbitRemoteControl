@@ -111,9 +111,9 @@ int CViewSplitter::AddView(QWidget *pView)
     } else
         return -1;
 
-    //sp->setStretchFactor(sp->count() - 1, 1);
+    SetSizes();
 
-    qDebug(log) << Q_FUNC_INFO << "Row:" << m_nRow << "Count:" << m_nCount
+    qDebug(log) << Q_FUNC_INFO << "Row:" << m_nRow << m_pMain->count() << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol
                 << "Current count:" << sp->count();
     emit sigCurrentChanged(pView);
@@ -232,6 +232,8 @@ void CViewSplitter::SetWidowsTitle(
         pContainer->SetPrompt(szToolTip);
     else
         pContainer->SetPrompt(QString());
+    
+    SetSizes();
 }
 
 int CViewSplitter::SetFullScreen(bool bFull)
@@ -303,6 +305,7 @@ int CViewSplitter::SetVisibleTab(bool bVisible)
         if(c)
             c->SetVisibleTab(bVisible);
     }
+    SetSizes();
     return 0;
 }
 
@@ -362,5 +365,34 @@ int CViewSplitter::ActiveContainer(QWidget *pView)
             c->setMidLineWidth(0);
         }
     }
+    return 0;
+}
+
+int CViewSplitter::SetSizes()
+{
+    int w = 0, h = 0;
+    foreach(auto sp, m_Row) {
+        for(int i = 0; i < sp->count(); i++) {
+            auto pContainer = sp->widget(i);
+            w = qMax(w, pContainer->minimumSizeHint().width());
+            h = qMax(h, pContainer->minimumSizeHint().height());
+        }
+    }
+
+    qDebug(log) << "Width:" << w << "Height:" << h;
+
+    QList<int> wSizes, hSizes;
+    foreach(auto sp, m_Row) {
+        wSizes.clear();
+        for(int i = 0; i < sp->count(); i++) {
+            wSizes.push_back(w);
+        }
+        sp->setSizes(wSizes);
+        qDebug(log) << "wSizes:" << wSizes << sp->sizes();
+        hSizes.push_back(h);
+    }
+    m_pMain->setSizes(hSizes);
+    qDebug(log) << "hSizes:" << hSizes << m_pMain->sizes();
+
     return 0;
 }

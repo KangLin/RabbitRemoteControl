@@ -36,6 +36,10 @@ private:
     // QWidget interface
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
+    
+    // QWidget interface
+public:
+    virtual QSize minimumSizeHint() const override;
 };
 
 #endif // VIEWSPLITTERCONTAINER_H
