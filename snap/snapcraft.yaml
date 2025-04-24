@@ -327,7 +327,6 @@ apps:
      - openvswitch
      - openvswitch-support
      - ppp
-     
      - opengl
      - cups-control
      - serial-port

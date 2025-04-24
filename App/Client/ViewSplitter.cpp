@@ -59,7 +59,7 @@ int CViewSplitter::AddView(QWidget *pView)
         Q_ASSERT(pView);
         return -1;
     }
-    
+
     //TODO: 增加检查 pView 是否已存在?
 
     // 是否需要新增加一行
@@ -164,6 +164,8 @@ int CViewSplitter::RemoveView(QWidget *pView)
     pView->setParent(nullptr);
     auto pContainer = GetContainer(pView);
     if(pContainer) {
+        // Remove from QSplitter
+        pContainer->setParent(nullptr);
         m_Container.remove(pView);
         delete pContainer;
     }
@@ -172,10 +174,10 @@ int CViewSplitter::RemoveView(QWidget *pView)
 
     qDebug(log) << "Row:" << m_nRow << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol;
-    
+
     if(pContainerNext)
         pCurView = pContainerNext->GetView();
-    
+
     if(pCurView)
         pCurView->setFocus();
 
@@ -346,6 +348,7 @@ CViewSplitterContainer* CViewSplitter::GetContainer(QWidget *pView)
 int CViewSplitter::ActiveContainer(QWidget *pView)
 {
     foreach (auto c, m_Container) {
+        if(!c) continue;
         if(c->GetView() == pView && nullptr != pView) {
             c->setFrameStyle(QFrame::Panel|QFrame::Raised);
             c->setLineWidth(5);
