@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      RabbitRemoteControl_VERSION: v0.0.34
+      RabbitRemoteControl_VERSION: v0.0.35
       VCPKGGITCOMMITID: d5182f703b51d7b258f83f94d936ac03488dcdbe
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}

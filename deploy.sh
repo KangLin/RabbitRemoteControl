@@ -60,6 +60,7 @@ sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
 sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
+sed -i "s/rabbitremotecontrol-[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol-${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/RabbitRemoteControl_[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt

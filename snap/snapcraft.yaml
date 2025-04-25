@@ -2,7 +2,7 @@
 # How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
 # Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
 name: rabbitremotecontrol
-version: '0.0.34'
+version: '0.0.35'
 type: app
 license: GPL-3.0+
 contact: kl222@126.com
