@@ -21,7 +21,9 @@ public:
     void SetPrompt(const QString& szPrompt);
     int SetVisibleTab(bool bVisible);
     bool GetVisibleTab();
-
+    
+Q_SIGNALS:
+    void sigFouceIn(QWidget *pView);
 public Q_SLOTS:
     void slotTabPositionChanged();
 private Q_SLOTS:
@@ -42,6 +44,7 @@ protected:
     // QWidget interface
 public:
     virtual QSize minimumSizeHint() const override;
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // VIEWSPLITTERCONTAINER_H

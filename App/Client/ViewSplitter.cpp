@@ -99,6 +99,10 @@ int CViewSplitter::AddView(QWidget *pView)
             SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SIGNAL(customContextMenuRequested(const QPoint&)));
         Q_ASSERT(check);
+        check = connect(pContainer, &CViewSplitterContainer::sigFouceIn,
+                        this, [&](QWidget* pView){
+                            SetCurrentView(pView);
+                        });
         if(m_pParameterApp)
         {
             check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),

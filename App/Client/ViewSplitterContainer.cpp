@@ -3,6 +3,7 @@
 #include "ViewSplitterContainer.h"
 #include <QLoggingCategory>
 #include <QVBoxLayout>
+#include <QEvent>
 
 static Q_LOGGING_CATEGORY(log, "App.View.Splitter.Container")
 CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pPara)
@@ -18,6 +19,7 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     m_pTab->VisibleFloatButton(false);
     m_pTab->VisibleMaximizeButton(false);
     m_pTab->VisibleMinimizeButton(false);
+    m_pTab->installEventFilter(this);
 
     SetVisibleTab(true);
     m_pTab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -122,4 +124,14 @@ void CViewSplitterContainer::slotCustomContextMenuRequested(const QPoint &pos)
     QPoint p = pos;
     p = m_pTab->mapToGlobal(pos);
     emit customContextMenuRequested(p);
+}
+
+bool CViewSplitterContainer::eventFilter(QObject *watched, QEvent *event)
+{
+    qDebug(log) << "Event filter:" << watched << event->type();
+    if(event->type() == QEvent::MouseButtonPress)
+    {
+        emit sigFouceIn(m_pView);
+    }
+    return false;
 }
