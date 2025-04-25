@@ -39,7 +39,7 @@ Author: Kang Lin <kl222@126.com>
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
-It include remote desktop, remote control, remote terminal, player, network etc functions.
+It include remote desktop, remote control, remote terminal, player, network tools etc functions.
 
 ### Screenshot
 
