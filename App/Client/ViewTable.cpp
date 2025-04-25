@@ -44,9 +44,13 @@ CViewTable::CViewTable(CParameterApp *pPara, QWidget *parent)
     Q_ASSERT(check);
 
     m_pTab->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
-    check = connect(m_pTab->tabBar(),
-                    SIGNAL(customContextMenuRequested(const QPoint&)),
-                    this, SIGNAL(customContextMenuRequested(const QPoint&)));
+    check = connect(m_pTab->tabBar(), &QTabBar::customContextMenuRequested,
+                    this, [&](const QPoint& pos){
+                        QPoint p = pos;
+                        p = m_pTab->tabBar()->mapToGlobal(pos);
+                        emit customContextMenuRequested(p);
+                    });
+
     Q_ASSERT(check);
 }
 

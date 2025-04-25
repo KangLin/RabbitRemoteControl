@@ -27,9 +27,8 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     }
 
     m_pTab->setContextMenuPolicy(Qt::CustomContextMenu);
-    bool check = connect(m_pTab,
-                    SIGNAL(customContextMenuRequested(const QPoint&)),
-                    this, SIGNAL(customContextMenuRequested(const QPoint&)));
+    bool check = connect(m_pTab, SIGNAL(customContextMenuRequested(QPoint)),
+                         this, SLOT(slotCustomContextMenuRequested(QPoint)));
     Q_ASSERT(check);
 
     auto pLayout = new QVBoxLayout(this);
@@ -116,4 +115,11 @@ QSize CViewSplitterContainer::minimumSizeHint() const
     }
     //qDebug(log) << "Width:" << w << "Height:" << h;
     return QSize(w, h);
+}
+
+void CViewSplitterContainer::slotCustomContextMenuRequested(const QPoint &pos)
+{
+    QPoint p = pos;
+    p = m_pTab->mapToGlobal(pos);
+    emit customContextMenuRequested(p);
 }

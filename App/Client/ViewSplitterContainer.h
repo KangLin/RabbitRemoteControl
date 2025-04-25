@@ -24,6 +24,8 @@ public:
 
 public Q_SLOTS:
     void slotTabPositionChanged();
+private Q_SLOTS:
+    void slotCustomContextMenuRequested(const QPoint &pos);
     
 Q_SIGNALS:
     void sigCloseView(const QWidget* pView);

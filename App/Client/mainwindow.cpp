@@ -557,6 +557,12 @@ void MainWindow::slotLoadConnecterMenu()
     }
 }
 
+/*!
+ * \brief MainWindow::slotCustomContextMenuRequested
+ * \param pos: The view is converted to global coordinates
+ * \see CViewSplitterContainer::slotCustomContextMenuRequested
+ *      CViewTable::CViewTable
+ */
 void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
 {
     if(!m_pView)
@@ -573,7 +579,8 @@ void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
             qDebug(log) << "Load plugin menu";
             auto m = c->GetMenu(ui->menuTools);
             if(!m) return;
-            m->exec(m_pView->mapToGlobal(pos));
+            // Note: The view is converted to global coordinates
+            m->exec(pos);
         }
     }
 }
