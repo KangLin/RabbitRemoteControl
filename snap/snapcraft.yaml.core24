@@ -2,7 +2,6 @@
 # How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
 # Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
 name: rabbitremotecontrol
-base: core22 # the base snap is the execution environment for this snap
 version: '0.0.34'
 type: app
 license: GPL-3.0+
@@ -30,9 +29,16 @@ description: |
   .
   https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+# See: https://snapcraft.io/docs/reference-architectures
+# See: https://snapcraft.io/docs/architectures
+base: core24 # the base snap is the execution environment for this snap
+platforms:
+  amd64:
+#  arm64:
+#base: core22
+#architectures:
+#  - build-on: amd64
+#  - build-on: arm64
 
 # - devel
 # - stable
@@ -42,6 +48,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 # Classic confinement: https://snapcraft.io/docs/classic-confinement
 # - devmode
 # - strict
+# - classic
 confinement: strict # devmode # use 'strict' once you have the right plugs and slots
 
 # lifecycle: https://snapcraft.io/docs/parts-lifecycle
@@ -67,7 +74,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.14.1
+    source-tag: 3.15.0
     source-depth: 1
     build-packages:
       - libssl-dev
@@ -96,37 +103,32 @@ parts:
     stage-packages:
       - libfuse3-3
       - libpam0g
-      - libutf8proc2
+      - libutf8proc3
       - libusb-1.0-0
       - libcjson1
-      - icu-devtools
-      - libcups2
-      - libcupsimage2
+      - libcups2t64
+      - libcupsimage2t64
       - libgssapi-krb5-2
-      - libgssrpc4
-      - libkadm5srv-mit12
+      - libgssrpc4t64
       - libkadm5clnt-mit12
+      - libkadm5srv-mit12
       - libjs-jquery
-      - libswscale5
-      - x264
-      - x265
-      - libkrb5-3
       - libxkbfile1
       - libpulse0 # PulseAudio client runtime libraries
-      - libffi7
-      - libzvbi0
-      - x11-utils
+      - libffi8
+      - libzvbi0t64
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
+      - -DWITH_SHADOW=OFF
       - -DWITH_LIBSYSTEMD=off
       - -DWITH_MANPAGES=OFF
       - -DWITH_SAMPLE=OFF
       - -DWITH_CLIENT_SDL=OFF
       - -DWITH_PROXY_MODULES=OFF
-      - -DWITH_KRB5=OFF
+      - -DCMAKE_VERBOSE_MAKEFILE=ON
     stage:
       - -usr/share
       - -usr/bin
@@ -148,21 +150,6 @@ parts:
     source-branch: master
     source-depth: 1
     build-packages:
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
-      - xorg-dev
-      - libx11-xcb-dev
-      - libx11-dev
-      - libxfixes-dev
-      - libxcb-randr0-dev
-      - libxcb-shm0-dev
-      - libxcb-xinerama0-dev
-      - libxcb-composite0-dev
-      - libxcomposite-dev
-      - libxinerama-dev
-      - libxcb1-dev
-      - libx11-xcb-dev
-      - libxcb-xfixes0-dev
       - libpixman-1-dev
       - libpam0g-dev
       - libutf8proc-dev
@@ -190,7 +177,7 @@ parts:
     build-packages:
       - libpcap-dev
     stage-packages:
-      - libpcap0.8
+      - libpcap0.8t64
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DPCAPPP_BUILD_EXAMPLES=OFF
@@ -249,11 +236,16 @@ parts:
     build-packages:
       - libcmark-dev
       - cmark
+      - libvncserver-dev
+      - libtelnet-dev
+      - libpcap-dev
+      - libx11-dev
+      - libxcb-keysyms1-dev
+      - libssh-dev
       # opengl development headers and libraries
       - libglx-dev
       - libgl1-mesa-dev
       - libglu1-mesa-dev
-      - libxcb-keysyms1-dev
       # vulkan development headers and libraries
       - libvulkan-dev
       # openssl development headers and libraries
@@ -262,48 +254,22 @@ parts:
       # PulseAudio client development headers and libraries
       - libpulse-dev
       - libcups2-dev # print development headers and libraries
-      - libvncserver-dev
-      - libssh-dev
-      - libtelnet-dev
-      - libpcap-dev
     stage-packages:
       - libcmark0.30.2
-      # opengl runtime libraries
-      - libglx0
-      - libgl1
-      - libglu1-mesa
-      # vulkan runtime libraries
-      - libvulkan1
-      # openssl runtime libraries
-      - libssl3
-      - libcrypt1
-      # c and c++
-      - libc6
-      - libgcc-s1
-      - libstdc++6
-      # PulseAudio client runtime libraries
-      - libpulse0
-      - zlib1g
-      - libssh-4
       - libvncserver1
       - libvncclient1
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
+      - -DCMAKE_VERBOSE_MAKEFILE=ON 
       # - -DQT_ROOT=$CRAFT_STAGE/qt
       # - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
       # - -DQt6_ROOT=$CRAFT_STAGE/qt
       # - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
-      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
+      #- -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
-      - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
-      - -DPcapPlusPlus_ROOT=$CRAFT_STAGE/usr/local
-      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
-      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
-      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
-      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
-      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
     # build-environment:
     #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
     #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"
@@ -342,6 +308,7 @@ apps:
    # List extensions, run `snapcraft extensions`
    extensions:
      - kde-neon-6
+     #- kde-neon-qt6
    # See: https://snapcraft.io/docs/supported-interfaces
    plugs:
      - network
@@ -349,13 +316,23 @@ apps:
      - network-control
      - network-bind
      - network-manager
+     - network-manager-observe
+     - network-observe
+     - network-setup-control
+     - network-setup-observe
+     - avahi-observe
+     - avahi-control
+     - cifs-mount
+     - nfs-mount
+     - openvswitch
+     - openvswitch-support
+     - ppp
      - opengl
      - cups-control
      - serial-port
      - alsa
      - audio-playback
      - audio-record
-     - avahi-observe
      - browser-support
      - home
      - media-hub
@@ -368,3 +345,6 @@ apps:
      - screen-inhibit-control
      - ssh-keys
      - ssh-public-keys
+     - pkcs11
+     - appstream-metadata
+     - hardware-observe
