@@ -67,7 +67,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.14.1
+    source-tag: 3.15.0
     source-depth: 1
     build-packages:
       - libssl-dev
@@ -253,6 +253,7 @@ parts:
       - libglx-dev
       - libgl1-mesa-dev
       - libglu1-mesa-dev
+      - libx11-dev
       - libxcb-keysyms1-dev
       # vulkan development headers and libraries
       - libvulkan-dev
@@ -268,12 +269,6 @@ parts:
       - libpcap-dev
     stage-packages:
       - libcmark0.30.2
-      # opengl runtime libraries
-      - libglx0
-      - libgl1
-      - libglu1-mesa
-      # vulkan runtime libraries
-      - libvulkan1
       # openssl runtime libraries
       - libssl3
       - libcrypt1
