@@ -379,11 +379,13 @@ int CViewSplitter::ActiveContainer(QWidget *pView)
 int CViewSplitter::SetSizes()
 {
     int w = 0, h = 0;
+    if(0 == m_nCount)
+        return 0;
     foreach(auto sp, m_Row) {
         for(int i = 0; i < sp->count(); i++) {
             auto pContainer = sp->widget(i);
-            w = qMax(w, pContainer->minimumSizeHint().width());
-            h = qMax(h, pContainer->minimumSizeHint().height());
+            w = qMax(w, pContainer->frameGeometry().width());
+            h = qMax(h, pContainer->frameGeometry().height());
         }
     }
 

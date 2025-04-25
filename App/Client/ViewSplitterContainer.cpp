@@ -22,7 +22,7 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     m_pTab->installEventFilter(this);
 
     SetVisibleTab(true);
-    m_pTab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    m_pTab->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
     if(m_pView) {
         m_pView->show();
         m_pTab->setWindowTitle(m_pView->windowTitle());
@@ -103,22 +103,6 @@ void CViewSplitterContainer::closeEvent(QCloseEvent *event)
     emit sigCloseView(m_pView);
 }
 
-QSize CViewSplitterContainer::minimumSizeHint() const
-{
-    int w = 0, h = 0;
-    if(m_pTab) {
-        w = m_pTab->minimumSizeHint().width();
-        h = m_pTab->minimumSizeHint().height();
-    }
-
-    if(m_pView) {
-        w = qMax(w, m_pView->minimumSizeHint().width());
-        h = h + m_pView->minimumSizeHint().height();
-    }
-    //qDebug(log) << "Width:" << w << "Height:" << h;
-    return QSize(w, h);
-}
-
 void CViewSplitterContainer::slotCustomContextMenuRequested(const QPoint &pos)
 {
     QPoint p = pos;
@@ -128,8 +112,8 @@ void CViewSplitterContainer::slotCustomContextMenuRequested(const QPoint &pos)
 
 bool CViewSplitterContainer::eventFilter(QObject *watched, QEvent *event)
 {
-    qDebug(log) << "Event filter:" << watched << event->type();
-    if(event->type() == QEvent::MouseButtonPress)
+    //qDebug(log) << "Event filter:" << watched << event->type();
+    if(watched == m_pTab && event->type() == QEvent::MouseButtonPress)
     {
         emit sigFouceIn(m_pView);
     }

@@ -40,10 +40,6 @@ private:
     // QWidget interface
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
-    
-    // QWidget interface
-public:
-    virtual QSize minimumSizeHint() const override;
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
