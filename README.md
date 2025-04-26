@@ -274,7 +274,7 @@ Contact me:
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - [![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)
 
-### Instructions for installing the package
+### Installation package description
 
 - Windows: The extension is .exe
   - Architecture:
