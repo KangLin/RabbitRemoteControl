@@ -189,8 +189,8 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView,
     Q_ASSERT(check);
     
 #if HAVE_QT6_RECORD
-    check = connect(this, SIGNAL(sigRecordVideo(bool)),
-                    pView, SLOT(slotRecordVideo(bool)));
+    check = connect(this, SIGNAL(sigRecordVideo(bool, qreal)),
+                    pView, SLOT(slotRecordVideo(bool, qreal)));
     Q_ASSERT(check);
     check = connect(pView, SIGNAL(sigRecordVideo(QImage)),
                     this, SLOT(slotRecordVideo(QImage)),
@@ -397,7 +397,7 @@ void CConnectDesktop::slotRecord(bool bRecord)
         m_CaptureSession.setAudioBufferInput(nullptr);
         m_CaptureSession.setRecorder(nullptr);
     }
-    emit sigRecordVideo(bRecord);
+    emit sigRecordVideo(bRecord, m_pParameterRecord->GetVideoFrameRate());
 }
 
 void CConnectDesktop::slotRecordPause(bool bPause)

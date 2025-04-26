@@ -5,8 +5,11 @@
 
 #pragma once
 
+#include <QWidget>
+#include <QSettings>
 #include <QMutex>
 #include <QImage>
+#include <QTimer>
 #include <QSharedPointer>
 #include "client_export.h"
 
@@ -16,10 +19,6 @@
     #define CFrmViewer CFrmViewerOpenGL
 
 #else
-
-#include <QWidget>
-#include <QSettings>
-#include <QMutex>
 
 class CRecordVideoThread;
 
@@ -181,11 +180,12 @@ public:
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
 public Q_SLOTS:
-    void slotRecordVideo(bool bRecord);
+    void slotRecordVideo(bool bRecord, qreal nRate = 24);
+    void slotRecordVideo();
 Q_SIGNALS:
     void sigRecordVideo(const QImage& img);
 private:
-    bool m_bRecordVideo;
+    QTimer m_TimerRecordVideo;
 };
 
 #endif // #ifdef USE_FROM_OPENGL

@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.36
+- Client:
+  - Fix recode video rate bug
+
 ### v0.0.35
 - App:
   - modify parameter

@@ -137,7 +137,7 @@ private Q_SLOTS:
     // connect CFrmView
     void slotRecordVideo(const QImage& img);
 Q_SIGNALS:
-    void sigRecordVideo(bool bRecord);
+    void sigRecordVideo(bool bRecord, qreal nRate = 24);
 private:
     void RecordVideo(QRecordVideoEvent *event);
     CParameterRecord* m_pParameterRecord;

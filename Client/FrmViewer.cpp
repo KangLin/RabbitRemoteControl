@@ -25,7 +25,6 @@ static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
-    , m_bRecordVideo(false)
 {
     qDebug(log) << Q_FUNC_INFO;
     setAttribute(Qt::WA_DeleteOnClose);
@@ -45,6 +44,10 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     // When the CConnecter::sigConnected() set true. accept keyboard and mouse event
     // \see CConnecter::sigConnected()
     setEnabled(false);
+
+    bool check = connect(&m_TimerRecordVideo, SIGNAL(timeout()),
+                         this, SLOT(slotRecordVideo()));
+    Q_ASSERT(check);
 }
 
 CFrmViewer::~CFrmViewer()
@@ -332,9 +335,6 @@ void CFrmViewer::slotUpdateRect(const QImage& image)
     //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
     m_Desktop = image;
 
-    if(m_bRecordVideo)
-        emit sigRecordVideo(m_Desktop);
-
     update();
     return;
 }
@@ -359,9 +359,6 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
         painter.drawImage(r, image);
         //qDebug(log) << "Update image size isn't same old image size" << r << image.rect() << image;
     }
-
-    if(m_bRecordVideo)
-        emit sigRecordVideo(m_Desktop);
 
     update();
 }
@@ -518,9 +515,20 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
     return m_Desktop.copy(x, y, width, height);
 }
 
-void CFrmViewer::slotRecordVideo(bool bRecord)
+void CFrmViewer::slotRecordVideo(bool bRecord, qreal nRate)
 {
-    m_bRecordVideo = bRecord;
+    int r = nRate;
+    if(0 >= nRate)
+        r = 24;
+    if(bRecord)
+        m_TimerRecordVideo.start(1000 / r);
+    else
+        m_TimerRecordVideo.stop();
+}
+
+void CFrmViewer::slotRecordVideo()
+{
+    emit sigRecordVideo(m_Desktop);
 }
 
 void CFrmViewer::focusInEvent(QFocusEvent *event)
