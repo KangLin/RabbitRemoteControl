@@ -464,6 +464,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -508,27 +509,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="48"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
+        <source>If record remote desktop, recommended options: 24, 50, 60</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="50"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="53"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="55"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="58"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="60"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="65"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="165"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="166"/>
         <source>Open path</source>
         <translation type="unfinished"></translation>
     </message>

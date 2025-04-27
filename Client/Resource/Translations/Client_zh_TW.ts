@@ -490,6 +490,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
@@ -534,27 +535,32 @@ Restart program by administrator?</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="48"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
+        <source>If record remote desktop, recommended options: 24, 50, 60</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="50"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="53"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="55"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="58"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="60"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation>編碼將嘗試保持平均比特率設置，但會根據需要使用或多或少。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="65"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation>首先處理媒體以確定特征，然後第二次處理，將更多位分配給需要它的區域。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="165"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="166"/>
         <source>Open path</source>
         <translation>打開文件夾</translation>
     </message>
