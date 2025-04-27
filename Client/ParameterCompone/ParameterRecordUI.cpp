@@ -30,6 +30,8 @@ CParameterRecordUI::CParameterRecordUI(QWidget *parent)
         qDebug(log) << "Video codec:" << v;
         ui->cmbVideoEncode->addItem(QMediaFormat::videoCodecName(v), (int)v);
     }
+    ui->dsbFrameRate->setToolTip(tr("A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.") + "\n" +
+                                 tr("If record remote desktop, recommended options: 24, 50, 60"));
     auto audio = recorder.mediaFormat().supportedAudioCodecs(QMediaFormat::Encode);
     foreach(auto a, audio) {
         qDebug(log) << "Audio codec:" << a;
