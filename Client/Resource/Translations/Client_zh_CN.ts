@@ -299,7 +299,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="505"/>
+        <location filename="../../FrmViewer.cpp" line="507"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>
@@ -307,22 +307,19 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕获系统快捷键需要管理员权限。
+        <translation type="vanished">捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>总是显示</translation>
+        <translation type="vanished">总是显示</translation>
     </message>
 </context>
 <context>
@@ -482,7 +479,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="177"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="183"/>
         <source>Encode:</source>
         <translation>编码：</translation>
     </message>
@@ -492,52 +489,72 @@ Restart program by administrator?</source>
         <translation>帧率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation>值为 0 表示录制器应根据视频源中可用的内容和编解码器的限制做出最佳选择。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
         <source>Sample rate:</source>
         <translation>采样率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
         <translation>值为 -1 表示录制器应根据音频源中可用的内容和编解码器的限制做出最佳选择。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
         <source>HZ</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="232"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
         <source>After the end of the action</source>
         <translation>结束之后的动作</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="256"/>
         <source>No action</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="260"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="272"/>
         <source>Open folder</source>
         <translation>打开文件夹</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="273"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="285"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="148"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="48"/>
+        <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
+        <translation>编码的目标是具有恒定的质量，调整比特率以适应。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="53"/>
+        <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
+        <translation>编码的目标是具有恒定的质量，调整比特率以适应。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="58"/>
+        <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
+        <translation>编码将尝试保持平均比特率设置，但会根据需要使用或多或少。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="63"/>
+        <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
+        <translation>首先处理媒体以确定特征，然后第二次处理，将更多位分配给需要它的区域。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="165"/>
         <source>Open path</source>
         <translation>打开文件夹</translation>
     </message>

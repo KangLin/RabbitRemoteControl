@@ -33,7 +33,7 @@
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Connect to local socket server </source>
-        <translation>連接到本地　socket 服務</translation>
+        <translation>連接到本地&#x3000;socket 服務</translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="988"/>

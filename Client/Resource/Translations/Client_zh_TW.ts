@@ -123,23 +123,23 @@
     </message>
     <message>
         <source>Record</source>
-        <translation type="vanished">錄制</translation>
+        <translation type="vanished">錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="180"/>
         <source>Record pause</source>
-        <translation>暫停錄制</translation>
+        <translation>暫停錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="292"/>
         <source>Stop record</source>
-        <translation>停止錄制</translation>
+        <translation>停止錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="173"/>
         <location filename="../../ConnecterThread.cpp" line="295"/>
         <source>Start record</source>
-        <translation>開始錄制</translation>
+        <translation>開始錄製</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../../DlgInputPassword.ui" line="39"/>
         <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation>加密密鑰用于加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
+        <translation>加密密鑰用於加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../../DlgInputPassword.cpp" line="14"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
-        <translation>加密密鑰用于加密保存到文件中的密碼。</translation>
+        <translation>加密密鑰用於加密保存到文件中的密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="16"/>
@@ -233,7 +233,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Enable use the system user as the user</source>
-        <translation>允許使用系統用戶作爲用戶</translation>
+        <translation>允許使用系統用戶作為用戶</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="42"/>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="91"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>加密鍵用于加密保存的密碼</translation>
+        <translation>加密鍵用於加密保存的密碼</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="105"/>
@@ -299,7 +299,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="505"/>
+        <location filename="../../FrmViewer.cpp" line="507"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -307,22 +307,19 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕獲系統快捷鍵需要管理員權限。
-需要以管理員權限重啓程序嗎？</translation>
+        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
+需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>總是顯示</translation>
+        <translation type="vanished">總是顯示</translation>
     </message>
 </context>
 <context>
@@ -386,12 +383,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SockesV5&quot;中主機爲空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機爲空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
     </message>
 </context>
 <context>
@@ -428,12 +425,12 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="29"/>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="39"/>
         <source>RabbitRemoteControl</source>
-        <translation>玉兔遠程控制</translation>
+        <translation>玉兔遠程控製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
         <source>Record</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
@@ -448,17 +445,17 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
         <source>Folder:</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
         <source>Browse</source>
-        <translation>浏覽</translation>
+        <translation>瀏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
@@ -482,7 +479,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="177"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="183"/>
         <source>Encode:</source>
         <translation>編碼：</translation>
     </message>
@@ -492,52 +489,72 @@ Restart program by administrator?</source>
         <translation>幀率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation>值爲 0 表示錄制器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
         <source>Audio</source>
         <translation>音頻</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
         <source>Sample rate:</source>
         <translation>采樣率：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation>值爲 -1 表示錄制器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
         <source>HZ</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="232"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
         <source>After the end of the action</source>
         <translation>結束之後的動作</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="256"/>
         <source>No action</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="260"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="272"/>
         <source>Open folder</source>
         <translation>打開文件夾</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="273"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="285"/>
         <source>Open file</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="148"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="48"/>
+        <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
+        <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="53"/>
+        <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
+        <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="58"/>
+        <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
+        <translation>編碼將嘗試保持平均比特率設置，但會根據需要使用或多或少。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="63"/>
+        <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
+        <translation>首先處理媒體以確定特征，然後第二次處理，將更多位分配給需要它的區域。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="165"/>
         <source>Open path</source>
         <translation>打開文件夾</translation>
     </message>
@@ -662,7 +679,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation>公鑰和私鑰文件都爲空，用系統公鑰和私鑰文件。</translation>
+        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
@@ -690,7 +707,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
         <source>Browse</source>
-        <translation>浏覽</translation>
+        <translation>瀏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
@@ -768,7 +785,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">長度爲 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
@@ -780,7 +797,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>Repeat:</source>
-        <translation type="vanished">重複：</translation>
+        <translation type="vanished">重復：</translation>
     </message>
     <message>
         <source>Interval:</source>
@@ -808,7 +825,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">密碼錯誤。長度爲 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
         <source>The mac address is error</source>

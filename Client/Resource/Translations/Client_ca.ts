@@ -291,28 +291,8 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="505"/>
+        <location filename="../../FrmViewer.cpp" line="507"/>
         <source>Failed to update keyboard LED state</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CHookWindows</name>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
-        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -473,7 +453,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="177"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="183"/>
         <source>Encode:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -483,52 +463,72 @@ Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
         <source>Sample rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
         <source>HZ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="232"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
         <source>After the end of the action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="256"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="260"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="272"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="273"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="285"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="148"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="48"/>
+        <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="53"/>
+        <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="58"/>
+        <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="63"/>
+        <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="165"/>
         <source>Open path</source>
         <translation type="unfinished"></translation>
     </message>
