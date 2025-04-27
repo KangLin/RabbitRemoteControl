@@ -25,6 +25,7 @@ static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
+    , m_bRecordVideo(false)
 {
     qDebug(log) << Q_FUNC_INFO;
     setAttribute(Qt::WA_DeleteOnClose);
@@ -335,6 +336,9 @@ void CFrmViewer::slotUpdateRect(const QImage& image)
     //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
     m_Desktop = image;
 
+    if(m_bRecordVideo)
+        emit sigRecordVideo(m_Desktop);
+
     update();
     return;
 }
@@ -352,13 +356,14 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
     {
         m_Desktop = image;
         //qDebug(log) << "Update image size is same old image size";
-    }
-    else
-    {
+    } else {
         QPainter painter(&m_Desktop);
         painter.drawImage(r, image);
         //qDebug(log) << "Update image size isn't same old image size" << r << image.rect() << image;
     }
+
+    if(m_bRecordVideo)
+        emit sigRecordVideo(m_Desktop);
 
     update();
 }
@@ -379,35 +384,35 @@ unsigned int getModifierMask(unsigned int keysym)
     XkbDescPtr xkb;
     unsigned int mask, keycode;
     XkbAction *act;
-    
+
     mask = 0;
     Display *dpy = XOpenDisplay(0);
     xkb = XkbGetMap(dpy, XkbAllComponentsMask, XkbUseCoreKbd);
     if (xkb == nullptr)
         return 0;
-    
+
     for (keycode = xkb->min_key_code; keycode <= xkb->max_key_code; keycode++) {
         unsigned int state_out;
         KeySym ks;
-        
+
         XkbTranslateKeyCode(xkb, keycode, 0, &state_out, &ks);
         if (ks == NoSymbol)
             continue;
-        
+
         if (ks == keysym)
             break;
     }
-    
+
     // KeySym not mapped?
     if (keycode > xkb->max_key_code)
         goto out;
-    
+
     act = XkbKeyAction(xkb, keycode, 0);
     if (act == nullptr)
         goto out;
     if (act->type != XkbSA_LockMods)
         goto out;
-    
+
     if (act->mods.flags & XkbSA_UseModMapMods)
         mask = xkb->map->modmap[keycode];
     else
@@ -415,7 +420,7 @@ unsigned int getModifierMask(unsigned int keysym)
 
 out:
     XkbFreeKeyboard(xkb, XkbAllComponentsMask, True);
-    
+
     return mask;
 }
 #endif
@@ -423,7 +428,7 @@ out:
 void CFrmViewer::slotUpdateLedState(unsigned int state)
 {    
     qDebug(log, "Got server LED state: 0x%08x", state);
-      
+
     if (!hasFocus())
         return;
 
@@ -478,20 +483,20 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
 #elif defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_APPLE)
     unsigned int affect, values;
     unsigned int mask;
-    
+
     Bool ret;
-    
+
     affect = values = 0;
-    
+
     affect |= LockMask;
     if (state & CapsLock)
         values |= LockMask;
-    
+
     mask = getModifierMask(XK_Num_Lock);
     affect |= mask;
     if (state & NumLock)
         values |= mask;
-    
+
     mask = getModifierMask(XK_Scroll_Lock);
     affect |= mask;
     if (state & ScrollLock)
@@ -517,11 +522,14 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
 
 void CFrmViewer::slotRecordVideo(bool bRecord, qreal nRate)
 {
-    int r = nRate;
-    if(0 >= nRate)
-        r = 24;
+    m_bRecordVideo = bRecord;
+    if(0 == nRate) {
+        return;
+    }
+
+    m_bRecordVideo = false;
     if(bRecord)
-        m_TimerRecordVideo.start(1000 / r);
+        m_TimerRecordVideo.start(1000 / nRate);
     else
         m_TimerRecordVideo.stop();
 }

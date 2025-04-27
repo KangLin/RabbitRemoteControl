@@ -43,9 +43,25 @@ CParameterRecordUI::CParameterRecordUI(QWidget *parent)
     ui->cmbQuality->addItem("Very low", QMediaRecorder::Quality::VeryLowQuality);
 
     ui->cmbEncodingMode->addItem("Constant quality", QMediaRecorder::EncodingMode::ConstantQualityEncoding);
+    ui->cmbEncodingMode->setItemData(
+        QMediaRecorder::EncodingMode::ConstantQualityEncoding,
+        tr("Encoding will aim to have a constant quality, adjusting bitrate to fit."),
+        Qt::ToolTipRole);
     ui->cmbEncodingMode->addItem("Constant bit rate", QMediaRecorder::EncodingMode::ConstantBitRateEncoding);
+    ui->cmbEncodingMode->setItemData(
+        QMediaRecorder::EncodingMode::ConstantBitRateEncoding,
+        tr("Encoding will use a constant bit rate, adjust quality to fit."),
+        Qt::ToolTipRole);
     ui->cmbEncodingMode->addItem("Average bit rate", QMediaRecorder::EncodingMode::AverageBitRateEncoding);
+    ui->cmbEncodingMode->setItemData(
+        QMediaRecorder::EncodingMode::AverageBitRateEncoding,
+        tr("Encoding will try to keep an average bitrate setting, but will use more or less as needed."),
+        Qt::ToolTipRole);
     ui->cmbEncodingMode->addItem("Two pass", QMediaRecorder::EncodingMode::TwoPassEncoding);
+    ui->cmbEncodingMode->setItemData(
+        QMediaRecorder::EncodingMode::TwoPassEncoding,
+        tr("The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it."),
+        Qt::ToolTipRole);
 #endif
 }
 

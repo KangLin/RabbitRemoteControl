@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>468</width>
-    <height>374</height>
+    <width>471</width>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -150,6 +150,12 @@
              </item>
              <item>
               <widget class="QDoubleSpinBox" name="dsbFrameRate">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</string>
                </property>
@@ -201,6 +207,12 @@
              </item>
              <item>
               <widget class="QSpinBox" name="sbSampleRate">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</string>
                </property>

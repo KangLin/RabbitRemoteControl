@@ -180,12 +180,13 @@ public:
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
 public Q_SLOTS:
-    void slotRecordVideo(bool bRecord, qreal nRate = 24);
+    void slotRecordVideo(bool bRecord, qreal nRate = 0);
     void slotRecordVideo();
 Q_SIGNALS:
     void sigRecordVideo(const QImage& img);
 private:
     QTimer m_TimerRecordVideo;
+    bool m_bRecordVideo;
 };
 
 #endif // #ifdef USE_FROM_OPENGL
