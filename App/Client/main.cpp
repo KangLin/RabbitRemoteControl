@@ -52,12 +52,12 @@ int main(int argc, char *argv[])
       （Qt6 开始强制默认优先用 wayland ，Qt5 默认有 xcb 则优先用 xcb），
        所以需要在 main 函数最前面加一行 `qputenv("QT_QPA_PLATFORM", "xcb")`;
     */
-    QString szPlatform = QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM"));
+    QString szPlatform = qEnvironmentVariable("QT_QPA_PLATFORM");
     if(szPlatform.isEmpty()
         || -1 != szPlatform.indexOf(QRegularExpression("wayland.*")))
         qputenv("QT_QPA_PLATFORM", "xcb");
     qInfo(log) << "QT_QPA_PLATFORM:" << szPlatform << "\nCurrent Qt Platform is:"
-               << QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM"))
+               << qEnvironmentVariable("QT_QPA_PLATFORM")
                << "; This can be modified with the environment variables QT_QPA_PLATFORM:\n"
                << "export QT_QPA_PLATFORM=xcb\n Optional: xcb; vnc";
 #endif
@@ -94,31 +94,33 @@ int main(int argc, char *argv[])
 
 #ifdef HAVE_UPDATE
     // Check update version
-    QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
-    if(pUpdate) {
-        QIcon icon = QIcon::fromTheme("app");
-        if(!icon.isNull())
-        {
-            auto sizeList = icon.availableSizes();
-            if(!sizeList.isEmpty()){
-                QPixmap p = icon.pixmap(*sizeList.begin());
-                pUpdate->SetTitle(p.toImage());
+    if(qEnvironmentVariable("SNAP").isEmpty()
+        && qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
+        QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
+        if(pUpdate) {
+            QIcon icon = QIcon::fromTheme("app");
+            if(!icon.isNull())
+            {
+                auto sizeList = icon.availableSizes();
+                if(!sizeList.isEmpty()){
+                    QPixmap p = icon.pixmap(*sizeList.begin());
+                    pUpdate->SetTitle(p.toImage());
+                }
             }
-        }
-        if(app.arguments().length() > 1) {
-            try{
-                pUpdate->GenerateUpdateJson();
-                pUpdate->GenerateUpdateXml();
-            } catch(...) {
-                qCritical(log) << "Generate update fail";
+            if(app.arguments().length() > 1) {
+                try{
+                    pUpdate->GenerateUpdateJson();
+                    pUpdate->GenerateUpdateXml();
+                } catch(...) {
+                    qCritical(log) << "Generate update fail";
+                }
+                qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                                  + " " + QObject::tr("Generate update json file End");
+                return 0;
             }
-
-            qInfo(log) << app.applicationName() + " " + app.applicationVersion()
-                              + " " + QObject::tr("Generate update json file End");
-            return 0;
+        } else {
+            qCritical(log) << "new CFrmUpdater() fail";
         }
-    } else {
-        qCritical(log) << "new CFrmUpdater() fail";
     }
 #endif
 

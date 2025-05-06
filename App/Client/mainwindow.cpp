@@ -368,6 +368,11 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionUpdate_triggered()
 {
+    if(!qEnvironmentVariable("SNAP").isEmpty()) {
+        QDesktopServices::openUrl(QUrl("https://snapcraft.io/rabbitremotecontrol"));
+    } else if(!qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
+        QDesktopServices::openUrl(QUrl("https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl"));
+    } else {
 #ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     QIcon icon = QIcon::fromTheme("app");
@@ -381,6 +386,7 @@ void MainWindow::on_actionUpdate_triggered()
     m_pfrmUpdater->SetInstallAutoStartup();
     RC_SHOW_WINDOW(m_pfrmUpdater);
 #endif
+    }
 }
 
 void MainWindow::on_actionFull_screen_F_triggered()
