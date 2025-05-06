@@ -274,7 +274,7 @@ void CConnectPlayer::slotRecord(bool bRecord)
             break;
         }
 #ifndef HAVE_QVideoWidget
-        emit sigRecordVideo(bRecord);
+        emit sigRecordVideo(bRecord, m_pParameters->m_Record.GetVideoFrameRate());
 #endif
         return;
     }

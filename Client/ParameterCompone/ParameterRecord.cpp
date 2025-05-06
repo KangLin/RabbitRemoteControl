@@ -355,8 +355,8 @@ CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder)
     format.setVideoCodec(para.GetVideoCodec());
     format.setFileFormat(para.GetFileFormat());
     recorder.setMediaFormat(format);
-    recorder.setEncodingMode(para.GetEncodingMode());
     recorder.setQuality(para.GetQuality());
+    recorder.setEncodingMode(para.GetEncodingMode());
 #endif
 
     if(!para.GetFile(true).isEmpty())

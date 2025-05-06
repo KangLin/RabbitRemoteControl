@@ -37,6 +37,7 @@ CParameterRecordUI::CParameterRecordUI(QWidget *parent)
         qDebug(log) << "Audio codec:" << a;
         ui->cmbAudioEncode->addItem(QMediaFormat::audioCodecName(a), (int)a);
     }
+    ui->sbSampleRate->setToolTip(tr("A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc"));
 
     ui->cmbQuality->addItem("Very height", QMediaRecorder::Quality::VeryHighQuality);
     ui->cmbQuality->addItem("Height", QMediaRecorder::Quality::HighQuality);
@@ -64,6 +65,7 @@ CParameterRecordUI::CParameterRecordUI(QWidget *parent)
         QMediaRecorder::EncodingMode::TwoPassEncoding,
         tr("The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it."),
         Qt::ToolTipRole);
+    on_cmbEncodingMode_currentIndexChanged(ui->cmbEncodingMode->currentIndex());
 #endif
 }
 
@@ -177,10 +179,18 @@ void CParameterRecordUI::on_cmbEncodingMode_currentIndexChanged(int index)
         ui->cmbQuality->setEnabled(true);
         ui->dsbFrameRate->setEnabled(false);
         ui->sbSampleRate->setEnabled(false);
+        if(ui->dsbFrameRate->value() != 0)
+            ui->dsbFrameRate->setValue(0);
+        if(ui->sbSampleRate->value() != -1)
+            ui->sbSampleRate->setValue(-1);
     } else {
         ui->cmbQuality->setEnabled(false);
         ui->dsbFrameRate->setEnabled(true);
         ui->sbSampleRate->setEnabled(true);
+        if(ui->dsbFrameRate->value() == 0)
+            ui->dsbFrameRate->setValue(24);
+        if(ui->sbSampleRate->value() == -1)
+            ui->sbSampleRate->setValue(8000);
     }
 #endif
 }
