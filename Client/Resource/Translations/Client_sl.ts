@@ -514,27 +514,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="50"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
+        <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="51"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="55"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="56"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="60"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="61"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="65"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="66"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="166"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="168"/>
         <source>Open path</source>
         <translation type="unfinished"></translation>
     </message>
