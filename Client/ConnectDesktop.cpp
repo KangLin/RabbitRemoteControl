@@ -38,7 +38,7 @@ private:
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
-int g_QMessageBox_Icon = qRegisterMetaType<Qt::MouseButton>("QMessageBox::Icon");
+//int g_QMessageBox_Icon = qRegisterMetaType<QMessageBox::Icon>("QMessageBox::Icon");
 
 CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     : CConnect(pConnecter)

@@ -9,11 +9,11 @@
     #if defined(HAVE_UNIX_DOMAIN_SOCKET)
         #include <WinSock2.h>
         /* [AF_UNIX comes to Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/)
-                 * How can I write a Windows AF_UNIX app?
-                 *   - Download the Windows Insiders SDK for the Windows build 17061 — available here.
-                 *   - Check whether your Windows build has support for unix socket by running “sc query afunix” from a Windows admin command prompt.
-                 *   - #include <afunix.h> in your Windows application and write a Windows unix socket winsock application as you would write any other unix socket application, but, using Winsock API’s.
-                 */
+         * How can I write a Windows AF_UNIX app?
+         *   - Download the Windows Insiders SDK for the Windows build 17061 — available here.
+         *   - Check whether your Windows build has support for unix socket by running “sc query afunix” from a Windows admin command prompt.
+         *   - #include <afunix.h> in your Windows application and write a Windows unix socket winsock application as you would write any other unix socket application, but, using Winsock API’s.
+         */
         #include <afunix.h>
     #endif
     #define socklen_t int
@@ -109,12 +109,12 @@ int CChannelSSHTunnelForward::OpenSocket()
         emit sigServer(inet_ntoa(listen_addr.sin_addr), ntohs(listen_addr.sin_port));
         return 0;
     } while(0);
-    
+
     if(!bRet) {
         CloseSocket(m_Listen);
         m_Listen = SSH_INVALID_SOCKET;
     }
-    
+
     return -1;
 }
 
@@ -125,7 +125,7 @@ int CChannelSSHTunnelForward::OpenUnixSocket()
     int family = AF_UNIX;
     int type = SOCK_STREAM;
     QString szErr;
-    
+
     socklen_t size = 0;
     struct sockaddr_un listen_addr;
     QString szPath;
@@ -153,7 +153,7 @@ int CChannelSSHTunnelForward::OpenUnixSocket()
     memset(&listen_addr, 0, sizeof(listen_addr));
     listen_addr.sun_family = AF_UNIX;
     strcpy(listen_addr.sun_path, szUnixDomainSocket.toStdString().c_str());
-    
+
     m_Listen = socket(family, type, 0);
     if(SSH_INVALID_SOCKET == m_Listen) {
         szErr = "Create socket fail:" + QString::number(errno);
@@ -161,10 +161,10 @@ int CChannelSSHTunnelForward::OpenUnixSocket()
         setErrorString(szErr);
         return false;
     }
-    
+
     Channel::CEvent::SetSocketNonBlocking(m_Listen);
     //Channel::CEvent::EnableNagles(m_Server, false);
-    
+
     do {
         if (bind(m_Listen, (struct sockaddr *) &listen_addr, sizeof(listen_addr))
             == -1) {
@@ -188,12 +188,12 @@ int CChannelSSHTunnelForward::OpenUnixSocket()
         qDebug(log) << "listener in:" << listen_addr.sun_path;
         return 0;
     } while(0);
-    
+
     if(!bRet) {
         CloseSocket(m_Listen);
         m_Listen = SSH_INVALID_SOCKET;
     }
-    
+
     return -1;
 }
 #endif

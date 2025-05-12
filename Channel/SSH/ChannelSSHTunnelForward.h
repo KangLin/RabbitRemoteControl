@@ -26,13 +26,13 @@ public:
     explicit CChannelSSHTunnelForward(QSharedPointer<CParameterChannelSSH> parameter,
                                      QObject *parent = nullptr);
     virtual ~CChannelSSHTunnelForward();
-    
+
     // QIODevice interface
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
     virtual int Process();
-    
+
     enum class SOCKET_TYPE{
         UnixSocket,
         Socket
@@ -45,9 +45,9 @@ Q_SIGNALS:
 private:
     socket_t m_Listen;
     socket_t m_Connector;
-    
+
     SOCKET_TYPE m_SocketType;
-    
+
     int CloseSocket(socket_t &s);
     int AcceptConnect();
     int ReadConnect();

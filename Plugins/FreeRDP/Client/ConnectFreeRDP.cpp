@@ -2398,7 +2398,7 @@ int CConnectFreeRDP::RedirectionSerial()
 
 void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
 {
-    qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer" << nPort;
+    qDebug(log) << "Connect proxy server:" << szHost + ":" + QString::number(nPort);
     rdpContext* pContext = (rdpContext*)m_pContext;
     rdpSettings* settings = pContext->settings;
     if(!settings) {
@@ -2411,11 +2411,11 @@ void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
     freerdp_settings_set_uint32(
         settings, FreeRDP_ServerPort,
         nPort);
-    
+
     int nRet = freerdp_client_start(pContext);
     if(nRet)
     {
         qCritical(log) << "freerdp_client_start fail";
     }
-    qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer end";
+    qDebug(log) << "Connect proxy server:" << szHost + ":" + QString::number(nPort) << "end";
 }

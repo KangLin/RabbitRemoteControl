@@ -291,7 +291,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
     QString szHash = baHash.toHex(':').toStdString().c_str();
     ssh_clean_pubkey_hash(&hash);
     
-    QMessageBox::StandardButton btRet;
+    QMessageBox::StandardButton btRet = QMessageBox::Yes;
     bool checkBox = false;
     enum ssh_known_hosts_e state = ssh_session_is_known_server(session);
     switch(state) {
