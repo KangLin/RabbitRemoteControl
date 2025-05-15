@@ -18,9 +18,14 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_version: [6.9.0]
-        os: [ubuntu-24.04, ubuntu-24.04-arm]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04]
         PACKAGE: [deb, appimage]
-
+        exclude:
+          - os: ubuntu-22.04
+            PACKAGE: appimage
+        #  - os: ubuntu-20.04-arm
+        #    PACKAGE: deb
+     
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
@@ -118,7 +123,7 @@ jobs:
           #export QT_DEBUG_PLUGINS=1
           ARCH=`uname -m`
           mv RabbitRemoteControl_$ARCH.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage
-          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage.md5sum
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum
           MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum|awk '{print $1}'`
           echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage: ${MD5SUM}"
           echo "Generate update configure file ......"

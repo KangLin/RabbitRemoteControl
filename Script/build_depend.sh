@@ -354,12 +354,13 @@ if [ $QT -eq 1 ]; then
     if [ ! -d qt_`uname -m` ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
         #      https://www.cnblogs.com/clark1990/p/17942952
-        if [ "$PACKAGE_TOOL" = "apt" ]; then
-            apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
-        fi
+        #if [ "$PACKAGE_TOOL" = "apt" ]; then
+        #    apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
+        #    pip install --upgrade typing-extensions
+        #fi
 
         #pip install -U pip
-        pip install aqtinstall
+        pip install --ignore-installed aqtinstall
 
         echo "PATH: $PATH"
         if [ "`uname -m`" == "x86_64" ]; then
