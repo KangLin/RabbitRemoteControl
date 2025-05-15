@@ -63,7 +63,6 @@ void CDlgDesktopSize::on_pbRemove_clicked()
 
 void CDlgDesktopSize::slotItemChanged(QStandardItem *item)
 {
-    bool ok = false;
     QString s = item->data(Qt::DisplayRole).toString();
     if(checkFormat(s))
         ui->lbError->hide();

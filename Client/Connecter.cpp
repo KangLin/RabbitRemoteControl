@@ -44,7 +44,7 @@ const QString CConnecter::Id()
 
 const QString CConnecter::Name()
 {
-    return GetPlugClient()->Name();
+    return GetPlugClient()->DisplayName();
 }
 
 const QString CConnecter::Description()

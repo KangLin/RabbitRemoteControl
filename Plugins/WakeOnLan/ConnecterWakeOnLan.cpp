@@ -142,7 +142,7 @@ const QString CConnecterWakeOnLan::Name()
     if(GetParameter() && GetParameter()->GetParameterClient()
         && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-    szName += GetPlugClient()->Name();
+    szName += GetPlugClient()->DisplayName();
     return szName;
 }
 
