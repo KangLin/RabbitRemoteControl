@@ -714,10 +714,9 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
             settings, FreeRDP_RdstlsSecurity,
             CParameterFreeRDP::Security::RDSTLS & security))
         return FALSE;
-#endif
-
     freerdp_settings_set_uint16(settings, FreeRDP_TLSMinVersion,
                                 pParameter->GetTlsVersion());
+#endif
 
     // Check authentication parameters
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
