@@ -15,6 +15,7 @@
 #include "Channel.h"
 #include "ParameterChannelSSH.h"
 #include "Event.h"
+#include "Connect.h"
 
 /*!
  * \~chinese
@@ -26,12 +27,13 @@
  * \~
  * \ingroup LIBAPI_CHANNEL
  */
-class CHANNEL_EXPORT CChannelSSHTunnel : public CChannel
+class CLIENT_EXPORT CChannelSSHTunnel : public CChannel
 {
     Q_OBJECT
 
 public:
     explicit CChannelSSHTunnel(QSharedPointer<CParameterChannelSSH> parameter,
+                               CConnect *pConnect,
                                bool bWakeUp = true,
                                QObject *parent = nullptr);
     virtual ~CChannelSSHTunnel();
@@ -44,48 +46,6 @@ public:
     virtual QString GetDetails() override;
     int Process();
     virtual int WakeUp();
-
-Q_SIGNALS:
-    /*!
-     * \~chinese
-     * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
-     *
-     * \~english
-     * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
-     * \param title
-     * \param message
-     * \param buttons
-     * \param nRet
-     * \param checkBox
-     * \param checkBoxContext
-     * 
-     * \~
-     * \see CConnecter::slotBlockShowMessageBox()
-     */
-    void sigBlockShowMessageBox(const QString& szTitle,
-                                const QString& szMessage,
-                                QMessageBox::StandardButtons buttons,
-                                QMessageBox::StandardButton& nRet,
-                                bool &checkBox,
-                                QString checkBoxContext = QString());
-    /*!
-     * \~chinese
-     * 阻塞后台线程，并在前台线程中显示窗口。
-     *
-     * \~english
-     * \brief Blocks the background thread and displays the window in the foreground thread.
-     * \param className: show windows class name
-     *        The class must have follower public functions:
-     *            Q_INVOKABLE void SetContext(void* pContext);
-     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
-     * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
-     *              Otherwise, ignore
-     * \param pContext: pass context to CConnecter::slotBlockShowWidget()
-     *
-     * \~
-     * \see CConnecter::slotBlockShowWidget() SetConnecter
-     */
-    void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 
     // QIODevice interface
 protected:
@@ -118,6 +78,7 @@ protected:
     ssh_channel m_Channel;
 
 private:
+    CConnect *m_pConnect;
     ssh_pcap_file m_pcapFile;
     QSharedPointer<CParameterChannelSSH> m_Parameter;
     

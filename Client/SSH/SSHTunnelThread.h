@@ -6,6 +6,7 @@
 #include <QThread>
 
 #include "ParameterChannelSSH.h"
+#include "Connect.h"
 
 /*!
  * \~chinese 实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。
@@ -21,11 +22,11 @@
  * \see CChannelSSHTunnelForward
  * \ingroup LIBAPI_CHANNEL
  */
-class CHANNEL_EXPORT CSSHTunnelThread : public QThread
+class CLIENT_EXPORT CSSHTunnelThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> parameter);
+    explicit CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> parameter, CConnect* pConnect);
     virtual ~CSSHTunnelThread();
     
     void run() override;
@@ -46,6 +47,7 @@ Q_SIGNALS:
     void sigDisconnect();
     
 private:
+    CConnect* m_pConnect;
     QSharedPointer<CParameterChannelSSH> m_Parameter;
     bool m_bExit;
 };

@@ -117,6 +117,38 @@ if(UNIX AND (NOT ANDROID))
     endif()
 endif()
 
+find_package(libssh)
+if(libssh_FOUND)
+    list(APPEND CLIENT_DEFINITIONS HAVE_LIBSSH)
+    if(WIN32)
+        list(APPEND CLIENT_PRIVATE_LIBS ws2_32)
+    endif()
+    list(APPEND CLIENT_LIBS ssh)
+    list(APPEND CLIENT_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
+    list(APPEND CLIENT_INSTALL_HEADER_FILES
+        SSH/ParameterChannelSSH.h
+        SSH/ChannelSSHTunnel.h
+        SSH/SSHTunnelThread.h
+        SSH/Event.h
+        )
+    list(APPEND CLIENT_HEADER_FILES
+        SSH/ChannelSSHTunnelForward.h
+        )
+    list(APPEND CLIENT_SOURCE_FILES
+        SSH/ParameterChannelSSH.cpp
+        SSH/ChannelSSHTunnel.cpp
+        SSH/ChannelSSHTunnelForward.cpp
+        SSH/SSHTunnelThread.cpp
+        SSH/Event.cpp
+        )
+    if(WITH_GUI)
+        list(APPEND CLIENT_SOURCE_FILES SSH/DlgUserPassword.cpp)
+        list(APPEND CLIENT_INSTALL_HEADER_FILES SSH/DlgUserPassword.h)
+        list(APPEND CLIENT_UI_FILES SSH/DlgUserPassword.ui)
+    endif()
+endif()
+
 SET(CLIENT_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${CLIENT_QT_COMPONENTS})
 message("QT_VERSION:${Qt${QT_VERSION_MAJOR}_VERSION}")

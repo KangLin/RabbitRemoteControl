@@ -59,7 +59,8 @@ private:
     rfbClient* m_pClient;
     QImage m_Image;
 
-private:    
+private:
+    CConnecter* m_pConnecter;
     CParameterLibVNCServer* m_pParameter;
     QTcpSocket m_tcpSocket;
     QTcpServer m_Server;

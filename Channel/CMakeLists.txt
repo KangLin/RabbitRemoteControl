@@ -49,43 +49,11 @@ list(APPEND CHANNEL_QT_COMPONENTS Core Network)
 
 list(APPEND CHANNEL_INSTALL_HEADER_FILES
     Channel.h
-    Event.h
     )
 
 list(APPEND CHANNEL_SOURCE_FILES
     Channel.cpp
-    Event.cpp
     )
-
-find_package(libssh)
-if(libssh_FOUND)
-    list(APPEND CHANNEL_DEFINITIONS HAVE_LIBSSH)
-    if(WIN32)
-        list(APPEND CHANNEL_PRIVATE_LIBS ws2_32)
-    endif()
-    list(APPEND CHANNEL_SRC_LIBS ssh)
-    list(APPEND CHANNEL_SRC_INCLUDE_DIRS
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
-    list(APPEND CHANNEL_INSTALL_HEADER_FILES
-        SSH/ParameterChannelSSH.h
-        SSH/ChannelSSHTunnel.h
-        SSH/SSHTunnelThread.h
-        )
-    list(APPEND CHANNEL_HEADER_FILES
-        SSH/ChannelSSHTunnelForward.h
-        )
-    list(APPEND CHANNEL_SOURCE_FILES
-        SSH/ParameterChannelSSH.cpp
-        SSH/ChannelSSHTunnel.cpp
-        SSH/ChannelSSHTunnelForward.cpp
-        SSH/SSHTunnelThread.cpp
-        )
-    if(WITH_GUI)
-        list(APPEND CHANNEL_SOURCE_FILES SSH/DlgUserPassword.cpp)
-        list(APPEND CHANNEL_INSTALL_HEADER_FILES SSH/DlgUserPassword.h)
-        list(APPEND CHANNEL_UIS SSH/DlgUserPassword.ui)
-    endif()
-endif()
 
 find_package(LibDataChannel)
 if(LibDataChannel_FOUND)

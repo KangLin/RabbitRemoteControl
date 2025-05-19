@@ -149,6 +149,7 @@ private:
     virtual int OnProcess() override;
     
 private:
+    CConnecterFreeRDP* m_pConnecter;
     struct ClientContext{
         #if FreeRDP_VERSION_MAJOR >= 3
             rdpClientContext Context;

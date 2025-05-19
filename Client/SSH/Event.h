@@ -9,11 +9,11 @@
     #define SOCKET int
 #endif
 
-#include "channel_export.h"
+#include "client_export.h"
 
 namespace Channel {
 
-class CHANNEL_EXPORT CEvent : public QObject
+class CLIENT_EXPORT CEvent : public QObject
 {
     Q_OBJECT
 public:

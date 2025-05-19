@@ -10,9 +10,9 @@
 #include <QObject>
 #include <QSettings>
 
-#include "channel_export.h"
+#include "client_export.h"
 
-class CHANNEL_EXPORT CParameterChannelSSH : public QObject
+class CLIENT_EXPORT CParameterChannelSSH : public QObject
 {
     Q_OBJECT
 

@@ -19,12 +19,14 @@ static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
 static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
 
 CChannelSSHTunnel::CChannelSSHTunnel(
-        QSharedPointer<CParameterChannelSSH> parameter,
-        bool bWakeUp,
-        QObject *parent)
+    QSharedPointer<CParameterChannelSSH> parameter,
+    CConnect *pConnect,
+    bool bWakeUp,
+    QObject *parent)
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
+    m_pConnect(pConnect),
     m_pcapFile(NULL),
     m_Parameter(parameter),
     m_pSocketRead(nullptr),
@@ -117,8 +119,13 @@ bool CChannelSSHTunnel::open(OpenMode mode)
          */
         int verbosity = SSH_LOG_NOLOG;
         ssh_options_set(m_Session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
-        
-        if(!m_Parameter->GetServer().isEmpty()){
+
+        if(m_Parameter->GetServer().isEmpty()) {
+            szErr = tr("SSH failed: the server is empty");
+            qCritical(log) << szErr;
+            setErrorString(szErr);
+            break;
+        } else {
             nRet = ssh_options_set(m_Session, SSH_OPTIONS_HOST,
                                    m_Parameter->GetServer().toStdString().c_str());
             if(nRet) {
@@ -141,7 +148,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             setErrorString(szErr);
             break;
         }
-        
+
         if(!m_Parameter->GetPcapFile().isEmpty())
         {
             m_pcapFile = ssh_pcap_file_new();
@@ -162,7 +169,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
                 qCritical(log) << szErr;
             }
         }
-        
+
         nRet = ssh_connect(m_Session);
         if(nRet) {
             szErr = tr("SSH failed: ssh connect ")
@@ -175,31 +182,33 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             setErrorString(szErr);
             break;
         }
-        
+
         nRet = verifyKnownhost(m_Session);
-        if(nRet) break;
-        
-        if(((m_Parameter->GetPassword().isEmpty()
+        if(nRet){
+            break;
+        }
+
+        if((((m_Parameter->GetPassword().isEmpty()
               || m_Parameter->GetUser().isEmpty())
              && m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD)
             || (m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY
-                && m_Parameter->GetPassphrase().isEmpty())
-            ) {
-            emit sigBlockShowWidget("CDlgUserPassword", nRet, m_Parameter.data());
+                && m_Parameter->GetPassphrase().isEmpty()))
+            && m_pConnect) {
+            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, m_Parameter.data());
             if(QDialog::Accepted != nRet)
             {
                 setErrorString(tr("User cancel"));
                 return false;
             }
         }
-        
+
         nRet = authentication(m_Session,
                               m_Parameter->GetUser(),
                               m_Parameter->GetPassword(),
                               m_Parameter->GetPassphrase(),
                               m_Parameter->GetAuthenticationMethod());
         if(nRet) break;
-        
+
         nRet = forward(m_Session);
         if(nRet) break;
 
@@ -290,7 +299,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
     QByteArray baHash((const char*)hash, nLen);
     QString szHash = baHash.toHex(':').toStdString().c_str();
     ssh_clean_pubkey_hash(&hash);
-    
+
     QMessageBox::StandardButton btRet = QMessageBox::Yes;
     bool checkBox = false;
     enum ssh_known_hosts_e state = ssh_session_is_known_server(session);
@@ -326,7 +335,8 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
                     "automatically created.") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
-        emit sigBlockShowMessageBox(tr("Error"), szErr,
+        if(!m_pConnect) break;
+        emit m_pConnect->sigBlockShowMessageBox(tr("Error"), szErr,
 #ifndef Q_OS_ANDROID
                                     QMessageBox::Yes |
 #endif
@@ -349,7 +359,8 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         szErr = tr("The server is unknown. Do you trust the host key?") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
-        emit sigBlockShowMessageBox(tr("Error"), szErr,
+        if(!m_pConnect) break;
+        emit m_pConnect->sigBlockShowMessageBox(tr("Error"), szErr,
 #ifndef Q_OS_ANDROID
                                     QMessageBox::Yes |
 #endif
@@ -468,7 +479,7 @@ int CChannelSSHTunnel::authenticationPublicKey(
     ssh_key publicKey = NULL;
     ssh_key privateKey = NULL;
 
-    do{
+    do {
         if(szPublicKeyFile.isEmpty())
         {
             szErr = tr("SSH failed: There is not set public key file.");
@@ -482,7 +493,7 @@ int CChannelSSHTunnel::authenticationPublicKey(
         if(SSH_OK != nRet) {
             szErr = tr("SSH failed: Import public key fail.") + szPublicKeyFile;
             if(SSH_EOF == nRet)
-                szErr += tr("The file doesn't exist or permission denied:");
+                szErr += "\n" + tr("The file doesn't exist or permission denied:");
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;
@@ -516,7 +527,7 @@ int CChannelSSHTunnel::authenticationPublicKey(
             
             szErr = tr("SSH failed: Import private key fail.") + szPrivateKeyFile;
             if(SSH_EOF == nRet)
-                szErr += tr("The file doesn't exist or permission denied:");
+                szErr += "\n" + tr("The file doesn't exist or permission denied:");
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;
@@ -533,7 +544,7 @@ int CChannelSSHTunnel::authenticationPublicKey(
             setErrorString(szErr);
         }
 
-    }while(0);
+    } while(0);
 
     if(publicKey)
         ssh_key_free(publicKey);
@@ -574,7 +585,7 @@ int CChannelSSHTunnel::forward(ssh_session session)
         return nRet;
     }
 
-    qDebug(log) << "Connected:"
+    qInfo(log) << "Connected:"
                << m_Parameter->GetRemoteHost()
                       + ":" + QString::number(m_Parameter->GetRemotePort())
                << "with ssh turnnel:"
@@ -606,8 +617,8 @@ int CChannelSSHTunnel::Process()
         setErrorString(szErr);
         return -1;
     }
-    
-    struct timeval timeout = {0, 50000};
+
+    struct timeval timeout = {0, 5000000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
@@ -623,7 +634,10 @@ int CChannelSSHTunnel::Process()
     //qDebug(log) << "ssh_select:" << fd;
     nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     //qDebug(log) << "ssh_select end:" << nRet;
-    if(nRet < 0) {
+    if(EINTR == nRet)
+        return 0;
+
+    if(SSH_OK != nRet) {
         QString szErr;
         szErr = "ssh_channel_select failed: " + QString::number(nRet);
         szErr += ssh_get_error(m_Session);
@@ -631,12 +645,6 @@ int CChannelSSHTunnel::Process()
         setErrorString(szErr);
         return -3;
     }
-    
-    /*
-    if(0 == nRet)
-    {
-        qDebug(log) << "Time out";
-    }//*/
 
     if(SSH_INVALID_SOCKET != fd && FD_ISSET(fd, &set)) {
         //qDebug(log) << "fires event";
@@ -646,20 +654,23 @@ int CChannelSSHTunnel::Process()
         }
     }
 
-    if(!channels[0]) {
-        qDebug(log) << "There is not channel";
+    if(!channel_out[0]) {
+        //qDebug(log) << "The channel is not select";
         return 0;
     }
 
     if(ssh_channel_is_eof(m_Channel)) {
         qWarning(log) << "Channel is eof";
         setErrorString(tr("The channel is eof"));
+        // Stop
         return -1;
     }
-    
+
+    // Get channel data length
     nRet = ssh_channel_poll(m_Channel, 0);
-    //qDebug(log) << "ssh_channel_poll:" << nRet;
-    if(nRet < 0) {
+    //qDebug(log) << "Get channel data length:" << nRet;
+    if(SSH_ERROR == nRet)
+    {
         QString szErr;
         szErr = "ssh_channel_poll failed. nRet:";
         szErr += QString::number(nRet);
@@ -667,9 +678,20 @@ int CChannelSSHTunnel::Process()
         setErrorString(szErr);
         qCritical(log) << szErr;
         return -6;
-    }
-    if(nRet == 0) {
-        //qDebug(log) << "There is not data in channel";
+    } else if(SSH_EOF == nRet) {
+        // Stop
+        return -1;
+    } else if(0 > nRet) {
+        QString szErr;
+        szErr = "ssh_channel_poll failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        setErrorString(szErr);
+        qCritical(log) << szErr;
+        // Error
+        return -7;
+    } else if(0 == nRet) {
+        //qDebug(log) << "The channel has not data";
         return 0;
     }
 
@@ -682,15 +704,15 @@ int CChannelSSHTunnel::Process()
 qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
     qint64 nRet = 0;
-    
+
     /*
     qDebug(log) << "CChannel::readData:"
                 << maxlen << "nLen:" << m_readData.size();//*/
-    
+
     Q_ASSERT(data && maxlen >= 0);
     if(!(data && maxlen >= 0))
         return 0;
-    
+
     if(!m_Channel || !ssh_channel_is_open(m_Channel))
     {
         QString szErr;
@@ -708,7 +730,7 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
         setErrorString(szErr);
         return -2;
     }
-    
+
     nRet = ssh_channel_poll(m_Channel, 0);
     //qDebug(log) << "ssh_channel_poll:" << nRet;
     if(nRet < 0) {
@@ -723,7 +745,7 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
         //qDebug(log) << "There is not data in channel";
         return 0;
     }//*/
-    
+
     nRet = ssh_channel_read_nonblocking(m_Channel, data, maxlen, 0);
     if(SSH_AGAIN == nRet) {
         emit readyRead();
@@ -736,7 +758,7 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
         qCritical(log) << szErr;
         return nRet;
     }
-    
+
     return nRet;
 }
 

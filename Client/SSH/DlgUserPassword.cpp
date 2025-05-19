@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.DlgUserPassword")
-    
+
 static int g_CDlgUserPassword = qRegisterMetaType<CDlgUserPassword>();
 
 CDlgUserPassword::CDlgUserPassword(QWidget *parent)
@@ -30,21 +30,21 @@ void CDlgUserPassword::SetContext(void *pContext)
         qCritical(log) << "The pContext is null";
         return;
     }
-    
+
     if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD) {
         setWindowTitle(tr("Set SSH user and password"));
         ui->leUser->setText(m_pPara->GetUser());
     }
-    
+
     if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY) {
         setWindowTitle(tr("Set SSH passphrase"));
         ui->leUser->setEnabled(false);
     }
-    
-    ui->lbText->setText(tr("SSH host: ")
+
+    ui->lbText->setText(tr("SSH server: ")
                         + m_pPara->GetServer()
                         + ":" + QString::number(m_pPara->GetPort()));
-    
+
     ui->lePassowrd->setText(m_pPara->GetPassword());
 }
 

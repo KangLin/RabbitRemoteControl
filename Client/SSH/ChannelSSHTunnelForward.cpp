@@ -31,8 +31,8 @@
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Forward")
 
 CChannelSSHTunnelForward::CChannelSSHTunnelForward(
-    QSharedPointer<CParameterChannelSSH> parameter, QObject *parent)
-    : CChannelSSHTunnel{parameter, false, parent},
+    QSharedPointer<CParameterChannelSSH> parameter, CConnect *pConnect, QObject *parent)
+    : CChannelSSHTunnel{parameter, pConnect, false, parent},
     m_Listen(SSH_INVALID_SOCKET),
     m_Connector(SSH_INVALID_SOCKET),
     m_pBuffer(nullptr)
@@ -281,7 +281,7 @@ int CChannelSSHTunnelForward::ReadConnect()
         qDebug(log) << "The connector is invalid";
         return 0;
     }
-    
+
     Q_ASSERT(m_pBuffer);
     if(!m_pBuffer)
         return -1;
@@ -313,6 +313,9 @@ int CChannelSSHTunnelForward::ReadConnect()
                 setErrorString(szErr);
                 return -1;
             }
+            // TODO: 检查发送的数据。因为系统 socket 有发送缓存，所以此情况一般不会出现，只是提醒。
+            if(n < nRet)
+                qWarning(log) << "The send data" << n << "<" << nRet;
         }
     } while(m_BufferLength == nRet);
     return 0;
@@ -370,10 +373,11 @@ int CChannelSSHTunnelForward::Process()
         return -1;
     }
 
-    struct timeval timeout = {0, 50000};
+    struct timeval timeout = {0, 5000000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
+    channel_out[0] = channel_out[1] = nullptr;
 
     fd_set set;
     FD_ZERO(&set);
@@ -384,7 +388,8 @@ int CChannelSSHTunnelForward::Process()
         //qDebug(log) << "server listen";
         FD_SET(m_Listen, &set);
         fd = m_Listen;
-        nRet = select(fd + 1, &set, NULL, NULL, &timeout);
+        //nRet = select(fd + 1, &set, NULL, NULL, &timeout);
+        nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     } else if(SSH_INVALID_SOCKET != m_Connector) {
         //qDebug(log) << "recv connect";
         FD_SET(m_Connector, &set);
@@ -397,8 +402,9 @@ int CChannelSSHTunnelForward::Process()
         nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     }
     //qDebug(log) << "ssh_select end:" << nRet;
-
-    if(nRet < 0) {
+    if(EINTR == nRet)
+        return 0;
+    if(SSH_OK != nRet) {
         QString szErr;
         szErr = "ssh_channel_select failed: " + QString::number(nRet);
         szErr += ssh_get_error(m_Session);
@@ -416,30 +422,44 @@ int CChannelSSHTunnelForward::Process()
         if(nRet) return nRet;
     }
 
-    if(!channels[0]) {
-        qDebug(log) << "There is not channel";
+    if(!channel_out[0]) {
+        //qDebug(log) << "The channel is not select";
         return 0;
     }
 
     if(ssh_channel_is_eof(m_Channel)) {
         qWarning(log) << "Channel is eof";
         setErrorString(tr("The channel is eof"));
+        // Stop
         return -1;
     }
 
+    // Get channel data length
     nRet = ssh_channel_poll(m_Channel, 0);
-    //qDebug(log) << "ssh_channel_poll:" << nRet;
-    if(nRet < 0) {
+    //qDebug(log) << "Get channel data length:" << nRet;
+    if(SSH_ERROR == nRet)
+    {
         QString szErr;
         szErr = "ssh_channel_poll failed. nRet:";
         szErr += QString::number(nRet);
         szErr += ssh_get_error(m_Session);
-        qCritical(log) << szErr;
         setErrorString(szErr);
-        return nRet;
-    }
-    if(nRet == 0) {
-        //qDebug(log) << "There is not data in channel";
+        qCritical(log) << szErr;
+        return -6;
+    } else if(SSH_EOF == nRet) {
+        // Stop
+        return -1;
+    } else if(0 > nRet) {
+        QString szErr;
+        szErr = "ssh_channel_poll failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        setErrorString(szErr);
+        qCritical(log) << szErr;
+        // Error
+        return -7;
+    } else if(0 == nRet) {
+        //qDebug(log) << "The channel has not data";
         return 0;
     }
 

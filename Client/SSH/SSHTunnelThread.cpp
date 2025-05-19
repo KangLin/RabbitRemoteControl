@@ -8,8 +8,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Thread")
 
-CSSHTunnelThread::CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> parameter)
+CSSHTunnelThread::CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> parameter, CConnect *pConnect)
     : QThread(nullptr),
+    m_pConnect(pConnect),
     m_bExit(false),
     m_Parameter(parameter)
 {
@@ -34,7 +35,7 @@ void CSSHTunnelThread::run()
 {
     int nRet = 0;
     qDebug(log) << "CSSHTunnelThread run";
-    CChannelSSHTunnelForward* p = new CChannelSSHTunnelForward(m_Parameter);
+    CChannelSSHTunnelForward* p = new CChannelSSHTunnelForward(m_Parameter, m_pConnect);
     if(!p)
         return;
     
@@ -45,10 +46,15 @@ void CSSHTunnelThread::run()
         check = connect(p, SIGNAL(sigServer(QString)),
                              this, SIGNAL(sigServer(QString)));
         Q_ASSERT(check);
+        check = connect(p, SIGNAL(sigError(int,QString)), this,
+                        SIGNAL(sigError(int,QString)));
+        Q_ASSERT(check);
+
         if(!p->open(QIODevice::ReadWrite)) {
+            emit m_pConnect->sigShowMessageBox(tr("Error"), p->errorString(), QMessageBox::Critical);
+            nRet = -1;
             break;
         }
-        
         while (!m_bExit && nRet >= 0) {
             nRet = p->Process();
             if(nRet) {

@@ -44,6 +44,7 @@ static void rfbQtClientLog(const char *format, ...)
 
 CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter)
     : CConnectDesktop(pConnecter),
+    m_pConnecter(pConnecter),
     m_pClient(nullptr),
     m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter()))
 #ifdef HAVE_LIBSSH
@@ -253,7 +254,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 
         // Start ssh thread
         if(!m_pThread)
-            m_pThread = new CSSHTunnelThread(parameter);
+            m_pThread = new CSSHTunnelThread(parameter, this);
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),

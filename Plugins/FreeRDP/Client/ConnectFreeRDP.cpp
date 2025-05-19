@@ -48,6 +48,7 @@ static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
     
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     : CConnectDesktop(pConnecter),
+    m_pConnecter(pConnecter),
     m_pContext(nullptr),
     m_pParameter(nullptr),
     m_ClipBoard(this),
@@ -246,7 +247,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         
         // Start ssh thread
         if(!m_pThread)
-            m_pThread = new CSSHTunnelThread(parameter);
+            m_pThread = new CSSHTunnelThread(parameter, this);
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
@@ -263,6 +264,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     }
 #endif
     default:
+        qCritical(log) << "Don't support proxy type:" << m_pParameter->m_Proxy.GetUsedType();
         break;
     };
 

@@ -123,7 +123,7 @@ const QString CPluginFreeRDP::Details() const
 
 #ifdef HAVE_LIBSSH
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
-    CChannelSSHTunnel channel(parameter);
+    CChannelSSHTunnel channel(parameter, nullptr);
     szDetails += channel.GetDetails();
 #endif
 
