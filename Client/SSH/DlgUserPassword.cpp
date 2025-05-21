@@ -25,27 +25,31 @@ CDlgUserPassword::CDlgUserPassword(const CDlgUserPassword &other)
 
 void CDlgUserPassword::SetContext(void *pContext)
 {
-    m_pPara = (CParameterChannelSSH*)pContext;
+    m_pPara = (CParameterSSHTunnel*)pContext;
     if(!m_pPara) {
         qCritical(log) << "The pContext is null";
         return;
     }
-
-    if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD) {
+    auto &net = m_pPara->m_Net;
+    auto &user = net.m_User;
+    if(user.GetUsedType() == CParameterUser::TYPE::UserPassword) {
         setWindowTitle(tr("Set SSH user and password"));
-        ui->leUser->setText(m_pPara->GetUser());
     }
 
-    if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY) {
+    if(user.GetUsedType() == CParameterUser::TYPE::PublicKey) {
         setWindowTitle(tr("Set SSH passphrase"));
-        ui->leUser->setEnabled(false);
     }
 
-    ui->lbText->setText(tr("SSH server: ")
-                        + m_pPara->GetServer()
-                        + ":" + QString::number(m_pPara->GetPort()));
+    ui->lbText->setText(windowTitle() + "\n" + tr("SSH server: ")
+                        + net.GetHost()
+                        + ":" + QString::number(net.GetPort()));
 
-    ui->lePassowrd->setText(m_pPara->GetPassword());
+    ui->wUser->SetParameter(&user);
+}
+
+void CDlgUserPassword::SetConnecter(CConnecter *pConnecter)
+{
+    m_pConnecter = pConnecter;
 }
 
 void CDlgUserPassword::accept()
@@ -55,11 +59,7 @@ void CDlgUserPassword::accept()
         return;
     }
 
-    m_pPara->SetUser(ui->leUser->text());
-    if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD)
-        m_pPara->SetPassword(ui->lePassowrd->text());
-    if(m_pPara->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY)
-        m_pPara->SetPassphrase(ui->lePassowrd->text());
-    
+    ui->wUser->Accept();
+    emit m_pPara->sigChanged();
     QDialog::accept();
 }

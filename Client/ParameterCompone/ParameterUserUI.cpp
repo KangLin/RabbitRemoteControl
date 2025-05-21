@@ -29,8 +29,11 @@ CParameterUserUI::~CParameterUserUI()
 int CParameterUserUI::SetParameter(CParameter *pParameter)
 {
     m_pUser = qobject_cast<CParameterUser*>(pParameter);
-    if(!m_pUser) return -1;
-    
+    if(!m_pUser) {
+        Q_ASSERT(m_pUser);
+        return -1;
+    }
+
     ui->leUser->setText(m_pUser->GetUser());
     
     for(auto t: m_pUser->GetType()) {

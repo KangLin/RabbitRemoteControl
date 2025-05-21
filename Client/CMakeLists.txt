@@ -43,6 +43,8 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterCompone/ParameterProxyUI.h
     ParameterCompone/ParameterRecord.h
     ParameterCompone/ParameterRecordUI.h
+    ParameterCompone/ParameterSSHTunnel.h
+    ParameterCompone/ParameterSSHTunnelUI.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -86,6 +88,8 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterProxyUI.cpp
     ParameterCompone/ParameterRecord.cpp
     ParameterCompone/ParameterRecordUI.cpp
+    ParameterCompone/ParameterSSHTunnel.cpp
+    ParameterCompone/ParameterSSHTunnelUI.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )
@@ -96,6 +100,7 @@ set(CLIENT_UI_FILES
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
+    ParameterCompone/ParameterSSHTunnelUI.ui
     )
 
 if(WIN32)
@@ -127,7 +132,6 @@ if(libssh_FOUND)
     list(APPEND CLIENT_INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
     list(APPEND CLIENT_INSTALL_HEADER_FILES
-        SSH/ParameterChannelSSH.h
         SSH/ChannelSSHTunnel.h
         SSH/SSHTunnelThread.h
         SSH/Event.h
@@ -136,7 +140,6 @@ if(libssh_FOUND)
         SSH/ChannelSSHTunnelForward.h
         )
     list(APPEND CLIENT_SOURCE_FILES
-        SSH/ParameterChannelSSH.cpp
         SSH/ChannelSSHTunnel.cpp
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
@@ -188,6 +191,11 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl
     )
+
+target_sources(Client
+  PRIVATE
+     ParameterCompone/ParameterSSHTunnelUI.cpp ParameterCompone/ParameterSSHTunnelUI.ui
+)
 
 option(BUILD_CLIENT_TERMINAL "Build terminal Client" OFF)
 if(BUILD_CLIENT_TERMINAL)

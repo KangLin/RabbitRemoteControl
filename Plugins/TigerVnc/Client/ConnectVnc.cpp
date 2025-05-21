@@ -350,30 +350,9 @@ int CConnectVnc::SocketInit()
 
 int CConnectVnc::SSHInit()
 {
-    bool check = false;
 #ifdef HAVE_LIBSSH
-    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
-    auto &ssh = m_pPara->m_Proxy.m_SSH;
-    parameter->setServer(ssh.GetHost());
-    parameter->setPort(ssh.GetPort());
-    auto &user = ssh.m_User;
-    parameter->SetUser(user.GetUser());
-    parameter->SetUseSystemFile(user.GetUseSystemFile());
-    if(CParameterUser::TYPE::UserPassword == user.GetUsedType()) {
-        parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);
-        parameter->SetPassword(user.GetPassword());
-    }
-    if(CParameterUser::TYPE::PublicKey == user.GetUsedType()) {
-        parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PUBLICKEY);
-        parameter->SetPublicKeyFile(user.GetPublicKeyFile());
-        parameter->SetPrivateKeyFile(user.GetPrivateKeyFile());
-        parameter->SetPassphrase(user.GetPassphrase());
-    }
-    auto &net = m_pPara->m_Net;
-    parameter->SetRemoteHost(net.GetHost());
-    parameter->SetRemotePort(net.GetPort());
-    
-    auto channel = QSharedPointer<CChannelSSHTunnel>(new CChannelSSHTunnel(parameter, this));
+    auto channel = QSharedPointer<CChannelSSHTunnel>(
+        new CChannelSSHTunnel(&m_pPara->m_Proxy.m_SSH, &m_pPara->m_Net, this));
     if(!channel) {
         qCritical(log) << "New CChannelSSHTunnel fail";
         return -1;
@@ -384,9 +363,9 @@ int CConnectVnc::SSHInit()
     {
         QString szErr;
         szErr = tr("Failed to open SSH tunnel:");
-        szErr += "(" + m_pPara->m_Proxy.m_SSH.GetHost();
+        szErr += "(" + m_pPara->m_Proxy.m_SSH.m_Net.GetHost();
         szErr += ":";
-        szErr += QString::number(m_pPara->m_Proxy.m_SSH.GetPort());
+        szErr += QString::number(m_pPara->m_Proxy.m_SSH.m_Net.GetPort());
         szErr += " - ";
         szErr += m_pPara->m_Net.GetHost();
         szErr += ":";
@@ -479,9 +458,9 @@ void CConnectVnc::slotConnected()
 #ifdef HAVE_LIBSSH
         if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetUsedType())
         {
-            auto &ssh = m_pPara->m_Proxy.m_SSH;
-            szInfo += " with ssh turnnel: " + ssh.GetHost()
-                      + ":" + QString::number(ssh.GetPort());
+            auto &sshNet = m_pPara->m_Proxy.m_SSH.m_Net;
+            szInfo += " with ssh turnnel: " + sshNet.GetHost()
+                      + ":" + QString::number(sshNet.GetPort());
         }
 #endif
         qInfo(log) << szInfo;
@@ -513,9 +492,9 @@ void CConnectVnc::slotDisConnected()
 #ifdef HAVE_LIBSSH
     if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetUsedType())
     {
-        auto &ssh = m_pPara->m_Proxy.m_SSH;
-        szInfo += " with ssh turnnel: " + ssh.GetHost()
-                  + ":" + QString::number(ssh.GetPort());
+        auto &net = m_pPara->m_Proxy.m_SSH.m_Net;
+        szInfo += " with ssh turnnel: " + net.GetHost()
+                  + ":" + QString::number(net.GetPort());
     }
 #endif
     qInfo(log) << szInfo;

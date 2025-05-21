@@ -1,7 +1,8 @@
 #ifndef CPARAMETERPROXY_H
 #define CPARAMETERPROXY_H
 
-#include "ParameterNet.h"
+#pragma once
+#include "ParameterSSHTunnel.h"
 
 /*!
  * \brief The proxy parameters. Its UI is CParameterProxyUI
@@ -30,7 +31,7 @@ public:
     int SetUsedType(TYPE type);
 
     CParameterNet m_SockesV5;
-    CParameterNet m_SSH;
+    CParameterSSHTunnel m_SSH;
     
     int SetTypeName(TYPE t, const QString& szName);
     QString ConvertTypeToName(TYPE t);

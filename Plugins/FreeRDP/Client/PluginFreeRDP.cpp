@@ -122,8 +122,7 @@ const QString CPluginFreeRDP::Details() const
     szDetails += freerdp_get_build_config();
 
 #ifdef HAVE_LIBSSH
-    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
-    CChannelSSHTunnel channel(parameter, nullptr);
+    CChannelSSHTunnel channel(nullptr, nullptr, nullptr);
     szDetails += channel.GetDetails();
 #endif
 
@@ -133,8 +132,7 @@ const QString CPluginFreeRDP::Details() const
 CConnecter* CPluginFreeRDP::OnCreateConnecter(const QString &szId)
 {
     if(Id() == szId)
-    {   
         return new CConnecterFreeRDP(this);
-    }
+
     return nullptr;
 }

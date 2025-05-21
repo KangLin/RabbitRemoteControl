@@ -5,7 +5,7 @@
 
 #include <QThread>
 
-#include "ParameterChannelSSH.h"
+#include "ParameterSSHTunnel.h"
 #include "Connect.h"
 
 /*!
@@ -26,7 +26,8 @@ class CLIENT_EXPORT CSSHTunnelThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> parameter, CConnect* pConnect);
+    explicit CSSHTunnelThread(CParameterSSHTunnel* parameter,
+                              CParameterNet* remote, CConnect* pConnect);
     virtual ~CSSHTunnelThread();
     
     void run() override;
@@ -48,7 +49,8 @@ Q_SIGNALS:
     
 private:
     CConnect* m_pConnect;
-    QSharedPointer<CParameterChannelSSH> m_Parameter;
+    CParameterSSHTunnel* m_pParameter;
+    CParameterNet* m_pRemoteNet;
     bool m_bExit;
 };
 

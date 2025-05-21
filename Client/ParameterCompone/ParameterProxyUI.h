@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include "ParameterProxy.h"
 #include "ParameterNetUI.h"
+#include "ParameterSSHTunnelUI.h"
 
 /*!
  * \brief The proxy parameter UI
@@ -45,7 +46,7 @@ private:
     QComboBox* m_cbType;
     
     CParameterNetUI* m_uiSockesV5;
-    CParameterNetUI* m_uiSSH;
+    CParameterSSHTunnelUI* m_uiSSH;
     
     CParameterProxy* m_Proxy;
 };

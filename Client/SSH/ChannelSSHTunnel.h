@@ -13,7 +13,7 @@
 #include "libssh/callbacks.h"
 
 #include "Channel.h"
-#include "ParameterChannelSSH.h"
+#include "ParameterSSHTunnel.h"
 #include "Event.h"
 #include "Connect.h"
 
@@ -32,7 +32,8 @@ class CLIENT_EXPORT CChannelSSHTunnel : public CChannel
     Q_OBJECT
 
 public:
-    explicit CChannelSSHTunnel(QSharedPointer<CParameterChannelSSH> parameter,
+    explicit CChannelSSHTunnel(CParameterSSHTunnel* parameter,
+                               CParameterNet* remote,
                                CConnect *pConnect,
                                bool bWakeUp = true,
                                QObject *parent = nullptr);
@@ -80,7 +81,8 @@ protected:
 private:
     CConnect *m_pConnect;
     ssh_pcap_file m_pcapFile;
-    QSharedPointer<CParameterChannelSSH> m_Parameter;
+    CParameterSSHTunnel* m_pParameter;
+    CParameterNet* m_pRemoteNet;
     
     QSocketNotifier* m_pSocketRead;
     QSocketNotifier* m_pSocketWrite;

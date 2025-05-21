@@ -13,6 +13,8 @@ CParameter::CParameter(QObject* parent, const QString& szPrefix)
     CParameter* p = qobject_cast<CParameter*>(parent);
     if(p) {
         p->AddCategory(this);
+        bool check = connect(this, SIGNAL(sigChanged()), p, SIGNAL(sigChanged()));
+        Q_ASSERT(check);
     }
 }
 

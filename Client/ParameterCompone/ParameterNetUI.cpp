@@ -61,7 +61,7 @@ int CParameterNetUI::Accept()
     m_pNet->SetPort(ui->spPort->value());
     
     // Accept user UI parameters
-    ui->wUser->Accept();
+    nRet = ui->wUser->Accept();
     return nRet;
 }
 //! [Accept]

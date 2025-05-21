@@ -1,6 +1,8 @@
 #ifndef PARAMETERRECORDUI_H
 #define PARAMETERRECORDUI_H
 
+#pragma once
+
 #include "ParameterUI.h"
 #include "ParameterRecord.h"
 

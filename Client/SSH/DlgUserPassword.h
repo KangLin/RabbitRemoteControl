@@ -2,7 +2,8 @@
 #define DLGUSERPASSWORD_H
 
 #include <QDialog>
-#include "ParameterChannelSSH.h"
+#include "ParameterSSHTunnel.h"
+#include "Connecter.h"
 
 namespace Ui {
 class CDlgUserPassword;
@@ -18,10 +19,12 @@ public:
     CDlgUserPassword(const CDlgUserPassword& other);
     
     Q_INVOKABLE void SetContext(void* pContext);
+    Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
 
 private:
     Ui::CDlgUserPassword *ui;
-    CParameterChannelSSH* m_pPara;
+    CParameterSSHTunnel* m_pPara;
+    CConnecter* m_pConnecter;
     
     // QDialog interface
 public slots:

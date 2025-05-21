@@ -47,7 +47,7 @@ void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
     Q_ASSERT(m_pParameter);
     ui->wUser->Accept();
     m_pParameter->SetDomain(ui->leDomain->text().toStdString().c_str());
-    emit m_pConnecter->sigUpdateParameters(m_pConnecter);
+    emit m_pParameter->sigChanged();
     accept();
 }
 

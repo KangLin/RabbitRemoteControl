@@ -23,7 +23,8 @@ class CChannelSSHTunnelForward : public CChannelSSHTunnel
 {
     Q_OBJECT
 public:
-    explicit CChannelSSHTunnelForward(QSharedPointer<CParameterChannelSSH> parameter,
+    explicit CChannelSSHTunnelForward(CParameterSSHTunnel *parameter,
+                                      CParameterNet *remote,
                                       CConnect *pConnect,
                                       QObject *parent = nullptr);
     virtual ~CChannelSSHTunnelForward();

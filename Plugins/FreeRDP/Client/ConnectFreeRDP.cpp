@@ -222,32 +222,11 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     }
 #ifdef HAVE_LIBSSH
     case CParameterProxy::TYPE::SSHTunnel:
-    {
-        // Set SSH parameters
-        QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
-        auto &ssh = m_pParameter->m_Proxy.m_SSH;
-        parameter->setServer(ssh.GetHost());
-        parameter->setPort(ssh.GetPort());
-        auto &user = ssh.m_User;
-        parameter->SetUser(user.GetUser());
-        parameter->SetUseSystemFile(user.GetUseSystemFile());
-        if(CParameterUser::TYPE::UserPassword == user.GetUsedType()) {
-            parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);
-            parameter->SetPassword(user.GetPassword());
-        }
-        if(CParameterUser::TYPE::PublicKey == user.GetUsedType()) {
-            parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PUBLICKEY);
-            parameter->SetPublicKeyFile(user.GetPublicKeyFile());
-            parameter->SetPrivateKeyFile(user.GetPrivateKeyFile());
-            parameter->SetPassphrase(user.GetPassphrase());
-        }
-        auto &net = m_pParameter->m_Net;
-        parameter->SetRemoteHost(net.GetHost());
-        parameter->SetRemotePort(net.GetPort());
-        
+    {  
         // Start ssh thread
         if(!m_pThread)
-            m_pThread = new CSSHTunnelThread(parameter, this);
+            m_pThread = new CSSHTunnelThread(
+                &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
@@ -487,7 +466,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     switch(proxy.GetUsedType()) {
     case CParameterProxy::TYPE::SSHTunnel:
     {
-        auto &sshNet = proxy.m_SSH;
+        auto &sshNet = proxy.m_SSH.m_Net;
         szServer = szHost + ":" + QString::number(nPort)
                    + " <-> " + sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
                    + " <-> " + szServer;

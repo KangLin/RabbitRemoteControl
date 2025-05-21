@@ -20,12 +20,12 @@ CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szP
     m_SockesV5.m_User.SetType(lstType);
     m_SockesV5.SetPrompt(tr("The host is empty in \"Proxy->SockesV5\". please set it"));
 
-    m_SSH.SetPort(22);
+    m_SSH.m_Net.SetPort(22);
     lstType.clear();
     lstType << CParameterUser::TYPE::UserPassword
             << CParameterUser::TYPE::PublicKey;
-    m_SSH.m_User.SetType(lstType);
-    m_SSH.SetPrompt(tr("The host is empty in \"Proxy->SSH tunnel\". please set it"));
+    m_SSH.m_Net.m_User.SetType(lstType);
+    m_SSH.m_Net.SetPrompt(tr("The host is empty in \"Proxy->SSH tunnel\". please set it"));
 }
 
 int CParameterProxy::OnLoad(QSettings &set)

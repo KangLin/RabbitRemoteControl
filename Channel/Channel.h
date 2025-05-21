@@ -42,9 +42,13 @@ public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
     
+    //! \~chinese 依赖信息
+    //! \~english Depend on information
     virtual QString GetDetails();
     
+    //! \brief Initial translation
     static int InitTranslation();
+    //! \brief Remove translation
     static int RemoveTranslation();
 
 Q_SIGNALS:

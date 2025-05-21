@@ -15,7 +15,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     m_uiSockesV5 = new CParameterNetUI(this);
     layout()->addWidget(m_uiSockesV5);
     
-    m_uiSSH = new CParameterNetUI(this);
+    m_uiSSH = new CParameterSSHTunnelUI(this);
     layout()->addWidget(m_uiSSH);
     
     m_lbType = new QLabel(this);

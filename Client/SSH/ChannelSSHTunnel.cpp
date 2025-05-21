@@ -19,7 +19,8 @@ static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
 static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
 
 CChannelSSHTunnel::CChannelSSHTunnel(
-    QSharedPointer<CParameterChannelSSH> parameter,
+    CParameterSSHTunnel* parameter,
+    CParameterNet *remote,
     CConnect *pConnect,
     bool bWakeUp,
     QObject *parent)
@@ -28,7 +29,8 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_Channel(NULL),
     m_pConnect(pConnect),
     m_pcapFile(NULL),
-    m_Parameter(parameter),
+    m_pParameter(parameter),
+    m_pRemoteNet(remote),
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
     m_pSocketException(nullptr),
@@ -36,7 +38,7 @@ CChannelSSHTunnel::CChannelSSHTunnel(
 {
     qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
     qDebug(log) << "libssh version:" << ssh_version(0);
-    Q_ASSERT(m_Parameter);
+
     if(bWakeUp)
         m_pEvent = new Channel::CEvent(this);
 }
@@ -83,6 +85,8 @@ bool CChannelSSHTunnel::open(OpenMode mode)
     int nRet = 0;
     QString szErr;
     
+    Q_ASSERT(m_pParameter);
+
     m_Session = ssh_new();
     if(NULL == m_Session)
     {
@@ -91,20 +95,20 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         setErrorString(szErr);
         return false;
     }
-    
+
     do{
-        if(!m_Parameter) {
+        if(!m_pParameter) {
             qCritical(log) << "The parameter is null";
         }
-        Q_ASSERT(m_Parameter);
-        
+        Q_ASSERT(m_pParameter);
+
         struct ssh_callbacks_struct cb;
         memset(&cb, 0, sizeof(struct ssh_callbacks_struct));
         cb.userdata = this,
         cb.log_function = cb_log;;
         ssh_callbacks_init(&cb);
         ssh_set_callbacks(m_Session, &cb);
-        
+
         /*
         int value = 1;
         ssh_options_set(m_Session, SSH_OPTIONS_NODELAY, (const void*)&value);//*/
@@ -120,17 +124,18 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         int verbosity = SSH_LOG_NOLOG;
         ssh_options_set(m_Session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
-        if(m_Parameter->GetServer().isEmpty()) {
+        auto &net = m_pParameter->m_Net;
+        if(net.GetHost().isEmpty()) {
             szErr = tr("SSH failed: the server is empty");
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;
         } else {
             nRet = ssh_options_set(m_Session, SSH_OPTIONS_HOST,
-                                   m_Parameter->GetServer().toStdString().c_str());
+                                   net.GetHost().toStdString().c_str());
             if(nRet) {
                 szErr = tr("SSH failed: Set host fail. host:")
-                        + m_Parameter->GetServer() + ";"
+                        + net.GetHost() + ";"
                         + ssh_get_error(m_Session);
                 qCritical(log) << szErr;
                 setErrorString(szErr);
@@ -138,26 +143,26 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             }
         }
 
-        uint nPort = m_Parameter->GetPort();
+        uint nPort = net.GetPort();
         nRet = ssh_options_set(m_Session, SSH_OPTIONS_PORT, &nPort);
         if(nRet) {
             szErr = tr("SSH failed: Set port fail. port:")
-                    + QString::number(m_Parameter->GetPort()) + ";"
+                    + QString::number(net.GetPort()) + ";"
                     + ssh_get_error(m_Session);
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;
         }
 
-        if(!m_Parameter->GetPcapFile().isEmpty())
+        if(!m_pParameter->GetPcapFile().isEmpty())
         {
             m_pcapFile = ssh_pcap_file_new();
             if(m_pcapFile) {
                 if (ssh_pcap_file_open(m_pcapFile,
-                                       m_Parameter->GetPcapFile().toStdString().c_str())
+                                       m_pParameter->GetPcapFile().toStdString().c_str())
                     == SSH_ERROR) {
                     qCritical(log) << "SSH failed: Error opening pcap file: "
-                                   << m_Parameter->GetPcapFile();
+                                   << m_pParameter->GetPcapFile();
                     ssh_pcap_file_free(m_pcapFile);
                     m_pcapFile = nullptr;
                 }
@@ -173,8 +178,8 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         nRet = ssh_connect(m_Session);
         if(nRet) {
             szErr = tr("SSH failed: ssh connect ")
-                    + m_Parameter->GetServer()
-                    + ":" + QString::number(m_Parameter->GetPort())
+                    + net.GetHost()
+                    + ":" + QString::number(net.GetPort())
                     + " ("
                     + ssh_get_error(m_Session);
             szErr += ")";
@@ -187,26 +192,34 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         if(nRet){
             break;
         }
-
-        if((((m_Parameter->GetPassword().isEmpty()
-              || m_Parameter->GetUser().isEmpty())
-             && m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD)
-            || (m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY
-                && m_Parameter->GetPassphrase().isEmpty()))
+        
+        auto &user = m_pParameter->m_Net.m_User;
+        if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword) && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
+            || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey) && user.GetPassphrase().isEmpty())
             && m_pConnect) {
-            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, m_Parameter.data());
+            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, m_pParameter);
             if(QDialog::Accepted != nRet)
             {
                 setErrorString(tr("User cancel"));
                 return false;
             }
         }
-
+        
+        int nMeth = SSH_AUTH_METHOD_PUBLICKEY;
+        switch(user.GetUsedType()) {
+        case CParameterUser::TYPE::UserPassword:
+            nMeth = SSH_AUTH_METHOD_PASSWORD;
+            break;
+        case CParameterUser::TYPE::PublicKey:
+            nMeth = SSH_AUTH_METHOD_PUBLICKEY;
+            break;
+        }
+        
         nRet = authentication(m_Session,
-                              m_Parameter->GetUser(),
-                              m_Parameter->GetPassword(),
-                              m_Parameter->GetPassphrase(),
-                              m_Parameter->GetAuthenticationMethod());
+                              user.GetUser(),
+                              user.GetPassword(),
+                              user.GetPassphrase(),
+                              nMeth);
         if(nRet) break;
 
         nRet = forward(m_Session);
@@ -424,7 +437,8 @@ int CChannelSSHTunnel::authentication(
     //*/
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PUBLICKEY) {
-        if(m_Parameter->GetUseSystemFile()) {
+        auto &user = m_pParameter->m_Net.m_User;
+        if(user.GetUseSystemFile()) {
             qDebug(log) << "User authentication with ssh_userauth_publickey_auto";
             nRet = ssh_userauth_publickey_auto(session,
                                                szUser.toStdString().c_str(),
@@ -439,10 +453,10 @@ int CChannelSSHTunnel::authentication(
             qDebug(log) << "User authentication with publickey";
             nRet = authenticationPublicKey(
                 m_Session,
-                m_Parameter->GetUser(),
-                m_Parameter->GetPublicKeyFile(),
-                m_Parameter->GetPrivateKeyFile(),
-                m_Parameter->GetPassphrase());
+                user.GetUser(),
+                user.GetPublicKeyFile(),
+                user.GetPrivateKeyFile(),
+                user.GetPassphrase());
             if(SSH_AUTH_SUCCESS == nRet)
                 return 0;
         }
@@ -568,29 +582,29 @@ int CChannelSSHTunnel::forward(ssh_session session)
 
     nRet = ssh_channel_open_forward(
         m_Channel,
-        m_Parameter->GetRemoteHost().toStdString().c_str(),
-        m_Parameter->GetRemotePort(),
-        m_Parameter->GetSourceHost().toStdString().c_str(),
-        m_Parameter->GetSourcePort());
+        m_pRemoteNet->GetHost().toStdString().c_str(),
+        m_pRemoteNet->GetPort(),
+        m_pParameter->GetSourceHost().toStdString().c_str(),
+        m_pParameter->GetSourcePort());
     if(SSH_OK != nRet) {
         ssh_channel_free(m_Channel);
         m_Channel = NULL;
 
         QString szErr;
         szErr = tr("SSH failed: open forward.") + ssh_get_error(session);
-        szErr += "(" + m_Parameter->GetRemoteHost()
-                + ":" + QString::number(m_Parameter->GetRemotePort()) + ")";
+        szErr += "(" + m_pRemoteNet->GetHost()
+                + ":" + QString::number(m_pRemoteNet->GetPort()) + ")";
         qCritical(log) << szErr;
         setErrorString(szErr);
         return nRet;
     }
 
     qInfo(log) << "Connected:"
-               << m_Parameter->GetRemoteHost()
-                      + ":" + QString::number(m_Parameter->GetRemotePort())
+               << m_pRemoteNet->GetHost()
+                      + ":" + QString::number(m_pRemoteNet->GetPort())
                << "with ssh turnnel:"
-               << m_Parameter->GetServer()
-                      + ":" + QString::number(m_Parameter->GetPort());
+               << m_pParameter->m_Net.GetHost()
+                      + ":" + QString::number(m_pParameter->m_Net.GetPort());
 
     emit sigConnected();
     

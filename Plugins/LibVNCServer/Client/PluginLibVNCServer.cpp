@@ -54,8 +54,7 @@ const QString CPluginLibVNCServer::Details() const
 {
     QString szDetails;
 #ifdef HAVE_LIBSSH
-    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
-    CChannelSSHTunnel channel(parameter, nullptr);
+    CChannelSSHTunnel channel(nullptr, nullptr, nullptr);
     szDetails += channel.GetDetails();
 #endif
     return szDetails;

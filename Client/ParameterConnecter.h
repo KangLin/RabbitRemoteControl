@@ -255,7 +255,7 @@
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
-    
+
 public:
     explicit CParameterConnecter(
         QObject *parent = nullptr,
