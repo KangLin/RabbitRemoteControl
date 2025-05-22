@@ -192,11 +192,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INSTALL_NAMESPACE RabbitRemoteControl
     )
 
-target_sources(Client
-  PRIVATE
-     ParameterCompone/ParameterSSHTunnelUI.cpp ParameterCompone/ParameterSSHTunnelUI.ui
-)
-
 option(BUILD_CLIENT_TERMINAL "Build terminal Client" OFF)
 if(BUILD_CLIENT_TERMINAL)
     add_subdirectory(Terminal)

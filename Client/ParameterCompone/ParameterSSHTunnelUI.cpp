@@ -1,3 +1,5 @@
+#include <QFileDialog>
+#include <QStandardPaths>
 #include "ParameterSSHTunnelUI.h"
 #include "ui_ParameterSSHTunnelUI.h"
 
@@ -38,4 +40,13 @@ int CParameterSSHTunnelUI::Accept()
 bool CParameterSSHTunnelUI::CheckValidity(bool validity)
 {
     return ui->wNet->CheckValidity(validity);
+}
+
+void CParameterSSHTunnelUI::on_pbBrowser_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(
+        this, tr("Save packet capture file"),
+        ui->lePcapFile->text(),
+        tr("Packet capture (*.pcap *.cap)"));
+    ui->lePcapFile->setText(fileName);
 }

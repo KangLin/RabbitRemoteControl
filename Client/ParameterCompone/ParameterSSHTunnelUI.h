@@ -27,6 +27,8 @@ public:
     virtual int SetParameter(CParameter *pParameter) override;
     virtual int Accept() override;
     bool CheckValidity(bool validity = false);
+private slots:
+    void on_pbBrowser_clicked();
 };
 
 #endif // PARAMETERSSHTUNNELUI_H

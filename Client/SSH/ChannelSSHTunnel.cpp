@@ -85,7 +85,13 @@ bool CChannelSSHTunnel::open(OpenMode mode)
     int nRet = 0;
     QString szErr;
     
+    if(!m_pParameter) {
+        qCritical(log) << "The parameter is null";
+    }
+    if(!m_pRemoteNet)
+        qCritical(log) << "The remote net parameter is null";
     Q_ASSERT(m_pParameter);
+    Q_ASSERT(m_pRemoteNet);
 
     m_Session = ssh_new();
     if(NULL == m_Session)
@@ -97,11 +103,6 @@ bool CChannelSSHTunnel::open(OpenMode mode)
     }
 
     do{
-        if(!m_pParameter) {
-            qCritical(log) << "The parameter is null";
-        }
-        Q_ASSERT(m_pParameter);
-
         struct ssh_callbacks_struct cb;
         memset(&cb, 0, sizeof(struct ssh_callbacks_struct));
         cb.userdata = this,
@@ -258,13 +259,7 @@ void CChannelSSHTunnel::close()
         m_pSocketException = nullptr;
     }//*/
     
-    if(m_pcapFile)
-    {
-        ssh_pcap_file_close(m_pcapFile);
-        ssh_pcap_file_free(m_pcapFile);
-        m_pcapFile = nullptr;
-    }
-    
+    QIODevice::close();
     if(m_Channel) {
         if(ssh_channel_is_open(m_Channel)) {
             ssh_channel_close(m_Channel);
@@ -272,6 +267,7 @@ void CChannelSSHTunnel::close()
         ssh_channel_free(m_Channel);
         m_Channel = NULL;
     }
+
     if(m_Session) {
         if(ssh_is_connected(m_Session))
             ssh_disconnect(m_Session);
@@ -279,7 +275,12 @@ void CChannelSSHTunnel::close()
         m_Session = NULL;
     }
 
-    QIODevice::close();
+    if(m_pcapFile)
+    {
+        ssh_pcap_file_close(m_pcapFile);
+        ssh_pcap_file_free(m_pcapFile);
+        m_pcapFile = nullptr;
+    }
 }
 
 int CChannelSSHTunnel::verifyKnownhost(ssh_session session)

@@ -42,6 +42,12 @@
      </item>
      <item>
       <widget class="QSpinBox" name="sbSourcePort">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximum">
         <number>65536</number>
        </property>
@@ -54,12 +60,19 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Packge capture file:</string>
+        <string>Packet capture file:</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="lePcapFile"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbBrowser">
+       <property name="text">
+        <string>Browser</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
