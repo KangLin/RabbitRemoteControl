@@ -160,7 +160,10 @@ int CConnecterConnect::Connect()
         m_pConnect = InstanceConnect();
         if(m_pConnect) {
             int nRet = m_pConnect->Connect();
-            emit sigConnected();
+            if(nRet)
+                emit sigDisconnect();
+            else
+                emit sigConnected();
             return nRet;
         }
     }
@@ -178,6 +181,7 @@ int CConnecterConnect::DisConnect()
         if(m_pConnect) {
             int nRet = m_pConnect->Disconnect();
             m_pConnect->deleteLater();
+            m_pConnect = nullptr;
             emit sigDisconnected();
             return nRet;
         }

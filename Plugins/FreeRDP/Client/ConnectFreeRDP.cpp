@@ -478,7 +478,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         
     BOOL status = freerdp_connect(instance);
     if (status) {
-        QString szInfo = tr("Connect to ") + szServer;
+        QString szInfo = tr("Connected to ") + szServer;
         qInfo(log) << szInfo;
         emit pThis->sigInformation(szInfo);
     } else {

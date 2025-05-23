@@ -207,9 +207,9 @@ int CConnecterThread::Connect()
         qCritical(log) << "new CConnectThread fail";
         return -2;
     }
-    
+
     m_pThread->start();
-    
+
     return nRet;
 }
 

@@ -1,5 +1,7 @@
-#ifndef CSEMAPHORE_H
-#define CSEMAPHORE_H
+#ifndef __EVENT_H_KL_2025_05_23__
+#define __EVENT_H_KL_2025_05_23__
+
+#pragma once
 
 #include <QObject>
 
@@ -39,6 +41,6 @@ private:
     int CreateSocketPair(qintptr fd[]);
 };
 
-} //namespace RabbitCommon
+} //namespace Channel
 
-#endif // CSEMAPHORE_H
+#endif // __EVENT_H_KL_2025_05_23__

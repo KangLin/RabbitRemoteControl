@@ -17,8 +17,7 @@ CSSHTunnelThread::CSSHTunnelThread(CParameterSSHTunnel *parameter, CParameterNet
 {
     qDebug(log) << "CSSHTunnelThread::CSSHTunnelThread";
     bool check = false;
-    check = connect(this, SIGNAL(finished()),
-                    this, SLOT(deleteLater()));
+    check = connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
     Q_ASSERT(check);
 }
 
@@ -68,11 +67,12 @@ void CSSHTunnelThread::run()
         
         p->close();
     } while(0);
-    
+
     if(nRet)
         emit sigError(nRet, p->errorString());
-    
+
     emit sigDisconnect();
     p->deleteLater();
+
     qDebug(log) << "CSSHTunnelThread end";
 }

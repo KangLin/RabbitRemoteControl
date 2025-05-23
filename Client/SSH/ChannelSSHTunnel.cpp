@@ -619,7 +619,6 @@ int CChannelSSHTunnel::forward(ssh_session session)
  *   \li >= 0: continue, Interval call time (msec)
  *   \li = -1: stop
  *   \li < -1: error
- * \~
  */
 int CChannelSSHTunnel::Process()
 {

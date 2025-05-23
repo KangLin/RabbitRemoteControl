@@ -129,6 +129,9 @@ public Q_SLOTS:
      */
     void slotUpdateCursorPosition(const QPoint& pos);
     void slotUpdateLedState(unsigned int state);
+    /*!
+     * \brief Enable mouse and keyboard
+     */
     void slotConnected();
 
 Q_SIGNALS:

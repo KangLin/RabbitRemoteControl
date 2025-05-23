@@ -1,4 +1,3 @@
-
 #include <QApplication>
 #include <QImage>
 #include <QClipboard>
@@ -20,10 +19,10 @@ static void rfbQtClientLog(const char *format, ...)
     int nRet = 0;
     va_list args;
     char buf[LOG_BUFFER_LENGTH];
-     
+
     if(!rfbEnableClientLogging)
         return;
-    
+
     va_start(args, format);    
     nRet = vsnprintf(buf, LOG_BUFFER_LENGTH, format, args);
     va_end(args);
@@ -64,7 +63,7 @@ CConnectLibVNCServer::~CConnectLibVNCServer()
     qDebug(log) << "CConnectLibVNCServer::~CConnectLibVNCServer()";
 }
 
-/*
+/*!
  * \return
  * \li OnInitReturnValue::Fail: error
  * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
@@ -74,7 +73,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 {
     qDebug(log) << "CConnectLibVNCServer::OnInit()";
     if(m_pClient) Q_ASSERT(false);
-    
+
     m_pClient = rfbGetClient(8, 3, 4);
     if(!m_pClient)
     {
@@ -84,13 +83,13 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         qCritical(log) << "rfbGetClient fail";
         return OnInitReturnValue::Fail;
     }
-    
+
     // Set parameters
     m_pClient->programName = strdup(qApp->applicationName().toStdString().c_str());
     m_pClient->appData.shareDesktop = m_pParameter->GetShared();
     m_pClient->appData.viewOnly = m_pParameter->GetOnlyView();
     m_pClient->appData.useRemoteCursor = m_pParameter->GetLocalCursor();
-    
+
     //Qt is support QImage::Format_RGB32, so we use default format QImage::Format_RGB32 in OnSize()
     //    m_pClient->appData.requestedDepth = m_pPara->nColorLevel;
     //    m_pClient->format.depth = m_pPara->nColorLevel;
@@ -127,13 +126,13 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
     //		m_pClient->format.greenMax = 0xff;
     //		break;
     //	}
-    
+
     m_pClient->appData.enableJPEG = m_pParameter->GetJpeg();
     if(m_pClient->appData.enableJPEG)
         m_pClient->appData.qualityLevel = m_pParameter->GetQualityLevel();
     if(m_pParameter->GetEnableCompressLevel())
         m_pClient->appData.compressLevel = m_pParameter->GetCompressLevel();
-    
+
     // Set callback function
     m_pClient->MallocFrameBuffer = cb_resize;
     m_pClient->GotFrameBufferUpdate = cb_update;
@@ -145,10 +144,10 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
     m_pClient->GetPassword = cb_get_password;
     m_pClient->HandleCursorPos = cb_cursor_pos;
     m_pClient->GotCursorShape = cb_got_cursor_shape;
-    
+
     m_pClient->canHandleNewFBSize = TRUE;
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
-    
+
     // Set sock
     switch(m_pParameter->m_Proxy.GetUsedType())
     {
@@ -166,20 +165,20 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         auto &net = m_pParameter->m_Net;
         m_pClient->serverHost = strdup(net.GetHost().toStdString().c_str());
         m_pClient->serverPort = net.GetPort();
-        
+
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
             QString szErr;
-            szErr = tr("Connect to %1:%2 fail").arg(m_pParameter->m_Net.GetHost(),
+            szErr = tr("Fail: Connect to %1:%2").arg(m_pParameter->m_Net.GetHost(),
                                                     QString::number(m_pParameter->m_Net.GetPort()));
             qCritical(log) <<  szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return OnInitReturnValue::Fail;
         }
 
-        QString szInfo = QString("Connect to ") + m_pClient->desktopName;
+        QString szInfo = QString("Connected to ") + m_pClient->desktopName;
         qInfo(log) << szInfo;
-        
+
         emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
         emit sigServerName(m_pClient->desktopName);
         emit sigInformation(szInfo);
@@ -225,7 +224,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
     case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
         m_pClient->destPort = m_pPara->GetProxyPort();//*/
-    
+
     //! [Use SSH Tunnel]
 #ifdef HAVE_LIBSSH
     case CParameterProxy::TYPE::SSHTunnel:
@@ -239,7 +238,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
                              this, SLOT(slotConnectProxyServer(QString, quint16)));
         Q_ASSERT(check);
-#if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
         check = connect(m_pThread, SIGNAL(sigServer(QString)),
                         this, SLOT(slotConnectProxyServer(QString)));
         Q_ASSERT(check);
@@ -251,15 +250,15 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
                         this, SIGNAL(sigDisconnect()));
         Q_ASSERT(check);
         m_pThread->start();
-        
-        return OnInitReturnValue::UseOnProcess;
+
+        return OnInitReturnValue::NotUseOnProcess;
     }
 #endif // #ifdef HAVE_LIBSSH
     //! [Use SSH Tunnel]
     default:
         break;
     }
-    
+
     return OnInitReturnValue::UseOnProcess;
 }
 
@@ -269,14 +268,14 @@ int CConnectLibVNCServer::OnClean()
 #ifdef HAVE_LIBSSH
     if(m_pThread)
     {
+        disconnect(m_pThread);
         m_pThread->Exit();
         m_pThread = nullptr;
     }
 #endif
     if(m_pClient)
     {
-        m_tcpSocket.close();
-        //m_pClient->sock = -1; //RFB_INVALID_SOCKET;
+        //m_tcpSocket.close();
         rfbClientCleanup(m_pClient);
         m_pClient = nullptr;
     }
@@ -298,11 +297,11 @@ int CConnectLibVNCServer::OnClean()
  */
 int CConnectLibVNCServer::OnProcess()
 {
-    //LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
+    //qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(!m_pClient)
     {
-        Q_ASSERT(m_pClient);
+        // Stop
         return -1;
     }
 
@@ -445,7 +444,6 @@ rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int creden
 
 char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
 {
-    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_password");
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
     if(szPassword.isEmpty())
@@ -929,51 +927,66 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 void CConnectLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
 {
     QString szErr;
-    qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << nPort;
+    auto &net = m_pParameter->m_Proxy.m_SSH.m_Net;
+    //qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << nPort;
     // Set server ip and port
     m_pClient->serverHost = strdup(szHost.toStdString().c_str());
     m_pClient->serverPort = nPort;
-    szErr = tr("Connect to local socket server %1:%2")
+    szErr = tr("Will connect to local socket server: %1:%2")
                 .arg(m_pClient->serverHost,
                      QString::number(m_pClient->serverPort));
     qDebug(log) << szErr;
     if(!rfbInitClient(m_pClient, nullptr, nullptr))
     {
-        szErr += tr(" fail");
+        QString szErr;
+        szErr = tr("Fail: Connect to %1:%2 <- %3:%4 <- %5:%6")
+                    .arg(m_pParameter->m_Net.GetHost(),
+                         QString::number(m_pParameter->m_Net.GetPort()),
+                         net.GetHost(), QString::number(net.GetPort()),
+                         szHost, QString::number(nPort)
+                         );
         qCritical(log) << szErr;
-        //emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         return;
     }
     
-    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
+    QString szInfo = QString("Connected to %1 <- %2:%3 <- %4:%5")
+                         .arg(m_pClient->desktopName,
+                              net.GetHost(), QString::number(net.GetPort()),
+                              szHost, QString::number(nPort));
     qInfo(log) << szInfo;
-    
+    slotTimeOut();
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
     emit sigConnected();
 }
 
-#if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
 void CConnectLibVNCServer::slotConnectProxyServer(QString szFile)
 {
     QString szErr;
-    qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << szFile;
+    //qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << szFile;
     // Set server ip and port
     m_pClient->serverHost = strdup(szFile.toStdString().c_str());
-    szErr = tr("Connect to local socket server ") + szFile;
+    szErr = tr("Will connect to local socket server: ") + szFile;
     qDebug(log) << szErr;
     if(!rfbInitClient(m_pClient, nullptr, nullptr))
     {
-        szErr += + " " + tr("fail");
-        qCritical(log) << szErr;
-        //emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+        QString szErr;
+        szErr = tr("Fail: Connect to %1:%2 with %3")
+                    .arg(m_pParameter->m_Net.GetHost(),
+                         QString::number(m_pParameter->m_Net.GetPort()),
+                         szFile);
+        qCritical(log) <<  szErr;
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         return;
     }
-    
-    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
+
+    QString szInfo = QString("Connected to ") + m_pClient->desktopName + " with " + szFile;
     qInfo(log) << szInfo;
-    
+
+    slotTimeOut();
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);

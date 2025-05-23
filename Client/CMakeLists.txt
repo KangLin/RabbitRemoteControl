@@ -30,6 +30,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     Connecter.h
     ConnecterConnect.h
     ConnecterThread.h
+    SSH/Event.h
     Parameter.h
     ParameterUI.h
     ParameterConnecter.h
@@ -74,6 +75,7 @@ list(APPEND CLIENT_SOURCE_FILES
     Connect.cpp
     ConnectDesktop.cpp
     FrmScroll.cpp
+    SSH/Event.cpp
     Parameter.cpp
     ParameterUI.cpp
     ParameterConnecter.cpp
@@ -124,6 +126,30 @@ endif()
 
 find_package(libssh)
 if(libssh_FOUND)
+
+    option(WITH_EVENTFD "Enable eventfd" ON)
+    if(WITH_EVENTFD)
+        check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
+        check_function_exists("eventfd" HAVE_EVENTFD)
+        if(HAVE_EVENTFD AND HAVE_EVENTFD_INCLUDE)
+            list(APPEND CLIENT_DEFINITIONS HAVE_EVENTFD)
+        endif()
+    endif(WITH_EVENTFD)
+    
+    option(WITH_UNIX_DOMAIN_SOCKET "Enable unix domain socket" ON)
+    if(WITH_UNIX_DOMAIN_SOCKET)
+        if(WIN32)
+            #check_include_file("afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
+            check_struct_has_member("struct sockaddr_un" sun_path "afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
+        else()
+            #check_include_file("sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
+            check_struct_has_member("struct sockaddr_un" sun_path "sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
+        endif()
+        if(HAVE_UNIX_DOMAIN_SOCKET)
+            list(APPEND CLIENT_DEFINITIONS HAVE_UNIX_DOMAIN_SOCKET)
+        endif()
+    endif(WITH_UNIX_DOMAIN_SOCKET)
+
     list(APPEND CLIENT_DEFINITIONS HAVE_LIBSSH)
     if(WIN32)
         list(APPEND CLIENT_PRIVATE_LIBS ws2_32)
@@ -134,7 +160,6 @@ if(libssh_FOUND)
     list(APPEND CLIENT_INSTALL_HEADER_FILES
         SSH/ChannelSSHTunnel.h
         SSH/SSHTunnelThread.h
-        SSH/Event.h
         )
     list(APPEND CLIENT_HEADER_FILES
         SSH/ChannelSSHTunnelForward.h
@@ -143,7 +168,6 @@ if(libssh_FOUND)
         SSH/ChannelSSHTunnel.cpp
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
-        SSH/Event.cpp
         )
     if(WITH_GUI)
         list(APPEND CLIENT_SOURCE_FILES SSH/DlgUserPassword.cpp)

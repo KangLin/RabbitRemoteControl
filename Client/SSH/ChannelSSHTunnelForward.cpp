@@ -346,8 +346,10 @@ int CChannelSSHTunnelForward::SSHReadyRead()
             int n = send(m_Connector, m_pBuffer, nRet, 0);
             if(n < 0) {
                 //qCritical(log) << "send to socket fail" << errno;
-                if(EAGAIN == errno || EWOULDBLOCK == errno)
+                if(EAGAIN == errno || EWOULDBLOCK == errno) {
+                    // TODO: add resend
                     return 0;
+                }
                 else {
                     QString szErr = "send to socket fail, connector fd:" + QString::number(m_Connector)
                                     + " - [" + QString::number(errno) + "] - " + strerror(errno);
@@ -361,6 +363,12 @@ int CChannelSSHTunnelForward::SSHReadyRead()
     return 0;
 }
 
+/*!
+ * \return
+ *   \li >= 0: continue, Interval call time (msec)
+ *   \li = -1: stop
+ *   \li < -1: error
+ */
 int CChannelSSHTunnelForward::Process()
 {
     int nRet = 0;
@@ -373,7 +381,7 @@ int CChannelSSHTunnelForward::Process()
         return -1;
     }
 
-    struct timeval timeout = {0, 5000000};
+    struct timeval timeout = {0, 50000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
