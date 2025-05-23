@@ -2,13 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CConnectPlayer</name>
-    <message>
-        <source>Position: </source>
-        <translation type="vanished">位置：</translation>
-    </message>
-</context>
-<context>
     <name>CConnecterPlayer</name>
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="53"/>

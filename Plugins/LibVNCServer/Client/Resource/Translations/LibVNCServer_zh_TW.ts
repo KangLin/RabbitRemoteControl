@@ -12,6 +12,8 @@
         <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="949"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="982"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
@@ -21,29 +23,37 @@
         <translation>協議版本錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="956"/>
-        <source>Connect to local socket server %1:%2</source>
-        <translation>連接本地 socket 服務 %1:%2</translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="962"/>
-        <source> fail</source>
-        <translation>失敗</translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
-        <source>Connect to local socket server </source>
-        <translation>連接到本地&#x3000;socket 服務</translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="988"/>
-        <source>fail</source>
-        <translation>失敗</translation>
-    </message>
-    <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="172"/>
-        <source>Connect to %1:%2 fail</source>
-        <translation>連接到 %1:%2 失敗</translation>
+        <source>Fail: Connect to %1:%2</source>
+        <translation>失敗：連接到 %1:%2</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="935"/>
+        <source>Will connect to local socket server: %1:%2</source>
+        <translation>將連接到本地服務器：%1:%2</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="942"/>
+        <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
+        <translation>失敗：連接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="972"/>
+        <source>Will connect to local socket server: </source>
+        <translation>將連接到本地 socket 服務器：</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="977"/>
+        <source>Fail: Connect to %1:%2 with %3</source>
+        <translation>失敗：通過 %3 連接到  %1:%2</translation>
+    </message>
+    <message>
+        <source>Connect to local socket server </source>
+        <translation type="vanished">連接到本地&#x3000;socket 服務</translation>
+    </message>
+    <message>
+        <source>fail</source>
+        <translation type="vanished">失敗</translation>
     </message>
 </context>
 <context>
@@ -116,7 +126,7 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="118"/>
         <source>Enable clipboard</source>
-        <translation>允許剪切闆</translation>
+        <translation>允許剪切板</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
@@ -174,7 +184,7 @@
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="33"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation>VNC（虛擬網絡控制臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
+        <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="34"/>

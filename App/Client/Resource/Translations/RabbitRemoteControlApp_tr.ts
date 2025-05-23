@@ -552,7 +552,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="184"/>
-        <location filename="../../mainwindow.cpp" line="398"/>
+        <location filename="../../mainwindow.cpp" line="404"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -561,9 +561,9 @@
         <location filename="../../mainwindow.ui" line="190"/>
         <location filename="../../mainwindow.ui" line="193"/>
         <location filename="../../mainwindow.ui" line="196"/>
-        <location filename="../../mainwindow.cpp" line="399"/>
-        <location filename="../../mainwindow.cpp" line="400"/>
-        <location filename="../../mainwindow.cpp" line="401"/>
+        <location filename="../../mainwindow.cpp" line="405"/>
+        <location filename="../../mainwindow.cpp" line="406"/>
+        <location filename="../../mainwindow.cpp" line="407"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -632,20 +632,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="437"/>
+        <location filename="../../mainwindow.cpp" line="443"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="438"/>
-        <location filename="../../mainwindow.cpp" line="439"/>
-        <location filename="../../mainwindow.cpp" line="440"/>
+        <location filename="../../mainwindow.cpp" line="444"/>
+        <location filename="../../mainwindow.cpp" line="445"/>
+        <location filename="../../mainwindow.cpp" line="446"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="633"/>
-        <location filename="../../mainwindow.cpp" line="652"/>
+        <location filename="../../mainwindow.cpp" line="639"/>
+        <location filename="../../mainwindow.cpp" line="658"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -653,7 +653,7 @@
         <location filename="../../mainwindow.ui" line="253"/>
         <location filename="../../mainwindow.ui" line="256"/>
         <location filename="../../mainwindow.ui" line="259"/>
-        <location filename="../../mainwindow.cpp" line="644"/>
+        <location filename="../../mainwindow.cpp" line="650"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -663,52 +663,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="646"/>
+        <location filename="../../mainwindow.cpp" line="652"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="740"/>
+        <location filename="../../mainwindow.cpp" line="746"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="795"/>
+        <location filename="../../mainwindow.cpp" line="801"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="860"/>
+        <location filename="../../mainwindow.cpp" line="866"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="869"/>
+        <location filename="../../mainwindow.cpp" line="875"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="908"/>
+        <location filename="../../mainwindow.cpp" line="914"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1056"/>
+        <location filename="../../mainwindow.cpp" line="1062"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1057"/>
+        <location filename="../../mainwindow.cpp" line="1063"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1087"/>
+        <location filename="../../mainwindow.cpp" line="1093"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1088"/>
+        <location filename="../../mainwindow.cpp" line="1094"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -731,12 +731,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="117"/>
+        <location filename="../../main.cpp" line="118"/>
         <source>Generate update json file End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="164"/>
+        <location filename="../../main.cpp" line="166"/>
         <source>End</source>
         <translation type="unfinished"></translation>
     </message>

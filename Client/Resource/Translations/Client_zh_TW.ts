@@ -2,6 +2,190 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>CChannelSSHTunnel</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="55"/>
+        <source>- libssh version: </source>
+        <translation>- libssh 版本：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="99"/>
+        <source>SSH failed: ssh_new.</source>
+        <translation>SSH 失敗：ssh_new</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="130"/>
+        <source>SSH failed: the server is empty</source>
+        <translation>SSH 失敗：服務器為空</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="138"/>
+        <source>SSH failed: Set host fail. host:</source>
+        <translation>SSH 失敗：設置主機失敗。主機：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="150"/>
+        <source>SSH failed: Set port fail. port:</source>
+        <translation>SSH 失敗：設置端口失敗。端口：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="173"/>
+        <source>SSH failed: ssh_pcap_file_new: </source>
+        <translation>SSH 失敗：ssh_pcap_file_new: </translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="181"/>
+        <source>SSH failed: ssh connect </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="204"/>
+        <source>User cancel</source>
+        <translation>用戶取消</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="293"/>
+        <source>SSH failed: Get server public key.</source>
+        <translation>SSH 失敗：得到服務器公鑰失敗</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="308"/>
+        <source>SSH failed: Get public key hash value fail.</source>
+        <translation>SSH 失敗：得到公鑰哈希值失敗。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="326"/>
+        <source>Host key for server changed. it is now:</source>
+        <translation>服務器主機密鑰改變。它現在是：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="328"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="339"/>
+        <source>For security reasons, connection will be stopped.</source>
+        <translation>因為安全原因，連接將停止。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="329"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="340"/>
+        <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
+        <translation>請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="336"/>
+        <source>The host key for this server was not found but an other type of key exists.</source>
+        <translation>服務端主機密鑰未發現，但是另一個健已存在。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="337"/>
+        <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
+        <translation>攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="347"/>
+        <source>Could not find known host file.</source>
+        <translation>未能發現已知主機的文件</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="348"/>
+        <source>If you accept the host key here, the file will be automatically created.</source>
+        <translation>如果您在此處接受主機密鑰，則將自動創建文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="350"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="374"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="397"/>
+        <source>Host key hash:</source>
+        <translation>主機密鑰哈希值：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="353"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="377"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="369"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="392"/>
+        <source>Reject the host key</source>
+        <translation>拒絕主機密鑰</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="373"/>
+        <source>The server is unknown. Do you trust the host key?</source>
+        <translation>服務器未知。您信任主機密鑰嗎？</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="396"/>
+        <source>Error:</source>
+        <translation>錯誤：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="398"/>
+        <source>Will be stopped.</source>
+        <translation>將停止。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="449"/>
+        <source>SSH failed: Failed authenticating with publickey:</source>
+        <translation>SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="473"/>
+        <source>Failed authenticating with password. User: </source>
+        <translation>用戶密碼進行身份驗證失敗。用戶：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="500"/>
+        <source>SSH failed: There is not set public key file.</source>
+        <translation>SSH失敗：未設置公鑰文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="509"/>
+        <source>SSH failed: Import public key fail.</source>
+        <translation>SSH失敗：導入公鑰失敗。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="511"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="545"/>
+        <source>The file doesn&apos;t exist or permission denied:</source>
+        <translation>文件不存在或權限被拒絕：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="523"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="556"/>
+        <source>SSH failed: Authentication failed. User:</source>
+        <translation>SSH 失敗：身份驗證失敗。用戶：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="532"/>
+        <source>SSH failed: There is not set private key file.</source>
+        <translation>SSH 失敗：未設置私鑰文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="543"/>
+        <source>SSH failed: Import private key fail.</source>
+        <translation>SSH 失敗：導入私鑰失敗。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="595"/>
+        <source>SSH failed: open forward.</source>
+        <translation>SSH 失敗：打開轉發。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="678"/>
+        <source>The channel is eof</source>
+        <translation>通道已結束</translation>
+    </message>
+</context>
+<context>
+    <name>CChannelSSHTunnelForward</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
+        <source>The channel is eof</source>
+        <translation>通道已結束</translation>
+    </message>
+</context>
+<context>
     <name>CClient</name>
     <message>
         <location filename="../../Client.cpp" line="123"/>
@@ -123,23 +307,23 @@
     </message>
     <message>
         <source>Record</source>
-        <translation type="vanished">錄制</translation>
+        <translation type="vanished">錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="180"/>
         <source>Record pause</source>
-        <translation>暫停錄制</translation>
+        <translation>暫停錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="292"/>
         <source>Stop record</source>
-        <translation>停止錄制</translation>
+        <translation>停止錄製</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="173"/>
         <location filename="../../ConnecterThread.cpp" line="295"/>
         <source>Start record</source>
-        <translation>開始錄制</translation>
+        <translation>開始錄製</translation>
     </message>
 </context>
 <context>
@@ -188,6 +372,34 @@
     </message>
 </context>
 <context>
+    <name>CDlgUserPassword</name>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="14"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="35"/>
+        <source>Title</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="36"/>
+        <source>Set SSH user and password</source>
+        <translation>設置 SSH 用戶名和密碼</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="40"/>
+        <source>Set SSH passphrase</source>
+        <translation>設置 SSH 密碼</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="43"/>
+        <source>SSH server: </source>
+        <translation>SSH 服務器：</translation>
+    </message>
+</context>
+<context>
     <name>CFrmParameterClient</name>
     <message>
         <location filename="../../FrmParameterClient.ui" line="14"/>
@@ -233,7 +445,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Enable use the system user as the user</source>
-        <translation>允許使用繫統用戶作為用戶</translation>
+        <translation>允許使用系統用戶作為用戶</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="42"/>
@@ -314,7 +526,7 @@
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕獲繫統快捷鍵需要管理員權限。
+        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
 需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
@@ -425,12 +637,12 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="29"/>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="39"/>
         <source>RabbitRemoteControl</source>
-        <translation>玉兔遠程控制</translation>
+        <translation>玉兔遠程控製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
         <source>Record</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
@@ -445,12 +657,12 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
         <source>Folder:</source>
-        <translation>錄制</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
@@ -492,7 +704,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation>值為 0 錶示錄制器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
@@ -502,12 +714,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
         <source>Sample rate:</source>
-        <translation>採樣率：</translation>
+        <translation>采樣率：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation>值為 -1 錶示錄制器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
@@ -542,17 +754,17 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
-        <translation>值為 -1 錶示錄制器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。選項：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
+        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。選項：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="51"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
-        <translation>編碼的目標是具有恆定的質量，調整比特率以適應。</translation>
+        <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="56"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
-        <translation>編碼的目標是具有恆定的質量，調整比特率以適應。</translation>
+        <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="61"/>
@@ -562,12 +774,50 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="66"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
-        <translation>首先處理媒體以確定特徵，然後第二次處理，將更多位分配給需要它的區域。</translation>
+        <translation>首先處理媒體以確定特征，然後第二次處理，將更多位分配給需要它的區域。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="168"/>
         <source>Open path</source>
         <translation>打開文件夾</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterSSHTunnelUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="25"/>
+        <source>Source host:</source>
+        <translation>源主機：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="39"/>
+        <source>Source port:</source>
+        <translation>源端口：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="63"/>
+        <source>Packet capture file:</source>
+        <translation>包捕獲文件：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
+        <source>Browser</source>
+        <translation>瀏覽</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="48"/>
+        <source>Save packet capture file</source>
+        <translation>保存包捕獲文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
+        <source>Packet capture (*.pcap *.cap)</source>
+        <translation>包捕獲文件(*.pcap *.cap)</translation>
     </message>
 </context>
 <context>
@@ -638,7 +888,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="207"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
         <source>Input passphrase</source>
         <translation>輸入密碼</translation>
     </message>
@@ -661,7 +911,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="106"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="109"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
@@ -678,7 +928,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="329"/>
         <source>CRL file:</source>
-        <translation>證書吊銷列錶：</translation>
+        <translation>證書吊銷列表：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
@@ -690,7 +940,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation>公鑰和私鑰文件都為空，用繫統公鑰和私鑰文件。</translation>
+        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
@@ -728,7 +978,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="163"/>
         <source>Use system public and private file</source>
-        <translation>用繫統公鑰和私鑰文件。</translation>
+        <translation>用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
@@ -746,30 +996,30 @@ Restart program by administrator?</source>
         <translation>請輸入私鑰文件的密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="111"/>
         <source>Please checked save password to enable</source>
         <translation>請選中保存密碼按鈕</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="119"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="131"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="122"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="134"/>
         <source>Open public key file</source>
         <translation>打開公鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="212"/>
         <source>Please checked save passphrase to enable</source>
         <translation>請選中保存密碼，允許輸入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="228"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="231"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打開 X509 認證證書文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="240"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="243"/>
         <source>Open X509 Certificate Revocation List file</source>
-        <translation>打開 X509 證書吊銷列錶文件</translation>
+        <translation>打開 X509 證書吊銷列表文件</translation>
     </message>
 </context>
 <context>
@@ -796,7 +1046,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">長度為 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
@@ -836,7 +1086,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
         <source>The mac address is error</source>
@@ -845,6 +1095,14 @@ Restart program by administrator?</source>
     <message>
         <source>Please checked save password to enable</source>
         <translation type="vanished">請選中保存密碼按鈕</translation>
+    </message>
+</context>
+<context>
+    <name>CSSHTunnelThread</name>
+    <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
     </message>
 </context>
 </TS>

@@ -12,6 +12,8 @@
         <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="949"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="982"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,28 +23,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="956"/>
-        <source>Connect to local socket server %1:%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="962"/>
-        <source> fail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
-        <source>Connect to local socket server </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="988"/>
-        <source>fail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="172"/>
-        <source>Connect to %1:%2 fail</source>
+        <source>Fail: Connect to %1:%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="935"/>
+        <source>Will connect to local socket server: %1:%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="942"/>
+        <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="972"/>
+        <source>Will connect to local socket server: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="977"/>
+        <source>Fail: Connect to %1:%2 with %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

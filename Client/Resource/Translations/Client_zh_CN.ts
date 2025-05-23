@@ -2,6 +2,190 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CChannelSSHTunnel</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="55"/>
+        <source>- libssh version: </source>
+        <translation>- libssh 版本：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="99"/>
+        <source>SSH failed: ssh_new.</source>
+        <translation>SSH 失败：ssh_new</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="130"/>
+        <source>SSH failed: the server is empty</source>
+        <translation>SSH 失败：服务器为空</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="138"/>
+        <source>SSH failed: Set host fail. host:</source>
+        <translation>SSH 失败：设置主机失败。主机：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="150"/>
+        <source>SSH failed: Set port fail. port:</source>
+        <translation>SSH 失败：设置端口失败。端口：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="173"/>
+        <source>SSH failed: ssh_pcap_file_new: </source>
+        <translation>SSH 失败：ssh_pcap_file_new: </translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="181"/>
+        <source>SSH failed: ssh connect </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="204"/>
+        <source>User cancel</source>
+        <translation>用户取消</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="293"/>
+        <source>SSH failed: Get server public key.</source>
+        <translation>SSH 失败：得到服务器公钥失败</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="308"/>
+        <source>SSH failed: Get public key hash value fail.</source>
+        <translation>SSH 失败：得到公钥哈希值失败。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="326"/>
+        <source>Host key for server changed. it is now:</source>
+        <translation>服务器主机密钥改变。它现在是：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="328"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="339"/>
+        <source>For security reasons, connection will be stopped.</source>
+        <translation>因为安全原因，连接将停止。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="329"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="340"/>
+        <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
+        <translation>请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="336"/>
+        <source>The host key for this server was not found but an other type of key exists.</source>
+        <translation>服务端主机密钥未发现，但是另一个健已存在。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="337"/>
+        <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
+        <translation>攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="347"/>
+        <source>Could not find known host file.</source>
+        <translation>未能发现已知主机的文件</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="348"/>
+        <source>If you accept the host key here, the file will be automatically created.</source>
+        <translation>如果您在此处接受主机密钥，则将自动创建文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="350"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="374"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="397"/>
+        <source>Host key hash:</source>
+        <translation>主机密钥哈希值：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="353"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="377"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="369"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="392"/>
+        <source>Reject the host key</source>
+        <translation>拒绝主机密钥</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="373"/>
+        <source>The server is unknown. Do you trust the host key?</source>
+        <translation>服务器未知。您信任主机密钥吗？</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="396"/>
+        <source>Error:</source>
+        <translation>错误：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="398"/>
+        <source>Will be stopped.</source>
+        <translation>将停止。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="449"/>
+        <source>SSH failed: Failed authenticating with publickey:</source>
+        <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="473"/>
+        <source>Failed authenticating with password. User: </source>
+        <translation>用户密码进行身份验证失败。用户：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="500"/>
+        <source>SSH failed: There is not set public key file.</source>
+        <translation>SSH失败：未设置公钥文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="509"/>
+        <source>SSH failed: Import public key fail.</source>
+        <translation>SSH失败：导入公钥失败。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="511"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="545"/>
+        <source>The file doesn&apos;t exist or permission denied:</source>
+        <translation>文件不存在或权限被拒绝：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="523"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="556"/>
+        <source>SSH failed: Authentication failed. User:</source>
+        <translation>SSH 失败：身份验证失败。用户：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="532"/>
+        <source>SSH failed: There is not set private key file.</source>
+        <translation>SSH 失败：未设置私钥文件。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="543"/>
+        <source>SSH failed: Import private key fail.</source>
+        <translation>SSH 失败：导入私钥失败。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="595"/>
+        <source>SSH failed: open forward.</source>
+        <translation>SSH 失败：打开转发。</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="678"/>
+        <source>The channel is eof</source>
+        <translation>通道已结束</translation>
+    </message>
+</context>
+<context>
+    <name>CChannelSSHTunnelForward</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
+        <source>The channel is eof</source>
+        <translation>通道已结束</translation>
+    </message>
+</context>
+<context>
     <name>CClient</name>
     <message>
         <location filename="../../Client.cpp" line="123"/>
@@ -185,6 +369,34 @@
         <location filename="../../DlgInputPassword.cpp" line="21"/>
         <source>Input %1</source>
         <translation>输入 %1</translation>
+    </message>
+</context>
+<context>
+    <name>CDlgUserPassword</name>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="14"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="35"/>
+        <source>Title</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="36"/>
+        <source>Set SSH user and password</source>
+        <translation>设置 SSH 用户名和密码</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="40"/>
+        <source>Set SSH passphrase</source>
+        <translation>设置 SSH 密码</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="43"/>
+        <source>SSH server: </source>
+        <translation>SSH 服务器：</translation>
     </message>
 </context>
 <context>
@@ -571,6 +783,44 @@ Restart program by administrator?</source>
     </message>
 </context>
 <context>
+    <name>CParameterSSHTunnelUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="25"/>
+        <source>Source host:</source>
+        <translation>源主机：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="39"/>
+        <source>Source port:</source>
+        <translation>源端口：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="63"/>
+        <source>Packet capture file:</source>
+        <translation>包捕获文件：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
+        <source>Browser</source>
+        <translation>浏览</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="48"/>
+        <source>Save packet capture file</source>
+        <translation>保存包捕获文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
+        <source>Packet capture (*.pcap *.cap)</source>
+        <translation>包捕获文件(*.pcap *.cap)</translation>
+    </message>
+</context>
+<context>
     <name>CParameterUser</name>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
@@ -638,7 +888,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="207"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
         <source>Input passphrase</source>
         <translation>输入密码</translation>
     </message>
@@ -661,7 +911,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="106"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="109"/>
         <source>Input password</source>
         <translation>输入密码</translation>
     </message>
@@ -746,28 +996,28 @@ Restart program by administrator?</source>
         <translation>请输入私钥文件的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="111"/>
         <source>Please checked save password to enable</source>
         <translation>请选中保存密码按钮</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="119"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="131"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="122"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="134"/>
         <source>Open public key file</source>
         <translation>打开公钥文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="212"/>
         <source>Please checked save passphrase to enable</source>
         <translation>请选中保存密码，允许输入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="228"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="231"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打开 X509 认证证书文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="240"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="243"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation>打开 X509 证书吊销列表文件</translation>
     </message>
@@ -845,6 +1095,14 @@ Restart program by administrator?</source>
     <message>
         <source>Please checked save password to enable</source>
         <translation type="vanished">请选中保存密码按钮</translation>
+    </message>
+</context>
+<context>
+    <name>CSSHTunnelThread</name>
+    <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
+        <source>Error</source>
+        <translation>错误</translation>
     </message>
 </context>
 </TS>

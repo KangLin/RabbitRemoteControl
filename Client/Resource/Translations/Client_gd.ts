@@ -2,6 +2,190 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="gd_GB">
 <context>
+    <name>CChannelSSHTunnel</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="55"/>
+        <source>- libssh version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="99"/>
+        <source>SSH failed: ssh_new.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="130"/>
+        <source>SSH failed: the server is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="138"/>
+        <source>SSH failed: Set host fail. host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="150"/>
+        <source>SSH failed: Set port fail. port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="173"/>
+        <source>SSH failed: ssh_pcap_file_new: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="181"/>
+        <source>SSH failed: ssh connect </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="204"/>
+        <source>User cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="293"/>
+        <source>SSH failed: Get server public key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="308"/>
+        <source>SSH failed: Get public key hash value fail.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="326"/>
+        <source>Host key for server changed. it is now:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="328"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="339"/>
+        <source>For security reasons, connection will be stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="329"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="340"/>
+        <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="336"/>
+        <source>The host key for this server was not found but an other type of key exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="337"/>
+        <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="347"/>
+        <source>Could not find known host file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="348"/>
+        <source>If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="350"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="374"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="397"/>
+        <source>Host key hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="353"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="377"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="369"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="392"/>
+        <source>Reject the host key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="373"/>
+        <source>The server is unknown. Do you trust the host key?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="396"/>
+        <source>Error:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="398"/>
+        <source>Will be stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="449"/>
+        <source>SSH failed: Failed authenticating with publickey:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="473"/>
+        <source>Failed authenticating with password. User: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="500"/>
+        <source>SSH failed: There is not set public key file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="509"/>
+        <source>SSH failed: Import public key fail.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="511"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="545"/>
+        <source>The file doesn&apos;t exist or permission denied:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="523"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="556"/>
+        <source>SSH failed: Authentication failed. User:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="532"/>
+        <source>SSH failed: There is not set private key file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="543"/>
+        <source>SSH failed: Import private key fail.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="595"/>
+        <source>SSH failed: open forward.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="678"/>
+        <source>The channel is eof</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CChannelSSHTunnelForward</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
+        <source>The channel is eof</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CClient</name>
     <message>
         <location filename="../../Client.cpp" line="123"/>
@@ -176,6 +360,34 @@
     <message>
         <location filename="../../DlgInputPassword.cpp" line="21"/>
         <source>Input %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CDlgUserPassword</name>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="35"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="36"/>
+        <source>Set SSH user and password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="40"/>
+        <source>Set SSH passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="43"/>
+        <source>SSH server: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -545,6 +757,44 @@
     </message>
 </context>
 <context>
+    <name>CParameterSSHTunnelUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="25"/>
+        <source>Source host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="39"/>
+        <source>Source port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="63"/>
+        <source>Packet capture file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
+        <source>Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="48"/>
+        <source>Save packet capture file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
+        <source>Packet capture (*.pcap *.cap)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterUser</name>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
@@ -612,7 +862,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="207"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -635,7 +885,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="106"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="109"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -720,29 +970,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="111"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="119"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="131"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="122"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="134"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="212"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="228"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="231"/>
         <source>Open X509 certificate authentication file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="240"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="243"/>
         <source>Open X509 Certificate Revocation List file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CSSHTunnelThread</name>
+    <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
+        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
