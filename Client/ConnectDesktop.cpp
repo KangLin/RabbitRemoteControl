@@ -271,24 +271,39 @@ void CConnectDesktop::slotWheelEvent(QWheelEvent *event, QPoint pos)
 
 void CConnectDesktop::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
+#else
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, pos, event->button(),
+                                     event->buttons(), event->modifiers());
+#endif
     QCoreApplication::postEvent(this, e);
     WakeUp();
 }
 
 void CConnectDesktop::slotMousePressEvent(QMouseEvent *event, QPoint pos)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
+#else
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, pos, event->button(),
+                                     event->buttons(), event->modifiers());
+#endif
     QCoreApplication::postEvent(this, e);
     WakeUp();
 }
 
 void CConnectDesktop::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
+#else
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, pos, event->button(),
+                                     event->buttons(), event->modifiers());
+#endif
     QCoreApplication::postEvent(this, e);
     WakeUp();
 }

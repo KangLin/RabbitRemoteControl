@@ -31,9 +31,11 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_pcapFile(NULL),
     m_pParameter(parameter),
     m_pRemoteNet(remote),
+/*
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
     m_pSocketException(nullptr),
+*/
     m_pEvent(nullptr)
 {
     qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
@@ -159,8 +161,8 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         {
             m_pcapFile = ssh_pcap_file_new();
             if(m_pcapFile) {
-                if (ssh_pcap_file_open(m_pcapFile,
-                                       m_pParameter->GetPcapFile().toStdString().c_str())
+                if (ssh_pcap_file_open(
+                        m_pcapFile, m_pParameter->GetPcapFile().toStdString().c_str())
                     == SSH_ERROR) {
                     qCritical(log) << "SSH failed: Error opening pcap file: "
                                    << m_pParameter->GetPcapFile();
@@ -193,7 +195,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         if(nRet){
             break;
         }
-        
+
         auto &user = m_pParameter->m_Net.m_User;
         if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword) && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
             || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey) && user.GetPassphrase().isEmpty())
@@ -205,7 +207,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
                 return false;
             }
         }
-        
+
         int nMeth = SSH_AUTH_METHOD_PUBLICKEY;
         switch(user.GetUsedType()) {
         case CParameterUser::TYPE::UserPassword:
@@ -215,7 +217,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             nMeth = SSH_AUTH_METHOD_PUBLICKEY;
             break;
         }
-        
+
         nRet = authentication(m_Session,
                               user.GetUser(),
                               user.GetPassword(),

@@ -83,11 +83,11 @@ private:
     ssh_pcap_file m_pcapFile;
     CParameterSSHTunnel* m_pParameter;
     CParameterNet* m_pRemoteNet;
-    
+    /*
     QSocketNotifier* m_pSocketRead;
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
-    
+    */
     Channel::CEvent* m_pEvent;
 };
 

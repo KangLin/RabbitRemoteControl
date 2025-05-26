@@ -51,13 +51,22 @@ void CParameterConnecter::slotSetParameterClient()
 QByteArray CParameterConnecter::PasswordSum(const std::string &password,
                                           const std::string &key)
 {
+    std::string pw = "RabbitRemoteControl";
     QCryptographicHash sum(QCryptographicHash::Md5);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     if(!password.empty())
         sum.addData(password.c_str(), password.length());
-    std::string pw = "RabbitRemoteControl";
     sum.addData(pw.c_str(), pw.length());
     if(!key.empty())
         sum.addData(key.c_str(), key.length());
+#else
+    if(!password.empty())
+        sum.addData(QByteArrayView(password.c_str(), password.length()));
+    sum.addData(QByteArrayView(pw.c_str(), pw.length()));
+    if(!key.empty())
+        sum.addData(QByteArrayView(key.c_str(), key.length()));
+#endif
     return sum.result();
 }
 
