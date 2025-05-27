@@ -3,8 +3,6 @@
 // X.509 Public Key Certificates: https://learn.microsoft.com/zh-cn/windows/win32/seccertenroll/about-x-509-public-key-certificates
 // Cryptography: https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
 
-#include "ConnectFreeRDP.h"
-
 #undef PEN_FLAG_INVERTED
 #include "freerdp/client.h"
 #include "freerdp/client/channels.h"
@@ -20,8 +18,10 @@
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
 #include "freerdp/client/cmdline.h"
-#include <freerdp/gdi/video.h>
+#include "freerdp/gdi/video.h"
+#include "winpr/winsock.h"
 
+#include "ConnectFreeRDP.h"
 #include "RabbitCommonTools.h"
 #include "ConvertKeyCode.h"
 
@@ -42,20 +42,35 @@
     #include <QSound>
 #endif
 
+#ifdef WINPR_HAVE_POLL_H
+#include <poll.h>
+#else
+#include <time.h>
+#if defined(Q_OS_WIN)
+#include <WinSock2.h>
+#else
+#include <sys/select.h>
+#endif
+#endif
+
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
 static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")
 static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
-    
+
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
-    : CConnectDesktop(pConnecter),
-    m_pConnecter(pConnecter),
-    m_pContext(nullptr),
-    m_pParameter(nullptr),
-    m_ClipBoard(this),
-    m_Cursor(this),
-    m_writeEvent(nullptr)
+    : CConnectDesktop(pConnecter)
+    , m_pConnecter(pConnecter)
+    , m_pContext(nullptr)
+    , m_pParameter(nullptr)
+    , m_ClipBoard(this)
+    , m_Cursor(this)
+    , m_writeEvent(nullptr)
 #ifdef HAVE_LIBSSH
-    ,m_pThread(nullptr)
+    , m_pThreadSSH(nullptr)
+    #if FreeRDP_VERSION_MAJOR >= 3
+    , m_pChannelSSH(nullptr)
+    , m_hSshSocket(nullptr)
+    #endif
 #endif
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -80,9 +95,10 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     int nRet = 0;
     
     m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    if(!m_writeEvent)
+    if(!m_writeEvent) {
         qCritical(log) << "CreateEvent failed";
-    
+        return OnInitReturnValue::Fail;
+    }
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
@@ -222,26 +238,14 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     }
 #ifdef HAVE_LIBSSH
     case CParameterProxy::TYPE::SSHTunnel:
-    {  
-        // Start ssh thread
-        if(!m_pThread)
-            m_pThread = new CSSHTunnelThread(
-                &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
-        if(!m_pThread)
-            return OnInitReturnValue::Fail;
-        bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
-                             this, SLOT(slotConnectProxyServer(QString, quint16)));
-        Q_ASSERT(check);
-        check = connect(m_pThread, SIGNAL(sigError(int,QString)),
-                        this, SIGNAL(sigError(int,QString)));
-        Q_ASSERT(check);
-        check = connect(m_pThread, SIGNAL(sigDisconnect()),
-                        this, SIGNAL(sigDisconnect()));
-        Q_ASSERT(check);
-        m_pThread->start();
-        break;
-    }
+    {
+#if FreeRDP_VERSION_MAJOR >= 3
+        return InitSSHTunnelLayer(pRdpContext);
 #endif
+        return InitSSHTunnelPipe();
+    }
+#endif // HAVE_LIBSSH
+
     default:
         qCritical(log) << "Don't support proxy type:" << m_pParameter->m_Proxy.GetUsedType();
         break;
@@ -254,14 +258,6 @@ int CConnectFreeRDP::OnClean()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-
-#ifdef HAVE_LIBSSH
-    if(m_pThread)
-    {
-        m_pThread->Exit();
-        m_pThread = nullptr;
-    }
-#endif
     if(m_writeEvent)
     {
         CloseHandle(m_writeEvent);
@@ -279,6 +275,14 @@ int CConnectFreeRDP::OnClean()
         freerdp_client_context_free(pRdpContext);
         m_pContext = nullptr;
     }
+
+#ifdef HAVE_LIBSSH
+    #if FreeRDP_VERSION_MAJOR >= 3
+        CleanSSHTunnelLayer();
+    #endif
+    CleanSSHTunnelPipe();
+#endif
+
     return nRet;
 }
 
@@ -301,30 +305,36 @@ int CConnectFreeRDP::OnProcess()
     int nRet = 0;
     HANDLE handles[64];
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    
+
     if(nullptr == freerdp_settings_get_string(pRdpContext->settings, FreeRDP_ServerHostname))
     {
         return 50;
     }
 
     do {
-    
         DWORD nCount = 0;
-        nCount = freerdp_get_event_handles(pRdpContext, &handles[nCount],
-                                              ARRAYSIZE(handles) - nCount);
+
+        nCount += freerdp_get_event_handles(pRdpContext, &handles[nCount],
+                                           ARRAYSIZE(handles) - nCount);
         if (nCount == 0)
         {
             qCritical(log) << "freerdp_get_event_handles failed";
             nRet = -2;
             break;
         }
-        
-        handles[nCount] = m_writeEvent;
-        nCount++;
+
+        if(m_writeEvent)
+            handles[nCount++] = m_writeEvent;
 
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
 
-        ResetEvent(m_writeEvent);
+        if(m_writeEvent)
+            ResetEvent(m_writeEvent);
+
+#if defined(HAVE_LIBSSH) && (FreeRDP_VERSION_MAJOR >= 3)
+        if(m_hSshSocket)
+            WSAResetEvent(m_hSshSocket);
+#endif
 
         if (waitStatus == WAIT_FAILED)
         {
@@ -339,7 +349,7 @@ int CConnectFreeRDP::OnProcess()
             nRet = 0;
             break;
         }
-        
+
         if (!freerdp_check_event_handles(pRdpContext))
         {
             nRet = -5;
@@ -358,7 +368,7 @@ int CConnectFreeRDP::OnProcess()
             qCritical(log) << szErr;
             emit sigError(err, szErr);
 
-            /*/ Reconnect
+            /* Reconnect
             freerdp *instance = pRdpContext->instance;
             if (client_auto_reconnect(instance))
             {
@@ -446,7 +456,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    
+
     if (!context || !context->settings)
         return -1;
     freerdp* instance = freerdp_client_get_instance(context);
@@ -454,10 +464,10 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         return -2;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     auto settings = context->settings;
-    
-    QString szHost;
+
+    QString szDomainHost;
     quint16 nPort;
-    szHost = freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+    szDomainHost = freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
     nPort = freerdp_settings_get_uint32(settings, FreeRDP_ServerPort);
     QString szServer;
     auto &net = pThis->m_pParameter->m_Net;
@@ -467,15 +477,20 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     case CParameterProxy::TYPE::SSHTunnel:
     {
         auto &sshNet = proxy.m_SSH.m_Net;
-        szServer = szHost + ":" + QString::number(nPort)
-                   + " <-> " + sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
-                   + " <-> " + szServer;
+#if FreeRDP_VERSION_MAJOR < 3
+        szServer = szDomainHost + ":" + QString::number(nPort)
+                   + " -> " + sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
+                   + " -> " + szServer;
+#else
+        szServer = sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
+                   + " -> " + szServer;
+#endif
         break;
     }
     default:
         break;
     }
-        
+
     BOOL status = freerdp_connect(instance);
     if (status) {
         QString szInfo = tr("Connected to ") + szServer;
@@ -496,7 +511,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         szErr += "] ";*/
         szErr += freerdp_get_last_error_string(nErr);
         //szErr += "]";
-        
+
         switch(nErr) {
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
@@ -1974,7 +1989,8 @@ BOOL CConnectFreeRDP::cb_keyboard_set_ime_status(
 int CConnectFreeRDP::WakeUp()
 {
     //qDebug(log) << Q_FUNC_INFO;
-    SetEvent(m_writeEvent);
+    if(m_writeEvent)
+        SetEvent(m_writeEvent);
     return 0;
 }
 
@@ -2399,3 +2415,247 @@ void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
     }
     qDebug(log) << "Connect proxy server:" << szHost + ":" + QString::number(nPort) << "end";
 }
+
+#if HAVE_LIBSSH
+CConnect::OnInitReturnValue CConnectFreeRDP::InitSSHTunnelPipe()
+{
+    // Start ssh thread
+    if(!m_pThreadSSH)
+        m_pThreadSSH = new CSSHTunnelThread(
+            &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
+    if(!m_pThreadSSH)
+        return OnInitReturnValue::Fail;
+    bool check = connect(m_pThreadSSH, SIGNAL(sigServer(QString, quint16)),
+                         this, SLOT(slotConnectProxyServer(QString, quint16)));
+    Q_ASSERT(check);
+    check = connect(m_pThreadSSH, SIGNAL(sigError(int,QString)),
+                    this, SIGNAL(sigError(int,QString)));
+    Q_ASSERT(check);
+    check = connect(m_pThreadSSH, SIGNAL(sigDisconnect()),
+                    this, SIGNAL(sigDisconnect()));
+    Q_ASSERT(check);
+    m_pThreadSSH->start();
+    return OnInitReturnValue::UseOnProcess;
+}
+
+int CConnectFreeRDP::CleanSSHTunnelPipe()
+{
+    if(m_pThreadSSH)
+    {
+        m_pThreadSSH->Exit();
+        m_pThreadSSH = nullptr;
+    }
+    return 0;
+}
+
+#if FreeRDP_VERSION_MAJOR >= 3
+CConnect::OnInitReturnValue CConnectFreeRDP::InitSSHTunnelLayer(rdpContext* context)
+{
+    int nRet = 0;
+    bool bRet = false;
+    // See: - https://github.com/FreeRDP/FreeRDP/issues/8665
+    //      - https://github.com/KangLin/Documents/blob/master/net/FreeRDP/freerdp_transport.drawio
+    auto cb = freerdp_get_io_callbacks(context);
+    if(!cb) return OnInitReturnValue::Fail;
+    rdpTransportIo io = *cb;
+    io.ConnectLayer = cb_transport_connect_layer;
+    bRet = freerdp_set_io_callbacks(context, &io);
+    if(!bRet) {
+        qCritical(log) << "Set freerdp io callback fail";
+        return OnInitReturnValue::Fail;
+    }
+    m_pChannelSSH = new CChannelSSHTunnel(
+        &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
+    if(!m_pChannelSSH)
+        return OnInitReturnValue::Fail;
+    bRet = m_pChannelSSH->open(QIODevice::ReadWrite);
+    if(!bRet)
+        return OnInitReturnValue::Fail;
+    if(SSH_INVALID_SOCKET == m_pChannelSSH->GetSocket()) {
+        qCritical(log) << "The socket is invalid";
+        return OnInitReturnValue::Fail;
+    }
+    m_hSshSocket = WSACreateEvent();
+    if(!m_hSshSocket) {
+        qCritical(log) << "CreateEvent ssh socket event failed";
+        return OnInitReturnValue::Fail;
+    }
+    nRet = WSAEventSelect(m_pChannelSSH->GetSocket(), m_hSshSocket, FD_READ | FD_CLOSE);
+    if(nRet)
+        return OnInitReturnValue::Fail;
+    if(m_pParameter->m_Net.GetHost().isEmpty())
+    {
+        QString szErr;
+        szErr = tr("The server is empty, please input it");
+        qCritical(log) << szErr;
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigError(-1, szErr.toStdString().c_str());
+        return OnInitReturnValue::Fail;
+    }
+    auto &net = m_pParameter->m_Net;
+    auto settings = context->settings;
+    freerdp_settings_set_string(
+        settings, FreeRDP_ServerHostname,
+        net.GetHost().toStdString().c_str());
+    freerdp_settings_set_uint32(
+        settings, FreeRDP_ServerPort,
+        net.GetPort());
+
+    nRet = freerdp_client_start(context);
+    if(nRet)
+    {
+        qCritical(log) << "freerdp_client_start fail";
+        return OnInitReturnValue::Fail;
+    }
+    return OnInitReturnValue::UseOnProcess;
+}
+
+int CConnectFreeRDP::CleanSSHTunnelLayer()
+{
+    int nRet = 0;
+    if(m_pChannelSSH)
+    {
+        m_pChannelSSH->close();
+        m_pChannelSSH->deleteLater();
+        m_pChannelSSH = nullptr;
+    }
+    if(m_hSshSocket)
+    {
+        WSACloseEvent(m_hSshSocket);
+        m_hSshSocket = nullptr;
+    }
+    return nRet;
+}
+
+rdpTransportLayer* CConnectFreeRDP::cb_transport_connect_layer(
+    rdpTransport* transport,
+    const char* hostname, int port,
+    DWORD timeout)
+{
+    rdpContext* context = transport_get_context(transport);
+    Q_ASSERT(context);
+    Q_UNUSED(hostname);
+    Q_UNUSED(port);
+    Q_UNUSED(timeout);
+    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    return pThis->OnTransportConnectLayer(context);
+}
+
+rdpTransportLayer* CConnectFreeRDP::OnTransportConnectLayer(rdpContext* context)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    rdpTransportLayer* layer = nullptr;
+    layer = transport_layer_new(freerdp_get_transport(context), sizeof(LayerUserData));
+    if (!layer)
+        return nullptr;
+
+    LayerUserData* userData = (LayerUserData*)layer->userContext;
+    userData->pThis = this;
+    layer->Read = cbLayerRead;
+    layer->Write = cbLayerWrite;
+    layer->Close = cbLayerClose;
+    layer->Wait = cbLayerWait;
+    layer->GetEvent = cbLayerGetEvent;
+
+    return layer;
+}
+
+int CConnectFreeRDP::cbLayerRead(void *userContext, void *data, int bytes)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    if(!userContext) return -1;
+    if (!data || !bytes)
+        return 0;
+    CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+    return pThis->OnLayerRead(data, bytes);
+}
+
+int CConnectFreeRDP::OnLayerRead(void *data, int bytes)
+{
+    int nRet = 0;
+    if(!m_pChannelSSH || !m_pChannelSSH->isOpen()) {
+        qCritical(log) << Q_FUNC_INFO << "The channel is close";
+        return -1;
+    }
+
+    nRet = m_pChannelSSH->read((char*)data, bytes);
+    return nRet;
+}
+
+int CConnectFreeRDP::cbLayerWrite(void *userContext, const void *data, int bytes)
+{
+    if(!userContext) return -1;
+    if (!data || !bytes)
+        return 0;
+    CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+    return pThis->OnLayerWrite(data, bytes);
+}
+
+int CConnectFreeRDP::OnLayerWrite(const void *data, int bytes)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    int nRet = 0;
+    if(!m_pChannelSSH || !m_pChannelSSH->isOpen()) {
+        qCritical(log) << Q_FUNC_INFO << "The channel is close";
+        return -1;
+    }
+    nRet = m_pChannelSSH->write((const char*)data, bytes);
+    return nRet;
+}
+
+BOOL CConnectFreeRDP::cbLayerClose(void *userContext)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    if(!userContext) return FALSE;
+    CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+    return pThis->OnLayerClose();
+}
+
+BOOL CConnectFreeRDP::OnLayerClose()
+{
+    if(!m_pChannelSSH || !m_hSshSocket || !m_pChannelSSH->isOpen()) {
+        qCritical(log) << Q_FUNC_INFO << "The channel is close";
+        return FALSE;
+    }
+    int nRet = CleanSSHTunnelLayer();
+    if(nRet) return false;
+    return true;
+}
+
+BOOL CConnectFreeRDP::cbLayerWait(void *userContext, BOOL waitWrite, DWORD timeout)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+    return pThis->OnLayerWait(waitWrite, timeout);
+}
+
+BOOL CConnectFreeRDP::OnLayerWait(BOOL waitWrite, DWORD timeout)
+{
+    qDebug(log) << Q_FUNC_INFO << "wait write:" << waitWrite;
+    Q_ASSERT(!waitWrite);
+    if(!m_pChannelSSH || !m_pChannelSSH->isOpen()
+        || m_pChannelSSH->GetSocket() == SSH_INVALID_SOCKET) {
+        qCritical(log) << Q_FUNC_INFO << "The channel is close";
+        return false;
+    }
+
+    int nRet = m_pChannelSSH->DoWait(waitWrite, timeout);
+    if(nRet) return false;
+    return true;
+}
+
+HANDLE CConnectFreeRDP::cbLayerGetEvent(void *userContext)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+    return pThis->OnLayerGetEvent();
+}
+
+HANDLE CConnectFreeRDP::OnLayerGetEvent()
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    return m_hSshSocket;
+}
+#endif // FreeRDP_VERSION_MAJOR >= 3
+
+#endif // HAVE_LIBSSH

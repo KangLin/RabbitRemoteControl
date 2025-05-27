@@ -1,5 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include "libssh/libssh.h"
+#include "libssh/callbacks.h"
+
 #include "ChannelSSHTunnel.h"
 #include <QLoggingCategory>
 #include <QThread>
@@ -74,6 +77,13 @@ void CChannelSSHTunnel::cb_log(ssh_session session,
     default:
         break;
     }   
+}
+
+int CChannelSSHTunnel::GetSocket()
+{
+    if(m_Session)
+        return ssh_get_fd(m_Session);
+    return SSH_INVALID_SOCKET;
 }
 
 int CChannelSSHTunnel::WakeUp()
@@ -233,6 +243,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         if(nRet) break;
 
         emit sigConnected();
+
         return bRet;
     } while(0);
 
@@ -620,8 +631,6 @@ int CChannelSSHTunnel::forward(ssh_session session)
                << m_pParameter->m_Net.GetHost()
                       + ":" + QString::number(m_pParameter->m_Net.GetPort());
 
-    emit sigConnected();
-    
     //ssh_channel_set_blocking(m_Channel, 0);
 
     return nRet;
@@ -741,7 +750,7 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
     }
 
     if(0 == maxlen) {
-        qCritical(log) << Q_FUNC_INFO << maxlen;
+        qCritical(log) << Q_FUNC_INFO << "maxlen:" << maxlen;
         return 0;
     }
 
@@ -781,7 +790,7 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
     }
 
     if(0 == len) {
-        qCritical(log) << Q_FUNC_INFO << len;
+        qCritical(log) << Q_FUNC_INFO << "len:" << len;
         return 0;
     }
 
@@ -808,6 +817,94 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
     }
 
     return nRet;
+}
+
+int CChannelSSHTunnel::DoWait(bool bWrite, int timeout)
+{
+    int nRet = 0;
+    if(!m_Channel || !ssh_channel_is_open(m_Channel)
+        || ssh_channel_is_eof(m_Channel)) {
+        QString szErr = "The channel is not open";
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -1;
+    }
+    
+    fd_set set;
+    FD_ZERO(&set);
+
+    struct timeval tm = {0, timeout};
+    ssh_channel channels[2], channel_out[2];
+    channels[0] = m_Channel;
+    channels[1] = nullptr;
+    
+    if(bWrite) {
+        socket_t fd = SSH_INVALID_SOCKET;
+        if(m_pEvent)
+            fd = GetSocket();
+        if(SSH_INVALID_SOCKET != fd)
+            FD_SET(fd, &set);
+        nRet = select(fd + 1, nullptr, &set, nullptr, &tm);
+        if(0 > nRet) return nRet;
+        return 0;
+    }
+
+    //qDebug(log) << "ssh_select:" << fd;
+    nRet = ssh_select(channels, channel_out, 1, &set, &tm);
+    //qDebug(log) << "ssh_select end:" << nRet;
+    if(EINTR == nRet)
+        return 0;
+    
+    if(SSH_OK != nRet) {
+        QString szErr;
+        szErr = "ssh_channel_select failed: " + QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -3;
+    }
+    
+    if(!channel_out[0]) {
+        //qDebug(log) << "The channel is not select";
+        return 0;
+    }
+
+    if(ssh_channel_is_eof(m_Channel)) {
+        qWarning(log) << "Channel is eof";
+        setErrorString(tr("The channel is eof"));
+        // Stop
+        return -1;
+    }
+    
+    // Get channel data length
+    nRet = ssh_channel_poll(m_Channel, 0);
+    //qDebug(log) << "Get channel data length:" << nRet;
+    if(SSH_ERROR == nRet)
+    {
+        QString szErr;
+        szErr = "ssh_channel_poll failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        setErrorString(szErr);
+        qCritical(log) << szErr;
+        return -6;
+    } else if(SSH_EOF == nRet) {
+        // Stop
+        return -1;
+    } else if(0 > nRet) {
+        QString szErr;
+        szErr = "ssh_channel_poll failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        setErrorString(szErr);
+        qCritical(log) << szErr;
+        // Error
+        return -7;
+    } else if(0 == nRet) {
+        //qDebug(log) << "The channel has not data";
+        return 0;
+    }
+    return 0;
 }
 
 /*

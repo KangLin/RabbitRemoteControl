@@ -230,9 +230,11 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
     case CParameterProxy::TYPE::SSHTunnel:
     {
         // Start ssh thread
-        if(!m_pThread)
+        if(!m_pThread) {
+            // Don' t delete it, It deletes itself when it ends. See: CSSHTunnelThread::CSSHTunnelThread()
             m_pThread = new CSSHTunnelThread(
                 &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, this);
+        }
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),

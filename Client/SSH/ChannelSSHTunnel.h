@@ -47,6 +47,8 @@ public:
     virtual QString GetDetails() override;
     int Process();
     virtual int WakeUp();
+    virtual int DoWait(bool bWrite, int timeout);
+    int GetSocket();
 
     // QIODevice interface
 protected:

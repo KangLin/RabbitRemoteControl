@@ -38,7 +38,7 @@ qint64 CChannel::readData(char *data, qint64 maxlen)
         return -1;
     }
     if(0 == maxlen) {
-        qDebug(log) << Q_FUNC_INFO << maxlen;
+        qDebug(log) << Q_FUNC_INFO << "maxlen:" << maxlen;
         return 0;
     }
     if(!m_pSocket) return nRet;
@@ -57,7 +57,7 @@ qint64 CChannel::writeData(const char *data, qint64 len)
     }
 
     if(0 == len) {
-        qDebug(log) << Q_FUNC_INFO << len;
+        qDebug(log) << Q_FUNC_INFO << "len:" << len;
         return 0;
     }
 

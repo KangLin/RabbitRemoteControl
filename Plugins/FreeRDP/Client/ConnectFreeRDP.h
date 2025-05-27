@@ -5,6 +5,9 @@
 
 #include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
+#if FreeRDP_VERSION_MAJOR >= 3
+#include "freerdp/transport_io.h"
+#endif
 #include "ClipboardFreeRDP.h"
 #include "ConnecterFreeRDP.h"
 #include "CursorFreeRDP.h"
@@ -12,6 +15,7 @@
 
 #ifdef HAVE_LIBSSH
 #include "SSHTunnelThread.h"
+#include "ChannelSSHTunnel.h"
 #endif
 
 class CConnectFreeRDP : public CConnectDesktop
@@ -60,7 +64,7 @@ public:
                                                   const
                                               #endif
                                                   ChannelDisconnectedEventArgs* e);
-    
+
 	static BOOL cb_authenticate(freerdp* instance,
                                char** username, char** password, char** domain);
 	static BOOL cb_GatewayAuthenticate(freerdp* instance,
@@ -110,8 +114,8 @@ public:
     static BOOL cb_play_bell_sound(rdpContext* context,
                                    const PLAY_SOUND_UPDATE* play_sound);
     static BOOL cb_keyboard_set_indicators(rdpContext* context, UINT16 led_flags);
-    static BOOL cb_keyboard_set_ime_status(rdpContext* context, UINT16 imeId, UINT32 imeState,
-                                        UINT32 imeConvMode);
+    static BOOL cb_keyboard_set_ime_status(rdpContext* context, UINT16 imeId,
+                                           UINT32 imeState, UINT32 imeConvMode);
 
     static UINT32 GetImageFormat(QImage::Format format);
     static const char* GetTitle(freerdp *instance);
@@ -132,7 +136,7 @@ private:
     // CConnectDesktop interface
 public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
-    
+
 protected:
     virtual void mousePressEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
@@ -147,7 +151,7 @@ private:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
-    
+
 private:
     CConnecterFreeRDP* m_pConnecter;
     struct ClientContext{
@@ -168,12 +172,38 @@ private:
     CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;
     friend class CCursorFreeRDP;
-    
+
     HANDLE m_writeEvent;
-    
+
 #ifdef HAVE_LIBSSH
-    CSSHTunnelThread* m_pThread;
+#if FreeRDP_VERSION_MAJOR >= 3
+    struct LayerUserData
+    {
+        CConnectFreeRDP* pThis;
+    };
+    CChannelSSHTunnel* m_pChannelSSH;
+    HANDLE m_hSshSocket;
+    OnInitReturnValue InitSSHTunnelLayer(rdpContext* context);
+    int CleanSSHTunnelLayer();
+    static rdpTransportLayer* cb_transport_connect_layer(
+        rdpTransport* transport,
+        const char* hostname, int port, DWORD timeout);
+    rdpTransportLayer* OnTransportConnectLayer(rdpContext *context);
+    static int cbLayerRead(void* userContext, void* data, int bytes);
+    int OnLayerRead(void* data, int bytes);
+    static int cbLayerWrite(void* userContext, const void* data, int bytes);
+    int OnLayerWrite(const void* data, int bytes);
+    static BOOL cbLayerClose(void* userContext);
+    BOOL OnLayerClose();
+    static BOOL cbLayerWait(void* userContext, BOOL waitWrite, DWORD timeout);
+    BOOL OnLayerWait(BOOL waitWrite, DWORD timeout);
+    static HANDLE cbLayerGetEvent(void* userContext);
+    HANDLE OnLayerGetEvent();
 #endif
+    OnInitReturnValue InitSSHTunnelPipe();
+    int CleanSSHTunnelPipe();
+    CSSHTunnelThread* m_pThreadSSH;
+#endif // HAVE_LIBSSH
 private Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 };
