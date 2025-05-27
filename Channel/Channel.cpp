@@ -31,29 +31,39 @@ CChannel::~CChannel()
 
 qint64 CChannel::readData(char *data, qint64 maxlen)
 {
+    //qDebug(log) << Q_FUNC_INFO << maxlen;
     qint64 nRet = 0;
-    /*
-    qDebug(log) << "CChannel::readData:"
-                << maxlen; //*/
-    if(m_pSocket)
-        nRet = m_pSocket->read(data, maxlen);
-    if(nRet < 0) {
-        setErrorString(m_pSocket->errorString());
+    if(nullptr == data || 0 > maxlen) {
+        qCritical(log) << Q_FUNC_INFO << "The parameters is invalid" << maxlen;
+        return -1;
     }
+    if(0 == maxlen) {
+        qDebug(log) << Q_FUNC_INFO << maxlen;
+        return 0;
+    }
+    if(!m_pSocket) return nRet;
+    nRet = m_pSocket->read(data, maxlen);
+    if(nRet < 0)
+        setErrorString(m_pSocket->errorString());
     return nRet;
 }
 
 qint64 CChannel::writeData(const char *data, qint64 len)
 {
-    //qDebug(log) << "CChannel::writeData:" << len;
-    if(nullptr == data || 0 >= len) {
-        qCritical(log) << "writeData fail. len:" << len;
+    //qDebug(log) << Q_FUNC_INFO << len;
+    if(nullptr == data || 0 > len) {
+        qCritical(log) << Q_FUNC_INFO << "The parameters is invalid" << len;
+        return -1;
+    }
+
+    if(0 == len) {
+        qDebug(log) << Q_FUNC_INFO << len;
         return 0;
     }
-    
+
     qint64 nRet = 0;
-    if(m_pSocket)
-        nRet = m_pSocket->write(data, len);
+    if(!m_pSocket) return nRet;
+    nRet = m_pSocket->write(data, len);
     if(nRet < 0)
         setErrorString(m_pSocket->errorString());
     return nRet;
@@ -67,11 +77,11 @@ bool CChannel::isSequential() const
 void CChannel::slotError(QAbstractSocket::SocketError e)
 {
     QString szError;
-    if(m_pSocket)
+    if(m_pSocket) {
         szError = m_pSocket->errorString();
-    /*
-    qDebug(log) << "CChannel::slotError()" << e
-                << m_pSocket->errorString();//*/
+        setErrorString(szError);
+    }
+    // qDebug(log) << "CChannel::slotError()" << e << szError;
     emit sigError(e, szError);
 }
 
@@ -103,8 +113,12 @@ bool CChannel::open(OpenMode mode)
 
 void CChannel::close()
 {
-    if(m_pSocket)
+    qDebug(log) << Q_FUNC_INFO;
+    if(!isOpen()) return;
+    if(m_pSocket) {
         m_pSocket->close();
+        m_pSocket = nullptr;
+    }
     QIODevice::close();
 }
 

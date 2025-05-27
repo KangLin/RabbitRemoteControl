@@ -86,7 +86,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
 {
     int nRet = 0;
     QString szErr;
-    
+
     if(!m_pParameter) {
         qCritical(log) << "The parameter is null";
     }
@@ -94,6 +94,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         qCritical(log) << "The remote net parameter is null";
     Q_ASSERT(m_pParameter);
     Q_ASSERT(m_pRemoteNet);
+
+    bool bRet = QIODevice::open(mode);
+    if(!bRet)
+        return bRet;
 
     m_Session = ssh_new();
     if(NULL == m_Session)
@@ -228,7 +232,8 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         nRet = forward(m_Session);
         if(nRet) break;
 
-        return QIODevice::open(mode);
+        emit sigConnected();
+        return bRet;
     } while(0);
 
     ssh_disconnect(m_Session);
@@ -240,7 +245,9 @@ bool CChannelSSHTunnel::open(OpenMode mode)
 void CChannelSSHTunnel::close()
 {
     qDebug(log) << "CChannelSSHTunnel::close()";
-    
+
+    if(!isOpen()) return;
+
     WakeUp();
 
     /*
@@ -260,8 +267,7 @@ void CChannelSSHTunnel::close()
         m_pSocketException->deleteLater();
         m_pSocketException = nullptr;
     }//*/
-    
-    QIODevice::close();
+
     if(m_Channel) {
         if(ssh_channel_is_open(m_Channel)) {
             ssh_channel_close(m_Channel);
@@ -283,6 +289,8 @@ void CChannelSSHTunnel::close()
         ssh_pcap_file_free(m_pcapFile);
         m_pcapFile = nullptr;
     }
+
+    QIODevice::close();
 }
 
 int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
@@ -290,11 +298,14 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
     int nRet = -1;
     QString szErr;
     ssh_key srv_pubkey = NULL;
+
+    auto &net = m_pParameter->m_Net;
+
     nRet = ssh_get_server_publickey(session, &srv_pubkey);
     if (nRet < 0) {
-        szErr = tr("SSH failed: Get server public key.") + "(";
+        szErr = tr("SSH failed: Get server public key.") + " " + net.GetHost() + "; [";
         szErr += ssh_get_error(session);
-        szErr += ")";
+        szErr += "]";
         qCritical(log) << szErr;
         setErrorString(szErr);
         return -1;
@@ -325,7 +336,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_CHANGED:
         nRet = -3;
-        szErr = tr("Host key for server changed. it is now:") + "\n";
+        szErr = net.GetHost() + " " + tr("the host key for server changed. it is now:") + "\n";
         szErr += szHash + "\n";
         szErr += tr("For security reasons, connection will be stopped.") + "\n";
         szErr += tr("Please look at the OpenSSL documentation on "
@@ -335,7 +346,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_OTHER:
         nRet = -4;
-        szErr = tr("The host key for this server was not found but an other type of key exists.") + "\n";
+        szErr = net.GetHost() + " " + tr("the host key for this server was not found but an other type of key exists.") + "\n";
         szErr += tr("An attacker might change the default server key to "
                   "confuse your client into thinking the key does not exist") + "\n";
         szErr += tr("For security reasons, connection will be stopped.") + "\n";
@@ -346,7 +357,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_NOT_FOUND:
         nRet = -5;
-        szErr = tr("Could not find known host file.") + "\n";
+        szErr = net.GetHost() + " " + tr("is not find in known host file.") + "\n";
         szErr += tr("If you accept the host key here, the file will be "
                     "automatically created.") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
@@ -372,7 +383,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_UNKNOWN:
         nRet = -6;
-        szErr = tr("The server is unknown. Do you trust the host key?") + "\n";
+        szErr = net.GetHost() + " " + tr("is unknown. Do you trust the host key?") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
         if(!m_pConnect) break;
@@ -396,7 +407,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
     case SSH_KNOWN_HOSTS_ERROR:
         nRet = -7;
         szErr = tr("Error:") + ssh_get_error(session) + "\n";
-        szErr += tr("Host key hash:") + "\n" + szHash + "\n";
+        szErr += net.GetHost() + " " + tr("the host key hash:") + "\n" + szHash + "\n";
         szErr += tr("Will be stopped.");
         qCritical(log) << szErr;
         setErrorString(szErr);
@@ -721,13 +732,18 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
     qint64 nRet = 0;
 
-    /*
-    qDebug(log) << "CChannel::readData:"
-                << maxlen << "nLen:" << m_readData.size();//*/
+    //qDebug(log) << Q_FUNC_INFO << maxlen;
 
     Q_ASSERT(data && maxlen >= 0);
-    if(!(data && maxlen >= 0))
+    if(nullptr == data || 0 > maxlen) {
+        qCritical(log) << Q_FUNC_INFO << "The parameters is invalid" << maxlen;
+        return -1;
+    }
+
+    if(0 == maxlen) {
+        qCritical(log) << Q_FUNC_INFO << maxlen;
         return 0;
+    }
 
     if(!m_Channel || !ssh_channel_is_open(m_Channel))
     {
@@ -737,34 +753,10 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
         setErrorString(szErr);
         return -1;
     }
-    /*
-    if(ssh_channel_is_eof(m_Channel))
-    {
-        QString szErr;
-        szErr = "The channel is eof";
-        qCritical(log) << szErr;
-        setErrorString(szErr);
-        return -2;
-    }
-
-    nRet = ssh_channel_poll(m_Channel, 0);
-    //qDebug(log) << "ssh_channel_poll:" << nRet;
-    if(nRet < 0) {
-        QString szErr;
-        szErr = "ssh_channel_poll failed. nRet:";
-        szErr += QString::number(nRet);
-        szErr += ssh_get_error(m_Session);
-        qCritical(log) << szErr;
-        return nRet;
-    }
-    if(nRet == 0) {
-        //qDebug(log) << "There is not data in channel";
-        return 0;
-    }//*/
 
     nRet = ssh_channel_read_nonblocking(m_Channel, data, maxlen, 0);
     if(SSH_AGAIN == nRet) {
-        emit readyRead();
+        qDebug(log) << Q_FUNC_INFO << "ssh again read";
         return 0;
     } else if(0 > nRet) {
         QString szErr;
@@ -783,8 +775,15 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
     qint64 nRet = 0;
 
     Q_ASSERT(data && len >= 0);
-    if(!(data && len >= 0))
+    if(nullptr == data || 0 > len) {
+        qCritical(log) << Q_FUNC_INFO << "The parameters is invalid" << len;
+        return -1;
+    }
+
+    if(0 == len) {
+        qCritical(log) << Q_FUNC_INFO << len;
         return 0;
+    }
 
     if(!m_Channel || !ssh_channel_is_open(m_Channel) || ssh_channel_is_eof(m_Channel))
     {
@@ -796,10 +795,10 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
     }
 
     nRet = ssh_channel_write(m_Channel, data, len);
-    if(nRet < 0) {
-        if(SSH_AGAIN == nRet)
-            return 0;
-
+    if(SSH_AGAIN == nRet) {
+        qDebug(log) << Q_FUNC_INFO << "ssh again write";
+        return 0;
+    } else if(nRet < 0) {
         QString szErr;
         szErr = "Write data from channel failed:";
         szErr += ssh_get_error(m_Session);
@@ -807,6 +806,7 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
         setErrorString(szErr);
         return -2;
     }
+
     return nRet;
 }
 

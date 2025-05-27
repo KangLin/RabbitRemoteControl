@@ -24,7 +24,7 @@
 class CHANNEL_EXPORT CChannel : public QIODevice
 {
     Q_OBJECT
-    
+
 public:
     /*!
      * \brief CChannel
@@ -33,19 +33,19 @@ public:
      */
     explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CChannel();
-    
+
     /// \~chinese
     /// \param pSocket: 所有者是这个类的实例
     /// \~english
     /// \param pSocket: The Owner is the instance of this class.
-    /// 
+    ///
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
-    
+
     //! \~chinese 依赖信息
     //! \~english Depend on information
     virtual QString GetDetails();
-    
+
     //! \brief Initial translation
     static int InitTranslation();
     //! \brief Remove translation
@@ -63,7 +63,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);
-    
+
 private:
     QTcpSocket* m_pSocket;
 
