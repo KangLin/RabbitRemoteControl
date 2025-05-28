@@ -3,6 +3,8 @@
 ### v0.0.36
 - Client:
   - 修复录制视频帧率错误
+- FreeRDP:
+  - 增加连接层接口: CConnectLayer
 
 ### v0.0.35
 - 应用：

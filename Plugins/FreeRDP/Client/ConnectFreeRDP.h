@@ -6,9 +6,12 @@
 #include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
 #include "freerdp/version.h"
+
 #if FREERDP_VERSION_MAJOR >= 3
 #include "freerdp/transport_io.h"
+class CConnectLayer;
 #endif
+
 #include "ClipboardFreeRDP.h"
 #include "ConnecterFreeRDP.h"
 #include "CursorFreeRDP.h"
@@ -176,35 +179,16 @@ private:
 
     HANDLE m_writeEvent;
 
-#ifdef HAVE_LIBSSH
 #if FREERDP_VERSION_MAJOR >= 3
-    struct LayerUserData
-    {
-        CConnectFreeRDP* pThis;
-    };
-    CChannelSSHTunnel* m_pChannelSSH;
-    HANDLE m_hSshSocket;
-    OnInitReturnValue InitSSHTunnelLayer(rdpContext* context);
-    int CleanSSHTunnelLayer();
-    static rdpTransportLayer* cb_transport_connect_layer(
-        rdpTransport* transport,
-        const char* hostname, int port, DWORD timeout);
-    rdpTransportLayer* OnTransportConnectLayer(rdpContext *context);
-    static int cbLayerRead(void* userContext, void* data, int bytes);
-    int OnLayerRead(void* data, int bytes);
-    static int cbLayerWrite(void* userContext, const void* data, int bytes);
-    int OnLayerWrite(const void* data, int bytes);
-    static BOOL cbLayerClose(void* userContext);
-    BOOL OnLayerClose();
-    static BOOL cbLayerWait(void* userContext, BOOL waitWrite, DWORD timeout);
-    BOOL OnLayerWait(BOOL waitWrite, DWORD timeout);
-    static HANDLE cbLayerGetEvent(void* userContext);
-    HANDLE OnLayerGetEvent();
+    CConnectLayer* m_pConnectLayer;
+    friend class CConnectLayer;
 #endif
+#ifdef HAVE_LIBSSH
     OnInitReturnValue InitSSHTunnelPipe();
     int CleanSSHTunnelPipe();
     CSSHTunnelThread* m_pThreadSSH;
 #endif // HAVE_LIBSSH
+
 private Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 };

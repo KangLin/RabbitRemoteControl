@@ -40,6 +40,18 @@ SET(FreeRDP_UI_FILES
     DlgDesktopSize.ui
     )
 
+find_package(FreeRDP)
+if(FreeRDP_VERSION_MAJOR VERSION_GREATER_EQUAL 3)
+    list(APPEND FreeRDP_HEADER_FILES ConnectLayer.h)
+    list(APPEND FreeRDP_SOURCE_FILES ConnectLayer.cpp)
+
+    find_package(libssh)
+    if(libssh_FOUND)
+        list(APPEND FreeRDP_HEADER_FILES ConnectLayerSSHTunnel.h)
+        list(APPEND FreeRDP_SOURCE_FILES ConnectLayerSSHTunnel.cpp)
+    endif()
+endif()
+
 if(WIN32)
     list(APPEND FreeRDP_LIBS Credui.dll)
 endif()
@@ -67,4 +79,3 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )
-

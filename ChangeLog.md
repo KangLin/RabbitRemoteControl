@@ -3,6 +3,8 @@
 ### v0.0.36
 - Client:
   - Fix recode video rate bug
+  - FreeRDP:
+    - Add CConnectLayer
 
 ### v0.0.35
 - App:
