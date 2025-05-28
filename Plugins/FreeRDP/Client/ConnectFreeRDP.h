@@ -5,7 +5,8 @@
 
 #include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
-#if FreeRDP_VERSION_MAJOR >= 3
+#include "freerdp/version.h"
+#if FREERDP_VERSION_MAJOR >= 3
 #include "freerdp/transport_io.h"
 #endif
 #include "ClipboardFreeRDP.h"
@@ -55,12 +56,12 @@ public:
     static int cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 type);
 
     static void OnChannelConnectedEventHandler(void* context,
-                                           #if FreeRDP_VERSION_MAJOR >= 3
+                                           #if FREERDP_VERSION_MAJOR >= 3
                                                const
                                            #endif
                                                ChannelConnectedEventArgs* e);
     static void OnChannelDisconnectedEventHandler(void* context,
-                                              #if FreeRDP_VERSION_MAJOR >= 3
+                                              #if FREERDP_VERSION_MAJOR >= 3
                                                   const
                                               #endif
                                                   ChannelDisconnectedEventArgs* e);
@@ -69,7 +70,7 @@ public:
                                char** username, char** password, char** domain);
 	static BOOL cb_GatewayAuthenticate(freerdp* instance,
                                char** username, char** password, char** domain);
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     static BOOL cb_authenticate_ex(freerdp* instance,
                                    char** username, char** password,
                                    char** domain, rdp_auth_reason reason);
@@ -155,7 +156,7 @@ private:
 private:
     CConnecterFreeRDP* m_pConnecter;
     struct ClientContext{
-        #if FreeRDP_VERSION_MAJOR >= 3
+        #if FREERDP_VERSION_MAJOR >= 3
             rdpClientContext Context;
         #else
             rdpContext Context;
@@ -176,7 +177,7 @@ private:
     HANDLE m_writeEvent;
 
 #ifdef HAVE_LIBSSH
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     struct LayerUserData
     {
         CConnectFreeRDP* pThis;

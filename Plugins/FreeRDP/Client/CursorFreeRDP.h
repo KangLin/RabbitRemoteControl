@@ -7,6 +7,7 @@
 #include <QImage>
 #include <QRect>
 #include <QObject>
+#include "freerdp/version.h"
 #include "freerdp/freerdp.h"
 
 class CConnectFreeRDP;
@@ -25,7 +26,7 @@ public:
     static BOOL cb_Pointer_New(rdpContext* context, rdpPointer* pointer);
     static void cb_Pointer_Free(rdpContext* context, rdpPointer* pointer);
     static BOOL cb_Pointer_Set(rdpContext* context,
-                           #if FreeRDP_VERSION_MAJOR >= 3
+                           #if FREERDP_VERSION_MAJOR >= 3
                                rdpPointer* pointer
                            #else
                                const rdpPointer* pointer

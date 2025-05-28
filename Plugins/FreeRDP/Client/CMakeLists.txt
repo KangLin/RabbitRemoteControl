@@ -40,10 +40,6 @@ SET(FreeRDP_UI_FILES
     DlgDesktopSize.ui
     )
 
-SET(FreeRDP_DEFINITIONS
-    FreeRDP_VERSION_MAJOR=${FreeRDP_MAJOR}
-    FreeRDP_VERSION_MINOR=${FreeRDP_MINOR})
-
 if(WIN32)
     list(APPEND FreeRDP_LIBS Credui.dll)
 endif()

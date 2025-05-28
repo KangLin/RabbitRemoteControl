@@ -67,7 +67,7 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     , m_writeEvent(nullptr)
 #ifdef HAVE_LIBSSH
     , m_pThreadSSH(nullptr)
-    #if FreeRDP_VERSION_MAJOR >= 3
+    #if FREERDP_VERSION_MAJOR >= 3
     , m_pChannelSSH(nullptr)
     , m_hSshSocket(nullptr)
     #endif
@@ -146,7 +146,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         return OnInitReturnValue::Fail;
     } //*/
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     if (!stream_dump_register_handlers(pRdpContext,
                                        CONNECTION_STATE_MCS_CREATE_REQUEST,
                                        FALSE))
@@ -166,7 +166,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     freerdp_settings_set_bool(
         settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
     
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     bool bOnlyView = m_pParameter->GetOnlyView();
     freerdp_settings_set_bool(
         settings, FreeRDP_SuspendInput, bOnlyView);
@@ -239,7 +239,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 #ifdef HAVE_LIBSSH
     case CParameterProxy::TYPE::SSHTunnel:
     {
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         return InitSSHTunnelLayer(pRdpContext);
 #endif
         return InitSSHTunnelPipe();
@@ -277,7 +277,7 @@ int CConnectFreeRDP::OnClean()
     }
 
 #ifdef HAVE_LIBSSH
-    #if FreeRDP_VERSION_MAJOR >= 3
+    #if FREERDP_VERSION_MAJOR >= 3
         CleanSSHTunnelLayer();
     #endif
     CleanSSHTunnelPipe();
@@ -331,7 +331,7 @@ int CConnectFreeRDP::OnProcess()
         if(m_writeEvent)
             ResetEvent(m_writeEvent);
 
-#if defined(HAVE_LIBSSH) && (FreeRDP_VERSION_MAJOR >= 3)
+#if defined(HAVE_LIBSSH) && (FREERDP_VERSION_MAJOR >= 3)
         if(m_hSshSocket)
             WSAResetEvent(m_hSshSocket);
 #endif
@@ -389,7 +389,7 @@ int CConnectFreeRDP::OnProcess()
             emit sigError(err, szErr);//*/
         }
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         if(freerdp_shall_disconnect_context(pRdpContext))
 #else
         if(freerdp_shall_disconnect(pRdpContext->instance))
@@ -430,7 +430,7 @@ BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 	instance->PostDisconnect = cb_post_disconnect;
 
     // Because it is already set in the parameters
-#if FreeRDP_VERSION_MAJOR < 3
+#if FREERDP_VERSION_MAJOR < 3
     instance->Authenticate = cb_authenticate;
     instance->GatewayAuthenticate = cb_GatewayAuthenticate;
 #else
@@ -477,7 +477,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     case CParameterProxy::TYPE::SSHTunnel:
     {
         auto &sshNet = proxy.m_SSH.m_Net;
-#if FreeRDP_VERSION_MAJOR < 3
+#if FREERDP_VERSION_MAJOR < 3
         szServer = szDomainHost + ":" + QString::number(nPort)
                    + " -> " + sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
                    + " -> " + szServer;
@@ -572,7 +572,7 @@ int CConnectFreeRDP::cbClientStop(rdpContext *context)
 {
     int nRet = 0;
     qDebug(log) << Q_FUNC_INFO;
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     nRet = freerdp_client_common_stop(context);
 #else
     BOOL bRet = freerdp_abort_connect(context->instance);
@@ -664,7 +664,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    OnChannelDisconnectedEventHandler);
 
-#if FreeRDP_VERSION_MAJOR < 3
+#if FREERDP_VERSION_MAJOR < 3
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
 #else
@@ -701,7 +701,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
             settings, FreeRDP_ExtSecurity,
             CParameterFreeRDP::Security::NLA_Ext & security))
         return FALSE;
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     if(!freerdp_settings_set_bool(
             settings, FreeRDP_AadSecurity,
             CParameterFreeRDP::Security::RDSAAD & security))
@@ -739,7 +739,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
                     settings, FreeRDP_Password,
                     user.GetPassword().toStdString().c_str());
         }
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
             return FALSE;
 #endif
@@ -811,7 +811,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
     if (windowTitle)
         return windowTitle;
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     name = freerdp_settings_get_server_name(settings);
 #else
     name = pThis->m_pParameter->m_Net.GetHost().toStdString().c_str();
@@ -849,7 +849,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     if(pWindowTitle)
     {
         WCHAR* windowTitle = NULL;
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         windowTitle = ConvertUtf8ToWCharAlloc(pWindowTitle, NULL);
 #else
         ConvertToUnicode(CP_UTF8, 0, pWindowTitle, -1, &windowTitle, 0);
@@ -925,7 +925,7 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 }
 
 void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
-                                                     #if FreeRDP_VERSION_MAJOR >= 3
+                                                     #if FREERDP_VERSION_MAJOR >= 3
                                                      const
                                                      #endif
                                                      ChannelConnectedEventArgs *e)
@@ -937,7 +937,7 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
     }
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     else
         freerdp_client_OnChannelConnectedEventHandler(pContext, e);
 #else
@@ -964,7 +964,7 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
 }
 
 void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
-                                                        #if FreeRDP_VERSION_MAJOR >= 3
+                                                        #if FREERDP_VERSION_MAJOR >= 3
                                                         const
                                                         #endif
                                                         ChannelDisconnectedEventArgs *e)
@@ -977,7 +977,7 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
 	}
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     else
         freerdp_client_OnChannelDisconnectedEventHandler(pContext, e);
 #else
@@ -1036,7 +1036,7 @@ BOOL CConnectFreeRDP::CreateImage(rdpContext *context)
     return TRUE;
 }
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
 #ifdef Q_OS_WINDOWS
 static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), NULL, L"Enter your credentials",
                                 L"Remote Desktop Security", NULL };
@@ -1435,7 +1435,7 @@ CleanUp:
 }
 #endif
 
-#endif //#if FreeRDP_VERSION_MAJOR >= 3
+#endif //#if FREERDP_VERSION_MAJOR >= 3
 
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
@@ -1506,7 +1506,7 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
     qDebug(log) << Q_FUNC_INFO;
     rdpContext* pContext = (rdpContext*)instance->context;
     QSslCertificate cert(QByteArray((const char*)data, length));
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     /* Newer versions of FreeRDP allow exposing the whole PEM by setting
 	 * FreeRDP_CertificateCallbackPreferPEM to TRUE
 	 */
@@ -1532,7 +1532,7 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
 static QString pem_cert_fingerprint(const char* pem, DWORD flags)
 {
     QString szFingerPrint;
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     /* Newer versions of FreeRDP allow exposing the whole PEM by setting
 	 * FreeRDP_CertificateCallbackPreferPEM to TRUE
 	 */
@@ -1598,7 +1598,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
         return 2;
     }
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
 #if defined(Q_OS_WIN) && defined(WITH_WINDOWS_CERT_STORE)
     if (flags & VERIFY_CERT_FLAG_FP_IS_PEM && !(flags & VERIFY_CERT_FLAG_MISMATCH))
     {
@@ -1773,7 +1773,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         QString msgType = (type == GATEWAY_MESSAGE_CONSENT)
                               ? tr("Consent message") : tr("Service message");
         msgType += "\n";
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         char* pMsg = ConvertWCharToUtf8Alloc(message, NULL);
         if(pMsg) {
             msgType += pMsg;
@@ -2000,7 +2000,7 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
     if(m_pParameter && m_pParameter->GetOnlyView()) return true;
     if(!m_pContext) return false;
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     if(isExtended)
         freerdp_client_send_extended_button_event(
             &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
@@ -2046,7 +2046,7 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
     {
         flags |= PTR_FLAGS_HWHEEL | p.x();
     }
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     freerdp_client_send_wheel_event(&m_pContext->Context, flags);
     /*
     freerdp_client_send_button_event(
@@ -2149,7 +2149,7 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
             m_pContext->Context.context.input, true, true, k);
 #else
@@ -2165,7 +2165,7 @@ void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
             m_pContext->Context.context.input, false, false, k);
 #else
@@ -2215,7 +2215,7 @@ int CConnectFreeRDP::RedirectionSound()
               m_pParameter->GetRedirectionSoundParameters().toStdString().c_str(),
                                                    &count);
     BOOL status = freerdp_client_add_static_channel(settings, count,
-                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                #if FREERDP_VERSION_MAJOR < 3
                                                     ptr.p
                                                 #else
                                                     ptr.pc
@@ -2224,7 +2224,7 @@ int CConnectFreeRDP::RedirectionSound()
     if (status)
     {
         status = freerdp_client_add_dynamic_channel(settings, count,
-                                            #if FreeRDP_VERSION_MAJOR < 3
+                                            #if FREERDP_VERSION_MAJOR < 3
                                                     ptr.p
                                             #else
                                                     ptr.pc
@@ -2270,7 +2270,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
          m_pParameter->GetRedirectionMicrophoneParameters().toStdString().c_str(),
                                                    &count);
     BOOL status = freerdp_client_add_dynamic_channel(settings, count,
-                                                 #if FreeRDP_VERSION_MAJOR < 3
+                                                 #if FREERDP_VERSION_MAJOR < 3
                                                          ptr.p
                                                  #else
                                                          ptr.pc
@@ -2303,7 +2303,7 @@ int CConnectFreeRDP::RedirectionDriver()
         const char* argvDrive[] = {"drive", pDrive};
         int count = sizeof(argvDrive) / sizeof(const char*);
         BOOL status = freerdp_client_add_device_channel(settings, count,
-                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                #if FREERDP_VERSION_MAJOR < 3
                                                     (char**)
                                                 #endif
                                                         argvDrive);
@@ -2340,7 +2340,7 @@ int CConnectFreeRDP::RedirectionPrinter()
     const char* argvPrinter[] = {"printer",  nullptr, nullptr};
     int count = sizeof(argvPrinter) / sizeof(const char*);
     BOOL status = freerdp_client_add_device_channel(settings, count,
-                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                #if FREERDP_VERSION_MAJOR < 3
                                                     (char**)
                                                 #endif
                                                     argvPrinter);
@@ -2375,9 +2375,9 @@ int CConnectFreeRDP::RedirectionSerial()
         const char* argvSerial[] = {"serial", pName, pSerial};
         int count = sizeof(argvSerial) / sizeof(const char*);
         BOOL status = freerdp_client_add_device_channel(settings, count,
-                                                #if FreeRDP_VERSION_MAJOR < 3
-                                                    (char**)
-                                                #endif
+                                                    #if FREERDP_VERSION_MAJOR < 3
+                                                        (char**)
+                                                    #endif
                                                         argvSerial);
         if(pSerial) free(pSerial);
         if(pName) free(pName);
@@ -2448,7 +2448,7 @@ int CConnectFreeRDP::CleanSSHTunnelPipe()
     return 0;
 }
 
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
 CConnect::OnInitReturnValue CConnectFreeRDP::InitSSHTunnelLayer(rdpContext* context)
 {
     int nRet = 0;
@@ -2545,12 +2545,19 @@ rdpTransportLayer* CConnectFreeRDP::OnTransportConnectLayer(rdpContext* context)
 {
     //qDebug(log) << Q_FUNC_INFO;
     rdpTransportLayer* layer = nullptr;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     layer = transport_layer_new(freerdp_get_transport(context), sizeof(LayerUserData));
+#else
+    layer = transport_layer_new(freerdp_get_transport(context));
+#endif
     if (!layer)
         return nullptr;
-
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     LayerUserData* userData = (LayerUserData*)layer->userContext;
     userData->pThis = this;
+#else
+    layer->userContext = this;
+#endif
     layer->Read = cbLayerRead;
     layer->Write = cbLayerWrite;
     layer->Close = cbLayerClose;
@@ -2566,7 +2573,11 @@ int CConnectFreeRDP::cbLayerRead(void *userContext, void *data, int bytes)
     if(!userContext) return -1;
     if (!data || !bytes)
         return 0;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+#else
+    CConnectFreeRDP* pThis = (CConnectFreeRDP*)userContext;
+#endif
     return pThis->OnLayerRead(data, bytes);
 }
 
@@ -2587,7 +2598,11 @@ int CConnectFreeRDP::cbLayerWrite(void *userContext, const void *data, int bytes
     if(!userContext) return -1;
     if (!data || !bytes)
         return 0;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+#else
+    CConnectFreeRDP* pThis = (CConnectFreeRDP*)userContext;
+#endif
     return pThis->OnLayerWrite(data, bytes);
 }
 
@@ -2607,7 +2622,11 @@ BOOL CConnectFreeRDP::cbLayerClose(void *userContext)
 {
     //qDebug(log) << Q_FUNC_INFO;
     if(!userContext) return FALSE;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+#else
+    CConnectFreeRDP* pThis = (CConnectFreeRDP*)userContext;
+#endif
     return pThis->OnLayerClose();
 }
 
@@ -2625,7 +2644,11 @@ BOOL CConnectFreeRDP::OnLayerClose()
 BOOL CConnectFreeRDP::cbLayerWait(void *userContext, BOOL waitWrite, DWORD timeout)
 {
     //qDebug(log) << Q_FUNC_INFO;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+#else
+    CConnectFreeRDP* pThis = (CConnectFreeRDP*)userContext;
+#endif
     return pThis->OnLayerWait(waitWrite, timeout);
 }
 
@@ -2647,7 +2670,11 @@ BOOL CConnectFreeRDP::OnLayerWait(BOOL waitWrite, DWORD timeout)
 HANDLE CConnectFreeRDP::cbLayerGetEvent(void *userContext)
 {
     //qDebug(log) << Q_FUNC_INFO;
+#if QT_VERSION_CHECK(3, 15, 1) > QT_VERSION_CHECK(FREERDP_VERSION_MAJOR, FREERDP_VERSION_MINOR, FREERDP_VERSION_REVISION)
     CConnectFreeRDP* pThis = ((LayerUserData*)userContext)->pThis;
+#else
+    CConnectFreeRDP* pThis = (CConnectFreeRDP*)userContext;
+#endif
     return pThis->OnLayerGetEvent();
 }
 
@@ -2656,6 +2683,6 @@ HANDLE CConnectFreeRDP::OnLayerGetEvent()
     //qDebug(log) << Q_FUNC_INFO;
     return m_hSshSocket;
 }
-#endif // FreeRDP_VERSION_MAJOR >= 3
+#endif // FREERDP_VERSION_MAJOR >= 3
 
 #endif // HAVE_LIBSSH

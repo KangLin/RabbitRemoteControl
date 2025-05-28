@@ -10,6 +10,8 @@
     #include "ChannelSSHTunnel.h"
 #endif
 
+#include "freerdp/version.h"
+
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
 static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 static Q_LOGGING_CATEGORY(LoggerFreeRDPTrace, "FreeRDP.Log.Trace")
@@ -113,7 +115,7 @@ const QString CPluginFreeRDP::Details() const
     szDetails += ":";
     szDetails += freerdp_get_build_revision();
     szDetails += "\n";
-#if FreeRDP_VERSION_MAJOR < 3
+#if FREERDP_VERSION_MAJOR < 3
     szDetails += "  - " + tr("Build date: ");
     szDetails += freerdp_get_build_date();
     szDetails += "\n";

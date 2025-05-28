@@ -12,6 +12,7 @@
 #include <QScreen>
 #include <QFileSystemModel>
 #include <QButtonGroup>
+#include <QLoggingCategory>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QMediaDevices>
@@ -21,7 +22,8 @@
 #endif
 
 #include "DlgDesktopSize.h"
-#include <QLoggingCategory>
+#include "freerdp/version.h"
+
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter.Dlg")
 
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
@@ -176,7 +178,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
         ui->cbSecurityRDSAAD->setChecked(true);
     if(CParameterFreeRDP::Security::RDSTLS & (uint)security)
         ui->cbSecurityRDSTLS->setChecked(true);
-#if FreeRDP_VERSION_MAJOR >= 3
+#if FREERDP_VERSION_MAJOR >= 3
     ui->cbSecurityRDSAAD->setVisible(true);
     ui->cbSecurityRDSTLS->setVisible(true);
 #else

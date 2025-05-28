@@ -43,7 +43,7 @@ void CCursorFreeRDP::cb_Pointer_Free(rdpContext* context, rdpPointer* pointer)
 }
 
 BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context,
-                                    #if FreeRDP_VERSION_MAJOR >= 3
+                                    #if FREERDP_VERSION_MAJOR >= 3
                                     rdpPointer* pointer
                                     #else
                                     const rdpPointer *pointer
