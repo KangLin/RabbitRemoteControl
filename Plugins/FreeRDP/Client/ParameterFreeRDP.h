@@ -20,6 +20,8 @@ class CParameterFreeRDP : public CParameterBase
 public:
     explicit CParameterFreeRDP(QObject *parent = nullptr);
 
+    static QRect GetScreenGeometry();
+
     // CParameter interface
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;

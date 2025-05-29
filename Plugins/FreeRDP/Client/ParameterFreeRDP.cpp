@@ -5,11 +5,13 @@
 #endif
 
 #include <QSettings>
+#include <QScreen>
+#include <QApplication>
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterBase(parent),
-    m_nWidth(1024),
-    m_nHeight(768),
+    m_nWidth(GetScreenGeometry().width()),
+    m_nHeight(GetScreenGeometry().height()),
     m_nColorDepth(32),
     m_bUseMultimon(false),
     m_nReconnectInterval(0),
@@ -365,4 +367,12 @@ void CParameterFreeRDP::SetDomain(const QString& szDomain)
 const QString CParameterFreeRDP::GetDomain() const
 {
     return m_szDomain;
+}
+
+QRect CParameterFreeRDP::GetScreenGeometry()
+{
+    QRect r;
+    QScreen* pScreen = QApplication::primaryScreen();
+    r = pScreen->geometry();
+    return r;
 }
