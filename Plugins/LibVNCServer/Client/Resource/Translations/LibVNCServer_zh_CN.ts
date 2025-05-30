@@ -12,8 +12,8 @@
         <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="949"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="982"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="951"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -28,32 +28,24 @@
         <translation>失败：连接到 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="935"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="937"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation>将连接到本地服务器：%1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="942"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="944"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation>失败：连接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="972"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="974"/>
         <source>Will connect to local socket server: </source>
         <translation>将连接到本地 socket 服务器：</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="977"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="979"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation>失败：通过 %3 连接到  %1:%2</translation>
-    </message>
-    <message>
-        <source>Connect to local socket server </source>
-        <translation type="vanished">连接到本地&#x3000;socket 服务</translation>
-    </message>
-    <message>
-        <source>fail</source>
-        <translation type="vanished">失败</translation>
     </message>
 </context>
 <context>

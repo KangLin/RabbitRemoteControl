@@ -12,8 +12,8 @@
         <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="949"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="982"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="951"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -28,22 +28,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="935"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="937"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="942"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="944"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="972"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="974"/>
         <source>Will connect to local socket server: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="977"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="979"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation type="unfinished"></translation>
     </message>
