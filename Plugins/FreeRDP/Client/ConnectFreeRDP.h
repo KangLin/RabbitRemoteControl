@@ -155,6 +155,7 @@ private:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
+    int OnProcess(int nTimeout);
 
 private:
     CConnecterFreeRDP* m_pConnecter;
@@ -182,6 +183,7 @@ private:
 #if FREERDP_VERSION_MAJOR >= 3
     CConnectLayer* m_pConnectLayer;
     friend class CConnectLayer;
+    friend class CConnectLayerQTcpSocket;
 #endif
 #ifdef HAVE_LIBSSH
     OnInitReturnValue InitSSHTunnelPipe();
