@@ -64,14 +64,56 @@ const QString CConnecterConnect::Name()
 
 const QString CConnecterConnect::Description()
 {
-    return tr("Name: ") + Name() + "\n"
-           + tr("Protocol: ") + Protocol()
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol()
 #ifdef DEBUG
-           + " - " + GetPlugClient()->DisplayName()
+        + " - " + GetPlugClient()->DisplayName()
 #endif
-           + "\n"
-           + tr("Server name: ") + ServerName() + "\n"
-           + tr("Description: ") + GetPlugClient()->Description();
+            + "\n";
+    }
+
+    if(!ServerName().isEmpty())
+        szDescription += tr("Server name: ") + ServerName() + "\n";
+
+    if(GetParameter()) {
+        QString szProxy(tr("Proxy") + " ");
+        auto &proxy = GetParameter()->m_Proxy;
+        switch(proxy.GetUsedType()) {
+        case CParameterProxy::TYPE::SSHTunnel:
+        {
+            auto &sshNet = proxy.m_SSH.m_Net;
+            szProxy += "(" + tr("SSH tunnel") + "): " + sshNet.GetHost() + ":"
+                       + QString::number(sshNet.GetPort());
+            break;
+        }
+        case CParameterProxy::TYPE::SockesV5:
+        {
+            auto &sockesV5 = proxy.m_SockesV5;
+            szProxy += "(" + tr("Sockes v5") + "): " + sockesV5.GetHost() + ":"
+                       + QString::number(sockesV5.GetPort());
+            break;
+        }
+        default:
+            szProxy.clear();
+            break;
+        }
+
+        if(!szProxy.isEmpty())
+            szDescription += szProxy + "\n";
+
+        if(!GetParameter()->m_Net.GetHost().isEmpty())
+            szDescription += "IP: " + GetParameter()->m_Net.GetHost() + ":"
+                             + QString::number(GetParameter()->m_Net.GetPort()) + "\n";
+    }
+
+    if(!GetPlugClient()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugClient()->Description();
+
+    return szDescription;
 }
 
 CParameterBase *CConnecterConnect::GetParameter()
