@@ -31,12 +31,12 @@ int CConnectLayer::Initialize(rdpContext* context)
     bRet = freerdp_set_io_callbacks(context, &io);
     if(!bRet) {
         qCritical(log) << "Set freerdp io callback fail";
-        return -2;
+        return -1;
     }
     bRet = freerdp_set_io_callback_context(context, this);
     if(!bRet) {
         qCritical(log) << "Set freerdp io callback context fail";
-        return -3;
+        return -1;
     }
     return OnInit(context);
 }

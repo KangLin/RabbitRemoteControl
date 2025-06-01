@@ -24,22 +24,22 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
     m_pChannelSSH = new CChannelSSHTunnel(
         &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, m_pConnect);
     if(!m_pChannelSSH)
-        return -10;
+        return -1;
     bool bRet = m_pChannelSSH->open(QIODevice::ReadWrite);
     if(!bRet)
-        return -11;
+        return -1;
     if(SSH_INVALID_SOCKET == m_pChannelSSH->GetSocket()) {
         qCritical(log) << "The socket is invalid";
-        return -12;
+        return -1;
     }
     m_hSshSocket = WSACreateEvent();
     if(!m_hSshSocket) {
         qCritical(log) << "CreateEvent ssh socket event failed";
-        return -13;
+        return -1;
     }
     nRet = WSAEventSelect(m_pChannelSSH->GetSocket(), m_hSshSocket, FD_READ | FD_CLOSE);
     if(nRet)
-        return -14;
+        return -1;
     if(m_pParameter->m_Net.GetHost().isEmpty())
     {
         QString szErr;
@@ -47,7 +47,7 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
         qCritical(log) << szErr;
         emit m_pConnect->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         emit m_pConnect->sigError(-1, szErr.toStdString().c_str());
-        return -15;
+        return -1;
     }
 
     auto &net = m_pParameter->m_Net;
@@ -63,7 +63,7 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
     if(nRet)
     {
         qCritical(log) << "freerdp_client_start fail";
-        return -16;
+        return -1;
     }
     return 0;
 }
@@ -125,7 +125,7 @@ BOOL ConnectLayerSSHTunnel::OnLayerWait(BOOL waitWrite, DWORD timeout)
         qCritical(log) << Q_FUNC_INFO << "The channel is close";
         return false;
     }
-    
+
     int nRet = m_pChannelSSH->DoWait(waitWrite, timeout);
     if(nRet) return false;
     return true;
