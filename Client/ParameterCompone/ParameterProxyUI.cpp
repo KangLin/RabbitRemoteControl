@@ -3,25 +3,31 @@
 #include <QSpacerItem>
 
 CParameterProxyUI::CParameterProxyUI(QWidget *parent)
-    : CParameterUI(parent),
-    m_uiSockesV5(nullptr),
-    m_uiSSH(nullptr)
+    : CParameterUI(parent)
+    , m_uiHttp(nullptr)
+    , m_uiSockesV5(nullptr)
+    , m_uiSSH(nullptr)
 {
     bool bCheck = false;
     setLayout(new QBoxLayout(QBoxLayout::TopToBottom, this));
+    Q_ASSERT(layout());
+
     QHBoxLayout* pType = new QHBoxLayout(this);
     layout()->addItem(pType);
-    
+
+    m_uiHttp = new CParameterNetUI(this);
+    layout()->addWidget(m_uiHttp);
+
     m_uiSockesV5 = new CParameterNetUI(this);
     layout()->addWidget(m_uiSockesV5);
-    
+
     m_uiSSH = new CParameterSSHTunnelUI(this);
     layout()->addWidget(m_uiSSH);
-    
+
     m_lbType = new QLabel(this);
     m_lbType->setText(tr("Type:"));
     pType->addWidget(m_lbType);
-    
+
     m_cbType = new QComboBox(this);
     pType->addWidget(m_cbType);
     bCheck = connect(m_cbType, SIGNAL(currentIndexChanged(int)),
@@ -30,8 +36,9 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     m_cbType->addItem(tr("None"), (int)CParameterProxy::TYPE::None);
     m_cbType->addItem(tr("Default"), (int)CParameterProxy::TYPE::Default);
     m_cbType->addItem(tr("SockesV5"), (int)CParameterProxy::TYPE::SockesV5);
+    m_cbType->addItem(tr("Http"), (int)CParameterProxy::TYPE::Http);
     m_cbType->addItem(tr("SSH Tunnel"), (int)CParameterProxy::TYPE::SSHTunnel);
-    
+
     layout()->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Preferred,
                                       QSizePolicy::Expanding));
@@ -41,12 +48,12 @@ void CParameterProxyUI::slotTypeChanged(int nIndex)
 {
     Q_UNUSED(nIndex);
     int type = m_cbType->currentData().toInt();
+    if(m_uiHttp)
+        m_uiHttp->setVisible((int)CParameterProxy::TYPE::Http == type);
     if(m_uiSockesV5)
-        m_uiSockesV5->setVisible(type == (int)CParameterProxy::TYPE::SockesV5);
-    
+        m_uiSockesV5->setVisible((int)CParameterProxy::TYPE::SockesV5 == type);
     if(m_uiSSH)
-        m_uiSSH->setVisible(type == (int)CParameterProxy::TYPE::SSHTunnel);
-
+        m_uiSSH->setVisible((int)CParameterProxy::TYPE::SSHTunnel == type);
 }
 
 int CParameterProxyUI::SetParameter(CParameter *pParameter)
@@ -54,6 +61,7 @@ int CParameterProxyUI::SetParameter(CParameter *pParameter)
     m_Proxy = qobject_cast<CParameterProxy*>(pParameter);
     if(!m_Proxy)
         return -1;
+    m_uiHttp->SetParameter(&m_Proxy->m_Http);
     m_uiSockesV5->SetParameter(&m_Proxy->m_SockesV5);
     m_uiSSH->SetParameter(&m_Proxy->m_SSH);
     
@@ -79,6 +87,11 @@ bool CParameterProxyUI::CheckValidity(bool validity)
         if(!bRet) return bRet;
         break;
     }
+    case (int)CParameterProxy::TYPE::Http: {
+        bRet = m_uiHttp->CheckValidity(validity);
+        if(!bRet) return bRet;
+        break;
+    }
     case (int)CParameterProxy::TYPE::SSHTunnel: {
         bRet = m_uiSSH->CheckValidity(validity);
         if(!bRet) return bRet;
@@ -99,6 +112,11 @@ int CParameterProxyUI::Accept()
     {
     case (int)CParameterProxy::TYPE::SockesV5: {
         nRet = m_uiSockesV5->Accept();
+        if(nRet) return nRet;
+        break;
+    }
+    case (int)CParameterProxy::TYPE::Http: {
+        nRet = m_uiHttp->Accept();
         if(nRet) return nRet;
         break;
     }

@@ -22,6 +22,7 @@ public:
         None = 0,
         Default,
         SockesV5,
+        Http,
         SSHTunnel,
     };
     Q_ENUM(TYPE)
@@ -29,7 +30,8 @@ public:
     int SetType(QList<TYPE> type);
     TYPE GetUsedType() const;
     int SetUsedType(TYPE type);
-
+    
+    CParameterNet m_Http;
     CParameterNet m_SockesV5;
     CParameterSSHTunnel m_SSH;
     

@@ -45,6 +45,7 @@ private:
     QLabel* m_lbType;
     QComboBox* m_cbType;
     
+    CParameterNetUI* m_uiHttp;
     CParameterNetUI* m_uiSockesV5;
     CParameterSSHTunnelUI* m_uiSSH;
     

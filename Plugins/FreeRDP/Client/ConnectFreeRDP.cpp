@@ -211,6 +211,41 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     // Set proxy
     switch(m_pParameter->m_Proxy.GetUsedType())
     {
+    case CParameterProxy::TYPE::Default:
+        break;
+    case CParameterProxy::TYPE::Http:
+    case CParameterProxy::TYPE::SockesV5:
+    {
+        CParameterNet* net = &m_pParameter->m_Proxy.m_SockesV5;
+        if (!freerdp_settings_set_uint32(settings, FreeRDP_ProxyType, PROXY_TYPE_SOCKS))
+            return OnInitReturnValue::Fail;
+        if(CParameterProxy::TYPE::Http == m_pParameter->m_Proxy.GetUsedType()) {
+            net = &m_pParameter->m_Proxy.m_Http;
+            if (!freerdp_settings_set_uint32(settings, FreeRDP_ProxyType, PROXY_TYPE_HTTP))
+                return OnInitReturnValue::Fail;
+        }
+        auto &user = net->m_User;
+        if (!freerdp_settings_set_string(settings, FreeRDP_ProxyHostname,
+                                         net->GetHost().toStdString().c_str()))
+            return OnInitReturnValue::Fail;
+        if (!freerdp_settings_set_uint16(settings, FreeRDP_ProxyPort, net->GetPort()))
+            return OnInitReturnValue::Fail;
+        if (!freerdp_settings_set_string(settings, FreeRDP_ProxyUsername,
+                                         user.GetUser().toStdString().c_str()))
+            return OnInitReturnValue::Fail;
+        if (!freerdp_settings_set_string(settings, FreeRDP_ProxyPassword,
+                                         user.GetPassword().toStdString().c_str()))
+            return OnInitReturnValue::Fail;
+        /*
+#if FREERDP_VERSION_MAJOR >= 3
+        m_pConnectLayer = new CConnectLayerQTcpSocket(this);
+        if(!m_pConnectLayer) return OnInitReturnValue::Fail;
+        nRet = m_pConnectLayer->Initialize(pRdpContext);
+        if(nRet) return OnInitReturnValue::Fail;
+        return OnInitReturnValue::NotUseOnProcess;
+#endif
+*/
+    }
     case CParameterProxy::TYPE::None:
     {
         if(!m_pParameter->GetDomain().isEmpty())
@@ -240,18 +275,6 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
             qCritical(log) << "freerdp_client_start fail";
             return OnInitReturnValue::Fail;
         }
-        break;
-    }
-    case CParameterProxy::TYPE::Default:
-    case CParameterProxy::TYPE::SockesV5:
-    {
-#if FREERDP_VERSION_MAJOR >= 3
-        m_pConnectLayer = new CConnectLayerQTcpSocket(this);
-        if(!m_pConnectLayer) return OnInitReturnValue::Fail;
-        nRet = m_pConnectLayer->Initialize(pRdpContext);
-        if(nRet) return OnInitReturnValue::Fail;
-        return OnInitReturnValue::NotUseOnProcess;
-#endif
         break;
     }
 #ifdef HAVE_LIBSSH

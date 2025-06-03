@@ -5,6 +5,7 @@
   - 修复录制视频帧率错误
 - FreeRDP:
   - 增加连接层接口: CConnectLayer
+  - 增加 Http 和 Sockes V5 代理
 - 修复:
   - LibVNCServer: 因为初始化未成功导制的程序崩溃
 

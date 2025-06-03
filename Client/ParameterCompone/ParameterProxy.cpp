@@ -1,20 +1,29 @@
 #include "ParameterProxy.h"
 
 CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix),
-    m_SockesV5(this, "Proxy/SockesV5"),
-    m_SSH(this, "Proxy/SSH/Tunnel"),
-    m_UsedType(TYPE::None)
+    : CParameterConnecter(parent, szPrefix)
+    , m_SockesV5(this, "Proxy/SockesV5")
+    , m_Http(this, "Proxy/Http")
+    ,m_SSH(this, "Proxy/SSH/Tunnel")
+    , m_UsedType(TYPE::None)
 {
-    m_Type << TYPE::None << TYPE::Default << TYPE::SockesV5 << TYPE::SSHTunnel;
+    m_Type << TYPE::None << TYPE::Default << TYPE::SockesV5 << TYPE::Http << TYPE::SSHTunnel;
     m_TypeName = {{TYPE::None, tr("None")},
                   {TYPE::Default, tr("Default")},
                   {TYPE::SockesV5, tr("Sockes V5")},
+                  {TYPE::Http, tr("Http")},
                   {TYPE::SSHTunnel, tr("SSH tunnel")}};
     
-    m_SockesV5.SetPort(1080);
-    
     QList<CParameterUser::TYPE> lstType;
+    m_Http.SetPort(80);
+    lstType.clear();
+    lstType << CParameterUser::TYPE::None
+            << CParameterUser::TYPE::UserPassword;
+    m_Http.m_User.SetType(lstType);
+    m_Http.SetPrompt(tr("The host is empty in \"Proxy->Http\". please set it"));
+    
+    m_SockesV5.SetPort(1080);
+    lstType.clear();
     lstType << CParameterUser::TYPE::None
         << CParameterUser::TYPE::UserPassword;
     m_SockesV5.m_User.SetType(lstType);

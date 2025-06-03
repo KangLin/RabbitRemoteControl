@@ -31,6 +31,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     m_Proxy.SetType(
         QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
                                        << CParameterProxy::TYPE::SockesV5
+                                       << CParameterProxy::TYPE::Http
                                        << CParameterProxy::TYPE::SSHTunnel);
     
     m_szRedirectionSoundParameters = 

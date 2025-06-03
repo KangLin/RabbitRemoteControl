@@ -5,6 +5,7 @@
   - Fix recode video rate bug
 - FreeRDP:
     - Add CConnectLayer
+    - Add Http and sockes v5 proxy
 - Fix:
   - LibVNCServer: The program crashed because the initialization was not successful.
 
