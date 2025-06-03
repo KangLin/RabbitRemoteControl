@@ -10,7 +10,7 @@ class ConnectLayerSSHTunnel : public CConnectLayer
 {
     Q_OBJECT
 public:
-    explicit ConnectLayerSSHTunnel(CConnectFreeRDP *connect = nullptr);
+    explicit ConnectLayerSSHTunnel(CConnectFreeRDP *connect);
     virtual ~ConnectLayerSSHTunnel();
 
 private:

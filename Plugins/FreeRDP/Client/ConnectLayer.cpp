@@ -101,7 +101,7 @@ int CConnectLayer::cbLayerWrite(void *userContext, const void *data, int bytes)
 
 BOOL CConnectLayer::cbLayerClose(void *userContext)
 {
-    //qDebug(log) << Q_FUNC_INFO;
+    qDebug(log) << Q_FUNC_INFO;
     if(!userContext) return FALSE;
     CConnectLayer* pThis = ((LayerUserData*)userContext)->pThis;
     return pThis->OnLayerClose();

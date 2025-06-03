@@ -42,8 +42,8 @@ SET(FreeRDP_UI_FILES
 
 find_package(FreeRDP)
 if(FreeRDP_VERSION_MAJOR VERSION_GREATER_EQUAL 3)
-    list(APPEND FreeRDP_HEADER_FILES ConnectLayer.h)
-    list(APPEND FreeRDP_SOURCE_FILES ConnectLayer.cpp)
+    list(APPEND FreeRDP_HEADER_FILES ConnectLayer.h ConnectLayerQTcpSocket.h)
+    list(APPEND FreeRDP_SOURCE_FILES ConnectLayer.cpp ConnectLayerQTcpSocket.cpp)
 
     find_package(libssh)
     if(libssh_FOUND)

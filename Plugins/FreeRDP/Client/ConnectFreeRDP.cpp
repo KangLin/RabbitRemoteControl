@@ -53,8 +53,9 @@
 #endif
 #endif
 
-#ifdef HAVE_LIBSSH
 #if FREERDP_VERSION_MAJOR >= 3
+#include "ConnectLayerQTcpSocket.h"
+#ifdef HAVE_LIBSSH
 #include "ConnectLayerSSHTunnel.h"
 #endif
 #endif
@@ -241,6 +242,18 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         }
         break;
     }
+    case CParameterProxy::TYPE::Default:
+    case CParameterProxy::TYPE::SockesV5:
+    {
+#if FREERDP_VERSION_MAJOR >= 3
+        m_pConnectLayer = new CConnectLayerQTcpSocket(this);
+        if(!m_pConnectLayer) return OnInitReturnValue::Fail;
+        nRet = m_pConnectLayer->Initialize(pRdpContext);
+        if(nRet) return OnInitReturnValue::Fail;
+        return OnInitReturnValue::NotUseOnProcess;
+#endif
+        break;
+    }
 #ifdef HAVE_LIBSSH
     case CParameterProxy::TYPE::SSHTunnel:
     {
@@ -315,6 +328,24 @@ int CConnectFreeRDP::OnClean()
  */
 int CConnectFreeRDP::OnProcess()
 {
+    return OnProcess(500);
+}
+
+/*!
+ * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ *
+ * \~english Specific operation processing of plug-in connection.
+ *           Because of it is a non-Qt event loop, so wait in here.
+ *
+ * \~
+ * \return 
+ *    \li >= 0: continue, Interval call time (msec)
+ *    \li = -1: stop
+ *    \li < -1: error
+ * \see CConnect::Connect() CConnect::slotTimeOut()
+ */
+int CConnectFreeRDP::OnProcess(int nTimeout)
+{
     //qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     HANDLE handles[64];
@@ -340,7 +371,7 @@ int CConnectFreeRDP::OnProcess()
         if(m_writeEvent)
             handles[nCount++] = m_writeEvent;
 
-        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
+        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, nTimeout);
 
         if(m_writeEvent)
             ResetEvent(m_writeEvent);
@@ -348,7 +379,7 @@ int CConnectFreeRDP::OnProcess()
         if (waitStatus == WAIT_FAILED)
         {
             qCritical(log) << "WaitForMultipleObjects: WAIT_FAILED";
-            nRet = -3;
+            nRet = -2;
             break;
         }
 
@@ -361,7 +392,7 @@ int CConnectFreeRDP::OnProcess()
 
         if (!freerdp_check_event_handles(pRdpContext))
         {
-            nRet = -5;
+            nRet = -2;
 
             UINT32 err = freerdp_get_last_error(pRdpContext);
             QString szErr;
@@ -405,7 +436,7 @@ int CConnectFreeRDP::OnProcess()
 #endif
         {
             qCritical(log) << "freerdp_shall_disconnect false";
-            nRet = -7;
+            nRet = -2;
         }
     } while(false);
 
@@ -464,7 +495,7 @@ void CConnectFreeRDP::cbClientFree(freerdp *instance, rdpContext *context)
 int CConnectFreeRDP::cbClientStart(rdpContext *context)
 {
     qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
+    UINT32 nRet = 0;
 
     if (!context || !context->settings)
         return -1;
@@ -483,6 +514,13 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     szServer = net.GetHost() + ":" + QString::number(net.GetPort());
     auto &proxy = pThis->m_pParameter->m_Proxy;
     switch(proxy.GetUsedType()) {
+    case CParameterProxy::TYPE::SockesV5:
+    {
+        auto &sockesV5 = proxy.m_SockesV5;
+        szServer = sockesV5.GetHost() + ":" + QString::number(sockesV5.GetPort())
+                   + " -> " + szServer;
+        break;
+    }
     case CParameterProxy::TYPE::SSHTunnel:
     {
         auto &sshNet = proxy.m_SSH.m_Net;
@@ -507,45 +545,41 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         emit pThis->sigInformation(szInfo);
     } else {
         //DWORD dwErrCode = freerdp_error_info(instance);
-        UINT32 nErr = freerdp_get_last_error(context);
+        UINT32 nRet = freerdp_get_last_error(context);
 
         QString szErr;
         szErr = tr("Connect to ") + szServer + tr(" fail.");
         szErr += "\n[";
-        szErr += QString::number(nErr) + " - ";
-        szErr += freerdp_get_last_error_name(nErr);
+        szErr += QString::number(nRet) + " - ";
+        szErr += freerdp_get_last_error_name(nRet);
         szErr += "] ";
         /*szErr += "[";
-        szErr += freerdp_get_last_error_category(nErr);
+        szErr += freerdp_get_last_error_category(nRet);
         szErr += "] ";*/
-        szErr += freerdp_get_last_error_string(nErr);
+        szErr += freerdp_get_last_error_string(nRet);
         //szErr += "]";
 
-        switch(nErr) {
+        switch(nRet) {
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
-            nRet = -3;
             szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
-            nRet = -4;
             szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check password are correct.") + "\n";
             break;
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
-            nRet = -5;
             szErr = tr("Logon to ") + szServer;
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
             break;
         }
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
         {
-            nRet = -6;
             szErr = tr("Logon to ") + szServer;
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
@@ -556,17 +590,15 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             break;
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
-            nRet = -7;
             szErr += "\n\n";
             szErr += tr("Please check you have proper security settings.") + "\n";
             szErr += tr("If you do not know the server security settings, contact your server administrator.");
             break;
         case FREERDP_ERROR_CONNECT_CANCELLED:
-            nRet = -8;
             szErr = tr("The connect was canceled.") + "\n\n" + szErr;
             break;
         default:
-            nRet = -9;
+            break;
         }
 
         emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);

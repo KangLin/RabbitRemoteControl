@@ -58,7 +58,7 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
     freerdp_settings_set_uint32(
         settings, FreeRDP_ServerPort,
         net.GetPort());
-    
+
     nRet = freerdp_client_start(context);
     if(nRet)
     {
