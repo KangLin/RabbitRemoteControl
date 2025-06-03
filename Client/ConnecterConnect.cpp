@@ -80,6 +80,10 @@ const QString CConnecterConnect::Description()
         szDescription += tr("Server name: ") + ServerName() + "\n";
 
     if(GetParameter()) {
+        if(!GetParameter()->m_Net.GetHost().isEmpty())
+            szDescription += "Server address: " + GetParameter()->m_Net.GetHost() + ":"
+                             + QString::number(GetParameter()->m_Net.GetPort()) + "\n";
+
         QString szProxy(tr("Proxy") + " ");
         auto &proxy = GetParameter()->m_Proxy;
         switch(proxy.GetUsedType()) {
@@ -104,10 +108,6 @@ const QString CConnecterConnect::Description()
 
         if(!szProxy.isEmpty())
             szDescription += szProxy + "\n";
-
-        if(!GetParameter()->m_Net.GetHost().isEmpty())
-            szDescription += "IP: " + GetParameter()->m_Net.GetHost() + ":"
-                             + QString::number(GetParameter()->m_Net.GetPort()) + "\n";
     }
 
     if(!GetPlugClient()->Description().isEmpty())
