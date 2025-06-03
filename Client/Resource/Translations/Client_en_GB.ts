@@ -249,17 +249,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="83"/>
+        <location filename="../../ConnecterConnect.cpp" line="84"/>
+        <source>Server address: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="87"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="89"/>
+        <location filename="../../ConnecterConnect.cpp" line="93"/>
         <source>SSH tunnel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="96"/>
+        <location filename="../../ConnecterConnect.cpp" line="100"/>
         <source>Sockes v5</source>
         <translation type="unfinished"></translation>
     </message>

@@ -246,20 +246,25 @@
     <message>
         <location filename="../../ConnecterConnect.cpp" line="80"/>
         <source>Server name: </source>
-        <translation>服務名：</translation>
+        <translation>服務器名：</translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="83"/>
+        <location filename="../../ConnecterConnect.cpp" line="84"/>
+        <source>Server address: </source>
+        <translation>服務器地址：</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="87"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="89"/>
+        <location filename="../../ConnecterConnect.cpp" line="93"/>
         <source>SSH tunnel</source>
         <translation>SSH 隧道</translation>
     </message>
     <message>
-        <location filename="../../ConnecterConnect.cpp" line="96"/>
+        <location filename="../../ConnecterConnect.cpp" line="100"/>
         <source>Sockes v5</source>
         <translation></translation>
     </message>

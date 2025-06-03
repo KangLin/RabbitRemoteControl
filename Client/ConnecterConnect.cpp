@@ -81,7 +81,7 @@ const QString CConnecterConnect::Description()
 
     if(GetParameter()) {
         if(!GetParameter()->m_Net.GetHost().isEmpty())
-            szDescription += "Server address: " + GetParameter()->m_Net.GetHost() + ":"
+            szDescription += tr("Server address: ") + GetParameter()->m_Net.GetHost() + ":"
                              + QString::number(GetParameter()->m_Net.GetPort()) + "\n";
 
         QString szProxy(tr("Proxy") + " ");
