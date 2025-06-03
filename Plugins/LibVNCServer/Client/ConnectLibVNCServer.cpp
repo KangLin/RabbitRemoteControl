@@ -168,6 +168,8 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
+            // Because delete m_pClient in rfbInitClient
+            m_pClient = nullptr;
             QString szErr;
             szErr = tr("Fail: Connect to %1:%2").arg(m_pParameter->m_Net.GetHost(),
                                                     QString::number(m_pParameter->m_Net.GetPort()));
@@ -211,6 +213,8 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
+            // Because delete m_pClient in rfbInitClient
+            m_pClient = nullptr;
             QString szErr;
             szErr = tr("Connect to %1:%2 fail").arg(m_pParameter->m_Net.GetHost(),
                                                     QString::number(m_pParameter->m_Net.GetPort()));
@@ -940,6 +944,8 @@ void CConnectLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
     qDebug(log) << szErr;
     if(!rfbInitClient(m_pClient, nullptr, nullptr))
     {
+        // Because delete m_pClient in rfbInitClient
+        m_pClient = nullptr;
         QString szErr;
         szErr = tr("Fail: Connect to %1:%2 <- %3:%4 <- %5:%6")
                     .arg(m_pParameter->m_Net.GetHost(),
@@ -975,6 +981,8 @@ void CConnectLibVNCServer::slotConnectProxyServer(QString szFile)
     qDebug(log) << szErr;
     if(!rfbInitClient(m_pClient, nullptr, nullptr))
     {
+        // Because delete m_pClient in rfbInitClient
+        m_pClient = nullptr;
         QString szErr;
         szErr = tr("Fail: Connect to %1:%2 with %3")
                     .arg(m_pParameter->m_Net.GetHost(),

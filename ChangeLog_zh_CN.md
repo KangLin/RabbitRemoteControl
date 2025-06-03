@@ -5,6 +5,8 @@
   - 修复录制视频帧率错误
 - FreeRDP:
   - 增加连接层接口: CConnectLayer
+- 修复:
+  - LibVNCServer: 因为初始化未成功导制的程序崩溃
 
 ### v0.0.35
 - 应用：

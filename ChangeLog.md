@@ -3,8 +3,10 @@
 ### v0.0.36
 - Client:
   - Fix recode video rate bug
-  - FreeRDP:
+- FreeRDP:
     - Add CConnectLayer
+- Fix:
+  - LibVNCServer: The program crashed because the initialization was not successful.
 
 ### v0.0.35
 - App:
