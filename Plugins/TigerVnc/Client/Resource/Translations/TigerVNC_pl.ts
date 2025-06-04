@@ -4,47 +4,47 @@
 <context>
     <name>CConnectVnc</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="310"/>
+        <location filename="../../ConnectVnc.cpp" line="313"/>
         <source>The proxy server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="312"/>
-        <location filename="../../ConnectVnc.cpp" line="332"/>
-        <location filename="../../ConnectVnc.cpp" line="374"/>
-        <location filename="../../ConnectVnc.cpp" line="523"/>
-        <location filename="../../ConnectVnc.cpp" line="538"/>
+        <location filename="../../ConnectVnc.cpp" line="315"/>
+        <location filename="../../ConnectVnc.cpp" line="336"/>
+        <location filename="../../ConnectVnc.cpp" line="378"/>
+        <location filename="../../ConnectVnc.cpp" line="527"/>
+        <location filename="../../ConnectVnc.cpp" line="542"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="330"/>
+        <location filename="../../ConnectVnc.cpp" line="334"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="365"/>
+        <location filename="../../ConnectVnc.cpp" line="369"/>
         <source>Failed to open SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="517"/>
+        <location filename="../../ConnectVnc.cpp" line="521"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="521"/>
-        <location filename="../../ConnectVnc.cpp" line="534"/>
+        <location filename="../../ConnectVnc.cpp" line="525"/>
+        <location filename="../../ConnectVnc.cpp" line="538"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="522"/>
+        <location filename="../../ConnectVnc.cpp" line="526"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="530"/>
+        <location filename="../../ConnectVnc.cpp" line="534"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>

@@ -11,9 +11,9 @@
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="951"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="177"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="957"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="992"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
@@ -23,27 +23,27 @@
         <translation>協議版本錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="172"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="174"/>
         <source>Fail: Connect to %1:%2</source>
         <translation>失敗：連接到 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="937"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="941"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation>將連接到本地服務器：%1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="944"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="950"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation>失敗：連接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="974"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="980"/>
         <source>Will connect to local socket server: </source>
         <translation>將連接到本地 socket 服務器：</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="979"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="987"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation>失敗：通過 %3 連接到  %1:%2</translation>
     </message>

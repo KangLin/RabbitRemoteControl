@@ -572,32 +572,42 @@
 <context>
     <name>CParameterProxy</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="10"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="11"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="11"/>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="12"/>
-        <source>Sockes V5</source>
+        <source>System settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="13"/>
+        <source>Sockes V5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="14"/>
+        <source>Http</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
         <source>SSH tunnel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="23"/>
+        <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="30"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="37"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -605,28 +615,8 @@
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="28"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="30"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="31"/>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="32"/>
-        <source>SockesV5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="33"/>
-        <source>SSH Tunnel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
