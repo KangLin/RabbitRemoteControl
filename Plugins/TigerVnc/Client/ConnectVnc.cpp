@@ -269,7 +269,7 @@ int CConnectVnc::SocketInit()
             qCritical(log) << "New CChannel fail";
             return -1;
         }
-        
+
         SetChannelConnect(m_DataChannel);
 
         if(!m_DataChannel->open(QIODevice::ReadWrite))
@@ -288,23 +288,29 @@ int CConnectVnc::SocketInit()
         case CParameterProxy::TYPE::Default:
             type = QNetworkProxy::DefaultProxy;
             break;
+        case CParameterProxy::TYPE::Http:
+            type = QNetworkProxy::HttpProxy;
+            break;
         case CParameterProxy::TYPE::None:
         default:
             break;
         }
-        
+
         switch(type) {
         case QNetworkProxy::DefaultProxy:
         {
             pSock->setProxy(QNetworkProxy::applicationProxy());
             break;
         }
+        case QNetworkProxy::HttpProxy:
         case QNetworkProxy::Socks5Proxy:
         {
             QNetworkProxy proxy;
-            proxy.setType(type);
-            auto &net = m_pPara->m_Proxy.m_SockesV5;
-            if(net.GetHost().isEmpty())
+            auto net = &m_pPara->m_Proxy.m_SockesV5;
+            if(QNetworkProxy::HttpProxy == type) {
+                net = &m_pPara->m_Proxy.m_Http;
+            }
+            if(net->GetHost().isEmpty())
             {
                 QString szErr;
                 szErr = tr("The proxy server is empty, please input it");
@@ -312,11 +318,12 @@ int CConnectVnc::SocketInit()
                 emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
                 return -4;
             }
-            proxy.setHostName(net.GetHost());
-            proxy.setPort(net.GetPort());
-            auto &user = net.m_User;
+            proxy.setHostName(net->GetHost());
+            proxy.setPort(net->GetPort());
+            auto &user = net->m_User;
             proxy.setUser(user.GetUser());
             proxy.setPassword(user.GetPassword());
+            proxy.setType(type);
             pSock->setProxy(proxy);
             break;
         }

@@ -71,8 +71,6 @@ public:
     const QString &GetRedirectionMicrophoneParameters() const;
     void SetRedirectionMicrophoneParameters(const QString &newRedirectionMicrophoneParameters);
 
-    CParameterProxy m_Proxy;
-
     bool GetNegotiateSecurityLayer() const;
     void SetNegotiateSecurityLayer(bool newNegotiateSecurityLayer);
     enum Security{

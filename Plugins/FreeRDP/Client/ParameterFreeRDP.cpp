@@ -19,7 +19,6 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     m_bRedirectionPrinter(false),
     m_nRedirectionSound(RedirecionSoundType::Disable),
     m_bRedirectionMicrophone(false),
-    m_Proxy(this),
     m_bNegotiateSecurityLayer(true),
     m_Security((Security)(Security::RDP|Security::TLS|Security::NLA)),
     m_tlsVersion(TLS1_VERSION),
