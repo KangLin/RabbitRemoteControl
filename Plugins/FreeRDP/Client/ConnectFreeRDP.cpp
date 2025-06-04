@@ -211,7 +211,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     // Set proxy
     switch(m_pParameter->m_Proxy.GetUsedType())
     {
-    case CParameterProxy::TYPE::Default:
+    case CParameterProxy::TYPE::System:
         break;
     case CParameterProxy::TYPE::Http:
     case CParameterProxy::TYPE::SockesV5:

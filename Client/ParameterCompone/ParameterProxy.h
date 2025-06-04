@@ -20,7 +20,7 @@ public:
 
     enum class TYPE{
         None = 0,
-        Default,
+        System,
         SockesV5,
         Http,
         SSHTunnel,

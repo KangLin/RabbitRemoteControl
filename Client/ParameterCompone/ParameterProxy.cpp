@@ -7,9 +7,9 @@ CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szP
     ,m_SSH(this, "Proxy/SSH/Tunnel")
     , m_UsedType(TYPE::None)
 {
-    m_Type << TYPE::None << TYPE::Default << TYPE::SockesV5 << TYPE::Http << TYPE::SSHTunnel;
+    m_Type << TYPE::None << TYPE::System << TYPE::SockesV5 << TYPE::Http << TYPE::SSHTunnel;
     m_TypeName = {{TYPE::None, tr("None")},
-                  {TYPE::Default, tr("Default")},
+                  {TYPE::System, tr("System settings")},
                   {TYPE::SockesV5, tr("Sockes V5")},
                   {TYPE::Http, tr("Http")},
                   {TYPE::SSHTunnel, tr("SSH tunnel")}};

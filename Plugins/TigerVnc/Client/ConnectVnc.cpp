@@ -285,7 +285,7 @@ int CConnectVnc::SocketInit()
         case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
-        case CParameterProxy::TYPE::Default:
+        case CParameterProxy::TYPE::System:
             type = QNetworkProxy::DefaultProxy;
             break;
         case CParameterProxy::TYPE::Http:

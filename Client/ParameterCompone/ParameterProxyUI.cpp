@@ -33,11 +33,6 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     bCheck = connect(m_cbType, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(slotTypeChanged(int)));
     Q_ASSERT(bCheck);
-    m_cbType->addItem(tr("None"), (int)CParameterProxy::TYPE::None);
-    m_cbType->addItem(tr("Default"), (int)CParameterProxy::TYPE::Default);
-    m_cbType->addItem(tr("SockesV5"), (int)CParameterProxy::TYPE::SockesV5);
-    m_cbType->addItem(tr("Http"), (int)CParameterProxy::TYPE::Http);
-    m_cbType->addItem(tr("SSH Tunnel"), (int)CParameterProxy::TYPE::SSHTunnel);
 
     layout()->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Preferred,
