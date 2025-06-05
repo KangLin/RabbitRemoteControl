@@ -2,7 +2,7 @@
 #include "ui_DlgUserPassword.h"
 #include <QLoggingCategory>
 
-static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.DlgUserPassword")
+static Q_LOGGING_CATEGORY(log, "Client.DlgUserPassword")
 
 static int g_CDlgUserPassword = qRegisterMetaType<CDlgUserPassword>();
 
@@ -11,6 +11,7 @@ CDlgUserPassword::CDlgUserPassword(QWidget *parent)
     , ui(new Ui::CDlgUserPassword)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("Set user and password"));
 }
 
 CDlgUserPassword::~CDlgUserPassword()
@@ -20,30 +21,20 @@ CDlgUserPassword::~CDlgUserPassword()
 
 CDlgUserPassword::CDlgUserPassword(const CDlgUserPassword &other)
 {
-    m_pPara = other.m_pPara;
+    m_pNet = other.m_pNet;
 }
 
 void CDlgUserPassword::SetContext(void *pContext)
 {
-    m_pPara = (CParameterSSHTunnel*)pContext;
-    if(!m_pPara) {
+    m_pNet = (CParameterNet*)pContext;
+    if(!m_pNet) {
         qCritical(log) << "The pContext is null";
         return;
     }
-    auto &net = m_pPara->m_Net;
-    auto &user = net.m_User;
-    if(user.GetUsedType() == CParameterUser::TYPE::UserPassword) {
-        setWindowTitle(tr("Set SSH user and password"));
-    }
-
-    if(user.GetUsedType() == CParameterUser::TYPE::PublicKey) {
-        setWindowTitle(tr("Set SSH passphrase"));
-    }
-
-    ui->lbText->setText(windowTitle() + "\n" + tr("SSH server: ")
-                        + net.GetHost()
-                        + ":" + QString::number(net.GetPort()));
-
+    auto &user = m_pNet->m_User;
+    ui->lbText->setText(windowTitle() + "\n" + tr("Server: ")
+                        + m_pNet->GetHost()
+                        + ":" + QString::number(m_pNet->GetPort()));
     ui->wUser->SetParameter(&user);
 }
 
@@ -54,12 +45,12 @@ void CDlgUserPassword::SetConnecter(CConnecter *pConnecter)
 
 void CDlgUserPassword::accept()
 {
-    if(!m_pPara) {
+    if(!m_pNet) {
         qCritical(log) << "The pContext is null";
         return;
     }
 
     ui->wUser->Accept();
-    emit m_pPara->sigChanged();
+    emit m_pNet->sigChanged();
     QDialog::accept();
 }

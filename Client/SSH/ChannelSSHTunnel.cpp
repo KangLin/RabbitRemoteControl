@@ -214,7 +214,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword) && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
             || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey) && user.GetPassphrase().isEmpty())
             && m_pConnect) {
-            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, m_pParameter);
+            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, &m_pParameter->m_Net);
             if(QDialog::Accepted != nRet)
             {
                 setErrorString(tr("User cancel"));

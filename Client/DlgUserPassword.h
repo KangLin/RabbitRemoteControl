@@ -2,14 +2,14 @@
 #define DLGUSERPASSWORD_H
 
 #include <QDialog>
-#include "ParameterSSHTunnel.h"
+#include "ParameterNet.h"
 #include "Connecter.h"
 
 namespace Ui {
 class CDlgUserPassword;
 }
 
-class CDlgUserPassword : public QDialog
+class CLIENT_EXPORT CDlgUserPassword : public QDialog
 {
     Q_OBJECT
 
@@ -23,7 +23,7 @@ public:
 
 private:
     Ui::CDlgUserPassword *ui;
-    CParameterSSHTunnel* m_pPara;
+    CParameterNet* m_pNet;
     CConnecter* m_pConnecter;
     
     // QDialog interface

@@ -31,6 +31,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ConnecterConnect.h
     ConnecterThread.h
     SSH/Event.h
+    DlgUserPassword.h
     Parameter.h
     ParameterUI.h
     ParameterConnecter.h
@@ -93,11 +94,13 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterSSHTunnel.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
     DlgInputPassword.cpp
+    DlgUserPassword.cpp
     Hook.cpp
     )
 
 set(CLIENT_UI_FILES
     DlgInputPassword.ui
+    DlgUserPassword.ui
     FrmParameterClient.ui
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
@@ -169,11 +172,6 @@ if(libssh_FOUND)
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
         )
-    if(WITH_GUI)
-        list(APPEND CLIENT_SOURCE_FILES SSH/DlgUserPassword.cpp)
-        list(APPEND CLIENT_INSTALL_HEADER_FILES SSH/DlgUserPassword.h)
-        list(APPEND CLIENT_UI_FILES SSH/DlgUserPassword.ui)
-    endif()
 endif()
 
 SET(CLIENT_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
