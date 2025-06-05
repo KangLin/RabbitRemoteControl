@@ -118,7 +118,7 @@ int ConnectLayerSSHTunnel::OnLayerWrite(const void *data, int bytes)
 
 BOOL ConnectLayerSSHTunnel::OnLayerWait(BOOL waitWrite, DWORD timeout)
 {
-    qDebug(log) << Q_FUNC_INFO << "wait write:" << waitWrite;
+    //qDebug(log) << Q_FUNC_INFO << "wait write:" << waitWrite;
     Q_ASSERT(!waitWrite);
     if(!m_pChannelSSH || !m_pChannelSSH->isOpen()
         || m_pChannelSSH->GetSocket() == SSH_INVALID_SOCKET) {

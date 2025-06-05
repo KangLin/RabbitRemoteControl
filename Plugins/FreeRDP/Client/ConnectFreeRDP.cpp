@@ -230,6 +230,16 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
             return OnInitReturnValue::Fail;
         if (!freerdp_settings_set_uint16(settings, FreeRDP_ProxyPort, net->GetPort()))
             return OnInitReturnValue::Fail;
+
+        if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword) && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
+            || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey) && user.GetPassphrase().isEmpty())) {
+            int nRet = QDialog::Rejected;
+            emit sigBlockShowWidget("CDlgUserPassword", nRet, net);
+            if(QDialog::Accepted != nRet)
+            {
+                return OnInitReturnValue::Fail;
+            }
+        }
         if (!freerdp_settings_set_string(settings, FreeRDP_ProxyUsername,
                                          user.GetUser().toStdString().c_str()))
             return OnInitReturnValue::Fail;
@@ -541,6 +551,13 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     {
         auto &sockesV5 = proxy.m_SockesV5;
         szServer = sockesV5.GetHost() + ":" + QString::number(sockesV5.GetPort())
+                   + " -> " + szServer;
+        break;
+    }
+    case CParameterProxy::TYPE::Http:
+    {
+        auto &http = proxy.m_Http;
+        szServer = http.GetHost() + ":" + QString::number(http.GetPort())
                    + " -> " + szServer;
         break;
     }
