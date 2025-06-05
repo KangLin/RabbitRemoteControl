@@ -231,8 +231,10 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         if (!freerdp_settings_set_uint16(settings, FreeRDP_ProxyPort, net->GetPort()))
             return OnInitReturnValue::Fail;
 
-        if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword) && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
-            || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey) && user.GetPassphrase().isEmpty())) {
+        if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword)
+             && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
+            || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey)
+                && user.GetPassphrase().isEmpty())) {
             int nRet = QDialog::Rejected;
             emit sigBlockShowWidget("CDlgUserPassword", nRet, net);
             if(QDialog::Accepted != nRet)

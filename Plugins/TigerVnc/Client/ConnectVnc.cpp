@@ -263,7 +263,7 @@ int CConnectVnc::SocketInit()
     try{
         QTcpSocket* pSock = new QTcpSocket(this);
         if(!pSock)
-            return -2;
+            return -1;
         m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
         if(!m_DataChannel) {
             qCritical(log) << "New CChannel fail";
@@ -275,7 +275,7 @@ int CConnectVnc::SocketInit()
         if(!m_DataChannel->open(QIODevice::ReadWrite))
         {
             qCritical(log) << "Open channel fail";
-            return -3;
+            return -1;
         }
 
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
@@ -316,11 +316,22 @@ int CConnectVnc::SocketInit()
                 szErr = tr("The proxy server is empty, please input it");
                 qCritical(log) << szErr;
                 emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-                return -4;
+                return -1;
             }
             proxy.setHostName(net->GetHost());
             proxy.setPort(net->GetPort());
             auto &user = net->m_User;
+            if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword)
+                 && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
+                || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey)
+                    && user.GetPassphrase().isEmpty())) {
+                int nRet = QDialog::Rejected;
+                emit sigBlockShowWidget("CDlgUserPassword", nRet, net);
+                if(QDialog::Accepted != nRet)
+                {
+                    return -1;
+                }
+            }
             proxy.setUser(user.GetUser());
             proxy.setPassword(user.GetPassword());
             proxy.setType(type);
@@ -337,7 +348,7 @@ int CConnectVnc::SocketInit()
             szErr = tr("The server is empty, please input it");
             qCritical(log) << szErr;
             emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-            return -5;
+            return -1;
         }
         pSock->connectToHost(m_pPara->m_Net.GetHost(), m_pPara->m_Net.GetPort());
         
@@ -349,8 +360,8 @@ int CConnectVnc::SocketInit()
         return nRet;
     } catch (rdr::Exception& e) {
         qCritical(log) << "SocketInit exception:" << e.str();
-        emit sigError(-6, e.str());
-        nRet = -6;
+        emit sigError(-1, e.str());
+        nRet = -1;
     }
     return nRet;
 }
