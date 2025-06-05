@@ -51,7 +51,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="328"/>
         <source>The server is empty, please input it</source>
-        <translation type="unfinished">服务器为空，请输入</translation>
+        <translation>服务器为空，请输入</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="390"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="542"/>
         <source>Logon to </source>
-        <translation type="unfinished">登录到 </translation>
+        <translation>登录到 </translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="546"/>
@@ -72,12 +72,12 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="547"/>
         <source>Please check that the username and password are correct.</source>
-        <translation type="unfinished">请检查用户名和密码是否正确。</translation>
+        <translation>请检查用户名和密码是否正确。</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="555"/>
         <source>Connect to </source>
-        <translation type="unfinished">连接到 </translation>
+        <translation>连接到 </translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="14"/>
         <source>Input password</source>
-        <translation type="unfinished">输入密码</translation>
+        <translation>输入密码</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="20"/>
@@ -126,17 +126,17 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="61"/>
         <source>OK(&amp;O)</source>
-        <translation type="unfinished">确定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="71"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.cpp" line="50"/>
         <source>Set password for %1</source>
-        <translation type="unfinished">为 %1 设置密码</translation>
+        <translation>为 %1 设置密码</translation>
     </message>
 </context>
 <context>
@@ -331,59 +331,59 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="14"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="28"/>
         <source>Server</source>
-        <translation type="unfinished">服务器</translation>
+        <translation>服务器</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="88"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="95"/>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="98"/>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="101"/>
         <source>Connecter name</source>
-        <translation type="unfinished">连接名称</translation>
+        <translation>连接名称</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="112"/>
         <source>Shared</source>
-        <translation type="unfinished">共享</translation>
+        <translation>共享</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="119"/>
         <source>Only view</source>
-        <translation type="unfinished">仅查看</translation>
+        <translation>仅查看</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="130"/>
         <source>Show local cursor</source>
-        <translation type="unfinished">显示本地光标</translation>
+        <translation>显示本地光标</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="77"/>
         <source>Enable clipboard</source>
-        <translation type="unfinished">允许剪切板</translation>
+        <translation>允许剪切板</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="52"/>
         <source>Support windows resize</source>
-        <translation type="unfinished">支持窗口大小改变</translation>
+        <translation>支持窗口大小改变</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="59"/>
         <source>Real time update</source>
-        <translation type="unfinished">实时更新</translation>
+        <translation>实时更新</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="70"/>
         <source>Show server name</source>
-        <translation type="unfinished">显示服务器名</translation>
+        <translation>显示服务器名</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="146"/>
@@ -402,47 +402,47 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="189"/>
         <source>Color level</source>
-        <translation type="unfinished">颜色级别</translation>
+        <translation>颜色级别</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="195"/>
         <source>Full</source>
-        <translation type="unfinished">全彩色</translation>
+        <translation>全彩色</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="202"/>
         <source>Low</source>
-        <translation type="unfinished">低</translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="209"/>
         <source>Meduim</source>
-        <translation type="unfinished">中</translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
-        <translation type="unfinished">极低</translation>
+        <translation>极低</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="238"/>
         <source>0=fast, 9=best</source>
-        <translation type="unfinished">0=最快, 9=最好</translation>
+        <translation>0=最快, 9=最好</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="249"/>
         <source>Enable JPEG compress</source>
-        <translation type="unfinished">允许JPEG压缩</translation>
+        <translation>允许JPEG压缩</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="263"/>
         <source>0=Worst, 9=best</source>
-        <translation type="unfinished">0=最差, 9=最好</translation>
+        <translation>0=最差, 9=最好</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="272"/>
         <source>preferred Encoding</source>
-        <translation type="unfinished">首选编码</translation>
+        <translation>首选编码</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="313"/>
@@ -457,7 +457,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="320"/>
         <source>Raw</source>
-        <translation type="unfinished">原始</translation>
+        <translation>原始</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="285"/>
@@ -502,27 +502,27 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="337"/>
         <source>Compress level:</source>
-        <translation type="unfinished">压缩级别</translation>
+        <translation>压缩级别</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="344"/>
         <source>Auto select</source>
-        <translation type="unfinished">自动选择</translation>
+        <translation>自动选择</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="370"/>
         <source>Ok(&amp;O)</source>
-        <translation type="unfinished">确定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="380"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.cpp" line="30"/>
         <source>Proxy</source>
-        <translation type="unfinished">代理</translation>
+        <translation>代理</translation>
     </message>
 </context>
 <context>
@@ -599,7 +599,7 @@
     <message>
         <location filename="../../PluginRabbitVNC.cpp" line="43"/>
         <source>The plugin is used RabbitVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>此插件使用 RabbitVNC</translation>
     </message>
 </context>
 <context>
