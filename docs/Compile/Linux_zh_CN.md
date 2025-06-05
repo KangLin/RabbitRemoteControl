@@ -34,6 +34,11 @@
       Release:	12
       Codename:	bookworm
 
+- Fedora
+
+      $ cat /etc/redhat-release 
+      Fedora release 42 (Adams)
+      
 #### Qt Creator
 
 版本：v15.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
@@ -753,33 +758,45 @@ PcapPlusPlus 依赖此库。
 
 ### Flatpak
 
-- 安装构建和运行 flatpak 所需的软件：flatpak 和 flatpak-builder
-  - 在 Fedora 上我们必须运行：
+- 准备
+  - 安装构建和运行 flatpak 所需的软件：flatpak 和 flatpak-builder
+    - 在 Fedora 上我们必须运行：
 
-        $ sudo dnf install flatpak flatpak-builder
-        # 其它工具
-        $ sudo dnf install autogen git cmake gcc autoconf
+          $ sudo dnf install flatpak flatpak-builder
+          # 其它工具
+          $ sudo dnf install autogen git cmake gcc autoconf
 
-  - 在 Debian/Ubuntu 或基于它的众多发行版之一上，相反：
+    - 在 Debian/Ubuntu 或基于它的众多发行版之一上：
 
-        $ sudo apt-get update && sudo apt-get install flatpak flatpak-builder
+          $ sudo apt-get update && sudo apt-get install flatpak flatpak-builder
 
-  - 在 Archlinux 上我们可以使用 pacman 来执行相同的操作：
+    - 在 Archlinux 上我们可以使用 pacman 来执行相同的操作：
 
-        $ sudo pacman -Sy flatpak flatpak-builder
+          $ sudo pacman -Sy flatpak flatpak-builder
 
-- 添加 [Flathub](https://flathub.org/) 仓库：
+  - 添加 [Flathub](https://flathub.org/) 仓库：
 
-      $ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        $ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-  - 查看flatpak仓库的详细信息
+    - 中科大镜像：
 
-        $ flatpak remotes --show-details
+          $flatpak remote-modify flathub --url=https://mirrors.ustc.edu.cn/flathub
+
+    - 上海交大镜像：
+
+          $flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+
+    - 查看flatpak仓库的详细信息
+
+          $ flatpak remotes --show-details
+
+  - 参考
+    - [Linux捣鼓记录：安装flatpak软件仓库，更换国内镜像](https://www.cnblogs.com/lwlnice/p/18263967)
 
 - 构建
 
       $ cd RabbitRemoteControl
-      $ flatpak-builder build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
       ** (flatpak-builder:37): WARNING **: 03:05:45.408: Unknown property branch for type BuilderSourceDir
       error: org.kde.Sdk/x86_64/6.8 not installed
       Failed to init: Unable to find sdk org.kde.Sdk version 6.8
@@ -791,23 +808,26 @@ PcapPlusPlus 依赖此库。
 
 安装完所有的 sdk 和运行库后，再构建：
 
-      $ flatpak-builder --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
       # 或者 用户模式
-      $ flatpak-builder --user --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder --user --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
 
-**请注意**，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
+**请注意**，我们在此处使用 --user 选项以安装应用程序在当前用户范围内。
+  如果您愿意，可以忽略此选项，则安装应用程序在系统范围内。
+
+编译目录位于当前目录下：.flatpak-builder
 
   - 进入构建沙盒环境
 
-        $ flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json bash
+        $ flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml bash
 
 - 安装
 
 应用程序构建完成，我们就可以安装它。我们所要做的就是运行以下命令：
 
-    $ flatpak-builder --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+    $ flatpak-builder --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
     # 或者 用户模式
-    $ flatpak-builder --user --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+    $ flatpak-builder --user --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
 
 - 运行
 
@@ -820,7 +840,7 @@ PcapPlusPlus 依赖此库。
 则需要按照要上传到的网站（例如 FlatHub）的提交说明进行操作。
 我们将再次构建应用程序，但这次添加 --repo 选项。我们将我们的存储库称为“Rabbit”。
 
-    $ flatpak-builder --user --repo=Rabbit --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+    $ flatpak-builder --user --repo=Rabbit --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml
 
 - 添加到 Flatpak
 
@@ -856,8 +876,8 @@ PcapPlusPlus 依赖此库。
     构建后检查文件是否被正确安装：
 
         # 进入构建沙盒环境
-        flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json bash
-        
+        flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.yml bash
+
         # 在沙盒中检查路径
         ls -l /app/share/metainfo/io.github.KangLin.RabbitRemoteControl.metainfo.xml
 
@@ -872,9 +892,9 @@ PcapPlusPlus 依赖此库。
 
     在创建容器的时候加上参数: `--privileged`
 
-        docker run --privileged --interactive ubuntu
+        docker run --privileged --interactive fedora
 
-  - 在 docker 中，出现下面错误：
+  - 在 docker 中，运行程序出现下面错误：
 
         [root@de5245ca3cfc Download]# flatpak run io.github.KangLin.RabbitRemoteControl
         App.Main: QT_QPA_PLATFORM: ""
@@ -901,7 +921,7 @@ PcapPlusPlus 依赖此库。
 
 ### rpm 包
 
-- 安装rpm-build的相关rpm包
+- 安装 rpm-build 的相关 rpm 包
 
       dnf -y install rpm-build rpmdevtools
 
@@ -935,6 +955,7 @@ PcapPlusPlus 依赖此库。
 ### 脚本
 
 - 构建脚本
+  - [build_linux.sh](../../Script/build_linux.sh): 构建本项目。
   - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
   - [build_debpackage.sh](../../Script/build_debpackage.sh): 构建 deb 安装包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)

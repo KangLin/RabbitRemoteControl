@@ -172,6 +172,57 @@
             ]
         },
         {
+            "name": "pixman",
+            "disabled": false,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://cairographics.org/releases/pixman-0.46.0.tar.xz",
+                    "sha512": "c7ef987b7db89c58278c537f862bc9eb17c19f8288a3b7e88f8501a0486662f1e2cb6a2c0b81d4bf0464310475192428d6e29d05a6ae3cfc1d2c0941fbb0b9a3"
+                }
+            ],
+            "buildsystem": "meson",
+            "builddir": true
+        },
+        {
+            "name": "pam",
+            "disabled": false,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/linux-pam/linux-pam.git",
+                    "tag": "v1.6.1"
+                }
+            ],
+            "buildsystem": "autotools",
+            "config-opts": [
+                "--disable-doc"
+            ],
+            "post-install": [
+                "cp -r libpam/include/* $FLATPAK_DEST/include"
+            ]
+        },
+        {
+            "name": "tigervnc",
+            "disabled": false,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/KangLin/tigervnc.git",
+                    "branch": "master"
+                }
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DBUILD_VIEWER=OFF"
+            ],
+            "cleanup": [
+                "/bin",
+                "/lib/*.so*"
+            ]
+        },
+        {
             "name": "libpcap",
             "sources": [
                 {

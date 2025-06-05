@@ -1,0 +1,265 @@
+# [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+id: "io.github.KangLin.RabbitRemoteControl"
+# See: [available runtimes](https://docs.flatpak.org/en/latest/available-runtimes.html)
+# See: [flatpak kde runtime](https://invent.kde.org/packaging/flatpak-kde-runtime)
+runtime: "org.kde.Platform"
+runtime-version: "6.8"
+sdk: "org.kde.Sdk"
+command: RabbitRemoteControlApp
+
+build-options:
+  env:
+    V: "1"
+
+cleanup:
+  - "*.la"
+  - "*.a"
+  - "/include"
+  - "/lib/cmake"
+  - "/lib/pkgconfig"
+  - "/share/licenses"
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=pulseaudio
+  - --socket=pcsc
+  - --socket=ssh-auth
+  - --socket=x11
+  - --device=all
+  - --filesystem=xdg-documents
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --system-talk-name=org.freedesktop.Avahi
+  # Because the file chooser somehow doesn't show the files on the host, we export some directory for reading pcap files
+  # https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15507
+  - --filesystem=xdg-public-share
+  - --filesystem=home:ro
+
+modules:
+  - name: xprop
+    disabled: false
+    sources:
+      - type: archive
+      - url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.5.tar.bz2"
+      - sha256: "9b92ed0316bf2486121d8bac88bd1878f16b43bd335f18009b1f941f1eca93a1"
+    cleanup:
+      - /bin/xprop
+      - /share/doc
+      - /share/man
+
+  - name: pcsc
+    disabled: false
+    config-opts:
+      - --disable-libsystemd
+      - --enable-pic
+      - --disable-libusb
+      - --enable-shared
+      - --with-systemdsystemunitdir=/app/lib/systemd/
+    sources:
+      - type: git
+      - url: "https://github.com/LudovicRousseau/PCSC.git"
+      - tag: "1.9.9"
+      - commit: "15c16c7796607b1c8a2ce253d3f536918ab26b4a"
+    cleanup:
+      - /bin/pcsc-spy
+      - /sbin
+      - /share/doc
+      - /share/man
+      - /lib/systemd
+            
+  - name: krb5
+    disabled: false
+    sources:
+      - type: archive
+        url: "https://kerberos.org/dist/krb5/1.21/krb5-1.21.3.tar.gz"
+        sha256: "b7a4cd5ead67fb08b980b21abd150ff7217e85ea320c9ed0c6dadd304840ad35"
+      - type: script
+        commands:
+          - autoreconf --install --symlink
+    buildsystem: autotools
+    subdir: src
+    cleanup:
+      - /sbin
+      - /bin
+      - /share
+
+  - name: libssh
+    disabled: false
+    sources:
+      - type: archive
+        url: "https://www.libssh.org/files/0.11/libssh-0.11.1.tar.xz"
+        sha256: "14b7dcc72e91e08151c58b981a7b570ab2663f630e7d2837645d5a9c612c1b79"
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DWITH_EXAMPLES=OFF
+    cleanup:
+      - /bin
+
+  - name: libfuse
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/libfuse/libfuse/archive/refs/tags/fuse-3.16.2.tar.gz
+        sha256: 1bc306be1a1f4f6c8965fbdd79c9ccca021fdc4b277d501483a711cbd7dbcd6c
+    buildsystem: meson
+    builddir: true
+    config-opts:
+      - -Dexamples=false
+      - -Dutils=false
+
+  - shared-modules/libusb/libusb.json
+
+  - name: FreeRDP
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/FreeRDP/FreeRDP.git
+        tag: 3.15.0
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
+      - -DCMAKE_BUILD_TYPE:STRING=Release
+      - -DCHANNEL_TSMF:BOOL=OFF
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DWITH_MANPAGES:BOOL=OFF
+      - -DWITH_WAYLAND:BOOL=OFF
+      - -DWITH_GSSAPI:BOOL=OFF
+      - -DWITH_SAMPLE:BOOL=OFF
+      - -DWITH_OSS:BOOL=OFF
+      - -DWITH_CLIENT_SDL=OFF
+      - -DWITH_CLIENT=OFF
+      - -DCHANNEL_URBDRC:BOOL=ON
+      - -DWITH_KRB5=ON
+    cleanup:
+      - /bin
+      - /share
+      - /share/licenses
+
+  - name: libvncserver
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/LibVNC/libvncserver/archive/refs/tags/LibVNCServer-0.9.15.tar.gz
+        sha256: 62352c7795e231dfce044beb96156065a05a05c974e5de9e023d688d8ff675d7
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DWITH_OPENSSL=ON
+      - -DWITH_GCRYPT=OFF
+      - -DWITH_EXAMPLES=OFF
+      - -DWITH_TESTS=OFF
+    cleanup:
+      - /bin
+      - /lib/libvncserver.so*
+
+  - name: pixman
+    disabled: false
+    sources:
+      - type: archive
+        url: https://cairographics.org/releases/pixman-0.46.0.tar.xz
+        sha512: c7ef987b7db89c58278c537f862bc9eb17c19f8288a3b7e88f8501a0486662f1e2cb6a2c0b81d4bf0464310475192428d6e29d05a6ae3cfc1d2c0941fbb0b9a3
+    buildsystem: meson
+    builddir: true
+
+  - name: pam
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/linux-pam/linux-pam.git
+        tag: v1.6.1
+    buildsystem: autotools
+    config-opts:
+      - --disable-doc
+    post-install:
+      - cp -r libpam/include/* $FLATPAK_DEST/include
+
+  - name: tigervnc
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/KangLin/tigervnc.git
+        branch: master
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DBUILD_VIEWER=OFF
+    cleanup:
+      - /bin
+      - /lib/*.so*
+
+  - name: libpcap
+    disabled: false
+    sources:
+      - type: archive
+        url: http://www.tcpdump.org/release/libpcap-1.10.5.tar.gz
+        sha256: 37ced90a19a302a7f32e458224a00c365c117905c2cd35ac544b6880a81488f0
+    cleanup:
+      - "/share"
+
+  - name: PcapPlusPlus
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/seladb/PcapPlusPlus/archive/refs/tags/v24.09.tar.gz
+        sha256: b14998ecf5718c2bfb6f709060e53f7ef67639b98bf2222a3cd23d820d70acdc
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DPCAPPP_BUILD_EXAMPLES=OFF
+      - -DPCAPPP_BUILD_TESTS=OFF
+      - -DPCAPPP_INSTALL=ON
+    cleanup:
+      - /usr/share
+      - /usr/local
+
+  - name: cmark
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/commonmark/cmark/archive/refs/tags/0.31.1.tar.gz
+        sha256: 3da93db5469c30588cfeb283d9d62edfc6ded9eb0edc10a4f5bbfb7d722ea802
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DBUILD_TESTING=OFF
+    cleanup:
+      - /bin
+      - /share/man
+
+  - name: RabbitCommon
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/KangLin/RabbitCommon.git
+        branch: master
+        disable-shallow-clone: true
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_MimeTypeBrowser=OFF
+      - -DBUILD_APP=OFF
+      - -DBUILD_TEST=OFF
+    cleanup:
+      - /bin
+      - /etc
+      - /share/applications
+      - /share/doc
+
+  - name: RabbitRemoteControl
+    disabled: false
+    sources:
+      - type: dir
+        path: ../..
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    post-install:
+      - desktop-file-edit --set-key=Path --set-value=/bin /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+      - install -Dm0644 io.github.KangLin.RabbitRemoteControl.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo/

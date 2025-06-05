@@ -35,6 +35,11 @@ See: [Script](#Script)
       Release:	12
       Codename:	bookworm
 
+- Fedora
+
+      $ cat /etc/redhat-release 
+      Fedora release 42 (Adams)
+
 #### Qt Creator
 
 Version: v15.0.0 
@@ -763,7 +768,7 @@ See: [Script](#Script)
 
 - Build
 
-      $ flatpak-builder build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.yml
       ** (flatpak-builder:37): WARNING **: 03:05:45.408: Unknown property branch for type BuilderSourceDir
       error: org.kde.Sdk/x86_64/6.8 not installed
       Failed to init: Unable to find sdk org.kde.Sdk version 6.8
@@ -774,13 +779,13 @@ Install sdk and runtime:
 
 After install sdk and runtime, Run again:
 
-      $ flatpak-builder --force-clean build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder --force-clean build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.yml
       # or user
-      $ flatpak-builder --user --force-clean --install build-dir /home/RabbitRemoteControl/Package/io.github.KangLin.RabbitRemoteControl.json 
+      $ flatpak-builder --user --force-clean --install build-dir /home/RabbitRemoteControl/Package/io.github.KangLin.RabbitRemoteControl.yml 
 
 - Install
 
-      $ flatpak-builder --user --force-clean --install build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder --user --force-clean --install build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.yml
 
 - Run
 
@@ -801,6 +806,7 @@ After install sdk and runtime, Run again:
 ### Script
 
 - Build script
+  - [build_linux.sh](../../Script/build_linux.sh): Build the project.
   - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries
   - [build_debpackage.sh](../../Script/build_debpackage.sh): Build deb package.
     Before executing, set environment variables.
