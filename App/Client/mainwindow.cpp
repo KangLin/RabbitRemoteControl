@@ -101,16 +101,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionUpdate->setIcon(updater.windowIcon());
 #endif
 
-    QToolButton* tbConnect = new QToolButton(ui->toolBar);
-    tbConnect->setFocusPolicy(Qt::NoFocus);
-    tbConnect->setPopupMode(QToolButton::InstantPopup);
+    QToolButton* tbStart = new QToolButton(ui->toolBar);
+    tbStart->setFocusPolicy(Qt::NoFocus);
+    tbStart->setPopupMode(QToolButton::InstantPopup);
     //tbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    tbConnect->setMenu(ui->menuConnect_C);
-    tbConnect->setIcon(QIcon::fromTheme("network-wired"));
-    tbConnect->setText(tr("Connect"));
-    tbConnect->setToolTip(tr("Connect"));
-    tbConnect->setStatusTip(tr("Connect"));
-    m_pActionConnect = ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
+    tbStart->setMenu(ui->menuStart);
+    tbStart->setIcon(QIcon::fromTheme("media-playback-start"));
+    tbStart->setText(tr("Start"));
+    tbStart->setToolTip(tr("Start"));
+    tbStart->setStatusTip(tr("Start"));
+    m_pActionStart = ui->toolBar->insertWidget(ui->actionStop, tbStart);
 
     m_Client.EnumPlugins(this);
     m_Parameter.Load();
@@ -193,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         m_pFrmConnecters = new CFrmConnecters(
             m_Connecters, m_Parameter,
-            ui->menuConnect_C, ui->actionDisconnect_D,
+            ui->menuStart, ui->actionStop,
             m_pRecentMenu, m_pDockListConnecters);
         if(m_pFrmConnecters) {
             m_pDockListConnecters->setWidget(m_pFrmConnecters);
@@ -487,7 +487,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
                     this, SLOT(on_actionExit_E_triggered()));
     Q_ASSERT(check);
     check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()),
-                    this, SLOT(on_actionDisconnect_D_triggered()));
+                    this, SLOT(on_actionStop_triggered()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigConnecterMenuChanged(QAction*)),
                     m_pFullScreenToolBar,
@@ -527,7 +527,7 @@ void MainWindow::EnableMenu(bool bEnable)
     qDebug(log) << Q_FUNC_INFO << bEnable;
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
-    ui->actionDisconnect_D->setEnabled(bEnable);
+    ui->actionStop->setEnabled(bEnable);
     ui->actionTabBar_B->setEnabled(bEnable);
     slotLoadConnecterMenu();
 }
@@ -818,9 +818,9 @@ void MainWindow::slotCloseView(const QWidget* pView)
     }
 }
 
-void MainWindow::on_actionDisconnect_D_triggered()
+void MainWindow::on_actionStop_triggered()
 {
-    qDebug(log) << "MainWindow::on_actionDisconnect_D_triggered()";
+    qDebug(log) << "MainWindow::on_actionStop_triggered()";
     if(!m_pView) return;
     
     QWidget* pView = m_pView->GetCurrentView();
@@ -950,7 +950,7 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar
-    QAction* p = ui->menuConnect_C->addAction(pPlug->Protocol()
+    QAction* p = ui->menuStart->addAction(pPlug->Protocol()
                                                   + ": " + pPlug->DisplayName(),
                                               this, SLOT(slotConnect()));
     p->setToolTip(pPlug->Description());

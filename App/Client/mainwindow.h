@@ -62,7 +62,7 @@ public:
 private:
     CClient m_Client;
     QVector<CConnecter*> m_Connecters;
-    QAction* m_pActionConnect;
+    QAction* m_pActionStart;
 
 private Q_SLOTS:
     void slotLoadConnecterMenu();
@@ -75,7 +75,7 @@ public:
 
     ///////// Disconnect /////////
 private Q_SLOTS:
-    void on_actionDisconnect_D_triggered();
+    void on_actionStop_triggered();
     void slotCloseView(const QWidget* pView);
     void slotDisconnect();
     void slotDisconnected();

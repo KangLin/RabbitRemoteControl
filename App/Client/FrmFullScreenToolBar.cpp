@@ -55,7 +55,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
         m_ToolBar.addAction(m_pConnecterMenu);
     }
 
-    m_ToolBar.addAction(m_pMain->ui->actionDisconnect_D);
+    m_ToolBar.addAction(m_pMain->ui->actionStop);
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(m_pMain->ui->actionExit_E);
 
@@ -165,6 +165,6 @@ void CFrmFullScreenToolBar::slotConnecterMenuChanged(QAction* pAction)
     if(m_pConnecterMenu) {
         m_ToolBar.removeAction(m_pConnecterMenu);
         m_pConnecterMenu = pAction;
-        m_ToolBar.insertAction(m_pMain->ui->actionDisconnect_D, m_pConnecterMenu);
+        m_ToolBar.insertAction(m_pMain->ui->actionStop, m_pConnecterMenu);
     }
 }

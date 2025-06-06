@@ -59,16 +59,16 @@
     <property name="title">
      <string>Operate(&amp;R)</string>
     </property>
-    <widget class="QMenu" name="menuConnect_C">
+    <widget class="QMenu" name="menuStart">
      <property name="title">
-      <string>Connect(&amp;C)</string>
+      <string>Start(&amp;S)</string>
      </property>
      <property name="icon">
-      <iconset theme="network-wired"/>
+      <iconset theme="media-playback-start"/>
      </property>
     </widget>
-    <addaction name="menuConnect_C"/>
-    <addaction name="actionDisconnect_D"/>
+    <addaction name="menuStart"/>
+    <addaction name="actionStop"/>
     <addaction name="actionOpenListRecentConnections"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
@@ -104,7 +104,7 @@
    <addaction name="separator"/>
    <addaction name="actionAdd_to_favorite"/>
    <addaction name="separator"/>
-   <addaction name="actionDisconnect_D"/>
+   <addaction name="actionStop"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionTabBar_B"/>
@@ -219,24 +219,24 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionDisconnect_D">
+  <action name="actionStop">
    <property name="icon">
-    <iconset theme="network-wireless"/>
+    <iconset theme="media-playback-stop"/>
    </property>
    <property name="text">
-    <string>Disconnect(&amp;D)</string>
+    <string>Stop(&amp;P)</string>
    </property>
    <property name="iconText">
-    <string>Disconnect</string>
+    <string>Stop</string>
    </property>
    <property name="toolTip">
-    <string>Disconnect</string>
+    <string>Stop</string>
    </property>
    <property name="statusTip">
-    <string>Disconnect</string>
+    <string>Stop</string>
    </property>
    <property name="whatsThis">
-    <string>Disconnect</string>
+    <string>Stop</string>
    </property>
   </action>
   <action name="actionOpenRRCFile">
