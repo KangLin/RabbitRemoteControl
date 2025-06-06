@@ -42,8 +42,8 @@ modules:
     disabled: false
     sources:
       - type: archive
-      - url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.5.tar.bz2"
-      - sha256: "9b92ed0316bf2486121d8bac88bd1878f16b43bd335f18009b1f941f1eca93a1"
+        url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.5.tar.bz2"
+        sha256: "9b92ed0316bf2486121d8bac88bd1878f16b43bd335f18009b1f941f1eca93a1"
     cleanup:
       - /bin/xprop
       - /share/doc
@@ -59,9 +59,9 @@ modules:
       - --with-systemdsystemunitdir=/app/lib/systemd/
     sources:
       - type: git
-      - url: "https://github.com/LudovicRousseau/PCSC.git"
-      - tag: "1.9.9"
-      - commit: "15c16c7796607b1c8a2ce253d3f536918ab26b4a"
+        url: "https://github.com/LudovicRousseau/PCSC.git"
+        tag: "1.9.9"
+        commit: "15c16c7796607b1c8a2ce253d3f536918ab26b4a"
     cleanup:
       - /bin/pcsc-spy
       - /sbin
@@ -182,7 +182,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/KangLin/tigervnc.git
-        branch: master
+        commit: fd32c28515c83ec3db6b812f2ee8f5fbbcf29b33
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -236,8 +236,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/KangLin/RabbitCommon.git
-        branch: master
-        disable-shallow-clone: true
+        tag: v2.3.3
+        #commit: d4db633bb48fc777042d6494d2f883b29779e2a2
+        #disable-shallow-clone: true
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
