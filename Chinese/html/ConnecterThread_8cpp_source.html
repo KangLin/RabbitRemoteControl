@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/ConnecterThread.cpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ConnecterThread.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;QLoggingCategory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;QDesktopServices&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QUrl&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QWidgetAction&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QActionGroup&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;ConnecterThread.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;ConnectThread.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;PluginClient.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;Client.Connecter.Thread&quot;</span>)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><a class="code hl_class" href="classCConnecterThread.html">CConnecterThread</a>::<a class="code hl_class" href="classCConnecterThread.html">CConnecterThread</a>(<a class="code hl_class" href="classCPluginClient.html">CPluginClient</a> *plugin)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    : <a class="code hl_class" href="classCConnecterConnect.html">CConnecterConnect</a>(plugin)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    , m_pThread(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    , m_pFrmViewer(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    , m_pScroll(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    , m_pZoomToWindow(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    , m_pZoomAspectRatio(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    , m_pZoomOriginal(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    , m_pZoomIn(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    , m_pZoomOut(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    , m_psbZoomFactor(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    , m_pScreenShot(<span class="keywordtype">nullptr</span>)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#if HAVE_QT6_RECORD</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    , m_pRecord(<span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    , m_pRecordPause(<span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>CConnecterThread::~CConnecterThread()</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a3ffa557941d9b41ac56fe638648b3252">   41</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecterThread.html#a3ffa557941d9b41ac56fe638648b3252">CConnecterThread::Initial</a>()</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">bool</span> check = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    nRet = <a class="code hl_function" href="classCConnecter.html#ae10d1b4d16e193775af5de7160943d34">CConnecterConnect::Initial</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">if</span>(nRet)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Q_ASSERT(!(m_pFrmViewer &amp;&amp; m_pScroll));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    m_pFrmViewer = <span class="keyword">new</span> <a class="code hl_class" href="classCFrmViewer.html">CFrmViewer</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    m_pScroll = <span class="keyword">new</span> <a class="code hl_class" href="classCFrmScroll.html">CFrmScroll</a>(m_pFrmViewer);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    check = connect(m_pFrmViewer, SIGNAL(<a class="code hl_signal" href="classCConnecter.html#ae162befe2d934b4900516cc10ad78ec8">sigViewerFocusIn</a>(QWidget*)),</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    <span class="keyword">this</span>, SIGNAL(<a class="code hl_signal" href="classCConnecter.html#ae162befe2d934b4900516cc10ad78ec8">sigViewerFocusIn</a>(QWidget*)));</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    nRet = InitialMenu();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a54b2d699ac91591726c74914c78dc4ee">   64</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecterThread.html#a54b2d699ac91591726c74914c78dc4ee">CConnecterThread::Clean</a>()</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">if</span>(m_pScroll)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">delete</span> m_pScroll;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        m_pScroll = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    nRet = <a class="code hl_function" href="classCConnecter.html#a65475a81bc69e33c93d0a92bcfece93a">CConnecterConnect::Clean</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">int</span> CConnecterThread::InitialMenu()</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">bool</span> check = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    QMenu* pMenuZoom = <span class="keyword">new</span> QMenu(&amp;m_Menu);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    pMenuZoom-&gt;setTitle(tr(<span class="stringliteral">&quot;Zoom&quot;</span>));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    pMenuZoom-&gt;setIcon(QIcon::fromTheme(<span class="stringliteral">&quot;zoom&quot;</span>));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    m_pMenuZoom = m_Menu.addMenu(pMenuZoom);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    m_pZoomToWindow = pMenuZoom-&gt;addAction(</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        QIcon::fromTheme(<span class="stringliteral">&quot;zoom-fit-best&quot;</span>), tr(<span class="stringliteral">&quot;Zoom to window&quot;</span>));</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    m_pZoomToWindow-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    check = connect(m_pZoomToWindow, &amp;QAction::toggled, <span class="keyword">this</span>,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                    [&amp;](){</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        m_pScroll-&gt;slotSetAdaptWindows(</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                            <a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aaaf7c8386233eb12ee3db5063b434252e">CFrmViewer::ADAPT_WINDOWS::ZoomToWindow</a>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                    });</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    m_pZoomAspectRatio = pMenuZoom-&gt;addAction(</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        QIcon::fromTheme(<span class="stringliteral">&quot;zoom-aspect-ratio&quot;</span>),</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        tr(<span class="stringliteral">&quot;Keep aspect ration to windows&quot;</span>));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    m_pZoomAspectRatio-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    check = connect(m_pZoomAspectRatio, &amp;QAction::toggled, <span class="keyword">this</span>,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                    [&amp;](){</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                        m_pScroll-&gt;slotSetAdaptWindows(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                            <a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa5e0d77efe60959f042294a9513e8f8b6">CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow</a>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    });</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    m_pZoomOriginal = pMenuZoom-&gt;addAction(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        QIcon::fromTheme(<span class="stringliteral">&quot;zoom-original&quot;</span>), tr(<span class="stringliteral">&quot;Original&quot;</span>));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    m_pZoomOriginal-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    check = connect(m_pZoomOriginal, &amp;QAction::toggled, <span class="keyword">this</span>,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    [&amp;](){</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                        m_pScroll-&gt;slotSetAdaptWindows(</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                            <a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa0a52da7a03a6de3beefe54f8c03ad80d">CFrmViewer::ADAPT_WINDOWS::Original</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    });</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    m_pZoomIn = pMenuZoom-&gt;addAction(QIcon::fromTheme(<span class="stringliteral">&quot;zoom-in&quot;</span>), tr(<span class="stringliteral">&quot;Zoom in&quot;</span>));</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    m_pZoomIn-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    check = connect(</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        m_pZoomIn, &amp;QAction::toggled, <span class="keyword">this</span>,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        [&amp;](){</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">if</span>(m_psbZoomFactor)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                m_psbZoomFactor-&gt;setValue((m_pFrmViewer-&gt;<a class="code hl_function" href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">GetZoomFactor</a>() + 0.1) * 100);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        });</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    m_pZoomOut = pMenuZoom-&gt;addAction(</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        QIcon::fromTheme(<span class="stringliteral">&quot;zoom-out&quot;</span>), tr(<span class="stringliteral">&quot;Zoom out&quot;</span>));</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    m_pZoomOut-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    check = connect(</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        m_pZoomOut, &amp;QAction::toggled, <span class="keyword">this</span>,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        [&amp;](){</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <span class="keywordflow">if</span>(m_psbZoomFactor)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                m_psbZoomFactor-&gt;setValue((m_pFrmViewer-&gt;<a class="code hl_function" href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">GetZoomFactor</a>() - 0.1) * 100);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        });</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    QActionGroup* pGBViewZoom = <span class="keyword">new</span> QActionGroup(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">if</span>(pGBViewZoom) {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        pGBViewZoom-&gt;addAction(m_pZoomToWindow);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        pGBViewZoom-&gt;addAction(m_pZoomAspectRatio);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        pGBViewZoom-&gt;addAction(m_pZoomOriginal);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        pGBViewZoom-&gt;addAction(m_pZoomIn);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        pGBViewZoom-&gt;addAction(m_pZoomOut);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    m_psbZoomFactor = <span class="keyword">new</span> QSpinBox(pMenuZoom);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    m_psbZoomFactor-&gt;setRange(0, 9999999);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    m_psbZoomFactor-&gt;setValue(100);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    m_psbZoomFactor-&gt;setSuffix(<span class="stringliteral">&quot;%&quot;</span>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    m_psbZoomFactor-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    m_psbZoomFactor-&gt;setFocusPolicy(Qt::NoFocus);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    check = connect(</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        m_psbZoomFactor, SIGNAL(valueChanged(<span class="keywordtype">int</span>)),</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keyword">this</span>, SLOT(<a class="code hl_slot" href="classCConnecterThread.html#a524aa3a8a05a6208f41f11028773b6e9">slotValueChanged</a>(<span class="keywordtype">int</span>)));</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    QWidgetAction* pFactor = <span class="keyword">new</span> QWidgetAction(pMenuZoom);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    pFactor-&gt;setDefaultWidget(m_psbZoomFactor);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    pMenuZoom-&gt;insertAction(m_pZoomOut, pFactor);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    QMenu* pMenuShortCut = <span class="keyword">new</span> QMenu(&amp;m_Menu);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    pMenuShortCut-&gt;setTitle(tr(<span class="stringliteral">&quot;Send shortcut key&quot;</span>));</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    m_Menu.addMenu(pMenuShortCut);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    pMenuShortCut-&gt;addAction(</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        tr(<span class="stringliteral">&quot;Send Ctl+Alt+Del&quot;</span>), <span class="keyword">this</span>, SLOT(slotShortcutCtlAltDel()));</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    pMenuShortCut-&gt;addAction(</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        tr(<span class="stringliteral">&quot;Send lock screen (Win+L)&quot;</span>), <span class="keyword">this</span>, SLOT(slotShortcutLock()));</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    m_Menu.addSeparator();</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    m_pScreenShot = <span class="keyword">new</span> QAction(QIcon::fromTheme(<span class="stringliteral">&quot;camera-photo&quot;</span>),</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                                tr(<span class="stringliteral">&quot;ScreenShot&quot;</span>), &amp;m_Menu);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    check = connect(m_pScreenShot, SIGNAL(triggered()),</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                    <span class="keyword">this</span>, SLOT(slotScreenShot()));</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    m_Menu.addAction(m_pScreenShot);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#if HAVE_QT6_RECORD</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    m_pRecord = <span class="keyword">new</span> QAction(</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        QIcon::fromTheme(<span class="stringliteral">&quot;media-record&quot;</span>), tr(<span class="stringliteral">&quot;Start record&quot;</span>), &amp;m_Menu);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    m_pRecord-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    check = connect(m_pRecord, SIGNAL(toggled(<span class="keywordtype">bool</span>)),</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                    <span class="keyword">this</span>, SLOT(slotRecord(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    m_Menu.addAction(m_pRecord);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    m_pRecordPause = <span class="keyword">new</span> QAction(</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        QIcon::fromTheme(<span class="stringliteral">&quot;media-playback-pause&quot;</span>), tr(<span class="stringliteral">&quot;Record pause&quot;</span>), &amp;m_Menu);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    m_pRecordPause-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    m_pRecordPause-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    check = connect(m_pRecordPause, SIGNAL(toggled(<span class="keywordtype">bool</span>)),</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                    <span class="keyword">this</span>, SIGNAL(sigRecordPause(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    Q_ASSERT(check);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    m_Menu.addAction(m_pRecordPause);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    m_Menu.addSeparator();</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span>(m_pSettings)</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        m_Menu.addAction(m_pSettings);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>}</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a11971294a654f2c7ef41b67acf4463e6">  196</a></span>QWidget *<a class="code hl_function" href="classCConnecterThread.html#a11971294a654f2c7ef41b67acf4463e6">CConnecterThread::GetViewer</a>()</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>{</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordflow">return</span> m_pScroll;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
+</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#abad29a35e3439b31e66364db6bcdd8ab">  201</a></span><span class="keywordtype">int</span> <a class="code hl_slot" href="classCConnecterThread.html#abad29a35e3439b31e66364db6bcdd8ab">CConnecterThread::Connect</a>()</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    m_pThread = <span class="keyword">new</span> <a class="code hl_class" href="classCConnectThread.html">CConnectThread</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span>(!m_pThread) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        qCritical(log) &lt;&lt; <span class="stringliteral">&quot;new CConnectThread fail&quot;</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    m_pThread-&gt;start();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="foldopen" id="foldopen00216" data-start="{" data-end="}">
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a9f475bc6c33075bba7093a963ce0a168">  216</a></span><span class="keywordtype">int</span> <a class="code hl_slot" href="classCConnecterThread.html#a9f475bc6c33075bba7093a963ce0a168">CConnecterThread::DisConnect</a>()</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>{</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">if</span>(m_pThread)</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        m_pThread-&gt;quit();</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="comment">//Don&#39;t delete m_pThread, See CConnectThread</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        m_pThread = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#aac09e47e1b20bff727b8a18da933f4ce">  229</a></span>QString <a class="code hl_function" href="classCConnecterThread.html#aac09e47e1b20bff727b8a18da933f4ce">CConnecterThread::ServerName</a>()</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>{</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>())</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;GetShowServerName()</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            || <a class="code hl_function" href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">CConnecterConnect::ServerName</a>().isEmpty())</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;m_Net.GetHost().isEmpty())</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;m_Net.GetHost() + <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                       + QString::number(<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;m_Net.GetPort());</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">CConnecterConnect::ServerName</a>();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>}</div>
+</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="foldopen" id="foldopen00242" data-start="{" data-end="}">
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a01bdbb25a36d90c2417a65e19460906e">  242</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecterThread.html#a01bdbb25a36d90c2417a65e19460906e">CConnecterThread::Load</a>(QSettings &amp;set)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>{</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    Q_ASSERT(m_pFrmViewer);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    nRet = <a class="code hl_function" href="classCConnecter.html#a6476a0f03c9e3a8bf6a318a82ceb3639">CConnecterConnect::Load</a>(set);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">if</span>(m_pFrmViewer &amp;&amp; <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>())</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        m_pFrmViewer-&gt;slotSetZoomFactor(<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;GetZoomFactor());</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="keywordflow">if</span>(m_psbZoomFactor)</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            m_psbZoomFactor-&gt;setValue(m_pFrmViewer-&gt;<a class="code hl_function" href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">GetZoomFactor</a>() * 100);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <a class="code hl_enumeration" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw = <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;GetAdaptWindows();</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">if</span>(<a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aaaf7c8386233eb12ee3db5063b434252e">CFrmViewer::ADAPT_WINDOWS::ZoomToWindow</a> == aw) {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <span class="keywordflow">if</span>(m_pZoomToWindow)</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                m_pZoomToWindow-&gt;setChecked(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa5e0d77efe60959f042294a9513e8f8b6">CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow</a> == aw) {</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <span class="keywordflow">if</span>(m_pZoomAspectRatio)</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                m_pZoomAspectRatio-&gt;setChecked(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa0a52da7a03a6de3beefe54f8c03ad80d">CFrmViewer::ADAPT_WINDOWS::Original</a> == aw) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            <span class="keywordflow">if</span>(m_pZoomOriginal)</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                m_pZoomOriginal-&gt;setChecked(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa4252b72e6ebcd4d4b4c2e46a786f03d2">CFrmViewer::ADAPT_WINDOWS::Zoom</a> == aw) {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            <span class="keywordflow">if</span>(m_pZoomIn)</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                m_pZoomIn-&gt;setChecked(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        }</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>}</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="foldopen" id="foldopen00270" data-start="{" data-end="}">
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#adce34bf9fd3db863eabce2f945d5215e">  270</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecterThread.html#adce34bf9fd3db863eabce2f945d5215e">CConnecterThread::Save</a>(QSettings &amp;set)</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>{</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordtype">int</span> nRet = 0;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    Q_ASSERT(<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>());</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>() &amp;&amp; m_pFrmViewer)</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;SetAdaptWindows(m_pFrmViewer-&gt;GetAdaptWindows());</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;SetZoomFactor(m_pFrmViewer-&gt;<a class="code hl_function" href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">GetZoomFactor</a>());</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    nRet = <a class="code hl_function" href="classCConnecter.html#aa3c6cc809f2082f3f4e84153adf83025">CConnecterConnect::Save</a>(set);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">return</span> nRet;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>}</div>
+</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="preprocessor">#if HAVE_QT6_RECORD</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="keywordtype">void</span> CConnecterThread::slotRecord(<span class="keywordtype">bool</span> checked)</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>{</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO &lt;&lt; checked;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    QAction* pRecord = qobject_cast&lt;QAction*&gt;(sender());</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">if</span>(pRecord)</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="keywordflow">if</span>(checked) {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>            <span class="comment">//pRecord-&gt;setIcon(QIcon::fromTheme(&quot;media-playback-stop&quot;));</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            pRecord-&gt;setText(tr(<span class="stringliteral">&quot;Stop record&quot;</span>));</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <span class="comment">//pRecord-&gt;setIcon(QIcon::fromTheme(&quot;media-playback-start&quot;));</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>            pRecord-&gt;setText(tr(<span class="stringliteral">&quot;Start record&quot;</span>));</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        m_pRecordPause-&gt;setEnabled(checked);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        emit sigRecord(checked);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>}</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="keywordtype">void</span> CConnecterThread::slotRecorderStateChanged(</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    QMediaRecorder::RecorderState state)</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>{</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    qDebug(log) &lt;&lt; Q_FUNC_INFO &lt;&lt; state;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">if</span>(QMediaRecorder::StoppedState == state)</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        m_pRecord-&gt;setChecked(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        m_pRecordPause-&gt;setChecked(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>}</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="foldopen" id="foldopen00314" data-start="{" data-end="}">
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="classCConnecterThread.html#a524aa3a8a05a6208f41f11028773b6e9">  314</a></span><span class="keywordtype">void</span> <a class="code hl_slot" href="classCConnecterThread.html#a524aa3a8a05a6208f41f11028773b6e9">CConnecterThread::slotValueChanged</a>(<span class="keywordtype">int</span> v)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>{</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordflow">if</span>(!m_pScroll || !m_pFrmViewer) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    m_pFrmViewer-&gt;slotSetZoomFactor(((<span class="keywordtype">double</span>)v) / 100);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    m_pScroll-&gt;slotSetAdaptWindows(<a class="code hl_enumvalue" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa4252b72e6ebcd4d4b4c2e46a786f03d2">CFrmViewer::ADAPT_WINDOWS::Zoom</a>);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>}</div>
+</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="keywordtype">void</span> CConnecterThread::slotScreenShot()</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>{</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>() || !m_pFrmViewer)</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">auto</span> &amp;record = <a class="code hl_function" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a>()-&gt;m_Record;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    QString szFile = record.GetImageFile(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordtype">bool</span> bRet = m_pFrmViewer-&gt;GrabImage().save(szFile);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordflow">if</span>(bRet)</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        qDebug(log) &lt;&lt; <span class="stringliteral">&quot;Success: save screenshot to&quot;</span> &lt;&lt; szFile;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        qCritical(log) &lt;&lt; <span class="stringliteral">&quot;Fail: save screenshot to&quot;</span> &lt;&lt; szFile;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordflow">if</span>(record.GetEndAction() != CParameterRecord::ENDACTION::No)</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>}</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keywordtype">void</span> CConnecterThread::slotShortcutCtlAltDel()</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>{</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordflow">if</span>(!m_pFrmViewer)</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="comment">// Send ctl+alt+del</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::ControlModifier));</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::AltModifier));</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Control, Qt::ControlModifier));</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Alt, Qt::AltModifier));</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>}</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keywordtype">void</span> CConnecterThread::slotShortcutLock()</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>{</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keywordflow">if</span>(!m_pFrmViewer)</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="comment">// Send ctl+alt+del</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Super_L, Qt::NoModifier));</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyPress, Qt::Key_L, Qt::NoModifier));</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Super_L, Qt::NoModifier));</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    emit m_pFrmViewer-&gt;sigKeyPressEvent(<span class="keyword">new</span> QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_L, Qt::NoModifier));</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>}</div>
+<div class="ttc" id="aclassCConnectThread_html"><div class="ttname"><a href="classCConnectThread.html">CConnectThread</a></div><div class="ttdoc">此类仅用于 CConnecterThread 。 一个线程只处理一个连接</div><div class="ttdef"><b>Definition</b> <a href="ConnectThread_8h_source.html#l00022">ConnectThread.h:23</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html"><div class="ttname"><a href="classCConnecterConnect.html">CConnecterConnect</a></div><div class="ttdoc">插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8h_source.html#l00034">ConnecterConnect.h:35</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html_a605a69c318ef33e349d937cdf58e6678"><div class="ttname"><a href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">CConnecterConnect::GetParameter</a></div><div class="ttdeci">virtual CParameterBase * GetParameter()</div><div class="ttdoc">Get parameter</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8cpp_source.html#l00119">ConnecterConnect.cpp:119</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html_aebd8c03e340085b1bb49d1c74a580f7d"><div class="ttname"><a href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">CConnecterConnect::ServerName</a></div><div class="ttdeci">virtual QString ServerName()</div><div class="ttdoc">当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8cpp_source.html#l00234">ConnecterConnect.cpp:234</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html"><div class="ttname"><a href="classCConnecterThread.html">CConnecterThread</a></div><div class="ttdoc">默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 CPluginClient 派生的插件一起使用，用于连接是阻塞模型的。</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8h_source.html#l00056">ConnecterThread.h:57</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a01bdbb25a36d90c2417a65e19460906e"><div class="ttname"><a href="classCConnecterThread.html#a01bdbb25a36d90c2417a65e19460906e">CConnecterThread::Load</a></div><div class="ttdeci">virtual int Load(QSettings &amp;set) override</div><div class="ttdoc">加载参数</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00242">ConnecterThread.cpp:242</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a11971294a654f2c7ef41b67acf4463e6"><div class="ttname"><a href="classCConnecterThread.html#a11971294a654f2c7ef41b67acf4463e6">CConnecterThread::GetViewer</a></div><div class="ttdeci">virtual QWidget * GetViewer() override</div><div class="ttdoc">得到显示视图</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00196">ConnecterThread.cpp:196</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a3ffa557941d9b41ac56fe638648b3252"><div class="ttname"><a href="classCConnecterThread.html#a3ffa557941d9b41ac56fe638648b3252">CConnecterThread::Initial</a></div><div class="ttdeci">virtual int Initial() override</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00041">ConnecterThread.cpp:41</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a524aa3a8a05a6208f41f11028773b6e9"><div class="ttname"><a href="classCConnecterThread.html#a524aa3a8a05a6208f41f11028773b6e9">CConnecterThread::slotValueChanged</a></div><div class="ttdeci">void slotValueChanged(int v)</div><div class="ttdoc">emit by zoom menu in the class</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00314">ConnecterThread.cpp:314</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a54b2d699ac91591726c74914c78dc4ee"><div class="ttname"><a href="classCConnecterThread.html#a54b2d699ac91591726c74914c78dc4ee">CConnecterThread::Clean</a></div><div class="ttdeci">virtual int Clean() override</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00064">ConnecterThread.cpp:64</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_a9f475bc6c33075bba7093a963ce0a168"><div class="ttname"><a href="classCConnecterThread.html#a9f475bc6c33075bba7093a963ce0a168">CConnecterThread::DisConnect</a></div><div class="ttdeci">virtual int DisConnect() override</div><div class="ttdoc">emit sigConnected() in CConnectThread::run()</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00216">ConnecterThread.cpp:216</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_aac09e47e1b20bff727b8a18da933f4ce"><div class="ttname"><a href="classCConnecterThread.html#aac09e47e1b20bff727b8a18da933f4ce">CConnecterThread::ServerName</a></div><div class="ttdeci">virtual QString ServerName() override</div><div class="ttdoc">当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00229">ConnecterThread.cpp:229</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_abad29a35e3439b31e66364db6bcdd8ab"><div class="ttname"><a href="classCConnecterThread.html#abad29a35e3439b31e66364db6bcdd8ab">CConnecterThread::Connect</a></div><div class="ttdeci">virtual int Connect() override</div><div class="ttdoc">启动一个后台线程，并建立 CConnect 实例。在 CConnect 中触发 sigConnected()</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00201">ConnecterThread.cpp:201</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html_adce34bf9fd3db863eabce2f945d5215e"><div class="ttname"><a href="classCConnecterThread.html#adce34bf9fd3db863eabce2f945d5215e">CConnecterThread::Save</a></div><div class="ttdeci">virtual int Save(QSettings &amp;set) override</div><div class="ttdoc">保存参数</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8cpp_source.html#l00270">ConnecterThread.cpp:270</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_a6476a0f03c9e3a8bf6a318a82ceb3639"><div class="ttname"><a href="classCConnecter.html#a6476a0f03c9e3a8bf6a318a82ceb3639">CConnecter::Load</a></div><div class="ttdeci">virtual int Load(QSettings &amp;set)</div><div class="ttdoc">加载参数</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00154">Connecter.cpp:154</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_a65475a81bc69e33c93d0a92bcfece93a"><div class="ttname"><a href="classCConnecter.html#a65475a81bc69e33c93d0a92bcfece93a">CConnecter::Clean</a></div><div class="ttdeci">virtual Q_INVOKABLE int Clean()</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00190">Connecter.cpp:190</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_aa3c6cc809f2082f3f4e84153adf83025"><div class="ttname"><a href="classCConnecter.html#aa3c6cc809f2082f3f4e84153adf83025">CConnecter::Save</a></div><div class="ttdeci">virtual int Save(QSettings &amp;set)</div><div class="ttdoc">保存参数</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00163">Connecter.cpp:163</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_ae10d1b4d16e193775af5de7160943d34"><div class="ttname"><a href="classCConnecter.html#ae10d1b4d16e193775af5de7160943d34">CConnecter::Initial</a></div><div class="ttdeci">virtual Q_INVOKABLE int Initial()</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00173">Connecter.cpp:173</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_ae162befe2d934b4900516cc10ad78ec8"><div class="ttname"><a href="classCConnecter.html#ae162befe2d934b4900516cc10ad78ec8">CConnecter::sigViewerFocusIn</a></div><div class="ttdeci">void sigViewerFocusIn(QWidget *pView)</div><div class="ttdoc">视图获得焦点</div></div>
+<div class="ttc" id="aclassCFrmScroll_html"><div class="ttname"><a href="classCFrmScroll.html">CFrmScroll</a></div><div class="ttdoc">The scroll form class</div><div class="ttdef"><b>Definition</b> <a href="FrmScroll_8h_source.html#l00016">FrmScroll.h:17</a></div></div>
+<div class="ttc" id="aclassCFrmViewer_html"><div class="ttname"><a href="classCFrmViewer.html">CFrmViewer</a></div><div class="ttdoc">用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。</div><div class="ttdef"><b>Definition</b> <a href="FrmViewer_8h_source.html#l00047">FrmViewer.h:48</a></div></div>
+<div class="ttc" id="aclassCFrmViewer_html_a7016012fa654d69746418fa635be420a"><div class="ttname"><a href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a></div><div class="ttdeci">ADAPT_WINDOWS</div><div class="ttdoc">窗口适配枚举常量</div><div class="ttdef"><b>Definition</b> <a href="FrmViewer_8h_source.html#l00060">FrmViewer.h:60</a></div></div>
+<div class="ttc" id="aclassCFrmViewer_html_a7016012fa654d69746418fa635be420aa0a52da7a03a6de3beefe54f8c03ad80d"><div class="ttname"><a href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa0a52da7a03a6de3beefe54f8c03ad80d">CFrmViewer::ADAPT_WINDOWS::Original</a></div><div class="ttdeci">@ Original</div><div class="ttdoc">原始桌面大小，桌面的左上点与窗口的左上点对齐</div></div>
+<div class="ttc" id="aclassCFrmViewer_html_a7016012fa654d69746418fa635be420aa4252b72e6ebcd4d4b4c2e46a786f03d2"><div class="ttname"><a href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa4252b72e6ebcd4d4b4c2e46a786f03d2">CFrmViewer::ADAPT_WINDOWS::Zoom</a></div><div class="ttdeci">@ Zoom</div><div class="ttdoc">缩放窗口大小等于桌面大小 * 系数</div></div>
+<div class="ttc" id="aclassCFrmViewer_html_a7016012fa654d69746418fa635be420aa5e0d77efe60959f042294a9513e8f8b6"><div class="ttname"><a href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aa5e0d77efe60959f042294a9513e8f8b6">CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow</a></div><div class="ttdeci">@ KeepAspectRationToWindow</div><div class="ttdoc">保持长宽比缩放到窗口大小,窗口是固定的</div></div>
+<div class="ttc" id="aclassCFrmViewer_html_a7016012fa654d69746418fa635be420aaaf7c8386233eb12ee3db5063b434252e"><div class="ttname"><a href="classCFrmViewer.html#a7016012fa654d69746418fa635be420aaaf7c8386233eb12ee3db5063b434252e">CFrmViewer::ADAPT_WINDOWS::ZoomToWindow</a></div><div class="ttdeci">@ ZoomToWindow</div><div class="ttdoc">桌面缩放到窗口大小，窗口是固定的</div></div>
+<div class="ttc" id="aclassCFrmViewer_html_afd35ed62d031dde1a6efb4378591da21"><div class="ttname"><a href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">CFrmViewer::GetZoomFactor</a></div><div class="ttdeci">double GetZoomFactor() const</div><div class="ttdoc">调整缩放系数。 调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。</div><div class="ttdef"><b>Definition</b> <a href="FrmViewer_8cpp_source.html#l00263">FrmViewer.cpp:263</a></div></div>
+<div class="ttc" id="aclassCPluginClient_html"><div class="ttname"><a href="classCPluginClient.html">CPluginClient</a></div><div class="ttdoc">客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginClient_8h_source.html#l00032">PluginClient.h:33</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

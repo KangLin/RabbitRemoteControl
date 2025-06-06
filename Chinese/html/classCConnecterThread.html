@@ -1,0 +1,1022 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CConnecterThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCConnecterThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CConnecterThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PLUGIN__API.html">客户端插件接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 <a class="el" href="classCPluginClient.html" title="客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。">CPluginClient</a> 派生的插件一起使用，用于连接是阻塞模型的。  
+ <a href="classCConnecterThread.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CConnecterThread 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classCConnecterThread.png" usemap="#CConnecterThread_map" alt=""/>
+  <map id="CConnecterThread_map" name="CConnecterThread_map">
+<area href="classCConnecterConnect.html" title="插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。" alt="CConnecterConnect" shape="rect" coords="259,112,422,136"/>
+<area href="classCConnecter.html" title="连接者应用接口。" alt="CConnecter" shape="rect" coords="259,56,422,80"/>
+<area href="classCConnecterFreeRDP.html" alt="CConnecterFreeRDP" shape="rect" coords="0,224,163,248"/>
+<area href="classCConnecterLibVNCServer.html" alt="CConnecterLibVNCServer" shape="rect" coords="173,224,336,248"/>
+<area href="classCConnecterPlayer.html" alt="CConnecterPlayer" shape="rect" coords="346,224,509,248"/>
+<area href="classCConnecterVnc.html" alt="CConnecterVnc" shape="rect" coords="519,224,682,248"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:abad29a35e3439b31e66364db6bcdd8ab" id="r_abad29a35e3439b31e66364db6bcdd8ab"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#abad29a35e3439b31e66364db6bcdd8ab">Connect</a> () override</td></tr>
+<tr class="memdesc:abad29a35e3439b31e66364db6bcdd8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动一个后台线程，并建立 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 实例。在 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 中触发 <a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f" title="连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件">sigConnected()</a>  <br /></td></tr>
+<tr class="separator:abad29a35e3439b31e66364db6bcdd8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f475bc6c33075bba7093a963ce0a168" id="r_a9f475bc6c33075bba7093a963ce0a168"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a9f475bc6c33075bba7093a963ce0a168">DisConnect</a> () override</td></tr>
+<tr class="memdesc:a9f475bc6c33075bba7093a963ce0a168"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit <a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f" title="连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件">sigConnected()</a> in <a class="el" href="classCConnectThread.html#a41bd2d32a40ac4b36b772d1f43eb52d2">CConnectThread::run()</a>  <br /></td></tr>
+<tr class="separator:a9f475bc6c33075bba7093a963ce0a168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add4ee14a1b8a8d6f435d59846dd83836" id="r_add4ee14a1b8a8d6f435d59846dd83836"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#add4ee14a1b8a8d6f435d59846dd83836">slotScreenShot</a> ()</td></tr>
+<tr class="separator:add4ee14a1b8a8d6f435d59846dd83836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_slots_classCConnecterConnect"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCConnecterConnect')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCConnecterConnect.html">CConnecterConnect</a></td></tr>
+<tr class="memitem:a58dee7fa09505898625f45ba34af512b inherit pub_slots_classCConnecterConnect" id="r_a58dee7fa09505898625f45ba34af512b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a58dee7fa09505898625f45ba34af512b">Connect</a> () override</td></tr>
+<tr class="separator:a58dee7fa09505898625f45ba34af512b inherit pub_slots_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f109db147c71b54f7b81750b1f940d8 inherit pub_slots_classCConnecterConnect" id="r_a0f109db147c71b54f7b81750b1f940d8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a0f109db147c71b54f7b81750b1f940d8">DisConnect</a> () override</td></tr>
+<tr class="memdesc:a0f109db147c71b54f7b81750b1f940d8 inherit pub_slots_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">在此函数中触发 <a class="el" href="classCConnecter.html#a94d21575459fcee33fa23c8477991780" title="断开连接成功信号。仅由插件触发">sigDisconnected()</a>  <br /></td></tr>
+<tr class="separator:a0f109db147c71b54f7b81750b1f940d8 inherit pub_slots_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_slots_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCConnecter')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:ae1b13c7a656217d1fb48676755b232e5 inherit pub_slots_classCConnecter" id="r_ae1b13c7a656217d1fb48676755b232e5"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#ae1b13c7a656217d1fb48676755b232e5">Connect</a> ()=0</td></tr>
+<tr class="memdesc:ae1b13c7a656217d1fb48676755b232e5 inherit pub_slots_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始连接  <br /></td></tr>
+<tr class="separator:ae1b13c7a656217d1fb48676755b232e5 inherit pub_slots_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23807f9c3949298bddcc8aa76b6889b4 inherit pub_slots_classCConnecter" id="r_a23807f9c3949298bddcc8aa76b6889b4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a23807f9c3949298bddcc8aa76b6889b4">DisConnect</a> ()=0</td></tr>
+<tr class="memdesc:a23807f9c3949298bddcc8aa76b6889b4 inherit pub_slots_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭连接  <br /></td></tr>
+<tr class="separator:a23807f9c3949298bddcc8aa76b6889b4 inherit pub_slots_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a2c9656dea81257fd54623acf59022075" id="r_a2c9656dea81257fd54623acf59022075"><td class="memItemLeft" align="right" valign="top"><a id="a2c9656dea81257fd54623acf59022075" name="a2c9656dea81257fd54623acf59022075"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CConnecterThread</b> (<a class="el" href="classCPluginClient.html">CPluginClient</a> *plugin)</td></tr>
+<tr class="separator:a2c9656dea81257fd54623acf59022075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11971294a654f2c7ef41b67acf4463e6" id="r_a11971294a654f2c7ef41b67acf4463e6"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a11971294a654f2c7ef41b67acf4463e6">GetViewer</a> () override</td></tr>
+<tr class="memdesc:a11971294a654f2c7ef41b67acf4463e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到显示视图  <br /></td></tr>
+<tr class="separator:a11971294a654f2c7ef41b67acf4463e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCConnecterConnect"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCConnecterConnect')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCConnecterConnect.html">CConnecterConnect</a></td></tr>
+<tr class="memitem:a088f44ca125fe6905edda7c3f81aaffe inherit pub_methods_classCConnecterConnect" id="r_a088f44ca125fe6905edda7c3f81aaffe"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CConnecterConnect</b> (<a class="el" href="classCPluginClient.html">CPluginClient</a> *plugin)</td></tr>
+<tr class="separator:a088f44ca125fe6905edda7c3f81aaffe inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a066db63854472a51ac63f5b6448e0a45 inherit pub_methods_classCConnecterConnect" id="r_a066db63854472a51ac63f5b6448e0a45"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a066db63854472a51ac63f5b6448e0a45">Id</a> () override</td></tr>
+<tr class="memdesc:a066db63854472a51ac63f5b6448e0a45 inherit pub_methods_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identity  <br /></td></tr>
+<tr class="separator:a066db63854472a51ac63f5b6448e0a45 inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65aada6aeb9d22cec8059e2e25d64ac6 inherit pub_methods_classCConnecterConnect" id="r_a65aada6aeb9d22cec8059e2e25d64ac6"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a65aada6aeb9d22cec8059e2e25d64ac6">Name</a> () override</td></tr>
+<tr class="memdesc:a65aada6aeb9d22cec8059e2e25d64ac6 inherit pub_methods_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示顺序：  <br /></td></tr>
+<tr class="separator:a65aada6aeb9d22cec8059e2e25d64ac6 inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4192022f90fc474c5c76d43b909b48af inherit pub_methods_classCConnecterConnect" id="r_a4192022f90fc474c5c76d43b909b48af"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a4192022f90fc474c5c76d43b909b48af">Description</a> () override</td></tr>
+<tr class="memdesc:a4192022f90fc474c5c76d43b909b48af inherit pub_methods_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description  <br /></td></tr>
+<tr class="separator:a4192022f90fc474c5c76d43b909b48af inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad883c941092bc9f9dbcb85b471bed7ab inherit pub_methods_classCConnecterConnect" id="r_ad883c941092bc9f9dbcb85b471bed7ab"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCConnect.html">CConnect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#ad883c941092bc9f9dbcb85b471bed7ab">InstanceConnect</a> ()=0</td></tr>
+<tr class="memdesc:ad883c941092bc9f9dbcb85b471bed7ab inherit pub_methods_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 对象。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。  <br /></td></tr>
+<tr class="separator:ad883c941092bc9f9dbcb85b471bed7ab inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605a69c318ef33e349d937cdf58e6678 inherit pub_methods_classCConnecterConnect" id="r_a605a69c318ef33e349d937cdf58e6678"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCParameterBase.html">CParameterBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#a605a69c318ef33e349d937cdf58e6678">GetParameter</a> ()</td></tr>
+<tr class="memdesc:a605a69c318ef33e349d937cdf58e6678 inherit pub_methods_classCConnecterConnect"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get parameter  <br /></td></tr>
+<tr class="separator:a605a69c318ef33e349d937cdf58e6678 inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa019d85f1de5c2d7fa6ac90abb4f4f29 inherit pub_methods_classCConnecterConnect" id="r_aa019d85f1de5c2d7fa6ac90abb4f4f29"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterConnect.html#aa019d85f1de5c2d7fa6ac90abb4f4f29">SetParameter</a> (<a class="el" href="classCParameterBase.html">CParameterBase</a> *p)</td></tr>
+<tr class="separator:aa019d85f1de5c2d7fa6ac90abb4f4f29 inherit pub_methods_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCConnecter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:a79e06595d719070c80588a4e24abeeed inherit pub_methods_classCConnecter" id="r_a79e06595d719070c80588a4e24abeeed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a79e06595d719070c80588a4e24abeeed">CConnecter</a> (<a class="el" href="classCPluginClient.html">CPluginClient</a> *plugin)</td></tr>
+<tr class="separator:a79e06595d719070c80588a4e24abeeed inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9cbf4d6012fe5b86392645f1ba1fcd1 inherit pub_methods_classCConnecter" id="r_ac9cbf4d6012fe5b86392645f1ba1fcd1"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#ac9cbf4d6012fe5b86392645f1ba1fcd1">Protocol</a> () const</td></tr>
+<tr class="memdesc:ac9cbf4d6012fe5b86392645f1ba1fcd1 inherit pub_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol  <br /></td></tr>
+<tr class="separator:ac9cbf4d6012fe5b86392645f1ba1fcd1 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb9135eb276075b83af6068f7f9e3d0 inherit pub_methods_classCConnecter" id="r_a7bb9135eb276075b83af6068f7f9e3d0"><td class="memItemLeft" align="right" valign="top">virtual qint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a7bb9135eb276075b83af6068f7f9e3d0">Version</a> ()=0</td></tr>
+<tr class="memdesc:a7bb9135eb276075b83af6068f7f9e3d0 inherit pub_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version  <br /></td></tr>
+<tr class="separator:a7bb9135eb276075b83af6068f7f9e3d0 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24cc785d1664fda790e4e8a4dc990113 inherit pub_methods_classCConnecter" id="r_a24cc785d1664fda790e4e8a4dc990113"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a24cc785d1664fda790e4e8a4dc990113">Icon</a> () const</td></tr>
+<tr class="memdesc:a24cc785d1664fda790e4e8a4dc990113 inherit pub_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon  <br /></td></tr>
+<tr class="separator:a24cc785d1664fda790e4e8a4dc990113 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e1e66f8cb1b16260c8360bad098121 inherit pub_methods_classCConnecter" id="r_a79e1e66f8cb1b16260c8360bad098121"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a79e1e66f8cb1b16260c8360bad098121">OpenDialogSettings</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:a79e1e66f8cb1b16260c8360bad098121 inherit pub_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">打开设置对话框  <br /></td></tr>
+<tr class="separator:a79e1e66f8cb1b16260c8360bad098121 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade8a1133d1f5e37ec6cf8bdbe1350059 inherit pub_methods_classCConnecter" id="r_ade8a1133d1f5e37ec6cf8bdbe1350059"><td class="memItemLeft" align="right" valign="top">virtual QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#ade8a1133d1f5e37ec6cf8bdbe1350059">GetMenu</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:ade8a1133d1f5e37ec6cf8bdbe1350059 inherit pub_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get operate menu  <br /></td></tr>
+<tr class="separator:ade8a1133d1f5e37ec6cf8bdbe1350059 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ad3b56da55f0450db18d0118a5fb539 inherit pub_methods_classCConnecter" id="r_a1ad3b56da55f0450db18d0118a5fb539"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a1ad3b56da55f0450db18d0118a5fb539">GetSettingsFile</a> ()</td></tr>
+<tr class="separator:a1ad3b56da55f0450db18d0118a5fb539 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c59a2cdac5dcacc0db7f50ef8adba8 inherit pub_methods_classCConnecter" id="r_a58c59a2cdac5dcacc0db7f50ef8adba8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a58c59a2cdac5dcacc0db7f50ef8adba8">SetSettingsFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a58c59a2cdac5dcacc0db7f50ef8adba8 inherit pub_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:aac09e47e1b20bff727b8a18da933f4ce" id="r_aac09e47e1b20bff727b8a18da933f4ce"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#aac09e47e1b20bff727b8a18da933f4ce">ServerName</a> () override</td></tr>
+<tr class="memdesc:aac09e47e1b20bff727b8a18da933f4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口  <br /></td></tr>
+<tr class="separator:aac09e47e1b20bff727b8a18da933f4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ffa557941d9b41ac56fe638648b3252" id="r_a3ffa557941d9b41ac56fe638648b3252"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a3ffa557941d9b41ac56fe638648b3252">Initial</a> () override</td></tr>
+<tr class="memdesc:a3ffa557941d9b41ac56fe638648b3252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial parameters and resource  <br /></td></tr>
+<tr class="separator:a3ffa557941d9b41ac56fe638648b3252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b2d699ac91591726c74914c78dc4ee" id="r_a54b2d699ac91591726c74914c78dc4ee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a54b2d699ac91591726c74914c78dc4ee">Clean</a> () override</td></tr>
+<tr class="memdesc:a54b2d699ac91591726c74914c78dc4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean parameters and resource  <br /></td></tr>
+<tr class="separator:a54b2d699ac91591726c74914c78dc4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01bdbb25a36d90c2417a65e19460906e" id="r_a01bdbb25a36d90c2417a65e19460906e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a01bdbb25a36d90c2417a65e19460906e">Load</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:a01bdbb25a36d90c2417a65e19460906e"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数  <br /></td></tr>
+<tr class="separator:a01bdbb25a36d90c2417a65e19460906e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce34bf9fd3db863eabce2f945d5215e" id="r_adce34bf9fd3db863eabce2f945d5215e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#adce34bf9fd3db863eabce2f945d5215e">Save</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:adce34bf9fd3db863eabce2f945d5215e"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数  <br /></td></tr>
+<tr class="separator:adce34bf9fd3db863eabce2f945d5215e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43120208624c8951402455165c84a57" id="r_af43120208624c8951402455165c84a57"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#af43120208624c8951402455165c84a57">InitialMenu</a> ()</td></tr>
+<tr class="separator:af43120208624c8951402455165c84a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCConnecter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:aab706ef8cadd19781e932ec70b5cec64 inherit pro_methods_classCConnecter" id="r_aab706ef8cadd19781e932ec70b5cec64"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#aab706ef8cadd19781e932ec70b5cec64">SetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *p)</td></tr>
+<tr class="memdesc:aab706ef8cadd19781e932ec70b5cec64 inherit pro_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置参数  <br /></td></tr>
+<tr class="separator:aab706ef8cadd19781e932ec70b5cec64 inherit pro_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31fd3c7df1181c34da2998cd3e91d9f inherit pro_methods_classCConnecter" id="r_ac31fd3c7df1181c34da2998cd3e91d9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameter.html">CParameter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#ac31fd3c7df1181c34da2998cd3e91d9f">GetParameter</a> ()</td></tr>
+<tr class="separator:ac31fd3c7df1181c34da2998cd3e91d9f inherit pro_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1896bf2d3d7581024f44cd8988681f6f inherit pro_methods_classCConnecter" id="r_a1896bf2d3d7581024f44cd8988681f6f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="el" href="classCPluginClient.html">CPluginClient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a1896bf2d3d7581024f44cd8988681f6f">GetPlugClient</a> () const</td></tr>
+<tr class="separator:a1896bf2d3d7581024f44cd8988681f6f inherit pro_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97741c50c8af945d808a7689a4a16fe9 inherit pro_methods_classCConnecter" id="r_a97741c50c8af945d808a7689a4a16fe9"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a97741c50c8af945d808a7689a4a16fe9">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:a97741c50c8af945d808a7689a4a16fe9 inherit pro_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件中加载参数  <br /></td></tr>
+<tr class="separator:a97741c50c8af945d808a7689a4a16fe9 inherit pro_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f52456d6b51478f90e02a0724ca6197 inherit pro_methods_classCConnecter" id="r_a6f52456d6b51478f90e02a0724ca6197"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a6f52456d6b51478f90e02a0724ca6197">Save</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:a6f52456d6b51478f90e02a0724ca6197 inherit pro_methods_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存参数到文件中  <br /></td></tr>
+<tr class="separator:a6f52456d6b51478f90e02a0724ca6197 inherit pro_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a0266306d2cc3702d82952fcbe2c103c8" id="r_a0266306d2cc3702d82952fcbe2c103c8"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a0266306d2cc3702d82952fcbe2c103c8">m_pMenuZoom</a></td></tr>
+<tr class="separator:a0266306d2cc3702d82952fcbe2c103c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de35baac92a73cf2e7f9088a1dbf161" id="r_a4de35baac92a73cf2e7f9088a1dbf161"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a4de35baac92a73cf2e7f9088a1dbf161">m_pZoomToWindow</a></td></tr>
+<tr class="separator:a4de35baac92a73cf2e7f9088a1dbf161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afefdcb76ff84133083419c03e5b0c139" id="r_afefdcb76ff84133083419c03e5b0c139"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#afefdcb76ff84133083419c03e5b0c139">m_pZoomAspectRatio</a></td></tr>
+<tr class="separator:afefdcb76ff84133083419c03e5b0c139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2fc000d1d53eba7deffdd7f4a892ef" id="r_a5c2fc000d1d53eba7deffdd7f4a892ef"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a5c2fc000d1d53eba7deffdd7f4a892ef">m_pZoomOriginal</a></td></tr>
+<tr class="separator:a5c2fc000d1d53eba7deffdd7f4a892ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a3fbe1aa5328563129bd9fa7a8a7131" id="r_a9a3fbe1aa5328563129bd9fa7a8a7131"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a9a3fbe1aa5328563129bd9fa7a8a7131">m_pZoomIn</a></td></tr>
+<tr class="separator:a9a3fbe1aa5328563129bd9fa7a8a7131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa61669d849b75a5359b65fda52d4b8" id="r_a2fa61669d849b75a5359b65fda52d4b8"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a2fa61669d849b75a5359b65fda52d4b8">m_pZoomOut</a></td></tr>
+<tr class="separator:a2fa61669d849b75a5359b65fda52d4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add8a442d8e6a32bb5171b192529c5532" id="r_add8a442d8e6a32bb5171b192529c5532"><td class="memItemLeft" align="right" valign="top">QSpinBox *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#add8a442d8e6a32bb5171b192529c5532">m_psbZoomFactor</a></td></tr>
+<tr class="separator:add8a442d8e6a32bb5171b192529c5532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a827293c188776079919804e9b85b552d" id="r_a827293c188776079919804e9b85b552d"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a827293c188776079919804e9b85b552d">m_pScreenShot</a></td></tr>
+<tr class="separator:a827293c188776079919804e9b85b552d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCConnecter')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:a7ed8fa25e27ef4c4ac7e5193f388a706 inherit pro_attribs_classCConnecter" id="r_a7ed8fa25e27ef4c4ac7e5193f388a706"><td class="memItemLeft" align="right" valign="top">QMenu&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a7ed8fa25e27ef4c4ac7e5193f388a706">m_Menu</a></td></tr>
+<tr class="separator:a7ed8fa25e27ef4c4ac7e5193f388a706 inherit pro_attribs_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a686fbfde2f89daf35792a4831290c2e6 inherit pro_attribs_classCConnecter" id="r_a686fbfde2f89daf35792a4831290c2e6"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a686fbfde2f89daf35792a4831290c2e6">m_pSettings</a></td></tr>
+<tr class="separator:a686fbfde2f89daf35792a4831290c2e6 inherit pro_attribs_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a524aa3a8a05a6208f41f11028773b6e9" id="r_a524aa3a8a05a6208f41f11028773b6e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a524aa3a8a05a6208f41f11028773b6e9">slotValueChanged</a> (int v)</td></tr>
+<tr class="memdesc:a524aa3a8a05a6208f41f11028773b6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit by zoom menu in the class  <br /></td></tr>
+<tr class="separator:a524aa3a8a05a6208f41f11028773b6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff8bfff7c9de98ef7ecc9825ee6ede70" id="r_aff8bfff7c9de98ef7ecc9825ee6ede70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#aff8bfff7c9de98ef7ecc9825ee6ede70">slotShortcutCtlAltDel</a> ()</td></tr>
+<tr class="separator:aff8bfff7c9de98ef7ecc9825ee6ede70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeed58d623d321cc736faee92f56fffd8" id="r_aeed58d623d321cc736faee92f56fffd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#aeed58d623d321cc736faee92f56fffd8">slotShortcutLock</a> ()</td></tr>
+<tr class="separator:aeed58d623d321cc736faee92f56fffd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a0301ad0cf719f5daad2f34f1c18ff846" id="r_a0301ad0cf719f5daad2f34f1c18ff846"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCConnectThread.html">CConnectThread</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a0301ad0cf719f5daad2f34f1c18ff846">m_pThread</a></td></tr>
+<tr class="separator:a0301ad0cf719f5daad2f34f1c18ff846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9ed4cdb50e53865551e2960fc8b6d9a" id="r_ad9ed4cdb50e53865551e2960fc8b6d9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html">CFrmViewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#ad9ed4cdb50e53865551e2960fc8b6d9a">m_pFrmViewer</a></td></tr>
+<tr class="separator:ad9ed4cdb50e53865551e2960fc8b6d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d80ca9f9feb166ae39e45a74c11644" id="r_a41d80ca9f9feb166ae39e45a74c11644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmScroll.html">CFrmScroll</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecterThread.html#a41d80ca9f9feb166ae39e45a74c11644">m_pScroll</a></td></tr>
+<tr class="separator:a41d80ca9f9feb166ae39e45a74c11644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCConnecterConnect"><td colspan="2" onclick="javascript:toggleInherit('signals_classCConnecterConnect')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCConnecterConnect.html">CConnecterConnect</a></td></tr>
+<tr class="memitem:aea85a409525aa97cb74366f7df36e51a inherit signals_classCConnecterConnect" id="r_aea85a409525aa97cb74366f7df36e51a"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigOpenConnect</b> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *)</td></tr>
+<tr class="separator:aea85a409525aa97cb74366f7df36e51a inherit signals_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6ae29a99fb4c237bd9fbc0c13a5b72 inherit signals_classCConnecterConnect" id="r_acc6ae29a99fb4c237bd9fbc0c13a5b72"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigCloseconnect</b> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *)</td></tr>
+<tr class="separator:acc6ae29a99fb4c237bd9fbc0c13a5b72 inherit signals_classCConnecterConnect"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCConnecter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:a3399ba54112b1fabe133ac204a726f6f inherit signals_classCConnecter" id="r_a3399ba54112b1fabe133ac204a726f6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f">sigConnected</a> ()</td></tr>
+<tr class="memdesc:a3399ba54112b1fabe133ac204a726f6f inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件  <br /></td></tr>
+<tr class="separator:a3399ba54112b1fabe133ac204a726f6f inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba9467320f4244675d3cca45daf937d0 inherit signals_classCConnecter" id="r_aba9467320f4244675d3cca45daf937d0"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDisconnect</b> ()</td></tr>
+<tr class="memdesc:aba9467320f4244675d3cca45daf937d0 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知用户断开连接。仅由插件触发。 当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。 当应用接收到此信号后，调用 <a class="el" href="classCConnecter.html#a23807f9c3949298bddcc8aa76b6889b4" title="关闭连接">DisConnect()</a> 关闭连接。 <br /></td></tr>
+<tr class="separator:aba9467320f4244675d3cca45daf937d0 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d21575459fcee33fa23c8477991780 inherit signals_classCConnecter" id="r_a94d21575459fcee33fa23c8477991780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a94d21575459fcee33fa23c8477991780">sigDisconnected</a> ()</td></tr>
+<tr class="memdesc:a94d21575459fcee33fa23c8477991780 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">断开连接成功信号。仅由插件触发  <br /></td></tr>
+<tr class="separator:a94d21575459fcee33fa23c8477991780 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae162befe2d934b4900516cc10ad78ec8 inherit signals_classCConnecter" id="r_ae162befe2d934b4900516cc10ad78ec8"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigViewerFocusIn</b> (QWidget *pView)</td></tr>
+<tr class="memdesc:ae162befe2d934b4900516cc10ad78ec8 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">视图获得焦点 <br /></td></tr>
+<tr class="separator:ae162befe2d934b4900516cc10ad78ec8 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b79a9aa7448a14330a18c6dfe1d5f9e inherit signals_classCConnecter" id="r_a0b79a9aa7448a14330a18c6dfe1d5f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a0b79a9aa7448a14330a18c6dfe1d5f9e">sigUpdateName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:a0b79a9aa7448a14330a18c6dfe1d5f9e inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd84121829ba0819c61b34d5c2a485b0 inherit signals_classCConnecter" id="r_afd84121829ba0819c61b34d5c2a485b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#afd84121829ba0819c61b34d5c2a485b0">sigUpdateParameters</a> (<a class="el" href="classCConnecter.html">CConnecter</a> *pConnecter)</td></tr>
+<tr class="memdesc:afd84121829ba0819c61b34d5c2a485b0 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新参数，通知应用程序保存或显示参数  <br /></td></tr>
+<tr class="separator:afd84121829ba0819c61b34d5c2a485b0 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbbc72e5296705979815e871017c8238 inherit signals_classCConnecter" id="r_adbbc72e5296705979815e871017c8238"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (const int nError, const QString &amp;szError)</td></tr>
+<tr class="memdesc:adbbc72e5296705979815e871017c8238 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发。 <br /></td></tr>
+<tr class="separator:adbbc72e5296705979815e871017c8238 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af594d49db5b65702e4bc80babbebafb6 inherit signals_classCConnecter" id="r_af594d49db5b65702e4bc80babbebafb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#af594d49db5b65702e4bc80babbebafb6">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:af594d49db5b65702e4bc80babbebafb6 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">中主窗口中显示信息  <br /></td></tr>
+<tr class="separator:af594d49db5b65702e4bc80babbebafb6 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6910b831d98738084475b96fb576e0 inherit signals_classCConnecter" id="r_adf6910b831d98738084475b96fb576e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#adf6910b831d98738084475b96fb576e0">sigShowMessageBox</a> (const QString &amp;title, const QString &amp;message, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:adf6910b831d98738084475b96fb576e0 inherit signals_classCConnecter"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:adf6910b831d98738084475b96fb576e0 inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631e5e279f5e9ded8dea8b316e6f86cb inherit signals_classCConnecter" id="r_a631e5e279f5e9ded8dea8b316e6f86cb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigClipBoardChanged</b> ()</td></tr>
+<tr class="separator:a631e5e279f5e9ded8dea8b316e6f86cb inherit signals_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_methods_classCConnecter"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classCConnecter')"><img src="closed.png" alt="-"/>&#160;静态 Protected 成员函数 继承自 <a class="el" href="classCConnecter.html">CConnecter</a></td></tr>
+<tr class="memitem:a99b703d6409a19dd70fc63255e8ce947 inherit pro_static_methods_classCConnecter" id="r_a99b703d6409a19dd70fc63255e8ce947"><td class="memItemLeft" align="right" valign="top">static QObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnecter.html#a99b703d6409a19dd70fc63255e8ce947">createObject</a> (const QString &amp;className, QObject *parent=NULL)</td></tr>
+<tr class="separator:a99b703d6409a19dd70fc63255e8ce947 inherit pro_static_methods_classCConnecter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 <a class="el" href="classCPluginClient.html" title="客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。">CPluginClient</a> 派生的插件一起使用，用于连接是阻塞模型的。 </p>
+<p>原理：在 <a class="el" href="classCConnecterThread.html#abad29a35e3439b31e66364db6bcdd8ab" title="启动一个后台线程，并建立 CConnect 实例。在 CConnect 中触发 sigConnected()">Connect()</a> 中启动一个后台线程 <a class="el" href="classCConnectThread.html" title="此类仅用于 CConnecterThread 。 一个线程只处理一个连接">CConnectThread</a> 。 在线程中调用 <a class="el" href="classCConnecterConnect.html#ad883c941092bc9f9dbcb85b471bed7ab" title="新建 CConnect 对象。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。">InstanceConnect()</a> 实例化 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> ， 并在 <a class="el" href="classCConnect.html#ad4044f80dafaf48c3073f6a5c789331d" title="开始连接。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">CConnect::Connect()</a> 启动定时器， 此定时器在后台线程中调用，通过对定时器的操作，实现一个非 Qt 事件循环(可能会阻塞)，详见 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 。 并且 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。</p>
+<p>序列图：</p><div class="image">
+<object type="image/svg+xml" data="PluginClientBlockSequenceDiagram.svg" style="pointer-events: none;"></object>
+</div>
+<dl class="section note"><dt>注解</dt><dd>此接口仅由插件实现。 <br  />
+ 此接口实例运行在主线程(UI线程)中。 <br  />
+ 具体的插件需要实现下面接口：<ol type="1">
+<li>实现 <a class="el" href="classCConnecterConnect.html#ad883c941092bc9f9dbcb85b471bed7ab" title="新建 CConnect 对象。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。">InstanceConnect()</a> ，生成连接对象。连接对象运行在后台线程中。</li>
+</ol>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> <a class="el" href="classCConnectThread.html" title="此类仅用于 CConnecterThread 。 一个线程只处理一个连接">CConnectThread</a> <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> <a class="el" href="classCPluginClient.html" title="客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。">CPluginClient</a> <a class="el" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。">CFrmViewer</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00056">56</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a93db2b82f88cf3400e627f8eb2cf29cd" name="a93db2b82f88cf3400e627f8eb2cf29cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93db2b82f88cf3400e627f8eb2cf29cd">&#9670;&#160;</a></span>~CConnecterThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CConnecterThread::~CConnecterThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a54b2d699ac91591726c74914c78dc4ee" name="a54b2d699ac91591726c74914c78dc4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54b2d699ac91591726c74914c78dc4ee">&#9670;&#160;</a></span>Clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::Clean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clean parameters and resource </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCClient.html#ab0b63e490609694baff826303b8458c3" title="Delete CConnecter">CClient::DeleteConnecter</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCConnecter.html#a65475a81bc69e33c93d0a92bcfece93a">CConnecter</a> .</p>
+
+<p>被 <a class="el" href="classCConnecterFreeRDP.html#af0f9174fd167868511113214d2cf5869">CConnecterFreeRDP</a>, <a class="el" href="classCConnecterLibVNCServer.html#a9bfb160d9450f964e585f3efc3695752">CConnecterLibVNCServer</a>, <a class="el" href="classCConnecterPlayer.html#a5eac6a582055e90dc42ccaec16a24a09">CConnecterPlayer</a> , 以及 <a class="el" href="classCConnecterVnc.html#a71f155eed0d83688768fb97cfddc8a84">CConnecterVnc</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abad29a35e3439b31e66364db6bcdd8ab" name="abad29a35e3439b31e66364db6bcdd8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad29a35e3439b31e66364db6bcdd8ab">&#9670;&#160;</a></span>Connect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::Connect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>启动一个后台线程，并建立 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 实例。在 <a class="el" href="classCConnect.html" title="连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...">CConnect</a> 中触发 <a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f" title="连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件">sigConnected()</a> </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCConnectThread.html" title="此类仅用于 CConnecterThread 。 一个线程只处理一个连接">CConnectThread</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00201">201</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9f475bc6c33075bba7093a963ce0a168" name="a9f475bc6c33075bba7093a963ce0a168"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f475bc6c33075bba7093a963ce0a168">&#9670;&#160;</a></span>DisConnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::DisConnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>emit <a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f" title="连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件">sigConnected()</a> in <a class="el" href="classCConnectThread.html#a41bd2d32a40ac4b36b772d1f43eb52d2">CConnectThread::run()</a> </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCConnectThread.html" title="此类仅用于 CConnecterThread 。 一个线程只处理一个连接">CConnectThread</a> <a class="el" href="classCConnectThread.html#a41bd2d32a40ac4b36b772d1f43eb52d2">CConnectThread::run()</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11971294a654f2c7ef41b67acf4463e6" name="a11971294a654f2c7ef41b67acf4463e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11971294a654f2c7ef41b67acf4463e6">&#9670;&#160;</a></span>GetViewer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget * CConnecterThread::GetViewer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>得到显示视图 </p>
+<dl class="section return"><dt>返回</dt><dd>QWidget*: 视图指针。它的所有者是本类或其派生类的实例</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCConnecter.html#a3399ba54112b1fabe133ac204a726f6f" title="连接成功信号。仅由插件触发。 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件">sigConnected</a> CFrmViewer::CFrmViewer </dd></dl>
+
+<p>实现了 <a class="el" href="classCConnecter.html#a7c0ed151c37e50f082150b5c0497d37a">CConnecter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3ffa557941d9b41ac56fe638648b3252" name="a3ffa557941d9b41ac56fe638648b3252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ffa557941d9b41ac56fe638648b3252">&#9670;&#160;</a></span>Initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::Initial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial parameters and resource </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCClient.html#a3cc3b315e8244e7283e3ba2b760df1d0" title="新建 CConnecter 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleConnecter()　须释放指针。 调用者必须连接信号 CConnecter::sigDisconnecte...">CClient::CreateConnecter</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCConnecter.html#ae10d1b4d16e193775af5de7160943d34">CConnecter</a> .</p>
+
+<p>被 <a class="el" href="classCConnecterFreeRDP.html#a15ce2f51af2ef5bc686a1442c408e890">CConnecterFreeRDP</a>, <a class="el" href="classCConnecterLibVNCServer.html#a338935599c65ef2af41b10796ef1e40b">CConnecterLibVNCServer</a>, <a class="el" href="classCConnecterPlayer.html#ad717741e0851eb5f4eb438e2bad9c1af">CConnecterPlayer</a> , 以及 <a class="el" href="classCConnecterVnc.html#ac70c49966ee78d61b5deacee3d202179">CConnecterVnc</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af43120208624c8951402455165c84a57" name="af43120208624c8951402455165c84a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af43120208624c8951402455165c84a57">&#9670;&#160;</a></span>InitialMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::InitialMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a01bdbb25a36d90c2417a65e19460906e" name="a01bdbb25a36d90c2417a65e19460906e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01bdbb25a36d90c2417a65e19460906e">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::Load </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>加载参数 </p>
+
+<p>重载 <a class="el" href="classCConnecter.html#a6476a0f03c9e3a8bf6a318a82ceb3639">CConnecter</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00242">242</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adce34bf9fd3db863eabce2f945d5215e" name="adce34bf9fd3db863eabce2f945d5215e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adce34bf9fd3db863eabce2f945d5215e">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnecterThread::Save </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>保存参数 </p>
+
+<p>重载 <a class="el" href="classCConnecter.html#aa3c6cc809f2082f3f4e84153adf83025">CConnecter</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00270">270</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac09e47e1b20bff727b8a18da933f4ce" name="aac09e47e1b20bff727b8a18da933f4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac09e47e1b20bff727b8a18da933f4ce">&#9670;&#160;</a></span>ServerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CConnecterThread::ServerName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口 </p>
+<dl class="section return"><dt>返回</dt><dd>返回服务名 </dd></dl>
+
+<p>重载 <a class="el" href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">CConnecterConnect</a> .</p>
+
+<p>被 <a class="el" href="classCConnecterVnc.html#a4bba7802ff2283ca1deab3d412d287e1">CConnecterVnc</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00229">229</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add4ee14a1b8a8d6f435d59846dd83836" name="add4ee14a1b8a8d6f435d59846dd83836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add4ee14a1b8a8d6f435d59846dd83836">&#9670;&#160;</a></span>slotScreenShot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnecterThread::slotScreenShot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00321">321</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff8bfff7c9de98ef7ecc9825ee6ede70" name="aff8bfff7c9de98ef7ecc9825ee6ede70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff8bfff7c9de98ef7ecc9825ee6ede70">&#9670;&#160;</a></span>slotShortcutCtlAltDel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnecterThread::slotShortcutCtlAltDel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00336">336</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeed58d623d321cc736faee92f56fffd8" name="aeed58d623d321cc736faee92f56fffd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeed58d623d321cc736faee92f56fffd8">&#9670;&#160;</a></span>slotShortcutLock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnecterThread::slotShortcutLock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00350">350</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a524aa3a8a05a6208f41f11028773b6e9" name="a524aa3a8a05a6208f41f11028773b6e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a524aa3a8a05a6208f41f11028773b6e9">&#9670;&#160;</a></span>slotValueChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnecterThread::slotValueChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>emit by zoom menu in the class </p>
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a> 第 <a class="el" href="ConnecterThread_8cpp_source.html#l00314">314</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ad9ed4cdb50e53865551e2960fc8b6d9a" name="ad9ed4cdb50e53865551e2960fc8b6d9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9ed4cdb50e53865551e2960fc8b6d9a">&#9670;&#160;</a></span>m_pFrmViewer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html">CFrmViewer</a>* CConnecterThread::m_pFrmViewer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0266306d2cc3702d82952fcbe2c103c8" name="a0266306d2cc3702d82952fcbe2c103c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0266306d2cc3702d82952fcbe2c103c8">&#9670;&#160;</a></span>m_pMenuZoom</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pMenuZoom</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00112">112</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add8a442d8e6a32bb5171b192529c5532" name="add8a442d8e6a32bb5171b192529c5532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add8a442d8e6a32bb5171b192529c5532">&#9670;&#160;</a></span>m_psbZoomFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSpinBox* CConnecterThread::m_psbZoomFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a827293c188776079919804e9b85b552d" name="a827293c188776079919804e9b85b552d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a827293c188776079919804e9b85b552d">&#9670;&#160;</a></span>m_pScreenShot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pScreenShot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41d80ca9f9feb166ae39e45a74c11644" name="a41d80ca9f9feb166ae39e45a74c11644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d80ca9f9feb166ae39e45a74c11644">&#9670;&#160;</a></span>m_pScroll</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmScroll.html">CFrmScroll</a>* CConnecterThread::m_pScroll</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0301ad0cf719f5daad2f34f1c18ff846" name="a0301ad0cf719f5daad2f34f1c18ff846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0301ad0cf719f5daad2f34f1c18ff846">&#9670;&#160;</a></span>m_pThread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCConnectThread.html">CConnectThread</a>* CConnecterThread::m_pThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afefdcb76ff84133083419c03e5b0c139" name="afefdcb76ff84133083419c03e5b0c139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefdcb76ff84133083419c03e5b0c139">&#9670;&#160;</a></span>m_pZoomAspectRatio</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pZoomAspectRatio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a3fbe1aa5328563129bd9fa7a8a7131" name="a9a3fbe1aa5328563129bd9fa7a8a7131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a3fbe1aa5328563129bd9fa7a8a7131">&#9670;&#160;</a></span>m_pZoomIn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pZoomIn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5c2fc000d1d53eba7deffdd7f4a892ef" name="a5c2fc000d1d53eba7deffdd7f4a892ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c2fc000d1d53eba7deffdd7f4a892ef">&#9670;&#160;</a></span>m_pZoomOriginal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pZoomOriginal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2fa61669d849b75a5359b65fda52d4b8" name="a2fa61669d849b75a5359b65fda52d4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa61669d849b75a5359b65fda52d4b8">&#9670;&#160;</a></span>m_pZoomOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pZoomOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4de35baac92a73cf2e7f9088a1dbf161" name="a4de35baac92a73cf2e7f9088a1dbf161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de35baac92a73cf2e7f9088a1dbf161">&#9670;&#160;</a></span>m_pZoomToWindow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CConnecterThread::m_pZoomToWindow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a> 第 <a class="el" href="ConnecterThread_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="ConnecterThread_8h_source.html">ConnecterThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="ConnecterThread_8cpp_source.html">ConnecterThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
