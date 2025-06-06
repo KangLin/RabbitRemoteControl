@@ -41,7 +41,7 @@ jobs:
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: ${{matrix.qt_modules}}
-      VCPKGGITCOMMITID: 6760f636e7bcd0dd034c5c0906f6174009465c29
+      VCPKGGITCOMMITID: 5a2324f6667233aeb903d3117f6fd259a2be6f8b
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
