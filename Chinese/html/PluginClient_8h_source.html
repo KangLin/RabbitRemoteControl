@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/PluginClient.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">PluginClient.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef CPLUGINCLIENT_H_KL_2021_07_23</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define CPLUGINCLIENT_H_KL_2021_07_23</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QIcon&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Connecter.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QTranslator&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classCPluginClient.html">   32</a></span><span class="keyword">class </span>CLIENT_EXPORT <a class="code hl_class" href="classCPluginClient.html">CPluginClient</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    Q_OBJECT</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classCPluginClient.html#ae0646989bbd8183af945557b9016ce2e">   48</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classCPluginClient.html#ae0646989bbd8183af945557b9016ce2e">CPluginClient</a>(QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCPluginClient.html">~CPluginClient</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString Id() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd">   65</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd">Protocol</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256">   70</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256">Name</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString DisplayName() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classCPluginClient.html#a44d5e732c7155e384114b066f668b0bb">   76</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginClient.html#a44d5e732c7155e384114b066f668b0bb">Description</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classCPluginClient.html#a48a52bc2fca449ddd78829da815e90b1">   78</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginClient.html#a48a52bc2fca449ddd78829da815e90b1">Version</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QIcon Icon() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString Details() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    Q_INVOKABLE <span class="keyword">virtual</span> <a class="code hl_class" href="classCConnecter.html">CConnecter</a>* CreateConnecter(<span class="keyword">const</span> QString&amp; szId, <a class="code hl_class" href="classCParameterClient.html">CParameterClient</a>* para);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCConnecter.html">CConnecter</a>* OnCreateConnecter(<span class="keyword">const</span> QString&amp; szId) = 0;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    Q_INVOKABLE <span class="keyword">virtual</span> <span class="keywordtype">int</span> DeleteConnecter(<a class="code hl_class" href="classCConnecter.html">CConnecter</a>* p);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    QSharedPointer&lt;QTranslator&gt; m_Translator;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    Q_INVOKABLE <span class="keywordtype">int</span> InitTranslator();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>};</div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>QT_BEGIN_NAMESPACE</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#define CPluginClient_iid &quot;KangLinStudio.Rabbit.RemoteControl.CPluginClient&quot;</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>Q_DECLARE_INTERFACE(<a class="code hl_class" href="classCPluginClient.html">CPluginClient</a>, CPluginClient_iid)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>QT_END_NAMESPACE</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif </span><span class="comment">// CPLUGINCLIENT_H_KL_2021_07_23</span></div>
+<div class="ttc" id="aclassCConnecter_html"><div class="ttname"><a href="classCConnecter.html">CConnecter</a></div><div class="ttdoc">连接者应用接口。</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8h_source.html#l00061">Connecter.h:62</a></div></div>
+<div class="ttc" id="aclassCParameterClient_html"><div class="ttname"><a href="classCParameterClient.html">CParameterClient</a></div><div class="ttdoc">客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。</div><div class="ttdef"><b>Definition</b> <a href="ParameterClient_8h_source.html#l00035">ParameterClient.h:36</a></div></div>
+<div class="ttc" id="aclassCPluginClient_html"><div class="ttname"><a href="classCPluginClient.html">CPluginClient</a></div><div class="ttdoc">客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginClient_8h_source.html#l00032">PluginClient.h:33</a></div></div>
+<div class="ttc" id="aclassCPluginClient_html_a44d5e732c7155e384114b066f668b0bb"><div class="ttname"><a href="classCPluginClient.html#a44d5e732c7155e384114b066f668b0bb">CPluginClient::Description</a></div><div class="ttdeci">virtual const QString Description() const =0</div><div class="ttdoc">描述</div></div>
+<div class="ttc" id="aclassCPluginClient_html_a48a52bc2fca449ddd78829da815e90b1"><div class="ttname"><a href="classCPluginClient.html#a48a52bc2fca449ddd78829da815e90b1">CPluginClient::Version</a></div><div class="ttdeci">virtual const QString Version() const =0</div><div class="ttdoc">Version</div></div>
+<div class="ttc" id="aclassCPluginClient_html_a5a6cce0f9e8302f093b122e55ce6e256"><div class="ttname"><a href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256">CPluginClient::Name</a></div><div class="ttdeci">virtual const QString Name() const =0</div><div class="ttdoc">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。</div></div>
+<div class="ttc" id="aclassCPluginClient_html_a88e3f97b27a5863fad0b50455bf343dd"><div class="ttname"><a href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd">CPluginClient::Protocol</a></div><div class="ttdeci">virtual const QString Protocol() const =0</div><div class="ttdoc">协议</div></div>
+<div class="ttc" id="aclassCPluginClient_html_ae0646989bbd8183af945557b9016ce2e"><div class="ttname"><a href="classCPluginClient.html#ae0646989bbd8183af945557b9016ce2e">CPluginClient::CPluginClient</a></div><div class="ttdeci">CPluginClient(QObject *parent=nullptr)</div><div class="ttdoc">初始化操作。例如：派生类实现它，初始化插件全局资源等，例如：</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
