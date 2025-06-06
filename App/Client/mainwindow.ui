@@ -69,7 +69,7 @@
     </widget>
     <addaction name="menuStart"/>
     <addaction name="actionStop"/>
-    <addaction name="actionOpenListRecentConnections"/>
+    <addaction name="actionOpenListRecent"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
     <addaction name="separator"/>
@@ -100,7 +100,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpenListRecentConnections"/>
+   <addaction name="actionOpenListRecent"/>
    <addaction name="separator"/>
    <addaction name="actionAdd_to_favorite"/>
    <addaction name="separator"/>
@@ -361,24 +361,24 @@
     <string>Add to favorite</string>
    </property>
   </action>
-  <action name="actionOpenListRecentConnections">
+  <action name="actionOpenListRecent">
    <property name="icon">
     <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open the list of recent connections(&amp;O)</string>
+    <string>Open the list of recent(&amp;R)</string>
    </property>
    <property name="iconText">
-    <string>Open the list of recent connections(&amp;O)</string>
+    <string>Open the list of recent(&amp;R)</string>
    </property>
    <property name="toolTip">
-    <string>Open the list of recent connections(&amp;O)</string>
+    <string>Open the list of recent(&amp;R)</string>
    </property>
    <property name="statusTip">
-    <string>Open the list of recent connections(&amp;O)</string>
+    <string>Open the list of recent(&amp;R)</string>
    </property>
    <property name="whatsThis">
-    <string>Open the list of recent connections(&amp;O)</string>
+    <string>Open the list of recent(&amp;R)</string>
    </property>
   </action>
   <action name="actionMain_menu_bar_M">

@@ -168,7 +168,7 @@ private:
 private:
     QDockWidget* m_pDockListRecentConnects;
 private Q_SLOTS:
-    void on_actionOpenListRecentConnections_triggered();
+    void on_actionOpenListRecent_triggered();
     
 private:
     QDockWidget* m_pDockListConnecters;

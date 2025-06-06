@@ -1,5 +1,4 @@
-#ifndef FRMOPENCONNECT_H
-#define FRMOPENCONNECT_H
+#pragma once
 
 #include <QWidget>
 #include <QStandardItemModel>
@@ -15,16 +14,16 @@
  *
  * \~english List the connect of be existed
  */
-class CFrmListRecentConnects : public QWidget, CClient::Handle
+class CFrmListRecent : public QWidget, CClient::Handle
 {
     Q_OBJECT
     
 public:
-    explicit CFrmListRecentConnects(CClient* pClient,
+    explicit CFrmListRecent(CClient* pClient,
                                     CParameterApp &parameterApp,
                                     bool bDock = false,
                                     QWidget *parent = nullptr);
-    virtual ~CFrmListRecentConnects();
+    virtual ~CFrmListRecent();
 
 public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
@@ -52,10 +51,10 @@ private:
 private:
     CParameterApp &m_ParameterApp;
     QToolBar* m_pToolBar;
-    QToolButton* m_ptbConnect;
+    QToolButton* m_ptbOperate;
     QMenu* m_pMenuNew;
-    QAction* m_pConnect;
-    QAction* m_pEditConnect;
+    QAction* m_pStart;
+    QAction* m_pEditOperate;
     QAction* m_pEdit;
     QAction* m_pCopy;
     QAction* m_pDelete;
@@ -69,5 +68,3 @@ private:
     
     bool m_bDock;
 };
-
-#endif // FRMOPENCONNECT_H

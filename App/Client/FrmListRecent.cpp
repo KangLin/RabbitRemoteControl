@@ -1,4 +1,4 @@
-#include "FrmListRecentConnects.h"
+#include "FrmListRecent.h"
 #include "RabbitCommonDir.h"
 #include <QVBoxLayout>
 #include <QDateTime>
@@ -7,13 +7,13 @@
 #include <QHeaderView>
 #include <QMenu>
 
-CFrmListRecentConnects::CFrmListRecentConnects(
+CFrmListRecent::CFrmListRecent(
     CClient* pClient,
     CParameterApp &parameterApp, bool bDock, QWidget *parent) :
     QWidget(parent),
     m_ParameterApp(parameterApp),
     m_pToolBar(nullptr),
-    m_ptbConnect(nullptr),
+    m_ptbOperate(nullptr),
     m_pMenuNew(nullptr),
     m_pModel(nullptr),
     m_pClient(pClient),
@@ -24,34 +24,34 @@ CFrmListRecentConnects::CFrmListRecentConnects(
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QVBoxLayout(this));
-    setWindowTitle(tr("List recent connections"));
+    setWindowTitle(tr("List recent"));
 
     m_pToolBar = new QToolBar(this);
 
-    m_pConnect = m_pToolBar->addAction(
-        QIcon::fromTheme("network-wired"), tr("Connect"),
+    m_pStart = m_pToolBar->addAction(
+        QIcon::fromTheme("media-playback-start"), tr("Start"),
         this, SLOT(slotConnect()));
-    m_pConnect->setStatusTip(tr("Connect"));
-    m_pConnect->setToolTip(tr("Connect"));
-    m_pEditConnect = m_pToolBar->addAction(
-        QIcon::fromTheme("edit-connect"), tr("Edit and Connect"),
+    m_pStart->setStatusTip(tr("Start"));
+    m_pStart->setToolTip(tr("Start"));
+    m_pEditOperate = m_pToolBar->addAction(
+        QIcon::fromTheme("edit-connect"), tr("Edit and Start"),
         this, SLOT(slotEditConnect()));
-    m_pEditConnect->setStatusTip(tr("Edit and Connect"));
-    m_pEditConnect->setToolTip(tr("Edit and Connect"));
+    m_pEditOperate->setStatusTip(tr("Edit and Start"));
+    m_pEditOperate->setToolTip(tr("Edit and Start"));
     m_pToolBar->addSeparator();
 
-    m_ptbConnect = new QToolButton(m_pToolBar);
-    m_ptbConnect->setFocusPolicy(Qt::NoFocus);
-    m_ptbConnect->setPopupMode(QToolButton::InstantPopup);
+    m_ptbOperate = new QToolButton(m_pToolBar);
+    m_ptbOperate->setFocusPolicy(Qt::NoFocus);
+    m_ptbOperate->setPopupMode(QToolButton::InstantPopup);
     //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     m_pMenuNew = new QMenu(tr("New"), this);
     m_pMenuNew->setIcon(QIcon::fromTheme("add"));
-    m_ptbConnect->setMenu(m_pMenuNew);
-    m_ptbConnect->setIcon(m_pMenuNew->icon());
-    m_ptbConnect->setText(tr("New"));
-    m_ptbConnect->setToolTip(tr("New"));
-    m_ptbConnect->setStatusTip(tr("New"));
-    m_pToolBar->addWidget(m_ptbConnect);
+    m_ptbOperate->setMenu(m_pMenuNew);
+    m_ptbOperate->setIcon(m_pMenuNew->icon());
+    m_ptbOperate->setText(tr("New"));
+    m_ptbOperate->setToolTip(tr("New"));
+    m_ptbOperate->setStatusTip(tr("New"));
+    m_pToolBar->addWidget(m_ptbOperate);
     m_pClient->EnumPlugins(this);
     m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                                     this, SLOT(slotEdit()));
@@ -103,8 +103,8 @@ CFrmListRecentConnects::CFrmListRecentConnects(
         lstWidget << pTools;
         m_pDockTitleBar->AddWidgets(lstWidget);
         
-        pMenu->addAction(m_pConnect);
-        pMenu->addAction(m_pEditConnect);
+        pMenu->addAction(m_pStart);
+        pMenu->addAction(m_pEditOperate);
         pMenu->addMenu(m_pMenuNew);
         pMenu->addAction(m_pEdit);
         pMenu->addAction(m_pCopy);
@@ -185,11 +185,11 @@ CFrmListRecentConnects::CFrmListRecentConnects(
 
 }
 
-CFrmListRecentConnects::~CFrmListRecentConnects()
+CFrmListRecent::~CFrmListRecent()
 {
 }
 
-void CFrmListRecentConnects::slotLoadFiles()
+void CFrmListRecent::slotLoadFiles()
 {
     m_pModel->removeRows(0, m_pModel->rowCount());
     QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
@@ -221,14 +221,14 @@ void CFrmListRecentConnects::slotLoadFiles()
 
     if(m_pModel->rowCount() > 0)
     {
-        m_pConnect->setEnabled(true);
-        m_pEditConnect->setEnabled(true);
+        m_pStart->setEnabled(true);
+        m_pEditOperate->setEnabled(true);
         m_pEdit->setEnabled(true);
         m_pCopy->setEnabled(true);
         m_pDelete->setEnabled(true);
     } else {
-        m_pConnect->setEnabled(false);
-        m_pEditConnect->setEnabled(false);
+        m_pStart->setEnabled(false);
+        m_pEditOperate->setEnabled(false);
         m_pEdit->setEnabled(false);
         m_pCopy->setEnabled(false);
         m_pDelete->setEnabled(false);
@@ -243,7 +243,7 @@ void CFrmListRecentConnects::slotLoadFiles()
     return;
 }
 
-int CFrmListRecentConnects::InsertItem(CConnecter *c, QString& szFile)
+int CFrmListRecent::InsertItem(CConnecter *c, QString& szFile)
 {
     QList<QStandardItem*> lstItem;
     QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
@@ -262,7 +262,7 @@ int CFrmListRecentConnects::InsertItem(CConnecter *c, QString& szFile)
     return 0;
 }
 
-int CFrmListRecentConnects::onProcess(const QString &id, CPluginClient *pPlug)
+int CFrmListRecent::onProcess(const QString &id, CPluginClient *pPlug)
 {
     // Connect menu and toolbar
     QAction* pAction = m_pMenuNew->addAction(
@@ -275,7 +275,7 @@ int CFrmListRecentConnects::onProcess(const QString &id, CPluginClient *pPlug)
     return 0;
 }
 
-void CFrmListRecentConnects::slotNew()
+void CFrmListRecent::slotNew()
 {
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* c = m_pClient->CreateConnecter(pAction->data().toString());
@@ -294,7 +294,7 @@ void CFrmListRecentConnects::slotNew()
             QMessageBox::StandardButton r
                 = QMessageBox::warning(
                     this, tr("Warning"),
-                    tr("File of connecter is exists. whether to overwrite it? File: %1").arg(szFile),
+                    tr("File of operate is exists. whether to overwrite it? File: %1").arg(szFile),
                     QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
                     QMessageBox::StandardButton::No);
             if(QMessageBox::StandardButton::Ok == r)
@@ -316,7 +316,7 @@ void CFrmListRecentConnects::slotNew()
     m_pClient->DeleteConnecter(c);
 }
 
-void CFrmListRecentConnects::slotEdit()
+void CFrmListRecent::slotEdit()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -337,7 +337,7 @@ void CFrmListRecentConnects::slotEdit()
     }
 }
 
-void CFrmListRecentConnects::slotEditConnect()
+void CFrmListRecent::slotEditConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -361,7 +361,7 @@ void CFrmListRecentConnects::slotEditConnect()
         close();
 }
 
-void CFrmListRecentConnects::slotCopy()
+void CFrmListRecent::slotCopy()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -387,8 +387,8 @@ void CFrmListRecentConnects::slotCopy()
                         = QMessageBox::warning(
                             this,
                             tr("Warning"),
-                            tr("File of connecter is exists. whether to overwrite it? "
-                               "If select No, please modify the name of connecter"),
+                            tr("File of operate is exists. whether to overwrite it? "
+                               "If select No, please modify the name of operate"),
                             QMessageBox::StandardButton::Ok
                                 | QMessageBox::StandardButton::No
                                 | QMessageBox::StandardButton::Cancel,
@@ -417,7 +417,7 @@ void CFrmListRecentConnects::slotCopy()
     }
 }
 
-void CFrmListRecentConnects::slotDelete()
+void CFrmListRecent::slotDelete()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -430,7 +430,7 @@ void CFrmListRecentConnects::slotDelete()
     }
 }
 
-void CFrmListRecentConnects::slotConnect()
+void CFrmListRecent::slotConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -442,7 +442,7 @@ void CFrmListRecentConnects::slotConnect()
     if(!m_bDock) close();
 }
 
-void CFrmListRecentConnects::slotDetail()
+void CFrmListRecent::slotDetail()
 {
     if(m_pDetail->isChecked()) {
         m_pTableView->showColumn(3);
@@ -453,13 +453,13 @@ void CFrmListRecentConnects::slotDetail()
     }
 }
 
-void CFrmListRecentConnects::slotCustomContextMenu(const QPoint &pos)
+void CFrmListRecent::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
-    menu.addAction(QIcon::fromTheme("network-wired"),
-                   tr("Connect"), this, SLOT(slotConnect()));
-    menu.addAction(tr("Edit and Connect"), this, SLOT(slotEditConnect()));
+    menu.addAction(QIcon::fromTheme("media-playback-start"),
+                   tr("Start"), this, SLOT(slotConnect()));
+    menu.addAction(tr("Edit and Start"), this, SLOT(slotEditConnect()));
     menu.addSeparator();
     menu.addMenu(m_pMenuNew);
     menu.addAction(tr("Edit"), this, SLOT(slotEdit()));
@@ -474,7 +474,7 @@ void CFrmListRecentConnects::slotCustomContextMenu(const QPoint &pos)
     menu.exec(mapToGlobal(pos));
 }
 
-void CFrmListRecentConnects::slotDoubleClicked(const QModelIndex& index)
+void CFrmListRecent::slotDoubleClicked(const QModelIndex& index)
 {
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
     emit sigConnect(szFile);

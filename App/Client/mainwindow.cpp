@@ -18,7 +18,7 @@
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
-#include "FrmListRecentConnects.h"
+#include "FrmListRecent.h"
 
 #include "ViewTable.h"
 #include "ViewSplitter.h"
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(
-        tr("Recently connected"),
+        tr("Recently"),
         QIcon::fromTheme("document-open-recent"),
         this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
     QAction* pRecentAction = ui->menuOperate->insertMenu(
-        ui->actionOpenListRecentConnections, m_pRecentMenu);
+        ui->actionOpenListRecent, m_pRecentMenu);
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbRecent->setText(pRecentAction->text());
     tbRecent->setToolTip(pRecentAction->toolTip());
     tbRecent->setStatusTip(pRecentAction->statusTip());
-    ui->toolBar->insertWidget(ui->actionOpenListRecentConnections, tbRecent);
+    ui->toolBar->insertWidget(ui->actionOpenListRecent, tbRecent);
 
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
@@ -165,8 +165,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListRecentConnects = new QDockWidget(this);
     if(m_pDockListRecentConnects)
     {
-        CFrmListRecentConnects* pListRecentConnects
-            = new CFrmListRecentConnects(
+        CFrmListRecent* pListRecentConnects
+            = new CFrmListRecent(
                 &m_Client, m_Parameter, true, m_pDockListRecentConnects);
         if(pListRecentConnects) {
             if(pListRecentConnects->m_pDockTitleBar)
@@ -1145,9 +1145,9 @@ void MainWindow::slotShortCut()
     }
 }
 
-void MainWindow::on_actionOpenListRecentConnections_triggered()
+void MainWindow::on_actionOpenListRecent_triggered()
 {
-    CFrmListRecentConnects* p = new CFrmListRecentConnects(
+    CFrmListRecent* p = new CFrmListRecent(
         &m_Client, m_Parameter, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
