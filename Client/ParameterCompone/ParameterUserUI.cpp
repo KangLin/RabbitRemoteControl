@@ -70,16 +70,54 @@ int CParameterUserUI::Accept()
     if(!m_pUser) return -1;
     
     m_pUser->SetUsedType((CParameterUser::TYPE)ui->cbType->currentData().toInt());
+
+    m_pUser->SetUser(QString());
+    m_pUser->SetPassword(QString());
+    m_pUser->SetSavePassword(false);
     
-    m_pUser->SetUser(ui->leUser->text());
-    m_pUser->SetPassword(ui->lePassword->text());
-    m_pUser->SetSavePassword(ui->pbSave->isChecked());
+    m_pUser->SetPublicKeyFile(QString());
+    m_pUser->SetPrivateKeyFile(QString());
+    m_pUser->SetPassphrase(QString());
+    m_pUser->SetSavePassphrase(false);
     
-    m_pUser->SetPublicKeyFile(ui->lePublicFile->text());
-    m_pUser->SetPrivateKeyFile(ui->lePrivateFile->text());
-    m_pUser->SetPassphrase(ui->lePassphrase->text());
-    m_pUser->SetSavePassphrase(ui->pbSavePassphrase->isChecked());
-    
+    switch(m_pUser->GetUsedType())
+    {
+    case CParameterUser::TYPE::None:
+    {
+        break;
+    }
+    case CParameterUser::TYPE::OnlyPassword:
+    {
+        m_pUser->SetPassword(ui->lePassword->text());
+        m_pUser->SetSavePassword(ui->pbSave->isChecked());
+        break;
+    }
+    case CParameterUser::TYPE::UserPassword:
+    {
+        m_pUser->SetUser(ui->leUser->text());
+        m_pUser->SetPassword(ui->lePassword->text());
+        m_pUser->SetSavePassword(ui->pbSave->isChecked());
+        break;
+    }
+    case CParameterUser::TYPE::PublicKey:
+    {
+        m_pUser->SetPublicKeyFile(ui->lePublicFile->text());
+        m_pUser->SetPrivateKeyFile(ui->lePrivateFile->text());
+        m_pUser->SetPassphrase(ui->lePassphrase->text());
+        m_pUser->SetSavePassphrase(ui->pbSavePassphrase->isChecked());
+        break;
+    }
+    default:
+        m_pUser->SetUser(ui->leUser->text());
+        m_pUser->SetPassword(ui->lePassword->text());
+        m_pUser->SetSavePassword(ui->pbSave->isChecked());
+
+        m_pUser->SetPublicKeyFile(ui->lePublicFile->text());
+        m_pUser->SetPrivateKeyFile(ui->lePrivateFile->text());
+        m_pUser->SetPassphrase(ui->lePassphrase->text());
+        m_pUser->SetSavePassphrase(ui->pbSavePassphrase->isChecked());
+    }
+
     return 0;
 }
 
