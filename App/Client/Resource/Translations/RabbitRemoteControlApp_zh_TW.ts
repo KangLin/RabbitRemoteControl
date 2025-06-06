@@ -4,16 +4,6 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="253"/>
-        <source>Connect</source>
-        <translation>連接</translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="254"/>
-        <source>Open settings and connect</source>
-        <translation>打開設置再連接</translation>
-    </message>
-    <message>
         <location filename="../../FavoriteView.cpp" line="258"/>
         <location filename="../../FavoriteView.cpp" line="262"/>
         <source>New group</source>
@@ -31,9 +21,19 @@
         <translation>工具</translation>
     </message>
     <message>
+        <location filename="../../FavoriteView.cpp" line="253"/>
+        <source>Start</source>
+        <translation>開始</translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="254"/>
+        <source>Open settings and Start</source>
+        <translation>打開設置並開始</translation>
+    </message>
+    <message>
         <location filename="../../FavoriteView.cpp" line="255"/>
-        <source>Delete Connect</source>
-        <translation>刪除連接</translation>
+        <source>Delete operate</source>
+        <translation>刪除操作</translation>
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="260"/>
@@ -67,35 +67,35 @@
     </message>
 </context>
 <context>
-    <name>CFrmConnecters</name>
+    <name>CFrmActive</name>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="32"/>
-        <source>List active connections</source>
-        <translation>活動連接</translation>
+        <location filename="../../FrmActive.cpp" line="32"/>
+        <source>List active</source>
+        <translation>活動列表</translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="71"/>
-        <location filename="../../FrmConnecters.cpp" line="77"/>
+        <location filename="../../FrmActive.cpp" line="71"/>
+        <location filename="../../FrmActive.cpp" line="77"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="81"/>
+        <location filename="../../FrmActive.cpp" line="81"/>
         <source>Show tool bar</source>
         <translation>顯示工具條</translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="117"/>
+        <location filename="../../FrmActive.cpp" line="117"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="118"/>
+        <location filename="../../FrmActive.cpp" line="118"/>
         <source>Protocol</source>
         <translation>協議</translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="119"/>
+        <location filename="../../FrmActive.cpp" line="119"/>
         <source>ID</source>
         <translation></translation>
     </message>
@@ -116,133 +116,133 @@
     </message>
 </context>
 <context>
-    <name>CFrmListRecentConnects</name>
+    <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="27"/>
-        <source>List recent connections</source>
-        <translation>最近連接</translation>
+        <location filename="../../FrmListRecent.cpp" line="27"/>
+        <source>List recent</source>
+        <translation>最近列表</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="32"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="34"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="35"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
-        <source>Connect</source>
-        <translation>連接</translation>
+        <location filename="../../FrmListRecent.cpp" line="32"/>
+        <location filename="../../FrmListRecent.cpp" line="34"/>
+        <location filename="../../FrmListRecent.cpp" line="35"/>
+        <location filename="../../FrmListRecent.cpp" line="461"/>
+        <source>Start</source>
+        <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="37"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="39"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="40"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="462"/>
-        <source>Edit and Connect</source>
-        <translation>編輯並連接</translation>
+        <location filename="../../FrmListRecent.cpp" line="37"/>
+        <location filename="../../FrmListRecent.cpp" line="39"/>
+        <location filename="../../FrmListRecent.cpp" line="40"/>
+        <location filename="../../FrmListRecent.cpp" line="462"/>
+        <source>Edit and Start</source>
+        <translation>編輯並開始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="47"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="51"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="52"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="53"/>
+        <location filename="../../FrmListRecent.cpp" line="47"/>
+        <location filename="../../FrmListRecent.cpp" line="51"/>
+        <location filename="../../FrmListRecent.cpp" line="52"/>
+        <location filename="../../FrmListRecent.cpp" line="53"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="56"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="58"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="59"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="465"/>
+        <location filename="../../FrmListRecent.cpp" line="56"/>
+        <location filename="../../FrmListRecent.cpp" line="58"/>
+        <location filename="../../FrmListRecent.cpp" line="59"/>
+        <location filename="../../FrmListRecent.cpp" line="465"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="60"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="62"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="63"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="466"/>
+        <location filename="../../FrmListRecent.cpp" line="60"/>
+        <location filename="../../FrmListRecent.cpp" line="62"/>
+        <location filename="../../FrmListRecent.cpp" line="63"/>
+        <location filename="../../FrmListRecent.cpp" line="466"/>
         <source>Copy</source>
         <translation>復製</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="65"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="67"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="68"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="468"/>
+        <location filename="../../FrmListRecent.cpp" line="65"/>
+        <location filename="../../FrmListRecent.cpp" line="67"/>
+        <location filename="../../FrmListRecent.cpp" line="68"/>
+        <location filename="../../FrmListRecent.cpp" line="468"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="70"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="74"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="75"/>
+        <location filename="../../FrmListRecent.cpp" line="70"/>
+        <location filename="../../FrmListRecent.cpp" line="74"/>
+        <location filename="../../FrmListRecent.cpp" line="75"/>
         <source>Detail</source>
         <translation>細節</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="80"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="82"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="83"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="471"/>
+        <location filename="../../FrmListRecent.cpp" line="80"/>
+        <location filename="../../FrmListRecent.cpp" line="82"/>
+        <location filename="../../FrmListRecent.cpp" line="83"/>
+        <location filename="../../FrmListRecent.cpp" line="471"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="86"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="88"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="89"/>
+        <location filename="../../FrmListRecent.cpp" line="86"/>
+        <location filename="../../FrmListRecent.cpp" line="88"/>
+        <location filename="../../FrmListRecent.cpp" line="89"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="97"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="100"/>
+        <location filename="../../FrmListRecent.cpp" line="97"/>
+        <location filename="../../FrmListRecent.cpp" line="100"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="115"/>
+        <location filename="../../FrmListRecent.cpp" line="115"/>
         <source>Show tool bar</source>
         <translation>顯示工具條</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="146"/>
+        <location filename="../../FrmListRecent.cpp" line="146"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="147"/>
+        <location filename="../../FrmListRecent.cpp" line="147"/>
         <source>Protocol</source>
         <translation>協議</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="148"/>
+        <location filename="../../FrmListRecent.cpp" line="148"/>
         <source>Date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="149"/>
+        <location filename="../../FrmListRecent.cpp" line="149"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="151"/>
+        <location filename="../../FrmListRecent.cpp" line="151"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="296"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="389"/>
+        <location filename="../../FrmListRecent.cpp" line="296"/>
+        <location filename="../../FrmListRecent.cpp" line="389"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="297"/>
-        <source>File of connecter is exists. whether to overwrite it? File: %1</source>
-        <translation>此連接文件已存在,是否覆蓋它？文件: %1</translation>
+        <location filename="../../FrmListRecent.cpp" line="297"/>
+        <source>The file is exists. whether to overwrite it? File: %1</source>
+        <translation>文件已存在。是否覆蓋它?</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="390"/>
-        <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
-        <translation>此連接文件已存在,是否覆蓋它？如果選擇否，請修改連接的名稱。</translation>
+        <location filename="../../FrmListRecent.cpp" line="390"/>
+        <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
+        <translation>文件已存在。是否覆蓋它?如果選擇否，請改名稱。</translation>
     </message>
 </context>
 <context>
@@ -269,11 +269,6 @@
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="40"/>
-        <source>Favorite: select it then double node edit, other connect</source>
-        <translation>收藏夾：選擇它，雙擊編輯節點；否則連接</translation>
-    </message>
-    <message>
         <location filename="../../ParameterDlgSettings.ui" line="102"/>
         <source>Main window</source>
         <translation>主窗口</translation>
@@ -294,9 +289,19 @@
         <translation>上</translation>
     </message>
     <message>
+        <location filename="../../ParameterDlgSettings.ui" line="40"/>
+        <source>Favorite: select it then double node edit, other start</source>
+        <translation>收藏夾：選擇它，雙擊編輯節點；否則開始</translation>
+    </message>
+    <message>
         <location filename="../../ParameterDlgSettings.ui" line="47"/>
         <source>Use message box to display information</source>
         <translation>使用消息框顯示信息</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="70"/>
+        <source>Resume the operates when it was last closed at startup</source>
+        <translation>啟動時，恢復上次關閉時的操作</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="139"/>
@@ -319,24 +324,19 @@
         <translation>系統托盤圖標右鍵菜單</translation>
     </message>
     <message>
+        <location filename="../../ParameterDlgSettings.ui" line="208"/>
+        <source>Operate</source>
+        <translation>操作</translation>
+    </message>
+    <message>
         <location filename="../../ParameterDlgSettings.ui" line="215"/>
         <source>Main menu bar</source>
         <translation>主菜單條</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="208"/>
-        <source>Remote</source>
-        <translation>遠程菜單</translation>
-    </message>
-    <message>
         <location filename="../../ParameterDlgSettings.ui" line="229"/>
         <source>Recent open</source>
         <translation>最近打開菜單</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterDlgSettings.ui" line="70"/>
-        <source>Resume the connections when it was last closed at startup</source>
-        <translation>啟動時，恢復上次關閉時的連接</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="108"/>
@@ -397,11 +397,6 @@
         <translation>視圖(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="60"/>
-        <source>Remote(&amp;R)</source>
-        <translation>遠程(&amp;R)</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="82"/>
         <source>Tools(&amp;T)</source>
         <translation>工具(&amp;T)</translation>
@@ -441,14 +436,6 @@
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="230"/>
-        <location filename="../../mainwindow.ui" line="233"/>
-        <location filename="../../mainwindow.ui" line="236"/>
-        <location filename="../../mainwindow.ui" line="239"/>
-        <source>Disconnect</source>
-        <translation>關閉邊連接</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="250"/>
         <source>Open</source>
         <translation>打開</translation>
@@ -482,73 +469,66 @@
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="369"/>
-        <location filename="../../mainwindow.ui" line="372"/>
-        <location filename="../../mainwindow.ui" line="375"/>
-        <location filename="../../mainwindow.ui" line="378"/>
-        <location filename="../../mainwindow.ui" line="381"/>
-        <source>Open the list of recent connections(&amp;O)</source>
-        <translation>打開最近連接列表(&amp;O)</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="443"/>
+        <location filename="../../mainwindow.ui" line="446"/>
         <source>Tab</source>
         <translation>標簽</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="451"/>
+        <location filename="../../mainwindow.ui" line="454"/>
         <source>Split</source>
         <translation>拆分</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="454"/>
         <location filename="../../mainwindow.ui" line="457"/>
+        <location filename="../../mainwindow.ui" line="460"/>
         <source>Split view</source>
         <translation>拆分視圖</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="338"/>
-        <location filename="../../mainwindow.ui" line="341"/>
-        <location filename="../../mainwindow.ui" line="344"/>
-        <source>Clone current connect</source>
-        <translation>克隆當前連接</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="352"/>
         <location filename="../../mainwindow.ui" line="355"/>
         <location filename="../../mainwindow.ui" line="358"/>
         <location filename="../../mainwindow.ui" line="361"/>
+        <location filename="../../mainwindow.ui" line="364"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夾</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="392"/>
+        <location filename="../../mainwindow.ui" line="372"/>
+        <location filename="../../mainwindow.ui" line="375"/>
+        <location filename="../../mainwindow.ui" line="378"/>
+        <location filename="../../mainwindow.ui" line="381"/>
+        <location filename="../../mainwindow.ui" line="384"/>
+        <source>Open the list of recent(&amp;R)</source>
+        <translation>打開最近列表(&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="395"/>
         <source>Main menu bar(&amp;M)</source>
         <translation>主菜單條(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="395"/>
         <location filename="../../mainwindow.ui" line="398"/>
         <location filename="../../mainwindow.ui" line="401"/>
         <location filename="../../mainwindow.ui" line="404"/>
+        <location filename="../../mainwindow.ui" line="407"/>
         <source>Main menu bar</source>
         <translation>主菜單條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="415"/>
         <location filename="../../mainwindow.ui" line="418"/>
         <location filename="../../mainwindow.ui" line="421"/>
         <location filename="../../mainwindow.ui" line="424"/>
+        <location filename="../../mainwindow.ui" line="427"/>
         <source>Status bar</source>
         <translation>狀態條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="435"/>
+        <location filename="../../mainwindow.ui" line="438"/>
         <source>Record video</source>
         <translation>錄製視頻</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="412"/>
+        <location filename="../../mainwindow.ui" line="415"/>
         <source>Status bar(&amp;S)</source>
         <translation>狀態條(&amp;S)</translation>
     </message>
@@ -573,6 +553,16 @@
         <translation>類型</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="60"/>
+        <source>Operate(&amp;O)</source>
+        <translation>操作(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="64"/>
+        <source>Start(&amp;S)</source>
+        <translation>開始(&amp;S)</translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="144"/>
         <location filename="../../mainwindow.ui" line="147"/>
         <location filename="../../mainwindow.ui" line="150"/>
@@ -594,31 +584,30 @@
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="227"/>
+        <source>Stop(&amp;P)</source>
+        <translation>停止(&amp;P)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="230"/>
+        <location filename="../../mainwindow.ui" line="233"/>
+        <location filename="../../mainwindow.ui" line="236"/>
+        <location filename="../../mainwindow.ui" line="239"/>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="247"/>
         <source>Open(&amp;O) rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="64"/>
-        <source>Connect(&amp;C)</source>
-        <translation>連接(&amp;C)</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="77"/>
-        <source>Recently connected</source>
-        <translation>最近連接</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="227"/>
-        <source>Disconnect(&amp;D)</source>
-        <translation>斷開連接(&amp;D)</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="110"/>
-        <location filename="../../mainwindow.cpp" line="111"/>
-        <location filename="../../mainwindow.cpp" line="112"/>
-        <source>Connect</source>
-        <translation>連接</translation>
+        <location filename="../../mainwindow.ui" line="338"/>
+        <location filename="../../mainwindow.ui" line="341"/>
+        <location filename="../../mainwindow.ui" line="344"/>
+        <location filename="../../mainwindow.ui" line="347"/>
+        <source>Clone</source>
+        <translation>克隆</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="187"/>
@@ -660,6 +649,18 @@
         <location filename="../../mainwindow.cpp" line="650"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="77"/>
+        <source>Recently</source>
+        <translation>最近</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="110"/>
+        <location filename="../../mainwindow.cpp" line="111"/>
+        <location filename="../../mainwindow.cpp" line="112"/>
+        <source>Start</source>
+        <translation>開始</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="254"/>

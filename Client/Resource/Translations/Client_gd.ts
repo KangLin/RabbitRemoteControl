@@ -529,6 +529,26 @@
     </message>
 </context>
 <context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterNet</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
@@ -872,7 +892,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="248"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -895,7 +915,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="109"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="147"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -980,28 +1000,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="111"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="149"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="122"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="134"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="212"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="250"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="231"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="269"/>
         <source>Open X509 certificate authentication file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="243"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation type="unfinished"></translation>
     </message>

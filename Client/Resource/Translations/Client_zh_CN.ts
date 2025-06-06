@@ -531,19 +531,22 @@
 <context>
     <name>CHookWindows</name>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕获系统快捷键需要管理员权限。
+        <translation>捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="vanished">总是显示</translation>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>
@@ -890,7 +893,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="248"/>
         <source>Input passphrase</source>
         <translation>输入密码</translation>
     </message>
@@ -913,7 +916,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="109"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="147"/>
         <source>Input password</source>
         <translation>输入密码</translation>
     </message>
@@ -998,28 +1001,28 @@ Restart program by administrator?</source>
         <translation>请输入私钥文件的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="111"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="149"/>
         <source>Please checked save password to enable</source>
         <translation>请选中保存密码按钮</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="122"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="134"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
         <source>Open public key file</source>
         <translation>打开公钥文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="212"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="250"/>
         <source>Please checked save passphrase to enable</source>
         <translation>请选中保存密码，允许输入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="231"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="269"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打开 X509 认证证书文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="243"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation>打开 X509 证书吊销列表文件</translation>
     </message>

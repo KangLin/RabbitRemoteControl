@@ -5,7 +5,7 @@
 #include <QMenu>
 #include "FrmActive.h"
 
-static Q_LOGGING_CATEGORY(log, "App.FrmConnecters")
+static Q_LOGGING_CATEGORY(log, "App.FrmActive")
 
 CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
                                CParameterApp &parameterApp,

@@ -294,7 +294,7 @@ void CFrmListRecent::slotNew()
             QMessageBox::StandardButton r
                 = QMessageBox::warning(
                     this, tr("Warning"),
-                    tr("File of operate is exists. whether to overwrite it? File: %1").arg(szFile),
+                    tr("The file is exists. whether to overwrite it? File: %1").arg(szFile),
                     QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
                     QMessageBox::StandardButton::No);
             if(QMessageBox::StandardButton::Ok == r)
@@ -387,8 +387,8 @@ void CFrmListRecent::slotCopy()
                         = QMessageBox::warning(
                             this,
                             tr("Warning"),
-                            tr("File of operate is exists. whether to overwrite it? "
-                               "If select No, please modify the name of operate"),
+                            tr("The file is exists. whether to overwrite it?"
+                               " If select No, please modify the name."),
                             QMessageBox::StandardButton::Ok
                                 | QMessageBox::StandardButton::No
                                 | QMessageBox::StandardButton::Cancel,
