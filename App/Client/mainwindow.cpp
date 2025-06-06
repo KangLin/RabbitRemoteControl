@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pActionConnecterMenu(nullptr),
     m_pDockListRecentConnects(nullptr),
     m_pDockListConnecters(nullptr),
-    m_pFrmConnecters(nullptr),
+    m_pFrmActive(nullptr),
     m_pSignalStatus(nullptr),
     ui(new Ui::MainWindow),
     m_pView(nullptr),
@@ -191,17 +191,17 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListConnecters = new QDockWidget(this);
     if(m_pDockListConnecters)
     {
-        m_pFrmConnecters = new CFrmConnecters(
+        m_pFrmActive = new CFrmActive(
             m_Connecters, m_Parameter,
             ui->menuStart, ui->actionStop,
             m_pRecentMenu, m_pDockListConnecters);
-        if(m_pFrmConnecters) {
-            m_pDockListConnecters->setWidget(m_pFrmConnecters);
-            if(m_pFrmConnecters->m_pDockTitleBar)
+        if(m_pFrmActive) {
+            m_pDockListConnecters->setWidget(m_pFrmActive);
+            if(m_pFrmActive->m_pDockTitleBar)
                 m_pDockListConnecters->setTitleBarWidget(
-                    m_pFrmConnecters->m_pDockTitleBar);
-            m_pDockListConnecters->setWindowTitle(m_pFrmConnecters->windowTitle());
-            check = connect(m_pFrmConnecters, SIGNAL(sigConnecterChanged(CConnecter*)),
+                    m_pFrmActive->m_pDockTitleBar);
+            m_pDockListConnecters->setWindowTitle(m_pFrmActive->windowTitle());
+            check = connect(m_pFrmActive, SIGNAL(sigConnecterChanged(CConnecter*)),
                             this, SLOT(slotConnecterChanged(CConnecter*)));
             Q_ASSERT(check);
         }
@@ -314,9 +314,9 @@ void MainWindow::SetView(CView* pView)
     check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
                     this, SLOT(slotCurrentViewChanged(const QWidget*)));
     Q_ASSERT(check);
-    if(m_pFrmConnecters) {
+    if(m_pFrmActive) {
         check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
-                        m_pFrmConnecters, SLOT(slotViewChanged(const QWidget*)));
+                        m_pFrmActive, SLOT(slotViewChanged(const QWidget*)));
         Q_ASSERT(check);
     }
     check = connect(m_pView, SIGNAL(customContextMenuRequested(const QPoint&)),
@@ -761,8 +761,8 @@ int MainWindow::Connect(CConnecter *c, bool set, QString szFile)
         Q_ASSERT(check);
     }
     m_Connecters.push_back(c);
-    m_pFrmConnecters->slotLoadConnecters();
-    m_pFrmConnecters->slotViewChanged(m_pView->GetCurrentView());
+    m_pFrmActive->slotLoadConnecters();
+    m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
     //*/
 
     c->Connect();
@@ -848,8 +848,8 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_Client.DeleteConnecter(c);
-            m_pFrmConnecters->slotLoadConnecters();
-            m_pFrmConnecters->slotViewChanged(m_pView->GetCurrentView());
+            m_pFrmActive->slotLoadConnecters();
+            m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
             break;
         }
     }

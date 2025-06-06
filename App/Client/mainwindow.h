@@ -17,7 +17,7 @@
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 #include "FavoriteView.h"
-#include "FrmConnecters.h"
+#include "FrmActive.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -172,7 +172,7 @@ private Q_SLOTS:
     
 private:
     QDockWidget* m_pDockListConnecters;
-    CFrmConnecters* m_pFrmConnecters;
+    CFrmActive* m_pFrmActive;
 
     ///////// Favorite //////////
 private:

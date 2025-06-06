@@ -3,20 +3,20 @@
 #include <QHeaderView>
 #include <QLabel>
 #include <QMenu>
-#include "FrmConnecters.h"
+#include "FrmActive.h"
 
 static Q_LOGGING_CATEGORY(log, "App.FrmConnecters")
 
-CFrmConnecters::CFrmConnecters(QVector<CConnecter*> &Connecters,
+CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
                                CParameterApp &parameterApp,
-                               QMenu* pConnect,
-                               QAction* pDisconnect,
+                               QMenu* pOperate,
+                               QAction* pStop,
                                RabbitCommon::CRecentMenu *pRecentMenu,
                                QWidget *parent)
     : QWidget(parent)
     , m_pDockTitleBar(nullptr)
-    , m_pConnect(pConnect)
-    , m_pDisconnect(pDisconnect)
+    , m_pOperate(pOperate)
+    , m_pStop(pStop)
     , m_pRecentMenu(pRecentMenu)
     , m_Connecters(Connecters)
     , m_ParameterApp(parameterApp)
@@ -29,7 +29,7 @@ CFrmConnecters::CFrmConnecters(QVector<CConnecter*> &Connecters,
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
     //setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(tr("List active connections"));
+    setWindowTitle(tr("List active"));
 
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     if(!pLayout) {
@@ -56,27 +56,27 @@ CFrmConnecters::CFrmConnecters(QVector<CConnecter*> &Connecters,
     ptbConnect->setFocusPolicy(Qt::NoFocus);
     ptbConnect->setPopupMode(QToolButton::InstantPopup);
     //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    ptbConnect->setMenu(m_pConnect);
-    ptbConnect->setIcon(m_pConnect->icon());
-    ptbConnect->setText(m_pConnect->title());
-    ptbConnect->setToolTip(m_pConnect->title());
-    ptbConnect->setStatusTip(m_pConnect->title());
+    ptbConnect->setMenu(m_pOperate);
+    ptbConnect->setIcon(m_pOperate->icon());
+    ptbConnect->setText(m_pOperate->title());
+    ptbConnect->setToolTip(m_pOperate->title());
+    ptbConnect->setStatusTip(m_pOperate->title());
     m_pToolBar->addWidget(ptbConnect);
 
-    m_pToolBar->addAction(m_pDisconnect);
+    m_pToolBar->addAction(m_pStop);
     layout()->addWidget(m_pToolBar);
 
     m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
     // Create tools pushbutton in title bar
     m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
     m_pMenu->addMenu(m_pRecentMenu);
-    m_pMenu->addMenu(m_pConnect);
-    m_pMenu->addAction(m_pDisconnect);
+    m_pMenu->addMenu(m_pOperate);
+    m_pMenu->addAction(m_pStop);
     QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
         QIcon::fromTheme("tools"), m_pDockTitleBar);
     pTools->setToolTip(tr("Tools"));
     pTools->setMenu(m_pMenu);
-    m_pMenu->addAction(m_pDisconnect);
+    m_pMenu->addAction(m_pStop);
     m_pMenu->addSeparator();
     auto pShowToolBar = m_pMenu->addAction(tr("Show tool bar"), this, [&](){
         QAction* a = (QAction*)sender();
@@ -148,15 +148,15 @@ CFrmConnecters::CFrmConnecters(QVector<CConnecter*> &Connecters,
     }
 }
 
-CFrmConnecters::~CFrmConnecters()
+CFrmActive::~CFrmActive()
 {}
 
-void CFrmConnecters::slotCustomContextMenu(const QPoint &pos)
+void CFrmActive::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu;
     menu.addMenu(m_pRecentMenu);
-    menu.addMenu(m_pConnect);
-    menu.addAction(m_pDisconnect);
+    menu.addMenu(m_pOperate);
+    menu.addAction(m_pStop);
     menu.addSeparator();
     int r = m_pTableView->currentIndex().row();
     if(-1 < r && r < m_Connecters.size())
@@ -172,14 +172,14 @@ void CFrmConnecters::slotCustomContextMenu(const QPoint &pos)
     menu.exec(mapToGlobal(pos));
 }
 
-void CFrmConnecters::slotClicked(const QModelIndex &index)
+void CFrmActive::slotClicked(const QModelIndex &index)
 {
     QVariant v = m_pModel->item(index.row(), m_nId)->data();
     CConnecter* c = v.value<CConnecter*>();
     emit sigConnecterChanged(c);
 }
 
-void CFrmConnecters::slotLoadConnecters()
+void CFrmActive::slotLoadConnecters()
 {
     if(!m_pModel)
         return;
@@ -206,7 +206,7 @@ void CFrmConnecters::slotLoadConnecters()
     //m_pTableView->resizeColumnToContents(m_nId); //设置第1列宽度自适应内容
 }
 
-void CFrmConnecters::slotViewChanged(const QWidget *pView)
+void CFrmActive::slotViewChanged(const QWidget *pView)
 {
     int nIndex = -1;
     if(m_Connecters.size() != m_pModel->rowCount())

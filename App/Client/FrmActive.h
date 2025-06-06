@@ -1,5 +1,4 @@
-#ifndef FRMCONNECTERS_H_KL_2025_04_03
-#define FRMCONNECTERS_H_KL_2025_04_03
+#pragma once
 
 #include <QWidget>
 #include <QTableView>
@@ -12,17 +11,17 @@
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 
-class CFrmConnecters : public QWidget
+class CFrmActive : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CFrmConnecters(QVector<CConnecter*> &Connecters,
+    explicit CFrmActive(QVector<CConnecter*> &Connecters,
                             CParameterApp &parameterApp,
-                            QMenu* pConnect,
-                            QAction* pDisconnect,
+                            QMenu* pOperate,
+                            QAction* pStop,
                             RabbitCommon::CRecentMenu* pRecentMenu,
                             QWidget *parent = nullptr);
-    virtual ~CFrmConnecters();
+    virtual ~CFrmActive();
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 public Q_SLOTS:
     void slotLoadConnecters();
@@ -35,8 +34,8 @@ private Q_SLOTS:
 private:
     QVector<CConnecter*> &m_Connecters;
     CParameterApp &m_ParameterApp;
-    QMenu* m_pConnect;
-    QAction* m_pDisconnect;
+    QMenu* m_pOperate;
+    QAction* m_pStop;
     RabbitCommon::CRecentMenu* m_pRecentMenu;
     QTableView* m_pTableView;
     QStandardItemModel* m_pModel;
@@ -44,5 +43,3 @@ private:
     QToolBar* m_pToolBar;
     int m_nId;
 };
-
-#endif // FRMCONNECTERS_H_KL_2025_04_03
