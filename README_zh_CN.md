@@ -276,9 +276,14 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 
 - Windows: 扩展名为 .exe
   - 架构:
-    - win64: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
-      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+    - win64:
+      - 安装包：RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+      - 便携包：RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip  
+        如果系统没有安装 npcap ，安装程序位于：RabbitRemoteControl\bin\npcap-1.80.exe
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
     - win32: RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe
       - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
       - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)

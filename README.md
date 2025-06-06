@@ -278,9 +278,14 @@ Contact me:
 
 - Windows: The extension is .exe
   - Architecture:
-    - win64: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+    - win64:
+      - Installing package: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
+      - Portable package: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip  
+        If npcap is not installed on your system, the installation program is located at: RabbitRemoteControl\bin\npcap-1.80.exe
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
     - win32: RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
