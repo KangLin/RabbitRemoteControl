@@ -22,7 +22,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
       DOXYGEN_VERSION: 1.9.8
       artifact_name: build_doxygen
-      RabbitRemoteControl_VERSION: v0.0.35
+      RabbitRemoteControl_VERSION: v0.0.36
 
     # Map the job outputs to step outputs
     outputs:

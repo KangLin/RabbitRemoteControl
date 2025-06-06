@@ -279,31 +279,31 @@ Contact me:
 - Windows: The extension is .exe
   - Architecture:
     - win64:
-      - Installing package: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-      - Portable package: RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip  
+      - Installing package: RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe)
+      - Portable package: RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip  
         If npcap is not installed on your system, the installation program is located at: RabbitRemoteControl\bin\npcap-1.80.exe
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
-    - win32: RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip)
+    - win32: RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe)
 - Linux:
   - AppImage package: The extension is .AppImage , for all Linux systems
     - Architecture:
-      - x86_64: RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage)
+      - x86_64: RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage)
 
               # Set execution permissions
-              chmod a+x RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
+              chmod a+x RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
               # Run
-              ./RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
+              ./RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
               
-      - aarch64: RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage)
+      - aarch64: RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage)
   - Snap Package: Used on all Linux systems that support Snap.
     Ubuntu uses this installation package by default.
     - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
@@ -312,69 +312,69 @@ Contact me:
     Fedora uses this installation package by default.
     - [![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)
     - Architecture:
-      - x86_64: RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak)
+      - x86_64: RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak)
 
               # Install package
-              flatpak --user install RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak
+              flatpak --user install RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak
               # Run
               flatpak run io.github.KangLin.RabbitRemoteControl
               # Or click the desktop icon to run
               
-       - aarch64: RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak
-         - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak)
-         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak)
+       - aarch64: RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak
+         - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)
+         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)
   - deb package: The extension is .deb , for Debian, Ubuntu, etc
     - Architecture:
-      - amd64: rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb)
+      - amd64: rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb)
 
               # Install package
-              sudo apt install ./rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb
+              sudo apt install ./rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb
               # Run
               rabbitremotecontrol
               # Or click the desktop icon to run
 
-      - arm64: rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb)
+      - arm64: rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb)
   - rpm package: The extension is .rpm , for RedHat, Fedora, CentOS etc
     - Architecture:
-      - x86_64: rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm)
+      - x86_64: rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm)
 
               # Install package
-              dnf install rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm
+              dnf install rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm
               # Run
               rabbitremotecontrol
               # Or click the desktop icon to run
 
-      - aarch64: rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm
-        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm)
+      - aarch64: rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm)
 - Android: The extension is .apk
   - Architecture:
-    - arm64_v8a: RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk)
-    - x86_64: RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk)
-- Apple OS: RabbitRemoteControl_v0.0.35_macos.zip.
+    - arm64_v8a: RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk)
+    - x86_64: RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk)
+- Apple OS: RabbitRemoteControl_v0.0.36_macos.zip.
   No tests were carried out as there was no relevant equipment.
   We hope that interested friends will participate in the development and testing.
-  - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_macos.zip)
-  - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_macos.zip)
-- Development documentation: RabbitRemoteControl_v0.0.35_document.zip
-  - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_document.zip)
-  - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_document.zip)
+  - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip)
+  - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip)
+- Development documentation: RabbitRemoteControl_v0.0.36_document.zip
+  - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip)
+  - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip)
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.35/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.36/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

@@ -40,7 +40,7 @@ jobs:
     runs-on: ${{matrix.variant.os}}
 
     env:
-      RabbitRemoteControl_VERSION: 0.0.35
+      RabbitRemoteControl_VERSION: 0.0.36
       artifact_name: build_docker
 
     # Map the job outputs to step outputs

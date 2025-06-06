@@ -277,100 +277,100 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - Windows: 扩展名为 .exe
   - 架构:
     - win64:
-      - 安装包：RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Setup.exe)
-      - 便携包：RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip  
+      - 安装包：RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe)
+      - 便携包：RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip  
         如果系统没有安装 npcap ，安装程序位于：RabbitRemoteControl\bin\npcap-1.80.exe
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win64_msvc2022_64_qt6.9.0_Portable.zip)
-    - win32: RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe
-      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
-      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip)
+    - win32: RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe
+      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe)
+      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe)
 - Linux:
   - AppImage 包：扩展名为 .AppImage ，用于所有 Linux 系统
     - 架构:
-      - x86_64: RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage)
+      - x86_64: RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage)
 
               # 设置执行权限
-              chmod a+x RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
+              chmod a+x RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
               # 运行
-              ./RabbitRemoteControl_0.0.35_Linux_x86_64.AppImage
+              ./RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
 
-      - aarch64: RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage
-          - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage)
-          - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_0.0.35_Linux_aarch64.AppImage)
+      - aarch64: RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage
+          - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage)
+          - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage)
   - Snap 包: 用于所有支持 Snap 的 Linux 系统。Ubuntu 默认使用此安装包。
     - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
       [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - Flatpak 包：扩展名为 .flatpak ，用于所有支持 Flatpak 的 Linux 系统。Fedora 默认使用此安装包。
     - [![从 Flathub 下载](https://flathub.org/api/badge?locale=zh-Hans)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)
     - 架构:
-      - x86_64: RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak)
+      - x86_64: RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak)
 
               # 安装包
-              flatpak --user install RabbitRemoteControl_v0.0.35_Linux_x86_64.flatpak
+              flatpak --user install RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak
               # 运行
               flatpak run io.github.KangLin.RabbitRemoteControl
               # 或者点击桌面图标运行
 
-      - aarch64: RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_Linux_aarch64.flatpak)
+      - aarch64: RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)
   - deb 包：扩展名为 .deb ，用于 Debian、Ubuntu 等
     - 架构:
-      - amd64: rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb)
+      - amd64: rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb)
 
               # 安装包
-              sudo apt install ./rabbitremotecontrol_0.0.35_ubuntu-24.04_amd64.deb
+              sudo apt install ./rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb
               # 运行
               rabbitremotecontrol
               # 或者点击桌面图标运行
 
-      - arm64: rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol_0.0.35_ubuntu-24.04-arm_arm64.deb)
+      - arm64: rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb)
   - rpm 包：扩展名为 .rpm ，用于 RedHat、Fedora、CentOS 等
     - 架构:
-      - x86_64: rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm)
+      - x86_64: rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm)
 
               # 安装包
-              dnf install rabbitremotecontrol-0.0.35-1.fc41.x86_64.rpm
+              dnf install rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm
               # 运行
               rabbitremotecontrol
               # 或者点击桌面图标运行
 
-      - aarch64: rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm
-        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm)
-        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/rabbitremotecontrol-0.0.35-1.fc41.aarch64.rpm)
+      - aarch64: rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm
+        - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm)
+        - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm)
 - Android: 扩展名为 .apk
   - 架构:
-    - arm64_v8a: RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk
-      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk)
-      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_android_arm64_v8a_qt6.9.0_Release.apk)
-    - x86_64: RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk
-      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk)
-      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_android_x86_64_qt6.9.0_Release.apk)
-- 苹果操作系统: RabbitRemoteControl_v0.0.35_macos.zip
+    - arm64_v8a: RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk
+      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk)
+      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk)
+    - x86_64: RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk
+      - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk)
+      - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk)
+- 苹果操作系统: RabbitRemoteControl_v0.0.36_macos.zip
   由于没有相关设备，所以没有进行测试。希望有兴趣的朋友参与开发和测试。
-  - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_macos.zip)
-  - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_macos.zip)
-- 开发文档：RabbitRemoteControl_v0.0.35_document.zip
-  - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.35/RabbitRemoteControl_v0.0.35_document.zip)
-  - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.35/RabbitRemoteControl_v0.0.35_document.zip)
+  - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip)
+  - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip)
+- 开发文档：RabbitRemoteControl_v0.0.36_document.zip
+  - [从　github　下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip)
+  - [从　sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip)
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 
 ### 在线开发文档
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.35/Chinese/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.36/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 编译
