@@ -89,7 +89,7 @@ public:
     {
         No,
         RecentOpen,
-        Remote,
+        Operate,
         View,
         Tools,
         MenuBar

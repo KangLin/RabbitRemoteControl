@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
-    QAction* pRecentAction = ui->menuRemote->insertMenu(
+    QAction* pRecentAction = ui->menuOperate->insertMenu(
         ui->actionOpenListRecentConnections, m_pRecentMenu);
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
@@ -1269,14 +1269,14 @@ void MainWindow::slotSystemTrayIconTypeChanged()
     case CParameterApp::SystemTrayIconMenuType::MenuBar:
     {
         QMenu* pMenu = new QMenu(this);
-        pMenu->addMenu(ui->menuRemote);
+        pMenu->addMenu(ui->menuOperate);
         pMenu->addMenu(ui->menuView);
         pMenu->addMenu(ui->menuTools);
         m_TrayIcon->setContextMenu(pMenu);
         break;
     }
-    case CParameterApp::SystemTrayIconMenuType::Remote:
-        m_TrayIcon->setContextMenu(ui->menuRemote);
+    case CParameterApp::SystemTrayIconMenuType::Operate:
+        m_TrayIcon->setContextMenu(ui->menuOperate);
         break;
     case CParameterApp::SystemTrayIconMenuType::RecentOpen:
         m_TrayIcon->setContextMenu(m_pRecentMenu);

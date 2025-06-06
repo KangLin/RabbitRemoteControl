@@ -203,9 +203,9 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="2">
-           <widget class="QRadioButton" name="rbSystemTrayIconRemote">
+           <widget class="QRadioButton" name="rbSystemTrayIconOperate">
             <property name="text">
-             <string>Remote</string>
+             <string>Operate</string>
             </property>
            </widget>
           </item>
@@ -321,7 +321,7 @@
   <tabstop>cbShowSystemTrayIcon</tabstop>
   <tabstop>rbSystemTrayIconNo</tabstop>
   <tabstop>rbMenuBar</tabstop>
-  <tabstop>rbSystemTrayIconRemote</tabstop>
+  <tabstop>rbSystemTrayIconOperate</tabstop>
   <tabstop>rbSystemTrayIconRecentOpen</tabstop>
   <tabstop>rbNorth</tabstop>
   <tabstop>rbSouth</tabstop>

@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -55,9 +55,9 @@
     <addaction name="actionMain_menu_bar_M"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuRemote">
+   <widget class="QMenu" name="menuOperate">
     <property name="title">
-     <string>Remote(&amp;R)</string>
+     <string>Operate(&amp;R)</string>
     </property>
     <widget class="QMenu" name="menuConnect_C">
      <property name="title">
@@ -84,7 +84,7 @@
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
-   <addaction name="menuRemote"/>
+   <addaction name="menuOperate"/>
    <addaction name="menuView"/>
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>

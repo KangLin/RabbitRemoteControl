@@ -88,8 +88,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     case CParameterApp::SystemTrayIconMenuType::RecentOpen:
         ui->rbSystemTrayIconRecentOpen->setChecked(true);
         break;
-    case CParameterApp::SystemTrayIconMenuType::Remote:
-        ui->rbSystemTrayIconRemote->setChecked(true);
+    case CParameterApp::SystemTrayIconMenuType::Operate:
+        ui->rbSystemTrayIconOperate->setChecked(true);
         break;
     default:
         break;
@@ -131,8 +131,8 @@ void CParameterDlgSettings::on_pbOk_clicked()
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::MenuBar);
     if(ui->rbSystemTrayIconRecentOpen->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::RecentOpen);
-    if(ui->rbSystemTrayIconRemote->isChecked())
-        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Remote);
+    if(ui->rbSystemTrayIconOperate->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Operate);
 
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
     m_pParameters->SetMessageBoxDisplayInformation(ui->cbMessageBoxDisplayInfo->isChecked());
