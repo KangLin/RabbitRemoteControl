@@ -335,13 +335,16 @@
     <iconset theme="edit-copy"/>
    </property>
    <property name="text">
-    <string>Clone current connect</string>
+    <string>Clone</string>
+   </property>
+   <property name="toolTip">
+    <string>Clone</string>
    </property>
    <property name="statusTip">
-    <string>Clone current connect</string>
+    <string>Clone</string>
    </property>
    <property name="whatsThis">
-    <string>Clone current connect</string>
+    <string>Clone</string>
    </property>
   </action>
   <action name="actionAdd_to_favorite">
