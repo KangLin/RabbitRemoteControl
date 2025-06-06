@@ -231,7 +231,7 @@ void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
         return;
     QString szFile = item->data().toString();
     if(!szFile.isEmpty())
-        emit sigConnect(szFile, false);
+        emit sigStart(szFile, false);
 }
 
 void CFavoriteView::slotDoubleEditNode(bool bEdit)
@@ -250,9 +250,9 @@ void CFavoriteView::slotMenu()
     if(item)
     {
         if(item->data().isValid()) {
-            m_pMenu->addAction(tr("Connect"), this, SLOT(slotConnect()));
-            m_pMenu->addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
-            m_pMenu->addAction(tr("Delete Connect"), this, SLOT(slotDelete()));
+            m_pMenu->addAction(tr("Start"), this, SLOT(slotStart()));
+            m_pMenu->addAction(tr("Open settings and Start"), this, SLOT(slotOpenStart()));
+            m_pMenu->addAction(tr("Delete operate"), this, SLOT(slotDelete()));
         }
         m_pMenu->addSeparator();
         m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
@@ -271,7 +271,7 @@ void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
     m_pMenu->exec(mapToGlobal(pos));
 }
 
-void CFavoriteView::slotConnect()
+void CFavoriteView::slotStart()
 {
     auto lstIndex = selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
@@ -280,11 +280,11 @@ void CFavoriteView::slotConnect()
         if(!item) return;
         QString szFile = item->data().toString();
         if(!szFile.isEmpty())
-            emit sigConnect(szFile, false);
+            emit sigStart(szFile, false);
     }
 }
 
-void CFavoriteView::slotOpenConnect()
+void CFavoriteView::slotOpenStart()
 {
     auto lstIndex = selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
@@ -292,7 +292,7 @@ void CFavoriteView::slotOpenConnect()
         auto item = m_pModel->itemFromIndex(index);
         QString szFile = item->data().toString();
         if(!szFile.isEmpty())
-            emit sigConnect(szFile, true);
+            emit sigStart(szFile, true);
     }
 }
 

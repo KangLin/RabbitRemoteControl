@@ -16,7 +16,7 @@ public:
     int AddFavorite(const QString& szName, const QString &szFile);
 
 Q_SIGNALS:
-    void sigConnect(const QString &szFile, bool bOpenSettings);
+    void sigStart(const QString &szFile, bool bOpenSettings);
     void sigFavorite();
     
     // QWidget interface
@@ -32,8 +32,8 @@ private slots:
     void slotFavrtieClicked(const QModelIndex &index);
     void slotFavortiedoubleClicked(const QModelIndex &index);
     void slotCustomContextMenu(const QPoint &pos);
-    void slotConnect();
-    void slotOpenConnect();
+    void slotStart();
+    void slotOpenStart();
     void slotDelete();
     void slotNewGroup();
     void slotDoubleEditNode(bool bEdit);
