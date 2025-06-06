@@ -22,7 +22,8 @@ class CPluginFreeRDP : public CPluginClient
 public:
     explicit CPluginFreeRDP(QObject *parent = nullptr);
     virtual ~CPluginFreeRDP() override;
-    
+
+    virtual const TYPE Type() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;

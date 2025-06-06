@@ -22,6 +22,11 @@ CPluginTigerVnc::~CPluginTigerVnc()
     qDebug(log) << "CPluginTigerVnc::~CPluginTigerVnc()";
 }
 
+const CPluginClient::TYPE CPluginTigerVnc::Type() const
+{
+    return TYPE::Client;
+}
+
 const QString CPluginTigerVnc::Name() const
 {
     return "TigerVNC";

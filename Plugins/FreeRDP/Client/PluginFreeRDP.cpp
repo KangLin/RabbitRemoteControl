@@ -69,6 +69,11 @@ CPluginFreeRDP::~CPluginFreeRDP()
 }
 //! [Clean resource]
 
+const CPluginClient::TYPE CPluginFreeRDP::Type() const
+{
+    return TYPE::Client;
+}
+
 const QString CPluginFreeRDP::Name() const
 {
     return "FreeRDP";

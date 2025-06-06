@@ -56,6 +56,11 @@ const QString CPluginWakeOnLan::Protocol() const
     return "Tool";
 }
 
+const CPluginClient::TYPE CPluginWakeOnLan::Type() const
+{
+    return TYPE::Tool;
+}
+
 const QString CPluginWakeOnLan::Name() const
 {
     return "WakeOnLan";

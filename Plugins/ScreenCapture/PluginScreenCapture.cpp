@@ -7,6 +7,10 @@ CPluginScreenCapture::CPluginScreenCapture(QObject *parent)
     : CPluginClient{parent}
 {}
 
+const CPluginClient::TYPE CPluginScreenCapture::Type() const
+{
+    return TYPE::Tool;
+}
 
 const QString CPluginScreenCapture::Protocol() const
 {

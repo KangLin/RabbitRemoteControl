@@ -57,6 +57,12 @@ public:
      */
     virtual ~CPluginClient();
     
+    enum class TYPE{
+        Client,
+        Server,
+        Tool
+    };
+    virtual const TYPE Type() const = 0;
     /// \~chinese 标识。默认： Protocol() + ":" + Name()
     /// \~english ID. Default: Protocol() + ":" + Name()
     virtual const QString Id() const;

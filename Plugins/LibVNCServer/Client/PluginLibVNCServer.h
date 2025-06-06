@@ -22,6 +22,7 @@ public:
 
     // CPluginFactory interface
 public:
+    virtual const TYPE Type() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;

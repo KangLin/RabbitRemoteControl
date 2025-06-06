@@ -22,7 +22,8 @@ class CPluginTigerVnc : public CPluginClient
 public:
     explicit CPluginTigerVnc(QObject *parent = nullptr);
     virtual ~CPluginTigerVnc() override;
-    
+
+    virtual const TYPE Type() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;

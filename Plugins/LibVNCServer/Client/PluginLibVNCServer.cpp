@@ -18,6 +18,11 @@ CPluginLibVNCServer::~CPluginLibVNCServer()
     qDebug(log) << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
 }
 
+const CPluginClient::TYPE CPluginLibVNCServer::Type() const
+{
+    return TYPE::Client;
+}
+
 const QString CPluginLibVNCServer::Name() const
 {
     return "LibVNCServer";
