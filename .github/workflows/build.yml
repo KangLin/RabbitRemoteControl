@@ -228,4 +228,4 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
         run: |
           gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
-          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json --clobber
+          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md
