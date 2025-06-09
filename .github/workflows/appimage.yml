@@ -88,7 +88,7 @@ jobs:
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage?viasf=1" \
             --md5 "${MD5SUM}"
 
       - name: Update artifact

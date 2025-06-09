@@ -4,11 +4,11 @@
 - App:
   - Rename UI prompts
 
-| Old name  |  New name  |  Function  |
-|-----------------|------------------|----------------|
-|Remote | Operate| Menu|
-|Remote->Connect|Operate->Start|Menu or tool bar|
-|Remote->Disconnect|Operate->Stop|Menu or tool bar|
+| Old name         |  New name    |  Function      |
+|------------------|--------------|----------------|
+|Remote            | Operate      | Menu           |
+|Remote->Connect   |Operate->Start|Menu or tool bar|
+|Remote->Disconnect|Operate->Stop |Menu or tool bar|
 
 ### v0.0.36
 - Client:

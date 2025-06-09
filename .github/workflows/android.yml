@@ -362,7 +362,7 @@ jobs:
               update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
               RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
               android ${{matrix.ANDROID_ABI}} \
-              "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://sourceforge.net/projects/RabbitRemoteControl/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk"
+              "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk?viasf=1"
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
