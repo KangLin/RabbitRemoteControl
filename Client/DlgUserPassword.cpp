@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "DlgUserPassword.h"
 #include "ui_DlgUserPassword.h"
 #include <QLoggingCategory>
@@ -36,11 +38,6 @@ void CDlgUserPassword::SetContext(void *pContext)
                         + m_pNet->GetHost()
                         + ":" + QString::number(m_pNet->GetPort()));
     ui->wUser->SetParameter(&user);
-}
-
-void CDlgUserPassword::SetConnecter(CConnecter *pConnecter)
-{
-    m_pConnecter = pConnecter;
 }
 
 void CDlgUserPassword::accept()

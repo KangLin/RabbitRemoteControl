@@ -1,9 +1,9 @@
-#ifndef DLGUSERPASSWORD_H
-#define DLGUSERPASSWORD_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QDialog>
 #include "ParameterNet.h"
-#include "Connecter.h"
 
 namespace Ui {
 class CDlgUserPassword;
@@ -19,12 +19,10 @@ public:
     CDlgUserPassword(const CDlgUserPassword& other);
     
     Q_INVOKABLE void SetContext(void* pContext);
-    Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
 
 private:
     Ui::CDlgUserPassword *ui;
     CParameterNet* m_pNet;
-    CConnecter* m_pConnecter;
     
     // QDialog interface
 public slots:
@@ -32,5 +30,3 @@ public slots:
 };
 
 Q_DECLARE_METATYPE(CDlgUserPassword)
-
-#endif // DLGUSERPASSWORD_H
