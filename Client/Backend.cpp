@@ -1,46 +1,49 @@
 // Author: Kang Lin <kl222@126.com>
+
 #include <QTimer>
 #include <QLoggingCategory>
 
-#include "Connect.h"
+#include "Backend.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Connect")
+static Q_LOGGING_CATEGORY(log, "Operate")
 
-CConnect::CConnect(CConnecter *pConnecter) : QObject()
+CBackend::CBackend(COperate *pOperate)
+    : QObject() // Because it's in a different thread with pOperate
 {
-    SetConnecter(pConnecter);
+    qDebug(log) << Q_FUNC_INFO;
+    SetConnect(pOperate);
 }
 
-CConnect::~CConnect()
+CBackend::~CBackend()
 {
-    qDebug(log) << "CConnect::~CConnect()";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
-int CConnect::SetConnecter(CConnecter* pConnecter)
+int CBackend::SetConnect(COperate *pOperate)
 {
-    qDebug(log) << "CConnect::SetConnecter" << pConnecter;
-    if(!pConnecter) return -1;
+    qDebug(log) << Q_FUNC_INFO;
+    if(!pOperate) return -1;
     
     bool check = false;
-    check = connect(this, SIGNAL(sigConnected()),
-                    pConnecter, SIGNAL(sigConnected()));
+    check = connect(this, SIGNAL(sigRunning()),
+                    pOperate, SIGNAL(sigRunning()));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnect()),
-                    pConnecter, SIGNAL(sigDisconnect()));
+    check = connect(this, SIGNAL(sigFinished()),
+                    pOperate, SIGNAL(sigFinished()));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnected()),
-                    pConnecter, SIGNAL(sigDisconnected()));
+    check = connect(this, SIGNAL(sigStop()),
+                    pOperate, SIGNAL(sigStop()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigError(const int, const QString&)),
-                    pConnecter, SIGNAL(sigError(const int, const QString&)));
+                    pOperate, SIGNAL(sigError(const int, const QString&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigInformation(const QString&)),
-                    pConnecter, SIGNAL(sigInformation(const QString&)));
+                    pOperate, SIGNAL(sigInformation(const QString&)));
     Q_ASSERT(check);
     check = connect(
         this, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                  const QMessageBox::Icon&)),
-        pConnecter, SIGNAL(sigShowMessageBox(const QString&, const QString&,
+        pOperate, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                  const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigBlockShowMessageBox(
@@ -48,7 +51,7 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
                               QMessageBox::StandardButtons,
                               QMessageBox::StandardButton&,
                               bool&, QString)),
-                    pConnecter, SLOT(slotBlockShowMessageBox(
+                    pOperate, SLOT(slotBlockShowMessageBox(
                         const QString&, const QString&,
                         QMessageBox::StandardButtons,
                         QMessageBox::StandardButton&,
@@ -59,24 +62,24 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
                                                      const QString&,
                                                      const QString&,
                                                      QString&)),
-                    pConnecter, SLOT(slotBlockInputDialog(const QString&,
-                                                          const QString&,
-                                                          const QString&,
-                                                          QString&)),
+                    pOperate, SLOT(slotBlockInputDialog(const QString&,
+                                              const QString&,
+                                              const QString&,
+                                              QString&)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(
         this,
         SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
-        pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
+        pOperate, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
         Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     return 0;
 }
 
-int CConnect::Connect()
+int CBackend::Start()
 {
-    qDebug(log) << "CConnect::Connect()";
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = static_cast<int>(OnInit());
     if(nRet < 0) return nRet;
@@ -86,15 +89,15 @@ int CConnect::Connect()
     return 0;
 }
 
-int CConnect::Disconnect()
+int CBackend::Stop()
 {
-    qDebug(log) << "CConnect::Disconnect()";
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = OnClean();
     return nRet;
 }
 
-void CConnect::slotTimeOut()
+void CBackend::slotTimeOut()
 {
     //qDebug(log) << "CConnect::slotTimeOut()";
     try {
@@ -119,14 +122,13 @@ void CConnect::slotTimeOut()
         qCritical(log) << "Process fail";
         emit sigError(-3, "Process fail");
     }
-
+    
     // Error or stop, must notify user disconnect it
-    emit sigDisconnect();
+    emit sigStop();
 }
 
-int CConnect::OnProcess()
+int CBackend::OnProcess()
 {
     qWarning(log) << "Need to implement CConnect::OnProcess()";
     return 0;
 }
-
