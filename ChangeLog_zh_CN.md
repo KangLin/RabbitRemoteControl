@@ -11,7 +11,6 @@
 
 - [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - 增加 CParameterPlugin
-  - 增加 CManager
 
 |老名称           |新名称          |
 |----------------|---------------|
@@ -20,7 +19,7 @@
 |ConnectThread   |CBackendThread |
 |CConnecterThread|COperateDesktop|
 |CPluginClient   |CPlugin        |
-|Client          |CManager       |
+|CClient         |CManager       |
 
 ### v0.0.36
 - Client:
