@@ -1,8 +1,5 @@
 ﻿// Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTER_H
-#define CCONNECTER_H
-
 #pragma once
 
 #include <QObject>
@@ -429,5 +426,3 @@ private:
     // The owner is a derived class of this class
     CParameter* m_pParameter;
 };
-
-#endif // CCONNECTER_H

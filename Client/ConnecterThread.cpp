@@ -49,7 +49,7 @@ int CConnecterThread::Initial()
         return nRet;
 
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
-    m_pFrmViewer = new CFrmViewer();
+    m_pFrmViewer = new CFrmViewer(); // The owner is m_pScroll
     m_pScroll = new CFrmScroll(m_pFrmViewer);
 
     check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),

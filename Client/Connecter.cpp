@@ -2,7 +2,6 @@
 
 #include <QClipboard>
 #include <QApplication>
-#include <QDebug>
 #include <QGenericArgument>
 #include <QCheckBox>
 #include <QLoggingCategory>
