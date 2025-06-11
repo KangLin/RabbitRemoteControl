@@ -26,12 +26,11 @@ public:
 Q_SIGNALS:
     void sigExitFullScreen();
     void sigExit();
-    void sigDisconnect();
 
 private Q_SLOTS:
     void slotTimeOut();
     void slotNail();
-    void slotConnecterMenuChanged(QAction* pAction);
+    void slotOperateMenuChanged(QAction* pAction);
     
 protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
@@ -51,7 +50,7 @@ private:
     
     QPointF m_Pos;
     QToolBar m_ToolBar;
-    QAction* m_pConnecterMenu;
+    QAction* m_pOperateMenu;
     QAction* m_pNail;
     MainWindow* m_pMain;
     QTimer m_Timer;

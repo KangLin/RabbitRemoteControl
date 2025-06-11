@@ -26,7 +26,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     ),
     ui(new Ui::CFrmFullScreenToolBar),
     m_ToolBar(this),
-    m_pConnecterMenu(nullptr),
+    m_pOperateMenu(nullptr),
     m_pNail(nullptr),
     m_pMain(pMain),
     m_TimeOut(3000),
@@ -50,9 +50,9 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_ToolBar.addAction(m_pMain->ui->actionFull_screen_F);
 
     m_ToolBar.addSeparator();
-    if(m_pMain->m_pActionConnecterMenu) {
-        m_pConnecterMenu = m_pMain->m_pActionConnecterMenu;
-        m_ToolBar.addAction(m_pConnecterMenu);
+    if(m_pMain->m_pActionOperateMenu) {
+        m_pOperateMenu = m_pMain->m_pActionOperateMenu;
+        m_ToolBar.addAction(m_pOperateMenu);
     }
 
     m_ToolBar.addAction(m_pMain->ui->actionStop);
@@ -160,11 +160,11 @@ void CFrmFullScreenToolBar::slotNail()
     set.setValue("FullScreen/Nail", m_pNail->isChecked());
 }
 
-void CFrmFullScreenToolBar::slotConnecterMenuChanged(QAction* pAction)
+void CFrmFullScreenToolBar::slotOperateMenuChanged(QAction* pAction)
 {
-    if(m_pConnecterMenu) {
-        m_ToolBar.removeAction(m_pConnecterMenu);
-        m_pConnecterMenu = pAction;
-        m_ToolBar.insertAction(m_pMain->ui->actionStop, m_pConnecterMenu);
+    if(m_pOperateMenu) {
+        m_ToolBar.removeAction(m_pOperateMenu);
+        m_pOperateMenu = pAction;
+        m_ToolBar.insertAction(m_pMain->ui->actionStop, m_pOperateMenu);
     }
 }

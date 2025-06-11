@@ -8,7 +8,7 @@
 #include <QMenu>
 
 CFrmListRecent::CFrmListRecent(
-    CClient* pClient,
+    CManager *pManager,
     CParameterApp &parameterApp, bool bDock, QWidget *parent) :
     QWidget(parent),
     m_ParameterApp(parameterApp),
@@ -16,7 +16,7 @@ CFrmListRecent::CFrmListRecent(
     m_ptbOperate(nullptr),
     m_pMenuNew(nullptr),
     m_pModel(nullptr),
-    m_pClient(pClient),
+    m_pManager(pManager),
     m_nFileRow(0),
     m_bDock(bDock),
     m_pDockTitleBar(nullptr)
@@ -30,7 +30,7 @@ CFrmListRecent::CFrmListRecent(
 
     m_pStart = m_pToolBar->addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"),
-        this, SLOT(slotConnect()));
+        this, SLOT(slotStart()));
     m_pStart->setStatusTip(tr("Start"));
     m_pStart->setToolTip(tr("Start"));
     m_pEditOperate = m_pToolBar->addAction(
@@ -43,7 +43,7 @@ CFrmListRecent::CFrmListRecent(
     m_ptbOperate = new QToolButton(m_pToolBar);
     m_ptbOperate->setFocusPolicy(Qt::NoFocus);
     m_ptbOperate->setPopupMode(QToolButton::InstantPopup);
-    //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //m_ptbOperate->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     m_pMenuNew = new QMenu(tr("New"), this);
     m_pMenuNew->setIcon(QIcon::fromTheme("add"));
     m_ptbOperate->setMenu(m_pMenuNew);
@@ -52,7 +52,7 @@ CFrmListRecent::CFrmListRecent(
     m_ptbOperate->setToolTip(tr("New"));
     m_ptbOperate->setStatusTip(tr("New"));
     m_pToolBar->addWidget(m_ptbOperate);
-    m_pClient->EnumPlugins(this);
+    m_pManager->EnumPlugins(this);
     m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                                     this, SLOT(slotEdit()));
     m_pEdit->setStatusTip(tr("Edit"));
@@ -125,7 +125,7 @@ CFrmListRecent::CFrmListRecent(
         m_pToolBar->setVisible(m_ParameterApp.GetDockListRecentShowToolBar());
     }
 
-    Q_ASSERT(m_pClient);
+    Q_ASSERT(m_pManager);
     m_pTableView = new QTableView(this);
     m_pTableView->setContextMenuPolicy(Qt::CustomContextMenu);
     bool check = connect(m_pTableView,
@@ -199,24 +199,24 @@ void CFrmListRecent::slotLoadFiles()
     foreach (auto fileName, files) {
         QString szFile = dir.absoluteFilePath(fileName);
         if(szFile.isEmpty()) continue;
-        CConnecter* c = m_pClient->LoadConnecter(szFile);
-        if(!c) continue;
+        COperate* pOperate = m_pManager->LoadOperate(szFile);
+        if(!pOperate) continue;
 
         QList<QStandardItem*> lstItem;
-        QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
-        pName->setToolTip(c->Description());
+        QStandardItem* pName = new QStandardItem(pOperate->Icon(), pOperate->Name());
+        pName->setToolTip(pOperate->Description());
         lstItem << pName;
-        QStandardItem* pProtocol = new QStandardItem(c->Protocol());
+        QStandardItem* pProtocol = new QStandardItem(pOperate->Protocol());
         lstItem << pProtocol;
         QFileInfo fi(szFile);
         lstItem << new QStandardItem(fi.lastModified().toLocalTime().toString());
-        QStandardItem* pId = new QStandardItem(c->Id());
+        QStandardItem* pId = new QStandardItem(pOperate->Id());
         lstItem << pId;
         QStandardItem* pFile = new QStandardItem(szFile);
         lstItem << pFile;
         m_pModel->appendRow(lstItem);
 
-        m_pClient->DeleteConnecter(c);
+        m_pManager->DeleteOperate(pOperate);
     }
 
     if(m_pModel->rowCount() > 0)
@@ -243,7 +243,7 @@ void CFrmListRecent::slotLoadFiles()
     return;
 }
 
-int CFrmListRecent::InsertItem(CConnecter *c, QString& szFile)
+int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
 {
     QList<QStandardItem*> lstItem;
     QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
@@ -262,7 +262,7 @@ int CFrmListRecent::InsertItem(CConnecter *c, QString& szFile)
     return 0;
 }
 
-int CFrmListRecent::onProcess(const QString &id, CPluginClient *pPlug)
+int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlug)
 {
     // Connect menu and toolbar
     QAction* pAction = m_pMenuNew->addAction(
@@ -278,17 +278,17 @@ int CFrmListRecent::onProcess(const QString &id, CPluginClient *pPlug)
 void CFrmListRecent::slotNew()
 {
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
-    CConnecter* c = m_pClient->CreateConnecter(pAction->data().toString());
-    if(nullptr == c) return;
+    COperate* pOperate = m_pManager->CreateOperate(pAction->data().toString());
+    if(nullptr == pOperate) return;
 
-    int nRet = c->OpenDialogSettings(this);
+    int nRet = pOperate->OpenDialogSettings(this);
     switch(nRet)
     {
     case QDialog::Rejected:
         break;
     case QDialog::Accepted:
     {
-        QString szFile = c->GetSettingsFile();
+        QString szFile = pOperate->GetSettingsFile();
         QDir d;
         if(d.exists(szFile)) {
             QMessageBox::StandardButton r
@@ -300,20 +300,20 @@ void CFrmListRecent::slotNew()
             if(QMessageBox::StandardButton::Ok == r)
             {
                 d.remove(szFile);
-                m_pClient->SaveConnecter(c);
+                m_pManager->SaveOperate(pOperate);
             }
             break;
         }
 
-        m_pClient->SaveConnecter(c);
+        m_pManager->SaveOperate(pOperate);
         
-        InsertItem(c, szFile);
+        InsertItem(pOperate, szFile);
 
         break;
     }
     }
 
-    m_pClient->DeleteConnecter(c);
+    m_pManager->DeleteOperate(pOperate);
 }
 
 void CFrmListRecent::slotEdit()
@@ -323,17 +323,17 @@ void CFrmListRecent::slotEdit()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* c = m_pClient->LoadConnecter(szFile);
-        int nRet = c->OpenDialogSettings(this);
+        COperate* pOperate = m_pManager->LoadOperate(szFile);
+        int nRet = pOperate->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(c);
+            m_pManager->SaveOperate(pOperate);
             break;
         }
-        m_pClient->DeleteConnecter(c);
+        m_pManager->DeleteOperate(pOperate);
     }
 }
 
@@ -344,18 +344,18 @@ void CFrmListRecent::slotEditConnect()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* c = m_pClient->LoadConnecter(szFile);
+        COperate* c = m_pManager->LoadOperate(szFile);
         int nRet = c->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(c);
-            emit sigConnect(szFile);
+            m_pManager->SaveOperate(c);
+            emit sigStart(szFile);
             break;
         }
-        m_pClient->DeleteConnecter(c);
+        m_pManager->DeleteOperate(c);
     }
     if(!m_bDock)
         close();
@@ -368,19 +368,19 @@ void CFrmListRecent::slotCopy()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* c = m_pClient->LoadConnecter(szFile);
+        COperate* pOperate = m_pManager->LoadOperate(szFile);
 
         do {
             bool bExit = true;
             bool bInsert = true;
-            int nRet = c->OpenDialogSettings(this);
+            int nRet = pOperate->OpenDialogSettings(this);
             switch(nRet)
             {
             case QDialog::Rejected:
                 break;
             case QDialog::Accepted:
             {
-                szFile = c->GetSettingsFile();
+                szFile = pOperate->GetSettingsFile();
                 QDir d(szFile);
                 if(d.exists(szFile)) {
                     QMessageBox::StandardButton r
@@ -402,9 +402,9 @@ void CFrmListRecent::slotCopy()
                         break;
                     bInsert = false;
                 }
-                m_pClient->SaveConnecter(c);
+                m_pManager->SaveOperate(pOperate);
                 if(bInsert)
-                    InsertItem(c, szFile);
+                    InsertItem(pOperate, szFile);
                 break;
             }
             }
@@ -413,7 +413,7 @@ void CFrmListRecent::slotCopy()
                 break;
         } while(1);
 
-        m_pClient->DeleteConnecter(c);
+        m_pManager->DeleteOperate(pOperate);
     }
 }
 
@@ -430,14 +430,14 @@ void CFrmListRecent::slotDelete()
     }
 }
 
-void CFrmListRecent::slotConnect()
+void CFrmListRecent::slotStart()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        emit sigConnect(szFile);
+        emit sigStart(szFile);
     }
     if(!m_bDock) close();
 }
@@ -458,7 +458,7 @@ void CFrmListRecent::slotCustomContextMenu(const QPoint &pos)
     QMenu menu(this);
     
     menu.addAction(QIcon::fromTheme("media-playback-start"),
-                   tr("Start"), this, SLOT(slotConnect()));
+                   tr("Start"), this, SLOT(slotStart()));
     menu.addAction(tr("Edit and Start"), this, SLOT(slotEditConnect()));
     menu.addSeparator();
     menu.addMenu(m_pMenuNew);
@@ -477,6 +477,6 @@ void CFrmListRecent::slotCustomContextMenu(const QPoint &pos)
 void CFrmListRecent::slotDoubleClicked(const QModelIndex& index)
 {
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-    emit sigConnect(szFile);
+    emit sigStart(szFile);
     if(!m_bDock) close();
 }

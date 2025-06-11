@@ -8,8 +8,10 @@ CParameterPlugin::CParameterPlugin(QObject *parent, const QString &szPrefix)
 
 int CParameterPlugin::OnLoad(QSettings &set)
 {
+    return 0;
 }
 
 int CParameterPlugin::OnSave(QSettings &set)
 {
+    return 0;
 }

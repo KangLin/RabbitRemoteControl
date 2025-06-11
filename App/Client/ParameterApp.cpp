@@ -22,7 +22,7 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bTabBar(true),
     m_bMenuBar(true),
     m_bMessageBoxDisplayInfomation(true),
-    m_bDockListConnectersShowToolBar(true),
+    m_bDockListActiveShowToolBar(true),
     m_bDockListRecentShowToolBar(true),
     m_bKeepSplitViewWhenFullScreen(false)
 {
@@ -84,9 +84,9 @@ int CParameterApp::OnLoad(QSettings &set)
                   GetMessageBoxDisplayInformation()).toBool());
 
     set.beginGroup("Dock");
-    SetDockListConnectersShowToolBar(
-        set.value("ListConnecters/ToolBar/Show",
-                  GetDockListConnectersShowToolBar()).toBool());
+    SetDockListActiveShowToolBar(
+        set.value("ListActive/ToolBar/Show",
+                  GetDockListActiveShowToolBar()).toBool());
 
     SetDockListRecentShowToolBar(
         set.value("Recent/ToolBar/Show",
@@ -140,8 +140,8 @@ int CParameterApp::OnSave(QSettings &set)
                  GetMessageBoxDisplayInformation());
 
     set.beginGroup("Dock");
-    set.setValue("ListConnecters/ToolBar/Show",
-                 GetDockListConnectersShowToolBar());
+    set.setValue("ListActive/ToolBar/Show",
+                 GetDockListActiveShowToolBar());
     set.setValue("Recent/ToolBar/Show",
                  GetDockListRecentShowToolBar());
 
@@ -364,16 +364,16 @@ void CParameterApp::SetMessageBoxDisplayInformation(bool bEnable)
     SetModified(true);
 }
 
-const bool CParameterApp::GetDockListConnectersShowToolBar() const
+const bool CParameterApp::GetDockListActiveShowToolBar() const
 {
-    return m_bDockListConnectersShowToolBar;
+    return m_bDockListActiveShowToolBar;
 }
 
-void CParameterApp::SetDockListConnectersShowToolBar(bool bEnable)
+void CParameterApp::SetDockListActiveShowToolBar(bool bEnable)
 {
-    if(m_bDockListConnectersShowToolBar == bEnable)
+    if(m_bDockListActiveShowToolBar == bEnable)
         return;
-    m_bDockListConnectersShowToolBar = bEnable;
+    m_bDockListActiveShowToolBar = bEnable;
     SetModified(true);
 }
 
