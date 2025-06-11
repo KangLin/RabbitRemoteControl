@@ -10,73 +10,75 @@
 #include <QMessageBox>
 #include <QCheckBox>
 
-#include "Client.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "FrmParameterClient.h"
 #include "FrmViewer.h"
 #include "Channel.h"
 #include "ParameterRecordUI.h"
+#include "Manager.h"
 
-static Q_LOGGING_CATEGORY(log, "Client")
+static Q_LOGGING_CATEGORY(log, "Manager")
 
-CClient::CClient(QObject *parent, QString szFile) : QObject(parent)
+CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     , m_FileVersion(1)  //TODO: update version it if update data
     , m_pHook(nullptr)
 {
     bool check = false;
-//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-//    Q_INIT_RESOURCE(translations_Client);
-//#endif
+    //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+    //    Q_INIT_RESOURCE(translations_Client);
+    //#endif
 
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
+        // TODO modify the name to Plugin
         "Client", RabbitCommon::CTools::TranslationType::Library);
 
     CChannel::InitTranslation();
     m_szSettingsFile = szFile;
-    m_pParameterClient = new CParameterClient();
-    if(m_pParameterClient) {
+    m_pParameter = new CParameterPlugin();
+    if(m_pParameter) {
+        CParameterClient* pParameterClient = &m_pParameter->m_Client;
         LoadSettings(m_szSettingsFile);
-        check = connect(m_pParameterClient, &CParameterClient::sigNativeWindowRecieveKeyboard,
+        check = connect(pParameterClient, &CParameterClient::sigNativeWindowRecieveKeyboard,
                         this, [&](){
-            if(m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
-                if(m_pHook) {
-                    m_pHook->UnRegisterKeyboard();
-                    m_pHook->deleteLater();
-                    m_pHook = nullptr;
-                }
-            } else {
-                m_pHook = CHook::GetHook(m_pParameterClient, this);
-                if(m_pHook)
-                    m_pHook->RegisterKeyboard();
-            }
-        });
-        m_pHook = CHook::GetHook(m_pParameterClient, this);
+                            if(pParameterClient->GetNativeWindowReceiveKeyboard()) {
+                                if(m_pHook) {
+                                    m_pHook->UnRegisterKeyboard();
+                                    m_pHook->deleteLater();
+                                    m_pHook = nullptr;
+                                }
+                            } else {
+                                m_pHook = CHook::GetHook(pParameterClient, this);
+                                if(m_pHook)
+                                    m_pHook->RegisterKeyboard();
+                            }
+                        });
+        m_pHook = CHook::GetHook(pParameterClient, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
     } else {
-        qCritical(log) << "new CParameterClient() fail";
-        Q_ASSERT(m_pParameterClient);
+        qCritical(log) << "new CParameterPlugin() fail";
+        Q_ASSERT(m_pParameter);
     }
 
     LoadPlugins();
 }
 
-CClient::~CClient()
+CManager::~CManager()
 {
-    qDebug(log) << "CClient::~CClient()";
-    
+    qDebug(log) << "CManager::~CManager()";
+
     qApp->removeEventFilter(this);
-    
+
     if(m_pHook) {
         m_pHook->UnRegisterKeyboard();
         m_pHook->deleteLater();
         m_pHook = nullptr;
     }
 
-    if(m_pParameterClient) {
-        m_pParameterClient->deleteLater();
-        m_pParameterClient = nullptr;
+    if(m_pParameter) {
+        m_pParameter->deleteLater();
+        m_pParameter = nullptr;
     }
 
     if(m_Translator)
@@ -84,17 +86,17 @@ CClient::~CClient()
 
     CChannel::RemoveTranslation();
 
-//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-//    Q_CLEANUP_RESOURCE(translations_Client);
-//#endif
+    //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+    //    Q_CLEANUP_RESOURCE(translations_Client);
+    //#endif
 }
 
-int CClient::LoadPlugins()
+int CManager::LoadPlugins()
 {
     int nRet = 0;
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
-        CPluginClient* p = qobject_cast<CPluginClient*>(plugin);
+        CPlugin* p = qobject_cast<CPlugin*>(plugin);
         if(p)
         {
             if(m_Plugins.find(p->Id()) == m_Plugins.end())
@@ -106,35 +108,34 @@ int CClient::LoadPlugins()
                 qWarning(log) << "The plugin" << p->Name() << " is exist.";
         }
     }
-
+    
     QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
-#if !defined (Q_OS_ANDROID)
-    szPath = szPath + QDir::separator() + "Client";
-#endif
-
+    
     QStringList filters;
 #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-    filters << "*PluginClient*.dll";
+    filters << "*.dll";
 #else
-    filters << "*PluginClient*.so";
+    filters << "*.so";
 #endif
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
         m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
-
+    
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
     return nRet;
 }
 
-int CClient::FindPlugins(QDir dir, QStringList filters)
+int CManager::FindPlugins(QDir dir, QStringList filters)
 {
     QString fileName;
     if(filters.isEmpty())
     {
 #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-        filters << "*PluginClient*.dll";
+        filters << "*.dll";
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+        filters << "*.dylib";
 #else
-        filters << "*PluginClient*.so";
+        filters << "*.so";
 #endif
     }
 
@@ -144,30 +145,30 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
     {
         //This method is invalid
         //QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
-
+        
         QDir::setCurrent(QDir::cleanPath(dir.absolutePath()));
-
+        
         // This method is valid
-//#if defined(Q_OS_WINDOWS)
-//        QString szPath = QString::fromLocal8Bit(qgetenv("PATH"));
-//        szPath += ";";
-//        szPath += QDir::cleanPath(dir.absolutePath());
-//        qputenv("PATH", szPath.toLatin1());
-//#endif
+        //#if defined(Q_OS_WINDOWS)
+        //        QString szPath = QString::fromLocal8Bit(qgetenv("PATH"));
+        //        szPath += ";";
+        //        szPath += QDir::cleanPath(dir.absolutePath());
+        //        qputenv("PATH", szPath.toLatin1());
+        //#endif
     }
-
+    
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         QPluginLoader loader(szPlugins);
         QObject *plugin = loader.instance();
         if (plugin) {
-            CPluginClient* p = qobject_cast<CPluginClient*>(plugin);
+            CPlugin* p = qobject_cast<CPlugin*>(plugin);
             if(p)
             {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
                 {
                     qInfo(log) << "Success: Load plugin"
-                                  << p->Name() << "from" << szPlugins;
+                               << p->Name() << "from" << szPlugins;
                     AppendPlugin(p);
                 }
                 else
@@ -181,19 +182,19 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
             qCritical(log) << szMsg.toStdString().c_str();
         }
     }
-
+    
     foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         QDir pluginDir = dir;
         if(pluginDir.cd(fileName))
             FindPlugins(pluginDir, filters);
     }
-
+    
     QDir::setCurrent(szCurrentPath);
-
+    
     return 0;
 }
 
-int CClient::AppendPlugin(CPluginClient *p)
+int CManager::AppendPlugin(CPlugin *p)
 {
     if(!p) return -1;
     m_Plugins.insert(p->Id(), p);
@@ -207,159 +208,159 @@ int CClient::AppendPlugin(CPluginClient *p)
     if(!bRet || val)
     {
         qCritical(log) << "The plugin" <<  p->Name()
-                       << "initial translator fail" << bRet << val;
+        << "initial translator fail" << bRet << val;
     }
-
+    
     m_szDetails += "#### " + p->DisplayName() + "\n"
-              + tr("Version:") + " " + p->Version() + "  \n"
-              + p->Description() + "\n";
+                   + tr("Version:") + " " + p->Version() + "  \n"
+                   + p->Description() + "\n";
     if(!p->Details().isEmpty())
         m_szDetails += p->Details() + "\n";
-
+    
     return 0;
 }
 
-//! [CClient CreateConnecter]
-CConnecter* CClient::CreateConnecter(const QString& id)
+//! [CManager CreateOperate]
+COperate* CManager::CreateOperate(const QString& id)
 {
-    CConnecter* pConnecter = nullptr;
+    COperate* pOperate = nullptr;
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
         bool bRet = 0;
-        qDebug(log) << "CreateConnecter id:" << id;
+        qDebug(log) << "CreateOperate id:" << id;
         auto plugin = it.value();
         if(plugin) {
-            //p = plugin->CreateConnecter(id);
+            //p = plugin->CreateOperate(id);
             bRet = QMetaObject::invokeMethod(
                 plugin,
-                "CreateConnecter",
+                "CreateOperate",
                 Qt::DirectConnection,
-                Q_RETURN_ARG(CConnecter*, pConnecter),
+                Q_RETURN_ARG(COperate*, pOperate),
                 Q_ARG(QString, id),
-                Q_ARG(CParameterClient*, m_pParameterClient));
+                Q_ARG(CParameterPlugin*, m_pParameter));
             if(!bRet) {
-                qCritical(log) << "Create CConnecter fail.";
+                qCritical(log) << "Create COperate fail.";
                 return nullptr;
             }
         }
     }
-    return pConnecter;
+    return pOperate;
 }
-//! [CClient CreateConnecter]
+//! [CManager CreateOperate]
 
-int CClient::DeleteConnecter(CConnecter *p)
+int CManager::DeleteOperate(COperate *p)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!p) return 0;
-
-    CPluginClient* pPluginClient = nullptr;
-    //pPluginClient->GetPlugClient();
+    
+    CPlugin* pPlugin = nullptr;
+    //pPlugin->GetPlugin();
     bool bRet = QMetaObject::invokeMethod(
         p,
-        "GetPlugClient",
+        "GetPlugin",
         Qt::DirectConnection,
-        Q_RETURN_ARG(CPluginClient*, pPluginClient));
-
-    if(bRet && pPluginClient) {
+        Q_RETURN_ARG(CPlugin*, pPlugin));
+    
+    if(bRet && pPlugin) {
         int nRet = 0;
-        //pPluginClient->DeleteConnecter(p);
+        //pPlugin->DeleteOperate(p);
         bRet = QMetaObject::invokeMethod(
-            pPluginClient,
-            "DeleteConnecter",
+            pPlugin,
+            "DeleteOperate",
             Qt::DirectConnection,
             Q_RETURN_ARG(int, nRet),
-            Q_ARG(CConnecter*, p));
+            Q_ARG(COperate*, p));
         if(!bRet) {
             nRet = -1;
-            qCritical(log) << "Call pPluginClient->DeleteConnecter(p) fail";
+            qCritical(log) << "Call pPlugin->DeleteOperate(p) fail";
         }
         return nRet;
     }
-
-    qCritical(log) << "Get CClient fail.";
+    
+    qCritical(log) << "Get CManager fail.";
     return -1;
 }
 
-CConnecter* CClient::LoadConnecter(const QString &szFile)
+COperate* CManager::LoadOperate(const QString &szFile)
 {
-    CConnecter* pConnecter = nullptr;
+    COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
-
+    
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
     QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
     Q_UNUSED(name);
-    qDebug(log) << "LoadConnecter protocol:" << protocol
+    qDebug(log) << "LoadOperate protocol:" << protocol
                 << "name:" << name << "id:" << id;
-    pConnecter = CreateConnecter(id);
-    if(pConnecter) {
+    pOperate = CreateOperate(id);
+    if(pOperate) {
         int nRet = false;
-        //bRet = pConnecter->Load(szFile);
+        //bRet = pOperate->Load(szFile);
         bool bRet = QMetaObject::invokeMethod(
-            pConnecter,
+            pOperate,
             "Load",
             Qt::DirectConnection,
             Q_RETURN_ARG(int, nRet),
             Q_ARG(QString, szFile));
         if(!bRet) {
-            qCritical(log) << "Call pConnecter->Load(szFile) fail.";
+            qCritical(log) << "Call pOperate->Load(szFile) fail.";
             return nullptr;
         }
         if(nRet) {
             qCritical(log) << "Load parameter fail" << nRet;
-            DeleteConnecter(pConnecter);
+            DeleteOperate(pOperate);
             return nullptr;
         }
-        pConnecter->SetSettingsFile(szFile);
+        pOperate->SetSettingsFile(szFile);
     }
     else
-        qCritical(log) << "Don't create connecter:" << protocol;
-
-    return pConnecter;
+        qCritical(log) << "Don't create Operate:" << protocol;
+    
+    return pOperate;
 }
 
-int CClient::SaveConnecter(CConnecter *pConnecter)
+int CManager::SaveOperate(COperate *pOperate)
 {
-    if(!pConnecter) return -1;
-
-    QString szFile = pConnecter->GetSettingsFile();
+    if(!pOperate) return -1;
+    
+    QString szFile = pOperate->GetSettingsFile();
     if(szFile.isEmpty())
         szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator()
-                + pConnecter->Id()
-                + ".rrc";
-
+                 + QDir::separator()
+                 + pOperate->Id()
+                 + ".rrc";
+    
     QSettings set(szFile, QSettings::IniFormat);
-
-    CPluginClient* pPluginClient = nullptr; //pConnecter->m_pPluginClient;
+    
+    CPlugin* pPlugin = nullptr; //pOperate->GetPlugin;
     bool bRet = QMetaObject::invokeMethod(
-        pConnecter,
-        "GetPlugClient",
+        pOperate,
+        "GetPlugin",
         Qt::DirectConnection,
-        Q_RETURN_ARG(CPluginClient*, pPluginClient));
-    if(!bRet || !pPluginClient)
+        Q_RETURN_ARG(CPlugin*, pPlugin));
+    if(!bRet || !pPlugin)
     {
         qCritical(log) << "Get plugin client fail";
     }
-    Q_ASSERT(pPluginClient);
+    Q_ASSERT(pPlugin);
 
     set.setValue("Manage/FileVersion", m_FileVersion);
-    set.setValue("Plugin/ID", pPluginClient->Id());
-    set.setValue("Plugin/Protocol", pPluginClient->Protocol());
-    set.setValue("Plugin/Name", pPluginClient->Name());
+    set.setValue("Plugin/ID", pPlugin->Id());
+    set.setValue("Plugin/Protocol", pPlugin->Protocol());
+    set.setValue("Plugin/Name", pPlugin->Name());
     int nRet = 0;
-    //nRet = pConnecter->Save(szFile);
+    //nRet = pOperate->Save(szFile);
     bRet = QMetaObject::invokeMethod(
-        pConnecter,
+        pOperate,
         "Save",
         Qt::DirectConnection,
         Q_RETURN_ARG(int, nRet),
         Q_ARG(QString, szFile));
     if(!bRet) {
-        qCritical(log) << "Call pConnecter->Save(szFile) fail.";
+        qCritical(log) << "Call pOperate->Save(szFile) fail.";
         return -1;
     }
     if(nRet) {
@@ -369,57 +370,57 @@ int CClient::SaveConnecter(CConnecter *pConnecter)
     return 0;
 }
 
-int CClient::LoadSettings(const QString szFile)
+int CManager::LoadSettings(const QString szFile)
 {
-    if(!m_pParameterClient) {
-        qCritical(log) << "The m_pParameterClient is nullptr";
-        Q_ASSERT_X(m_pParameterClient, "CClient", "The m_pParameterClient is nullptr");
+    if(!m_pParameter) {
+        qCritical(log) << "The m_pParameter is nullptr";
+        Q_ASSERT_X(m_pParameter, "CManager", "The m_pParameter is nullptr");
         return -1;
     }
 
     QString s = szFile;
     if(s.isEmpty())
         s = m_szSettingsFile;
-    return m_pParameterClient->CParameter::Load(s);
+    return m_pParameter->Load(s);
 }
 
-int CClient::SaveSettings(const QString szFile)
+int CManager::SaveSettings(const QString szFile)
 {
-    if(!m_pParameterClient) {
-        qCritical(log) << "The m_pParameterClient is nullptr";
-        Q_ASSERT_X(m_pParameterClient, "CClient", "The m_pParameterClient is nullptr");
+    if(!m_pParameter) {
+        qCritical(log) << "The m_pParameter is nullptr";
+        Q_ASSERT_X(m_pParameter, "CManager", "The m_pParameter is nullptr");
         return -1;
     }
 
     QString s = szFile;
     if(s.isEmpty())
         s = m_szSettingsFile;
-    return m_pParameterClient->CParameter::Save(s);
+    return m_pParameter->Save(s);
 }
 
-QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
+QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
-
+    
     CFrmParameterClient* pClient = new CFrmParameterClient(parent);
     if(pClient) {
-        pClient->SetParameter(m_pParameterClient);
+        pClient->SetParameter(&m_pParameter->m_Client);
         lstWidget.push_back(pClient);
     }
-
+    
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
-        pRecord->SetParameter(&m_pParameterClient->m_Record);
+        pRecord->SetParameter(&m_pParameter->m_Client.m_Record);
         lstWidget.push_back(pRecord);
     }
-
+    
     return lstWidget;
 }
 
-int CClient::EnumPlugins(Handle *handle)
+int CManager::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
-    QMap<QString, CPluginClient*>::iterator it;
+    QMap<QString, CPlugin*>::iterator it;
     for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
         nRet = handle->onProcess(it.key(), it.value());
@@ -430,10 +431,10 @@ int CClient::EnumPlugins(Handle *handle)
 }
 
 #if HAS_CPP_11
-int CClient::EnumPlugins(std::function<int(const QString &, CPluginClient *)> cb)
+int CManager::EnumPlugins(std::function<int(const QString &, CPlugin *)> cb)
 {
     int nRet = 0;
-    QMap<QString, CPluginClient*>::iterator it;
+    QMap<QString, CPlugin*>::iterator it;
     for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
         nRet = cb(it.key(), it.value());
@@ -444,7 +445,7 @@ int CClient::EnumPlugins(std::function<int(const QString &, CPluginClient *)> cb
 }
 #endif
 
-const QString CClient::Details() const
+const QString CManager::Details() const
 {
     return m_szDetails;
 }

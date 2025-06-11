@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CMANAGECONNECTER_H
-#define CMANAGECONNECTER_H
-
 #pragma once
 
 #include <QObject>
@@ -12,92 +9,89 @@
 #include <QTranslator>
 #include <QSharedPointer>
 
-#include "PluginClient.h"
+#include "Plugin.h"
 #include "Hook.h"
-#include "ParameterClient.h"
+#include "ParameterPlugin.h"
 
 #if defined(__clang__) || defined(__GNUC__)
-	#define CPP_STANDARD __cplusplus
+#define CPP_STANDARD __cplusplus
 #elif defined(_MSC_VER)
-	#define CPP_STANDARD _MSVC_LANG
+#define CPP_STANDARD _MSVC_LANG
 #endif
 #if CPP_STANDARD >= 199711L
-	#define HAS_CPP_03 1
+#define HAS_CPP_03 1
 #endif
 #if CPP_STANDARD >= 201103L
-	#define HAS_CPP_11 1
+#define HAS_CPP_11 1
 #endif
 #if CPP_STANDARD >= 201402L
-	#define HAS_CPP_14 1
+#define HAS_CPP_14 1
 #endif
 #if CPP_STANDARD >= 201703L
-	#define HAS_CPP_17 1
+#define HAS_CPP_17 1
 #endif
 
 #if HAS_CPP_11
-    #include <functional>
+#include <functional>
 #endif
 
-/**
- * \~chinese \brief 管理插件和连接者
- * \~english \brief manage plugins and connecter
+/*!
+ * \~chinese 管理插件
+ * \~english Manage plugins
  * \~
- * \see   CPluginClient CConnecter
- * \ingroup CLIENT_API
+ * \ingroup LIBAPI
  */
-class CLIENT_EXPORT CClient : public QObject
+class CManager : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit CClient(QObject *parent = nullptr, QString szFile = QString());
-    virtual ~CClient();
+    explicit CManager(QObject *parent = nullptr, QString szFile = QString());
+    virtual ~CManager();
 
     /*!
      * \~chinese
-     * \brief 新建 CConnecter 指针，所有者是调用者。
-     *    <b>当不在使用时，调用者必调用　DeteleConnecter()　须释放指针</b>。
-     *       调用者必须连接信号 CConnecter::sigDisconnected 。
-     *       释放指针 (使用 DeleteConnecter() )
+     * \brief 新建 COperate 指针，所有者是调用者。
+     *    <b>当不在使用时，调用者必调用　DeteleOperate()　须释放指针</b>。
+     *       调用者必须连接信号 COperate::sigFinished 。
+     *       释放指针 (使用 DeleteOperate() )
      * \param id 插件 ID
-     * \~english New CConnecter pointer, the owner is caller.
-     *    <b>The caller must be call CConnecter::sigDisconnected() to delete it,
-     *       when it isn't need</b>.
-     *       The caller must connect CConnecter::sigDisconnected,
-     *       then delete it(Use DeleteConnecter() )
+     * \~english New COperate pointer, the owner is caller.
+     *    <b>The caller must be call DeteleOperate() to delete it, when it isn't need</b>.
+     *    The caller must connect COperate::sigFinished,
+     *    then delete it( Use DeleteOperate() )
      * \param id Plugin ID
      * \~
      * \callgraph
-     * \see DeleteConnecter
+     * \see DeleteOperate
      */
-    virtual CConnecter* CreateConnecter(const QString &id);
+    virtual COperate* CreateOperate(const QString &id);
     /*!
-     * Delete CConnecter
+     * Delete COperate
      */
-    virtual int DeleteConnecter(CConnecter* p);
-
-    /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
-     *     <b>当不再使用时，调用者必须负责调用　DeleteConnecter() 删除此指针</b>。
-     *        调用者必须连接信号 CConnecter::sigDisconnected 。
-     *        释放指针(使用 DeleteConnecter() )
-     * \~english New CConnecter pointer from file, the owner is caller.
-     *     <b>The caller must delete it(call DeleteConnecter()),
+    virtual int DeleteOperate(COperate* p);
+    
+    /*! \~chinese 从文件中新建 COperate 指针，所有者是调用者。
+     *     <b>当不再使用时，调用者必须负责调用　DeleteOperate() 删除此指针</b>。
+     *        调用者必须连接信号 COperate::sigFinished 。
+     *        释放指针(使用 DeleteOperate() )
+     * \~english New COperate pointer from file, the owner is caller.
+     *     <b>The caller must delete it(call DeleteOperate()),
      *        when it isn't need</b>.
-     *        The caller must connect CConnecter::sigDisconnected,
-     *        then delete it (Use DeleteConnecter() )
+     *        The caller must connect COperate::sigFinished,
+     *        then delete it (Use DeleteOperate() )
      * \~
      * \callgraph
-     * \see DeleteConnecter
+     * \see DeleteOperate
      */
-    virtual CConnecter* LoadConnecter(const QString& szFile);
-
+    virtual COperate* LoadOperate(const QString& szFile);
+    
     /*! \~chinese 保存连接参数到文件
-     * \~english Accept connecter parameters to file
+     * \~english Accept Operate parameters to file
      * \~
      * \callgraph
      */
-    virtual int SaveConnecter(CConnecter* pConnecter);
-
+    virtual int SaveOperate(COperate* pOperate);
+    
     /*!
      * \~chinese 得到设置参数窗口
      * \return 设置参数窗口。此窗口的所有者为调用者。
@@ -140,13 +134,13 @@ public:
      * \param szFile: file name
      */
     virtual int SaveSettings(const QString szFile = QString());
-
+    
     /**
      * \~chinese
      * \brief 处理连接者。用于客户端得到连接者信号
      * 
      * \~english
-     * \brief The Handle CConnecter class
+     * \brief The Handle COperate class
      */
     class Handle{
     public:
@@ -154,9 +148,9 @@ public:
         /**
          * \brief Process plugins
          * \param id: plugin id
-         * \param pPlug: CPluginClient pointer
+         * \param pPlugin: CPlugin pointer
          */
-        virtual int onProcess(const QString& id, CPluginClient* pPlug) = 0;
+        virtual int onProcess(const QString& id, CPlugin* pPlugin) = 0;
     };
     /*!
      * \brief Enum plugins
@@ -168,29 +162,27 @@ public:
      * \note It is need c++ standard 11
      */
     virtual int EnumPlugins(
-            /**
+        /**
              * \brief Process plugins callback function
              * \param id: plugin id
-             * \param pPlug: CPluginClient pointer
+             * \param pPlugin: CPlugin pointer
              */
-            std::function<int(const QString& id, CPluginClient* pPlug)> cb);
+        std::function<int(const QString& id, CPlugin* pPlugin)> cb);
 #endif
-
+    
     const QString Details() const;
-
+    
 private:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
-    int AppendPlugin(CPluginClient* plugin);
-
+    int AppendPlugin(CPlugin* plugin);
+    
 private:
     QString m_szSettingsFile;
-    QMap<QString, CPluginClient*> m_Plugins;
+    QMap<QString, CPlugin*> m_Plugins;
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;
     CHook* m_pHook;
-    CParameterClient* m_pParameterClient;
+    CParameterPlugin* m_pParameter;
     QString m_szDetails;
 };
-
-#endif // CMANAGECONNECTER_H

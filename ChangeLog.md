@@ -20,6 +20,7 @@
 |ConnectThread   |CBackendThread |
 |CConnecterThread|COperateDesktop|
 |CPluginClient   |CPlugin        |
+|Client          |CManager       |
 
 ### v0.0.36
 - Client:
