@@ -1,115 +1,94 @@
-﻿// Author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
-#include <QObject>
-#include <QDir>
-#include <QtPlugin>
-#include <QDataStream>
-#include <QDialog>
-#include <QIcon>
-#include <QMimeData>
-#include <QSettings>
 #include <QMessageBox>
+#include <QObject>
 #include <QMenu>
+#include <QClipboard>
+#include "ParameterPlugin.h"
 
-#include "client_export.h"
-#include "ParameterClient.h"
-
-class CPluginClient;
+class CPlugin;
 
 /*!
  * \~chinese
- * \brief 连接者应用接口。
+ * \brief 操作接口。
  * \note
  *   - 此接口仅由是用户使用。它由插件实现。
- *   - 它的实例在主线程中。
+ *   - 它的实例在主线程（界面线程）中。
  * \details 
- * 序列图：\image html docs/Image/PluginClientSequenceDiagram.svg
+ * 类图： \image html docs/Image/PluginAPI.svg
+ * 序列图： \image html docs/Image/SequenceDiagram.svg
  *  已经提供以下类型的基本实现：\n
- *  1. 桌面类连接： \n
- *     1.1. 用于连接是阻塞模型(一个后台线程处理一个连接)： \ref CConnecterThread \n
- *     1.2. 用于连接是非阻塞模型(一个后台线程处理多个连接)： \ref CConnecterConnect \n
- *  2. 工具类： \n
- *     2.1. 用于连接是非阻塞模型（在主线程）： \ref CConnecterConnect \n
- *  3. 控制台类连接：\ref CConnecterTerminal
+ *  1. 后端线程： \n
+ *     1.1. 用于阻塞模型(一个后台线程处理一个后端)： \n
+ *     1.2. 用于非阻塞模型(一个后台线程处理多个后端)： \n
+ *  2. 远程桌面类： \ref COperateDesktop \n
+ *  3. 工具类： \n
+ *     3.1. 非阻塞模型（在主线程）： \n
+ *  4. 控制台类：\ref COperateTerminal \n
+ *  5. 服务类： \ref COperateService \n
  *
  * \~english
- * \brief Connecter interface
+ * \brief Operate interface
  * \note
  *   - This interface is only used by users. It is implemented by plugins.
  *   - Its instance is in the main thread.
  * \details
- * Sequen diagram: \image html docs/Image/PluginClientSequenceDiagram.svg
+ * Class diagram: \image html docs/Image/PluginAPI.svg
+ * Sequen diagram: \image html docs/Image/SequenceDiagram.svg
  * Basic implementations of the following types have been provided: \n
- *   1. Desktop type: \n
- *      1.1. The connection used is the blocking model
- *           (a blackground thread handles one connection): \ref CConnecterThread \n
- *      1.2. The connection is a non-blocking model
- *           (a blackground thread handles multiple connections): \ref CConnecterConnect \n
- *   2. Tool type: \n
- *      2.1. The connection is a non-blocking model(in main thread): \ref CConnecterConnect \n
- *   3. Termianal type: \ref CConnecterTerminal
+ *   1. Backend thread: \n
+ *      1.1. Is the blocking model
+ *           (a blackground thread handles one backend): \ref COperateThread \n
+ *      1.2. Is a non-blocking model
+ *           (a blackground thread handles multiple backend): \ref COperateBackend \n
+ *   2. Remote desktop type: \n
+ *   3. Tool type: \n
+ *      3.1. Is a non-blocking model(in main thread): \ref COperateBackend \n
+ *   4. Termianal type: \ref CConnecterTerminal
  *
  * \~
- * \see CPluginClient
+ * \see CPlugin
  * \ingroup CLIENT_API CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CConnecter : public QObject
+class COperate : public QObject
 {
     Q_OBJECT
-    
+
 public:
-    /*!
-     * \~chinese
-     * \param plugin: 此指针必须是相应的 CPluginClient 派生类的实例指针
-     * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
-     *       请在其派生类的构造函数（或者　Initial()　）中实例化参数，
-     *       并在　Initial()　调用 CConnecter::SetParameter 设置参数指针。
-     *       如果参数不需要 CParameterClient ，
-     *       那请在其派生类重载 CConnecter::SetParameterClient 。
-     *
-     * \~english
-     * \param plugin: The plugin pointer must be specified as
-     *        the corresponding CPluginClient derived class
-     * \note If the parameters( CParameterConnecter or its derived class) requires a CParameterClient .
-     *       Please instantiate the parameters and call CConnecter::SetParameter
-     *       in the derived class( or Initial() ) to set the parameters pointer.
-     *       If you are sure the parameter does not need CParameterClient.
-     *       please overload the CConnecter::SetParameterClient in the derived class. don't set it.
-     * \~
-     * \see CClient::CreateConnecter SetParameterClient SetParameter
-     *      CParameterConnecter CParameterClient
-     */
-    explicit CConnecter(CPluginClient *plugin);
-    virtual ~CConnecter();
-    
+    explicit COperate(CPlugin *plugin);
+    virtual ~COperate();
+
     //! Identity
-    virtual const QString Id();
+    [[nodiscard]] virtual const QString Id();
     //! Name
-    virtual const QString Name();
+    [[nodiscard]] virtual const QString Name();
     //! Description
-    virtual const QString Description();
+    [[nodiscard]] virtual const QString Description();
     //! Protocol
-    virtual const QString Protocol() const;
+    [[nodiscard]] virtual const QString Protocol() const = 0;
     //! Version
-    virtual qint16 Version() = 0;
+    [[nodiscard]] virtual const qint16 Version() const = 0;
     //! Icon
-    virtual const QIcon Icon() const;
+    [[nodiscard]] virtual const QIcon Icon() const = 0;
 
     /*!
      * \~chinese
      * \brief 得到显示视图
      * \return QWidget*: 视图指针。它的所有者是本类或其派生类的实例
+     * \note 如果自己实现视图，则需要在开始时禁用视图，在　sigRunning　后允许视图。
      *
      * \~english
      * \brief Get Viewer
      * \return QWidget*: the ownership is a instance of this class or its derivative class
+     * \note If you implement the view yourself, you need to disable the view
+     *       at the beginning and allow the view after sigRun.
      *
      * \~
-     * \see sigConnected CFrmViewer::CFrmViewer
+     * \see sigRunning CFrmViewer::CFrmViewer
      */
-    virtual QWidget* GetViewer() = 0;
+    [[nodiscard]] virtual QWidget* GetViewer() = 0;
     /*!
      * \~chinese
      * \brief 打开设置对话框
@@ -127,78 +106,82 @@ public:
      *   \li QDialog::Rejected
      *   \li -1: error
      */
-    virtual int OpenDialogSettings(QWidget* parent = nullptr);
+    [[nodiscard]] virtual int OpenDialogSettings(QWidget* parent = nullptr);
     /*!
-     * \brief Get operate menu
+     * \brief Get menu
      */
-    virtual QMenu* GetMenu(QWidget* parent = nullptr);
+    [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
 public Q_SLOTS:
     /**
      * \~chinese
-     * \brief 开始连接
+     * \brief 开始
      * \note 仅由用户调用，插件不能直接调用此函数。
-     *       插件连接好后，触发信号 sigConnected()
+     *       插件开始成功后，触发信号 sigRunning()
      *       
      * \~english
-     * \brief Start connect
+     * \brief Start
      * \note Only call by user, The plugin don't call it. 
-     *       When plugin is connected, it emit sigConnected()
+     *       When plugin is started, it emit sigRunning()
      *       
      * \~
-     * \see sigConnected()
+     * \see sigRunning()
      */
-    virtual int Connect() = 0;
+    virtual int Start() = 0;
     /*!
      * \~chinese
-     * \brief 关闭连接
+     * \brief 关闭
      * \note 仅由用户调用，插件不能直接调用此函数。
-     *       插件断开连接后，触发信号 sigDisconnected()。调用者收到信号后，删除对象
+     *       插件停止成功后，触发信号 sigFinished()。调用者收到信号后，删除对象
      *       
      * \~english
-     * \brief Close connect
+     * \brief Stop
      * \note Only call by user, The plugin don't call it.
-     *       When plugin is disconnected, it emit sigDisconnected().
+     *       When plugin is stopped, it emit sigFinished().
      *       The caller receive the signal, then delete the object.
      * 
      * \~
-     * \see sigDisconnected()
+     * \see sigFinished()
      */
-    virtual int DisConnect() = 0;
-
+    virtual int Stop() = 0;
+    
 Q_SIGNALS:
     /*!
-     * \~chinese 连接成功信号。仅由插件触发。
-     *   应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件
+     * \~chinese 开始成功信号。仅由插件触发。
+     *  - 应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件。
+     *  - 如果插件自己实现视图（非　CFrmView），设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件。
      *
-     * \~english Successful connection signal. Triggered only by plugins.
-     *   The application needs to set the view property Enabled to true at this point.
+     * \~english Start success signal. Triggered only by plugins.
+     *  - The application needs to set the view property Enabled to true at this point.
      *   enable accept keyboard and mouse event
+     *  - If the plugin implements its own view (non-CFrmView),
+     *   set the view property Enabled to true. Allows receiving keyboard and mouse events.
      *
      * \~
      * \see MainWindow::slotConnected() GetViewer() CFrmViewer::CFrmViewer
      * \snippet App/Client/mainwindow.cpp MainWindow slotConnected
      */
-    void sigConnected();
+    void sigRunning();
     /*!
-     * \~chinese 通知用户断开连接。仅由插件触发。
-     *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
-     *    当应用接收到此信号后，调用 DisConnect() 关闭连接。
-     * \~english Notify the user to disconnect. Triggered only by plugins
-     *    Emit when you need to disconnect from the plug-in.
+     * \~chinese 通知用户停止。仅由插件触发。
+     *    当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。
+     *    当应用接收到此信号后，调用 Stop() 关闭连接。
+     * \~english Notify the user to stop. Triggered only by plugins
+     *    Emit when you need to stop from the plug-in.
      *    For example, the peer disconnect or reset the connection
      *    or the connection is error.
      *    When the applicatioin receive the signal,
-     *    call DisConnect() to close connect
+     *    call Stop() to close connect
      */
-    void sigDisconnect();
+    void sigStop();
     /*!
      * \~chinese 断开连接成功信号。仅由插件触发
      * \~english Successful disconnection signal. Triggered only by plugins
      * \~
      * \see Disconnect()
      */
-    void sigDisconnected();
+    void sigFinished();
+
     /*!
      * \~chinese 视图获得焦点
      * \~english The view is focus
@@ -222,7 +205,7 @@ Q_SIGNALS:
      * \~
      * \see SetParameter
      */
-    void sigUpdateParameters(CConnecter* pConnecter);
+    void sigUpdateParameters(COperate* pOperate);
     /*!
      * \~chinese 当有错误产生时触发。
      * \~english Triggered when an error is generated
@@ -256,73 +239,63 @@ Q_SIGNALS:
      * \see sigInformation Connect::SetConnecter MainWindow::slotShowMessageBox
      */
     void sigShowMessageBox(const QString& title, const QString& message,
-                        const QMessageBox::Icon& icon = QMessageBox::Information);
+                           const QMessageBox::Icon& icon = QMessageBox::Information);
 
 protected:
     /*!
      * \brief Initial parameters and resource
      * \~
-     * \see CClient::CreateConnecter
+     * \see CManager::CreateOperate
      */
     Q_INVOKABLE virtual int Initial();
     /*!
      * \brief Clean parameters and resource
-     * \see CClient::DeleteConnecter
+     * \see CManager::DeleteOperate
      */
     Q_INVOKABLE virtual int Clean();
     /*!
-     * \brief Set CParameterClient
-     * \note If CParameterConnecter isn't need CParameterClient.
-     *       please overload this function.
-     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
-     */
-    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
-
-    /*!
-     * \~chinese 设置参数
-     * \note 在派生类的构造函数（或者　Initial()　）中先实例化参数，
-     *       然后在　Initial()　中调用此函数设置参数。
+     * \~chinese 应用插件全局参数
+     * \note 如果不需要插件的全局参数，请在派生类中重载它，并忽略。
      *
-     * \~english Set parameters
-     * \note  Instantiate a parameter in a derived class constructor,
-     *      and then call this function in its Initial() to set the parameter.
-     *
-     * \~
-     * \see \ref section_Use_CParameterBase
-     * \see SetParameterClient() CClient::CreateConnecter
+     * \~english Apply the global parameters of the plug-in
+     * \note If you don't need the global parameters of the plugin,
+     *       override it in the derived class and ignore.
+     * \see CManager::CreateOperate CParameterPlugin
      */
-    virtual int SetParameter(CParameter* p);
-    CParameter* GetParameter();
+    Q_INVOKABLE virtual int SetParameterPlugin(CParameterPlugin* pPara) = 0;
 
 protected:
-    Q_INVOKABLE CPluginClient* GetPlugClient() const;
+    /*!
+     * \brief Get plugin
+     * \see CManager::DeleteOperate 
+     */
+    Q_INVOKABLE [[nodiscard]] CPlugin* GetPlugin() const;
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
-    
+
 private:
     /*!
      * \~chinese
      * \brief 得到设置对话框
      * \param parent: 返回窗口的父窗口
-     * \return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
-     *             它的所有者是调用者
+     * \return QDialog*: 对话框必须在堆内存中分配，它的所有者是调用者。
      *
      * \~english
      * \brief Open settgins dialog
      * \param parent: the parent windows of the dialog of return
-     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
-     *         The ownership is caller.
-     *         
+     * \return QDialog*: then QDialog must be allocated in heap memory, the ownership is caller.
+     *
      * \~
      * \see OpenDialogSettings
      */
-    virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
+    [[nodiscard]] virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
 
 public:
     /* \~chinese 得到配置文件名
      * \~english Get settings file name
+     * \see CManager::SaveOperate
      */
-    virtual QString GetSettingsFile();
+    [[nodiscard]] virtual QString GetSettingsFile();
     /* \~chinese 设置配置文件名
      * \~english Set settings file name
      */
@@ -344,7 +317,7 @@ protected:
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
      * \~
-     * \see CClient::LoadConnecter
+     * \see CManger::LoadOperate
      */
     Q_INVOKABLE virtual int Load(QString szFile = QString());
     /*!
@@ -353,12 +326,11 @@ protected:
      * \~english Save parameters to file
      * \param szFile: File name.
      * \~
-     * \see CClient::SaveConnecter
+     * \see CManger::SaveOperate
      */
     Q_INVOKABLE virtual int Save(QString szFile = QString());
 
 private Q_SLOTS:
-    void slotShowServerName();
     void slotUpdateName();
 
     /*!
@@ -370,7 +342,6 @@ private Q_SLOTS:
      * \param className: show windows class name
      *        The class must have follower public functions:
      *            Q_INVOKABLE void SetContext(void* pContext);
-     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
      *              Otherwise, ignore
      * \param pContext: pass context from CConnect::sigBlockShowWidget()
@@ -390,11 +361,11 @@ private Q_SLOTS:
      * \see CConnect::sigBlockShowMessageBox
      */
     virtual void slotBlockShowMessageBox(const QString& szTitle,
-                                      const QString& szMessage,
-                                      QMessageBox::StandardButtons buttons,
-                                      QMessageBox::StandardButton& nRet,
-                                      bool &checkBox,
-                                      QString szCheckBoxContext = QString());
+                                         const QString& szMessage,
+                                         QMessageBox::StandardButtons buttons,
+                                         QMessageBox::StandardButton& nRet,
+                                         bool &checkBox,
+                                         QString szCheckBoxContext = QString());
     /*!
      * \brief Block background threads and display input dialogs in foreground threads (QInputDialog)
      * \~
@@ -407,8 +378,8 @@ private Q_SLOTS:
                                       );
 
 private Q_SLOTS:
-    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
-    //! \~english \note The slot only is used by CConnect::SetConnecter()
+    //! \~chinese \note 仅由 CBackendDesktop::SetConnect() 使用
+    //! \~english \note The slot only is used by CBackendDesktop::SetConnect()
     virtual void slotSetClipboard(QMimeData *data);
 private:
 Q_SIGNALS:
@@ -416,13 +387,10 @@ Q_SIGNALS:
 
 protected:
     QMenu m_Menu;
-    QAction* m_pSettings;
+    QAction* m_pActionSettings;
 private Q_SLOTS:
     virtual void slotSettings();
 
 private:
-    CPluginClient* m_pPluginClient;
-
-    // The owner is a derived class of this class
-    CParameter* m_pParameter;
+    CPlugin* m_pPlugin;
 };

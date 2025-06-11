@@ -11,13 +11,15 @@
 |Remote->Disconnect|Operate->Stop |Menu or tool bar|
 
 - [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
-  - Add COperate
   - Add CParameterPlugin
   - Add CBackend
   - Add CBackendThread
   - Add COperateDesktop
   - Add CPlugin
   - Add CManager
+|Old name |New Name|
+|---------|--------|
+|CConnecter|COperate|
 
 ### v0.0.36
 - Client:
