@@ -9,6 +9,15 @@
 |远程->连接|操作->开始|菜单或工具条|
 |远程->断开|操作->停止|菜单或工具条|
 
+- [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
+  - 增加 COperate
+  - 增加 CParameterPlugin
+  - 增加 CBackend
+  - 增加 COperateDesktop
+  - 增加 CBackendThread
+  - 增加 CPlugin
+  - 增加 CManager
+
 ### v0.0.36
 - Client:
   - 修复录制视频帧率错误
