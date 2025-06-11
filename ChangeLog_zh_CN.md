@@ -13,13 +13,14 @@
   - 增加 CParameterPlugin
   - 增加 CManager
 
-|老名称           |新名称            |
+|老名称           |新名称          |
 |----------------|---------------|
 |CConnecter      |COperate       |
 |Connect         |CBackend       |
 |ConnectThread   |CBackendThread |
 |CConnecterThread|COperateDesktop|
 |CPluginClient   |CPlugin        |
+|Client          |CManager       |
 
 ### v0.0.36
 - Client:

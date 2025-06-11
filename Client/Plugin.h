@@ -6,6 +6,11 @@
 #include <QTranslator>
 #include "Operate.h"
 
+/*!
+ * \~chinese 插件接口
+ * \~english Plugin interface
+ * \ingroup LIBAPI
+ */
 class CPlugin : public QObject
 {
     Q_OBJECT
