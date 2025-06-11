@@ -12,14 +12,14 @@
 
 - [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - Add CParameterPlugin
-  - Add CBackendThread
   - Add COperateDesktop
   - Add CPlugin
   - Add CManager
-|Old name  |New Name|
-|----------|--------|
-|CConnecter|COperate|
-|Connect   |CBackend|
+|Old name     |New Name      |
+|-------------|--------------|
+|CConnecter   |COperate      |
+|Connect      |CBackend      |
+|ConnectThread|CBackendThread|
 
 ### v0.0.36
 - Client:

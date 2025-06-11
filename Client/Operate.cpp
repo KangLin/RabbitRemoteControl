@@ -246,7 +246,7 @@ void COperate::slotBlockShowWidget(const QString& className, int &nRet, void* pC
     QStringList methods;
     for(int i = metaObject->methodOffset(); i < metaObject->methodCount(); ++i)
         methods << QString::fromLatin1(metaObject->method(i).methodSignature());
-    qCritical(log) << methods;
+    qDebug(log) << methods;
     //*/
     if(-1 == obj->metaObject()->indexOfMethod("SetContext(void*)"))
     {

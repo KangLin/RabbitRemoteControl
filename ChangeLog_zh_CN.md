@@ -11,15 +11,16 @@
 
 - [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - 增加 CParameterPlugin
-  - 增加 CBackend
   - 增加 COperateDesktop
-  - 增加 CBackendThread
   - 增加 CPlugin
   - 增加 CManager
 
-|老名称    |新名称  |
-|----------|--------|
-|CConnecter|COperate|
+|老名称        |新名称         |
+|-------------|--------------|
+|CConnecter   |COperate      |
+|Connect      |CBackend      |
+|ConnectThread|CBackendThread|
+
 
 ### v0.0.36
 - Client:
