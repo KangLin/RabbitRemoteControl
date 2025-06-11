@@ -1,98 +1,79 @@
-// Author: Kang Lin <kl222@126.com>
-
-#include <QClipboard>
-#include <QApplication>
-#include <QGenericArgument>
+#include <QMetaMethod>
+#include <QInputDialog>
 #include <QCheckBox>
 #include <QLoggingCategory>
-#include <QInputDialog>
-#include <QMetaMethod>
+#include <QApplication>
 
-#include "Connecter.h"
-#include "PluginClient.h"
+#include "Operate.h"
+#include "Plugin.h"
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Connecter")
-    
-CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
-    m_pPluginClient(plugin),
-    m_pSettings(nullptr),
-    m_pParameter(nullptr)
+static Q_LOGGING_CATEGORY(log, "Operate")
+
+COperate::COperate(CPlugin *plugin)
+    : QObject{plugin}
+    , m_pPlugin(plugin)
+    , m_pActionSettings(nullptr)
 {
-    bool check = false;
-    
+    qDebug(log) << Q_FUNC_INFO;
     if(QApplication::clipboard())
     {
-        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-                        this, SIGNAL(sigClipBoardChanged()));
+        bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+                             this, SIGNAL(sigClipBoardChanged()));
         Q_ASSERT(check);
     }
 }
 
-CConnecter::~CConnecter()
+COperate::~COperate()
 {
-    qDebug(log) << "CConnecter::~CConnecter";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
-const QString CConnecter::Id()
+const QString COperate::Id()
 {
-    QString szId = Protocol() + "_" + GetPlugClient()->Name();
+    QString szId = Protocol() + "_" + GetPlugin()->Name();
     return szId;
 }
 
-const QString CConnecter::Name()
+const QString COperate::Name()
 {
-    return GetPlugClient()->DisplayName();
+    return GetPlugin()->DisplayName();
 }
 
-const QString CConnecter::Description()
+const QString COperate::Description()
 {
     return tr("Name: ") + Name() + "\n"
            + tr("Protocol: ") + Protocol()
 #ifdef DEBUG
-           + " - " + GetPlugClient()->DisplayName()
+           + " - " + GetPlugin()->DisplayName()
 #endif
            + "\n"
-           + tr("Description: ") + GetPlugClient()->Description();
+           + tr("Description: ") + GetPlugin()->Description();
 }
 
-const QString CConnecter::Protocol() const
+const QString COperate::Protocol() const
 {
-    return GetPlugClient()->Protocol();
+    return GetPlugin()->Protocol();
 }
 
-const QIcon CConnecter::Icon() const
+const QIcon COperate::Icon() const
 {
-    return GetPlugClient()->Icon();
+    return GetPlugin()->Icon();
 }
 
-void CConnecter::slotSetClipboard(QMimeData* data)
-{    
-    QClipboard* pClipboard = QApplication::clipboard();
-    if(pClipboard) {
-        //        pClipboard->disconnect(this);
-        
-        pClipboard->setMimeData(data);
-        
-        //        bool check = connect(pClipboard, SIGNAL(dataChanged()),
-        //                             this, SIGNAL(sigClipBoardChanged()));
-        //        Q_ASSERT(check);
-    }
-}
-
-int CConnecter::OpenDialogSettings(QWidget *parent)
+int COperate::OpenDialogSettings(QWidget *parent)
 {
     int nRet = QDialog::Accepted;
     QDialog* p = OnOpenDialogSettings(parent);
     if(p)
     {
         // The dialog is closed when the connect is close.
-        bool check = connect(this, SIGNAL(sigDisconnected()),
+        bool check = connect(this, SIGNAL(sigFinished()),
                              p, SLOT(reject()));
         Q_ASSERT(check);
         p->setWindowIcon(this->Icon());
-        p->setWindowTitle(tr("Set ") + GetPlugClient()->DisplayName());
+        p->setWindowTitle(tr("Set ") + GetPlugin()->DisplayName());
         p->setAttribute(Qt::WA_DeleteOnClose);
         nRet = RC_SHOW_WINDOW(p);
     } else {
@@ -101,14 +82,14 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
     return nRet;
 }
 
-QMenu* CConnecter::GetMenu(QWidget* parent)
+QMenu* COperate::GetMenu(QWidget* parent)
 {
     if(m_Menu.actions().isEmpty())
         return nullptr;
     return &m_Menu;
 }
 
-QString CConnecter::GetSettingsFile()
+QString COperate::GetSettingsFile()
 {
     if(m_szSettings.isEmpty())
     {
@@ -120,13 +101,13 @@ QString CConnecter::GetSettingsFile()
     return m_szSettings;
 }
 
-int CConnecter::SetSettingsFile(const QString &szFile)
+int COperate::SetSettingsFile(const QString &szFile)
 {
     m_szSettings = szFile;
     return 0;
 }
 
-int CConnecter::Load(QString szFile)
+int COperate::Load(QString szFile)
 {
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
@@ -138,7 +119,7 @@ int CConnecter::Load(QString szFile)
     return Load(set);
 }
 
-int CConnecter::Save(QString szFile)
+int COperate::Save(QString szFile)
 {
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
@@ -150,104 +131,82 @@ int CConnecter::Save(QString szFile)
     return Save(set);
 }
 
-int CConnecter::Load(QSettings &set)
+int COperate::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParameter);
-    if(m_pParameter)
-        nRet = m_pParameter->Load(set);
+    Q_UNUSED(set);
     return nRet;
 }
 
-int CConnecter::Save(QSettings &set)
+int COperate::Save(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParameter);
-    if(m_pParameter) {
-        m_pParameter->Save(set);
-    }
+    Q_UNUSED(set);
     return nRet;
 }
 
-int CConnecter::Initial()
+int COperate::Initial()
 {
-    m_Menu.setIcon(m_pPluginClient->Icon());
-    m_Menu.setTitle(m_pPluginClient->DisplayName());
-    m_Menu.setToolTip(m_pPluginClient->DisplayName());
-    m_Menu.setStatusTip(m_pPluginClient->DisplayName());
-
-    m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
+    m_Menu.setIcon(m_pPlugin->Icon());
+    m_Menu.setTitle(m_pPlugin->DisplayName());
+    m_Menu.setToolTip(m_pPlugin->DisplayName());
+    m_Menu.setStatusTip(m_pPlugin->DisplayName());
+    
+    m_pActionSettings = new QAction(QIcon::fromTheme("system-settings"),
                               tr("Settings"), &m_Menu);
-    if(m_pSettings) {
-        bool check = connect(m_pSettings, SIGNAL(triggered()),
+    if(m_pActionSettings) {
+        bool check = connect(m_pActionSettings, SIGNAL(triggered()),
                              this, SLOT(slotSettings()));
         Q_ASSERT(check);
     }
     return 0;
 }
 
-int CConnecter::Clean()
+int COperate::Clean()
 {
     return 0;
 }
 
-int CConnecter::SetParameterClient(CParameterClient* pPara)
+void COperate::slotSettings()
 {
-    if(!GetParameter())
-    {
-        QString szMsg = "The CConnecter is not parameters! "
-                        "please first create parameters, "
-                        "then call SetParameter in the ";
-        szMsg += metaObject()->className() + QString("::")
-                 + metaObject()->className();
-        szMsg += QString(" or ") + metaObject()->className()
-                 + QString("::") + "Initial()";
-        szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of connecter "
-                 "(CParameterConnecter or its derived classes) "
-                 "See: CClient::CreateConnecter. "
-                 "If you are sure the parameter of connecter "
-                 "does not need CParameterClient. "
-                 "Please overload the SetParameterClient in the ";
-        szMsg += QString(metaObject()->className()) + " . don't set it";
-        qCritical(log) << szMsg.toStdString().c_str();
-        Q_ASSERT(false);
-        return -1;
-    }
-    return 0;
+    int nRet = OpenDialogSettings();
+    if(QDialog::Accepted == nRet)
+        emit sigUpdateParameters(this);
 }
 
-int CConnecter::SetParameter(CParameter *p)
+int COperate::SetParameterPlugin(CParameterPlugin* pPara)
 {
-    if(m_pParameter)
-        m_pParameter->disconnect(this);
-
-    m_pParameter = p;
-
-    return 0;
+    QString szMsg = "The operate is not parameters! "
+                    "please first create parameters, "
+                    "then call SetParameter in the ";
+    szMsg += metaObject()->className() + QString("::")
+             + metaObject()->className();
+    szMsg += QString(" or ") + metaObject()->className()
+             + QString("::") + "Initial()";
+    szMsg += " to set the parameters pointer. "
+             "Default set SetParameterPlugin for the parameters of operate "
+             "(CParameterPlugin or its derived classes) "
+             "See: CManager::CreateOperate. "
+             "If you are sure the parameter of operate "
+             "does not need SetParameterPlugin. "
+             "Please overload the SetParameterPlugin in the ";
+    szMsg += QString(metaObject()->className()) + " . don't set it";
+    qCritical(log) << szMsg.toStdString().c_str();
+    Q_ASSERT(false);
+    return -1;
 }
 
-CParameter* CConnecter::GetParameter()
+CPlugin* COperate::GetPlugin() const
 {
-    return m_pParameter;
+    return m_pPlugin;
 }
 
-CPluginClient* CConnecter::GetPlugClient() const
-{
-    return m_pPluginClient;
-}
-
-void CConnecter::slotShowServerName()
+void COperate::slotUpdateName()
 {
     emit sigUpdateName(Name());
 }
 
-void CConnecter::slotUpdateName()
-{
-    emit sigUpdateName(Name());
-}
-
-QObject* CConnecter::createObject(const QString& className, QObject* parent)
+QObject* COperate::createObject(const QString& className, QObject* parent)
 {
     Q_UNUSED(parent);
     int type =
@@ -277,7 +236,7 @@ QObject* CConnecter::createObject(const QString& className, QObject* parent)
     return obj;
 }
 
-void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* pContext)
+void COperate::slotBlockShowWidget(const QString& className, int &nRet, void* pContext)
 {
     bool check = false;
     QObject *obj = createObject(className);
@@ -297,10 +256,6 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
         Q_ASSERT_X(false, "Connecter", szErr.toStdString().c_str());
     }
     obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
-    if(-1 < obj->metaObject()->indexOfMethod("SetConnecter(CConnecter*)"))
-    {
-        obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
-    }
 
     if(obj->inherits("QDialog"))
     {
@@ -320,7 +275,7 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     }
 }
 
-void CConnecter::slotBlockShowMessageBox(const QString &szTitle, const QString &szMessage,
+void COperate::slotBlockShowMessageBox(const QString &szTitle, const QString &szMessage,
                                          QMessageBox::StandardButtons buttons,
                                          QMessageBox::StandardButton &nRet,
                                          bool &checkBox,
@@ -341,7 +296,7 @@ void CConnecter::slotBlockShowMessageBox(const QString &szTitle, const QString &
         checkBox = pBox->isChecked();
 }
 
-void CConnecter::slotBlockInputDialog(const QString &szTitle, const QString &szLable,
+void COperate::slotBlockInputDialog(const QString &szTitle, const QString &szLable,
                                       const QString &szMessage,
                                       QString& szText)
 {
@@ -356,7 +311,16 @@ void CConnecter::slotBlockInputDialog(const QString &szTitle, const QString &szL
         szText = t;
 }
 
-void CConnecter::slotSettings()
-{
-    OpenDialogSettings();
+void COperate::slotSetClipboard(QMimeData* data)
+{    
+    QClipboard* pClipboard = QApplication::clipboard();
+    if(pClipboard) {
+        //        pClipboard->disconnect(this);
+        
+        pClipboard->setMimeData(data);
+        
+        //        bool check = connect(pClipboard, SIGNAL(dataChanged()),
+        //                             this, SIGNAL(sigClipBoardChanged()));
+        //        Q_ASSERT(check);
+    }
 }
