@@ -1,16 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
-  
-#ifndef CCONNECT_H
-#define CCONNECT_H
 
 #pragma once
 
-#include <QMessageBox>
-#include "Connecter.h"
+#include <QObject>
+#include "Operate.h"
 
 /*!
  * \~chinese
- * \brief 连接接口。它由协议插件实现。
+ * \brief 后端接口。它由协议插件实现。
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
  *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
@@ -23,7 +20,7 @@
  *     - OnProcess()
  * 
  * \~english
- * \brief Connect interface. It is implemented by the Protocol plugin.
+ * \brief Backend interface. It is implemented by the Protocol plugin.
  *      It starts a timer by default to start a non-Qt event loop
  *      (that is, normal loop processing) .
  *      See Connect(), slotTimeOut(), OnProcess() for details.
@@ -41,55 +38,45 @@
  * \see CConnecterThread CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CConnect : public QObject
+class CBackend : public QObject
 {
     Q_OBJECT
-
 public:
-    /*!
-     * \~chinese
-     * \param pConnecter
-     * \param parent
-     *
-     * \~english
-     * \param pConnecter
-     * \param parent
-     */
-    explicit CConnect(CConnecter* pConnecter);
-    virtual ~CConnect() override;
+    explicit CBackend(COperate *pOperate = nullptr);
+    virtual ~CBackend();
 
 public Q_SLOTS:
     /*!
-     * \~chinese 开始连接。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
+     * \~chinese 开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
      * \note
-     * - 如果连接是异步的，连接成功后触发 sigConnected() 。
-     * - 如果连接是同步的，则在此函数成功调用后，触发 sigConnected() 。
+     * - 如果是异步的，开始成功后触发 sigRunning() 。
+     * - 如果是同步的，则在此函数成功调用后，触发 sigRunning() 。
      *
-     * \~english Start connect. Based on the OnInit() return value,
+     * \~english Start. Based on the OnInit() return value,
      *           decide whether to start the timer to support no-qt event
      * \note
-     * - If the connection is asynchronous,
-     *   sigConnected() is triggered after the connect is success.
-     * - If the connection is synchronous,
-     *   sigConnected() is triggered after this function is successfully called.
+     * - If it is asynchronous,
+     *   sigRunning() is triggered after the start is success.
+     * - If it is synchronous,
+     *   sigRunning() is triggered after this function is successfully called.
      *
      * \~
      * \return
      *   - = 0: success
      *   - < 0: error
-     * \see sigConnected()
+     * \see sigRunning()
      * \see OnInit() OnProcess() slotTimeOut()
      */
-    virtual int Connect();
+    virtual int Start();
     /*!
-     * \~chinese 断开
-     * \~english Disconnect
+     * \~chinese 停止
+     * \~english Stop
      * \~
      * \return 0: success; other error
-     * \see sigDisconnected()
+     * \see sigFinished()
      */
-    virtual int Disconnect();
-
+    virtual int Stop();
+    
 protected:
     enum class OnInitReturnValue {
         Fail = -1,
@@ -98,31 +85,31 @@ protected:
         NotUseOnProcess = 1,
     };
     /*!
-     * \~chinese 具体的插件实现连接初始化
+     * \~chinese 初始化
      * \return
      * \li < 0: 错误
      * \li = 0: 使用 OnProcess() (非 Qt 事件循环)
      * \li > 0: 不使用 OnProcess() (qt 事件循环)
      *
-     * \~english Specific plug-in realizes connection initialization
+     * \~english Initialization
      * \return
      * \li < 0: error
      * \li = 0: Use OnProcess() (non-Qt event loop)
      * \li > 0: Don't use OnProcess() (qt event loop)
      *
      * \~
-     * \see Connect()
+     * \see Start()
      */
-    virtual OnInitReturnValue OnInit() = 0;
+    [[nodiscard]] virtual OnInitReturnValue OnInit() = 0;
     /*!
      * \~chinese 清理
      * \~english Clean
      * \~
-     * \see Disconnect()
+     * \see Stop()
      */
     virtual int OnClean() = 0;
     /*!
-     * \~chinese 插件连接的具体操作处理
+     * \~chinese 具体操作处理
      * \return 
      *       \li >= 0: 继续。再次调用间隔时间，单位毫秒
      *       \li = -1: 停止
@@ -134,51 +121,51 @@ protected:
      *       \li = -1: stop
      *       \li < -1: error
      * \~
-     * \see Connect() slotTimeOut()
+     * \see Start() slotTimeOut()
      */
-    virtual int OnProcess();
-
+    [[nodiscard]] virtual int OnProcess();
+    
 protected Q_SLOTS:
     /*!
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
-     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），
+     *   如果是不是一个非 Qt 事件循环（就是普通的循环处理），
      *   可以重载它，或者 OnInit() 返回值大于 0
      *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
-     *   If CConnect don not have a non-Qt event loop,
+     *   If it is not have a non-Qt event loop,
      *   can override it, or OnInit() return >0
      *
      * \~
-     * \see Connect() OnProcess()
+     * \see Start() OnProcess()
      */
     virtual void slotTimeOut();
-
+    
 Q_SIGNALS:
     /*!
-     * \~chinese 当插件连接成功后触发。仅由插件触发
-     * \~english Emitted when the plugin is successfully connected.
+     * \~chinese 当插件开始成功后触发。仅由插件触发
+     * \~english Emitted when the plugin is successfully started.
      *           Emitted only by plugins
-     * \see Connect
+     * \see Start()
      */
-    void sigConnected();
+    void sigRunning();
     /*!
-     * \~chinese 通知用户断开连接。仅由插件触发。
-     *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
+     * \~chinese 需要通知用户停止时触发。仅由插件触发。
+     *    当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。
      *
-     * \~english Notify the user to call disconnect. Emitted only by plugins
-     *    Emitted when you need to disconnect from the plug-in.
+     * \~english Notify the user to stop. Emitted only by plugins
+     *    Emitted when you need to stop from the plug-in.
      *    For example, the peer disconnect or reset the connection
      *    or the connection is error
      */
-    void sigDisconnect();
+    void sigStop();
     /*!
-     * \~chinese 断开连接成功信号。仅由插件触发
-     * \~english Successful disconnection signal. Triggered only by plugins
+     * \~chinese 停止成功信号。仅由插件触发
+     * \~english Successful stopped signal. Triggered only by plugins
      * \~
-     * \see Disconnect
+     * \see Stop
      */
-    void sigDisconnected();
+    void sigFinished();
     /*!
      * \~chinese 当有错误产生时触发
      * \~english Triggered when an error is generated
@@ -213,8 +200,8 @@ Q_SIGNALS:
      * \see sigInformation SetConnecter CConnecter::sigShowMessageBox()
      */
     void sigShowMessageBox(const QString& szTitle, const QString& szMessage,
-                        const QMessageBox::Icon& icon = QMessageBox::Information);
-
+                           const QMessageBox::Icon& icon = QMessageBox::Information);
+    
     /*!
      * \~chinese
      * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
@@ -233,11 +220,11 @@ Q_SIGNALS:
      * \see CConnecter::slotBlockShowMessageBox() SetConnecter
      */
     void sigBlockShowMessageBox(const QString& szTitle,
-                             const QString& szMessage,
-                             QMessageBox::StandardButtons buttons,
-                             QMessageBox::StandardButton& nRet,
-                             bool &checkBox,
-                             QString checkBoxContext = QString());
+                                const QString& szMessage,
+                                QMessageBox::StandardButtons buttons,
+                                QMessageBox::StandardButton& nRet,
+                                bool &checkBox,
+                                QString checkBoxContext = QString());
     /*!
      * \~chinese 阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)
      *
@@ -262,7 +249,6 @@ Q_SIGNALS:
      * \param className: show windows class name
      *        The class must have follower public functions:
      *            Q_INVOKABLE void SetContext(void* pContext);
-     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
      * \param nRet: If className is QDialog derived class,
      *              QDialog::exec() return value. Otherwise, ignore
      * \param pContext: pass context to CConnecter::slotBlockShowWidget()
@@ -273,7 +259,5 @@ Q_SIGNALS:
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 
 private:
-    int SetConnecter(CConnecter* pConnecter);
+    int SetConnect(COperate* pOperate);
 };
-
-#endif // CCONNECT_H
