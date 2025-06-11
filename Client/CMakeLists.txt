@@ -24,15 +24,16 @@ else()
 endif()
 
 list(APPEND CLIENT_INSTALL_HEADER_FILES
-    Client.h
-    PluginClient.h
-    PluginClientThread.h
-    Connecter.h
-    ConnecterConnect.h
-    ConnecterThread.h
+    Manager.h
+    Plugin.h
+    Operate.h
+    OperateDesktop.h
+    Backend.h
+    BackendThread.h
     SSH/Event.h
     DlgUserPassword.h
     Parameter.h
+    ParameterPlugin.h
     ParameterUI.h
     ParameterConnecter.h
     ParameterClient.h
@@ -53,31 +54,22 @@ list(APPEND CLIENT_HEADER_FILES
     ${CLIENT_INSTALL_HEADER_FILES}
     FrmViewer.h
     FrmScroll.h
-    Connect.h
-    ConnectDesktop.h
-    ConnectThread.h
-    PluginThread.h
-    ManageConnect.h
     DlgInputPassword.h
     Hook.h
     FrmParameterClient.h
     )
 
 list(APPEND CLIENT_SOURCE_FILES
-    Client.cpp
-    PluginClient.cpp
-    PluginClientThread.cpp
-    PluginThread.cpp
-    ManageConnect.cpp
-    Connecter.cpp
-    ConnecterConnect.cpp
-    ConnecterThread.cpp
-    ConnectThread.cpp
-    Connect.cpp
-    ConnectDesktop.cpp
+    Manager.cpp
+    Plugin.cpp
+    Operate.cpp
+    OperateDesktop.cpp
+    Backend.cpp
+    BackendThread.cpp
     FrmScroll.cpp
     SSH/Event.cpp
     Parameter.cpp
+    ParameterPlugin.cpp
     ParameterUI.cpp
     ParameterConnecter.cpp
     ParameterClient.cpp
