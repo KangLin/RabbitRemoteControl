@@ -13,7 +13,7 @@
 #include <QSystemTrayIcon>
 
 #include "View.h"
-#include "Client.h"
+#include "Manager.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 #include "FavoriteView.h"
@@ -29,7 +29,7 @@ class CFrmFullScreenToolBar;
  * \brief The MainWindow class
  * \ingroup VIEWER_APP
  */
-class MainWindow : public QMainWindow, CClient::Handle
+class MainWindow : public QMainWindow, CManager::Handle
 {
     Q_OBJECT
 
@@ -46,39 +46,39 @@ private Q_SLOTS:
     void on_actionAbout_triggered();
     void on_actionUpdate_triggered();
 
-    ///////// Connect ///////// 
-    void slotUpdateParameters(CConnecter* pConnecter);
+    ///////// Start ///////// 
+    void slotUpdateParameters(COperate* pOperate);
     void on_actionClone_triggered();
     void on_actionOpenRRCFile_triggered();
     void slotOpenFile(const QString& szFile, bool bOpenSettings = false);
-    void slotConnect();
-    void slotConnected();
+    void slotStart();
+    void slotRunning();
 private:
-    int Connect(CConnecter* c, bool set, QString szFile = QString());
-    int LoadConnectLasterClose();
-    int SaveConnectLasterClose();
+    int Start(COperate* pOperate, bool set, QString szFile = QString());
+    int LoadOperateLasterClose();
+    int SaveOperateLasterClose();
 public:
-    virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
+    virtual int onProcess(const QString &id, CPlugin *pPlug) override;
 private:
-    CClient m_Client;
-    QVector<CConnecter*> m_Connecters;
+    CManager m_Manager;
+    QVector<COperate*> m_Operates;
     QAction* m_pActionStart;
 
 private Q_SLOTS:
-    void slotLoadConnecterMenu();
+    void slotLoadOperateMenu();
     void slotCustomContextMenuRequested(const QPoint &pos);
 Q_SIGNALS:
-    void sigConnecterMenuChanged(QAction* pAction);
+    void sigOperateMenuChanged(QAction* pAction);
 
 public:
-    QAction* m_pActionConnecterMenu;
+    QAction* m_pActionOperateMenu;
 
-    ///////// Disconnect /////////
+    ///////// Stop /////////
 private Q_SLOTS:
     void on_actionStop_triggered();
     void slotCloseView(const QWidget* pView);
-    void slotDisconnect();
-    void slotDisconnected();
+    void slotStop();
+    void slotFinished();
     void slotError(const int nError, const QString &szInfo);
     /*!
      * \~chinese
@@ -88,7 +88,7 @@ private Q_SLOTS:
      * \brief Use message box display information
      *
      * \~
-     * \see CConnecter::sigShowMessageBox()
+     * \see COperate::sigShowMessageBox()
      */
     virtual void slotShowMessageBox(const QString& title, const QString& message,
                                  const QMessageBox::Icon& icon);
@@ -98,7 +98,7 @@ private Q_SLOTS:
      * \brief Show information
      * \param szInfo
      * \~
-     * \see CConnecter::sigInformation()
+     * \see COperate::sigInformation()
      */
     void slotInformation(const QString& szInfo);
     void slotUpdateName(const QString& szName);
@@ -139,8 +139,8 @@ private:
         bool statusbar;
         bool toolBar;
         bool menubar;
-        bool dockListRecentConnects;
-        bool dockListConnects;
+        bool dockListRecent;
+        bool dockListActive;
         bool dockFavorite;
         bool dockDebugLog;
     };
@@ -154,7 +154,7 @@ private Q_SLOTS:
 private Q_SLOTS:
     void slotCurrentViewChanged(const QWidget* pView);
     void slotViewerFocusIn(QWidget* pView);
-    void slotConnecterChanged(CConnecter* c);
+    void slotOperateChanged(COperate* o);
     void on_actionViewTab_triggered();
     void on_actionViewSplit_triggered();
 private:
@@ -166,12 +166,12 @@ private:
 
     ///////// List connects /////////
 private:
-    QDockWidget* m_pDockListRecentConnects;
+    QDockWidget* m_pDockListRecent;
 private Q_SLOTS:
     void on_actionOpenListRecent_triggered();
     
 private:
-    QDockWidget* m_pDockListConnecters;
+    QDockWidget* m_pDockActive;
     CFrmActive* m_pFrmActive;
 
     ///////// Favorite //////////

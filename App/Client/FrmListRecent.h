@@ -5,7 +5,7 @@
 #include <QToolBar>
 #include <QTableView>
 #include <QToolButton>
-#include "Client.h"
+#include "Manager.h"
 #include "TitleBar.h"
 #include "ParameterApp.h"
 
@@ -14,24 +14,24 @@
  *
  * \~english List the connect of be existed
  */
-class CFrmListRecent : public QWidget, CClient::Handle
+class CFrmListRecent : public QWidget, CManager::Handle
 {
     Q_OBJECT
     
 public:
-    explicit CFrmListRecent(CClient* pClient,
+    explicit CFrmListRecent(CManager* pManager,
                                     CParameterApp &parameterApp,
                                     bool bDock = false,
                                     QWidget *parent = nullptr);
     virtual ~CFrmListRecent();
 
 public:
-    virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
+    virtual int onProcess(const QString &id, CPlugin *pPlug) override;
     
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 
 Q_SIGNALS:
-    void sigConnect(const QString &szFile, bool bOpenSettings = false);
+    void sigStart(const QString &szFile, bool bOpenSettings = false);
 
 private slots:
     void slotEditConnect();
@@ -40,13 +40,13 @@ private slots:
     void slotCopy();
     void slotDelete();
     void slotDetail();
-    void slotConnect();
+    void slotStart();
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
     void slotLoadFiles();
 
 private:
-    int InsertItem(CConnecter* c, QString &szFile);
+    int InsertItem(COperate* c, QString &szFile);
 
 private:
     CParameterApp &m_ParameterApp;
@@ -63,7 +63,7 @@ private:
 
     QTableView* m_pTableView;
     QStandardItemModel* m_pModel;
-    CClient* m_pClient;
+    CManager* m_pManager;
     int m_nFileRow;
     
     bool m_bDock;

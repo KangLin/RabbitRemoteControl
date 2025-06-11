@@ -15,7 +15,7 @@
 #include "QUIWidget/QUIWidget.h"
 #endif
 
-#include "Connecter.h"
+#include "Operate.h"
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
 #include "FrmListRecent.h"
@@ -50,9 +50,9 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-    m_pActionConnecterMenu(nullptr),
-    m_pDockListRecentConnects(nullptr),
-    m_pDockListConnecters(nullptr),
+    m_pActionOperateMenu(nullptr),
+    m_pDockListRecent(nullptr),
+    m_pDockActive(nullptr),
     m_pFrmActive(nullptr),
     m_pSignalStatus(nullptr),
     ui(new Ui::MainWindow),
@@ -104,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     QToolButton* tbStart = new QToolButton(ui->toolBar);
     tbStart->setFocusPolicy(Qt::NoFocus);
     tbStart->setPopupMode(QToolButton::InstantPopup);
-    //tbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //tbStart->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbStart->setMenu(ui->menuStart);
     tbStart->setIcon(QIcon::fromTheme("media-playback-start"));
     tbStart->setText(tr("Start"));
@@ -112,7 +112,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbStart->setStatusTip(tr("Start"));
     m_pActionStart = ui->toolBar->insertWidget(ui->actionStop, tbStart);
 
-    m_Client.EnumPlugins(this);
+    m_Manager.EnumPlugins(this);
     m_Parameter.Load();
     EnableMenu(false);
 
@@ -162,54 +162,54 @@ MainWindow::MainWindow(QWidget *parent)
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
     }
 
-    m_pDockListRecentConnects = new QDockWidget(this);
-    if(m_pDockListRecentConnects)
+    m_pDockListRecent = new QDockWidget(this);
+    if(m_pDockListRecent)
     {
-        CFrmListRecent* pListRecentConnects
+        CFrmListRecent* pListRecent
             = new CFrmListRecent(
-                &m_Client, m_Parameter, true, m_pDockListRecentConnects);
-        if(pListRecentConnects) {
-            if(pListRecentConnects->m_pDockTitleBar)
-                m_pDockListRecentConnects->setTitleBarWidget(
-                    pListRecentConnects->m_pDockTitleBar);
-            check = connect(pListRecentConnects,
-                            SIGNAL(sigConnect(const QString&, bool)),
+                &m_Manager, m_Parameter, true, m_pDockListRecent);
+        if(pListRecent) {
+            if(pListRecent->m_pDockTitleBar)
+                m_pDockListRecent->setTitleBarWidget(
+                    pListRecent->m_pDockTitleBar);
+            check = connect(pListRecent,
+                            SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
-            m_pDockListRecentConnects->setWidget(pListRecentConnects);
-            m_pDockListRecentConnects->setWindowTitle(
-                pListRecentConnects->windowTitle());
+            m_pDockListRecent->setWidget(pListRecent);
+            m_pDockListRecent->setWindowTitle(
+                pListRecent->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
-        m_pDockListRecentConnects->setObjectName("dockListRecentConnects");
-        //m_pDockListRecentConnects->hide();
-        ui->menuView->addAction(m_pDockListRecentConnects->toggleViewAction());
-        m_pDockListRecentConnects->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
-        tabifyDockWidget(m_pDockFavorite, m_pDockListRecentConnects);
+        m_pDockListRecent->setObjectName("dockListRecent");
+        //m_pDockListRecent->hide();
+        ui->menuView->addAction(m_pDockListRecent->toggleViewAction());
+        m_pDockListRecent->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
+        tabifyDockWidget(m_pDockFavorite, m_pDockListRecent);
     }
 
-    m_pDockListConnecters = new QDockWidget(this);
-    if(m_pDockListConnecters)
+    m_pDockActive = new QDockWidget(this);
+    if(m_pDockActive)
     {
         m_pFrmActive = new CFrmActive(
-            m_Connecters, m_Parameter,
+            m_Operates, m_Parameter,
             ui->menuStart, ui->actionStop,
-            m_pRecentMenu, m_pDockListConnecters);
+            m_pRecentMenu, m_pDockActive);
         if(m_pFrmActive) {
-            m_pDockListConnecters->setWidget(m_pFrmActive);
+            m_pDockActive->setWidget(m_pFrmActive);
             if(m_pFrmActive->m_pDockTitleBar)
-                m_pDockListConnecters->setTitleBarWidget(
+                m_pDockActive->setTitleBarWidget(
                     m_pFrmActive->m_pDockTitleBar);
-            m_pDockListConnecters->setWindowTitle(m_pFrmActive->windowTitle());
-            check = connect(m_pFrmActive, SIGNAL(sigConnecterChanged(CConnecter*)),
-                            this, SLOT(slotConnecterChanged(CConnecter*)));
+            m_pDockActive->setWindowTitle(m_pFrmActive->windowTitle());
+            check = connect(m_pFrmActive, SIGNAL(sigChanged(COperate*)),
+                            this, SLOT(slotOperateChanged(COperate*)));
             Q_ASSERT(check);
         }
-        m_pDockListConnecters->setObjectName("dockListConnects");
-        //m_pDockListConnecters->hide();
-        ui->menuView->addAction(m_pDockListConnecters->toggleViewAction());
-        m_pDockListConnecters->toggleViewAction()->setIcon(QIcon::fromTheme("network-wired"));
-        tabifyDockWidget(m_pDockFavorite, m_pDockListConnecters);
+        m_pDockActive->setObjectName("dockListActive");
+        //m_pDockActive->hide();
+        ui->menuView->addAction(m_pDockActive->toggleViewAction());
+        m_pDockActive->toggleViewAction()->setIcon(QIcon::fromTheme("network-wired"));
+        tabifyDockWidget(m_pDockFavorite, m_pDockActive);
     }
 
     QActionGroup* pGBView = new QActionGroup(this);
@@ -285,7 +285,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     slotEnableSystemTrayIcon();
 
-    LoadConnectLasterClose();
+    LoadOperateLasterClose();
 }
 
 MainWindow::~MainWindow()
@@ -323,7 +323,7 @@ void MainWindow::SetView(CView* pView)
                     this, SLOT(slotCustomContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
 
-    foreach (auto c, m_Connecters) {
+    foreach (auto c, m_Operates) {
         m_pView->AddView(c->GetViewer());
         m_pView->SetWidowsTitle(
             c->GetViewer(), c->Name(), c->Icon(), c->Description());
@@ -361,7 +361,7 @@ void MainWindow::on_actionAbout_triggered()
     }
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
-    about->m_szDetails = m_Client.Details();
+    about->m_szDetails = m_Manager.Details();
     RC_SHOW_WINDOW(about);
 #endif
 }
@@ -410,8 +410,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
         ui->statusbar->setVisible(m_FullState.statusbar);
         ui->menubar->setVisible(m_FullState.menubar);
 
-        m_pDockListConnecters->setVisible(m_FullState.dockListConnects);
-        m_pDockListRecentConnects->setVisible(m_FullState.dockListRecentConnects);
+        m_pDockActive->setVisible(m_FullState.dockListActive);
+        m_pDockListRecent->setVisible(m_FullState.dockListRecent);
         m_pDockFavorite->setVisible(m_FullState.dockFavorite);
         // TODO: This is hade code. it is in RabbitCommon
         QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
@@ -452,10 +452,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_FullState.menubar = ui->menubar->isVisible();
     ui->menubar->setVisible(false);
 
-    m_FullState.dockListConnects = m_pDockListConnecters->isVisible();
-    m_pDockListConnecters->setVisible(false);
-    m_FullState.dockListRecentConnects = m_pDockListRecentConnects->isVisible();
-    m_pDockListRecentConnects->setVisible(false);
+    m_FullState.dockListActive = m_pDockActive->isVisible();
+    m_pDockActive->setVisible(false);
+    m_FullState.dockListRecent = m_pDockListRecent->isVisible();
+    m_pDockListRecent->setVisible(false);
     m_FullState.dockFavorite = m_pDockFavorite->isVisible();
     m_pDockFavorite->setVisible(false);
     // This is hade code. it is in RabbitCommon
@@ -486,12 +486,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
     check = connect(m_pFullScreenToolBar, SIGNAL(sigExit()),
                     this, SLOT(on_actionExit_E_triggered()));
     Q_ASSERT(check);
-    check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()),
-                    this, SLOT(on_actionStop_triggered()));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigConnecterMenuChanged(QAction*)),
+    check = connect(this, SIGNAL(sigOperateMenuChanged(QAction*)),
                     m_pFullScreenToolBar,
-                    SLOT(slotConnecterMenuChanged(QAction*)));
+                    SLOT(slotOperateMenuChanged(QAction*)));
     Q_ASSERT(check);
 
     m_pFullScreenToolBar->show();
@@ -499,17 +497,17 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::slotViewerFocusIn(QWidget *pView)
 {
-    CConnecter* c = (CConnecter*)sender();
+    COperate* c = (COperate*)sender();
     qDebug(log) << Q_FUNC_INFO << "Focus:" << sender() << pView;
     if(c && m_pView) {
         m_pView->SetCurrentView(c->GetViewer());
     }
 }
 
-void MainWindow::slotConnecterChanged(CConnecter *c)
+void MainWindow::slotOperateChanged(COperate *o)
 {
-    if(c && m_pView) {
-        m_pView->SetCurrentView(c->GetViewer());
+    if(o && m_pView) {
+        m_pView->SetCurrentView(o->GetViewer());
     }
 }
 
@@ -529,17 +527,17 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionStop->setEnabled(bEnable);
     ui->actionTabBar_B->setEnabled(bEnable);
-    slotLoadConnecterMenu();
+    slotLoadOperateMenu();
 }
 
-void MainWindow::slotLoadConnecterMenu()
+void MainWindow::slotLoadOperateMenu()
 {
     qDebug(log) << Q_FUNC_INFO;
 
-    if(m_pActionConnecterMenu) {
-        ui->menuTools->removeAction(m_pActionConnecterMenu);
-        ui->toolBar->removeAction(m_pActionConnecterMenu);
-        m_pActionConnecterMenu = nullptr;
+    if(m_pActionOperateMenu) {
+        ui->menuTools->removeAction(m_pActionOperateMenu);
+        ui->toolBar->removeAction(m_pActionOperateMenu);
+        m_pActionOperateMenu = nullptr;
     }
 
     if(!m_pView)
@@ -549,16 +547,16 @@ void MainWindow::slotLoadConnecterMenu()
         qDebug(log) << "The current view is empty";
         return;
     }
-    foreach(auto c, m_Connecters)
+    foreach(auto p, m_Operates)
     {
-        if(c->GetViewer() == pWin)
+        if(p->GetViewer() == pWin)
         {
             qDebug(log) << "Load plugin menu";
-            auto m = c->GetMenu(ui->menuTools);
+            auto m = p->GetMenu(ui->menuTools);
             if(!m) return;
-            m_pActionConnecterMenu = ui->menuTools->addMenu(m);
-            ui->toolBar->insertAction(ui->actionFull_screen_F, m_pActionConnecterMenu);
-            emit sigConnecterMenuChanged(m_pActionConnecterMenu);
+            m_pActionOperateMenu = ui->menuTools->addMenu(m);
+            ui->toolBar->insertAction(ui->actionFull_screen_F, m_pActionOperateMenu);
+            emit sigOperateMenuChanged(m_pActionOperateMenu);
         }
     }
 }
@@ -578,12 +576,12 @@ void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
         qDebug(log) << "The current view is empty";
         return;
     }
-    foreach(auto c, m_Connecters)
+    foreach(auto p, m_Operates)
     {
-        if(c->GetViewer() == pWin)
+        if(p->GetViewer() == pWin)
         {
             qDebug(log) << "Load plugin menu";
-            auto m = c->GetMenu(ui->menuTools);
+            auto m = p->GetMenu(ui->menuTools);
             if(!m) return;
             // Note: The view is converted to global coordinates
             m->exec(pos);
@@ -608,23 +606,23 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     QMainWindow::keyReleaseEvent(event);
 }
 
-void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
+void MainWindow::slotUpdateParameters(COperate *pOperate)
 {
-    m_Client.SaveConnecter(pConnecter);
+    m_Manager.SaveOperate(pOperate);
 }
 
 void MainWindow::on_actionClone_triggered()
 {
     if(!m_pView) return;
     QWidget* p = m_pView->GetCurrentView();
-    foreach(auto c, m_Connecters)
+    foreach(auto pOperate, m_Operates)
     {
-        if(c->GetViewer() == p)
+        if(pOperate->GetViewer() == p)
         {
-            QString szFile = c->GetSettingsFile();
-            auto pConnecter = m_Client.LoadConnecter(szFile);
-            if(!pConnecter) return;
-            Connect(pConnecter, false, szFile);
+            QString szFile = pOperate->GetSettingsFile();
+            auto pOperate = m_Manager.LoadOperate(szFile);
+            if(!pOperate) return;
+            Start(pOperate, false, szFile);
             return;
         }
     }
@@ -633,14 +631,14 @@ void MainWindow::on_actionClone_triggered()
 void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
 {
     if(szFile.isEmpty()) return;
-    CConnecter* p = m_Client.LoadConnecter(szFile);
+    COperate* p = m_Manager.LoadOperate(szFile);
     if(nullptr == p)
     {
         slotInformation(tr("Load file fail: ") + szFile);
         return;
     }
     
-    Connect(p, bOpenSettings, szFile);
+    Start(p, bOpenSettings, szFile);
 }
 
 void MainWindow::on_actionOpenRRCFile_triggered()
@@ -652,17 +650,17 @@ void MainWindow::on_actionOpenRRCFile_triggered()
         tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
     if(szFile.isEmpty()) return;
 
-    CConnecter* p = m_Client.LoadConnecter(szFile);
+    COperate* p = m_Manager.LoadOperate(szFile);
     if(nullptr == p)
     {
         slotInformation(tr("Load file fail: ") + szFile);
         return;
     }
 
-    Connect(p, true);
+    Start(p, true);
 }
 
-void MainWindow::slotConnect()
+void MainWindow::slotStart()
 {
     if(nullptr == m_pView)
     {
@@ -670,14 +668,14 @@ void MainWindow::slotConnect()
         return;
     }
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
-    CConnecter* p = m_Client.CreateConnecter(pAction->data().toString());
+    COperate* p = m_Manager.CreateOperate(pAction->data().toString());
     if(nullptr == p) return;
-    Connect(p, true);
+    Start(p, true);
 }
 
 /*!
- * \brief Connect
- * \param p: CConnecter instance pointer
+ * \brief Start
+ * \param p: COperate instance pointer
  * \param set: whether open settings dialog.
  *            true: open settings dialog and save configure file
  *            false: don't open settings dialog
@@ -685,45 +683,45 @@ void MainWindow::slotConnect()
  *            if is empty. the use default configure file.
  * \return 
  */
-int MainWindow::Connect(CConnecter *c, bool set, QString szFile)
+int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
 {
-    qDebug(log) << "MainWindow::Connect: set:" << set << "; File:" << szFile;
+    qDebug(log) << "MainWindow::Start: set:" << set << "; File:" << szFile;
     bool bSave = false; //whether is save configure file
-    Q_ASSERT(c);
-    bool check = connect(c, SIGNAL(sigConnected()),
-                         this, SLOT(slotConnected()));
+    Q_ASSERT(pOperate);
+    bool check = connect(pOperate, SIGNAL(sigRunning()),
+                         this, SLOT(slotRunning()));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigDisconnect()),
-                    this, SLOT(slotDisconnect()));
+    check = connect(pOperate, SIGNAL(sigStop()),
+                    this, SLOT(slotStop()));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigDisconnected()),
-                    this, SLOT(slotDisconnected()));
+    check = connect(pOperate, SIGNAL(sigFinished()),
+                    this, SLOT(slotFinished()));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigError(const int, const QString &)),
+    check = connect(pOperate, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigShowMessageBox(const QString&, const QString&,
+    check = connect(pOperate, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                                 const QMessageBox::Icon&)),
                     this, SLOT(slotShowMessageBox(const QString&, const QString&,
                                             const QMessageBox::Icon&)));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigInformation(const QString&)),
+    check = connect(pOperate, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigUpdateName(const QString&)),
+    check = connect(pOperate, SIGNAL(sigUpdateName(const QString&)),
                     this, SLOT(slotUpdateName(const QString&)));
     Q_ASSERT(check);
-    check = connect(c, SIGNAL(sigUpdateParameters(CConnecter*)),
-                    this, SLOT(slotUpdateParameters(CConnecter*)));
+    check = connect(pOperate, SIGNAL(sigUpdateParameters(COperate*)),
+                    this, SLOT(slotUpdateParameters(COperate*)));
     Q_ASSERT(check);
 
     if(set)
     {
-        int nRet = c->OpenDialogSettings(this);
+        int nRet = pOperate->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
-            m_Client.DeleteConnecter(c);
+            m_Manager.DeleteOperate(pOperate);
             return 0;
         case QDialog::Accepted:
             bSave = true;
@@ -732,60 +730,61 @@ int MainWindow::Connect(CConnecter *c, bool set, QString szFile)
     }
 
     if(szFile.isEmpty())
-        szFile = c->GetSettingsFile();
+        szFile = pOperate->GetSettingsFile();
     else
-        c->SetSettingsFile(szFile);
+        pOperate->SetSettingsFile(szFile);
 
     int nRet = 0;
     if(bSave)
-        nRet = m_Client.SaveConnecter(c);
+        nRet = m_Manager.SaveOperate(pOperate);
     if(0 == nRet)
-        m_pRecentMenu->addRecentFile(szFile, c->Name());
-
-    if(!c->Name().isEmpty())
-        slotInformation(tr("Connecting to ") + c->Name());
+        m_pRecentMenu->addRecentFile(szFile, pOperate->Name());
+    
+    if(!pOperate->Name().isEmpty())
+        slotInformation(tr("Starting: ") + pOperate->Name());
 
     //* Show view. \see: slotConnected()
-    if(-1 < m_Connecters.indexOf(c)) {
+    if(-1 < m_Operates.indexOf(pOperate)) {
         if(m_pView)
-            m_pView->SetCurrentView(c->GetViewer());
+            m_pView->SetCurrentView(pOperate->GetViewer());
         return 0;
     }
     if(m_pView)
     {
-        m_pView->AddView(c->GetViewer());
-        m_pView->SetWidowsTitle(c->GetViewer(), c->Name(), c->Icon(), c->Description());
+        m_pView->AddView(pOperate->GetViewer());
+        m_pView->SetWidowsTitle(pOperate->GetViewer(), pOperate->Name(),
+                                pOperate->Icon(), pOperate->Description());
         //qDebug(log) << "View:" << p->GetViewer();
-        check = connect(c, SIGNAL(sigViewerFocusIn(QWidget*)),
+        check = connect(pOperate, SIGNAL(sigViewerFocusIn(QWidget*)),
                         this, SLOT(slotViewerFocusIn(QWidget*)));
         Q_ASSERT(check);
     }
-    m_Connecters.push_back(c);
-    m_pFrmActive->slotLoadConnecters();
+    m_Operates.push_back(pOperate);
+    m_pFrmActive->slotLoad();
     m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
     //*/
-
-    c->Connect();
+    
+    pOperate->Start();
 
     return 0;
 }
 
-//! [MainWindow slotConnected]
+//! [MainWindow slotRunning]
 /*!
  * \brief When connected. enable accept keyboard and mouse event in view
  */
-void MainWindow::slotConnected()
+void MainWindow::slotRunning()
 {
-    CConnecter* p = dynamic_cast<CConnecter*>(sender());
+    COperate* p = dynamic_cast<COperate*>(sender());
     if(!p) return;
 
-    /* If you put it here, when connected, the view is not displayed.
-       So put it in the connect() display view.
-       See: Connect(CConnecter *p, bool set, QString szFile)
+    /* If you put it here, when running, the view is not displayed.
+       So put it in the Start() display view.
+       See: Start(COperate *p, bool set, QString szFile)
      */
     /*
-    if(-1 == m_Connecters.indexOf(p)) {
-        m_Connecters.push_back(p);
+    if(-1 == m_Operates.indexOf(p)) {
+        m_Operates.push_back(p);
         if(m_pView)
         {
             m_pView->AddView(p->GetViewer());
@@ -796,68 +795,68 @@ void MainWindow::slotConnected()
     }
     //*/
 
-    slotLoadConnecterMenu();
+    slotLoadOperateMenu();
 
     slotInformation(tr("Connected to ") + p->Name());
-    qDebug(log) << "MainWindow::slotConnected()" << p->Name();
+    qDebug(log) << "MainWindow::slotRunning()" << p->Name();
 }
-//! [MainWindow slotConnected]
+//! [MainWindow slotRunning]
 
 void MainWindow::slotCloseView(const QWidget* pView)
 {
     qDebug(log) << "MainWindow::slotCloseView" << pView;
     if(!pView) return;
-    foreach(auto c, m_Connecters)
+    foreach(auto p, m_Operates)
     {
-        if(c->GetViewer() == pView)
+        if(p->GetViewer() == pView)
         {
             //TODO: Whether to save the setting
-            emit c->sigUpdateParameters(c);
-            c->DisConnect();
+            emit p->sigUpdateParameters(p);
+            p->Stop();
         }
     }
 }
 
 void MainWindow::on_actionStop_triggered()
 {
-    qDebug(log) << "MainWindow::on_actionStop_triggered()";
+    qDebug(log) << Q_FUNC_INFO;
     if(!m_pView) return;
     
     QWidget* pView = m_pView->GetCurrentView();
     slotCloseView(pView);    
 }
 
-void MainWindow::slotDisconnect()
+void MainWindow::slotStop()
 {
-    qDebug(log) << "MainWindow::slotDisconnect()";
-    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
-    if(!pConnecter) return;
+    qDebug(log) << Q_FUNC_INFO;
+    COperate* pOperate = dynamic_cast<COperate*>(sender());
+    if(!pOperate) return;
     //TODO: Whether to save the setting
-    emit pConnecter->sigUpdateParameters(pConnecter);
-    pConnecter->DisConnect();
+    // emit pOperate->sigUpdateParameters(pOperate);
+    pOperate->Stop();
 }
 
-void MainWindow::slotDisconnected()
+void MainWindow::slotFinished()
 {
-    qDebug(log) << "MainWindow::slotDisconnected()";
-    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
-    foreach(auto c, m_Connecters)
+    qDebug(log) << Q_FUNC_INFO;
+    COperate* pOperate = dynamic_cast<COperate*>(sender());
+    foreach(auto p, m_Operates)
     {
-        if(c == pConnecter)
+        if(p == pOperate)
         {
-            m_pView->RemoveView(c->GetViewer());
-            m_Connecters.removeAll(c);
-            m_Client.DeleteConnecter(c);
-            m_pFrmActive->slotLoadConnecters();
+            m_pView->RemoveView(p->GetViewer());
+            m_Operates.removeAll(p);
+            m_Manager.DeleteOperate(p);
+            m_pFrmActive->slotLoad();
             m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
             break;
         }
     }
-    if(m_Connecters.isEmpty())
-        if(m_pActionConnecterMenu) {
-            ui->menuTools->removeAction(m_pActionConnecterMenu);
-            ui->toolBar->removeAction(m_pActionConnecterMenu);
-            m_pActionConnecterMenu = nullptr;
+    if(m_Operates.isEmpty())
+        if(m_pActionOperateMenu) {
+            ui->menuTools->removeAction(m_pActionOperateMenu);
+            ui->toolBar->removeAction(m_pActionOperateMenu);
+            m_pActionOperateMenu = nullptr;
         }
 }
 
@@ -929,30 +928,30 @@ void MainWindow::slotInformation(const QString& szInfo)
 
 void MainWindow::slotUpdateName()
 {
-    foreach (auto pConnecter, m_Connecters)
+    foreach (auto p, m_Operates)
     {
-        m_pView->SetWidowsTitle(pConnecter->GetViewer(),
-                                pConnecter->Name(),
-                                pConnecter->Icon(),
-                                pConnecter->Description());
+        m_pView->SetWidowsTitle(p->GetViewer(),
+                                p->Name(),
+                                p->Icon(),
+                                p->Description());
     }
 }
 
 void MainWindow::slotUpdateName(const QString& szName)
 {
-    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
-    if(!pConnecter) return;
-    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName,
-                            pConnecter->Icon(), pConnecter->Description());
+    COperate* p = dynamic_cast<COperate*>(sender());
+    if(!p) return;
+    m_pView->SetWidowsTitle(p->GetViewer(), szName,
+                            p->Icon(), p->Description());
 }
 
-int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
+int MainWindow::onProcess(const QString &id, CPlugin *pPlug)
 {
     Q_UNUSED(id);
-    // Connect menu and toolbar
+    // Start menu and toolbar
     QAction* p = ui->menuStart->addAction(pPlug->Protocol()
-                                                  + ": " + pPlug->DisplayName(),
-                                              this, SLOT(slotConnect()));
+                                              + ": " + pPlug->DisplayName(),
+                                          this, SLOT(slotStart()));
     p->setToolTip(pPlug->Description());
     p->setStatusTip(pPlug->Description());
     p->setData(id);
@@ -969,13 +968,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
         if(isFullScreen())
             on_actionFull_screen_F_triggered();
     
-    SaveConnectLasterClose();
+    SaveOperateLasterClose();
     
-    foreach (auto it, m_Connecters)
+    foreach (auto it, m_Operates)
     {
         //TODO: Whether to save the setting
         emit it->sigUpdateParameters(it);
-        it->DisConnect();
+        it->Stop();
     }
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
@@ -993,7 +992,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         set.remove("MainWindow/Status/State");
     }
 
-    m_Client.SaveSettings();
+    m_Manager.SaveSettings();
     m_Parameter.Save();
 
     QMainWindow::closeEvent(event);
@@ -1002,7 +1001,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QThread::sleep(1);
 }
 
-int MainWindow::LoadConnectLasterClose()
+int MainWindow::LoadOperateLasterClose()
 {
     if(!m_Parameter.GetOpenLasterClose())
         return 0;
@@ -1024,7 +1023,7 @@ int MainWindow::LoadConnectLasterClose()
     return 0;
 }
 
-int MainWindow::SaveConnectLasterClose()
+int MainWindow::SaveOperateLasterClose()
 {
     QFile f(RabbitCommon::CDir::Instance()->GetDirUserConfig()
             + QDir::separator() + "LasterClose.dat");
@@ -1032,7 +1031,7 @@ int MainWindow::SaveConnectLasterClose()
     if(m_Parameter.GetOpenLasterClose())
     {
         QDataStream d(&f);
-        foreach(auto it, m_Connecters)
+        foreach(auto it, m_Operates)
         {
             d << it->GetSettingsFile();
         }
@@ -1048,8 +1047,8 @@ void MainWindow::on_actionTabBar_B_toggled(bool bShow)
         m_pView->SetVisibleTab(bShow);
         m_Parameter.SetTabBar(bShow);
     } else {
-        if(m_pDockListConnecters)
-            m_pDockListConnecters->setVisible(bShow);
+        if(m_pDockActive)
+            m_pDockActive->setVisible(bShow);
     }
 }
 
@@ -1113,10 +1112,10 @@ void MainWindow::on_actionStatus_bar_S_toggled(bool checked)
 // [Get the widget that settings client parameters]
 void MainWindow::on_actionSettings_triggered()
 {
-    CParameterDlgSettings set(&m_Parameter, m_Client.GetSettingsWidgets(this), this);
+    CParameterDlgSettings set(&m_Parameter, m_Manager.GetSettingsWidgets(this), this);
     if(CParameterDlgSettings::Accepted == RC_SHOW_WINDOW(&set))
     {
-        m_Client.SaveSettings();
+        m_Manager.SaveSettings();
         m_Parameter.Save();
     }
 }
@@ -1148,9 +1147,9 @@ void MainWindow::slotShortCut()
 void MainWindow::on_actionOpenListRecent_triggered()
 {
     CFrmListRecent* p = new CFrmListRecent(
-        &m_Client, m_Parameter, false);
+        &m_Manager, m_Parameter, false);
     if(!p) return;
-    bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
+    bool check = connect(p, SIGNAL(sigStart(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));
     Q_ASSERT(check);
 
@@ -1171,7 +1170,7 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
 {
     if(!m_pView || !m_pFavoriteView) return;
     QWidget* p = m_pView->GetCurrentView();
-    foreach(auto c, m_Connecters)
+    foreach(auto c, m_Operates)
     {
         if(c->GetViewer() == p)
         {

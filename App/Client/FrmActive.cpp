@@ -7,7 +7,7 @@
 
 static Q_LOGGING_CATEGORY(log, "App.FrmActive")
 
-CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
+CFrmActive::CFrmActive(QVector<COperate*> &operates,
                                CParameterApp &parameterApp,
                                QMenu* pOperate,
                                QAction* pStop,
@@ -18,7 +18,7 @@ CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
     , m_pOperate(pOperate)
     , m_pStop(pStop)
     , m_pRecentMenu(pRecentMenu)
-    , m_Connecters(Connecters)
+    , m_Operates(operates)
     , m_ParameterApp(parameterApp)
     , m_pTableView(nullptr)
     , m_pModel(nullptr)
@@ -39,29 +39,29 @@ CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
     setLayout(pLayout);
 
     m_pToolBar = new QToolBar(this);
-    m_pToolBar->setVisible(m_ParameterApp.GetDockListConnectersShowToolBar());
+    m_pToolBar->setVisible(m_ParameterApp.GetDockListActiveShowToolBar());
     // Create recent menu
     auto ptbRecent = new QToolButton(m_pToolBar);
     ptbRecent->setFocusPolicy(Qt::NoFocus);
     ptbRecent->setPopupMode(QToolButton::InstantPopup);
-    //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //ptbRecent->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     ptbRecent->setMenu(m_pRecentMenu);
     ptbRecent->setIcon(m_pRecentMenu->icon());
     ptbRecent->setText(m_pRecentMenu->title());
     ptbRecent->setToolTip(m_pRecentMenu->title());
     ptbRecent->setStatusTip(m_pRecentMenu->title());
     m_pToolBar->addWidget(ptbRecent);
-    // Create connect menu
-    auto ptbConnect = new QToolButton(m_pToolBar);
-    ptbConnect->setFocusPolicy(Qt::NoFocus);
-    ptbConnect->setPopupMode(QToolButton::InstantPopup);
-    //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    ptbConnect->setMenu(m_pOperate);
-    ptbConnect->setIcon(m_pOperate->icon());
-    ptbConnect->setText(m_pOperate->title());
-    ptbConnect->setToolTip(m_pOperate->title());
-    ptbConnect->setStatusTip(m_pOperate->title());
-    m_pToolBar->addWidget(ptbConnect);
+    // Create start menu
+    auto ptbStart = new QToolButton(m_pToolBar);
+    ptbStart->setFocusPolicy(Qt::NoFocus);
+    ptbStart->setPopupMode(QToolButton::InstantPopup);
+    //ptbStart->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ptbStart->setMenu(m_pOperate);
+    ptbStart->setIcon(m_pOperate->icon());
+    ptbStart->setText(m_pOperate->title());
+    ptbStart->setToolTip(m_pOperate->title());
+    ptbStart->setStatusTip(m_pOperate->title());
+    m_pToolBar->addWidget(ptbStart);
 
     m_pToolBar->addAction(m_pStop);
     layout()->addWidget(m_pToolBar);
@@ -82,12 +82,12 @@ CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
         QAction* a = (QAction*)sender();
         if(a) {
             m_pToolBar->setVisible(a->isChecked());
-            m_ParameterApp.SetDockListConnectersShowToolBar(a->isChecked());
+            m_ParameterApp.SetDockListActiveShowToolBar(a->isChecked());
             m_ParameterApp.Save();
         }
     });
     pShowToolBar->setCheckable(true);
-    pShowToolBar->setChecked(m_ParameterApp.GetDockListConnectersShowToolBar());
+    pShowToolBar->setChecked(m_ParameterApp.GetDockListActiveShowToolBar());
 
     QList<QWidget*> lstWidget;
     lstWidget << pTools;
@@ -118,7 +118,7 @@ CFrmActive::CFrmActive(QVector<CConnecter*> &Connecters,
     m_pModel->setHorizontalHeaderItem(1, new QStandardItem(tr("Protocol")));
     m_pModel->setHorizontalHeaderItem(m_nId, new QStandardItem(tr("ID")));
 
-    slotLoadConnecters();
+    slotLoad();
 
     //必须在 setModel 后,才能应用
     /*第二个参数可以为：
@@ -159,9 +159,9 @@ void CFrmActive::slotCustomContextMenu(const QPoint &pos)
     menu.addAction(m_pStop);
     menu.addSeparator();
     int r = m_pTableView->currentIndex().row();
-    if(-1 < r && r < m_Connecters.size())
+    if(-1 < r && r < m_Operates.size())
     {
-        auto c = m_Connecters[r];
+        auto c = m_Operates[r];
         if(c) {
             auto m = c->GetMenu();
             //menu.addMenu(m);
@@ -175,16 +175,16 @@ void CFrmActive::slotCustomContextMenu(const QPoint &pos)
 void CFrmActive::slotClicked(const QModelIndex &index)
 {
     QVariant v = m_pModel->item(index.row(), m_nId)->data();
-    CConnecter* c = v.value<CConnecter*>();
-    emit sigConnecterChanged(c);
+    COperate* c = v.value<COperate*>();
+    emit sigChanged(c);
 }
 
-void CFrmActive::slotLoadConnecters()
+void CFrmActive::slotLoad()
 {
     if(!m_pModel)
         return;
     m_pModel->removeRows(0, m_pModel->rowCount());
-    foreach(auto c, m_Connecters) {
+    foreach(auto c, m_Operates) {
         QList<QStandardItem*> lstItem;
         QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
         pName->setToolTip(c->Description());
@@ -209,9 +209,9 @@ void CFrmActive::slotLoadConnecters()
 void CFrmActive::slotViewChanged(const QWidget *pView)
 {
     int nIndex = -1;
-    if(m_Connecters.size() != m_pModel->rowCount())
-        slotLoadConnecters();
-    foreach (auto c, m_Connecters) {
+    if(m_Operates.size() != m_pModel->rowCount())
+        slotLoad();
+    foreach (auto c, m_Operates) {
         nIndex++;
         if(c->GetViewer() == pView)
             break;

@@ -6,7 +6,7 @@
 #include <QToolButton>
 #include <QStandardItemModel>
 #include <QVector>
-#include "Connecter.h"
+#include "Operate.h"
 #include "TitleBar.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
@@ -15,7 +15,7 @@ class CFrmActive : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CFrmActive(QVector<CConnecter*> &Connecters,
+    explicit CFrmActive(QVector<COperate*> &operates,
                             CParameterApp &parameterApp,
                             QMenu* pOperate,
                             QAction* pStop,
@@ -24,15 +24,15 @@ public:
     virtual ~CFrmActive();
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 public Q_SLOTS:
-    void slotLoadConnecters();
+    void slotLoad();
     void slotViewChanged(const QWidget* pView);
 Q_SIGNALS:
-    void sigConnecterChanged(CConnecter* c);
+    void sigChanged(COperate* c);
 private Q_SLOTS:
     void slotCustomContextMenu(const QPoint &pos);
     void slotClicked(const QModelIndex& index);
 private:
-    QVector<CConnecter*> &m_Connecters;
+    QVector<COperate*> &m_Operates;
     CParameterApp &m_ParameterApp;
     QMenu* m_pOperate;
     QAction* m_pStop;

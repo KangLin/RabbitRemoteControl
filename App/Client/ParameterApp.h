@@ -154,10 +154,10 @@ private:
     Q_PROPERTY(bool MessageBoxDisplyInformtion READ GetMessageBoxDisplayInformation WRITE SetMessageBoxDisplayInformation)
 
 public:
-    const bool GetDockListConnectersShowToolBar() const;
-    void SetDockListConnectersShowToolBar(bool bEnable);
+    const bool GetDockListActiveShowToolBar() const;
+    void SetDockListActiveShowToolBar(bool bEnable);
 private:
-    bool m_bDockListConnectersShowToolBar;
+    bool m_bDockListActiveShowToolBar;
 
 public:
     const bool GetDockListRecentShowToolBar() const;

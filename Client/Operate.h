@@ -158,7 +158,7 @@ Q_SIGNALS:
      *   set the view property Enabled to true. Allows receiving keyboard and mouse events.
      *
      * \~
-     * \see MainWindow::slotConnected() GetViewer() CFrmViewer::CFrmViewer
+     * \see MainWindow::slotRunning() GetViewer() CFrmViewer::CFrmViewer
      * \snippet App/Client/mainwindow.cpp MainWindow slotConnected
      */
     void sigRunning();
