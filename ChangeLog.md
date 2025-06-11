@@ -12,7 +12,7 @@
 
 - [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - Add CParameterPlugin
-  - Add CManager
+
 |Old name        |New Name       |
 |----------------|---------------|
 |CConnecter      |COperate       |
@@ -20,7 +20,7 @@
 |ConnectThread   |CBackendThread |
 |CConnecterThread|COperateDesktop|
 |CPluginClient   |CPlugin        |
-|Client          |CManager       |
+|CClient         |CManager       |
 
 ### v0.0.36
 - Client:

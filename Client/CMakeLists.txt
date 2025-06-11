@@ -30,6 +30,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     OperateDesktop.h
     Backend.h
     BackendThread.h
+    BackendDesktop.h
     SSH/Event.h
     DlgUserPassword.h
     Parameter.h
@@ -66,6 +67,7 @@ list(APPEND CLIENT_SOURCE_FILES
     OperateDesktop.cpp
     Backend.cpp
     BackendThread.cpp
+    BackendDesktop.cpp
     FrmScroll.cpp
     SSH/Event.cpp
     Parameter.cpp

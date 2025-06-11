@@ -97,28 +97,6 @@ const QString COperateDesktop::Name()
     return szName;
 }
 
-QString COperateDesktop::ServerName()
-{
-    if(GetParameter())
-        if(!GetParameter()->GetShowServerName()
-            || m_szServerName.isEmpty())
-        {
-            if(!GetParameter()->m_Net.GetHost().isEmpty())
-                return GetParameter()->m_Net.GetHost() + ":"
-                       + QString::number(GetParameter()->m_Net.GetPort());
-        }
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
-    {
-        return GetParameter()->m_Net.GetHost()
-            + ":" + QString::number(GetParameter()->m_Net.GetPort());
-    }
-    
-    if(m_szServerName.isEmpty() && GetParameter())
-        return GetParameter()->GetServerName();
-    return m_szServerName;
-}
-
 const QString COperateDesktop::Description()
 {
     QString szDescription;
@@ -584,4 +562,43 @@ void COperateDesktop::slotShortcutLock()
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_L, Qt::NoModifier));
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Super_L, Qt::NoModifier));
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_L, Qt::NoModifier));
+}
+
+
+QString COperateDesktop::ServerName()
+{
+    if(GetParameter())
+        if(!GetParameter()->GetShowServerName()
+            || m_szServerName.isEmpty())
+        {
+            if(!GetParameter()->m_Net.GetHost().isEmpty())
+                return GetParameter()->m_Net.GetHost() + ":"
+                       + QString::number(GetParameter()->m_Net.GetPort());
+        }
+    if(GetParameter() && GetParameter()->GetParameterClient()
+        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
+    {
+        return GetParameter()->m_Net.GetHost()
+        + ":" + QString::number(GetParameter()->m_Net.GetPort());
+    }
+    
+    if(m_szServerName.isEmpty() && GetParameter())
+        return GetParameter()->GetServerName();
+    return m_szServerName;
+}
+
+void COperateDesktop::slotSetServerName(const QString& szName)
+{
+    if(m_szServerName == szName)
+        return;
+    
+    m_szServerName = szName;
+    if(GetParameter())
+    {
+        if(GetParameter()->GetServerName() == szName)
+            return;
+        GetParameter()->SetServerName(szName);
+    }
+    
+    emit sigUpdateName(Name());
 }

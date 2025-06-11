@@ -127,7 +127,6 @@ private Q_SLOTS:
     void slotShortcutLock();
     
 protected:
-    [[nodiscard]] virtual QString ServerName();
     virtual int Initial() override;
     virtual int Clean() override;
     /*!
@@ -142,13 +141,32 @@ protected:
     virtual int Save(QSettings &set) override;
     
     virtual int InitialMenu();
-    
+
 private:
     CParameterBase* m_pPara;
     CBackendThread* m_pThread;
     CFrmViewer *m_pFrmViewer;
     CFrmScroll* m_pScroll;
+    
+protected:
+    /*!
+     * \~chinese
+     * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
+     * \return 返回服务名
+     *
+     * \~english
+     * \brief Current connect server name
+     *        (remote desktop name, if not present, then IP:PORT).
+     *        eg: Server name or Ip:Port
+     * \return Current connect server name.
+     */
+    [[nodiscard]] virtual QString ServerName();
+private:
     QString m_szServerName;
+private Q_SLOTS:
+    //! \~chinese \note 仅由 CBackendDesktop::SetConnect() 使用
+    //! \~english \note The slot only is used by CBackendDesktop::SetConnect()
+    virtual void slotSetServerName(const QString &szName);
 
 protected:
     QAction* m_pMenuZoom;

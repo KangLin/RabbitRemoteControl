@@ -2,17 +2,18 @@
 
 #include <QApplication>
 #include <QClipboard>
-#include <QTimer>
 #include <QLoggingCategory>
 #include <QWheelEvent>
 #include <QVideoFrame>
 #include <QDesktopServices>
+#include <QLoggingCategory>
+#include <QFileInfo>
 
-#include "ConnectDesktop.h"
-#include "ConnecterThread.h"
+#include "BackendDesktop.h"
+#include "FrmScroll.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Connect.Desktop")
-static Q_LOGGING_CATEGORY(logMouse, "Client.Connect.Desktop.Mouse")
+static Q_LOGGING_CATEGORY(log, "Backend.Desktop")
+static Q_LOGGING_CATEGORY(logMouse, "Backend.Desktop.Mouse")
 
 #define TypeRecordVideo (QEvent::User + 1)
 class QRecordVideoEvent : public QEvent
@@ -26,7 +27,7 @@ public:
     {
         qDebug(log) << Q_FUNC_INFO;
     }
-
+    
     QImage GetImage()
     {
         return m_Image;
@@ -40,8 +41,8 @@ int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
 int g_QMessageBox_Icon = qRegisterMetaType<QMessageBox::Icon>("QMessageBox::Icon");
 
-CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
-    : CConnect(pConnecter)
+CBackendDesktop::CBackendDesktop(COperateDesktop *pOperate, bool bDirectConnection)
+    : CBackend(pOperate)
 #if HAVE_QT6_RECORD
     , m_pParameterRecord(nullptr)
     , m_VideoFrameInput(this)
@@ -49,23 +50,24 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     , m_AudioBufferOutput(this)
 #endif
 {
-    if(pConnecter) {
-        CFrmScroll* pScroll = qobject_cast<CFrmScroll*>(pConnecter->GetViewer());
+    qDebug(log) << Q_FUNC_INFO;
+    if(pOperate) {
+        CFrmScroll* pScroll = qobject_cast<CFrmScroll*>(pOperate->GetViewer());
         if(pScroll) {
             CFrmViewer* pView = pScroll->GetViewer();
             if(pView)
-                SetViewer(pView, pConnecter, bDirectConnection);
+                SetViewer(pView, pOperate, bDirectConnection);
             else {
-                QString szErr = pConnecter->metaObject()->className();
+                QString szErr = pOperate->metaObject()->className();
                 szErr += "::GetViewer() is not CFrmViewer";
                 qWarning(log) << szErr.toStdString().c_str();
             }
         } else {
-            QString szErr = pConnecter->metaObject()->className();
+            QString szErr = pOperate->metaObject()->className();
             szErr += "::GetViewer() is not CFrmScroll";
             qWarning(log) << szErr.toStdString().c_str();
         }
-        SetConnecter(pConnecter);
+        SetConnect(pOperate);
     }
 
 #if HAVE_QT6_RECORD
@@ -114,54 +116,53 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
 #endif
 }
 
-CConnectDesktop::~CConnectDesktop()
+CBackendDesktop::~CBackendDesktop()
 {
-    qDebug(log) << "CConnectDesktop::~CConnectDesktop()";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
-int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
+int CBackendDesktop::SetConnect(COperateDesktop *pOperate)
 {
-    qDebug(log) << "CConnectDesktop::SetConnecter" << pConnecter;
-    Q_ASSERT(pConnecter);
-    if(!pConnecter) return -1;
-
+    qDebug(log) << "CBackendDesktop::SetConnect:" << pOperate;
+    Q_ASSERT(pOperate);
+    if(!pOperate) return -1;
+    
     bool check = false;
     check = connect(this, SIGNAL(sigServerName(const QString&)),
-                    pConnecter, SLOT(slotSetServerName(const QString&)));
+                    pOperate, SLOT(slotSetServerName(const QString&)));
     Q_ASSERT(check);
-    check = connect(pConnecter, SIGNAL(sigClipBoardChanged()),
+    check = connect(pOperate, SIGNAL(sigClipBoardChanged()),
                     this, SLOT(slotClipBoardChanged()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
-                    pConnecter, SLOT(slotSetClipboard(QMimeData*)));
+                    pOperate, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
 #if HAVE_QT6_RECORD
-    CConnecterThread* p = qobject_cast<CConnecterThread*>(pConnecter);
-    if(p) {
-        m_pParameterRecord = &p->GetParameter()->m_Record;
-        check = connect(p, SIGNAL(sigRecord(bool)),
+    if(pOperate) {
+        m_pParameterRecord = &pOperate->GetParameter()->m_Record;
+        check = connect(pOperate, SIGNAL(sigRecord(bool)),
                         this, SLOT(slotRecord(bool)));
         Q_ASSERT(check);
-
-        check = connect(p, SIGNAL(sigRecordPause(bool)),
+        
+        check = connect(pOperate, SIGNAL(sigRecordPause(bool)),
                         this, SLOT(slotRecordPause(bool)));
         Q_ASSERT(check);
         check = connect(
             &m_Recorder,
             SIGNAL(recorderStateChanged(QMediaRecorder::RecorderState)),
-            p, SLOT(slotRecorderStateChanged(QMediaRecorder::RecorderState)));
+            pOperate, SLOT(slotRecorderStateChanged(QMediaRecorder::RecorderState)));
         Q_ASSERT(check);
     }
 #endif
     return 0;
 }
 
-int CConnectDesktop::SetViewer(CFrmViewer *pView,
-                               CConnecter* pConnecter, bool bDirectConnection)
+int CBackendDesktop::SetViewer(CFrmViewer *pView,
+                               COperateDesktop* pOperate, bool bDirectConnection)
 {
     Q_ASSERT(pView);
     if(!pView) return -1;
-    
+
     bool check = false;
     check = connect(this, SIGNAL(sigConnected()), pView, SLOT(slotConnected()));
     Q_ASSERT(check);
@@ -171,7 +172,7 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView,
     check = connect(this, SIGNAL(sigServerName(const QString&)),
                     pView, SLOT(slotSetName(const QString&)));
     Q_ASSERT(check);
-
+    
     check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
                     pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
     Q_ASSERT(check);
@@ -254,7 +255,7 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView,
     return 0;
 }
 
-void CConnectDesktop::slotWheelEvent(QWheelEvent *event, QPoint pos)
+void CBackendDesktop::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
     QWheelEvent* e = new QWheelEvent(
         pos,
@@ -269,7 +270,7 @@ void CConnectDesktop::slotWheelEvent(QWheelEvent *event, QPoint pos)
     WakeUp();
 }
 
-void CConnectDesktop::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
+void CBackendDesktop::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
@@ -282,7 +283,7 @@ void CConnectDesktop::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
     WakeUp();
 }
 
-void CConnectDesktop::slotMousePressEvent(QMouseEvent *event, QPoint pos)
+void CBackendDesktop::slotMousePressEvent(QMouseEvent *event, QPoint pos)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
@@ -295,7 +296,7 @@ void CConnectDesktop::slotMousePressEvent(QMouseEvent *event, QPoint pos)
     WakeUp();
 }
 
-void CConnectDesktop::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
+void CBackendDesktop::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
@@ -308,7 +309,7 @@ void CConnectDesktop::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
     WakeUp();
 }
 
-void CConnectDesktop::slotKeyPressEvent(QKeyEvent *event)
+void CBackendDesktop::slotKeyPressEvent(QKeyEvent *event)
 {
     QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
                                  event->modifiers(), event->text());
@@ -316,7 +317,7 @@ void CConnectDesktop::slotKeyPressEvent(QKeyEvent *event)
     WakeUp();
 }
 
-void CConnectDesktop::slotKeyReleaseEvent(QKeyEvent *event)
+void CBackendDesktop::slotKeyReleaseEvent(QKeyEvent *event)
 {
     QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
                                  event->modifiers(), event->text());
@@ -324,44 +325,44 @@ void CConnectDesktop::slotKeyReleaseEvent(QKeyEvent *event)
     WakeUp();
 }
 
-void CConnectDesktop::mouseMoveEvent(QMouseEvent *event)
+void CBackendDesktop::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::mouseMoveEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::mouseMoveEvent";
 }
 
-void CConnectDesktop::mousePressEvent(QMouseEvent *event)
+void CBackendDesktop::mousePressEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::mousePressEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::mousePressEvent";
 }
 
-void CConnectDesktop::mouseReleaseEvent(QMouseEvent *event)
+void CBackendDesktop::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::mouseReleaseEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::mouseReleaseEvent";
 }
 
-void CConnectDesktop::wheelEvent(QWheelEvent *event)
+void CBackendDesktop::wheelEvent(QWheelEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::wheelEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::wheelEvent";
 }
 
-void CConnectDesktop::keyPressEvent(QKeyEvent *event)
+void CBackendDesktop::keyPressEvent(QKeyEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::keyPressEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::keyPressEvent";
 }
 
-void CConnectDesktop::keyReleaseEvent(QKeyEvent *event)
+void CBackendDesktop::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug(logMouse) << "Need to implement CConnectDesktop::keyReleaseEvent";
+    qDebug(logMouse) << "Need to implement CBackendDesktop::keyReleaseEvent";
 }
 
-int CConnectDesktop::WakeUp()
+int CBackendDesktop::WakeUp()
 {
     return 0;
 }
 
-bool CConnectDesktop::event(QEvent *event)
+bool CBackendDesktop::event(QEvent *event)
 {
-    //qDebug(log) << "CConnectDesktop::event" << event;
+    //qDebug(log) << "CBackendDesktop::event" << event;
     switch (event->type()) {
     case QEvent::MouseButtonPress:
     case QEvent::MouseButtonDblClick:
@@ -390,13 +391,13 @@ bool CConnectDesktop::event(QEvent *event)
     default:
         return QObject::event(event);
     }
-
+    
     event->accept();
     return true;
 }
 
 #if HAVE_QT6_RECORD
-void CConnectDesktop::slotRecord(bool bRecord)
+void CBackendDesktop::slotRecord(bool bRecord)
 {
     qDebug(log) << Q_FUNC_INFO << bRecord;
     if(bRecord) {
@@ -415,7 +416,7 @@ void CConnectDesktop::slotRecord(bool bRecord)
     emit sigRecordVideo(bRecord, m_pParameterRecord->GetVideoFrameRate());
 }
 
-void CConnectDesktop::slotRecordPause(bool bPause)
+void CBackendDesktop::slotRecordPause(bool bPause)
 {
     qDebug(log) << Q_FUNC_INFO << bPause;
     if(bPause) {
@@ -427,7 +428,7 @@ void CConnectDesktop::slotRecordPause(bool bPause)
     }
 }
 
-void CConnectDesktop::slotRecordVideo(const QImage &img)
+void CBackendDesktop::slotRecordVideo(const QImage &img)
 {
     QRecordVideoEvent* e = new QRecordVideoEvent(img);
     if(!e) return;
@@ -435,7 +436,7 @@ void CConnectDesktop::slotRecordVideo(const QImage &img)
     WakeUp();
 }
 
-void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
+void CBackendDesktop::RecordVideo(QRecordVideoEvent *e)
 {
     qDebug(log) << "Update image";
     if(!e) return;
@@ -452,9 +453,9 @@ void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
     }
 }
 
-int CConnectDesktop::Disconnect()
+int CBackendDesktop::Stop()
 {
     slotRecord(false);
-    return CConnect::Disconnect();
+    return CBackend::Stop();
 }
 #endif
