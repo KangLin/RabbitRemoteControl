@@ -80,7 +80,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
       RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS Client ${QT_LIBRARIES})
+    PRIVATE_LIBS Plugin ${QT_LIBRARIES})
 
 # Install other files
 set(OTHER_FILES
@@ -94,12 +94,12 @@ INSTALL_FILE(SOURCES ${OTHER_FILES}
         COMPONENT Application)
 
 if(ANDROID)
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins/Client)
-        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins/Client)
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins)
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins)
     endif()
     set_target_properties(${PROJECT_NAME} PROPERTIES
         QT_ANDROID_EXTRA_PLUGINS
-            ${CMAKE_BINARY_DIR}/plugins/Client
+            ${CMAKE_BINARY_DIR}/plugins
         )
 endif()
 
