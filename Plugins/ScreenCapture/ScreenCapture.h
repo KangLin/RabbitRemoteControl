@@ -13,34 +13,34 @@
 #include <QVideoWidget>
 #include <QMenu>
 
-#include "Connecter.h"
+#include "Operate.h"
 #include "ParameterScreenCapture.h"
 
-class CScreenCapture : public CConnecter
+class CScreenCapture : public COperate
 {
     Q_OBJECT
 public:
-    explicit CScreenCapture(CPluginClient *plugin);
+    explicit CScreenCapture(CPlugin *plugin);
     virtual ~CScreenCapture();
 
-    // CConnecter interface
+    // COperate interface
 public:
-    virtual qint16 Version() override;
-    virtual QWidget *GetViewer() override;
+    [[nodiscard]] virtual QWidget *GetViewer() override;
+    [[nodiscard]] virtual const qint16 Version() const override;
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
 
 public Q_SLOTS:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
+    virtual int Start() override;
+    virtual int Stop() override;
 
 private Q_SLOTS:
     virtual int slotStart();
     virtual int slotStop();
 
 private:
-    virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
+    [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
     QVideoWidget* m_pWidget;
     CParameterScreenCapture m_Parameter;
@@ -54,6 +54,9 @@ private:
     // QObject interface
 public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
+
+protected:
+    virtual int SetParameterPlugin(CParameterPlugin *pPara) override;
 };
 
 #endif // SCREENCAPTURE_H

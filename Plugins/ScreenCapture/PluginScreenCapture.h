@@ -1,24 +1,21 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef PLUGINSCREENCAPTURE_H
-#define PLUGINSCREENCAPTURE_H
-
 #pragma once
-#include "PluginClient.h"
+#include "Plugin.h"
 
-class CPluginScreenCapture : public CPluginClient
+class CPluginScreenCapture : public CPlugin
 {
     Q_OBJECT
 public:
     explicit CPluginScreenCapture(QObject *parent = nullptr);
 
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
 
-    // CPluginClient interface
+    // CPlugin interface
 public:
     virtual const TYPE Type() const override;
     virtual const QString Protocol() const override;
@@ -29,7 +26,6 @@ public:
     virtual const QIcon Icon() const override;
 
 private:
-    virtual CConnecter* OnCreateConnecter(const QString &szId) override;
+    virtual COperate* OnCreateOperate(const QString &szId) override;
 };
 
-#endif // PLUGINSCREENCAPTURE_H
