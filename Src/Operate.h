@@ -67,11 +67,11 @@ public:
     //! Description
     [[nodiscard]] virtual const QString Description();
     //! Protocol
-    [[nodiscard]] virtual const QString Protocol() const = 0;
+    [[nodiscard]] virtual const QString Protocol() const;
     //! Version
     [[nodiscard]] virtual const qint16 Version() const = 0;
     //! Icon
-    [[nodiscard]] virtual const QIcon Icon() const = 0;
+    [[nodiscard]] virtual const QIcon Icon() const;
 
     /*!
      * \~chinese

@@ -3,14 +3,17 @@
 #include <QLoggingCategory>
 #include <QApplication>
 #include <QDesktopServices>
+#include <QUrl>
+#include <QFileInfo>
+
 #include "ScreenCapture.h"
 #include "DlgCapture.h"
 #include "RabbitCommonTools.h"
-#include "PluginClient.h"
+#include "Plugin.h"
 
 static Q_LOGGING_CATEGORY(log, "Screen.Capture")
-CScreenCapture::CScreenCapture(CPluginClient *plugin)
-    : CConnecter(plugin)
+CScreenCapture::CScreenCapture(CPlugin *plugin)
+    : COperate(plugin)
     , m_pWidget(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -21,7 +24,7 @@ CScreenCapture::~CScreenCapture()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-qint16 CScreenCapture::Version()
+const qint16 CScreenCapture::Version() const
 {
     return 0;
 }
@@ -39,10 +42,7 @@ int CScreenCapture::Initial()
     m_pWidget->setFocusPolicy(Qt::WheelFocus);
     m_pWidget->installEventFilter(this);
 
-    int nRet = SetParameter(&m_Parameter);
-    if(nRet) return nRet;
-
-    CPluginClient* plugin = GetPlugClient();
+    CPlugin* plugin = GetPlugin();
     QString szTitle(plugin->DisplayName());
     m_Menu.setTitle(szTitle);
     m_Menu.setToolTip(szTitle);
@@ -168,19 +168,19 @@ QDialog *CScreenCapture::OnOpenDialogSettings(QWidget *parent)
     return nullptr;
 }
 
-int CScreenCapture::Connect()
+int CScreenCapture::Start()
 {
     int nRet = 0;
     slotStart();
-    emit sigConnected();
+    emit sigRunning();
     return nRet;
 }
 
-int CScreenCapture::DisConnect()
+int CScreenCapture::Stop()
 {
     int nRet = 0;
     slotStop();
-    emit sigDisconnected();
+    emit sigFinished();
     return nRet;
 }
 
@@ -261,4 +261,9 @@ bool CScreenCapture::eventFilter(QObject *watched, QEvent *event)
         }
     }
     return false;
+}
+
+int CScreenCapture::SetParameterPlugin(CParameterPlugin *pPara)
+{
+    return 0;
 }

@@ -4,17 +4,17 @@
 #include "ScreenCapture.h"
 
 CPluginScreenCapture::CPluginScreenCapture(QObject *parent)
-    : CPluginClient{parent}
+    : CPlugin{parent}
 {}
 
-const CPluginClient::TYPE CPluginScreenCapture::Type() const
+const CPlugin::TYPE CPluginScreenCapture::Type() const
 {
     return TYPE::Tool;
 }
 
 const QString CPluginScreenCapture::Protocol() const
 {
-    return "Tool";
+    return QString();
 }
 
 const QString CPluginScreenCapture::Name() const
@@ -42,8 +42,8 @@ const QIcon CPluginScreenCapture::Icon() const
     return QIcon::fromTheme("camera-photo");
 }
 
-CConnecter* CPluginScreenCapture::OnCreateConnecter(const QString &szId)
+COperate *CPluginScreenCapture::OnCreateOperate(const QString &szId)
 {
-    CConnecter* p = new CScreenCapture(this);
+    COperate* p = new CScreenCapture(this);
     return p;
 }
