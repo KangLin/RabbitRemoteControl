@@ -22,7 +22,7 @@
  * \see CChannelSSHTunnelForward
  * \ingroup LIBAPI_CHANNEL
  */
-class CLIENT_EXPORT CSSHTunnelThread : public QThread
+class PLUGIN_EXPORT CSSHTunnelThread : public QThread
 {
     Q_OBJECT
 public:

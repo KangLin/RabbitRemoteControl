@@ -8,7 +8,7 @@
 #include <QSettings>
 #include <QString>
 #include <QVector>
-#include "client_export.h"
+#include "plugin_export.h"
 
 /*!
  * \~chinese
@@ -165,7 +165,7 @@
  * \~
  * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CParameter : public QObject
+class PLUGIN_EXPORT CParameter : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool Modified READ GetModified WRITE SetModified FINAL)

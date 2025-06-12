@@ -7,7 +7,7 @@
 
 #include "ParameterNet.h"
 
-class CLIENT_EXPORT CParameterSSHTunnel : public CParameterConnecter
+class PLUGIN_EXPORT CParameterSSHTunnel : public CParameterConnecter
 {
     Q_OBJECT
 

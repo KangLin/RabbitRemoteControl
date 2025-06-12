@@ -10,7 +10,7 @@ namespace Ui {
 class CParameterRecordUI;
 }
 
-class CLIENT_EXPORT CParameterRecordUI : public CParameterUI
+class PLUGIN_EXPORT CParameterRecordUI : public CParameterUI
 {
     Q_OBJECT
 

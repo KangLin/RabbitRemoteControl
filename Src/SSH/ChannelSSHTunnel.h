@@ -27,7 +27,7 @@
  * \~
  * \ingroup LIBAPI_CHANNEL
  */
-class CLIENT_EXPORT CChannelSSHTunnel : public CChannel
+class PLUGIN_EXPORT CChannelSSHTunnel : public CChannel
 {
     Q_OBJECT
 

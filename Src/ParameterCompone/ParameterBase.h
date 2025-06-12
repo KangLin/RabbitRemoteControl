@@ -41,7 +41,7 @@
  * \~
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterBase : public CParameterConnecter
+class PLUGIN_EXPORT CParameterBase : public CParameterConnecter
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)

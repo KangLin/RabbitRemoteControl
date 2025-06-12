@@ -9,7 +9,7 @@ namespace Ui {
 class CDlgUserPassword;
 }
 
-class CLIENT_EXPORT CDlgUserPassword : public QDialog
+class PLUGIN_EXPORT CDlgUserPassword : public QDialog
 {
     Q_OBJECT
 

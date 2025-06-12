@@ -22,7 +22,7 @@
  * \see CParameterConnecter CParameterNetUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterNet
+class PLUGIN_EXPORT CParameterNet
     : public CParameterConnecter
 {
     Q_OBJECT

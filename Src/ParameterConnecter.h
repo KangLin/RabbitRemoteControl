@@ -252,7 +252,7 @@
  *      CParameterConnecter::GetParameterClient
  * \ingroup CLIENT_PARAMETER
  */
-class CLIENT_EXPORT CParameterConnecter : public CParameter
+class PLUGIN_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
 

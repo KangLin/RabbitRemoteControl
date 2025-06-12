@@ -20,7 +20,7 @@
  * \see COperate::SetParameterPlugin
  * \ingroup CLIENT_PARAMETER
  */
-class CLIENT_EXPORT CParameterPlugin : public CParameter
+class PLUGIN_EXPORT CParameterPlugin : public CParameter
 {
     Q_OBJECT
 public:

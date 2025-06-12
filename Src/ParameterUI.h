@@ -11,7 +11,7 @@
  * \see CParameter
  * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CParameterUI : public QWidget
+class PLUGIN_EXPORT CParameterUI : public QWidget
 {
     Q_OBJECT
 public:

@@ -12,7 +12,7 @@
 
 #include "Parameter.h"
 
-class CLIENT_EXPORT CParameterRecord : public CParameter
+class PLUGIN_EXPORT CParameterRecord : public CParameter
 {
     Q_OBJECT
 
@@ -112,8 +112,8 @@ protected:
     virtual int OnSave(QSettings &set) override;
 };
 
-CLIENT_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
-CLIENT_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
-CLIENT_EXPORT CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder);
+PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
+PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
+PLUGIN_EXPORT CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder);
 
 #endif // PARAMETERRECORD_H

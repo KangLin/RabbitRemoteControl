@@ -18,7 +18,7 @@
  * \see CParameterConnecter CParameterUserUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterUser : public CParameterConnecter
+class PLUGIN_EXPORT CParameterUser : public CParameterConnecter
 {
     Q_OBJECT
 
