@@ -32,7 +32,7 @@ int CPlugin::InitTranslator()
     return -1;
 }
 
-const QString CPlugin::GetType(const TYPE t)
+const QString CPlugin::TypeName(const TYPE t) const
 {
     switch(t)
     {
@@ -48,7 +48,7 @@ const QString CPlugin::GetType(const TYPE t)
 
 const QString CPlugin::Id()
 {
-    return GetType(Type()) + ":" + Protocol() + ":" + Name();
+    return TypeName(Type()) + ":" + Protocol() + ":" + Name();
 }
 
 const QString CPlugin::DisplayName() const

@@ -123,7 +123,7 @@ CBackendDesktop::~CBackendDesktop()
 
 int CBackendDesktop::SetConnect(COperateDesktop *pOperate)
 {
-    qDebug(log) << "CBackendDesktop::SetConnect:" << pOperate;
+    //qDebug(log) << "CBackendDesktop::SetConnect:" << pOperate;
     Q_ASSERT(pOperate);
     if(!pOperate) return -1;
     

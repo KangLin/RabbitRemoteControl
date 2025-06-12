@@ -15,16 +15,16 @@
 #include <QAudioInput>
 #include <QCamera>
 
-#include "ConnectDesktop.h"
-#include "ConnecterPlayer.h"
+#include "BackendDesktop.h"
+#include "OperatePlayer.h"
 
-class CConnectPlayer : public CConnectDesktop
+class CBackendPlayer : public CBackendDesktop
 {
     Q_OBJECT
 
 public:
-    explicit CConnectPlayer(CConnecterPlayer* pConnecter);
-    virtual ~CConnectPlayer();
+    explicit CBackendPlayer(COperatePlayer* pOperate);
+    virtual ~CBackendPlayer();
 
 public Q_SLOTS:
     virtual void slotStart();

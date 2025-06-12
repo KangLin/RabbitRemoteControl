@@ -9,7 +9,7 @@
  * \~chinese
  * \brief 后端接口。它由协议插件实现。
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
- *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
+ *     详见： Start()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
  * \note
  *  - 这个接口仅由插件实现。
@@ -23,7 +23,7 @@
  * \brief Backend interface. It is implemented by the Protocol plugin.
  *      It starts a timer by default to start a non-Qt event loop
  *      (that is, normal loop processing) .
- *      See Connect(), slotTimeOut(), OnProcess() for details.
+ *      See Start(), slotTimeOut(), OnProcess() for details.
  *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).
  * \note
  *  - The interface only is implemented by plug-in.
@@ -35,7 +35,7 @@
  *     - OnProcess()
  *
  * \~
- * \see CConnecterThread CFrmViewer
+ * \see CBackendThread::run() CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
 class CBackend : public QObject
@@ -115,7 +115,7 @@ protected:
      *       \li = -1: 停止
      *       \li < -1: 错误
      *     
-     * \~english Specific operation processing of plug-in connection
+     * \~english Specific operation processing of plug-in
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
      *       \li = -1: stop
@@ -181,7 +181,7 @@ Q_SIGNALS:
      *       is displayed in a dialog box
      *
      * \~
-     * \see sigShowMessageBox SetConnecter CConnecter::sigInformation()
+     * \see sigShowMessageBox SetConnect COperate::sigInformation()
      */
     void sigInformation(const QString& szInfo);
     /*!
@@ -197,11 +197,11 @@ Q_SIGNALS:
      *       is not displayed in a dialog box
      *
      * \~
-     * \see sigInformation SetConnecter CConnecter::sigShowMessageBox()
+     * \see sigInformation SetConnect COperate::sigShowMessageBox()
      */
     void sigShowMessageBox(const QString& szTitle, const QString& szMessage,
                            const QMessageBox::Icon& icon = QMessageBox::Information);
-    
+
     /*!
      * \~chinese
      * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
@@ -217,7 +217,7 @@ Q_SIGNALS:
      * \param checkBoxContext
      * 
      * \~
-     * \see CConnecter::slotBlockShowMessageBox() SetConnecter
+     * \see COperate::slotBlockShowMessageBox() SetConnect
      */
     void sigBlockShowMessageBox(const QString& szTitle,
                                 const QString& szMessage,
@@ -232,7 +232,7 @@ Q_SIGNALS:
      * \brief Block background threads and display input dialogs
      *        in foreground threads (QInputDialog)
      * \~
-     * \see CConnecter::slotBlockInputDialog() SetConnecter
+     * \see COperate::slotBlockInputDialog() SetConnect
      */
     void sigBlockInputDialog(const QString& szTitle,
                              const QString& szLable,
@@ -251,10 +251,10 @@ Q_SIGNALS:
      *            Q_INVOKABLE void SetContext(void* pContext);
      * \param nRet: If className is QDialog derived class,
      *              QDialog::exec() return value. Otherwise, ignore
-     * \param pContext: pass context to CConnecter::slotBlockShowWidget()
+     * \param pContext: pass context to COperate::slotBlockShowWidget()
      *
      * \~
-     * \see CConnecter::slotBlockShowWidget() SetConnecter
+     * \see COperate::slotBlockShowWidget() SetConnect
      */
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 

@@ -32,7 +32,8 @@ COperate::~COperate()
 
 const QString COperate::Id()
 {
-    QString szId = Protocol() + "_" + GetPlugin()->Name();
+    QString szId = GetPlugin()->TypeName(GetPlugin()->Type()) + "_" + Protocol()
+                   + "_" + GetPlugin()->Name();
     return szId;
 }
 

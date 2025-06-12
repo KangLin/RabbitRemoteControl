@@ -12,7 +12,7 @@
 #include "FrmPlayer.h"
 #endif
 
-#include "ConnecterThread.h"
+#include "OperateDesktop.h"
 #include "ParameterPlayer.h"
 
 /*!
@@ -20,21 +20,21 @@
  *   - https://doc.qt.io/qt-6/qtmultimedia-index.html
  *   - https://doc.qt.io/qt-6/advanced-ffmpeg-configuration.html
  */
-class CConnecterPlayer : public CConnecterThread
+class COperatePlayer : public COperateDesktop
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterPlayer(CPluginClient *plugin);
-    virtual ~CConnecterPlayer();
+    explicit COperatePlayer(CPlugin *plugin);
+    virtual ~COperatePlayer();
 
     // CConnecter interface
 public:
-    virtual qint16 Version() override;
+    [[nodiscard]] virtual const qint16 Version() const override;
 
 protected:
     // CConnecterConnect interface
-    virtual CConnect *InstanceConnect() override;
+    [[nodiscard]] virtual CBackend *InstanceBackend() override;
     virtual int Initial() override;
     virtual int Clean() override;
     virtual int InitialMenu() override;

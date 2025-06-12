@@ -292,7 +292,6 @@ COperate* CManager::LoadOperate(const QString &szFile)
     QString id = set.value("Plugin/ID").toString();
     QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
-    Q_UNUSED(name);
     qDebug(log) << "LoadOperate protocol:" << protocol
                 << "name:" << name << "id:" << id;
     pOperate = CreateOperate(id);

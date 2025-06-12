@@ -8,18 +8,18 @@ SET(Player_LIBS Client)
 
 SET(Player_SOURCE_FILES
     PluginPlayer.cpp
-    ConnecterPlayer.cpp
+    OperatePlayer.cpp
     ParameterPlayer.cpp
-    ConnectPlayer.cpp
+    BackendPlayer.cpp
     DlgPlayer.cpp
     FrmPlayer.cpp
     )
 
 SET(Player_HEADER_FILES
     PluginPlayer.h
-    ConnecterPlayer.h
+    OperatePlayer.h
     ParameterPlayer.h
-    ConnectPlayer.h
+    BackendPlayer.h
     DlgPlayer.h
     FrmPlayer.h
     )
@@ -40,7 +40,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
         list(APPEND Player_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
     ENDFOREACH()
 endif()
-ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME Plugin${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${Player_SOURCE_FILES} ${Player_HEADER_FILES} ${Player_UI_FILES}
     PRIVATE_LIBS ${Player_LIBS}
@@ -48,8 +48,8 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_DEFINITIONS ${Player_DEFINITIONS}
        PLayer_VERSION="${RabbitRemoteControl_VERSION}"
     PRIVATE_OPTIONS ${Player_OPTIONS}
-    INSTALL_DIR plugins/Client
-    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+    INSTALL_DIR plugins
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )

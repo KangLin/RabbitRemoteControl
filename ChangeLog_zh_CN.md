@@ -1,7 +1,8 @@
 ## 修改日志
 
 ### v0.0.37-dev
-- App: 重命名界面提示
+- [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
+  - App: 重命名界面提示
 
 | 老名称  |  新名称   |  功能    |
 |--------|----------|----------|
@@ -9,8 +10,8 @@
 |远程->连接|操作->开始|菜单或工具条|
 |远程->断开|操作->停止|菜单或工具条|
 
-- [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
-  - 增加 CParameterPlugin
+  - 重命名类名
+    - 增加 CParameterPlugin
 
 |老名称           |新名称          |
 |----------------|---------------|

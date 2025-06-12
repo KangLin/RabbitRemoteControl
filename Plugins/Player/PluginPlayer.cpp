@@ -1,18 +1,18 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginPlayer.h"
-#include "ConnecterPlayer.h"
+#include "OperatePlayer.h"
 
 CPluginPlayer::CPluginPlayer(QObject *parent)
-    : CPluginClient{parent}
+    : CPlugin{parent}
 {}
 
 const QString CPluginPlayer::Protocol() const
 {
-    return "Tool";
+    return QString();
 }
 
-const CPluginClient::TYPE CPluginPlayer::Type() const
+const CPlugin::TYPE CPluginPlayer::Type() const
 {
     return TYPE::Tool;
 }
@@ -41,11 +41,11 @@ const QString CPluginPlayer::Version() const
     return PLayer_VERSION;
 }
 
-CConnecter *CPluginPlayer::OnCreateConnecter(const QString &szId)
+COperate *CPluginPlayer::OnCreateOperate(const QString &szId)
 {
-    CConnecter* p = nullptr;
+    COperate* p = nullptr;
     if(this->Id() == szId)
-        p = new CConnecterPlayer(this);
+        p = new COperatePlayer(this);
     return p;
 }
 

@@ -948,10 +948,12 @@ void MainWindow::slotUpdateName(const QString& szName)
 int MainWindow::onProcess(const QString &id, CPlugin *pPlug)
 {
     Q_UNUSED(id);
+    QString szTitle;
+    if(!pPlug->Protocol().isEmpty())
+        szTitle = pPlug->Protocol() + ": ";
+    szTitle += pPlug->DisplayName();
     // Start menu and toolbar
-    QAction* p = ui->menuStart->addAction(pPlug->Protocol()
-                                              + ": " + pPlug->DisplayName(),
-                                          this, SLOT(slotStart()));
+    QAction* p = ui->menuStart->addAction(szTitle, this, SLOT(slotStart()));
     p->setToolTip(pPlug->Description());
     p->setStatusTip(pPlug->Description());
     p->setData(id);

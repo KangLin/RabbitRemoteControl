@@ -55,7 +55,7 @@ public Q_SLOTS:
 private:
     int SetConnect(COperateDesktop* pOperate);
     int SetViewer(CFrmViewer* pView,
-                  COperateDesktop* pConnecter, bool bDirectConnection);
+                  COperateDesktop* pOperate, bool bDirectConnection);
     
 Q_SIGNALS:
     void sigSetDesktopSize(int width, int height);
