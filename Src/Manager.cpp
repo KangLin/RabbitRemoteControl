@@ -26,12 +26,11 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
 {
     bool check = false;
     //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    //    Q_INIT_RESOURCE(translations_Client);
+    //    Q_INIT_RESOURCE(translations_Plugin);
     //#endif
 
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
-        // TODO modify the name to Plugin
-        "Client", RabbitCommon::CTools::TranslationType::Library);
+        "Plugin", RabbitCommon::CTools::TranslationType::Library);
 
     CChannel::InitTranslation();
     m_szSettingsFile = szFile;
@@ -87,7 +86,7 @@ CManager::~CManager()
     CChannel::RemoveTranslation();
 
     //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    //    Q_CLEANUP_RESOURCE(translations_Client);
+    //    Q_CLEANUP_RESOURCE(translations_Plugin);
     //#endif
 }
 
