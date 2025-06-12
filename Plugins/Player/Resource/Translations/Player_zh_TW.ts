@@ -11,35 +11,28 @@
 <context>
     <name>CConnecterPlayer</name>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="53"/>
         <source>Record</source>
-        <translation type="unfinished">錄製</translation>
+        <translation type="obsolete">錄製</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="60"/>
         <source>Record pause</source>
-        <translation type="unfinished">錄製暫停</translation>
+        <translation type="obsolete">錄製暫停</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="69"/>
         <source>ScreenShot</source>
-        <translation type="unfinished">截圖</translation>
+        <translation type="obsolete">截圖</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="122"/>
-        <location filename="../../ConnecterPlayer.cpp" line="145"/>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="vanished">開始</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="133"/>
         <source>Stop</source>
-        <translation>停止</translation>
+        <translation type="vanished">停止</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="160"/>
         <source>pause</source>
-        <translation>暫停</translation>
+        <translation type="vanished">暫停</translation>
     </message>
 </context>
 <context>
@@ -250,39 +243,73 @@
     </message>
 </context>
 <context>
+    <name>COperatePlayer</name>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="52"/>
+        <source>Record</source>
+        <translation type="unfinished">錄製</translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="59"/>
+        <source>Record pause</source>
+        <translation type="unfinished">錄製暫停</translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="68"/>
+        <source>ScreenShot</source>
+        <translation type="unfinished">截圖</translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="121"/>
+        <location filename="../../OperatePlayer.cpp" line="144"/>
+        <source>Start</source>
+        <translation type="unfinished">開始</translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="132"/>
+        <source>Stop</source>
+        <translation type="unfinished">停止</translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="159"/>
+        <source>pause</source>
+        <translation type="unfinished">暫停</translation>
+    </message>
+</context>
+<context>
     <name>CPluginPlayer</name>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="22"/>
+        <location filename="../../PluginPlayer.cpp" line="27"/>
         <source>Player</source>
         <translation>播放器</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="27"/>
+        <location filename="../../PluginPlayer.cpp" line="32"/>
         <source>Player: play media files or camera.</source>
         <translation>播放器：播放多媒體或攝像頭。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="29"/>
+        <location filename="../../PluginPlayer.cpp" line="34"/>
         <source> Record camera or media stream.</source>
         <translation> 錄製攝像頭或多媒體流。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="55"/>
+        <location filename="../../PluginPlayer.cpp" line="60"/>
         <source>Qt version:</source>
         <translation>Qt 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="56"/>
+        <location filename="../../PluginPlayer.cpp" line="61"/>
         <source>Compile version: </source>
         <translation>編譯版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="57"/>
+        <location filename="../../PluginPlayer.cpp" line="62"/>
         <source>Runtime version: </source>
         <translation>運行版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="59"/>
+        <location filename="../../PluginPlayer.cpp" line="64"/>
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>

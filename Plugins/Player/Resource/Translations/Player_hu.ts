@@ -2,40 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
-    <name>CConnecterPlayer</name>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="53"/>
-        <source>Record</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="60"/>
-        <source>Record pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="69"/>
-        <source>ScreenShot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="122"/>
-        <location filename="../../ConnecterPlayer.cpp" line="145"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="133"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterPlayer.cpp" line="160"/>
-        <source>pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CDlgPlayer</name>
     <message>
         <location filename="../../DlgPlayer.ui" line="14"/>
@@ -187,39 +153,73 @@
     </message>
 </context>
 <context>
+    <name>COperatePlayer</name>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="52"/>
+        <source>Record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="59"/>
+        <source>Record pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="68"/>
+        <source>ScreenShot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="121"/>
+        <location filename="../../OperatePlayer.cpp" line="144"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="132"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperatePlayer.cpp" line="159"/>
+        <source>pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginPlayer</name>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="22"/>
+        <location filename="../../PluginPlayer.cpp" line="27"/>
         <source>Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="27"/>
+        <location filename="../../PluginPlayer.cpp" line="32"/>
         <source>Player: play media files or camera.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="29"/>
+        <location filename="../../PluginPlayer.cpp" line="34"/>
         <source> Record camera or media stream.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="55"/>
+        <location filename="../../PluginPlayer.cpp" line="60"/>
         <source>Qt version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="56"/>
+        <location filename="../../PluginPlayer.cpp" line="61"/>
         <source>Compile version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="57"/>
+        <location filename="../../PluginPlayer.cpp" line="62"/>
         <source>Runtime version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="59"/>
+        <location filename="../../PluginPlayer.cpp" line="64"/>
         <source>Use QVideoWidget</source>
         <translation type="unfinished"></translation>
     </message>
