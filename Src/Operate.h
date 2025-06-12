@@ -73,6 +73,8 @@ public:
     //! Icon
     [[nodiscard]] virtual const QIcon Icon() const;
 
+    [[nodiscard]] virtual const QString GetTypeName() const;
+
     /*!
      * \~chinese
      * \brief 得到显示视图

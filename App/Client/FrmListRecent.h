@@ -47,6 +47,7 @@ private slots:
 
 private:
     int InsertItem(COperate* c, QString &szFile);
+    QList<QStandardItem*> GetItem(COperate* c, QString &szFile);
 
 private:
     CParameterApp &m_ParameterApp;
@@ -65,6 +66,6 @@ private:
     QStandardItemModel* m_pModel;
     CManager* m_pManager;
     int m_nFileRow;
-    
+    int m_nId;
     bool m_bDock;
 };

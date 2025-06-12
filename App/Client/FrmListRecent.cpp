@@ -18,6 +18,7 @@ CFrmListRecent::CFrmListRecent(
     m_pModel(nullptr),
     m_pManager(pManager),
     m_nFileRow(0),
+    m_nId(0),
     m_bDock(bDock),
     m_pDockTitleBar(nullptr)
 {
@@ -145,12 +146,14 @@ CFrmListRecent::CFrmListRecent(
     m_pTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_pModel->setHorizontalHeaderItem(0, new QStandardItem(tr("Name")));
     m_pModel->setHorizontalHeaderItem(1, new QStandardItem(tr("Protocol")));
-    m_pModel->setHorizontalHeaderItem(2, new QStandardItem(tr("Date")));
-    m_pModel->setHorizontalHeaderItem(3, new QStandardItem(tr("ID")));
-    m_nFileRow = 4;
+    m_pModel->setHorizontalHeaderItem(2, new QStandardItem(tr("Type")));
+    m_pModel->setHorizontalHeaderItem(3, new QStandardItem(tr("Date")));
+    m_nId = 4;
+    m_pModel->setHorizontalHeaderItem(m_nId, new QStandardItem(tr("ID")));
+    m_nFileRow = 5;
     m_pModel->setHorizontalHeaderItem(m_nFileRow, new QStandardItem(tr("File")));
     if(!m_pDetail->isChecked()) {
-        m_pTableView->hideColumn(3);
+        m_pTableView->hideColumn(m_nId);
         m_pTableView->hideColumn(m_nFileRow);
     }
     
@@ -173,6 +176,7 @@ CFrmListRecent::CFrmListRecent(
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
     //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
     //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
+    //m_pTableView->resizeColumnToContents(3); //设置第1列宽度自适应内容
 
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex;
@@ -203,17 +207,7 @@ void CFrmListRecent::slotLoadFiles()
         if(!pOperate) continue;
 
         QList<QStandardItem*> lstItem;
-        QStandardItem* pName = new QStandardItem(pOperate->Icon(), pOperate->Name());
-        pName->setToolTip(pOperate->Description());
-        lstItem << pName;
-        QStandardItem* pProtocol = new QStandardItem(pOperate->Protocol());
-        lstItem << pProtocol;
-        QFileInfo fi(szFile);
-        lstItem << new QStandardItem(fi.lastModified().toLocalTime().toString());
-        QStandardItem* pId = new QStandardItem(pOperate->Id());
-        lstItem << pId;
-        QStandardItem* pFile = new QStandardItem(szFile);
-        lstItem << pFile;
+        lstItem = GetItem(pOperate, szFile);
         m_pModel->appendRow(lstItem);
 
         m_pManager->DeleteOperate(pOperate);
@@ -240,10 +234,11 @@ void CFrmListRecent::slotLoadFiles()
     m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
     m_pTableView->resizeColumnToContents(1); //设置第1列宽度自适应内容
     m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
+    m_pTableView->resizeColumnToContents(3); //设置第1列宽度自适应内容
     return;
 }
 
-int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
+QList<QStandardItem*> CFrmListRecent::GetItem(COperate* c, QString &szFile)
 {
     QList<QStandardItem*> lstItem;
     QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
@@ -251,12 +246,22 @@ int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
     lstItem << pName;
     QStandardItem* pProtocol = new QStandardItem(c->Protocol());
     lstItem << pProtocol;
+    QStandardItem* pType = new QStandardItem(c->GetTypeName());
+    lstItem << pType;
+    //Date
     QFileInfo fi(szFile);
     lstItem << new QStandardItem(fi.lastModified().toString());
     QStandardItem* pId = new QStandardItem(c->Id());
     lstItem << pId;
     QStandardItem* pFile = new QStandardItem(szFile);
     lstItem << pFile;
+    return lstItem;
+}
+
+int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
+{
+    QList<QStandardItem*> lstItem;
+    lstItem = GetItem(c, szFile);
     m_pModel->insertRow(0, lstItem);
     m_pTableView->selectRow(0);
     return 0;
@@ -445,10 +450,10 @@ void CFrmListRecent::slotStart()
 void CFrmListRecent::slotDetail()
 {
     if(m_pDetail->isChecked()) {
-        m_pTableView->showColumn(3);
+        m_pTableView->showColumn(m_nId);
         m_pTableView->showColumn(m_nFileRow);
     } else {
-        m_pTableView->hideColumn(3);
+        m_pTableView->hideColumn(m_nId);
         m_pTableView->hideColumn(m_nFileRow);
     }
 }
