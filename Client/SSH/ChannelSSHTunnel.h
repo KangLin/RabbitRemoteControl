@@ -15,7 +15,7 @@
 #include "Channel.h"
 #include "ParameterSSHTunnel.h"
 #include "Event.h"
-#include "Connect.h"
+#include "Backend.h"
 
 /*!
  * \~chinese
@@ -34,7 +34,7 @@ class CLIENT_EXPORT CChannelSSHTunnel : public CChannel
 public:
     explicit CChannelSSHTunnel(CParameterSSHTunnel* parameter,
                                CParameterNet* remote,
-                               CConnect *pConnect,
+                               CBackend *pBackend,
                                bool bWakeUp = true,
                                QObject *parent = nullptr);
     virtual ~CChannelSSHTunnel();
@@ -81,7 +81,7 @@ protected:
     ssh_channel m_Channel;
 
 private:
-    CConnect *m_pConnect;
+    CBackend *m_pBackend;
     ssh_pcap_file m_pcapFile;
     CParameterSSHTunnel* m_pParameter;
     CParameterNet* m_pRemoteNet;

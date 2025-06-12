@@ -25,7 +25,7 @@ class CChannelSSHTunnelForward : public CChannelSSHTunnel
 public:
     explicit CChannelSSHTunnelForward(CParameterSSHTunnel *parameter,
                                       CParameterNet *remote,
-                                      CConnect *pConnect,
+                                      CBackend *pBackend,
                                       QObject *parent = nullptr);
     virtual ~CChannelSSHTunnelForward();
 

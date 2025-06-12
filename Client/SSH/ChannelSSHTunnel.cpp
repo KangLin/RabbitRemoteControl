@@ -24,13 +24,13 @@ static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
 CChannelSSHTunnel::CChannelSSHTunnel(
     CParameterSSHTunnel* parameter,
     CParameterNet *remote,
-    CConnect *pConnect,
+    CBackend *pBackend,
     bool bWakeUp,
     QObject *parent)
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
-    m_pConnect(pConnect),
+    m_pBackend(pBackend),
     m_pcapFile(NULL),
     m_pParameter(parameter),
     m_pRemoteNet(remote),
@@ -215,8 +215,8 @@ bool CChannelSSHTunnel::open(OpenMode mode)
              && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
             || ((user.GetUsedType() == CParameterUser::TYPE::PublicKey)
                 && user.GetPassphrase().isEmpty())
-            && m_pConnect) {
-            emit m_pConnect->sigBlockShowWidget("CDlgUserPassword", nRet, &m_pParameter->m_Net);
+            && m_pBackend) {
+            emit m_pBackend->sigBlockShowWidget("CDlgUserPassword", nRet, &m_pParameter->m_Net);
             if(QDialog::Accepted != nRet)
             {
                 setErrorString(tr("User cancel"));
@@ -375,8 +375,8 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
                     "automatically created.") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
-        if(!m_pConnect) break;
-        emit m_pConnect->sigBlockShowMessageBox(tr("Error"), szErr,
+        if(!m_pBackend) break;
+        emit m_pBackend->sigBlockShowMessageBox(tr("Error"), szErr,
 #ifndef Q_OS_ANDROID
                                     QMessageBox::Yes |
 #endif
@@ -399,8 +399,8 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         szErr = net.GetHost() + " " + tr("is unknown. Do you trust the host key?") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
-        if(!m_pConnect) break;
-        emit m_pConnect->sigBlockShowMessageBox(tr("Error"), szErr,
+        if(!m_pBackend) break;
+        emit m_pBackend->sigBlockShowMessageBox(tr("Error"), szErr,
 #ifndef Q_OS_ANDROID
                                     QMessageBox::Yes |
 #endif

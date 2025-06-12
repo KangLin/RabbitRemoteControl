@@ -6,7 +6,7 @@
 #include <QThread>
 
 #include "ParameterSSHTunnel.h"
-#include "Connect.h"
+#include "Backend.h"
 
 /*!
  * \~chinese 实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。
@@ -27,7 +27,7 @@ class CLIENT_EXPORT CSSHTunnelThread : public QThread
     Q_OBJECT
 public:
     explicit CSSHTunnelThread(CParameterSSHTunnel* parameter,
-                              CParameterNet* remote, CConnect* pConnect);
+                              CParameterNet* remote, CBackend* pBackend);
     virtual ~CSSHTunnelThread();
     
     void run() override;
@@ -48,7 +48,7 @@ Q_SIGNALS:
     void sigDisconnect();
     
 private:
-    CConnect* m_pConnect;
+    CBackend* m_pBackend;
     CParameterSSHTunnel* m_pParameter;
     CParameterNet* m_pRemoteNet;
     bool m_bExit;
