@@ -51,7 +51,7 @@ class CBackendThread;
  * \see CBackend CBackendThread COperate CPlugin CFrmViewer
  * \ingroup LIBAPI
  */
-class COperateDesktop : public COperate
+class PLUGIN_EXPORT COperateDesktop : public COperate
 {
     Q_OBJECT
 

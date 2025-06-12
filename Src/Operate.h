@@ -52,7 +52,7 @@ class CPlugin;
  * \see CPlugin
  * \ingroup LIBAPI
  */
-class COperate : public QObject
+class PLUGIN_EXPORT COperate : public QObject
 {
     Q_OBJECT
 
