@@ -41,7 +41,7 @@
  * \~
  * \ingroup LIBAPI
  */
-class CManager : public QObject
+class PLUGIN_EXPORT CManager : public QObject
 {
     Q_OBJECT
 public:

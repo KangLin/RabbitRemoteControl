@@ -38,7 +38,7 @@
  * \see CBackendThread::run() CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
-class CBackend : public QObject
+class PLUGIN_EXPORT CBackend : public QObject
 {
     Q_OBJECT
 public:

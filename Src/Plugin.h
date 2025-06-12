@@ -11,7 +11,7 @@
  * \~english Plugin interface
  * \ingroup LIBAPI
  */
-class CPlugin : public QObject
+class PLUGIN_EXPORT CPlugin : public QObject
 {
     Q_OBJECT
 public:

@@ -34,7 +34,7 @@ class QRecordVideoEvent;
  * \see COperateDesktop CFrmViewer
  * \ingroup LIBAPI
  */
-class CBackendDesktop : public CBackend
+class PLUGIN_EXPORT CBackendDesktop : public CBackend
 {
     Q_OBJECT
 public:
