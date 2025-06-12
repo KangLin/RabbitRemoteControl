@@ -3,18 +3,17 @@
 #include <QLoggingCategory>
 #include <QDesktopServices>
 #include <QUrl>
-
 #include <QWidgetAction>
 #include <QActionGroup>
 
-#include "ConnecterThread.h"
-#include "ConnectThread.h"
-#include "PluginClient.h"
+#include "OperateDesktop.h"
+#include "BackendThread.h"
+#include "Plugin.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Connecter.Thread")
+static Q_LOGGING_CATEGORY(log, "Operate.Desktop")
 
-CConnecterThread::CConnecterThread(CPluginClient *plugin)
-    : CConnecterConnect(plugin)
+COperateDesktop::COperateDesktop(CPlugin *plugin) : COperate(plugin)
+    , m_pPara(nullptr)
     , m_pThread(nullptr)
     , m_pFrmViewer(nullptr)
     , m_pScroll(nullptr)
@@ -33,35 +32,186 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CConnecterThread::~CConnecterThread()
+COperateDesktop::~COperateDesktop()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-int CConnecterThread::Initial()
+const QString COperateDesktop::Id()
+{
+    QString szId = Protocol() + "_" + GetPlugin()->Name();
+    if(GetParameter())
+    {
+        if(!GetParameter()->GetName().isEmpty())
+            szId += "_" + GetParameter()->GetName();
+        if(!GetParameter()->m_Net.GetHost().isEmpty())
+            szId += "_" + GetParameter()->m_Net.GetHost()
+                    + "_" + QString::number(GetParameter()->m_Net.GetPort());
+
+        CParameterNet* net = nullptr;
+        QString szType;
+        switch(GetParameter()->m_Proxy.GetUsedType())
+        {
+        case CParameterProxy::TYPE::Http: {
+            net = &GetParameter()->m_Proxy.m_Http;
+            szType = "http";
+            break;
+        }
+        case CParameterProxy::TYPE::SockesV5:
+        {
+            net = &GetParameter()->m_Proxy.m_SockesV5;
+            szType = "sockesv5";
+            break;
+        }
+        case CParameterProxy::TYPE::SSHTunnel:
+        {
+            net = &GetParameter()->m_Proxy.m_SSH.m_Net;
+            szType = "ssh";
+            break;
+        }
+        default:
+            break;
+        }
+
+        if(!szType.isEmpty() && !net->GetHost().isEmpty()) {
+            szId += "_" + szType + "_";
+            szId += net->GetHost() + "_" + QString::number(net->GetPort());
+        }
+    }
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
+    szId = szId.replace(exp, "_");
+    return szId;
+}
+
+const QString COperateDesktop::Name()
+{
+    QString szName;
+    if(GetParameter() && GetParameter()->GetParameterClient()
+        && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
+        szName = Protocol() + ":";
+
+    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
+        szName += GetParameter()->GetName();
+    else
+        szName += ServerName();
+    return szName;
+}
+
+QString COperateDesktop::ServerName()
+{
+    if(GetParameter())
+        if(!GetParameter()->GetShowServerName()
+            || m_szServerName.isEmpty())
+        {
+            if(!GetParameter()->m_Net.GetHost().isEmpty())
+                return GetParameter()->m_Net.GetHost() + ":"
+                       + QString::number(GetParameter()->m_Net.GetPort());
+        }
+    if(GetParameter() && GetParameter()->GetParameterClient()
+        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
+    {
+        return GetParameter()->m_Net.GetHost()
+            + ":" + QString::number(GetParameter()->m_Net.GetPort());
+    }
+    
+    if(m_szServerName.isEmpty() && GetParameter())
+        return GetParameter()->GetServerName();
+    return m_szServerName;
+}
+
+const QString COperateDesktop::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+    
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol()
+#ifdef DEBUG
+        + " - " + GetPlugin()->DisplayName()
+#endif
+            + "\n";
+    }
+    
+    if(!ServerName().isEmpty())
+        szDescription += tr("Server name: ") + ServerName() + "\n";
+    
+    if(GetParameter()) {
+        if(!GetParameter()->m_Net.GetHost().isEmpty())
+            szDescription += tr("Server address: ") + GetParameter()->m_Net.GetHost() + ":"
+                             + QString::number(GetParameter()->m_Net.GetPort()) + "\n";
+        
+        QString szProxy(tr("Proxy") + " ");
+        auto &proxy = GetParameter()->m_Proxy;
+        switch(proxy.GetUsedType()) {
+        case CParameterProxy::TYPE::SSHTunnel:
+        {
+            auto &sshNet = proxy.m_SSH.m_Net;
+            szProxy += "(" + tr("SSH tunnel") + "): " + sshNet.GetHost() + ":"
+                       + QString::number(sshNet.GetPort());
+            break;
+        }
+        case CParameterProxy::TYPE::SockesV5:
+        {
+            auto &sockesV5 = proxy.m_SockesV5;
+            szProxy += "(" + tr("Sockes v5") + "): " + sockesV5.GetHost() + ":"
+                       + QString::number(sockesV5.GetPort());
+            break;
+        }
+        default:
+            szProxy.clear();
+            break;
+        }
+        
+        if(!szProxy.isEmpty())
+            szDescription += szProxy + "\n";
+    }
+    
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+    
+    return szDescription;
+}
+
+const QString COperateDesktop::Protocol() const
+{
+    return GetPlugin()->Protocol();
+}
+
+const qint16 COperateDesktop::Version() const
+{
+    return 0;
+}
+
+const QIcon COperateDesktop::Icon() const
+{
+    return GetPlugin()->Icon();
+}
+
+int COperateDesktop::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     bool check = false;
-
-    nRet = CConnecterConnect::Initial();
+    
+    nRet = COperate::Initial();
     if(nRet)
         return nRet;
-
+    
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
     m_pFrmViewer = new CFrmViewer(); // The owner is m_pScroll
     m_pScroll = new CFrmScroll(m_pFrmViewer);
-
+    
     check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
-
+    
     nRet = InitialMenu();
-
+    
     return nRet;
 }
 
-int CConnecterThread::Clean()
+int COperateDesktop::Clean()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -70,16 +220,16 @@ int CConnecterThread::Clean()
         delete m_pScroll;
         m_pScroll = nullptr;
     }
-
-    nRet = CConnecterConnect::Clean();
+    
+    nRet = COperate::Clean();
     return nRet;
 }
 
-int CConnecterThread::InitialMenu()
+int COperateDesktop::InitialMenu()
 {
     int nRet = 0;
     bool check = false;
-
+    
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
     pMenuZoom->setIcon(QIcon::fromTheme("zoom"));
@@ -152,7 +302,7 @@ int CConnecterThread::InitialMenu()
     QWidgetAction* pFactor = new QWidgetAction(pMenuZoom);
     pFactor->setDefaultWidget(m_psbZoomFactor);
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
-
+    
     QMenu* pMenuShortCut = new QMenu(&m_Menu);
     pMenuShortCut->setTitle(tr("Send shortcut key"));
     m_Menu.addMenu(pMenuShortCut);
@@ -160,7 +310,7 @@ int CConnecterThread::InitialMenu()
         tr("Send Ctl+Alt+Del"), this, SLOT(slotShortcutCtlAltDel()));
     pMenuShortCut->addAction(
         tr("Send lock screen (Win+L)"), this, SLOT(slotShortcutLock()));
-
+    
     m_Menu.addSeparator();
     m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
                                 tr("ScreenShot"), &m_Menu);
@@ -185,35 +335,35 @@ int CConnecterThread::InitialMenu()
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecordPause);
 #endif
-
+    
     m_Menu.addSeparator();
-    if(m_pSettings)
-        m_Menu.addAction(m_pSettings);
-
+    if(m_pActionSettings)
+        m_Menu.addAction(m_pActionSettings);
+    
     return nRet;
 }
 
-QWidget *CConnecterThread::GetViewer()
+QWidget *COperateDesktop::GetViewer()
 {
     return m_pScroll;
 }
 
-int CConnecterThread::Connect()
+int COperateDesktop::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    m_pThread = new CConnectThread(this);
+    m_pThread = new CBackendThread(this);
     if(!m_pThread) {
-        qCritical(log) << "new CConnectThread fail";
+        qCritical(log) << "new CBackendThread fail";
         return -2;
     }
-
+    
     m_pThread->start();
-
+    
     return nRet;
 }
 
-int CConnecterThread::DisConnect()
+int COperateDesktop::Stop()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -226,24 +376,101 @@ int CConnecterThread::DisConnect()
     return nRet;
 }
 
-QString CConnecterThread::ServerName()
+int COperateDesktop::SetParameterPlugin(CParameterPlugin *pPara)
 {
     if(GetParameter())
-        if(!GetParameter()->GetShowServerName()
-            || CConnecterConnect::ServerName().isEmpty())
+    {
+        auto pClient = &pPara->m_Client;
+        GetParameter()->SetParameterClient(pClient);
+        if(pClient)
         {
-            if(!GetParameter()->m_Net.GetHost().isEmpty())
-                return GetParameter()->m_Net.GetHost() + ":"
-                       + QString::number(GetParameter()->m_Net.GetPort());
+            bool check = connect(pClient, SIGNAL(sigShowProtocolPrefixChanged()),
+                                 this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+            check = connect(pClient, SIGNAL(sigSHowIpPortInNameChanged()),
+                            this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
         }
-    return CConnecterConnect::ServerName();
+        return 0;
+    } else {
+        QString szMsg = "There is not parameters! "
+                        "please first create parameters, "
+                        "then call SetParameter() in the ";
+        szMsg += metaObject()->className() + QString("::")
+                 + metaObject()->className();
+        szMsg += QString("() or ") + metaObject()->className()
+                 + QString("::") + "Initial()";
+        szMsg += " to set the parameters pointer. "
+                 "Default set CParameterClient for the parameters of connecter "
+                 "(CParameterConnecter or its derived classes) "
+                 "See CManager::CreateOperate. "
+                 "If you are sure the parameter of connecter "
+                 "does not need CParameterClient. "
+                 "Please overload the SetParameterPlugin() in the ";
+        szMsg += QString(metaObject()->className()) + " . don't set it";
+        qCritical(log) << szMsg.toStdString().c_str();
+        Q_ASSERT(false);
+    }
+    return -1;
 }
 
-int CConnecterThread::Load(QSettings &set)
+CParameterBase* COperateDesktop::GetParameter()
+{
+    return m_pPara;
+}
+
+int COperateDesktop::SetParameter(CParameterBase *p)
+{
+    Q_ASSERT(!m_pPara);
+    m_pPara = p;
+    if(GetParameter())
+    {
+        bool check = false;
+        check = connect(GetParameter(), SIGNAL(sigNameChanged()),
+                        this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+        check = connect(GetParameter(), SIGNAL(sigShowServerNameChanged()),
+                        this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+        check = connect(GetParameter(), &CParameter::sigChanged,
+                        this, [&](){
+                            emit this->sigUpdateParameters(this);
+                        });
+        Q_ASSERT(check);
+        CFrmViewer* pViewer = qobject_cast<CFrmViewer*>(GetViewer());
+        if(pViewer) {
+            check = connect(GetParameter(), SIGNAL(sigZoomFactorChanged(double)),
+                            pViewer, SLOT(slotSetZoomFactor(double)));
+            Q_ASSERT(check);
+            check = connect(
+                GetParameter(),
+                SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
+                pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
+            Q_ASSERT(check);
+        }
+    }
+    return 0;
+}
+
+int COperateDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pFrmViewer);
-    nRet = CConnecterConnect::Load(set);
+    nRet = COperate::Load(set);
+    if(m_pPara)
+        nRet = m_pPara->Load(set);
+    else {
+        QString szMsg = "There is not parameters! "
+                        "please first create parameters, "
+                        "then call SetParameter() in the ";
+        szMsg += metaObject()->className() + QString("::")
+                 + metaObject()->className();
+        szMsg += QString("() or ") + metaObject()->className()
+                 + QString("::") + "Initial()";
+        szMsg += " to set the parameters pointer. ";
+        qWarning(log) << szMsg.toStdString().c_str();
+        Q_ASSERT(false);//TODO: delete it
+    }
     if(m_pFrmViewer && GetParameter())
     {
         m_pFrmViewer->slotSetZoomFactor(GetParameter()->GetZoomFactor());
@@ -267,7 +494,7 @@ int CConnecterThread::Load(QSettings &set)
     return nRet;
 }
 
-int CConnecterThread::Save(QSettings &set)
+int COperateDesktop::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
@@ -276,12 +503,14 @@ int CConnecterThread::Save(QSettings &set)
         GetParameter()->SetAdaptWindows(m_pFrmViewer->GetAdaptWindows());
         GetParameter()->SetZoomFactor(m_pFrmViewer->GetZoomFactor());
     }
-    nRet = CConnecterConnect::Save(set);
+    nRet = COperate::Save(set);
+    if(m_pPara)
+        nRet = m_pPara->Save(set);
     return nRet;
 }
 
 #if HAVE_QT6_RECORD
-void CConnecterThread::slotRecord(bool checked)
+void COperateDesktop::slotRecord(bool checked)
 {
     qDebug(log) << Q_FUNC_INFO << checked;
     QAction* pRecord = qobject_cast<QAction*>(sender());
@@ -299,7 +528,7 @@ void CConnecterThread::slotRecord(bool checked)
     }
 }
 
-void CConnecterThread::slotRecorderStateChanged(
+void COperateDesktop::slotRecorderStateChanged(
     QMediaRecorder::RecorderState state)
 {
     qDebug(log) << Q_FUNC_INFO << state;
@@ -311,14 +540,14 @@ void CConnecterThread::slotRecorderStateChanged(
 }
 #endif
 
-void CConnecterThread::slotValueChanged(int v)
+void COperateDesktop::slotValueChanged(int v)
 {
     if(!m_pScroll || !m_pFrmViewer) return;
     m_pFrmViewer->slotSetZoomFactor(((double)v) / 100);
     m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
 }
 
-void CConnecterThread::slotScreenShot()
+void COperateDesktop::slotScreenShot()
 {
     if(!GetParameter() || !m_pFrmViewer)
         return;
@@ -333,11 +562,10 @@ void CConnecterThread::slotScreenShot()
         QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
 }
 
-void CConnecterThread::slotShortcutCtlAltDel()
+void COperateDesktop::slotShortcutCtlAltDel()
 {
     if(!m_pFrmViewer)
         return;
-
     // Send ctl+alt+del
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::ControlModifier));
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::AltModifier));
@@ -347,11 +575,10 @@ void CConnecterThread::slotShortcutCtlAltDel()
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));
 }
 
-void CConnecterThread::slotShortcutLock()
+void COperateDesktop::slotShortcutLock()
 {
     if(!m_pFrmViewer)
         return;
-
     // Send ctl+alt+del
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Super_L, Qt::NoModifier));
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_L, Qt::NoModifier));
