@@ -32,6 +32,7 @@ COperate::~COperate()
 
 const QString COperate::Id()
 {
+    Q_ASSERT(GetPlugin());
     QString szId = GetPlugin()->TypeName(GetPlugin()->Type()) + "_" + Protocol()
                    + "_" + GetPlugin()->Name();
     return szId;
@@ -56,6 +57,12 @@ const QString COperate::Description()
 const QString COperate::Protocol() const
 {
     return GetPlugin()->Protocol();
+}
+
+const QString COperate::GetTypeName() const
+{
+    Q_ASSERT(GetPlugin());
+    return GetPlugin()->TypeName(GetPlugin()->Type());
 }
 
 const QIcon COperate::Icon() const

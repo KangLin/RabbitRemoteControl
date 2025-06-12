@@ -24,7 +24,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     , m_pModel(nullptr)
     , m_pMenu(nullptr)
     , m_pToolBar(nullptr)
-    , m_nId(2)
+    , m_nId(3)
 {
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
@@ -116,6 +116,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     m_pTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_pModel->setHorizontalHeaderItem(0, new QStandardItem(tr("Name")));
     m_pModel->setHorizontalHeaderItem(1, new QStandardItem(tr("Protocol")));
+    m_pModel->setHorizontalHeaderItem(2, new QStandardItem(tr("Type")));
     m_pModel->setHorizontalHeaderItem(m_nId, new QStandardItem(tr("ID")));
 
     slotLoad();
@@ -136,6 +137,8 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
     //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
+    //m_pTableView->resizeColumnToContents(1); //设置第0列宽度自适应内容
+    //m_pTableView->resizeColumnToContents(2); //设置第0列宽度自适应内容
     //m_pTableView->resizeColumnToContents(m_nId); //设置第1列宽度自适应内容
 
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
@@ -191,6 +194,8 @@ void CFrmActive::slotLoad()
         lstItem << pName;
         QStandardItem* pProtocol = new QStandardItem(c->Protocol());
         lstItem << pProtocol;
+        QStandardItem* pType = new QStandardItem(c->GetTypeName());
+        lstItem << pType;
         QStandardItem* pId = new QStandardItem(c->Id());
         QVariant v;
         v.setValue(c);
