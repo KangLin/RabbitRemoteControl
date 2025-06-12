@@ -1,26 +1,26 @@
-#ifndef PARAMETERUSERUI_H
-#define PARAMETERUSERUI_H
+#ifndef PARAMETERNETUI_H
+#define PARAMETERNETUI_H
 
 #include <QWidget>
-#include "ParameterUser.h"
+#include "ParameterNet.h"
 #include "ParameterUI.h"
 
 namespace Ui {
-class CParameterUserUI;
+class CParameterNetUI;
 }
 
 /*!
- * \brief The user parameters UI
- * \see CParameterUser
+ * \brief The net parameter UI
+ * \see CParameterNet
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterUserUI : public CParameterUI
+class PLUGIN_EXPORT CParameterNetUI : public CParameterUI
 {
     Q_OBJECT
 
 public:
-    explicit CParameterUserUI(QWidget *parent = nullptr);
-    ~CParameterUserUI();
+    explicit CParameterNetUI(QWidget *parent = nullptr);
+    ~CParameterNetUI();
     
     //! [Parameter commone functions]
     /*!
@@ -41,28 +41,18 @@ public:
      * \return 0 is success. otherwise is fail
      */
     int Accept();
+    bool CheckValidity(bool validity = false);
     //! [Parameter commone functions]
-    
+
+Q_SIGNALS:
+    void sigHostChanged(const QString& szHost);
+
 private slots:
-    void on_pbShow_clicked();
-    void on_pbSave_clicked();
-    
-    void on_pbBrowsePublicFile_clicked();
-    void on_pbBrowsePrivateFile_clicked();
-    void on_pbShowPassphrase_clicked();
-    void on_pbSavePassphrase_clicked();
-    
-    void on_cbType_currentIndexChanged(int index);
-    
-    void on_cbSystemFile_stateChanged(int arg1);
-    
-    void on_pbBrowseCAFile_clicked();
-    
-    void on_pbBrowseCRLFile_clicked();
+    void on_leHost_editingFinished();
     
 private:
-    Ui::CParameterUserUI *ui;
-    CParameterUser* m_pUser;
+    Ui::CParameterNetUI *ui;
+    CParameterNet* m_pNet;
 };
 
-#endif // PARAMETERUSERUI_H
+#endif // PARAMETERNETUI_H

@@ -12,7 +12,7 @@
  * \see CParameterProxy CLIENT_PARAMETER_COMPONE
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterProxyUI : public CParameterUI
+class PLUGIN_EXPORT CParameterProxyUI : public CParameterUI
 {
     Q_OBJECT
 public:

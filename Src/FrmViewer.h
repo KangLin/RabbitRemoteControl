@@ -11,7 +11,7 @@
 #include <QImage>
 #include <QTimer>
 #include <QSharedPointer>
-#include "client_export.h"
+#include "plugin_export.h"
 
 #ifdef USE_FROM_OPENGL
 
@@ -44,7 +44,7 @@ class CRecordVideoThread;
  * \see  CConnecter CConnectDesktop
  * \ingroup CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CFrmViewer : public QWidget
+class PLUGIN_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE slotSetZoomFactor)
