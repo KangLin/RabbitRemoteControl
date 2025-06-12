@@ -4,7 +4,7 @@ project(Player
     DESCRIPTION "Player plugin"
     )
 
-SET(Player_LIBS Client)
+SET(Player_LIBS Plugin)
 
 SET(Player_SOURCE_FILES
     PluginPlayer.cpp
