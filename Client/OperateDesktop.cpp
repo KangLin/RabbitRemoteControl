@@ -39,7 +39,7 @@ COperateDesktop::~COperateDesktop()
 
 const QString COperateDesktop::Id()
 {
-    QString szId = Protocol() + "_" + GetPlugin()->Name();
+    QString szId = COperate::Id();
     if(GetParameter())
     {
         if(!GetParameter()->GetName().isEmpty())

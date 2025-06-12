@@ -1,30 +1,29 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-#include "ConnecterPlayer.h"
-#include "ConnectPlayer.h"
+#include "OperatePlayer.h"
+#include "BackendPlayer.h"
 #include "DlgPlayer.h"
-#include "PluginClient.h"
 
-static Q_LOGGING_CATEGORY(log, "Player.Connecter")
+static Q_LOGGING_CATEGORY(log, "Player.Operate")
 
-CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
-    : CConnecterThread(plugin)
+COperatePlayer::COperatePlayer(CPlugin *plugin)
+    : COperateDesktop(plugin)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CConnecterPlayer::~CConnecterPlayer()
+COperatePlayer::~COperatePlayer()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-qint16 CConnecterPlayer::Version()
+const qint16 COperatePlayer::Version() const
 {
     return 0;
 }
 
-int CConnecterPlayer::Initial()
+int COperatePlayer::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -38,12 +37,12 @@ int CConnecterPlayer::Initial()
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
 #endif
-    nRet = CConnecterThread::Initial();
+    nRet = COperateDesktop::Initial();
 
     return nRet;
 }
 
-int CConnecterPlayer::InitialMenu()
+int COperatePlayer::InitialMenu()
 {
     bool check = false;
     int nRet = 0;
@@ -73,7 +72,7 @@ int CConnecterPlayer::InitialMenu()
 
 #ifdef HAVE_QVideoWidget
     m_Menu.addAction(m_Player.m_paStart);
-    check = connect(this, &CConnecterPlayer::sigConnected,
+    check = connect(this, &COperatePlayer::sigRunning,
                     m_Player.m_paStart, &QAction::toggle);
     Q_ASSERT(check);
     check = connect(m_Player.m_paStart, SIGNAL(toggled(bool)),
@@ -106,10 +105,10 @@ int CConnecterPlayer::InitialMenu()
 
     m_Menu.addAction(m_Player.m_paSettings);
     check = connect(m_Player.m_paSettings, &QAction::triggered,
-                    m_pSettings, &QAction::triggered);
+                    m_pActionSettings, &QAction::triggered);
     Q_ASSERT(check);
 
-    check = connect(this, &CConnecterPlayer::sigConnected,
+    check = connect(this, &COperatePlayer::sigRunning,
                     this, [&](){
                         m_Player.SetParameter(&m_Parameters);
                     });
@@ -121,7 +120,7 @@ int CConnecterPlayer::InitialMenu()
     QAction* pStart = m_Menu.addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
     pStart->setCheckable(true);
-    check = connect(this, &CConnecterPlayer::sigConnected,
+    check = connect(this, &CConnecterPlayer::sigRunning,
                     pStart, &QAction::toggle);
     Q_ASSERT(check);
     check = connect(pStart, &QAction::toggled,
@@ -168,60 +167,60 @@ int CConnecterPlayer::InitialMenu()
 #endif
     m_Menu.addAction(m_pScreenShot);
     m_Menu.addSeparator();
-    m_Menu.addAction(m_pSettings);
+    m_Menu.addAction(m_pActiveSettings);
 #endif
     return nRet;
 }
 
-int CConnecterPlayer::Clean()
+int COperatePlayer::Clean()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = CConnecterThread::Clean();
+    nRet = COperateDesktop::Clean();
     return nRet;
 }
 
-QDialog *CConnecterPlayer::OnOpenDialogSettings(QWidget *parent)
+QDialog *COperatePlayer::OnOpenDialogSettings(QWidget *parent)
 {
     QDialog* pDlg = new CDlgPlayer(&m_Parameters, parent);
     return pDlg;
 }
 
-CConnect *CConnecterPlayer::InstanceConnect()
+CBackend *COperatePlayer::InstanceBackend()
 {
-    CConnect* p = new CConnectPlayer(this);
+    CBackend* p = new CBackendPlayer(this);
     return p;
 }
 
-void CConnecterPlayer::slotScreenShot()
+void COperatePlayer::slotScreenShot()
 {
     emit sigScreenShot();
 }
 
 #if HAVE_QVideoWidget
-QWidget *CConnecterPlayer::GetViewer()
+QWidget *COperatePlayer::GetViewer()
 {
     return &m_Player;
 }
 
-QVideoSink *CConnecterPlayer::GetVideoSink()
+QVideoSink *COperatePlayer::GetVideoSink()
 {
     return m_Player.videoSink();
 }
 
-void CConnecterPlayer::slotPositionChanged(qint64 pos, qint64 duration)
+void COperatePlayer::slotPositionChanged(qint64 pos, qint64 duration)
 {
     m_Player.slotPositionChanged(pos, duration);
 }
 
-void CConnecterPlayer::slotPlaybackError(
+void COperatePlayer::slotPlaybackError(
     QMediaPlayer::Error error, const QString &errorString)
 {
     if(m_Player.m_paStart->isChecked())
         m_Player.m_paStart->setChecked(false);
 }
 
-void CConnecterPlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState state)
+void COperatePlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState state)
 {
     if(QMediaPlayer::StoppedState == state
         && m_Player.m_paStart->isChecked())
@@ -229,7 +228,7 @@ void CConnecterPlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState stat
 }
 
 #if HAVE_QT6_RECORD
-void CConnecterPlayer::slotRecordStateChanged(QMediaRecorder::RecorderState state)
+void COperatePlayer::slotRecordStateChanged(QMediaRecorder::RecorderState state)
 {
     if(QMediaRecorder::StoppedState == state
         && m_Player.m_paRecord->isCheckable())

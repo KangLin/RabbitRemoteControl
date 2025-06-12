@@ -1,8 +1,9 @@
 ## Change Log
 
 ### v0.0.37-dev
-- App:
-  - Rename UI prompts
+- [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
+  - App:
+    - Rename UI prompts
 
 | Old name         |  New name    |  Function      |
 |------------------|--------------|----------------|
@@ -10,8 +11,8 @@
 |Remote->Connect   |Operate->Start|Menu or tool bar|
 |Remote->Disconnect|Operate->Stop |Menu or tool bar|
 
-- [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
-  - Add CParameterPlugin
+  - Rename class name
+    - Add CParameterPlugin
 
 |Old name        |New Name       |
 |----------------|---------------|

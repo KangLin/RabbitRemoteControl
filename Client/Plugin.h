@@ -24,6 +24,7 @@ public:
         Tool
     };
     [[nodiscard]] virtual const TYPE Type() const = 0;
+    [[nodiscard]] const QString TypeName(const TYPE t) const;
     /// \~chinese 标识。默认： Type() + ":" + Protocol() + ":" + Name()
     /// \~english ID. Default: Type() + ":" + Protocol() + ":" + Name()
     [[nodiscard]] virtual const QString Id();
@@ -99,7 +100,6 @@ private:
      * \see CClient::AppendPlugin
      */
     Q_INVOKABLE int InitTranslator();
-    [[nodiscard]] const QString GetType(const TYPE t);
 };
 
 QT_BEGIN_NAMESPACE

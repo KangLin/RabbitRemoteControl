@@ -6,12 +6,14 @@
 #include <QAudioDevice>
 #include <QDesktopServices>
 #include <QImage>
-#include "ConnectPlayer.h"
+#include <QTime>
+#include <QFileInfo>
+#include "BackendPlayer.h"
 
-static Q_LOGGING_CATEGORY(log, "Player.Connect")
+static Q_LOGGING_CATEGORY(log, "Player.Backend")
 
-CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
-    : CConnectDesktop(pConnecter)
+CBackendPlayer::CBackendPlayer(COperatePlayer *pOperate)
+    : CBackendDesktop(pOperate)
     , m_pCamera(nullptr)
     , m_bScreenShot(false)
     , m_nPosition(0)
@@ -19,12 +21,12 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
 {
     bool check = false;
     qDebug(log) << Q_FUNC_INFO;
-
-    m_pParameters = qobject_cast<CParameterPlayer*>(pConnecter->GetParameter());
+    
+    m_pParameters = qobject_cast<CParameterPlayer*>(pOperate->GetParameter());
 
 #if HAVE_QVideoWidget
     check = connect(&m_VideoSink, &QVideoSink::videoFrameChanged,
-                    pConnecter->GetVideoSink(), &QVideoSink::videoFrameChanged);
+                    pOperate->GetVideoSink(), &QVideoSink::videoFrameChanged);
     Q_ASSERT(check);
 #endif
 
@@ -49,8 +51,8 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
         });
     Q_ASSERT(check);
 #endif
-
-    check = connect(pConnecter, &CConnecterPlayer::sigStart,
+    
+    check = connect(pOperate, &COperatePlayer::sigStart,
                     this, [&](bool bStart){
                         if(bStart)
                             slotStart();
@@ -59,7 +61,7 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                     });
     Q_ASSERT(check);
     check = connect(
-        pConnecter, &CConnecterPlayer::sigPause,
+        pOperate, &COperatePlayer::sigPause,
         this, [&](bool bPause){
             switch (m_pParameters->GetType()) {
             case CParameterPlayer::TYPE::Camera:
@@ -94,14 +96,14 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
         &m_Player, SIGNAL(durationChanged(qint64)),
         this, SLOT(slotDurationChanged(qint64)));
     Q_ASSERT(check);
-    check = connect(pConnecter, SIGNAL(sigChangePosition(qint64)),
+    check = connect(pOperate, SIGNAL(sigChangePosition(qint64)),
                     &m_Player, SLOT(setPosition(qint64)));
     Q_ASSERT(check);
     check = connect(m_pParameters, &CParameterPlayer::sigEnableAudioInput,
-                    this, &CConnectPlayer::slotEnableAudioInput);
+                    this, &CBackendPlayer::slotEnableAudioInput);
     Q_ASSERT(check);
     check = connect(m_pParameters, &CParameterPlayer::sigEnableAudioOutput,
-                    this, &CConnectPlayer::slotEnableAudioOutput);
+                    this, &CBackendPlayer::slotEnableAudioOutput);
     Q_ASSERT(check);
 
     check = connect(
@@ -121,22 +123,22 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     Q_ASSERT(check);
 #if HAVE_QVideoWidget
     check = connect(&m_Player, &QMediaPlayer::errorOccurred,
-                    pConnecter, &CConnecterPlayer::slotPlaybackError);
+                    pOperate, &COperatePlayer::slotPlaybackError);
     Q_ASSERT(check);
     check = connect(&m_Player, &QMediaPlayer::playbackStateChanged,
-                    pConnecter, &CConnecterPlayer::slotPlaybackStateChanged);
+                    pOperate, &COperatePlayer::slotPlaybackStateChanged);
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigPositionChanged(qint64,qint64)),
-                    pConnecter, SLOT(slotPositionChanged(qint64,qint64)));
+                    pOperate, SLOT(slotPositionChanged(qint64,qint64)));
     Q_ASSERT(check);
 #if HAVE_QT6_RECORD
     check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
-                    pConnecter, &CConnecterPlayer::slotRecordStateChanged);
+                    pOperate, &COperatePlayer::slotRecordStateChanged);
     Q_ASSERT(check);
 #endif // #if HAVE_QT6_RECORD
 #endif // #if HAVE_QVideoWidget
-
-    check = connect(pConnecter, &CConnecterPlayer::sigScreenShot,
+    
+    check = connect(pOperate, &COperatePlayer::sigScreenShot,
                     this, [&](){
                         m_bScreenShot = true;
                     });
@@ -144,27 +146,27 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
 
 }
 
-CConnectPlayer::~CConnectPlayer()
+CBackendPlayer::~CBackendPlayer()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CConnect::OnInitReturnValue CConnectPlayer::OnInit()
+CBackend::OnInitReturnValue CBackendPlayer::OnInit()
 {
-    qDebug(log) << "CConnectPlayer::OnInit()";
-    emit sigConnected();
+    qDebug(log) << Q_FUNC_INFO;
+    emit sigRunning();
     return OnInitReturnValue::NotUseOnProcess;
 }
 
-int CConnectPlayer::OnClean()
+int CBackendPlayer::OnClean()
 {
-    qDebug(log) << "CConnectPlayer::OnClean()";
+    qDebug(log) << Q_FUNC_INFO;
     slotStop();
-    emit sigDisconnected();
+    emit sigFinished();
     return 0;
 }
 
-void CConnectPlayer::slotStart()
+void CBackendPlayer::slotStart()
 {
     qDebug(log) << Q_FUNC_INFO;
     slotEnableAudioInput(m_pParameters->GetEnableAudioInput());
@@ -211,7 +213,7 @@ void CConnectPlayer::slotStart()
     }
 }
 
-void CConnectPlayer::slotStop()
+void CBackendPlayer::slotStop()
 {
     qDebug(log) << Q_FUNC_INFO;
     switch (m_pParameters->GetType()) {
@@ -239,7 +241,7 @@ void CConnectPlayer::slotStop()
 }
 
 #if HAVE_QT6_RECORD
-void CConnectPlayer::slotRecord(bool bRecord)
+void CBackendPlayer::slotRecord(bool bRecord)
 {
     qDebug(log) << Q_FUNC_INFO << bRecord;
 
@@ -288,11 +290,11 @@ void CConnectPlayer::slotRecord(bool bRecord)
 }
 #endif
 
-void CConnectPlayer::slotClipBoardChanged()
+void CBackendPlayer::slotClipBoardChanged()
 {
 }
 
-void CConnectPlayer::slotVideoFrameChanged(const QVideoFrame &frame)
+void CBackendPlayer::slotVideoFrameChanged(const QVideoFrame &frame)
 {
 #ifndef HAVE_QVideoWidget
     if(m_Video.width() != frame.width()
@@ -355,7 +357,7 @@ void CConnectPlayer::slotVideoFrameChanged(const QVideoFrame &frame)
 #endif
 }
 
-void CConnectPlayer::slotEnableAudioInput(bool bEnable)
+void CBackendPlayer::slotEnableAudioInput(bool bEnable)
 {
     if(bEnable && -1 < m_pParameters->GetAudioInput()
         && m_pParameters->GetAudioInput() < QMediaDevices::audioInputs().size()) {
@@ -386,7 +388,7 @@ void CConnectPlayer::slotEnableAudioInput(bool bEnable)
     }
 }
 
-void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
+void CBackendPlayer::slotEnableAudioOutput(bool bEnable)
 {
     if(bEnable &&  (-1 < m_pParameters->GetAudioOutput()
                     && m_pParameters->GetAudioOutput()
@@ -430,7 +432,7 @@ void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
     }
 }
 
-void CConnectPlayer::slotPositionChanged(qint64 pos)
+void CBackendPlayer::slotPositionChanged(qint64 pos)
 {
     m_nPosition = pos;
 
@@ -452,7 +454,7 @@ void CConnectPlayer::slotPositionChanged(qint64 pos)
     //emit sigInformation(tr("Progress: ") + szStr);
 }
 
-void CConnectPlayer::slotDurationChanged(qint64 duration)
+void CBackendPlayer::slotDurationChanged(qint64 duration)
 {
     //qDebug(log) << "Duration:" << duration;
     m_nDuration = duration;

@@ -111,7 +111,7 @@ public:
     [[nodiscard]] virtual const qint16 Version() const override;
     [[nodiscard]] virtual const QIcon Icon() const override;
     [[nodiscard]] virtual QWidget *GetViewer() override;
-    
+
 public Q_SLOTS:
     virtual int Start() override;
     virtual int Stop() override;
@@ -125,7 +125,7 @@ private Q_SLOTS:
     void slotValueChanged(int v);
     void slotShortcutCtlAltDel();
     void slotShortcutLock();
-    
+
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
@@ -139,7 +139,7 @@ protected:
      * \~english Save parameters
      */
     virtual int Save(QSettings &set) override;
-    
+
     virtual int InitialMenu();
 
 private:
@@ -147,7 +147,7 @@ private:
     CBackendThread* m_pThread;
     CFrmViewer *m_pFrmViewer;
     CFrmScroll* m_pScroll;
-    
+
 protected:
     /*!
      * \~chinese
