@@ -164,7 +164,7 @@ int CBackendDesktop::SetViewer(CFrmViewer *pView,
     if(!pView) return -1;
 
     bool check = false;
-    check = connect(this, SIGNAL(sigConnected()), pView, SLOT(slotConnected()));
+    check = connect(this, SIGNAL(sigRunning()), pView, SLOT(slotRunning()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
                     pView, SLOT(slotSetDesktopSize(int, int)));

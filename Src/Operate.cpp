@@ -58,7 +58,7 @@ const QString COperate::Description()
         if(!GetPlugin()->DisplayName().isEmpty())
             szDescription += " - " + GetPlugin()->DisplayName();
 #endif
-            + "\n";
+        szDescription += "\n";
     }
     szDescription += tr("Description: ") + GetPlugin()->Description();
     return szDescription;
@@ -279,14 +279,14 @@ void COperate::slotBlockShowWidget(const QString& className, int &nRet, void* pC
     {
         QDialog* pDlg = qobject_cast<QDialog*>(obj);
         pDlg->setAttribute(Qt::WA_DeleteOnClose);
-        check = connect(this, SIGNAL(sigDisconnected()),
+        check = connect(this, SIGNAL(sigFinished()),
                         pDlg, SLOT(reject()));
         Q_ASSERT(check);
         nRet = RC_SHOW_WINDOW(pDlg);
     } else if(obj->inherits("QWidget")) {
         QWidget* pWdg = qobject_cast<QWidget*>(obj);
         pWdg->setAttribute(Qt::WA_DeleteOnClose);
-        check = connect(this, SIGNAL(sigDisconnected()),
+        check = connect(this, SIGNAL(sigFinished()),
                         pWdg, SLOT(close()));
         Q_ASSERT(check);
         nRet = RC_SHOW_WINDOW(pWdg);

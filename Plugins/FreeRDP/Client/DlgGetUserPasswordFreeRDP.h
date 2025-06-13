@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "ConnecterFreeRDP.h"
+#include "OperateFreeRDP.h"
 
 namespace Ui {
 class CDlgGetUserPasswordFreeRDP;
@@ -19,7 +19,6 @@ public:
     CDlgGetUserPasswordFreeRDP(const CDlgGetUserPasswordFreeRDP& dlg);
     
     Q_INVOKABLE void SetContext(void* pContext);
-    Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
 
 private slots:
     void on_pbOK_clicked();
@@ -28,7 +27,6 @@ private slots:
 private:
     Ui::CDlgGetUserPasswordFreeRDP *ui;
 
-    CConnecterFreeRDP* m_pConnecter;
     CParameterFreeRDP* m_pParameter;
 
 };

@@ -320,7 +320,7 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     return;
 }
 
-void CFrmViewer::slotConnected()
+void CFrmViewer::slotRunning()
 {
     setEnabled(true);
 }

@@ -5,7 +5,7 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect.Layer.QTcpSocket")
 
-CConnectLayerQTcpSocket::CConnectLayerQTcpSocket(CConnectFreeRDP *connect)
+CConnectLayerQTcpSocket::CConnectLayerQTcpSocket(CBackendFreeRDP *connect)
     : CConnectLayer(connect)
     , m_hSocket(nullptr)
     , m_TcpSocket(this)
@@ -23,7 +23,7 @@ void CConnectLayerQTcpSocket::slotError(QAbstractSocket::SocketError e)
     QString szError;
     szError = m_TcpSocket.errorString();
     qDebug(log) << "CConnectLayerQTcpSocket::slotError()" << e << szError;
-    emit m_pConnect->sigError(e, szError);
+    emit m_pOperate->sigError(e, szError);
 }
 
 void CConnectLayerQTcpSocket::slotConnected()
@@ -39,9 +39,9 @@ void CConnectLayerQTcpSocket::slotConnected()
         }
     }//*/
 
-    if(!m_pConnect) return;
+    if(!m_pOperate) return;
 
-    rdpContext* context = (rdpContext*)m_pConnect->m_pContext;
+    rdpContext* context = (rdpContext*)m_pOperate->m_pContext;
     auto settings = context->settings;
     auto &net = m_pParameter->m_Net;
     qDebug(log) << "Connected to"
@@ -70,7 +70,7 @@ void CConnectLayerQTcpSocket::slotConnected()
     if(nRet)
     {
         qCritical(log) << "freerdp_client_start fail";
-        emit m_pConnect->sigError(nRet, "freerdp_client_start fail");
+        emit m_pOperate->sigError(nRet, "freerdp_client_start fail");
         return;
     }
 
@@ -83,9 +83,9 @@ void CConnectLayerQTcpSocket::slotConnected()
 void CConnectLayerQTcpSocket::slotReadyRead()
 {
     qDebug(log) << "readRead ......";
-    int nRet = m_pConnect->OnProcess(0);
+    int nRet = m_pOperate->OnProcess(0);
     if(-1 > nRet)
-        emit m_pConnect->sigError(nRet, "Process fail");
+        emit m_pOperate->sigError(nRet, "Process fail");
 }
 
 int CConnectLayerQTcpSocket::OnInit(rdpContext *context)
@@ -99,7 +99,7 @@ int CConnectLayerQTcpSocket::OnInit(rdpContext *context)
     Q_ASSERT(check);
 
     check = connect(&m_TcpSocket, SIGNAL(disconnected()),
-                    m_pConnect, SIGNAL(sigDisconnect()));
+                    m_pOperate, SIGNAL(sigDisconnect()));
     Q_ASSERT(check);
 
     check = connect(&m_TcpSocket,

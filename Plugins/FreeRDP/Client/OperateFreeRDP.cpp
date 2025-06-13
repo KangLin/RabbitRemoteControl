@@ -1,15 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterFreeRDP.h"
-#include "ConnectFreeRDP.h"
+#include "OperateFreeRDP.h"
+#include "BackendFreeRDP.h"
 #include "DlgSetFreeRDP.h"
 #include <QInputDialog>
 #include <QLoggingCategory>
 
-static Q_LOGGING_CATEGORY(log, "FreeRDP.Connecter")
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Operate")
 //! [Set the parameter]
-CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
-    : CConnecterThread(plugin)
+COperateFreeRDP::COperateFreeRDP(CPlugin *plugin)
+    : COperateDesktop(plugin)
 {
     qDebug(log) << Q_FUNC_INFO;
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
@@ -19,43 +19,43 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
 }
 //! [Set the parameter]
 
-CConnecterFreeRDP::~CConnecterFreeRDP()
+COperateFreeRDP::~COperateFreeRDP()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-qint16 CConnecterFreeRDP::Version()
+const qint16 COperateFreeRDP::Version() const
 {
     return 0;
 }
 
-int CConnecterFreeRDP::Initial()
+int COperateFreeRDP::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = CConnecterThread::Initial();
+    nRet = COperateDesktop::Initial();
     if(nRet) return nRet;
     nRet = SetParameter(&m_ParameterFreeRdp);
     return nRet;
 }
 
-int CConnecterFreeRDP::Clean()
+int COperateFreeRDP::Clean()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = CConnecterThread::Clean();
+    nRet = COperateDesktop::Clean();
     return nRet;
 }
 
-QDialog* CConnecterFreeRDP::OnOpenDialogSettings(QWidget *parent)
+QDialog* COperateFreeRDP::OnOpenDialogSettings(QWidget *parent)
 {
     return new CDlgSetFreeRDP(&m_ParameterFreeRdp, parent);
 }
 
-CConnect* CConnecterFreeRDP::InstanceConnect()
+CBackend *COperateFreeRDP::InstanceBackend()
 {
     try{
-        CConnectFreeRDP* p = new CConnectFreeRDP(this);
+        CBackendFreeRDP* p = new CBackendFreeRDP(this);
         return p;
     } catch(...) {
         qDebug(log) << Q_FUNC_INFO << "exception";

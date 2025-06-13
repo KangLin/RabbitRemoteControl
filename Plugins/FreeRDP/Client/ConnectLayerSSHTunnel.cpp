@@ -6,7 +6,7 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect.Layer.SSH")
 
-ConnectLayerSSHTunnel::ConnectLayerSSHTunnel(CConnectFreeRDP *connect)
+ConnectLayerSSHTunnel::ConnectLayerSSHTunnel(CBackendFreeRDP *connect)
     : CConnectLayer{connect}
     , m_pChannelSSH(nullptr)
     , m_hSshSocket(nullptr)
@@ -22,7 +22,7 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
     int nRet = 0;
 
     m_pChannelSSH = new CChannelSSHTunnel(
-        &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, m_pConnect);
+        &m_pParameter->m_Proxy.m_SSH, &m_pParameter->m_Net, m_pOperate);
     if(!m_pChannelSSH)
         return -1;
     bool bRet = m_pChannelSSH->open(QIODevice::ReadWrite);
@@ -45,8 +45,8 @@ int ConnectLayerSSHTunnel::OnInit(rdpContext *context)
         QString szErr;
         szErr = tr("The server is empty, please input it");
         qCritical(log) << szErr;
-        emit m_pConnect->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-        emit m_pConnect->sigError(-1, szErr.toStdString().c_str());
+        emit m_pOperate->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+        emit m_pOperate->sigError(-1, szErr.toStdString().c_str());
         return -1;
     }
 

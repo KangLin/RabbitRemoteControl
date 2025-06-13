@@ -7,18 +7,18 @@
 
 #include <QObject>
 
-#include "ConnectFreeRDP.h"
+#include "BackendFreeRDP.h"
 
 /*!
  * \brief The connect layer class
  * \see https://github.com/FreeRDP/FreeRDP/issues/8665
- * \see https://github.com/KangLin/Documents/blob/master/net/FreeRDP/freerdp_transport.drawio
+ * \see [FreeRDP follow](https://github.com/KangLin/Documents/blob/master/net/FreeRDP/freerdp_transport.drawio)
  */
 class CConnectLayer : public QObject
 {
     Q_OBJECT
 public:
-    explicit CConnectLayer(CConnectFreeRDP* connect);
+    explicit CConnectLayer(CBackendFreeRDP* pOperate);
     virtual ~CConnectLayer();
 
     int Initialize(rdpContext* context);
@@ -44,7 +44,7 @@ private:
     static HANDLE cbLayerGetEvent(void* userContext);
 
 protected:
-    CConnectFreeRDP* m_pConnect;
+    CBackendFreeRDP* m_pOperate;
     CParameterFreeRDP* m_pParameter;
 
 private:

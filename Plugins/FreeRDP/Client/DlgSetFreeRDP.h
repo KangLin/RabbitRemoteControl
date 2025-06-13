@@ -8,9 +8,10 @@
 #include <QDialog>
 #include <QButtonGroup>
 #include "freerdp/freerdp.h"
-#include "ConnecterFreeRDP.h"
+
 #include "ParameterProxyUI.h"
 #include "ParameterRecordUI.h"
+#include "ParameterFreeRDP.h"
 
 namespace Ui {
 class CDlgSetFreeRDP;

@@ -143,6 +143,7 @@ ENDIF()
 message("RabbitRemoteControl_VERSION:${RabbitRemoteControl_VERSION};Revision:${RabbitRemoteControl_REVISION};Tag:${RabbitRemoteControlTag}")
 set(VERSION ${RabbitRemoteControl_VERSION})
 
+option(BUILD_CLIENT "Build Client" ON)
 add_subdirectory(Channel)
 cmake_dependent_option(BUILD_PLUGIN "Build plugin" ON WITH_GUI OFF)
 if(BUILD_PLUGIN)

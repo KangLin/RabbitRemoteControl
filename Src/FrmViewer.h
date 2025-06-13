@@ -132,7 +132,7 @@ public Q_SLOTS:
     /*!
      * \brief Enable mouse and keyboard
      */
-    void slotConnected();
+    void slotRunning();
 
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent* event, QPoint pos);

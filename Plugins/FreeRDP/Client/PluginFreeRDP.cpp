@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginFreeRDP.h"
-#include "ConnecterFreeRDP.h"
+#include "OperateFreeRDP.h"
 #include "winpr/wlog.h"
 
 #include <QLoggingCategory>
@@ -19,7 +19,7 @@ static Q_LOGGING_CATEGORY(LoggerFreeRDPFatal, "FreeRDP.Log.Fatal")
 
 //! [Initialize resource]
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
-    : CPluginClient(parent)
+    : CPlugin(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
     qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
@@ -69,7 +69,7 @@ CPluginFreeRDP::~CPluginFreeRDP()
 }
 //! [Clean resource]
 
-const CPluginClient::TYPE CPluginFreeRDP::Type() const
+const CPlugin::TYPE CPluginFreeRDP::Type() const
 {
     return TYPE::Client;
 }
@@ -136,10 +136,10 @@ const QString CPluginFreeRDP::Details() const
     return szDetails;
 }
 
-CConnecter* CPluginFreeRDP::OnCreateConnecter(const QString &szId)
+COperate *CPluginFreeRDP::OnCreateOperate(const QString &szId)
 {
     if(Id() == szId)
-        return new CConnecterFreeRDP(this);
+        return new COperateFreeRDP(this);
 
     return nullptr;
 }
