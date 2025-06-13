@@ -1,19 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPluginLibVNCServer_H_KL_2021_07_23
-#define CPluginLibVNCServer_H_KL_2021_07_23
-
 #pragma once
 
-#include "PluginClient.h"
+#include "Plugin.h"
 
-class CPluginLibVNCServer : public CPluginClient
+class CPluginLibVNCServer : public CPlugin
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     
 public:
@@ -32,7 +29,5 @@ public:
     virtual const QString Version() const override;
 
 private:
-    virtual CConnecter* OnCreateConnecter(const QString &szID) override;
+    virtual COperate* OnCreateOperate(const QString &szID) override;
 };
-
-#endif // CPluginLibVNCServer_H_KL_2021_07_23

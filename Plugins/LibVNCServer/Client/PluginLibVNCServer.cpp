@@ -1,16 +1,17 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QLoggingCategory>
 #include "PluginLibVNCServer.h"
 #include "RabbitCommonDir.h"
-#include "ConnecterLibVNCServer.h"
+#include "OperateLibVNCServer.h"
 #ifdef HAVE_LIBSSH
     #include "ChannelSSHTunnel.h"
 #endif
-#include <QLoggingCategory>
+
 static Q_LOGGING_CATEGORY(log, "LibVNCServer")
 
 CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent)
-    : CPluginClient(parent)
+    : CPlugin(parent)
 {}
 
 CPluginLibVNCServer::~CPluginLibVNCServer()
@@ -18,7 +19,7 @@ CPluginLibVNCServer::~CPluginLibVNCServer()
     qDebug(log) << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
 }
 
-const CPluginClient::TYPE CPluginLibVNCServer::Type() const
+const CPlugin::TYPE CPluginLibVNCServer::Type() const
 {
     return TYPE::Client;
 }
@@ -65,11 +66,11 @@ const QString CPluginLibVNCServer::Details() const
     return szDetails;
 }
 
-CConnecter* CPluginLibVNCServer::OnCreateConnecter(const QString &szID)
+COperate *CPluginLibVNCServer::OnCreateOperate(const QString &szID)
 {
     if(Id() == szID)
     {   
-        return new CConnecterLibVNCServer(this);
+        return new COperateLibVNCServer(this);
     }
     return nullptr;
 }

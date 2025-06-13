@@ -45,7 +45,7 @@ Q_SIGNALS:
     void sigServer(QString szHost, quint16 nPort);
     void sigServer(QString szUnixDomainSocket);
     void sigError(const int nError, const QString &szError = QString());
-    void sigDisconnect();
+    void sigStop();
     
 private:
     CBackend* m_pBackend;

@@ -5,7 +5,7 @@
 #include <QInputDialog>
 #include <QLoggingCategory>
 
-#include "ConnectLibVNCServer.h"
+#include "BackendLibVNCServer.h"
 
 static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connect")
 static Q_LOGGING_CATEGORY(logger, "LibVNCServer.Connect.log")
@@ -41,11 +41,10 @@ static void rfbQtClientLog(const char *format, ...)
     qDebug(logger) << buf;
 }
 
-CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter)
-    : CConnectDesktop(pConnecter),
-    m_pConnecter(pConnecter),
+CBackendLibVNCServer::CBackendLibVNCServer(COperateLibVNCServer *pOperate)
+    : CBackendDesktop(pOperate),
     m_pClient(nullptr),
-    m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter()))
+    m_pParameter(qobject_cast<CParameterLibVNCServer*>(pOperate->GetParameter()))
 #ifdef HAVE_LIBSSH
     ,m_pThread(nullptr)
 #endif
@@ -58,7 +57,7 @@ CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter)
     }
 }
 
-CConnectLibVNCServer::~CConnectLibVNCServer()
+CBackendLibVNCServer::~CBackendLibVNCServer()
 {
     qDebug(log) << "CConnectLibVNCServer::~CConnectLibVNCServer()";
 }
@@ -69,7 +68,7 @@ CConnectLibVNCServer::~CConnectLibVNCServer()
  * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
  * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
-CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
+CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
 {
     qDebug(log) << "CConnectLibVNCServer::OnInit()";
     if(m_pClient) Q_ASSERT(false);
@@ -184,7 +183,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
         emit sigServerName(m_pClient->desktopName);
         emit sigInformation(szInfo);
-        emit sigConnected();
+        emit sigRunning();
         return OnInitReturnValue::UseOnProcess;
     }
     /*case CParameterProxy::TYPE::SockesV5:
@@ -252,8 +251,8 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         check = connect(m_pThread, SIGNAL(sigError(int,QString)),
                         this, SIGNAL(sigError(int,QString)));
         Q_ASSERT(check);
-        check = connect(m_pThread, SIGNAL(sigDisconnect()),
-                        this, SIGNAL(sigDisconnect()));
+        check = connect(m_pThread, SIGNAL(sigStop()),
+                        this, SIGNAL(sigStop()));
         Q_ASSERT(check);
         m_pThread->start();
 
@@ -268,7 +267,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
     return OnInitReturnValue::UseOnProcess;
 }
 
-int CConnectLibVNCServer::OnClean()
+int CBackendLibVNCServer::OnClean()
 {
     qDebug(log) << "CConnectLibVNCServer::OnClean()";
 #ifdef HAVE_LIBSSH
@@ -301,7 +300,7 @@ int CConnectLibVNCServer::OnClean()
  *    \li < -1: error
  * \see CConnect::Connect() CConnect::slotTimeOut()
  */
-int CConnectLibVNCServer::OnProcess()
+int CBackendLibVNCServer::OnProcess()
 {
     //qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
@@ -358,12 +357,12 @@ int CConnectLibVNCServer::OnProcess()
     return 0;
 }
 
-int CConnectLibVNCServer::WakeUp()
+int CBackendLibVNCServer::WakeUp()
 {
     return m_Event.WakeUp();
 }
 
-void CConnectLibVNCServer::slotClipBoardChanged()
+void CBackendLibVNCServer::slotClipBoardChanged()
 {
     if(!m_pParameter || !m_pParameter->GetClipboard() || !m_pClient) return;
     QClipboard* pClipboard = QApplication::clipboard();
@@ -377,54 +376,54 @@ void CConnectLibVNCServer::slotClipBoardChanged()
     }
 }
 
-rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
+rfbBool CBackendLibVNCServer::cb_resize(rfbClient* client)
 {
     //qDebug(log) << "CConnectLibVnc::cb_resize:" << client->width << client->height;
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(pThis->OnSize()) return FALSE;
     return TRUE;
 }
 
-void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
+void CBackendLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
 {
     if(0 == w || 0 == h)
         return;
     //qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     QRect rect(x, y, w, h);
     QImage img = pThis->m_Image.copy(rect);
     emit pThis->sigUpdateRect(rect, img);
 }
 
-void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)
+void CBackendLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)
 {
     //qDebug(LibVNCServer, "CConnectLibVnc::cb_got_selection:%s", text);
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(!pThis->m_pParameter->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
         pClipboard->setText(text);
 }
 
-void CConnectLibVNCServer::cb_kbd_leds(rfbClient *client, int value, int pad)
+void CBackendLibVNCServer::cb_kbd_leds(rfbClient *client, int value, int pad)
 {
     qDebug(log) << "CConnectLibVnc::cb_kbd_leds";
 }
 
-void CConnectLibVNCServer::cb_bell(struct _rfbClient *client)
+void CBackendLibVNCServer::cb_bell(struct _rfbClient *client)
 {
     qApp->beep();
 }
 
-void CConnectLibVNCServer::cb_text_chat(rfbClient *client, int value, char *text)
+void CBackendLibVNCServer::cb_text_chat(rfbClient *client, int value, char *text)
 {
     qDebug(log) << "CConnectLibVnc::cb_text_chat";
 }
 
-rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int credentialType)
+rfbCredential* CBackendLibVNCServer::cb_get_credential(rfbClient *cl, int credentialType)
 {
     qDebug(log) <<"CConnectLibVnc::cb_get_credential";
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(cl, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(cl, (void*)gThis);
     rfbCredential *c = (rfbCredential*)malloc(sizeof(rfbCredential));
     c->userCredential.username = (char*)malloc(RFB_BUF_SIZE);
     memset(c->userCredential.username, 0, RFB_BUF_SIZE);
@@ -448,17 +447,18 @@ rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int creden
     return c;
 }
 
-char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
+char* CBackendLibVNCServer::cb_get_password(rfbClient *client)
 {
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
     if(szPassword.isEmpty())
     {
         int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("CDlgLibVNCServerPassword", nRet, pThis->m_pParameter);
+        auto *net = &pThis->m_pParameter->m_Net;
+        emit pThis->sigBlockShowWidget("CDlgUserPassword", nRet, net);
         if(QDialog::Accepted == nRet)
         {
-            szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
+            szPassword = net->m_User.GetPassword();
         }
         if(szPassword.isEmpty())
             return nullptr;
@@ -466,7 +466,7 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
     return strdup(szPassword.toStdString().c_str());
 }
 
-int CConnectLibVNCServer::OnSize()
+int CBackendLibVNCServer::OnSize()
 {
     int nRet = 0;
     int nWidth = m_pClient->width;
@@ -490,7 +490,7 @@ int CConnectLibVNCServer::OnSize()
     return nRet;
 }
 
-rfbBool CConnectLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
+rfbBool CBackendLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
 {
     //qDebug(LibVNCServer, "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
     rfbBool bRet = true;
@@ -498,7 +498,7 @@ rfbBool CConnectLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
     return bRet;
 }
 
-void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
+void CBackendLibVNCServer::cb_got_cursor_shape(rfbClient *client,
                                          int xhot, int yhot,
                                          int width, int height,
                                          int bytesPerPixel)
@@ -511,7 +511,7 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
         qCritical(log) << "client->rcSource is null";
         return;
     }
-    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
+    CBackendLibVNCServer* pThis = (CBackendLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         uchar* buffer = cursor.bits();
@@ -556,7 +556,7 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
     }
 }
 
-void CConnectLibVNCServer::mousePressEvent(QMouseEvent *event)
+void CBackendLibVNCServer::mousePressEvent(QMouseEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -577,7 +577,7 @@ void CConnectLibVNCServer::mousePressEvent(QMouseEvent *event)
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::mouseReleaseEvent(QMouseEvent *event)
+void CBackendLibVNCServer::mouseReleaseEvent(QMouseEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -587,7 +587,7 @@ void CConnectLibVNCServer::mouseReleaseEvent(QMouseEvent *event)
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::mouseMoveEvent(QMouseEvent *event)
+void CBackendLibVNCServer::mouseMoveEvent(QMouseEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -606,7 +606,7 @@ void CConnectLibVNCServer::mouseMoveEvent(QMouseEvent *event)
 }
 
 // https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#pointerevent
-void CConnectLibVNCServer::wheelEvent(QWheelEvent *event)
+void CBackendLibVNCServer::wheelEvent(QWheelEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -905,7 +905,7 @@ uint32_t TranslateRfbKey(quint32 inkey, bool modifier)
     return k;
 }
 
-void CConnectLibVNCServer::keyPressEvent(QKeyEvent *event)
+void CBackendLibVNCServer::keyPressEvent(QKeyEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -917,7 +917,7 @@ void CConnectLibVNCServer::keyPressEvent(QKeyEvent *event)
     SendKeyEvent(m_pClient, k, TRUE);
 }
 
-void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
+void CBackendLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
@@ -930,7 +930,7 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 }
 
 //! [connect local socket server]
-void CConnectLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
+void CBackendLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
 {
     QString szErr;
     auto &net = m_pParameter->m_Proxy.m_SSH.m_Net;
@@ -967,11 +967,11 @@ void CConnectLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
-    emit sigConnected();
+    emit sigRunning();
 }
 
 #if defined(HAVE_UNIX_DOMAIN_SOCKET)
-void CConnectLibVNCServer::slotConnectProxyServer(QString szFile)
+void CBackendLibVNCServer::slotConnectProxyServer(QString szFile)
 {
     QString szErr;
     //qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << szFile;
@@ -1000,7 +1000,7 @@ void CConnectLibVNCServer::slotConnectProxyServer(QString szFile)
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
-    emit sigConnected();
+    emit sigRunning();
 }
 #endif
 //! [connect local socket server]

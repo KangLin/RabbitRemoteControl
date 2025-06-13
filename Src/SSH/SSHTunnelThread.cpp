@@ -71,7 +71,7 @@ void CSSHTunnelThread::run()
     if(nRet)
         emit sigError(nRet, p->errorString());
 
-    emit sigDisconnect();
+    emit sigStop();
     p->deleteLater();
 
     qDebug(log) << "CSSHTunnelThread end";
