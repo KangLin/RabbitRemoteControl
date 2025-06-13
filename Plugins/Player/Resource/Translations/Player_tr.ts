@@ -155,33 +155,33 @@
 <context>
     <name>COperatePlayer</name>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="52"/>
+        <location filename="../../OperatePlayer.cpp" line="53"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="59"/>
+        <location filename="../../OperatePlayer.cpp" line="60"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="68"/>
+        <location filename="../../OperatePlayer.cpp" line="69"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="121"/>
-        <location filename="../../OperatePlayer.cpp" line="144"/>
+        <location filename="../../OperatePlayer.cpp" line="122"/>
+        <location filename="../../OperatePlayer.cpp" line="145"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="132"/>
+        <location filename="../../OperatePlayer.cpp" line="133"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="159"/>
+        <location filename="../../OperatePlayer.cpp" line="160"/>
         <source>pause</source>
         <translation type="unfinished"></translation>
     </message>

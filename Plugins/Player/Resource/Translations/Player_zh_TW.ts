@@ -2,40 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>CConnectPlayer</name>
-    <message>
-        <source>Position: </source>
-        <translation type="vanished">位置：</translation>
-    </message>
-</context>
-<context>
-    <name>CConnecterPlayer</name>
-    <message>
-        <source>Record</source>
-        <translation type="obsolete">錄製</translation>
-    </message>
-    <message>
-        <source>Record pause</source>
-        <translation type="obsolete">錄製暫停</translation>
-    </message>
-    <message>
-        <source>ScreenShot</source>
-        <translation type="obsolete">截圖</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">開始</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="vanished">停止</translation>
-    </message>
-    <message>
-        <source>pause</source>
-        <translation type="vanished">暫停</translation>
-    </message>
-</context>
-<context>
     <name>CDlgPlayer</name>
     <message>
         <location filename="../../DlgPlayer.ui" line="14"/>
@@ -56,7 +22,7 @@
     <message>
         <location filename="../../DlgPlayer.ui" line="48"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.ui" line="78"/>
@@ -67,10 +33,6 @@
         <location filename="../../DlgPlayer.ui" line="89"/>
         <source>Audio input</source>
         <translation>音頻輸入</translation>
-    </message>
-    <message>
-        <source>AudioInput</source>
-        <translation type="vanished">音頻輸入</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.ui" line="103"/>
@@ -90,46 +52,6 @@
         <translation>音頻輸出：</translation>
     </message>
     <message>
-        <source>Record</source>
-        <translation type="vanished">錄製</translation>
-    </message>
-    <message>
-        <source>Record parameters</source>
-        <translation type="vanished">錄製參數</translation>
-    </message>
-    <message>
-        <source>Record file format:</source>
-        <translation type="vanished">錄製文件格式：</translation>
-    </message>
-    <message>
-        <source>Record folder:</source>
-        <translation type="vanished">錄製文件夾</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">視頻</translation>
-    </message>
-    <message>
-        <source>Encode:</source>
-        <translation type="vanished">編碼：</translation>
-    </message>
-    <message>
-        <source>frame rate:</source>
-        <translation type="vanished">幀率：</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation type="vanished">質量：</translation>
-    </message>
-    <message>
-        <source>Audio</source>
-        <translation type="vanished">音頻</translation>
-    </message>
-    <message>
-        <source>Sample rate:</source>
-        <translation type="vanished">采樣率：</translation>
-    </message>
-    <message>
         <location filename="../../DlgPlayer.cpp" line="63"/>
         <source>Camera</source>
         <translation>攝像頭</translation>
@@ -138,18 +60,6 @@
         <location filename="../../DlgPlayer.cpp" line="71"/>
         <source>Url</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Capture screen</source>
-        <translation type="vanished">捕獲屏幕</translation>
-    </message>
-    <message>
-        <source>Capture window</source>
-        <translation type="vanished">捕獲窗口</translation>
-    </message>
-    <message>
-        <source>Screen:</source>
-        <translation type="vanished">屏幕：</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.cpp" line="100"/>
@@ -245,35 +155,35 @@
 <context>
     <name>COperatePlayer</name>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="52"/>
+        <location filename="../../OperatePlayer.cpp" line="53"/>
         <source>Record</source>
-        <translation type="unfinished">錄製</translation>
+        <translation>錄製</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="59"/>
+        <location filename="../../OperatePlayer.cpp" line="60"/>
         <source>Record pause</source>
-        <translation type="unfinished">錄製暫停</translation>
+        <translation>錄製暫停</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="68"/>
+        <location filename="../../OperatePlayer.cpp" line="69"/>
         <source>ScreenShot</source>
-        <translation type="unfinished">截圖</translation>
+        <translation>截圖</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="121"/>
-        <location filename="../../OperatePlayer.cpp" line="144"/>
+        <location filename="../../OperatePlayer.cpp" line="122"/>
+        <location filename="../../OperatePlayer.cpp" line="145"/>
         <source>Start</source>
-        <translation type="unfinished">開始</translation>
+        <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="132"/>
+        <location filename="../../OperatePlayer.cpp" line="133"/>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../OperatePlayer.cpp" line="159"/>
+        <location filename="../../OperatePlayer.cpp" line="160"/>
         <source>pause</source>
-        <translation type="unfinished">暫停</translation>
+        <translation>暫停</translation>
     </message>
 </context>
 <context>

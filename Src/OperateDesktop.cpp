@@ -102,11 +102,15 @@ const QString COperateDesktop::Description()
     QString szDescription;
     if(!Name().isEmpty())
         szDescription = tr("Name: ") + Name() + "\n";
-    
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type:") + GetTypeName() + "\n";
+
     if(!Protocol().isEmpty()) {
-        szDescription += tr("Protocol: ") + Protocol()
+        szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG
-        + " - " + GetPlugin()->DisplayName()
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
 #endif
             + "\n";
     }

@@ -45,13 +45,23 @@ const QString COperate::Name()
 
 const QString COperate::Description()
 {
-    return tr("Name: ") + Name() + "\n"
-           + tr("Protocol: ") + Protocol()
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type:") + GetTypeName() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG
-           + " - " + GetPlugin()->DisplayName()
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
 #endif
-           + "\n"
-           + tr("Description: ") + GetPlugin()->Description();
+            + "\n";
+    }
+    szDescription += tr("Description: ") + GetPlugin()->Description();
+    return szDescription;
 }
 
 const QString COperate::Protocol() const

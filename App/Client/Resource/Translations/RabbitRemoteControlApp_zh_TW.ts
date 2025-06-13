@@ -96,6 +96,11 @@
     </message>
     <message>
         <location filename="../../FrmActive.cpp" line="119"/>
+        <source>Type</source>
+        <translation type="unfinished">類型</translation>
+    </message>
+    <message>
+        <location filename="../../FrmActive.cpp" line="120"/>
         <source>ID</source>
         <translation></translation>
     </message>
@@ -118,129 +123,134 @@
 <context>
     <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="27"/>
+        <location filename="../../FrmListRecent.cpp" line="28"/>
         <source>List recent</source>
         <translation>最近列表</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="32"/>
-        <location filename="../../FrmListRecent.cpp" line="34"/>
+        <location filename="../../FrmListRecent.cpp" line="33"/>
         <location filename="../../FrmListRecent.cpp" line="35"/>
-        <location filename="../../FrmListRecent.cpp" line="461"/>
+        <location filename="../../FrmListRecent.cpp" line="36"/>
+        <location filename="../../FrmListRecent.cpp" line="468"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="37"/>
-        <location filename="../../FrmListRecent.cpp" line="39"/>
+        <location filename="../../FrmListRecent.cpp" line="38"/>
         <location filename="../../FrmListRecent.cpp" line="40"/>
-        <location filename="../../FrmListRecent.cpp" line="462"/>
+        <location filename="../../FrmListRecent.cpp" line="41"/>
+        <location filename="../../FrmListRecent.cpp" line="469"/>
         <source>Edit and Start</source>
         <translation>編輯並開始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="47"/>
-        <location filename="../../FrmListRecent.cpp" line="51"/>
+        <location filename="../../FrmListRecent.cpp" line="48"/>
         <location filename="../../FrmListRecent.cpp" line="52"/>
         <location filename="../../FrmListRecent.cpp" line="53"/>
+        <location filename="../../FrmListRecent.cpp" line="54"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="56"/>
-        <location filename="../../FrmListRecent.cpp" line="58"/>
+        <location filename="../../FrmListRecent.cpp" line="57"/>
         <location filename="../../FrmListRecent.cpp" line="59"/>
-        <location filename="../../FrmListRecent.cpp" line="465"/>
+        <location filename="../../FrmListRecent.cpp" line="60"/>
+        <location filename="../../FrmListRecent.cpp" line="472"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="60"/>
-        <location filename="../../FrmListRecent.cpp" line="62"/>
+        <location filename="../../FrmListRecent.cpp" line="61"/>
         <location filename="../../FrmListRecent.cpp" line="63"/>
-        <location filename="../../FrmListRecent.cpp" line="466"/>
+        <location filename="../../FrmListRecent.cpp" line="64"/>
+        <location filename="../../FrmListRecent.cpp" line="473"/>
         <source>Copy</source>
         <translation>復製</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="65"/>
-        <location filename="../../FrmListRecent.cpp" line="67"/>
+        <location filename="../../FrmListRecent.cpp" line="66"/>
         <location filename="../../FrmListRecent.cpp" line="68"/>
-        <location filename="../../FrmListRecent.cpp" line="468"/>
+        <location filename="../../FrmListRecent.cpp" line="69"/>
+        <location filename="../../FrmListRecent.cpp" line="475"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="70"/>
-        <location filename="../../FrmListRecent.cpp" line="74"/>
+        <location filename="../../FrmListRecent.cpp" line="71"/>
         <location filename="../../FrmListRecent.cpp" line="75"/>
+        <location filename="../../FrmListRecent.cpp" line="76"/>
         <source>Detail</source>
         <translation>細節</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="80"/>
-        <location filename="../../FrmListRecent.cpp" line="82"/>
+        <location filename="../../FrmListRecent.cpp" line="81"/>
         <location filename="../../FrmListRecent.cpp" line="83"/>
-        <location filename="../../FrmListRecent.cpp" line="471"/>
+        <location filename="../../FrmListRecent.cpp" line="84"/>
+        <location filename="../../FrmListRecent.cpp" line="478"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="86"/>
-        <location filename="../../FrmListRecent.cpp" line="88"/>
+        <location filename="../../FrmListRecent.cpp" line="87"/>
         <location filename="../../FrmListRecent.cpp" line="89"/>
+        <location filename="../../FrmListRecent.cpp" line="90"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="97"/>
-        <location filename="../../FrmListRecent.cpp" line="100"/>
+        <location filename="../../FrmListRecent.cpp" line="98"/>
+        <location filename="../../FrmListRecent.cpp" line="101"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="115"/>
+        <location filename="../../FrmListRecent.cpp" line="116"/>
         <source>Show tool bar</source>
         <translation>顯示工具條</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="146"/>
+        <location filename="../../FrmListRecent.cpp" line="147"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="147"/>
+        <location filename="../../FrmListRecent.cpp" line="148"/>
         <source>Protocol</source>
         <translation>協議</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="148"/>
+        <location filename="../../FrmListRecent.cpp" line="149"/>
+        <source>Type</source>
+        <translation type="unfinished">類型</translation>
+    </message>
+    <message>
+        <location filename="../../FrmListRecent.cpp" line="150"/>
         <source>Date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="149"/>
+        <location filename="../../FrmListRecent.cpp" line="152"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="151"/>
+        <location filename="../../FrmListRecent.cpp" line="154"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="296"/>
-        <location filename="../../FrmListRecent.cpp" line="389"/>
+        <location filename="../../FrmListRecent.cpp" line="303"/>
+        <location filename="../../FrmListRecent.cpp" line="396"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="297"/>
+        <location filename="../../FrmListRecent.cpp" line="304"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
         <translation>文件已存在。是否覆蓋它?</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="390"/>
+        <location filename="../../FrmListRecent.cpp" line="397"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation>文件已存在。是否覆蓋它?如果選擇否，請改名稱。</translation>
     </message>

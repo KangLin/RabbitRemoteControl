@@ -26,7 +26,7 @@ public:
     virtual ~CFrmListRecent();
 
 public:
-    virtual int onProcess(const QString &id, CPlugin *pPlug) override;
+    virtual int onProcess(const QString &id, CPlugin *pPlugin) override;
     
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 

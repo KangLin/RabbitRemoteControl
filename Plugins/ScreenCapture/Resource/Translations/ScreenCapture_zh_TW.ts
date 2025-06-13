@@ -54,12 +54,12 @@
 <context>
     <name>CPluginScreenCapture</name>
     <message>
-        <location filename="../../PluginScreenCapture.cpp" line="23"/>
+        <location filename="../../PluginScreenCapture.cpp" line="27"/>
         <source>Capture screen</source>
         <translation>捕獲屏幕</translation>
     </message>
     <message>
-        <location filename="../../PluginScreenCapture.cpp" line="28"/>
+        <location filename="../../PluginScreenCapture.cpp" line="32"/>
         <source>Capture or record screen and window. This is a sample example.</source>
         <translation>捕獲或錄製屏幕和窗口。這是一個簡單的示例。</translation>
     </message>

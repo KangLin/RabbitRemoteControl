@@ -267,16 +267,18 @@ int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
     return 0;
 }
 
-int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlug)
+int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlugin)
 {
     // Connect menu and toolbar
-    QAction* pAction = m_pMenuNew->addAction(
-        pPlug->Protocol() + ": " + pPlug->DisplayName(),
-        this, SLOT(slotNew()));
-    pAction->setToolTip(pPlug->Description());
-    pAction->setStatusTip(pPlug->Description());
+    QString szTile;
+    if(!pPlugin->Protocol().isEmpty())
+        szTile = pPlugin->Protocol() + ": ";
+    szTile += pPlugin->DisplayName();
+    QAction* pAction = m_pMenuNew->addAction(szTile, this, SLOT(slotNew()));
+    pAction->setToolTip(pPlugin->Description());
+    pAction->setStatusTip(pPlugin->Description());
     pAction->setData(id);
-    pAction->setIcon(pPlug->Icon());
+    pAction->setIcon(pPlugin->Icon());
     return 0;
 }
 
