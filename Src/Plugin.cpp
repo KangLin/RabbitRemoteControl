@@ -37,20 +37,20 @@ const QString CPlugin::TypeName(const TYPE t) const
     if(t >= TYPE::Custom) {
         qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
                              + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
-        return "Custom";
+        return tr("Custom");
     }
     switch(t)
     {
     case TYPE::Client:
-        return "Client";
+        return tr("Client");
     case TYPE::Service:
-        return "Service";
+        return tr("Service");
     case TYPE::Tool:
-        return "Tool";
+        return tr("Tool");
     case TYPE::Custom:
         qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
                              + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
-        return "Custom";
+        return tr("Custom");
     }
     return QString();
 }

@@ -60,6 +60,7 @@ private:
 public:
     virtual QWidget *GetViewer() override;
     QVideoSink *GetVideoSink();
+    virtual const QString Description() override;
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
     void slotPlaybackStateChanged(QMediaPlayer::PlaybackState state);
@@ -70,7 +71,6 @@ public Q_SLOTS:
 #else // #if HAVE_QVideoWidget
     QAction* m_pPause;
 #endif // #if HAVE_QVideoWidget
-
 };
 
 #endif // CONNETERPLAYER_H

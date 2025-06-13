@@ -376,14 +376,34 @@
     </message>
 </context>
 <context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="122"/>
+        <location filename="../../Manager.cpp" line="121"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="215"/>
+        <location filename="../../Manager.cpp" line="214"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -391,27 +411,32 @@
 <context>
     <name>COperate</name>
     <message>
-        <location filename="../../Operate.cpp" line="47"/>
+        <location filename="../../Operate.cpp" line="50"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="48"/>
+        <location filename="../../Operate.cpp" line="53"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="56"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="53"/>
+        <location filename="../../Operate.cpp" line="63"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="77"/>
+        <location filename="../../Operate.cpp" line="94"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="157"/>
+        <location filename="../../Operate.cpp" line="174"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -425,102 +450,107 @@
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="107"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="110"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="115"/>
+        <location filename="../../OperateDesktop.cpp" line="119"/>
         <source>Server name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="119"/>
+        <location filename="../../OperateDesktop.cpp" line="123"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="122"/>
+        <location filename="../../OperateDesktop.cpp" line="126"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="128"/>
+        <location filename="../../OperateDesktop.cpp" line="132"/>
         <source>SSH tunnel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="135"/>
+        <location filename="../../OperateDesktop.cpp" line="139"/>
         <source>Sockes v5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="149"/>
+        <location filename="../../OperateDesktop.cpp" line="153"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="212"/>
+        <location filename="../../OperateDesktop.cpp" line="216"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="216"/>
+        <location filename="../../OperateDesktop.cpp" line="220"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="226"/>
+        <location filename="../../OperateDesktop.cpp" line="230"/>
         <source>Keep aspect ration to windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="235"/>
+        <location filename="../../OperateDesktop.cpp" line="239"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="243"/>
+        <location filename="../../OperateDesktop.cpp" line="247"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="253"/>
+        <location filename="../../OperateDesktop.cpp" line="257"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="285"/>
+        <location filename="../../OperateDesktop.cpp" line="289"/>
         <source>Send shortcut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="288"/>
+        <location filename="../../OperateDesktop.cpp" line="292"/>
         <source>Send Ctl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="290"/>
+        <location filename="../../OperateDesktop.cpp" line="294"/>
         <source>Send lock screen (Win+L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="294"/>
+        <location filename="../../OperateDesktop.cpp" line="298"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="301"/>
-        <location filename="../../OperateDesktop.cpp" line="502"/>
+        <location filename="../../OperateDesktop.cpp" line="305"/>
+        <location filename="../../OperateDesktop.cpp" line="506"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="308"/>
+        <location filename="../../OperateDesktop.cpp" line="312"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="499"/>
+        <location filename="../../OperateDesktop.cpp" line="503"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1000,6 +1030,30 @@
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
         <source>Open X509 Certificate Revocation List file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CPlugin</name>
+    <message>
+        <location filename="../../Plugin.cpp" line="40"/>
+        <location filename="../../Plugin.cpp" line="53"/>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="45"/>
+        <source>Client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="47"/>
+        <source>Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="49"/>
+        <source>Tool</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

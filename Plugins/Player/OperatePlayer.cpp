@@ -4,6 +4,7 @@
 #include "OperatePlayer.h"
 #include "BackendPlayer.h"
 #include "DlgPlayer.h"
+#include "Plugin.h"
 
 static Q_LOGGING_CATEGORY(log, "Player.Operate")
 
@@ -234,6 +235,11 @@ void COperatePlayer::slotRecordStateChanged(QMediaRecorder::RecorderState state)
         && m_Player.m_paRecord->isCheckable())
         m_Player.m_paRecord->setChecked(false);
 }
-#endif
+#endif // HAVE_QT6_RECORD
 
-#endif
+#endif // HAVE_QVideoWidget
+
+const QString COperatePlayer::Description()
+{
+    return COperate::Description();
+}

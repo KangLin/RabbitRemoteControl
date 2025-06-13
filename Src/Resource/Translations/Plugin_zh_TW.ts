@@ -191,159 +191,6 @@
     </message>
 </context>
 <context>
-    <name>CClient</name>
-    <message>
-        <location filename="../../Client.cpp" line="123"/>
-        <source>### Plugins</source>
-        <translation>### 插件</translation>
-    </message>
-    <message>
-        <location filename="../../Client.cpp" line="214"/>
-        <source>Version:</source>
-        <translation>版本：</translation>
-    </message>
-</context>
-<context>
-    <name>CConnecter</name>
-    <message>
-        <location filename="../../Connecter.cpp" line="181"/>
-        <source>Settings</source>
-        <translation>設置</translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="52"/>
-        <source>Name: </source>
-        <translation>名稱：</translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="53"/>
-        <source>Protocol: </source>
-        <translation>協議：</translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="58"/>
-        <source>Description: </source>
-        <translation>描述：</translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="96"/>
-        <source>Set </source>
-        <translation>設置 </translation>
-    </message>
-</context>
-<context>
-    <name>CConnecterConnect</name>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="69"/>
-        <source>Name: </source>
-        <translation>名稱：</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="72"/>
-        <source>Protocol: </source>
-        <translation>協議：</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="80"/>
-        <source>Server name: </source>
-        <translation>服務器名：</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="84"/>
-        <source>Server address: </source>
-        <translation>服務器地址：</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="87"/>
-        <source>Proxy</source>
-        <translation>代理</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="93"/>
-        <source>SSH tunnel</source>
-        <translation>SSH 隧道</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="100"/>
-        <source>Sockes v5</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterConnect.cpp" line="114"/>
-        <source>Description: </source>
-        <translation>描述：</translation>
-    </message>
-</context>
-<context>
-    <name>CConnecterThread</name>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="84"/>
-        <source>Zoom</source>
-        <translation>縮放</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="88"/>
-        <source>Zoom to window</source>
-        <translation>縮放到窗口大小</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="98"/>
-        <source>Keep aspect ration to windows</source>
-        <translation>保持高寬比縮放</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="107"/>
-        <source>Original</source>
-        <translation>原始</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="115"/>
-        <source>Zoom in</source>
-        <translation>放大</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="125"/>
-        <source>Zoom out</source>
-        <translation>縮小</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="157"/>
-        <source>Send shortcut key</source>
-        <translation>發送快捷鍵</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="160"/>
-        <source>Send Ctl+Alt+Del</source>
-        <translation>發送 Ctl+Alt+Del</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="162"/>
-        <source>Send lock screen (Win+L)</source>
-        <translation>發送鎖屏快捷鍵 (Win+L)</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="166"/>
-        <source>ScreenShot</source>
-        <translation>截圖</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="180"/>
-        <source>Record pause</source>
-        <translation>暫停錄製</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="292"/>
-        <source>Stop record</source>
-        <translation>停止錄製</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterThread.cpp" line="173"/>
-        <location filename="../../ConnecterThread.cpp" line="295"/>
-        <source>Start record</source>
-        <translation>開始錄製</translation>
-    </message>
-</context>
-<context>
     <name>CDlgInputPassword</name>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
@@ -401,12 +248,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="14"/>
+        <location filename="../../DlgUserPassword.cpp" line="16"/>
         <source>Set user and password</source>
         <translation>設置用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="35"/>
+        <location filename="../../DlgUserPassword.cpp" line="37"/>
         <source>Server: </source>
         <translation>服務器：</translation>
     </message>
@@ -547,6 +394,166 @@ Restart program by administrator?</source>
         <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
         <translation>總是顯示</translation>
+    </message>
+</context>
+<context>
+    <name>CManager</name>
+    <message>
+        <location filename="../../Manager.cpp" line="121"/>
+        <source>### Plugins</source>
+        <translation>### 插件</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="214"/>
+        <source>Version:</source>
+        <translation>版本：</translation>
+    </message>
+</context>
+<context>
+    <name>COperate</name>
+    <message>
+        <location filename="../../Operate.cpp" line="50"/>
+        <source>Name: </source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="53"/>
+        <source>Type:</source>
+        <translation type="unfinished">類型：</translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="56"/>
+        <source>Protocol: </source>
+        <translation>協議：</translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="63"/>
+        <source>Description: </source>
+        <translation>描述：</translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="94"/>
+        <source>Set </source>
+        <translation>設置 </translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="174"/>
+        <source>Settings</source>
+        <translation>設置</translation>
+    </message>
+</context>
+<context>
+    <name>COperateDesktop</name>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="104"/>
+        <source>Name: </source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="107"/>
+        <source>Type:</source>
+        <translation type="unfinished">類型：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="110"/>
+        <source>Protocol: </source>
+        <translation>協議：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="119"/>
+        <source>Server name: </source>
+        <translation>服務器名：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="123"/>
+        <source>Server address: </source>
+        <translation>服務器地址：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="126"/>
+        <source>Proxy</source>
+        <translation>代理</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="132"/>
+        <source>SSH tunnel</source>
+        <translation>SSH 隧道</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="139"/>
+        <source>Sockes v5</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="153"/>
+        <source>Description: </source>
+        <translation>描述：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="216"/>
+        <source>Zoom</source>
+        <translation>縮放</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="220"/>
+        <source>Zoom to window</source>
+        <translation>縮放到窗口大小</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="230"/>
+        <source>Keep aspect ration to windows</source>
+        <translation>保持高寬比縮放</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="239"/>
+        <source>Original</source>
+        <translation>原始</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="247"/>
+        <source>Zoom in</source>
+        <translation>放大</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="257"/>
+        <source>Zoom out</source>
+        <translation>縮小</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="289"/>
+        <source>Send shortcut key</source>
+        <translation>發送快捷鍵</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="292"/>
+        <source>Send Ctl+Alt+Del</source>
+        <translation>發送 Ctl+Alt+Del</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="294"/>
+        <source>Send lock screen (Win+L)</source>
+        <translation>發送鎖屏快捷鍵 (Win+L)</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="298"/>
+        <source>ScreenShot</source>
+        <translation>截圖</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="305"/>
+        <location filename="../../OperateDesktop.cpp" line="506"/>
+        <source>Start record</source>
+        <translation>開始錄製</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="312"/>
+        <source>Record pause</source>
+        <translation>暫停錄製</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="503"/>
+        <source>Stop record</source>
+        <translation>停止錄製</translation>
     </message>
 </context>
 <context>
@@ -1100,6 +1107,30 @@ Restart program by administrator?</source>
     <message>
         <source>Please checked save password to enable</source>
         <translation type="vanished">請選中保存密碼按鈕</translation>
+    </message>
+</context>
+<context>
+    <name>CPlugin</name>
+    <message>
+        <location filename="../../Plugin.cpp" line="40"/>
+        <location filename="../../Plugin.cpp" line="53"/>
+        <source>Custom</source>
+        <translation>自定義</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="45"/>
+        <source>Client</source>
+        <translation>客戶端</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="47"/>
+        <source>Service</source>
+        <translation>服務</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="49"/>
+        <source>Tool</source>
+        <translation>工具</translation>
     </message>
 </context>
 <context>
