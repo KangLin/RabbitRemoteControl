@@ -204,7 +204,7 @@ fi
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
     --output appimage \
-    --deploy-deps-only=${INSTALL_APP_DIR}/plugins/Client
+    --deploy-deps-only=${INSTALL_APP_DIR}/plugins
 
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
