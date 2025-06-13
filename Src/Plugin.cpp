@@ -34,6 +34,11 @@ int CPlugin::InitTranslator()
 
 const QString CPlugin::TypeName(const TYPE t) const
 {
+    if(t >= TYPE::Custom) {
+        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
+                             + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
+        return "Custom";
+    }
     switch(t)
     {
     case TYPE::Client:
@@ -42,6 +47,10 @@ const QString CPlugin::TypeName(const TYPE t) const
         return "Service";
     case TYPE::Tool:
         return "Tool";
+    case TYPE::Custom:
+        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
+                             + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
+        return "Custom";
     }
     return QString();
 }
