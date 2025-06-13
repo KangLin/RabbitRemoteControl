@@ -4,23 +4,23 @@
 - [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - App: 重命名界面提示
 
-| 老名称  |  新名称   |  功能    |
-|--------|----------|----------|
-|远程     | 操作     | 菜单      |
-|远程->连接|操作->开始|菜单或工具条|
-|远程->断开|操作->停止|菜单或工具条|
+      | 老名称  |  新名称   |  功能    |
+      |--------|----------|----------|
+      |远程     | 操作     | 菜单      |
+      |远程->连接|操作->开始|菜单或工具条|
+      |远程->断开|操作->停止|菜单或工具条|
 
   - 重命名类名
     - 增加 CParameterPlugin
 
-|老名称           |新名称          |
-|----------------|---------------|
-|CConnecter      |COperate       |
-|Connect         |CBackend       |
-|ConnectThread   |CBackendThread |
-|CConnecterThread|COperateDesktop|
-|CPluginClient   |CPlugin        |
-|CClient         |CManager       |
+      |老名称           |新名称          |
+      |----------------|---------------|
+      |CConnecter      |COperate       |
+      |Connect         |CBackend       |
+      |ConnectThread   |CBackendThread |
+      |CConnecterThread|COperateDesktop|
+      |CPluginClient   |CPlugin        |
+      |CClient         |CManager       |
 
 ### v0.0.36
 - Client:

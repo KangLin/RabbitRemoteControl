@@ -1,28 +1,25 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CONNECTERWAKEONLAN_H
-#define CONNECTERWAKEONLAN_H
-
 #pragma once
 
-#include "ConnecterConnect.h"
+#include "Operate.h"
 #include "FrmWakeOnLan.h"
 #include "Arp.h"
 
-class CConnecterWakeOnLan : public CConnecterConnect
+class COperateWakeOnLan : public COperate
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterWakeOnLan(CPluginClient *plugin);
-    virtual ~CConnecterWakeOnLan();
+    explicit COperateWakeOnLan(CPlugin *plugin);
+    virtual ~COperateWakeOnLan();
 
     // CConnecter interface
 public:
-    virtual const QString Id() override;
-    virtual const QString Name() override;
-    virtual qint16 Version() override;
-    virtual QWidget *GetViewer() override;
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Name() override;
+    [[nodiscard]] virtual const qint16 Version() const override;
+    [[nodiscard]] virtual QWidget *GetViewer() override;
 
 protected:
     virtual int Initial() override;
@@ -30,12 +27,8 @@ protected:
 
     // CConnecter interface
 public slots:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
-
-    // CConnecterConnect interface
-public:
-    virtual CConnect *InstanceConnect() override;
+    virtual int Start() override;
+    virtual int Stop() override;
 
 Q_SIGNALS:
     void sigGetMac(CParameterWakeOnLan* p);
@@ -43,7 +36,7 @@ Q_SIGNALS:
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    virtual int SetParameterClient(CParameterClient* pPara) override;
+    virtual int SetParameterPlugin(CParameterPlugin* pPara) override;
 
     CFrmWakeOnLan* m_pView;
     CWakeOnLanModel* m_pModel;
@@ -58,5 +51,3 @@ protected:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
 };
-
-#endif // CONNECTERWAKEONLAN_H

@@ -57,7 +57,7 @@ public:
      */
     [[nodiscard]] virtual const QString Details() const;
 
-private:
+protected:
     /*!
      * \~chinese
      * \brief 新建 COperate 实例。仅由 CClient 调用

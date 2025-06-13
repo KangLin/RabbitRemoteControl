@@ -1,8 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
+#include <QLoggingCategory>
+#include <QDir>
 
 #include "PluginWakeOnLan.h"
-#include "ConnecterWakeOnLan.h"
-#include <QLoggingCategory>
+#include "OperateWakeOnLan.h"
 
 #ifdef HAVE_PCAPPLUSPLUS
     #include "PcapPlusPlusVersion.h"
@@ -32,8 +33,8 @@
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Plugin")
 CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
-    : CPluginClient{parent}
-    , m_pConnecter(nullptr)
+    : CPlugin{parent}
+    , m_pOperate(nullptr)
 {
 #ifdef HAVE_PCAPPLUSPLUS
     pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
@@ -51,12 +52,7 @@ CPluginWakeOnLan::~CPluginWakeOnLan()
     qDebug(log) << "CPluginWakeOnLan::~CPluginWakeOnLan()";
 }
 
-const QString CPluginWakeOnLan::Protocol() const
-{
-    return "Tool";
-}
-
-const CPluginClient::TYPE CPluginWakeOnLan::Type() const
+const CPlugin::TYPE CPluginWakeOnLan::Type() const
 {
     return TYPE::Tool;
 }
@@ -101,50 +97,56 @@ const QString CPluginWakeOnLan::Details() const
     return szDetails;
 }
 
-CConnecter* CPluginWakeOnLan::CreateConnecter(const QString& szId, CParameterClient* para)
+COperate* CPluginWakeOnLan::CreateOperate(const QString& szId, CParameterPlugin *para)
 {
-    if(!m_pConnecter) {
-        m_pConnecter = CPluginClient::CreateConnecter(szId, para);
-        if(!m_pConnecter) return m_pConnecter;
+    if(!m_pOperate) {
+        m_pOperate = CPlugin::CreateOperate(szId, para);
+        if(!m_pOperate) return m_pOperate;
 
-        QString szFile = m_pConnecter->GetSettingsFile();
+        QString szFile = m_pOperate->GetSettingsFile();
         QDir d(szFile);
-        if(!d.exists(szFile)) return m_pConnecter;
+        if(!d.exists(szFile)) return m_pOperate;
         int nRet = false;
-        //bRet = m_pConnecter->Load(szFile);
+        //bRet = m_pOperate->Load(szFile);
         bool bRet = QMetaObject::invokeMethod(
-            m_pConnecter,
+            m_pOperate,
             "Load",
             Qt::DirectConnection,
             Q_RETURN_ARG(int, nRet),
             Q_ARG(QString, szFile));
         if(!bRet) {
-            qCritical(log) << "Call m_pConnecter->Load(szFile) fail.";
+            qCritical(log) << "Call" << m_pOperate->metaObject()->className()
+                         + QString("::") + "Load(QString szFile) fail." << szFile;
             return nullptr;
         }
         if(nRet) {
             qCritical(log) << "Load parameter fail" << nRet;
-            DeleteConnecter(m_pConnecter);
+            DeleteOperate(m_pOperate);
             return nullptr;
         }
     }
-    return m_pConnecter;
+    return m_pOperate;
 }
 
-CConnecter* CPluginWakeOnLan::OnCreateConnecter(const QString &szId)
+COperate* CPluginWakeOnLan::OnCreateOperate(const QString &szId)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(Id() == szId)
     {
-        return new CConnecterWakeOnLan(this);
+        return new COperateWakeOnLan(this);
     }
     return nullptr;
 }
 
-int CPluginWakeOnLan::DeleteConnecter(CConnecter* p)
+int CPluginWakeOnLan::DeleteOperate(COperate* p)
 {
     qDebug(log) << Q_FUNC_INFO;
-    Q_ASSERT(m_pConnecter == p);
-    m_pConnecter = nullptr;
-    return CPluginClient::DeleteConnecter(p);
+    Q_ASSERT(m_pOperate == p);
+    m_pOperate = nullptr;
+    return CPlugin::DeleteOperate(p);
+}
+
+const QString CPluginWakeOnLan::Protocol() const
+{
+    return QString();
 }
