@@ -22,11 +22,11 @@ else()
     return()
 endif()
 
-list(APPEND WakeOnLan_LIBS Client)
+list(APPEND WakeOnLan_LIBS Plugin)
 
 SET(WakeOnLan_SOURCE_FILES
     PluginWakeOnLan.cpp
-    ConnecterWakeOnLan.cpp
+    OperateWakeOnLan.cpp
     ParameterWakeOnLan.cpp
     ParameterWakeOnLanUI.cpp
     WakeOnLan.cpp
@@ -38,7 +38,7 @@ SET(WakeOnLan_SOURCE_FILES
 
 SET(WakeOnLan_HEADER_FILES
     PluginWakeOnLan.h
-    ConnecterWakeOnLan.h
+    OperateWakeOnLan.h
     FrmWakeOnLan.h
     WakeOnLanModel.h
     WakeOnLan.h
@@ -60,7 +60,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
         list(APPEND WakeOnLan_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
     ENDFOREACH()
 endif()
-ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME Plugin${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${WakeOnLan_SOURCE_FILES} ${WakeOnLan_HEADER_FILES} ${WakeOnLan_UI_FILES}
     PRIVATE_LIBS ${WakeOnLan_LIBS}
@@ -68,8 +68,8 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_DEFINITIONS PluginWakeOnLan_VERSION="${RabbitRemoteControl_VERSION}"
     DEFINITIONS ${WakeOnLan_DEFINITIONS}
     PRIVATE_OPTIONS ${WakeOnLan_OPTIONS}
-    INSTALL_DIR plugins/Client
-    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+    INSTALL_DIR plugins
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )

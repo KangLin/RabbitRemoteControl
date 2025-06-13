@@ -1,19 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef __PLUGINWAKEONLAN_H_KL_2024_10_02__
-#define __PLUGINWAKEONLAN_H_KL_2024_10_02__
-
 #pragma once
-#include "PluginClient.h"
+#include "Plugin.h"
 
-class CPluginWakeOnLan : public CPluginClient
+class CPluginWakeOnLan : public CPlugin
 {
     Q_OBJECT
     // [Qt plugin interface]
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     // [Qt plugin interface]
 
@@ -21,23 +18,21 @@ public:
     explicit CPluginWakeOnLan(QObject *parent = nullptr);
     virtual ~CPluginWakeOnLan();
 
-    // CPluginClient interface
+    // CPlugin interface
 public:
-    virtual const TYPE Type() const override;
-    virtual const QString Protocol() const override;
-    virtual const QString Name() const override;
-    virtual const QString DisplayName() const override;
-    virtual const QString Description() const override;
-    virtual const QIcon Icon() const override;
-    virtual const QString Details() const override;
-    virtual const QString Version() const override;
+    [[nodiscard]] virtual const TYPE Type() const override;
+    [[nodiscard]] virtual const QString Name() const override;
+    [[nodiscard]] virtual const QString DisplayName() const override;
+    [[nodiscard]] virtual const QString Description() const override;
+    [[nodiscard]] virtual const QString Protocol() const override;
+    [[nodiscard]] virtual const QIcon Icon() const override;
+    [[nodiscard]] virtual const QString Details() const override;
+    [[nodiscard]] virtual const QString Version() const override;
 
 private:
-    virtual CConnecter* CreateConnecter(const QString& szId, CParameterClient* para) override;
-    virtual CConnecter* OnCreateConnecter(const QString &szId) override;
-    virtual int DeleteConnecter(CConnecter* p) override;
+    [[nodiscard]] virtual COperate* CreateOperate(const QString& szId, CParameterPlugin* para) override;
+    [[nodiscard]] virtual COperate* OnCreateOperate(const QString &szId) override;
+    virtual int DeleteOperate(COperate* p) override;
 
-    CConnecter* m_pConnecter;
+    COperate* m_pOperate;
 };
-
-#endif // __PLUGINWAKEONLAN_H_KL_2024_10_02__

@@ -9,14 +9,14 @@
 #include <QtGlobal>
 #include <QCoreApplication>
 #include "RabbitCommonTools.h"
-#include "PluginClient.h"
+#include "Plugin.h"
 
 #include "ParameterWakeOnLanUI.h"
-#include "ConnecterWakeOnLan.h"
+#include "OperateWakeOnLan.h"
 
-static Q_LOGGING_CATEGORY(log, "WakeOnLan.Connecter")
-CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
-    : CConnecterConnect(plugin)
+static Q_LOGGING_CATEGORY(log, "WakeOnLan")
+COperateWakeOnLan::COperateWakeOnLan(CPlugin *plugin)
+    : COperate(plugin)
     , m_pView(nullptr)
     , m_pModel(nullptr)
     , m_pParameterClient(nullptr)
@@ -24,23 +24,23 @@ CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CConnecterWakeOnLan::~CConnecterWakeOnLan()
+COperateWakeOnLan::~COperateWakeOnLan()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-qint16 CConnecterWakeOnLan::Version()
+const qint16 COperateWakeOnLan::Version() const
 {
     return 0;
 }
 
-int CConnecterWakeOnLan::Initial()
+int COperateWakeOnLan::Initial()
 {
-    int nRet = CConnecter::Initial();
+    int nRet = COperate::Initial();
     if(nRet) return nRet;
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
-    CPluginClient* plugin = GetPlugClient();
+    CPlugin* plugin = GetPlugin();
     m_pModel = new CWakeOnLanModel(this);
     if(!m_pModel)
         return -1;
@@ -110,7 +110,7 @@ int CConnecterWakeOnLan::Initial()
     return 0;
 }
 
-int CConnecterWakeOnLan::Clean()
+int COperateWakeOnLan::Clean()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(m_pView)
@@ -120,33 +120,32 @@ int CConnecterWakeOnLan::Clean()
     return 0;
 }
 
-QWidget *CConnecterWakeOnLan::GetViewer()
+QWidget *COperateWakeOnLan::GetViewer()
 {
     return m_pView;
 }
 
-QDialog *CConnecterWakeOnLan::OnOpenDialogSettings(QWidget *parent)
+QDialog *COperateWakeOnLan::OnOpenDialogSettings(QWidget *parent)
 {
     return nullptr;
 }
 
-const QString CConnecterWakeOnLan::Id()
+const QString COperateWakeOnLan::Id()
 {
-    QString szId = Protocol() + "_" + GetPlugClient()->Name();
+    QString szId = Protocol() + "_" + GetPlugin()->Name();
     return szId;
 }
 
-const QString CConnecterWakeOnLan::Name()
+const QString COperateWakeOnLan::Name()
 {
     QString szName;
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
+    if(m_pParameterClient && m_pParameterClient->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-    szName += GetPlugClient()->DisplayName();
+    szName += GetPlugin()->DisplayName();
     return szName;
 }
 
-int CConnecterWakeOnLan::Connect()
+int COperateWakeOnLan::Start()
 {
 #if defined(Q_OS_UNIX)
     if(!RabbitCommon::CTools::HasAdministratorPrivilege()
@@ -180,40 +179,35 @@ int CConnecterWakeOnLan::Connect()
         }
     }
 #endif
-    emit sigConnected();
+    emit sigRunning();
     return 0;
 }
 
-int CConnecterWakeOnLan::DisConnect()
+int COperateWakeOnLan::Stop()
 {
-    emit sigDisconnected();
+    emit sigFinished();
     return 0;
 }
 
-CConnect *CConnecterWakeOnLan::InstanceConnect()
+int COperateWakeOnLan::SetParameterPlugin(CParameterPlugin *pPara)
 {
-    return nullptr;
-}
-
-int CConnecterWakeOnLan::SetParameterClient(CParameterClient *pPara)
-{
-    m_pParameterClient = pPara;
+    m_pParameterClient = &pPara->m_Client;
     return 0;
 }
 
-int CConnecterWakeOnLan::Load(QSettings &set)
+int COperateWakeOnLan::Load(QSettings &set)
 {
     if(!m_pModel) return -1;
     return m_pModel->Load(set, m_pParameterClient);
 }
 
-int CConnecterWakeOnLan::Save(QSettings &set)
+int COperateWakeOnLan::Save(QSettings &set)
 {
     if(!m_pModel) return -1;
     return m_pModel->Save(set);
 }
 
-void CConnecterWakeOnLan::slotAdd()
+void COperateWakeOnLan::slotAdd()
 {
     QSharedPointer<CParameterWakeOnLan> para(new CParameterWakeOnLan());
     para->SetParameterClient(m_pParameterClient);

@@ -5,23 +5,23 @@
   - App:
     - Rename UI prompts
 
-| Old name         |  New name    |  Function      |
-|------------------|--------------|----------------|
-|Remote            | Operate      | Menu           |
-|Remote->Connect   |Operate->Start|Menu or tool bar|
-|Remote->Disconnect|Operate->Stop |Menu or tool bar|
+      | Old name         |  New name    |  Function      |
+      |------------------|--------------|----------------|
+      |Remote            | Operate      | Menu           |
+      |Remote->Connect   |Operate->Start|Menu or tool bar|
+      |Remote->Disconnect|Operate->Stop |Menu or tool bar|
 
   - Rename class name
     - Add CParameterPlugin
 
-|Old name        |New Name       |
-|----------------|---------------|
-|CConnecter      |COperate       |
-|Connect         |CBackend       |
-|ConnectThread   |CBackendThread |
-|CConnecterThread|COperateDesktop|
-|CPluginClient   |CPlugin        |
-|CClient         |CManager       |
+      |Old name        |New Name       |
+      |----------------|---------------|
+      |CConnecter      |COperate       |
+      |Connect         |CBackend       |
+      |ConnectThread   |CBackendThread |
+      |CConnecterThread|COperateDesktop|
+      |CPluginClient   |CPlugin        |
+      |CClient         |CManager       |
 
 ### v0.0.36
 - Client:
