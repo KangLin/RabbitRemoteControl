@@ -157,10 +157,6 @@ CFrmActive::~CFrmActive()
 void CFrmActive::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu;
-    menu.addMenu(m_pRecentMenu);
-    menu.addMenu(m_pOperate);
-    menu.addAction(m_pStop);
-    menu.addSeparator();
     int r = m_pTableView->currentIndex().row();
     if(-1 < r && r < m_Operates.size())
     {
@@ -172,6 +168,11 @@ void CFrmActive::slotCustomContextMenu(const QPoint &pos)
                 menu.addActions(m->actions());
         }
     }
+    if(!menu.isEmpty())
+        menu.addSeparator();
+    menu.addMenu(m_pRecentMenu);
+    menu.addMenu(m_pOperate);
+    menu.addAction(m_pStop);
     menu.exec(mapToGlobal(pos));
 }
 
