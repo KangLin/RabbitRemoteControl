@@ -307,6 +307,7 @@ apps:
       PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
+     # [KDE neon extensions](https://documentation.ubuntu.com/snapcraft/stable/reference/extensions/kde-neon-extensions/)
      - kde-neon-6
      #- kde-neon-qt6
    # See: https://snapcraft.io/docs/supported-interfaces
