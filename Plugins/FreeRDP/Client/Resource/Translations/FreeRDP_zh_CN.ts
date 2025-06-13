@@ -254,7 +254,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>网关消息</translation>
     </message>
 </context>
-</context>
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
