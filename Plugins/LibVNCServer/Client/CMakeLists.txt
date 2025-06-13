@@ -4,7 +4,7 @@ project(LibVNCServer
     DESCRIPTION "LibVNCServer client plugin"
     )
 
-set(_libvncLibs Client)
+set(_libvncLibs Plugin)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets Network)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
@@ -44,24 +44,21 @@ endif()
 SET(SOURCE_FILES
     ParameterLibVNCServer.cpp
     PluginLibVNCServer.cpp
-    ConnecterLibVNCServer.cpp
-    ConnectLibVNCServer.cpp
+    OperateLibVNCServer.cpp
+    BackendLibVNCServer.cpp
     DlgSettingsLibVnc.cpp
-    DlgLibVNCServerPassword.cpp
     )
 
 SET(HEADER_FILES
     ParameterLibVNCServer.h
     PluginLibVNCServer.h
-    ConnecterLibVNCServer.h
-    ConnectLibVNCServer.h
+    OperateLibVNCServer.h
+    BackendLibVNCServer.h
     DlgSettingsLibVnc.h
-    DlgLibVNCServerPassword.h
     )
 
 SET(UI_FILES
     DlgSettingsLibVnc.ui
-    DlgLibVNCServerPassword.ui
     )
 
 if(MSVC)
@@ -80,8 +77,8 @@ if(_LibvncIncludeDir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR plugins
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
         VERSION ${RabbitRemoteControl_VERSION}
         )
 else()
@@ -91,8 +88,8 @@ else()
         PRIVATE_DEFINITIONS ${LIBVNCSERVER_PRIVATE_DEFINITIONS}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR plugins
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
         VERSION ${RabbitRemoteControl_VERSION}
         )
 endif()

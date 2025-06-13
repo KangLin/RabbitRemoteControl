@@ -3,24 +3,24 @@
 
 #pragma once
 
-#include "ConnectDesktop.h"
+#include "BackendDesktop.h"
 #include "rfb/rfbclient.h"
 #include <QTcpSocket>
 #include <QTcpServer>
-#include "ConnecterLibVNCServer.h"
+#include "OperateLibVNCServer.h"
 #include "Event.h"
 
 #ifdef HAVE_LIBSSH
 #include "SSHTunnelThread.h"
 #endif
 
-class CConnectLibVNCServer : public CConnectDesktop
+class CBackendLibVNCServer : public CBackendDesktop
 {
     Q_OBJECT
 
 public:
-    explicit CConnectLibVNCServer(CConnecterLibVNCServer* pConnecter);
-    virtual ~CConnectLibVNCServer() override;
+    explicit CBackendLibVNCServer(COperateLibVNCServer* pOperate);
+    virtual ~CBackendLibVNCServer() override;
     
     static rfbBool cb_resize(rfbClient* client);
     static void cb_update (rfbClient *client, int x, int y, int w, int h);
@@ -60,7 +60,6 @@ private:
     QImage m_Image;
 
 private:
-    CConnecter* m_pConnecter;
     CParameterLibVNCServer* m_pParameter;
     QTcpSocket m_tcpSocket;
     QTcpServer m_Server;

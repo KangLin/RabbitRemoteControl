@@ -2514,7 +2514,7 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::InitSSHTunnelPipe()
     check = connect(m_pThreadSSH, SIGNAL(sigError(int,QString)),
                     this, SIGNAL(sigError(int,QString)));
     Q_ASSERT(check);
-    check = connect(m_pThreadSSH, SIGNAL(sigDisconnect()),
+    check = connect(m_pThreadSSH, SIGNAL(sigStop()),
                     this, SIGNAL(sigStop()));
     Q_ASSERT(check);
     m_pThreadSSH->start();
