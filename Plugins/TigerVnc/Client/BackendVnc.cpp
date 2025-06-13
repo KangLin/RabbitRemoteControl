@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnectVnc.h"
-#include "ConnecterThread.h"
+#include "BackendVnc.h"
+#include "OperateDesktop.h"
 
 #ifndef WIN32
 #include <string.h>
@@ -27,6 +27,7 @@
 
 #include "FramePixelBuffer.h"
 
+#include <QDir>
 #include <QMimeData>
 #include <QClipboard>
 #include <QApplication>
@@ -92,8 +93,8 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
-CConnectVnc::CConnectVnc(CConnecterThread *pConnecter)
-    : CConnectDesktop(pConnecter),
+CBackendVnc::CBackendVnc(COperateDesktop *pConnecter)
+    : CBackendDesktop(pConnecter),
       m_pPara(nullptr)
 {
     static bool initlog = false;
@@ -120,12 +121,12 @@ CConnectVnc::CConnectVnc(CConnecterThread *pConnecter)
     }
 }
 
-CConnectVnc::~CConnectVnc()
+CBackendVnc::~CBackendVnc()
 {
     qDebug(log) << "CConnectVnc::~CConnectVnc()";
 }
 
-int CConnectVnc::SetPara()
+int CBackendVnc::SetPara()
 {
     QDir d(os::getvncconfigdir());
     if(!d.exists())
@@ -190,7 +191,7 @@ int CConnectVnc::SetPara()
  * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
  * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
-CConnect::OnInitReturnValue CConnectVnc::OnInit()
+CBackendVnc::OnInitReturnValue CBackendVnc::OnInit()
 {
     qDebug(log) << "CConnectVnc::OnInit()";
     int nRet = 0;
@@ -212,7 +213,7 @@ CConnect::OnInitReturnValue CConnectVnc::OnInit()
     return OnInitReturnValue::NotUseOnProcess;
 }
 
-int CConnectVnc::IceInit()
+int CBackendVnc::IceInit()
 {
 #ifdef HAVE_ICE
     CIceSignal* pSignal = CICE::Instance()->GetSignal().data();
@@ -257,7 +258,7 @@ int CConnectVnc::IceInit()
     return 0;
 }
 
-int CConnectVnc::SocketInit()
+int CBackendVnc::SocketInit()
 {
     int nRet = 0;
     try{
@@ -366,7 +367,7 @@ int CConnectVnc::SocketInit()
     return nRet;
 }
 
-int CConnectVnc::SSHInit()
+int CBackendVnc::SSHInit()
 {
 #ifdef HAVE_LIBSSH
     auto channel = QSharedPointer<CChannelSSHTunnel>(
@@ -396,7 +397,7 @@ int CConnectVnc::SSHInit()
     return 0;
 }
 
-int CConnectVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
+int CBackendVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
 {
     bool check = false;
     check = connect(channel.data(), SIGNAL(sigConnected()),
@@ -414,7 +415,7 @@ int CConnectVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     return 0;
 }
 
-int CConnectVnc::OnClean()
+int CBackendVnc::OnClean()
 {
     qDebug(log) << "CConnectVnc::OnClean()";
     close();
@@ -438,7 +439,7 @@ int CConnectVnc::OnClean()
  *    \li < -1: error
  * \see CConnect::Connect() CConnect::slotTimeOut()
  */
-int CConnectVnc::OnProcess()
+int CBackendVnc::OnProcess()
 {
     int nRet = 0;
 #ifdef HAVE_LIBSSH
@@ -452,7 +453,7 @@ int CConnectVnc::OnProcess()
     return nRet;
 }
 
-int CConnectVnc::WakeUp()
+int CBackendVnc::WakeUp()
 {
 #ifdef HAVE_LIBSSH
     if(m_pPara->m_Proxy.GetUsedType() == CParameterProxy::TYPE::SSHTunnel) {
@@ -464,9 +465,9 @@ int CConnectVnc::WakeUp()
     return 0;
 }
 
-void CConnectVnc::slotConnected()
+void CBackendVnc::slotConnected()
 {
-    //qDebug(log) << "CConnectVnc::slotConnected()";
+    qDebug(log) << Q_FUNC_INFO;
     if(m_pPara->GetIce())
         qInfo(log) << "Connected to peer " + m_pPara->GetPeerUser();
     else {
@@ -486,7 +487,7 @@ void CConnectVnc::slotConnected()
     int nRet = SetPara();
     if(nRet)
     {
-        emit sigDisconnect();
+        emit sigStop();
         return;
     }
     m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
@@ -494,14 +495,14 @@ void CConnectVnc::slotConnected()
     if(!(m_InStream && m_OutStream))
     {
         qCritical(log) << "m_InStream or m_OutStream is null";
-        emit sigDisconnect();
+        emit sigStop();
         return;
     }
     setStreams(m_InStream.data(), m_OutStream.data());
     initialiseProtocol();
 }
 
-void CConnectVnc::slotDisConnected()
+void CBackendVnc::slotDisConnected()
 {
     QString szInfo;
     szInfo = "CConnectVnc::slotDisConnected() from "
@@ -518,7 +519,7 @@ void CConnectVnc::slotDisConnected()
     qInfo(log) << szInfo;
 }
 
-void CConnectVnc::slotReadyRead()
+void CBackendVnc::slotReadyRead()
 {
     //qDebug(log) << "CConnectVnc::slotReadyRead";
     QString szErr("processMsg exception: ");
@@ -571,40 +572,40 @@ void CConnectVnc::slotReadyRead()
     }
     qCritical(log) << szErr;
     emit sigError(nRet, szErr);
-    emit sigDisconnect();
+    emit sigStop();
 }
 
-void CConnectVnc::slotChannelError(int nErr, const QString& szErr)
+void CBackendVnc::slotChannelError(int nErr, const QString& szErr)
 {
     qDebug(log) << "Channel error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
-    emit sigDisconnect();
+    emit sigStop();
 }
 
 // initDone() is called when the serverInit message has been received.  At
 // this point we create the desktop window and display it.  We also tell the
 // server the pixel format and encodings to use and request the first update.
-void CConnectVnc::initDone()
+void CBackendVnc::initDone()
 {
     Q_ASSERT(m_pPara);
     qDebug(log, "initDone:\n%s", ConnectInformation().toStdString().c_str());
-    
+
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
     emit sigServerName(szName);
 
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
-    
+
     // Force a switch to the format and encoding we'd like
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
     updatePixelFormat();
-    
-    emit sigConnected();
+
+    emit sigRunning();
 }
 
-void CConnectVnc::resizeFramebuffer()
+void CBackendVnc::resizeFramebuffer()
 {
     rfb::ModifiablePixelBuffer* buffer = getFramebuffer();
 
@@ -620,24 +621,24 @@ void CConnectVnc::resizeFramebuffer()
     emit sigSetDesktopSize(server.width(), server.height());
 }
 
-void CConnectVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
+void CBackendVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
 {
     qCritical(log) << "Invalid SetColourMapEntries from server!";
 }
 
-void CConnectVnc::bell()
+void CBackendVnc::bell()
 {
     qApp->beep();
 }
 
-void CConnectVnc::setLEDState(unsigned int state)
+void CBackendVnc::setLEDState(unsigned int state)
 {
     qDebug(log) << "CConnectVnc::setLEDState" << state;
     CConnection::setLEDState(state);
     emit sigUpdateLedState(state);
 }
 
-void CConnectVnc::setCursor(int width, int height, const rfb::Point &hotspot, const uint8_t *data)
+void CBackendVnc::setCursor(int width, int height, const rfb::Point &hotspot, const uint8_t *data)
 {
     //qDebug(log) << "CConnectVnc::setCursor x:" << hotspot.x << ";y:" << hotspot.y;
     if ((width == 0) || (height == 0)) {
@@ -653,13 +654,13 @@ void CConnectVnc::setCursor(int width, int height, const rfb::Point &hotspot, co
     }
 }
 
-void CConnectVnc::setCursorPos(const rfb::Point &pos)
+void CBackendVnc::setCursorPos(const rfb::Point &pos)
 {
     //qDebug(log) << "CConnectVnc::setCursorPos x:" << pos.x << ";y:" << pos.y;
     emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
 }
 
-void CConnectVnc::fence(uint32_t flags, unsigned int len, const uint8_t data[])
+void CBackendVnc::fence(uint32_t flags, unsigned int len, const uint8_t data[])
 {
     //qDebug(log, "CConnectVnc::fence:flags:0x%X; len:%d", flags, len);
     CMsgHandler::fence(flags, len, data);
@@ -672,7 +673,7 @@ void CConnectVnc::fence(uint32_t flags, unsigned int len, const uint8_t data[])
     return;   
 }
 
-void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *password)
+void CBackendVnc::getUserPasswd(bool secure, std::string *user, std::string *password)
 {
     if(password)
     {
@@ -681,7 +682,8 @@ void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
         if(user.GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
-            emit sigBlockShowWidget("CDlgGetPasswordVNC", nRet, m_pPara);
+            auto *net = &m_pPara->m_Net;
+            emit sigBlockShowWidget("CDlgUserPassword", nRet, net);
             if(QDialog::Accepted == nRet)
             {
                 *password = user.GetPassword().toStdString();
@@ -690,7 +692,7 @@ void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
     }
 }
 
-int CConnectVnc::getX509File(std::string *ca, std::string *crl)
+int CBackendVnc::getX509File(std::string *ca, std::string *crl)
 {
     auto &user = m_pPara->m_Net.m_User;
     if(ca)
@@ -700,7 +702,7 @@ int CConnectVnc::getX509File(std::string *ca, std::string *crl)
     return 0;
 }
 
-bool CConnectVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const char *text)
+bool CBackendVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const char *text)
 {
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
@@ -723,7 +725,7 @@ bool CConnectVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const ch
 }
 
 // setName() is called when the desktop name changes
-void CConnectVnc::setName(const char *name)
+void CBackendVnc::setName(const char *name)
 {
     qDebug(log) << "CConnectVnc::setName:" << name;
     CConnection::setName(name);
@@ -735,7 +737,7 @@ void CConnectVnc::setName(const char *name)
 // Here we try to send out a new framebuffer update request so that the
 // next update can be sent out in parallel with us decoding the current
 // one.
-void CConnectVnc::framebufferUpdateStart()
+void CBackendVnc::framebufferUpdateStart()
 {
     //qDebug(log) << "CConnectVnc::framebufferUpdateStart()";
     CConnection::framebufferUpdateStart();
@@ -745,7 +747,7 @@ void CConnectVnc::framebufferUpdateStart()
 // For each rectangle, the FdInStream will have timed the speed
 // of the connection, allowing us to select format and encoding
 // appropriately, and then request another incremental update.
-void CConnectVnc::framebufferUpdateEnd()
+void CBackendVnc::framebufferUpdateEnd()
 {
     //qDebug(log) << "CConnectVnc::framebufferUpdateEnd()";
     rfb::CConnection::framebufferUpdateEnd();
@@ -759,7 +761,7 @@ void CConnectVnc::framebufferUpdateEnd()
 
 // requestNewUpdate() requests an update from the server, having set the
 // format and encoding appropriately.
-void CConnectVnc::updatePixelFormat()
+void CBackendVnc::updatePixelFormat()
 {
     Q_ASSERT(m_pPara);
     
@@ -787,7 +789,7 @@ void CConnectVnc::updatePixelFormat()
     setPF(pf);
 }
 
-void CConnectVnc::mousePressEvent(QMouseEvent *event)
+void CBackendVnc::mousePressEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -814,7 +816,7 @@ void CConnectVnc::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void CConnectVnc::mouseReleaseEvent(QMouseEvent *event)
+void CBackendVnc::mouseReleaseEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -829,7 +831,7 @@ void CConnectVnc::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void CConnectVnc::mouseMoveEvent(QMouseEvent *event)
+void CBackendVnc::mouseMoveEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -856,7 +858,7 @@ void CConnectVnc::mouseMoveEvent(QMouseEvent *event)
 }
 
 // https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#pointerevent
-void CConnectVnc::wheelEvent(QWheelEvent *event)
+void CBackendVnc::wheelEvent(QWheelEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -902,7 +904,7 @@ void CConnectVnc::wheelEvent(QWheelEvent *event)
     }
 }
 
-void CConnectVnc::keyPressEvent(QKeyEvent *event)
+void CBackendVnc::keyPressEvent(QKeyEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -920,7 +922,7 @@ void CConnectVnc::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
+void CBackendVnc::keyReleaseEvent(QKeyEvent *event)
 {
     if(m_pPara && m_pPara->GetOnlyView()) return;
     if(!writer()) return;
@@ -938,7 +940,7 @@ void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-QString CConnectVnc::ConnectInformation()
+QString CBackendVnc::ConnectInformation()
 {
     const int len = 128;
     char buf[len];
@@ -967,13 +969,13 @@ QString CConnectVnc::ConnectInformation()
 }
 
 /**
- * @brief CConnectVnc::TranslateRfbKey
+ * @brief CBackendVnc::TranslateRfbKey
  * @param inkey
  * @param modifier
  * @return 
  * @see https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent
  */
-quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
+quint32 CBackendVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 {
     quint32 k = 5000;
     
@@ -1234,7 +1236,7 @@ quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     
 }
 
-void CConnectVnc::slotClipBoardChanged()
+void CBackendVnc::slotClipBoardChanged()
 {
     //qDebug(log) << "CConnectVnc::slotClipBoardChanged()";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
@@ -1243,7 +1245,7 @@ void CConnectVnc::slotClipBoardChanged()
     announceClipboard(true);
 }
 
-void CConnectVnc::handleClipboardRequest()
+void CBackendVnc::handleClipboardRequest()
 {
     //qDebug(log) << "CConnectVnc::handleClipboardRequest";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
@@ -1275,7 +1277,7 @@ void CConnectVnc::handleClipboardRequest()
     }
 }
 
-void CConnectVnc::handleClipboardAnnounce(bool available)
+void CBackendVnc::handleClipboardAnnounce(bool available)
 {
     //qDebug(log) << "CConnectVnc::handleClipboardAnnounce";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
@@ -1283,7 +1285,7 @@ void CConnectVnc::handleClipboardAnnounce(bool available)
         this->requestClipboard();
 }
 
-void CConnectVnc::handleClipboardData(const char *data)
+void CBackendVnc::handleClipboardData(const char *data)
 {
     //qDebug(log) << "CConnectVnc::handleClipboardData";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
@@ -1293,7 +1295,7 @@ void CConnectVnc::handleClipboardData(const char *data)
     emit sigSetClipboard(pData);
 }
 
-void CConnectVnc::authSuccess()
+void CBackendVnc::authSuccess()
 {
     qDebug(log) << "CConnectVnc::authSuccess";
 }

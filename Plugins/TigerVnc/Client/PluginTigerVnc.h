@@ -1,21 +1,18 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPLUGINTIGERVNC_H_KL_2021_07_23
-#define CPLUGINTIGERVNC_H_KL_2021_07_23
-
 #pragma once
 
-#include "PluginClient.h"
+#include "Plugin.h"
 
-class CPluginTigerVnc : public CPluginClient
+class CPluginTigerVnc : public CPlugin
 {
     Q_OBJECT
     
     //! [Qt plugin interface]
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     //! [Qt plugin interface]
     
@@ -33,7 +30,5 @@ public:
     virtual const QString Version() const override;
 
 private:
-    virtual CConnecter* OnCreateConnecter(const QString& szID) override;
+    virtual COperate* OnCreateOperate(const QString& szID) override;
 };
-
-#endif // CPLUGINTIGERVNC_H_KL_2021_07_23

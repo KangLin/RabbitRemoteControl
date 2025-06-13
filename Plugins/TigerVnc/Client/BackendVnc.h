@@ -7,7 +7,7 @@
 
 #include <QEventLoop>
 
-#include "ConnectDesktop.h"
+#include "BackendDesktop.h"
 #include "Channel.h"
 #include "ParameterVnc.h"
 
@@ -19,16 +19,16 @@
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
 
-class CConnecterThread;
-class CConnectVnc
-    : public CConnectDesktop,
+class COperateDesktop;
+class CBackendVnc
+    : public CBackendDesktop,
       public rfb::CConnection
 {
     Q_OBJECT
 
 public:
-    explicit CConnectVnc(CConnecterThread* pConnecter);
-    virtual ~CConnectVnc() override;
+    explicit CBackendVnc(COperateDesktop* pConnecter);
+    virtual ~CBackendVnc() override;
 
 public Q_SLOTS:
     virtual void slotConnected();
@@ -79,7 +79,7 @@ protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
-    // CConnectDesktop interface
+    // CBackendDesktop interface
     virtual int WakeUp() override;
 
 private:
