@@ -4,8 +4,8 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="258"/>
-        <location filename="../../FavoriteView.cpp" line="262"/>
+        <location filename="../../FavoriteView.cpp" line="286"/>
+        <location filename="../../FavoriteView.cpp" line="290"/>
         <source>New group</source>
         <translation>新建组</translation>
     </message>
@@ -15,53 +15,53 @@
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="99"/>
-        <location filename="../../FavoriteView.cpp" line="104"/>
+        <location filename="../../FavoriteView.cpp" line="114"/>
+        <location filename="../../FavoriteView.cpp" line="119"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="253"/>
+        <location filename="../../FavoriteView.cpp" line="281"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="254"/>
+        <location filename="../../FavoriteView.cpp" line="282"/>
         <source>Open settings and Start</source>
         <translation>打开设置并开始</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="255"/>
+        <location filename="../../FavoriteView.cpp" line="283"/>
         <source>Delete operate</source>
         <translation>删除操作</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="260"/>
+        <location filename="../../FavoriteView.cpp" line="288"/>
         <source>Delete group</source>
         <translation>删除组</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="265"/>
+        <location filename="../../FavoriteView.cpp" line="293"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="308"/>
+        <location filename="../../FavoriteView.cpp" line="336"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="308"/>
+        <location filename="../../FavoriteView.cpp" line="336"/>
         <source>Input group name</source>
         <translation>输入组名</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="313"/>
+        <location filename="../../FavoriteView.cpp" line="341"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="313"/>
+        <location filename="../../FavoriteView.cpp" line="341"/>
         <source>The group [%1] is existed</source>
         <translation>组 [%1] 已经存在</translation>
     </message>

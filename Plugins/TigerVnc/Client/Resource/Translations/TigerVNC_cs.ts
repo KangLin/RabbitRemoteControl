@@ -2,78 +2,50 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
-    <name>CConnectVnc</name>
+    <name>CBackendVnc</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="316"/>
+        <location filename="../../BackendVnc.cpp" line="317"/>
         <source>The proxy server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="318"/>
-        <location filename="../../ConnectVnc.cpp" line="350"/>
-        <location filename="../../ConnectVnc.cpp" line="392"/>
-        <location filename="../../ConnectVnc.cpp" line="541"/>
-        <location filename="../../ConnectVnc.cpp" line="556"/>
+        <location filename="../../BackendVnc.cpp" line="319"/>
+        <location filename="../../BackendVnc.cpp" line="351"/>
+        <location filename="../../BackendVnc.cpp" line="393"/>
+        <location filename="../../BackendVnc.cpp" line="542"/>
+        <location filename="../../BackendVnc.cpp" line="557"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="348"/>
+        <location filename="../../BackendVnc.cpp" line="349"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="383"/>
+        <location filename="../../BackendVnc.cpp" line="384"/>
         <source>Failed to open SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="535"/>
+        <location filename="../../BackendVnc.cpp" line="536"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="539"/>
-        <location filename="../../ConnectVnc.cpp" line="552"/>
+        <location filename="../../BackendVnc.cpp" line="540"/>
+        <location filename="../../BackendVnc.cpp" line="553"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="540"/>
+        <location filename="../../BackendVnc.cpp" line="541"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="548"/>
+        <location filename="../../BackendVnc.cpp" line="549"/>
         <source>Connect to </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CDlgGetPasswordVNC</name>
-    <message>
-        <location filename="../../DlgGetUserPasswordVNC.ui" line="14"/>
-        <source>Input password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPasswordVNC.ui" line="20"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPasswordVNC.ui" line="61"/>
-        <source>OK(&amp;O)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPasswordVNC.ui" line="71"/>
-        <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPasswordVNC.cpp" line="50"/>
-        <source>Set password for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -323,22 +295,22 @@
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="32"/>
+        <location filename="../../PluginTigerVnc.cpp" line="37"/>
         <source>TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="37"/>
+        <location filename="../../PluginTigerVnc.cpp" line="42"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="38"/>
+        <location filename="../../PluginTigerVnc.cpp" line="43"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="39"/>
+        <location filename="../../PluginTigerVnc.cpp" line="44"/>
         <source>The plugin is used TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -346,7 +318,7 @@
 <context>
     <name>S:</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="868"/>
+        <location filename="../../BackendVnc.cpp" line="951"/>
         <source></source>
         <comment>Will be filled in with a string describing the</comment>
         <translation></translation>

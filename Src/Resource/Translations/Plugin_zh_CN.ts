@@ -419,7 +419,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../Operate.cpp" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished">类型：</translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="56"/>
@@ -452,7 +452,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../OperateDesktop.cpp" line="107"/>
         <source>Type:</source>
-        <translation type="unfinished">类型：</translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="110"/>
