@@ -21,7 +21,8 @@ public:
     enum class TYPE{
         Client,
         Service,
-        Tool
+        Tool,
+        Custom = 1000 //!\note please override `virtual const QString TypeName(const TYPE t) const`
     };
     [[nodiscard]] virtual const TYPE Type() const = 0;
     [[nodiscard]] virtual const QString TypeName(const TYPE t) const;
