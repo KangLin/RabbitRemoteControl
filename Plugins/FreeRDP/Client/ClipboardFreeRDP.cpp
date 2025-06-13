@@ -12,13 +12,13 @@
 #include <QStandardPaths>
 #include <QDir>
 
-#include "ConnectFreeRDP.h"
+#include "BackendFreeRDP.h"
 #include "ClipboardMimeData.h"
 #include "freerdp/version.h"
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Clipboard")
 
-CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
+CClipboardFreeRDP::CClipboardFreeRDP(CBackendFreeRDP *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
     m_pClipboard(nullptr),

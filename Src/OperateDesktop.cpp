@@ -112,7 +112,7 @@ const QString COperateDesktop::Description()
         if(!GetPlugin()->DisplayName().isEmpty())
             szDescription += " - " + GetPlugin()->DisplayName();
 #endif
-            + "\n";
+        szDescription += "\n";
     }
     
     if(!ServerName().isEmpty())

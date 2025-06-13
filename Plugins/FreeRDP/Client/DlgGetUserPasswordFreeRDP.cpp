@@ -7,7 +7,6 @@ static int g_CDlgGetUserPasswordFreeRDP = qRegisterMetaType<CDlgGetUserPasswordF
 CDlgGetUserPasswordFreeRDP::CDlgGetUserPasswordFreeRDP(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgGetUserPasswordFreeRDP),
-    m_pConnecter(nullptr),
     m_pParameter(nullptr)
 {
     ui->setupUi(this);
@@ -15,7 +14,6 @@ CDlgGetUserPasswordFreeRDP::CDlgGetUserPasswordFreeRDP(QWidget *parent) :
 
 CDlgGetUserPasswordFreeRDP::CDlgGetUserPasswordFreeRDP(const CDlgGetUserPasswordFreeRDP& dlg)
 {
-    m_pConnecter = dlg.m_pConnecter;
     m_pParameter = dlg.m_pParameter;
 }
 
@@ -26,20 +24,14 @@ CDlgGetUserPasswordFreeRDP::~CDlgGetUserPasswordFreeRDP()
 
 void CDlgGetUserPasswordFreeRDP::SetContext(void *pContext)
 {
-}
-
-void CDlgGetUserPasswordFreeRDP::SetConnecter(CConnecter *pConnecter)
-{
-    m_pConnecter = qobject_cast<CConnecterFreeRDP*>(pConnecter);
-    if(!m_pConnecter) return;
-
-    m_pParameter = qobject_cast<CParameterFreeRDP*>(m_pConnecter->GetParameter());
+    m_pParameter = (CParameterFreeRDP*)(pContext);
     Q_ASSERT(m_pParameter);
     if(!m_pParameter) return;
-
-    ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
+    
+    auto &net = m_pParameter->m_Net;
+    ui->lbText->setText(tr("Set password for %1:%2").arg(net.GetHost()).arg(net.GetPort()));
     ui->leDomain->setText(m_pParameter->GetDomain());
-    ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
+    ui->wUser->SetParameter(&net.m_User);
 }
 
 void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()

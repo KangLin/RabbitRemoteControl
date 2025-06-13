@@ -11,12 +11,12 @@
 #include "freerdp/client/cliprdr.h"
 #include "winpr/clipboard.h"
 
-class CConnectFreeRDP;
+class CBackendFreeRDP;
 class CClipboardFreeRDP : public QObject
 {
     Q_OBJECT
 public:
-    explicit CClipboardFreeRDP(CConnectFreeRDP *parent = nullptr);
+    explicit CClipboardFreeRDP(CBackendFreeRDP *parent = nullptr);
     virtual ~CClipboardFreeRDP();
 
     int Init(CliprdrClientContext *context, bool bEnable);
@@ -96,7 +96,7 @@ Q_SIGNALS:
     void sigServerFileContentsRespose(UINT32 streamId, QByteArray& data);
     
 private:
-    CConnectFreeRDP* m_pConnect;
+    CBackendFreeRDP* m_pConnect;
     CliprdrClientContext* m_pCliprdrClientContext;
     friend CClipboardMimeData;
     QList<qint32> m_lstClipboardMimeDataId;

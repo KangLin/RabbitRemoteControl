@@ -4,13 +4,13 @@ project(FreeRDP
     DESCRIPTION "FreeRDP client plugin"
     )
 
-SET(FreeRDP_LIBS freerdp-client freerdp winpr Client)
+SET(FreeRDP_LIBS freerdp-client freerdp winpr Plugin)
 
 SET(FreeRDP_SOURCE_FILES
     ParameterFreeRDP.cpp
     PluginFreeRDP.cpp
-    ConnectFreeRDP.cpp
-    ConnecterFreeRDP.cpp
+    BackendFreeRDP.cpp
+    OperateFreeRDP.cpp
     DlgSetFreeRDP.cpp
     ConvertKeyCode.cpp
     CursorFreeRDP.cpp
@@ -23,8 +23,8 @@ SET(FreeRDP_SOURCE_FILES
 SET(FreeRDP_HEADER_FILES
     ParameterFreeRDP.h
     PluginFreeRDP.h
-    ConnectFreeRDP.h
-    ConnecterFreeRDP.h
+    BackendFreeRDP.h
+    OperateFreeRDP.h
     DlgSetFreeRDP.h
     ConvertKeyCode.h
     CursorFreeRDP.h
@@ -74,8 +74,8 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_DEFINITIONS ${FreeRDP_DEFINITIONS}
        PluginFreeDP_VERSION="${RabbitRemoteControl_VERSION}"
     PRIVATE_OPTIONS ${FreeRDP_OPTIONS}
-    INSTALL_DIR plugins/Client
-    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+    INSTALL_DIR plugins
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )

@@ -1,23 +1,22 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTERFREERDP_H
-#define CCONNECTERFREERDP_H
+#pragma once
 
-#include "ConnecterThread.h"
+#include "OperateDesktop.h"
 #include "ParameterFreeRDP.h"
 
-class CConnecterFreeRDP : public CConnecterThread
+class COperateFreeRDP : public COperateDesktop
 {
     Q_OBJECT
 public:
-    explicit CConnecterFreeRDP(CPluginClient *plugin);
-    virtual ~CConnecterFreeRDP() override;
+    explicit COperateFreeRDP(CPlugin *plugin);
+    virtual ~COperateFreeRDP() override;
 
 public:
-    virtual qint16 Version() override;
+    [[nodiscard]] virtual const qint16 Version() const override;
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    virtual CConnect *InstanceConnect() override;
+    Q_INVOKABLE [[nodiscard]] virtual CBackend *InstanceBackend() override;
     virtual int Initial() override;
     virtual int Clean() override;
 
@@ -26,5 +25,3 @@ private:
     CParameterFreeRDP m_ParameterFreeRdp;
     //! [Initialize parameter]
 };
-
-#endif // CCONNECTERFREERDP_H

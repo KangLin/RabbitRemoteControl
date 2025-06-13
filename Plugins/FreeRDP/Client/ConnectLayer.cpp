@@ -5,13 +5,13 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect.Layer")
 
-CConnectLayer::CConnectLayer(CConnectFreeRDP *connect)
-    : QObject{connect}
-    , m_pConnect(connect)
+CConnectLayer::CConnectLayer(CBackendFreeRDP *pOperate)
+    : QObject{pOperate}
+    , m_pOperate(pOperate)
 {
-    Q_ASSERT(connect);
-    if(connect)
-        m_pParameter = connect->m_pParameter;
+    Q_ASSERT(pOperate);
+    if(pOperate)
+        m_pParameter = pOperate->m_pParameter;
 }
 
 CConnectLayer::~CConnectLayer()

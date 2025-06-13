@@ -10,12 +10,12 @@
 #include "freerdp/version.h"
 #include "freerdp/freerdp.h"
 
-class CConnectFreeRDP;
+class CBackendFreeRDP;
 class CCursorFreeRDP : public QObject
 {
     Q_OBJECT
 public:
-    explicit CCursorFreeRDP(CConnectFreeRDP *parent = nullptr);
+    explicit CCursorFreeRDP(CBackendFreeRDP *parent = nullptr);
     
     int RegisterPointer(rdpGraphics* graphics);
     struct _Pointer{
@@ -44,7 +44,7 @@ public:
     BOOL onSetPosition(rdpContext* context,  UINT32 x, UINT32 y);
     
 private:
-    CConnectFreeRDP* m_pConnect;
+    CBackendFreeRDP* m_pConnect;
     
     QImage m_Cursor;
     QLoggingCategory m_Logger;

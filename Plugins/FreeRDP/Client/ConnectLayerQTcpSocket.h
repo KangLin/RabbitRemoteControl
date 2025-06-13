@@ -9,7 +9,7 @@ class CConnectLayerQTcpSocket : public CConnectLayer
 {
     Q_OBJECT
 public:
-    explicit CConnectLayerQTcpSocket(CConnectFreeRDP* connect = nullptr);
+    explicit CConnectLayerQTcpSocket(CBackendFreeRDP* connect = nullptr);
     virtual ~CConnectLayerQTcpSocket();
 
 private Q_SLOTS:

@@ -3,7 +3,8 @@
 #ifndef CCONNECTFREERDP_H
 #define CCONNECTFREERDP_H
 
-#include "ConnectDesktop.h"
+#include <QSharedPointer>
+
 #include "freerdp/freerdp.h"
 #include "freerdp/version.h"
 
@@ -13,22 +14,23 @@ class CConnectLayer;
 #endif
 
 #include "ClipboardFreeRDP.h"
-#include "ConnecterFreeRDP.h"
+#include "OperateFreeRDP.h"
 #include "CursorFreeRDP.h"
-#include <QSharedPointer>
+
+#include "BackendDesktop.h"
 
 #ifdef HAVE_LIBSSH
 #include "SSHTunnelThread.h"
 #include "ChannelSSHTunnel.h"
 #endif
 
-class CConnectFreeRDP : public CConnectDesktop
+class CBackendFreeRDP : public CBackendDesktop
 {
     Q_OBJECT
 
 public:
-    explicit CConnectFreeRDP(CConnecterFreeRDP* pConnecter);
-    virtual ~CConnectFreeRDP() override;
+    explicit CBackendFreeRDP(COperateFreeRDP* pOperate);
+    virtual ~CBackendFreeRDP() override;
 
     static BOOL cbGlobalInit();
     static void cbGlobalUninit();
@@ -158,14 +160,14 @@ private:
     int OnProcess(int nTimeout);
 
 private:
-    CConnecterFreeRDP* m_pConnecter;
+    COperateDesktop* m_pOperate;
     struct ClientContext{
         #if FREERDP_VERSION_MAJOR >= 3
             rdpClientContext Context;
         #else
             rdpContext Context;
         #endif
-        CConnectFreeRDP* pThis;
+        CBackendFreeRDP* pThis;
     };
     ClientContext* m_pContext;
     CParameterFreeRDP* m_pParameter;
