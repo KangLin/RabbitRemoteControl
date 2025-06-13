@@ -63,6 +63,12 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
         item->setIcon(QIcon::fromTheme("network-wired"));
         if(item)
         {
+            QIcon icon = set.value("Icon_" + QString::number(i)).value<QIcon>();
+            if(!icon.isNull())
+                item->setIcon(icon);
+            QString szDescript = set.value("Descripte_" + QString::number(i)).toString();
+            if(!szDescript.isEmpty())
+                item->setToolTip(szDescript);
             item->setData(file);
             m_pModel->appendRow(item);
         }
@@ -78,17 +84,26 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
         for(int i = 0; i < n; i++)
         {
             QString name = set.value(szGroup + "/Name_" + QString::number(i)).toString();
-            QString file = set.value(szGroup + "/File_" + QString::number(i)).toString();
             if(name.isEmpty())
             {
                 qCritical(log) << "Current node is empty!";
                 continue;
             }
             QStandardItem* item = new QStandardItem(name);
-            item->setIcon(QIcon::fromTheme("network-wired"));
             if(item)
             {
-                item->setData(file);
+                QIcon icon = set.value(szGroup + "/Icon_" + QString::number(i)).value<QIcon>();
+                if(!icon.isNull())
+                    item->setIcon(icon);
+                QString szDescript = set.value(szGroup + "/Descripte_" + QString::number(i)).toString();
+                if(!szDescript.isEmpty())
+                    item->setToolTip(szDescript);
+                QString file = set.value(szGroup + "/File_" + QString::number(i)).toString();
+                if(file.isEmpty())
+                {
+                    qCritical(log) << "File is empty";
+                } else
+                    item->setData(file);
                 pGroup->appendRow(item);
             }
         }
@@ -136,13 +151,19 @@ int CFavoriteView::Save()
             {
                 auto childItem = rootItem->child(childIndex);
                 if(!childItem) continue;
+
                 set.setValue(szGroup + "/Name_" + QString::number(nCount), childItem->text());
+                set.setValue(szGroup + "/Descripte_" + QString::number(nCount), childItem->toolTip());
+                set.setValue(szGroup + "/Icon_" + QString::number(nCount), childItem->icon());
                 set.setValue(szGroup + "/File_" + QString::number(nCount), childItem->data());
+
                 nCount++;
             }
             set.setValue(szGroup + "/" + "count", nCount);
         } else {
             set.setValue("Name_" + QString::number(nRootCount), rootItem->text());
+            set.setValue("Descripte_" + QString::number(nRootCount), rootItem->toolTip());
+            set.setValue("Icon_" + QString::number(nRootCount), rootItem->icon());
             set.setValue("File_" + QString::number(nRootCount), rootItem->data());
             nRootCount++;
         }
@@ -152,7 +173,9 @@ int CFavoriteView::Save()
     return nRet;
 }
 
-int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
+int CFavoriteView::AddFavorite(const QString &szName,
+                               const QString &szDescription, const QIcon &icon,
+                               const QString &szFile)
 {
     if(!m_pModel) return -1;
     QStandardItem* pItem = nullptr;
@@ -164,7 +187,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
         if(it.isEmpty())
         {
             pItem = new QStandardItem(szName);
-            pItem->setIcon(QIcon::fromTheme("network-wired"));
+            pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
+            pItem->setToolTip(szDescription);
             m_pModel->appendRow(pItem);
         } else {
             QList<QStandardItem*>::iterator i;
@@ -176,7 +200,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             if(it.end() != i)
                 return 1;
             pItem = new QStandardItem(szName);
-            pItem->setIcon(QIcon::fromTheme("network-wired"));
+            pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
+            pItem->setToolTip(szDescription);
             m_pModel->appendRow(pItem);
         }
     } else {
@@ -187,7 +212,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             if(it.isEmpty())
             {
                 pItem = new QStandardItem(szName);
-                pItem->setIcon(QIcon::fromTheme("network-wired"));
+                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
+                pItem->setToolTip(szDescription);
                 m_pModel->appendRow(pItem);
             }
         } else {
@@ -198,7 +224,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
                 QStandardItem* pGroup = new QStandardItem(szGroup);
                 m_pModel->appendRow(pGroup);
                 pItem = new QStandardItem(szName);
-                pItem->setIcon(QIcon::fromTheme("network-wired"));
+                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
+                pItem->setToolTip(szDescription);
                 pGroup->appendRow(pItem);
             } else {
                 if(lstGroup[0]->data().isValid()) return 2;
@@ -209,7 +236,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
                         return -3;
                 }
                 pItem = new QStandardItem(szName);
-                pItem->setIcon(QIcon::fromTheme("network-wired"));
+                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
+                pItem->setToolTip(szDescription);
                 lstGroup[0]->appendRow(pItem);
             }
         }

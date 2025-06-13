@@ -1176,7 +1176,8 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
     {
         if(c->GetViewer() == p)
         {
-            m_pFavoriteView->AddFavorite(c->Name(), c->GetSettingsFile());
+            m_pFavoriteView->AddFavorite(c->Name(), c->Description(),
+                                         c->Icon(), c->GetSettingsFile());
         }
     }
 }
