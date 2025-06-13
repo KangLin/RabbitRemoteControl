@@ -1,27 +1,24 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTERTIGERVNC_H_2024_07_29
-#define CCONNECTERTIGERVNC_H_2024_07_29
-
 #pragma once
 
-#include "ConnecterThread.h"
+#include "OperateDesktop.h"
 #include "ParameterVnc.h"
 
-class CConnecterVnc : public CConnecterThread
+class COperateVnc : public COperateDesktop
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterVnc(CPluginClient *plugin);
-    virtual ~CConnecterVnc() override;
+    explicit COperateVnc(CPlugin *plugin);
+    virtual ~COperateVnc() override;
 
     virtual const QString Id() override;
-    virtual qint16 Version() override;
+    virtual const qint16 Version() const override;
 
 protected:
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) override;
-    virtual CConnect* InstanceConnect() override;
+    virtual CBackend* InstanceBackend() override;
     virtual QString ServerName() override;
 
 private:
@@ -32,4 +29,3 @@ private:
     CParameterVnc m_Para;
 };
 
-#endif // CCONNECTERTIGERVNC_H_2024_07_29

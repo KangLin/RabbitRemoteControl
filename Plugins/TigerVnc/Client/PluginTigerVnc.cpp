@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginTigerVnc.h"
-#include "ConnecterVnc.h"
+#include "OperateVnc.h"
 #include "RabbitCommonDir.h"
 
 #ifdef HAVE_LIBSSH
@@ -12,7 +12,7 @@
 static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
 
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
-    : CPluginClient(parent)
+    : CPlugin(parent)
 {
     qDebug(log) << "CPluginTigerVnc::CPluginTigerVnc()";
 }
@@ -22,7 +22,7 @@ CPluginTigerVnc::~CPluginTigerVnc()
     qDebug(log) << "CPluginTigerVnc::~CPluginTigerVnc()";
 }
 
-const CPluginClient::TYPE CPluginTigerVnc::Type() const
+const CPlugin::TYPE CPluginTigerVnc::Type() const
 {
     return TYPE::Client;
 }
@@ -69,11 +69,11 @@ const QString CPluginTigerVnc::Details() const
     return szDetails;
 }
 
-CConnecter *CPluginTigerVnc::OnCreateConnecter(const QString &szID)
+COperate *CPluginTigerVnc::OnCreateOperate(const QString &szID)
 {
     if(Id() == szID)
     {
-        return new CConnecterVnc(this);
+        return new COperateVnc(this);
     }
     return nullptr;
 }

@@ -4,7 +4,7 @@ project(TigerVNC
     DESCRIPTION "TigerVNC client plugin"
     )
 
-SET(TigerVNC_SRC_LIBS tigervnc Client)
+SET(TigerVNC_SRC_LIBS tigervnc Plugin)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
@@ -14,28 +14,28 @@ endif()
 SET(TigerVNC_SOURCE_FILES
     PluginTigerVnc.cpp
     ParameterVnc.cpp
-    ConnecterVnc.cpp
-    ConnectVnc.cpp
+    OperateVnc.cpp
+    BackendVnc.cpp
     FramePixelBuffer.cpp
     DlgSettingsVnc.cpp
-    DlgGetUserPasswordVNC.cpp
+    
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(TigerVNC_HEADER_FILES
     PluginTigerVnc.h
     ParameterVnc.h
-    ConnecterVnc.h
-    ConnectVnc.h
+    OperateVnc.h
+    BackendVnc.h
     FramePixelBuffer.h   
     DlgSettingsVnc.h
-    DlgGetUserPasswordVNC.h
+    
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(TigerVNC_UI_FILES
     DlgSettingsVnc.ui
-    DlgGetUserPasswordVNC.ui
+    
     )
 
 list(APPEND TIGERVNC_DEFINITIONS
@@ -49,7 +49,7 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_LIBS ${TigerVNC_SRC_LIBS}
     PRIVATE_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     PRIVATE_DEFINITIONS ${TIGERVNC_DEFINITIONS}
-    INSTALL_DIR plugins/Client
+    INSTALL_DIR plugins
     INSTALL_RPATH ${INSTALL_RPATH}
-    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
     )

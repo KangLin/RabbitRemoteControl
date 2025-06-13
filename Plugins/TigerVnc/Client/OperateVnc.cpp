@@ -1,9 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterVnc.h"
+#include "OperateVnc.h"
 #include "DlgSettingsVnc.h"
-#include "PluginClient.h"
-#include "ConnectVnc.h"
+#include "Plugin.h"
+#include "BackendVnc.h"
 
 #include <QMessageBox>
 #include <QRegularExpression>
@@ -11,22 +11,22 @@
 
 static Q_LOGGING_CATEGORY(log, "VNC.Connecter")
 
-CConnecterVnc::CConnecterVnc(CPluginClient *plugin)
-    : CConnecterThread(plugin)
+COperateVnc::COperateVnc(CPlugin *plugin)
+    : COperateDesktop(plugin)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-CConnecterVnc::~CConnecterVnc()
+COperateVnc::~COperateVnc()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-const QString CConnecterVnc::Id()
+const QString COperateVnc::Id()
 {
     if(m_Para.GetIce())
     {
-        QString szId = Protocol() + "_" + GetPlugClient()->Name();
+        QString szId = Protocol() + "_" + GetPlugin()->Name();
         if(GetParameter())
         {
             if(!m_Para.GetPeerUser().isEmpty())
@@ -35,19 +35,19 @@ const QString CConnecterVnc::Id()
         szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
         return szId;
     }
-    return CConnecter::Id();
+    return COperate::Id();
 }
 
-qint16 CConnecterVnc::Version()
+const qint16 COperateVnc::Version() const
 {
     return 0;
 }
 
-QString CConnecterVnc::ServerName()
+QString COperateVnc::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
-                || CConnecterConnect::ServerName().isEmpty())
+                || COperateDesktop::ServerName().isEmpty())
     {
         if(m_Para.GetIce())
         {
@@ -60,35 +60,35 @@ QString CConnecterVnc::ServerName()
                + QString::number(GetParameter()->m_Net.GetPort());
         }
     }
-    return CConnecterConnect::ServerName();
+    return COperateDesktop::ServerName();
 }
 
-QDialog *CConnecterVnc::OnOpenDialogSettings(QWidget *parent)
+QDialog *COperateVnc::OnOpenDialogSettings(QWidget *parent)
 {
     CDlgSettingsVnc* p = new CDlgSettingsVnc(&m_Para, parent);
     return p;
 }
 
-CConnect *CConnecterVnc::InstanceConnect()
+CBackend *COperateVnc::InstanceBackend()
 {
-    CConnectVnc* p = new CConnectVnc(this);
+    CBackendVnc* p = new CBackendVnc(this);
     return p;
 }
 
-int CConnecterVnc::Initial()
+int COperateVnc::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = CConnecterThread::Initial();
+    nRet = COperateDesktop::Initial();
     if(nRet) return nRet;
     nRet = SetParameter(&m_Para);
     return nRet;
 }
 
-int CConnecterVnc::Clean()
+int COperateVnc::Clean()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    nRet = CConnecterThread::Clean();
+    nRet = COperateDesktop::Clean();
     return nRet;
 }
