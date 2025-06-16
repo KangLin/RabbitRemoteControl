@@ -24,7 +24,8 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bMessageBoxDisplayInfomation(true),
     m_bDockListActiveShowToolBar(true),
     m_bDockListRecentShowToolBar(true),
-    m_bKeepSplitViewWhenFullScreen(false)
+    m_bKeepSplitViewWhenFullScreen(false),
+    m_bStartByType(false)
 {
 }
 
@@ -96,6 +97,8 @@ int CParameterApp::OnLoad(QSettings &set)
         set.value("KeepSplitViewWhenFullScreen",
                   GetKeepSplitViewWhenFullScreen()).toBool());
 
+    SetStartByType(set.value("Menu/StartByType", GetStartByType()).toBool());
+
     set.endGroup();
 
 #ifdef HAVE_ICE
@@ -147,6 +150,8 @@ int CParameterApp::OnSave(QSettings &set)
 
     set.setValue("KeepSplitViewWhenFullScreen",
                  GetKeepSplitViewWhenFullScreen());
+
+    set.setValue("Menu/StartByType", GetStartByType());
 
     set.endGroup();
 
@@ -401,4 +406,17 @@ void CParameterApp::SetKeepSplitViewWhenFullScreen(bool newKeepSplitViewWhenFull
         return;
     m_bKeepSplitViewWhenFullScreen = newKeepSplitViewWhenFullScreen;
     SetModified(true);
+}
+
+bool CParameterApp::GetStartByType() const
+{
+    return m_bStartByType;
+}
+
+void CParameterApp::SetStartByType(bool newStartByType)
+{
+    if (m_bStartByType == newStartByType)
+        return;
+    m_bStartByType = newStartByType;
+    emit sigStartByTypeChanged();
 }

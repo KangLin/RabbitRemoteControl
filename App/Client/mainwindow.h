@@ -58,11 +58,14 @@ private:
     int LoadOperateLasterClose();
     int SaveOperateLasterClose();
 public:
-    virtual int onProcess(const QString &id, CPlugin *pPlug) override;
+    virtual int onProcess(const QString &id, CPlugin *pPlugin) override;
+    [[nodiscard]] QAction* GetStartAction(QMenu *pMenu, CPlugin* pPlug);
+private Q_SLOTS:
+    void slotStartByType();
 private:
     CManager m_Manager;
     QVector<COperate*> m_Operates;
-    QAction* m_pActionStart;
+    QMap<CPlugin::TYPE, QMenu*> m_MenuStartByType;
 
 private Q_SLOTS:
     void slotLoadOperateMenu();
