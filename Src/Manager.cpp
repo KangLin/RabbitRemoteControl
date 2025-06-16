@@ -111,11 +111,16 @@ int CManager::LoadPlugins()
     QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
     
     QStringList filters;
+    if(filters.isEmpty())
+    {
 #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-    filters << "*.dll";
+        filters << "*Plugin*.dll";
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+        filters << "*Plugin*.dylib";
 #else
-    filters << "*.so";
+        filters << "*Plugin*.so";
 #endif
+    }
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
         m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
@@ -127,16 +132,6 @@ int CManager::LoadPlugins()
 int CManager::FindPlugins(QDir dir, QStringList filters)
 {
     QString fileName;
-    if(filters.isEmpty())
-    {
-#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-        filters << "*.dll";
-#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
-        filters << "*.dylib";
-#else
-        filters << "*.so";
-#endif
-    }
 
     QString szCurrentPath = QDir::currentPath();
     QStringList files = dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot);
