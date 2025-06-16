@@ -398,12 +398,12 @@ Restart program by administrator?</source>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="121"/>
+        <location filename="../../Manager.cpp" line="127"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="214"/>
+        <location filename="../../Manager.cpp" line="210"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>

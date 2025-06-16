@@ -123,134 +123,134 @@
 <context>
     <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="28"/>
+        <location filename="../../FrmListRecent.cpp" line="34"/>
         <source>List recent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="33"/>
-        <location filename="../../FrmListRecent.cpp" line="35"/>
-        <location filename="../../FrmListRecent.cpp" line="36"/>
-        <location filename="../../FrmListRecent.cpp" line="468"/>
+        <location filename="../../FrmListRecent.cpp" line="39"/>
+        <location filename="../../FrmListRecent.cpp" line="41"/>
+        <location filename="../../FrmListRecent.cpp" line="42"/>
+        <location filename="../../FrmListRecent.cpp" line="497"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="38"/>
-        <location filename="../../FrmListRecent.cpp" line="40"/>
-        <location filename="../../FrmListRecent.cpp" line="41"/>
-        <location filename="../../FrmListRecent.cpp" line="469"/>
+        <location filename="../../FrmListRecent.cpp" line="44"/>
+        <location filename="../../FrmListRecent.cpp" line="46"/>
+        <location filename="../../FrmListRecent.cpp" line="47"/>
+        <location filename="../../FrmListRecent.cpp" line="498"/>
         <source>Edit and Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="48"/>
-        <location filename="../../FrmListRecent.cpp" line="52"/>
-        <location filename="../../FrmListRecent.cpp" line="53"/>
         <location filename="../../FrmListRecent.cpp" line="54"/>
-        <source>New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmListRecent.cpp" line="57"/>
+        <location filename="../../FrmListRecent.cpp" line="58"/>
         <location filename="../../FrmListRecent.cpp" line="59"/>
         <location filename="../../FrmListRecent.cpp" line="60"/>
-        <location filename="../../FrmListRecent.cpp" line="472"/>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmListRecent.cpp" line="61"/>
-        <location filename="../../FrmListRecent.cpp" line="63"/>
-        <location filename="../../FrmListRecent.cpp" line="64"/>
-        <location filename="../../FrmListRecent.cpp" line="473"/>
-        <source>Copy</source>
+        <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmListRecent.cpp" line="66"/>
         <location filename="../../FrmListRecent.cpp" line="68"/>
         <location filename="../../FrmListRecent.cpp" line="69"/>
-        <location filename="../../FrmListRecent.cpp" line="475"/>
+        <location filename="../../FrmListRecent.cpp" line="501"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmListRecent.cpp" line="70"/>
+        <location filename="../../FrmListRecent.cpp" line="72"/>
+        <location filename="../../FrmListRecent.cpp" line="73"/>
+        <location filename="../../FrmListRecent.cpp" line="502"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmListRecent.cpp" line="75"/>
+        <location filename="../../FrmListRecent.cpp" line="77"/>
+        <location filename="../../FrmListRecent.cpp" line="78"/>
+        <location filename="../../FrmListRecent.cpp" line="504"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="71"/>
-        <location filename="../../FrmListRecent.cpp" line="75"/>
-        <location filename="../../FrmListRecent.cpp" line="76"/>
+        <location filename="../../FrmListRecent.cpp" line="80"/>
+        <location filename="../../FrmListRecent.cpp" line="84"/>
+        <location filename="../../FrmListRecent.cpp" line="85"/>
         <source>Detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="81"/>
-        <location filename="../../FrmListRecent.cpp" line="83"/>
-        <location filename="../../FrmListRecent.cpp" line="84"/>
-        <location filename="../../FrmListRecent.cpp" line="478"/>
+        <location filename="../../FrmListRecent.cpp" line="90"/>
+        <location filename="../../FrmListRecent.cpp" line="92"/>
+        <location filename="../../FrmListRecent.cpp" line="93"/>
+        <location filename="../../FrmListRecent.cpp" line="507"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="87"/>
-        <location filename="../../FrmListRecent.cpp" line="89"/>
-        <location filename="../../FrmListRecent.cpp" line="90"/>
+        <location filename="../../FrmListRecent.cpp" line="96"/>
+        <location filename="../../FrmListRecent.cpp" line="98"/>
+        <location filename="../../FrmListRecent.cpp" line="99"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="98"/>
-        <location filename="../../FrmListRecent.cpp" line="101"/>
+        <location filename="../../FrmListRecent.cpp" line="107"/>
+        <location filename="../../FrmListRecent.cpp" line="110"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="116"/>
+        <location filename="../../FrmListRecent.cpp" line="125"/>
         <source>Show tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="147"/>
+        <location filename="../../FrmListRecent.cpp" line="156"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="148"/>
+        <location filename="../../FrmListRecent.cpp" line="157"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="149"/>
+        <location filename="../../FrmListRecent.cpp" line="158"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="150"/>
+        <location filename="../../FrmListRecent.cpp" line="159"/>
         <source>Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="152"/>
+        <location filename="../../FrmListRecent.cpp" line="161"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="154"/>
+        <location filename="../../FrmListRecent.cpp" line="163"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="303"/>
-        <location filename="../../FrmListRecent.cpp" line="396"/>
+        <location filename="../../FrmListRecent.cpp" line="332"/>
+        <location filename="../../FrmListRecent.cpp" line="425"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="304"/>
+        <location filename="../../FrmListRecent.cpp" line="333"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="397"/>
+        <location filename="../../FrmListRecent.cpp" line="426"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -274,7 +274,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="222"/>
+        <location filename="../../ParameterDlgSettings.ui" line="148"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,17 +284,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="252"/>
+        <location filename="../../ParameterDlgSettings.ui" line="172"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="266"/>
+        <location filename="../../ParameterDlgSettings.ui" line="108"/>
         <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="126"/>
+        <location filename="../../ParameterDlgSettings.ui" line="197"/>
         <source>North</source>
         <translation type="unfinished"></translation>
     </message>
@@ -314,62 +314,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="139"/>
+        <location filename="../../ParameterDlgSettings.ui" line="210"/>
         <source>South</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="152"/>
+        <location filename="../../ParameterDlgSettings.ui" line="223"/>
         <source>West</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="165"/>
+        <location filename="../../ParameterDlgSettings.ui" line="236"/>
         <source>East</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="202"/>
+        <location filename="../../ParameterDlgSettings.ui" line="128"/>
         <source>System tray icon context menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="208"/>
+        <location filename="../../ParameterDlgSettings.ui" line="134"/>
         <source>Operate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <location filename="../../ParameterDlgSettings.ui" line="141"/>
         <source>Main menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="229"/>
+        <location filename="../../ParameterDlgSettings.ui" line="155"/>
         <source>Recent open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="108"/>
+        <location filename="../../ParameterDlgSettings.ui" line="179"/>
         <source>Tab view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="114"/>
+        <location filename="../../ParameterDlgSettings.ui" line="185"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="187"/>
+        <location filename="../../ParameterDlgSettings.ui" line="258"/>
         <source>ToolTip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="177"/>
+        <location filename="../../ParameterDlgSettings.ui" line="248"/>
         <source>Icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="259"/>
+        <location filename="../../ParameterDlgSettings.ui" line="165"/>
         <source>Enable system tray icon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -379,12 +379,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="299"/>
-        <source>Ok(&amp;O)</source>
+        <location filename="../../ParameterDlgSettings.ui" line="280"/>
+        <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="306"/>
+        <source>Ok(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="313"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -545,7 +550,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="184"/>
-        <location filename="../../mainwindow.cpp" line="404"/>
+        <location filename="../../mainwindow.cpp" line="408"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -554,9 +559,9 @@
         <location filename="../../mainwindow.ui" line="190"/>
         <location filename="../../mainwindow.ui" line="193"/>
         <location filename="../../mainwindow.ui" line="196"/>
-        <location filename="../../mainwindow.cpp" line="405"/>
-        <location filename="../../mainwindow.cpp" line="406"/>
-        <location filename="../../mainwindow.cpp" line="407"/>
+        <location filename="../../mainwindow.cpp" line="409"/>
+        <location filename="../../mainwindow.cpp" line="410"/>
+        <location filename="../../mainwindow.cpp" line="411"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -631,20 +636,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="443"/>
+        <location filename="../../mainwindow.cpp" line="447"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="444"/>
-        <location filename="../../mainwindow.cpp" line="445"/>
-        <location filename="../../mainwindow.cpp" line="446"/>
+        <location filename="../../mainwindow.cpp" line="448"/>
+        <location filename="../../mainwindow.cpp" line="449"/>
+        <location filename="../../mainwindow.cpp" line="450"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="637"/>
-        <location filename="../../mainwindow.cpp" line="656"/>
+        <location filename="../../mainwindow.cpp" line="641"/>
+        <location filename="../../mainwindow.cpp" line="660"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -652,7 +657,7 @@
         <location filename="../../mainwindow.ui" line="253"/>
         <location filename="../../mainwindow.ui" line="256"/>
         <location filename="../../mainwindow.ui" line="259"/>
-        <location filename="../../mainwindow.cpp" line="648"/>
+        <location filename="../../mainwindow.cpp" line="652"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -669,57 +674,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="254"/>
+        <location filename="../../mainwindow.cpp" line="258"/>
         <source>ICE signal status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="650"/>
+        <location filename="../../mainwindow.cpp" line="654"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="744"/>
+        <location filename="../../mainwindow.cpp" line="748"/>
         <source>Starting: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="800"/>
+        <location filename="../../mainwindow.cpp" line="804"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="865"/>
+        <location filename="../../mainwindow.cpp" line="869"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="874"/>
+        <location filename="../../mainwindow.cpp" line="878"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="913"/>
+        <location filename="../../mainwindow.cpp" line="917"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1063"/>
+        <location filename="../../mainwindow.cpp" line="1101"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1064"/>
+        <location filename="../../mainwindow.cpp" line="1102"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1094"/>
+        <location filename="../../mainwindow.cpp" line="1132"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1095"/>
+        <location filename="../../mainwindow.cpp" line="1133"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>

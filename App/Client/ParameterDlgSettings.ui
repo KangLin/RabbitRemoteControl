@@ -277,7 +277,7 @@
        <item row="3" column="0">
         <widget class="QCheckBox" name="cbStartByType">
          <property name="text">
-          <string>“Operate-&gt;Start”: group by plugin type</string>
+          <string>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</string>
          </property>
         </widget>
        </item>

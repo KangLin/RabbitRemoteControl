@@ -123,134 +123,134 @@
 <context>
     <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="28"/>
+        <location filename="../../FrmListRecent.cpp" line="34"/>
         <source>List recent</source>
         <translation>最近列表</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="33"/>
-        <location filename="../../FrmListRecent.cpp" line="35"/>
-        <location filename="../../FrmListRecent.cpp" line="36"/>
-        <location filename="../../FrmListRecent.cpp" line="468"/>
+        <location filename="../../FrmListRecent.cpp" line="39"/>
+        <location filename="../../FrmListRecent.cpp" line="41"/>
+        <location filename="../../FrmListRecent.cpp" line="42"/>
+        <location filename="../../FrmListRecent.cpp" line="497"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="38"/>
-        <location filename="../../FrmListRecent.cpp" line="40"/>
-        <location filename="../../FrmListRecent.cpp" line="41"/>
-        <location filename="../../FrmListRecent.cpp" line="469"/>
+        <location filename="../../FrmListRecent.cpp" line="44"/>
+        <location filename="../../FrmListRecent.cpp" line="46"/>
+        <location filename="../../FrmListRecent.cpp" line="47"/>
+        <location filename="../../FrmListRecent.cpp" line="498"/>
         <source>Edit and Start</source>
         <translation>编辑并开始</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="48"/>
-        <location filename="../../FrmListRecent.cpp" line="52"/>
-        <location filename="../../FrmListRecent.cpp" line="53"/>
         <location filename="../../FrmListRecent.cpp" line="54"/>
-        <source>New</source>
-        <translation>新建</translation>
-    </message>
-    <message>
-        <location filename="../../FrmListRecent.cpp" line="57"/>
+        <location filename="../../FrmListRecent.cpp" line="58"/>
         <location filename="../../FrmListRecent.cpp" line="59"/>
         <location filename="../../FrmListRecent.cpp" line="60"/>
-        <location filename="../../FrmListRecent.cpp" line="472"/>
-        <source>Edit</source>
-        <translation>编辑</translation>
-    </message>
-    <message>
-        <location filename="../../FrmListRecent.cpp" line="61"/>
-        <location filename="../../FrmListRecent.cpp" line="63"/>
-        <location filename="../../FrmListRecent.cpp" line="64"/>
-        <location filename="../../FrmListRecent.cpp" line="473"/>
-        <source>Copy</source>
-        <translation>复制</translation>
+        <source>New</source>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../../FrmListRecent.cpp" line="66"/>
         <location filename="../../FrmListRecent.cpp" line="68"/>
         <location filename="../../FrmListRecent.cpp" line="69"/>
-        <location filename="../../FrmListRecent.cpp" line="475"/>
+        <location filename="../../FrmListRecent.cpp" line="501"/>
+        <source>Edit</source>
+        <translation>编辑</translation>
+    </message>
+    <message>
+        <location filename="../../FrmListRecent.cpp" line="70"/>
+        <location filename="../../FrmListRecent.cpp" line="72"/>
+        <location filename="../../FrmListRecent.cpp" line="73"/>
+        <location filename="../../FrmListRecent.cpp" line="502"/>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="../../FrmListRecent.cpp" line="75"/>
+        <location filename="../../FrmListRecent.cpp" line="77"/>
+        <location filename="../../FrmListRecent.cpp" line="78"/>
+        <location filename="../../FrmListRecent.cpp" line="504"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="71"/>
-        <location filename="../../FrmListRecent.cpp" line="75"/>
-        <location filename="../../FrmListRecent.cpp" line="76"/>
+        <location filename="../../FrmListRecent.cpp" line="80"/>
+        <location filename="../../FrmListRecent.cpp" line="84"/>
+        <location filename="../../FrmListRecent.cpp" line="85"/>
         <source>Detail</source>
         <translation>细节</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="81"/>
-        <location filename="../../FrmListRecent.cpp" line="83"/>
-        <location filename="../../FrmListRecent.cpp" line="84"/>
-        <location filename="../../FrmListRecent.cpp" line="478"/>
+        <location filename="../../FrmListRecent.cpp" line="90"/>
+        <location filename="../../FrmListRecent.cpp" line="92"/>
+        <location filename="../../FrmListRecent.cpp" line="93"/>
+        <location filename="../../FrmListRecent.cpp" line="507"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="87"/>
-        <location filename="../../FrmListRecent.cpp" line="89"/>
-        <location filename="../../FrmListRecent.cpp" line="90"/>
+        <location filename="../../FrmListRecent.cpp" line="96"/>
+        <location filename="../../FrmListRecent.cpp" line="98"/>
+        <location filename="../../FrmListRecent.cpp" line="99"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="98"/>
-        <location filename="../../FrmListRecent.cpp" line="101"/>
+        <location filename="../../FrmListRecent.cpp" line="107"/>
+        <location filename="../../FrmListRecent.cpp" line="110"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="116"/>
+        <location filename="../../FrmListRecent.cpp" line="125"/>
         <source>Show tool bar</source>
         <translation>显示工具条</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="147"/>
+        <location filename="../../FrmListRecent.cpp" line="156"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="148"/>
+        <location filename="../../FrmListRecent.cpp" line="157"/>
         <source>Protocol</source>
         <translation>协议</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="149"/>
+        <location filename="../../FrmListRecent.cpp" line="158"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="150"/>
+        <location filename="../../FrmListRecent.cpp" line="159"/>
         <source>Date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="152"/>
+        <location filename="../../FrmListRecent.cpp" line="161"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="154"/>
+        <location filename="../../FrmListRecent.cpp" line="163"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="303"/>
-        <location filename="../../FrmListRecent.cpp" line="396"/>
+        <location filename="../../FrmListRecent.cpp" line="332"/>
+        <location filename="../../FrmListRecent.cpp" line="425"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="304"/>
+        <location filename="../../FrmListRecent.cpp" line="333"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
         <translation>文件已存在。是否覆盖它?</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="397"/>
+        <location filename="../../FrmListRecent.cpp" line="426"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation>文件已存在。是否覆盖它?如果选择否，请改名称。</translation>
     </message>
@@ -274,7 +274,7 @@
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="222"/>
+        <location filename="../../ParameterDlgSettings.ui" line="148"/>
         <source>No</source>
         <translation>无</translation>
     </message>
@@ -284,17 +284,17 @@
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="252"/>
+        <location filename="../../ParameterDlgSettings.ui" line="172"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="266"/>
+        <location filename="../../ParameterDlgSettings.ui" line="108"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="126"/>
+        <location filename="../../ParameterDlgSettings.ui" line="197"/>
         <source>North</source>
         <translation>上</translation>
     </message>
@@ -314,62 +314,62 @@
         <translation>启动时，恢复上次关闭时的操作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="139"/>
+        <location filename="../../ParameterDlgSettings.ui" line="210"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="152"/>
+        <location filename="../../ParameterDlgSettings.ui" line="223"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="165"/>
+        <location filename="../../ParameterDlgSettings.ui" line="236"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="202"/>
+        <location filename="../../ParameterDlgSettings.ui" line="128"/>
         <source>System tray icon context menu</source>
         <translation>系统托盘图标右键菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="208"/>
+        <location filename="../../ParameterDlgSettings.ui" line="134"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <location filename="../../ParameterDlgSettings.ui" line="141"/>
         <source>Main menu bar</source>
         <translation>主菜单条</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="229"/>
+        <location filename="../../ParameterDlgSettings.ui" line="155"/>
         <source>Recent open</source>
         <translation>最近打开菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="108"/>
+        <location filename="../../ParameterDlgSettings.ui" line="179"/>
         <source>Tab view</source>
         <translation>标签视图</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="114"/>
+        <location filename="../../ParameterDlgSettings.ui" line="185"/>
         <source>Position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="177"/>
+        <location filename="../../ParameterDlgSettings.ui" line="248"/>
         <source>Icon</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="187"/>
+        <location filename="../../ParameterDlgSettings.ui" line="258"/>
         <source>ToolTip</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="259"/>
+        <location filename="../../ParameterDlgSettings.ui" line="165"/>
         <source>Enable system tray icon</source>
         <translation>允许系统托盘图标</translation>
     </message>
@@ -379,12 +379,17 @@
         <translation>当拆分视图全屏时，保持拆分视图</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="299"/>
+        <location filename="../../ParameterDlgSettings.ui" line="280"/>
+        <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
+        <translation>&quot;菜单-&gt;操作-&gt;开始&quot;: 根据类型分组</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="306"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="306"/>
+        <location filename="../../ParameterDlgSettings.ui" line="313"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>
@@ -433,7 +438,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="184"/>
-        <location filename="../../mainwindow.cpp" line="404"/>
+        <location filename="../../mainwindow.cpp" line="408"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -624,9 +629,9 @@
         <location filename="../../mainwindow.ui" line="190"/>
         <location filename="../../mainwindow.ui" line="193"/>
         <location filename="../../mainwindow.ui" line="196"/>
-        <location filename="../../mainwindow.cpp" line="405"/>
-        <location filename="../../mainwindow.cpp" line="406"/>
-        <location filename="../../mainwindow.cpp" line="407"/>
+        <location filename="../../mainwindow.cpp" line="409"/>
+        <location filename="../../mainwindow.cpp" line="410"/>
+        <location filename="../../mainwindow.cpp" line="411"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -635,20 +640,20 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="443"/>
+        <location filename="../../mainwindow.cpp" line="447"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="444"/>
-        <location filename="../../mainwindow.cpp" line="445"/>
-        <location filename="../../mainwindow.cpp" line="446"/>
+        <location filename="../../mainwindow.cpp" line="448"/>
+        <location filename="../../mainwindow.cpp" line="449"/>
+        <location filename="../../mainwindow.cpp" line="450"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="637"/>
-        <location filename="../../mainwindow.cpp" line="656"/>
+        <location filename="../../mainwindow.cpp" line="641"/>
+        <location filename="../../mainwindow.cpp" line="660"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -656,7 +661,7 @@
         <location filename="../../mainwindow.ui" line="253"/>
         <location filename="../../mainwindow.ui" line="256"/>
         <location filename="../../mainwindow.ui" line="259"/>
-        <location filename="../../mainwindow.cpp" line="648"/>
+        <location filename="../../mainwindow.cpp" line="652"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
@@ -673,57 +678,57 @@
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="254"/>
+        <location filename="../../mainwindow.cpp" line="258"/>
         <source>ICE signal status</source>
         <translation>ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="650"/>
+        <location filename="../../mainwindow.cpp" line="654"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="744"/>
+        <location filename="../../mainwindow.cpp" line="748"/>
         <source>Starting: </source>
         <translation>开始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="800"/>
+        <location filename="../../mainwindow.cpp" line="804"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="865"/>
+        <location filename="../../mainwindow.cpp" line="869"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="874"/>
+        <location filename="../../mainwindow.cpp" line="878"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="913"/>
+        <location filename="../../mainwindow.cpp" line="917"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1063"/>
+        <location filename="../../mainwindow.cpp" line="1101"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1064"/>
+        <location filename="../../mainwindow.cpp" line="1102"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1094"/>
+        <location filename="../../mainwindow.cpp" line="1132"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1095"/>
+        <location filename="../../mainwindow.cpp" line="1133"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>
