@@ -59,8 +59,8 @@ if(libssh_INCLUDE_DIR)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${libssh_LIB}
         PRIVATE_INCLUDE_DIRS ${libssh_INCLUDE_DIR}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         VERSION ${RabbitRemoteControl_VERSION}
         )
 else()
@@ -68,8 +68,8 @@ else()
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${libssh_LIB}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         VERSION ${RabbitRemoteControl_VERSION}
         )
 endif()

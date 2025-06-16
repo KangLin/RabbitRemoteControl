@@ -60,8 +60,8 @@ if(_libtelnet_include_dir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
@@ -69,7 +69,7 @@ else()
         VERSION ${RabbitRemoteControl_VERSION}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
-        INSTALL_DIR plugins/Client
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         )
 endif()

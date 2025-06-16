@@ -14,6 +14,8 @@ else()
         "$ORIGIN:$ORIGIN/../../${CMAKE_INSTALL_LIBDIR}")
 endif()
 
+SET(PLUGIN_PATH plugins/RabbitRemoteControl)
+
 ## Desktop
 
 option(BUILD_RABBITVNC "Build RabbitVNC plugin" OFF)
