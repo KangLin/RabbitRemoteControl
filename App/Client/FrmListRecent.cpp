@@ -6,11 +6,16 @@
 #include <QDir>
 #include <QHeaderView>
 #include <QMenu>
+#include <QLoggingCategory>
+#include "mainwindow.h"
+
+static Q_LOGGING_CATEGORY(log, "App.FrmListRecent")
 
 CFrmListRecent::CFrmListRecent(
-    CManager *pManager,
+    MainWindow *pMainWindow, CManager *pManager,
     CParameterApp &parameterApp, bool bDock, QWidget *parent) :
     QWidget(parent),
+    m_pMainWindow(pMainWindow),
     m_ParameterApp(parameterApp),
     m_pToolBar(nullptr),
     m_ptbOperate(nullptr),
@@ -22,6 +27,7 @@ CFrmListRecent::CFrmListRecent(
     m_bDock(bDock),
     m_pDockTitleBar(nullptr)
 {
+    bool check = false;
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QVBoxLayout(this));
@@ -53,6 +59,9 @@ CFrmListRecent::CFrmListRecent(
     m_ptbOperate->setToolTip(tr("New"));
     m_ptbOperate->setStatusTip(tr("New"));
     m_pToolBar->addWidget(m_ptbOperate);
+    check = connect(&m_ParameterApp, SIGNAL(sigStartByTypeChanged()),
+                    this, SLOT(slotStartByType()));
+    Q_ASSERT(check);
     m_pManager->EnumPlugins(this);
     m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                                     this, SLOT(slotEdit()));
@@ -129,9 +138,9 @@ CFrmListRecent::CFrmListRecent(
     Q_ASSERT(m_pManager);
     m_pTableView = new QTableView(this);
     m_pTableView->setContextMenuPolicy(Qt::CustomContextMenu);
-    bool check = connect(m_pTableView,
-                         SIGNAL(customContextMenuRequested(const QPoint &)),
-                         this, SLOT(slotCustomContextMenu(const QPoint &)));
+    check = connect(m_pTableView,
+                    SIGNAL(customContextMenuRequested(const QPoint &)),
+                    this, SLOT(slotCustomContextMenu(const QPoint &)));
     Q_ASSERT(check);
     check = connect(m_pTableView, SIGNAL(doubleClicked(const QModelIndex &)),
                     this, SLOT(slotDoubleClicked(const QModelIndex&)));
@@ -267,18 +276,38 @@ int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
     return 0;
 }
 
+void CFrmListRecent::slotStartByType()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    auto m = m_pMenuNew->actions();
+    foreach(auto a, m) {
+        a->deleteLater();
+    }
+    foreach (auto a, m_MenuStartByType) {
+        a->deleteLater();
+    }
+    m_pMenuNew->clear();
+    m_MenuStartByType.clear();
+    m_pManager->EnumPlugins(this);
+}
+
 int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlugin)
 {
     // Connect menu and toolbar
-    QString szTile;
-    if(!pPlugin->Protocol().isEmpty())
-        szTile = pPlugin->Protocol() + ": ";
-    szTile += pPlugin->DisplayName();
-    QAction* pAction = m_pMenuNew->addAction(szTile, this, SLOT(slotNew()));
-    pAction->setToolTip(pPlugin->Description());
-    pAction->setStatusTip(pPlugin->Description());
-    pAction->setData(id);
-    pAction->setIcon(pPlugin->Icon());
+    QMenu* m = m_pMenuNew;
+    if(m_ParameterApp.GetStartByType()) {
+        auto it = m_MenuStartByType.find(pPlugin->Type());
+        if(it == m_MenuStartByType.end()) {
+            m = new QMenu(pPlugin->TypeName(pPlugin->Type()), m_pMenuNew);
+            m_MenuStartByType[pPlugin->Type()] = m;
+            m_pMenuNew->addMenu(m);
+        } else
+            m = *it;
+    }
+    // Start menu and toolbar
+    QAction* p = m_pMainWindow->GetStartAction(m, pPlugin);
+    bool check = connect(p, SIGNAL(triggered()), this, SLOT(slotNew()));
+    Q_ASSERT(check);
     return 0;
 }
 
@@ -313,7 +342,7 @@ void CFrmListRecent::slotNew()
         }
 
         m_pManager->SaveOperate(pOperate);
-        
+
         InsertItem(pOperate, szFile);
 
         break;

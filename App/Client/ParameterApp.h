@@ -121,6 +121,7 @@ public:
     void SetFavoriteEdit(bool newFavoriteEdit);
 Q_SIGNALS:
     void sigFavoriteEditChanged(bool FavoriteEdit);
+    
 private:
     bool m_bFavoriteEdit;
     Q_PROPERTY(bool FavoriteEdit READ GetFavoriteEdit WRITE SetFavoriteEdit NOTIFY sigFavoriteEditChanged)
@@ -168,8 +169,19 @@ private:
 public:
     bool GetKeepSplitViewWhenFullScreen() const;
     void SetKeepSplitViewWhenFullScreen(bool newKeepSplitViewWhenFullScreen);
+    
 private:
     bool m_bKeepSplitViewWhenFullScreen;
+    
+public:
+    bool GetStartByType() const;
+    void SetStartByType(bool newStartByType);
+Q_SIGNALS:
+    void sigStartByTypeChanged();    
+private:
+    bool m_bStartByType;
+    Q_PROPERTY(bool m_bStartByType READ GetStartByType WRITE SetStartByType NOTIFY sigStartByTypeChanged FINAL)
+
 };
 
 #endif // CPARAMETERAPP_H

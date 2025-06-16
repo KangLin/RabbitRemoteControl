@@ -9,6 +9,8 @@
 #include "TitleBar.h"
 #include "ParameterApp.h"
 
+class MainWindow;
+
 /*!
  * \~chinese 列出存在的连接配置
  *
@@ -19,10 +21,9 @@ class CFrmListRecent : public QWidget, CManager::Handle
     Q_OBJECT
     
 public:
-    explicit CFrmListRecent(CManager* pManager,
-                                    CParameterApp &parameterApp,
-                                    bool bDock = false,
-                                    QWidget *parent = nullptr);
+    explicit CFrmListRecent(MainWindow* pMainWindow, CManager* pManager,
+                            CParameterApp &parameterApp, bool bDock = false,
+                            QWidget *parent = nullptr);
     virtual ~CFrmListRecent();
 
 public:
@@ -44,12 +45,15 @@ private slots:
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
     void slotLoadFiles();
+    void slotStartByType();
 
 private:
     int InsertItem(COperate* c, QString &szFile);
     QList<QStandardItem*> GetItem(COperate* c, QString &szFile);
 
 private:
+    MainWindow* m_pMainWindow;
+    QMap<CPlugin::TYPE, QMenu*> m_MenuStartByType;
     CParameterApp &m_ParameterApp;
     QToolBar* m_pToolBar;
     QToolButton* m_ptbOperate;

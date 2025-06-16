@@ -110,9 +110,8 @@ MainWindow::MainWindow(QWidget *parent)
     tbStart->setText(tr("Start"));
     tbStart->setToolTip(tr("Start"));
     tbStart->setStatusTip(tr("Start"));
-    m_pActionStart = ui->toolBar->insertWidget(ui->actionStop, tbStart);
+    ui->toolBar->insertWidget(ui->actionStop, tbStart);
 
-    m_Manager.EnumPlugins(this);
     m_Parameter.Load();
     EnableMenu(false);
 
@@ -132,6 +131,11 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
     check = connect(&m_Parameter, SIGNAL(sigEnableTabIconChanged()),
                     this, SLOT(slotUpdateName()));
+    Q_ASSERT(check);
+
+    m_Manager.EnumPlugins(this);
+    check = connect(&m_Parameter, SIGNAL(sigStartByTypeChanged()),
+                    this, SLOT(slotStartByType()));
     Q_ASSERT(check);
 
     m_pDockFavorite = new QDockWidget(this);
@@ -166,8 +170,8 @@ MainWindow::MainWindow(QWidget *parent)
     if(m_pDockListRecent)
     {
         CFrmListRecent* pListRecent
-            = new CFrmListRecent(
-                &m_Manager, m_Parameter, true, m_pDockListRecent);
+            = new CFrmListRecent(this, &m_Manager, m_Parameter, true,
+                                 m_pDockListRecent);
         if(pListRecent) {
             if(pListRecent->m_pDockTitleBar)
                 m_pDockListRecent->setTitleBarWidget(
@@ -945,19 +949,53 @@ void MainWindow::slotUpdateName(const QString& szName)
                             p->Icon(), p->Description());
 }
 
-int MainWindow::onProcess(const QString &id, CPlugin *pPlug)
+QAction* MainWindow::GetStartAction(QMenu* pMenu, CPlugin *pPlug)
 {
-    Q_UNUSED(id);
     QString szTitle;
     if(!pPlug->Protocol().isEmpty())
         szTitle = pPlug->Protocol() + ": ";
     szTitle += pPlug->DisplayName();
-    // Start menu and toolbar
-    QAction* p = ui->menuStart->addAction(szTitle, this, SLOT(slotStart()));
+    QAction* p = pMenu->addAction(szTitle);
     p->setToolTip(pPlug->Description());
     p->setStatusTip(pPlug->Description());
-    p->setData(id);
+    p->setData(pPlug->Id());
     p->setIcon(pPlug->Icon());
+    return p;    
+}
+
+void MainWindow::slotStartByType()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    auto m = ui->menuStart->actions();
+    foreach(auto a, m) {
+        a->deleteLater();
+    }
+    foreach (auto a, m_MenuStartByType) {
+        a->deleteLater();
+    }
+    ui->menuStart->clear();
+    m_MenuStartByType.clear();
+    m_Manager.EnumPlugins(this);
+}
+
+int MainWindow::onProcess(const QString &id, CPlugin *pPlugin)
+{
+    Q_UNUSED(id);
+    QMenu* m = ui->menuStart;
+    if(m_Parameter.GetStartByType()) {
+        auto it = m_MenuStartByType.find(pPlugin->Type());
+        if(it == m_MenuStartByType.end()) {
+            m = new QMenu(pPlugin->TypeName(pPlugin->Type()), ui->menuStart);
+            m_MenuStartByType[pPlugin->Type()] = m;
+            ui->menuStart->addMenu(m);
+        } else
+            m = *it;
+    }
+    // Start menu and toolbar
+    QAction* p = GetStartAction(m, pPlugin);
+    bool check = false;
+    check = connect(p, SIGNAL(triggered()), this, SLOT(slotStart()));
+    Q_ASSERT(check);
 
     return 0;
 }
@@ -1148,8 +1186,7 @@ void MainWindow::slotShortCut()
 
 void MainWindow::on_actionOpenListRecent_triggered()
 {
-    CFrmListRecent* p = new CFrmListRecent(
-        &m_Manager, m_Parameter, false);
+    CFrmListRecent* p = new CFrmListRecent(this, &m_Manager, m_Parameter, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigStart(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));
