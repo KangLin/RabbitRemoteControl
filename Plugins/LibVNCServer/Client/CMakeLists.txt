@@ -77,8 +77,8 @@ if(_LibvncIncludeDir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
-        INSTALL_DIR plugins
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         VERSION ${RabbitRemoteControl_VERSION}
         )
 else()
@@ -88,8 +88,8 @@ else()
         PRIVATE_DEFINITIONS ${LIBVNCSERVER_PRIVATE_DEFINITIONS}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
-        INSTALL_DIR plugins
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins
+        INSTALL_DIR ${PLUGIN_PATH}
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
         VERSION ${RabbitRemoteControl_VERSION}
         )
 endif()

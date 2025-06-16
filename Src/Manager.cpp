@@ -107,9 +107,10 @@ int CManager::LoadPlugins()
                 qWarning(log) << "The plugin" << p->Name() << " is exist.";
         }
     }
-    
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
-    
+
+    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
+                     + "/RabbitRemoteControl";
+
     QStringList filters;
     if(filters.isEmpty())
     {
@@ -124,7 +125,7 @@ int CManager::LoadPlugins()
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
         m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
-    
+
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
     return nRet;
 }
@@ -139,9 +140,9 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
     {
         //This method is invalid
         //QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
-        
+
         QDir::setCurrent(QDir::cleanPath(dir.absolutePath()));
-        
+
         // This method is valid
         //#if defined(Q_OS_WINDOWS)
         //        QString szPath = QString::fromLocal8Bit(qgetenv("PATH"));
@@ -150,7 +151,7 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
         //        qputenv("PATH", szPath.toLatin1());
         //#endif
     }
-    
+
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         QPluginLoader loader(szPlugins);
@@ -176,15 +177,15 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
             qCritical(log) << szMsg.toStdString().c_str();
         }
     }
-    
+
     foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         QDir pluginDir = dir;
         if(pluginDir.cd(fileName))
             FindPlugins(pluginDir, filters);
     }
-    
+
     QDir::setCurrent(szCurrentPath);
-    
+
     return 0;
 }
 
@@ -204,13 +205,13 @@ int CManager::AppendPlugin(CPlugin *p)
         qCritical(log) << "The plugin" <<  p->Name()
         << "initial translator fail" << bRet << val;
     }
-    
+
     m_szDetails += "#### " + p->DisplayName() + "\n"
                    + tr("Version:") + " " + p->Version() + "  \n"
                    + p->Description() + "\n";
     if(!p->Details().isEmpty())
         m_szDetails += p->Details() + "\n";
-    
+
     return 0;
 }
 
