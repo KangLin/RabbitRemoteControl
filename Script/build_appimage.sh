@@ -201,10 +201,11 @@ if [ "${BUILD_VERBOSE}" = "ON" ]; then
     $QMAKE --version
 fi
 
+# [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
     --output appimage \
-    --deploy-deps-only=${INSTALL_APP_DIR}/plugins
+    --deploy-deps-only=${INSTALL_APP_DIR}/plugins/RabbitRemoteControl
 
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
