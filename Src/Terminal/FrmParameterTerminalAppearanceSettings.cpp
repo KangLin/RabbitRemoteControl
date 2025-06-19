@@ -1,10 +1,3 @@
-#include "FrmParameterTerminalAppearanceSettings.h"
-#include "ui_FrmParameterTerminalAppearanceSettings.h"
-#include "RabbitCommonDir.h"
-#include "qtermwidget.h"
-
-#include "RabbitCommonDir.h"
-
 #include <QCoreApplication>
 #include <QLocale>
 #include <QDebug>
@@ -12,28 +5,34 @@
 #include <QFont>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Terminal)
+#include "qtermwidget.h"
+
+#include "FrmParameterTerminalAppearanceSettings.h"
+#include "ui_FrmParameterTerminalAppearanceSettings.h"
+
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+
+static Q_LOGGING_CATEGORY(log, "Terminal")
 
 class CTerminal
 {
 public:
     CTerminal()
-    { 
-        QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-                + QDir::separator() + "Terminal_" + QLocale::system().name() + ".qm";
-        if(!m_Translator.load(szTranslatorFile))
-            qCritical(Terminal) << "Open translator file fail:" << szTranslatorFile;
-        qApp->installTranslator(&m_Translator);
-    };
+    {
+        m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
+            "Terminal",
+            RabbitCommon::CTools::TranslationType::Plugin,
+            "plugins/RabbitRemoteControl");
+    }
     
     ~CTerminal()
     {
-        qApp->removeTranslator(&m_Translator);
-        qDebug(Terminal) << "CTerminal::~CTerminal()";
-    };
+        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
+    }
     
 private:
-    QTranslator m_Translator;
+    QSharedPointer<QTranslator> m_Translator;
 };
 
 const CTerminal g_CTerminal;

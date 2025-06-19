@@ -1,7 +1,7 @@
 # author: Kang Lin <kl222@126.com>
 
-find_package(qtermwidget5)
-if(NOT qtermwidget5_FOUND)
+find_package(qtermwidget6)
+if(NOT qtermwidget6_FOUND)
     return()
 endif()
 
@@ -9,25 +9,23 @@ endif()
 project(Terminal LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
-    ConnecterTerminal.h
+    OperateTerminal.h
     FrmParameterTerminalAppearanceSettings.h
     FrmParameterTerminalBehavior.h
     ParameterTerminal.h
-    FrmTermWidget.h
+    
     )
 
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
-    ConnectThreadTerminal.h
     )
 
 set(SOURCE_FILES
-    ConnecterTerminal.cpp
+    OperateTerminal.cpp
     FrmParameterTerminalAppearanceSettings.cpp
     FrmParameterTerminalBehavior.cpp
     ParameterTerminal.cpp
-    ConnectThreadTerminal.cpp
-    FrmTermWidget.cpp
+    
     )
 
 set(SOURCE_UI_FILES
@@ -35,16 +33,7 @@ set(SOURCE_UI_FILES
     FrmParameterTerminalBehavior.ui
     )
 
-SET(SRC_LIBS RabbitCommon qtermwidget5 Client ${QT_LIBRARIES})
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
-endif(NOT DEFINED CMAKE_BUILD_TYPE)
-if(CMAKE_BUILD_TYPE)
-    string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-endif()
-if(BUILD_TYPE STREQUAL "debug")
-    LIST(APPEND PRIVATE_DEFINITIONS DEBUG _DEBUG)
-endif()
+SET(SRC_LIBS RabbitCommon qtermwidget6 Plugin ${QT_LIBRARIES})
 
 ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}

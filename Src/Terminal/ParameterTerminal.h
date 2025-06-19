@@ -1,6 +1,6 @@
-#ifndef CPARAMETERTERMINALAPPEARANCE_H
-#define CPARAMETERTERMINALAPPEARANCE_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include "ParameterConnecter.h"
 #include "qtermwidget.h"
 #include <QFont>
@@ -13,8 +13,8 @@ class TERMINAL_EXPORT CParameterTerminal : public CParameterConnecter
 public:
     CParameterTerminal();
     
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
     const QFont &GetFont() const;
     void SetFont(const QFont &newFont);
@@ -65,6 +65,5 @@ private:
     QString m_szKeyBindings;
     QString m_szTextCodec;
     int m_nHistorySize;
+    
 };
-
-#endif // CPARAMETERTERMINALAPPEARANCE_H

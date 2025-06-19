@@ -4,11 +4,12 @@
 
 #include <QThread>
 #include "Operate.h"
+#include "plugin_export.h"
 
 /*!
  * \brief The backend thread
  */
-class CBackendThread : public QThread
+class PLUGIN_EXPORT CBackendThread : public QThread
 {
     Q_OBJECT
 public:
