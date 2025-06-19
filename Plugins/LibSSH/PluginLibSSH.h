@@ -1,32 +1,31 @@
-#ifndef CPLUGINLIBSSH_H_KL_2021_07_23
-#define CPLUGINLIBSSH_H_KL_2021_07_23
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
-#include "PluginClient.h"
+#include "Plugin.h"
 #include <QTranslator>
 
-class CPluginLibSSH : public CPluginClient
+class CPluginLibSSH : public CPlugin
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
-    
+
 public:
     explicit CPluginLibSSH();
     virtual ~CPluginLibSSH();
-
+    
 public:
     virtual const QString Protocol() const override;
     virtual const QString Name() const override;
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
+    virtual const TYPE Type() const override;
+    virtual const QString Version() const override;
 
-private:
-    virtual CConnecter *CreateConnecter(const QString &szProtocol) override;
+protected:
+    virtual COperate *OnCreateOperate(const QString &szId) override;
 };
-
-#endif // CPLUGINLIBSSH_H_KL_2021_07_23

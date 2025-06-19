@@ -1,8 +1,9 @@
-#include "FrmParameterTerminalBehavior.h"
-#include "ui_FrmParameterTerminalBehavior.h"
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Terminal)
+#include "FrmParameterTerminalBehavior.h"
+#include "ui_FrmParameterTerminalBehavior.h"
+
+static Q_LOGGING_CATEGORY(log, "Terminal")
 
 CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal *pPara, QWidget *parent) :
     QWidget(parent),
@@ -10,15 +11,11 @@ CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal 
     m_pPara(pPara)
 {
     ui->setupUi(this);
-    
-    //qDebug(Terminal) << "KeyBindings" << QTermWidget::availableKeyBindings();
+
+    //qDebug(log) << "KeyBindings" << QTermWidget::availableKeyBindings();
     ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
     ui->cbKeyBinding->setCurrentText(pPara->GetKeyBindings());
 
-    foreach(auto c, QTextCodec::availableCodecs())
-    {
-        ui->cbTextCodecs->addItem(QString(c));
-    }
     ui->cbTextCodecs->setCurrentText(pPara->GetTextCodec());
     if(0 > m_pPara->GetHistorySize())
     {

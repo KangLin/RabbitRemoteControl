@@ -8,13 +8,13 @@ set(lib_terminal Terminal)
 SET(SOURCE_FILES
     PluginTerminal.cpp
     DlgSettingsTerminal.cpp
-    ConnecterPluginTerminal.cpp
+    Terminal.cpp
     )
 
 SET(HEADER_FILES
     PluginTerminal.h
     DlgSettingsTerminal.h
-    ConnecterPluginTerminal.h
+    Terminal.h
     )
 
 SET(UI_FILES

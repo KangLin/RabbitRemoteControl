@@ -175,21 +175,21 @@ int COperateDesktop::Initial()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     bool check = false;
-    
+
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-    
+
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
     m_pFrmViewer = new CFrmViewer(); // The owner is m_pScroll
     m_pScroll = new CFrmScroll(m_pFrmViewer);
-    
+
     check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
-    
+
     nRet = InitialMenu();
-    
+
     return nRet;
 }
 

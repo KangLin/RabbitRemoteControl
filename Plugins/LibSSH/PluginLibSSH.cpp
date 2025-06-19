@@ -34,7 +34,17 @@ const QIcon CPluginLibSSH::Icon() const
     return QIcon::fromTheme("ssh");
 }
 
-CConnecter *CPluginLibSSH::CreateConnecter(const QString &szProtocol)
+const CPlugin::TYPE CPluginLibSSH::Type() const
+{
+    return TYPE::Client;
+}
+
+const QString CPluginLibSSH::Version() const
+{
+    return 0;
+}
+
+COperate *CPluginLibSSH::OnCreateOperate(const QString &szId)
 {
     if(Id() == szProtocol)
         return new CConnecterSSH(this);

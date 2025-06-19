@@ -1,4 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
+
 #pragma once
 
 #include <QSpinBox>
@@ -9,10 +10,12 @@
 
 class CBackendThread;
 /*!
- * \~chinese
- * \brief 默认启动一个后台线程。实现一个后台线程处理一个连接。
- *        可与插件接口从 CPlugin 派生的插件一起使用，用于连接是阻塞模型的。
+ * \~chinese 远程桌面接口
+ *
  * \details
+ * 默认启动一个后台线程。实现一个后台线程处理一个后端操作。
+ * 可与插件接口从 CPlugin 派生的插件一起使用，用于操作是阻塞模型的。
+ * 
  * 原理：在 Start() 中启动一个后台线程 CBackendThread 。
  *      在线程中调用 InstanceBackend() 实例化 CBackend ，
  *      并在 CBackend::Start() 启动定时器，
@@ -26,21 +29,22 @@ class CBackendThread;
  *      具体的插件需要实现下面接口：
  *         1. 实现 InstanceBackend() ，生成连接对象。连接对象运行在后台线程中。
  *
- * \~english
- * \brief It starts a background thread by default.
- *        It implements a background thread to handle a connection.
- *        Can be used with plugins whose plugin interface
- *        derives from CPluginClient for connection is blocking model.
- * \details 
- *     Principle: Start a background thread (CBackendThread) in Start() .
- *     Call InstanceBackend() in the thread to instantiate CBackend,
- *     and start the timer in CBackend::Start().
- *     This timer is called in the background thread.
- *     Through the operation of the timer,
- *     start a non-Qt event loop (that is, normal loop processing. May block), See CBackend.
- *     And CBackend supports the Qt event (the signal-slot mechanism of QObject. no-block).
+ * \~english Remote desktop interface
+ * \details
+ *  It starts a background thread by default.
+ *  It implements a background thread to handle a operate.
+ *  Can be used with plugins whose plugin interface
+ *  derives from CPluginClient for operate is blocking model.
+ *  
+ *  Principle: Start a background thread (CBackendThread) in Start() .
+ *  Call InstanceBackend() in the thread to instantiate CBackend,
+ *  and start the timer in CBackend::Start().
+ *  This timer is called in the background thread.
+ *  Through the operation of the timer,
+ *  start a non-Qt event loop (that is, normal loop processing. May block), See CBackend.
+ *  And CBackend supports the Qt event (the signal-slot mechanism of QObject. no-block).
  *
- *     Sequen diagram: \image html docs/Image/PluginClientBlockSequenceDiagram.svg
+ *  Sequen diagram: \image html docs/Image/PluginClientBlockSequenceDiagram.svg
  *
  * \note The interface only is implemented by plug-in \n
  *     The specific plug-in needs to implement the following interface. 

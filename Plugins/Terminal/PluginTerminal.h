@@ -1,16 +1,16 @@
-#ifndef CPLUGINTERMINAL_H_KL_2021_07_23
-#define CPLUGINTERMINAL_H_KL_2021_07_23
+// Author: Kang Lin <kl222@126.com>
 
-#include "PluginClient.h"
-#include <QTranslator>
+#pragma once
 
-class CPluginTerminal : public CPluginClient
+#include "Plugin.h"
+
+class CPluginTerminal : public CPlugin
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginClient)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginClient_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
 
 public:
@@ -22,8 +22,9 @@ public:
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
-private:
-    virtual CConnecter *CreateConnecter(const QString &szProtocol) override;
-};
+    virtual const TYPE Type() const override;
+    virtual const QString Version() const override;
 
-#endif // CPLUGINTERMINAL_H_KL_2021_07_23
+protected:
+    virtual COperate *OnCreateOperate(const QString &szId) override;
+};

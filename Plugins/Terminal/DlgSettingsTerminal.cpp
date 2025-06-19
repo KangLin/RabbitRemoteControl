@@ -4,7 +4,7 @@
 #include <QLoggingCategory>
 #include <qtermwidget.h>
 
-Q_DECLARE_LOGGING_CATEGORY(Terminal)
+static Q_LOGGING_CATEGORY(log, "Terminal.DlgSettings")
 
 CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *parent) :
     QDialog(parent),
@@ -26,7 +26,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *p
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
 {
-    qDebug(Terminal) << "CDlgSettingsTerminal::~CDlgSettingsTerminal()";
+    qDebug(log) << "CDlgSettingsTerminal::~CDlgSettingsTerminal()";
     delete ui;
 }
 

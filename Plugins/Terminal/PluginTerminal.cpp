@@ -1,24 +1,25 @@
 #include "PluginTerminal.h"
 #include "RabbitCommonDir.h"
-#include "ConnecterPluginTerminal.h"
+#include "Terminal.h"
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(Terminal, "Client.Terminal")
+static Q_LOGGING_CATEGORY(log, "Terminal.Plugin")
 
 CPluginTerminal::CPluginTerminal(QObject *parent)
-    : CPluginClient(parent)
+    : CPlugin(parent)
 {
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CPluginTerminal::~CPluginTerminal()
 {
-    qDebug(Terminal) << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 const QString CPluginTerminal::Protocol() const
 {
-    return "Terminal";
+    return QString();
 }
 
 const QString CPluginTerminal::Name() const
@@ -41,11 +42,21 @@ const QIcon CPluginTerminal::Icon() const
     return QIcon::fromTheme("console");
 }
 
-CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtocol)
+const CPlugin::TYPE CPluginTerminal::Type() const
 {
-    if(Id() == szProtocol)
-    {   
-        return new CConnecterPluginTerminal(this);
+    return TYPE::Terminal;
+}
+
+const QString CPluginTerminal::Version() const
+{
+    return 0;
+}
+
+COperate *CPluginTerminal::OnCreateOperate(const QString &szId)
+{
+    if(Id() == szId)
+    {
+        return new CTerminal(this);
     }
     return nullptr;
 }
