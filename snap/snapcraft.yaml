@@ -222,6 +222,31 @@ parts:
   #     - qt/translations
   #     - qt/plugins/**/*.so*
 
+  lxqt-build-tools:
+    # See 'snapcraft plugins'
+    # see: https://snapcraft.io/docs/supported-plugins
+    plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
+    source: https://github.com/lxqt/lxqt-build-tools.git
+    source-type: git
+    source-tag: 2.2.0
+    source-depth: 1
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+    stage:
+      - -usr/local/bin
+
+  qtermwidget:
+    # See 'snapcraft plugins'
+    # see: https://snapcraft.io/docs/supported-plugins
+    plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
+    source: https://github.com/lxqt/qtermwidget.git
+    source-type: git
+    source-tag: 2.2.0
+    source-depth: 1
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -Dlxqt2-build-tools_DIR=$CRAFT_STAGE/usr/local/share/cmake/lxqt2-build-tools
+
   rabbitremotecontrol:
     # See 'snapcraft plugins'
     # see: https://snapcraft.io/docs/supported-plugins

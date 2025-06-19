@@ -231,6 +231,28 @@ modules:
       - /bin
       - /share/man
 
+  - name: lxqt-build-tools.git
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/lxqt/lxqt-build-tools.git
+        tag: 2.2.0
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+
+  - name: qtermwidget
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/lxqt/qtermwidget.git
+        tag: 2.2.0
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+
   - name: RabbitCommon
     disabled: false
     sources:

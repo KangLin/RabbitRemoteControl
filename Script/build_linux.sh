@@ -237,7 +237,7 @@ if [ $APPIMAGE -eq 1 ]; then
         --tools ${TOOLS_DIR} \
         --verbose ${BUILD_VERBOSE} \
         --qt ${QT_VERSION}
-    
+
     export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
     export Qt6_DIR=$QT_ROOT
     export QMAKE=$QT_ROOT/bin/qmake
@@ -248,7 +248,15 @@ if [ $APPIMAGE -eq 1 ]; then
     export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export BUILD_FREERDP=ON
+
     apt install -y -q fuse3
+
+    ./build_depend.sh --qtermwidget \
+        --install ${INSTALL_DIR} \
+        --source ${SOURCE_DIR} \
+        --tools ${TOOLS_DIR} \
+        --verbose ${BUILD_VERBOSE}
+
     ./build_appimage.sh --install ${INSTALL_DIR} --verbose ${BUILD_VERBOSE}
 fi
 
@@ -260,7 +268,7 @@ if [ $RPM -eq 1 ]; then
         --source ${SOURCE_DIR} \
         --tools ${TOOLS_DIR} \
         --verbose ${BUILD_VERBOSE}
-    
+
     ./build_rpm_package.sh \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \

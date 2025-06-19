@@ -24,9 +24,10 @@ PCAPPLUSPLUS=0
 RabbitCommon=0
 libdatachannel=0
 QtService=0
+QTERMWIDGET=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -47,6 +48,7 @@ usage_long() {
     echo "  --pcapplusplus: Install PcapPlusPlus"
     echo "  --libdatachannel: Install libdatachannel"
     echo "  --QtService: Install QtService"
+    echo "  --qtermwidget: Install qtermwidget"
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
@@ -59,7 +61,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -199,6 +201,15 @@ if command -V getopt >/dev/null; then
                     QtService=1;;
                 *)
                     QtService=$2;;
+            esac
+            shift 2
+            ;;
+        --qtermwidget)
+            case $2 in
+                "")
+                    QTERMWIDGET=1;;
+                *)
+                    QTERMWIDGET=$2;;
             esac
             shift 2
             ;;
@@ -480,6 +491,38 @@ if [ $QtService -eq 1 ]; then
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
+    fi
+    popd
+fi
+
+if [ $QTERMWIDGET -eq 1 ]; then
+    echo "Install qtermwidget ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
+        echo "Install lxqt-build-tools ......"
+        if [ ! -d lxqt-build-tools ]; then
+            git clone --depth=1 https://github.com/lxqt/lxqt-build-tools.git
+        fi
+        cd lxqt-build-tools
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
+    fi
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
+        git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
+        cd qtermwidget
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+            -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
     fi
     popd
 fi
