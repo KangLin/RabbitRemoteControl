@@ -160,6 +160,14 @@ fi
 popd
 
 echo "Compile RabbitRemoteControl ......"
+if [ "${BUILD_VERBOSE}" = "ON" ]; then
+    echo "QT_ROOT: $QT_ROOT"
+    echo "Qt6_DIR: $Qt6_DIR"
+    echo "QMAKE: $QMAKE"
+    echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+    echo "PATH: $PATH"
+    $QMAKE --version
+fi
 INSTALL_APP_DIR=AppDir/usr
 if [ -n "${INSTALL_DIR}" ]; then
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
@@ -205,7 +213,7 @@ fi
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
     --output appimage \
-    --deploy-deps-only=${INSTALL_APP_DIR}/plugins/RabbitRemoteControl
+    --deploy-deps-only=${INSTALL_APP_DIR}/plugins
 
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 

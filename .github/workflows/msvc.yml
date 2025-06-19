@@ -325,6 +325,31 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
+      - name: lxqt-build-tools
+        working-directory: ${{env.SOURCE_DIR}}
+        run:
+          IF NOT EXIST ${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools (
+            git clone -b 2.2.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
+            cd lxqt-build-tools
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=Release ^
+              -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+            cmake --build . --config Release
+            cmake --build . --config Release --target install
+          )
+          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qtermwidget6 (
+          git clone --depth=1 https://github.com/KangLin/qtermwidget.git
+          cd qtermwidget
+          cmake -E make_directory build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+            -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools
+          cmake --build . --config Release
+          cmake --build . --config Release --target install
+          )
+
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -379,7 +404,8 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DPcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
-            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap
+            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^
+            -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"

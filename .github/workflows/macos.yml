@@ -229,8 +229,6 @@ jobs:
 
       - name: build QtService
         working-directory: ${{env.SOURCE_DIR}}
-        env:
-          QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
             git clone --depth=1 https://github.com/KangLin/qt-solutions.git
@@ -240,8 +238,6 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed \
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
@@ -249,6 +245,36 @@ jobs:
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
+          fi
+
+      - name: lxqt-build-tools
+        working-directory: ${{env.SOURCE_DIR}}
+        run:
+          if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
+              echo "Install lxqt-build-tools ......"
+              if [ ! -d lxqt-build-tools ]; then
+                  git clone -b 2.2.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
+              fi
+              cd lxqt-build-tools
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
+              cmake --build . --config Release --parallel $(nproc)
+              cmake --build . --config Release --target install
+          fi
+          if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
+              git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
+              cd qtermwidget
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+                -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
+              cmake --build . --config Release --parallel $(nproc)
+              cmake --build . --config Release --target install
           fi
 
       - name: git clone RabbitCommon
