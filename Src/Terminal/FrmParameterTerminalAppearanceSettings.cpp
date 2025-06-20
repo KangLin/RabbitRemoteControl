@@ -15,68 +15,12 @@
 
 static Q_LOGGING_CATEGORY(log, "Terminal")
 
-class CTerminal
-{
-public:
-    CTerminal()
-    {
-        m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
-            "Terminal",
-            RabbitCommon::CTools::TranslationType::Plugin,
-            "plugins");
-    }
-    
-    ~CTerminal()
-    {
-        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
-    }
-    
-private:
-    QSharedPointer<QTranslator> m_Translator;
-};
-
-const CTerminal g_CTerminal;
-
-CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings(CParameterTerminal *pPara, QWidget *parent) :
-    QWidget(parent),
+CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings(QWidget *parent) :
+    CParameterUI(parent),
     ui(new Ui::CFrmParameterTerminalAppearanceSettings),
-    m_pPara(pPara)
+    m_pPara(nullptr)
 {
     ui->setupUi(this);
-    
-    Q_ASSERT(pPara);
-    if(!pPara) return;
-
-    QFont f = pPara->GetFont();
-    ui->spFontSize->setValue(f.pointSize());
-    ui->lbFont->setFont(f);
-    
-    ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
-                                     | QFontComboBox::NonScalableFonts
-                                     | QFontComboBox::ScalableFonts);
-    ui->fontComboBox->setCurrentFont(f);
-    ui->fontComboBox->setEditable(false);
-    
-    ui->cbShowResize->setChecked(pPara->GetSizeHint());
-    
-    ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
-    ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
-    ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
-    ui->cbCursorShape->setCurrentIndex((int)pPara->GetCursorShape());
-    
-    ui->cbColorScheme->addItems(QTermWidget::availableColorSchemes());
-    if(!m_pPara->GetColorScheme().isEmpty())
-        ui->cbColorScheme->setCurrentText(pPara->GetColorScheme());
-    
-    ui->cbScrollBarPositioin->addItem(tr("No"), QTermWidget::NoScrollBar);
-    ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
-    ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
-    ui->cbScrollBarPositioin->setCurrentIndex(pPara->GetScrollBarPosition());
-
-    ui->spTerminalTransparecy->setValue(pPara->GetTransparency());
-    ui->cbFlowControl->setChecked(m_pPara->GetFlowControl());
-    ui->cbBiDirectional->setChecked(m_pPara->GetDirectional());
-    ui->leImage->setText(m_pPara->GetBackgroupImage());
 }
 
 CFrmParameterTerminalAppearanceSettings::~CFrmParameterTerminalAppearanceSettings()
@@ -100,7 +44,7 @@ void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int siz
     ui->lbFont->setText(tr("Example: Display font"));
 }
 
-int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
+int CFrmParameterTerminalAppearanceSettings::Accept()
 {
     if(!m_pPara) return -1;
     m_pPara->SetFont(ui->fontComboBox->currentFont());
@@ -125,4 +69,44 @@ void CFrmParameterTerminalAppearanceSettings::on_pbBrowser_clicked()
                 tr("Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)"));
     if(!file.isEmpty())
         ui->leImage->setText(file);
+}
+
+int CFrmParameterTerminalAppearanceSettings::SetParameter(CParameter *pParameter)
+{
+    m_pPara = qobject_cast<CParameterTerminal*>(pParameter);
+    Q_ASSERT(m_pPara);
+    if(!m_pPara) return -1;
+
+    QFont f = m_pPara->GetFont();
+    ui->spFontSize->setValue(f.pointSize());
+    ui->lbFont->setFont(f);
+
+    ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
+                                     | QFontComboBox::NonScalableFonts
+                                     | QFontComboBox::ScalableFonts);
+    ui->fontComboBox->setCurrentFont(f);
+    ui->fontComboBox->setEditable(false);
+
+    ui->cbShowResize->setChecked(m_pPara->GetSizeHint());
+
+    ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
+    ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
+    ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
+    ui->cbCursorShape->setCurrentIndex((int)m_pPara->GetCursorShape());
+
+    ui->cbColorScheme->addItems(QTermWidget::availableColorSchemes());
+    if(!m_pPara->GetColorScheme().isEmpty())
+        ui->cbColorScheme->setCurrentText(m_pPara->GetColorScheme());
+
+    ui->cbScrollBarPositioin->addItem(tr("No"), QTermWidget::NoScrollBar);
+    ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
+    ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
+    ui->cbScrollBarPositioin->setCurrentIndex(m_pPara->GetScrollBarPosition());
+
+    ui->spTerminalTransparecy->setValue(m_pPara->GetTransparency());
+    ui->cbFlowControl->setChecked(m_pPara->GetFlowControl());
+    ui->cbBiDirectional->setChecked(m_pPara->GetDirectional());
+    ui->leImage->setText(m_pPara->GetBackgroupImage());
+
+    return 0;
 }

@@ -1,17 +1,20 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include "ParameterConnecter.h"
-#include "qtermwidget.h"
-#include <QFont>
-#include "terminal_export.h"
 
-class TERMINAL_EXPORT CParameterTerminal : public CParameterConnecter
+#include <QFont>
+#include "Parameter.h"
+#include "qtermwidget.h"
+#include "plugin_export.h"
+
+class PLUGIN_EXPORT CParameterTerminal : public CParameter
 {
     Q_OBJECT
     
 public:
-    CParameterTerminal();
+    explicit CParameterTerminal(
+        QObject *parent = nullptr,
+        const QString& szPrefix = QString());
     
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
@@ -65,5 +68,4 @@ private:
     QString m_szKeyBindings;
     QString m_szTextCodec;
     int m_nHistorySize;
-    
 };

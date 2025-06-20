@@ -327,7 +327,7 @@ jobs:
 
       - name: lxqt-build-tools
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version != '5.15.2' }}
+        if: ${{ matrix.qt_version == '6.9.0' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools (
               git clone -b 2.2.0 --depth=1 "https://github.com/lxqt/lxqt-build-tools.git"
@@ -339,10 +339,10 @@ jobs:
               cmake --build . --config Release
               cmake --build . --config Release --target install
           )
-      
+
       - name: qtermwidget6
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version != '5.15.2' }}
+        if: ${{ matrix.qt_version == '6.9.0' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qtermwidget6 (
               git clone --depth=1 "https://github.com/KangLin/qtermwidget.git"

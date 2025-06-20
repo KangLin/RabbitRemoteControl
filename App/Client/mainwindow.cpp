@@ -996,7 +996,6 @@ int MainWindow::onProcess(const QString &id, CPlugin *pPlugin)
     bool check = false;
     check = connect(p, SIGNAL(triggered()), this, SLOT(slotStart()));
     Q_ASSERT(check);
-
     return 0;
 }
 

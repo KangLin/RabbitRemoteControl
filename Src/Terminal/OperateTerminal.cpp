@@ -28,7 +28,6 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     check = connect(m_pConsole, SIGNAL(customContextMenuRequested(const QPoint &)),
                          this, SLOT(slotCustomContextMenu(const QPoint &)));
     Q_ASSERT(check);
-    
     check = connect(m_pConsole, SIGNAL(urlActivated(const QUrl&, bool)),
                     this, SLOT(slotActivateUrl(const QUrl&, bool)));
     Q_ASSERT(check);
@@ -40,12 +39,15 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     Q_ASSERT(check);
     check = connect(m_pConsole, SIGNAL(termKeyPressed(QKeyEvent*)),
                     this, SLOT(slotTermKeyPressed(QKeyEvent*)));
+    Q_ASSERT(check);
+    check = connect(m_pConsole, SIGNAL(termGetFocus()),
+                    this, SLOT(slotFocusIn()));
+    Q_ASSERT(check);
 }
 
 COperateTerminal::~COperateTerminal()
 {
     qDebug(log) << Q_FUNC_INFO;
-    
     if(m_pConsole)
     {
         m_pConsole->deleteLater();
@@ -64,28 +66,30 @@ int COperateTerminal::Load(QSettings &set)
     CParameterTerminal* pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    pPara->Load(set);
+    nRet = pPara->Load(set);
     return nRet;
 }
 
 int COperateTerminal::Save(QSettings &set)
 {
     int nRet = 0;
-    
     CParameterTerminal* pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    pPara->Save(set);
+    nRet = pPara->Save(set);
     return nRet;
 }
 
 int COperateTerminal::Initial()
 {
     int nRet = 0;
-    
+
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
+
+    if(m_pActionSettings)
+        m_Menu.addAction(m_pActionSettings);
 
     return nRet;
 }
@@ -100,13 +104,13 @@ int COperateTerminal::Clean()
 int COperateTerminal::Start()
 {
     int nRet = 0;
-    
+
+    slotUpdateParameter(this);
     m_pThread = new CBackendThread(this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
         return -2;
     }
-    
     m_pThread->start();
     return nRet;
 }
@@ -140,19 +144,25 @@ int COperateTerminal::SetParameter(CParameterTerminal* pPara)
 
     if(!pPara || !m_pConsole) return -1;
 
-    bool check = connect(GetParameter(), SIGNAL(sigChanged()),
-                         this, SLOT(slotUpdateParameter()));
+    bool check = connect(GetParameter(), &CParameter::sigChanged,
+                    this, [&](){
+                        emit this->sigUpdateParameters(this);
+                    });
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUpdateParameters(COperate*)),
+                         this, SLOT(slotUpdateParameter(COperate*)));
     Q_ASSERT(check);
 
-    slotUpdateParameter();
     return nRet;
 }
 
-void COperateTerminal::slotUpdateParameter()
+void COperateTerminal::slotUpdateParameter(COperate* pOperate)
 {
     qDebug(log) << Q_FUNC_INFO;
+    if(this != pOperate) return;
+
     auto pPara = GetParameter();
-    
+
     if(!pPara || !m_pConsole) return;
 
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
@@ -169,10 +179,10 @@ void COperateTerminal::slotUpdateParameter()
     m_pConsole->setMotionAfterPasting(pPara->GetMotionAfterPasting());
     m_pConsole->setTerminalOpacity(1.0 - pPara->GetTransparency() / 100.0);
     m_pConsole->setTerminalBackgroundImage(pPara->GetBackgroupImage());
-    
+
     m_pConsole->setKeyBindings(pPara->GetKeyBindings());
     m_pConsole->setHistorySize(pPara->GetHistorySize());
-    
+
     //    m_pConsole->setMonitorActivity(false);
     //    m_pConsole->setMonitorSilence(false);
     //    m_pConsole->setBlinkingCursor(true);
@@ -195,7 +205,7 @@ void COperateTerminal::slotZoomReset()
 void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
 {
     if(!m_pConsole) return;
-    
+
     QMenu menu;
     menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
     menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
@@ -206,7 +216,7 @@ void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
     menu.addAction(tr("Zoom reset"), this, SIGNAL(slotZoomReset()));
     menu.addSeparator();
     menu.addAction(tr("Clear"), m_pConsole, SLOT(clear()));
-    
+
     menu.exec(m_pConsole->mapToGlobal(pos));
 }
 
@@ -220,6 +230,11 @@ void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
 void COperateTerminal::slotTermKeyPressed(QKeyEvent* e)
 {
     qDebug(log) << Q_FUNC_INFO << e;
+}
+
+void COperateTerminal::slotFocusIn()
+{
+    emit sigViewerFocusIn(GetViewer());
 }
 
 const qint16 COperateTerminal::Version() const

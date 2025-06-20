@@ -71,7 +71,7 @@ CPluginFreeRDP::~CPluginFreeRDP()
 
 const CPlugin::TYPE CPluginFreeRDP::Type() const
 {
-    return TYPE::Client;
+    return TYPE::RemoteDesktop;
 }
 
 const QString CPluginFreeRDP::Name() const

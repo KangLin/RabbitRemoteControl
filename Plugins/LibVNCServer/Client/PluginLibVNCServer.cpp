@@ -21,7 +21,7 @@ CPluginLibVNCServer::~CPluginLibVNCServer()
 
 const CPlugin::TYPE CPluginLibVNCServer::Type() const
 {
-    return TYPE::Client;
+    return TYPE::RemoteDesktop;
 }
 
 const QString CPluginLibVNCServer::Name() const

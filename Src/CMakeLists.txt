@@ -123,7 +123,6 @@ endif()
 
 find_package(libssh)
 if(libssh_FOUND)
-
     option(WITH_EVENTFD "Enable eventfd" ON)
     if(WITH_EVENTFD)
         check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
@@ -168,6 +167,27 @@ if(libssh_FOUND)
         )
 endif()
 
+find_package(qtermwidget6)
+if(qtermwidget6_FOUND)
+    list(APPEND PLUGIN_INSTALL_HEADER_FILES
+        Terminal/OperateTerminal.h
+        Terminal/FrmParameterTerminalAppearanceSettings.h
+        Terminal/FrmParameterTerminalBehavior.h
+        Terminal/ParameterTerminal.h
+    )
+    list(APPEND PLUGIN_SOURCE_FILES
+        Terminal/OperateTerminal.cpp
+        Terminal/FrmParameterTerminalAppearanceSettings.cpp
+        Terminal/FrmParameterTerminalBehavior.cpp
+        Terminal/ParameterTerminal.cpp
+    )
+    list(APPEND PLUGIN_UI_FILES
+        Terminal/FrmParameterTerminalAppearanceSettings.ui
+        Terminal/FrmParameterTerminalBehavior.ui
+    )
+    list(APPEND PLUGIN_LIBS qtermwidget6)
+endif()
+
 SET(PLUGIN_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${PLUGIN_QT_COMPONENTS})
 message("QT_VERSION:${Qt${QT_VERSION_MAJOR}_VERSION}")
@@ -196,6 +216,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Terminal
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         ${PLUGIN_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${PLUGIN_INSTALL_HEADER_FILES}
@@ -207,5 +228,3 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl
     )
-
-add_subdirectory(Terminal)

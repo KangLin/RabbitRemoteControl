@@ -3,7 +3,7 @@
 project(Terminal
     DESCRIPTION "Terminal plugin")
 
-set(lib_terminal Terminal)
+set(lib_terminal Plugin)
 
 SET(SOURCE_FILES
     PluginTerminal.cpp

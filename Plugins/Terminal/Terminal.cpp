@@ -5,7 +5,7 @@
 
 static Q_LOGGING_CATEGORY(log, "Terminal.Plugin.Operate")
 
-CTerminal::CTerminal(CPlugin *parent) 
+CTerminal::CTerminal(CPlugin *parent)
     : COperateTerminal(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -24,9 +24,11 @@ QDialog *CTerminal::OnOpenDialogSettings(QWidget *parent)
 
 int CTerminal::Start()
 {
+    slotUpdateParameter(this);
     if(m_pConsole)
         m_pConsole->startShellProgram();
-    return 0;    
+    emit sigRunning();
+    return 0;
 }
 
 int CTerminal::Stop()

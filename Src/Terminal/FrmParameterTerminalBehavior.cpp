@@ -5,18 +5,29 @@
 
 static Q_LOGGING_CATEGORY(log, "Terminal")
 
-CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal *pPara, QWidget *parent) :
-    QWidget(parent),
+CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(QWidget *parent) :
+    CParameterUI(parent),
     ui(new Ui::CFrmParameterTerminalBehavior),
-    m_pPara(pPara)
+    m_pPara(nullptr)
 {
     ui->setupUi(this);
+}
+
+CFrmParameterTerminalBehavior::~CFrmParameterTerminalBehavior()
+{
+    delete ui;
+}
+
+int CFrmParameterTerminalBehavior::SetParameter(CParameter *pParameter)
+{
+    m_pPara = qobject_cast<CParameterTerminal*>(pParameter);
+    if(!m_pPara) return -1;
 
     //qDebug(log) << "KeyBindings" << QTermWidget::availableKeyBindings();
     ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
-    ui->cbKeyBinding->setCurrentText(pPara->GetKeyBindings());
-
-    ui->cbTextCodecs->setCurrentText(pPara->GetTextCodec());
+    ui->cbKeyBinding->setCurrentText(m_pPara->GetKeyBindings());
+    
+    ui->cbTextCodecs->setCurrentText(m_pPara->GetTextCodec());
     if(0 > m_pPara->GetHistorySize())
     {
         ui->cbHistoryUnlimited->setChecked(true);
@@ -25,16 +36,12 @@ CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal 
     else
     {
         ui->cbHistorySize->setChecked(true);
-        ui->sbHistorySize->setValue(pPara->GetHistorySize());
+        ui->sbHistorySize->setValue(m_pPara->GetHistorySize());
     }
+    return 0;
 }
 
-CFrmParameterTerminalBehavior::~CFrmParameterTerminalBehavior()
-{
-    delete ui;
-}
-
-int CFrmParameterTerminalBehavior::AcceptSettings()
+int CFrmParameterTerminalBehavior::Accept()
 {
     if(!m_pPara) return -1;
 
@@ -44,6 +51,6 @@ int CFrmParameterTerminalBehavior::AcceptSettings()
         m_pPara->SetHistorySize(-1);
     else    
         m_pPara->SetHistorySize(ui->sbHistorySize->value());
-    
+
     return 0;
 }
