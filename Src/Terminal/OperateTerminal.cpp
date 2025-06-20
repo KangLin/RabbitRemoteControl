@@ -32,12 +32,14 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     check = connect(m_pConsole, SIGNAL(urlActivated(const QUrl&, bool)),
                     this, SLOT(slotActivateUrl(const QUrl&, bool)));
     Q_ASSERT(check);
-    check = connect(m_pConsole, SIGNAL(titleChanged()),
-                    this, SLOT(slotTerminalTitleChanged()));
-    Q_ASSERT(check);
+    // check = connect(m_pConsole, SIGNAL(titleChanged()),
+    //                 this, SLOT(slotTerminalTitleChanged()));
+    // Q_ASSERT(check);
     check = connect(m_pConsole, SIGNAL(finished()),
                     this, SIGNAL(sigFinished()));
     Q_ASSERT(check);
+    check = connect(m_pConsole, SIGNAL(termKeyPressed(QKeyEvent*)),
+                    this, SLOT(slotTermKeyPressed(QKeyEvent*)));
 }
 
 COperateTerminal::~COperateTerminal()
@@ -213,6 +215,11 @@ void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
     if (QApplication::keyboardModifiers() & Qt::ControlModifier || fromContextMenu) {
         QDesktopServices::openUrl(url);
     }
+}
+
+void COperateTerminal::slotTermKeyPressed(QKeyEvent* e)
+{
+    qDebug(log) << Q_FUNC_INFO << e;
 }
 
 const qint16 COperateTerminal::Version() const

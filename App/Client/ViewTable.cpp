@@ -20,13 +20,13 @@ CViewTable::CViewTable(CParameterApp *pPara, QWidget *parent)
 {
     qDebug(log) << Q_FUNC_INFO << this;
     bool check = false;
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
 
     m_pTab = new QTabWidget(this);
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
-    m_pTab->setFocusPolicy(Qt::NoFocus);
+    //m_pTab->setFocusPolicy(Qt::NoFocus);
 
     if(m_pParameterApp)
     {

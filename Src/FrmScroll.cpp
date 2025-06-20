@@ -9,7 +9,7 @@ static Q_LOGGING_CATEGORY(log, "Client.FrmScroll")
 CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
     if(pView)
     {
         setWidget(pView);
