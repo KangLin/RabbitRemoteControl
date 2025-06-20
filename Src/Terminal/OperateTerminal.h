@@ -5,14 +5,13 @@
 #include "Operate.h"
 #include "Backend.h"
 #include "ParameterTerminal.h"
-#include "terminal_export.h"
 
 class CBackendThread;
 /*!
  * \~chinese 终端接口
  * \~english Terminal interface
  */
-class TERMINAL_EXPORT COperateTerminal : public COperate
+class PLUGIN_EXPORT COperateTerminal : public COperate
 {
     Q_OBJECT
 public:
@@ -58,7 +57,9 @@ private Q_SLOTS:
     void slotCustomContextMenu(const QPoint & pos);
     void slotActivateUrl(const QUrl& url, bool fromContextMenu);
     void slotTermKeyPressed(QKeyEvent* e);
-    void slotUpdateParameter();
+    void slotFocusIn();
+protected Q_SLOTS:
+    void slotUpdateParameter(COperate *pOperate);
 
 protected:
     virtual int Load(QSettings &set) override;

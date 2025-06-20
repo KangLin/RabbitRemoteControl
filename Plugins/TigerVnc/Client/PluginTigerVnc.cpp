@@ -24,7 +24,7 @@ CPluginTigerVnc::~CPluginTigerVnc()
 
 const CPlugin::TYPE CPluginTigerVnc::Type() const
 {
-    return TYPE::Client;
+    return TYPE::RemoteDesktop;
 }
 
 const QString CPluginTigerVnc::Name() const

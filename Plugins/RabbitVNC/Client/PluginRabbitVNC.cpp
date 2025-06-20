@@ -26,6 +26,11 @@ CPluginRabbitVNC::~CPluginRabbitVNC()
     //! [Clean resource]
 }
 
+const CPluginRabbitVNC::TYPE CPluginRabbitVNC::Type() const
+{
+    return TYPE::RemoteDesktop;
+}
+
 const QString CPluginRabbitVNC::Name() const
 {
     return "RabbitVNC";
@@ -58,7 +63,7 @@ const QString CPluginRabbitVNC::Version() const
     return PluginRabbitVNC_VERSION;
 }
 
-CConnecter* CPluginRabbitVNC::OnCreateConnecter(const QString &szID)
+COperate *CPluginRabbitVNC::OnCreateOperate(const QString &szID)
 {
     if(Id() == szID)
     {

@@ -6,6 +6,7 @@
 class CTerminal : public COperateTerminal
 {
     Q_OBJECT
+
 public:
     explicit CTerminal(CPlugin *parent);
     virtual ~CTerminal() override;
@@ -18,7 +19,7 @@ public:
 
 private:
    [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    
+
 private:
    CParameterTerminal m_Parameters;
 };

@@ -1,25 +1,26 @@
-#ifndef FRMPARAMETERTERMINALBEHAVIOR_H
-#define FRMPARAMETERTERMINALBEHAVIOR_H
+// Author: Kang Lin <kl222@126.com>
 
-#include <QWidget>
+#pragma once
+
+#include "ParameterUI.h"
 #include "ParameterTerminal.h"
 
 namespace Ui {
 class CFrmParameterTerminalBehavior;
 }
 
-class TERMINAL_EXPORT CFrmParameterTerminalBehavior : public QWidget
+class PLUGIN_EXPORT CFrmParameterTerminalBehavior : public CParameterUI
 {
     Q_OBJECT
     
 public:
-    explicit CFrmParameterTerminalBehavior(CParameterTerminal* pPara, QWidget *parent = nullptr);
+    explicit CFrmParameterTerminalBehavior(QWidget *parent = nullptr);
     virtual ~CFrmParameterTerminalBehavior();
-    int AcceptSettings();
+
+    virtual int SetParameter(CParameter *pParameter) override;
+    virtual int Accept() override;
 
 private:
     Ui::CFrmParameterTerminalBehavior *ui;
     CParameterTerminal *m_pPara;
 };
-
-#endif // FRMPARAMETERTERMINALBEHAVIOR_H
