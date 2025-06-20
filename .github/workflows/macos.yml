@@ -261,13 +261,18 @@ jobs:
               cmake --build . --config Release --parallel $(nproc)
               cmake --build . --config Release --target install
           fi
+
+      - name: qtermwidget
+        working-directory: ${{env.SOURCE_DIR}}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.0' }}
+        run: |
           if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/qtermwidget6 ]; then
               git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
               cd qtermwidget
               cmake -E make_directory build
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -Dlxqt2-build-tools_DIR=${{ env.INSTALL_DIR }}/share/cmake/lxqt2-build-tools
               cmake --build . --config Release --parallel $(nproc)
               cmake --build . --config Release --target install
