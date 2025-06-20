@@ -49,8 +49,10 @@ const QString CPlugin::TypeName(const TYPE t) const
         return tr("Remote Desktop");
     case TYPE::Terminal:
         return tr("Terminal");
-    case TYPE::Tool:
-        return tr("Tool");
+    case TYPE::Tools:
+        return tr("Tools");
+    case TYPE::NetworkTools:
+        return tr("Network Tools");
     case TYPE::Custom:
         qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
                              + QString(metaObject()->className()) + "::TypeName(const Type t)" ;

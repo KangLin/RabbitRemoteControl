@@ -9,7 +9,7 @@ CPluginScreenCapture::CPluginScreenCapture(QObject *parent)
 
 const CPlugin::TYPE CPluginScreenCapture::Type() const
 {
-    return TYPE::Tool;
+    return TYPE::Tools;
 }
 
 const QString CPluginScreenCapture::Protocol() const

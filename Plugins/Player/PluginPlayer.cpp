@@ -14,7 +14,7 @@ const QString CPluginPlayer::Protocol() const
 
 const CPlugin::TYPE CPluginPlayer::Type() const
 {
-    return TYPE::Tool;
+    return TYPE::Tools;
 }
 
 const QString CPluginPlayer::Name() const
