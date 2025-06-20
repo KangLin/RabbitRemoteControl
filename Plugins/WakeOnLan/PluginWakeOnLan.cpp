@@ -54,7 +54,7 @@ CPluginWakeOnLan::~CPluginWakeOnLan()
 
 const CPlugin::TYPE CPluginWakeOnLan::Type() const
 {
-    return TYPE::Tool;
+    return TYPE::NetworkTools;
 }
 
 const QString CPluginWakeOnLan::Name() const

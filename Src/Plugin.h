@@ -23,7 +23,8 @@ public:
         Service,
         RemoteDesktop,
         Terminal,
-        Tool,
+        Tools,
+        NetworkTools,
         Custom = 1000 //!\note please override `virtual const QString TypeName(const TYPE t) const`
     };
     [[nodiscard]] virtual const TYPE Type() const = 0;
