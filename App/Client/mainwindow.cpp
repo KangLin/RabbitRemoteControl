@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
 
@@ -311,7 +311,7 @@ void MainWindow::SetView(CView* pView)
     setCentralWidget(m_pView);
 
     bool check = false;
-    m_pView->setFocusPolicy(Qt::NoFocus);
+    //m_pView->setFocusPolicy(Qt::NoFocus);
     check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                     this, SLOT(slotCloseView(const QWidget*)));
     Q_ASSERT(check);

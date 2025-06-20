@@ -57,6 +57,7 @@ private Q_SLOTS:
     void slotZoomReset();
     void slotCustomContextMenu(const QPoint & pos);
     void slotActivateUrl(const QUrl& url, bool fromContextMenu);
+    void slotTermKeyPressed(QKeyEvent* e);
     void slotUpdateParameter();
 
 protected:

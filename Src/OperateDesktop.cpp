@@ -276,7 +276,7 @@ int COperateDesktop::InitialMenu()
     m_psbZoomFactor->setValue(100);
     m_psbZoomFactor->setSuffix("%");
     m_psbZoomFactor->setEnabled(false);
-    m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
+    //m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
     check = connect(
         m_psbZoomFactor, SIGNAL(valueChanged(int)),
         this, SLOT(slotValueChanged(int)));

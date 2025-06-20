@@ -115,7 +115,7 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
                 }
                 return true;
             }
-            
+
             if(bProcess)
                 return true;
         }
