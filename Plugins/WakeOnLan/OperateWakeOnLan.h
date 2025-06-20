@@ -36,7 +36,7 @@ Q_SIGNALS:
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    virtual int SetParameterPlugin(CParameterPlugin* pPara) override;
+    virtual int SetGlobalParameters(CParameterPlugin* pPara) override;
 
     CFrmWakeOnLan* m_pView;
     CWakeOnLanModel* m_pModel;

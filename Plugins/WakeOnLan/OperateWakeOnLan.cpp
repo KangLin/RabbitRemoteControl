@@ -189,7 +189,7 @@ int COperateWakeOnLan::Stop()
     return 0;
 }
 
-int COperateWakeOnLan::SetParameterPlugin(CParameterPlugin *pPara)
+int COperateWakeOnLan::SetGlobalParameters(CParameterPlugin* pPara)
 {
     m_pParameterClient = &pPara->m_Client;
     return 0;

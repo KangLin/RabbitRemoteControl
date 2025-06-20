@@ -263,7 +263,7 @@ bool CScreenCapture::eventFilter(QObject *watched, QEvent *event)
     return false;
 }
 
-int CScreenCapture::SetParameterPlugin(CParameterPlugin *pPara)
+int CScreenCapture::SetGlobalParameters(CParameterPlugin *pPara)
 {
     return 0;
 }

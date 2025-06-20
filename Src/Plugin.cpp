@@ -97,10 +97,10 @@ COperate* CPlugin::CreateOperate(
             DeleteOperate(p);
             return nullptr;
         }
-        //nRet = p->SetParameterPlugin(para);
+        //nRet = p->SetGlobalParameters(para);
         bRet = QMetaObject::invokeMethod(
             p,
-            "SetParameterPlugin",
+            "SetGlobalParameters",
             Qt::DirectConnection,
             Q_RETURN_ARG(int, nRet),
             Q_ARG(CParameterPlugin*, para));

@@ -222,7 +222,18 @@ public:
      * \~ \see CParameterUI::CheckValidity
      */
     virtual bool CheckValidity();
-    
+
+    /*!
+     * \~chinese 设置全局参数，如果此参数关联全局参数，请重载 slotGlobalParameters
+     * \~english Set global parameters.
+     *           If this parameter is related to a global parameter,
+     *           please override slotGlobalParameters
+     * \~
+     * \see CPlugin::CreateOperate COperate::SetGlobalParameters
+     * \see slotGlobalParameters
+     */
+    virtual int SetGlobalParameters(CParameter* pPara);
+
 Q_SIGNALS:
     /*!
      * \~chinese 当参数改变时，触发
@@ -233,6 +244,20 @@ Q_SIGNALS:
      * a change event.
      */
     void sigChanged();
+
+private:
+Q_SIGNALS:
+    //! Please don't use the signal. please use slotGlobalParameters
+    void sigGlobalParameters(CParameter* pPara);
+
+private Q_SLOTS:
+    /*!
+     * \~chinese 此参数关联全局参数
+     * \~english this parameter relate to a global parameter
+     * \~
+     * \see SetGlobalParameters
+     */
+    virtual void slotGlobalParameters(CParameter* pPara);
 
 protected:
     virtual int OnLoad(QSettings &set) = 0;

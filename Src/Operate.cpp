@@ -192,28 +192,6 @@ void COperate::slotSettings()
         emit sigUpdateParameters(this);
 }
 
-int COperate::SetParameterPlugin(CParameterPlugin* pPara)
-{
-    QString szMsg = "The operate is not parameters! "
-                    "please first create parameters, "
-                    "then call SetParameter in the ";
-    szMsg += metaObject()->className() + QString("::")
-             + metaObject()->className();
-    szMsg += QString(" or ") + metaObject()->className()
-             + QString("::") + "Initial()";
-    szMsg += " to set the parameters pointer. "
-             "Default set SetParameterPlugin for the parameters of operate "
-             "(CParameterPlugin or its derived classes) "
-             "See: CManager::CreateOperate. "
-             "If you are sure the parameter of operate "
-             "does not need SetParameterPlugin. "
-             "Please overload the SetParameterPlugin in the ";
-    szMsg += QString(metaObject()->className()) + " . don't set it";
-    qCritical(log) << szMsg.toStdString().c_str();
-    Q_ASSERT(false);
-    return -1;
-}
-
 CPlugin* COperate::GetPlugin() const
 {
     return m_pPlugin;

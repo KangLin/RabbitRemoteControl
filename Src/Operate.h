@@ -264,14 +264,14 @@ protected:
      *       override it in the derived class and ignore.
      * \see CManager::CreateOperate CParameterPlugin
      */
-    Q_INVOKABLE virtual int SetParameterPlugin(CParameterPlugin* pPara) = 0;
+    Q_INVOKABLE virtual int SetGlobalParameters(CParameterPlugin* pPara) = 0;
 
 protected:
     /*!
      * \brief Get plugin
      * \see CManager::DeleteOperate 
      */
-    Q_INVOKABLE [[nodiscard]] CPlugin* GetPlugin() const;
+    [[nodiscard]] Q_INVOKABLE CPlugin* GetPlugin() const;
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
 

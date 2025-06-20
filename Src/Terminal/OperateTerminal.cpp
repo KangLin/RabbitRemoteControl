@@ -242,7 +242,7 @@ const qint16 COperateTerminal::Version() const
     return 0;
 }
 
-int COperateTerminal::SetParameterPlugin(CParameterPlugin *pPara)
+int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
 {
     return 0;
 }

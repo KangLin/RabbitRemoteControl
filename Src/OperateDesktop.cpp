@@ -358,7 +358,7 @@ int COperateDesktop::Stop()
     return nRet;
 }
 
-int COperateDesktop::SetParameterPlugin(CParameterPlugin *pPara)
+int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
 {
     if(GetParameter())
     {
@@ -383,12 +383,12 @@ int COperateDesktop::SetParameterPlugin(CParameterPlugin *pPara)
         szMsg += QString("() or ") + metaObject()->className()
                  + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of connecter "
+                 "Default set CParameterClient for the parameters of operate "
                  "(CParameterConnecter or its derived classes) "
                  "See CManager::CreateOperate. "
-                 "If you are sure the parameter of connecter "
+                 "If you are sure the parameter of operate "
                  "does not need CParameterClient. "
-                 "Please overload the SetParameterPlugin() in the ";
+                 "Please overload the SetGlobalParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);

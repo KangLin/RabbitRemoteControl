@@ -15,6 +15,12 @@ CParameter::CParameter(QObject* parent, const QString& szPrefix)
         p->AddCategory(this);
         bool check = connect(this, SIGNAL(sigChanged()), p, SIGNAL(sigChanged()));
         Q_ASSERT(check);
+        check = connect(p, SIGNAL(sigGlobalParameters(CParameter*)),
+                        this, SLOT(slotGlobalParameters(CParameter*)));
+        Q_ASSERT(check);
+        check = connect(this, SIGNAL(sigGlobalParameters(CParameter*)),
+                        this, SLOT(slotGlobalParameters(CParameter*)));
+        Q_ASSERT(check);
     }
 }
 
@@ -134,4 +140,17 @@ int CParameter::AddCategory(CParameter* p)
     if(!m_Category.contains(p))
         m_Category.push_back(p);
     return 0;
+}
+
+int CParameter::SetGlobalParameters(CParameter* p)
+{
+    if(!p) return 0;
+    emit sigGlobalParameters(p);
+    return 0;
+}
+
+void CParameter::slotGlobalParameters(CParameter* p)
+{
+    Q_UNUSED(p);
+    return;
 }

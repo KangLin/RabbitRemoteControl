@@ -17,7 +17,7 @@
  *   but the application can be set it via CClient::GetSettingsWidgets .
  *
  * \~
- * \see COperate::SetParameterPlugin
+ * \see COperate::SetGlobalParameters
  * \ingroup CLIENT_PARAMETER
  */
 class PLUGIN_EXPORT CParameterPlugin : public CParameter
