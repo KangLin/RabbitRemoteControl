@@ -15,7 +15,7 @@
 QAbstractNativeEventFilter* g_pNativeEventFilter = nullptr;
 static Q_LOGGING_CATEGORY(log, "Client.Hook")
 
-CHook::CHook(CParameterClient *pParaClient, QObject *parent)
+CHook::CHook(CParameterPlugin *pParaClient, QObject *parent)
     : QObject(parent)
     , m_pParameterClient(pParaClient)
 {
@@ -27,7 +27,7 @@ CHook::~CHook()
     qDebug(log) << "CHook::~CHook()";
 }
 
-CHook* CHook::GetHook(CParameterClient *pParaClient, QObject *parent)
+CHook* CHook::GetHook(CParameterPlugin *pParaClient, QObject *parent)
 {
     CHook* p = nullptr;
 #if defined(Q_OS_WIN)

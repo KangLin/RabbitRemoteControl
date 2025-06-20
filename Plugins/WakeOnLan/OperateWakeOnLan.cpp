@@ -19,7 +19,7 @@ COperateWakeOnLan::COperateWakeOnLan(CPlugin *plugin)
     : COperate(plugin)
     , m_pView(nullptr)
     , m_pModel(nullptr)
-    , m_pParameterClient(nullptr)
+    , m_pParameterPlugin(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -139,7 +139,7 @@ const QString COperateWakeOnLan::Id()
 const QString COperateWakeOnLan::Name()
 {
     QString szName;
-    if(m_pParameterClient && m_pParameterClient->GetShowProtocolPrefix())
+    if(m_pParameterPlugin && m_pParameterPlugin->GetShowProtocolPrefix())
         szName = Protocol() + ":";
     szName += GetPlugin()->DisplayName();
     return szName;
@@ -149,7 +149,7 @@ int COperateWakeOnLan::Start()
 {
 #if defined(Q_OS_UNIX)
     if(!RabbitCommon::CTools::HasAdministratorPrivilege()
-        && m_pParameterClient->GetPromptAdministratorPrivilege())
+        && m_pParameterPlugin->GetPromptAdministratorPrivilege())
     {
         static bool bShow = false;
         if(!bShow) {
@@ -165,13 +165,13 @@ int COperateWakeOnLan::Start()
             msg.checkBox()->setCheckable(true);
             nRet = msg.exec();
             msg.checkBox()->setChecked(
-                m_pParameterClient->GetPromptAdministratorPrivilege());
+                m_pParameterPlugin->GetPromptAdministratorPrivilege());
             if(QMessageBox::Yes == nRet) {
                 RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
             }
-            if(m_pParameterClient->GetPromptAdministratorPrivilege()
+            if(m_pParameterPlugin->GetPromptAdministratorPrivilege()
                 != msg.checkBox()->isChecked()) {
-                m_pParameterClient->SetPromptAdministratorPrivilege(
+                m_pParameterPlugin->SetPromptAdministratorPrivilege(
                     msg.checkBox()->isChecked());
                 // TODO: save settings
                 //SaveSettings();
@@ -189,16 +189,16 @@ int COperateWakeOnLan::Stop()
     return 0;
 }
 
-int COperateWakeOnLan::SetParameterPlugin(CParameterPlugin *pPara)
+int COperateWakeOnLan::SetGlobalParameters(CParameterPlugin* pPara)
 {
-    m_pParameterClient = &pPara->m_Client;
+    m_pParameterPlugin = pPara;
     return 0;
 }
 
 int COperateWakeOnLan::Load(QSettings &set)
 {
     if(!m_pModel) return -1;
-    return m_pModel->Load(set, m_pParameterClient);
+    return m_pModel->Load(set, m_pParameterPlugin);
 }
 
 int COperateWakeOnLan::Save(QSettings &set)
@@ -210,7 +210,7 @@ int COperateWakeOnLan::Save(QSettings &set)
 void COperateWakeOnLan::slotAdd()
 {
     QSharedPointer<CParameterWakeOnLan> para(new CParameterWakeOnLan());
-    para->SetParameterClient(m_pParameterClient);
+    para->SetGlobalParameters(m_pParameterPlugin);
     CParameterWakeOnLanUI dlg;
     dlg.SetParameter(para.data());
     int nRet = RC_SHOW_WINDOW(&dlg);

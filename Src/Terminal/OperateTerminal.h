@@ -49,7 +49,7 @@ public Q_SLOTS:
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
-    virtual int SetParameterPlugin(CParameterPlugin *pPara) override;
+    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
 
 private Q_SLOTS:
     void slotTerminalTitleChanged();

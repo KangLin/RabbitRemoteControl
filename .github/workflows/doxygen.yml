@@ -55,10 +55,7 @@ jobs:
 
     - name: install apt packages
       run: |
-        sudo apt update -y -q
-        sudo apt upgrade -y -q
-        sudo apt install -y -q cmake build-essential graphviz \
-            qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools
+        sudo ./Script/build_depend.sh --system_update --base --default --install ${{env.INSTALL_DIR}}
 
     - name: Download doxygen
       run: |

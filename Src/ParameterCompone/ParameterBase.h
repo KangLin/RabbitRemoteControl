@@ -41,7 +41,7 @@
  * \~
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class PLUGIN_EXPORT CParameterBase : public CParameterConnecter
+class PLUGIN_EXPORT CParameterBase : public CParameterOperate
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
@@ -53,7 +53,7 @@ class PLUGIN_EXPORT CParameterBase : public CParameterConnecter
 
 public:
     explicit CParameterBase(QObject* parent = nullptr);
-    explicit CParameterBase(CParameterConnecter* parent,
+    explicit CParameterBase(CParameterOperate* parent,
                             const QString& szPrefix = QString());
 
     const QString GetName() const;
@@ -128,8 +128,8 @@ protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
     
-    // CParameterConnecter interface
-    virtual void slotSetParameterClient() override;
+    // CParameterOperate interface
+    virtual void slotSetGlobalParameters() override;
 };
 
 #endif // CPARAMETERBASE_H

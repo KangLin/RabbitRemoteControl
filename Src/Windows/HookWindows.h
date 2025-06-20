@@ -8,7 +8,7 @@ class CHookWindows : public CHook
 {
     Q_OBJECT
 public:
-    explicit CHookWindows(CParameterClient* pParaClient, QObject *parent = nullptr);
+    explicit CHookWindows(CParameterPlugin* pParaClient, QObject *parent = nullptr);
     virtual ~CHookWindows();
 
 public:

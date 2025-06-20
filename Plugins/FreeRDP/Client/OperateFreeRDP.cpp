@@ -7,7 +7,7 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Operate")
-//! [Set the parameter]
+
 COperateFreeRDP::COperateFreeRDP(CPlugin *plugin)
     : COperateDesktop(plugin)
 {
@@ -17,7 +17,7 @@ COperateFreeRDP::COperateFreeRDP(CPlugin *plugin)
     // 在 freerdp_client_context_free 中释放
     //m_ParameterFreeRdp.m_pSettings = freerdp_settings_new(0);
 }
-//! [Set the parameter]
+
 
 COperateFreeRDP::~COperateFreeRDP()
 {
@@ -29,6 +29,7 @@ const qint16 COperateFreeRDP::Version() const
     return 0;
 }
 
+//! [Set the parameter]
 int COperateFreeRDP::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -38,6 +39,7 @@ int COperateFreeRDP::Initial()
     nRet = SetParameter(&m_ParameterFreeRdp);
     return nRet;
 }
+//! [Set the parameter]
 
 int COperateFreeRDP::Clean()
 {

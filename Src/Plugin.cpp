@@ -76,6 +76,7 @@ const QString CPlugin::Details() const
     return QString();
 }
 
+//! [CPlugin CreateOperate]
 COperate* CPlugin::CreateOperate(
     const QString &szId, CParameterPlugin* para)
 {
@@ -97,10 +98,10 @@ COperate* CPlugin::CreateOperate(
             DeleteOperate(p);
             return nullptr;
         }
-        //nRet = p->SetParameterPlugin(para);
+        //nRet = p->SetGlobalParameters(para);
         bRet = QMetaObject::invokeMethod(
             p,
-            "SetParameterPlugin",
+            "SetGlobalParameters",
             Qt::DirectConnection,
             Q_RETURN_ARG(int, nRet),
             Q_ARG(CParameterPlugin*, para));
@@ -116,6 +117,7 @@ COperate* CPlugin::CreateOperate(
     }
     return p;
 }
+//! [CPlugin CreateOperate]
 
 int CPlugin::DeleteOperate(COperate *p)
 {

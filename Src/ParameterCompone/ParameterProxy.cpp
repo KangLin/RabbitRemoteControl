@@ -1,7 +1,7 @@
 #include "ParameterProxy.h"
 
-CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix)
+CParameterProxy::CParameterProxy(CParameterOperate *parent, const QString &szPrefix)
+    : CParameterOperate(parent, szPrefix)
     , m_SockesV5(this, "Proxy/SockesV5")
     , m_Http(this, "Proxy/Http")
     ,m_SSH(this, "Proxy/SSH/Tunnel")

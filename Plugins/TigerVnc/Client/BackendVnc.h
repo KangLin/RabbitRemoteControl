@@ -11,7 +11,7 @@
 #include "Channel.h"
 #include "ParameterVnc.h"
 
-#include "ParameterConnecter.h"
+#include "ParameterOperate.h"
 #include "../InStreamChannel.h"
 #include "../OutStreamChannel.h"
 

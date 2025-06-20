@@ -86,8 +86,8 @@ const QString COperateDesktop::Id()
 const QString COperateDesktop::Name()
 {
     QString szName;
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
+    if(GetParameter() && GetParameter()->GetGlobalParameters()
+        && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
 
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
@@ -358,18 +358,18 @@ int COperateDesktop::Stop()
     return nRet;
 }
 
-int COperateDesktop::SetParameterPlugin(CParameterPlugin *pPara)
+int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
 {
     if(GetParameter())
     {
-        auto pClient = &pPara->m_Client;
-        GetParameter()->SetParameterClient(pClient);
-        if(pClient)
+        GetParameter()->SetGlobalParameters(pPara);
+        auto pPlugin = pPara;
+        if(pPlugin)
         {
-            bool check = connect(pClient, SIGNAL(sigShowProtocolPrefixChanged()),
+            bool check = connect(pPlugin, SIGNAL(sigShowProtocolPrefixChanged()),
                                  this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
-            check = connect(pClient, SIGNAL(sigSHowIpPortInNameChanged()),
+            check = connect(pPlugin, SIGNAL(sigSHowIpPortInNameChanged()),
                             this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
         }
@@ -383,12 +383,12 @@ int COperateDesktop::SetParameterPlugin(CParameterPlugin *pPara)
         szMsg += QString("() or ") + metaObject()->className()
                  + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of connecter "
-                 "(CParameterConnecter or its derived classes) "
+                 "Default set CParameterClient for the parameters of operate "
+                 "(CParameterOperate or its derived classes) "
                  "See CManager::CreateOperate. "
-                 "If you are sure the parameter of connecter "
+                 "If you are sure the parameter of operate "
                  "does not need CParameterClient. "
-                 "Please overload the SetParameterPlugin() in the ";
+                 "Please overload the SetGlobalParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);
@@ -579,8 +579,8 @@ QString COperateDesktop::ServerName()
                 return GetParameter()->m_Net.GetHost() + ":"
                        + QString::number(GetParameter()->m_Net.GetPort());
         }
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
+    if(GetParameter() && GetParameter()->GetGlobalParameters()
+        && GetParameter()->GetGlobalParameters()->GetShowIpPortInName())
     {
         return GetParameter()->m_Net.GetHost()
         + ":" + QString::number(GetParameter()->m_Net.GetPort());

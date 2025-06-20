@@ -96,7 +96,7 @@ public:
      * \~chinese 得到设置参数窗口
      * \return 设置参数窗口。此窗口的所有者为调用者。
      * \note 此窗口必须从 CParameterUI 派生。
-     *       例如: CFrmParameterClient
+     *       例如: CParameterPluginUI
      * 用法示例：
      * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
      * 
@@ -106,16 +106,16 @@ public:
      * \~english Get parameter settings widget
      * \return Parameter widget. The QWidget owner is caller.
      * \note The widget must be a derivative of CParameterUI.
-     *         Eg: CFrmParameterClient
+     *         Eg: CParameterPluginUI
      *
-     * \snippet Client/FrmParameterClient.h Accept parameters
+     * \snippet Src/ParameterPluginUI.h Accept parameters
      * Usage:
      * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
      * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 
      * \~
-     * \see CFrmParameterClient CParameterDlgSettings
+     * \see CParameterPluginUI CParameterDlgSettings
      */   
     virtual QList<QWidget*> GetSettingsWidgets(QWidget *parent);
     /*!

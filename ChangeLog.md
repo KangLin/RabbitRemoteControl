@@ -12,16 +12,18 @@
       |Remote->Disconnect|Operate->Stop |Menu or tool bar|
 
   - Rename class name
-    - Add CParameterPlugin
 
-      |Old name        |New Name       |
-      |----------------|---------------|
-      |CConnecter      |COperate       |
-      |Connect         |CBackend       |
-      |ConnectThread   |CBackendThread |
-      |CConnecterThread|COperateDesktop|
-      |CPluginClient   |CPlugin        |
-      |CClient         |CManager       |
+      |Old name           |New Name          |
+      |-------------------|------------------|
+      |CConnecter         |COperate          |
+      |Connect            |CBackend          |
+      |ConnectThread      |CBackendThread    |
+      |CConnecterThread   |COperateDesktop   |
+      |CPluginClient      |CPlugin           |
+      |CClient            |CManager          |
+      |CParameterConnecter|CParameterOperate |
+      |CParameterClient   |CParameterPlugin  |
+      |FrmParameterClient |CParameterPluginUI|
 
 ### v0.0.36
 - Client:

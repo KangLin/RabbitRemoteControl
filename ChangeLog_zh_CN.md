@@ -11,16 +11,18 @@
       |远程->断开|操作->停止|菜单或工具条|
 
   - 重命名类名
-    - 增加 CParameterPlugin
 
-      |老名称           |新名称          |
-      |----------------|---------------|
-      |CConnecter      |COperate       |
-      |Connect         |CBackend       |
-      |ConnectThread   |CBackendThread |
-      |CConnecterThread|COperateDesktop|
-      |CPluginClient   |CPlugin        |
-      |CClient         |CManager       |
+      |老名称              |新名称             |
+      |-------------------|------------------|
+      |CConnecter         |COperate          |
+      |Connect            |CBackend          |
+      |ConnectThread      |CBackendThread    |
+      |CConnecterThread   |COperateDesktop   |
+      |CPluginClient      |CPlugin           |
+      |CClient            |CManager          |
+      |CParameterConnecter|CParameterOperate |
+      |CParameterClient   |CParameterPlugin  |
+      |FrmParameterClient |CParameterPluginUI|
 
 ### v0.0.36
 - Client:

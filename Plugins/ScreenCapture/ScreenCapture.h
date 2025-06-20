@@ -56,7 +56,7 @@ public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
-    virtual int SetParameterPlugin(CParameterPlugin *pPara) override;
+    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
 };
 
 #endif // SCREENCAPTURE_H

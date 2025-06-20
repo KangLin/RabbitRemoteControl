@@ -1,7 +1,7 @@
 #ifndef CPARAMETERUSERPASSWORD_H
 #define CPARAMETERUSERPASSWORD_H
 
-#include "ParameterConnecter.h"
+#include "ParameterOperate.h"
 
 /*!
  * \~english
@@ -15,15 +15,15 @@
  * \brief 用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI
  *
  * \~
- * \see CParameterConnecter CParameterUserUI
+ * \see CParameterOperate CParameterUserUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class PLUGIN_EXPORT CParameterUser : public CParameterConnecter
+class PLUGIN_EXPORT CParameterUser : public CParameterOperate
 {
     Q_OBJECT
 
 public:
-    explicit CParameterUser(CParameterConnecter* parent,
+    explicit CParameterUser(CParameterOperate* parent,
                             const QString& szPrefix = QString());
     
     enum class TYPE{
@@ -92,8 +92,10 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 protected Q_SLOTS:
-    // CParameterConnecter interface
-    virtual void slotSetParameterClient() override;
+    /*!
+     * \brief Initialize this parameter based on the global parameter
+     */
+    virtual void slotSetGlobalParameters() override;
     
 private:
     QList<TYPE> m_Type;

@@ -264,7 +264,7 @@ void CWakeOnLanModel::sort(int column, Qt::SortOrder order)
     endResetModel();
 }
 
-int CWakeOnLanModel::Load(QSettings &set, CParameterClient* pClient)
+int CWakeOnLanModel::Load(QSettings &set, CParameterPlugin* pPlugin)
 {
     int nRet = 0;
     int count = 0;
@@ -276,7 +276,7 @@ int CWakeOnLanModel::Load(QSettings &set, CParameterClient* pClient)
             nRet = -1;
             break;
         }
-        p->SetParameterClient(pClient);
+        p->SetGlobalParameters(pPlugin);
         set.beginGroup("Host" + QString::number(i));
         nRet = p->Load(set);
         set.endGroup();

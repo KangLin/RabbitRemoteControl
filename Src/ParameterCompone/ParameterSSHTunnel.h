@@ -7,12 +7,12 @@
 
 #include "ParameterNet.h"
 
-class PLUGIN_EXPORT CParameterSSHTunnel : public CParameterConnecter
+class PLUGIN_EXPORT CParameterSSHTunnel : public CParameterOperate
 {
     Q_OBJECT
 
 public:
-    explicit CParameterSSHTunnel(CParameterConnecter *parent = nullptr,
+    explicit CParameterSSHTunnel(CParameterOperate *parent = nullptr,
                            const QString& szPrefix = QString());
 
     CParameterNet m_Net;

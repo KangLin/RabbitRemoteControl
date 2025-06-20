@@ -19,16 +19,16 @@
  *  其界面为 CParameterNetUI
  *
  * \~
- * \see CParameterConnecter CParameterNetUI
+ * \see CParameterOperate CParameterNetUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class PLUGIN_EXPORT CParameterNet
-    : public CParameterConnecter
+    : public CParameterOperate
 {
     Q_OBJECT
 
 public:
-    explicit CParameterNet(CParameterConnecter* parent,
+    explicit CParameterNet(CParameterOperate* parent,
                            const QString& szPrefix = QString());
     
     virtual const QString GetHost() const;

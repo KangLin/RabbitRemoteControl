@@ -1,13 +1,14 @@
-#include "FrmParameterClient.h"
-#include "ui_FrmParameterClient.h"
+#include "ParameterPluginUI.h"
+#include "ui_ParameterPluginUI.h"
 #include <RabbitCommonTools.h>
 
-CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
+CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
     CParameterUI(parent),
-    ui(new Ui::CFrmParameterClient),
+    ui(new Ui::CParameterPluginUI),
     m_pPara(nullptr)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("Remote desktop"));
     if(RabbitCommon::CTools::HasAdministratorPrivilege()) {
         ui->cbPromptAdminPrivilege->setText("");
         ui->cbPromptAdminPrivilege->hide();
@@ -18,12 +19,12 @@ CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
     }
 }
 
-CFrmParameterClient::~CFrmParameterClient()
+CParameterPluginUI::~CParameterPluginUI()
 {
     delete ui;
 }
 
-int CFrmParameterClient::Accept()
+int CParameterPluginUI::Accept()
 {
     if(!m_pPara)
         return -1;
@@ -39,22 +40,22 @@ int CFrmParameterClient::Accept()
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
     if(ui->rbPromptAlways->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::Always);
+        m_pPara->SetPromptType(CParameterPlugin::PromptType::Always);
     if(ui->rbPromptFirst->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::First);
+        m_pPara->SetPromptType(CParameterPlugin::PromptType::First);
     if(ui->rbPromptNo->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::No);
+        m_pPara->SetPromptType(CParameterPlugin::PromptType::No);
     m_pPara->SetShowProtocolPrefix(ui->cbShowPrefix->isChecked());
     m_pPara->SetShowIpPortInName(ui->cbShowIPPort->isChecked());
     return 0;
 }
 
-void CFrmParameterClient::on_cbEnableViewPassword_clicked(bool checked)
+void CParameterPluginUI::on_cbEnableViewPassword_clicked(bool checked)
 {
     ui->pbEncryptKey->setEnabled(checked);
 }
 
-void CFrmParameterClient::on_pbEncryptKey_clicked()
+void CParameterPluginUI::on_pbEncryptKey_clicked()
 {
     switch(ui->leEncryptKey->echoMode())
     {
@@ -71,9 +72,9 @@ void CFrmParameterClient::on_pbEncryptKey_clicked()
     }
 }
 
-int CFrmParameterClient::SetParameter(CParameter *pParameter)
+int CParameterPluginUI::SetParameter(CParameter *pParameter)
 {
-    m_pPara = qobject_cast<CParameterClient*>(pParameter);
+    m_pPara = qobject_cast<CParameterPlugin*>(pParameter);
     if(!m_pPara)
         return -1;
     ui->cbNativeWindowReceiveKeyboard->setChecked(
@@ -104,13 +105,13 @@ int CFrmParameterClient::SetParameter(CParameter *pParameter)
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
     ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
     switch (m_pPara->GetPromptType()) {
-    case CParameterClient::PromptType::Always:
+    case CParameterPlugin::PromptType::Always:
         ui->rbPromptAlways->setChecked(true);
         break;
-    case CParameterClient::PromptType::First:
+    case CParameterPlugin::PromptType::First:
         ui->rbPromptFirst->setChecked(true);
         break;
-    case CParameterClient::PromptType::No:
+    case CParameterPlugin::PromptType::No:
         ui->rbPromptNo->setChecked(true);
         break;
     }

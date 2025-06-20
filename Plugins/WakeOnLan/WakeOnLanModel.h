@@ -15,7 +15,7 @@ public:
     virtual ~CWakeOnLanModel();
 
     int AddItem(QSharedPointer<CParameterWakeOnLan> para);
-    int Load(QSettings &set, CParameterClient *pClient);
+    int Load(QSettings &set, CParameterPlugin *pPlugin);
     int Save(QSettings &set);
 
     QSharedPointer<CParameterWakeOnLan> GetData(const QModelIndex &index);

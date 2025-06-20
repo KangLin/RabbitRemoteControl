@@ -12,7 +12,7 @@
 
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
-#include "FrmParameterClient.h"
+#include "ParameterPluginUI.h"
 #include "FrmViewer.h"
 #include "Channel.h"
 #include "ParameterRecordUI.h"
@@ -36,23 +36,23 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     m_szSettingsFile = szFile;
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
-        CParameterClient* pParameterClient = &m_pParameter->m_Client;
+        CParameterPlugin* pParameterPlugint = m_pParameter;
         LoadSettings(m_szSettingsFile);
-        check = connect(pParameterClient, &CParameterClient::sigNativeWindowRecieveKeyboard,
+        check = connect(pParameterPlugint, &CParameterPlugin::sigNativeWindowRecieveKeyboard,
                         this, [&](){
-                            if(pParameterClient->GetNativeWindowReceiveKeyboard()) {
+                            if(pParameterPlugint->GetNativeWindowReceiveKeyboard()) {
                                 if(m_pHook) {
                                     m_pHook->UnRegisterKeyboard();
                                     m_pHook->deleteLater();
                                     m_pHook = nullptr;
                                 }
                             } else {
-                                m_pHook = CHook::GetHook(pParameterClient, this);
+                                m_pHook = CHook::GetHook(pParameterPlugint, this);
                                 if(m_pHook)
                                     m_pHook->RegisterKeyboard();
                             }
                         });
-        m_pHook = CHook::GetHook(pParameterClient, this);
+        m_pHook = CHook::GetHook(pParameterPlugint, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
     } else {
@@ -394,16 +394,16 @@ int CManager::SaveSettings(const QString szFile)
 QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
-    
-    CFrmParameterClient* pClient = new CFrmParameterClient(parent);
+
+    CParameterPluginUI* pClient = new CParameterPluginUI(parent);
     if(pClient) {
-        pClient->SetParameter(&m_pParameter->m_Client);
+        pClient->SetParameter(m_pParameter);
         lstWidget.push_back(pClient);
     }
     
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
-        pRecord->SetParameter(&m_pParameter->m_Client.m_Record);
+        pRecord->SetParameter(&m_pParameter->m_Record);
         lstWidget.push_back(pRecord);
     }
     

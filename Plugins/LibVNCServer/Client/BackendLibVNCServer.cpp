@@ -224,7 +224,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         break;
     }//*/
     /*TODO: add UltraVncRepeater
-    case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
+    case (CParameterOperate::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
         m_pClient->destPort = m_pPara->GetProxyPort();//*/
 

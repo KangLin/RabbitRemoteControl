@@ -4,8 +4,8 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 
-CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix)
+CParameterUser::CParameterUser(CParameterOperate *parent, const QString &szPrefix)
+    : CParameterOperate(parent, szPrefix)
     , m_Type(QList<TYPE>() << TYPE::UserPassword)
     , m_UsedType(TYPE::UserPassword)
     , m_bSavePassword(false)
@@ -178,27 +178,27 @@ void CParameterUser::SetSavePassword(bool save)
     SetModified(true);
 }
 
-//! [Initialize parameter after set CParameterClient]
-void CParameterUser::slotSetParameterClient()
+//! [Initialize parameter after set CParameterPlugin]
+void CParameterUser::slotSetGlobalParameters()
 {
-    if(!GetParameterClient()) {
+    if(!GetGlobalParameters()) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "CParameterUser", szErr.toStdString().c_str());
         return;
     }
 
-    if(GetParameterClient())
+    if(GetGlobalParameters())
     {
-        if(GetParameterClient()->GetEnableSystemUserToUser())
+        if(GetGlobalParameters()->GetEnableSystemUserToUser())
             SetUser(RabbitCommon::CTools::GetCurrentUser());
-        SetSavePassword(GetParameterClient()->GetSavePassword());
-        SetSavePassphrase(GetParameterClient()->GetSavePassword());
+        SetSavePassword(GetGlobalParameters()->GetSavePassword());
+        SetSavePassphrase(GetGlobalParameters()->GetSavePassword());
     }
 
     return;
 }
-//! [Initialize parameter after set CParameterClient]
+//! [Initialize parameter after set CParameterPlugin]
 
 //! Get use system file
 bool CParameterUser::GetUseSystemFile() const

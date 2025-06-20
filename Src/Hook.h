@@ -4,7 +4,7 @@
 #define CHOOK_H
 
 #include <QObject>
-#include "ParameterClient.h"
+#include "ParameterPlugin.h"
 
 /*!
  * \brief The class is the HOOK abstract class.
@@ -14,7 +14,7 @@
 class CHook : public QObject
 {
 public:
-    static CHook* GetHook(CParameterClient* pParaClient, QObject *parent = nullptr);
+    static CHook* GetHook(CParameterPlugin* pParaClient, QObject *parent = nullptr);
 
     virtual int RegisterKeyboard();
     virtual int UnRegisterKeyboard();
@@ -24,10 +24,10 @@ public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
-    CParameterClient* m_pParameterClient;
+    CParameterPlugin* m_pParameterClient;
 
 protected:
-    explicit CHook(CParameterClient* pParaClient, QObject *parent = nullptr);
+    explicit CHook(CParameterPlugin* pParaClient, QObject *parent = nullptr);
     virtual ~CHook();
 };
 

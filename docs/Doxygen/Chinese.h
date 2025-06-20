@@ -27,9 +27,9 @@
 \brief 客户端库
 \details 
 + 客户端插件接口类关系：
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 + 序列图：
-  \image html docs/Image/PluginClientSequenceDiagram.svg
+  \image html docs/Image/PluginSequenceDiagram.svg
 
 
 \defgroup CLIENT_API 客户端应用程序接口
@@ -37,7 +37,7 @@
 \brief 客户端应用程序接口
 \details 
 + 类关系：
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 + 序列图：
   \image html docs/Image/ClientSequenceDiagram.svg
 + 使用：
@@ -72,9 +72,9 @@
     - 插件有一个后台线程，所有连接使用同一个后台线程
     \see CPluginClientThread CConnecterDesktop
 + 类关系：
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 + 序列图：
-  \image html docs/Image/PluginClientSequenceDiagram.svg
+  \image html docs/Image/PluginSequenceDiagram.svg
 + 写一个插件：
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -131,7 +131,7 @@
     \see CPluginClientThread CConnecterDesktop
 
 + 类关系：
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 
 \defgroup LIBAPI_CHANNEL 通道
 \ingroup LIBAPI

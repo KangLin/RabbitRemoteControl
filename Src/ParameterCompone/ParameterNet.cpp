@@ -2,8 +2,8 @@
 #include "RabbitCommonTools.h"
 
 //! [Constructor]
-CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix)
+CParameterNet::CParameterNet(CParameterOperate* parent, const QString &szPrefix)
+    : CParameterOperate(parent, szPrefix)
     , m_nPort(0)
     , m_User(this)
     , m_szPrompt(tr("The host is empty. please set it"))

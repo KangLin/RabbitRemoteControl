@@ -7,12 +7,12 @@
 #include <QEvent>
 #include <xcb/xcb_keysyms.h>
 
-#include "ParameterClient.h"
+#include "ParameterPlugin.h"
 
 class CNativeEventFilterUnix : public QAbstractNativeEventFilter
 {
 public:
-    CNativeEventFilterUnix(CParameterClient *pParaClient);
+    CNativeEventFilterUnix(CParameterPlugin *pParaClient);
     virtual ~CNativeEventFilterUnix();
 
     // QAbstractNativeEventFilter interface    
@@ -30,7 +30,7 @@ public:
     bool HandleKey(xcb_keysym_t keysym, QEvent::Type type, Qt::KeyboardModifiers modifiers);
 
 private:
-    CParameterClient *m_pParameterClient;
+    CParameterPlugin *m_pParameterClient;
 };
 
 #endif // CNATIVEEVENTFILTER_H

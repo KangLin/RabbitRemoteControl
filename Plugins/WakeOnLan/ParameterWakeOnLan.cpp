@@ -12,7 +12,7 @@
 #include "ParameterWakeOnLan.h"
 
 CParameterWakeOnLan::CParameterWakeOnLan(QObject *parent)
-    : CParameterConnecter(parent)
+    : CParameterOperate(parent)
     , m_Net(this)
     , m_bEnable(false)
     , m_HostState(HostState::Offline)
@@ -93,11 +93,11 @@ bool CParameterWakeOnLan::OnCheckValidity()
     return true;
 }
 
-void CParameterWakeOnLan::slotSetParameterClient()
+void CParameterWakeOnLan::slotSetGlobalParameters()
 {
-    if(GetParameterClient())
+    if(GetGlobalParameters())
     {
-        SetSavePassword(GetParameterClient()->GetSavePassword());
+        SetSavePassword(GetGlobalParameters()->GetSavePassword());
     }
 }
 

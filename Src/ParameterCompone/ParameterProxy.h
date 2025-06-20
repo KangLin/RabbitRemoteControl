@@ -11,11 +11,11 @@
  * \see CParameterProxyUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class PLUGIN_EXPORT CParameterProxy : public CParameterConnecter
+class PLUGIN_EXPORT CParameterProxy : public CParameterOperate
 {
     Q_OBJECT
 public:
-    explicit CParameterProxy(CParameterConnecter *parent = nullptr,
+    explicit CParameterProxy(CParameterOperate *parent = nullptr,
                              const QString& szPrefix = QString());
 
     enum class TYPE{

@@ -1,6 +1,6 @@
-#ifndef PARAMETERUI_H
-#define PARAMETERUI_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QWidget>
 #include "Parameter.h"
 
@@ -45,5 +45,3 @@ public Q_SLOTS:
     virtual void slotSetParameter(CParameter* pParameter);
     virtual void slotAccept();
 };
-
-#endif // PARAMETERUI_H

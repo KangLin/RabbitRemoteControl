@@ -6,9 +6,9 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter")
 
 CParameter::CParameter(QObject* parent, const QString& szPrefix)
-    : QObject(parent),
-    m_bModified(false),
-    m_szPrefix(szPrefix)
+    : QObject(parent)
+    , m_szPrefix(szPrefix)
+    , m_bModified(false)
 {
     CParameter* p = qobject_cast<CParameter*>(parent);
     if(p) {

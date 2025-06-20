@@ -4,7 +4,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Base")
 
 CParameterBase::CParameterBase(QObject* parent)
-    : CParameterConnecter(parent)
+    : CParameterOperate(parent)
     , m_Net(this)
     , m_Proxy(this)
     , m_Record(this)
@@ -12,9 +12,9 @@ CParameterBase::CParameterBase(QObject* parent)
     Init();
 }
 
-CParameterBase::CParameterBase(CParameterConnecter* parent,
+CParameterBase::CParameterBase(CParameterOperate* parent,
                                const QString& szPrefix)
-    : CParameterConnecter(parent, szPrefix)
+    : CParameterOperate(parent, szPrefix)
     , m_Net(this)
     , m_Proxy(this)
     , m_Record(this)
@@ -52,7 +52,7 @@ int CParameterBase::OnLoad(QSettings &set)
     SetAdaptWindows(
         (CFrmViewer::ADAPT_WINDOWS)
         set.value("Viewer/AdaptType",
-                  (int)GetParameterClient()->GetAdaptWindows()).toInt());
+                  (int)GetGlobalParameters()->GetAdaptWindows()).toInt());
     return 0;
 }
 
@@ -220,9 +220,9 @@ void CParameterBase::SetZoomFactor(double newZoomFactor)
     return;
 }
 
-void CParameterBase::slotSetParameterClient()
+void CParameterBase::slotSetGlobalParameters()
 {
-    CParameterClient* pClient = GetParameterClient();
+    CParameterPlugin* pClient = GetGlobalParameters();
     if(!pClient) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;

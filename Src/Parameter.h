@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPARAMETER_H_KL_2022_07_27
-#define CPARAMETER_H_KL_2022_07_27
-
 #pragma once
 
 #include <QSettings>
@@ -17,19 +14,18 @@
  * \details
  * - 参数有以下类型：
  *   1. 仅在插件内有效。
- *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
+ *      应用程序不能访问，但是可以通过 COperate::OpenDialogSettings 进行设置。
  *      \see 
- *        \ref section_CParameterConnecter_CATEGORY_USAGE
- *        CParameterConnecter
+ *        \ref section_CParameterOperate_CATEGORY_USAGE
+ *        CParameterOperate
  *        CParameterBase
- *   2. 在客户端库 (CClient) 和插件内有效。\n
- *      应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。\n
- *      客户端 (CClient) 和插件可以直接使用。插件可以以其做为初始化值。
- *      \ref section_Use_CParameterClient
- *      \see CParameterClient
- *           CConnecter::SetParameterClient
- *           CParameterUser::OnLoad
- *   3. 同时在应用程序、客户端库 (CClient) 和插件内有效。暂时没有使用此类型。
+ *   2. 在插件管理者 (CManager) 和插件内有效。\n
+ *      应用程序不能访问，但是可以通过 CManager::GetSettingsWidgets 进行设置。\n
+ *      插件管理者 (CManager) 和插件可以直接使用。插件可以以其做为初始化值。
+ *      \ref section_Use_CParameterPlugin
+ *      \see CParameterPlugin
+ *           COperate::SetGlobalParameters
+ *   3. 同时在应用程序、插件管理者 (CManager) 和插件内有效。暂时没有使用此类型。
  * - 参数界面： CParameterUI
  *
  * \~english
@@ -39,20 +35,19 @@
  * - The parameter has the following type:
  *   1. Only valid in the plugin.
  *      The application cannot access it,
- *      but the application can be set it via CConnecter::OpenDialogSettings.
- *      \see 
- *        \ref section_CParameterConnecter_CATEGORY_USAGE
- *        CParameterConnecter
+ *      but the application can be set it via COperate::OpenDialogSettings.
+ *      \see
+ *        \ref section_CParameterOperate_CATEGORY_USAGE
+ *        CParameterOperate
  *        CParameterBase
- *   2. Valid in the CClient and the plugin.\n
+ *   2. Valid in the CManager and the plugin.\n
  *      The application cannot access it,
- *      but the application can be set it via CClient::GetSettingsWidgets.\n
- *      CClient and Plugins can use them directly.
+ *      but the application can be set it via CManager::GetSettingsWidgets.\n
+ *      CManager and Plugins can use them directly.
  *      The plugin maybe use them as initialization values.
- *      \ref section_Use_CParameterClient
+ *      \ref section_Use_CParameterPlugin
  *      \see CParameterClient
- *           CConnecter::SetParameterClient
- *           CParameterUser::OnLoad
+ *           COperate::SetGlobalParameters
  *   3. Valid in both the application and the Client and the plugin.
  *      This type is not used at this time.
  * - CParameterUI
@@ -61,21 +56,68 @@
  */
 
 /*!
+ * \~chinese
+ * \defgroup CLIENT_PARAMETER_COMPONE 参数组件
+ * \brief 参数组件。
+ * - 写一个参数组件：
+ *   - 定义参数组件类(从 CParameter 或其派生类派生)。例如： CParameterUser 。
+ *   - 增加参数组件界面，从 CParameterUI 派生。例如： CParameterUserUI 。 并重载下面函数：
+ *     - int SetParameter(CParameter* pParameter);
+ *     - int Accept();
+ *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ * - 使用参数组件：
+ *   - 在需要的地方实例化组件类。例如： CParameterNet
+ *     \snippet Src/ParameterCompone/ParameterNet.h Instance user
+ *     \snippet Src/ParameterCompone/ParameterNet.cpp Constructor
+ *   - 在相应界面类
+ *     - 初始化参数界面： CParameterNetUI::SetParameter 调用实例的 CParameterUserUI::SetParameter
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Set Parameter
+ *     - 检查参数的有效性： CParameterNetUI::CheckValidity
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Check validity
+ *     - 应用参数 CParameterNetUI::Accept 调用实例的 CParameterUserUI::Accept
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Accept
+ *
+ * \~english
+ * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
+ * \brief Parameter compone.
+ * - Write a parameter compone
+ *   - Defined the parameter compone class. eg: CParameterUser
+ *   - Add the parameter compone UI is derived from CParameterUI . eg: CParameterUserUI .
+ *     and add the follow functions:
+ *     - int SetParameter(CParameter* pParameter);
+ *     - int Accept(bool validity = false);
+ *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ * - Use a parameter compone
+ *   - Instance the parameter compone class. eg: CParameterNet
+ *     \snippet Src/ParameterCompone/ParameterNet.h Instance user
+ *     \snippet Src/ParameterCompone/ParameterNet.cpp Constructor
+ *   - Call SetParameter and slotAccept
+ *     - CParameterNetUI::SetParameter call CParameterUserUI::SetParameter
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Set Parameter
+ *     - Check parameter validity: CParameterNetUI::CheckValidity
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Check validity
+ *     - CParameterNetUI::Accept call CParameterUserUI::Accept
+ *     \snippet Src/ParameterCompone/ParameterNetUI.cpp Accept
+ * \~
+ * \ingroup CLIENT_PARAMETER
+ */
+
+/*!
  * \~chinese 参数接口
  * \details
- * \section sub_CParameter_CATEGORY_USAGE 参数分类使用
- *  因为可能会有很多参数，所以需要按参数类型分类来管理。每个分类可以从此类派生出一个单独的类。
+ * \section sub_CParameter_CATEGORY_USAGE 分类使用
+ *  因为可能会有很多参数，所以需要按分类来管理。每个分类可以从此类派生出一个单独的类。
  *  然后每个分类再做为参数的成员变量。
  *
  *  例如：\n
  *  连接参数包括以下几种类型：
- *  - 视频参数
+ *  - 网络参数
  *    \code
- *    class CParameterVideo : public CParameter
+ *    class CParameterNet : public CParameter
  *    \endcode
- *  - 音频参数
+ *  - 用户参数
  *    \code
- *    class CParameterAudio : public CParameter
+ *    class CParameterUser : public CParameter
  *    \endcode
  *
  *  那么连接参数可以是以上类型的集合：
@@ -86,21 +128,21 @@
  *  public:
  *      explicit CParameterConnect(CParameter *parent = nullptr);
  *
- *      CParameterVideo m_Video;
- *      CParameterAudio m_Audio;
+ *      CParameterNet m_Net;
+ *      CParameterUser m_User;
  *  };
  *
  *  CParameterConnect::CParameterConnect(CParameter *parent = nullptr)
  *   : CParameter(parent),
- *     m_Video(this),
- *     m_Audio(this)
+ *     m_Net(this), // 允许自动嵌套调用 CParameter 类型成员的 OnXXX 函数
+ *     m_User(this)
  *  {}
  *  \endcode
  *
  *  \note 当成员实例化时，必须设置构造函数的参数 parent 为 this
  *
  * \section CParameter_Functions CParameter 接口功能
- *  - 从存储中加载和保存参数
+ *  - 从存储中加载或保存参数到存储中
  *    - 如果要自动嵌套调用 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
  *      在成员实例化时，设置构造函数的 parent 为 CParameter(一般用this） 类型实例。
  *    - 如果要自己控制 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
@@ -119,11 +161,11 @@
  *  Connection parameters include the following categories:
  *  - Video
  *    \code
- *    class CParameterVideo : public CParameter
+ *    class CParameterNet : public CParameter
  *    \endcode
  *  - Audio
  *    \code
- *    class CParameterAudio : public CParameter
+ *    class CParameterUser : public CParameter
  *    \endcode
  *
  *  Then the connection parameters can be a combination of the above categories:
@@ -134,14 +176,14 @@
  *  public:
  *      explicit CParameterConnect(CParameter *parent = nullptr);
  *
- *      CParameterVideo m_Video;
- *      CParameterAudio m_Audio;
+ *      CParameterNet m_Net;
+ *      CParameterUser m_User;
  *  };
  *
  *  CParameterConnect::CParameterConnect(CParameter *parent = nullptr)
  *   : CParameter(parent),
- *     m_Video(this),
- *     m_Audio(this)
+ *     m_Net(this),
+ *     m_User(this)
  *  {}
  *  \endcode
  *
@@ -191,15 +233,15 @@ public:
     explicit CParameter(QObject *parent = nullptr,
                         const QString& szPrefix = QString());
     virtual ~CParameter();
-    
+
     //! Load from file
     virtual int Load(QString szFile = QString());
     //! Save to file
     virtual int Save(QString szFile = QString(), bool bForce = true);
     
-    //! Load from storage
+    //! Load from QSettings
     virtual int Load(QSettings &set);
-    //! Save to storage
+    //! Save to QSettings
     virtual int Save(QSettings &set, bool bForce = true);
 
     /*!
@@ -222,7 +264,7 @@ public:
      * \~ \see CParameterUI::CheckValidity
      */
     virtual bool CheckValidity();
-    
+
 Q_SIGNALS:
     /*!
      * \~chinese 当参数改变时，触发
@@ -299,5 +341,3 @@ private:
      */
     QVector<CParameter*> m_Category;
 };
-
-#endif // CPARAMETER_H_KL_2022_07_27

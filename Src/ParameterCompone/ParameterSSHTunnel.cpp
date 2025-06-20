@@ -2,8 +2,8 @@
 
 #include "ParameterSSHTunnel.h"
 
-CParameterSSHTunnel::CParameterSSHTunnel(CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix)
+CParameterSSHTunnel::CParameterSSHTunnel(CParameterOperate *parent, const QString &szPrefix)
+    : CParameterOperate(parent, szPrefix)
     , m_Net(this)
     , m_szSourceHost("localhost")
     , m_nSourcePort(0)

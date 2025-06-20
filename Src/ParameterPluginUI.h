@@ -2,27 +2,27 @@
 #define FRMPARAMETERVIEWER_H
 
 #include "ParameterUI.h"
-#include "ParameterClient.h"
+#include "ParameterPlugin.h"
 
 namespace Ui {
-class CFrmParameterClient;
+class CParameterPluginUI;
 }
 
-class CFrmParameterClient : public CParameterUI
+class CParameterPluginUI : public CParameterUI
 {
     Q_OBJECT
 
 public:
-    explicit CFrmParameterClient(QWidget *parent = nullptr);
-    virtual ~CFrmParameterClient();
+    explicit CParameterPluginUI(QWidget *parent = nullptr);
+    virtual ~CParameterPluginUI();
 
 public Q_SLOTS:
     void on_cbEnableViewPassword_clicked(bool checked);
     void on_pbEncryptKey_clicked();
 
 private:
-    Ui::CFrmParameterClient *ui;
-    CParameterClient* m_pPara;
+    Ui::CParameterPluginUI *ui;
+    CParameterPlugin* m_pPara;
 
     // CParameterUI interface
 public:

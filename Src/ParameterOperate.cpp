@@ -7,48 +7,48 @@
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
 #include "DlgInputPassword.h"
-#include "ParameterConnecter.h"
+#include "ParameterOperate.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
+static Q_LOGGING_CATEGORY(log, "Parameter.Operate")
 
-CParameterConnecter::CParameterConnecter(QObject *parent, const QString &szPrefix)
-    : CParameter(parent, szPrefix),
-      m_Parent(nullptr),
-      m_pParameterClient(nullptr)
+CParameterOperate::CParameterOperate(QObject *parent, const QString &szPrefix)
+    : CParameter(parent, szPrefix)
+    , m_Parent(nullptr)
+    , m_pParameterPlugin(nullptr)
 {
     bool check = false;
-    check = connect(this, SIGNAL(sigSetParameterClient()),
-                    this, SLOT(slotSetParameterClient()));
+    check = connect(this, SIGNAL(sigSetGlobalParameters()),
+                    this, SLOT(slotSetGlobalParameters()));
     Q_ASSERT(check);
-    CParameterConnecter* p = qobject_cast<CParameterConnecter*>(parent);
+    CParameterOperate* p = qobject_cast<CParameterOperate*>(parent);
     if(p) {
         m_Parent = p;
-        check = connect(m_Parent, SIGNAL(sigSetParameterClient()),
-                        this, SIGNAL(sigSetParameterClient()));
+        check = connect(m_Parent, SIGNAL(sigSetGlobalParameters()),
+                        this, SIGNAL(sigSetGlobalParameters()));
         Q_ASSERT(check);
     }
 }
 
-CParameterClient* CParameterConnecter::GetParameterClient()
+CParameterPlugin* CParameterOperate::GetGlobalParameters()
 {
-    if(m_Parent) return m_Parent->GetParameterClient();
-    return m_pParameterClient;
+    if(m_Parent) return m_Parent->GetGlobalParameters();
+    return m_pParameterPlugin;
 }
 
-int CParameterConnecter::SetParameterClient(CParameterClient *p)
+int CParameterOperate::SetGlobalParameters(CParameterPlugin *p)
 {
-    if(m_pParameterClient == p) return 0;
-    m_pParameterClient = p;
-    emit sigSetParameterClient();
+    if(m_pParameterPlugin == p) return 0;
+    m_pParameterPlugin = p;
+    emit sigSetGlobalParameters();
     return 0;
 }
 
-void CParameterConnecter::slotSetParameterClient()
+void CParameterOperate::slotSetGlobalParameters()
 {
     return;
 }
 
-QByteArray CParameterConnecter::PasswordSum(const std::string &password,
+QByteArray CParameterOperate::PasswordSum(const std::string &password,
                                           const std::string &key)
 {
     std::string pw = "RabbitRemoteControl";
@@ -70,7 +70,7 @@ QByteArray CParameterConnecter::PasswordSum(const std::string &password,
     return sum.result();
 }
 
-int CParameterConnecter::LoadPassword(const QString &szTitle,
+int CParameterOperate::LoadPassword(const QString &szTitle,
                                     const QString &szKey,
                                     QString &password,
                                     QSettings &set)
@@ -82,8 +82,8 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     RabbitCommon::CEncrypt e;
 
     std::string key;
-    if(GetParameterClient())
-        key = GetParameterClient()->GetEncryptKey().toStdString().c_str();
+    if(GetGlobalParameters())
+        key = GetGlobalParameters()->GetEncryptKey().toStdString().c_str();
     if(!key.empty())
         e.SetPassword(key.c_str());
 
@@ -92,7 +92,7 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
             return 0;
 
     qDebug(log) << "Password don't dencode or sum is error";
-    CDlgInputPassword d(GetParameterClient()->GetViewPassowrd(), szTitle);
+    CDlgInputPassword d(GetGlobalParameters()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
         return -1;
@@ -103,11 +103,11 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     if(nRet) return nRet;
     if(CDlgInputPassword::InputType::Password == t)
         return 0;
-    GetParameterClient()->SetEncryptKey(password);
+    GetGlobalParameters()->SetEncryptKey(password);
     return LoadPassword(szTitle, szKey, password, set);
 }
 
-int CParameterConnecter::SavePassword(const QString &szKey,
+int CParameterOperate::SavePassword(const QString &szKey,
                                     const QString &password,
                                     QSettings &set, bool bSave)
 {
@@ -120,29 +120,29 @@ int CParameterConnecter::SavePassword(const QString &szKey,
 
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
-    std::string key = GetParameterClient()->GetEncryptKey().toStdString();
+    std::string key = GetGlobalParameters()->GetEncryptKey().toStdString();
     if(key.empty())
     {
-        switch (GetParameterClient()->GetPromptType()) {
-        case CParameterClient::PromptType::First:
+        switch (GetGlobalParameters()->GetPromptType()) {
+        case CParameterPlugin::PromptType::First:
         {
-            int nCount = GetParameterClient()->GetPromptCount();
+            int nCount = GetGlobalParameters()->GetPromptCount();
             if(nCount >= 1)
                 break;
-            GetParameterClient()->SetPromptCount(nCount + 1);
+            GetGlobalParameters()->SetPromptCount(nCount + 1);
         }
-        case CParameterClient::PromptType::Always:
+        case CParameterPlugin::PromptType::Always:
         {
             QString szKey;
             CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
-            CDlgInputPassword dlg(GetParameterClient()->GetViewPassowrd());
+            CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd());
             if(QDialog::Accepted == dlg.exec())
                 dlg.GetValue(t, szKey);
             if(CDlgInputPassword::InputType::Encrypt == t)
-                GetParameterClient()->SetEncryptKey(szKey);
+                GetGlobalParameters()->SetEncryptKey(szKey);
             break;
         }
-        case CParameterClient::PromptType::No:
+        case CParameterPlugin::PromptType::No:
             break;
         }
     } else

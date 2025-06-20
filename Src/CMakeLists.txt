@@ -34,10 +34,9 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     SSH/Event.h
     DlgUserPassword.h
     Parameter.h
-    ParameterPlugin.h
     ParameterUI.h
-    ParameterConnecter.h
-    ParameterClient.h
+    ParameterOperate.h
+    ParameterPlugin.h
     ParameterCompone/ParameterBase.h
     ParameterCompone/ParameterNet.h
     ParameterCompone/ParameterNetUI.h
@@ -57,7 +56,7 @@ list(APPEND PLUGIN_HEADER_FILES
     FrmScroll.h
     DlgInputPassword.h
     Hook.h
-    FrmParameterClient.h
+    ParameterPluginUI.h
     )
 
 list(APPEND PLUGIN_SOURCE_FILES
@@ -71,11 +70,10 @@ list(APPEND PLUGIN_SOURCE_FILES
     FrmScroll.cpp
     SSH/Event.cpp
     Parameter.cpp
-    ParameterPlugin.cpp
     ParameterUI.cpp
-    ParameterConnecter.cpp
-    ParameterClient.cpp
-    FrmParameterClient.cpp
+    ParameterOperate.cpp
+    ParameterPlugin.cpp
+    ParameterPluginUI.cpp
     ParameterCompone/ParameterBase.cpp
     ParameterCompone/ParameterNet.cpp
     ParameterCompone/ParameterNetUI.cpp
@@ -95,7 +93,7 @@ list(APPEND PLUGIN_SOURCE_FILES
 set(PLUGIN_UI_FILES
     DlgInputPassword.ui
     DlgUserPassword.ui
-    FrmParameterClient.ui
+    ParameterPluginUI.ui
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui

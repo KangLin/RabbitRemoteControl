@@ -3,7 +3,7 @@
 #ifndef PARAMETERWAKEONLAN_H
 #define PARAMETERWAKEONLAN_H
 
-#include "ParameterConnecter.h"
+#include "ParameterOperate.h"
 #include "ParameterNet.h"
 
 /*!
@@ -11,7 +11,7 @@
  * \see CParameterWakeOnLanUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CParameterWakeOnLan : public CParameterConnecter
+class CParameterWakeOnLan : public CParameterOperate
 {
     Q_OBJECT
 public:
@@ -95,9 +95,9 @@ protected:
     virtual int OnSave(QSettings &set) override;
     virtual bool OnCheckValidity() override;
 
-    // CParameterConnecter interface
+    // CParameterOperate interface
 protected slots:
-    virtual void slotSetParameterClient() override;
+    virtual void slotSetGlobalParameters() override;
 };
 
 #endif // PARAMETERWAKEONLAN_H

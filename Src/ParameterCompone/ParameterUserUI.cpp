@@ -53,16 +53,16 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     ui->lePassword->setText(m_pUser->GetPassword());
     ui->pbSave->setChecked(m_pUser->GetSavePassword());
     on_pbSave_clicked();
-    ui->pbSave->setEnabled(m_pUser->GetParameterClient()->GetSavePassword());
-    ui->pbShow->setEnabled(m_pUser->GetParameterClient()->GetViewPassowrd());
+    ui->pbSave->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    ui->pbShow->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
     
     ui->lePublicFile->setText(m_pUser->GetPublicKeyFile());
     ui->lePrivateFile->setText(m_pUser->GetPrivateKeyFile());
     ui->lePassphrase->setText(m_pUser->GetPassphrase());
     ui->pbSavePassphrase->setChecked(m_pUser->GetSavePassphrase());
     on_pbSavePassphrase_clicked();
-    ui->pbSavePassphrase->setEnabled(m_pUser->GetParameterClient()->GetSavePassword());
-    ui->pbShowPassphrase->setEnabled(m_pUser->GetParameterClient()->GetViewPassowrd());
+    ui->pbSavePassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    ui->pbShowPassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
 
     return 0;
 }

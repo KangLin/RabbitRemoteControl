@@ -11,7 +11,7 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
 
-CHookWindows::CHookWindows(CParameterClient *pParaClient, QObject *parent)
+CHookWindows::CHookWindows(CParameterPlugin *pParaClient, QObject *parent)
     : CHook(pParaClient, parent),
     m_hKeyboard(nullptr)
 {

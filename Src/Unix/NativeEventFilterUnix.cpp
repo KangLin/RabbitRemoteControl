@@ -185,7 +185,7 @@ int CNativeEventFilterUnix::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t
     return nRet;
 }
 
-CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterClient *pParaClient)
+CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pParaClient)
     : m_pParameterClient(pParaClient)
 {
     m_pConnect = xcb_connect(NULL, NULL);

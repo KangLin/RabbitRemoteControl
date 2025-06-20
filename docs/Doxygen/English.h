@@ -29,9 +29,9 @@
 \brief Client library
 \details 
 - Client plugin interfaces class relationship
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 - Sequence diagram
-  \image html docs/Image/PluginClientSequenceDiagram.svg
+  \image html docs/Image/PluginSequenceDiagram.svg
 
 
 \defgroup CLIENT_API Client application interface
@@ -39,7 +39,7 @@
 \brief Client application interface
 \details
 + Class relationship
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 - Sequence diagram
   \image html docs/Image/ClientSequenceDiagram.svg
 + usge:
@@ -76,9 +76,9 @@
     - The plugin has a background thread, and all connections use the same background thread
       \see CPluginClientThread CConnecterDesktop
 + Class relationship
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 + Sequence diagram
-  \image html docs/Image/PluginClientSequenceDiagram.svg
+  \image html docs/Image/PluginSequenceDiagram.svg
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -139,7 +139,7 @@
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     \see CPluginClientThread CConnecterDesktop
 + Class relationship
-  \image html docs/Image/PluginClientAPI.svg
+  \image html docs/Image/PluginAPI.svg
 
 \defgroup LIBAPI_CHANNEL Channel
 \brief Stream data channel
