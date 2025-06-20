@@ -25,10 +25,10 @@
  *   - \ref section_Use_CParameterClient
  *
  * \~
- * \see CClient::CreateConnecter
- *      CConnecter::CConnecter
- *      CConnecter::SetParameterClient
- *      CConnecter::SetParameter
+ * \see CManager::CreateOperate
+ *      COperateDesktop::COperateDesktop
+ *      COperateDesktop::SetParameterClient
+ *      COperateDesktop::SetParameter
  *      CParameterConnecter
  * \ingroup CLIENT_PARAMETER
  */

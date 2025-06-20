@@ -17,7 +17,7 @@
  * \details
  * - 参数有以下类型：
  *   1. 仅在插件内有效。
- *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
+ *      应用程序不能访问，但是可以通过 COperate::OpenDialogSettings 进行设置。
  *      \see 
  *        \ref section_CParameterConnecter_CATEGORY_USAGE
  *        CParameterConnecter
@@ -27,7 +27,7 @@
  *      客户端 (CClient) 和插件可以直接使用。插件可以以其做为初始化值。
  *      \ref section_Use_CParameterClient
  *      \see CParameterClient
- *           CConnecter::SetParameterClient
+ *           COperate::SetParameterClient
  *           CParameterUser::OnLoad
  *   3. 同时在应用程序、客户端库 (CClient) 和插件内有效。暂时没有使用此类型。
  * - 参数界面： CParameterUI
@@ -39,7 +39,7 @@
  * - The parameter has the following type:
  *   1. Only valid in the plugin.
  *      The application cannot access it,
- *      but the application can be set it via CConnecter::OpenDialogSettings.
+ *      but the application can be set it via COperate::OpenDialogSettings.
  *      \see 
  *        \ref section_CParameterConnecter_CATEGORY_USAGE
  *        CParameterConnecter
@@ -51,7 +51,7 @@
  *      The plugin maybe use them as initialization values.
  *      \ref section_Use_CParameterClient
  *      \see CParameterClient
- *           CConnecter::SetParameterClient
+ *           COperate::SetParameterClient
  *           CParameterUser::OnLoad
  *   3. Valid in both the application and the Client and the plugin.
  *      This type is not used at this time.
