@@ -249,30 +249,26 @@ jobs:
 
       - name: lxqt-build-tools
         working-directory: ${{env.SOURCE_DIR}}
-        run:
-          if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
-              echo "Install lxqt-build-tools ......"
-              if [ ! -d lxqt-build-tools ]; then
-                  git clone -b 2.2.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
-              fi
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.0' }}
+        run: |
+          if [ ! -d ${{ env.INSTALL_DIR }}/share/cmake/lxqt2-build-tools ]; then
+              git clone -b 2.2.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
               cd lxqt-build-tools
               cmake -E make_directory build
               cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
+              cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
               cmake --build . --config Release --parallel $(nproc)
               cmake --build . --config Release --target install
           fi
-          if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
+          if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/qtermwidget6 ]; then
               git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
               cd qtermwidget
               cmake -E make_directory build
               cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
-                -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
+              cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+                  -Dlxqt2-build-tools_DIR=${{ env.INSTALL_DIR }}/share/cmake/lxqt2-build-tools
               cmake --build . --config Release --parallel $(nproc)
               cmake --build . --config Release --target install
           fi
