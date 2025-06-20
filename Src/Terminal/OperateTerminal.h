@@ -65,5 +65,6 @@ protected:
 
     QTermWidget* m_pConsole;
     CBackendThread* m_pThread;
+private:
     CParameterTerminal* m_pParameters;
 };

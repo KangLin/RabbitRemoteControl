@@ -23,7 +23,7 @@ public:
         m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
             "Terminal",
             RabbitCommon::CTools::TranslationType::Plugin,
-            "plugins/RabbitRemoteControl");
+            "plugins");
     }
     
     ~CTerminal()

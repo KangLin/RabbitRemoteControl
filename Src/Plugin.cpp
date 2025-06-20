@@ -25,7 +25,7 @@ int CPlugin::InitTranslator()
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
         Name(),
         RabbitCommon::CTools::TranslationType::Plugin,
-        "plugins/RabbitRemoteControl");
+        "plugins");
     if(m_Translator)
         return 0;
     

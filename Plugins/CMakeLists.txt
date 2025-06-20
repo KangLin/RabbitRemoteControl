@@ -4,17 +4,17 @@
 if(APPLE)
     if(PARA_ISEXE)
         SET(INSTALL_RPATH
-            "@executable_path:@executable_path/../../${CMAKE_INSTALL_LIBDIR}")
+            "@executable_path:@executable_path/../${CMAKE_INSTALL_LIBDIR}")
     else()
         SET(INSTALL_RPATH
-            "@loader_path:@loader_path/../../${CMAKE_INSTALL_LIBDIR}")
+            "@loader_path:@loader_path/../${CMAKE_INSTALL_LIBDIR}")
     endif()
 else()
     SET(INSTALL_RPATH
-        "$ORIGIN:$ORIGIN/../../${CMAKE_INSTALL_LIBDIR}")
+        "$ORIGIN:$ORIGIN/../${CMAKE_INSTALL_LIBDIR}")
 endif()
 
-SET(PLUGIN_PATH plugins/RabbitRemoteControl)
+SET(PLUGIN_PATH plugins)
 
 ## Desktop
 

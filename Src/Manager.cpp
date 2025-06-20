@@ -107,9 +107,8 @@ int CManager::LoadPlugins()
                 qWarning(log) << "The plugin" << p->Name() << " is exist.";
         }
     }
-
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
-                     + "/RabbitRemoteControl";
+    
+    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
 
     QStringList filters;
     if(filters.isEmpty())
