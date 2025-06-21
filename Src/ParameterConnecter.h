@@ -9,53 +9,6 @@
 
 /*!
  * \~chinese
- * \defgroup CLIENT_PARAMETER_COMPONE 参数组件
- * \brief 参数组件。
- * - 写一个参数组件：
- *   - 定义参数组件类。例如： CParameterUser 。
- *   - 增加参数组件界面，从 CParameterUI 派生。例如： CParameterUserUI 。 并重载下面函数：
- *     - int SetParameter(CParameter* pParameter);
- *     - int Accept();
- *     \snippet Client/ParameterCompone/ParameterUserUI.h Parameter commone functions
- * - 使用参数组件：
- *   - 在需要的地方实例化组件类。例如： CParameterNet
- *     \snippet Client/ParameterCompone/ParameterNet.h Instance user
- *     \snippet Client/ParameterCompone/ParameterNet.cpp Constructor
- *   - 在相应界面类
- *     - 初始化参数界面： CParameterNetUI::SetParameter 调用实例的 CParameterUserUI::SetParameter
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Set Parameter
- *     - 检查参数的有效性： CParameterNetUI::CheckValidity
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Check validity
- *     - 应用参数 CParameterNetUI::Accept 调用实例的 CParameterUserUI::Accept
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Accept
- *
- * \~english
- * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
- * \brief Parameter compone.
- * - Write a parameter compone
- *   - Defined the parameter compone class. eg: CParameterUser
- *   - Add the parameter compone UI is derived from CParameterUI . eg: CParameterUserUI .
- *     and add the follow functions:
- *     - int SetParameter(CParameter* pParameter);
- *     - int Accept(bool validity = false);
- *     \snippet Client/ParameterCompone/ParameterUserUI.h Parameter commone functions
- * - Use a parameter compone
- *   - Instance the parameter compone class. eg: CParameterNet
- *     \snippet Client/ParameterCompone/ParameterNet.h Instance user
- *     \snippet Client/ParameterCompone/ParameterNet.cpp Constructor
- *   - Call SetParameter and slotAccept
- *     - CParameterNetUI::SetParameter call CParameterUserUI::SetParameter
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Set Parameter
- *     - Check parameter validity: CParameterNetUI::CheckValidity
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Check validity
- *     - CParameterNetUI::Accept call CParameterUserUI::Accept
- *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Accept
- * \~
- * \ingroup CLIENT_PARAMETER
- */
-
-/*!
- * \~chinese
  * \brief 连接参数接口。仅在插件内有效。
  *
  * \note

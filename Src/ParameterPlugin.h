@@ -6,15 +6,15 @@
 #include "ParameterClient.h"
 
 /*!
- * \~chinese 插件的公共参数。
+ * \~chinese 插件的全局参数。
  * \details
- * - 仅在管理者 (CManager) 和插件中使用。 
- * - 应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。
+ * - 仅在插件管理者 (CManager) 和插件中使用。
+ * - 应用程序不能访问，但是可以通过 CManager::GetSettingsWidgets 进行设置。
  *
  * \~english Common parameters of plugins
  * - The parameters is valid in the CManager and plugin.
  * - The application cannot access it,
- *   but the application can be set it via CClient::GetSettingsWidgets .
+ *   but the application can be set it via CManager::GetSettingsWidgets .
  *
  * \~
  * \see COperate::SetGlobalParameters

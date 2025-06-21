@@ -8,9 +8,9 @@ CParameterTerminal::CParameterTerminal(QObject *parent, const QString& szPrefix)
 {
     m_Font = QApplication::font();
 #ifdef Q_OS_MACOS
-    font.setFamily(QStringLiteral("Monaco"));
+    m_Font.setFamily(QStringLiteral("Monaco"));
 #elif defined(Q_WS_QWS)
-    font.setFamily(QStringLiteral("fixed"));
+    m_Font.setFamily(QStringLiteral("fixed"));
 #else
     m_Font.setFamily(QStringLiteral("Monospace"));
 #endif
