@@ -1,6 +1,6 @@
 ## 修改日志
 
-### v0.0.37-dev
+### v0.1.0-dev
 - [重构](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - App: 重命名界面提示
 

@@ -265,5 +265,6 @@ bool CScreenCapture::eventFilter(QObject *watched, QEvent *event)
 
 int CScreenCapture::SetGlobalParameters(CParameterPlugin *pPara)
 {
+    m_Parameter.SetGlobalParameters(pPara);
     return 0;
 }

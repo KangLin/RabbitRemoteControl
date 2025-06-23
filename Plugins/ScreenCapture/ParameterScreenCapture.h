@@ -5,15 +5,16 @@
 
 #include <QCapturableWindow>
 
-#include "ParameterBase.h"
+#include "ParameterOperate.h"
 
-class CParameterScreenCapture : public CParameterBase
+class CParameterScreenCapture : public CParameterOperate
 {
     Q_OBJECT
 public:
     explicit CParameterScreenCapture(QObject *parent = nullptr);
     virtual ~CParameterScreenCapture();
-
+    
+    CParameterRecord m_Record;
     enum class TARGET {
         Screen,
         Window,
@@ -48,6 +49,10 @@ private:
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
+    
+    // CParameterOperate interface
+protected slots:
+    virtual void slotSetGlobalParameters() override;
 };
 
 #endif // PARAMETERSCREENCAPTURE_H

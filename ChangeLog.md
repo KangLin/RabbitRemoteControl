@@ -1,6 +1,6 @@
 ## Change Log
 
-### v0.0.37-dev
+### v0.1.0-dev
 - [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - App:
     - Rename UI prompts

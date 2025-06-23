@@ -1,7 +1,8 @@
 #include "ParameterScreenCapture.h"
 
 CParameterScreenCapture::CParameterScreenCapture(QObject *parent)
-    : CParameterBase{parent}
+    : CParameterOperate{parent}
+    , m_Record(this)
     , m_Target(TARGET::Screen)
     , m_Operate(OPERATE::Shot)
     , m_nScreen(-1)
@@ -74,4 +75,11 @@ int CParameterScreenCapture::SetWindow(QCapturableWindow w)
     m_WindowCapture = w;
     SetModified(true);
     return 0;
+}
+
+void CParameterScreenCapture::slotSetGlobalParameters()
+{
+    auto p = GetGlobalParameters();
+    if(!p) return;
+    m_Record = p->m_Record;
 }

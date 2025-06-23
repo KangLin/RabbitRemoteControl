@@ -188,8 +188,8 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "File checksum:" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
-          echo "|File|Checksum(sha256)|" >> ${{github.workspace}}/Release.md
-          echo "| :- |    :-       |" >> ${{github.workspace}}/Release.md
+          echo "|File|Checksum(sha256)|Checksum(md5)" >> ${{github.workspace}}/Release.md
+          echo "| :- |    :-       |:-|" >> ${{github.workspace}}/Release.md
           cd ${{ env.artifact_path }}
           for file in *
           do
@@ -197,6 +197,7 @@ jobs:
               if [ -f $file ]; then
                   if [ "${file##*.}" != "xml" ] && [ "${file##*.}" != "json" ]; then
                       sha256sum $file | awk '{print  "|", $2, "|", $1, "|"}' >> ${{github.workspace}}/Release.md
+                      md5sum $file | awk '{print "|", $1, "|"}' >> ${{github.workspace}}/Release.md
                   fi
               else
                  rm -fr $file
