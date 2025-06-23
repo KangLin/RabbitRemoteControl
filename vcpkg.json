@@ -9,11 +9,7 @@
     "zlib",
     {
         "name": "ffmpeg",
-        "features": [
-            "openh264",
-            "x265",
-            "x264"
-        ]
+        "platform": "!android"
     },
     "cmark"
   ],
