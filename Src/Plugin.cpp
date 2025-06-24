@@ -35,7 +35,7 @@ int CPlugin::InitTranslator()
 const QString CPlugin::TypeName(const TYPE t) const
 {
     if(t >= TYPE::Custom) {
-        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
+        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` with "
                              + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
         return tr("Custom");
     }
@@ -54,16 +54,18 @@ const QString CPlugin::TypeName(const TYPE t) const
     case TYPE::NetworkTools:
         return tr("Network Tools");
     case TYPE::Custom:
-        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` "
+        qWarning(log) << "Please override `const QString CPlugin::TypeName(const TYPE t) const` with "
                              + QString(metaObject()->className()) + "::TypeName(const Type t)" ;
         return tr("Custom");
+    default:
+        qCritical(log) << "Don't support type:" << (int)t;
     }
     return QString();
 }
 
 const QString CPlugin::Id()
 {
-    return TypeName(Type()) + ":" + Protocol() + ":" + Name();
+    return QString::number((int)Type()) + ":" + Protocol() + ":" + Name();
 }
 
 const QString CPlugin::DisplayName() const

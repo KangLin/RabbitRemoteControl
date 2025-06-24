@@ -19,12 +19,12 @@ public:
     virtual ~CPlugin();
 
     enum class TYPE{
-        Client,
-        Service,
         RemoteDesktop,
         Terminal,
-        Tools,
+        Client,
+        Service,
         NetworkTools,
+        Tools,
         Custom = 1000 //!\note please override `virtual const QString TypeName(const TYPE t) const`
     };
     [[nodiscard]] virtual const TYPE Type() const = 0;
