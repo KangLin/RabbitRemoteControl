@@ -7,18 +7,22 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=6.9.0
+fi
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--docker-image=<docker image>] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--docker-image=<docker image>] [--qt[=[0|1|version]]] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --docker: run docket for build"
     echo "  --deb: build deb package"
     echo "  --rpm: build rpm package"
     echo "  --appimage: build AppImage"
+    echo "  --qt: Install QT(only --appimage)"
     echo "  --docker-image: The name of docker image"
     echo "Directory:"
     echo "  --install: Set install directory"
@@ -36,7 +40,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,docker-image::,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,docker-image::,qt:,install:,source:,tools:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -115,6 +119,13 @@ if command -V getopt >/dev/null; then
                     DOCKERT_IMAGE=1;;
                 *)
                     DOCKERT_IMAGE=$2;;
+            esac
+            shift 2
+            ;;
+        --qt)
+            case $2 in
+                *)
+                    QT_VERSION=$2;;
             esac
             shift 2
             ;;
@@ -229,7 +240,7 @@ if [ $DEB -eq 1 ]; then
 fi
 
 if [ $APPIMAGE -eq 1 ]; then
-    echo "build AppImage ......"
+    echo "build AppImage(qt${QT_VERSION}) ......"
     ./build_depend.sh --system_update --base --rabbitcommon\
         --tigervnc --freerdp --pcapplusplus \
         --install ${INSTALL_DIR} \

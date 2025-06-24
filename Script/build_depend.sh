@@ -16,7 +16,7 @@ BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.9.0
+    QT_VERSION=6.10.0
 fi
 FREERDP=0
 TIGERVNC=0
@@ -142,11 +142,11 @@ if command -V getopt >/dev/null; then
                 "")
                     QT=1;;
                 1 | 0)
-                    QT=$2
-                    ;;
+                    QT=$2;;
                 *)
+                    QT_VERSION=$2
                     QT=1
-                    QT_VERSION=$2;;
+                    ;;
             esac
             shift 2
             ;;
