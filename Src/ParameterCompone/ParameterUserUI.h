@@ -1,6 +1,7 @@
 #ifndef PARAMETERUSERUI_H
 #define PARAMETERUSERUI_H
 
+#include <QPushButton>
 #include <QWidget>
 #include "ParameterUser.h"
 #include "ParameterUI.h"
@@ -49,13 +50,13 @@ private slots:
     void on_pbSavePassphrase_clicked();
     
     void on_cbType_currentIndexChanged(int index);
-    
     void on_cbSystemFile_stateChanged(int arg1);
-    
     void on_pbBrowseCAFile_clicked();
-    
     void on_pbBrowseCRLFile_clicked();
-    
+
+private:
+    int SetPushButtonTooltip(QPushButton *pPb, QString szEnable, QString szDisable);
+
 private:
     Ui::CParameterUserUI *ui;
     CParameterUser* m_pUser;

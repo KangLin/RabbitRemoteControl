@@ -55,15 +55,22 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     ui->pbSave->setChecked(m_pUser->GetSavePassword());
     on_pbSave_clicked();
     ui->pbSave->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    SetPushButtonTooltip(ui->pbSave, tr("Save password"),
+                         tr("Menu: Tools→Settings→Plugin→Password→Enable Save password"));
     ui->pbShow->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
-    
+    SetPushButtonTooltip(ui->pbShow, tr("View password"),
+                         tr("Menu: Tools→Settings→Plugin→Password→Enable view password"));
     ui->lePublicFile->setText(m_pUser->GetPublicKeyFile());
     ui->lePrivateFile->setText(m_pUser->GetPrivateKeyFile());
     ui->lePassphrase->setText(m_pUser->GetPassphrase());
     ui->pbSavePassphrase->setChecked(m_pUser->GetSavePassphrase());
     on_pbSavePassphrase_clicked();
     ui->pbSavePassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    SetPushButtonTooltip(ui->pbSavePassphrase, tr("Save password"),
+                         tr("Menu: Tools→Settings→Plugin→Password→Enable Save password"));
     ui->pbShowPassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
+    SetPushButtonTooltip(ui->pbShowPassphrase, tr("View password"),
+                         tr("Menu: Tools→Settings→Plugin→Password→Enable view password"));
 
     return 0;
 }
@@ -286,4 +293,15 @@ void CParameterUserUI::on_pbBrowseCRLFile_clicked()
     if(szFile.isEmpty())
         return;
     ui->leCRLFile->setText(szFile);
+}
+
+int CParameterUserUI::SetPushButtonTooltip(QPushButton *pPb, QString szEnable, QString szDisable)
+{
+    if(pPb->isEnabled())
+        pPb->setToolTip(szEnable);
+    else
+        pPb->setToolTip(szDisable);
+    pPb->setStatusTip(pPb->toolTip());
+    pPb->setWhatsThis(pPb->toolTip());
+    return 0;
 }
