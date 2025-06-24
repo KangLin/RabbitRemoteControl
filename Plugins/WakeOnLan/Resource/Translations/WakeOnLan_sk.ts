@@ -2,66 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sk_SK">
 <context>
-    <name>CConnecterWakeOnLan</name>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="59"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="61"/>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="68"/>
-        <source>Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="69"/>
-        <source>Please select a item</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="76"/>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="83"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="103"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="89"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="109"/>
-        <source>Get mac address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="122"/>
-        <source>Wake on lan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="183"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="184"/>
-        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="188"/>
-        <source>Exit the program</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
@@ -77,6 +17,64 @@
     <message>
         <location filename="../../FrmWakeOnLan.cpp" line="77"/>
         <source>Please select a item</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>COperateWakeOnLan</name>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="59"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="68"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="69"/>
+        <source>Please select a item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="76"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="79"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="85"/>
+        <source>Get mac address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="98"/>
+        <source>Wake on lan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="159"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="160"/>
+        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="164"/>
+        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -206,18 +204,18 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="66"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="67"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="72"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="90"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="91"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="93"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="94"/>
         <source>Pcap lib version info: </source>
         <translation type="unfinished"></translation>
     </message>

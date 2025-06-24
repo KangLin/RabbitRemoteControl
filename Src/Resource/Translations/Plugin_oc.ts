@@ -259,111 +259,145 @@
     </message>
 </context>
 <context>
-    <name>CFrmParameterClient</name>
+    <name>CFrmParameterTerminalAppearanceSettings</name>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="14"/>
-        <source>Client</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="14"/>
+        <source>Appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
-        <source>Enable native window receive keyboard event(shortcut key)</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="22"/>
+        <source>Color scheme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="27"/>
-        <source>Enable use the system user as the user</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="44"/>
+        <source>Flow Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="42"/>
-        <source>Viewer zoom:</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="53"/>
+        <source>Terminal Transparency:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="61"/>
-        <location filename="../../FrmParameterClient.cpp" line="16"/>
-        <source>Prompt administrator privilege</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="69"/>
+        <source>%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="68"/>
-        <source>Connecter name</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="83"/>
+        <source>Background Image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="74"/>
-        <source>Show protocol prefix in name</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="109"/>
+        <source>Browser(&amp;B)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="81"/>
-        <source>Only show ip:port in name</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="120"/>
+        <source>Cursor shape:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="91"/>
-        <source>Key used to encrypt saved password:</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="144"/>
+        <source>Scroll bar positioin:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="105"/>
-        <source>Encrypt key:</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="168"/>
+        <source>Font:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="136"/>
-        <source>Prompt type:</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="206"/>
+        <source>Show terminal size when windows resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="149"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="213"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="36"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="223"/>
+        <source>Enable bi-directional text support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="68"/>
+        <source>Backgroup image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="69"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="92"/>
+        <source>BlockCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="93"/>
+        <source>UnderlineCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="94"/>
+        <source>IBeamCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="101"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="162"/>
-        <source>First</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="102"/>
+        <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="175"/>
-        <source>Always</source>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="103"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CFrmParameterTerminalBehavior</name>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="14"/>
+        <source>Behavior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="187"/>
-        <source>Password</source>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="28"/>
+        <source>Text Codecs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="195"/>
-        <source>Save password</source>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="52"/>
+        <source>Key binding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="202"/>
-        <source>Enable view password</source>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="74"/>
+        <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="86"/>
-        <source>Original</source>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="82"/>
+        <source>History size(in lines):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="90"/>
-        <source>Zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.cpp" line="93"/>
-        <source>Zoom to window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.cpp" line="96"/>
-        <source>Keep desktop aspectration adapt to windows</source>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="98"/>
+        <source>Unlimited</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -376,34 +410,14 @@
     </message>
 </context>
 <context>
-    <name>CHookWindows</name>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
-        <source>Always shown</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="127"/>
+        <location filename="../../Manager.cpp" line="126"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="210"/>
+        <location filename="../../Manager.cpp" line="209"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -556,6 +570,44 @@ Restart program by administrator?</source>
     </message>
 </context>
 <context>
+    <name>COperateTerminal</name>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="210"/>
+        <source>Copy selection to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
+        <source>Paste clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="212"/>
+        <source>Paste selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="214"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="215"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="216"/>
+        <source>Zoom reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="218"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterNet</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
@@ -588,6 +640,116 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="45"/>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterPluginUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="11"/>
+        <source>Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <source>Enable native window receive keyboard event(shortcut key)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="27"/>
+        <source>Enable use the system user as the user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
+        <source>Viewer zoom:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="61"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="17"/>
+        <source>Prompt administrator privilege</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="68"/>
+        <source>Connecter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
+        <source>Show protocol prefix in name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="81"/>
+        <source>Only show ip:port in name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
+        <source>Key used to encrypt saved password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="105"/>
+        <source>Encrypt key:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
+        <source>Prompt type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
+        <source>First</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="175"/>
+        <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="195"/>
+        <source>Enable save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="202"/>
+        <source>Enable view password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="87"/>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="91"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
+        <source>Zoom to window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
+        <source>Keep desktop aspectration adapt to windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -911,7 +1073,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="147"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="158"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -919,10 +1081,9 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
-        <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
+        <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -932,7 +1093,16 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
+        <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
+        <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -977,7 +1147,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="248"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="259"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1007,28 +1177,40 @@ Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="149"/>
-        <source>Please checked save password to enable</source>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="58"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="69"/>
+        <source>Save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
+        <source>View password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
+        <source>Please checked save password to enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="171"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="183"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="250"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="269"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="280"/>
         <source>Open X509 certificate authentication file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="292"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1037,7 +1219,7 @@ Restart program by administrator?</source>
     <name>CPlugin</name>
     <message>
         <location filename="../../Plugin.cpp" line="40"/>
-        <location filename="../../Plugin.cpp" line="53"/>
+        <location filename="../../Plugin.cpp" line="59"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1053,7 +1235,22 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="49"/>
-        <source>Tool</source>
+        <source>Remote Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="51"/>
+        <source>Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="53"/>
+        <source>Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="55"/>
+        <source>Network Tools</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -259,112 +259,146 @@
     </message>
 </context>
 <context>
-    <name>CFrmParameterClient</name>
+    <name>CFrmParameterTerminalAppearanceSettings</name>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="14"/>
-        <source>Client</source>
-        <translation>客戶端</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="14"/>
+        <source>Appearance</source>
+        <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="68"/>
-        <source>Connecter name</source>
-        <translation>連接名</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="144"/>
+        <source>Scroll bar positioin:</source>
+        <translation>滾動條位置：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="74"/>
-        <source>Show protocol prefix in name</source>
-        <translation>在連接名中顯示協議前綴</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="168"/>
+        <source>Font:</source>
+        <translation>字體：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="81"/>
-        <source>Only show ip:port in name</source>
-        <translation>在連接名中僅顯示 IP:PORT</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="83"/>
+        <source>Background Image:</source>
+        <translation>背景圖像：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="187"/>
-        <source>Password</source>
-        <translation>密碼</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="206"/>
+        <source>Show terminal size when windows resize</source>
+        <translation>窗口大小改變時顯示其大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="195"/>
-        <source>Save password</source>
-        <translation>保存密碼</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="223"/>
+        <source>Enable bi-directional text support</source>
+        <translation>允許雙向文本</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="202"/>
-        <source>Enable view password</source>
-        <translation>允許查看密碼</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="44"/>
+        <source>Flow Control</source>
+        <translation>流量控製</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="61"/>
-        <location filename="../../FrmParameterClient.cpp" line="16"/>
-        <source>Prompt administrator privilege</source>
-        <translation>提示管理員權限</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="213"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="36"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation>示例：顯示字體</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="27"/>
-        <source>Enable use the system user as the user</source>
-        <translation>允許使用系統用戶作為用戶</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="22"/>
+        <source>Color scheme:</source>
+        <translation>顏色方案：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="42"/>
-        <source>Viewer zoom:</source>
-        <translation>縮放視圖：</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="120"/>
+        <source>Cursor shape:</source>
+        <translation>光標形狀：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="91"/>
-        <source>Key used to encrypt saved password:</source>
-        <translation>加密鍵用於加密保存的密碼</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="53"/>
+        <source>Terminal Transparency:</source>
+        <translation>透明度：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="105"/>
-        <source>Encrypt key:</source>
-        <translation>加密鍵</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="69"/>
+        <source>%</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="149"/>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="92"/>
+        <source>BlockCursor</source>
+        <translation>方塊光標</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="93"/>
+        <source>UnderlineCursor</source>
+        <translation>下劃線光標</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="94"/>
+        <source>IBeamCursor</source>
+        <translation>I 形光標</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="101"/>
         <source>No</source>
-        <translation>不</translation>
+        <translation>無</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="162"/>
-        <source>First</source>
-        <translation>第一次</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="102"/>
+        <source>Left</source>
+        <translation>左</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="175"/>
-        <source>Always</source>
-        <translation>總是</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="103"/>
+        <source>Right</source>
+        <translation>右</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
-        <source>Enable native window receive keyboard event(shortcut key)</source>
-        <translation>允許本地窗口接收鍵盤事件（快捷鍵）</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="68"/>
+        <source>Backgroup image</source>
+        <translation>背景圖像</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="136"/>
-        <source>Prompt type:</source>
-        <translation>提示類型</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="69"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation>圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="86"/>
-        <source>Original</source>
-        <translation>原始</translation>
+        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="109"/>
+        <source>Browser(&amp;B)</source>
+        <translation>瀏覽(&amp;B)</translation>
+    </message>
+</context>
+<context>
+    <name>CFrmParameterTerminalBehavior</name>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="14"/>
+        <source>Behavior</source>
+        <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="90"/>
-        <source>Zoom</source>
-        <translation>縮放</translation>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="52"/>
+        <source>Key binding:</source>
+        <translation>鍵盤綁定：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="93"/>
-        <source>Zoom to window</source>
-        <translation>縮放到窗口大小</translation>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="74"/>
+        <source>History</source>
+        <translation>歷史記錄</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="96"/>
-        <source>Keep desktop aspectration adapt to windows</source>
-        <translation>保持桌面的高寬比縮放到窗口大小</translation>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="82"/>
+        <source>History size(in lines):</source>
+        <translation>歷史記錄大小（行數）：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="98"/>
+        <source>Unlimited</source>
+        <translation>無限製</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="28"/>
+        <source>Text Codecs:</source>
+        <translation>文本編碼：</translation>
     </message>
 </context>
 <context>
@@ -378,33 +412,30 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕獲系統快捷鍵需要管理員權限。
+        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
 需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>總是顯示</translation>
+        <translation type="vanished">總是顯示</translation>
     </message>
 </context>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="127"/>
+        <location filename="../../Manager.cpp" line="126"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="210"/>
+        <location filename="../../Manager.cpp" line="209"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -419,7 +450,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../Operate.cpp" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished">類型：</translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="56"/>
@@ -452,7 +483,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../OperateDesktop.cpp" line="107"/>
         <source>Type:</source>
-        <translation type="unfinished">類型：</translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="110"/>
@@ -557,6 +588,44 @@ Restart program by administrator?</source>
     </message>
 </context>
 <context>
+    <name>COperateTerminal</name>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="210"/>
+        <source>Copy selection to clipboard</source>
+        <translation>復製選擇到剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
+        <source>Paste clipboard</source>
+        <translation>粘貼剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="212"/>
+        <source>Paste selection</source>
+        <translation>粘貼到選擇</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="214"/>
+        <source>Zoom in</source>
+        <translation>放大</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="215"/>
+        <source>Zoom out</source>
+        <translation>縮小</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="216"/>
+        <source>Zoom reset</source>
+        <translation>重置縮放</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="218"/>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+</context>
+<context>
     <name>CParameterNet</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
@@ -590,6 +659,116 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="45"/>
         <source>Error</source>
         <translation>錯誤</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterPluginUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="11"/>
+        <source>Plugin</source>
+        <translation>插件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <source>Enable native window receive keyboard event(shortcut key)</source>
+        <translation>允許本地窗口接收鍵盤事件（快捷鍵）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="27"/>
+        <source>Enable use the system user as the user</source>
+        <translation>允許使用系統用戶作為用戶</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
+        <source>Viewer zoom:</source>
+        <translation>縮放視圖：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="61"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="17"/>
+        <source>Prompt administrator privilege</source>
+        <translation>提示管理員權限</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="68"/>
+        <source>Connecter name</source>
+        <translation>連接名</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
+        <source>Show protocol prefix in name</source>
+        <translation>在連接名中顯示協議前綴</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="81"/>
+        <source>Only show ip:port in name</source>
+        <translation>在連接名中僅顯示 IP:PORT</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
+        <source>Key used to encrypt saved password:</source>
+        <translation>加密鍵用於加密保存的密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="105"/>
+        <source>Encrypt key:</source>
+        <translation>加密鍵</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
+        <source>Prompt type:</source>
+        <translation>提示類型</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <source>No</source>
+        <translation>不</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
+        <source>First</source>
+        <translation>第一次</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="175"/>
+        <source>Always</source>
+        <translation>總是</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="195"/>
+        <source>Enable save password</source>
+        <translation>允許保存密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="202"/>
+        <source>Enable view password</source>
+        <translation>允許查看密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="87"/>
+        <source>Original</source>
+        <translation>原始</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="91"/>
+        <source>Zoom</source>
+        <translation>縮放</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
+        <source>Zoom to window</source>
+        <translation>縮放到窗口大小</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
+        <source>Keep desktop aspectration adapt to windows</source>
+        <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
 </context>
 <context>
@@ -900,7 +1079,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="248"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="259"/>
         <source>Input passphrase</source>
         <translation>輸入密碼</translation>
     </message>
@@ -923,9 +1102,30 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="147"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="158"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
+        <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
+        <translation>菜單: 工具→設置→插件→密碼→允許查看密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
+        <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
+        <translation>菜單：工具→設置→插件→密碼→允許保存密碼</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
@@ -955,24 +1155,11 @@ Restart program by administrator?</source>
         <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
         <translation>菜單: 工具→設置→客戶端→密碼→允許查看密碼</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
-        <translation>菜單：工具→設置→客戶端→密碼→允許保存密碼</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
@@ -1008,28 +1195,40 @@ Restart program by administrator?</source>
         <translation>請輸入私鑰文件的密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="149"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="58"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="69"/>
+        <source>Save password</source>
+        <translation>保存密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
+        <source>View password</source>
+        <translation>查看密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
         <source>Please checked save password to enable</source>
         <translation>請選中保存密碼按鈕</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="171"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="183"/>
         <source>Open public key file</source>
         <translation>打開公鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="250"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
         <source>Please checked save passphrase to enable</source>
         <translation>請選中保存密碼，允許輸入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="269"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="280"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打開 X509 認證證書文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="292"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation>打開 X509 證書吊銷列表文件</translation>
     </message>
@@ -1113,7 +1312,7 @@ Restart program by administrator?</source>
     <name>CPlugin</name>
     <message>
         <location filename="../../Plugin.cpp" line="40"/>
-        <location filename="../../Plugin.cpp" line="53"/>
+        <location filename="../../Plugin.cpp" line="59"/>
         <source>Custom</source>
         <translation>自定義</translation>
     </message>
@@ -1129,8 +1328,23 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="49"/>
-        <source>Tool</source>
+        <source>Remote Desktop</source>
+        <translation>遠程桌面</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="51"/>
+        <source>Terminal</source>
+        <translation>終端</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="53"/>
+        <source>Tools</source>
         <translation>工具</translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="55"/>
+        <source>Network Tools</source>
+        <translation>網絡工具</translation>
     </message>
 </context>
 <context>

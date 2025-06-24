@@ -2,77 +2,49 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
-    <name>CConnectLibVNCServer</name>
+    <name>CBackendLibVNCServer</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="160"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="177"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="957"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="992"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="81"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="80"/>
         <source>Protocol version error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="174"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="81"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="161"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="176"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="957"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="992"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="159"/>
+        <source>The server is empty, please input it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="173"/>
         <source>Fail: Connect to %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="941"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="941"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="950"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="950"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="980"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="980"/>
         <source>Will connect to local socket server: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="987"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="987"/>
         <source>Fail: Connect to %1:%2 with %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CDlgLibVNCServerPassword</name>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="14"/>
-        <source>Input password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="20"/>
-        <source>Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="61"/>
-        <source>OK(&amp;O)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="71"/>
-        <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.cpp" line="47"/>
-        <source>Set password for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,22 +141,22 @@
 <context>
     <name>CPluginLibVNCServer</name>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="28"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="34"/>
         <source>LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="39"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="34"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="40"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="35"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="41"/>
         <source>The plugin is used LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>

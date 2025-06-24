@@ -15,19 +15,19 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="42"/>
-        <source>Cancle(&amp;C)</source>
+        <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="30"/>
+        <location filename="../../PluginTerminal.cpp" line="32"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="35"/>
+        <location filename="../../PluginTerminal.cpp" line="37"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
         <translation type="unfinished"></translation>
     </message>

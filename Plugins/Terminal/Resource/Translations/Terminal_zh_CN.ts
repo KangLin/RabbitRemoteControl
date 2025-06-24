@@ -15,19 +15,23 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="42"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cancle(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="vanished">取消(&amp;C)</translation>
     </message>
 </context>
 <context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="30"/>
+        <location filename="../../PluginTerminal.cpp" line="32"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="35"/>
+        <location filename="../../PluginTerminal.cpp" line="37"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
         <translation>终端：本地(shell)和远程(telnet、等)终端</translation>
     </message>

@@ -4,61 +4,44 @@
 <context>
     <name>CConnecterWakeOnLan</name>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="59"/>
         <source>Add</source>
-        <translation>增加</translation>
+        <translation type="vanished">增加</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="61"/>
         <source>Edit</source>
-        <translation>編輯</translation>
+        <translation type="vanished">編輯</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="68"/>
         <source>Information</source>
-        <translation>信息</translation>
+        <translation type="vanished">信息</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="69"/>
         <source>Please select a item</source>
-        <translation>請選擇一個項目</translation>
+        <translation type="vanished">請選擇一個項目</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="76"/>
         <source>Remove</source>
-        <translation>刪除</translation>
+        <translation type="vanished">刪除</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="83"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="103"/>
         <source>Refresh</source>
-        <translation>刷新</translation>
+        <translation type="vanished">刷新</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="89"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="109"/>
         <source>Get mac address</source>
-        <translation>得到 MAC 地址</translation>
+        <translation type="vanished">得到 MAC 地址</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="122"/>
         <source>Wake on lan</source>
-        <translation>局域網喚醒</translation>
+        <translation type="vanished">局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="183"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="184"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation>沒有管理員權限，一些功能(得到 MAC 地址)受限。請用管理員權限重啟程序。</translation>
-    </message>
-    <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="188"/>
-        <source>Exit the program</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">沒有管理員權限，一些功能(得到 MAC 地址)受限。請用管理員權限重啟程序。</translation>
     </message>
 </context>
 <context>
@@ -78,6 +61,64 @@
         <location filename="../../FrmWakeOnLan.cpp" line="77"/>
         <source>Please select a item</source>
         <translation>請選擇一個項目</translation>
+    </message>
+</context>
+<context>
+    <name>COperateWakeOnLan</name>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="59"/>
+        <source>Add</source>
+        <translation type="unfinished">增加</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <source>Edit</source>
+        <translation type="unfinished">編輯</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="68"/>
+        <source>Information</source>
+        <translation type="unfinished">信息</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="69"/>
+        <source>Please select a item</source>
+        <translation type="unfinished">請選擇一個項目</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="76"/>
+        <source>Remove</source>
+        <translation type="unfinished">刪除</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="79"/>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="85"/>
+        <source>Get mac address</source>
+        <translation type="unfinished">得到 MAC 地址</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="98"/>
+        <source>Wake on lan</source>
+        <translation type="unfinished">局域網喚醒</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="159"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="160"/>
+        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
+        <translation type="unfinished">沒有管理員權限，一些功能(得到 MAC 地址)受限。請用管理員權限重啟程序。</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="164"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -206,18 +247,18 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="66"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="67"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="72"/>
         <source>Wake on lan</source>
         <translation>局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="90"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="91"/>
         <source>version: </source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="93"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="94"/>
         <source>Pcap lib version info: </source>
         <translation>Pcap 庫版本信息:</translation>
     </message>
