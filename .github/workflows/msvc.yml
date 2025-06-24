@@ -437,6 +437,7 @@ jobs:
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
+          copy /Y ${{env.INSTALL_DIR}}\share\qtermwidget6 install\bin
           C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-1.80.exe
           copy npcap-1.80.exe install\bin
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip .\install\*
