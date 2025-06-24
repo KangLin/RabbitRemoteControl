@@ -11,7 +11,7 @@
  * \note
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 COperate::OpenDialogSettings 进行设置。
- *  - 插件通过 COperateDesktop::GetParameter() 访问操作参数
+ *  - 插件通过 COperateDesktop::GetParameter()、COperateTerminal::GetParameter()　等访问操作参数
  *  - \ref section_Use_CParameterBase
  *  - 需要访问全局参数 (CParameterPlugin) 的分类，需要从此类派生。
  *    通过调用 CParameterOperate::GetGlobalParameters()
@@ -24,7 +24,7 @@
  *  - 如果操作参数 ( CParameterOperate 或其派生类 ) 需要全局参数 (CParameterPlugin) 。
  *    - 请在 COperate 派生类的构造函数中实例化操作参数。例如：
  *      \snippet Plugins/FreeRDP/Client/OperateFreeRDP.h Initialize parameter
- *    - 调用 COperate::SetParameter 设置参数指针。例如：
+ *    - 调用 COperateDesktop::SetParameter 设置参数指针。例如：
  *      \snippet Plugins/FreeRDP/Client/OperateFreeRDP.cpp Set the parameter
  *    - 默认会自动为操作参数设置 CParameterPlugin 。详见: CPlugin::CreateOperate 。
  *      \snippet Src/Plugin.cpp CPlugin CreateOperate
@@ -102,7 +102,7 @@
  *  - The interface only is implemented and used by plugin.
  *  - The application cannot access it directly,
  *    it can only be set via COperate::OpenDialogSettings.
- *  - The plugin can access via COperateDesktop::GetParameter()
+ *  - The plugin can access via COperateDesktop::GetParameter(), COperateTerminal::GetParameter() etc
  *  - Need access the global parameters (CParameterPlugin),
  *    must be derived from the class.
  *    Access the global parameters (CParameterPlugin)
@@ -118,7 +118,7 @@
  *    - Please instantiate the parameters of operate
  *      in the constructor of the COperate or it's derived class. ag:
  *      \snippet Plugins/FreeRDP/Client/OperateFreeRDP.h Initialize parameter
- *    - Call COperate::SetParameter to set the parameters. ag:
+ *    - Call COperateDesktop::SetParameter to set the parameters. ag:
  *      \snippet Plugins/FreeRDP/Client/OperateFreeRDP.cpp Set the parameter
  *    - Default set the CParameterPlugin for the parameters of operate.
  *      See: CPlugin::CreateOperate .

@@ -36,7 +36,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     Parameter.h
     ParameterUI.h
     ParameterOperate.h
-    ParameterPlugin.h
+    ParameterCompone/ParameterPlugin.h
     ParameterCompone/ParameterBase.h
     ParameterCompone/ParameterNet.h
     ParameterCompone/ParameterNetUI.h
@@ -56,7 +56,7 @@ list(APPEND PLUGIN_HEADER_FILES
     FrmScroll.h
     DlgInputPassword.h
     Hook.h
-    ParameterPluginUI.h
+    ParameterCompone/ParameterPluginUI.h
     )
 
 list(APPEND PLUGIN_SOURCE_FILES
@@ -72,8 +72,8 @@ list(APPEND PLUGIN_SOURCE_FILES
     Parameter.cpp
     ParameterUI.cpp
     ParameterOperate.cpp
-    ParameterPlugin.cpp
-    ParameterPluginUI.cpp
+    ParameterCompone/ParameterPlugin.cpp
+    ParameterCompone/ParameterPluginUI.cpp
     ParameterCompone/ParameterBase.cpp
     ParameterCompone/ParameterNet.cpp
     ParameterCompone/ParameterNetUI.cpp
@@ -93,7 +93,7 @@ list(APPEND PLUGIN_SOURCE_FILES
 set(PLUGIN_UI_FILES
     DlgInputPassword.ui
     DlgUserPassword.ui
-    ParameterPluginUI.ui
+    ParameterCompone/ParameterPluginUI.ui
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
