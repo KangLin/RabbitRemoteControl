@@ -8,7 +8,7 @@ CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
     m_pPara(nullptr)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("Remote desktop"));
+    setWindowTitle(tr("Plugin"));
     if(RabbitCommon::CTools::HasAdministratorPrivilege()) {
         ui->cbPromptAdminPrivilege->setText("");
         ui->cbPromptAdminPrivilege->hide();

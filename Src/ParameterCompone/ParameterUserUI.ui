@@ -108,13 +108,13 @@
      <item>
       <widget class="QPushButton" name="pbShow">
        <property name="toolTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable view password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable view password</string>
        </property>
        <property name="statusTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable view password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable view password</string>
        </property>
        <property name="whatsThis">
-        <string>Menu: Tools→Settings→Client→Password→Enable view password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable view password</string>
        </property>
        <property name="text">
         <string/>
@@ -133,13 +133,13 @@
      <item>
       <widget class="QPushButton" name="pbSave">
        <property name="toolTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="statusTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="whatsThis">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="text">
         <string/>
@@ -279,13 +279,13 @@
      <item>
       <widget class="QPushButton" name="pbSavePassphrase">
        <property name="toolTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="statusTip">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="whatsThis">
-        <string>Menu: Tools→Settings→Client→Password→Enable Save password</string>
+        <string>Menu: Tools→Settings→Plugin→Password→Enable Save password</string>
        </property>
        <property name="text">
         <string/>
