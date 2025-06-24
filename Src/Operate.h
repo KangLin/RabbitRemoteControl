@@ -50,7 +50,7 @@ class CPlugin;
  *
  * \~
  * \see CPlugin
- * \ingroup LIBAPI
+ * \ingroup APP_API PLUGIN_API
  */
 class PLUGIN_EXPORT COperate : public QObject
 {

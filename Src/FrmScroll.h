@@ -11,7 +11,7 @@
 
 /*!
  * \brief The scroll form class
- * \ingroup CLIENT_PLUGIN_API
+ * \ingroup PLUGIN_API
  */
 class CFrmScroll : public QScrollArea
 {

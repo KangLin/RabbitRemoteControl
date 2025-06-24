@@ -8,6 +8,7 @@
 
 /*!
  * \brief The backend thread
+ * \ingroup PLUGIN_API
  */
 class PLUGIN_EXPORT CBackendThread : public QThread
 {

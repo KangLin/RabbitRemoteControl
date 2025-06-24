@@ -9,7 +9,7 @@
 /*!
  * \~chinese 插件接口
  * \~english Plugin interface
- * \ingroup LIBAPI
+ * \ingroup PLUGIN_API
  */
 class PLUGIN_EXPORT CPlugin : public QObject
 {

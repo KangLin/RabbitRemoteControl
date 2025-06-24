@@ -21,7 +21,7 @@
  *
  * \~
  * \see COperate::SetGlobalParameters
- * \ingroup CLIENT_PARAMETER
+ * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class PLUGIN_EXPORT CParameterPlugin : public CParameter
 {

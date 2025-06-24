@@ -53,7 +53,7 @@ class CBackendThread;
  *
  * \~
  * \see CBackend CBackendThread COperate CPlugin CFrmViewer
- * \ingroup LIBAPI
+ * \ingroup PLUGIN_API
  */
 class PLUGIN_EXPORT COperateDesktop : public COperate
 {

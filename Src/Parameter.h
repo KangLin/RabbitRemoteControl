@@ -52,7 +52,7 @@
  *      This type is not used at this time.
  * - CParameterUI
  * \~
- * \ingroup LIBAPI_CLIENT
+ * \ingroup LIBAPI_PLUGIN
  */
 
 /*!
@@ -62,9 +62,8 @@
  * - 写一个参数组件：
  *   - 定义参数组件类(从 CParameter 或其派生类派生)。例如： CParameterUser 。
  *   - 增加参数组件界面，从 CParameterUI 派生。例如： CParameterUserUI 。 并重载下面函数：
- *     - int SetParameter(CParameter* pParameter);
- *     - int Accept();
- *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter override functions
+ *     \snippet Src/ParameterCompone/ParameterUserUI.cpp Parameter override functions
  * - 使用参数组件：
  *   - 在需要的地方实例化组件类。例如： CParameterNet
  *     \snippet Src/ParameterCompone/ParameterNet.h Instance user
@@ -84,9 +83,8 @@
  *   - Defined the parameter compone class. eg: CParameterUser
  *   - Add the parameter compone UI is derived from CParameterUI . eg: CParameterUserUI .
  *     and add the follow functions:
- *     - int SetParameter(CParameter* pParameter);
- *     - int Accept(bool validity = false);
- *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ *     \snippet Src/ParameterCompone/ParameterUserUI.h Parameter override functions
+ *     \snippet Src/ParameterCompone/ParameterUserUI.cpp Parameter override functions
  * - Use a parameter compone
  *   - Instance the parameter compone class. eg: CParameterNet
  *     \snippet Src/ParameterCompone/ParameterNet.h Instance user
@@ -205,7 +203,7 @@
  *  - Check whether the parameter is valid, call CheckValidity()
  *
  * \~
- * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
+ * \ingroup CLIENT_PARAMETER PLUGIN_API
  */
 class PLUGIN_EXPORT CParameter : public QObject
 {

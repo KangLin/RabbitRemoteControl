@@ -16,10 +16,14 @@ class PLUGIN_EXPORT CParameterUI : public QWidget
     Q_OBJECT
 public:
     explicit CParameterUI(QWidget *parent = nullptr);
+    
+    //! [override functions]
 
     /*!
      * \~chinese 设置参数，并初始化界面
+     * \param pParameter: 相关的参数。在重载函数中转换成相应的类型。
      * \~english Set the parameters and initialize the user interface
+     * \param pParameter: Related parameters. Convert to the appropriate type in the overloaded function.
      */
     virtual int SetParameter(CParameter* pParameter) = 0;
     /*!
@@ -40,6 +44,8 @@ public:
      * \return 0 is success. otherwise is fail
      */
     virtual int Accept() = 0;
+
+    //! [override functions]
 
 public Q_SLOTS:
     virtual void slotSetParameter(CParameter* pParameter);

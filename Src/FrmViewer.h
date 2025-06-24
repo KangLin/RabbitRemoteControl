@@ -42,7 +42,7 @@ class CRecordVideoThread;
  * 
  *\~
  * \see  CConnecter CConnectDesktop
- * \ingroup CLIENT_PLUGIN_API
+ * \ingroup PLUGIN_API
  */
 class PLUGIN_EXPORT CFrmViewer : public QWidget
 {

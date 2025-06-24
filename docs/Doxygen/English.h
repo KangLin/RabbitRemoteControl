@@ -24,57 +24,57 @@
   - Implement CService . Eg. CServiceRabbitVNC
 
 
-\defgroup LIBAPI_CLIENT Client library
+\defgroup LIBAPI_PLUGIN Plugin library
 \ingroup LIBAPI
-\brief Client library
+\brief Plugin library
 \details 
-- Client plugin interfaces class relationship
+- Plugin interfaces class relationship
   \image html docs/Image/PluginAPI.svg
 - Sequence diagram
   \image html docs/Image/PluginSequenceDiagram.svg
 
 
-\defgroup CLIENT_API Client application interface
-\ingroup LIBAPI_CLIENT
-\brief Client application interface
+\defgroup APP_API Application interface
+\ingroup LIBAPI_PLUGIN
+\brief Application interface
 \details
 + Class relationship
   \image html docs/Image/PluginAPI.svg
 - Sequence diagram
-  \image html docs/Image/ClientSequenceDiagram.svg
+  \image html docs/Image/SequenceDiagram.svg
 + usge:
-  - Instance class: CClient m_Client;
-    + Handle CClient::Handle::onProcess to get the registered connection plugin
-  - Use one of the following methods to create the connecter object:
-    + CClient::CreateConnecter
-    + CClient::LoadConnecter
+  - Instance class: CManager m_Manager;
+    + Handle CManager::Handle::onProcess to get the registered plugin
+  - Use one of the following methods to create the object:
+    + CManager::CreateConnecter
+    + CManager::LoadConnecter
   - Connect signal:
-    + Connected CConnecter::sigConnected
-    + Disconnect CConnecter::sigDisconnect
-    + Disconnected CConnecter::sigDisconnected
-  - Open the connect: CConnecter::Connect()
-  - After receiving the CConnecter::sigConnected signal,
-    do connection-related initialization work
-  - After receiving the CConnecter::sigDisconnect signal,
-    Call CConnecter::DisConnect() to close the connect.
-  - Close the connect: CConnecter::DisConnect()
-  - After receiving the CConnecter::sigDisconnected signal,
-    do connection-related cleanup work,
-    and delete the connector object after completion
-     (MUST use CConnecter::deleteLater )
+    + Success Signal: COperate::sigRunning
+    + Stop signal: COperate::sigStop
+    + finish signal: COperate::sigFinished
+  - Start: COperate::Start()
+  - After receiving the COperate::sigRunning signal,
+    do related initialization work
+  - After receiving the COperate::sigStop signal,
+    Call COperate::Stop() to stop.
+  - Stop: COperate::Stop()
+  - After receiving the COperate::sigFinished signal,
+    do related cleanup work,
+    and delete the object after completion
+     (MUST use CManager::DeleteOperate(COperate* p) )
 
 
-\defgroup CLIENT_PLUGIN_API Client plugin interfaces
-\ingroup LIBAPI_CLIENT
-\brief Client plugin interfaces.
+\defgroup PLUGIN_API Plugin interfaces
+\ingroup LIBAPI_PLUGIN
+\brief Plugin interfaces.
 \details
 + Thread module
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient CConnecterThread
+    \see CPluginClient COperateThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     - The plugin does not have a background thread, and all connections use the main thread
     - The plugin has a background thread, and all connections use the same background thread
-      \see CPluginClientThread CConnecterDesktop
+      \see CPluginClientThread COperateDesktop
 + Class relationship
   \image html docs/Image/PluginAPI.svg
 + Sequence diagram
@@ -110,34 +110,34 @@
           - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
-  - Implement \ref CConnecter.
+  - Implement \ref COperate.
     - Implement remote desktop
       - Blocked: Implements a remote desktop background thread to handle
-        a remote desktop connection, which can be derived from CConnecterThread. Eg: CConnecterFreeRDP
+        a remote desktop connection, which can be derived from COperateThread. Eg: COperateFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - No-blocking: Implements a background thread to handle multiple remote desktop connections,
-        which can be derived from CConnecterDesktop.
+        which can be derived from COperateDesktop.
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
-    - Implement remote console, which can be derived from CConnecterTerminal
-    - If the above two cannot meet your needs, you  can be derived from CConnecter
+    - Implement remote console, which can be derived from COperateTerminal
+    - If the above two cannot meet your needs, you  can be derived from COperate
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP
 
 \defgroup LIBAPI_THREAD Thread module
-\ingroup LIBAPI_CLIENT
+\ingroup LIBAPI_PLUGIN
 \brief Thread module
 \details
 + Thread classification
   - Main thread(UI thread)
-    - CConnecter
+    - COperate
     - CFrmView
     - CParameter
   - Work thread
     - CConnect
 + The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient CConnecterThread
+    \see CPluginClient COperateThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
-    \see CPluginClientThread CConnecterDesktop
+    \see CPluginClientThread COperateDesktop
 + Class relationship
   \image html docs/Image/PluginAPI.svg
 

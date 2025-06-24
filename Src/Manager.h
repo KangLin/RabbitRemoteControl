@@ -39,7 +39,7 @@
  * \~chinese 管理插件
  * \~english Manage plugins
  * \~
- * \ingroup LIBAPI
+ * \ingroup APP_API PLUGIN_API
  */
 class PLUGIN_EXPORT CManager : public QObject
 {

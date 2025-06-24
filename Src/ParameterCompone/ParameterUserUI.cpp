@@ -26,6 +26,7 @@ CParameterUserUI::~CParameterUserUI()
     delete ui;
 }
 
+//! [Parameter override functions]
 int CParameterUserUI::SetParameter(CParameter *pParameter)
 {
     m_pUser = qobject_cast<CParameterUser*>(pParameter);
@@ -122,6 +123,7 @@ int CParameterUserUI::Accept()
 
     return 0;
 }
+//! [Parameter override functions]
 
 void CParameterUserUI::on_pbShow_clicked()
 {

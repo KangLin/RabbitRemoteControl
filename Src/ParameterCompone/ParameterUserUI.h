@@ -20,28 +20,24 @@ class PLUGIN_EXPORT CParameterUserUI : public CParameterUI
 
 public:
     explicit CParameterUserUI(QWidget *parent = nullptr);
-    ~CParameterUserUI();
+    virtual ~CParameterUserUI();
     
-    //! [Parameter commone functions]
+    //! [Parameter override functions]
+    
     /*!
      * \~chinese 设置参数，并初始化界面
      * \~english Set the parameters and initialize the user interface
      */
-    int SetParameter(CParameter* pParameter);
+    int SetParameter(CParameter* pParameter) override;
     /*!
      * \~chinese 接受参数
-     * \param validity: 标志是否检查参数
-     *    - true: 检查参数
-     *    - false: 不检查参数
      * \return 成功返回 0 。其它值为失败。
      * \~english Accept parameters
-     * \param validity
-     *    - true: Check parameters
-     *    - false: Not check parameters
      * \return 0 is success. otherwise is fail
      */
-    int Accept();
-    //! [Parameter commone functions]
+    int Accept() override;
+
+    //! [Parameter override functions]
     
 private slots:
     void on_pbShow_clicked();
