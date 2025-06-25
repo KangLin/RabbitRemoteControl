@@ -14,8 +14,9 @@
 #include "RabbitCommonTools.h"
 #include "ParameterPluginUI.h"
 #include "ParameterRecordUI.h"
+#if defined(HAVE_QTERMWIDGET)
 #include "ParameterTerminalUI.h"
-#include "FrmViewer.h"
+#endif
 #include "Channel.h"
 #include "Manager.h"
 
@@ -401,14 +402,14 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
         pClient->SetParameter(m_pParameter);
         lstWidget.push_back(pClient);
     }
-    
+#if defined(HAVE_QTERMWIDGET)
     CParameterTerminalUI* pTermina = new CParameterTerminalUI(parent);
     if(pTermina) {
         pTermina->SetParameter(&m_pParameter->m_Terminal);
         pTermina->setWindowTitle(tr("Terminal"));
         lstWidget.push_back(pTermina);
     }
-
+#endif
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
         pRecord->SetParameter(&m_pParameter->m_Record);

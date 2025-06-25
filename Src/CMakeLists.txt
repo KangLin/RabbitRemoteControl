@@ -167,6 +167,7 @@ endif()
 
 find_package(qtermwidget${QT_VERSION_MAJOR})
 if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTERMWIDGET)
     list(APPEND PLUGIN_INSTALL_HEADER_FILES
         Terminal/OperateTerminal.h
         Terminal/ParameterTerminalUI.h

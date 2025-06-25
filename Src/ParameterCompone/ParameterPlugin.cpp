@@ -13,7 +13,9 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_Record(this)
+#if defined(HAVE_QTERMWIDGET)
     , m_Terminal(this)
+#endif
 {}
 
 CParameterPlugin::~CParameterPlugin()

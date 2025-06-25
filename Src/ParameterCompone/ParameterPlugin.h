@@ -4,7 +4,10 @@
 
 #include "FrmViewer.h"
 #include "ParameterRecord.h"
+
+#if defined(HAVE_QTERMWIDGET)
 #include "ParameterTerminal.h"
+#endif
 
 /*!
  * \~chinese 插件的全局参数。
@@ -149,5 +152,7 @@ private:
 
 public:
     CParameterRecord m_Record;
+#if defined(HAVE_QTERMWIDGET)
     CParameterTerminal m_Terminal;
+#endif
 };
