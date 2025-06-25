@@ -15,7 +15,8 @@ public:
     explicit CParameterTerminal(
         QObject *parent = nullptr,
         const QString& szPrefix = QString());
-    
+    virtual CParameterTerminal& operator=(const CParameterTerminal &in);
+
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
 

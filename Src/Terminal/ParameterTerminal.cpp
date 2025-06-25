@@ -32,6 +32,28 @@ CParameterTerminal::CParameterTerminal(QObject *parent, const QString& szPrefix)
     m_nHistorySize = 1000;
 }
 
+CParameterTerminal& CParameterTerminal::operator=(const CParameterTerminal& in)
+{
+    if(this == &in)
+        return *this;
+    m_Font = in.m_Font;
+    m_bSizeHint = in.m_bSizeHint;
+    m_szColorScheme = in.m_szColorScheme;
+    m_CursorShape = in.m_CursorShape;
+    m_ScrollBarPosition = in.m_ScrollBarPosition;
+    m_nTransparency = in.m_nTransparency;
+    m_BackgroupImage = in.m_BackgroupImage;
+    m_bFlowControl = in.m_bFlowControl;
+    m_bFlowControlWarning = in.m_bFlowControlWarning;
+    m_bMotionAfterPasting = in.m_bMotionAfterPasting;
+    m_bDisableBracketedPasteMode = in.m_bDisableBracketedPasteMode;
+    m_bDirectional = in.m_bDirectional;
+    m_szKeyBindings = in.m_szKeyBindings;
+    m_szTextCodec = in.m_szTextCodec;
+    m_nHistorySize = in.m_nHistorySize;
+    return *this;
+}
+
 int CParameterTerminal::OnLoad(QSettings &set)
 {
     m_Font.fromString(set.value("Terminal/Font", m_Font.toString()).toString());

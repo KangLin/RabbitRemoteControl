@@ -21,5 +21,5 @@ private:
    [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
 private:
-   CParameterTerminal m_Parameters;
+   CParameterTerminalBase m_Parameters;
 };

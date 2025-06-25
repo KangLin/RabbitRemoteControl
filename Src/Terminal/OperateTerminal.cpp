@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include <QDialog>
 #include <QApplication>
 #include <QSettings>
@@ -63,7 +65,7 @@ QWidget* COperateTerminal::GetViewer()
 int COperateTerminal::Load(QSettings &set)
 {
     int nRet = 0;
-    CParameterTerminal* pPara = GetParameter();
+    auto pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     nRet = pPara->Load(set);
@@ -73,7 +75,7 @@ int COperateTerminal::Load(QSettings &set)
 int COperateTerminal::Save(QSettings &set)
 {
     int nRet = 0;
-    CParameterTerminal* pPara = GetParameter();
+    auto pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     nRet = pPara->Save(set);
@@ -128,12 +130,12 @@ int COperateTerminal::Stop()
     return nRet;
 }
 
-CParameterTerminal* COperateTerminal::GetParameter()
+CParameterTerminalBase* COperateTerminal::GetParameter()
 {
     return m_pParameters;
 }
 
-int COperateTerminal::SetParameter(CParameterTerminal* pPara)
+int COperateTerminal::SetParameter(CParameterTerminalBase* pPara)
 {
     int nRet = 0;
 
@@ -160,10 +162,9 @@ void COperateTerminal::slotUpdateParameter(COperate* pOperate)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(this != pOperate) return;
+    if(!GetParameter() || !m_pConsole) return;
 
-    auto pPara = GetParameter();
-
-    if(!pPara || !m_pConsole) return;
+    auto pPara = &GetParameter()->m_Terminal;
 
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
     m_pConsole->setTerminalSizeHint(pPara->GetSizeHint());
@@ -197,7 +198,7 @@ void COperateTerminal::slotTerminalTitleChanged()
 void COperateTerminal::slotZoomReset()
 {
     if(!m_pConsole) return;
-    CParameterTerminal* pPara = GetParameter();
+    CParameterTerminal* pPara = &GetParameter()->m_Terminal;
     if(!pPara) return;
     m_pConsole->setTerminalFont(pPara->GetFont());
 }
@@ -244,5 +245,29 @@ const qint16 COperateTerminal::Version() const
 
 int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    return 0;
+    Q_ASSERT(pPara);
+    if(GetParameter())
+    {
+        GetParameter()->SetGlobalParameters(pPara);
+        return 0;
+    } else {
+        QString szMsg = "There is not parameters! "
+                        "please first create parameters, "
+                        "then call SetParameter() in the ";
+        szMsg += metaObject()->className() + QString("::")
+                 + metaObject()->className();
+        szMsg += QString("() or ") + metaObject()->className()
+                 + QString("::") + "Initial()";
+        szMsg += " to set the parameters pointer. "
+                 "Default set CParameterClient for the parameters of operate "
+                 "(CParameterOperate or its derived classes) "
+                 "See CManager::CreateOperate. "
+                 "If you are sure the parameter of operate "
+                 "does not need CParameterClient. "
+                 "Please overload the SetGlobalParameters() in the ";
+        szMsg += QString(metaObject()->className()) + " . don't set it";
+        qCritical(log) << szMsg.toStdString().c_str();
+        Q_ASSERT(false);
+    }
+    return -1;
 }

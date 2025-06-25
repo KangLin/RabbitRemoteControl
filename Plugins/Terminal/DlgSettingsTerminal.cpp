@@ -6,7 +6,7 @@
 
 static Q_LOGGING_CATEGORY(log, "Terminal.DlgSettings")
 
-CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *parent) :
+CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsTerminal),
     m_pPara(pPara)
@@ -16,7 +16,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *p
     m_pFrmParaAppearnce =
             new CParameterTerminalUI(this);
     if(m_pFrmParaAppearnce) {
-        m_pFrmParaAppearnce->SetParameter(m_pPara);
+        m_pFrmParaAppearnce->SetParameter(&m_pPara->m_Terminal);
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                           m_pFrmParaAppearnce->windowTitle());
     }

@@ -4,7 +4,7 @@
 
 #include "Operate.h"
 #include "Backend.h"
-#include "ParameterTerminal.h"
+#include "ParameterTerminalBase.h"
 
 class CBackendThread;
 /*!
@@ -31,7 +31,7 @@ public:
      */
     [[nodiscard]] virtual CBackend* InstanceBackend() = 0;
     //! Get parameters
-    [[nodiscard]] virtual CParameterTerminal* GetParameter();
+    [[nodiscard]] virtual CParameterTerminalBase* GetParameter();
     /*!
      * \~chinese 设置参数指针
      * \note 先建立参数对象，然后构造函数或 Initial() 中调用此函数设置参数指针
@@ -39,7 +39,7 @@ public:
      * \note Establish the parameter object first, and then calls this function
      *       in the constructor or Initial() to set the parameter pointer
      */
-    virtual int SetParameter(CParameterTerminal *pPara);
+    virtual int SetParameter(CParameterTerminalBase *pPara);
 
     [[nodiscard]] QWidget* GetViewer() override;
     [[nodiscard]] virtual const qint16 Version() const override;
@@ -70,5 +70,5 @@ protected:
     QTermWidget* m_pConsole;
     CBackendThread* m_pThread;
 private:
-    CParameterTerminal* m_pParameters;
+    CParameterTerminalBase* m_pParameters;
 };

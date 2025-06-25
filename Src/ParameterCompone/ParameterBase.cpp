@@ -222,17 +222,17 @@ void CParameterBase::SetZoomFactor(double newZoomFactor)
 
 void CParameterBase::slotSetGlobalParameters()
 {
-    CParameterPlugin* pClient = GetGlobalParameters();
-    if(!pClient) {
+    CParameterPlugin* pPlugin = GetGlobalParameters();
+    if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "CParameterBase", szErr.toStdString().c_str());
         return;
     }
 
-    SetAdaptWindows(pClient->GetAdaptWindows());
+    SetAdaptWindows(pPlugin->GetAdaptWindows());
 
-    m_Record = pClient->m_Record;
+    m_Record = pPlugin->m_Record;
 
     return;
 }

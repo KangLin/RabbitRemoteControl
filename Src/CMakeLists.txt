@@ -172,11 +172,13 @@ if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
         Terminal/OperateTerminal.h
         Terminal/ParameterTerminalUI.h
         Terminal/ParameterTerminal.h
+        Terminal/ParameterTerminalBase.h
     )
     list(APPEND PLUGIN_SOURCE_FILES
         Terminal/OperateTerminal.cpp
         Terminal/ParameterTerminalUI.cpp
         Terminal/ParameterTerminal.cpp
+        Terminal/ParameterTerminalBase.cpp
     )
     list(APPEND PLUGIN_UI_FILES
         Terminal/ParameterTerminalUI.ui
