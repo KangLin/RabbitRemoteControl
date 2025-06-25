@@ -230,10 +230,10 @@ if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
     ./build_depend.sh --system_update --base --default  \
         --rabbitcommon --tigervnc --pcapplusplus \
-        --install ${INSTALL_DIR} \
-        --source ${SOURCE_DIR} \
-        --tools ${TOOLS_DIR} \
-        --verbose ${BUILD_VERBOSE}
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon
@@ -243,11 +243,11 @@ if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
     ./build_depend.sh --system_update --base --rabbitcommon\
         --tigervnc --freerdp --pcapplusplus \
-        --install ${INSTALL_DIR} \
-        --source ${SOURCE_DIR} \
-        --tools ${TOOLS_DIR} \
-        --verbose ${BUILD_VERBOSE} \
-        --qt ${QT_VERSION}
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE} \
+        --qt=${QT_VERSION}
 
     export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
     export Qt6_DIR=$QT_ROOT
@@ -263,28 +263,28 @@ if [ $APPIMAGE -eq 1 ]; then
     apt install -y -q fuse3
 
     ./build_depend.sh --qtermwidget \
-        --install ${INSTALL_DIR} \
-        --source ${SOURCE_DIR} \
-        --tools ${TOOLS_DIR} \
-        --verbose ${BUILD_VERBOSE}
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 
-    ./build_appimage.sh --install ${INSTALL_DIR} --verbose ${BUILD_VERBOSE}
+    ./build_appimage.sh --install=${INSTALL_DIR} --verbose=${BUILD_VERBOSE}
 fi
 
 if [ $RPM -eq 1 ]; then
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus \
-        --install ${INSTALL_DIR} \
-        --source ${SOURCE_DIR} \
-        --tools ${TOOLS_DIR} \
-        --verbose ${BUILD_VERBOSE}
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 
     ./build_rpm_package.sh \
-        --install ${INSTALL_DIR} \
-        --source ${SOURCE_DIR} \
-        --tools ${TOOLS_DIR} \
-        --verbose ${BUILD_VERBOSE}
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 fi
 
 popd
