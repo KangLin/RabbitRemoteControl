@@ -259,149 +259,6 @@
     </message>
 </context>
 <context>
-    <name>CFrmParameterTerminalAppearanceSettings</name>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="14"/>
-        <source>Appearance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="22"/>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="44"/>
-        <source>Flow Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="53"/>
-        <source>Terminal Transparency:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="69"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="83"/>
-        <source>Background Image:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="109"/>
-        <source>Browser(&amp;B)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="120"/>
-        <source>Cursor shape:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="144"/>
-        <source>Scroll bar positioin:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="168"/>
-        <source>Font:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="206"/>
-        <source>Show terminal size when windows resize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="213"/>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="36"/>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="44"/>
-        <source>Example: Display font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="223"/>
-        <source>Enable bi-directional text support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="68"/>
-        <source>Backgroup image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="69"/>
-        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="92"/>
-        <source>BlockCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="93"/>
-        <source>UnderlineCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="94"/>
-        <source>IBeamCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="101"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="102"/>
-        <source>Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="103"/>
-        <source>Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CFrmParameterTerminalBehavior</name>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="14"/>
-        <source>Behavior</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="28"/>
-        <source>Text Codecs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="52"/>
-        <source>Key binding:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="74"/>
-        <source>History</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="82"/>
-        <source>History size(in lines):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="98"/>
-        <source>Unlimited</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="507"/>
@@ -410,15 +267,40 @@
     </message>
 </context>
 <context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="126"/>
+        <location filename="../../Manager.cpp" line="128"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="209"/>
+        <location filename="../../Manager.cpp" line="211"/>
         <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="409"/>
+        <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -990,6 +872,136 @@
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
         <source>Packet capture (*.pcap *.cap)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterTerminalUI</name>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
+        <source>Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="22"/>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="62"/>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="86"/>
+        <source>Cursor shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
+        <source>Scroll bar positioin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
+        <source>Terminal Transparency:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
+        <source>Background Image:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
+        <source>Browser(&amp;B)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
+        <source>Key binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
+        <source>Show terminal size when windows resize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
+        <source>Enable bi-directional text support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="233"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
+        <source>History size(in lines):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="267"/>
+        <source>Flow Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="274"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
+        <source>Backgroup image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
+        <source>BlockCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
+        <source>UnderlineCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
+        <source>IBeamCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
+        <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -261,144 +261,111 @@
 <context>
     <name>CFrmParameterTerminalAppearanceSettings</name>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="14"/>
         <source>Appearance</source>
-        <translation>显示</translation>
+        <translation type="vanished">显示</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="144"/>
         <source>Scroll bar positioin:</source>
-        <translation>滚动条位置：</translation>
+        <translation type="vanished">滚动条位置：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="168"/>
         <source>Font:</source>
-        <translation>字体：</translation>
+        <translation type="vanished">字体：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="83"/>
         <source>Background Image:</source>
-        <translation>背景图像：</translation>
+        <translation type="vanished">背景图像：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="206"/>
         <source>Show terminal size when windows resize</source>
-        <translation>窗口大小改变时显示其大小</translation>
+        <translation type="vanished">窗口大小改变时显示其大小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="223"/>
         <source>Enable bi-directional text support</source>
-        <translation>允许双向文本</translation>
+        <translation type="vanished">允许双向文本</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="44"/>
         <source>Flow Control</source>
-        <translation>流量控制</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="213"/>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="36"/>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>示例：显示字体</translation>
+        <translation type="vanished">示例：显示字体</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="22"/>
         <source>Color scheme:</source>
-        <translation>颜色方案：</translation>
+        <translation type="vanished">颜色方案：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="120"/>
         <source>Cursor shape:</source>
-        <translation>光标形状：</translation>
+        <translation type="vanished">光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="53"/>
         <source>Terminal Transparency:</source>
-        <translation>透明度：</translation>
+        <translation type="vanished">透明度：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="69"/>
-        <source>%</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="92"/>
         <source>BlockCursor</source>
-        <translation>方块光标</translation>
+        <translation type="vanished">方块光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="93"/>
         <source>UnderlineCursor</source>
-        <translation>下划线光标</translation>
+        <translation type="vanished">下划线光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="94"/>
         <source>IBeamCursor</source>
-        <translation>I 形光标</translation>
+        <translation type="vanished">I 形光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="101"/>
         <source>No</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="102"/>
         <source>Left</source>
-        <translation>左</translation>
+        <translation type="vanished">左</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="103"/>
         <source>Right</source>
-        <translation>右</translation>
+        <translation type="vanished">右</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="68"/>
         <source>Backgroup image</source>
-        <translation>背景图像</translation>
+        <translation type="vanished">背景图像</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.cpp" line="69"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalAppearanceSettings.ui" line="109"/>
         <source>Browser(&amp;B)</source>
-        <translation>浏览(&amp;B)</translation>
+        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
 </context>
 <context>
     <name>CFrmParameterTerminalBehavior</name>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="14"/>
         <source>Behavior</source>
-        <translation>特性</translation>
+        <translation type="vanished">特性</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="52"/>
         <source>Key binding:</source>
-        <translation>键盘绑定：</translation>
+        <translation type="vanished">键盘绑定：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="74"/>
         <source>History</source>
-        <translation>历史记录</translation>
+        <translation type="vanished">历史记录</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="82"/>
         <source>History size(in lines):</source>
-        <translation>历史记录大小（行数）：</translation>
+        <translation type="vanished">历史记录大小（行数）：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="98"/>
         <source>Unlimited</source>
-        <translation>无限制</translation>
+        <translation type="vanished">无限制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/FrmParameterTerminalBehavior.ui" line="28"/>
         <source>Text Codecs:</source>
-        <translation>文本编码：</translation>
+        <translation type="vanished">文本编码：</translation>
     </message>
 </context>
 <context>
@@ -412,32 +379,40 @@
 <context>
     <name>CHookWindows</name>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕获系统快捷键需要管理员权限。
+        <translation>捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="vanished">总是显示</translation>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="126"/>
+        <location filename="../../Manager.cpp" line="128"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="209"/>
+        <location filename="../../Manager.cpp" line="211"/>
         <source>Version:</source>
         <translation>版本：</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="409"/>
+        <source>Terminal</source>
+        <translation type="unfinished">终端</translation>
     </message>
 </context>
 <context>
@@ -1009,6 +984,136 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
         <source>Packet capture (*.pcap *.cap)</source>
         <translation>包捕获文件(*.pcap *.cap)</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterTerminalUI</name>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
+        <source>Appearance</source>
+        <translation type="unfinished">显示</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="22"/>
+        <source>Font:</source>
+        <translation type="unfinished">字体：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="62"/>
+        <source>Color scheme:</source>
+        <translation type="unfinished">颜色方案：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="86"/>
+        <source>Cursor shape:</source>
+        <translation type="unfinished">光标形状：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
+        <source>Scroll bar positioin:</source>
+        <translation type="unfinished">滚动条位置：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
+        <source>Terminal Transparency:</source>
+        <translation type="unfinished">透明度：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
+        <source>Background Image:</source>
+        <translation type="unfinished">背景图像：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
+        <source>Browser(&amp;B)</source>
+        <translation type="unfinished">浏览(&amp;B)</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
+        <source>Key binding:</source>
+        <translation type="unfinished">键盘绑定：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
+        <source>Show terminal size when windows resize</source>
+        <translation type="unfinished">窗口大小改变时显示其大小</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
+        <source>Enable bi-directional text support</source>
+        <translation type="unfinished">允许双向文本</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="233"/>
+        <source>History</source>
+        <translation type="unfinished">历史记录</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
+        <source>History size(in lines):</source>
+        <translation type="unfinished">历史记录大小（行数）：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
+        <source>Unlimited</source>
+        <translation type="unfinished">无限制</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="267"/>
+        <source>Flow Control</source>
+        <translation type="unfinished">流量控制</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="274"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation type="unfinished">示例：显示字体</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
+        <source>Backgroup image</source>
+        <translation type="unfinished">背景图像</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation type="unfinished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
+        <source>BlockCursor</source>
+        <translation type="unfinished">方块光标</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
+        <source>UnderlineCursor</source>
+        <translation type="unfinished">下划线光标</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
+        <source>IBeamCursor</source>
+        <translation type="unfinished">I 形光标</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
+        <source>Left</source>
+        <translation type="unfinished">左</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
+        <source>Right</source>
+        <translation type="unfinished">右</translation>
     </message>
 </context>
 <context>
