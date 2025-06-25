@@ -72,7 +72,7 @@ jobs:
       - name: build linux
         #continue-on-error: true
         run: |
-          sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install ${{env.INSTALL_DIR}} --qt ${{matrix.qt_version}}
+          sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install=${{env.INSTALL_DIR}} --qt=${{matrix.qt_version}}
 
       - name: Deb update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' }}
