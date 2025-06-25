@@ -20,7 +20,13 @@ public:
 private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
+    void on_pbShellBrowse_clicked();
     
+    void on_cbShell_currentIndexChanged(int index);
+    
+private:
+    int AddShell(QString szShell);
+
 private:
     Ui::CDlgSettingsTerminal *ui;
     CParameterTerminalBase* m_pPara;

@@ -3,17 +3,27 @@
 #include <QLoggingCategory>
 #include "ParameterTerminalBase.h"
 
-static Q_LOGGING_CATEGORY(log, "Paramter.Terminal.Base")
+static Q_LOGGING_CATEGORY(log, "Parameter.Terminal.Base")
 CParameterTerminalBase::CParameterTerminalBase(QObject *parent)
     : CParameterOperate{parent}
     , m_Terminal(this)
-{}
-
+{
+#if defined(Q_OS_UNIX)
+    m_szShell = qgetenv("SHELL");
+    if(m_szShell.isEmpty())
+        m_szShell = "/bin/sh";
+#elif defined(Q_OS_WIN)
+    m_szShell = qgetenv("ComSpec");
+    if(m_szShell.isEmpty())
+        m_szShell = "C:\\WINDOWS\\system32\\cmd.exe";
+#endif
+}
 
 int CParameterTerminalBase::OnLoad(QSettings &set)
 {
     set.beginGroup("Terminal");
     SetShell(set.value("Shell", GetShell()).toString());
+    SetShellParameters(set.value("Shell/Paramters", GetShellParameters()).toString());
     set.endGroup();
     return 0;
 }
@@ -22,6 +32,7 @@ int CParameterTerminalBase::OnSave(QSettings &set)
 {
     set.beginGroup("Terminal");
     set.setValue("Shell", GetShell());
+    set.setValue("Shell/Paramters", GetShellParameters());
     set.endGroup();
     return 0;
 }
@@ -40,14 +51,28 @@ void CParameterTerminalBase::slotSetGlobalParameters()
 
 int CParameterTerminalBase::SetShell(const QString& shell)
 {
-    if(m_Shell == shell)
+    if(m_szShell == shell)
         return 0;
-    m_Shell = shell;
+    m_szShell = shell;
     SetModified(true);
     return 0;
 }
 
 QString CParameterTerminalBase::GetShell()
 {
-    return m_Shell;
+    return m_szShell;
+}
+
+int CParameterTerminalBase::SetShellParameters(const QString &para)
+{
+    if(m_szShellParamters == para)
+        return 0;
+    m_szShellParamters = para;
+    SetModified(true);
+    return 0;
+}
+
+QString CParameterTerminalBase::GetShellParameters()
+{
+    return m_szShellParamters;
 }

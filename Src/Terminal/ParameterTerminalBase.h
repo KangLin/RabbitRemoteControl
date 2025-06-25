@@ -13,10 +13,17 @@ public:
 
     CParameterTerminal m_Terminal;
 
+public:
     int SetShell(const QString& shell);
     QString GetShell();
 private:
-    QString m_Shell;
+    QString m_szShell;
+
+public:
+    int SetShellParameters(const QString& para);
+    QString GetShellParameters();
+private:
+    QString m_szShellParamters;
 
     // CParameter interface
 protected:

@@ -25,8 +25,13 @@ QDialog *CTerminal::OnOpenDialogSettings(QWidget *parent)
 int CTerminal::Start()
 {
     slotUpdateParameter(this);
-    if(m_pConsole)
+    if(m_pConsole) {
+        if(!m_Parameters.GetShell().isEmpty())
+            m_pConsole->setShellProgram(m_Parameters.GetShell());
+        if(!m_Parameters.GetShellParameters().isEmpty())
+            m_pConsole->setArgs(QStringList() << m_Parameters.GetShellParameters());
         m_pConsole->startShellProgram();
+    }
     emit sigRunning();
     return 0;
 }
