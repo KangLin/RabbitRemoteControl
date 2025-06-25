@@ -13,9 +13,10 @@
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "ParameterPluginUI.h"
+#include "ParameterRecordUI.h"
+#include "ParameterTerminalUI.h"
 #include "FrmViewer.h"
 #include "Channel.h"
-#include "ParameterRecordUI.h"
 #include "Manager.h"
 
 static Q_LOGGING_CATEGORY(log, "Manager")
@@ -401,12 +402,19 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
         lstWidget.push_back(pClient);
     }
     
+    CParameterTerminalUI* pTermina = new CParameterTerminalUI(parent);
+    if(pTermina) {
+        pTermina->SetParameter(&m_pParameter->m_Terminal);
+        pTermina->setWindowTitle(tr("Terminal"));
+        lstWidget.push_back(pTermina);
+    }
+
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
         pRecord->SetParameter(&m_pParameter->m_Record);
         lstWidget.push_back(pRecord);
     }
-    
+
     return lstWidget;
 }
 

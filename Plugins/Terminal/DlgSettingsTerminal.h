@@ -3,8 +3,7 @@
 
 #include <QDialog>
 #include "ParameterTerminal.h"
-#include "FrmParameterTerminalAppearanceSettings.h"
-#include "FrmParameterTerminalBehavior.h"
+#include "ParameterTerminalUI.h"
 
 namespace Ui {
 class CDlgSettingsTerminal;
@@ -25,8 +24,7 @@ private slots:
 private:
     Ui::CDlgSettingsTerminal *ui;
     CParameterTerminal* m_pPara;
-    CFrmParameterTerminalAppearanceSettings* m_pFrmParaAppearnce;
-    CFrmParameterTerminalBehavior* m_pFrmParaBehavior;
+    CParameterTerminalUI* m_pFrmParaAppearnce;
 };
 
 #endif // DLGSETTINGSTERMINAL_H

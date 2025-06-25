@@ -3,11 +3,11 @@
 #pragma once
 
 #include <QFont>
-#include "ParameterOperate.h"
+#include "Parameter.h"
 #include "qtermwidget.h"
 #include "plugin_export.h"
 
-class PLUGIN_EXPORT CParameterTerminal : public CParameterOperate
+class PLUGIN_EXPORT CParameterTerminal : public CParameter
 {
     Q_OBJECT
     

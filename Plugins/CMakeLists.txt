@@ -57,8 +57,8 @@ if(QT_VERSION GREATER_EQUAL "6.8.0")
 endif()
 
 ## Terminal
-find_package(qtermwidget6)
-if(qtermwidget6_FOUND)
+find_package(qtermwidget${QT_VERSION_MAJOR})
+if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     option(BUILD_TERMINAL "Build Terminal" ON)
     if(BUILD_TERMINAL)
         add_subdirectory(Terminal)

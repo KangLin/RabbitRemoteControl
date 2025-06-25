@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include "Parameter.h"
 #include "FrmViewer.h"
 #include "ParameterRecord.h"
+#include "ParameterTerminal.h"
 
 /*!
  * \~chinese 插件的全局参数。
@@ -149,4 +149,5 @@ private:
 
 public:
     CParameterRecord m_Record;
+    CParameterTerminal m_Terminal;
 };

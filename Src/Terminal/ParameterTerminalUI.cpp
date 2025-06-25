@@ -7,28 +7,28 @@
 
 #include "qtermwidget.h"
 
-#include "FrmParameterTerminalAppearanceSettings.h"
-#include "ui_FrmParameterTerminalAppearanceSettings.h"
+#include "ParameterTerminalUI.h"
+#include "ui_ParameterTerminalUI.h"
 
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Terminal")
 
-CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings(QWidget *parent) :
+CParameterTerminalUI::CParameterTerminalUI(QWidget *parent) :
     CParameterUI(parent),
-    ui(new Ui::CFrmParameterTerminalAppearanceSettings),
+    ui(new Ui::CParameterTerminalUI),
     m_pPara(nullptr)
 {
     ui->setupUi(this);
 }
 
-CFrmParameterTerminalAppearanceSettings::~CFrmParameterTerminalAppearanceSettings()
+CParameterTerminalUI::~CParameterTerminalUI()
 {
     delete ui;
 }
 
-void CFrmParameterTerminalAppearanceSettings::on_fontComboBox_currentFontChanged(const QFont &f)
+void CParameterTerminalUI::on_fontComboBox_currentFontChanged(const QFont &f)
 {
     QFont font = f;
     font.setPointSize(ui->spFontSize->value());
@@ -36,7 +36,7 @@ void CFrmParameterTerminalAppearanceSettings::on_fontComboBox_currentFontChanged
     ui->lbFont->setText(tr("Example: Display font"));
 }
 
-void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int size)
+void CParameterTerminalUI::on_spFontSize_valueChanged(int size)
 {
     QFont font = ui->fontComboBox->currentFont();
     font.setPointSize(size);
@@ -44,7 +44,7 @@ void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int siz
     ui->lbFont->setText(tr("Example: Display font"));
 }
 
-int CFrmParameterTerminalAppearanceSettings::Accept()
+int CParameterTerminalUI::Accept()
 {
     if(!m_pPara) return -1;
     m_pPara->SetFont(ui->fontComboBox->currentFont());
@@ -59,10 +59,17 @@ int CFrmParameterTerminalAppearanceSettings::Accept()
     m_pPara->SetFlowControl(ui->cbFlowControl->isChecked());
     m_pPara->SetBackgroupImage(ui->leImage->text());
     m_pPara->SetDirectional(ui->cbBiDirectional->isChecked());
+    m_pPara->SetKeyBindings(ui->cbKeyBinding->currentText());
+
+    if(ui->cbHistoryUnlimited->isChecked())
+        m_pPara->SetHistorySize(-1);
+    else    
+        m_pPara->SetHistorySize(ui->sbHistorySize->value());
+    
     return 0;
 }
 
-void CFrmParameterTerminalAppearanceSettings::on_pbBrowser_clicked()
+void CParameterTerminalUI::on_pbBrowser_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
                                                tr("Backgroup image"), QString(),
@@ -71,7 +78,7 @@ void CFrmParameterTerminalAppearanceSettings::on_pbBrowser_clicked()
         ui->leImage->setText(file);
 }
 
-int CFrmParameterTerminalAppearanceSettings::SetParameter(CParameter *pParameter)
+int CParameterTerminalUI::SetParameter(CParameter *pParameter)
 {
     m_pPara = qobject_cast<CParameterTerminal*>(pParameter);
     Q_ASSERT(m_pPara);
@@ -107,6 +114,19 @@ int CFrmParameterTerminalAppearanceSettings::SetParameter(CParameter *pParameter
     ui->cbFlowControl->setChecked(m_pPara->GetFlowControl());
     ui->cbBiDirectional->setChecked(m_pPara->GetDirectional());
     ui->leImage->setText(m_pPara->GetBackgroupImage());
+    
+    ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
+    ui->cbKeyBinding->setCurrentText(m_pPara->GetKeyBindings());
 
+    if(0 > m_pPara->GetHistorySize())
+    {
+        ui->cbHistoryUnlimited->setChecked(true);
+        ui->sbHistorySize->setValue(1000);
+    }
+    else
+    {
+        ui->cbHistorySize->setChecked(true);
+        ui->sbHistorySize->setValue(m_pPara->GetHistorySize());
+    }
     return 0;
 }

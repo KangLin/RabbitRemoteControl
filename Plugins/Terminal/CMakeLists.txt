@@ -1,7 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(Terminal
-    DESCRIPTION "Terminal plugin")
+project(Terminal DESCRIPTION "Terminal plugin")
 
 set(lib_terminal Plugin)
 

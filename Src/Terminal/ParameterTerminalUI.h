@@ -6,16 +6,16 @@
 #include "ParameterTerminal.h"
 
 namespace Ui {
-class CFrmParameterTerminalAppearanceSettings;
+class CParameterTerminalUI;
 }
 
-class PLUGIN_EXPORT CFrmParameterTerminalAppearanceSettings : public CParameterUI
+class PLUGIN_EXPORT CParameterTerminalUI : public CParameterUI
 {
     Q_OBJECT
 
 public:
-    explicit CFrmParameterTerminalAppearanceSettings(QWidget *parent = nullptr);
-    virtual ~CFrmParameterTerminalAppearanceSettings() override;
+    explicit CParameterTerminalUI(QWidget *parent = nullptr);
+    virtual ~CParameterTerminalUI() override;
 
     virtual int SetParameter(CParameter *pParameter) override;
     virtual int Accept() override;
@@ -27,6 +27,6 @@ private slots:
     void on_pbBrowser_clicked();
 
 private:
-    Ui::CFrmParameterTerminalAppearanceSettings *ui;
+    Ui::CParameterTerminalUI *ui;
     CParameterTerminal *m_pPara;
 };

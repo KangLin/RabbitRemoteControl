@@ -165,25 +165,22 @@ if(libssh_FOUND)
         )
 endif()
 
-find_package(qtermwidget6)
-if(qtermwidget6_FOUND)
+find_package(qtermwidget${QT_VERSION_MAJOR})
+if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     list(APPEND PLUGIN_INSTALL_HEADER_FILES
         Terminal/OperateTerminal.h
-        Terminal/FrmParameterTerminalAppearanceSettings.h
-        Terminal/FrmParameterTerminalBehavior.h
+        Terminal/ParameterTerminalUI.h
         Terminal/ParameterTerminal.h
     )
     list(APPEND PLUGIN_SOURCE_FILES
         Terminal/OperateTerminal.cpp
-        Terminal/FrmParameterTerminalAppearanceSettings.cpp
-        Terminal/FrmParameterTerminalBehavior.cpp
+        Terminal/ParameterTerminalUI.cpp
         Terminal/ParameterTerminal.cpp
     )
     list(APPEND PLUGIN_UI_FILES
-        Terminal/FrmParameterTerminalAppearanceSettings.ui
-        Terminal/FrmParameterTerminalBehavior.ui
+        Terminal/ParameterTerminalUI.ui
     )
-    list(APPEND PLUGIN_LIBS qtermwidget6)
+    list(APPEND PLUGIN_LIBS qtermwidget${QT_VERSION_MAJOR})
 endif()
 
 SET(PLUGIN_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)

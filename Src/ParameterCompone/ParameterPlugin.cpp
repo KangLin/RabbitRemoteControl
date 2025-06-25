@@ -13,6 +13,7 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_Record(this)
+    , m_Terminal(this)
 {}
 
 CParameterPlugin::~CParameterPlugin()

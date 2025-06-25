@@ -4,7 +4,7 @@
 #include <QSettings>
 
 CParameterTerminal::CParameterTerminal(QObject *parent, const QString& szPrefix)
-    : CParameterOperate(parent, szPrefix)
+    : CParameter(parent, szPrefix)
 {
     m_Font = QApplication::font();
 #ifdef Q_OS_MACOS

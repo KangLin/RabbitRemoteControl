@@ -14,17 +14,11 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *p
     ui->setupUi(this);
 
     m_pFrmParaAppearnce =
-            new CFrmParameterTerminalAppearanceSettings(this);
+            new CParameterTerminalUI(this);
     if(m_pFrmParaAppearnce) {
         m_pFrmParaAppearnce->SetParameter(m_pPara);
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                           m_pFrmParaAppearnce->windowTitle());
-    }
-    m_pFrmParaBehavior = new CFrmParameterTerminalBehavior(this);
-    if(m_pFrmParaBehavior) {
-        m_pFrmParaBehavior->SetParameter(m_pPara);
-        ui->tabWidget->addTab(m_pFrmParaBehavior,
-                              m_pFrmParaBehavior->windowTitle());
     }
 }
 
@@ -38,9 +32,8 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
 {
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
-    if(m_pFrmParaBehavior)
-        m_pFrmParaBehavior->Accept();
-    this->accept();
+
+    accept();
 }
 
 void CDlgSettingsTerminal::on_pbCancel_clicked()
