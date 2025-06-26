@@ -29,7 +29,7 @@ public:
      *        if don't use, the caller must delete it.
      * \~see CBackendThread
      */
-    [[nodiscard]] virtual CBackend* InstanceBackend() = 0;
+    [[nodiscard]] Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
     //! Get parameters
     [[nodiscard]] virtual CParameterTerminalBase* GetParameter();
     /*!

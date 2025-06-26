@@ -1,9 +1,10 @@
+// Author: Kang Lin <kl222@126.com>
+
+#include "OperateSSH.h"
 #include "PluginLibSSH.h"
-#include "RabbitCommonDir.h"
-#include "ConnecterSSH.h"
 
 #include <QLoggingCategory>
-Q_LOGGING_CATEGORY(ssh, "SSH")
+static Q_LOGGING_CATEGORY(log, "SSH")
 
 CPluginLibSSH::CPluginLibSSH()
 {
@@ -11,7 +12,7 @@ CPluginLibSSH::CPluginLibSSH()
 
 CPluginLibSSH::~CPluginLibSSH()
 {
-    qDebug(ssh) << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 const QString CPluginLibSSH::Protocol() const
@@ -21,12 +22,20 @@ const QString CPluginLibSSH::Protocol() const
 
 const QString CPluginLibSSH::Name() const
 {
-    return tr("LibSSH");
+    return "TerminalSsh";
+}
+
+const QString CPluginLibSSH::DisplayName() const
+{
+    return tr("Termainl SSH");
 }
 
 const QString CPluginLibSSH::Description() const
 {
-    return tr("SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...");
+    return tr("SSH: you can remotely execute programs, transfer files, "
+              "use a secure and transparent tunnel, "
+              "manage public keys and much more ...\n"
+              "It is use libssh.");
 }
 
 const QIcon CPluginLibSSH::Icon() const
@@ -36,7 +45,7 @@ const QIcon CPluginLibSSH::Icon() const
 
 const CPlugin::TYPE CPluginLibSSH::Type() const
 {
-    return TYPE::Client;
+    return TYPE::Terminal;
 }
 
 const QString CPluginLibSSH::Version() const
@@ -46,7 +55,7 @@ const QString CPluginLibSSH::Version() const
 
 COperate *CPluginLibSSH::OnCreateOperate(const QString &szId)
 {
-    if(Id() == szProtocol)
-        return new CConnecterSSH(this);
+    if(Id() == szId)
+        return new COperateSSH(this);
     return nullptr;
 }

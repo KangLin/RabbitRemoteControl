@@ -20,9 +20,10 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
       m_pParameters(nullptr)
 {
     m_pConsole = new QTermWidget(0);
-    if(!m_pConsole)
+    if(!m_pConsole) {
         qCritical(log) << "new QTermWidget() fail";
-
+        return;
+    }
     m_pConsole->setAutoClose(true);
 
     bool check = false;
@@ -89,7 +90,7 @@ int COperateTerminal::Initial()
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-    
+
     m_Menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
     m_Menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pConsole, SLOT(pasteSelection()));
@@ -102,7 +103,7 @@ int COperateTerminal::Initial()
                        m_pConsole, &QTermWidget::toggleShowSearchBar);
     m_Menu.addSeparator();
     m_Menu.addAction(tr("Clear"), m_pConsole, SLOT(clear()));
-    
+
     if(m_pActionSettings) {
         m_Menu.addSeparator();
         m_Menu.addAction(m_pActionSettings);
@@ -234,7 +235,7 @@ void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
 
 void COperateTerminal::slotTermKeyPressed(QKeyEvent* e)
 {
-    qDebug(log) << Q_FUNC_INFO << e;
+    //qDebug(log) << Q_FUNC_INFO << e;
 }
 
 void COperateTerminal::slotFocusIn()

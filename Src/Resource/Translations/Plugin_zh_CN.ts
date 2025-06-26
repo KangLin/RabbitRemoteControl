@@ -269,38 +269,35 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕获系统快捷键需要管理员权限。
+        <translation type="vanished">捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>总是显示</translation>
+        <translation type="vanished">总是显示</translation>
     </message>
 </context>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="128"/>
+        <location filename="../../Manager.cpp" line="115"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="211"/>
+        <location filename="../../Manager.cpp" line="198"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="409"/>
+        <location filename="../../Manager.cpp" line="396"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>

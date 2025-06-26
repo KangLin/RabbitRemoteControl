@@ -4,6 +4,7 @@
 #include "plugin_export.h"
 #include "ParameterOperate.h"
 #include "ParameterTerminal.h"
+#include "ParameterNet.h"
 
 class PLUGIN_EXPORT CParameterTerminalBase : public CParameterOperate
 {
@@ -12,6 +13,7 @@ public:
     explicit CParameterTerminalBase(QObject *parent = nullptr);
 
     CParameterTerminal m_Terminal;
+    CParameterNet m_Net;
 
 public:
     int SetShell(const QString& shell);
@@ -23,7 +25,7 @@ public:
     int SetShellParameters(const QString& para);
     QString GetShellParameters();
 private:
-    QString m_szShellParamters;
+    QString m_szShellParameters;
 
     // CParameter interface
 protected:

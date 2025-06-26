@@ -3,7 +3,6 @@
 #pragma once
 
 #include "Plugin.h"
-#include <QTranslator>
 
 class CPluginLibSSH : public CPlugin
 {
@@ -21,6 +20,7 @@ public:
 public:
     virtual const QString Protocol() const override;
     virtual const QString Name() const override;
+    virtual const QString DisplayName() const override;
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
     virtual const TYPE Type() const override;

@@ -35,7 +35,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="94"/>
-        <source>Shell paramters:</source>
+        <source>Shell Parameters:</source>
         <translation>Shell 參數：</translation>
     </message>
     <message>

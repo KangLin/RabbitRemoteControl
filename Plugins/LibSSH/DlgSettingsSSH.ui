@@ -14,137 +14,12 @@
    <string>Set ssh</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="Server">
-      <attribute name="title">
-       <string>Server</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="leName"/>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Server:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="leHost"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Port:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="spPort">
-           <property name="maximum">
-            <number>65523</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>User:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="leUser"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Password:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lePassword">
-           <property name="echoMode">
-            <enum>QLineEdit::Password</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="cbSavePassword">
-         <property name="text">
-          <string>Save password</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Capture file:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="leCapFile"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbCapFileBrowser">
-           <property name="text">
-            <string>Browser(&amp;B)</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -170,8 +45,46 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="Server">
+      <attribute name="title">
+       <string>Server</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="CParameterNetUI" name="wNet" native="true"/>
+       </item>
+       <item row="1" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>163</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CParameterNetUI</class>
+   <extends>QWidget</extends>
+   <header location="global">ParameterNetUI.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

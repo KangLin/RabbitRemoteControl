@@ -22,8 +22,8 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     AddShell("/bin/dash");
     AddShell(qgetenv("SHELL"));
 #elif defined(Q_OS_WIN)
-    AddShell("C:\\WINDOWS\\system32\\cmd.exe");
-    AddShell("C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
+    AddShell("C:\\Windows\\System32\\cmd.exe");
+    AddShell("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
     AddShell(qgetenv("ComSpec"));
 #endif
 
@@ -81,7 +81,11 @@ int CDlgSettingsTerminal::AddShell(QString szShell)
             return -1;
         }
         ui->cbShell->addItem(fi.baseName(), szShell);
-        nIndex = ui->cbShell->count() - 1;
+        nIndex =  ui->cbShell->findData(szShell
+#if defined(Q_OS_WIN)
+                                       , Qt::UserRole, Qt::MatchFixedString
+#endif
+                                       );
     }
     ui->cbShell->setItemData(nIndex, szShell, Qt::ToolTipRole);
     ui->cbShell->setItemData(nIndex, szShell, Qt::StatusTipRole);

@@ -91,7 +91,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Shell paramters:</string>
+            <string>Shell Parameters:</string>
            </property>
           </widget>
          </item>

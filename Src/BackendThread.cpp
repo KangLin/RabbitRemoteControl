@@ -54,7 +54,9 @@ void CBackendThread::run()
     {
         QString szErr;
         szErr = "The class " + QString(m_pOperate->metaObject()->className())
-                + " is not method InstanceBackend().";
+                + " has not method InstanceBackend()."
+                  "Please add '[[nodiscard]] Q_INVOKABLE virtual CBackend* InstanceBackend()' to "
+                + QString(m_pOperate->metaObject()->className());
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "BackendThread", szErr.toStdString().c_str());
     }
