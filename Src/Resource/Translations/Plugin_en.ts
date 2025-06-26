@@ -454,37 +454,42 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="210"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="93"/>
         <source>Copy selection to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="94"/>
         <source>Paste clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="212"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="95"/>
         <source>Paste selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="214"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="97"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="215"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="98"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="216"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Zoom reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="218"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="101"/>
+        <source>Find ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="104"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
@@ -879,7 +884,7 @@ Restart program by administrator?</source>
     <name>CParameterTerminalUI</name>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
-        <source>Appearance</source>
+        <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

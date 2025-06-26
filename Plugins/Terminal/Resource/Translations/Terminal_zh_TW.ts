@@ -16,11 +16,42 @@
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="42"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <source>Cancle(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
+        <location filename="../../DlgSettingsTerminal.ui" line="55"/>
+        <source>Property</source>
+        <translation>屬性</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="63"/>
+        <source>Shell Path:</source>
+        <translation>Shell 路徑：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="83"/>
+        <source>Browse</source>
+        <translation>瀏覽</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="94"/>
+        <source>Shell paramters:</source>
+        <translation>Shell 參數：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <source>The shell is empty</source>
+        <translation>Shell 是空</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="96"/>
+        <source>Select shell</source>
+        <translation>選擇 Shell</translation>
     </message>
 </context>
 <context>

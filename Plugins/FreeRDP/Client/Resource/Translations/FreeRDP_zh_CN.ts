@@ -257,8 +257,9 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
+        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
+        <translation>服务器为空，请输入</translation>
     </message>
 </context>
 <context>
@@ -733,12 +734,14 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
+        <translation>服务器为空，请输入</translation>
     </message>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation type="vanished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>

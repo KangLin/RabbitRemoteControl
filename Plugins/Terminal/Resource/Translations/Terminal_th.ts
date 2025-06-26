@@ -18,6 +18,41 @@
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="55"/>
+        <source>Property</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="63"/>
+        <source>Shell Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="83"/>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="94"/>
+        <source>Shell paramters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <source>The shell is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="96"/>
+        <source>Select shell</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CPluginTerminal</name>
