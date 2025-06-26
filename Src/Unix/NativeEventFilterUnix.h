@@ -12,7 +12,7 @@
 class CNativeEventFilterUnix : public QAbstractNativeEventFilter
 {
 public:
-    CNativeEventFilterUnix(CParameterPlugin *pParaClient);
+    CNativeEventFilterUnix(CParameterPlugin *pPara);
     virtual ~CNativeEventFilterUnix();
 
     // QAbstractNativeEventFilter interface    
@@ -30,7 +30,7 @@ public:
     bool HandleKey(xcb_keysym_t keysym, QEvent::Type type, Qt::KeyboardModifiers modifiers);
 
 private:
-    CParameterPlugin *m_pParameterClient;
+    CParameterPlugin *m_pParameterPlugin;
 };
 
 #endif // CNATIVEEVENTFILTER_H

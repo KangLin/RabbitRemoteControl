@@ -15,9 +15,9 @@
 QAbstractNativeEventFilter* g_pNativeEventFilter = nullptr;
 static Q_LOGGING_CATEGORY(log, "Client.Hook")
 
-CHook::CHook(CParameterPlugin *pParaClient, QObject *parent)
+CHook::CHook(CParameterPlugin *pPara, QObject *parent)
     : QObject(parent)
-    , m_pParameterClient(pParaClient)
+    , m_pParameterPlugin(pPara)
 {
     qDebug(log) << "CHook::~CHook()";
 }
@@ -27,13 +27,13 @@ CHook::~CHook()
     qDebug(log) << "CHook::~CHook()";
 }
 
-CHook* CHook::GetHook(CParameterPlugin *pParaClient, QObject *parent)
+CHook* CHook::GetHook(CParameterPlugin *pPara, QObject *parent)
 {
     CHook* p = nullptr;
 #if defined(Q_OS_WIN)
-    p = new CHookWindows(pParaClient, parent);
+    p = new CHookWindows(pPara, parent);
 #elif defined(Q_OS_LINUX)
-    p = new CHook(pParaClient, parent);
+    p = new CHook(pPara, parent);
 #endif
     return p;
 }
@@ -45,7 +45,7 @@ int CHook::RegisterKeyboard()
     qApp->installEventFilter(this);
 #elif defined(Q_OS_LINUX)
     if(!g_pNativeEventFilter)
-        g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterClient);
+        g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterPlugin);
     if(g_pNativeEventFilter)
         qApp->installNativeEventFilter(g_pNativeEventFilter);
 #else
@@ -63,7 +63,7 @@ int CHook::UnRegisterKeyboard()
         g_pNativeEventFilter = nullptr;
     }
 
-    if(m_pParameterClient)
+    if(m_pParameterPlugin)
         qApp->removeEventFilter(this);
 
     return nRet;
@@ -73,7 +73,7 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
 {
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
     {
-        if(!m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
+        if(m_pParameterPlugin && !m_pParameterPlugin->GetNativeWindowReceiveKeyboard()) {
             
             bool bProcess = false;
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -112,12 +112,11 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
                 case QKeyEvent::KeyRelease:
                     emit focus->sigKeyReleaseEvent(keyEvent);
                     break;
+                default:
+                    break;
                 }
                 return true;
             }
-
-            if(bProcess)
-                return true;
         }
     }
     return false;

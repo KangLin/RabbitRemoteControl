@@ -14,7 +14,7 @@
 class CHook : public QObject
 {
 public:
-    static CHook* GetHook(CParameterPlugin* pParaClient, QObject *parent = nullptr);
+    static CHook* GetHook(CParameterPlugin* pPara, QObject *parent = nullptr);
 
     virtual int RegisterKeyboard();
     virtual int UnRegisterKeyboard();
@@ -24,10 +24,10 @@ public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
-    CParameterPlugin* m_pParameterClient;
+    CParameterPlugin* m_pParameterPlugin;
 
 protected:
-    explicit CHook(CParameterPlugin* pParaClient, QObject *parent = nullptr);
+    explicit CHook(CParameterPlugin* pPara, QObject *parent = nullptr);
     virtual ~CHook();
 };
 

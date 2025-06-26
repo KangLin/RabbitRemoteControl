@@ -123,7 +123,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 int CHookWindows::RegisterKeyboard()
 {
     if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
-        && m_pParameterClient->GetPromptAdministratorPrivilege())
+        && m_pParameterPlugin->GetPromptAdministratorPrivilege())
     {
         int nRet = 0;
         QMessageBox msg(
@@ -135,14 +135,14 @@ int CHookWindows::RegisterKeyboard()
         msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
         msg.checkBox()->setCheckable(true);
         msg.checkBox()->setChecked(
-            m_pParameterClient->GetPromptAdministratorPrivilege());
+            m_pParameterPlugin->GetPromptAdministratorPrivilege());
         nRet = msg.exec();
         if(QMessageBox::Yes == nRet) {
             RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
         }
-        if(m_pParameterClient->GetPromptAdministratorPrivilege()
+        if(m_pParameterPlugin->GetPromptAdministratorPrivilege()
             != msg.checkBox()->isChecked()) {
-            m_pParameterClient->SetPromptAdministratorPrivilege(
+            m_pParameterPlugin->SetPromptAdministratorPrivilege(
                 msg.checkBox()->isChecked());
         }
     }

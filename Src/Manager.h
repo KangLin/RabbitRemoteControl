@@ -169,14 +169,17 @@ public:
              */
         std::function<int(const QString& id, CPlugin* pPlugin)> cb);
 #endif
-    
+
     const QString Details() const;
-    
+
 private:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
     int AppendPlugin(CPlugin* plugin);
-    
+
+private Q_SLOTS:
+    void slotNativeWindowRecieveKeyboard();
+
 private:
     QString m_szSettingsFile;
     QMap<QString, CPlugin*> m_Plugins;

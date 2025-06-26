@@ -38,23 +38,10 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     m_szSettingsFile = szFile;
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
-        CParameterPlugin* pParameterPlugint = m_pParameter;
         LoadSettings(m_szSettingsFile);
-        check = connect(pParameterPlugint, &CParameterPlugin::sigNativeWindowRecieveKeyboard,
-                        this, [&](){
-                            if(pParameterPlugint->GetNativeWindowReceiveKeyboard()) {
-                                if(m_pHook) {
-                                    m_pHook->UnRegisterKeyboard();
-                                    m_pHook->deleteLater();
-                                    m_pHook = nullptr;
-                                }
-                            } else {
-                                m_pHook = CHook::GetHook(pParameterPlugint, this);
-                                if(m_pHook)
-                                    m_pHook->RegisterKeyboard();
-                            }
-                        });
-        m_pHook = CHook::GetHook(pParameterPlugint, this);
+        check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
+                        this, SLOT(slotNativeWindowRecieveKeyboard()));
+        m_pHook = CHook::GetHook(m_pParameter, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
     } else {
@@ -450,4 +437,21 @@ int CManager::EnumPlugins(std::function<int(const QString &, CPlugin *)> cb)
 const QString CManager::Details() const
 {
     return m_szDetails;
+}
+
+void CManager::slotNativeWindowRecieveKeyboard()
+{
+    Q_ASSERT(m_pParameter);
+    if(m_pParameter->GetNativeWindowReceiveKeyboard()) {
+        if(m_pHook) {
+            m_pHook->UnRegisterKeyboard();
+            m_pHook->deleteLater();
+            m_pHook = nullptr;
+        }
+    } else {
+        if(m_pHook) return;
+        m_pHook = CHook::GetHook(m_pParameter, this);
+        if(m_pHook)
+            m_pHook->RegisterKeyboard();
+    }
 }

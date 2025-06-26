@@ -75,10 +75,12 @@ bool CNativeEventFilterUnix::HandleKey(
     xcb_keysym_t keysym, QEvent::Type type, Qt::KeyboardModifiers modifiers)
 {
     int bRet = false;
-    if(!m_pParameterClient
-        || m_pParameterClient->GetNativeWindowReceiveKeyboard())
+    if(!m_pParameterPlugin
+        || m_pParameterPlugin->GetNativeWindowReceiveKeyboard()) {
+        qDebug(log) << "Native window receive keyboard.";
         return false;
-    
+    }
+
     int key = 0;
     switch (keysym) {
     case XK_Tab:
@@ -113,7 +115,7 @@ bool CNativeEventFilterUnix::HandleKey(
             
             QKeyEvent* keyEvent = new QKeyEvent(type, key, modifiers);
             /*
-                QApplication::postEvent(focus, ke);
+                QApplication::postEvent(focus, keyEvent);
                 return true;//*/
             switch(type)
             {
@@ -128,8 +130,10 @@ bool CNativeEventFilterUnix::HandleKey(
             }
             return true;
         }
+        QKeyEvent* keyEvent = new QKeyEvent(type, key, modifiers);
+        qDebug(log) << "Process:" << keyEvent;
     }
-    return bRet;
+    return false;
 }
 
 bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
@@ -181,12 +185,12 @@ int CNativeEventFilterUnix::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t
     if (event->state & XCB_MOD_MASK_SHIFT) {
         keysym = xcb_key_symbols_get_keysym(m_pKeySymbols, event->detail, 1);
     }
-    qDebug(log) << "keycode:" << event->detail << "keySym:" << keysym;
+    //qDebug(log) << "keycode:" << event->detail << "keySym:" << keysym;
     return nRet;
 }
 
-CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pParaClient)
-    : m_pParameterClient(pParaClient)
+CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
+    : m_pParameterPlugin(pPara)
 {
     m_pConnect = xcb_connect(NULL, NULL);
     // 连接到 X server
