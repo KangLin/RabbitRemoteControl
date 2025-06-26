@@ -89,9 +89,24 @@ int COperateTerminal::Initial()
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-
-    if(m_pActionSettings)
+    
+    m_Menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
+    m_Menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
+    m_Menu.addAction(tr("Paste selection"), m_pConsole, SLOT(pasteSelection()));
+    m_Menu.addSeparator();
+    m_Menu.addAction(tr("Zoom in"), m_pConsole, SLOT(zoomIn()));
+    m_Menu.addAction(tr("Zoom out"), m_pConsole, SLOT(zoomOut()));
+    m_Menu.addAction(tr("Zoom reset"), this, SLOT(slotZoomReset()));
+    m_Menu.addSeparator();
+    m_Menu.addAction(tr("Find ......"), QKeySequence(Qt::CTRL | Qt::Key_F),
+                       m_pConsole, &QTermWidget::toggleShowSearchBar);
+    m_Menu.addSeparator();
+    m_Menu.addAction(tr("Clear"), m_pConsole, SLOT(clear()));
+    
+    if(m_pActionSettings) {
+        m_Menu.addSeparator();
         m_Menu.addAction(m_pActionSettings);
+    }
 
     return nRet;
 }
@@ -207,18 +222,7 @@ void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
 {
     if(!m_pConsole) return;
 
-    QMenu menu;
-    menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
-    menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
-    menu.addAction(tr("Paste selection"), m_pConsole, SLOT(pasteSelection()));
-    menu.addSeparator();
-    menu.addAction(tr("Zoom in"), m_pConsole, SLOT(zoomIn()));
-    menu.addAction(tr("Zoom out"), m_pConsole, SLOT(zoomOut()));
-    menu.addAction(tr("Zoom reset"), this, SIGNAL(slotZoomReset()));
-    menu.addSeparator();
-    menu.addAction(tr("Clear"), m_pConsole, SLOT(clear()));
-
-    menu.exec(m_pConsole->mapToGlobal(pos));
+    m_Menu.exec(m_pConsole->mapToGlobal(pos));
 }
 
 void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
