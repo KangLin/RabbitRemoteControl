@@ -4,7 +4,7 @@
 #pragma once
 
 #include "ParameterUI.h"
-#include "ParameterSSHTunnel.h"
+#include "ParameterSSH.h"
 
 namespace Ui {
 class CParameterSSHTunnelUI;

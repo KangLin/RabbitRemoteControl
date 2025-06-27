@@ -96,8 +96,8 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|终端     |       |✓         |       |   |
-|SSH     |       |✓         |       |   |
+|终端     |✓      |✓         |       |   |
+|SSH     |✓      |✓         |       |   |
 |TELNET  |       |✓         |       |   |
 
 - 文件传输
@@ -157,11 +157,11 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 |  RFB  | ……  |  ✓  |  ✓   |✓   |       | ❌     | ❌   |✓  |  ✓ |   |
 |Spice  |     |     |      |    |       |        | ❌   |   |    |   |
 |Scrcpy |     |     |      |    |       |        | ❌   |   |    |   |
-|终端    |     | ⭕  | ❌  |✓   | ❌    | ❌     | ❌  |    |   |    |
-|TELNET |     | ⭕  | ❌  |✓   | ❌    | ❌    |  ❌  |   |   |    |
-|  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌  |   |    |   |
-|  FTP  |     |     | ❌  |    |       | ❌     | ❌  |   |   |    |
-| SFTP  |     |     | ❌  |    |       | ❌     | ❌  |   |   |    |
+|终端    |     | ✓   | ❌   |✓   | ❌    | ❌     | ❌  |    |   |    |
+|TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
+|  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
+|  FTP  |     |     | ❌   |    |       | ❌     | ❌  |   |   |    |
+| SFTP  |     |     | ❌   |    |       | ❌     | ❌  |   |   |    |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
@@ -186,6 +186,9 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - [局域网唤醒](Plugins/WakeOnLan/README_zh_CN.md)
 - [播放器](Plugins/Player/README_zh_CN.md)
 - 屏幕捕获：示例
+- 终端
+  - [本地终端](Plugins/Terminal)
+  - [SSH](Plugins/LibSSH)
 
 ## 状态
 

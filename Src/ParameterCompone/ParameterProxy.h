@@ -2,7 +2,7 @@
 #define CPARAMETERPROXY_H
 
 #pragma once
-#include "ParameterSSHTunnel.h"
+#include "ParameterSSH.h"
 
 /*!
  * \brief The proxy parameters. Its UI is CParameterProxyUI

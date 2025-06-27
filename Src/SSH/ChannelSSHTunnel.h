@@ -1,19 +1,12 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCHANNELSSHTUNNEL_H
-#define CCHANNELSSHTUNNEL_H
-
 #pragma once
 
 #include <QSharedPointer>
 #include <QSocketNotifier>
 #include <QMutex>
 
-#include "libssh/libssh.h"
-#include "libssh/callbacks.h"
-
-#include "Channel.h"
-#include "ParameterSSHTunnel.h"
+#include "ChannelSSH.h"
 #include "Event.h"
 #include "Backend.h"
 
@@ -27,7 +20,7 @@
  * \~
  * \ingroup LIBAPI_CHANNEL
  */
-class PLUGIN_EXPORT CChannelSSHTunnel : public CChannel
+class PLUGIN_EXPORT CChannelSSHTunnel : public CChannelSSH
 {
     Q_OBJECT
 
@@ -41,10 +34,6 @@ public:
 
     // QIODevice interface
 public:
-    virtual bool open(OpenMode mode) override;
-    virtual void close() override;
-    
-    virtual QString GetDetails() override;
     int Process();
     virtual int WakeUp();
     virtual int DoWait(bool bWrite, int timeout);
@@ -56,34 +45,10 @@ protected:
     virtual qint64 writeData(const char *data, qint64 len) override;
 
 private:
-    int verifyKnownhost(ssh_session session);
-    int authentication(
-        ssh_session session,
-        const QString szUser,
-        const QString szPassword,
-        const QString szPassphrase,
-        const int nMethod = SSH_AUTH_METHOD_PASSWORD);
-    int authenticationPublicKey(
-        ssh_session session,
-        const QString szUser,
-        const QString szPublicKeyFile,
-        const QString szPrivateKeyFile,
-        const QString szPassphrase);
-    int forward(ssh_session session);
-
-    static void cb_log(ssh_session session,
-                       int priority,
-                       const char *message,
-                       void *userdata);
-
-protected:
-    ssh_session m_Session;
-    ssh_channel m_Channel;
+    virtual int OnOpen(ssh_session session) override;
+    virtual void OnClose() override;
 
 private:
-    CBackend *m_pBackend;
-    ssh_pcap_file m_pcapFile;
-    CParameterSSHTunnel* m_pParameter;
     CParameterNet* m_pRemoteNet;
     /*
     QSocketNotifier* m_pSocketRead;
@@ -92,5 +57,3 @@ private:
     */
     Channel::CEvent* m_pEvent;
 };
-
-#endif // CCHANNELSSHTUNNEL_H

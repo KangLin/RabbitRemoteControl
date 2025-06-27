@@ -46,7 +46,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterProxyUI.h
     ParameterCompone/ParameterRecord.h
     ParameterCompone/ParameterRecordUI.h
-    ParameterCompone/ParameterSSHTunnel.h
+    ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
     )
 
@@ -83,7 +83,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterProxyUI.cpp
     ParameterCompone/ParameterRecord.cpp
     ParameterCompone/ParameterRecordUI.cpp
-    ParameterCompone/ParameterSSHTunnel.cpp
+    ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
     DlgInputPassword.cpp
     DlgUserPassword.cpp
@@ -152,6 +152,7 @@ if(libssh_FOUND)
     list(APPEND PLUGIN_INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
     list(APPEND PLUGIN_INSTALL_HEADER_FILES
+        SSH/ChannelSSH.h
         SSH/ChannelSSHTunnel.h
         SSH/SSHTunnelThread.h
         )
@@ -159,6 +160,7 @@ if(libssh_FOUND)
         SSH/ChannelSSHTunnelForward.h
         )
     list(APPEND PLUGIN_SOURCE_FILES
+        SSH/ChannelSSH.cpp
         SSH/ChannelSSHTunnel.cpp
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
@@ -168,6 +170,9 @@ endif()
 find_package(qtermwidget${QT_VERSION_MAJOR})
 if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTERMWIDGET)
+    list(APPEND PLUGIN_LIBS qtermwidget${QT_VERSION_MAJOR})
+    list(APPEND PLUGIN_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Terminal)
     list(APPEND PLUGIN_INSTALL_HEADER_FILES
         Terminal/OperateTerminal.h
         Terminal/ParameterTerminalUI.h
@@ -183,7 +188,6 @@ if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     list(APPEND PLUGIN_UI_FILES
         Terminal/ParameterTerminalUI.ui
     )
-    list(APPEND PLUGIN_LIBS qtermwidget${QT_VERSION_MAJOR})
 endif()
 
 SET(PLUGIN_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
@@ -214,7 +218,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Terminal
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         ${PLUGIN_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${PLUGIN_INSTALL_HEADER_FILES}

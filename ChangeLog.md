@@ -25,6 +25,10 @@
       |CParameterClient   |CParameterPlugin  |
       |FrmParameterClient |CParameterPluginUI|
 
+  - Plugin
+    - Terminal
+    - Terminal SSH
+
 ### v0.0.36
 - Client:
   - Fix recode video rate bug

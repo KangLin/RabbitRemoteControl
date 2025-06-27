@@ -24,6 +24,10 @@
       |CParameterClient   |CParameterPlugin  |
       |FrmParameterClient |CParameterPluginUI|
 
+  - 插件
+    - 终端
+    - SSH 终端
+
 ### v0.0.36
 - Client:
   - 修复录制视频帧率错误

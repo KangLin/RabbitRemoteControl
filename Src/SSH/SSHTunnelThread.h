@@ -5,7 +5,7 @@
 
 #include <QThread>
 
-#include "ParameterSSHTunnel.h"
+#include "ParameterSSH.h"
 #include "Backend.h"
 
 /*!

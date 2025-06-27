@@ -97,9 +97,9 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|Terminal|       |✓         |       |   |
-|SSH     |       |✓         |       |   |
-|TELNET  |       |✓         |       |   |
+|Terminal|✓      |✓         |       |   |
+|SSH     |✓      |✓         |       |   |
+|TELNET  |✓      |✓         |       |   |
 
 - File Transfer
 
@@ -159,9 +159,9 @@ Legend:
 |  RFB  | ……  |  ✓  |  ✓   |✓   |       | ❌     | ❌    |✓  |  ✓ |   |
 |Spice  |     |     |      |    |       |        | ❌    |   |    |   |
 |Scrcpy |     |     |      |    |       |        |  ❌   |   |    |   |
-|Terminal|     | ⭕  | ❌  |✓   | ❌    | ❌    | ❌    |    |   |    |
-|TELNET |     | ⭕  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
-|  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
+|Terminal|     | ✓  | ❌  |✓   | ❌    | ❌    | ❌    |    |   |    |
+|TELNET |     | ✓  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
+|  SSH  |     | ✓  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
 |  FTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
 | SFTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
 
@@ -188,6 +188,9 @@ Legend:
 - [Wake on lan](Plugins/WakeOnLan/README.md)
 - [Player](Plugins/Player/README.md)
 - Screen capture: Example
+- Terminal
+  - [Terminal](Plugins/Terminal)
+  - [SSH](Plugins/LibSSH)
 
 ## Status
 
