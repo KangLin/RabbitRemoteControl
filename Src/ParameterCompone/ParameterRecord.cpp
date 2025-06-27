@@ -26,8 +26,8 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
     QDir d;
     if(m_szPath.isEmpty() || !d.exists(m_szPath))
         m_szPath = RabbitCommon::CDir::Instance()->GetDirUserImage();
-    m_szPath += QDir::separator() + tr("RabbitRemoteControl")
-                + QDir::separator() + tr("Record");
+    m_szPath += QDir::separator() + QString::fromUtf8(tr("RabbitRemoteControl").toStdString().c_str())
+                + QDir::separator() + QString::fromUtf8(tr("Record").toStdString().c_str());
 
     if(!d.exists(m_szPath))
         d.mkpath(m_szPath);
@@ -36,8 +36,8 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
         QStandardPaths::PicturesLocation);
     if(m_szImagePath.isEmpty() || !d.exists(m_szImagePath))
         m_szImagePath = RabbitCommon::CDir::Instance()->GetDirUserImage();
-    m_szImagePath += QDir::separator() + tr("RabbitRemoteControl")
-                     + QDir::separator() + tr("ScreenShot");
+    m_szImagePath += QDir::separator() +  QString::fromUtf8(tr("RabbitRemoteControl").toStdString().c_str())
+                     + QDir::separator() +  QString::fromUtf8(tr("ScreenShot").toStdString().c_str());
     if(!d.exists(m_szImagePath))
         d.mkpath(m_szImagePath);
 }
