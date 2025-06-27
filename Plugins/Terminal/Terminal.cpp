@@ -3,7 +3,7 @@
 
 #include <QLoggingCategory>
 
-static Q_LOGGING_CATEGORY(log, "Terminal.Plugin.Operate")
+static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.Operate")
 
 CTerminal::CTerminal(CPlugin *parent)
     : COperateTerminal(parent)
@@ -25,12 +25,12 @@ QDialog *CTerminal::OnOpenDialogSettings(QWidget *parent)
 int CTerminal::Start()
 {
     slotUpdateParameter(this);
-    if(m_pConsole) {
+    if(m_pTerminal) {
         if(!m_Parameters.GetShell().isEmpty())
-            m_pConsole->setShellProgram(m_Parameters.GetShell());
+            m_pTerminal->setShellProgram(m_Parameters.GetShell());
         if(!m_Parameters.GetShellParameters().isEmpty())
-            m_pConsole->setArgs(QStringList() << m_Parameters.GetShellParameters());
-        m_pConsole->startShellProgram();
+            m_pTerminal->setArgs(QStringList() << m_Parameters.GetShellParameters());
+        m_pTerminal->startShellProgram();
     }
     emit sigRunning();
     return 0;
@@ -38,8 +38,8 @@ int CTerminal::Start()
 
 int CTerminal::Stop()
 {
-    if(m_pConsole)
-        m_pConsole->close();
+    if(m_pTerminal)
+        m_pTerminal->close();
     emit sigFinished();
     return 0;
 }

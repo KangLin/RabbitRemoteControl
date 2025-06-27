@@ -4,7 +4,7 @@
 #include "plugin_export.h"
 #include "ParameterOperate.h"
 #include "ParameterTerminal.h"
-#include "ParameterNet.h"
+#include "ParameterSSH.h"
 
 class PLUGIN_EXPORT CParameterTerminalBase : public CParameterOperate
 {
@@ -13,7 +13,7 @@ public:
     explicit CParameterTerminalBase(QObject *parent = nullptr);
 
     CParameterTerminal m_Terminal;
-    CParameterNet m_Net;
+    CParameterSSH m_SSH;
 
 public:
     int SetShell(const QString& shell);

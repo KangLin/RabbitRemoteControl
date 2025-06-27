@@ -39,7 +39,7 @@
 
 namespace Channel {
 
-static Q_LOGGING_CATEGORY(log, "Channel.Event")
+static Q_LOGGING_CATEGORY(log, "SSH.Event")
 
 CEvent::CEvent(QObject *parent)
     : QObject{parent}

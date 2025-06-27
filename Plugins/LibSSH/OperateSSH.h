@@ -1,5 +1,6 @@
-#ifndef CCONNECTERSSH_H
-#define CCONNECTERSSH_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include "OperateTerminal.h"
 #include "ParameterTerminalBase.h"
@@ -25,5 +26,3 @@ protected:
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 };
-
-#endif // CCONNECTERSSH_H

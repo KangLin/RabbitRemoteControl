@@ -5,14 +5,18 @@
 static Q_LOGGING_CATEGORY(log, "SSH")
 static Q_LOGGING_CATEGORY(logSSH, "SSH.log")
 
-CChannelSSH::CChannelSSH(CBackend *pBackend, CParameterSSH *pPara, QObject *parent)
+CChannelSSH::CChannelSSH(CBackend *pBackend, CParameterSSH *pPara, bool bWakeUp, QObject *parent)
     : CChannel{parent}
     , m_Session(nullptr)
     , m_Channel(nullptr)
     , m_pBackend(pBackend)
     , m_pParameter(pPara)
+    , m_pEvent(nullptr)
     , m_pcapFile(nullptr)
-{}
+{
+    if(bWakeUp)
+        m_pEvent = new Channel::CEvent(this);
+}
 
 CChannelSSH::~CChannelSSH()
 {
@@ -41,6 +45,13 @@ void CChannelSSH::cb_log(ssh_session session,
     default:
         break;
     }   
+}
+
+
+int CChannelSSH::WakeUp()
+{
+    if(!m_pEvent) return 0;
+    return m_pEvent->WakeUp();
 }
 
 bool CChannelSSH::open(OpenMode mode)

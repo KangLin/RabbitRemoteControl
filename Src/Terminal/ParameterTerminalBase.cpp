@@ -7,7 +7,7 @@ static Q_LOGGING_CATEGORY(log, "Parameter.Terminal.Base")
 CParameterTerminalBase::CParameterTerminalBase(QObject *parent)
     : CParameterOperate{parent}
     , m_Terminal(this)
-    , m_Net(this)
+    , m_SSH(this)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");

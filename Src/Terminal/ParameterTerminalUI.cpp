@@ -13,7 +13,7 @@
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 
-static Q_LOGGING_CATEGORY(log, "Terminal")
+static Q_LOGGING_CATEGORY(log, "Parameter.Terminal.UI")
 
 CParameterTerminalUI::CParameterTerminalUI(QWidget *parent) :
     CParameterUI(parent),

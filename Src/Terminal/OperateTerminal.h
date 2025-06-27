@@ -69,7 +69,7 @@ protected:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
 
-    QTermWidget* m_pConsole;
+    QTermWidget* m_pTerminal;
     CBackendThread* m_pThread;
 private:
     CParameterTerminalBase* m_pParameters;

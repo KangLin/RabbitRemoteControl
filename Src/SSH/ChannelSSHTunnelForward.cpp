@@ -28,7 +28,7 @@
 
 #include "ChannelSSHTunnelForward.h"
 
-static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Forward")
+static Q_LOGGING_CATEGORY(log, "SSH.Tunnel.Forward")
 
 CChannelSSHTunnelForward::CChannelSSHTunnelForward(
     CParameterSSHTunnel *parameter, CParameterNet *remote, CBackend *pBackend, QObject *parent)

@@ -7,7 +7,6 @@
 #include <QMutex>
 
 #include "ChannelSSH.h"
-#include "Event.h"
 #include "Backend.h"
 
 /*!
@@ -35,7 +34,6 @@ public:
     // QIODevice interface
 public:
     int Process();
-    virtual int WakeUp();
     virtual int DoWait(bool bWrite, int timeout);
     int GetSocket();
 
@@ -55,5 +53,4 @@ private:
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
     */
-    Channel::CEvent* m_pEvent;
 };

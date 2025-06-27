@@ -6,7 +6,7 @@
 #include "ChannelSSHTunnel.h"
 #include <QLoggingCategory>
 #include <QThread>
-#include <QDateTime>
+
 #include <QAbstractEventDispatcher>
 #include <QScopedArrayPointer>
 #include <QtGlobal>
@@ -18,8 +18,7 @@
     //#pragma comment(lib,"ws2_32.lib")
 #endif
 
-static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
-static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
+static Q_LOGGING_CATEGORY(log, "SSH.Tunnel")
 
 CChannelSSHTunnel::CChannelSSHTunnel(
     CParameterSSHTunnel* parameter,
@@ -27,20 +26,16 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     CBackend *pBackend,
     bool bWakeUp,
     QObject *parent)
-    : CChannelSSH(pBackend, parameter, parent)
+    : CChannelSSH(pBackend, parameter, bWakeUp, parent)
     , m_pRemoteNet(remote)
 /*
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
     m_pSocketException(nullptr),
 */
-    , m_pEvent(nullptr)
 {
     qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
     qDebug(log) << "libssh version:" << ssh_version(0);
-
-    if(bWakeUp)
-        m_pEvent = new Channel::CEvent(this);
 }
 
 CChannelSSHTunnel::~CChannelSSHTunnel()
@@ -55,12 +50,6 @@ int CChannelSSHTunnel::GetSocket()
     if(m_Session)
         return ssh_get_fd(m_Session);
     return SSH_INVALID_SOCKET;
-}
-
-int CChannelSSHTunnel::WakeUp()
-{
-    if(!m_pEvent) return 0;
-    return m_pEvent->WakeUp();
 }
 
 void CChannelSSHTunnel::OnClose()

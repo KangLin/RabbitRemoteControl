@@ -4,7 +4,7 @@
 #include "PluginLibSSH.h"
 
 #include <QLoggingCategory>
-static Q_LOGGING_CATEGORY(log, "SSH")
+static Q_LOGGING_CATEGORY(log, "Plugin.SSH")
 
 CPluginLibSSH::CPluginLibSSH()
 {
@@ -32,7 +32,7 @@ const QString CPluginLibSSH::DisplayName() const
 
 const QString CPluginLibSSH::Description() const
 {
-    return tr("SSH: you can remotely execute programs, transfer files, "
+    return tr("Termainl SSH: You can remotely execute programs, transfer files, "
               "use a secure and transparent tunnel, "
               "manage public keys and much more ...\n"
               "It is use libssh.");

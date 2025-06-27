@@ -4,7 +4,7 @@
 
 #include <QLoggingCategory>
 
-static Q_LOGGING_CATEGORY(log, "Terminal.Plugin")
+static Q_LOGGING_CATEGORY(log, "Plugin.Terminal")
 
 CPluginTerminal::CPluginTerminal(QObject *parent)
     : CPlugin(parent)
@@ -34,7 +34,7 @@ const QString CPluginTerminal::DisplayName() const
 
 const QString CPluginTerminal::Description() const
 {
-    return tr("Terminal: native(shell) and remote(telnet, etc) terminal");
+    return tr("Terminal: Native(shell) terminal");
 }
 
 const QIcon CPluginTerminal::Icon() const

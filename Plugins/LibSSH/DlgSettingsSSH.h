@@ -1,5 +1,5 @@
-#ifndef DLGSETTINGSSSH_H
-#define DLGSETTINGSSSH_H
+// Author: Kang Lin <kl222@126.com>
+#pragma once
 
 #include <QDialog>
 #include "OperateSSH.h"
@@ -27,5 +27,3 @@ private:
     CParameterTerminalBase* m_pPara;
     CParameterTerminalUI* m_pFrmParaAppearnce;
 };
-
-#endif // DLGSETTINGSSSH_H

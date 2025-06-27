@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
 {
     int nRet = 0;
 
+    qDebug(log) << "Verson:" << RabbitRemoteControl_VERSION;
+
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
 #if (defined(Q_OS_LINUX) && !defined(Q_OA_ANDROID) \

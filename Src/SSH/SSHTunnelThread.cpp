@@ -6,7 +6,7 @@
 #include "ChannelSSHTunnelForward.h"
 #include "SSHTunnelThread.h"
 
-static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Thread")
+static Q_LOGGING_CATEGORY(log, "SSH.Tunnel.Thread")
 
 CSSHTunnelThread::CSSHTunnelThread(CParameterSSHTunnel *parameter, CParameterNet *remote, CBackend *pBackend)
     : QThread(nullptr),

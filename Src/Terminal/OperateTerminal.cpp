@@ -16,35 +16,35 @@ static Q_LOGGING_CATEGORY(log, "Operate.Terminal")
 
 COperateTerminal::COperateTerminal(CPlugin *parent)
     : COperate(parent),
-      m_pConsole(nullptr),
+      m_pTerminal(nullptr),
       m_pThread(nullptr),
       m_pParameters(nullptr)
 {
-    m_pConsole = new QTermWidget(0);
-    if(!m_pConsole) {
+    m_pTerminal = new QTermWidget(0);
+    if(!m_pTerminal) {
         qCritical(log) << "new QTermWidget() fail";
         return;
     }
-    m_pConsole->setAutoClose(true);
+    m_pTerminal->setAutoClose(true);
 
     bool check = false;
-    m_pConsole->setContextMenuPolicy(Qt::CustomContextMenu);
-    check = connect(m_pConsole, SIGNAL(customContextMenuRequested(const QPoint &)),
+    m_pTerminal->setContextMenuPolicy(Qt::CustomContextMenu);
+    check = connect(m_pTerminal, SIGNAL(customContextMenuRequested(const QPoint &)),
                          this, SLOT(slotCustomContextMenu(const QPoint &)));
     Q_ASSERT(check);
-    check = connect(m_pConsole, SIGNAL(urlActivated(const QUrl&, bool)),
+    check = connect(m_pTerminal, SIGNAL(urlActivated(const QUrl&, bool)),
                     this, SLOT(slotActivateUrl(const QUrl&, bool)));
     Q_ASSERT(check);
-    // check = connect(m_pConsole, SIGNAL(titleChanged()),
+    // check = connect(m_pTerminal, SIGNAL(titleChanged()),
     //                 this, SLOT(slotTerminalTitleChanged()));
     // Q_ASSERT(check);
-    check = connect(m_pConsole, SIGNAL(finished()),
+    check = connect(m_pTerminal, SIGNAL(finished()),
                     this, SIGNAL(sigFinished()));
     Q_ASSERT(check);
-    check = connect(m_pConsole, SIGNAL(termKeyPressed(QKeyEvent*)),
-                    this, SLOT(slotTermKeyPressed(QKeyEvent*)));
-    Q_ASSERT(check);
-    check = connect(m_pConsole, SIGNAL(termGetFocus()),
+    // check = connect(m_pTerminal, SIGNAL(termKeyPressed(QKeyEvent*)),
+    //                 this, SLOT(slotTermKeyPressed(QKeyEvent*)));
+    // Q_ASSERT(check);
+    check = connect(m_pTerminal, SIGNAL(termGetFocus()),
                     this, SLOT(slotFocusIn()));
     Q_ASSERT(check);
 }
@@ -52,10 +52,10 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
 COperateTerminal::~COperateTerminal()
 {
     qDebug(log) << Q_FUNC_INFO;
-    if(m_pConsole)
+    if(m_pTerminal)
     {
-        m_pConsole->deleteLater();
-        m_pConsole = nullptr;
+        m_pTerminal->deleteLater();
+        m_pTerminal = nullptr;
     }
 }
 
@@ -107,7 +107,7 @@ const QString COperateTerminal::Description()
 
 QWidget* COperateTerminal::GetViewer()
 {
-    return m_pConsole;
+    return m_pTerminal;
 }
 
 int COperateTerminal::Load(QSettings &set)
@@ -138,15 +138,6 @@ int COperateTerminal::Initial()
     if(nRet)
         return nRet;
 
-<<<<<<< Updated upstream
-    m_Menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
-    m_Menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
-    m_Menu.addAction(tr("Paste selection"), m_pConsole, SLOT(pasteSelection()));
-    m_Menu.addSeparator();
-    m_Menu.addAction(tr("Zoom in"), m_pConsole, SLOT(zoomIn()));
-    m_Menu.addAction(tr("Zoom out"), m_pConsole, SLOT(zoomOut()));
-    m_Menu.addAction(tr("Zoom reset"), this, SLOT(slotZoomReset()));
-=======
     m_Menu.addAction(tr("Copy selection to clipboard"),
                      QKeySequence(Qt::CTRL | Qt::Key_C),
                      m_pTerminal, SLOT(copyClipboard()));
@@ -160,12 +151,12 @@ int COperateTerminal::Initial()
                      m_pTerminal, SLOT(zoomOut()));
     m_Menu.addAction(tr("Zoom reset"), QKeySequence(Qt::CTRL | Qt::Key_0),
                      this, SLOT(slotZoomReset()));
->>>>>>> Stashed changes
+
     m_Menu.addSeparator();
     m_Menu.addAction(tr("Find ......"), QKeySequence(Qt::CTRL | Qt::Key_F),
-                       m_pConsole, &QTermWidget::toggleShowSearchBar);
+                       m_pTerminal, &QTermWidget::toggleShowSearchBar);
     m_Menu.addSeparator();
-    m_Menu.addAction(tr("Clear"), m_pConsole, SLOT(clear()));
+    m_Menu.addAction(tr("Clear"), m_pTerminal, SLOT(clear()));
 
     if(m_pActionSettings) {
         m_Menu.addSeparator();
@@ -223,7 +214,7 @@ int COperateTerminal::SetParameter(CParameterTerminalBase* pPara)
 
     m_pParameters = pPara;
 
-    if(!pPara || !m_pConsole) return -1;
+    if(!pPara || !m_pTerminal) return -1;
 
     bool check = connect(GetParameter(), &CParameter::sigChanged,
                     this, [&](){
@@ -241,52 +232,52 @@ void COperateTerminal::slotUpdateParameter(COperate* pOperate)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(this != pOperate) return;
-    if(!GetParameter() || !m_pConsole) return;
+    if(!GetParameter() || !m_pTerminal) return;
 
     auto pPara = &GetParameter()->m_Terminal;
 
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
-    m_pConsole->setTerminalSizeHint(pPara->GetSizeHint());
-    m_pConsole->setBidiEnabled(pPara->GetDirectional());
-    m_pConsole->disableBracketedPasteMode(pPara->GetDisableBracketedPasteMode());
+    m_pTerminal->setTerminalSizeHint(pPara->GetSizeHint());
+    m_pTerminal->setBidiEnabled(pPara->GetDirectional());
+    m_pTerminal->disableBracketedPasteMode(pPara->GetDisableBracketedPasteMode());
 #endif
-    m_pConsole->setTerminalFont(pPara->GetFont());
-    m_pConsole->setKeyboardCursorShape(pPara->GetCursorShape());
-    m_pConsole->setColorScheme(pPara->GetColorScheme());
-    m_pConsole->setScrollBarPosition(pPara->GetScrollBarPosition());
-    m_pConsole->setFlowControlEnabled(pPara->GetFlowControl());
-    m_pConsole->setFlowControlWarningEnabled(pPara->GetFlowControlWarning());
-    m_pConsole->setMotionAfterPasting(pPara->GetMotionAfterPasting());
-    m_pConsole->setTerminalOpacity(1.0 - pPara->GetTransparency() / 100.0);
-    m_pConsole->setTerminalBackgroundImage(pPara->GetBackgroupImage());
+    m_pTerminal->setTerminalFont(pPara->GetFont());
+    m_pTerminal->setKeyboardCursorShape(pPara->GetCursorShape());
+    m_pTerminal->setColorScheme(pPara->GetColorScheme());
+    m_pTerminal->setScrollBarPosition(pPara->GetScrollBarPosition());
+    m_pTerminal->setFlowControlEnabled(pPara->GetFlowControl());
+    m_pTerminal->setFlowControlWarningEnabled(pPara->GetFlowControlWarning());
+    m_pTerminal->setMotionAfterPasting(pPara->GetMotionAfterPasting());
+    m_pTerminal->setTerminalOpacity(1.0 - pPara->GetTransparency() / 100.0);
+    m_pTerminal->setTerminalBackgroundImage(pPara->GetBackgroupImage());
 
-    m_pConsole->setKeyBindings(pPara->GetKeyBindings());
-    m_pConsole->setHistorySize(pPara->GetHistorySize());
+    m_pTerminal->setKeyBindings(pPara->GetKeyBindings());
+    m_pTerminal->setHistorySize(pPara->GetHistorySize());
 
-    //    m_pConsole->setMonitorActivity(false);
-    //    m_pConsole->setMonitorSilence(false);
-    //    m_pConsole->setBlinkingCursor(true);
+    //    m_pTerminal->setMonitorActivity(false);
+    //    m_pTerminal->setMonitorSilence(false);
+    //    m_pTerminal->setBlinkingCursor(true);
 }
 
 void COperateTerminal::slotTerminalTitleChanged()
 {
-    if(!m_pConsole) return;
-    emit sigUpdateName(m_pConsole->title());
+    if(!m_pTerminal) return;
+    emit sigUpdateName(m_pTerminal->title());
 }
 
 void COperateTerminal::slotZoomReset()
 {
-    if(!m_pConsole) return;
+    if(!m_pTerminal) return;
     CParameterTerminal* pPara = &GetParameter()->m_Terminal;
     if(!pPara) return;
-    m_pConsole->setTerminalFont(pPara->GetFont());
+    m_pTerminal->setTerminalFont(pPara->GetFont());
 }
 
 void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
 {
-    if(!m_pConsole) return;
+    if(!m_pTerminal) return;
 
-    m_Menu.exec(m_pConsole->mapToGlobal(pos));
+    m_Menu.exec(m_pTerminal->mapToGlobal(pos));
 }
 
 void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
@@ -298,7 +289,7 @@ void COperateTerminal::slotActivateUrl(const QUrl& url, bool fromContextMenu)
 
 void COperateTerminal::slotTermKeyPressed(QKeyEvent* e)
 {
-    //qDebug(log) << Q_FUNC_INFO << e;
+    qDebug(log) << Q_FUNC_INFO << e;
 }
 
 void COperateTerminal::slotFocusIn()

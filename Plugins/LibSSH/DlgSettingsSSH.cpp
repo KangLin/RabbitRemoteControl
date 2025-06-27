@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "DlgSettingsSSH.h"
 #include "ui_DlgSettingsSSH.h"
 #include "RabbitCommonDir.h"
@@ -12,7 +14,7 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterTerminalBase *pPara, QWidget *parent)
     
     Q_ASSERT(m_pPara);
     
-    ui->wNet->SetParameter(&m_pPara->m_Net);
+    ui->wNet->SetParameter(&m_pPara->m_SSH.m_Net);
     m_pFrmParaAppearnce =
         new CParameterTerminalUI(this);
     if(m_pFrmParaAppearnce) {
@@ -29,6 +31,11 @@ CDlgSettingsSSH::~CDlgSettingsSSH()
 
 void CDlgSettingsSSH::on_pbOK_clicked()
 {
+    if(!ui->wNet->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
+        return;
+    }
+
     ui->wNet->Accept();
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();

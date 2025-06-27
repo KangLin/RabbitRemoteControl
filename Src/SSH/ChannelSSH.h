@@ -8,19 +8,20 @@
 #include "ParameterSSH.h"
 #include "Backend.h"
 #include "plugin_export.h"
+#include "Event.h"
 
 class PLUGIN_EXPORT CChannelSSH : public CChannel
 {
     Q_OBJECT
 public:
-    explicit CChannelSSH(CBackend *pBackend, CParameterSSH* pPara, QObject *parent = nullptr);
+    explicit CChannelSSH(CBackend *pBackend, CParameterSSH* pPara, bool bWakeUp = true, QObject *parent = nullptr);
     virtual ~CChannelSSH();
 
     // QIODevice interface
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
-
+    virtual int WakeUp();
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
@@ -55,6 +56,7 @@ protected:
     ssh_channel m_Channel;
     CBackend *m_pBackend;
     CParameterSSH* m_pParameter;
+    Channel::CEvent* m_pEvent;
 
 private:
     ssh_pcap_file m_pcapFile;

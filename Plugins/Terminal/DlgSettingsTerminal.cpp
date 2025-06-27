@@ -7,7 +7,7 @@
 #include <QFileDialog>
 #include <QUrl>
 
-static Q_LOGGING_CATEGORY(log, "Terminal.DlgSettings")
+static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.DlgSettings")
 
 CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidget *parent) :
     QDialog(parent),
@@ -47,8 +47,9 @@ CDlgSettingsTerminal::~CDlgSettingsTerminal()
 
 void CDlgSettingsTerminal::on_pbOk_clicked()
 {
-    if(ui->cbShell->currentText().isEmpty())
+    if(!ui->cbShell->currentData().isValid())
     {
+        ui->tabWidget->setCurrentIndex(0);
         ui->cbShell->setFocus();
         QMessageBox::critical(this, tr("Error"), tr("The shell is empty"));
         return;

@@ -17,6 +17,7 @@ SET(SOURCE_FILES
     OperateSSH.cpp
     DlgSettingsSSH.cpp
     BackendSSH.cpp
+    ChannelSSHTerminal.cpp
     )
 
 SET(HEADER_FILES
@@ -24,6 +25,7 @@ SET(HEADER_FILES
     OperateSSH.h
     DlgSettingsSSH.h
     BackendSSH.h
+    ChannelSSHTerminal.h
     )
 
 SET(UI_FILES
