@@ -18,11 +18,11 @@ jobs:
       matrix:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.10.0, 5.15.2, 5.12.12]
+        qt_version: [6.9.1, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
-          - qt_version: 6.10.0
+          - qt_version: 6.9.1
             qt_modules: qtscxml qtmultimedia qtserialport qt5compat
 
           - qt_version: 5.15.2
@@ -249,7 +249,7 @@ jobs:
 
       - name: lxqt-build-tools
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}
         run: |
           if [ ! -d ${{ env.INSTALL_DIR }}/share/cmake/lxqt2-build-tools ]; then
               git clone -b 2.2.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
@@ -264,7 +264,7 @@ jobs:
 
       - name: qtermwidget
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}
         run: |
           if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/qtermwidget6 ]; then
               git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
@@ -320,7 +320,7 @@ jobs:
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}
         working-directory: ${{github.workspace}}/build
         run: |
           ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
@@ -330,7 +330,7 @@ jobs:
                "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
