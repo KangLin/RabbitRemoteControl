@@ -196,8 +196,9 @@ jobs:
               echo "$file"
               if [ -f $file ]; then
                   if [ "${file##*.}" != "xml" ] && [ "${file##*.}" != "json" ]; then
-                      sha256sum $file | awk '{print  "|", $2, "|", $1, "|"}' >> ${{github.workspace}}/Release.md
-                      md5sum $file | awk '{print $1, "|"}' >> ${{github.workspace}}/Release.md
+                      Sum256=`sha256sum $file | awk '{print  "|", $2, "|", $1, "|"}'`
+                      SumMd5=`md5sum $file | awk '{print $1, "|"}'`
+                      echo "${Sum256}${SumMd5}" >> ${{github.workspace}}/Release.md
                   fi
               else
                  rm -fr $file
