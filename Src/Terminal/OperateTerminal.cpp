@@ -138,6 +138,7 @@ int COperateTerminal::Initial()
     if(nRet)
         return nRet;
 
+<<<<<<< Updated upstream
     m_Menu.addAction(tr("Copy selection to clipboard"), m_pConsole, SLOT(copyClipboard()));
     m_Menu.addAction(tr("Paste clipboard"), m_pConsole, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pConsole, SLOT(pasteSelection()));
@@ -145,6 +146,21 @@ int COperateTerminal::Initial()
     m_Menu.addAction(tr("Zoom in"), m_pConsole, SLOT(zoomIn()));
     m_Menu.addAction(tr("Zoom out"), m_pConsole, SLOT(zoomOut()));
     m_Menu.addAction(tr("Zoom reset"), this, SLOT(slotZoomReset()));
+=======
+    m_Menu.addAction(tr("Copy selection to clipboard"),
+                     QKeySequence(Qt::CTRL | Qt::Key_C),
+                     m_pTerminal, SLOT(copyClipboard()));
+    m_Menu.addAction(tr("Paste clipboard"), QKeySequence(Qt::CTRL | Qt::Key_V),
+                     m_pTerminal, SLOT(pasteClipboard()));
+    m_Menu.addAction(tr("Paste selection"), m_pTerminal, SLOT(pasteSelection()));
+    m_Menu.addSeparator();
+    m_Menu.addAction(tr("Zoom in"), QKeySequence(Qt::CTRL | Qt::Key_Plus),
+                     m_pTerminal, SLOT(zoomIn()));
+    m_Menu.addAction(tr("Zoom out"), QKeySequence(Qt::CTRL | Qt::Key_Minus),
+                     m_pTerminal, SLOT(zoomOut()));
+    m_Menu.addAction(tr("Zoom reset"), QKeySequence(Qt::CTRL | Qt::Key_0),
+                     this, SLOT(slotZoomReset()));
+>>>>>>> Stashed changes
     m_Menu.addSeparator();
     m_Menu.addAction(tr("Find ......"), QKeySequence(Qt::CTRL | Qt::Key_F),
                        m_pConsole, &QTermWidget::toggleShowSearchBar);
@@ -187,7 +203,7 @@ int COperateTerminal::Stop()
     if(m_pThread)
     {
         m_pThread->quit();
-        //Don't delete m_pThread, See CConnectThread
+        //Don't delete m_pThread, See CBackendThread
         m_pThread = nullptr;
     }
     return nRet;
