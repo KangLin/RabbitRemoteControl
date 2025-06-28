@@ -111,9 +111,7 @@ public:
     [[nodiscard]] virtual const QString Id() override;
     [[nodiscard]] virtual const QString Name() override;
     [[nodiscard]] virtual const QString Description() override;
-    [[nodiscard]] virtual const QString Protocol() const override;
     [[nodiscard]] virtual const qint16 Version() const override;
-    [[nodiscard]] virtual const QIcon Icon() const override;
     [[nodiscard]] virtual QWidget *GetViewer() override;
 
 public Q_SLOTS:

@@ -41,6 +41,8 @@ public:
      */
     virtual int SetParameter(CParameterTerminalBase *pPara);
 
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Description() override;
     [[nodiscard]] QWidget* GetViewer() override;
     [[nodiscard]] virtual const qint16 Version() const override;
 

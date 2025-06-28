@@ -26,16 +26,16 @@ const QString COperateVnc::Id()
 {
     if(m_Para.GetIce())
     {
-        QString szId = Protocol() + "_" + GetPlugin()->Name();
+        QString szId = COperate::Id();
         if(GetParameter())
         {
             if(!m_Para.GetPeerUser().isEmpty())
                 szId += + "_" + m_Para.GetPeerUser();
         }
-        szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
+        szId = szId.replace(QRegularExpression("[-@:/#%!^&* \\.]"), "_");
         return szId;
     }
-    return COperate::Id();
+    return COperateDesktop::Id();
 }
 
 const qint16 COperateVnc::Version() const

@@ -155,19 +155,9 @@ const QString COperateDesktop::Description()
     return szDescription;
 }
 
-const QString COperateDesktop::Protocol() const
-{
-    return GetPlugin()->Protocol();
-}
-
 const qint16 COperateDesktop::Version() const
 {
     return 0;
-}
-
-const QIcon COperateDesktop::Icon() const
-{
-    return GetPlugin()->Icon();
 }
 
 int COperateDesktop::Initial()

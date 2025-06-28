@@ -10,6 +10,7 @@
 #include "Backend.h"
 #include "BackendThread.h"
 #include "OperateTerminal.h"
+#include "Plugin.h"
 
 static Q_LOGGING_CATEGORY(log, "Operate.Terminal")
 
@@ -56,6 +57,52 @@ COperateTerminal::~COperateTerminal()
         m_pConsole->deleteLater();
         m_pConsole = nullptr;
     }
+}
+
+const QString COperateTerminal::Id()
+{
+    QString szId = COperate::Id();
+    if(GetParameter())
+    {
+        auto &sshNet = GetParameter()->m_SSH.m_Net;
+        if(!sshNet.GetHost().isEmpty())
+            szId += "_" + sshNet.GetHost()
+                    + "_" + QString::number(sshNet.GetPort());
+    }
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
+    szId = szId.replace(exp, "_");
+    return szId;
+}
+
+const QString COperateTerminal::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type:") + GetTypeName() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
+#ifdef DEBUG
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
+#endif
+        szDescription += "\n";
+    }
+
+    if(GetParameter()) {
+        auto &sshNet = GetParameter()->m_SSH.m_Net;
+        if(!sshNet.GetHost().isEmpty())
+            szDescription += tr("Server address: ") + sshNet.GetHost()
+                    + ":" + QString::number(sshNet.GetPort()) + "\n";
+    }
+
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+
+    return szDescription;
 }
 
 QWidget* COperateTerminal::GetViewer()
