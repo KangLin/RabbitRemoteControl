@@ -196,9 +196,6 @@ Legend:
 
 [![Documentation](https://img.shields.io/badge/documentation-online-blue)](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
-[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
-
 [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
 [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
@@ -222,6 +219,12 @@ Legend:
 [![Qt5](https://img.shields.io/badge/Qt-5-brightgreen)](https://doc.qt.io/qt-5/)
 [![Qt6](https://img.shields.io/badge/Qt-6-brightgreen)](https://doc.qt.io/qt-6/)
 [![platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20android%20|%20macos-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+
+#### Stargazers over time
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
+[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
+
+[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
 
 ### Build status
 

@@ -194,9 +194,6 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 
 [![文档](https://img.shields.io/badge/documentation-online-blue?label=文档)](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
-[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
-
 [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
@@ -220,6 +217,12 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 [![Qt5](https://img.shields.io/badge/Qt-5-brightgreen)](https://doc.qt.io/qt-5/)
 [![Qt6](https://img.shields.io/badge/Qt-6-brightgreen)](https://doc.qt.io/qt-6/)
 [![平台](https://img.shields.io/badge/平台-windows%20|%20linux%20|%20android%20|%20macos-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+
+### 点赞数
+
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
+[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
+[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
 
 ### 编译状态
 
