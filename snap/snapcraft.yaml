@@ -250,6 +250,8 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
       - -Dlxqt2-build-tools_DIR=$CRAFT_STAGE/usr/local/share/cmake/lxqt2-build-tools
+    organize:
+        'local/share/qtermwidget6/*': /opt/RabbitRemoteControl/local/share/
 
   rabbitremotecontrol:
     # See 'snapcraft plugins'

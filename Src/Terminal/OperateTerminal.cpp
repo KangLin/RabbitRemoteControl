@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QLoggingCategory>
 #include <QDesktopServices>
+#include <QDir>
 
 #include "ParameterOperate.h"
 #include "Backend.h"
@@ -26,6 +27,10 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
         return;
     }
     m_pTerminal->setAutoClose(true);
+    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath());
+    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath()
+                                         + QDir::separator() + ".."
+                                         + QDir::separator() + "share");
 
     bool check = false;
     m_pTerminal->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -139,9 +144,9 @@ int COperateTerminal::Initial()
         return nRet;
 
     m_Menu.addAction(tr("Copy selection to clipboard"),
-                     QKeySequence(Qt::CTRL | Qt::Key_C),
+                     QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C),
                      m_pTerminal, SLOT(copyClipboard()));
-    m_Menu.addAction(tr("Paste clipboard"), QKeySequence(Qt::CTRL | Qt::Key_V),
+    m_Menu.addAction(tr("Paste clipboard"), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V),
                      m_pTerminal, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pTerminal, SLOT(pasteSelection()));
     m_Menu.addSeparator();
