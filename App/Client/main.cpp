@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 {
     int nRet = 0;
 
-    qDebug(log) << "Verson:" << RabbitRemoteControl_VERSION;
+    qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 

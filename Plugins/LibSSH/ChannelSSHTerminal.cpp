@@ -59,7 +59,7 @@ int CChannelSSHTerminal::OnOpen(ssh_session session)
     
     ssh_channel_request_pty(m_Channel);
     ssh_channel_change_pty_size(m_Channel, m_nColumn, m_nRow);
-    qDebug(log) << "row:" << m_nRow << "; colum:" << m_nColumn;
+    qDebug(log) << "row:" << m_nRow << "; column:" << m_nColumn;
 
     if (ssh_channel_request_shell(m_Channel)) {
         szErr = QString("Requesting shell: ") + ssh_get_error(session);
