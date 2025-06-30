@@ -232,6 +232,7 @@ parts:
     source-depth: 1
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
     stage:
       - -usr/local/bin
 
@@ -243,8 +244,11 @@ parts:
     source-type: git
     source-tag: 2.2.0
     source-depth: 1
+    after:
+      - lxqt-build-tools
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
       - -Dlxqt2-build-tools_DIR=$CRAFT_STAGE/usr/local/share/cmake/lxqt2-build-tools
 
   rabbitremotecontrol:
@@ -257,6 +261,7 @@ parts:
       - rabbitcommon
       - freerdp
       - pcapplusplus
+      - qtermwidget
  #     - qt
     build-packages:
       - libcmark-dev
