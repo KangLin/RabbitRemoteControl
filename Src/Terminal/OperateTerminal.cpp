@@ -79,6 +79,25 @@ const QString COperateTerminal::Id()
     return szId;
 }
 
+const QString COperateTerminal::Name()
+{
+    QString szName;
+    if(GetParameter())
+    {
+        auto &sshNet = GetParameter()->m_SSH.m_Net;
+        if(!sshNet.GetHost().isEmpty()) {
+            if(GetParameter()->GetGlobalParameters()
+                && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
+                szName = Protocol() + ":";
+            szName += sshNet.GetHost()
+                      + ":" + QString::number(sshNet.GetPort());
+        }
+    }
+    if(szName.isEmpty())
+        szName = COperate::Name();
+    return szName;
+}
+
 const QString COperateTerminal::Description()
 {
     QString szDescription;
