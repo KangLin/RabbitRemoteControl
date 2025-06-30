@@ -25,4 +25,7 @@ private:
     CParameterTerminalBase* m_pPara;
     CChannelSSHTerminal* m_pChannelSSH;
     QTermWidget* m_pTerminal;
+
+public:
+    virtual bool event(QEvent *event) override;
 };

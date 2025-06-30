@@ -2,7 +2,6 @@
 
 #include <QApplication>
 #include <QClipboard>
-#include <QLoggingCategory>
 #include <QWheelEvent>
 #include <QVideoFrame>
 #include <QDesktopServices>

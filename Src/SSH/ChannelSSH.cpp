@@ -47,7 +47,6 @@ void CChannelSSH::cb_log(ssh_session session,
     }   
 }
 
-
 int CChannelSSH::WakeUp()
 {
     if(!m_pEvent) return 0;

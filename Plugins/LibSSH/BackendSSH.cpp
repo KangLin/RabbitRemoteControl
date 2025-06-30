@@ -2,8 +2,20 @@
 
 #include "BackendSSH.h"
 #include <QLoggingCategory>
+#include <QCoreApplication>
 
 static Q_LOGGING_CATEGORY(log, "Plugin.SSH.Backend")
+
+class QEventTerminal: public QEvent
+{
+public:
+    explicit QEventTerminal(char* data, int len) : QEvent(QEvent::User)
+        , m_Data(data, len)
+    {
+    }
+
+    QByteArray m_Data;
+};
 
 CBackendSSH::CBackendSSH(COperateSSH *pOperate)
     : CBackend(pOperate)
@@ -60,16 +72,14 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
     Q_ASSERT(check);
     check = connect(m_pTerminal, &QTermWidget::sendData,
                     this, [&](const char* data, int len){
-        if(m_pChannelSSH && len > 0) {
-            qint64 nRet = m_pChannelSSH->write(data, len);
-            qDebug(log) << "Write data to ssh channel:" << nRet << len;
-        } else {
-            qCritical(log) << "m_pChannelSSH && len <= 0";
-        }
-    });
+        QEventTerminal* d = new QEventTerminal((char*)data, len);
+        QCoreApplication::postEvent(this, d);
+        m_pChannelSSH->WakeUp();
+    }, Qt::DirectConnection);
     Q_ASSERT(check);
 
-    m_pChannelSSH->SetSize(m_pTerminal->screenLinesCount(), m_pTerminal->screenColumnsCount());
+    m_pChannelSSH->SetSize(m_pTerminal->screenLinesCount(),
+                           m_pTerminal->screenColumnsCount());
 
     if(!m_pChannelSSH->open(QIODevice::ReadWrite)) {
         qCritical(log) << "Open ssh channel fail";
@@ -99,4 +109,26 @@ int CBackendSSH::OnClean()
         m_pChannelSSH = nullptr;
     }
     return nRet;
+}
+
+bool CBackendSSH::event(QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::User:
+    {
+        QEventTerminal *d = (QEventTerminal*)event;
+        if(m_pChannelSSH && d->m_Data.length() > 0) {
+            qint64 nRet = m_pChannelSSH->write(d->m_Data.data(), d->m_Data.length());
+            qDebug(log) << "Write data to ssh channel:" << nRet << d->m_Data.length();
+        } else {
+            qCritical(log) << "m_pChannelSSH && len <= 0";
+        }
+        break;
+    }
+    default:
+        return QObject::event(event);
+    }
+    
+    event->accept();
+    return true;
 }

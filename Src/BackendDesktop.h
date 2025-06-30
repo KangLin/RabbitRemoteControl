@@ -80,7 +80,7 @@ Q_SIGNALS:
     void sigUpdateCursorPosition(const QPoint& pos);
     void sigUpdateLedState(unsigned int state);
     void sigSetClipboard(QMimeData* data);
-    
+
 public Q_SLOTS:
     // \~chinese 以下函数在 CFrmView 线程（主线程）中调用
     // \~english The following functions are called in the CFrmView thread(main thread)

@@ -49,19 +49,30 @@ int CChannelSSHTerminal::OnOpen(ssh_session session)
         setErrorString(szErr);
         return -1;
     }
-    
-    if (ssh_channel_open_session(m_Channel)) {
+    nRet = ssh_channel_open_session(m_Channel);
+    if (nRet != SSH_OK) {
         szErr = QString("Error opening channel: ") + ssh_get_error(session);
         qCritical(log) << szErr;
         setErrorString(szErr);
         return -1;
     }
-    
-    ssh_channel_request_pty(m_Channel);
-    ssh_channel_change_pty_size(m_Channel, m_nColumn, m_nRow);
+    nRet = ssh_channel_request_pty(m_Channel);
+    if (nRet != SSH_OK) {
+        szErr = QString("Error request pty: ") + ssh_get_error(session);
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return nRet;
+    }
+    nRet = ssh_channel_change_pty_size(m_Channel, m_nColumn, m_nRow);
+    if (nRet != SSH_OK) {
+        szErr = QString("Error change pty size: ") + ssh_get_error(session);
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return nRet;
+    }
     qDebug(log) << "row:" << m_nRow << "; column:" << m_nColumn;
-
-    if (ssh_channel_request_shell(m_Channel)) {
+    nRet = ssh_channel_request_shell(m_Channel);
+    if (nRet != SSH_OK) {
         szErr = QString("Requesting shell: ") + ssh_get_error(session);
         qCritical(log) << szErr;
         setErrorString(szErr);
