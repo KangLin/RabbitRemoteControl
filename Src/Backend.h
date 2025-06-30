@@ -45,7 +45,7 @@ public:
     explicit CBackend(COperate *pOperate = nullptr);
     virtual ~CBackend();
 
-public Q_SLOTS:
+public:
     /*!
      * \~chinese 开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
      * \note
@@ -76,7 +76,11 @@ public Q_SLOTS:
      * \see sigFinished()
      */
     virtual int Stop();
-    
+    /*!
+     * \brief Wake up. When it is block(a non-Qt event loop)
+     */
+    virtual int WakeUp();
+
 protected:
     enum class OnInitReturnValue {
         Fail = -1,

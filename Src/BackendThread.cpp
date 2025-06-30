@@ -14,6 +14,7 @@ CBackendThread::CBackendThread(COperate *pOperate)
     // Because it is deleted when it is finished.
     : QThread()
     , m_pOperate(pOperate)
+    , m_pBackend(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -25,6 +26,15 @@ CBackendThread::CBackendThread(COperate *pOperate)
 CBackendThread::~CBackendThread()
 {
     qDebug(log) << Q_FUNC_INFO;
+}
+
+void CBackendThread::quit()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    QThread::quit();
+    if(m_pBackend) {
+        m_pBackend->WakeUp();
+    }
 }
 
 /*!
@@ -60,33 +70,35 @@ void CBackendThread::run()
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "BackendThread", szErr.toStdString().c_str());
     }
-    CBackend* pBackend = nullptr;
+
     bool bRet = QMetaObject::invokeMethod(
         m_pOperate, "InstanceBackend",
         Qt::DirectConnection,
-        Q_RETURN_ARG(CBackend*, pBackend));
-    if(!pBackend || !bRet)
+        Q_RETURN_ARG(CBackend*, m_pBackend));
+    if(!m_pBackend || !bRet)
     {
         qCritical(log) << "InstanceBackend fail";
-        emit m_pOperate->sigStop();
+        emit m_pOperate->sigFinished();
         return;
     }
 
-    if(pBackend) {
-        nRet = pBackend->Start();
+    if(m_pBackend) {
+        nRet = m_pBackend->Start();
         if(nRet) {
-            pBackend->deleteLater();
-            pBackend = nullptr;
-            emit m_pOperate->sigStop();
+            qCritical(log) << "Backend start fail";
+            m_pBackend->Stop();
+            m_pBackend->deleteLater();
+            m_pBackend = nullptr;
+            emit m_pOperate->sigFinished();
             return;
         }
     }
 
     exec();
 
-    if(pBackend) {
-        pBackend->Stop();
-        pBackend->deleteLater();
+    if(m_pBackend) {
+        m_pBackend->Stop();
+        m_pBackend->deleteLater();
     }
 
     emit m_pOperate->sigFinished();

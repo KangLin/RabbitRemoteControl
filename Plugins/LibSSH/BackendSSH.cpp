@@ -95,14 +95,14 @@ int CBackendSSH::OnProcess()
 {
     int nRet = 0;
     if(m_pChannelSSH)
-        nRet = m_pChannelSSH->OnProcess(100000);
+        nRet = m_pChannelSSH->OnProcess(CChannel::DefaultTimeout);
     return nRet;
 }
 
 int CBackendSSH::OnClean()
 {
     int nRet = 0;
-    m_pChannelSSH->WakeUp();
+
     if(m_pChannelSSH) {
         m_pChannelSSH->close();
         m_pChannelSSH->deleteLater();
@@ -131,4 +131,11 @@ bool CBackendSSH::event(QEvent *event)
     
     event->accept();
     return true;
+}
+
+int CBackendSSH::WakeUp()
+{
+    if(m_pChannelSSH)
+        m_pChannelSSH->WakeUp();
+    return 0;
 }

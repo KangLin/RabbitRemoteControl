@@ -802,7 +802,7 @@ void MainWindow::slotRunning()
     slotLoadOperateMenu();
 
     slotInformation(tr("Connected to ") + p->Name());
-    qDebug(log) << "MainWindow::slotRunning()" << p->Name();
+    qDebug(log) << Q_FUNC_INFO << p->Name();
 }
 //! [MainWindow slotRunning]
 
@@ -832,9 +832,9 @@ void MainWindow::on_actionStop_triggered()
 
 void MainWindow::slotStop()
 {
-    qDebug(log) << Q_FUNC_INFO;
     COperate* pOperate = dynamic_cast<COperate*>(sender());
     if(!pOperate) return;
+    qDebug(log) << Q_FUNC_INFO << pOperate->Name();
     //TODO: Whether to save the setting
     // emit pOperate->sigUpdateParameters(pOperate);
     pOperate->Stop();
@@ -842,8 +842,10 @@ void MainWindow::slotStop()
 
 void MainWindow::slotFinished()
 {
-    qDebug(log) << Q_FUNC_INFO;
     COperate* pOperate = dynamic_cast<COperate*>(sender());
+    if(!pOperate) return;
+
+    qDebug(log) << Q_FUNC_INFO << pOperate->Name();
     foreach(auto p, m_Operates)
     {
         if(p == pOperate)

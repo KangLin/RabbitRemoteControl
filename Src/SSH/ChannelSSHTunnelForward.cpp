@@ -381,7 +381,7 @@ int CChannelSSHTunnelForward::Process()
         return -1;
     }
 
-    struct timeval timeout = {0, 50000};
+    struct timeval timeout = {0, CChannel::DefaultTimeout};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;

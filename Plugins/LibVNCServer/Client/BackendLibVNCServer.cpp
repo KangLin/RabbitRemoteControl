@@ -6,6 +6,7 @@
 #include <QLoggingCategory>
 
 #include "BackendLibVNCServer.h"
+#include "Channel.h"
 
 static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connect")
 static Q_LOGGING_CATEGORY(logger, "LibVNCServer.Connect.log")
@@ -310,7 +311,7 @@ int CBackendLibVNCServer::OnProcess()
         return -1;
     }
 
-    struct timeval timeout = {0, 50000};
+    struct timeval timeout = {0, CChannel::DefaultTimeout};
     fd_set set;
     FD_ZERO(&set);
     if(RFB_INVALID_SOCKET != m_pClient->sock)

@@ -11,6 +11,7 @@ static Q_LOGGING_CATEGORY(log, "Channel")
 
 QSharedPointer<QTranslator> g_Translator = nullptr;
 
+const qint64 CChannel::DefaultTimeout = 500000;
 CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
     m_pSocket(nullptr)

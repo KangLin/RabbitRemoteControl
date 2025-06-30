@@ -105,7 +105,7 @@ const QString COperateTerminal::Description()
         szDescription = tr("Name: ") + Name() + "\n";
 
     if(!GetTypeName().isEmpty())
-        szDescription += tr("Type:") + GetTypeName() + "\n";
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
 
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();

@@ -14,6 +14,7 @@ class CBackendSSH : public CBackend
 public:
     explicit CBackendSSH(COperateSSH* pOperate);
     virtual ~CBackendSSH();
+    virtual int WakeUp() override;
 
 protected:
     virtual OnInitReturnValue OnInit() override;

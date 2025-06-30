@@ -34,6 +34,8 @@ public:
     explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CChannel();
 
+    const static qint64 DefaultTimeout;
+
     /// \~chinese
     /// \param pSocket: 所有者是这个类的实例
     /// \~english
