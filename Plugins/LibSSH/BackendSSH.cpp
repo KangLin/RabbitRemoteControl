@@ -54,19 +54,22 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
     Q_ASSERT(check);
     check = connect(m_pChannelSSH, &CChannelSSHTerminal::readyRead,
                     this, [&](){
-        char buf[256];
+        QByteArray data(256, '\0');
         int nLen = 0;
-        int nRet = 0;
         if(m_pChannelSSH)
-            nLen = m_pChannelSSH->read(buf, 256);
+            nLen = m_pChannelSSH->read(data.data(), data.length());
         if(m_pTerminal && nLen > 0) {
-#if defined(Q_OS_UNIX)
+#if defined(Q_OS_WIN)
+            if(m_pOperate) {
+                emit m_pOperate->sigReceiveData(data);
+            }
+#else
             nRet = write(m_pTerminal->getPtySlaveFd(), buf, nLen);
 #endif
         }
         else
             qCritical(log) << "The m_pTerminal is nullptr or nLen <= 0";
-        qDebug(log) << "Write data to QTermWidget: " << nRet << nLen;
+        qDebug(log) << "Write data to QTermWidget: " << nLen;
 
     });
     Q_ASSERT(check);

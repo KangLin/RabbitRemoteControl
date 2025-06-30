@@ -14,7 +14,10 @@ public:
     virtual ~COperateSSH();
 
     virtual CBackend *InstanceBackend() override;
-    
+
+Q_SIGNALS:
+    void sigReceiveData(const QByteArray& data);
+
 private:
     CParameterTerminalBase m_Parameters;
     
@@ -25,4 +28,7 @@ protected:
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
+
+private Q_SLOTS:
+    void slotReceiveData(const QByteArray& data);
 };

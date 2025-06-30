@@ -19,6 +19,9 @@ COperateSSH::COperateSSH(CPlugin *parent)
     lstType << CParameterUser::TYPE::UserPassword
             << CParameterUser::TYPE::PublicKey;
     net.m_User.SetType(lstType);
+    bool check = connect(this, SIGNAL(sigReceiveData(const QByteArray&)),
+                         this, SLOT(slotReceiveData(const QByteArray&)));
+    Q_ASSERT(check);
 }
 
 COperateSSH::~COperateSSH()
@@ -47,4 +50,14 @@ QDialog *COperateSSH::OnOpenDialogSettings(QWidget *parent)
 CBackend *COperateSSH::InstanceBackend()
 {
     return new CBackendSSH(this);
+}
+
+void COperateSSH::slotReceiveData(const QByteArray &data)
+{
+    qDebug(log) << Q_FUNC_INFO;
+#if defined(Q_OS_WIN)
+    if(m_pTerminal) {
+        emit m_pTerminal->receiveData(data.data(), data.length());
+    }
+#endif
 }
