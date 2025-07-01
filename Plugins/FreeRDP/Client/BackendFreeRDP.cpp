@@ -363,7 +363,7 @@ int CBackendFreeRDP::OnClean()
  */
 int CBackendFreeRDP::OnProcess()
 {
-    return OnProcess(CChannel::DefaultTimeout);
+    return OnProcess(DEFAULT_TIMEOUT);
 }
 
 /*!

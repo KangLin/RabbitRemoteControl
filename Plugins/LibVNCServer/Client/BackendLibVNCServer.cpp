@@ -311,7 +311,7 @@ int CBackendLibVNCServer::OnProcess()
         return -1;
     }
 
-    struct timeval timeout = {0, CChannel::DefaultTimeout};
+    struct timeval timeout = {0, DEFAULT_TIMEOUT};
     fd_set set;
     FD_ZERO(&set);
     if(RFB_INVALID_SOCKET != m_pClient->sock)

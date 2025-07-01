@@ -11,6 +11,8 @@
 #include <QMutex>
 #include "channel_export.h"
 
+#define DEFAULT_TIMEOUT 500000
+
 /*!
  * \~chinese
  * \brief 通道接口类。此类默认实现一个 TCP 的通道。
@@ -33,8 +35,6 @@ public:
      */
     explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CChannel();
-
-    const static qint64 DefaultTimeout;
 
     /// \~chinese
     /// \param pSocket: 所有者是这个类的实例

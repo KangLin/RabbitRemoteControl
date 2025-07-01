@@ -64,7 +64,7 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
                 emit m_pOperate->sigReceiveData(data);
             }
 #else
-            nRet = write(m_pTerminal->getPtySlaveFd(), buf, nLen);
+            write(m_pTerminal->getPtySlaveFd(), data.data(), data.length());
 #endif
         }
         else
@@ -98,7 +98,7 @@ int CBackendSSH::OnProcess()
 {
     int nRet = 0;
     if(m_pChannelSSH)
-        nRet = m_pChannelSSH->OnProcess(CChannel::DefaultTimeout);
+        nRet = m_pChannelSSH->OnProcess(DEFAULT_TIMEOUT);
     return nRet;
 }
 

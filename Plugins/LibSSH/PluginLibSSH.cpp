@@ -27,15 +27,17 @@ const QString CPluginLibSSH::Name() const
 
 const QString CPluginLibSSH::DisplayName() const
 {
-    return tr("Termainl SSH");
+    return tr("Secure Shell");
 }
 
 const QString CPluginLibSSH::Description() const
 {
-    return tr("Termainl SSH: You can remotely execute programs, transfer files, "
+    return tr("Secure Shell(SSH): Used to establish secure remote connections over unsecured networks. "
+              "It provides encryption and authentication mechanisms to ensure the confidentiality and integrity of the data. "
+              "You can remotely execute programs, transfer files, "
               "use a secure and transparent tunnel, "
               "manage public keys and much more ...\n"
-              "It is use libssh.");
+              "It is use libssh: https://www.libssh.org .");
 }
 
 const QIcon CPluginLibSSH::Icon() const
