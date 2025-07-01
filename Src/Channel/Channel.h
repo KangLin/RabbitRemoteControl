@@ -9,7 +9,7 @@
 #include <QTcpSocket>
 #include <QMessageBox>
 #include <QMutex>
-#include "channel_export.h"
+#include "plugin_export.h"
 
 #define DEFAULT_TIMEOUT 500000
 
@@ -23,7 +23,7 @@
  * \~
  * \ingroup LIBAPI_CHANNEL
  */
-class CHANNEL_EXPORT CChannel : public QIODevice
+class PLUGIN_EXPORT CChannel : public QIODevice
 {
     Q_OBJECT
 

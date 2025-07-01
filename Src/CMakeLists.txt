@@ -11,6 +11,8 @@ project(Plugin
     DESCRIPTION "Plugin library"
     )
 
+set(PLUGIN_LIBS RabbitCommon)
+
 option(USE_FROM_OPENGL "Use opengl from" OFF)
 if(USE_FROM_OPENGL)
     set(PLUGIN_DEFINITIONS USE_FROM_OPENGL)
@@ -31,6 +33,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     Backend.h
     BackendThread.h
     BackendDesktop.h
+    Channel/Channel.h
     SSH/Event.h
     DlgUserPassword.h
     Parameter.h
@@ -68,6 +71,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     BackendThread.cpp
     BackendDesktop.cpp
     FrmScroll.cpp
+    Channel/Channel.cpp
     SSH/Event.cpp
     Parameter.cpp
     ParameterUI.cpp
@@ -106,7 +110,56 @@ if(WIN32)
     list(APPEND PLUGIN_LIBS Ws2_32)
 endif()
 
-list(APPEND PLUGIN_LIBS Channel)
+find_package(LibDataChannel)
+if(LibDataChannel_FOUND)
+    list(APPEND CHANNEL_DEFINITIONS HAVE_ICE)
+    if (TARGET LibDataChannel::LibDataChannel)
+        list(APPEND PLUGIN_PRIVATE_LIBS LibDataChannel::LibDataChannel)
+    elseif (TARGET LibDatachannel::datachannel)
+        list(APPEND PLUGIN_PRIVATE_LIBS LibDatachannel::datachannel)
+    else()
+        list(APPEND PLUGIN_PRIVATE_LIBS LibDataChannel::datachannel)
+    endif()
+    list(APPEND PLUGIN_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ICE)
+    list(APPEND PLUGIN_PRIVATE_LIBS ${libdatachannel_lib})
+    list(APPEND PLUGIN_SOURCE_FILES
+         Channel/ChannelIce.cpp
+         Channel/IceSignal.cpp
+         Channel/Ice.cpp
+         Channel/ParameterICE.cpp)
+    list(APPEND PLUGIN_INSTALL_HEADER_FILES
+         Channel/IceSignal.h
+         Channel/Ice.h
+         Channel/ParameterICE.h)
+    list(APPEND PLUGIN_HEADER_FILES
+         Channel/ChannelIce.h
+        )
+
+    find_package(QXmpp)
+    if(QXmpp_FOUND)
+        list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QXMPP)
+        list(APPEND PLUGIN_QT_COMPONENTS Xml)
+        list(APPEND PLUGIN_PRIVATE_LIBS QXmpp::QXmpp)
+        list(APPEND PLUGIN_SOURCE_FILES
+             Channel/IceSignalQXmppIq.cpp
+             Channel/IceSignalQXmppManager.cpp
+             Channel/IceSignalQxmpp.cpp
+            )
+        list(APPEND PLUGIN_HEADER_FILES
+             Channel/IceSignalQXmppIq.h
+             Channel/IceSignalQXmppManager.h
+             Channel/IceSignalQxmpp.h
+            )
+    endif()
+
+    if(WITH_GUI)
+        list(APPEND PLUGIN_SOURCE_FILES Channel/FrmParameterICE.cpp)
+        list(APPEND PLUGIN_INSTALL_HEADER_FILES Channel/FrmParameterICE.h)
+        list(APPEND PLUGIN_UI_FILES Channel/FrmParameterICE.ui)
+    endif()
+endif()
+
 if(UNIX AND (NOT ANDROID))
     find_package(X11)
     if(X11_FOUND)
@@ -129,7 +182,7 @@ if(libssh_FOUND)
             list(APPEND PLUGIN_DEFINITIONS HAVE_EVENTFD)
         endif()
     endif(WITH_EVENTFD)
-    
+
     option(WITH_UNIX_DOMAIN_SOCKET "Enable unix domain socket" ON)
     if(WITH_UNIX_DOMAIN_SOCKET)
         if(WIN32)
@@ -190,7 +243,7 @@ if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     )
 endif()
 
-SET(PLUGIN_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
+list(APPEND PLUGIN_QT_COMPONENTS Core Gui Widgets Network Multimedia MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${PLUGIN_QT_COMPONENTS})
 message("QT_VERSION:${Qt${QT_VERSION_MAJOR}_VERSION}")
 if(Qt${QT_VERSION_MAJOR}_VERSION VERSION_LESS 5.10.0 AND ANDROID)
@@ -218,6 +271,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Channel
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         ${PLUGIN_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${PLUGIN_INSTALL_HEADER_FILES}

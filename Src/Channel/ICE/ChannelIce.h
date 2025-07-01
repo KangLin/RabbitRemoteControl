@@ -23,7 +23,7 @@
  * \ingroup LIBAPI_ICE LIBAPI_CHANNEL
  * \see CIceSignal
  */
-class CHANNEL_EXPORT CChannelIce : public CChannel
+class PLUGIN_EXPORT CChannelIce : public CChannel
 {
     Q_OBJECT
 

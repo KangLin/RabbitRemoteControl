@@ -8,7 +8,7 @@
 #include <QLoggingCategory>
 
 #include "rtc/rtc.hpp"
-#include "channel_export.h"
+#include "plugin_export.h"
 
 /*!
  * \~chinese
@@ -22,7 +22,7 @@
  * \~
  * \ingroup LIBAPI_ICE
  */
-class CHANNEL_EXPORT CIceSignal : public QObject
+class PLUGIN_EXPORT CIceSignal : public QObject
 {
     Q_OBJECT
 

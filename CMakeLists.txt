@@ -60,6 +60,9 @@ include(CheckIncludeFile)
 include(CheckIncludeFileCXX)
 include(CheckFunctionExists)
 include(CMakeDependentOption)
+include(CheckSymbolExists)
+include(CheckCXXSymbolExists)
+include(CheckStructHasMember)
 
 #CHECK_INCLUDE_FILE_CXX("string" HAVE_STRING_H)
 #check_include_file("math.h" HAVE_MATH_H)
@@ -144,7 +147,6 @@ message("RabbitRemoteControl_VERSION:${RabbitRemoteControl_VERSION};Revision:${R
 set(VERSION ${RabbitRemoteControl_VERSION})
 
 option(BUILD_CLIENT "Build Client" ON)
-add_subdirectory(Channel)
 cmake_dependent_option(BUILD_PLUGIN "Build plugin" ON WITH_GUI OFF)
 if(BUILD_PLUGIN)
     add_subdirectory(Src)

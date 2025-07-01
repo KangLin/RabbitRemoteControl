@@ -22,7 +22,7 @@
  * \ingroup LIBAPI_ICE
  * \see CIceSignal CParameterICE CFrmParameterICE
  */
-class CHANNEL_EXPORT CICE : public QObject
+class PLUGIN_EXPORT CICE : public QObject
 {
     Q_OBJECT
 public:

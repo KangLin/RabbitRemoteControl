@@ -43,7 +43,8 @@
         <location filename="../../PluginLibSSH.cpp" line="35"/>
         <source>Secure Shell(SSH): is a secure protocol and the most common way of safely administering remote servers. Using a number of encryption technologies, SSH provides a mechanism for establishing a cryptographically secured connection between two parties, authenticating each side to the other, and passing commands and output back and forth.You can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...
 It uses libssh: https://www.libssh.org .</source>
-        <translation>安全外殼（SSH）：是一種安全協議，也是安全管理遠程服務器的最常見方法。SSH 使用多種加密技術，提供了一種機製，用於在兩方之間建立加密安全連接，對每一方進行身份驗證，以及來回傳遞命令和輸出。你能遠程執行程序、傳輸文件。它使用 libssh: https://www.libssh.org </translation>
+        <translation>安全外殼（SSH）：是一種安全協議，也是安全管理遠程服務器的最常見方法。SSH 使用多種加密技術，提供了一種機製，用於在兩方之間建立加密安全連接，對每一方進行身份驗證，以及來回傳遞命令和輸出。你能遠程執行程序、傳輸文件。
+它使用 libssh: https://www.libssh.org </translation>
     </message>
 </context>
 </TS>

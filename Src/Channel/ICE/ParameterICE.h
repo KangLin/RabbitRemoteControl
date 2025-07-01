@@ -16,7 +16,7 @@
  * \ingroup LIBAPI_ICE
  * \see CFrmParameterICE
  */
-class CHANNEL_EXPORT CParameterICE : public QObject
+class PLUGIN_EXPORT CParameterICE : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool Ice READ getIce WRITE setIce NOTIFY sigIceChanged)
