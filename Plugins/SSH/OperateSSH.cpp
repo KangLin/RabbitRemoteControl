@@ -57,7 +57,7 @@ void COperateSSH::slotReceiveData(const QByteArray &data)
     qDebug(log) << Q_FUNC_INFO;
 #if defined(Q_OS_WIN)
     if(m_pTerminal) {
-        emit m_pTerminal->receiveData(data.data(), data.length());
+        m_pTerminal->receiveData(data.data(), data.length());
     }
 #endif
 }
