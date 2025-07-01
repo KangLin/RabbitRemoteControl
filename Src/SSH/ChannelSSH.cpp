@@ -238,18 +238,6 @@ void CChannelSSH::close()
     QIODevice::close();
 }
 
-qint64 CChannelSSH::readData(char *data, qint64 maxlen)
-{
-    qint64 nRet = 0;
-    return nRet;
-}
-
-qint64 CChannelSSH::writeData(const char *data, qint64 len)
-{
-    qint64 nRet = 0;
-    return nRet;
-}
-
 int CChannelSSH::verifyKnownhost(ssh_session session)
 {
     int nRet = -1;

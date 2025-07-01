@@ -22,9 +22,6 @@ public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
     virtual int WakeUp();
-protected:
-    virtual qint64 readData(char *data, qint64 maxlen) override;
-    virtual qint64 writeData(const char *data, qint64 len) override;
 
     // CChannel interface
 public:

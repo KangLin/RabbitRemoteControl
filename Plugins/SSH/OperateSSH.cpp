@@ -54,10 +54,12 @@ CBackend *COperateSSH::InstanceBackend()
 
 void COperateSSH::slotReceiveData(const QByteArray &data)
 {
-    qDebug(log) << Q_FUNC_INFO;
+    //qDebug(log) << Q_FUNC_INFO << data.length();
 #if defined(Q_OS_WIN)
     if(m_pTerminal) {
         m_pTerminal->receiveData(data.data(), data.length());
     }
+#else
+    write(m_pTerminal->getPtySlaveFd(), data.data(), data.length());
 #endif
 }

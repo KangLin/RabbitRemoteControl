@@ -54,23 +54,27 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
     Q_ASSERT(check);
     check = connect(m_pChannelSSH, &CChannelSSHTerminal::readyRead,
                     this, [&](){
-        QByteArray data(256, '\0');
-        int nLen = 0;
-        if(m_pChannelSSH)
-            nLen = m_pChannelSSH->read(data.data(), data.length());
-        if(m_pTerminal && nLen > 0) {
-#if defined(Q_OS_WIN)
-            if(m_pOperate) {
-                emit m_pOperate->sigReceiveData(data);
+        char* buf = nullptr;
+        qint64 nLen = 0;
+        qint64 nRet = 0;
+        if(m_pChannelSSH) {
+            nLen = m_pChannelSSH->bytesAvailable();
+            if(nLen <= 0) {
+                qDebug(log) << "No data";
+                return;
             }
-#else
-            write(m_pTerminal->getPtySlaveFd(), data.data(), data.length());
-#endif
+            buf = new char[nLen];
+            nRet = m_pChannelSSH->read(buf, nLen);
         }
-        else
-            qCritical(log) << "The m_pTerminal is nullptr or nLen <= 0";
-        qDebug(log) << "Write data to QTermWidget: " << nLen;
-
+        if(m_pTerminal && nRet > 0) {
+            QByteArray data(buf, nRet);
+            if(m_pOperate)
+                emit m_pOperate->sigReceiveData(data);
+        } else
+            qCritical(log) << "The m_pTerminal is nullptr or nRet <= 0";
+        //qDebug(log) << "Write data to QTermWidget: " << nRet << nLen;
+        if(buf)
+            delete []buf;
     });
     Q_ASSERT(check);
     check = connect(m_pTerminal, &QTermWidget::sendData,
@@ -122,9 +126,10 @@ bool CBackendSSH::event(QEvent *event)
         QEventTerminal *d = (QEventTerminal*)event;
         if(m_pChannelSSH && d->m_Data.length() > 0) {
             qint64 nRet = m_pChannelSSH->write(d->m_Data.data(), d->m_Data.length());
-            qDebug(log) << "Write data to ssh channel:" << nRet << d->m_Data.length();
+            Q_UNUSED(nRet);
+            //qDebug(log) << "Write data to ssh channel:" << nRet << d->m_Data.length();
         } else {
-            qCritical(log) << "m_pChannelSSH && len <= 0";
+            //qDebug(log) << "m_pChannelSSH && len <= 0";
         }
         break;
     }

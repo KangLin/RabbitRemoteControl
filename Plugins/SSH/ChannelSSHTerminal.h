@@ -21,10 +21,16 @@ private:
     // QIODevice interface
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
-    virtual qint64 writeData(const char *data, qint64 len) override;
+    virtual qint64 writeData(const char *data, qint64 maxlen) override;
 
     // CChannelSSH interface
 private:
     virtual int OnOpen(ssh_session session) override;
     virtual void OnClose() override;
+    
+    // QIODevice interface
+public:
+    virtual qint64 bytesAvailable() const override;
+private:
+    qint64 m_nBytesAvailable;
 };

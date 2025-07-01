@@ -22,18 +22,19 @@ qint64 CChannelSSHTerminal::readData(char *data, qint64 maxlen)
     if(!m_Channel || !ssh_channel_is_open(m_Channel))
         return -1;
     nRet = ssh_channel_read(m_Channel, data, maxlen, 0);
-    qDebug(log) << "read data:" << nRet << maxlen;
+    m_nBytesAvailable -= nRet;
+    //qDebug(log) << Q_FUNC_INFO << nRet << maxlen << m_nBytesAvailable;
     return nRet;
 }
 
-qint64 CChannelSSHTerminal::writeData(const char *data, qint64 len)
+qint64 CChannelSSHTerminal::writeData(const char *data, qint64 maxlen)
 {
     qint64 nRet = 0;
     if(!m_Channel || !ssh_channel_is_open(m_Channel))
         return -1;
-    if(len > 0)
-        nRet = ssh_channel_write(m_Channel, data, len);
-    qDebug(log) << "write data:" << nRet << len;
+    if(maxlen > 0)
+        nRet = ssh_channel_write(m_Channel, data, maxlen);
+    //qDebug(log) << Q_FUNC_INFO << nRet << maxlen;
     return nRet;
 }
 
@@ -102,7 +103,8 @@ void CChannelSSHTerminal::SetSize(int row, int column)
 int CChannelSSHTerminal::OnProcess(int tm)
 {
     int nRet = 0;
-
+    
+    m_nBytesAvailable = 0;
     if(!m_Channel || !ssh_channel_is_open(m_Channel)
         || ssh_channel_is_eof(m_Channel)) {
         QString szErr = "The channel is not open";
@@ -187,8 +189,14 @@ int CChannelSSHTerminal::OnProcess(int tm)
         //qDebug(log) << "The channel has not data";
         return 0;
     }
-
+    
+    m_nBytesAvailable = nRet;
     emit readyRead();
 
     return 0;
+}
+
+qint64 CChannelSSHTerminal::bytesAvailable() const
+{
+    return m_nBytesAvailable;
 }
