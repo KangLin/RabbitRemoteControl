@@ -32,9 +32,9 @@ description: |
 # See: https://snapcraft.io/docs/reference-architectures
 # See: https://snapcraft.io/docs/architectures
 base: core24 # the base snap is the execution environment for this snap
-platforms:
-  amd64:
-  arm64:
+#platforms:
+#  amd64:
+#  arm64:
 #base: core22
 #architectures:
 #  - build-on: amd64
@@ -250,6 +250,8 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
       - -Dlxqt2-build-tools_DIR=$CRAFT_STAGE/usr/local/share/cmake/lxqt2-build-tools
+    prime:
+      - -usr/local/include
 
   rabbitremotecontrol:
     # See 'snapcraft plugins'
@@ -298,18 +300,18 @@ parts:
       # - -DQt6_ROOT=$CRAFT_STAGE/qt
       # - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
       #- -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
-      - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
+      #- -DCMAKE_INSTALL_PREFIX=/usr/local/
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
     # build-environment:
     #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
     #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"
     #   - PATH: "$CRAFT_STAGE/qt/bin:$PATH"
     override-stage: |
-      cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
+      cd $CRAFT_PART_INSTALL/usr/local/bin
       # cp $SNAPCRAFT_PART_SRC/snap/local/start.sh .
       # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
-      sed -i 's|Icon=io\.github\.KangLin\.RabbitRemoteControl|Icon=/opt/RabbitRemoteControl/share/icons/hicolor/scalable/apps/io\.github\.KangLin\.RabbitRemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-      sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+      sed -i 's|Icon=io\.github\.KangLin\.RabbitRemoteControl|Icon=/usr/local/share/icons/hicolor/scalable/apps/io\.github\.KangLin\.RabbitRemoteControl\.svg|' $CRAFT_PART_INSTALL/usr/local/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+      sed -i 's|Path=/usr/local/bin|Path=\$\{SNAP\}/usr/local/bin|' $CRAFT_PART_INSTALL/usr/local/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       # cat > "qt.conf" << EOF
       # [Paths]
       # Prefix=../../..
@@ -333,8 +335,8 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
    environment:
-      LD_LIBRARY_PATH: ${SNAP}/usr/local/lib:${SNAP}/opt/RabbitRemoteControl/lib/:${LD_LIBRARY_PATH}
-      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
+      LD_LIBRARY_PATH: ${SNAP}/usr/local/lib::${LD_LIBRARY_PATH}
+      PATH: $SNAP/usr/local/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
      # [KDE neon extensions](https://documentation.ubuntu.com/snapcraft/stable/reference/extensions/kde-neon-extensions/)

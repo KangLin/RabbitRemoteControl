@@ -27,10 +27,13 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
         return;
     }
     m_pTerminal->setAutoClose(true);
-    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath());
+    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath()
+                                         + QDir::separator() + "color-schemes");
     m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath()
                                          + QDir::separator() + ".."
-                                         + QDir::separator() + "share");
+                                         + QDir::separator() + "share"
+                                         + QDir::separator() + "qtermwidget6"
+                                         + QDir::separator() + "color-schemes");
 
     bool check = false;
     m_pTerminal->setContextMenuPolicy(Qt::CustomContextMenu);

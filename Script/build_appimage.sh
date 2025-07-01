@@ -187,7 +187,11 @@ cmake --install . --config Release --strip --component DependLibraries --prefix 
 cmake --install . --config Release --strip --component Runtime --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
-cp -r ${INSTALL_DIR}/share/qtermwidget6/* ${INSTALL_APP_DIR}/bin
+if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+    cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+else
+    echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+fi
 
 echo "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
