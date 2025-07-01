@@ -7,7 +7,7 @@ on:
     outputs:
       name:
         description: "The artifact name"
-        value: ${{ jobs.build_ubuntu.outputs.name }}
+        value: ${{ jobs.build_linux.outputs.name }}
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -25,7 +25,7 @@ jobs:
             PACKAGE: appimage
           - os: ubuntu-22.04-arm
             PACKAGE: appimage
-     
+
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/

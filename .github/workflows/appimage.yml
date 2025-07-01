@@ -7,7 +7,7 @@ on:
     outputs:
       name:
         description: "The artifact name"
-        value: ${{ jobs.build_ubuntu.outputs.name }}
+        value: ${{ jobs.build_appimage.outputs.name }}
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

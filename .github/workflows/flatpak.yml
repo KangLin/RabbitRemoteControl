@@ -6,7 +6,7 @@ on:
     outputs:
       name:
         description: "The artifact name"
-        value: ${{ jobs.build_android.outputs.name }}
+        value: ${{ jobs.build_flatpak.outputs.name }}
 
 jobs:
   build_flatpak:
@@ -19,7 +19,7 @@ jobs:
             os: ubuntu-24.04-arm
 
     env:
-      artifact_name: RabbitRemoteControl
+      artifact_name: build_flatpak
       RabbitRemoteControl_VERSION: v0.0.36
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)

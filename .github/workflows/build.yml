@@ -36,6 +36,10 @@ jobs:
     uses: ./.github/workflows/flatpak.yml
     secrets: inherit
 
+  snap:
+    uses: ./.github/workflows/snap.yml
+    secrets: inherit
+
   docker:
     uses: ./.github/workflows/docker.yml
     secrets: inherit
@@ -63,7 +67,7 @@ jobs:
   deploy:
     #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
-    needs: [linux, docker, flatpak, msvc, doxygen, android, macos]
+    needs: [linux, docker, flatpak, snap, msvc, doxygen, android, macos]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -110,6 +114,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: ${{ needs.flatpak.outputs.name }}*
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
+      - name: Download snap
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ needs.snap.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
