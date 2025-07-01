@@ -47,7 +47,7 @@ const QString COperateDesktop::Id()
         if(!GetParameter()->m_Net.GetHost().isEmpty())
             szId += "_" + GetParameter()->m_Net.GetHost()
                     + "_" + QString::number(GetParameter()->m_Net.GetPort());
-
+        
         CParameterNet* net = nullptr;
         QString szType;
         switch(GetParameter()->m_Proxy.GetUsedType())
@@ -72,7 +72,7 @@ const QString COperateDesktop::Id()
         default:
             break;
         }
-
+        
         if(!szType.isEmpty() && !net->GetHost().isEmpty()) {
             szId += "_" + szType + "_";
             szId += net->GetHost() + "_" + QString::number(net->GetPort());
@@ -89,7 +89,7 @@ const QString COperateDesktop::Name()
     if(GetParameter() && GetParameter()->GetGlobalParameters()
         && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-
+    
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         szName += GetParameter()->GetName();
     else
@@ -102,10 +102,10 @@ const QString COperateDesktop::Description()
     QString szDescription;
     if(!Name().isEmpty())
         szDescription = tr("Name: ") + Name() + "\n";
-
+    
     if(!GetTypeName().isEmpty())
         szDescription += tr("Type:") + GetTypeName() + "\n";
-
+    
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG
@@ -165,21 +165,21 @@ int COperateDesktop::Initial()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     bool check = false;
-
+    
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-
+    
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
     m_pFrmViewer = new CFrmViewer(); // The owner is m_pScroll
     m_pScroll = new CFrmScroll(m_pFrmViewer);
-
+    
     check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
-
+    
     nRet = InitialMenu();
-
+    
     return nRet;
 }
 
@@ -209,7 +209,7 @@ int COperateDesktop::InitialMenu()
     m_pZoomToWindow = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-fit-best"), tr("Zoom to window"));
     m_pZoomToWindow->setCheckable(true);
-    check = connect(m_pZoomToWindow, &QAction::toggled, this,
+    check = connect(m_pZoomToWindow, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
                             CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
@@ -219,7 +219,7 @@ int COperateDesktop::InitialMenu()
         QIcon::fromTheme("zoom-aspect-ratio"),
         tr("Keep aspect ration to windows"));
     m_pZoomAspectRatio->setCheckable(true);
-    check = connect(m_pZoomAspectRatio, &QAction::toggled, this,
+    check = connect(m_pZoomAspectRatio, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
                             CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
@@ -228,7 +228,7 @@ int COperateDesktop::InitialMenu()
     m_pZoomOriginal = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-original"), tr("Original"));
     m_pZoomOriginal->setCheckable(true);
-    check = connect(m_pZoomOriginal, &QAction::toggled, this,
+    check = connect(m_pZoomOriginal, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
                             CFrmViewer::ADAPT_WINDOWS::Original);
@@ -237,20 +237,28 @@ int COperateDesktop::InitialMenu()
     m_pZoomIn = pMenuZoom->addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"));
     m_pZoomIn->setCheckable(true);
     check = connect(
-        m_pZoomIn, &QAction::toggled, this,
+        m_pZoomIn, &QAction::triggered, this,
         [&](){
-            if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pFrmViewer->GetZoomFactor() + 0.1) * 100);
+            double factor = 0;
+            if(m_psbZoomFactor) {
+                factor = (m_pFrmViewer->GetZoomFactor() + 0.1) * 100;
+                qDebug(log) << "Zoom in:" << factor;
+                m_psbZoomFactor->setValue(factor);
+            }
         });
     Q_ASSERT(check);
     m_pZoomOut = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-out"), tr("Zoom out"));
     m_pZoomOut->setCheckable(true);
     check = connect(
-        m_pZoomOut, &QAction::toggled, this,
+        m_pZoomOut, &QAction::triggered, this,
         [&](){
-            if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pFrmViewer->GetZoomFactor() - 0.1) * 100);
+            double factor = 100;
+            if(m_psbZoomFactor) {
+                factor = (m_pFrmViewer->GetZoomFactor() - 0.1) * 100;
+                qDebug(log) << "Zoom out:" << factor;
+                m_psbZoomFactor->setValue(factor);
+            }
         });
     Q_ASSERT(check);
     QActionGroup* pGBViewZoom = new QActionGroup(this);
@@ -260,6 +268,14 @@ int COperateDesktop::InitialMenu()
         pGBViewZoom->addAction(m_pZoomOriginal);
         pGBViewZoom->addAction(m_pZoomIn);
         pGBViewZoom->addAction(m_pZoomOut);
+        check = connect(pGBViewZoom, &QActionGroup::triggered,
+                        this, [&](QAction* a){
+                            if(a == m_pZoomIn || a == m_pZoomOut)
+                                m_psbZoomFactor->setEnabled(true);
+                            else {
+                                m_psbZoomFactor->setEnabled(false);
+                            }
+                        });
     }
     m_psbZoomFactor = new QSpinBox(pMenuZoom);
     m_psbZoomFactor->setRange(0, 9999999);
@@ -294,7 +310,7 @@ int COperateDesktop::InitialMenu()
     m_pRecord = new QAction(
         QIcon::fromTheme("media-record"), tr("Start record"), &m_Menu);
     m_pRecord->setCheckable(true);
-    check = connect(m_pRecord, SIGNAL(toggled(bool)),
+    check = connect(m_pRecord, SIGNAL(triggered(bool)),
                     this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
@@ -302,7 +318,7 @@ int COperateDesktop::InitialMenu()
         QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
     m_pRecordPause->setCheckable(true);
     m_pRecordPause->setEnabled(false);
-    check = connect(m_pRecordPause, SIGNAL(toggled(bool)),
+    check = connect(m_pRecordPause, SIGNAL(triggered(bool)),
                     this, SIGNAL(sigRecordPause(bool)));
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecordPause);
@@ -363,6 +379,7 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
                             this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
         }
+        LoadAdaptWindows();
         return 0;
     } else {
         QString szMsg = "There is not parameters! "
@@ -424,6 +441,35 @@ int COperateDesktop::SetParameter(CParameterBase *p)
     return 0;
 }
 
+int COperateDesktop::LoadAdaptWindows()
+{
+    if(m_pFrmViewer && GetParameter())
+    {
+        m_pFrmViewer->slotSetZoomFactor(GetParameter()->GetZoomFactor());
+        if(m_psbZoomFactor)
+            m_psbZoomFactor->setValue(m_pFrmViewer->GetZoomFactor() * 100);
+        CFrmViewer::ADAPT_WINDOWS aw = GetParameter()->GetAdaptWindows();
+        if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw) {
+            if(m_pZoomToWindow) {
+                m_pZoomToWindow->trigger();
+            }
+        } else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw) {
+            if(m_pZoomAspectRatio) {
+                m_pZoomAspectRatio->trigger();
+            }
+        } else if(CFrmViewer::ADAPT_WINDOWS::Original == aw) {
+            if(m_pZoomOriginal) {
+                m_pZoomOriginal->trigger();
+            }
+        } else if(CFrmViewer::ADAPT_WINDOWS::Zoom == aw) {
+            if(m_pZoomIn) {
+                m_pZoomIn->trigger();
+            }
+        }
+    }
+    return 0;
+}
+
 int COperateDesktop::Load(QSettings &set)
 {
     int nRet = 0;
@@ -443,26 +489,8 @@ int COperateDesktop::Load(QSettings &set)
         qWarning(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);//TODO: delete it
     }
-    if(m_pFrmViewer && GetParameter())
-    {
-        m_pFrmViewer->slotSetZoomFactor(GetParameter()->GetZoomFactor());
-        if(m_psbZoomFactor)
-            m_psbZoomFactor->setValue(m_pFrmViewer->GetZoomFactor() * 100);
-        CFrmViewer::ADAPT_WINDOWS aw = GetParameter()->GetAdaptWindows();
-        if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw) {
-            if(m_pZoomToWindow)
-                m_pZoomToWindow->setChecked(true);
-        } else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw) {
-            if(m_pZoomAspectRatio)
-                m_pZoomAspectRatio->setChecked(true);
-        } else if(CFrmViewer::ADAPT_WINDOWS::Original == aw) {
-            if(m_pZoomOriginal)
-                m_pZoomOriginal->setChecked(true);
-        } else if(CFrmViewer::ADAPT_WINDOWS::Zoom == aw) {
-            if(m_pZoomIn)
-                m_pZoomIn->setChecked(true);
-        }
-    }
+    
+    LoadAdaptWindows();
     return nRet;
 }
 
@@ -514,6 +542,7 @@ void COperateDesktop::slotRecorderStateChanged(
 
 void COperateDesktop::slotValueChanged(int v)
 {
+    qDebug(log) << "zoom:" << v;
     if(!m_pScroll || !m_pFrmViewer) return;
     m_pFrmViewer->slotSetZoomFactor(((double)v) / 100);
     m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);

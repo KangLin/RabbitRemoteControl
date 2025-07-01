@@ -169,6 +169,9 @@ private Q_SLOTS:
     //! \~chinese \note 仅由 CBackendDesktop::SetConnect() 使用
     //! \~english \note The slot only is used by CBackendDesktop::SetConnect()
     virtual void slotSetServerName(const QString &szName);
+    
+private:
+    int LoadAdaptWindows();
 
 protected:
     QAction* m_pMenuZoom;

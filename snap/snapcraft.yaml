@@ -32,9 +32,9 @@ description: |
 # See: https://snapcraft.io/docs/reference-architectures
 # See: https://snapcraft.io/docs/architectures
 base: core24 # the base snap is the execution environment for this snap
-#platforms:
-#  amd64:
-#  arm64:
+platforms:
+  amd64:
+  arm64:
 #base: core22
 #architectures:
 #  - build-on: amd64
@@ -322,18 +322,18 @@ parts:
       snapcraftctl stage
     prime:
       - -usr/bin/cmark
-      - -opt/RabbitRemoteControl/bin/cmark
-      - -opt/RabbitRemoteControl/include
-      - -opt/RabbitRemoteControl/lib/cmake
-      - -opt/RabbitRemoteControl/lib/pkgconfig
-      - -opt/RabbitRemoteControl/lib/*.a
+      - -usr/local/bin/cmark
+      - -usr/local/include
+      - -usr/local/lib/cmake
+      - -usr/local/lib/pkgconfig
+      - -usr/local/lib/*.a
 
 apps:
  rabbitremotecontrol:
-   #command: opt/RabbitRemoteControl/bin/start.sh
-   command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+   #command: usr/local/bin/start.sh
+   command: usr/local/bin/RabbitRemoteControlApp
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
-   desktop: opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+   desktop: usr/local/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
    environment:
       LD_LIBRARY_PATH: ${SNAP}/usr/local/lib::${LD_LIBRARY_PATH}
       PATH: $SNAP/usr/local/bin:$PATH

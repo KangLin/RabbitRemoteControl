@@ -107,6 +107,9 @@ set(PLUGIN_UI_FILES
 if(WIN32)
     list(APPEND PLUGIN_HEADER_FILES Windows/HookWindows.h)
     list(APPEND PLUGIN_SOURCE_FILES Windows/HookWindows.cpp)
+    if(MSVC)
+        list(APPEND PLUGIN_PRIVATE_DEFINITIONS NOMINMAX)
+    endif()
     list(APPEND PLUGIN_LIBS Ws2_32)
 endif()
 
