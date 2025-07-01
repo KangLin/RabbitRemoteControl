@@ -6,7 +6,7 @@
     <message>
         <location filename="../../BackendVnc.cpp" line="317"/>
         <source>The proxy server is empty, please input it</source>
-        <translation type="unfinished">代理服務器為空，請輸入</translation>
+        <translation>代理服務器為空，請輸入</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="319"/>
@@ -15,92 +15,38 @@
         <location filename="../../BackendVnc.cpp" line="542"/>
         <location filename="../../BackendVnc.cpp" line="557"/>
         <source>Error</source>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="349"/>
         <source>The server is empty, please input it</source>
-        <translation type="unfinished">服務器為空，請輸入</translation>
+        <translation>服務器為空，請輸入</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="384"/>
         <source>Failed to open SSH tunnel:</source>
-        <translation type="unfinished">打開 SSH 隧道失敗：</translation>
+        <translation>打開 SSH 隧道失敗：</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="536"/>
         <source>Logon to </source>
-        <translation type="unfinished">登錄到 </translation>
+        <translation>登錄到 </translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="540"/>
         <location filename="../../BackendVnc.cpp" line="553"/>
         <source> fail.</source>
-        <translation type="unfinished"> 失敗。</translation>
+        <translation> 失敗。</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="541"/>
         <source>Please check that the username and password are correct.</source>
-        <translation type="unfinished">檢查用戶名和密碼是否正確。</translation>
+        <translation>檢查用戶名和密碼是否正確。</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="549"/>
         <source>Connect to </source>
-        <translation type="unfinished">連接到 </translation>
-    </message>
-</context>
-<context>
-    <name>CConnectVnc</name>
-    <message>
-        <source>The proxy server is empty, please input it</source>
-        <translation type="vanished">代理服務器為空，請輸入</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">錯誤</translation>
-    </message>
-    <message>
-        <source>The server is empty, please input it</source>
-        <translation type="vanished">服務器為空，請輸入</translation>
-    </message>
-    <message>
-        <source>Failed to open SSH tunnel:</source>
-        <translation type="vanished">打開 SSH 隧道失敗：</translation>
-    </message>
-    <message>
-        <source>Logon to </source>
-        <translation type="vanished">登錄到 </translation>
-    </message>
-    <message>
-        <source> fail.</source>
-        <translation type="vanished"> 失敗。</translation>
-    </message>
-    <message>
-        <source>Please check that the username and password are correct.</source>
-        <translation type="vanished">檢查用戶名和密碼是否正確。</translation>
-    </message>
-    <message>
-        <source>Connect to </source>
-        <translation type="vanished">連接到 </translation>
-    </message>
-</context>
-<context>
-    <name>CDlgGetPasswordVNC</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">輸入密碼</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">確定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">為 %1 設置密碼</translation>
+        <translation>連接到 </translation>
     </message>
 </context>
 <context>

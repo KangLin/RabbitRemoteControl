@@ -4,102 +4,48 @@
 <context>
     <name>CBackendLibVNCServer</name>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="80"/>
-        <source>Protocol version error</source>
-        <translation type="unfinished">协议版本错误</translation>
-    </message>
-    <message>
         <location filename="../../BackendLibVNCServer.cpp" line="81"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="161"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="176"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="957"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="992"/>
-        <source>Error</source>
-        <translation type="unfinished">错误</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="159"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished">服务器为空，请输入</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="173"/>
-        <source>Fail: Connect to %1:%2</source>
-        <translation type="unfinished">失败：连接到 %1:%2</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="941"/>
-        <source>Will connect to local socket server: %1:%2</source>
-        <translation type="unfinished">将连接到本地服务器：%1:%2</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="950"/>
-        <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
-        <translation type="unfinished">失败：连接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="980"/>
-        <source>Will connect to local socket server: </source>
-        <translation type="unfinished">将连接到本地 socket 服务器：</translation>
-    </message>
-    <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="987"/>
-        <source>Fail: Connect to %1:%2 with %3</source>
-        <translation type="unfinished">失败：通过 %3 连接到  %1:%2</translation>
-    </message>
-</context>
-<context>
-    <name>CConnectLibVNCServer</name>
-    <message>
-        <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">错误</translation>
-    </message>
-    <message>
         <source>Protocol version error</source>
-        <translation type="vanished">协议版本错误</translation>
+        <translation>协议版本错误</translation>
     </message>
     <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="82"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="162"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="177"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="958"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="993"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="160"/>
+        <source>The server is empty, please input it</source>
+        <translation>服务器为空，请输入</translation>
+    </message>
+    <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="174"/>
         <source>Fail: Connect to %1:%2</source>
-        <translation type="vanished">失败：连接到 %1:%2</translation>
+        <translation>失败：连接到 %1:%2</translation>
     </message>
     <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="942"/>
         <source>Will connect to local socket server: %1:%2</source>
-        <translation type="vanished">将连接到本地服务器：%1:%2</translation>
+        <translation>将连接到本地服务器：%1:%2</translation>
     </message>
     <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="951"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
-        <translation type="vanished">失败：连接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
+        <translation>失败：连接到  %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="981"/>
         <source>Will connect to local socket server: </source>
-        <translation type="vanished">将连接到本地 socket 服务器：</translation>
+        <translation>将连接到本地 socket 服务器：</translation>
     </message>
     <message>
+        <location filename="../../BackendLibVNCServer.cpp" line="988"/>
         <source>Fail: Connect to %1:%2 with %3</source>
-        <translation type="vanished">失败：通过 %3 连接到  %1:%2</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgLibVNCServerPassword</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">输入密码</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">确定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">为 %1 设置密码</translation>
+        <translation>失败：通过 %3 连接到  %1:%2</translation>
     </message>
 </context>
 <context>

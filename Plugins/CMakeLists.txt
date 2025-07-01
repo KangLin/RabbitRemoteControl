@@ -69,7 +69,7 @@ if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
     endif()
     option(BUILD_TERMINAL_SSH "Build libssh" ON)
     if(BUILD_TERMINAL_SSH)
-        add_subdirectory(LibSSH)
+        add_subdirectory(SSH)
     endif()
 endif()
 

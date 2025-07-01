@@ -223,9 +223,5 @@
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>
-    <message>
-        <source>Player: play media files. play and recored camera, network media stream.</source>
-        <translation type="vanished">播放器：播放多媒體文件。播放和錄製攝像頭、網絡媒體流。</translation>
-    </message>
 </context>
 </TS>

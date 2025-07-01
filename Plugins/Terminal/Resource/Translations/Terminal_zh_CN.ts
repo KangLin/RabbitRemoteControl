@@ -39,17 +39,17 @@
         <translation>Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
         <source>The shell is empty</source>
         <translation>Shell 是空</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="96"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="101"/>
         <source>Select shell</source>
         <translation>选择 Shell</translation>
     </message>
@@ -63,8 +63,8 @@
     </message>
     <message>
         <location filename="../../PluginTerminal.cpp" line="37"/>
-        <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation>终端：本地(shell)和远程(telnet、等)终端</translation>
+        <source>Terminal: Native(shell) terminal</source>
+        <translation type="unfinished">终端：本地(shell)终端</translation>
     </message>
 </context>
 </TS>

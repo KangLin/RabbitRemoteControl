@@ -2,53 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CConnecterWakeOnLan</name>
-    <message>
-        <source>Add</source>
-        <translation type="vanished">增加</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="vanished">编辑</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="vanished">信息</translation>
-    </message>
-    <message>
-        <source>Please select a item</source>
-        <translation type="vanished">请选择一个项目</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="vanished">删除</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="vanished">刷新</translation>
-    </message>
-    <message>
-        <source>Get mac address</source>
-        <translation type="vanished">得到 MAC 地址</translation>
-    </message>
-    <message>
-        <source>Wake on lan</source>
-        <translation type="vanished">局域网唤醒</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">警告</translation>
-    </message>
-    <message>
-        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation type="vanished">没有管理员权限，一些功能(得到 MAC 地址)受限。请用管理员权限重启程序。</translation>
-    </message>
-    <message>
-        <source>Exit the program</source>
-        <translation type="vanished">退出程序</translation>
-    </message>
-</context>
-<context>
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
@@ -72,57 +25,57 @@
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="59"/>
         <source>Add</source>
-        <translation type="unfinished">增加</translation>
+        <translation>增加</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="61"/>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="68"/>
         <source>Information</source>
-        <translation type="unfinished">信息</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="69"/>
         <source>Please select a item</source>
-        <translation type="unfinished">请选择一个项目</translation>
+        <translation>请选择一个项目</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="76"/>
         <source>Remove</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="79"/>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="85"/>
         <source>Get mac address</source>
-        <translation type="unfinished">得到 MAC 地址</translation>
+        <translation>得到 MAC 地址</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="98"/>
         <source>Wake on lan</source>
-        <translation type="unfinished">局域网唤醒</translation>
+        <translation>局域网唤醒</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="159"/>
         <source>Warning</source>
-        <translation type="unfinished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="160"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation type="unfinished">没有管理员权限，一些功能(得到 MAC 地址)受限。请用管理员权限重启程序。</translation>
+        <translation>没有管理员权限，一些功能(得到 MAC 地址)受限。请用管理员权限重启程序。</translation>
     </message>
     <message>
         <location filename="../../OperateWakeOnLan.cpp" line="164"/>
         <source>Always shown</source>
-        <translation type="unfinished"></translation>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>

@@ -698,37 +698,37 @@
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="869"/>
+        <location filename="../../mainwindow.cpp" line="871"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="878"/>
+        <location filename="../../mainwindow.cpp" line="880"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="917"/>
+        <location filename="../../mainwindow.cpp" line="919"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1100"/>
+        <location filename="../../mainwindow.cpp" line="1102"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1101"/>
+        <location filename="../../mainwindow.cpp" line="1103"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1131"/>
+        <location filename="../../mainwindow.cpp" line="1133"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1132"/>
+        <location filename="../../mainwindow.cpp" line="1134"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>
@@ -736,27 +736,27 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="86"/>
+        <location filename="../../main.cpp" line="88"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="92"/>
+        <location filename="../../main.cpp" line="94"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="93"/>
+        <location filename="../../main.cpp" line="95"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="118"/>
+        <location filename="../../main.cpp" line="120"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="166"/>
+        <location filename="../../main.cpp" line="168"/>
         <source>End</source>
         <translation>结束</translation>
     </message>

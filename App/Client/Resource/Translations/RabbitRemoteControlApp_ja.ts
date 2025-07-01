@@ -694,37 +694,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="869"/>
+        <location filename="../../mainwindow.cpp" line="871"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="878"/>
+        <location filename="../../mainwindow.cpp" line="880"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="917"/>
+        <location filename="../../mainwindow.cpp" line="919"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1100"/>
+        <location filename="../../mainwindow.cpp" line="1102"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1101"/>
+        <location filename="../../mainwindow.cpp" line="1103"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1131"/>
+        <location filename="../../mainwindow.cpp" line="1133"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1132"/>
+        <location filename="../../mainwindow.cpp" line="1134"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -732,27 +732,27 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="86"/>
+        <location filename="../../main.cpp" line="88"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="92"/>
+        <location filename="../../main.cpp" line="94"/>
         <source>Rabbit Remote Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="93"/>
+        <location filename="../../main.cpp" line="95"/>
         <source>Kang Lin Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="118"/>
+        <location filename="../../main.cpp" line="120"/>
         <source>Generate update json file End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="166"/>
+        <location filename="../../main.cpp" line="168"/>
         <source>End</source>
         <translation type="unfinished"></translation>
     </message>

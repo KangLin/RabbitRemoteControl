@@ -63,10 +63,6 @@
         <source>Capture or record screen and window. This is a sample example.</source>
         <translation>捕獲或錄製屏幕和窗口。這是一個簡單的示例。</translation>
     </message>
-    <message>
-        <source>Capture or recored screen and window</source>
-        <translation type="vanished">捕獲或錄製屏幕和窗口</translation>
-    </message>
 </context>
 <context>
     <name>CScreenCapture</name>

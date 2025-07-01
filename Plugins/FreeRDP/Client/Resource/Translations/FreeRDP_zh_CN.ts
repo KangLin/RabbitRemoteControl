@@ -255,13 +255,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
-    <name>CConnectLayerQTcpSocket</name>
-    <message>
-        <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
-    </message>
-</context>
-<context>
     <name>CDlgDesktopSize</name>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="14"/>
@@ -728,17 +721,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../PluginFreeRDP.cpp" line="124"/>
         <source>Build date: </source>
         <translation>编译日期：</translation>
-    </message>
-</context>
-<context>
-    <name>ConnectLayerSSHTunnel</name>
-    <message>
-        <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">错误</translation>
     </message>
 </context>
 <context>
