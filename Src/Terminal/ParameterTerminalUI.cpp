@@ -100,14 +100,7 @@ int CParameterTerminalUI::SetParameter(CParameter *pParameter)
     ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
     ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
     ui->cbCursorShape->setCurrentIndex((int)m_pPara->GetCursorShape());
-    
-    QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
-                                         + QDir::separator() + "color-schemes");
-    QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
-                                         + QDir::separator() + ".."
-                                         + QDir::separator() + "share"
-                                         + QDir::separator() + "qtermwidget6"
-                                         + QDir::separator() + "color-schemes");
+
     ui->cbColorScheme->addItems(QTermWidget::availableColorSchemes());
     if(!m_pPara->GetColorScheme().isEmpty())
         ui->cbColorScheme->setCurrentText(m_pPara->GetColorScheme());
@@ -121,7 +114,7 @@ int CParameterTerminalUI::SetParameter(CParameter *pParameter)
     ui->cbFlowControl->setChecked(m_pPara->GetFlowControl());
     ui->cbBiDirectional->setChecked(m_pPara->GetDirectional());
     ui->leImage->setText(m_pPara->GetBackgroupImage());
-    
+
     ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
     ui->cbKeyBinding->setCurrentText(m_pPara->GetKeyBindings());
 

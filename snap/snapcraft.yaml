@@ -240,9 +240,10 @@ parts:
     # See 'snapcraft plugins'
     # see: https://snapcraft.io/docs/supported-plugins
     plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
-    source: https://github.com/lxqt/qtermwidget.git
+    source: https://github.com/KangLin/qtermwidget.git
     source-type: git
-    source-tag: 2.2.0
+    #source-tag: 2.2.0
+    source-branch: master
     source-depth: 1
     after:
       - lxqt-build-tools

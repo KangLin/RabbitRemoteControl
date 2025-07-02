@@ -21,19 +21,26 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
       m_pThread(nullptr),
       m_pParameters(nullptr)
 {
+    QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
+                                         + QDir::separator() + "color-schemes");
+    QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
+                                         + QDir::separator() + ".."
+                                         + QDir::separator() + "share"
+                                         + QDir::separator() + "qtermwidget6"
+                                         + QDir::separator() + "color-schemes");
+    /*QTermWidget::addCustomKeyboardLayoutDir(QApplication::applicationDirPath()
+                                            + QDir::separator() + "kb-layouts");
+    QTermWidget::addCustomKeyboardLayoutDir(QApplication::applicationDirPath()
+                                            + QDir::separator() + ".."
+                                            + QDir::separator() + "share"
+                                            + QDir::separator() + "qtermwidget6"
+                                            + QDir::separator() + "kb-layouts");//*/
     m_pTerminal = new QTermWidget(0);
     if(!m_pTerminal) {
         qCritical(log) << "new QTermWidget() fail";
         return;
     }
     m_pTerminal->setAutoClose(true);
-    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath()
-                                         + QDir::separator() + "color-schemes");
-    m_pTerminal->addCustomColorSchemeDir(QApplication::applicationDirPath()
-                                         + QDir::separator() + ".."
-                                         + QDir::separator() + "share"
-                                         + QDir::separator() + "qtermwidget6"
-                                         + QDir::separator() + "color-schemes");
 
     bool check = false;
     m_pTerminal->setContextMenuPolicy(Qt::CustomContextMenu);

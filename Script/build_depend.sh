@@ -513,7 +513,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
         cmake --build . --config Release --target install
     fi
     if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
-        git clone -b 2.2.0 --depth=1 https://github.com/lxqt/qtermwidget.git
+        git clone https://github.com/KangLin/qtermwidget.git
         cd qtermwidget
         cmake -E make_directory build
         cd build

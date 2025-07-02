@@ -6,10 +6,12 @@
 
 static Q_LOGGING_CATEGORY(log, "Plugin.SSH.Backend")
 
+#define TERMWIDGET_EVENT_TYPE (QEvent::User + 1976)
+
 class QEventTerminal: public QEvent
 {
 public:
-    explicit QEventTerminal(char* data, int len) : QEvent(QEvent::User)
+    explicit QEventTerminal(char* data, int len) : QEvent((QEvent::Type)TERMWIDGET_EVENT_TYPE)
         , m_Data(data, len)
     {
     }
@@ -121,7 +123,7 @@ int CBackendSSH::OnClean()
 bool CBackendSSH::event(QEvent *event)
 {
     switch (event->type()) {
-    case QEvent::User:
+    case TERMWIDGET_EVENT_TYPE:
     {
         QEventTerminal *d = (QEventTerminal*)event;
         if(m_pChannelSSH && d->m_Data.length() > 0) {
