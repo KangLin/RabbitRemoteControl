@@ -336,8 +336,8 @@ jobs:
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-              cmake --build . --config Release
-              cmake --build . --config Release --target install
+              cmake --build .  --config ${{matrix.BUILD_TYPE}}
+              cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           )
 
       - name: qtermwidget6
@@ -352,8 +352,8 @@ jobs:
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools
-              cmake --build . --config Release
-              cmake --build . --config Release --target install
+              cmake --build .  --config ${{matrix.BUILD_TYPE}}
+              cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           )
 
       - name: RabbitCommon

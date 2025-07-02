@@ -265,7 +265,7 @@ jobs:
         if: false
         working-directory: ${{env.SOURCE_DIR}}
         env:
-          QT_ROOT: ${{env.Qt5_Dir}}
+          QT_ROOT: ${{env.Qt6_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/qxmpp ]; then
             git clone -b v1.10.3 https://invent.kde.org/libraries/qxmpp.git
@@ -279,6 +279,7 @@ jobs:
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                 -DVCPKG_VERBOSE=ON \
@@ -290,6 +291,39 @@ jobs:
                 -DBUILD_TESTS=OFF
             cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}}
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
+          fi
+
+      - name: build lxqt-build-tools
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools ]; then
+              git clone -b 2.2.0 --depth=1 "https://github.com/lxqt/lxqt-build-tools.git"
+              cd lxqt-build-tools
+              cmake -E make_directory build
+              cd build
+              ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                  -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64
+              cmake --build .  --config ${{matrix.BUILD_TYPE}}
+              cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
+          fi
+
+      - name: build qtermwidget
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 ]; then
+              git clone --depth=1 "https://github.com/KangLin/qtermwidget.git"
+              cd qtermwidget
+              cmake -E make_directory build
+              cd build
+              ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                  -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+                  -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
+                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64
+              cmake --build .  --config ${{matrix.BUILD_TYPE}}
+              cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
       - name: git clone RabbitCommon
@@ -321,6 +355,7 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
+              -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
@@ -332,7 +367,8 @@ jobs:
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
               -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
-              -DBUILD_FREERDP=ON
+              -DBUILD_FREERDP=ON \
+              -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6
           cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
