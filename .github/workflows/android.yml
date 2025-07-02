@@ -304,7 +304,7 @@ jobs:
               ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
@@ -321,7 +321,7 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
@@ -355,7 +355,7 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
-              -DCMAKE_PREFIX_PATH=${Qt6_DIR}/../gcc_64 \
+              -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
