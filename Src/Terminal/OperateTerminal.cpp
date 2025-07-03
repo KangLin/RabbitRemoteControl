@@ -341,6 +341,16 @@ const qint16 COperateTerminal::Version() const
     return 0;
 }
 
+const QString COperateTerminal::Details()
+{
+    QString szDetails;
+    szDetails = "-  " + tr("QTermWidget:") + " "
+                + QString("%1.%2.%3").arg(QTERMWIDGET_VERSION_MAJOR)
+                      .arg(QTERMWIDGET_VERSION_MINOR)
+                      .arg(QTERMWIDGET_VERSION_PATCH) + "\n";
+    return szDetails;
+}
+
 int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
 {
     Q_ASSERT(pPara);

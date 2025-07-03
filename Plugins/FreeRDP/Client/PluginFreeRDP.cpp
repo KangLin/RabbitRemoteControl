@@ -130,7 +130,7 @@ const QString CPluginFreeRDP::Details() const
     szDetails += freerdp_get_build_config();
 
 #ifdef HAVE_LIBSSH
-    CChannelSSHTunnel channel(nullptr, nullptr, nullptr);
+    CChannelSSH channel(nullptr, nullptr);
     szDetails += channel.GetDetails();
 #endif
 

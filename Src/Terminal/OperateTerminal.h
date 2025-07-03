@@ -46,6 +46,7 @@ public:
     [[nodiscard]] virtual const QString Description() override;
     [[nodiscard]] QWidget* GetViewer() override;
     [[nodiscard]] virtual const qint16 Version() const override;
+    [[nodiscard]] static const QString Details();
 
 public Q_SLOTS:
     virtual int Start() override;

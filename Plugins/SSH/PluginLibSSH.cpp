@@ -2,11 +2,12 @@
 
 #include "OperateSSH.h"
 #include "PluginLibSSH.h"
+#include "ChannelSSH.h"
 
 #include <QLoggingCategory>
 static Q_LOGGING_CATEGORY(log, "Plugin.SSH")
 
-CPluginLibSSH::CPluginLibSSH()
+CPluginLibSSH::CPluginLibSSH(QObject *parent) : CPlugin(parent)
 {
 }
 
@@ -55,6 +56,18 @@ const CPlugin::TYPE CPluginLibSSH::Type() const
 const QString CPluginLibSSH::Version() const
 {
     return 0;
+}
+
+const QString CPluginLibSSH::Details() const
+{
+    QString szDetails;
+    szDetails = COperateTerminal::Details();
+#ifdef HAVE_LIBSSH
+    CChannelSSH channel(nullptr, nullptr);
+    szDetails += channel.GetDetails();
+#endif
+
+    return szDetails;
 }
 
 COperate *CPluginLibSSH::OnCreateOperate(const QString &szId)

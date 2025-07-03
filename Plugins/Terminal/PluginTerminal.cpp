@@ -53,6 +53,13 @@ const QString CPluginTerminal::Version() const
     return 0;
 }
 
+const QString CPluginTerminal::Details() const
+{
+    QString szDetails;
+    szDetails = COperateTerminal::Details();
+    return szDetails;
+}
+
 COperate *CPluginTerminal::OnCreateOperate(const QString &szId)
 {
     if(Id() == szId)
