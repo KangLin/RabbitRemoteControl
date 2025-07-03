@@ -127,7 +127,7 @@ void CBackend::slotTimeOut()
         qCritical(log) << "Process fail";
         emit sigError(-3, "Process fail");
     }
-    
+
     // Error or stop, must notify user disconnect it
     emit sigStop();
 }

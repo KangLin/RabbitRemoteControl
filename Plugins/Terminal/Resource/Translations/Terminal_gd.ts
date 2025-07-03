@@ -63,7 +63,12 @@
     </message>
     <message>
         <location filename="../../PluginTerminal.cpp" line="37"/>
-        <source>Terminal: Native(shell) terminal</source>
+        <source>Terminal: Native(shell) terminal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginTerminal.cpp" line="38"/>
+        <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

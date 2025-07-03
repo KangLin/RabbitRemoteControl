@@ -36,8 +36,8 @@ const QString CPluginLibVNCServer::DisplayName() const
 
 const QString CPluginLibVNCServer::Description() const
 {
-    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n\t"
-            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n\t"
+    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
+           + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
            + tr("It uses LibVNCServer");
 }
 

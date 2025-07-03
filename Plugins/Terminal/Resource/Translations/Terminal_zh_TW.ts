@@ -63,8 +63,13 @@
     </message>
     <message>
         <location filename="../../PluginTerminal.cpp" line="37"/>
-        <source>Terminal: Native(shell) terminal</source>
-        <translation type="unfinished">終端：本地(shell)終端</translation>
+        <source>Terminal: Native(shell) terminal.</source>
+        <translation>終端：本地(shell)終端</translation>
+    </message>
+    <message>
+        <location filename="../../PluginTerminal.cpp" line="38"/>
+        <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
+        <translation>它使用 QTermWidget: https://github.com/KangLin/qtermwidget</translation>
     </message>
 </context>
 </TS>

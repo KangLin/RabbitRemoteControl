@@ -4,7 +4,7 @@
 <context>
     <name>CChannelSSHTerminal</name>
     <message>
-        <location filename="../../ChannelSSHTerminal.cpp" line="157"/>
+        <location filename="../../ChannelSSHTerminal.cpp" line="159"/>
         <source>The channel is eof</source>
         <translation type="unfinished"></translation>
     </message>
@@ -41,8 +41,12 @@
     </message>
     <message>
         <location filename="../../PluginLibSSH.cpp" line="35"/>
-        <source>Secure Shell(SSH): is a secure protocol and the most common way of safely administering remote servers. Using a number of encryption technologies, SSH provides a mechanism for establishing a cryptographically secured connection between two parties, authenticating each side to the other, and passing commands and output back and forth.You can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...
-It uses libssh: https://www.libssh.org .</source>
+        <source>Secure Shell(SSH): is a secure protocol and the most common way of safely administering remote servers. Using a number of encryption technologies, SSH provides a mechanism for establishing a cryptographically secured connection between two parties, authenticating each side to the other, and passing commands and output back and forth.You can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibSSH.cpp" line="42"/>
+        <source>It uses libssh: https://www.libssh.org .</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

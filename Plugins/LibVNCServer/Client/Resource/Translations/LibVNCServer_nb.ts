@@ -157,7 +157,7 @@
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="41"/>
-        <source>The plugin is used LibVNCServer</source>
+        <source>It uses LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -78,6 +78,7 @@ void CBackendThread::run()
     if(!m_pBackend || !bRet)
     {
         qCritical(log) << "InstanceBackend fail";
+        emit m_pOperate->sigStop();
         emit m_pOperate->sigFinished();
         return;
     }
@@ -89,6 +90,7 @@ void CBackendThread::run()
             m_pBackend->Stop();
             m_pBackend->deleteLater();
             m_pBackend = nullptr;
+            emit m_pOperate->sigStop();
             emit m_pOperate->sigFinished();
             return;
         }

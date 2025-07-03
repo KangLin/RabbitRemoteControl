@@ -43,8 +43,8 @@ const QString CPluginRabbitVNC::DisplayName() const
 
 const QString CPluginRabbitVNC::Description() const
 {
-    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n\t"
-           + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n\t"
+    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
+           + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
            + tr("The plugin is used RabbitVNC");
 }
 

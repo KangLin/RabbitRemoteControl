@@ -694,31 +694,36 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <name>CPluginFreeRDP</name>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="84"/>
-        <source>Free remote desktop</source>
-        <translation>自由遠程桌面</translation>
+        <source>Free remote desktop protocol</source>
+        <translation>自由遠程桌面協議</translation>
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="89"/>
-        <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
-        <translation>RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+        <source>RDP(Remote desktop Protocol): Access remote desktops such as windows.</source>
+        <translation>RDP（遠程桌面協議）：訪問遠程桌面。例如：Windows 遠程桌面。</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="113"/>
+        <location filename="../../PluginFreeRDP.cpp" line="90"/>
+        <source>It uses FreeRDP: https://github.com/FreeRDP/FreeRDP/</source>
+        <translation>它使用：FreeRDP: https://github.com/FreeRDP/FreeRDP/</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="114"/>
         <source>FreeRDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="115"/>
+        <location filename="../../PluginFreeRDP.cpp" line="116"/>
         <source>version: </source>
         <translation>版本號：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="118"/>
+        <location filename="../../PluginFreeRDP.cpp" line="119"/>
         <source>Build version: </source>
         <translation>編譯版本號：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="124"/>
+        <location filename="../../PluginFreeRDP.cpp" line="125"/>
         <source>Build date: </source>
         <translation>編譯日期：</translation>
     </message>

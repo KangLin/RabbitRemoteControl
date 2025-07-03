@@ -81,12 +81,12 @@ const QString CPluginFreeRDP::Name() const
 
 const QString CPluginFreeRDP::DisplayName() const
 {
-    return tr("Free remote desktop");
+    return tr("Free remote desktop protocol");
 }
 
 const QString CPluginFreeRDP::Description() const
 {
-    return tr("RDP(Remote desktop Protocol): Access remote desktops such as windows.") + "\n\t"
+    return tr("RDP(Remote desktop Protocol): Access remote desktops such as windows.") + "\n"
            + tr("It uses FreeRDP: https://github.com/FreeRDP/FreeRDP/");
 }
 

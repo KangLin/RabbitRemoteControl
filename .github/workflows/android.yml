@@ -279,6 +279,7 @@ jobs:
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
                 -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
@@ -294,6 +295,7 @@ jobs:
           fi
 
       - name: build lxqt-build-tools
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools ]; then
@@ -304,13 +306,20 @@ jobs:
               ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
       - name: build qtermwidget
         working-directory: ${{env.SOURCE_DIR}}
+        if: false
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 ]; then
               git clone --depth=1 "https://github.com/KangLin/qtermwidget.git"
@@ -321,7 +330,13 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
