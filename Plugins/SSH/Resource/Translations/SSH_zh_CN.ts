@@ -35,17 +35,17 @@
 <context>
     <name>CPluginLibSSH</name>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="30"/>
+        <location filename="../../PluginLibSSH.cpp" line="31"/>
         <source>Secure Shell(SSH)</source>
         <translation>安全外壳（SSH）</translation>
     </message>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="35"/>
+        <location filename="../../PluginLibSSH.cpp" line="36"/>
         <source>Secure Shell(SSH): is a secure protocol and the most common way of safely administering remote servers. Using a number of encryption technologies, SSH provides a mechanism for establishing a cryptographically secured connection between two parties, authenticating each side to the other, and passing commands and output back and forth.You can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
         <translation>安全外壳（SSH）：是一种安全协议，也是安全管理远程服务器的最常见方法。SSH 使用多种加密技术，提供了一种机制，用于在两方之间建立加密安全连接，对每一方进行身份验证，以及来回传递命令和输出。你能远程执行程序、传输文件。</translation>
     </message>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="42"/>
+        <location filename="../../PluginLibSSH.cpp" line="43"/>
         <source>It uses libssh: https://www.libssh.org .</source>
         <translation>它使用 libssh: https://www.libssh.org </translation>
     </message>

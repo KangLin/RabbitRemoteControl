@@ -5,8 +5,8 @@
     <name>CChannelSSH</name>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="28"/>
-        <source>- libssh version: </source>
-        <translation>- libssh 版本：</translation>
+        <source>libssh version:</source>
+        <translation>libssh 版本：</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="73"/>
@@ -272,19 +272,22 @@
 <context>
     <name>CHookWindows</name>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕获系统快捷键需要管理员权限。
+        <translation>捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="vanished">总是显示</translation>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>
@@ -528,6 +531,11 @@ Restart program by administrator?</source>
         <location filename="../../Terminal/OperateTerminal.cpp" line="198"/>
         <source>Clear</source>
         <translation>清除</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="347"/>
+        <source>QTermWidget:</source>
+        <translation></translation>
     </message>
 </context>
 <context>

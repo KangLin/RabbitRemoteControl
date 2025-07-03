@@ -5,7 +5,7 @@
     <name>CChannelSSH</name>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="28"/>
-        <source>- libssh version: </source>
+        <source>libssh version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -270,6 +270,26 @@
     </message>
 </context>
 <context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CManager</name>
     <message>
         <location filename="../../Manager.cpp" line="115"/>
@@ -509,6 +529,11 @@
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="198"/>
         <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="347"/>
+        <source>QTermWidget:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
