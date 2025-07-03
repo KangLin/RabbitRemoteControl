@@ -34,7 +34,8 @@ const QString CPluginTerminal::DisplayName() const
 
 const QString CPluginTerminal::Description() const
 {
-    return tr("Terminal: Native(shell) terminal");
+    return tr("Terminal: Native(shell) terminal.") + "\n\t"
+           + tr("It uses QTermWidget: https://github.com/KangLin/qtermwidget");
 }
 
 const QIcon CPluginTerminal::Icon() const

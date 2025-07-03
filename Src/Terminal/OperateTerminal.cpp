@@ -131,6 +131,11 @@ const QString COperateTerminal::Description()
         if(!sshNet.GetHost().isEmpty())
             szDescription += tr("Server address: ") + sshNet.GetHost()
                     + ":" + QString::number(sshNet.GetPort()) + "\n";
+        else {
+            szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
+            if(!GetParameter()->GetShellParameters().isEmpty())
+                szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
+        }
     }
 
     if(!GetPlugin()->Description().isEmpty())

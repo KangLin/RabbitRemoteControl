@@ -38,8 +38,8 @@ const QString CPluginLibSSH::Description() const
               "authenticating each side to the other, and passing commands and output back and forth."
               "You can remotely execute programs, transfer files, "
               "use a secure and transparent tunnel, "
-              "manage public keys and much more ...\n"
-              "It uses libssh: https://www.libssh.org .");
+              "manage public keys and much more ...") + "\n\t"
+              + tr("It uses libssh: https://www.libssh.org .");
 }
 
 const QIcon CPluginLibSSH::Icon() const
