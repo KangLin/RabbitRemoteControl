@@ -367,7 +367,7 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
         szMsg += QString("() or ") + metaObject()->className()
                  + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of operate "
+                 "Default set CParameterPlugin for the parameters of operate "
                  "(CParameterOperate or its derived classes) "
                  "See CManager::CreateOperate. "
                  "If you are sure the parameter of operate "

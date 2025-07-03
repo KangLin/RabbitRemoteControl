@@ -1,19 +1,18 @@
 #include "PluginTelnet.h"
-#include "RabbitCommonDir.h"
-#include "ConnecterTelnet.h"
+#include "OperateTelnet.h"
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(Telnet, "Telnet")
+static Q_LOGGING_CATEGORY(log, "Plugin.Telnet")
 
 CPluginTelnet::CPluginTelnet(QObject *parent)
-    : CPluginClient(parent)
+    : CPlugin(parent)
 {
 }
 
 CPluginTelnet::~CPluginTelnet()
 {
-    qDebug(Telnet) << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 const QString CPluginTelnet::Protocol() const
@@ -23,12 +22,17 @@ const QString CPluginTelnet::Protocol() const
 
 const QString CPluginTelnet::Name() const
 {
+    return "Telnet";
+}
+
+const QString CPluginTelnet::DisplayName() const
+{
     return tr("Telnet");
 }
 
 const QString CPluginTelnet::Description() const
 {
-    return tr("Telnet: net terminal");
+    return tr("Telnet: It is not safe. Please use SSH in the production environment.");
 }
 
 const QIcon CPluginTelnet::Icon() const
@@ -36,11 +40,19 @@ const QIcon CPluginTelnet::Icon() const
     return QIcon::fromTheme("console");
 }
 
-CConnecter *CPluginTelnet::CreateConnecter(const QString &szProtocol)
+const CPlugin::TYPE CPluginTelnet::Type() const
 {
-    if(Id() == szProtocol)
-    {   
-        return new CConnecterTelnet(this);
-    }
+    return TYPE::Terminal;
+}
+
+const QString CPluginTelnet::Version() const
+{
+    return 0;
+}
+
+COperate *CPluginTelnet::OnCreateOperate(const QString &szId)
+{
+    if(Id() == szId)
+        return new COperateTelnet(this);
     return nullptr;
 }

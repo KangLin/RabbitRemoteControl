@@ -12,7 +12,7 @@ project(SSH DESCRIPTION "SSH terminal")
 
 list(APPEND libssh_LIB Plugin)
 
-SET(SOURCE_FILES
+SET(LIBSSH_SOURCE_FILES
     PluginLibSSH.cpp
     OperateSSH.cpp
     DlgSettingsSSH.cpp
@@ -20,7 +20,7 @@ SET(SOURCE_FILES
     ChannelSSHTerminal.cpp
     )
 
-SET(HEADER_FILES
+SET(LIBSSH_HEADER_FILES
     PluginLibSSH.h
     OperateSSH.h
     DlgSettingsSSH.h
@@ -28,7 +28,7 @@ SET(HEADER_FILES
     ChannelSSHTerminal.h
     )
 
-SET(UI_FILES
+SET(LIBSSH_UI_FILES
     DlgSettingsSSH.ui
     )
 
@@ -36,7 +36,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
+    SOURCE_FILES ${LIBSSH_SOURCE_FILES} ${LIBSSH_HEADER_FILES} ${LIBSSH_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${libssh_LIB}
     INSTALL_DIR ${PLUGIN_PATH}
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}

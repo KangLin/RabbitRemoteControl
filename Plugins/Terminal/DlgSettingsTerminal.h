@@ -1,5 +1,6 @@
-#ifndef DLGSETTINGSTERMINAL_H
-#define DLGSETTINGSTERMINAL_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QDialog>
 #include "ParameterTerminalBase.h"
@@ -33,4 +34,3 @@ private:
     CParameterTerminalUI* m_pFrmParaAppearnce;
 };
 
-#endif // DLGSETTINGSTERMINAL_H

@@ -3,73 +3,43 @@
 project(Telnet
     DESCRIPTION "Telnet plugin")
 
-set(_telnet_libs Terminal)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Widgets)
+set(TELNET_LIBS Plugin)
+
+list(APPEND TELNET_QT_COMPONENTS Core Gui Network Widgets WebSockets)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${TELNET_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
-    list(APPEND _telnet_libs Qt${QT_VERSION_MAJOR}::Network)
-endif()
-
-find_package(libtelnet)
-if(libtelnet_FOUND)
-    list(APPEND _telnet_libs libtelnet)
+    FOREACH(_COMPONENT ${TELNET_QT_COMPONENTS})
+        list(APPEND TELNET_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+    ENDFOREACH()
 else()
-    find_path(libtelnetIncludeDir NAMES libtelnet.h
-        HINTS ${libtelnet_DIR}
-        PATHS ENV llibtelnet_DIR
-        PATH_SUFFIXES include
-        )
-    find_library(libtelnet_lib NAMES telnet
-        HINTS ${libtelnet_DIR}
-        PATHS ENV libtelnet_DIR
-        PATH_SUFFIXES lib
-        )
-    if(NOT (libtelnetIncludeDir AND libtelnet_lib))
-        message("Install libssh and set libtelnet_DIR variable to install root directory")
-        return()
-    endif()
-
-    list(APPEND _telnet_libs ${libtelnet_lib})
-    set(_libtelnet_include_dir ${libtelnetIncludeDir})
+    message(FATAL_ERROR "Qt${QT_VERSION_MAJOR} don't found")
 endif()
-message("libtelnet:${_telnet_libs}")
 
-SET(SOURCE_FILES
+SET(TELNET_SOURCE_FILES
     PluginTelnet.cpp
-    ConnecterTelnet.cpp
-    ParameterTelnet.cpp
+    OperateTelnet.cpp
+    QTelnet.cpp
     DlgSettingsTelnet.cpp
+    ParameterTelnet.cpp
     )
 
-SET(HEADER_FILES
-    ConnecterTelnet.h
-    ParameterTelnet.h
+SET(TELNET_HEADER_FILES
     PluginTelnet.h
+    OperateTelnet.h
+    QTelnet.h
     DlgSettingsTelnet.h
+    ParameterTelnet.h
     )
 
-SET(UI_FILES
+SET(TELNET_UI_FILES
     DlgSettingsTelnet.ui
     )
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
-
-if(_libtelnet_include_dir)
-    ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
-        ISPLUGIN
-        VERSION ${RabbitRemoteControl_VERSION}
-        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-        PRIVATE_LIBS ${_telnet_libs}
-        PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
-        INSTALL_DIR ${PLUGIN_PATH}
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
-        )
-else()
-    ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
-        ISPLUGIN
-        VERSION ${RabbitRemoteControl_VERSION}
-        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-        PRIVATE_LIBS ${_telnet_libs}
-        INSTALL_DIR ${PLUGIN_PATH}
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
-        )
-endif()
+ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
+    ISPLUGIN
+    SOURCE_FILES ${TELNET_SOURCE_FILES} ${TELNET_HEADER_FILES} ${TELNET_UI_FILES} ${RCC_FILES}
+    PRIVATE_LIBS ${TELNET_LIBS}
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
+    INSTALL_RPATH ${INSTALL_RPATH}
+    VERSION ${RabbitRemoteControl_VERSION}
+)

@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "PluginTerminal.h"
 #include "RabbitCommonDir.h"
 #include "Terminal.h"

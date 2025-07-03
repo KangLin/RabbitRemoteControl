@@ -1,26 +1,26 @@
 #include "DlgSettingsTelnet.h"
 #include "ui_DlgSettingsTelnet.h"
 
-CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CDlgSettingsTelnet),
-    m_pPara(pPara)
+CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTelnet *pPara, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::CDlgSettingsTelnet)
+    , m_pPara(pPara)
 {
     ui->setupUi(this);
-    
-    ui->leName->setText(m_pPara->GetName());
-    ui->leHost->setText(m_pPara->GetHost());
-    ui->spPort->setValue(m_pPara->GetPort());
-    
-    m_pFrmParaAppearance =
-            new CFrmParameterTerminalAppearanceSettings(m_pPara, this);
-    if(m_pFrmParaAppearance)
-        ui->tabWidget->addTab(m_pFrmParaAppearance,
-                              m_pFrmParaAppearance->windowTitle());
 
-    m_pFrmParaBehavior = new CFrmParameterTerminalBehavior(m_pPara, this);
-    if(m_pFrmParaBehavior)
-        ui->tabWidget->addTab(m_pFrmParaBehavior, m_pFrmParaBehavior->windowTitle());
+    Q_ASSERT(m_pPara);
+
+    ui->leLogin->setText(pPara->GetLogin());
+    ui->lePassword->setText(pPara->GetPassword());
+
+    ui->wNet->SetParameter(&m_pPara->m_Net);
+    m_pFrmParaAppearnce =
+        new CParameterTerminalUI(this);
+    if(m_pFrmParaAppearnce) {
+        m_pFrmParaAppearnce->SetParameter(&m_pPara->m_Terminal);
+        ui->tabWidget->addTab(m_pFrmParaAppearnce,
+                              m_pFrmParaAppearnce->windowTitle());
+    }
 }
 
 CDlgSettingsTelnet::~CDlgSettingsTelnet()
@@ -30,28 +30,22 @@ CDlgSettingsTelnet::~CDlgSettingsTelnet()
 
 void CDlgSettingsTelnet::on_pbOK_clicked()
 {
-    m_pPara->SetName(ui->leHost->text());
-    m_pPara->SetHost(ui->leHost->text());
-    m_pPara->SetPort(ui->spPort->value());
-    
-    if(m_pFrmParaAppearance)
-        m_pFrmParaAppearance->AcceptSettings();
-    if(m_pFrmParaBehavior)
-        m_pFrmParaBehavior->AcceptSettings();
-    this->accept();
+    if(!ui->wNet->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
+        return;
+    }
+
+    ui->wNet->Accept();
+    if(m_pFrmParaAppearnce)
+        m_pFrmParaAppearnce->Accept();
+
+    m_pPara->SetLogin(ui->leLogin->text());
+    m_pPara->SetPassword(ui->lePassword->text());
+
+    accept();
 }
 
 void CDlgSettingsTelnet::on_pbCancel_clicked()
 {
-    this->reject();
-}
-
-void CDlgSettingsTelnet::on_leHost_editingFinished()
-{
-    auto s = ui->leHost->text().split(":");
-    if(s.size() == 2)
-    {
-        ui->spPort->setValue(s[1].toUInt());
-        ui->leHost->setText(s[0]);
-    }
+    reject();
 }

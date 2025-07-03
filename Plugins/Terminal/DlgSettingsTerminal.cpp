@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "DlgSettingsTerminal.h"
 #include "ui_DlgSettingsTerminal.h"
 #include <QMessageBox>

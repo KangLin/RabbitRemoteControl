@@ -16,5 +16,5 @@ jobs:
         with:
           check_filenames: true
           path: ${{github.workspace}}
-          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg,debian/changelog,Package/Flatpak/shared-modules/*,Package/Flatpak/shared-modules/*.*"
+          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg,debian/changelog,Package/Flatpak/shared-modules/*,Package/Flatpak/shared-modules/*.*,QTelnet.cpp"
           ignore_words_list: "spPort,build-in,pIce,splitted,Fo,pAdd"

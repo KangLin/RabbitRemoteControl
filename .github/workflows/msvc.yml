@@ -19,7 +19,7 @@ jobs:
         include:
           - qt_version: 6.9.1
             qt_arch: win64_msvc2022_64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143

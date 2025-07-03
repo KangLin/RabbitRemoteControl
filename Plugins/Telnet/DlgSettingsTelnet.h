@@ -1,10 +1,9 @@
-#ifndef DLGSETTINGSTELNET_H
-#define DLGSETTINGSTELNET_H
+// Author: Kang Lin <kl222@126.com>
+#pragma once
 
 #include <QDialog>
-#include "ParameterTerminal.h"
-#include "FrmParameterTerminalAppearanceSettings.h"
-#include "FrmParameterTerminalBehavior.h"
+#include "ParameterTelnet.h"
+#include "ParameterTerminalUI.h"
 
 namespace Ui {
 class CDlgSettingsTelnet;
@@ -15,21 +14,16 @@ class CDlgSettingsTelnet : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *parent = nullptr);
-    ~CDlgSettingsTelnet();
+    explicit CDlgSettingsTelnet(CParameterTelnet *pPara, QWidget *parent = nullptr);
+    virtual ~CDlgSettingsTelnet();
     
 private slots:
     void on_pbOK_clicked();
     void on_pbCancel_clicked();
-
-    void on_leHost_editingFinished();
     
 private:
     Ui::CDlgSettingsTelnet *ui;
-    
-    CParameterTerminal* m_pPara;
-    CFrmParameterTerminalAppearanceSettings* m_pFrmParaAppearance;
-    CFrmParameterTerminalBehavior* m_pFrmParaBehavior;
-};
 
-#endif // DLGSETTINGSTELNET_H
+    CParameterTelnet* m_pPara;
+    CParameterTerminalUI* m_pFrmParaAppearnce;
+};

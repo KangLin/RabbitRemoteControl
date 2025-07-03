@@ -348,14 +348,14 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
         apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
             qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
             libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-            qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
+            qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-websockets-dev
         apt-get install -y -q freerdp2-dev
     fi
     
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
         dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
             qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
-            qt6-qtserialport-devel qt6-qtsvg-devel
+            qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel
     fi
 fi
 
@@ -375,10 +375,10 @@ if [ $QT -eq 1 ]; then
 
         echo "PATH: $PATH"
         if [ "`uname -m`" == "x86_64" ]; then
-            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
          elif [ "`uname -m`" == "aarch64" ]; then
-            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets
             mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
         fi
     fi
