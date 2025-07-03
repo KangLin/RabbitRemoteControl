@@ -88,7 +88,7 @@ MainWindow::MainWindow(QWidget *parent)
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
-    tbRecent->setPopupMode(QToolButton::InstantPopup);
+    tbRecent->setPopupMode(QToolButton::MenuButtonPopup);
     tbRecent->setMenu(m_pRecentMenu);
     tbRecent->setIcon(pRecentAction->icon());
     tbRecent->setText(pRecentAction->text());
@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QToolButton* tbStart = new QToolButton(ui->toolBar);
     tbStart->setFocusPolicy(Qt::NoFocus);
-    tbStart->setPopupMode(QToolButton::InstantPopup);
+    tbStart->setPopupMode(QToolButton::MenuButtonPopup);
     //tbStart->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbStart->setMenu(ui->menuStart);
     tbStart->setIcon(QIcon::fromTheme("media-playback-start"));
@@ -551,12 +551,12 @@ void MainWindow::slotLoadOperateMenu()
         qDebug(log) << "The current view is empty";
         return;
     }
-    foreach(auto p, m_Operates)
+    foreach(auto op, m_Operates)
     {
-        if(p->GetViewer() == pWin)
+        if(op->GetViewer() == pWin)
         {
             qDebug(log) << "Load plugin menu";
-            auto m = p->GetMenu(ui->menuTools);
+            auto m = op->GetMenu(ui->menuTools);
             if(!m) return;
             m_pActionOperateMenu = ui->menuTools->addMenu(m);
             ui->toolBar->insertAction(ui->actionFull_screen_F, m_pActionOperateMenu);

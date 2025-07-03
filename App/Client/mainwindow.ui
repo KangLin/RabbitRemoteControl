@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -103,6 +103,7 @@
    <addaction name="actionOpenListRecent"/>
    <addaction name="separator"/>
    <addaction name="actionAdd_to_favorite"/>
+   <addaction name="actionClone"/>
    <addaction name="separator"/>
    <addaction name="actionStop"/>
    <addaction name="separator"/>
