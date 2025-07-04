@@ -46,7 +46,7 @@ protected:
     };
     enum TelnetCodes
     {
-        // Negociación entrada/salida (cliente<->servidor)
+        // Negociación entrada/salida (client<->servidor)
         IAC                 = (char)255,  // Inicia la secuencia para la negociación telnet.
         EOR                 = (char)239,  // Estando en la negociación, End Of Record.
         WILL                = (char)251,  // Estando en la negociación, Acepta el protocolo?
@@ -56,10 +56,10 @@ protected:
         SB                  = (char)250,  // Estando en la negociación, inicia secuencia de sub-negociación.
         SE                  = (char)240,  // Estando en la sub-negociación, fin de sub-negociación.
 
-        // Negociación de salida (cliente->servidor)
+        // Negociación de salida (client->servidor)
         TELOPT_BINARY       = (char)0,    // Estando en la negociación, pide modo binario.
         TELOPT_ECHO         = (char)1,    // Estando en la negociación, pide echo local.
-        TELOPT_SGA          = (char)2,    // Estando en la negociación, pide Supress Go Ahead.
+        TELOPT_SGA          = (char)2,    // Estando en la negociación, pide Suppress Go Ahead.
         TELOPT_EOR          = (char)25,   // Estando en la negociación, informa End Of Record.
         TELOPT_NAWS         = (char)31,   // Estando en la negociación, Negotiate Abaut Window Size.
         TELOPT_TTYPE        = (char)24    // Estando en la negociación, Terminal Type.
