@@ -29,6 +29,15 @@ int CTerminal::Start()
 {
     slotUpdateParameter(this);
     if(m_pTerminal) {
+        bool check = connect(m_pTerminal, &QTermWidget::titleChanged,
+                             this, [&](){
+            qDebug(log) << "Title changed:" << m_pTerminal->title();
+            if(m_Parameters.GetEnableTitleChanged()) {
+                m_pTerminal->setWindowTitle(m_pTerminal->title());
+                emit sigUpdateName(m_pTerminal->title());
+            }
+        });
+        Q_ASSERT(check);
         if(!m_Parameters.GetShell().isEmpty())
             m_pTerminal->setShellProgram(m_Parameters.GetShell());
         if(!m_Parameters.GetShellParameters().isEmpty())

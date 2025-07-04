@@ -8,7 +8,7 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
                                                const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_Terminal(this)
-    , m_bTitleChanged(false)
+    , m_bTitleChanged(true)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");
