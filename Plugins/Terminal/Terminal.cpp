@@ -1,9 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QDesktopServices>
+#include <QLoggingCategory>
+
 #include "Terminal.h"
 #include "DlgSettingsTerminal.h"
-
-#include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.Operate")
 
@@ -49,4 +50,19 @@ int CTerminal::Stop()
 CBackend *CTerminal::InstanceBackend()
 {
     return nullptr;
+}
+
+int CTerminal::Initial()
+{
+    int nRet = 0;
+    nRet = COperateTerminal::Initial();
+    if(nRet)
+        return nRet;
+    m_Menu.addSeparator();
+    m_Menu.addAction(QIcon::fromTheme("folder-open"), tr("Open working directory with file explorer"),
+                     QKeySequence(Qt::CTRL | Qt::Key_O),
+                     [&](){
+                         QDesktopServices::openUrl(QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
+                     });
+    return nRet;
 }

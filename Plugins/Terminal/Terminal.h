@@ -22,4 +22,8 @@ private:
 
 private:
    CParameterTerminalBase m_Parameters;
+    
+    // COperate interface
+protected:
+    virtual int Initial() override;
 };
