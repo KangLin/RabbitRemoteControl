@@ -39,6 +39,8 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                           m_pFrmParaAppearnce->windowTitle());
     }
+
+    ui->cbTitleChanged->setChecked(m_pPara->GetEnableTitleChanged());
 }
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
@@ -60,6 +62,7 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
 
+    m_pPara->SetEnableTitleChanged(ui->cbTitleChanged->isChecked());
     accept();
 }
 

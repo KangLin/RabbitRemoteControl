@@ -20,10 +20,12 @@
 static Q_LOGGING_CATEGORY(log, "Operate.Terminal")
 
 COperateTerminal::COperateTerminal(CPlugin *parent)
-    : COperate(parent),
-      m_pTerminal(nullptr),
-      m_pThread(nullptr),
-      m_pParameters(nullptr)
+    : COperate(parent)
+    , m_pTerminal(nullptr)
+    , m_pThread(nullptr)
+    , m_pActionFind(nullptr)
+    , m_pActionOpenWithSystem(nullptr)
+    , m_pParameters(nullptr)
 {
     QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
                                          + QDir::separator() + "color-schemes");
@@ -139,23 +141,42 @@ int COperateTerminal::Initial()
     if(nRet)
         return nRet;
 
-    m_Menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy selection to clipboard"),
+    m_Menu.addAction(QIcon::fromTheme("edit-copy"),
+                     tr("Copy selection to clipboard"),
                      QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C),
                      m_pTerminal, SLOT(copyClipboard()));
-    m_Menu.addAction(QIcon::fromTheme("edit-paste"), tr("Paste clipboard"), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V),
+    m_Menu.addAction(QIcon::fromTheme("edit-paste"),
+                     tr("Paste clipboard"),
+                     QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V),
                      m_pTerminal, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pTerminal, SLOT(pasteSelection()));
     m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"), QKeySequence(Qt::CTRL | Qt::Key_Plus),
+    m_Menu.addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"),
+                     QKeySequence(Qt::CTRL | Qt::Key_Plus),
                      m_pTerminal, SLOT(zoomIn()));
-    m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out"), QKeySequence(Qt::CTRL | Qt::Key_Minus),
+    m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out"),
+                     QKeySequence(Qt::CTRL | Qt::Key_Minus),
                      m_pTerminal, SLOT(zoomOut()));
-    m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset"), QKeySequence(Qt::CTRL | Qt::Key_0),
+    m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset"),
+                     QKeySequence(Qt::CTRL | Qt::Key_0),
                      this, SLOT(slotZoomReset()));
 
     m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("edit-find"), tr("Find ......"), QKeySequence(Qt::CTRL | Qt::Key_F),
-                       m_pTerminal, &QTermWidget::toggleShowSearchBar);
+    // m_pActionOpenWithSystem = m_Menu.addAction(
+    //     QIcon::fromTheme("folder-open"),
+    //     tr("Open the selection with the System Associated Program"),
+    //     QKeySequence(Qt::CTRL | Qt::Key_O),
+    //     [&](){
+    //         QString szText = m_pTerminal->selectedText(false);
+    //         QUrl url(szText);
+    //         qDebug(log) << szText << url;
+    //         QDesktopServices::openUrl(url);
+    //     });
+    m_pActionFind = m_Menu.addAction(
+        QIcon::fromTheme("edit-find"), tr("Find ......"),
+        QKeySequence(Qt::CTRL | Qt::Key_F),
+        m_pTerminal, &QTermWidget::toggleShowSearchBar);
+    
     m_Menu.addSeparator();
     m_Menu.addAction(QIcon::fromTheme("edit-clear"), tr("Clear"), m_pTerminal, SLOT(clear()));
 
@@ -277,7 +298,11 @@ void COperateTerminal::slotZoomReset()
 void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
 {
     if(!m_pTerminal) return;
-
+    
+    // QString szText = m_pTerminal->selectedText(false);
+    // m_pActionOpenWithSystem->setVisible(
+    //     !szText.isEmpty()
+    //     && QUrl(szText).isValid());
     m_Menu.exec(m_pTerminal->mapToGlobal(pos));
 }
 

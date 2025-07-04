@@ -8,6 +8,7 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
                                                const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_Terminal(this)
+    , m_bTitleChanged(true)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");
@@ -25,6 +26,7 @@ int CParameterTerminalBase::OnLoad(QSettings &set)
     set.beginGroup("Terminal");
     SetShell(set.value("Shell", GetShell()).toString());
     SetShellParameters(set.value("Shell/Parameters", GetShellParameters()).toString());
+    SetEnableTitleChanged(set.value("EnableTitleChanged", GetEnableTitleChanged()).toBool());
     set.endGroup();
     return 0;
 }
@@ -34,6 +36,7 @@ int CParameterTerminalBase::OnSave(QSettings &set)
     set.beginGroup("Terminal");
     set.setValue("Shell", GetShell());
     set.setValue("Shell/Parameters", GetShellParameters());
+    set.setValue("EnableTitleChanged", GetEnableTitleChanged());
     set.endGroup();
     return 0;
 }
@@ -76,4 +79,18 @@ int CParameterTerminalBase::SetShellParameters(const QString &para)
 QString CParameterTerminalBase::GetShellParameters()
 {
     return m_szShellParameters;
+}
+
+bool CParameterTerminalBase::GetEnableTitleChanged() const
+{
+    return m_bTitleChanged;
+}
+
+void CParameterTerminalBase::SetEnableTitleChanged(bool newTitleChanged)
+{
+    if(m_bTitleChanged == newTitleChanged)
+        return;
+    m_bTitleChanged = newTitleChanged;
+    SetModified(true);
+    return;
 }

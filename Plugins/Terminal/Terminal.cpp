@@ -29,6 +29,17 @@ int CTerminal::Start()
 {
     slotUpdateParameter(this);
     if(m_pTerminal) {
+        bool check = connect(m_pTerminal, &QTermWidget::titleChanged,
+                             this, [&](){
+            qDebug(log) << "Title changed:" << m_pTerminal->title()
+                        << "; Working directory:"
+                        << m_pTerminal->workingDirectory();
+            if(m_Parameters.GetEnableTitleChanged()) {
+                m_pTerminal->setWindowTitle(m_pTerminal->title());
+                emit sigUpdateName(m_pTerminal->title());
+            }
+        });
+        Q_ASSERT(check);
         if(!m_Parameters.GetShell().isEmpty())
             m_pTerminal->setShellProgram(m_Parameters.GetShell());
         if(!m_Parameters.GetShellParameters().isEmpty())
@@ -58,11 +69,15 @@ int CTerminal::Initial()
     nRet = COperateTerminal::Initial();
     if(nRet)
         return nRet;
-    m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("folder-open"), tr("Open working directory with file explorer"),
-                     QKeySequence(Qt::CTRL | Qt::Key_O),
-                     [&](){
-                         QDesktopServices::openUrl(QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
-                     });
+    
+    QAction* pAction = m_Menu.addAction(
+        QIcon::fromTheme("folder-open"),
+        tr("Open working directory with file explorer"),
+        QKeySequence(Qt::CTRL | Qt::Key_O),
+        [&](){
+            QDesktopServices::openUrl(
+                QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
+        });
+    m_Menu.insertAction(m_pActionFind, pAction);
     return nRet;
 }
