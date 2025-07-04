@@ -72,6 +72,9 @@ protected:
 
     QTermWidget* m_pTerminal;
     CBackendThread* m_pThread;
+    QAction* m_pActionFind;
+    QAction* m_pActionOpenWithSystem;
+
 private:
     CParameterTerminalBase* m_pParameters;
 };

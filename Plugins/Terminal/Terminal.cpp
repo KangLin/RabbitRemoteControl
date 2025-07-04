@@ -58,11 +58,12 @@ int CTerminal::Initial()
     nRet = COperateTerminal::Initial();
     if(nRet)
         return nRet;
-    m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("folder-open"), tr("Open working directory with file explorer"),
+
+    QAction* pAction = m_Menu.addAction(QIcon::fromTheme("folder-open"), tr("Open working directory with file explorer"),
                      QKeySequence(Qt::CTRL | Qt::Key_O),
                      [&](){
                          QDesktopServices::openUrl(QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
                      });
+    m_Menu.insertAction(m_pActionFind, pAction);
     return nRet;
 }
