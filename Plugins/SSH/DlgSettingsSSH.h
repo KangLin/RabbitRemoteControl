@@ -15,7 +15,7 @@ class CDlgSettingsSSH : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsSSH(CParameterTerminalBase* pPara, QWidget *parent = nullptr);
+    explicit CDlgSettingsSSH(CParameterTerminalSSH* pPara, QWidget *parent = nullptr);
     virtual ~CDlgSettingsSSH();
     
 private slots:
@@ -24,6 +24,6 @@ private slots:
     
 private:
     Ui::CDlgSettingsSSH *ui;
-    CParameterTerminalBase* m_pPara;
+    CParameterTerminalSSH* m_pPara;
     CParameterTerminalUI* m_pFrmParaAppearnce;
 };

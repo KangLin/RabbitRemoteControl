@@ -27,7 +27,7 @@ CBackendSSH::CBackendSSH(COperateSSH *pOperate)
     , m_pTerminal(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
-    m_pPara = pOperate->GetParameter();
+    m_pPara = qobject_cast<CParameterTerminalSSH*>(pOperate->GetParameter());
     m_pTerminal = qobject_cast<QTermWidget*>(m_pOperate->GetViewer());
 }
 

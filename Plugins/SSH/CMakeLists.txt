@@ -18,6 +18,7 @@ SET(LIBSSH_SOURCE_FILES
     DlgSettingsSSH.cpp
     BackendSSH.cpp
     ChannelSSHTerminal.cpp
+    ParameterTerminalSSH.cpp
     )
 
 SET(LIBSSH_HEADER_FILES
@@ -26,6 +27,7 @@ SET(LIBSSH_HEADER_FILES
     DlgSettingsSSH.h
     BackendSSH.h
     ChannelSSHTerminal.h
+    ParameterTerminalSSH.h
     )
 
 SET(LIBSSH_UI_FILES

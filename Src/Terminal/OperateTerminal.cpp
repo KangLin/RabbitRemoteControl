@@ -74,49 +74,15 @@ COperateTerminal::~COperateTerminal()
     }
 }
 
-const QString COperateTerminal::Id()
-{
-    QString szId = COperate::Id();
-    if(GetParameter())
-    {
-        auto &sshNet = GetParameter()->m_SSH.m_Net;
-        if(!sshNet.GetHost().isEmpty())
-            szId += "_" + sshNet.GetHost()
-                    + "_" + QString::number(sshNet.GetPort());
-    }
-    static QRegularExpression exp("[-@:/#%!^&* \\.]");
-    szId = szId.replace(exp, "_");
-    return szId;
-}
-
-const QString COperateTerminal::Name()
-{
-    QString szName;
-    if(GetParameter())
-    {
-        auto &sshNet = GetParameter()->m_SSH.m_Net;
-        if(!sshNet.GetHost().isEmpty()) {
-            if(GetParameter()->GetGlobalParameters()
-                && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
-                szName = Protocol() + ":";
-            szName += sshNet.GetHost()
-                      + ":" + QString::number(sshNet.GetPort());
-        }
-    }
-    if(szName.isEmpty())
-        szName = COperate::Name();
-    return szName;
-}
-
 const QString COperateTerminal::Description()
 {
     QString szDescription;
     if(!Name().isEmpty())
         szDescription = tr("Name: ") + Name() + "\n";
-
+    
     if(!GetTypeName().isEmpty())
         szDescription += tr("Type: ") + GetTypeName() + "\n";
-
+    
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG
@@ -125,22 +91,14 @@ const QString COperateTerminal::Description()
 #endif
         szDescription += "\n";
     }
-
-    if(GetParameter()) {
-        auto &sshNet = GetParameter()->m_SSH.m_Net;
-        if(!sshNet.GetHost().isEmpty())
-            szDescription += tr("Server address: ") + sshNet.GetHost()
-                    + ":" + QString::number(sshNet.GetPort()) + "\n";
-        else {
-            szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
-            if(!GetParameter()->GetShellParameters().isEmpty())
-                szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
-        }
-    }
-
+    
+    szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
+    if(!GetParameter()->GetShellParameters().isEmpty())
+        szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
+    
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
-
+    
     return szDescription;
 }
 

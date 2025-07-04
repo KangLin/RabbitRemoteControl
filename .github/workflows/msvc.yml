@@ -23,7 +23,7 @@ jobs:
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
-            
+
           - qt_version: 5.15.2
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
@@ -81,7 +81,7 @@ jobs:
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          
+
       - name: Cache installed
         uses: actions/cache@v4
         id: cache-installed

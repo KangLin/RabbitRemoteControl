@@ -10,10 +10,10 @@ class PLUGIN_EXPORT CParameterTerminalBase : public CParameterOperate
 {
     Q_OBJECT
 public:
-    explicit CParameterTerminalBase(QObject *parent = nullptr);
+    explicit CParameterTerminalBase(CParameterOperate *parent = nullptr,
+                                    const QString& szPrefix = QString());
 
     CParameterTerminal m_Terminal;
-    CParameterSSH m_SSH;
 
 public:
     int SetShell(const QString& shell);

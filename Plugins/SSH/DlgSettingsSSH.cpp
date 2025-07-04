@@ -5,7 +5,7 @@
 #include "RabbitCommonDir.h"
 #include <QStandardPaths>
 
-CDlgSettingsSSH::CDlgSettingsSSH(CParameterTerminalBase *pPara, QWidget *parent)
+CDlgSettingsSSH::CDlgSettingsSSH(CParameterTerminalSSH *pPara, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgSettingsSSH)
     , m_pPara(pPara)

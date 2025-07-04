@@ -23,7 +23,7 @@ protected:
 
 private:
     COperateSSH* m_pOperate;
-    CParameterTerminalBase* m_pPara;
+    CParameterTerminalSSH* m_pPara;
     CChannelSSHTerminal* m_pChannelSSH;
     QTermWidget* m_pTerminal;
 

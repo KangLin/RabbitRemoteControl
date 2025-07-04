@@ -4,10 +4,10 @@
 #include "ParameterTerminalBase.h"
 
 static Q_LOGGING_CATEGORY(log, "Parameter.Terminal.Base")
-CParameterTerminalBase::CParameterTerminalBase(QObject *parent)
-    : CParameterOperate{parent}
+CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
+                                               const QString &szPrefix)
+    : CParameterOperate{parent, szPrefix}
     , m_Terminal(this)
-    , m_SSH(this)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");

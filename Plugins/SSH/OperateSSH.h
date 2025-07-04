@@ -3,7 +3,7 @@
 #pragma once
 
 #include "OperateTerminal.h"
-#include "ParameterTerminalBase.h"
+#include "ParameterTerminalSSH.h"
 
 class COperateSSH : public COperateTerminal
 {
@@ -15,13 +15,16 @@ public:
 
     virtual CBackend *InstanceBackend() override;
 
+    virtual const QString Id() override;
+    virtual const QString Name() override;
+    virtual const QString Description() override;
+
 Q_SIGNALS:
     void sigReceiveData(const QByteArray& data);
 
 private:
-    CParameterTerminalBase m_Parameters;
+    CParameterTerminalSSH m_Parameters;
     
-    // COperate interface
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
