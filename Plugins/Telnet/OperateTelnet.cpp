@@ -194,7 +194,8 @@ void COperateTelnet::slotNewData(const char *buf, int len)
 {
     //QByteArray data(buf, len);
     //qDebug(log) << "Receive data:" << data << data.toHex(':');
-    m_pTerminal->receiveData(buf, len);
+    WriteTerminal(buf, len);
+
     if(!m_bLogin) {
         QRegularExpression reLogin(m_Parameters.GetLogin(), QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch match = reLogin.match(QByteArray(buf, len));
@@ -221,3 +222,4 @@ void COperateTelnet::slotNewData(const char *buf, int len)
         }
     }
 }
+

@@ -7,6 +7,10 @@
 #include <QDesktopServices>
 #include <QDir>
 
+#if defined(Q_OS_UNIX)
+#include <unistd.h>
+#endif
+
 #include "ParameterOperate.h"
 #include "Backend.h"
 #include "BackendThread.h"
@@ -146,7 +150,7 @@ int COperateTerminal::Initial()
                      m_pTerminal, SLOT(zoomIn()));
     m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out"), QKeySequence(Qt::CTRL | Qt::Key_Minus),
                      m_pTerminal, SLOT(zoomOut()));
-    m_Menu.addAction(tr("Zoom reset"), QKeySequence(Qt::CTRL | Qt::Key_0),
+    m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset"), QKeySequence(Qt::CTRL | Qt::Key_0),
                      this, SLOT(slotZoomReset()));
 
     m_Menu.addSeparator();
@@ -336,4 +340,17 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
         Q_ASSERT(false);
     }
     return -1;
+}
+
+int COperateTerminal::WriteTerminal(const char *buf, int len)
+{
+    int nRet = 0;
+#if defined(Q_OS_WIN)
+    if(m_pTerminal) {
+        m_pTerminal->receiveData(buf, len);
+    }
+#else
+    nRet = write(m_pTerminal->getPtySlaveFd(), buf, len);
+#endif
+    return nRet;
 }

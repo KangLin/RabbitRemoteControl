@@ -54,6 +54,7 @@ protected:
     virtual int Initial() override;
     virtual int Clean() override;
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    int WriteTerminal(const char* buf, int len);
 
 private Q_SLOTS:
     void slotTerminalTitleChanged();
