@@ -162,16 +162,16 @@ int COperateTerminal::Initial()
                      this, SLOT(slotZoomReset()));
 
     m_Menu.addSeparator();
-    m_pActionOpenWithSystem = m_Menu.addAction(
-        QIcon::fromTheme("folder-open"),
-        tr("Open the selection with the System Associated Program"),
-        QKeySequence(Qt::CTRL | Qt::Key_O),
-        [&](){
-            QString szText = m_pTerminal->selectedText(false);
-            QUrl url(szText);
-            qDebug(log) << szText << url;
-            QDesktopServices::openUrl(url);
-        });
+    // m_pActionOpenWithSystem = m_Menu.addAction(
+    //     QIcon::fromTheme("folder-open"),
+    //     tr("Open the selection with the System Associated Program"),
+    //     QKeySequence(Qt::CTRL | Qt::Key_O),
+    //     [&](){
+    //         QString szText = m_pTerminal->selectedText(false);
+    //         QUrl url(szText);
+    //         qDebug(log) << szText << url;
+    //         QDesktopServices::openUrl(url);
+    //     });
     m_pActionFind = m_Menu.addAction(
         QIcon::fromTheme("edit-find"), tr("Find ......"),
         QKeySequence(Qt::CTRL | Qt::Key_F),
@@ -299,10 +299,10 @@ void COperateTerminal::slotCustomContextMenu(const QPoint & pos)
 {
     if(!m_pTerminal) return;
     
-    QString szText = m_pTerminal->selectedText(false);
-    m_pActionOpenWithSystem->setVisible(
-        !szText.isEmpty()
-        && QUrl(szText).isValid());
+    // QString szText = m_pTerminal->selectedText(false);
+    // m_pActionOpenWithSystem->setVisible(
+    //     !szText.isEmpty()
+    //     && QUrl(szText).isValid());
     m_Menu.exec(m_pTerminal->mapToGlobal(pos));
 }
 

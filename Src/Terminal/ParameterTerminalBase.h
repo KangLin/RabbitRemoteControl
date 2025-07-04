@@ -24,8 +24,16 @@ private:
 public:
     int SetShellParameters(const QString& para);
     QString GetShellParameters();
+
 private:
     QString m_szShellParameters;
+
+public:
+    bool GetEnableTitleChanged() const;
+    void SetEnableTitleChanged(bool newTitleChanged);
+
+private:
+    bool m_bTitleChanged;
 
     // CParameter interface
 protected:
