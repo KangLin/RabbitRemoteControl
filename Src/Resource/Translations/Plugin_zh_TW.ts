@@ -272,22 +272,19 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕獲系統快捷鍵需要管理員權限。
+        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
 需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>總是顯示</translation>
+        <translation type="vanished">總是顯示</translation>
     </message>
 </context>
 <context>
@@ -458,82 +455,81 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="115"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="87"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="118"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="90"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="121"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="93"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="132"/>
         <source>Server address: </source>
-        <translation>服務器地址：</translation>
+        <translation type="vanished">服務器地址：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="135"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="101"/>
         <source>Shell path: </source>
         <translation>Shell 路徑：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="137"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="103"/>
         <source>Shell parameters: </source>
         <translation>Shell 參數：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="142"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="106"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="180"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="145"/>
         <source>Copy selection to clipboard</source>
         <translation>復製選擇到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="183"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="149"/>
         <source>Paste clipboard</source>
         <translation>粘貼剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="185"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="152"/>
         <source>Paste selection</source>
         <translation>粘貼到選擇</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="187"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="154"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="191"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
         <source>Zoom reset</source>
         <translation>重置縮放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="195"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="176"/>
         <source>Find ......</source>
         <translation>查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="198"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="181"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="347"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="334"/>
         <source>QTermWidget:</source>
         <translation></translation>
     </message>

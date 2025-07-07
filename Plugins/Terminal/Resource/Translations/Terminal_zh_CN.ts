@@ -39,17 +39,22 @@
         <translation>Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="119"/>
+        <source>Enable title changed</source>
+        <translation>允许标题改变</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="58"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="58"/>
         <source>The shell is empty</source>
         <translation>Shell 是空</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="101"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="106"/>
         <source>Select shell</source>
         <translation>选择 Shell</translation>
     </message>
@@ -57,19 +62,32 @@
 <context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="32"/>
+        <location filename="../../PluginTerminal.cpp" line="34"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="37"/>
+        <location filename="../../PluginTerminal.cpp" line="39"/>
         <source>Terminal: Native(shell) terminal.</source>
         <translation>终端：本地(shell)终端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="38"/>
+        <location filename="../../PluginTerminal.cpp" line="40"/>
         <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
         <translation>它使用 QTermWidget: https://github.com/KangLin/qtermwidget</translation>
+    </message>
+</context>
+<context>
+    <name>CTerminal</name>
+    <message>
+        <location filename="../../Terminal.cpp" line="76"/>
+        <source>Open working directory with file explorer</source>
+        <translation>用文件浏览器打开工作目录</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="85"/>
+        <source>Copy working directory to clipboard</source>
+        <translation>复制工作目录到剪切板</translation>
     </message>
 </context>
 </TS>

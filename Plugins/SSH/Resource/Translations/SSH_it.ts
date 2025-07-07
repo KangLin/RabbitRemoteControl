@@ -33,6 +33,34 @@
     </message>
 </context>
 <context>
+    <name>COperateSSH</name>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="95"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="98"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="101"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="111"/>
+        <source>Server address: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="115"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginLibSSH</name>
     <message>
         <location filename="../../PluginLibSSH.cpp" line="31"/>

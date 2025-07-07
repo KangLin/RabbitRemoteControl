@@ -270,26 +270,6 @@
     </message>
 </context>
 <context>
-    <name>CHookWindows</name>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
-        <source>Always shown</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CManager</name>
     <message>
         <location filename="../../Manager.cpp" line="115"/>
@@ -457,82 +437,77 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="115"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="87"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="118"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="90"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="121"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="93"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="132"/>
-        <source>Server address: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="135"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="101"/>
         <source>Shell path: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="137"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="103"/>
         <source>Shell parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="142"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="106"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="180"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="145"/>
         <source>Copy selection to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="183"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="149"/>
         <source>Paste clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="185"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="152"/>
         <source>Paste selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="187"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="154"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="191"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
         <source>Zoom reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="195"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="176"/>
         <source>Find ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="198"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="181"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="347"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="334"/>
         <source>QTermWidget:</source>
         <translation type="unfinished"></translation>
     </message>
