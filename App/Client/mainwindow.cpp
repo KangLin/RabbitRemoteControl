@@ -49,18 +49,20 @@ static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    m_pActionOperateMenu(nullptr),
-    m_pDockListRecent(nullptr),
-    m_pDockActive(nullptr),
-    m_pFrmActive(nullptr),
-    m_pSignalStatus(nullptr),
-    ui(new Ui::MainWindow),
-    m_pView(nullptr),
-    m_pFullScreenToolBar(nullptr),
-    m_pRecentMenu(nullptr),
-    m_pDockFavorite(nullptr),
-    m_pFavoriteView(nullptr)
+    : QMainWindow(parent)
+    , m_pActionOperateMenu(nullptr)
+    , m_pTBOperate(nullptr)
+    , m_pActionTBOperate(nullptr)
+    , m_pDockListRecent(nullptr)
+    , m_pDockActive(nullptr)
+    , m_pFrmActive(nullptr)
+    , m_pSignalStatus(nullptr)
+    , ui(new Ui::MainWindow)
+    , m_pView(nullptr)
+    , m_pFullScreenToolBar(nullptr)
+    , m_pRecentMenu(nullptr)
+    , m_pDockFavorite(nullptr)
+    , m_pFavoriteView(nullptr)
 {
     bool check = false;
 
@@ -88,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent)
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
-    tbRecent->setPopupMode(QToolButton::MenuButtonPopup);
+    tbRecent->setPopupMode(QToolButton::InstantPopup);
     tbRecent->setMenu(m_pRecentMenu);
     tbRecent->setIcon(pRecentAction->icon());
     tbRecent->setText(pRecentAction->text());
@@ -103,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QToolButton* tbStart = new QToolButton(ui->toolBar);
     tbStart->setFocusPolicy(Qt::NoFocus);
-    tbStart->setPopupMode(QToolButton::MenuButtonPopup);
+    tbStart->setPopupMode(QToolButton::InstantPopup);
     //tbStart->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbStart->setMenu(ui->menuStart);
     tbStart->setIcon(QIcon::fromTheme("media-playback-start"));
@@ -540,9 +542,9 @@ void MainWindow::slotLoadOperateMenu()
 
     if(m_pActionOperateMenu) {
         ui->menuTools->removeAction(m_pActionOperateMenu);
-        ui->toolBar->removeAction(m_pActionOperateMenu);
         m_pActionOperateMenu = nullptr;
     }
+    ui->toolBar->removeAction(m_pActionTBOperate);
 
     if(!m_pView)
         return;
@@ -558,8 +560,22 @@ void MainWindow::slotLoadOperateMenu()
             qDebug(log) << "Load plugin menu";
             auto m = op->GetMenu(ui->menuTools);
             if(!m) return;
+            // Menu tool bar
             m_pActionOperateMenu = ui->menuTools->addMenu(m);
-            ui->toolBar->insertAction(ui->actionFull_screen_F, m_pActionOperateMenu);
+            // ToolBar
+            if(!m_pTBOperate)
+                m_pTBOperate = new QToolButton(ui->toolBar);
+            if(m_pTBOperate) {
+                m_pTBOperate->setFocusPolicy(Qt::NoFocus);
+                m_pTBOperate->setPopupMode(QToolButton::InstantPopup);
+                m_pTBOperate->setMenu(m);
+                m_pTBOperate->setIcon(m->icon());
+                m_pTBOperate->setText(m->title());
+                m_pTBOperate->setToolTip(m->toolTip());
+                m_pTBOperate->setStatusTip(m->statusTip());
+                m_pTBOperate->show();
+                m_pActionTBOperate = ui->toolBar->insertWidget(ui->actionFull_screen_F, m_pTBOperate);
+            }
             emit sigOperateMenuChanged(m_pActionOperateMenu);
         }
     }

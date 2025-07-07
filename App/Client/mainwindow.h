@@ -75,6 +75,8 @@ Q_SIGNALS:
 
 public:
     QAction* m_pActionOperateMenu;
+    QAction* m_pActionTBOperate;
+    QToolButton* m_pTBOperate;
 
     ///////// Stop /////////
 private Q_SLOTS:
