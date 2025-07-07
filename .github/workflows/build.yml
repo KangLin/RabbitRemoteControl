@@ -114,7 +114,7 @@ jobs:
       - name: Download flatpak
         uses: actions/download-artifact@v4
         with:
-          pattern: ${{ needs.flatpak.outputs.name }}*
+          pattern: RabbitRemoteControl_*.flatpak
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
