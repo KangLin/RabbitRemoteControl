@@ -2,6 +2,7 @@
 
 #include <QDesktopServices>
 #include <QLoggingCategory>
+#include <QApplication>
 
 #include "Terminal.h"
 #include "DlgSettingsTerminal.h"
@@ -77,6 +78,16 @@ int CTerminal::Initial()
         [&](){
             QDesktopServices::openUrl(
                 QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
+        });
+    m_Menu.insertAction(m_pActionFind, pAction);
+    pAction = m_Menu.addAction(
+        QIcon::fromTheme("edit-copy"),
+        tr("Copy working directory to clipboard"),
+        this, [&](){
+            if(!m_pTerminal) return;
+            QClipboard* pClipboard = QApplication::clipboard();
+            if(!pClipboard) return;
+            pClipboard->setText(m_pTerminal->workingDirectory());
         });
     m_Menu.insertAction(m_pActionFind, pAction);
     return nRet;
