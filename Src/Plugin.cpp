@@ -51,6 +51,8 @@ const QString CPlugin::TypeName(const TYPE t) const
         return tr("Terminal");
     case TYPE::Tools:
         return tr("Tools");
+    case TYPE::FileTransfers:
+        return tr("File transfers");
     case TYPE::NetworkTools:
         return tr("Network Tools");
     case TYPE::Custom:

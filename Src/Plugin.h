@@ -23,6 +23,7 @@ public:
         Terminal,
         Client,
         Service,
+        FileTransfers,
         NetworkTools,
         Tools,
         Custom = 1000 //!\note please override `virtual const QString TypeName(const TYPE t) const`

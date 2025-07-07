@@ -53,6 +53,11 @@ CBackend *COperateSSH::InstanceBackend()
     return new CBackendSSH(this);
 }
 
+COperateSSH::SecurityLevel COperateSSH::GetSecurityLevel()
+{
+    return SecurityLevel::Secure;
+}
+
 void COperateSSH::slotReceiveData(const QByteArray &data)
 {
     //qDebug(log) << Q_FUNC_INFO << data.length();

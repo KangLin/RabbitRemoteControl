@@ -11,6 +11,7 @@
 #include <QSpinBox>
 #include <QDockWidget>
 #include <QSystemTrayIcon>
+#include <QLabel>
 
 #include "View.h"
 #include "Manager.h"
@@ -112,9 +113,14 @@ private Q_SLOTS:
     void on_actionSettings_triggered();
     void slotShortCut();
 
+    ///////// Secure level /////////
+private:
+    QLabel* m_pSecureLevel;
+    void SetSecureLevel(COperate *o);
+
     ///////// ICE signal /////////
 private:
-    QPushButton * m_pSignalStatus;
+    QPushButton* m_pSignalStatus;
 private Q_SLOTS:
     void slotSignalConnected();
     void slotSignalDisconnected();

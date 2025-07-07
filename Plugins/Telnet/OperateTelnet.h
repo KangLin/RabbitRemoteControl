@@ -15,7 +15,7 @@ public:
 
 public:
     [[nodiscard]] virtual CBackend *InstanceBackend() override;
-public slots:
+    [[nodiscard]] virtual SecurityLevel GetSecurityLevel() override;
     virtual int Start() override;
     virtual int Stop() override;
 

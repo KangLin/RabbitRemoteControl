@@ -13,11 +13,12 @@ public:
     explicit COperateSSH(CPlugin *parent);
     virtual ~COperateSSH();
 
-    virtual CBackend *InstanceBackend() override;
+    [[nodiscard]] virtual CBackend *InstanceBackend() override;
 
-    virtual const QString Id() override;
-    virtual const QString Name() override;
-    virtual const QString Description() override;
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Name() override;
+    [[nodiscard]] virtual const QString Description() override;
+    [[nodiscard]] virtual SecurityLevel GetSecurityLevel() override;
 
 Q_SIGNALS:
     void sigReceiveData(const QByteArray& data);
@@ -30,7 +31,7 @@ protected:
     virtual int Clean() override;
 
 private:
-    virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
+    [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
 private Q_SLOTS:
     void slotReceiveData(const QByteArray& data);

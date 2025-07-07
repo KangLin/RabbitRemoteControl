@@ -114,7 +114,22 @@ public:
      */
     [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
-public Q_SLOTS:
+    enum class SecurityLevel {
+        No,                       // No the function
+        Secure,                   // Both authentication and channels are secure. Green
+        NonSecureAuthentication,  // Non-secure authentication over a secure channel. Blue
+        SecureChannel,            // Channel is secure. Yellow
+        Normal = SecureChannel, 
+        SecureAuthentication,     // There is security verification, not a secure channel. Orange
+        Risky                     // Red
+    };
+    [[nodiscard]] virtual SecurityLevel GetSecurityLevel();
+    [[nodiscard]] virtual QString GetSecurityLevelString();
+    [[nodiscard]] virtual QColor GetSecurityLevelColor();
+    [[nodiscard]] static QString GetSecurityLevelString(SecurityLevel level);
+    [[nodiscard]] static QColor GetSecurityLevelColor(SecurityLevel level);
+
+public:
     /**
      * \~chinese
      * \brief 开始

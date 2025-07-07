@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pDockListRecent(nullptr)
     , m_pDockActive(nullptr)
     , m_pFrmActive(nullptr)
+    , m_pSecureLevel(nullptr)
     , m_pSignalStatus(nullptr)
     , ui(new Ui::MainWindow)
     , m_pView(nullptr)
@@ -239,6 +240,14 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     slotShortCut();
+
+    m_pSecureLevel = new QLabel(statusBar());
+    // QIcon icon = QIcon::fromTheme("newwork-wired");
+    // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
+    // m_pSecureLevel->setPixmap(pixmap);
+    m_pSecureLevel->hide();
+    statusBar()->addPermanentWidget(m_pSecureLevel);
+
 #ifdef HAVE_ICE
     if(CICE::Instance()->GetSignal())
     {
@@ -255,7 +264,7 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotSignalError(const int, const QString&)));
         Q_ASSERT(check);
     }
-    CICE::Instance()->slotStart();
+    CICE::Instance()->slotStart(statusBar());
     m_pSignalStatus = new QPushButton();
     m_pSignalStatus->setToolTip(tr("ICE signal status"));
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
@@ -524,6 +533,11 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
         EnableMenu(true);
     else
         EnableMenu(false);
+
+    foreach(auto o, m_Operates) {
+        if(o->GetViewer() == pView)
+            SetSecureLevel(o);
+    }
 }
 
 void MainWindow::EnableMenu(bool bEnable)
@@ -815,6 +829,8 @@ void MainWindow::slotRunning()
     }
     //*/
 
+    SetSecureLevel(p);
+
     slotLoadOperateMenu();
 
     slotInformation(tr("Connected to ") + p->Name());
@@ -880,6 +896,41 @@ void MainWindow::slotFinished()
             ui->toolBar->removeAction(m_pActionOperateMenu);
             m_pActionOperateMenu = nullptr;
         }
+}
+
+// 该函数将label控件变成一个圆形指示灯，需要指定颜色color以及直径size
+// size  单位是像素
+void SetIndicator(QLabel* label, QColor color, int size)
+{
+    QString min_width = QString("min-width: %1px;").arg(size);              // 最小宽度：size
+    QString min_height = QString("min-height: %1px;").arg(size);            // 最小高度：size
+    QString max_width = QString("max-width: %1px;").arg(size);              // 最小宽度：size
+    QString max_height = QString("max-height: %1px;").arg(size);            // 最小高度：size
+    // 再设置边界形状及边框
+    QString border_radius = QString("border-radius: %1px;").arg(size / 2);  // 边框是圆角，半径为size/2
+    QString border = QString("border:1px solid ") + color.name() + ";";     // 边框为1px 
+    // 最后设置背景颜色
+    QString background = "background-color: ";
+    background += color.name() + ";";
+    QString SheetStyle = min_width + min_height + max_width + max_height + border_radius + border + background;
+    label->setStyleSheet(SheetStyle);
+}
+
+void MainWindow::SetSecureLevel(COperate* o)
+{
+    if(!m_pSecureLevel) return;
+    if(o) {
+        if(COperate::SecurityLevel::No == o->GetSecurityLevel())
+        {
+            m_pSecureLevel->hide();
+            return;
+        }
+        SetIndicator(m_pSecureLevel, o->GetSecurityLevelColor(), statusBar()->height() / 2);
+        m_pSecureLevel->setToolTip(o->GetSecurityLevelString());
+        m_pSecureLevel->setStatusTip(o->GetSecurityLevelString());
+        m_pSecureLevel->show();
+    } else
+        m_pSecureLevel->hide();
 }
 
 void MainWindow::slotSignalConnected()

@@ -29,6 +29,11 @@ COperateTelnet::~COperateTelnet()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+COperateTelnet::SecurityLevel COperateTelnet::GetSecurityLevel()
+{
+    return COperateTelnet::SecurityLevel::Risky;
+}
+
 QDialog *COperateTelnet::OnOpenDialogSettings(QWidget *parent)
 {
     return new CDlgSettingsTelnet(&m_Parameters, parent);

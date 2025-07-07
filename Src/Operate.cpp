@@ -107,6 +107,61 @@ QMenu* COperate::GetMenu(QWidget* parent)
     return &m_Menu;
 }
 
+COperate::SecurityLevel COperate::GetSecurityLevel()
+{
+    return SecurityLevel::No;
+}
+
+QString COperate::GetSecurityLevelString()
+{
+    return GetSecurityLevelString(GetSecurityLevel());
+}
+
+QString COperate::GetSecurityLevelString(SecurityLevel level)
+{
+    switch (level) {
+    case SecurityLevel::No:
+        return tr("No");
+    case SecurityLevel::Secure:
+        return tr("Secure");
+    case SecurityLevel::NonSecureAuthentication:
+        return tr("Non-secure authentication over a secure channel");
+    case SecurityLevel::Normal:
+        return tr("Channel is secure.");
+    case SecurityLevel::SecureAuthentication:
+        return tr("There is security verification, not a secure channel.");
+    case SecurityLevel::Risky:
+        return tr("Risky");
+    default:
+        break;
+    }
+    return QString();
+}
+
+QColor COperate::GetSecurityLevelColor()
+{
+    return GetSecurityLevelColor(GetSecurityLevel());
+}
+
+QColor COperate::GetSecurityLevelColor(SecurityLevel level)
+{
+    switch (level) {
+    case SecurityLevel::Secure:
+        return Qt::GlobalColor::green;
+    case SecurityLevel::NonSecureAuthentication:
+        return Qt::GlobalColor::blue;
+    case SecurityLevel::Normal:
+        return Qt::GlobalColor::yellow;
+    case SecurityLevel::SecureAuthentication:
+        return Qt::GlobalColor::darkRed;
+    case SecurityLevel::Risky:
+        return Qt::GlobalColor::red;
+    default:
+        break;
+    }
+    return QColor();
+}
+
 QString COperate::GetSettingsFile()
 {
     if(m_szSettings.isEmpty())
