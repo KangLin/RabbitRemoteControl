@@ -9,6 +9,7 @@ SET(FileTransfer_SOURCE_FILES
     FrmFileTransfer.cpp
     ParameterFileTransfer.cpp
     DlgFileTransfer.cpp
+    ListFileModel.cpp
     )
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
@@ -16,6 +17,7 @@ SET(FileTransfer_HEADER_FILES
     FrmFileTransfer.h
     ParameterFileTransfer.h
     DlgFileTransfer.h
+    ListFileModel.h
     )
 SET(FileTransfer_UI_FILES
     FrmFileTransfer.ui
