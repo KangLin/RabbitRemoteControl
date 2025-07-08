@@ -1,8 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTFREERDP_H
-#define CCONNECTFREERDP_H
-
+#pragma once
 #include <QSharedPointer>
 
 #include "freerdp/freerdp.h"
@@ -196,5 +194,3 @@ private:
 private Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 };
-
-#endif // CCONNECTFREERDP_H
