@@ -1,6 +1,8 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author Kang Lin <kl222@126.com>
 
+#include <QApplication>
+#include <QStyle>
 #include <QLoggingCategory>
 #include "PluginFileTransfer.h"
 #include "OperateFileTransfer.h"
@@ -51,6 +53,7 @@ const QString CPluginFileTransfer::Version() const
 const QIcon CPluginFileTransfer::Icon() const
 {
     return QIcon::fromTheme("system-file-manager");
+    //return QApplication::style()->standardIcon(QStyle::SP_FileIcon);
 }
 
 COperate *CPluginFileTransfer::OnCreateOperate(const QString &szId)
