@@ -116,6 +116,9 @@ const QString COperateSSH::Description()
         szDescription += tr("Server address: ") + sshNet.GetHost()
                          + ":" + QString::number(sshNet.GetPort()) + "\n";
 
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
     

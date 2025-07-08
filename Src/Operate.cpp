@@ -60,6 +60,10 @@ const QString COperate::Description()
 #endif
         szDescription += "\n";
     }
+
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
     szDescription += tr("Description: ") + GetPlugin()->Description();
     return szDescription;
 }

@@ -97,11 +97,14 @@ const QString COperateTerminal::Description()
 #endif
         szDescription += "\n";
     }
-    
+
     szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
     if(!GetParameter()->GetShellParameters().isEmpty())
         szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
-    
+
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
     

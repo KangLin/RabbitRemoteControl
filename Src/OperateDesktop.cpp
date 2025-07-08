@@ -149,6 +149,9 @@ const QString COperateDesktop::Description()
             szDescription += szProxy + "\n";
     }
     
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
     

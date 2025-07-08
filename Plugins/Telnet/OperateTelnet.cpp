@@ -183,11 +183,9 @@ const QString COperateTelnet::Description()
     if(!net.GetHost().isEmpty())
         szDescription += tr("Server address: ") + net.GetHost()
                          + ":" + QString::number(net.GetPort()) + "\n";
-    else {
-        szDescription += tr("Shell path: ") + m_Parameters.GetShell() + "\n";
-        if(!m_Parameters.GetShellParameters().isEmpty())
-            szDescription += tr("Shell parameters: ") + m_Parameters.GetShellParameters() + "\n";
-    }
+
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
