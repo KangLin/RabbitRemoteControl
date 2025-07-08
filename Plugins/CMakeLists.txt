@@ -56,6 +56,8 @@ if(QT_VERSION GREATER_EQUAL "6.8.0")
     endif()
 endif()
 
+add_subdirectory(FileTransfer)
+
 ## Terminal
 find_package(qtermwidget${QT_VERSION_MAJOR})
 if(qtermwidget${QT_VERSION_MAJOR}_FOUND)

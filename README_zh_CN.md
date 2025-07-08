@@ -104,8 +104,8 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|FTP     |       |          |       |   |
-|SFTP    |       |          |       |   |
+|FTP     |✓      |✓         |✓      |✓  |
+|SFTP    |✓      |✓         |✓      |✓  |
 
 - 工具
 
@@ -160,8 +160,8 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 |终端    |     | ✓   | ❌   |✓   | ❌    | ❌     | ❌  |    |   |    |
 |TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
 |  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
-|  FTP  |     |     | ❌   |    |       | ❌     | ❌  |   |   |    |
-| SFTP  |     |     | ❌   |    |       | ❌     | ❌  |   |   |    |
+|  FTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
+| SFTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持

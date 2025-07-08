@@ -35,27 +35,32 @@
 <context>
     <name>COperateSSH</name>
     <message>
-        <location filename="../../OperateSSH.cpp" line="95"/>
+        <location filename="../../OperateSSH.cpp" line="100"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="98"/>
+        <location filename="../../OperateSSH.cpp" line="103"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="101"/>
+        <location filename="../../OperateSSH.cpp" line="106"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="111"/>
+        <location filename="../../OperateSSH.cpp" line="116"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="115"/>
+        <location filename="../../OperateSSH.cpp" line="120"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSSH.cpp" line="123"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

@@ -305,17 +305,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="63"/>
+        <location filename="../../Operate.cpp" line="65"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="67"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="94"/>
+        <location filename="../../Operate.cpp" line="98"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="174"/>
+        <location filename="../../Operate.cpp" line="128"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="130"/>
+        <source>Secure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="132"/>
+        <source>Non-secure authentication over a secure channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="134"/>
+        <source>Channel is secure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="136"/>
+        <source>There is security verification, not a secure channel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="138"/>
+        <source>Risky</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Operate.cpp" line="233"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -364,72 +399,77 @@
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="153"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="156"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="206"/>
+        <location filename="../../OperateDesktop.cpp" line="209"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="210"/>
+        <location filename="../../OperateDesktop.cpp" line="213"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="220"/>
+        <location filename="../../OperateDesktop.cpp" line="223"/>
         <source>Keep aspect ration to windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="229"/>
+        <location filename="../../OperateDesktop.cpp" line="232"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="237"/>
+        <location filename="../../OperateDesktop.cpp" line="240"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="251"/>
+        <location filename="../../OperateDesktop.cpp" line="254"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="295"/>
+        <location filename="../../OperateDesktop.cpp" line="298"/>
         <source>Send shortcut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="298"/>
+        <location filename="../../OperateDesktop.cpp" line="301"/>
         <source>Send Ctl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="300"/>
+        <location filename="../../OperateDesktop.cpp" line="303"/>
         <source>Send lock screen (Win+L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="304"/>
+        <location filename="../../OperateDesktop.cpp" line="307"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="311"/>
-        <location filename="../../OperateDesktop.cpp" line="524"/>
+        <location filename="../../OperateDesktop.cpp" line="314"/>
+        <location filename="../../OperateDesktop.cpp" line="527"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="318"/>
+        <location filename="../../OperateDesktop.cpp" line="321"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="521"/>
+        <location filename="../../OperateDesktop.cpp" line="524"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -463,51 +503,56 @@
     </message>
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="106"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="109"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="145"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="148"/>
         <source>Copy selection to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="149"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="152"/>
         <source>Paste clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="152"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="155"/>
         <source>Paste selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="154"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Zoom reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="176"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="179"/>
         <source>Find ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="181"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="334"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="337"/>
         <source>QTermWidget:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1254,7 +1299,7 @@
     <name>CPlugin</name>
     <message>
         <location filename="../../Plugin.cpp" line="40"/>
-        <location filename="../../Plugin.cpp" line="59"/>
+        <location filename="../../Plugin.cpp" line="61"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1285,6 +1330,11 @@
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="55"/>
+        <source>File transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Plugin.cpp" line="57"/>
         <source>Network Tools</source>
         <translation type="unfinished"></translation>
     </message>

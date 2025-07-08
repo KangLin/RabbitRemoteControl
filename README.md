@@ -105,8 +105,8 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|FTP     |       |          |       |   |
-|SFTP    |       |          |       |   |
+|FTP     |✓      |✓         |✓      |✓  |
+|SFTP    |✓      |✓         |✓      |✓  |
 
 - Tool
 
@@ -159,11 +159,11 @@ Legend:
 |  RFB  | ……  |  ✓  |  ✓   |✓   |       | ❌     | ❌    |✓  |  ✓ |   |
 |Spice  |     |     |      |    |       |        | ❌    |   |    |   |
 |Scrcpy |     |     |      |    |       |        |  ❌   |   |    |   |
-|Terminal|     | ✓  | ❌  |✓   | ❌    | ❌    | ❌    |    |   |    |
-|TELNET |     | ✓  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
-|  SSH  |     | ✓  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
-|  FTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
-| SFTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
+|Terminal|    |  ✓  | ❌  |✓   | ❌    | ❌    | ❌    |    |   |    |
+|TELNET |     |  ✓  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
+|  SSH  |     |  ✓  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
+|  FTP  |     |  ✓  | ❌  |    |       | ✓      |  ❌   |   |   |    |
+| SFTP  |     |  ✓  | ❌  |    |       | ✓      |  ❌   |   |   |    |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
