@@ -1,4 +1,5 @@
-// Author: Kang Lin <kl222@126.com>
+// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
+// Author Kang Lin <kl222@126.com>
 
 #pragma once
 #include "Plugin.h"

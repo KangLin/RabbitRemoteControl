@@ -5,11 +5,21 @@ project(FileTransfer LANGUAGES CXX
 SET(FileTransfer_LIBS Plugin)
 SET(FileTransfer_SOURCE_FILES
     PluginFileTransfer.cpp
+    OperateFileTransfer.cpp
+    FrmFileTransfer.cpp
+    ParameterFileTransfer.cpp
+    DlgFileTransfer.cpp
     )
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
+    OperateFileTransfer.h
+    FrmFileTransfer.h
+    ParameterFileTransfer.h
+    DlgFileTransfer.h
     )
 SET(FileTransfer_UI_FILES
+    FrmFileTransfer.ui
+    DlgFileTransfer.ui
     )
 
 list(APPEND FileTransfer_QT_COMPONENTS Widgets)
@@ -30,9 +40,4 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
-)
-
-target_sources(PluginClientFileTransfer
-  PRIVATE
-    OperateFileTransfer.h OperateFileTransfer.cpp
 )
