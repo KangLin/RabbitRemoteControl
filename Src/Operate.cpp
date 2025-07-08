@@ -256,6 +256,21 @@ CPlugin* COperate::GetPlugin() const
     return m_pPlugin;
 }
 
+int COperate::SetGlobalParameters(CParameterPlugin *pPara)
+{
+    auto pPlugin = pPara;
+    if(pPlugin)
+    {
+        bool check = connect(pPlugin, SIGNAL(sigShowProtocolPrefixChanged()),
+                             this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+        check = connect(pPlugin, SIGNAL(sigSHowIpPortInNameChanged()),
+                        this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+    }
+    return 0;
+}
+
 void COperate::slotUpdateName()
 {
     emit sigUpdateName(Name());

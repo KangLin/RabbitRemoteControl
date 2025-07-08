@@ -75,17 +75,7 @@ int COperateFileTransfer::Stop()
 int COperateFileTransfer::SetGlobalParameters(CParameterPlugin *pPara)
 {
     m_Parameter.SetGlobalParameters(pPara);
-    auto pPlugin = pPara;
-    if(pPlugin)
-    {
-        bool check = connect(pPlugin, SIGNAL(sigShowProtocolPrefixChanged()),
-                             this, SLOT(slotUpdateName()));
-        Q_ASSERT(check);
-        check = connect(pPlugin, SIGNAL(sigSHowIpPortInNameChanged()),
-                        this, SLOT(slotUpdateName()));
-        Q_ASSERT(check);
-    }
-    return 0;
+    return COperate::SetGlobalParameters(pPara);
 }
 
 QDialog *COperateFileTransfer::OnOpenDialogSettings(QWidget *parent)

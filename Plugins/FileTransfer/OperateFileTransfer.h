@@ -12,9 +12,7 @@ class COperateFileTransfer : public COperate
 public:
     explicit COperateFileTransfer(CPlugin *plugin);
     virtual ~COperateFileTransfer();
-    
-    // COperate interface
-public:
+
     virtual const QString Id() override;
     virtual const QString Name() override;
     virtual const QString Description() override;
@@ -23,13 +21,13 @@ public:
     virtual QWidget *GetViewer() override;
     virtual int Start() override;
     virtual int Stop() override;
-    
+
 protected:
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
-    
+
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    
+
 private:
     CFrmFileTransfer* m_frmFileTransfer;
     CParameterFileTransfer m_Parameter;
