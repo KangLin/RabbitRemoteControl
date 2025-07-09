@@ -1,5 +1,7 @@
-#ifndef LISTFILEMODEL_H
-#define LISTFILEMODEL_H
+// Copyright Copyright (c) Kang Lin studio, All Rights Reserved
+// Author Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QAbstractTableModel>
 
@@ -34,10 +36,4 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-private:
-    int m_Columns;
-    int m_Rows;
 };
-
-#endif // LISTFILEMODEL_H

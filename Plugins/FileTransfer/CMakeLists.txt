@@ -10,6 +10,7 @@ SET(FileTransfer_SOURCE_FILES
     ParameterFileTransfer.cpp
     DlgFileTransfer.cpp
     ListFileModel.cpp
+    RemoteFileSystemModel.cpp
     )
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
@@ -18,6 +19,7 @@ SET(FileTransfer_HEADER_FILES
     ParameterFileTransfer.h
     DlgFileTransfer.h
     ListFileModel.h
+    RemoteFileSystemModel.h
     )
 SET(FileTransfer_UI_FILES
     FrmFileTransfer.ui

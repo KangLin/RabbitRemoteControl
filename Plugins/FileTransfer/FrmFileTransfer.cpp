@@ -14,6 +14,9 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     , ui(new Ui::CFrmFileTransfer)
     , m_pModelLocalDir(new QFileSystemModel(this))
     , m_pModelLocalFile(new QFileSystemModel(this))
+    , m_pModelRemoteDir(new CRemoteFileSystemModel(this))
+    , m_pModelRemoteFile(new CRemoteFileSystemModel(this))
+    , m_pRemoteFileSystem(nullptr)
     , m_pListFileModel(new CListFileModel(this))
 {
     bool check = false;
@@ -45,12 +48,39 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabLocal->verticalHeader()->hide();
     ui->tabLocal->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
+    
+    //* TODO: Test
+    
+    m_pRemoteFileSystem = new CRemoteFileSystem("", CRemoteFileSystem::TYPE::DRIVE, this);
+    CRemoteFileSystem* pRoot = new CRemoteFileSystem("/", CRemoteFileSystem::TYPE::DRIVE, m_pRemoteFileSystem);
+    CRemoteFileSystem* pHome = new CRemoteFileSystem("/home", CRemoteFileSystem::TYPE::DIR, pRoot);
+    CRemoteFileSystem* pBin = new CRemoteFileSystem("/bin", CRemoteFileSystem::TYPE::DIR, m_pRemoteFileSystem);
+    CRemoteFileSystem* pDownload = new CRemoteFileSystem("/home/Download", CRemoteFileSystem::TYPE::DIR, pHome);
+    CRemoteFileSystem* pFile = new CRemoteFileSystem("/home/Download/a.txt", CRemoteFileSystem::TYPE::FILE, pDownload);
+    pFile->SetSize(10244459);
+    //*/
 
+    auto indexRemoteDir = m_pModelRemoteDir->SetRoot(m_pRemoteFileSystem);
+    m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
+    ui->treeRemote->setModel(m_pModelRemoteDir);
+    ui->treeRemote->setRootIndex(indexRemoteDir);
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Type);
+    ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Size);
+    ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::LastModified);
+    ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Privileges);
+    ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
+
+    m_pModelRemoteFile->SetRoot(m_pRemoteFileSystem);
+    m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
+    ui->tabRemote->setModel(m_pModelRemoteFile);
     ui->tabRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tabRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
-    
+    ui->tabRemote->verticalHeader()->hide();
+    ui->tabRemote->horizontalHeader()->setSectionResizeMode(
+        QHeaderView::ResizeToContents);
+
     ui->tabList->setModel(m_pListFileModel);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Time, true);
@@ -92,12 +122,12 @@ void CFrmFileTransfer::slotTreeLocalClicked(const QModelIndex &index)
     ui->tabLocal->setRootIndex(idx);
 }
 
-void CFrmFileTransfer::on_cbLocal_editTextChanged(const QString &text)
+void CFrmFileTransfer::on_cbLocal_editTextChanged(const QString &szPath)
 {
-    qDebug(log) << Q_FUNC_INFO << text;
-    auto idx = m_pModelLocalDir->index(text);
+    qDebug(log) << Q_FUNC_INFO << szPath;
+    auto idx = m_pModelLocalDir->index(szPath);
     if(!idx.isValid()) return;
-    if(text.length() > 1 && (text.right(1) == '/' || text.right(1) == '\\')) return;
+    if(szPath.length() > 1 && (szPath.right(1) == '/' || szPath.right(1) == '\\')) return;
     ui->treeLocal->setCurrentIndex(idx);
     slotTreeLocalClicked(idx);
 }
@@ -135,7 +165,8 @@ void CFrmFileTransfer::slotTreeLocalOpen()
 
 void CFrmFileTransfer::slotTreeLocalNew()
 {
-    QString szName = QInputDialog::getText(this, tr("New folder"), tr("Folder name:"));
+    QString szName = QInputDialog::getText(
+        this, tr("New folder"), tr("Folder name:"));
     if(szName.isEmpty()) return;
     auto idx = ui->treeLocal->currentIndex();
     m_pModelLocalDir->mkdir(idx, szName);
@@ -184,6 +215,14 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
     menu.exec(ui->tabLocal->viewport()->mapToGlobal(pos));
 }
 
+void CFrmFileTransfer::slotTabLocalUpload()
+{
+}
+
+void CFrmFileTransfer::slotTabLocalAddToList()
+{
+}
+
 void CFrmFileTransfer::slotTabLocalOpen()
 {
     auto idx = ui->tabLocal->currentIndex();
@@ -208,9 +247,21 @@ void CFrmFileTransfer::slotTabLocalRename()
     ui->tabLocal->edit(ui->tabLocal->currentIndex());
 }
 
-void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &arg1)
+void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
 {
-    
+    qDebug(log) << Q_FUNC_INFO << szPath;
+
+}
+
+void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
+{
+    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
+    m_pModelRemoteFile->SetRoot(pRemoteFileSystem);
+    QString szPath = pRemoteFileSystem->GetPath();
+    if(szPath.isEmpty()) return;
+    if(-1 == ui->cbRemote->findText(szPath))
+        ui->cbRemote->addItem(szPath);
+    ui->cbRemote->setCurrentText(szPath);
 }
 
 void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &pos)
@@ -237,6 +288,30 @@ void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &po
     menu.exec(ui->treeRemote->viewport()->mapToGlobal(pos));
 }
 
+void CFrmFileTransfer::slotTreeRemoteDownload()
+{
+}
+
+void CFrmFileTransfer::slotTreeRemoteAddToList()
+{
+}
+
+void CFrmFileTransfer::slotTreeRemoteNew()
+{
+}
+
+void CFrmFileTransfer::slotTreeRemoteDelete()
+{
+}
+
+void CFrmFileTransfer::slotTreeRemoteRename()
+{
+}
+
+void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()
+{
+}
+
 void CFrmFileTransfer::on_tabRemote_customContextMenuRequested(const QPoint &pos)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -260,3 +335,25 @@ void CFrmFileTransfer::on_tabRemote_customContextMenuRequested(const QPoint &pos
     }
     menu.exec(ui->tabRemote->viewport()->mapToGlobal(pos));
 }
+
+void CFrmFileTransfer::slotTabRemoteDownload()
+{
+}
+
+void CFrmFileTransfer::slotTabRemoteAddToList()
+{
+}
+
+void CFrmFileTransfer::slotTabRemoteNew()
+{
+}
+
+void CFrmFileTransfer::slotTabRemoteDelete()
+{
+}
+
+void CFrmFileTransfer::slotTabRemoteRename()
+{}
+
+void CFrmFileTransfer::slotTabRemoteCopyToClipboard()
+{}
