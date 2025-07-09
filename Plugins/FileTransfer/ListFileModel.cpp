@@ -5,13 +5,11 @@ static Q_LOGGING_CATEGORY(log, "FileTransfer.ListFileModel")
 
 CListFileModel::CListFileModel(QObject *parent)
     : QAbstractTableModel(parent)
-    , m_Columns((int)ColumnValue::End)
-    , m_Rows(0)
 {}
 
 QVariant CListFileModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    qDebug(log) << Q_FUNC_INFO << section << orientation << role;
+    //qDebug(log) << Q_FUNC_INFO << section << orientation << role;
     switch((ColumnValue)section) {
     case ColumnValue::LocalFiles: {
         switch(role) {
@@ -73,25 +71,25 @@ QVariant CListFileModel::headerData(int section, Qt::Orientation orientation, in
 
 int CListFileModel::rowCount(const QModelIndex &parent) const
 {
-    qDebug(log) << Q_FUNC_INFO << parent;
+    //qDebug(log) << Q_FUNC_INFO << parent;
     if (parent.isValid())
         return 0;
     
-    return m_Rows;
+    return 0;
 }
 
 int CListFileModel::columnCount(const QModelIndex &parent) const
 {
-    qDebug(log) << Q_FUNC_INFO << parent;
+    //qDebug(log) << Q_FUNC_INFO << parent;
     if (parent.isValid())
         return 0;
     
-    return m_Columns;
+    return (int)ColumnValue::End;
 }
 
 QVariant CListFileModel::data(const QModelIndex &index, int role) const
 {
-    qDebug(log) << Q_FUNC_INFO << index << role;
+    //qDebug(log) << Q_FUNC_INFO << index << role;
     if (!index.isValid())
         return QVariant();
 

@@ -106,7 +106,7 @@
            <enum>Qt::Orientation::Vertical</enum>
           </property>
           <widget class="QTreeView" name="treeRemote"/>
-          <widget class="QTableWidget" name="tabRemote"/>
+          <widget class="QTableView" name="tabRemote"/>
          </widget>
         </item>
        </layout>

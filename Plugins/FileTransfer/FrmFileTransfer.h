@@ -1,10 +1,12 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author Kang Lin <kl222@126.com>
+
 #pragma once
 
 #include <QWidget>
 #include <QFileSystemModel>
 #include "ListFileModel.h"
+#include "RemoteFileSystemModel.h"
 
 namespace Ui {
 class CFrmFileTransfer;
@@ -28,7 +30,7 @@ private:
     [[nodiscard]] QString GetLocalRoot() const;
 
 private Q_SLOTS:
-    void on_cbLocal_editTextChanged(const QString &arg1);
+    void on_cbLocal_editTextChanged(const QString &szPath);
 
     void slotTreeLocalClicked(const QModelIndex &index);
     void on_treeLocal_customContextMenuRequested(const QPoint &pos);
@@ -46,9 +48,10 @@ private Q_SLOTS:
     void slotTabLocalEdit();
     void slotTabLocalRename();
     void slotTabLocalDelete();
+
+    void on_cbRemote_editTextChanged(const QString &szPath);
     
-    void on_cbRemote_editTextChanged(const QString &arg1);
-    
+    void on_treeRemote_clicked(const QModelIndex &index);
     void on_treeRemote_customContextMenuRequested(const QPoint &pos);
     void slotTreeRemoteDownload();
     void slotTreeRemoteAddToList();
@@ -64,11 +67,16 @@ private Q_SLOTS:
     void slotTabRemoteDelete();
     void slotTabRemoteRename();
     void slotTabRemoteCopyToClipboard();
-
+        
 private:
     Ui::CFrmFileTransfer *ui;
     QFileSystemModel* m_pModelLocalDir;
     QFileSystemModel* m_pModelLocalFile;
     
+    CRemoteFileSystemModel* m_pModelRemoteDir;
+    CRemoteFileSystemModel* m_pModelRemoteFile;
+
+    CRemoteFileSystem* m_pRemoteFileSystem;
+
     CListFileModel* m_pListFileModel;
 };
