@@ -143,22 +143,23 @@ int COperateTerminal::Initial()
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-
+    
     m_Menu.addAction(QIcon::fromTheme("edit-copy"),
                      tr("Copy selection to clipboard"),
-                     QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C),
-                     m_pTerminal, SLOT(copyClipboard()));
+                     m_pTerminal, SLOT(copyClipboard()))->setShortcuts(
+            QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C)
+                    << QKeySequence(Qt::CTRL | Qt::Key_Insert));
     m_Menu.addAction(QIcon::fromTheme("edit-paste"),
                      tr("Paste clipboard"),
-                     QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V),
+                     QKeySequence(QKeySequence::Paste), //Qt::CTRL | Qt::SHIFT | Qt::Key_V),
                      m_pTerminal, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pTerminal, SLOT(pasteSelection()));
     m_Menu.addSeparator();
     m_Menu.addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"),
-                     QKeySequence(Qt::CTRL | Qt::Key_Plus),
+                     QKeySequence(QKeySequence::ZoomIn), //Qt::CTRL | Qt::Key_Plus),
                      m_pTerminal, SLOT(zoomIn()));
     m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out"),
-                     QKeySequence(Qt::CTRL | Qt::Key_Minus),
+                     QKeySequence(QKeySequence::ZoomOut), //Qt::CTRL | Qt::Key_Minus),
                      m_pTerminal, SLOT(zoomOut()));
     m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset"),
                      QKeySequence(Qt::CTRL | Qt::Key_0),
@@ -177,7 +178,7 @@ int COperateTerminal::Initial()
     //     });
     m_pActionFind = m_Menu.addAction(
         QIcon::fromTheme("edit-find"), tr("Find ......"),
-        QKeySequence(Qt::CTRL | Qt::Key_F),
+        QKeySequence(QKeySequence::Find), //Qt::CTRL | Qt::Key_F),
         m_pTerminal, &QTermWidget::toggleShowSearchBar);
     
     m_Menu.addSeparator();

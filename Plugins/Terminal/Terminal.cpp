@@ -74,7 +74,7 @@ int CTerminal::Initial()
     QAction* pAction = m_Menu.addAction(
         QIcon::fromTheme("folder-open"),
         tr("Open working directory with file explorer"),
-        QKeySequence(Qt::CTRL | Qt::Key_O),
+        QKeySequence(QKeySequence::Open), //Qt::CTRL | Qt::Key_O),
         [&](){
             QDesktopServices::openUrl(
                 QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
