@@ -50,6 +50,8 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , m_pMenuActiveGroup(nullptr)
+    , m_ptbMenuActive(nullptr)
     , m_pActionOperateMenu(nullptr)
     , m_pTBOperate(nullptr)
     , m_pActionTBOperate(nullptr)
@@ -116,7 +118,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->toolBar->insertWidget(ui->actionStop, tbStart);
 
     m_Parameter.Load();
-    EnableMenu(false);
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));
@@ -239,6 +240,18 @@ MainWindow::MainWindow(QWidget *parent)
                     });
     Q_ASSERT(check);
 
+    m_pMenuActiveGroup = new QActionGroup(ui->menuActive);
+    m_ptbMenuActive = new QToolButton(ui->toolBar);
+    m_ptbMenuActive->setFocusPolicy(Qt::NoFocus);
+    m_ptbMenuActive->setPopupMode(QToolButton::InstantPopup);
+    m_ptbMenuActive->setMenu(ui->menuActive);
+    m_ptbMenuActive->setIcon(ui->menuActive->icon());
+    m_ptbMenuActive->setText(ui->menuActive->title());
+    m_ptbMenuActive->setToolTip(ui->menuActive->toolTip());
+    m_ptbMenuActive->setStatusTip(ui->menuActive->statusTip());
+    ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbMenuActive);
+
+    EnableMenu(false);
     slotShortCut();
 
     m_pSecureLevel = new QLabel(statusBar());
@@ -512,8 +525,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::slotViewerFocusIn(QWidget *pView)
 {
-    COperate* c = (COperate*)sender();
-    qDebug(log) << Q_FUNC_INFO << "Focus:" << sender() << pView;
+    COperate* c = qobject_cast<COperate*>(sender());
+    qDebug(log) << Q_FUNC_INFO << "Focus:" << c << pView;
     if(c && m_pView) {
         m_pView->SetCurrentView(c->GetViewer());
     }
@@ -535,8 +548,13 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
         EnableMenu(false);
 
     foreach(auto o, m_Operates) {
-        if(o->GetViewer() == pView)
+        if(o->GetViewer() == pView) {
             SetSecureLevel(o);
+            foreach (auto a, ui->menuActive->actions()) {
+                if(a->data().value<COperate*>() == o)
+                    a->setChecked(true);
+            }
+        }
     }
 }
 
@@ -547,7 +565,19 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionStop->setEnabled(bEnable);
     ui->actionTabBar_B->setEnabled(bEnable);
+    ui->menuActive->setEnabled(bEnable);
+    m_ptbMenuActive->setEnabled(bEnable);
     slotLoadOperateMenu();
+}
+
+void MainWindow::slotMenuActive()
+{
+    QAction* pAction = qobject_cast<QAction*>(sender());
+    Q_ASSERT(pAction);
+    if(!pAction) return;
+    COperate* p = pAction->data().value<COperate*>();
+    if(p)
+        slotOperateChanged(p);
 }
 
 void MainWindow::slotLoadOperateMenu()
@@ -701,7 +731,8 @@ void MainWindow::slotStart()
         Q_ASSERT(false);
         return;
     }
-    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
+    QAction* pAction = qobject_cast<QAction*>(this->sender());
+    Q_ASSERT(pAction);
     COperate* p = m_Manager.CreateOperate(pAction->data().toString());
     if(nullptr == p) return;
     Start(p, true);
@@ -777,7 +808,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     if(!pOperate->Name().isEmpty())
         slotInformation(tr("Starting: ") + pOperate->Name());
 
-    //* Show view. \see: slotConnected()
+    //* Show view. \see: slotRunning()
     if(-1 < m_Operates.indexOf(pOperate)) {
         if(m_pView)
             m_pView->SetCurrentView(pOperate->GetViewer());
@@ -794,10 +825,20 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         Q_ASSERT(check);
     }
     m_Operates.push_back(pOperate);
+
     m_pFrmActive->slotLoad();
     m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
+
+    QVariant vOperate;
+    vOperate.setValue(pOperate);
+    QAction* m_pActionMenuActive = ui->menuActive->addAction(
+        pOperate->Icon(), pOperate->Name(), this, SLOT(slotMenuActive()));
+    m_pActionMenuActive->setData(vOperate);
+    m_pActionMenuActive->setCheckable(true);
+    m_pMenuActiveGroup->addAction(m_pActionMenuActive);
+    m_pActionMenuActive->setChecked(true);
     //*/
-    
+
     pOperate->Start();
 
     return 0;
@@ -809,7 +850,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
  */
 void MainWindow::slotRunning()
 {
-    COperate* p = dynamic_cast<COperate*>(sender());
+    COperate* p = qobject_cast<COperate*>(sender());
     if(!p) return;
 
     /* If you put it here, when running, the view is not displayed.
@@ -868,7 +909,7 @@ void MainWindow::on_actionStop_triggered()
 
 void MainWindow::slotStop()
 {
-    COperate* pOperate = dynamic_cast<COperate*>(sender());
+    COperate* pOperate = qobject_cast<COperate*>(sender());
     if(!pOperate) return;
     qDebug(log) << Q_FUNC_INFO << pOperate->Name();
     //TODO: Whether to save the setting
@@ -878,10 +919,17 @@ void MainWindow::slotStop()
 
 void MainWindow::slotFinished()
 {
-    COperate* pOperate = dynamic_cast<COperate*>(sender());
+    COperate* pOperate = qobject_cast<COperate*>(sender());
     if(!pOperate) return;
 
     qDebug(log) << Q_FUNC_INFO << pOperate->Name();
+    foreach(auto a, ui->menuActive->actions()) {
+        COperate* o = a->data().value<COperate*>();
+        if(o == pOperate) {
+            ui->menuActive->removeAction(a);
+            m_pMenuActiveGroup->removeAction(a);
+        }
+    }
     foreach(auto p, m_Operates)
     {
         if(p == pOperate)
@@ -1016,10 +1064,16 @@ void MainWindow::slotUpdateName()
 
 void MainWindow::slotUpdateName(const QString& szName)
 {
-    COperate* p = dynamic_cast<COperate*>(sender());
+    COperate* p = qobject_cast<COperate*>(sender());
     if(!p) return;
     m_pView->SetWidowsTitle(p->GetViewer(), szName,
                             p->Icon(), p->Description());
+    foreach(auto a, ui->menuActive->actions()) {
+        if(a->data().value<COperate*>() == p) {
+            a->setText(szName);
+            break;
+        }
+    }
 }
 
 QAction* MainWindow::GetStartAction(QMenu* pMenu, CPlugin *pPlug)

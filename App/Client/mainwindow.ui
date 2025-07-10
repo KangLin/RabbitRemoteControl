@@ -37,7 +37,7 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
-    <widget class="QMenu" name="menuView_2">
+    <widget class="QMenu" name="menuType">
      <property name="title">
       <string>Type</string>
      </property>
@@ -47,12 +47,28 @@
      <addaction name="actionViewTab"/>
      <addaction name="actionViewSplit"/>
     </widget>
+    <widget class="QMenu" name="menuActive">
+     <property name="toolTip">
+      <string>Active</string>
+     </property>
+     <property name="statusTip">
+      <string>Active</string>
+     </property>
+     <property name="title">
+      <string>Active</string>
+     </property>
+     <property name="icon">
+      <iconset theme="network-wired"/>
+     </property>
+    </widget>
     <addaction name="actionFull_screen_F"/>
-    <addaction name="menuView_2"/>
+    <addaction name="menuType"/>
     <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
     <addaction name="actionMain_menu_bar_M"/>
+    <addaction name="separator"/>
+    <addaction name="menuActive"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuOperate">
