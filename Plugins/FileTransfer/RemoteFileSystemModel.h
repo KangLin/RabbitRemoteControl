@@ -96,6 +96,7 @@ public:
     
     QModelIndex SetRoot(CRemoteFileSystem* root);
     CRemoteFileSystem* GetRemoteFileSystem(const QModelIndex &index) const;
+    QModelIndex index(const QString& szPath) const;
     void SetFilter(CRemoteFileSystem::TYPES filter);
     CRemoteFileSystem::TYPES GetFilter();
 

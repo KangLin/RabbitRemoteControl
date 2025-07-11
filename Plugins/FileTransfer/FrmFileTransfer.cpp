@@ -250,7 +250,11 @@ void CFrmFileTransfer::slotTabLocalRename()
 void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
 {
     qDebug(log) << Q_FUNC_INFO << szPath;
-
+    QModelIndex idx = m_pModelRemoteDir->index(szPath);
+    if(!idx.isValid()) return;
+    if(szPath.length() > 1 && (szPath.right(1) == '/' || szPath.right(1) == '\\')) return;
+    ui->treeRemote->setCurrentIndex(idx);
+    on_treeRemote_clicked(idx);
 }
 
 void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
