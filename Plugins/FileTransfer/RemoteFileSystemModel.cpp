@@ -342,3 +342,8 @@ QModelIndex CRemoteFileSystemModel::parent(const QModelIndex &child) const
         return createIndex(pItemParent->IndexOf(pItem), 0, pItemParent);
     return QModelIndex();
 }
+
+QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
+{
+    return QModelIndex();
+}
