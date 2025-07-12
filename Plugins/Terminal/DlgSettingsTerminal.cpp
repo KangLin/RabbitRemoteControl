@@ -17,6 +17,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     m_pPara(pPara)
 {
     ui->setupUi(this);
+    ui->teHelp->hide();
     
 #if defined(Q_OS_UNIX)    
     AddShell("/bin/sh");
@@ -26,7 +27,17 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
 #elif defined(Q_OS_WIN)
     AddShell("C:\\Windows\\System32\\cmd.exe");
     AddShell("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
+    AddShell("C:\\Windows\\System32\\cmd.exe", "msys64");
     AddShell(qgetenv("ComSpec"));
+    QString szHelp;
+    szHelp = tr("Help:") + "\n";
+    szHelp += tr("- Set bash shell:") + "\n";
+    szHelp += tr("  cmd shell with parameters:") + " '/k %BASH_PATH% -l'\n";
+    szHelp += tr("  eg:") + "\n";
+    szHelp += tr("    msys64 bash path:") + " 'c:\\msys64\\usr\\bin\\bash.exe'\n";
+    szHelp += tr("    So that cmd shell with parameters:") + " '/k c:\\msys64\\usr\\bin\\bash.exe -l'";
+    ui->teHelp->setText(szHelp);
+    ui->teHelp->show();
 #endif
 
     QString szShell(m_pPara->GetShell());
@@ -79,28 +90,22 @@ void CDlgSettingsTerminal::on_pbCancel_clicked()
 int CDlgSettingsTerminal::AddShell(QString szShell, const QString &name)
 {
     int nIndex = 0;
-    nIndex = ui->cbShell->findData(szShell
-#if defined(Q_OS_WIN)
-                                   , Qt::UserRole, Qt::MatchFixedString
-#endif
-                                   );
-    if(-1 == nIndex) {
-        QFileInfo fi(szShell);
-        if(!fi.exists())
-        {
-            qCritical(log) << "The shell is not exist:" << szShell;
-            return -1;
-        }
-        QString szName = name;
-        if(szName.isEmpty())
-            szName = fi.baseName();
-        ui->cbShell->addItem(szName, szShell);
-        nIndex =  ui->cbShell->findData(szShell
-#if defined(Q_OS_WIN)
-                                       , Qt::UserRole, Qt::MatchFixedString
-#endif
-                                       );
+    QString szName = name;
+    QFileInfo fi(szShell);
+    if(!fi.exists())
+    {
+        qCritical(log) << "The shell is not exist:" << szShell;
+        return -1;
     }
+    if(szName.isEmpty())
+        szName = fi.baseName();
+
+    nIndex = ui->cbShell->findText(szName, Qt::MatchFixedString);
+    if(-1 == nIndex) {
+        ui->cbShell->addItem(szName, szShell);
+        nIndex = ui->cbShell->findText(szName, Qt::MatchFixedString);
+    }
+
     ui->cbShell->setItemData(nIndex, szShell, Qt::ToolTipRole);
     ui->cbShell->setItemData(nIndex, szShell, Qt::StatusTipRole);
     ui->cbShell->setCurrentIndex(nIndex);
@@ -120,9 +125,13 @@ void CDlgSettingsTerminal::on_pbShellBrowse_clicked()
 
 void CDlgSettingsTerminal::on_cbShell_currentIndexChanged(int index)
 {
-    QString szText;
-    szText = ui->cbShell->itemData(index).toString();
-    ui->cbShell->setToolTip(szText);
-    ui->cbShell->setStatusTip(szText);
+    QString szData, szName;
+    szData = ui->cbShell->itemData(index).toString();
+    szName = ui->cbShell->itemText(index);
+    ui->cbShell->setToolTip(szData);
+    ui->cbShell->setStatusTip(szData);
+    if("msys64" == szName && ui->leParameters->text().isEmpty()) {
+        ui->leParameters->setText("/k c:\\msys64\\usr\\bin\\bash.exe -l");
+    }
 }
 
