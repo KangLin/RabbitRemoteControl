@@ -37,32 +37,32 @@
     <message>
         <location filename="../../OperateSSH.cpp" line="100"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <location filename="../../OperateSSH.cpp" line="103"/>
         <source>Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <location filename="../../OperateSSH.cpp" line="106"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>協議：</translation>
     </message>
     <message>
         <location filename="../../OperateSSH.cpp" line="116"/>
         <source>Server address: </source>
-        <translation type="unfinished"></translation>
+        <translation>服務器地址：</translation>
     </message>
     <message>
         <location filename="../../OperateSSH.cpp" line="120"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation>安全級別：</translation>
     </message>
     <message>
         <location filename="../../OperateSSH.cpp" line="123"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>描述：</translation>
     </message>
 </context>
 <context>

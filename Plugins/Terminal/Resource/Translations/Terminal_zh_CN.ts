@@ -24,37 +24,67 @@
         <translation>属性</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="63"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="76"/>
         <source>Shell Path:</source>
         <translation>Shell 路径：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="83"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="96"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="94"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="110"/>
         <source>Shell Parameters:</source>
         <translation>Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="119"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="122"/>
         <source>Enable title changed</source>
         <translation>允许标题改变</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="58"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="33"/>
+        <source>Help:</source>
+        <translation>帮助：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
+        <source>- Set bash shell:</source>
+        <translation>- 设置 bash shell:</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
+        <source>  cmd shell with parameters:</source>
+        <translation>  cmd 使用参数：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
+        <source>  eg:</source>
+        <translation>  例如：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
+        <source>    msys64 bash path:</source>
+        <translation>    msys64 bash shell 路径：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="38"/>
+        <source>    So that cmd shell with parameters:</source>
+        <translation>    所以 cmd 使用参数：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="72"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="58"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="72"/>
         <source>The shell is empty</source>
         <translation>Shell 是空</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="106"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="119"/>
         <source>Select shell</source>
         <translation>选择 Shell</translation>
     </message>

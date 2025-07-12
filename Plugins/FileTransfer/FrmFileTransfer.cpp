@@ -3,6 +3,7 @@
 
 #include <QInputDialog>
 #include <QMenu>
+#include <QUrl>
 #include <QDesktopServices>
 #include <QLoggingCategory>
 #include "FrmFileTransfer.h"
