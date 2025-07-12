@@ -26,4 +26,8 @@ private:
     // COperate interface
 protected:
     virtual int Initial() override;
+
+    // COperate interface
+public:
+    virtual const QString Name() override;
 };

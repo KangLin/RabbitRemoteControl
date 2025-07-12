@@ -26,7 +26,7 @@ private slots:
     void on_cbShell_currentIndexChanged(int index);
     
 private:
-    int AddShell(QString szShell);
+    int AddShell(QString szShell, const QString& name = QString());
 
 private:
     Ui::CDlgSettingsTerminal *ui;

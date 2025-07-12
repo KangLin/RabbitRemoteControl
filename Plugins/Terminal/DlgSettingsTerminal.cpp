@@ -31,6 +31,9 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
 
     QString szShell(m_pPara->GetShell());
     AddShell(szShell);
+    if(!m_pPara->GetShellName().isEmpty())
+        ui->cbShell->setCurrentText(m_pPara->GetShellName());
+    ui->leParameters->setText(m_pPara->GetShellParameters());
 
     m_pFrmParaAppearnce =
             new CParameterTerminalUI(this);
@@ -59,6 +62,8 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
         return;
     }
     m_pPara->SetShell(ui->cbShell->currentData().toString());
+    m_pPara->SetShellName(ui->cbShell->currentText());
+    m_pPara->SetShellParameters(ui->leParameters->text());
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
 
@@ -71,7 +76,7 @@ void CDlgSettingsTerminal::on_pbCancel_clicked()
     this->reject();
 }
 
-int CDlgSettingsTerminal::AddShell(QString szShell)
+int CDlgSettingsTerminal::AddShell(QString szShell, const QString &name)
 {
     int nIndex = 0;
     nIndex = ui->cbShell->findData(szShell
@@ -86,7 +91,10 @@ int CDlgSettingsTerminal::AddShell(QString szShell)
             qCritical(log) << "The shell is not exist:" << szShell;
             return -1;
         }
-        ui->cbShell->addItem(fi.baseName(), szShell);
+        QString szName = name;
+        if(szName.isEmpty())
+            szName = fi.baseName();
+        ui->cbShell->addItem(szName, szShell);
         nIndex =  ui->cbShell->findData(szShell
 #if defined(Q_OS_WIN)
                                        , Qt::UserRole, Qt::MatchFixedString

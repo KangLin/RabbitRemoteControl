@@ -16,22 +16,30 @@ public:
     CParameterTerminal m_Terminal;
 
 public:
+    [[nodiscard]] const QString GetShellName() const;
+    int SetShellName(const QString& name);
+private:
+    QString m_szShellName;
+
+public:
     int SetShell(const QString& shell);
-    QString GetShell();
+    [[nodiscard]] const QString GetShell() const;
 private:
     QString m_szShell;
 
 public:
     int SetShellParameters(const QString& para);
-    QString GetShellParameters();
+    [[nodiscard]] const QString GetShellParameters() const;
 
 private:
     QString m_szShellParameters;
 
 public:
-    bool GetEnableTitleChanged() const;
+    [[nodiscard]] bool GetEnableTitleChanged() const;
     void SetEnableTitleChanged(bool newTitleChanged);
-
+private:
+Q_SIGNALS:
+    void sigEnableTitleChanged(bool titleChanged);
 private:
     bool m_bTitleChanged;
 

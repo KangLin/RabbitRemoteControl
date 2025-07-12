@@ -92,3 +92,10 @@ int CTerminal::Initial()
     m_Menu.insertAction(m_pActionFind, pAction);
     return nRet;
 }
+
+const QString CTerminal::Name()
+{
+    if(GetParameter() && !GetParameter()->GetShellName().isEmpty())
+        return COperateTerminal::Name() + " - " + GetParameter()->GetShellName();
+    return COperateTerminal::Name();
+}

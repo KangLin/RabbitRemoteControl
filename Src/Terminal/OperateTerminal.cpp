@@ -98,7 +98,10 @@ const QString COperateTerminal::Description()
         szDescription += "\n";
     }
 
-    szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
+    if(!GetParameter()->GetShellName().isEmpty())
+        szDescription += tr("Shell name: ") + GetParameter()->GetShellName() + "\n";
+    if(!GetParameter()->GetShell().isEmpty())
+        szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
     if(!GetParameter()->GetShellParameters().isEmpty())
         szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
 
@@ -243,12 +246,20 @@ int COperateTerminal::SetParameter(CParameterTerminalBase* pPara)
     if(!pPara || !m_pTerminal) return -1;
 
     bool check = connect(GetParameter(), &CParameter::sigChanged,
-                    this, [&](){
-                        emit this->sigUpdateParameters(this);
-                    });
+                         this, [&](){
+                             emit this->sigUpdateParameters(this);
+                         });
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigUpdateParameters(COperate*)),
-                         this, SLOT(slotUpdateParameter(COperate*)));
+                    this, SLOT(slotUpdateParameter(COperate*)));
+    Q_ASSERT(check);
+    check = connect(GetParameter(), &CParameterTerminalBase::sigEnableTitleChanged,
+                    this, [&](bool changed) {
+                        if(changed)
+                            slotTerminalTitleChanged();
+                        else
+                            emit sigUpdateName(Name());
+                    });
     Q_ASSERT(check);
 
     return nRet;
