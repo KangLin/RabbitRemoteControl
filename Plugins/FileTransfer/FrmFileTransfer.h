@@ -50,7 +50,8 @@ private Q_SLOTS:
     void slotTabLocalDelete();
 
     void on_cbRemote_editTextChanged(const QString &szPath);
-    
+    void on_cbRemote_currentIndexChanged(int index);
+
     void on_treeRemote_clicked(const QModelIndex &index);
     void on_treeRemote_customContextMenuRequested(const QPoint &pos);
     void slotTreeRemoteDownload();
@@ -67,7 +68,7 @@ private Q_SLOTS:
     void slotTabRemoteDelete();
     void slotTabRemoteRename();
     void slotTabRemoteCopyToClipboard();
-        
+
 private:
     Ui::CFrmFileTransfer *ui;
     QFileSystemModel* m_pModelLocalDir;

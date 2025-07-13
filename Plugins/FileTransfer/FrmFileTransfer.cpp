@@ -258,14 +258,27 @@ void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
     on_treeRemote_clicked(idx);
 }
 
+void CFrmFileTransfer::on_cbRemote_currentIndexChanged(int index)
+{
+    QModelIndex idx = ui->cbRemote->itemData(index).value<QModelIndex>();
+    if(idx.isValid()) {
+        ui->treeRemote->setCurrentIndex(idx);
+        on_treeRemote_clicked(idx);
+        return;
+    }
+    QString szPath = ui->cbRemote->itemText(index);
+    on_cbRemote_editTextChanged(szPath);
+}
+
 void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 {
     CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
     m_pModelRemoteFile->SetRoot(pRemoteFileSystem);
     QString szPath = pRemoteFileSystem->GetPath();
     if(szPath.isEmpty()) return;
-    if(-1 == ui->cbRemote->findText(szPath))
-        ui->cbRemote->addItem(szPath);
+    if(-1 == ui->cbRemote->findText(szPath)) {
+        ui->cbRemote->addItem(szPath, index);
+    }
     ui->cbRemote->setCurrentText(szPath);
 }
 

@@ -107,6 +107,9 @@ int CRemoteFileSystem::ChildCount(TYPES filter)
 
 int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
+
+    Q_ASSERT_X(pChild->GetType() != TYPE::NO, "AppendChild", "Need set type etc");
+
     if(m_vChild.contains(pChild)) {
         qDebug(log) << pChild->GetName() << "is exist";
         return 0;
