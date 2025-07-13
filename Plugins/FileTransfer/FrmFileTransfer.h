@@ -53,6 +53,7 @@ private Q_SLOTS:
     void on_cbRemote_currentIndexChanged(int index);
 
     void on_treeRemote_clicked(const QModelIndex &index);
+    void on_treeRemote_doubleClicked(const QModelIndex &index);
     void on_treeRemote_customContextMenuRequested(const QPoint &pos);
     void slotTreeRemoteDownload();
     void slotTreeRemoteAddToList();

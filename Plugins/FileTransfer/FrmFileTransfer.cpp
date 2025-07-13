@@ -272,6 +272,7 @@ void CFrmFileTransfer::on_cbRemote_currentIndexChanged(int index)
 
 void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 {
+    qDebug(log) << Q_FUNC_INFO;
     CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
     m_pModelRemoteFile->SetRoot(pRemoteFileSystem);
     QString szPath = pRemoteFileSystem->GetPath();
@@ -280,6 +281,17 @@ void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
         ui->cbRemote->addItem(szPath, index);
     }
     ui->cbRemote->setCurrentText(szPath);
+}
+
+void CFrmFileTransfer::on_treeRemote_doubleClicked(const QModelIndex &index)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
+    if(!pRemoteFileSystem) return;
+    if(CRemoteFileSystem::State::No != pRemoteFileSystem->GetState())
+    {
+        //TODO: start get directory
+    }
 }
 
 void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &pos)

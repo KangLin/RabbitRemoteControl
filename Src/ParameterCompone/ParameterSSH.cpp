@@ -7,6 +7,11 @@ CParameterSSH::CParameterSSH(CParameterOperate *parent, const QString &szPrefix)
     , m_Net(this)
 {
     m_Net.SetPort(22);
+    QList<CParameterUser::TYPE> lstType;
+    lstType << CParameterUser::TYPE::UserPassword
+            << CParameterUser::TYPE::PublicKey;
+    m_Net.m_User.SetType(lstType);
+    m_Net.SetPrompt(tr("The host is empty. please set it"));
 }
 
 int CParameterSSH::OnLoad(QSettings &set)

@@ -71,6 +71,15 @@ public:
     [[nodiscard]] QString GetOwner();
     void SetOwner(QString szOwner);
 
+    enum class State{
+        No,
+        Getting,
+        Ok
+    };
+    Q_ENUM(State)
+    const State GetState() const;
+    void SetState(State s);
+
 private:
     int AppendChild(CRemoteFileSystem* pChild);
     
@@ -82,6 +91,7 @@ private:
     QDateTime m_lastModifed;
     Privileges m_Privileges;
     QString m_szOwner;
+    State m_State;
     int m_DriveCount;
     int m_DirCount;
     int m_FileCount;

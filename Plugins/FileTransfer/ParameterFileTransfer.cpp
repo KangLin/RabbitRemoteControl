@@ -6,8 +6,10 @@
 CParameterFileTransfer::CParameterFileTransfer(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_Net(this)
+    , m_SSH(this)
     , m_Protocol(Protocol::SFTP)
-{}
+{
+}
 
 CParameterFileTransfer::Protocol CParameterFileTransfer::GetProtocol() const
 {

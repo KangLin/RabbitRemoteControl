@@ -18,7 +18,14 @@ CDlgFileTransfer::CDlgFileTransfer(CParameterFileTransfer *pPara, QWidget *paren
     int nIdx = ui->cbProtocol->findData((int)m_pPara->GetProtocol());
     if(-1 != nIdx)
         ui->cbProtocol->setCurrentIndex(nIdx);
-    ui->wNet->SetParameter(&m_pPara->m_Net);
+    // switch(m_pPara->GetProtocol()) {
+    // case CParameterFileTransfer::Protocol::FTP:
+    //     ui->wNet->SetParameter(&m_pPara->m_Net);
+    //     break;
+    // case CParameterFileTransfer::Protocol::SFTP:
+    //     ui->wNet->SetParameter(&m_pPara->m_SSH.m_Net);
+    //     break;
+    // }
 }
 
 CDlgFileTransfer::~CDlgFileTransfer()
@@ -36,4 +43,17 @@ void CDlgFileTransfer::accept()
     ui->wNet->Accept();
     m_pPara->SetProtocol((CParameterFileTransfer::Protocol)ui->cbProtocol->currentData().toInt());
     QDialog::accept();
+}
+
+void CDlgFileTransfer::on_cbProtocol_currentIndexChanged(int index)
+{
+    switch(ui->cbProtocol->currentData().value<CParameterFileTransfer::Protocol>())
+    {
+    case CParameterFileTransfer::Protocol::FTP:
+        ui->wNet->SetParameter(&m_pPara->m_Net);
+        break;
+    case CParameterFileTransfer::Protocol::SFTP:
+        ui->wNet->SetParameter(&m_pPara->m_SSH.m_Net);
+        break;
+    }
 }

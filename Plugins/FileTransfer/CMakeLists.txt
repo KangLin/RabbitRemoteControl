@@ -6,6 +6,7 @@ SET(FileTransfer_LIBS Plugin)
 SET(FileTransfer_SOURCE_FILES
     PluginFileTransfer.cpp
     OperateFileTransfer.cpp
+    BackendFieTransfer.cpp
     FrmFileTransfer.cpp
     ParameterFileTransfer.cpp
     DlgFileTransfer.cpp
@@ -15,6 +16,7 @@ SET(FileTransfer_SOURCE_FILES
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
     OperateFileTransfer.h
+    BackendFieTransfer.h
     FrmFileTransfer.h
     ParameterFileTransfer.h
     DlgFileTransfer.h

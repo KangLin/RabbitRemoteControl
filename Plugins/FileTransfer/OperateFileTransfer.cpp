@@ -4,6 +4,7 @@
 #include <QLoggingCategory>
 #include <QRegularExpression>
 
+#include "BackendFieTransfer.h"
 #include "OperateFileTransfer.h"
 #include "Plugin.h"
 #include "DlgFileTransfer.h"
@@ -12,6 +13,7 @@ static Q_LOGGING_CATEGORY(log, "Plugin.FileTransfer.Operate")
 
 COperateFileTransfer::COperateFileTransfer(CPlugin *plugin) : COperate(plugin)
     , m_frmFileTransfer(nullptr)
+    , m_pThread(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -19,6 +21,11 @@ COperateFileTransfer::COperateFileTransfer(CPlugin *plugin) : COperate(plugin)
 COperateFileTransfer::~COperateFileTransfer()
 {
     qDebug(log) << Q_FUNC_INFO;
+}
+
+CBackend* COperateFileTransfer::InstanceBackend()
+{
+    return new CBackendFieTransfer(this);
 }
 
 const qint16 COperateFileTransfer::Version() const
@@ -61,6 +68,12 @@ int COperateFileTransfer::Clean()
 int COperateFileTransfer::Start()
 {
     int nRet = 0;
+    m_pThread = new CBackendThread(this);
+    if(!m_pThread) {
+        qCritical(log) << "new CBackendThread fail";
+        return -2;
+    }
+    m_pThread->start();
     emit sigRunning();
     return nRet;
 }
@@ -68,6 +81,12 @@ int COperateFileTransfer::Start()
 int COperateFileTransfer::Stop()
 {
     int nRet = 0;
+    if(m_pThread)
+    {
+        m_pThread->quit();
+        //Don't delete m_pThread, See CBackendThread
+        m_pThread = nullptr;
+    }
     emit sigFinished();
     return nRet;
 }

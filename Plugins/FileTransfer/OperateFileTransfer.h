@@ -3,6 +3,7 @@
 
 #pragma once
 #include "Operate.h"
+#include "BackendThread.h"
 #include "FrmFileTransfer.h"
 #include "ParameterFileTransfer.h"
 
@@ -12,6 +13,17 @@ class COperateFileTransfer : public COperate
 public:
     explicit COperateFileTransfer(CPlugin *plugin);
     virtual ~COperateFileTransfer();
+
+    /*!
+     * \~chinese
+     * 新建后端实例。它的所有者是调用者，
+     * 如果调用者不再使用它，调用者必须负责释放它。
+     *
+     * \~english New CBackend. the ownership is caller.
+     *        if don't use, the caller must delete it.
+     * \~see CBackendThread
+     */
+    [[nodiscard]] Q_INVOKABLE virtual CBackend* InstanceBackend();
 
     virtual const QString Id() override;
     virtual const QString Name() override;
@@ -31,6 +43,7 @@ private:
 private:
     CFrmFileTransfer* m_frmFileTransfer;
     CParameterFileTransfer m_Parameter;
+    CBackendThread* m_pThread;
 
 protected:
     virtual int Load(QSettings &set) override;

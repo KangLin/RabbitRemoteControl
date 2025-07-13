@@ -17,6 +17,7 @@ CRemoteFileSystem::CRemoteFileSystem(
     , m_nSize(0)
     , m_Type(type)
     , m_Privileges(Privileges::No)
+    , m_State(State::No)
     , m_DriveCount(0)
     , m_DirCount(0)
     , m_FileCount(0)
@@ -107,8 +108,7 @@ int CRemoteFileSystem::ChildCount(TYPES filter)
 
 int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
-
-    Q_ASSERT_X(pChild->GetType() != TYPE::NO, "AppendChild", "Need set type etc");
+    Q_ASSERT_X(pChild->GetType(), "AppendChild", "Need set type etc");
 
     if(m_vChild.contains(pChild)) {
         qDebug(log) << pChild->GetName() << "is exist";
@@ -221,6 +221,16 @@ QString CRemoteFileSystem::GetOwner()
 void CRemoteFileSystem::SetOwner(QString szOwner)
 {
     m_szOwner = szOwner;
+}
+
+void CRemoteFileSystem::SetState(State a)
+{
+    m_State = a;
+}
+
+const CRemoteFileSystem::State CRemoteFileSystem::GetState() const
+{
+    return m_State;
 }
 
 CRemoteFileSystemModel::CRemoteFileSystemModel(QObject *parent)

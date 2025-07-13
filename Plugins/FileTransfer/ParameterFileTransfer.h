@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "ParameterNet.h"
+#include "ParameterSSH.h"
 
 class CParameterFileTransfer : public CParameterOperate
 {
@@ -14,6 +14,8 @@ public:
                                     const QString& szPrefix = QString());
     
     CParameterNet m_Net;
+    CParameterSSH m_SSH;
+
 public:
     enum class Protocol{
         FTP,

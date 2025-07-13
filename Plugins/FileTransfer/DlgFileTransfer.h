@@ -25,4 +25,6 @@ private:
 
 public slots:
     virtual void accept() override;
+private slots:
+    void on_cbProtocol_currentIndexChanged(int index);
 };

@@ -36,7 +36,8 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     }
 
     ui->leUser->setText(m_pUser->GetUser());
-    
+
+    ui->cbType->clear();
     for(auto t: m_pUser->GetType()) {
         ui->cbType->addItem(m_pUser->ConvertTypeToName(t), (int)t);
     }
