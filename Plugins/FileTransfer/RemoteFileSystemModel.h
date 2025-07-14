@@ -14,14 +14,15 @@ public:
         DRIVE = 0x01,
         DIR = 0x02,
         FILE = 0x04,
-        ALL = DRIVE | DIR | FILE
+        SYMLINK = 0x08,
+        SPECIAL = 0x10,
+        ALL = DRIVE | DIR | FILE | SYMLINK | SPECIAL
     };
     Q_ENUM(TYPE)
     Q_DECLARE_FLAGS(TYPES, TYPE)
     Q_FLAG(TYPES)
-    
-    explicit CRemoteFileSystem(const QString& szPath, TYPE type,
-                               QObject* parent = nullptr);
+
+    explicit CRemoteFileSystem(const QString& szPath, TYPE type);
     virtual ~CRemoteFileSystem();
 
     enum class ColumnValue {
@@ -29,7 +30,7 @@ public:
         Size,
         Type,
         LastModified,
-        Privileges,
+        Permission,
         Owner,
         End
     };
@@ -58,15 +59,17 @@ public:
     [[nodiscard]] QDateTime GetLastModified();
     void SetLastModified(QDateTime date);
 
-    enum class Privileges {
+    enum class Permission {
         No = 0x00,
-        Read = 0x01,
+        Exec = 0x01,
         Write = 0x02,
-        Exec = 0x04
+        Read = 0x04
     };
-    Q_ENUM(Privileges)
-    void SetPrivileges(Privileges privileges);
-    [[nodiscard]] Privileges GetPrivileges();
+    Q_ENUM(Permission)
+    Q_DECLARE_FLAGS(Permissions, Permission)
+    Q_FLAG(Permissions)
+    void SetPermissions(Permissions privileges);
+    [[nodiscard]] Permissions GetPermissions();
 
     [[nodiscard]] QString GetOwner();
     void SetOwner(QString szOwner);
@@ -79,20 +82,24 @@ public:
     Q_ENUM(State)
     const State GetState() const;
     void SetState(State s);
+    
+    void SetParent(CRemoteFileSystem* pParent);
+    /*!
+     * \brief Append child
+     * \note Must set all the properties before call them.
+     */
+    int AppendChild(CRemoteFileSystem* pChild);
 
 private:
-    int AppendChild(CRemoteFileSystem* pChild);
-    
-private:
+    CRemoteFileSystem* m_pParent;
     QVector<CRemoteFileSystem*> m_vChild;
     QString m_szPath;
     qint64 m_nSize;
     TYPES m_Type;
     QDateTime m_lastModifed;
-    Privileges m_Privileges;
+    Permissions m_Permissions;
     QString m_szOwner;
     State m_State;
-    int m_DriveCount;
     int m_DirCount;
     int m_FileCount;
 };
@@ -103,8 +110,9 @@ class CRemoteFileSystemModel : public QAbstractItemModel
 
 public:
     explicit CRemoteFileSystemModel(QObject *parent = nullptr);
-    
+
     QModelIndex SetRoot(CRemoteFileSystem* root);
+    CRemoteFileSystem* GetRoot();
     CRemoteFileSystem* GetRemoteFileSystem(const QModelIndex &index) const;
     QModelIndex index(const QString& szPath) const;
     void SetFilter(CRemoteFileSystem::TYPES filter);
@@ -123,8 +131,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    
+
 private:
-    CRemoteFileSystem* m_pRoot;
+    CRemoteFileSystem* m_pRoot; //TODO: delete it!
     CRemoteFileSystem::TYPES m_Filter;
 };

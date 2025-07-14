@@ -12,6 +12,7 @@ SET(FileTransfer_SOURCE_FILES
     DlgFileTransfer.cpp
     ListFileModel.cpp
     RemoteFileSystemModel.cpp
+    ChannelSFTP.cpp
     )
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
@@ -22,6 +23,7 @@ SET(FileTransfer_HEADER_FILES
     DlgFileTransfer.h
     ListFileModel.h
     RemoteFileSystemModel.h
+    ChannelSFTP.h
     )
 SET(FileTransfer_UI_FILES
     FrmFileTransfer.ui

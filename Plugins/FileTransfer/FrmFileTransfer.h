@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <QMap>
 #include <QWidget>
 #include <QFileSystemModel>
 #include "ListFileModel.h"
@@ -19,9 +20,15 @@ class CFrmFileTransfer : public QWidget
 public:
     explicit CFrmFileTransfer(QWidget *parent = nullptr);
     virtual ~CFrmFileTransfer();
-    
+
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
+
+public Q_SLOTS:
+    void slotGetFolder(const QString& szPath,
+                       QVector<CRemoteFileSystem*> contents);
+Q_SIGNALS:
+    void sigGetFolder(CRemoteFileSystem* pRemoteFileSystem);
 
 private:
     //! Set local root path

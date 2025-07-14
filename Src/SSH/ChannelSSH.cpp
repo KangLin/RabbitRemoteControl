@@ -5,7 +5,8 @@
 static Q_LOGGING_CATEGORY(log, "SSH")
 static Q_LOGGING_CATEGORY(logSSH, "SSH.log")
 
-CChannelSSH::CChannelSSH(CBackend *pBackend, CParameterSSH *pPara, bool bWakeUp, QObject *parent)
+CChannelSSH::CChannelSSH(CBackend *pBackend, CParameterSSH *pPara,
+                         bool bWakeUp, QObject *parent)
     : CChannel{parent}
     , m_Session(nullptr)
     , m_Channel(nullptr)

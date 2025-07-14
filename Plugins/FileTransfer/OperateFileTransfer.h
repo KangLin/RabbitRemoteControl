@@ -34,6 +34,8 @@ public:
     virtual int Start() override;
     virtual int Stop() override;
 
+    CParameterFileTransfer* GetParameter();
+
 protected:
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
 

@@ -21,6 +21,7 @@ public:
         FTP,
         SFTP
     };
+    Q_ENUM(Protocol)
     Protocol GetProtocol() const;
     void SetProtocol(Protocol newType);
     

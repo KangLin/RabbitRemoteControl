@@ -1,35 +1,64 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author Kang Lin <kl222@126.com>
 
+
 #include <QStyle>
 #include <QApplication>
 #include <QIcon>
 #include <QFileInfo>
 #include <QLoggingCategory>
+
+#if defined(Q_OS_LINUX)
+#include <sys/stat.h>
+#endif
+
 #include "RemoteFileSystemModel.h"
 
 static Q_LOGGING_CATEGORY(log, "RemoteFileSystem.Model")
 
 CRemoteFileSystem::CRemoteFileSystem(
-    const QString& szPath, TYPE type, QObject* parent)
-    : QObject(parent)
+    const QString& szPath, TYPE type)
+    : QObject()
+    , m_pParent(nullptr)
     , m_szPath(szPath)
     , m_nSize(0)
     , m_Type(type)
-    , m_Privileges(Privileges::No)
+    , m_Permissions(Permission::No)
     , m_State(State::No)
-    , m_DriveCount(0)
     , m_DirCount(0)
     , m_FileCount(0)
 {
-    CRemoteFileSystem* pParent = qobject_cast<CRemoteFileSystem*>(parent);
-    if(pParent) {
-        pParent->AppendChild(this);
-    }
 }
 
 CRemoteFileSystem::~CRemoteFileSystem()
-{}
+{
+    qDebug(log) << Q_FUNC_INFO << m_szPath;
+}
+
+#if defined(Q_OS_LINUX)
+void uint32_to_permstr(uint32_t mode, char *str) {
+    str[0] = S_ISDIR(mode) ? 'd' :
+                 S_ISLNK(mode) ? 'l' :
+                 S_ISCHR(mode) ? 'c' :
+                 S_ISBLK(mode) ? 'b' :
+                 S_ISFIFO(mode) ? 'p' :
+                 S_ISSOCK(mode) ? 's' : '-';
+    
+    // User
+    str[1] = (mode & S_IRUSR) ? 'r' : '-';
+    str[2] = (mode & S_IWUSR) ? 'w' : '-';
+    str[3] = (mode & S_IXUSR) ? ((mode & S_ISUID) ? 's' : 'x') : ((mode & S_ISUID) ? 'S' : '-');
+    // Group
+    str[4] = (mode & S_IRGRP) ? 'r' : '-';
+    str[5] = (mode & S_IWGRP) ? 'w' : '-';
+    str[6] = (mode & S_IXGRP) ? ((mode & S_ISGID) ? 's' : 'x') : ((mode & S_ISGID) ? 'S' : '-');
+    // Others
+    str[7] = (mode & S_IROTH) ? 'r' : '-';
+    str[8] = (mode & S_IWOTH) ? 'w' : '-';
+    str[9] = (mode & S_IXOTH) ? ((mode & S_ISVTX) ? 't' : 'x') : ((mode & S_ISVTX) ? 'T' : '-');
+    str[10] = '\0';
+}
+#endif
 
 QVariant CRemoteFileSystem::Data(int column)
 {
@@ -55,10 +84,23 @@ QVariant CRemoteFileSystem::Data(int column)
             return tr("Folder");
         if(GetType() & TYPE::DRIVE)
             return tr("Driver");
+        if(GetType() & TYPE::SYMLINK)
+            return tr("Symlink");
+        if(GetType() & TYPE::SPECIAL)
+            return tr("Special");
         break;
     }
     case ColumnValue::LastModified: {
         return GetLastModified();
+    }
+    case ColumnValue::Permission: {
+#if defined(Q_OS_LINUX)
+        quint32 premissions = (quint32)GetPermissions();
+        char buf[11];
+        uint32_to_permstr(premissions, buf);
+        return QString(buf);
+#endif
+        break;
     }
     case ColumnValue::Owner:
         return GetOwner();
@@ -79,8 +121,8 @@ QString CRemoteFileSystem::HeaderData(int section)
         return tr("File type");
     case ColumnValue::LastModified:
         return tr("File last modified time");
-    case ColumnValue::Privileges:
-        return tr("Privileges");
+    case ColumnValue::Permission:
+        return tr("Permissions");
     case ColumnValue::Owner:
         return tr("Owner/Group");
     default:
@@ -91,7 +133,11 @@ QString CRemoteFileSystem::HeaderData(int section)
 
 int CRemoteFileSystem::ColumnCount()
 {
+#if defined(Q_OS_WIN)
+    return (int)ColumnValue::Permission;
+#else
     return (int)ColumnValue::End;
+#endif
 }
 
 int CRemoteFileSystem::ChildCount(TYPES filter)
@@ -101,14 +147,22 @@ int CRemoteFileSystem::ChildCount(TYPES filter)
         nCount += m_FileCount;
     if(filter & TYPE::DIR)
         nCount += m_DirCount;
-    if(filter & TYPE::DRIVE)
-        nCount += m_DriveCount;
     return nCount;
+}
+
+void CRemoteFileSystem::SetParent(CRemoteFileSystem *pParent)
+{
+    m_pParent = pParent;
+}
+
+CRemoteFileSystem* CRemoteFileSystem::GetParent()
+{
+    return m_pParent;
 }
 
 int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
-    Q_ASSERT_X(pChild->GetType(), "AppendChild", "Need set type etc");
+    Q_ASSERT_X(pChild->GetType(), "AppendChild", "Must set all the properties before call them");
 
     if(m_vChild.contains(pChild)) {
         qDebug(log) << pChild->GetName() << "is exist";
@@ -120,9 +174,13 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
     if(pChild->GetType() & TYPE::DIR)
         m_DirCount++;
     if(pChild->GetType() & TYPE::DRIVE)
-        m_DriveCount++;
-    Q_ASSERT(m_vChild.size() == m_FileCount + m_DirCount + m_DriveCount);
-    pChild->setParent(this);
+        m_DirCount++;
+    if(pChild->GetType() & TYPE::SYMLINK)
+        m_FileCount++;
+    if(pChild->GetType() & TYPE::SPECIAL)
+        m_FileCount++;
+    Q_ASSERT(m_vChild.size() == m_FileCount + m_DirCount);
+    pChild->SetParent(this);
     return 0;
 }
 
@@ -139,11 +197,6 @@ CRemoteFileSystem* CRemoteFileSystem::GetChild(int nIndex)
     return m_vChild.at(nIndex);
 }
 
-CRemoteFileSystem* CRemoteFileSystem::GetParent()
-{
-    return qobject_cast<CRemoteFileSystem*>(parent());
-}
-
 int CRemoteFileSystem::IndexOf(CRemoteFileSystem* pChild)
 {
     return m_vChild.indexOf(pChild);
@@ -156,10 +209,17 @@ QString CRemoteFileSystem::GetPath()
 
 QString CRemoteFileSystem::GetName()
 {
-    QFileInfo fi(GetPath());
-    if(GetPath() == '/')
-        return GetPath();
-    return fi.baseName();
+    QString szName;
+    QString szPath = GetPath();
+    if(szPath == '/')
+        return szPath;
+    int nIndex = szPath.lastIndexOf('/');
+    if(-1 == nIndex)
+        return QString();
+    szName = szPath.right(szPath.size() - nIndex - 1);
+    if(GetState() == State::Getting)
+        szName += "(" + tr("getting") + " ......)";
+    return szName;
 }
 
 qint64 CRemoteFileSystem::GetSize()
@@ -203,14 +263,14 @@ void CRemoteFileSystem::SetLastModified(QDateTime date)
     m_lastModifed = date;
 }
 
-CRemoteFileSystem::Privileges CRemoteFileSystem::GetPrivileges()
+CRemoteFileSystem::Permissions CRemoteFileSystem::GetPermissions()
 {
-    return m_Privileges;
+    return m_Permissions;
 }
 
-void CRemoteFileSystem::SetPrivileges(Privileges privileges)
+void CRemoteFileSystem::SetPermissions(Permissions privileges)
 {
-    m_Privileges = privileges;
+    m_Permissions = privileges;
 }
 
 QString CRemoteFileSystem::GetOwner()
@@ -249,6 +309,11 @@ QModelIndex CRemoteFileSystemModel::SetRoot(CRemoteFileSystem *root)
     //qDebug(log) << Q_FUNC_INFO << index;
     endResetModel();
     return index;
+}
+
+CRemoteFileSystem* CRemoteFileSystemModel::GetRoot()
+{
+    return m_pRoot;
 }
 
 CRemoteFileSystem* CRemoteFileSystemModel::GetRemoteFileSystem(const QModelIndex &index) const
@@ -320,6 +385,8 @@ QVariant CRemoteFileSystemModel::data(const QModelIndex &index, int role) const
         return pItem->Icon();
     if(Qt::DisplayRole == role)
         return pItem->Data(index.column());
+    if(Qt::ToolTipRole == role)
+        return pItem->GetPath();
     return QVariant();
 }
 
@@ -358,5 +425,27 @@ QModelIndex CRemoteFileSystemModel::parent(const QModelIndex &child) const
 
 QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
 {
+    int r = 0;
+    qDebug(log) << Q_FUNC_INFO << szPath;
+    QModelIndex idxParent;
+    QModelIndex idx = index(0, 0);
+    while(idx.isValid()) {
+        idx = index(r++, 0, idxParent);
+        CRemoteFileSystem* pRemoteFileSystem = GetRemoteFileSystem(idx);
+        QString szDir = pRemoteFileSystem->GetPath();
+        qDebug(log) << szDir << szPath;
+        if(szDir == szPath)
+            return idx;
+        if(pRemoteFileSystem->GetType() & CRemoteFileSystem::TYPE::FILE) {
+            qDebug(log) << szDir << "Is file:";
+            continue;
+        }
+        if(szPath.left(szDir.size()) == szDir) {
+            qDebug(log) << "Contain:" << szPath << szDir;
+            idxParent = idx;
+            r = 0;
+            continue;
+        }
+    }
     return QModelIndex();
 }

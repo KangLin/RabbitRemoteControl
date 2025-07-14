@@ -16,6 +16,11 @@ COperateFileTransfer::COperateFileTransfer(CPlugin *plugin) : COperate(plugin)
     , m_pThread(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
+    bool check = connect(&m_Parameter, &CParameter::sigChanged,
+                         this, [&](){
+                             emit this->sigUpdateParameters(this);
+                         });
+    Q_ASSERT(check);
 }
 
 COperateFileTransfer::~COperateFileTransfer()
@@ -26,6 +31,11 @@ COperateFileTransfer::~COperateFileTransfer()
 CBackend* COperateFileTransfer::InstanceBackend()
 {
     return new CBackendFieTransfer(this);
+}
+
+CParameterFileTransfer* COperateFileTransfer::GetParameter()
+{
+    return &m_Parameter;
 }
 
 const qint16 COperateFileTransfer::Version() const

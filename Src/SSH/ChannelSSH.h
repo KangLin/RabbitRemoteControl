@@ -14,16 +14,15 @@ class PLUGIN_EXPORT CChannelSSH : public CChannel
 {
     Q_OBJECT
 public:
-    explicit CChannelSSH(CBackend *pBackend, CParameterSSH* pPara, bool bWakeUp = true, QObject *parent = nullptr);
+    explicit CChannelSSH(CBackend *pBackend, CParameterSSH* pPara,
+                         bool bWakeUp = true, QObject *parent = nullptr);
     virtual ~CChannelSSH();
 
-    // QIODevice interface
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
     virtual int WakeUp();
 
-    // CChannel interface
 public:
     virtual QString GetDetails() override;
 
