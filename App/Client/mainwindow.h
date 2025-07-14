@@ -69,10 +69,10 @@ private:
     QMap<CPlugin::TYPE, QMenu*> m_MenuStartByType;
 
 private Q_SLOTS:
-    void slotMenuActive();
+    void slotMenuActivity();
 private:
-    QActionGroup* m_pMenuActiveGroup;
-    QToolButton* m_ptbMenuActive;
+    QActionGroup* m_pMenuActivityGroup;
+    QToolButton* m_ptbMenuActivity;
 private Q_SLOTS:
     void slotLoadOperateMenu();
     void slotCustomContextMenuRequested(const QPoint &pos);

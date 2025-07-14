@@ -47,15 +47,15 @@
      <addaction name="actionViewTab"/>
      <addaction name="actionViewSplit"/>
     </widget>
-    <widget class="QMenu" name="menuActive">
+    <widget class="QMenu" name="menuActivity">
      <property name="toolTip">
-      <string>Active</string>
+      <string>Activity</string>
      </property>
      <property name="statusTip">
-      <string>Active</string>
+      <string>Activity</string>
      </property>
      <property name="title">
-      <string>Active</string>
+      <string>Activity</string>
      </property>
      <property name="icon">
       <iconset theme="network-wired"/>
@@ -68,7 +68,7 @@
     <addaction name="actionStatus_bar_S"/>
     <addaction name="actionMain_menu_bar_M"/>
     <addaction name="separator"/>
-    <addaction name="menuActive"/>
+    <addaction name="menuActivity"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuOperate">
@@ -87,9 +87,9 @@
     <addaction name="actionStop"/>
     <addaction name="actionOpenListRecent"/>
     <addaction name="actionOpenRRCFile"/>
-    <addaction name="actionClone"/>
     <addaction name="separator"/>
     <addaction name="actionAdd_to_favorite"/>
+    <addaction name="actionClone"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>

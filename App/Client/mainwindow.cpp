@@ -50,8 +50,8 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , m_pMenuActiveGroup(nullptr)
-    , m_ptbMenuActive(nullptr)
+    , m_pMenuActivityGroup(nullptr)
+    , m_ptbMenuActivity(nullptr)
     , m_pActionOperateMenu(nullptr)
     , m_pTBOperate(nullptr)
     , m_pActionTBOperate(nullptr)
@@ -240,16 +240,16 @@ MainWindow::MainWindow(QWidget *parent)
                     });
     Q_ASSERT(check);
 
-    m_pMenuActiveGroup = new QActionGroup(ui->menuActive);
-    m_ptbMenuActive = new QToolButton(ui->toolBar);
-    m_ptbMenuActive->setFocusPolicy(Qt::NoFocus);
-    m_ptbMenuActive->setPopupMode(QToolButton::InstantPopup);
-    m_ptbMenuActive->setMenu(ui->menuActive);
-    m_ptbMenuActive->setIcon(ui->menuActive->icon());
-    m_ptbMenuActive->setText(ui->menuActive->title());
-    m_ptbMenuActive->setToolTip(ui->menuActive->toolTip());
-    m_ptbMenuActive->setStatusTip(ui->menuActive->statusTip());
-    ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbMenuActive);
+    m_pMenuActivityGroup = new QActionGroup(ui->menuActivity);
+    m_ptbMenuActivity = new QToolButton(ui->toolBar);
+    m_ptbMenuActivity->setFocusPolicy(Qt::NoFocus);
+    m_ptbMenuActivity->setPopupMode(QToolButton::InstantPopup);
+    m_ptbMenuActivity->setMenu(ui->menuActivity);
+    m_ptbMenuActivity->setIcon(ui->menuActivity->icon());
+    m_ptbMenuActivity->setText(ui->menuActivity->title());
+    m_ptbMenuActivity->setToolTip(ui->menuActivity->toolTip());
+    m_ptbMenuActivity->setStatusTip(ui->menuActivity->statusTip());
+    ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbMenuActivity);
 
     EnableMenu(false);
     slotShortCut();
@@ -550,7 +550,7 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
     foreach(auto o, m_Operates) {
         if(o->GetViewer() == pView) {
             SetSecureLevel(o);
-            foreach (auto a, ui->menuActive->actions()) {
+            foreach (auto a, ui->menuActivity->actions()) {
                 if(a->data().value<COperate*>() == o)
                     a->setChecked(true);
             }
@@ -565,12 +565,12 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionStop->setEnabled(bEnable);
     ui->actionTabBar_B->setEnabled(bEnable);
-    ui->menuActive->setEnabled(bEnable);
-    m_ptbMenuActive->setEnabled(bEnable);
+    ui->menuActivity->setEnabled(bEnable);
+    m_ptbMenuActivity->setEnabled(bEnable);
     slotLoadOperateMenu();
 }
 
-void MainWindow::slotMenuActive()
+void MainWindow::slotMenuActivity()
 {
     QAction* pAction = qobject_cast<QAction*>(sender());
     Q_ASSERT(pAction);
@@ -605,7 +605,7 @@ void MainWindow::slotLoadOperateMenu()
             auto m = op->GetMenu(ui->menuTools);
             if(!m) return;
             // Menu tool bar
-            m_pActionOperateMenu = ui->menuTools->addMenu(m);
+            m_pActionOperateMenu = ui->menuOperate->insertMenu(ui->actionAdd_to_favorite, m);
             // ToolBar
             if(!m_pTBOperate)
                 m_pTBOperate = new QToolButton(ui->toolBar);
@@ -618,7 +618,7 @@ void MainWindow::slotLoadOperateMenu()
                 m_pTBOperate->setToolTip(m->toolTip());
                 m_pTBOperate->setStatusTip(m->statusTip());
                 m_pTBOperate->show();
-                m_pActionTBOperate = ui->toolBar->insertWidget(ui->actionFull_screen_F, m_pTBOperate);
+                m_pActionTBOperate = ui->toolBar->insertWidget(ui->actionAdd_to_favorite, m_pTBOperate);
             }
             emit sigOperateMenuChanged(m_pActionOperateMenu);
         }
@@ -831,12 +831,12 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
 
     QVariant vOperate;
     vOperate.setValue(pOperate);
-    QAction* m_pActionMenuActive = ui->menuActive->addAction(
-        pOperate->Icon(), pOperate->Name(), this, SLOT(slotMenuActive()));
-    m_pActionMenuActive->setData(vOperate);
-    m_pActionMenuActive->setCheckable(true);
-    m_pMenuActiveGroup->addAction(m_pActionMenuActive);
-    m_pActionMenuActive->setChecked(true);
+    QAction* m_pActionmenuActivity = ui->menuActivity->addAction(
+        pOperate->Icon(), pOperate->Name(), this, SLOT(slotMenuActivity()));
+    m_pActionmenuActivity->setData(vOperate);
+    m_pActionmenuActivity->setCheckable(true);
+    m_pMenuActivityGroup->addAction(m_pActionmenuActivity);
+    m_pActionmenuActivity->setChecked(true);
     //*/
 
     pOperate->Start();
@@ -923,11 +923,11 @@ void MainWindow::slotFinished()
     if(!pOperate) return;
 
     qDebug(log) << Q_FUNC_INFO << pOperate->Name();
-    foreach(auto a, ui->menuActive->actions()) {
+    foreach(auto a, ui->menuActivity->actions()) {
         COperate* o = a->data().value<COperate*>();
         if(o == pOperate) {
-            ui->menuActive->removeAction(a);
-            m_pMenuActiveGroup->removeAction(a);
+            ui->menuActivity->removeAction(a);
+            m_pMenuActivityGroup->removeAction(a);
         }
     }
     foreach(auto p, m_Operates)
@@ -1068,7 +1068,7 @@ void MainWindow::slotUpdateName(const QString& szName)
     if(!p) return;
     m_pView->SetWidowsTitle(p->GetViewer(), szName,
                             p->Icon(), p->Description());
-    foreach(auto a, ui->menuActive->actions()) {
+    foreach(auto a, ui->menuActivity->actions()) {
         if(a->data().value<COperate*>() == p) {
             a->setText(szName);
             break;
