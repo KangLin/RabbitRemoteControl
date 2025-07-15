@@ -95,9 +95,9 @@ QVariant CRemoteFileSystem::Data(int column)
     }
     case ColumnValue::Permission: {
 #if defined(Q_OS_LINUX)
-        quint32 premissions = (quint32)GetPermissions();
+        quint32 permissions = (quint32)GetPermissions();
         char buf[11];
-        uint32_to_permstr(premissions, buf);
+        uint32_to_permstr(permissions, buf);
         return QString(buf);
 #endif
         break;
@@ -440,6 +440,8 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
             qDebug(log) << szDir << "Is file:";
             continue;
         }
+        if(szDir.right(1) != '/')
+            szDir += '/';
         if(szPath.left(szDir.size()) == szDir) {
             qDebug(log) << "Contain:" << szPath << szDir;
             idxParent = idx;

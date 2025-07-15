@@ -90,7 +90,7 @@ CRemoteFileSystem* CChannelSFTP::GetRemoteFileSystem(const QString& szPath, sftp
         type = CRemoteFileSystem::TYPE::SPECIAL;
         break;
     default:
-        qWarning(log) << "Unsupport type:" << attributes->type;
+        qWarning(log) << "Unsupported type:" << attributes->type;
         break;
     }
     if(szPath.right(1) == '/')

@@ -4,6 +4,9 @@
 #include <QInputDialog>
 #include <QMenu>
 #include <QUrl>
+#include <QClipboard>
+#include <QMimeData>
+#include <QApplication>
 #include <QDesktopServices>
 #include <QLoggingCategory>
 #include "FrmFileTransfer.h"
@@ -346,6 +349,18 @@ void CFrmFileTransfer::slotTreeRemoteRename()
 
 void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()
 {
+    auto idx = ui->treeRemote->currentIndex();
+    if(idx.isValid()) {
+        auto p = m_pModelRemoteDir->GetRemoteFileSystem(idx);
+        if(p) {
+            QClipboard* pClipboard = QApplication::clipboard();
+            //TODO: add protocol + host
+            QString u = p->GetPath();
+            QUrl url(u);
+            pClipboard->setText(p->GetPath());
+            //pClipboard->mimeData()->setUrls(QList<QUrl>() << url);
+        }
+    }
 }
 
 void CFrmFileTransfer::on_tabRemote_customContextMenuRequested(const QPoint &pos)
