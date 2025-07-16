@@ -56,18 +56,6 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     m_pRemoteFileSystem = new CRemoteFileSystem("", CRemoteFileSystem::TYPE::DRIVE);
     CRemoteFileSystem* pRoot = new CRemoteFileSystem("/", CRemoteFileSystem::TYPE::DRIVE);
     m_pRemoteFileSystem->AppendChild(pRoot);
-    /* TODO: Test
-    CRemoteFileSystem* pHome = new CRemoteFileSystem("/home", CRemoteFileSystem::TYPE::DIR);
-    pRoot->AppendChild(pHome);
-    CRemoteFileSystem* pBin = new CRemoteFileSystem("/bin", CRemoteFileSystem::TYPE::DIR);
-    pRoot->AppendChild(pBin);
-    CRemoteFileSystem* pDownload = new CRemoteFileSystem("/home/Download", CRemoteFileSystem::TYPE::DIR);
-    pHome->AppendChild(pDownload);
-    CRemoteFileSystem* pFile = new CRemoteFileSystem("/home/Download/a.txt", CRemoteFileSystem::TYPE::FILE);
-    pFile->SetSize(10244459);
-    pDownload->AppendChild(pFile);
-    //*/
-
     auto indexRemoteDir = m_pModelRemoteDir->SetRoot(m_pRemoteFileSystem);
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);

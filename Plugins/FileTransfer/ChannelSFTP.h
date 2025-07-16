@@ -45,14 +45,13 @@ private:
     CRemoteFileSystem* GetRemoteFileSystem(const QString &szPath, sftp_attributes attributes);
     int AsyncReadDir();
 
-    enum STATE {
+    enum class STATE {
         OPEN,
         READ,
         CLOSE,
         FINISH,
-        ERROR
+        ERR
     };
-    Q_ENUM(STATE)
     struct DIR_READER {
         sftp_dir sftp;
         QString szPath;

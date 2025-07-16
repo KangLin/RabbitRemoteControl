@@ -234,7 +234,7 @@ int CChannelSFTP::AsyncReadDir()
                 break;
             }
             qCritical(log) << "Error opening directory:" << d->szPath << "Error:" << ssh_get_error(m_Session);
-            d->state = STATE::ERROR;
+            d->state = STATE::ERR;
             break;
         }
         case STATE::READ: {
@@ -258,7 +258,7 @@ int CChannelSFTP::AsyncReadDir()
                 d->state = STATE::CLOSE;
             }
             qCritical(log) << "Error reading directory:" << d->szPath << err << ssh_get_error(m_Session);
-            d->state = STATE::ERROR;
+            d->state = STATE::ERR;
             break;
         }
         case STATE::CLOSE: {
@@ -283,7 +283,7 @@ int CChannelSFTP::AsyncReadDir()
             //Because can't get into here
             //emit sigGetFolder(d->szPath, d->vRemoteFileSystem);
             break;
-        case STATE::ERROR:
+        case STATE::ERR:
             d->state = STATE::CLOSE;
             break;
         default:
