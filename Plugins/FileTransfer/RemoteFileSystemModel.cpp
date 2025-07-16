@@ -239,12 +239,14 @@ bool CRemoteFileSystem::IsDir()
 
 QIcon CRemoteFileSystem::Icon()
 {
-    if(GetType() & TYPE::DIR)
-        return QIcon::fromTheme("folder-remote");
-    if(GetType() & TYPE::FILE)
-        return QApplication::style()->standardIcon(QStyle::SP_FileIcon);
     if(GetType() & TYPE::DRIVE)
         return QIcon::fromTheme("drive-harddisk");
+    if(GetType() & TYPE::DIR)
+        return QIcon::fromTheme("folder-remote");
+    if(GetType() & TYPE::FILE || GetType() & TYPE::SPECIAL)
+        return QApplication::style()->standardIcon(QStyle::SP_FileIcon);
+    if(GetType() & TYPE::SYMLINK)
+        return QIcon::fromTheme("emblem-symbolic-link");
     return QIcon();
 }
 
