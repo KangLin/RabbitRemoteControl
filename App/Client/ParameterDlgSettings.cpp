@@ -76,6 +76,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     }
     ui->cbTabToolTip->setChecked(m_pParameters->GetEnableTabToolTip());
     ui->cbTabIcon->setChecked(m_pParameters->GetEnableTabIcon());
+    ui->cbElided->setChecked(m_pParameters->GetTabElided());
 
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
 
@@ -122,6 +123,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
     m_pParameters->SetEnableTabToolTip(ui->cbTabToolTip->isChecked());
     m_pParameters->SetEnableTabIcon(ui->cbTabIcon->isChecked());
+    m_pParameters->SetTabElided(ui->cbElided->isChecked());
 
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
 

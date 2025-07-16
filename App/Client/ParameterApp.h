@@ -76,6 +76,14 @@ private:
     Q_PROPERTY(bool EnableTabIcon READ GetEnableTabIcon WRITE SetEnableTabIcon NOTIFY sigEnableTabIconChanged)
 
 public:
+    const bool GetTabElided() const;
+    void SetTabElided(bool bElided);
+Q_SIGNALS:
+    void sigTabElided();
+private:
+    bool m_bTabElided;
+
+public:
     int GetRecentMenuMaxCount() const;
     void SetRecentMenuMaxCount(int newRecentMenuMaxCount);
 Q_SIGNALS:

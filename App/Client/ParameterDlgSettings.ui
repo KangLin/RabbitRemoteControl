@@ -262,6 +262,13 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="cbElided">
+              <property name="text">
+               <string>Elided</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>

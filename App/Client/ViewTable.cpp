@@ -30,10 +30,19 @@ CViewTable::CViewTable(CParameterApp *pPara, QWidget *parent)
 
     if(m_pParameterApp)
     {
+        if(m_pParameterApp->GetTabElided())
+            m_pTab->setElideMode(Qt::ElideLeft);
         m_pTab->setTabPosition(m_pParameterApp->GetTabPosition());
         check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),
                         this, SLOT(slotTabPositionChanged()));
         Q_ASSERT(check);
+        check = connect(m_pParameterApp, &CParameterApp::sigTabElided,
+                        this, [&](){
+            if(m_pParameterApp->GetTabElided())
+                m_pTab->setElideMode(Qt::ElideLeft);
+            else
+                m_pTab->setElideMode(Qt::ElideNone);
+        });
     }
 
     check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),

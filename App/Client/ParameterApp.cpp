@@ -13,6 +13,7 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_TabPosition(QTabWidget::North),
     m_bEnableTabToolTip(true),
     m_bEnableTabIcon(true),
+    m_bTabElided(false),
     m_nRecentMenuMaxCount(10),
     m_SystemTrayIconType(SystemTrayIconMenuType::MenuBar),
     m_bEnableSystemTrayIcon(true),
@@ -61,6 +62,7 @@ int CParameterApp::OnLoad(QSettings &set)
                                   GetEnableTabToolTip()).toBool());
     SetEnableTabIcon(set.value("TabView/Tab/Enable/Icon",
                                GetEnableTabIcon()).toBool());
+    SetTabElided(set.value("TabView/Tab/Enable/Elided", GetTabElided()).toBool());
     set.endGroup();
 
     SetRecentMenuMaxCount(set.value("Recent/Max",
@@ -127,6 +129,7 @@ int CParameterApp::OnSave(QSettings &set)
     set.setValue("TabView/Tab/Position", GetTabPosition());
     set.setValue("TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());
     set.setValue("TabView/Tab/Enable/Icon", GetEnableTabIcon());
+    set.setValue("TabView/Tab/Enable/Elided", GetTabElided());
     set.endGroup();
 
     set.setValue("Recent/Max", GetRecentMenuMaxCount());
@@ -244,6 +247,20 @@ void CParameterApp::SetEnableTabIcon(bool bEnable)
     m_bEnableTabIcon = bEnable;
     SetModified(true);
     emit sigEnableTabIconChanged();
+}
+
+const bool CParameterApp::GetTabElided() const
+{
+    return m_bTabElided;
+}
+
+void CParameterApp::SetTabElided(bool bElided)
+{
+    if(m_bTabElided == bElided)
+        return;
+    m_bTabElided = bElided;
+    SetModified(true);
+    emit sigTabElided();
 }
 
 int CParameterApp::GetRecentMenuMaxCount() const
