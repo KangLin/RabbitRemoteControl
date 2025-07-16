@@ -124,13 +124,21 @@ int COperateFileTransfer::Save(QSettings &set)
 const QString COperateFileTransfer::Name()
 {
     QString szName;
-    auto &net = m_Parameter.m_Net;
-    if(!net.GetHost().isEmpty()) {
+    CParameterNet* pNet = nullptr;
+    switch((CParameterFileTransfer::Protocol)m_Parameter.GetProtocol()) {
+    case CParameterFileTransfer::Protocol::SFTP:
+        pNet = &m_Parameter.m_SSH.m_Net;
+        break;
+    case CParameterFileTransfer::Protocol::FTP:
+        pNet = &m_Parameter.m_Net;
+        break;
+    }
+    if(!pNet->GetHost().isEmpty()) {
         if(m_Parameter.GetGlobalParameters()
             && m_Parameter.GetGlobalParameters()->GetShowProtocolPrefix())
             szName = Protocol() + ":";
-        szName += net.GetHost()
-                  + ":" + QString::number(net.GetPort());
+        szName += pNet->GetHost()
+                  + ":" + QString::number(pNet->GetPort());
     }
     if(szName.isEmpty())
         szName = COperate::Name();
