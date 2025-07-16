@@ -297,7 +297,8 @@ void CFrmFileTransfer::on_treeRemote_doubleClicked(const QModelIndex &index)
     qDebug(log) << Q_FUNC_INFO;
     CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
     if(!pRemoteFileSystem) return;
-    if(CRemoteFileSystem::State::No == pRemoteFileSystem->GetState())
+    if(CRemoteFileSystem::State::No == pRemoteFileSystem->GetState()
+        && !(pRemoteFileSystem->GetType() & CRemoteFileSystem::TYPE::FILE))
     {
         pRemoteFileSystem->SetState(CRemoteFileSystem::State::Getting);
         emit sigGetFolder(pRemoteFileSystem);
