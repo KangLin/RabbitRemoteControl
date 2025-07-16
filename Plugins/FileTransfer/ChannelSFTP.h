@@ -52,6 +52,7 @@ private:
         FINISH,
         ERROR
     };
+    Q_ENUM(STATE)
     struct DIR_READER {
         sftp_dir sftp;
         QString szPath;

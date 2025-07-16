@@ -103,7 +103,21 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
 
 CFrmFileTransfer::~CFrmFileTransfer()
 {
+    qDebug(log) << Q_FUNC_INFO;
     delete ui;
+    if(m_pRemoteFileSystem)
+        DeleteRemoteFileSystem(m_pRemoteFileSystem);
+}
+
+void CFrmFileTransfer::DeleteRemoteFileSystem(CRemoteFileSystem* p)
+{
+    if(!p) return;
+    for(int i = 0; i < p->ChildCount(); i++) {
+        auto pChild = p->GetChild(i);
+        if(pChild)
+            DeleteRemoteFileSystem(pChild);
+    }
+    p->deleteLater();
 }
 
 int CFrmFileTransfer::SetLocalRoot(const QString &root)

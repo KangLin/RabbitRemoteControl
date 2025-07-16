@@ -59,8 +59,9 @@ int COperateFileTransfer::Initial()
         m_Menu.addSeparator();
         m_Menu.addAction(m_pActionSettings);
     }
-    
+
     m_frmFileTransfer = new CFrmFileTransfer();
+
     return nRet;
 }
 
@@ -84,7 +85,6 @@ int COperateFileTransfer::Start()
         return -2;
     }
     m_pThread->start();
-    emit sigRunning();
     return nRet;
 }
 
@@ -97,7 +97,6 @@ int COperateFileTransfer::Stop()
         //Don't delete m_pThread, See CBackendThread
         m_pThread = nullptr;
     }
-    emit sigFinished();
     return nRet;
 }
 

@@ -20,14 +20,12 @@ class CPlugin;
  * 类图： \image html docs/Image/PluginAPI.svg
  * 序列图： \image html docs/Image/SequenceDiagram.svg
  *  已经提供以下类型的基本实现：\n
- *  1. 后端线程： \n
- *     1.1. 用于阻塞模型(一个后台线程处理一个后端)： \n
- *     1.2. 用于非阻塞模型(一个后台线程处理多个后端)： \n
- *  2. 远程桌面类： \ref COperateDesktop \n
- *  3. 工具类： \n
- *     3.1. 非阻塞模型（在主线程）： \n
- *  4. 控制台类：\ref COperateTerminal \n
- *  5. 服务类： \ref COperateService \n
+ *  - 远程桌面类： \ref COperateDesktop \n
+ *  - 工具类： \n
+ *    - 非阻塞模型（在主线程）： COperateWakeOnLan \n
+ *  - 控制台类： \ref COperateTerminal \n
+ *  - 文件传输： \ref COperateFileTransfer \n
+ *  - 服务类： \ref COperateService \n
  *
  * \~english
  * \brief Operate interface
@@ -38,15 +36,11 @@ class CPlugin;
  * Class diagram: \image html docs/Image/PluginAPI.svg
  * Sequen diagram: \image html docs/Image/SequenceDiagram.svg
  * Basic implementations of the following types have been provided: \n
- *   1. Backend thread: \n
- *      1.1. Is the blocking model
- *           (a blackground thread handles one backend): \ref COperateThread \n
- *      1.2. Is a non-blocking model
- *           (a blackground thread handles multiple backend): \ref COperateBackend \n
- *   2. Remote desktop type: \n
- *   3. Tool type: \n
- *      3.1. Is a non-blocking model(in main thread): \ref COperateBackend \n
- *   4. Termianal type: \ref CConnecterTerminal
+ *   - Remote desktop type: \n
+ *   - Tool type: \n
+ *     - Is a non-blocking model(in main thread): \ref COperateWakeOnLan \n
+ *   - Termianal type: \ref CConnecterTerminal
+ *   - File transfer: \ref COperateFileTransfer \n
  *
  * \~
  * \see CPlugin
@@ -161,7 +155,7 @@ public:
      * \see sigFinished()
      */
     virtual int Stop() = 0;
-    
+
 Q_SIGNALS:
     /*!
      * \~chinese 开始成功信号。仅由插件触发。
