@@ -147,6 +147,8 @@ void CFrmFileTransfer::on_treeLocal_customContextMenuRequested(const QPoint &pos
                        this, SLOT(slotTreeLocalDelete()));
         menu.addAction(tr("Rename"),
                        this, SLOT(slotTreeLocalRename()));
+        menu.addAction(tr("Copy path to clipboard"),
+                       this, SLOT(slotTreeLocalCopyToClipboard()));
     }
     menu.exec(ui->treeLocal->viewport()->mapToGlobal(pos));
 }
@@ -188,6 +190,18 @@ void CFrmFileTransfer::slotTreeLocalAddToList()
     // TODO: implemented
 }
 
+void CFrmFileTransfer::slotTreeLocalCopyToClipboard()
+{
+    auto idx = ui->treeLocal->currentIndex();
+    QString szPath = m_pModelLocalDir->filePath(idx);
+    if(szPath.isEmpty()) return;
+    QClipboard* pClipboard = QApplication::clipboard();
+    pClipboard->setText(szPath);
+    // QMimeData* d = new QMimeData();
+    // d->setUrls(QList<QUrl>() << QUrl::fromLocalFile(szPath));
+    // pClipboard->setMimeData(d);
+}
+
 void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -206,8 +220,22 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
                        this, SLOT(slotTabLocalDelete()));
         menu.addAction(tr("Rename"),
                        this, SLOT(slotTabLocalRename()));
+        menu.addAction(tr("Copy path to clipboard"),
+                       this, SLOT(slotTabLocalCopyToClipboard()));
     }
     menu.exec(ui->tabLocal->viewport()->mapToGlobal(pos));
+}
+
+void CFrmFileTransfer::slotTabLocalCopyToClipboard()
+{
+    auto idx = ui->tabLocal->currentIndex();
+    QString szPath = m_pModelLocalDir->filePath(idx);
+    if(szPath.isEmpty()) return;
+    QClipboard* pClipboard = QApplication::clipboard();
+    pClipboard->setText(szPath);
+    // QMimeData* d = new QMimeData();
+    // d->setUrls(QList<QUrl>() << QUrl::fromLocalFile(szPath));
+    // pClipboard->setMimeData(d);
 }
 
 void CFrmFileTransfer::slotTabLocalUpload()
@@ -269,9 +297,9 @@ void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 {
     CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(index);
     if(!pRemoteFileSystem) return;
-    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     QString szPath = pRemoteFileSystem->GetPath();
     if(szPath.isEmpty()) return;
+    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     qDebug(log) << Q_FUNC_INFO << szPath;
     if(-1 == ui->cbRemote->findText(szPath)) {
         ui->cbRemote->addItem(szPath, index);

@@ -47,6 +47,7 @@ private Q_SLOTS:
     void slotTreeLocalNew();
     void slotTreeLocalRename();
     void slotTreeLocalDelete();
+    void slotTreeLocalCopyToClipboard();
 
     void on_tabLocal_customContextMenuRequested(const QPoint &pos);
     void slotTabLocalUpload();
@@ -55,6 +56,7 @@ private Q_SLOTS:
     void slotTabLocalEdit();
     void slotTabLocalRename();
     void slotTabLocalDelete();
+    void slotTabLocalCopyToClipboard();
 
     void on_cbRemote_editTextChanged(const QString &szPath);
     void on_cbRemote_currentIndexChanged(int index);
