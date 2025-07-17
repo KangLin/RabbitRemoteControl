@@ -24,7 +24,7 @@ protected:
     virtual int OnProcess() override;
 
 private Q_SLOTS:
-    void slotGetFolder(CRemoteFileSystem* pRemoteFileSystem);
+    void slotGetFolder(const QString &szPath);
 Q_SIGNALS:
     void sigGetFolder(const QString& szPath,
                       QVector<CRemoteFileSystem*> contents);

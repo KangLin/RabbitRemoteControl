@@ -20,7 +20,6 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     , m_pModelLocalFile(new QFileSystemModel(this))
     , m_pModelRemoteDir(new CRemoteFileSystemModel(this))
     , m_pModelRemoteFile(new CRemoteFileSystemModel(this))
-    , m_pRemoteFileSystem(nullptr)
     , m_pListFileModel(new CListFileModel(this))
 {
     bool check = false;
@@ -53,13 +52,12 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabLocal->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
 
-    m_pRemoteFileSystem = new CRemoteFileSystem("", CRemoteFileSystem::TYPE::DRIVE);
-    CRemoteFileSystem* pRoot = new CRemoteFileSystem("/", CRemoteFileSystem::TYPE::DRIVE);
-    m_pRemoteFileSystem->AppendChild(pRoot);
-    auto indexRemoteDir = m_pModelRemoteDir->SetRoot(m_pRemoteFileSystem);
+    check = connect(m_pModelRemoteDir, SIGNAL(sigGetFolder(const QString&)),
+                    this, SIGNAL(sigGetFolder(const QString&)));
+    Q_ASSERT(check);
+    auto indexRemoteDir = m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);
-    ui->treeRemote->setRootIndex(indexRemoteDir);
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Type);
@@ -68,7 +66,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Permission);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
 
-    m_pModelRemoteFile->SetRoot(m_pRemoteFileSystem);
+    m_pModelRemoteFile->SetRootPath("/");
     //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
     ui->tabRemote->setModel(m_pModelRemoteFile);
     ui->tabRemote->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -93,19 +91,6 @@ CFrmFileTransfer::~CFrmFileTransfer()
 {
     qDebug(log) << Q_FUNC_INFO;
     delete ui;
-    if(m_pRemoteFileSystem)
-        DeleteRemoteFileSystem(m_pRemoteFileSystem);
-}
-
-void CFrmFileTransfer::DeleteRemoteFileSystem(CRemoteFileSystem* p)
-{
-    if(!p) return;
-    for(int i = 0; i < p->ChildCount(); i++) {
-        auto pChild = p->GetChild(i);
-        if(pChild)
-            DeleteRemoteFileSystem(pChild);
-    }
-    p->deleteLater();
 }
 
 int CFrmFileTransfer::SetLocalRoot(const QString &root)
@@ -260,7 +245,8 @@ void CFrmFileTransfer::slotTabLocalRename()
 void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
 {
     qDebug(log) << Q_FUNC_INFO << szPath;
-    QModelIndex idx = m_pModelRemoteDir->index(szPath);
+    // TODO: Not implemented
+    QModelIndex idx;
     if(!idx.isValid()) return;
     if(szPath.length() > 1 && (szPath.right(1) == '/' || szPath.right(1) == '\\')) return;
     ui->treeRemote->setCurrentIndex(idx);
@@ -281,11 +267,12 @@ void CFrmFileTransfer::on_cbRemote_currentIndexChanged(int index)
 
 void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 {
-    qDebug(log) << Q_FUNC_INFO;
-    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
-    m_pModelRemoteFile->SetRoot(pRemoteFileSystem);
+    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(index);
+    if(!pRemoteFileSystem) return;
+    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     QString szPath = pRemoteFileSystem->GetPath();
     if(szPath.isEmpty()) return;
+    qDebug(log) << Q_FUNC_INFO << szPath;
     if(-1 == ui->cbRemote->findText(szPath)) {
         ui->cbRemote->addItem(szPath, index);
     }
@@ -294,16 +281,9 @@ void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 
 void CFrmFileTransfer::on_treeRemote_doubleClicked(const QModelIndex &index)
 {
-    qDebug(log) << Q_FUNC_INFO;
-    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(index);
-    if(!pRemoteFileSystem) return;
-    if(CRemoteFileSystem::State::No == pRemoteFileSystem->GetState()
-        && !(pRemoteFileSystem->GetType() & CRemoteFileSystem::TYPE::FILE))
-    {
-        pRemoteFileSystem->SetState(CRemoteFileSystem::State::Getting);
-        emit sigGetFolder(pRemoteFileSystem);
-        emit m_pModelRemoteDir->dataChanged(index, index);
-    }
+    qDebug(log) << Q_FUNC_INFO << index;
+    if(index.isValid())
+        ui->treeRemote->expand(index);
 }
 
 void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &pos)
@@ -354,7 +334,7 @@ void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()
 {
     auto idx = ui->treeRemote->currentIndex();
     if(idx.isValid()) {
-        auto p = m_pModelRemoteDir->GetRemoteFileSystem(idx);
+        auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
         if(p) {
             QClipboard* pClipboard = QApplication::clipboard();
             //TODO: add protocol + host
@@ -412,16 +392,18 @@ void CFrmFileTransfer::slotTabRemoteRename()
 void CFrmFileTransfer::slotTabRemoteCopyToClipboard()
 {}
 
-void CFrmFileTransfer::slotGetFolder(const QString &szPath,
+void CFrmFileTransfer::slotGetFolder(const QString& szPath,
                                      QVector<CRemoteFileSystem *> contents)
 {
+    m_pModelRemoteDir->slotGetFolder(szPath, contents);
+    /*
     qDebug(log) << Q_FUNC_INFO << szPath << contents.size();
     QModelIndex idx = m_pModelRemoteDir->index(szPath);
     if(!idx.isValid()) {
         qCritical(log) << "index is null";
         return;
     }
-    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystem(idx);
+    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
     if(!pRemoteFileSystem) {
         qCritical(log) << "pRemoteFileSystem is null";
         return;
@@ -432,5 +414,5 @@ void CFrmFileTransfer::slotGetFolder(const QString &szPath,
     pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
     emit m_pModelRemoteDir->dataChanged(idx, idx);
     ui->treeRemote->expand(idx);
-    on_treeRemote_clicked(idx);
+    on_treeRemote_clicked(idx);*/
 }

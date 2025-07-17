@@ -17,23 +17,21 @@ public:
     };
     Q_ENUM(Command)
     CFileTransferEvent(Command cmd,
-                       CRemoteFileSystem* pRemoteFileSystem = nullptr,
                        const QString& szSrcPath = QString(),
                        const QString& szDesPath = QString());
     
     Command m_Command;
     QString m_szSourcePath;
     QString m_szDestination;
-    CRemoteFileSystem* m_pRemoteFileSystem;
 };
 
-CFileTransferEvent::CFileTransferEvent(Command cmd, CRemoteFileSystem* pRemoteFileSystem,
-                             const QString &szSrcPath, const QString &szDesPath)
+CFileTransferEvent::CFileTransferEvent(Command cmd,
+                                       const QString &szSrcPath,
+                                       const QString &szDesPath)
     : QEvent(QEvent::Type::User)
     , m_Command(cmd)
     , m_szSourcePath(szSrcPath)
     , m_szDestination(szDesPath)
-    , m_pRemoteFileSystem(pRemoteFileSystem)
 {
 }
 
@@ -59,7 +57,7 @@ bool CBackendFieTransfer::event(QEvent *event)
         case CFileTransferEvent::Command::GetFolder:
         {
             if(m_pSFTP)
-                m_pSFTP->slotGetFolder(pEvent->m_pRemoteFileSystem->GetPath());
+                m_pSFTP->slotGetFolder(pEvent->m_szSourcePath);
             break;
         }
         }
@@ -99,8 +97,8 @@ int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
     bool check = false;
     CFrmFileTransfer* pForm = qobject_cast<CFrmFileTransfer*>(pOperate->GetViewer());
     Q_ASSERT(pForm);
-    check = connect(pForm, SIGNAL(sigGetFolder(CRemoteFileSystem*)),
-                    this, SLOT(slotGetFolder(CRemoteFileSystem*)),
+    check = connect(pForm, SIGNAL(sigGetFolder(const QString&)),
+                    this, SLOT(slotGetFolder(const QString&)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigGetFolder(const QString&, QVector<CRemoteFileSystem*>)),
@@ -123,10 +121,10 @@ CBackendFieTransfer::OnInitReturnValue CBackendFieTransfer::InitSFTP()
     return OnInitReturnValue::UseOnProcess;
 }
 
-void CBackendFieTransfer::slotGetFolder(CRemoteFileSystem *pRemoteFileSystem)
+void CBackendFieTransfer::slotGetFolder(const QString& szPath)
 {
     CFileTransferEvent* pEvent = new CFileTransferEvent(
-        CFileTransferEvent::Command::GetFolder, pRemoteFileSystem);
+        CFileTransferEvent::Command::GetFolder, szPath);
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }

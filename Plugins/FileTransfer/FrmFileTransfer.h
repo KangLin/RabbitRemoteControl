@@ -25,17 +25,16 @@ Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
 
 public Q_SLOTS:
-    void slotGetFolder(const QString& szPath,
+    void slotGetFolder(const QString &szPath,
                        QVector<CRemoteFileSystem*> contents);
 Q_SIGNALS:
-    void sigGetFolder(CRemoteFileSystem* pRemoteFileSystem);
+    void sigGetFolder(const QString&);
 
 private:
     //! Set local root path
     int SetLocalRoot(const QString &root);
     //! Get local root path
     [[nodiscard]] QString GetLocalRoot() const;
-    void DeleteRemoteFileSystem(CRemoteFileSystem* p);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);
@@ -85,8 +84,6 @@ private:
     
     CRemoteFileSystemModel* m_pModelRemoteDir;
     CRemoteFileSystemModel* m_pModelRemoteFile;
-
-    CRemoteFileSystem* m_pRemoteFileSystem;
 
     CListFileModel* m_pListFileModel;
 };

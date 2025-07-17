@@ -32,7 +32,7 @@ CRemoteFileSystem::CRemoteFileSystem(
 
 CRemoteFileSystem::~CRemoteFileSystem()
 {
-    qDebug(log) << Q_FUNC_INFO << m_szPath;
+    //qDebug(log) << Q_FUNC_INFO << m_szPath;
 }
 
 #if defined(Q_OS_LINUX)
@@ -202,6 +202,14 @@ int CRemoteFileSystem::IndexOf(CRemoteFileSystem* pChild)
     return m_vChild.indexOf(pChild);
 }
 
+int CRemoteFileSystem::IndexOfParent()
+{
+    int nIndex = -1;
+    if(GetParent())
+        nIndex= GetParent()->IndexOf(this);
+    return nIndex;
+}
+
 QString CRemoteFileSystem::GetPath()
 {
     return m_szPath;
@@ -301,13 +309,34 @@ CRemoteFileSystemModel::CRemoteFileSystemModel(QObject *parent)
     , m_Filter(CRemoteFileSystem::TYPE::ALL)
 {}
 
-QModelIndex CRemoteFileSystemModel::SetRoot(CRemoteFileSystem *root)
+CRemoteFileSystemModel::~CRemoteFileSystemModel()
+{
+    qDebug(log) << Q_FUNC_INFO;
+
+    DeleteRemoteFileSystem(m_pRoot);
+}
+
+void CRemoteFileSystemModel::DeleteRemoteFileSystem(CRemoteFileSystem* p)
+{
+    if(!p) return;
+    for(int i = 0; i < p->ChildCount(); i++) {
+        auto pChild = p->GetChild(i);
+        if(pChild)
+            DeleteRemoteFileSystem(pChild);
+    }
+    p->deleteLater();
+}
+
+QModelIndex CRemoteFileSystemModel::SetRootPath(const QString &szPath)
 {
     beginResetModel();
+    if(szPath.isEmpty()) return QModelIndex();
     QModelIndex index;
-    m_pRoot = root;
-    if(m_pRoot)
-        index = createIndex(0, 0, m_pRoot);
+    if(m_pRoot) {
+        DeleteRemoteFileSystem(m_pRoot);
+        m_pRoot = nullptr;
+    }
+    m_pRoot = new CRemoteFileSystem(szPath, CRemoteFileSystem::TYPE::DIR);
     //qDebug(log) << Q_FUNC_INFO << index;
     endResetModel();
     return index;
@@ -318,7 +347,7 @@ CRemoteFileSystem* CRemoteFileSystemModel::GetRoot()
     return m_pRoot;
 }
 
-CRemoteFileSystem* CRemoteFileSystemModel::GetRemoteFileSystem(const QModelIndex &index) const
+CRemoteFileSystem* CRemoteFileSystemModel::GetRemoteFileSystemFromIndex(const QModelIndex &index) const
 {
     if(index.isValid())
         return static_cast<CRemoteFileSystem*>(index.internalPointer());
@@ -349,22 +378,21 @@ QVariant CRemoteFileSystemModel::headerData(int section, Qt::Orientation orienta
 
 int CRemoteFileSystemModel::rowCount(const QModelIndex &parent) const
 {
+    //qDebug(log) << Q_FUNC_INFO << parent;
     CRemoteFileSystem* pItem = nullptr;
-    if (parent.isValid())
-        pItem = GetRemoteFileSystem(parent);
-    else
-        pItem = m_pRoot;
+    pItem = GetRemoteFileSystemFromIndex(parent);
     if(!pItem)
-        return 0;
-    return pItem->ChildCount(m_Filter);
+        pItem = m_pRoot;
+    if(pItem)
+        return pItem->ChildCount(m_Filter);
+    return 0;
 }
 
 int CRemoteFileSystemModel::columnCount(const QModelIndex &parent) const
 {
     CRemoteFileSystem* pItem = nullptr;
-    if (parent.isValid())
-        pItem = GetRemoteFileSystem(parent);
-    else
+    pItem = GetRemoteFileSystemFromIndex(parent);
+    if(!pItem)
         pItem = m_pRoot;
     if(pItem)
         return pItem->ColumnCount();
@@ -373,12 +401,17 @@ int CRemoteFileSystemModel::columnCount(const QModelIndex &parent) const
 
 QVariant CRemoteFileSystemModel::data(const QModelIndex &index, int role) const
 {
+    /*
+    if(Qt::DisplayRole == role)
+        qDebug(log) << Q_FUNC_INFO << index;//*/
     if (!index.isValid())
         return QVariant();
     if (role != Qt::DisplayRole && role != Qt::DecorationRole)
         return QVariant();
     //qDebug(log) << Q_FUNC_INFO << index;
-    CRemoteFileSystem* pItem = GetRemoteFileSystem(index);
+    CRemoteFileSystem* pItem = GetRemoteFileSystemFromIndex(index);
+    if(!pItem)
+        pItem = m_pRoot;
     if(!pItem)
         return QVariant();
     if(!(pItem->GetType() & m_Filter))
@@ -392,39 +425,6 @@ QVariant CRemoteFileSystemModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QModelIndex CRemoteFileSystemModel::index(int row, int column, const QModelIndex &parent) const
-{
-    //qDebug(log) << Q_FUNC_INFO << parent << row << column;
-    if (!hasIndex(row, column, parent))
-        return QModelIndex();
-    CRemoteFileSystem* pItem = nullptr;
-    if (parent.isValid())
-        pItem = GetRemoteFileSystem(parent);
-    else
-        pItem = m_pRoot;
-    if(!pItem)
-        return QModelIndex();
-    pItem = pItem->GetChild(row);
-    if(pItem)
-        return createIndex(row, column, pItem);
-    else
-        return QModelIndex();
-}
-
-QModelIndex CRemoteFileSystemModel::parent(const QModelIndex &child) const
-{
-    //qDebug(log) << Q_FUNC_INFO << child;
-    if (!child.isValid() || !m_pRoot)
-        return QModelIndex();
-    CRemoteFileSystem* pItem = GetRemoteFileSystem(child);
-    if(!pItem)
-        return QModelIndex();
-    CRemoteFileSystem* pItemParent = pItem->GetParent();
-    if(pItemParent)
-        return createIndex(pItemParent->IndexOf(pItem), 0, pItemParent);
-    return QModelIndex();
-}
-
 QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
 {
     int r = 0;
@@ -433,7 +433,7 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
     QModelIndex idx = index(0, 0);
     while(idx.isValid()) {
         idx = index(r++, 0, idxParent);
-        CRemoteFileSystem* pRemoteFileSystem = GetRemoteFileSystem(idx);
+        CRemoteFileSystem* pRemoteFileSystem = GetRemoteFileSystemFromIndex(idx);
         QString szDir = pRemoteFileSystem->GetPath();
         qDebug(log) << szDir << szPath;
         if(szDir == szPath)
@@ -450,6 +450,133 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
             r = 0;
             continue;
         }
+    }
+    return QModelIndex();
+}
+
+QModelIndex CRemoteFileSystemModel::index(int row, int column, const QModelIndex &parent) const
+{
+    //qDebug(log) << Q_FUNC_INFO << parent << row << column;
+    if (!hasIndex(row, column, parent))
+        return QModelIndex();
+    CRemoteFileSystem* pItem = nullptr;
+    pItem = GetRemoteFileSystemFromIndex(parent);
+    if(!pItem)
+        pItem = m_pRoot;
+    if(!pItem) return QModelIndex();
+    pItem = pItem->GetChild(row);
+    if(pItem)
+        return createIndex(row, column, pItem);
+    else
+        return QModelIndex();
+}
+
+QModelIndex CRemoteFileSystemModel::parent(const QModelIndex &child) const
+{
+    //qDebug(log) << Q_FUNC_INFO << child;
+    if (!child.isValid())
+        return QModelIndex();
+    CRemoteFileSystem* pItem = GetRemoteFileSystemFromIndex(child);
+    if(!pItem)
+        return QModelIndex();
+    CRemoteFileSystem* pItemParent = pItem->GetParent();
+    if(pItemParent)
+        return createIndex(pItemParent->IndexOf(pItem), 0, pItemParent);
+    return QModelIndex();
+}
+
+bool CRemoteFileSystemModel::canFetchMore(const QModelIndex &parent) const
+{
+    if(!parent.isValid()) {
+        return true;
+    }
+    CRemoteFileSystem* p = GetRemoteFileSystemFromIndex(parent);
+    if(!p)
+        p = m_pRoot;
+    if(!p) {
+        qDebug(log) << "canFetchMore:" << parent << "p is nullptr";
+        return true;
+    }
+    if(p->GetState() == CRemoteFileSystem::State::No
+        && !(p->GetType() & CRemoteFileSystem::TYPE::FILE)) {
+        qDebug(log) << "canFetchMore:" << parent << p->GetPath() << "true";
+        return true;
+    }
+    return false;
+}
+
+void CRemoteFileSystemModel::fetchMore(const QModelIndex &parent)
+{
+    auto p = GetRemoteFileSystemFromIndex(parent);
+    if(!p)
+        p = m_pRoot;
+    if(!p) {
+        qDebug(log) << "fetchMore:" << "The pointer is nullptr";
+        return;
+    }
+    QString szPath = p->GetPath();
+    if(szPath.isEmpty()) return;
+    if(p->GetState() != CRemoteFileSystem::State::No)
+        return;
+    p->SetState(CRemoteFileSystem::State::Getting);
+    if(m_GetFolder.find(szPath) == m_GetFolder.end())
+        m_GetFolder.insert(szPath, p);
+    emit sigGetFolder(szPath);
+    qDebug(log) << "fetchMore:" << parent << szPath;
+}
+
+void CRemoteFileSystemModel::slotGetFolder(
+    const QString& szPath, QVector<CRemoteFileSystem *> rfs)
+{
+    qDebug(log) << Q_FUNC_INFO << szPath << rfs.size();
+    auto pRemoteFileSystem = m_GetFolder.value(szPath);
+    if(!pRemoteFileSystem) {
+        qDebug(log) << "Get nullptr";
+        return;
+    }
+    QModelIndex parentIndex;
+    //int parentRow = -1;
+    // auto pParent = pRemoteFileSystem->GetParent();
+    // if(pParent) {
+    //     parentRow = pRemoteFileSystem->IndexOfParent();
+    //     qDebug(log) << "parentRow:" << parentRow;
+    //     parentIndex = createIndex(parentRow, 0, pParent);
+    // }
+    
+    parentIndex = index(pRemoteFileSystem);
+    qDebug(log) << Q_FUNC_INFO << szPath << parentIndex;
+    pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
+    if(rfs.size() > 0) {
+        if(parentIndex.isValid())
+            beginInsertRows(parentIndex, 0, rfs.size() - 1);
+        else
+            beginResetModel();
+        foreach(auto p, rfs)
+            pRemoteFileSystem->AppendChild(p);
+        if(parentIndex.isValid())
+            endInsertRows();
+        else
+            endResetModel();
+    } else
+        emit dataChanged(parentIndex, parentIndex);
+}
+
+QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem *p, const QModelIndex &nIndex)
+{
+    if(!p) return QModelIndex();
+    QModelIndex idx = nIndex;
+    if(!nIndex.isValid()) {
+        idx = index(-1, -1, nIndex);
+    }
+    auto pR = GetRemoteFileSystemFromIndex(idx);
+    if(pR == p)
+        return idx;
+    int row = rowCount(idx);
+    for(int i = 0; i < row; i++) {
+        QModelIndex idxChild = index(i, 0, idx);
+        idxChild = index(p, idxChild);
+        if(idxChild.isValid())
+            return idxChild;
     }
     return QModelIndex();
 }
