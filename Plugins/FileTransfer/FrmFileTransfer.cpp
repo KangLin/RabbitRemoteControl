@@ -55,10 +55,11 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     check = connect(m_pModelRemoteDir, SIGNAL(sigGetFolder(const QString&)),
                     this, SIGNAL(sigGetFolder(const QString&)));
     Q_ASSERT(check);
-    auto indexRemoteDir = m_pModelRemoteDir->SetRootPath("/");
+    m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->treeRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->treeRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Type);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Size);

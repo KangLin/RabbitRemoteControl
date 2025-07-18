@@ -331,15 +331,16 @@ QModelIndex CRemoteFileSystemModel::SetRootPath(const QString &szPath)
 {
     beginResetModel();
     if(szPath.isEmpty()) return QModelIndex();
-    QModelIndex index;
+    QModelIndex idx;
     if(m_pRoot) {
         DeleteRemoteFileSystem(m_pRoot);
         m_pRoot = nullptr;
     }
     m_pRoot = new CRemoteFileSystem(szPath, CRemoteFileSystem::TYPE::DIR);
+    idx = index(m_pRoot);
     //qDebug(log) << Q_FUNC_INFO << index;
     endResetModel();
-    return index;
+    return idx;
 }
 
 CRemoteFileSystem* CRemoteFileSystemModel::GetRoot()
@@ -391,6 +392,7 @@ int CRemoteFileSystemModel::rowCount(const QModelIndex &parent) const
 int CRemoteFileSystemModel::columnCount(const QModelIndex &parent) const
 {
     CRemoteFileSystem* pItem = nullptr;
+
     pItem = GetRemoteFileSystemFromIndex(parent);
     if(!pItem)
         pItem = m_pRoot;
@@ -452,6 +454,15 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
         }
     }
     return QModelIndex();
+}
+
+QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem* node, int column) const
+{
+    CRemoteFileSystem* parent = (node ? node->GetParent() : nullptr);
+    if(node == m_pRoot || !parent)
+        return QModelIndex();
+    int row = node->IndexOfParent();
+    return createIndex(row, column, node);
 }
 
 QModelIndex CRemoteFileSystemModel::index(int row, int column, const QModelIndex &parent) const
@@ -546,13 +557,4 @@ void CRemoteFileSystemModel::slotGetFolder(
         endInsertRows();
     } else
         emit dataChanged(parentIndex, parentIndex);
-}
-
-QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem* node, int column) const
-{
-    CRemoteFileSystem* parent = (node ? node->GetParent() : nullptr);
-    if(node == m_pRoot || !parent)
-        return QModelIndex();
-    int row = node->IndexOfParent();
-    return createIndex(row, column, node);
 }
