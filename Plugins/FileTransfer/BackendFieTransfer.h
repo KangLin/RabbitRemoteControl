@@ -26,8 +26,7 @@ protected:
 private Q_SLOTS:
     void slotGetFolder(const QString &szPath);
 Q_SIGNALS:
-    void sigGetFolder(const QString& szPath,
-                      QVector<CRemoteFileSystem*> contents);
+    void sigGetFolder(const QString& szPath, QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents, bool bEnd);
 
 private:
     int SetConnect(COperateFileTransfer *pOperate);

@@ -331,15 +331,16 @@ QModelIndex CRemoteFileSystemModel::SetRootPath(const QString &szPath)
 {
     beginResetModel();
     if(szPath.isEmpty()) return QModelIndex();
-    QModelIndex index;
+    QModelIndex idx;
     if(m_pRoot) {
         DeleteRemoteFileSystem(m_pRoot);
         m_pRoot = nullptr;
     }
     m_pRoot = new CRemoteFileSystem(szPath, CRemoteFileSystem::TYPE::DIR);
+    idx = index(m_pRoot);
     //qDebug(log) << Q_FUNC_INFO << index;
     endResetModel();
-    return index;
+    return idx;
 }
 
 CRemoteFileSystem* CRemoteFileSystemModel::GetRoot()
@@ -391,6 +392,7 @@ int CRemoteFileSystemModel::rowCount(const QModelIndex &parent) const
 int CRemoteFileSystemModel::columnCount(const QModelIndex &parent) const
 {
     CRemoteFileSystem* pItem = nullptr;
+
     pItem = GetRemoteFileSystemFromIndex(parent);
     if(!pItem)
         pItem = m_pRoot;
@@ -452,6 +454,15 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
         }
     }
     return QModelIndex();
+}
+
+QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem* node, int column) const
+{
+    CRemoteFileSystem* parent = (node ? node->GetParent() : nullptr);
+    if(node == m_pRoot || !parent)
+        return QModelIndex();
+    int row = node->IndexOfParent();
+    return createIndex(row, column, node);
 }
 
 QModelIndex CRemoteFileSystemModel::index(int row, int column, const QModelIndex &parent) const
@@ -526,33 +537,52 @@ void CRemoteFileSystemModel::fetchMore(const QModelIndex &parent)
 }
 
 void CRemoteFileSystemModel::slotGetFolder(
-    const QString& szPath, QVector<CRemoteFileSystem *> rfs)
+    const QString& szPath,
+    QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+    bool bEnd)
 {
-    qDebug(log) << Q_FUNC_INFO << szPath << rfs.size();
+    qDebug(log) << Q_FUNC_INFO << szPath << contents.size() << bEnd;
     auto pRemoteFileSystem = m_GetFolder.value(szPath);
     if(!pRemoteFileSystem) {
         qDebug(log) << "Get nullptr";
         return;
     }
+    m_GetFolder.remove(szPath);
 
     QModelIndex parentIndex;
     parentIndex = index(pRemoteFileSystem, 0);
     qDebug(log) << Q_FUNC_INFO << szPath << parentIndex;
     pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
-    if(rfs.size() > 0) {
-        beginInsertRows(parentIndex, 0, rfs.size() - 1);
-        foreach(auto p, rfs)
-            pRemoteFileSystem->AppendChild(p);
+    if(contents.size() > 0) {
+        beginInsertRows(parentIndex, 0, contents.size() - 1);
+        foreach(auto p, contents) {
+            if(!p) continue;
+            CRemoteFileSystem::TYPE type;
+            switch(p->type)
+            {
+            case CChannelSFTP::TYPE::DIR:
+                type = CRemoteFileSystem::TYPE::DIR;
+                break;
+            case CChannelSFTP::TYPE::FILE:
+                type = CRemoteFileSystem::TYPE::FILE;
+                break;
+            case CChannelSFTP::TYPE::SYMLINK:
+                type = CRemoteFileSystem::TYPE::SYMLINK;
+                break;
+            case CChannelSFTP::TYPE::SPECIAL:
+                type = CRemoteFileSystem::TYPE::SPECIAL;
+                break;
+            case CChannelSFTP::TYPE::UNKNOWN:
+                type = CRemoteFileSystem::TYPE::NO;
+                break;
+            }
+            CRemoteFileSystem* pRfs = new CRemoteFileSystem(p->path, type);
+            pRfs->SetSize(p->size);
+            pRfs->SetPermissions((CRemoteFileSystem::Permissions) p->permissions);
+            pRfs->SetLastModified(p->lastModifiedTime);
+            pRemoteFileSystem->AppendChild(pRfs);
+        }
         endInsertRows();
     } else
         emit dataChanged(parentIndex, parentIndex);
-}
-
-QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem* node, int column) const
-{
-    CRemoteFileSystem* parent = (node ? node->GetParent() : nullptr);
-    if(node == m_pRoot || !parent)
-        return QModelIndex();
-    int row = node->IndexOfParent();
-    return createIndex(row, column, node);
 }

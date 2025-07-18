@@ -16,15 +16,16 @@ static Q_LOGGING_CATEGORY(log, "FileTransfer.Widget")
 CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmFileTransfer)
-    , m_pModelLocalDir(new QFileSystemModel(this))
-    , m_pModelLocalFile(new QFileSystemModel(this))
-    , m_pModelRemoteDir(new CRemoteFileSystemModel(this))
-    , m_pModelRemoteFile(new CRemoteFileSystemModel(this))
-    , m_pListFileModel(new CListFileModel(this))
+    , m_pModelLocalDir(nullptr)
+    , m_pModelLocalFile(nullptr)
+    , m_pModelRemoteDir(nullptr)
+    , m_pModelRemoteFile(nullptr)
+    , m_pListFileModel(nullptr)
 {
     bool check = false;
     ui->setupUi(this);
-
+    
+    m_pModelLocalDir = new QFileSystemModel(this);
     m_pModelLocalDir->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     m_pModelLocalDir->setReadOnly(false);
     ui->treeLocal->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -40,7 +41,8 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeLocal->header()->hideSection(1);
     ui->treeLocal->header()->hideSection(2);
     ui->treeLocal->header()->hideSection(3);
-
+    
+    m_pModelLocalFile = new QFileSystemModel(this);
     m_pModelLocalFile->setFilter(QDir::Files);
     m_pModelLocalFile->setReadOnly(false);
     ui->tabLocal->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -51,30 +53,44 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabLocal->verticalHeader()->hide();
     ui->tabLocal->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
-
+    
+    m_pModelRemoteDir = new CRemoteFileSystemModel(this);
     check = connect(m_pModelRemoteDir, SIGNAL(sigGetFolder(const QString&)),
                     this, SIGNAL(sigGetFolder(const QString&)));
     Q_ASSERT(check);
-    auto indexRemoteDir = m_pModelRemoteDir->SetRootPath("/");
+    check = connect(this, SIGNAL(sigGetFolder(QString,QVector<QSharedPointer<CChannelSFTP::CFileNode> > ,bool)),
+                    m_pModelRemoteDir, SLOT(slotGetFolder(QString,QVector<QSharedPointer<CChannelSFTP::CFileNode> > ,bool)));
+    Q_ASSERT(check);
+    m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->treeRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->treeRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Type);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Size);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::LastModified);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Permission);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
-
+    
+    m_pModelRemoteFile = new CRemoteFileSystemModel(this);
+    check = connect(m_pModelRemoteFile, SIGNAL(sigGetFolder(const QString&)),
+                    this, SIGNAL(sigGetFolder(const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigGetFolder(QString,QVector<QSharedPointer<CChannelSFTP::CFileNode> > ,bool)),
+                    m_pModelRemoteFile, SLOT(slotGetFolder(QString,QVector<QSharedPointer<CChannelSFTP::CFileNode> > ,bool)));
+    Q_ASSERT(check);
     m_pModelRemoteFile->SetRootPath("/");
     //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
     ui->tabRemote->setModel(m_pModelRemoteFile);
     ui->tabRemote->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tabRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tabRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tabRemote->verticalHeader()->hide();
     ui->tabRemote->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
-
+    
+    m_pListFileModel = new CListFileModel(this);
     ui->tabList->setModel(m_pListFileModel);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Time, true);
@@ -419,28 +435,3 @@ void CFrmFileTransfer::slotTabRemoteRename()
 
 void CFrmFileTransfer::slotTabRemoteCopyToClipboard()
 {}
-
-void CFrmFileTransfer::slotGetFolder(const QString& szPath,
-                                     QVector<CRemoteFileSystem *> contents)
-{
-    m_pModelRemoteDir->slotGetFolder(szPath, contents);
-    /*
-    qDebug(log) << Q_FUNC_INFO << szPath << contents.size();
-    QModelIndex idx = m_pModelRemoteDir->index(szPath);
-    if(!idx.isValid()) {
-        qCritical(log) << "index is null";
-        return;
-    }
-    CRemoteFileSystem* pRemoteFileSystem = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
-    if(!pRemoteFileSystem) {
-        qCritical(log) << "pRemoteFileSystem is null";
-        return;
-    }
-    foreach (auto c, contents) {
-        pRemoteFileSystem->AppendChild(c);
-    }
-    pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
-    emit m_pModelRemoteDir->dataChanged(idx, idx);
-    ui->treeRemote->expand(idx);
-    on_treeRemote_clicked(idx);*/
-}

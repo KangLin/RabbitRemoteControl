@@ -23,10 +23,9 @@ public:
 
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
-
-public Q_SLOTS:
-    void slotGetFolder(const QString &szPath,
-                       QVector<CRemoteFileSystem*> contents);
+    void sigGetFolder(const QString &szPath,
+                       QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+                       bool bEnd);
 Q_SIGNALS:
     void sigGetFolder(const QString&);
 

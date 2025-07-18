@@ -15,8 +15,8 @@ CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
     bool check = false;
     CBackendFieTransfer* pB = qobject_cast<CBackendFieTransfer*>(pBackend);
     if(pB) {
-        check = connect(this, SIGNAL(sigGetFolder(const QString&, QVector<CRemoteFileSystem*>)),
-                        pB, SIGNAL(sigGetFolder(const QString&, QVector<CRemoteFileSystem*>)));
+        check = connect(this, SIGNAL(sigGetFolder(const QString&, QVector<QSharedPointer<CChannelSFTP::CFileNode> >, bool)),
+                        pB, SIGNAL(sigGetFolder(const QString&, QVector<QSharedPointer<CChannelSFTP::CFileNode> >, bool)));
         Q_ASSERT(check);
     }
 }
@@ -68,26 +68,26 @@ int CChannelSFTP::Process()
     return 0;
 }
 
-CRemoteFileSystem* CChannelSFTP::GetRemoteFileSystem(const QString& szPath, sftp_attributes attributes)
+QSharedPointer<CChannelSFTP::CFileNode> CChannelSFTP::GetFileNode(const QString& szPath, sftp_attributes attributes)
 {
     if(!attributes) return nullptr;
     qDebug(log) << szPath << "name:" << attributes->name << "size:" << attributes->size << "type:" << attributes->type;
     QString szName(attributes->name);
     if("." == szName || ".." == szName)
         return nullptr;
-    CRemoteFileSystem::TYPE type = CRemoteFileSystem::TYPE::NO;
+    TYPE type = TYPE::UNKNOWN;
     switch(attributes->type) {
     case SSH_FILEXFER_TYPE_DIRECTORY:
-        type = CRemoteFileSystem::TYPE::DIR;
+        type = TYPE::DIR;
         break;
     case SSH_FILEXFER_TYPE_SYMLINK:
-        type = CRemoteFileSystem::TYPE::SYMLINK;
+        type = TYPE::SYMLINK;
         break;
     case SSH_FILEXFER_TYPE_REGULAR:
-        type = CRemoteFileSystem::TYPE::FILE;
+        type = TYPE::FILE;
         break;
     case SSH_FILEXFER_TYPE_SPECIAL:
-        type = CRemoteFileSystem::TYPE::SPECIAL;
+        type = TYPE::SPECIAL;
         break;
     default:
         qWarning(log) << "Unsupported type:" << attributes->type;
@@ -97,10 +97,15 @@ CRemoteFileSystem* CChannelSFTP::GetRemoteFileSystem(const QString& szPath, sftp
         szName = szPath + szName;
     else
         szName = szPath + "/" + szName;
-    CRemoteFileSystem* p = new CRemoteFileSystem(szName, type);
-    p->SetSize(attributes->size);
-    p->SetPermissions((CRemoteFileSystem::Permissions)attributes->permissions);
-    p->SetLastModified(QDateTime::fromSecsSinceEpoch(attributes->mtime));
+    QSharedPointer<CFileNode> p(new CFileNode());
+    p->path = szName;
+    p->type = type;
+    p->size = attributes->size;
+    p->permissions = attributes->permissions;
+    p->lastModifiedTime = QDateTime::fromSecsSinceEpoch(attributes->mtime);
+    p->createTime = QDateTime::fromSecsSinceEpoch(attributes->createtime);
+    p->uid = attributes->uid;
+    p->gid = attributes->gid;
     return p;
 }
 
@@ -112,7 +117,7 @@ int CChannelSFTP::GetFolder(const QString &szPath)
     sftp_dir dir = nullptr;
     sftp_attributes attributes = nullptr;
 
-    QVector<CRemoteFileSystem*> vRemoteFileSystem;
+    QVector<QSharedPointer<CFileNode> > vFileNode;
     dir = sftp_opendir(m_SessionSftp, szPath.toStdString().c_str());
     if (!dir)
     {
@@ -123,9 +128,9 @@ int CChannelSFTP::GetFolder(const QString &szPath)
     while ((attributes = sftp_readdir(m_SessionSftp, dir)) != NULL)
     {
         qDebug(log) << "name:" << attributes->name << "size:" << attributes->size;
-        CRemoteFileSystem* p = GetRemoteFileSystem(szPath, attributes);
+        auto p = GetFileNode(szPath, attributes);
         if(p)
-            vRemoteFileSystem.append(p);
+            vFileNode.append(p);
         sftp_attributes_free(attributes);
     }
 
@@ -143,7 +148,7 @@ int CChannelSFTP::GetFolder(const QString &szPath)
         return nRet;
     }
 
-    emit sigGetFolder(szPath, vRemoteFileSystem);
+    emit sigGetFolder(szPath, vFileNode, true);
 
     return nRet;
 }
@@ -240,9 +245,9 @@ int CChannelSFTP::AsyncReadDir()
         case STATE::READ: {
             sftp_attributes attributes = nullptr;
             while ((attributes = sftp_readdir(m_SessionSftp, d->sftp)) != NULL) {
-                CRemoteFileSystem* p = GetRemoteFileSystem(d->szPath, attributes);
+                auto p = GetFileNode(d->szPath, attributes);
                 if(p)
-                    d->vRemoteFileSystem.append(p);
+                    d->vFileNode.append(p);
                 sftp_attributes_free(attributes);
             }
             // 检查是否结束
@@ -297,7 +302,7 @@ int CChannelSFTP::AsyncReadDir()
     for(auto it = m_vDirs.begin(); it != m_vDirs.end();) {
         auto d = *it;
         if(d && STATE::FINISH == d->state) {
-            emit sigGetFolder(d->szPath, d->vRemoteFileSystem);
+            emit sigGetFolder(d->szPath, d->vFileNode, true);
             qDebug(log) << "Remote" << d->szPath;
             it = m_vDirs.erase(it);
         }

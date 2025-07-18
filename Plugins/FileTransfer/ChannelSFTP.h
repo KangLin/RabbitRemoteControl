@@ -3,8 +3,8 @@
 
 #pragma once
 #include "ChannelSSH.h"
-#include "RemoteFileSystemModel.h"
 #include "libssh/sftp.h"
+#include <QDateTime>
 
 class CChannelSFTP : public CChannelSSH
 {
@@ -23,6 +23,26 @@ public:
 
     int Process();
     
+    enum class TYPE {
+        UNKNOWN = 0x00,
+        DIR,
+        FILE,
+        SYMLINK,
+        SPECIAL
+    };
+    Q_ENUM(TYPE)
+
+    struct CFileNode {
+        QString path;
+        TYPE type;
+        quint64 size;
+        quint32 permissions;
+        QDateTime lastModifiedTime;
+        QDateTime createTime;
+        quint32 uid;
+        quint32 gid;
+    };
+    
 public Q_SLOTS:
     /*!
      * \brief Get the directory asynchronously
@@ -32,8 +52,7 @@ public Q_SLOTS:
 
 private:
 Q_SIGNALS:
-    void sigGetFolder(const QString& szPath,
-                      QVector<CRemoteFileSystem*> contents);
+    void sigGetFolder(const QString& szPath, QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents, bool bEnd);
 
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
@@ -42,7 +61,7 @@ protected:
 private:
     virtual int OnOpen(ssh_session session) override;
     virtual void OnClose() override;
-    CRemoteFileSystem* GetRemoteFileSystem(const QString &szPath, sftp_attributes attributes);
+    QSharedPointer<CFileNode> GetFileNode(const QString &szPath, sftp_attributes attributes);
     int AsyncReadDir();
 
     enum class STATE {
@@ -56,7 +75,7 @@ private:
         sftp_dir sftp;
         QString szPath;
         STATE state;
-        QVector<CRemoteFileSystem*> vRemoteFileSystem;
+        QVector<QSharedPointer<CFileNode> > vFileNode;
     };
 
 private:

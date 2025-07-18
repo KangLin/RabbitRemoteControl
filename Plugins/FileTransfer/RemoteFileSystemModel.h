@@ -4,6 +4,7 @@
 #pragma once
 #include <QAbstractItemModel>
 #include <QDateTime>
+#include "ChannelSFTP.h"
 
 class CRemoteFileSystem : public QObject
 {
@@ -59,7 +60,7 @@ public:
         Ok
     };
     Q_ENUM(State)
-    const State GetState() const;
+    [[nodiscard]] const State GetState() const;
     void SetState(State s);
 
     [[nodiscard]] QString GetPath();
@@ -113,18 +114,17 @@ public:
     virtual ~CRemoteFileSystemModel();
 
     QModelIndex SetRootPath(const QString &szPath);
-    CRemoteFileSystem* GetRoot();
-    CRemoteFileSystem* GetRemoteFileSystemFromIndex(const QModelIndex &index) const;
+    [[nodiscard]] CRemoteFileSystem* GetRoot();
+    [[nodiscard]] CRemoteFileSystem* GetRemoteFileSystemFromIndex(const QModelIndex &index) const;
     void SetFilter(CRemoteFileSystem::TYPES filter);
-    CRemoteFileSystem::TYPES GetFilter();
+    [[nodiscard]] CRemoteFileSystem::TYPES GetFilter();
 
     // Header:
     QVariant headerData(int section,
                         Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
-    
-    QModelIndex index(CRemoteFileSystem *node, int column = 0) const;
-    QModelIndex index(const QString& szPath) const;
+    [[nodiscard]] QModelIndex index(CRemoteFileSystem *node, int column = 0) const;
+    [[nodiscard]] QModelIndex index(const QString& szPath) const;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
     QModelIndex parent(const QModelIndex &index) const override;
 
@@ -138,7 +138,9 @@ public:
 Q_SIGNALS:
     void sigGetFolder(const QString &szPath);
 public Q_SLOTS:
-    void slotGetFolder(const QString &szPath, QVector<CRemoteFileSystem*> rfs);
+    void slotGetFolder(const QString& szPath,
+                       QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+                       bool bEnd);
 
 private:
     CRemoteFileSystem* m_pRoot;

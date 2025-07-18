@@ -56,8 +56,9 @@ bool CBackendFieTransfer::event(QEvent *event)
         switch(pEvent->m_Command) {
         case CFileTransferEvent::Command::GetFolder:
         {
-            if(m_pSFTP)
+            if(m_pSFTP) {
                 m_pSFTP->slotGetFolder(pEvent->m_szSourcePath);
+            }
             break;
         }
         }
@@ -101,8 +102,8 @@ int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
                     this, SLOT(slotGetFolder(const QString&)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigGetFolder(const QString&, QVector<CRemoteFileSystem*>)),
-                    pForm, SLOT(slotGetFolder(const QString&, QVector<CRemoteFileSystem*>)));
+    check = connect(this, SIGNAL(sigGetFolder(const QString&, QVector<QSharedPointer<CChannelSFTP::CFileNode> >, bool)),
+                    pForm, SIGNAL(sigGetFolder(const QString&, QVector<QSharedPointer<CChannelSFTP::CFileNode> >, bool)));
     Q_ASSERT(check);
     return nRet;
 }
