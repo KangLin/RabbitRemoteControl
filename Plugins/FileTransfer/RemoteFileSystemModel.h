@@ -122,11 +122,10 @@ public:
     QVariant headerData(int section,
                         Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
-
-    // Basic functionality:
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-    QModelIndex index(CRemoteFileSystem* p, const QModelIndex &nIndex = QModelIndex());
+    
+    QModelIndex index(CRemoteFileSystem *node, int column = 0) const;
     QModelIndex index(const QString& szPath) const;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
     QModelIndex parent(const QModelIndex &index) const override;
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

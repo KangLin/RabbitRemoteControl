@@ -534,49 +534,25 @@ void CRemoteFileSystemModel::slotGetFolder(
         qDebug(log) << "Get nullptr";
         return;
     }
+
     QModelIndex parentIndex;
-    //int parentRow = -1;
-    // auto pParent = pRemoteFileSystem->GetParent();
-    // if(pParent) {
-    //     parentRow = pRemoteFileSystem->IndexOfParent();
-    //     qDebug(log) << "parentRow:" << parentRow;
-    //     parentIndex = createIndex(parentRow, 0, pParent);
-    // }
-    
-    parentIndex = index(pRemoteFileSystem);
+    parentIndex = index(pRemoteFileSystem, 0);
     qDebug(log) << Q_FUNC_INFO << szPath << parentIndex;
     pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
     if(rfs.size() > 0) {
-        if(parentIndex.isValid())
-            beginInsertRows(parentIndex, 0, rfs.size() - 1);
-        else
-            beginResetModel();
+        beginInsertRows(parentIndex, 0, rfs.size() - 1);
         foreach(auto p, rfs)
             pRemoteFileSystem->AppendChild(p);
-        if(parentIndex.isValid())
-            endInsertRows();
-        else
-            endResetModel();
+        endInsertRows();
     } else
         emit dataChanged(parentIndex, parentIndex);
 }
 
-QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem *p, const QModelIndex &nIndex)
+QModelIndex CRemoteFileSystemModel::index(CRemoteFileSystem* node, int column) const
 {
-    if(!p) return QModelIndex();
-    QModelIndex idx = nIndex;
-    if(!nIndex.isValid()) {
-        idx = index(-1, -1, nIndex);
-    }
-    auto pR = GetRemoteFileSystemFromIndex(idx);
-    if(pR == p)
-        return idx;
-    int row = rowCount(idx);
-    for(int i = 0; i < row; i++) {
-        QModelIndex idxChild = index(i, 0, idx);
-        idxChild = index(p, idxChild);
-        if(idxChild.isValid())
-            return idxChild;
-    }
-    return QModelIndex();
+    CRemoteFileSystem* parent = (node ? node->GetParent() : nullptr);
+    if(node == m_pRoot || !parent)
+        return QModelIndex();
+    int row = node->IndexOfParent();
+    return createIndex(row, column, node);
 }
