@@ -24,9 +24,9 @@ protected:
     virtual int OnProcess() override;
 
 private Q_SLOTS:
-    void slotGetFolder(const QString &szPath);
+    void slotGetFolder(CRemoteFileSystem*);
 Q_SIGNALS:
-    void sigGetFolder(const QString& szPath, QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents, bool bEnd);
+    void sigGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 
 private:
     int SetConnect(COperateFileTransfer *pOperate);

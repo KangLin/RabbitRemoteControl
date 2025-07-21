@@ -23,7 +23,7 @@ public:
     Q_DECLARE_FLAGS(TYPES, TYPE)
     Q_FLAG(TYPES)
 
-    explicit CRemoteFileSystem(const QString& szPath, TYPE type);
+    explicit CRemoteFileSystem(const QString& szPath, TYPES type);
     virtual ~CRemoteFileSystem();
 
     enum class ColumnValue {
@@ -72,9 +72,11 @@ public:
     [[nodiscard]] TYPES GetType();
     [[nodiscard]] bool IsDir();
     [[nodiscard]] QIcon Icon();
-
+    
+    [[nodiscard]] QDateTime GetCreateTime();
+    void SetCreateTime(const QDateTime &date);
     [[nodiscard]] QDateTime GetLastModified();
-    void SetLastModified(QDateTime date);
+    void SetLastModified(const QDateTime& date);
 
     enum class Permission {
         No = 0x00,
@@ -97,6 +99,7 @@ private:
     QString m_szPath;
     qint64 m_nSize;
     TYPES m_Type;
+    QDateTime m_createTime;
     QDateTime m_lastModifed;
     Permissions m_Permissions;
     QString m_szOwner;
@@ -136,16 +139,16 @@ public:
     virtual bool canFetchMore(const QModelIndex &parent) const override;
 
 Q_SIGNALS:
-    void sigGetFolder(const QString &szPath);
+    void sigGetFolder(CRemoteFileSystem* p);
 public Q_SLOTS:
-    void slotGetFolder(const QString& szPath,
-                       QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+    void slotGetFolder(CRemoteFileSystem* p,
+                       QVector<QSharedPointer<CRemoteFileSystem> > contents,
                        bool bEnd);
 
 private:
     CRemoteFileSystem* m_pRoot;
     CRemoteFileSystem::TYPES m_Filter;
-    QMap<QString, CRemoteFileSystem*> m_GetFolder;
+    QList<CRemoteFileSystem*> m_GetFolder;
     
 private:
     void DeleteRemoteFileSystem(CRemoteFileSystem* p);

@@ -23,11 +23,11 @@ public:
 
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
-    void sigGetFolder(const QString &szPath,
-                       QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+    void sigGetFolder(CRemoteFileSystem*,
+                       QVector<QSharedPointer<CRemoteFileSystem> > contents,
                        bool bEnd);
 Q_SIGNALS:
-    void sigGetFolder(const QString&);
+    void sigGetFolder(CRemoteFileSystem*);
 
 private:
     //! Set local root path

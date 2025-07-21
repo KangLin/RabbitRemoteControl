@@ -17,7 +17,7 @@
 static Q_LOGGING_CATEGORY(log, "RemoteFileSystem.Model")
 
 CRemoteFileSystem::CRemoteFileSystem(
-    const QString& szPath, TYPE type)
+    const QString& szPath, TYPES type)
     : QObject()
     , m_pParent(nullptr)
     , m_szPath(szPath)
@@ -263,12 +263,22 @@ CRemoteFileSystem::TYPES CRemoteFileSystem::GetType()
     return m_Type;
 }
 
+QDateTime CRemoteFileSystem::GetCreateTime()
+{
+    return m_createTime;
+}
+
+void CRemoteFileSystem::SetCreateTime(const QDateTime &date)
+{
+    m_createTime = date;
+}
+
 QDateTime CRemoteFileSystem::GetLastModified()
 {
     return m_lastModifed;
 }
 
-void CRemoteFileSystem::SetLastModified(QDateTime date)
+void CRemoteFileSystem::SetLastModified(const QDateTime &date)
 {
     m_lastModifed = date;
 }
@@ -329,13 +339,15 @@ void CRemoteFileSystemModel::DeleteRemoteFileSystem(CRemoteFileSystem* p)
 
 QModelIndex CRemoteFileSystemModel::SetRootPath(const QString &szPath)
 {
-    beginResetModel();
     if(szPath.isEmpty()) return QModelIndex();
+    if(m_pRoot && m_pRoot->GetPath() == szPath) return QModelIndex();
+    beginResetModel();
     QModelIndex idx;
     if(m_pRoot) {
         DeleteRemoteFileSystem(m_pRoot);
         m_pRoot = nullptr;
     }
+    m_GetFolder.clear();
     m_pRoot = new CRemoteFileSystem(szPath, CRemoteFileSystem::TYPE::DIR);
     idx = index(m_pRoot);
     //qDebug(log) << Q_FUNC_INFO << index;
@@ -530,56 +542,44 @@ void CRemoteFileSystemModel::fetchMore(const QModelIndex &parent)
     if(p->GetState() != CRemoteFileSystem::State::No)
         return;
     p->SetState(CRemoteFileSystem::State::Getting);
-    if(m_GetFolder.find(szPath) == m_GetFolder.end())
-        m_GetFolder.insert(szPath, p);
-    emit sigGetFolder(szPath);
+    if(m_GetFolder.indexOf(p) == -1)
+        m_GetFolder.append(p);
+    emit sigGetFolder(p);
     qDebug(log) << "fetchMore:" << parent << szPath;
 }
 
 void CRemoteFileSystemModel::slotGetFolder(
-    const QString& szPath,
-    QVector<QSharedPointer<CChannelSFTP::CFileNode> > contents,
+    CRemoteFileSystem *p,
+    QVector<QSharedPointer<CRemoteFileSystem> > contents,
     bool bEnd)
 {
-    qDebug(log) << Q_FUNC_INFO << szPath << contents.size() << bEnd;
-    auto pRemoteFileSystem = m_GetFolder.value(szPath);
+    if(!p) return;
+    int nIndex = m_GetFolder.indexOf(p);
+    if(-1 == nIndex) {
+        qDebug(log) << "Is not the model";
+        return;
+    }
+    qDebug(log) << Q_FUNC_INFO << p->GetPath() << contents.size() << bEnd;
+    CRemoteFileSystem* pRemoteFileSystem = m_GetFolder.at(nIndex);
+    m_GetFolder.remove(nIndex);
     if(!pRemoteFileSystem) {
         qDebug(log) << "Get nullptr";
         return;
     }
-    m_GetFolder.remove(szPath);
-
     QModelIndex parentIndex;
     parentIndex = index(pRemoteFileSystem, 0);
-    qDebug(log) << Q_FUNC_INFO << szPath << parentIndex;
+    qDebug(log) << Q_FUNC_INFO << p << parentIndex;
     pRemoteFileSystem->SetState(CRemoteFileSystem::State::Ok);
     if(contents.size() > 0) {
         beginInsertRows(parentIndex, 0, contents.size() - 1);
         foreach(auto p, contents) {
             if(!p) continue;
-            CRemoteFileSystem::TYPE type;
-            switch(p->type)
-            {
-            case CChannelSFTP::TYPE::DIR:
-                type = CRemoteFileSystem::TYPE::DIR;
-                break;
-            case CChannelSFTP::TYPE::FILE:
-                type = CRemoteFileSystem::TYPE::FILE;
-                break;
-            case CChannelSFTP::TYPE::SYMLINK:
-                type = CRemoteFileSystem::TYPE::SYMLINK;
-                break;
-            case CChannelSFTP::TYPE::SPECIAL:
-                type = CRemoteFileSystem::TYPE::SPECIAL;
-                break;
-            case CChannelSFTP::TYPE::UNKNOWN:
-                type = CRemoteFileSystem::TYPE::NO;
-                break;
-            }
-            CRemoteFileSystem* pRfs = new CRemoteFileSystem(p->path, type);
-            pRfs->SetSize(p->size);
-            pRfs->SetPermissions((CRemoteFileSystem::Permissions) p->permissions);
-            pRfs->SetLastModified(p->lastModifiedTime);
+            CRemoteFileSystem* pRfs =
+                new CRemoteFileSystem(p->GetPath(), p->GetType());
+            pRfs->SetSize(p->GetSize());
+            pRfs->SetPermissions(p->GetPermissions());
+            pRfs->SetLastModified(p->GetLastModified());
+            pRfs->SetCreateTime(p->GetCreateTime());
             pRemoteFileSystem->AppendChild(pRfs);
         }
         endInsertRows();
