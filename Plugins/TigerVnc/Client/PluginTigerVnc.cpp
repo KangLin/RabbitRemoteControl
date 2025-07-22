@@ -41,7 +41,7 @@ const QString CPluginTigerVnc::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
-           + tr("The plugin is used TigerVNC: https://github.com/kanglin/tigervnc");
+           + tr("The plugin is used TigerVNC") + ": https://github.com/kanglin/tigervnc";
 }
 
 const QString CPluginTigerVnc::Protocol() const
