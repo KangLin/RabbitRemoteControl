@@ -63,18 +63,27 @@ private Q_SLOTS:
     void slotActivateUrl(const QUrl& url, bool fromContextMenu);
     void slotTermKeyPressed(QKeyEvent* e);
     void slotFocusIn();
+    void slotFocusOut();
 protected Q_SLOTS:
     void slotUpdateParameter(COperate *pOperate);
 
 protected:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
+    virtual void SetShotcuts(bool bEnable = true);
 
     QTermWidget* m_pTerminal;
     CBackendThread* m_pThread;
-    QAction* m_pActionFind;
     QAction* m_pActionOpenWithSystem;
+    QAction* m_pActionFind;
 
 private:
     CParameterTerminalBase* m_pParameters;
+
+    QAction* m_pEditCopy;
+    QAction* m_pEditPaste;
+    QAction* m_pZoomIn;
+    QAction* m_pZoomOut;
+    QAction* m_pZoomOriginal;
+    QAction* m_pClear;
 };

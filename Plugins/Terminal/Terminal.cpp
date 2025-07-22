@@ -11,6 +11,8 @@ static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.Operate")
 
 CTerminal::CTerminal(CPlugin *parent)
     : COperateTerminal(parent)
+    , m_pOpenFolderWithExplorer(nullptr)
+    , m_pCopyToClipboard(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     SetParameter(&m_Parameters);
@@ -71,16 +73,16 @@ int CTerminal::Initial()
     if(nRet)
         return nRet;
     
-    QAction* pAction = m_Menu.addAction(
+    m_pOpenFolderWithExplorer = m_Menu.addAction(
         QIcon::fromTheme("folder-open"),
-        tr("Open working directory with file explorer"),
+        tr("Open working directory with file explorer") + "\tCtrl+O",
         QKeySequence(QKeySequence::Open), //Qt::CTRL | Qt::Key_O),
         [&](){
             QDesktopServices::openUrl(
                 QUrl::fromLocalFile(m_pTerminal->workingDirectory()));
         });
-    m_Menu.insertAction(m_pActionFind, pAction);
-    pAction = m_Menu.addAction(
+    m_Menu.insertAction(m_pActionFind, m_pOpenFolderWithExplorer);
+    m_pCopyToClipboard = m_Menu.addAction(
         QIcon::fromTheme("edit-copy"),
         tr("Copy working directory to clipboard"),
         this, [&](){
@@ -89,7 +91,7 @@ int CTerminal::Initial()
             if(!pClipboard) return;
             pClipboard->setText(m_pTerminal->workingDirectory());
         });
-    m_Menu.insertAction(m_pActionFind, pAction);
+    m_Menu.insertAction(m_pActionFind, m_pCopyToClipboard);
     return nRet;
 }
 
@@ -98,4 +100,15 @@ const QString CTerminal::Name()
     if(GetParameter() && !GetParameter()->GetShellName().isEmpty())
         return COperateTerminal::Name() + " - " + GetParameter()->GetShellName();
     return COperateTerminal::Name();
+}
+
+void CTerminal::SetShotcuts(bool bEnable)
+{
+    COperateTerminal::SetShotcuts(bEnable);
+    if(bEnable) {
+        m_pOpenFolderWithExplorer->setShortcut(QKeySequence(QKeySequence::Open));
+        return;
+    }
+    m_pOpenFolderWithExplorer->setShortcut(QKeySequence());
+    m_pCopyToClipboard->setShortcut(QKeySequence());
 }

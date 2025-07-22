@@ -26,6 +26,12 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     , m_pActionFind(nullptr)
     , m_pActionOpenWithSystem(nullptr)
     , m_pParameters(nullptr)
+    , m_pEditCopy(nullptr)
+    , m_pEditPaste(nullptr)
+    , m_pZoomIn(nullptr)
+    , m_pZoomOut(nullptr)
+    , m_pZoomOriginal(nullptr)
+    , m_pClear(nullptr)
 {
     QTermWidget::addCustomColorSchemeDir(QApplication::applicationDirPath()
                                          + QDir::separator() + "color-schemes");
@@ -67,6 +73,9 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     // Q_ASSERT(check);
     check = connect(m_pTerminal, SIGNAL(termGetFocus()),
                     this, SLOT(slotFocusIn()));
+    Q_ASSERT(check);
+    check = connect(m_pTerminal, SIGNAL(termLostFocus()),
+                    this, SLOT(slotFocusOut()));
     Q_ASSERT(check);
 }
 
@@ -147,25 +156,19 @@ int COperateTerminal::Initial()
     if(nRet)
         return nRet;
     
-    m_Menu.addAction(QIcon::fromTheme("edit-copy"),
-                     tr("Copy selection to clipboard"),
-                     m_pTerminal, SLOT(copyClipboard()))->setShortcuts(
-            QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C)
-                    << QKeySequence(Qt::CTRL | Qt::Key_Insert));
-    m_Menu.addAction(QIcon::fromTheme("edit-paste"),
-                     tr("Paste clipboard"),
-                     QKeySequence(QKeySequence::Paste), //Qt::CTRL | Qt::SHIFT | Qt::Key_V),
-                     m_pTerminal, SLOT(pasteClipboard()));
+    m_pEditCopy = m_Menu.addAction(QIcon::fromTheme("edit-copy"),
+                                   tr("Copy selection to clipboard") + "\tCtrl+Shift+C",
+                                   m_pTerminal, SLOT(copyClipboard()));
+    m_pEditPaste = m_Menu.addAction(QIcon::fromTheme("edit-paste"),
+                                    tr("Paste clipboard") + "\tCtrl+V",
+                                    m_pTerminal, SLOT(pasteClipboard()));
     m_Menu.addAction(tr("Paste selection"), m_pTerminal, SLOT(pasteSelection()));
     m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"),
-                     QKeySequence(QKeySequence::ZoomIn), //Qt::CTRL | Qt::Key_Plus),
+    m_pZoomIn = m_Menu.addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in") + "\tCtrl++",
                      m_pTerminal, SLOT(zoomIn()));
-    m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out"),
-                     QKeySequence(QKeySequence::ZoomOut), //Qt::CTRL | Qt::Key_Minus),
+    m_pZoomOut = m_Menu.addAction(QIcon::fromTheme("zoom-out"), tr("Zoom out") + "\tCtrl+-",
                      m_pTerminal, SLOT(zoomOut()));
-    m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset"),
-                     QKeySequence(Qt::CTRL | Qt::Key_0),
+    m_pZoomOriginal = m_Menu.addAction(QIcon::fromTheme("zoom-original"), tr("Zoom reset") + "\tCtrl+0",
                      this, SLOT(slotZoomReset()));
 
     m_Menu.addSeparator();
@@ -180,12 +183,13 @@ int COperateTerminal::Initial()
     //         QDesktopServices::openUrl(url);
     //     });
     m_pActionFind = m_Menu.addAction(
-        QIcon::fromTheme("edit-find"), tr("Find ......"),
-        QKeySequence(QKeySequence::Find), //Qt::CTRL | Qt::Key_F),
+        QIcon::fromTheme("edit-find"), tr("Find ......") + "\tCtrl+F",
         m_pTerminal, &QTermWidget::toggleShowSearchBar);
     
     m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("edit-clear"), tr("Clear"), m_pTerminal, SLOT(clear()));
+    m_pClear = m_Menu.addAction(QIcon::fromTheme("edit-clear"),
+                                tr("Clear") + "\tCtrl+R",
+                                m_pTerminal, SLOT(clear()));
 
     if(m_pActionSettings) {
         m_Menu.addSeparator();
@@ -336,6 +340,12 @@ void COperateTerminal::slotTermKeyPressed(QKeyEvent* e)
 void COperateTerminal::slotFocusIn()
 {
     emit sigViewerFocusIn(GetViewer());
+    SetShotcuts(true);
+}
+
+void COperateTerminal::slotFocusOut()
+{
+    SetShotcuts(false);
 }
 
 const qint16 COperateTerminal::Version() const
@@ -393,4 +403,28 @@ int COperateTerminal::WriteTerminal(const char *buf, int len)
     nRet = write(m_pTerminal->getPtySlaveFd(), buf, len);
 #endif
     return nRet;
+}
+
+void COperateTerminal::SetShotcuts(bool bEnable)
+{
+    if(bEnable) {
+        m_pEditCopy->setShortcuts(
+            QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C)
+                                  << QKeySequence(Qt::CTRL | Qt::Key_Insert));
+        m_pEditPaste->setShortcut(QKeySequence(QKeySequence::Paste));
+        m_pZoomIn->setShortcut(QKeySequence(QKeySequence::ZoomIn));
+        m_pZoomOut->setShortcut(QKeySequence(QKeySequence::ZoomOut));
+        m_pZoomOriginal->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_0));
+        m_pActionFind->setShortcut(QKeySequence(QKeySequence::Find));
+        m_pClear->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
+        return;
+    }
+
+    m_pEditCopy->setShortcuts(QList<QKeySequence>());
+    m_pEditPaste->setShortcut(QKeySequence());
+    m_pZoomIn->setShortcut(QKeySequence());
+    m_pZoomOut->setShortcut(QKeySequence());
+    m_pZoomOriginal->setShortcut(QKeySequence());
+    m_pActionFind->setShortcut(QKeySequence());
+    m_pClear->setShortcut(QKeySequence());
 }
