@@ -374,22 +374,27 @@
         <translation>允許系統托盤圖標</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="273"/>
+        <location filename="../../ParameterDlgSettings.ui" line="268"/>
+        <source>Elided</source>
+        <translation>省略</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="280"/>
         <source>When the split view is full-screen, the split view is maintained</source>
         <translation>當拆分視圖全屏時，保持拆分視圖</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="280"/>
+        <location filename="../../ParameterDlgSettings.ui" line="287"/>
         <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
         <translation>&quot;菜單-&gt;操作-&gt;開始&quot;: 根據類型分組</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="306"/>
+        <location filename="../../ParameterDlgSettings.ui" line="313"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="313"/>
+        <location filename="../../ParameterDlgSettings.ui" line="320"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>
@@ -410,13 +415,6 @@
         <location filename="../../mainwindow.ui" line="38"/>
         <source>View(&amp;V)</source>
         <translation>視圖(&amp;V)</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="52"/>
-        <location filename="../../mainwindow.ui" line="55"/>
-        <location filename="../../mainwindow.ui" line="58"/>
-        <source>Active</source>
-        <translation>活動的</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="98"/>
@@ -573,6 +571,13 @@
         <location filename="../../mainwindow.ui" line="42"/>
         <source>Type</source>
         <translation>類型</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="52"/>
+        <location filename="../../mainwindow.ui" line="55"/>
+        <location filename="../../mainwindow.ui" line="58"/>
+        <source>Activity</source>
+        <translation>活動的</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="76"/>

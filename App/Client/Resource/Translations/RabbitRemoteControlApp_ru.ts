@@ -374,22 +374,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="273"/>
-        <source>When the split view is full-screen, the split view is maintained</source>
+        <location filename="../../ParameterDlgSettings.ui" line="268"/>
+        <source>Elided</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="280"/>
+        <source>When the split view is full-screen, the split view is maintained</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="287"/>
         <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="306"/>
+        <location filename="../../ParameterDlgSettings.ui" line="313"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="313"/>
+        <location filename="../../ParameterDlgSettings.ui" line="320"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -409,13 +414,6 @@
     <message>
         <location filename="../../mainwindow.ui" line="38"/>
         <source>View(&amp;V)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="52"/>
-        <location filename="../../mainwindow.ui" line="55"/>
-        <location filename="../../mainwindow.ui" line="58"/>
-        <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -538,6 +536,13 @@
     <message>
         <location filename="../../mainwindow.ui" line="42"/>
         <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="52"/>
+        <location filename="../../mainwindow.ui" line="55"/>
+        <location filename="../../mainwindow.ui" line="58"/>
+        <source>Activity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

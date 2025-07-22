@@ -4,169 +4,169 @@
 <context>
     <name>CChannelSSH</name>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="28"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="73"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="74"/>
         <source>SSH failed: ssh_new.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="104"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="105"/>
         <source>SSH failed: the server is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="112"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="113"/>
         <source>SSH failed: Set host fail. host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="124"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="125"/>
         <source>SSH failed: Set port fail. port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="147"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="148"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="155"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="156"/>
         <source>SSH failed: ssh connect </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="180"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="181"/>
         <source>User cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="251"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="252"/>
         <source>SSH failed: Get server public key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="266"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="267"/>
         <source>SSH failed: Get public key hash value fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="284"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="285"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="286"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="297"/>
-        <source>For security reasons, connection will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="287"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="298"/>
+        <source>For security reasons, connection will be stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="288"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="295"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="295"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="296"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="306"/>
         <source>is not find in known host file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="306"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="307"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="308"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="309"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="333"/>
         <source>Host key hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="327"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="350"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="328"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="351"/>
         <source>Reject the host key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="331"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
         <source>is unknown. Do you trust the host key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="354"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="356"/>
         <source>the host key hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="356"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
         <source>Will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="407"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="408"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="431"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="432"/>
         <source>Failed authenticating with password. User: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="458"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="459"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="467"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="468"/>
         <source>SSH failed: Import public key fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="469"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="503"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="470"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="504"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="481"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="514"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="482"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="515"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="490"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="491"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="501"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="502"/>
         <source>SSH failed: Import private key fail.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,26 +266,6 @@
     <message>
         <location filename="../../FrmViewer.cpp" line="507"/>
         <source>Failed to update keyboard LED state</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CHookWindows</name>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
-        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -497,87 +477,87 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="87"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="95"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="90"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="98"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="93"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="101"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="110"/>
         <source>Shell name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="104"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="112"/>
         <source>Shell path: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="106"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Shell parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="109"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="117"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="112"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="151"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="159"/>
         <source>Copy selection to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="162"/>
         <source>Paste clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="159"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
         <source>Paste selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="166"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="168"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="170"/>
         <source>Zoom reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="183"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="185"/>
         <source>Find ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="188"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="349"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="356"/>
         <source>QTermWidget:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -931,6 +911,14 @@ Restart program by administrator?</source>
     </message>
 </context>
 <context>
+    <name>CParameterSSH</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterSSH.cpp" line="14"/>
+        <source>The host is empty. please set it</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterSSHTunnelUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
@@ -1178,7 +1166,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="158"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="159"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1186,8 +1174,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1198,8 +1186,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1252,7 +1240,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="259"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="260"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1282,40 +1270,40 @@ Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="58"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="69"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
         <source>View password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="161"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="171"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="183"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="184"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="262"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="280"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
         <source>Open X509 certificate authentication file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="292"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="293"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation type="unfinished"></translation>
     </message>

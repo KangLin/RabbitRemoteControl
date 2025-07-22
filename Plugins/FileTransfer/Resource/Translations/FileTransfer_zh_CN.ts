@@ -47,72 +47,78 @@
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="142"/>
-        <location filename="../../FrmFileTransfer.cpp" line="203"/>
+        <location filename="../../FrmFileTransfer.cpp" line="152"/>
+        <location filename="../../FrmFileTransfer.cpp" line="227"/>
         <source>Upload</source>
         <translation>上传</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="144"/>
-        <location filename="../../FrmFileTransfer.cpp" line="205"/>
-        <location filename="../../FrmFileTransfer.cpp" line="280"/>
-        <location filename="../../FrmFileTransfer.cpp" line="328"/>
+        <location filename="../../FrmFileTransfer.cpp" line="154"/>
+        <location filename="../../FrmFileTransfer.cpp" line="229"/>
+        <location filename="../../FrmFileTransfer.cpp" line="341"/>
+        <location filename="../../FrmFileTransfer.cpp" line="401"/>
         <source>Add to list</source>
         <translation>增加到例表</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="146"/>
-        <location filename="../../FrmFileTransfer.cpp" line="207"/>
+        <location filename="../../FrmFileTransfer.cpp" line="156"/>
+        <location filename="../../FrmFileTransfer.cpp" line="231"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="149"/>
-        <location filename="../../FrmFileTransfer.cpp" line="283"/>
-        <location filename="../../FrmFileTransfer.cpp" line="331"/>
+        <location filename="../../FrmFileTransfer.cpp" line="159"/>
+        <location filename="../../FrmFileTransfer.cpp" line="344"/>
+        <location filename="../../FrmFileTransfer.cpp" line="404"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="152"/>
-        <location filename="../../FrmFileTransfer.cpp" line="211"/>
-        <location filename="../../FrmFileTransfer.cpp" line="286"/>
-        <location filename="../../FrmFileTransfer.cpp" line="334"/>
+        <location filename="../../FrmFileTransfer.cpp" line="162"/>
+        <location filename="../../FrmFileTransfer.cpp" line="235"/>
+        <location filename="../../FrmFileTransfer.cpp" line="347"/>
+        <location filename="../../FrmFileTransfer.cpp" line="407"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="154"/>
-        <location filename="../../FrmFileTransfer.cpp" line="213"/>
-        <location filename="../../FrmFileTransfer.cpp" line="288"/>
-        <location filename="../../FrmFileTransfer.cpp" line="336"/>
+        <location filename="../../FrmFileTransfer.cpp" line="164"/>
+        <location filename="../../FrmFileTransfer.cpp" line="237"/>
+        <location filename="../../FrmFileTransfer.cpp" line="349"/>
+        <location filename="../../FrmFileTransfer.cpp" line="409"/>
         <source>Rename</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="170"/>
+        <location filename="../../FrmFileTransfer.cpp" line="166"/>
+        <location filename="../../FrmFileTransfer.cpp" line="239"/>
+        <source>Copy path to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmFileTransfer.cpp" line="182"/>
         <source>New folder</source>
         <translation>新建文件夹</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="170"/>
+        <location filename="../../FrmFileTransfer.cpp" line="182"/>
         <source>Folder name:</source>
         <translation>文件夹名：</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="209"/>
+        <location filename="../../FrmFileTransfer.cpp" line="233"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="278"/>
-        <location filename="../../FrmFileTransfer.cpp" line="326"/>
+        <location filename="../../FrmFileTransfer.cpp" line="339"/>
+        <location filename="../../FrmFileTransfer.cpp" line="399"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="290"/>
-        <location filename="../../FrmFileTransfer.cpp" line="338"/>
+        <location filename="../../FrmFileTransfer.cpp" line="351"/>
+        <location filename="../../FrmFileTransfer.cpp" line="411"/>
         <source>Copy url to clipboard</source>
         <translation>复制 url 到剪切板</translation>
     </message>
@@ -168,32 +174,32 @@
 <context>
     <name>COperateFileTransfer</name>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="116"/>
+        <location filename="../../OperateFileTransfer.cpp" line="152"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="119"/>
+        <location filename="../../OperateFileTransfer.cpp" line="155"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="122"/>
+        <location filename="../../OperateFileTransfer.cpp" line="158"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="132"/>
+        <location filename="../../OperateFileTransfer.cpp" line="168"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="136"/>
+        <location filename="../../OperateFileTransfer.cpp" line="172"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="139"/>
+        <location filename="../../OperateFileTransfer.cpp" line="175"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
@@ -214,47 +220,66 @@
 <context>
     <name>CRemoteFileSystem</name>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="52"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="82"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="54"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="84"/>
         <source>Folder</source>
         <translation>文件夹</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="56"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="86"/>
         <source>Driver</source>
         <translation>驱动器</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="74"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="88"/>
+        <source>Symlink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../RemoteFileSystemModel.cpp" line="90"/>
+        <source>Special</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../RemoteFileSystemModel.cpp" line="117"/>
         <source>File name</source>
         <translation>文件名</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="76"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="119"/>
         <source>File size</source>
         <translation>文件大小</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="78"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="121"/>
         <source>File type</source>
         <translation>文件类型</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="80"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="123"/>
         <source>File last modified time</source>
         <translation>文件最后修改时间</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="82"/>
-        <source>Privileges</source>
-        <translation>权限</translation>
+        <location filename="../../RemoteFileSystemModel.cpp" line="125"/>
+        <source>Permissions</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="84"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="229"/>
+        <source>getting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privileges</source>
+        <translation type="vanished">权限</translation>
+    </message>
+    <message>
+        <location filename="../../RemoteFileSystemModel.cpp" line="127"/>
         <source>Owner/Group</source>
         <translation>所有者/组</translation>
     </message>
