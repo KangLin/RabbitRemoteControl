@@ -34,7 +34,7 @@ description: |
 base: core24 # the base snap is the execution environment for this snap
 platforms:
   amd64:
-  arm64:
+#  arm64:
 #base: core22
 #architectures:
 #  - build-on: amd64
@@ -348,10 +348,36 @@ apps:
      - network
      - network-status
      - network-bind
+     - network-control
+     - network-manager
+     - network-manager-observe
+     - network-observe
      - opengl
      - cups-control
      - serial-port
      - alsa
      - audio-playback
      - audio-record
+     - camera
+     - account-control
+     - accounts-service
+     - shared-memory
+     - system-files
+     - media-control
+     - mount-control
      - home
+     - avahi-control
+     - browser-support
+     - hardware-observe
+     - kernel-module-observe
+     - password-manager-service
+     - process-control
+     - raw-usb
+     - removable-media
+     - screen-inhibit-control
+     - screencast-legacy
+     - system-observe
+     - gsettings
+     - ssh-keys
+     - ssh-public-keys
+     - pkcs11
