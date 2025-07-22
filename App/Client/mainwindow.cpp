@@ -585,7 +585,7 @@ void MainWindow::slotLoadOperateMenu()
     qDebug(log) << Q_FUNC_INFO;
 
     if(m_pActionOperateMenu) {
-        ui->menuTools->removeAction(m_pActionOperateMenu);
+        ui->menuOperate->removeAction(m_pActionOperateMenu);
         m_pActionOperateMenu = nullptr;
     }
     ui->toolBar->removeAction(m_pActionTBOperate);
