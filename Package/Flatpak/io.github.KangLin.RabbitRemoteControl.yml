@@ -95,6 +95,7 @@ modules:
     builddir: true
     config-opts:
       - -DWITH_EXAMPLES=OFF
+      - -DCMAKE_BUILD_TYPE=Release
     cleanup:
       - /bin
 
@@ -122,7 +123,7 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_VERBOSE_MAKEFILE=OFF
-      - -DCMAKE_BUILD_TYPE:STRING=Release
+      - -DCMAKE_BUILD_TYPE=Release
       - -DCHANNEL_TSMF:BOOL=OFF
       - -DBUILD_TESTING:BOOL=OFF
       - -DWITH_MANPAGES:BOOL=OFF
@@ -152,6 +153,7 @@ modules:
       - -DWITH_GCRYPT=OFF
       - -DWITH_EXAMPLES=OFF
       - -DWITH_TESTS=OFF
+      - -DCMAKE_BUILD_TYPE=Release
     cleanup:
       - /bin
       - /lib/libvncserver.so*
@@ -187,6 +189,7 @@ modules:
     builddir: true
     config-opts:
       - -DBUILD_VIEWER=OFF
+      - -DCMAKE_BUILD_TYPE=Release
     cleanup:
       - /bin
       - /lib/*.so*
@@ -227,6 +230,7 @@ modules:
     builddir: true
     config-opts:
       - -DBUILD_TESTING=OFF
+      - -DCMAKE_BUILD_TYPE=Release
     cleanup:
       - /bin
       - /share/man
