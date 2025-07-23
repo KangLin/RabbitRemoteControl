@@ -44,47 +44,66 @@
         <translation>允許標題改變</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="33"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
         <source>Help:</source>
         <translation>幫助：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
         <source>- Set bash shell:</source>
         <translation>- 設置 bash shell:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="43"/>
         <source>  cmd shell with parameters:</source>
         <translation>  cmd 使用參數：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="44"/>
         <source>  eg:</source>
         <translation>  例如：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
-        <source>    msys64 bash path:</source>
-        <translation>    msys64 bash shell 路徑：</translation>
+        <location filename="../../DlgSettingsTerminal.cpp" line="42"/>
+        <source>- Set sh shell:</source>
+        <translation>- 設置 sh shell:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="38"/>
-        <source>    So that cmd shell with parameters:</source>
-        <translation>    所以 cmd 使用參數：</translation>
+        <source>    - msys64 bash shell default path:</source>
+        <translation>    - msys64 bash shell 默認路徑：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="72"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="39"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="41"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="46"/>
+        <source>      So that cmd shell with parameters:</source>
+        <translation>      所以 cmd 使用參數：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="40"/>
+        <source>    - cygwin64 bash shell default path:</source>
+        <translation>    - cygwin64 bash shell 默認路徑:</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="45"/>
+        <source>    - cygwin64 sh shell default path:</source>
+        <translation>    - cygwin64 sh shell 默認路徑:</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="80"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="72"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="80"/>
         <source>The shell is empty</source>
         <translation>Shell 是空</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="119"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="127"/>
         <source>Select shell</source>
         <translation>選擇 Shell</translation>
     </message>
@@ -110,12 +129,12 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="76"/>
+        <location filename="../../Terminal.cpp" line="78"/>
         <source>Open working directory with file explorer</source>
         <translation>用文件瀏覽器打開工作目錄</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="85"/>
+        <location filename="../../Terminal.cpp" line="87"/>
         <source>Copy working directory to clipboard</source>
         <translation>復製工作目錄到剪切板</translation>
     </message>
