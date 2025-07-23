@@ -28,6 +28,8 @@
   - Plugin
     - Terminal
     - Terminal SSH
+    - Terminal telnet
+  - Add activity menu
 
 ### v0.0.36
 - Client:

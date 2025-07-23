@@ -28,14 +28,17 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     AddShell("C:\\Windows\\System32\\cmd.exe");
     AddShell("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
     AddShell("C:\\Windows\\System32\\cmd.exe", "msys64");
+    AddShell("C:\\Windows\\System32\\cmd.exe", "cygwin64");
     AddShell(qgetenv("ComSpec"));
     QString szHelp;
     szHelp = tr("Help:") + "\n";
     szHelp += tr("- Set bash shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " '/k %BASH_PATH% -l'\n";
     szHelp += tr("  eg:") + "\n";
-    szHelp += tr("    msys64 bash path:") + " 'c:\\msys64\\usr\\bin\\bash.exe'\n";
-    szHelp += tr("    So that cmd shell with parameters:") + " '/k c:\\msys64\\usr\\bin\\bash.exe -l'";
+    szHelp += tr("    msys64 default bash path:") + " 'c:\\msys64\\usr\\bin\\bash.exe'\n";
+    szHelp += tr("    So that cmd shell with parameters:") + " '/k c:\\msys64\\usr\\bin\\bash.exe -l'\n";
+    szHelp += tr("    cygwin64 default bash path:") + " 'c:\\cygwin64\\bin\\bash.exe'\n";
+    szHelp += tr("    So that cmd shell with parameters:") + " '/k c:\\cygwin64\\bin\\bash.exe -l'";
     ui->teHelp->setText(szHelp);
     ui->teHelp->show();
 #endif
@@ -132,6 +135,9 @@ void CDlgSettingsTerminal::on_cbShell_currentIndexChanged(int index)
     ui->cbShell->setStatusTip(szData);
     if("msys64" == szName && ui->leParameters->text().isEmpty()) {
         ui->leParameters->setText("/k c:\\msys64\\usr\\bin\\bash.exe -l");
+    }
+    if("cygwin64" == szName && ui->leParameters->text().isEmpty()) {
+        ui->leParameters->setText("/k c:\\cygwin64\\bin\\bash.exe -l");
     }
 }
 
