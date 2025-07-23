@@ -12,7 +12,8 @@ public:
     virtual ~CTerminal() override;
 
 public:
-    virtual const QString Name() override;
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Name() override;
 
     [[nodiscard]] virtual CBackend *InstanceBackend() override;
 
