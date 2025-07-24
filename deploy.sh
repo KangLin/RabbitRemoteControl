@@ -52,10 +52,8 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/doxygen.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
-sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
-sed -i "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
@@ -66,6 +64,9 @@ sed -i "s/rabbitremotecontrol-[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol-${DE
 sed -i "s/RabbitRemoteControl_[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
+
+sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
+sed -i "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 
 sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
 sed -i "s/Version:.*[0-9]\+\.[0-9]\+\.[0-9]\+/Version:        ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
