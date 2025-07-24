@@ -362,9 +362,7 @@ apps:
      - account-control
      - accounts-service
      - shared-memory
-     - system-files
      - media-control
-     - mount-control
      - home
      - avahi-control
      - browser-support
