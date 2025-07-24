@@ -30,6 +30,7 @@ jobs:
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
+            VCPKG_MANIFEST_FEATURES: "ffmpeg"
 
           - qt_version: 5.12.12
             qt_arch: win32_msvc2017
@@ -37,6 +38,7 @@ jobs:
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
+            VCPKG_MANIFEST_FEATURES: "ffmpeg"
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)

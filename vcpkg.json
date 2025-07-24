@@ -7,21 +7,6 @@
   "dependencies": [
     "openssl",
     "zlib",
-    {
-        "name": "ffmpeg",
-        "features": [
-          "avcodec",
-          "avdevice",
-          "avfilter",
-          "avformat",
-          "swresample",
-          "swscale",
-          "openh264",
-          "x265",
-          "x264"
-        ],
-        "platform": "!android"
-    },
     "cmark"
   ],
 
@@ -31,6 +16,13 @@
   ],
 
   "features": {
+    "ffmpeg": {
+      "description": "ffmpeg",
+      "dependencies": [
+        "ffmpeg"
+      ]
+    },
+
     "freerdp": {
       "description": "freerdp",
       "dependencies": [
