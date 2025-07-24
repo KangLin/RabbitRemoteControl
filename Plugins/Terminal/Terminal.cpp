@@ -98,7 +98,9 @@ int CTerminal::Initial()
 const QString CTerminal::Id()
 {
     QString szId;
-    szId = COperateTerminal::Id() + "_" + Name();
+    szId = COperateTerminal::Id();
+    if(GetParameter() && !GetParameter()->GetShellName().isEmpty())
+        szId += "_" + GetParameter()->GetShellName();
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
