@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
-#if (defined(Q_OS_LINUX) && !defined(Q_OA_ANDROID) \
+#if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) \
     && (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)))
     /* 修复使用 Qt6 时，最大化时，工具栏位置错误。
        现在很多 linux 用 wayland 或 wayland-egl 作为桌面显示，这样会出现一个问题，
