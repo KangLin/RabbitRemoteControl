@@ -73,8 +73,9 @@ QSharedPointer<CRemoteFileSystem> CChannelSFTP::GetFileNode(
     const QString& szPath, sftp_attributes attributes)
 {
     if(!attributes) return nullptr;
+    /*
     qDebug(log) << szPath << "name:" << attributes->name
-                << "size:" << attributes->size << "type:" << attributes->type;
+                << "size:" << attributes->size << "type:" << attributes->type;//*/
     QString szName(attributes->name);
     if("." == szName || ".." == szName)
         return nullptr;

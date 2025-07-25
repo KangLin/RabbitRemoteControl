@@ -223,7 +223,7 @@ jobs:
           if [ "${{ github.ref_name }}" == "master" ]; then
               export BRANCH_NAME=test_${{ github.ref_name }}
           fi
-          echo "## Download" >> ${{github.workspace}}/Release.md
+          echo "## Download:" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
           echo "|       | x86-64 (64-bit) | x86-32 (32-bit) | AArch64 (ARM64) | ARMv7 (32-bit) |" >> ${{github.workspace}}/Release.md
           echo "|:-     | :-------------- | :-------------- | :-------------- | :------------- |" >> ${{github.workspace}}/Release.md

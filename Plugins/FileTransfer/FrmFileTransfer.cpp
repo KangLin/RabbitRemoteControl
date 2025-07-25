@@ -37,11 +37,12 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     Q_ASSERT(check);
     SetLocalRoot(QString());
     ui->treeLocal->setHeaderHidden(true);
+    ui->treeLocal->header()->hide();
     // 注意：必须在 setModel 之后才会生效
     ui->treeLocal->header()->hideSection(1);
     ui->treeLocal->header()->hideSection(2);
     ui->treeLocal->header()->hideSection(3);
-    
+
     m_pModelLocalFile = new QFileSystemModel(this);
     m_pModelLocalFile->setFilter(QDir::Files);
     m_pModelLocalFile->setReadOnly(false);
@@ -67,6 +68,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->treeRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->treeRemote->header()->hide();
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Type);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Size);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::LastModified);
@@ -315,8 +317,8 @@ void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
     if(!pRemoteFileSystem) return;
     QString szPath = pRemoteFileSystem->GetPath();
     if(szPath.isEmpty()) return;
-    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     qDebug(log) << Q_FUNC_INFO << szPath;
+    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     if(-1 == ui->cbRemote->findText(szPath)) {
         ui->cbRemote->addItem(szPath, index);
     }

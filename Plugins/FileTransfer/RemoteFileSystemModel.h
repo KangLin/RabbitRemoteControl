@@ -72,7 +72,7 @@ public:
     [[nodiscard]] TYPES GetType();
     [[nodiscard]] bool IsDir();
     [[nodiscard]] QIcon Icon();
-    
+
     [[nodiscard]] QDateTime GetCreateTime();
     void SetCreateTime(const QDateTime &date);
     [[nodiscard]] QDateTime GetLastModified();
