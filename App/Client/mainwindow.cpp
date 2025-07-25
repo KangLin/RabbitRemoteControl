@@ -164,7 +164,9 @@ MainWindow::MainWindow(QWidget *parent)
         }
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockFavorite->setObjectName("dockFavorite");
-        //m_pDockFavorite->hide();
+#if defined(Q_OS_ANDROID)
+        m_pDockFavorite->hide();
+#endif
         ui->menuView->addAction(m_pDockFavorite->toggleViewAction());
         m_pDockFavorite->toggleViewAction()->setIcon(QIcon::fromTheme("emblem-favorite"));
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
@@ -190,7 +192,9 @@ MainWindow::MainWindow(QWidget *parent)
         }
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockListRecent->setObjectName("dockListRecent");
-        //m_pDockListRecent->hide();
+#if defined(Q_OS_ANDROID)
+        m_pDockListRecent->hide();
+#endif
         ui->menuView->addAction(m_pDockListRecent->toggleViewAction());
         m_pDockListRecent->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
         tabifyDockWidget(m_pDockFavorite, m_pDockListRecent);
@@ -214,7 +218,9 @@ MainWindow::MainWindow(QWidget *parent)
             Q_ASSERT(check);
         }
         m_pDockActive->setObjectName("dockListActive");
-        //m_pDockActive->hide();
+#if defined(Q_OS_ANDROID)
+        m_pDockActive->hide();
+#endif
         ui->menuView->addAction(m_pDockActive->toggleViewAction());
         m_pDockActive->toggleViewAction()->setIcon(QIcon::fromTheme("network-wired"));
         tabifyDockWidget(m_pDockFavorite, m_pDockActive);
