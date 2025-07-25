@@ -38,7 +38,7 @@ Author: Kang Lin <kl222@126.com>
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
-It include remote desktop, remote control, remote terminal, player, network tools etc functions.
+It include remote desktop, remote control, file transfer(FTP, SFTP), terminal, remote terminal(SSH, TELNET), player, network tools etc functions.
 
 ### Screenshot
 
@@ -138,6 +138,7 @@ Legend:
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP(File Transfer Protocol): [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
+- [x] SFTP(Secure Shell File Transfer Protocol): [https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02](https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02)
 
 #### Network protocols
 
@@ -186,10 +187,11 @@ Legend:
   - [LibVNCServer](Plugins/LibVNCServer/README.md)
 - [Wake on lan](Plugins/WakeOnLan/README.md)
 - [Player](Plugins/Player/README.md)
-- Screen capture: Example
+- [Screen capture: Example](Plugins/ScreenCaptue)
 - Terminal
   - [Terminal](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
+  - [TELNET](Plugins/Telnet)
 
 ## Status
 
@@ -260,12 +262,12 @@ Contact me:
     - [ ] Debian: Need to maintain official packages
     - [ ] rpm: Need to maintain official packages
     - [x] AppImage
-    - [x] Snap
+    - [x] Snap: https://snapcraft.io/rabbitremotecontrol
     - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
   - Windows
-    - [ ] Windows store
-  - [ ] Macos
-  - [ ] Android
+    - [ ] Windows store: Need to maintain official packages
+  - [ ] Macos: Need to maintain official packages
+  - [ ] Android: Need to maintain official packages
 
 ## Download
 

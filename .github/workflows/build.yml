@@ -180,7 +180,6 @@ jobs:
           echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
           BUILD_TIME=`date --rfc-3339=second`
           echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
-          echo "|[Download](#Download)|[下载](#Download)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add test comment in Release.md file
@@ -194,7 +193,6 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
-          echo "[Download](#Download)" >> ${{github.workspace}}/Release.md
 
       - name: Add artifact sha256sum in Release.md file
         run: |
@@ -229,8 +227,8 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "|       | x86-64 (64-bit) | x86-32 (32-bit) | AArch64 (ARM64) | ARMv7 (32-bit) |" >> ${{github.workspace}}/Release.md
           echo "|:-     | :-------------- | :-------------- | :-------------- | :------------- |" >> ${{github.workspace}}/Release.md
-          echo "|Windows|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.0_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.0_Portable.zip)|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2017_qt5.12.12_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2017_qt5.12.12_Portable.zip)| | |" >> ${{github.workspace}}/Release.md
-          echo "|Android|[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_x86_64_qt6.9.0_Release.apk) | |[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_arm64_v8a_qt6.9.0_Release.apk)| |" >> ${{github.workspace}}/Release.md
+          echo "|Windows|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.1_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.1_Portable.zip)|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2017_qt5.12.12_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2017_qt5.12.12_Portable.zip)| | |" >> ${{github.workspace}}/Release.md
+          echo "|Android|[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_x86_64_qt6.9.1_Release.apk) | |[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_arm64_v8a_qt6.9.1_Release.apk)| |" >> ${{github.workspace}}/Release.md
           echo "|Macos|[zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_macos.zip)||||" >> ${{github.workspace}}/Release.md
           echo "|Linux|[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.AppImage)| |[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64.AppImage)| |" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04_amd64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04-arm_arm64.deb)| |" >> ${{github.workspace}}/Release.md
@@ -239,10 +237,18 @@ jobs:
       - name: Add download in test
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
+          export BRANCH_NAME=${{ github.ref_name }}
+          if [ "${{ github.ref_name }}" == "master" ]; then
+            export BRANCH_NAME=test_${{ github.ref_name }}
+          fi
           echo "|Flatpak|[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)| |" >> ${{github.workspace}}/Release.md
 
       - name: Add snap donwload in Release.md file
         run: |
+          export BRANCH_NAME=${{ github.ref_name }}
+          if [ "${{ github.ref_name }}" == "master" ]; then
+            export BRANCH_NAME=test_${{ github.ref_name }}
+          fi
           echo "" >> ${{github.workspace}}/Release.md
           echo "[Document](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_document.zip)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md

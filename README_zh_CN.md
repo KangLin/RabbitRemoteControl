@@ -37,7 +37,7 @@
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
-它包括远程桌面、远程控制、远程终端、播放器、网络工具等功能。
+它包括远程桌面、远程控制、文件传输（FTP、SFTP）、终端、远程终端（SSH、TELNET）、播放器、网络工具等功能。
 
 ### 截屏
 
@@ -136,6 +136,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
+- [x] SFTP(安全 Shell 文件传输协议)：[https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02](https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02)
 
 #### 网络协议
 
@@ -188,6 +189,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - 终端
   - [本地终端](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
+  - [TELNET](Plugins/Telnet)
 
 ## 状态
 
@@ -258,12 +260,12 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
     - [ ] Debian: 需要维护官方包
     - [ ] rpm: 需要维护官方包
     - [x] AppImage
-    - [x] Snap
+    - [x] Snap: https://snapcraft.io/rabbitremotecontrol
     - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
   - [ ] Windows
-    - [ ] Windows 应用商店
-  - [ ] Macos
-  - [ ] Android
+    - [ ] Windows 应用商店: 需要维护官方包
+  - [ ] Macos: 需要维护官方包
+  - [ ] Android: 需要维护官方包
 
 ## 下载
 
