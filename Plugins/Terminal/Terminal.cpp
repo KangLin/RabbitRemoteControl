@@ -47,6 +47,8 @@ int CTerminal::Start()
             m_pTerminal->setShellProgram(m_Parameters.GetShell());
         if(!m_Parameters.GetShellParameters().isEmpty())
             m_pTerminal->setArgs(QStringList() << m_Parameters.GetShellParameters());
+        if(m_Parameters.GetRestoreDirectory())
+            m_pTerminal->setWorkingDirectory(m_Parameters.GetLasterDirectory());
         m_pTerminal->startShellProgram();
     }
     emit sigRunning();
@@ -55,7 +57,7 @@ int CTerminal::Start()
 
 int CTerminal::Stop()
 {
-    m_Parameters.SetCurrentDirectory(m_pTerminal->workingDirectory());
+    m_Parameters.SetLasterDirectory(m_pTerminal->workingDirectory());
     if(m_pTerminal)
         m_pTerminal->close();
     emit sigFinished();

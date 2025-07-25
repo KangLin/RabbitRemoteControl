@@ -34,10 +34,10 @@ private:
     QString m_szShellParameters;
 
 public:
-    [[nodiscard]] const QString GetCurrentDirectory() const;
-    int SetCurrentDirectory(const QString& d);
+    [[nodiscard]] const QString GetLasterDirectory() const;
+    int SetLasterDirectory(const QString& d);
 private:
-    QString m_szCurrentDirectory;
+    QString m_szLasterDirectory;
 
 public:
     [[nodiscard]] bool GetRestoreDirectory() const;

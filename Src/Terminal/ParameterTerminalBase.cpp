@@ -9,7 +9,7 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
     : CParameterOperate{parent, szPrefix}
     , m_Terminal(this)
     , m_bTitleChanged(true)
-    , m_bRestoreDirectory(false)
+    , m_bRestoreDirectory(true)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");
@@ -32,7 +32,7 @@ int CParameterTerminalBase::OnLoad(QSettings &set)
     SetShell(set.value("Shell", GetShell()).toString());
     SetShellName(set.value("Shell/Name", GetShellName()).toString());
     SetShellParameters(set.value("Shell/Parameters", GetShellParameters()).toString());
-    SetCurrentDirectory(set.value("Directory/Current", GetCurrentDirectory()).toString());
+    SetLasterDirectory(set.value("Directory/Laster", GetLasterDirectory()).toString());
     SetRestoreDirectory(set.value("Directory/Restore", GetRestoreDirectory()).toBool());
     SetEnableTitleChanged(set.value("EnableTitleChanged", GetEnableTitleChanged()).toBool());
     set.endGroup();
@@ -45,7 +45,7 @@ int CParameterTerminalBase::OnSave(QSettings &set)
     set.setValue("Shell", GetShell());
     set.setValue("Shell/Name", GetShellName());
     set.setValue("Shell/Parameters", GetShellParameters());
-    set.setValue("Directory/Current", GetCurrentDirectory());
+    set.setValue("Directory/Laster", GetLasterDirectory());
     set.setValue("Directory/Restore", GetRestoreDirectory());
     set.setValue("EnableTitleChanged", GetEnableTitleChanged());
     set.endGroup();
@@ -106,16 +106,16 @@ const QString CParameterTerminalBase::GetShellParameters() const
     return m_szShellParameters;
 }
 
-const QString CParameterTerminalBase::GetCurrentDirectory() const
+const QString CParameterTerminalBase::GetLasterDirectory() const
 {
-    return m_szCurrentDirectory;
+    return m_szLasterDirectory;
 }
 
-int CParameterTerminalBase::SetCurrentDirectory(const QString& d)
+int CParameterTerminalBase::SetLasterDirectory(const QString& d)
 {
-    if(m_szCurrentDirectory == d)
+    if(m_szLasterDirectory == d)
         return 0;
-    m_szCurrentDirectory = d;
+    m_szLasterDirectory = d;
     SetModified(true);
     return 0;
 }
