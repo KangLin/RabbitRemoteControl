@@ -34,7 +34,7 @@
        <item row="1" column="0" colspan="2">
         <widget class="QCheckBox" name="cbRestoreDirctory">
          <property name="text">
-          <string>Enable restore the laster directory when restart</string>
+          <string>Enable restore the laster directory when start</string>
          </property>
         </widget>
        </item>

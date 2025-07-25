@@ -47,38 +47,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="152"/>
-        <location filename="../../FrmFileTransfer.cpp" line="227"/>
-        <source>Upload</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../FrmFileTransfer.cpp" line="154"/>
         <location filename="../../FrmFileTransfer.cpp" line="229"/>
-        <location filename="../../FrmFileTransfer.cpp" line="341"/>
-        <location filename="../../FrmFileTransfer.cpp" line="401"/>
-        <source>Add to list</source>
+        <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="156"/>
         <location filename="../../FrmFileTransfer.cpp" line="231"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
+        <location filename="../../FrmFileTransfer.cpp" line="403"/>
+        <source>Add to list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmFileTransfer.cpp" line="158"/>
+        <location filename="../../FrmFileTransfer.cpp" line="233"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="159"/>
-        <location filename="../../FrmFileTransfer.cpp" line="344"/>
-        <location filename="../../FrmFileTransfer.cpp" line="404"/>
+        <location filename="../../FrmFileTransfer.cpp" line="161"/>
+        <location filename="../../FrmFileTransfer.cpp" line="346"/>
+        <location filename="../../FrmFileTransfer.cpp" line="406"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmFileTransfer.cpp" line="162"/>
-        <location filename="../../FrmFileTransfer.cpp" line="235"/>
-        <location filename="../../FrmFileTransfer.cpp" line="347"/>
-        <location filename="../../FrmFileTransfer.cpp" line="407"/>
-        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -86,39 +78,47 @@
         <location filename="../../FrmFileTransfer.cpp" line="237"/>
         <location filename="../../FrmFileTransfer.cpp" line="349"/>
         <location filename="../../FrmFileTransfer.cpp" line="409"/>
-        <source>Rename</source>
+        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="166"/>
         <location filename="../../FrmFileTransfer.cpp" line="239"/>
+        <location filename="../../FrmFileTransfer.cpp" line="351"/>
+        <location filename="../../FrmFileTransfer.cpp" line="411"/>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmFileTransfer.cpp" line="168"/>
+        <location filename="../../FrmFileTransfer.cpp" line="241"/>
         <source>Copy path to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="182"/>
+        <location filename="../../FrmFileTransfer.cpp" line="184"/>
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="182"/>
+        <location filename="../../FrmFileTransfer.cpp" line="184"/>
         <source>Folder name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="233"/>
+        <location filename="../../FrmFileTransfer.cpp" line="235"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="339"/>
-        <location filename="../../FrmFileTransfer.cpp" line="399"/>
+        <location filename="../../FrmFileTransfer.cpp" line="341"/>
+        <location filename="../../FrmFileTransfer.cpp" line="401"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="351"/>
-        <location filename="../../FrmFileTransfer.cpp" line="411"/>
+        <location filename="../../FrmFileTransfer.cpp" line="353"/>
+        <location filename="../../FrmFileTransfer.cpp" line="413"/>
         <source>Copy url to clipboard</source>
         <translation type="unfinished"></translation>
     </message>

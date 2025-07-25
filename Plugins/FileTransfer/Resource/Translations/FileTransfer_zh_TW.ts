@@ -47,78 +47,78 @@
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="152"/>
-        <location filename="../../FrmFileTransfer.cpp" line="227"/>
+        <location filename="../../FrmFileTransfer.cpp" line="154"/>
+        <location filename="../../FrmFileTransfer.cpp" line="229"/>
         <source>Upload</source>
         <translation>上傳</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="154"/>
-        <location filename="../../FrmFileTransfer.cpp" line="229"/>
-        <location filename="../../FrmFileTransfer.cpp" line="341"/>
-        <location filename="../../FrmFileTransfer.cpp" line="401"/>
+        <location filename="../../FrmFileTransfer.cpp" line="156"/>
+        <location filename="../../FrmFileTransfer.cpp" line="231"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
+        <location filename="../../FrmFileTransfer.cpp" line="403"/>
         <source>Add to list</source>
         <translation>增加到例表</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="156"/>
-        <location filename="../../FrmFileTransfer.cpp" line="231"/>
+        <location filename="../../FrmFileTransfer.cpp" line="158"/>
+        <location filename="../../FrmFileTransfer.cpp" line="233"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="159"/>
-        <location filename="../../FrmFileTransfer.cpp" line="344"/>
-        <location filename="../../FrmFileTransfer.cpp" line="404"/>
+        <location filename="../../FrmFileTransfer.cpp" line="161"/>
+        <location filename="../../FrmFileTransfer.cpp" line="346"/>
+        <location filename="../../FrmFileTransfer.cpp" line="406"/>
         <source>New</source>
         <translation>新建</translation>
-    </message>
-    <message>
-        <location filename="../../FrmFileTransfer.cpp" line="162"/>
-        <location filename="../../FrmFileTransfer.cpp" line="235"/>
-        <location filename="../../FrmFileTransfer.cpp" line="347"/>
-        <location filename="../../FrmFileTransfer.cpp" line="407"/>
-        <source>Delete</source>
-        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="164"/>
         <location filename="../../FrmFileTransfer.cpp" line="237"/>
         <location filename="../../FrmFileTransfer.cpp" line="349"/>
         <location filename="../../FrmFileTransfer.cpp" line="409"/>
-        <source>Rename</source>
-        <translation>重命名</translation>
+        <source>Delete</source>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="166"/>
         <location filename="../../FrmFileTransfer.cpp" line="239"/>
-        <source>Copy path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../FrmFileTransfer.cpp" line="351"/>
+        <location filename="../../FrmFileTransfer.cpp" line="411"/>
+        <source>Rename</source>
+        <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="182"/>
+        <location filename="../../FrmFileTransfer.cpp" line="168"/>
+        <location filename="../../FrmFileTransfer.cpp" line="241"/>
+        <source>Copy path to clipboard</source>
+        <translation>復製路徑到剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../FrmFileTransfer.cpp" line="184"/>
         <source>New folder</source>
         <translation>新建文件夾</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="182"/>
+        <location filename="../../FrmFileTransfer.cpp" line="184"/>
         <source>Folder name:</source>
         <translation>文件夾名：</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="233"/>
+        <location filename="../../FrmFileTransfer.cpp" line="235"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="339"/>
-        <location filename="../../FrmFileTransfer.cpp" line="399"/>
+        <location filename="../../FrmFileTransfer.cpp" line="341"/>
+        <location filename="../../FrmFileTransfer.cpp" line="401"/>
         <source>Download</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="351"/>
-        <location filename="../../FrmFileTransfer.cpp" line="411"/>
+        <location filename="../../FrmFileTransfer.cpp" line="353"/>
+        <location filename="../../FrmFileTransfer.cpp" line="413"/>
         <source>Copy url to clipboard</source>
         <translation>復製 url 到剪切板</translation>
     </message>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="88"/>
         <source>Symlink</source>
-        <translation type="unfinished"></translation>
+        <translation>符號鏈接</translation>
     </message>
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="90"/>
@@ -267,16 +267,12 @@
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="125"/>
         <source>Permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>權限</translation>
     </message>
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="229"/>
         <source>getting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Privileges</source>
-        <translation type="vanished">權限</translation>
+        <translation>獲取中</translation>
     </message>
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="127"/>
