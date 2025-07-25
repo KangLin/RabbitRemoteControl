@@ -1,13 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "DlgSettingsTerminal.h"
-#include "ui_DlgSettingsTerminal.h"
 #include <QMessageBox>
 #include <QLoggingCategory>
 #include <qtermwidget.h>
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QUrl>
+
+#include "RabbitCommonTools.h"
+#include "DlgSettingsTerminal.h"
+#include "ui_DlgSettingsTerminal.h"
 
 static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.DlgSettings")
 
@@ -42,9 +44,22 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     szHelp += tr("- Set sh shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " '/k %SH_PATH% -l'\n";
     szHelp += tr("  eg:") + "\n";
+    szHelp += tr("    - msys64 sh shell default path:") + " 'c:\\msys64\\usr\\bin\\sh.exe'\n";
+    szHelp += tr("      So that cmd shell with parameters:") + " '/k c:\\msys64\\usr\\bin\\sh.exe -l'\n";
     szHelp += tr("    - cygwin64 sh shell default path:") + " 'c:\\cygwin64\\bin\\sh.exe'\n";
     szHelp += tr("      So that cmd shell with parameters:") + " '/k c:\\cygwin64\\bin\\sh.exe -l'\n";
-    ui->teHelp->setText(szHelp);
+    szHelp += tr("- Set dash shell:") + "\n";
+    szHelp += tr("  cmd shell with parameters:") + " '/k %DASH_PATH% -l'\n";
+    szHelp += tr("  eg:") + "\n";
+    szHelp += tr("    - msys64 dash shell default path:") + " 'c:\\msys64\\usr\\bin\\dash.exe'\n";
+    szHelp += tr("      So that cmd shell with parameters:") + " '/k c:\\msys64\\usr\\bin\\dash.exe -l'\n";
+    szHelp += tr("    - cygwin64 dash shell default path:") + " 'c:\\cygwin64\\bin\\dash.exe'\n";
+    szHelp += tr("      So that cmd shell with parameters:") + " '/k c:\\cygwin64\\bin\\dash.exe -l'\n";
+    QString szHtml;
+
+    szHtml = RabbitCommon::CTools::MarkDownToHtml(szHelp);
+
+    ui->teHelp->setText(szHtml);
     ui->teHelp->show();
 #endif
 
@@ -54,6 +69,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
         ui->cbShell->setCurrentText(m_pPara->GetShellName());
     ui->leParameters->setText(m_pPara->GetShellParameters());
 
+    ui->cbRestoreDirctory->setChecked(m_pPara->GetRestoreDirectory());
     m_pFrmParaAppearnce =
             new CParameterTerminalUI(this);
     if(m_pFrmParaAppearnce) {
@@ -83,6 +99,7 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
     m_pPara->SetShell(ui->cbShell->currentData().toString());
     m_pPara->SetShellName(ui->cbShell->currentText());
     m_pPara->SetShellParameters(ui->leParameters->text());
+    m_pPara->SetRestoreDirectory(ui->cbRestoreDirctory->isChecked());
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
 

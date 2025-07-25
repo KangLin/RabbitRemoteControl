@@ -9,6 +9,7 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
     : CParameterOperate{parent, szPrefix}
     , m_Terminal(this)
     , m_bTitleChanged(true)
+    , m_bRestoreDirectory(false)
 {
 #if defined(Q_OS_UNIX)
     m_szShell = qgetenv("SHELL");
@@ -31,6 +32,8 @@ int CParameterTerminalBase::OnLoad(QSettings &set)
     SetShell(set.value("Shell", GetShell()).toString());
     SetShellName(set.value("Shell/Name", GetShellName()).toString());
     SetShellParameters(set.value("Shell/Parameters", GetShellParameters()).toString());
+    SetCurrentDirectory(set.value("Directory/Current", GetCurrentDirectory()).toString());
+    SetRestoreDirectory(set.value("Directory/Restore", GetRestoreDirectory()).toBool());
     SetEnableTitleChanged(set.value("EnableTitleChanged", GetEnableTitleChanged()).toBool());
     set.endGroup();
     return 0;
@@ -42,6 +45,8 @@ int CParameterTerminalBase::OnSave(QSettings &set)
     set.setValue("Shell", GetShell());
     set.setValue("Shell/Name", GetShellName());
     set.setValue("Shell/Parameters", GetShellParameters());
+    set.setValue("Directory/Current", GetCurrentDirectory());
+    set.setValue("Directory/Restore", GetRestoreDirectory());
     set.setValue("EnableTitleChanged", GetEnableTitleChanged());
     set.endGroup();
     return 0;
@@ -99,6 +104,34 @@ int CParameterTerminalBase::SetShellParameters(const QString &para)
 const QString CParameterTerminalBase::GetShellParameters() const
 {
     return m_szShellParameters;
+}
+
+const QString CParameterTerminalBase::GetCurrentDirectory() const
+{
+    return m_szCurrentDirectory;
+}
+
+int CParameterTerminalBase::SetCurrentDirectory(const QString& d)
+{
+    if(m_szCurrentDirectory == d)
+        return 0;
+    m_szCurrentDirectory = d;
+    SetModified(true);
+    return 0;
+}
+
+bool CParameterTerminalBase::GetRestoreDirectory() const
+{
+    return m_bRestoreDirectory;
+}
+
+int CParameterTerminalBase::SetRestoreDirectory(bool bEnable)
+{
+    if(m_bRestoreDirectory == bEnable)
+        return 0;
+    m_bRestoreDirectory = bEnable;
+    SetModified(true);
+    return 0;
 }
 
 bool CParameterTerminalBase::GetEnableTitleChanged() const

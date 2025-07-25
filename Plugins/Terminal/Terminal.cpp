@@ -55,6 +55,7 @@ int CTerminal::Start()
 
 int CTerminal::Stop()
 {
+    m_Parameters.SetCurrentDirectory(m_pTerminal->workingDirectory());
     if(m_pTerminal)
         m_pTerminal->close();
     emit sigFinished();

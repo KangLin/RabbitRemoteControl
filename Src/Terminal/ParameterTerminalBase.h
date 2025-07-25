@@ -30,9 +30,20 @@ private:
 public:
     int SetShellParameters(const QString& para);
     [[nodiscard]] const QString GetShellParameters() const;
-
 private:
     QString m_szShellParameters;
+
+public:
+    [[nodiscard]] const QString GetCurrentDirectory() const;
+    int SetCurrentDirectory(const QString& d);
+private:
+    QString m_szCurrentDirectory;
+
+public:
+    [[nodiscard]] bool GetRestoreDirectory() const;
+    int SetRestoreDirectory(bool bEnable);
+private:
+    bool m_bRestoreDirectory;
 
 public:
     [[nodiscard]] bool GetEnableTitleChanged() const;
