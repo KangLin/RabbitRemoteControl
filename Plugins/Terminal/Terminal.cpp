@@ -49,6 +49,7 @@ int CTerminal::Start()
             m_pTerminal->setArgs(QStringList() << m_Parameters.GetShellParameters());
         if(m_Parameters.GetRestoreDirectory())
             m_pTerminal->setWorkingDirectory(m_Parameters.GetLasterDirectory());
+        qDebug(log) << "Start:" << m_Parameters.GetShell() << m_Parameters.GetShellParameters();
         m_pTerminal->startShellProgram();
     }
     emit sigRunning();
