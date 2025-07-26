@@ -9,6 +9,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="37"/>
+        <source>Enable restore the laster directory when start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="124"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
@@ -21,11 +26,6 @@
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="24"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="37"/>
-        <source>Enable restore the laster directory when restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -49,91 +49,146 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="40"/>
         <source>Help:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="41"/>
         <source>- Set bash shell:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="38"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="45"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="52"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="42"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="49"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="56"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="63"/>
         <source>  cmd shell with parameters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="39"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="46"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="43"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="50"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="57"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="64"/>
         <source>  eg:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="44"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="48"/>
         <source>- Set sh shell:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="40"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="44"/>
         <source>    - msys64 bash shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="41"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="43"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="48"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="50"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="55"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="57"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="180"/>
+        <source>VS 2022 Professional x86</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="178"/>
+        <source>VS 2022 Professional x64</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="184"/>
+        <source>VS 2019 Professional x86</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="182"/>
+        <source>VS 2019 Professional x64</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="45"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="47"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="52"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="59"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="61"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="66"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="68"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="70"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="72"/>
         <source>      So that cmd shell with parameters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="42"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="46"/>
         <source>    - cygwin64 bash shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="47"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="51"/>
         <source>    - msys64 sh shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="49"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="53"/>
         <source>    - cygwin64 sh shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="51"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="55"/>
         <source>- Set dash shell:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="54"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="58"/>
         <source>    - msys64 dash shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="56"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="60"/>
         <source>    - cygwin64 dash shell default path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="96"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="62"/>
+        <source>- Set VS sdk shell:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="65"/>
+        <source>    - VS 2022 Professional x64 default path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="67"/>
+        <source>    - VS 2022 Professional x86 default path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="69"/>
+        <source>    - VS 2019 Professional x64 default path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="71"/>
+        <source>    - VS 2019 Professional x86 default path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="96"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
         <source>The shell is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="144"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="159"/>
         <source>Select shell</source>
         <translation type="unfinished"></translation>
     </message>
@@ -159,12 +214,12 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="79"/>
+        <location filename="../../Terminal.cpp" line="82"/>
         <source>Open working directory with file explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="88"/>
+        <location filename="../../Terminal.cpp" line="91"/>
         <source>Copy working directory to clipboard</source>
         <translation type="unfinished"></translation>
     </message>

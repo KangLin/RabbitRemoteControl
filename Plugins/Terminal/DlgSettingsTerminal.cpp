@@ -31,45 +31,45 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     AddShell("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
     AddShell("C:\\Windows\\System32\\cmd.exe", "msys64 bash shell");
     AddShell("C:\\Windows\\System32\\cmd.exe", "cygwin64 bash shell");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "VS 2022 Professional x86");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "VS 2022 Professional x64");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "VS 2019 Professional x86");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "VS 2019 Professional x64");
+    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x86"));
+    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x64"));
+    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x86"));
+    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x64"));
     AddShell(qgetenv("ComSpec"));
     QString szHelp;
     szHelp = tr("Help:") + "\n";
     szHelp += tr("- Set bash shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " \"/k %BASH_PATH% -l\"\n";
     szHelp += tr("  eg:") + "\n";
-    szHelp += tr("    - msys64 bash shell default path:") + " \"c:\\msys64\\usr\\bin\\bash.exe\"\n";
+    szHelp += tr("    - msys64 bash shell default path:") + " \"c:\\msys64\\usr\\bin\\bash.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\msys64\\usr\\bin\\bash.exe\" -l\"\n";
-    szHelp += tr("    - cygwin64 bash shell default path:") + " \"c:\\cygwin64\\bin\\bash.exe\"\n";
+    szHelp += tr("    - cygwin64 bash shell default path:") + " \"c:\\cygwin64\\bin\\bash.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\cygwin64\\bin\\bash.exe\" -l\"\n";
     szHelp += tr("- Set sh shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " \"/k %SH_PATH% -l\"\n";
     szHelp += tr("  eg:") + "\n";
-    szHelp += tr("    - msys64 sh shell default path:") + " \"c:\\msys64\\usr\\bin\\sh.exe\"\n";
+    szHelp += tr("    - msys64 sh shell default path:") + " \"c:\\msys64\\usr\\bin\\sh.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\msys64\\usr\\bin\\sh.exe\" -l\"\n";
-    szHelp += tr("    - cygwin64 sh shell default path:") + " \"c:\\cygwin64\\bin\\sh.exe\"\n";
+    szHelp += tr("    - cygwin64 sh shell default path:") + " \"c:\\cygwin64\\bin\\sh.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\cygwin64\\bin\\sh.exe\" -l\"\n";
     szHelp += tr("- Set dash shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " \"/k %DASH_PATH% -l\"\n";
     szHelp += tr("  eg:") + "\n";
-    szHelp += tr("    - msys64 dash shell default path:") + " \"c:\\msys64\\usr\\bin\\dash.exe\"\n";
+    szHelp += tr("    - msys64 dash shell default path:") + " \"c:\\msys64\\usr\\bin\\dash.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\msys64\\usr\\bin\\dash.exe\" -l\"\n";
-    szHelp += tr("    - cygwin64 dash shell default path:") + " \"c:\\cygwin64\\bin\\dash.exe\"\n";
+    szHelp += tr("    - cygwin64 dash shell default path:") + " \"c:\\cygwin64\\bin\\dash.exe\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + " \"/k \"c:\\cygwin64\\bin\\dash.exe\" -l\"\n";
     szHelp += tr("- Set VS sdk shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " \"/k %SDK_PATH%\"\n";
     szHelp += tr("  eg:") + "\n";
-    szHelp += tr("    - VS 2022 Professional x64 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\"\n";
-    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64";
-    szHelp += tr("    - VS 2022 Professional x86 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\"\n";
-    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86";
-    szHelp += tr("    - VS 2019 Professional x64 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\"\n";
-    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64";
-    szHelp += tr("    - VS 2019 Professional x86 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\"\n";
-    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86";
+    szHelp += tr("    - VS 2022 Professional x64 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64\n";
+    szHelp += tr("    - VS 2022 Professional x86 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
+    szHelp += tr("    - VS 2019 Professional x64 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64\n";
+    szHelp += tr("    - VS 2019 Professional x86 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
     QString szHtml;
 
     szHtml = RabbitCommon::CTools::MarkDownToHtml(szHelp);
@@ -174,13 +174,12 @@ void CDlgSettingsTerminal::on_cbShell_currentIndexChanged(int index)
         ui->leParameters->setText("/k c:\\msys64\\usr\\bin\\bash.exe -l");
     if("cygwin64 bash shell" == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k c:\\cygwin64\\bin\\bash.exe -l");
-    if("VS 2022 Professional x64" == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2022 Professional x64") == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
-    if("VS 2022 Professional x86" == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2022 Professional x86") == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
-    if("VS 2019 Professional x64" == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2019 Professional x64") == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
-    if("VS 2019 Professional x86" == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2019 Professional x86") == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
 }
-
