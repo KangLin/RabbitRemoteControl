@@ -411,7 +411,9 @@ void COperateTerminal::SetShotcuts(bool bEnable)
         m_pEditCopy->setShortcuts(
             QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C)
                                   << QKeySequence(Qt::CTRL | Qt::Key_Insert));
-        m_pEditPaste->setShortcut(QKeySequence(QKeySequence::Paste));
+        m_pEditPaste->setShortcuts(QList<QKeySequence>()
+                                   << QKeySequence(QKeySequence::Paste)
+                                   << QKeySequence(Qt::SHIFT | Qt::Key_Insert));
         m_pZoomIn->setShortcut(QKeySequence(QKeySequence::ZoomIn));
         m_pZoomOut->setShortcut(QKeySequence(QKeySequence::ZoomOut));
         m_pZoomOriginal->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_0));
