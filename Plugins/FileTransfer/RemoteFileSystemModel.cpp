@@ -567,7 +567,7 @@ void CRemoteFileSystemModel::slotGetFolder(
     }
     //qDebug(log) << Q_FUNC_INFO << p->GetPath() << contents.size() << bEnd;
     CRemoteFileSystem* pRemoteFileSystem = m_GetFolder.at(nIndex);
-    m_GetFolder.remove(nIndex);
+    m_GetFolder.removeAt(nIndex);
     if(!pRemoteFileSystem) {
         qDebug(log) << "Get nullptr";
         return;
