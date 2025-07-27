@@ -51,8 +51,16 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
         return OnInitReturnValue::Fail;
     }
 
-    check = connect(m_pChannelSSH, SIGNAL(sigConnected()),
-                    this, SIGNAL(sigRunning()));
+    check = connect(m_pChannelSSH, &CChannelSSHTerminal::sigConnected,
+                    this, [&](){
+                        if(!m_pPara->GetCommands().isEmpty()) {
+                            foreach (auto c, m_pPara->GetCommands()) {
+                                emit m_pTerminal->sendData(c.toStdString().c_str(), c.length());
+                                emit m_pTerminal->sendData("\r", 1);
+                            }
+                        }
+                        emit sigRunning();
+                    });
     Q_ASSERT(check);
     check = connect(m_pChannelSSH, &CChannelSSHTerminal::readyRead,
                     this, [&](){

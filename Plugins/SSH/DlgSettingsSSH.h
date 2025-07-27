@@ -22,6 +22,8 @@ private slots:
     void on_pbOK_clicked();
     void on_pbCancel_clicked();
     
+    void on_pbAddCommand_clicked();
+
 private:
     Ui::CDlgSettingsSSH *ui;
     CParameterTerminalSSH* m_pPara;

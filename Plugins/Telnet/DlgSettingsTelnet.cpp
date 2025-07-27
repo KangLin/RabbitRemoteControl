@@ -21,6 +21,10 @@ CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTelnet *pPara, QWidget *parent)
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                               m_pFrmParaAppearnce->windowTitle());
     }
+
+    foreach(auto c, m_pPara->GetCommands()) {
+        ui->lvCommands->addItem(c);
+    }
 }
 
 CDlgSettingsTelnet::~CDlgSettingsTelnet()
@@ -42,6 +46,14 @@ void CDlgSettingsTelnet::on_pbOK_clicked()
     m_pPara->SetLogin(ui->leLogin->text());
     m_pPara->SetPassword(ui->lePassword->text());
 
+    QStringList cmds;
+    for(int i = 0; i < ui->lvCommands->count(); i++) {
+        auto c = ui->lvCommands->item(i)->data(Qt::DisplayRole).toString();
+        cmds << c;
+    }
+    if(!cmds.isEmpty())
+        m_pPara->SetCommands(cmds);
+
     accept();
 }
 
@@ -49,3 +61,13 @@ void CDlgSettingsTelnet::on_pbCancel_clicked()
 {
     reject();
 }
+
+void CDlgSettingsTelnet::on_pbAddCommand_clicked()
+{
+    QString szCmd = ui->leCommand->text();
+    if(szCmd.isEmpty())
+        return;
+    if(ui->lvCommands->findItems(szCmd, Qt::MatchCaseSensitive).isEmpty())
+        ui->lvCommands->addItem(szCmd);
+}
+

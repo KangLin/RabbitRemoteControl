@@ -22,6 +22,9 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterTerminalSSH *pPara, QWidget *parent)
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                               m_pFrmParaAppearnce->windowTitle());
     }
+    foreach(auto c, m_pPara->GetCommands()) {
+        ui->lvCommands->addItem(c);
+    }
 }
 
 CDlgSettingsSSH::~CDlgSettingsSSH()
@@ -39,7 +42,13 @@ void CDlgSettingsSSH::on_pbOK_clicked()
     ui->wNet->Accept();
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
-    
+    QStringList cmds;
+    for(int i = 0; i < ui->lvCommands->count(); i++) {
+        auto c = ui->lvCommands->item(i)->data(Qt::DisplayRole).toString();
+        cmds << c;
+    }
+    if(!cmds.isEmpty())
+        m_pPara->SetCommands(cmds);
     accept();
 }
 
@@ -47,3 +56,13 @@ void CDlgSettingsSSH::on_pbCancel_clicked()
 {
     reject();
 }
+
+void CDlgSettingsSSH::on_pbAddCommand_clicked()
+{
+    QString szCmd = ui->leCommand->text();
+    if(szCmd.isEmpty())
+        return;
+    if(ui->lvCommands->findItems(szCmd, Qt::MatchCaseSensitive).isEmpty())
+        ui->lvCommands->addItem(szCmd);
+}
+

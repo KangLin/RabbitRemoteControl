@@ -35,6 +35,7 @@ int CParameterTerminalBase::OnLoad(QSettings &set)
     SetLasterDirectory(set.value("Directory/Laster", GetLasterDirectory()).toString());
     SetRestoreDirectory(set.value("Directory/Restore", GetRestoreDirectory()).toBool());
     SetEnableTitleChanged(set.value("EnableTitleChanged", GetEnableTitleChanged()).toBool());
+    SetCommands(set.value("Commands", GetCommands()).toStringList());
     set.endGroup();
     return 0;
 }
@@ -48,6 +49,7 @@ int CParameterTerminalBase::OnSave(QSettings &set)
     set.setValue("Directory/Laster", GetLasterDirectory());
     set.setValue("Directory/Restore", GetRestoreDirectory());
     set.setValue("EnableTitleChanged", GetEnableTitleChanged());
+    set.setValue("Commands", GetCommands());
     set.endGroup();
     return 0;
 }
@@ -147,4 +149,17 @@ void CParameterTerminalBase::SetEnableTitleChanged(bool newTitleChanged)
     SetModified(true);
     emit sigEnableTitleChanged(m_bTitleChanged);
     return;
+}
+
+QStringList CParameterTerminalBase::GetCommands() const
+{
+    return m_lstCommands;
+}
+
+void CParameterTerminalBase::SetCommands(const QStringList& cmd)
+{
+    if(m_lstCommands == cmd)
+        return;
+    m_lstCommands = cmd;
+    SetModified(true);
 }

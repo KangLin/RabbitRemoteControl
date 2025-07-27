@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QDialog>
+
 #include "ParameterTerminalBase.h"
 #include "ParameterTerminalUI.h"
 
@@ -25,6 +26,8 @@ private slots:
     
     void on_cbShell_currentIndexChanged(int index);
     
+    void on_pbAddCommand_clicked();
+
 private:
     int AddShell(QString szShell, const QString& name = QString());
 

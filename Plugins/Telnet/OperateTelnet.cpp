@@ -222,6 +222,13 @@ void COperateTelnet::slotNewData(const char *buf, int len)
                 m_bLogin = true;
             }
             qDebug(log) << "Password:" << password;
+
+            if(!m_Parameters.GetCommands().isEmpty()) {
+                foreach (auto c, m_Parameters.GetCommands()) {
+                    m_Telnet.sendData(c.toStdString().c_str(), c.length());
+                    m_Telnet.sendData("\n", 1);
+                }
+            }
         }
     }
 }

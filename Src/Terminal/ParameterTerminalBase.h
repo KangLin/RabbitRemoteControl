@@ -54,6 +54,12 @@ Q_SIGNALS:
 private:
     bool m_bTitleChanged;
 
+public:
+    [[nodiscard]] QStringList GetCommands() const;
+    void SetCommands(const QStringList& cmd);
+private:
+    QStringList m_lstCommands;
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;

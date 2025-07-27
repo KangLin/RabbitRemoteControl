@@ -14,9 +14,9 @@
 static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.DlgSettings")
 
 CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CDlgSettingsTerminal),
-    m_pPara(pPara)
+    QDialog(parent)
+    , ui(new Ui::CDlgSettingsTerminal)
+    , m_pPara(pPara)
 {
     ui->setupUi(this);
     ui->teHelp->hide();
@@ -94,6 +94,10 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     }
 
     ui->cbTitleChanged->setChecked(m_pPara->GetEnableTitleChanged());
+
+    foreach(auto c, m_pPara->GetCommands()) {
+        ui->lvCommands->addItem(c);
+    }
 }
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
@@ -119,6 +123,14 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
         m_pFrmParaAppearnce->Accept();
 
     m_pPara->SetEnableTitleChanged(ui->cbTitleChanged->isChecked());
+    QStringList cmds;
+    for(int i = 0; i < ui->lvCommands->count(); i++) {
+        auto c = ui->lvCommands->item(i)->data(Qt::DisplayRole).toString();
+        cmds << c;
+    }
+    if(!cmds.isEmpty())
+        m_pPara->SetCommands(cmds);
+
     accept();
 }
 
@@ -182,4 +194,13 @@ void CDlgSettingsTerminal::on_cbShell_currentIndexChanged(int index)
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
     if(tr("VS 2019 Professional x86") == szName && ui->leParameters->text().isEmpty())
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
+}
+
+void CDlgSettingsTerminal::on_pbAddCommand_clicked()
+{
+    QString szCmd = ui->leCommand->text();
+    if(szCmd.isEmpty())
+        return;
+    if(ui->lvCommands->findItems(szCmd, Qt::MatchCaseSensitive).isEmpty())
+        ui->lvCommands->addItem(szCmd);
 }

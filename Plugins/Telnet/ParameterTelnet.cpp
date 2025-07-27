@@ -18,14 +18,14 @@ int CParameterTelnet::OnLoad(QSettings &set)
 {
     set.setValue("Login", GetLogin());
     set.setValue("Password", GetPassword());
-    return 0;
+    return CParameterTerminalBase::OnLoad(set);
 }
 
 int CParameterTelnet::OnSave(QSettings &set)
 {
     SetLogin(set.value("Login", GetLogin()).toString());
     SetPassword(set.value("Password", GetPassword()).toString());
-    return 0;
+    return CParameterTerminalBase::OnSave(set);
 }
 
 QString CParameterTelnet::GetLogin() const
