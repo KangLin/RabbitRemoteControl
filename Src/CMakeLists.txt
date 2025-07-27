@@ -223,27 +223,30 @@ if(libssh_FOUND)
         )
 endif()
 
-find_package(qtermwidget${QT_VERSION_MAJOR})
-if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
-    list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTERMWIDGET)
-    list(APPEND PLUGIN_LIBS qtermwidget${QT_VERSION_MAJOR})
-    list(APPEND PLUGIN_INCLUDE_DIRS
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Terminal)
-    list(APPEND PLUGIN_INSTALL_HEADER_FILES
-        Terminal/OperateTerminal.h
-        Terminal/ParameterTerminalUI.h
-        Terminal/ParameterTerminal.h
-        Terminal/ParameterTerminalBase.h
-    )
-    list(APPEND PLUGIN_SOURCE_FILES
-        Terminal/OperateTerminal.cpp
-        Terminal/ParameterTerminalUI.cpp
-        Terminal/ParameterTerminal.cpp
-        Terminal/ParameterTerminalBase.cpp
-    )
-    list(APPEND PLUGIN_UI_FILES
-        Terminal/ParameterTerminalUI.ui
-    )
+option(WITH_QTERMWIDGET "With qtermwidget" ON)
+if(WITH_QTERMWIDGET)
+    find_package(qtermwidget${QT_VERSION_MAJOR})
+    if(qtermwidget${QT_VERSION_MAJOR}_FOUND)
+        list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTERMWIDGET)
+        list(APPEND PLUGIN_LIBS qtermwidget${QT_VERSION_MAJOR})
+        list(APPEND PLUGIN_INCLUDE_DIRS
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Terminal)
+        list(APPEND PLUGIN_INSTALL_HEADER_FILES
+            Terminal/OperateTerminal.h
+            Terminal/ParameterTerminalUI.h
+            Terminal/ParameterTerminal.h
+            Terminal/ParameterTerminalBase.h
+        )
+        list(APPEND PLUGIN_SOURCE_FILES
+            Terminal/OperateTerminal.cpp
+            Terminal/ParameterTerminalUI.cpp
+            Terminal/ParameterTerminal.cpp
+            Terminal/ParameterTerminalBase.cpp
+        )
+        list(APPEND PLUGIN_UI_FILES
+            Terminal/ParameterTerminalUI.ui
+        )
+    endif()
 endif()
 
 list(APPEND PLUGIN_QT_COMPONENTS Core Gui Widgets Network Multimedia MultimediaWidgets)
