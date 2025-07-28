@@ -59,6 +59,11 @@
         <translation>增加</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="152"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="64"/>
         <source>Enable title changed</source>
         <translation>允许标题改变</translation>

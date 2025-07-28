@@ -39,12 +39,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="138"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="124"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>

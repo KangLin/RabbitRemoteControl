@@ -59,6 +59,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="152"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="64"/>
         <source>Enable title changed</source>
         <translation type="unfinished"></translation>

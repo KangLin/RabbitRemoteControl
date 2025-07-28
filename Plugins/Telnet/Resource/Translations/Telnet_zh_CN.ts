@@ -39,12 +39,17 @@
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="138"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="124"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>

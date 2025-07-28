@@ -46,6 +46,11 @@
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="93"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>COperateSSH</name>

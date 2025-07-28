@@ -42,6 +42,11 @@
         <translation>增加</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsSSH.ui" line="93"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsSSH.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
