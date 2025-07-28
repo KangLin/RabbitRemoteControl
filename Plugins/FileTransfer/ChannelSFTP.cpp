@@ -39,8 +39,13 @@ int CChannelSFTP::Process()
     if(SSH_INVALID_SOCKET != fd)
         FD_SET(fd, &set);
 
+    socket_t sshFd = ssh_get_fd(m_Session);
+    if(SSH_INVALID_SOCKET != sshFd)
+        FD_SET(sshFd, &set);
+
+    socket_t f = qMax(sshFd, fd);
     //qDebug(log) << "ssh_select:" << fd;
-    nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
+    nRet = ssh_select(channels, channel_out, f + 1, &set, &timeout);
     //qDebug(log) << "ssh_select end:" << nRet;
     if(EINTR == nRet)
         return 0;

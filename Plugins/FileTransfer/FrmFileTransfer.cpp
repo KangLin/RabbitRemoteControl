@@ -89,9 +89,9 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tabRemote->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tabRemote->verticalHeader()->hide();
-    ui->tabRemote->horizontalHeader()->setSectionResizeMode(
-        QHeaderView::ResizeToContents);
-    
+    // ui->tabRemote->horizontalHeader()->setSectionResizeMode(
+    //     QHeaderView::ResizeToContents);
+
     m_pListFileModel = new CListFileModel(this);
     ui->tabList->setModel(m_pListFileModel);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
