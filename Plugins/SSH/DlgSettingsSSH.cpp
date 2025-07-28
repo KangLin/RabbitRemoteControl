@@ -66,3 +66,7 @@ void CDlgSettingsSSH::on_pbAddCommand_clicked()
         ui->lvCommands->addItem(szCmd);
 }
 
+void CDlgSettingsSSH::on_leCommand_editingFinished()
+{
+    on_pbAddCommand_clicked();
+}

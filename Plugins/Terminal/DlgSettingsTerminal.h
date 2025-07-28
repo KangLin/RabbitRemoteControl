@@ -27,7 +27,9 @@ private slots:
     void on_cbShell_currentIndexChanged(int index);
     
     void on_pbAddCommand_clicked();
-
+    
+    void on_leCommand_editingFinished();
+    
 private:
     int AddShell(QString szShell, const QString& name = QString());
 

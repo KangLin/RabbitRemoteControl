@@ -71,3 +71,7 @@ void CDlgSettingsTelnet::on_pbAddCommand_clicked()
         ui->lvCommands->addItem(szCmd);
 }
 
+void CDlgSettingsTelnet::on_leCommand_editingFinished()
+{
+    on_pbAddCommand_clicked();
+}

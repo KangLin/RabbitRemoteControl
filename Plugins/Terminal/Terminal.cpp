@@ -50,13 +50,12 @@ int CTerminal::Start()
             m_pTerminal->setArgs(QStringList() << m_Parameters.GetShellParameters());
         qDebug(log) << "Start:" << m_Parameters.GetShell() << m_Parameters.GetShellParameters();
         m_pTerminal->startShellProgram();
-        if(!m_Parameters.GetCommands().isEmpty()) {
-            foreach (auto c, m_Parameters.GetCommands()) {
-                m_pTerminal->sendText(c + "\r");
-            }
-        }
         if(m_Parameters.GetRestoreDirectory() && !m_Parameters.GetLasterDirectory().isEmpty())
             m_pTerminal->sendText("cd " + m_Parameters.GetLasterDirectory() + "\r");
+        if(!m_Parameters.GetCommands().isEmpty()) {
+            foreach (auto c, m_Parameters.GetCommands())
+                m_pTerminal->sendText(c + "\r");
+        }
     }
     emit sigRunning();
     return 0;

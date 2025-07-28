@@ -23,7 +23,9 @@ private slots:
     void on_pbCancel_clicked();
     
     void on_pbAddCommand_clicked();
-
+    
+    void on_leCommand_editingFinished();
+    
 private:
     Ui::CDlgSettingsSSH *ui;
     CParameterTerminalSSH* m_pPara;

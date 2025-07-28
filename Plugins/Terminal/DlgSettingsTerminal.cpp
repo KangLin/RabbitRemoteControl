@@ -204,3 +204,8 @@ void CDlgSettingsTerminal::on_pbAddCommand_clicked()
     if(ui->lvCommands->findItems(szCmd, Qt::MatchCaseSensitive).isEmpty())
         ui->lvCommands->addItem(szCmd);
 }
+
+void CDlgSettingsTerminal::on_leCommand_editingFinished()
+{
+    on_pbAddCommand_clicked();
+}
