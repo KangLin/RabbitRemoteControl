@@ -26,7 +26,7 @@
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="58"/>
         <source>Automatically execute the follow commands after logging in:</source>
-        <translation>自动执行下列命令：</translation>
+        <translation>登录后自动执行下列命令：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="73"/>
