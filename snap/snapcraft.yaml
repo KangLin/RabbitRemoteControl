@@ -303,7 +303,7 @@ parts:
       #- -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       #- -DCMAKE_INSTALL_PREFIX=/usr/local/
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
-      - -DBUILD_TERMINAL=OFF
+      #- -DBUILD_TERMINAL=OFF
     # build-environment:
     #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
     #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"

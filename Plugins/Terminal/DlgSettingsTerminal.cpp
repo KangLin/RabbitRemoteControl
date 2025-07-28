@@ -203,6 +203,7 @@ void CDlgSettingsTerminal::on_pbAddCommand_clicked()
         return;
     if(ui->lvCommands->findItems(szCmd, Qt::MatchCaseSensitive).isEmpty())
         ui->lvCommands->addItem(szCmd);
+    ui->leCommand->setText(QString());
 }
 
 void CDlgSettingsTerminal::on_leCommand_editingFinished()
