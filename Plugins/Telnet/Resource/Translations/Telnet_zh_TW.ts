@@ -24,12 +24,27 @@
         <translation>密碼提示正則表達式：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="97"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="58"/>
+        <source>Automatically execute the follow commands after logging in:</source>
+        <translation>自動執行下列命令：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="73"/>
+        <source>Input commands and push add button</source>
+        <translation>輸入命令並按「增加」按鈕</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="80"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="90"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="124"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>

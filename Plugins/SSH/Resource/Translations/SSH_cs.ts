@@ -31,6 +31,21 @@
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="64"/>
+        <source>Automatically execute the follow commands after logging in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="79"/>
+        <source>Input commands and push add button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="86"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>COperateSSH</name>

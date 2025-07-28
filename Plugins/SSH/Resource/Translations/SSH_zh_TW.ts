@@ -27,6 +27,21 @@
         <translation>服務器</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsSSH.ui" line="64"/>
+        <source>Automatically execute the follow commands after logging in:</source>
+        <translation>自動執行下列命令：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="79"/>
+        <source>Input commands and push add button</source>
+        <translation>輸入命令並按「增加」按鈕</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="86"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsSSH.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>

@@ -272,22 +272,19 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕獲系統快捷鍵需要管理員權限。
+        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
 需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>總是顯示</translation>
+        <translation type="vanished">總是顯示</translation>
     </message>
 </context>
 <context>

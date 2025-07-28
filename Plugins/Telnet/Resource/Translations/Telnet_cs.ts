@@ -24,12 +24,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="97"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="58"/>
+        <source>Automatically execute the follow commands after logging in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="73"/>
+        <source>Input commands and push add button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="80"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="90"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="124"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>

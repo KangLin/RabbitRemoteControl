@@ -9,42 +9,57 @@
         <translation>终端设置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="124"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="131"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="45"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="24"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="58"/>
         <source>Property</source>
         <translation>属性</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="37"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="71"/>
         <source>Enable restore the laster directory when start</source>
         <translation>启动时，恢复最后的目录</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="46"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="80"/>
         <source>Shell Path:</source>
         <translation>Shell 路径：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="66"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="100"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="77"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="111"/>
         <source>Shell Parameters:</source>
         <translation>Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="30"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="123"/>
+        <source>Automatically execute the follow commands:</source>
+        <translation>自动执行下列命令：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="138"/>
+        <source>Input commands and push add button</source>
+        <translation>输入命令并按“增加”按钮</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="145"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="64"/>
         <source>Enable title changed</source>
         <translation>允许标题改变</translation>
     </message>
@@ -86,25 +101,25 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="180"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="191"/>
         <source>VS 2022 Professional x86</source>
         <translation>VS 2022 专业版 x86</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="178"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="189"/>
         <source>VS 2022 Professional x64</source>
         <translation>VS 2022 专业版 x64</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="184"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="195"/>
         <source>VS 2019 Professional x86</source>
         <translation>VS 2019 专业版 x86</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="182"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="193"/>
         <source>VS 2019 Professional x64</source>
         <translation>VS 2019 专业版 x64</translation>
     </message>
@@ -178,17 +193,17 @@
         <translation>    - VS 2019 专业版 x86 默认路径:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="115"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="115"/>
         <source>The shell is empty</source>
         <translation>Shell 是空</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="159"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="171"/>
         <source>Select shell</source>
         <translation>选择 Shell</translation>
     </message>
@@ -214,12 +229,12 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="82"/>
+        <location filename="../../Terminal.cpp" line="87"/>
         <source>Open working directory with file explorer</source>
         <translation>用文件浏览器打开工作目录</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="91"/>
+        <location filename="../../Terminal.cpp" line="96"/>
         <source>Copy working directory to clipboard</source>
         <translation>复制工作目录到剪切板</translation>
     </message>
