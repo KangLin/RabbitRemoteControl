@@ -29,6 +29,10 @@
     - Terminal
     - Terminal SSH
     - Terminal telnet
+    - Add file transfer
+      - SFTP
+      - FTP
+
   - Add activity menu
 
 ### v0.0.36
