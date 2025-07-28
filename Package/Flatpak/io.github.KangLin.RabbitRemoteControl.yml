@@ -287,6 +287,21 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
+      - -DBUILD_FREERDP=ON
+    cleanup:
+      - -usr/bin/cmark
+      - -usr/bin/cmark-gfm
+      - -usr/local/bin/cmark
+      - -usr/local/bin/cmark-gfm
+      - -usr/local/include
+      - -usr/local/lib/cmake*
+      - -usr/local/lib/pkgconfig
+      - -usr/local/lib/*.a
     post-install:
       - desktop-file-edit --set-key=Path --set-value=/bin /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       - install -Dm0644 io.github.KangLin.RabbitRemoteControl.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo/

@@ -37,6 +37,8 @@ override_dh_auto_configure:
             -DCMARK_SHARED=OFF \
             -DCMARK_TESTS=OFF \
             -DCMARK_STATIC=ON \
+			-DWITH_CMARK=OFF \
+		    -DWITH_CMARK_GFM=ON \
             ${PARAS}
 
 override_dh_auto_build:

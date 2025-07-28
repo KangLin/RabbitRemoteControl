@@ -359,6 +359,8 @@ jobs:
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
+              -DWITH_CMARK=OFF \
+              -DWITH_CMARK_GFM=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
               -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \

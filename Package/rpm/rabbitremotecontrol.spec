@@ -28,7 +28,7 @@ BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
 BuildRequires: qtermwidget-devel
 
 BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
-BuildRequires: libvncserver-devel cmark-devel libpcap-devel
+BuildRequires: libvncserver-devel libpcap-devel
 BuildRequires: libwinpr-devel freerdp-devel freerdp fuse3-devel
 # TigerVNC
 BuildRequires: libpciaccess-devel freetype-devel pam-devel
@@ -42,7 +42,7 @@ BuildRequires: libdrm-devel mesa-libgbm-devel
 BuildRequires: libxkbfile-devel libXfont2-devel
 
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
-Requires: libvncserver libwinpr freerdp fuse3 cmark libpcap
+Requires: libvncserver libwinpr freerdp fuse3 libpcap
 Requires: zlib gnutls nettle gmp pam 
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
@@ -88,7 +88,13 @@ echo "-- pwd: `pwd`"
 
 cmake . -B $RPM_BUILD_DIR  \
     -DCMAKE_INSTALL_PREFIX=%{INSTALL_PREFIX} -DCMAKE_BUILD_TYPE=Release \
-    -DRabbitCommon_ROOT=${RabbitCommon_ROOT}
+    -DRabbitCommon_ROOT=${RabbitCommon_ROOT} \
+    -DCMARK_SHARED=OFF \
+    -DCMARK_TESTS=OFF \
+    -DCMARK_STATIC=ON \
+    -DWITH_CMARK=OFF \
+    -DWITH_CMARK_GFM=ON \
+    -DBUILD_FREERDP=ON
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
 %install

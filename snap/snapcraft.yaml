@@ -267,8 +267,6 @@ parts:
       - qtermwidget
  #     - qt
     build-packages:
-      - libcmark-dev
-      - cmark
       - libvncserver-dev
       - libtelnet-dev
       - libpcap-dev
@@ -303,7 +301,12 @@ parts:
       #- -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       #- -DCMAKE_INSTALL_PREFIX=/usr/local/
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
-      #- -DBUILD_TERMINAL=OFF
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
+      - -DBUILD_FREERDP=ON
     # build-environment:
     #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
     #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"
@@ -324,9 +327,11 @@ parts:
       snapcraftctl stage
     prime:
       - -usr/bin/cmark
+      - -usr/bin/cmark-gfm
       - -usr/local/bin/cmark
+      - -usr/local/bin/cmark-gfm
       - -usr/local/include
-      - -usr/local/lib/cmake
+      - -usr/local/lib/cmake*
       - -usr/local/lib/pkgconfig
       - -usr/local/lib/*.a
 
