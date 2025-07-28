@@ -221,11 +221,26 @@ modules:
       - /usr/local
 
   - name: cmark
-    disabled: false
+    disabled: true
     sources:
       - type: archive
         url: https://github.com/commonmark/cmark/archive/refs/tags/0.31.1.tar.gz
         sha256: 3da93db5469c30588cfeb283d9d62edfc6ded9eb0edc10a4f5bbfb7d722ea802
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DBUILD_TESTING=OFF
+      - -DCMAKE_BUILD_TYPE=Release
+    cleanup:
+      - /bin
+      - /share/man
+
+  - name: cmark-gfm
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/github/cmark-gfm/archive/refs/tags/0.29.0.gfm.13.tar.gz
+        sha256: 5abc61798ebd9de5660bc076443c07abad2b8d15dbc11094a3a79644b8ad243a
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
