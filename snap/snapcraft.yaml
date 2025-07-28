@@ -353,6 +353,8 @@ apps:
      - network-manager
      - network-manager-observe
      - network-observe
+     - bluetooth-control
+     - broadcom-asic-control
      - opengl
      - cups-control
      - serial-port
