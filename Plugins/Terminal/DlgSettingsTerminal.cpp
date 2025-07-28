@@ -210,3 +210,9 @@ void CDlgSettingsTerminal::on_leCommand_editingFinished()
 {
     on_pbAddCommand_clicked();
 }
+
+void CDlgSettingsTerminal::on_pbDeleteCommands_clicked()
+{
+    auto item = ui->lvCommands->currentItem();
+    delete item;
+}

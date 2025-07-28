@@ -25,6 +25,8 @@ private slots:
     
     void on_leCommand_editingFinished();
     
+    void on_pbDeleteCommands_clicked();
+    
 private:
     Ui::CDlgSettingsTelnet *ui;
 

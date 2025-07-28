@@ -71,3 +71,10 @@ void CDlgSettingsSSH::on_leCommand_editingFinished()
 {
     on_pbAddCommand_clicked();
 }
+
+void CDlgSettingsSSH::on_pbDeleteCommands_clicked()
+{
+    auto item = ui->lvCommands->currentItem();
+    delete item;
+}
+

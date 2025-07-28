@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>405</width>
+    <width>478</width>
     <height>300</height>
    </rect>
   </property>
@@ -84,6 +84,13 @@
              <widget class="QPushButton" name="pbAddCommand">
               <property name="text">
                <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pbDeleteCommands">
+              <property name="text">
+               <string>Delete</string>
               </property>
              </widget>
             </item>

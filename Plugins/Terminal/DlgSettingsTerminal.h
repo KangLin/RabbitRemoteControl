@@ -30,6 +30,8 @@ private slots:
     
     void on_leCommand_editingFinished();
     
+    void on_pbDeleteCommands_clicked();
+    
 private:
     int AddShell(QString szShell, const QString& name = QString());
 
