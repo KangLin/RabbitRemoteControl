@@ -30,9 +30,9 @@ QString CChannelSSH::GetDetails()
 }
 
 void CChannelSSH::cb_log(ssh_session session,
-                               int priority,
-                               const char *message,
-                               void *userdata)
+                         int priority,
+                         const char *message,
+                         void *userdata)
 {
     switch (priority) {
     case SSH_LOG_WARN:
@@ -58,16 +58,16 @@ bool CChannelSSH::open(OpenMode mode)
 {
     int nRet = 0;
     QString szErr;
-
+    
     if(!m_pParameter) {
         qCritical(log) << "The parameter is null";
     }
     Q_ASSERT(m_pParameter);
-
+    
     bool bRet = QIODevice::open(mode);
     if(!bRet)
         return bRet;
-
+    
     m_Session = ssh_new();
     if(NULL == m_Session)
     {
@@ -76,15 +76,16 @@ bool CChannelSSH::open(OpenMode mode)
         setErrorString(szErr);
         return false;
     }
-
+    
     do{
         struct ssh_callbacks_struct cb;
         memset(&cb, 0, sizeof(struct ssh_callbacks_struct));
-        cb.userdata = this,
-            cb.log_function = cb_log;;
+        cb.userdata = this;
+        cb.log_function = cb_log;
         ssh_callbacks_init(&cb);
         ssh_set_callbacks(m_Session, &cb);
-        
+        ssh_set_log_level(SSH_LOG_TRACE);
+
         /*
         int value = 1;
         ssh_options_set(m_Session, SSH_OPTIONS_NODELAY, (const void*)&value);//*/
@@ -163,12 +164,12 @@ bool CChannelSSH::open(OpenMode mode)
             setErrorString(szErr);
             break;
         }
-
+        
         nRet = verifyKnownhost(m_Session);
         if(nRet){
             break;
         }
-
+        
         auto &user = m_pParameter->m_Net.m_User;
         if(((user.GetUsedType() == CParameterUser::TYPE::UserPassword)
              && (user.GetPassword().isEmpty() || user.GetUser().isEmpty()))
@@ -221,21 +222,21 @@ void CChannelSSH::close()
     if(!isOpen()) return;
     
     OnClose();
-
+    
     if(m_Session) {
         if(ssh_is_connected(m_Session))
             ssh_disconnect(m_Session);
         ssh_free(m_Session);
         m_Session = NULL;
     }
-
+    
     if(m_pcapFile)
     {
         ssh_pcap_file_close(m_pcapFile);
         ssh_pcap_file_free(m_pcapFile);
         m_pcapFile = nullptr;
     }
-
+    
     QIODevice::close();
 }
 
@@ -272,7 +273,7 @@ int CChannelSSH::verifyKnownhost(ssh_session session)
     QByteArray baHash((const char*)hash, nLen);
     QString szHash = baHash.toHex(':').toStdString().c_str();
     ssh_clean_pubkey_hash(&hash);
-
+    
     QMessageBox::StandardButton btRet = QMessageBox::Yes;
     bool checkBox = false;
     enum ssh_known_hosts_e state = ssh_session_is_known_server(session);
@@ -531,7 +532,7 @@ int CChannelSSH::authenticationPublicKey(
 int CChannelSSH::OnOpen(ssh_session session)
 {
     int nRet = 0;
-
+    
     return nRet;
 }
 

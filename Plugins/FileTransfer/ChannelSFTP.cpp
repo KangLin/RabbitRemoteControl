@@ -176,6 +176,7 @@ qint64 CChannelSFTP::writeData(const char *data, qint64 len)
 int CChannelSFTP::OnOpen(ssh_session session)
 {
     int nRet = SSH_OK;
+
     m_SessionSftp = sftp_new(session);
     if (!m_SessionSftp)
     {
