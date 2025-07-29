@@ -20,7 +20,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
 {
     ui->setupUi(this);
     ui->teHelp->hide();
-    
+
 #if defined(Q_OS_UNIX)    
     AddShell("/bin/sh");
     AddShell("/bin/bash");
@@ -70,11 +70,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidge
     szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64\n";
     szHelp += tr("    - VS 2019 Professional x86 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
-    QString szHtml;
-
-    szHtml = RabbitCommon::CTools::MarkDownToHtml(szHelp);
-
-    ui->teHelp->setText(szHtml);
+    ui->teHelp->setMarkdown(szHelp);
     ui->teHelp->show();
 #endif
 
