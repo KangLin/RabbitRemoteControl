@@ -550,11 +550,11 @@ void CRemoteFileSystemModel::fetchMore(const QModelIndex &parent)
     p->SetState(CRemoteFileSystem::State::Getting);
     if(m_GetFolder.indexOf(p) == -1)
         m_GetFolder.append(p);
-    emit sigGetFolder(p);
+    emit sigGetDir(p);
     qDebug(log) << "fetchMore:" << parent << p << szPath;
 }
 
-void CRemoteFileSystemModel::slotGetFolder(
+void CRemoteFileSystemModel::slotGetDir(
     CRemoteFileSystem *p,
     QVector<QSharedPointer<CRemoteFileSystem> > contents,
     bool bEnd)

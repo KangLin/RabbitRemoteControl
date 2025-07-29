@@ -24,9 +24,9 @@ protected:
     virtual int OnProcess() override;
 
 private Q_SLOTS:
-    void slotGetFolder(CRemoteFileSystem*);
+    void slotGetDir(CRemoteFileSystem*);
 Q_SIGNALS:
-    void sigGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
+    void sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 
 private:
     int SetConnect(COperateFileTransfer *pOperate);

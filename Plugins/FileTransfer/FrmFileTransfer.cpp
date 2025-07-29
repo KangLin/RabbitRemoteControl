@@ -56,11 +56,11 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
         QHeaderView::ResizeToContents);
     
     m_pModelRemoteDir = new CRemoteFileSystemModel(this);
-    check = connect(m_pModelRemoteDir, SIGNAL(sigGetFolder(CRemoteFileSystem*)),
-                    this, SIGNAL(sigGetFolder(CRemoteFileSystem*)));
+    check = connect(m_pModelRemoteDir, SIGNAL(sigGetDir(CRemoteFileSystem*)),
+                    this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    m_pModelRemoteDir, SLOT(slotGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+    check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
+                    m_pModelRemoteDir, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
     Q_ASSERT(check);
     m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
@@ -76,11 +76,11 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
     
     m_pModelRemoteFile = new CRemoteFileSystemModel(this);
-    check = connect(m_pModelRemoteFile, SIGNAL(sigGetFolder(CRemoteFileSystem*)),
-                    this, SIGNAL(sigGetFolder(CRemoteFileSystem*)));
+    check = connect(m_pModelRemoteFile, SIGNAL(sigGetDir(CRemoteFileSystem*)),
+                    this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigGetFolder(CRemoteFileSystem*,QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    m_pModelRemoteFile, SLOT(slotGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+    check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*,QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
+                    m_pModelRemoteFile, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
     Q_ASSERT(check);
     m_pModelRemoteFile->SetRootPath("/");
     //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);

@@ -159,7 +159,11 @@
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QTextEdit" name="teHelp"/>
+        <widget class="QTextBrowser" name="teHelp">
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

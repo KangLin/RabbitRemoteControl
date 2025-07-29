@@ -20,8 +20,10 @@ public:
      * \param szPath
      * \return 
      */
-    int GetFolder(CRemoteFileSystem* p);
-
+    int GetDir(CRemoteFileSystem* p);
+    int MakeDir(const QString& dir);
+    int RemoveDir(const QString& dir);
+    int Rename(const QString& oldPath, const QString& newPath);
     int Process();
 
     enum class TYPE {
@@ -37,11 +39,11 @@ public Q_SLOTS:
     /*!
      * \brief Get the directory asynchronously
      */
-    void slotGetFolder(CRemoteFileSystem *p);
+    void slotGetDir(CRemoteFileSystem *p);
 
 private:
 Q_SIGNALS:
-    void sigGetFolder(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
+    void sigGetDir(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;

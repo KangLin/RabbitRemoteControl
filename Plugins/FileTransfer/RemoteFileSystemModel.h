@@ -139,9 +139,9 @@ public:
     virtual bool canFetchMore(const QModelIndex &parent) const override;
 
 Q_SIGNALS:
-    void sigGetFolder(CRemoteFileSystem* p);
+    void sigGetDir(CRemoteFileSystem* p);
 public Q_SLOTS:
-    void slotGetFolder(CRemoteFileSystem* p,
+    void slotGetDir(CRemoteFileSystem* p,
                        QVector<QSharedPointer<CRemoteFileSystem> > contents,
                        bool bEnd);
 

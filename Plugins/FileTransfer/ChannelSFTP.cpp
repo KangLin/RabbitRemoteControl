@@ -6,6 +6,10 @@
 #include "BackendFieTransfer.h"
 #include "RemoteFileSystemModel.h"
 
+#if defined(Q_OS_LINUX)
+#include <sys/stat.h>
+#endif
+
 static Q_LOGGING_CATEGORY(log, "Channel.SFTP")
 
 CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
@@ -16,8 +20,8 @@ CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
     bool check = false;
     CBackendFieTransfer* pB = qobject_cast<CBackendFieTransfer*>(pBackend);
     if(pB) {
-        check = connect(this, SIGNAL(sigGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
-                        pB, SIGNAL(sigGetFolder(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));
+        check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
+                        pB, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));
         Q_ASSERT(check);
     }
 }
@@ -114,7 +118,7 @@ QSharedPointer<CRemoteFileSystem> CChannelSFTP::GetFileNode(
     return p;
 }
 
-int CChannelSFTP::GetFolder(CRemoteFileSystem* p)
+int CChannelSFTP::GetDir(CRemoteFileSystem* p)
 {
     int nRet = SSH_OK;
     if(!m_SessionSftp || !p)
@@ -127,7 +131,9 @@ int CChannelSFTP::GetFolder(CRemoteFileSystem* p)
     dir = sftp_opendir(m_SessionSftp, szPath.toStdString().c_str());
     if (!dir)
     {
-        qCritical(log) << "Directory not opened:" << ssh_get_error(m_Session);
+        qCritical(log) << "Directory not opened:"
+                       << sftp_get_error(m_SessionSftp)
+                       << ssh_get_error(m_Session);
         return SSH_ERROR;
     }
 
@@ -142,7 +148,9 @@ int CChannelSFTP::GetFolder(CRemoteFileSystem* p)
 
     if (!sftp_dir_eof(dir))
     {
-        qCritical(log) << "Can't list directory:" << ssh_get_error(m_Session);
+        qCritical(log) << "Can't list directory:"
+                       << sftp_get_error(m_SessionSftp)
+                       << ssh_get_error(m_Session);
         sftp_closedir(dir);
         return SSH_ERROR;
     }
@@ -150,12 +158,61 @@ int CChannelSFTP::GetFolder(CRemoteFileSystem* p)
     nRet = sftp_closedir(dir);
     if (nRet != SSH_OK)
     {
-        qCritical(log) << "Can't close directory:" << ssh_get_error(m_Session);
+        qCritical(log) << "Can't close directory:"
+                       << sftp_get_error(m_SessionSftp)
+                       << ssh_get_error(m_Session);
         return nRet;
     }
 
-    emit sigGetFolder(p, vFileNode, true);
+    emit sigGetDir(p, vFileNode, true);
 
+    return nRet;
+}
+
+int CChannelSFTP::MakeDir(const QString &dir)
+{
+    int nRet = SSH_FX_OK;
+    if(!m_SessionSftp)
+        return SSH_FX_NO_CONNECTION;
+    nRet = sftp_mkdir(m_SessionSftp, dir.toStdString().c_str(), S_IRWXU);
+    if (nRet != SSH_OK)
+    {
+        if (sftp_get_error(m_SessionSftp) != SSH_FX_FILE_ALREADY_EXISTS)
+        {
+            qCritical(log) << "Can't create directory:" << nRet
+                    << ssh_get_error(m_Session);
+        }
+    }
+    return nRet;
+}
+
+int CChannelSFTP::RemoveDir(const QString &dir)
+{
+    int nRet = SSH_FX_OK;
+    if(!m_SessionSftp)
+        return SSH_FX_NO_CONNECTION;
+    nRet = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
+    if (nRet != SSH_OK)
+    {
+        qCritical(log) << "Can't remove directory:" << nRet
+                       << ssh_get_error(m_Session);
+    }
+    return nRet;
+}
+
+int CChannelSFTP::Rename(const QString &oldPath, const QString &newPath)
+{
+    int nRet = SSH_FX_OK;
+    if(!m_SessionSftp)
+        return SSH_FX_NO_CONNECTION;
+    nRet = sftp_rename(m_SessionSftp,
+                       oldPath.toStdString().c_str(),
+                       newPath.toStdString().c_str());
+    if (nRet != SSH_OK)
+    {
+        qCritical(log) << "Can't rename:" << nRet
+                       << ssh_get_error(m_Session);
+    }
     return nRet;
 }
 
@@ -205,7 +262,7 @@ void CChannelSFTP::OnClose()
     m_vDirs.clear();
 }
 
-void CChannelSFTP::slotGetFolder(CRemoteFileSystem *p)
+void CChannelSFTP::slotGetDir(CRemoteFileSystem *p)
 {
     if(!p) return;
     QString szPath = p->GetPath();
@@ -253,7 +310,10 @@ int CChannelSFTP::AsyncReadDir()
                 qDebug(log) << "Request denied:" << d->szPath;
                 break;
             }
-            qCritical(log) << "Error opening directory:" << d->szPath << "Error:" << ssh_get_error(m_Session);
+            qCritical(log) << "Error opening directory:" << d->szPath
+                           << "Error:"
+                           << sftp_get_error(m_SessionSftp)
+                           << ssh_get_error(m_Session);
             d->state = STATE::ERR;
             d->Error = err;
             break;
@@ -278,7 +338,8 @@ int CChannelSFTP::AsyncReadDir()
                 break;
                 d->state = STATE::CLOSE;
             }
-            qCritical(log) << "Error reading directory:" << d->szPath << err << ssh_get_error(m_Session);
+            qCritical(log) << "Error reading directory:" << d->szPath
+                           << "Error:" << err << ssh_get_error(m_Session);
             d->state = STATE::ERR;
             d->Error = err;
             break;
@@ -297,7 +358,8 @@ int CChannelSFTP::AsyncReadDir()
             int err = ssh_get_error_code(m_Session);
             if(err == SSH_REQUEST_DENIED)
                 break;
-            qCritical(log) << "Error close directory:" << d->szPath << err << ssh_get_error(m_Session);
+            qCritical(log) << "Error close directory:" << d->szPath
+                           << "Error:" << err << ssh_get_error(m_Session);
             d->state = STATE::FINISH;
             d->Error = err;
             break;
@@ -305,7 +367,7 @@ int CChannelSFTP::AsyncReadDir()
         case STATE::FINISH:
             if(d && STATE::FINISH == d->state) {
                 qDebug(log) << "Remote" << d->szPath << d->vFileNode.size();
-                emit sigGetFolder(d->remoteFileSystem, d->vFileNode, true);
+                emit sigGetDir(d->remoteFileSystem, d->vFileNode, true);
                 it = m_vDirs.erase(it);
             }
             continue;
