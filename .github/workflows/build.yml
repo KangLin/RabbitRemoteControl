@@ -180,7 +180,7 @@ jobs:
           echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
           BUILD_TIME=`date --rfc-3339=second`
           echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
-          echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
+          echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add test comment in Release.md file
@@ -194,7 +194,7 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
-          echo "[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)" >> ${{github.workspace}}/Release.md
+          echo "[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/test_${{ github.ref_name }}/CheckSum.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add artifact sha256sum in Release.md file
@@ -271,13 +271,13 @@ jobs:
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md
+          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
 
       - name: Upload test tag To Github Release
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
         run: |
           gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - test_${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
-          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md
+          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
    
       - name: Update artifact
         uses: actions/upload-artifact@v4

@@ -99,156 +99,164 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1000"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1001"/>
         <source>FreeRDP logon info: [</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1306"/>
         <source>Choose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1306"/>
         <source>Please choose smartcard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1696"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1789"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1697"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1790"/>
         <source>RDP-Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1698"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1791"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1699"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1792"/>
         <source>RDP-Gateway</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1700"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1793"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1701"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1794"/>
         <source>RDP-Redirect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1702"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1703"/>
         <source>Verify certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1705"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1797"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1706"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1798"/>
         <source>: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1706"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1707"/>
         <source>Common name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1707"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1708"/>
         <source>Subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1708"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1709"/>
         <source>Issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1712"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1713"/>
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1718"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1719"/>
         <source>The above X.509 certificate could not be verified.
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1726"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1815"/>
-        <source>Yes - trusted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../BackendFreeRDP.cpp" line="1727"/>
         <location filename="../../BackendFreeRDP.cpp" line="1816"/>
-        <source>Ignore - temporary trusted</source>
+        <source>Yes - trusted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../BackendFreeRDP.cpp" line="1728"/>
         <location filename="../../BackendFreeRDP.cpp" line="1817"/>
+        <source>Ignore - temporary trusted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendFreeRDP.cpp" line="1729"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1818"/>
         <source>No - no trusted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1734"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1823"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1735"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1824"/>
         <source>Don&apos;t show again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1795"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1796"/>
         <source>Verify changed certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1798"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1799"/>
         <source>New Certificate details:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1799"/>
-        <source>name: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../BackendFreeRDP.cpp" line="1800"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1804"/>
-        <source>subject: </source>
+        <source>name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../BackendFreeRDP.cpp" line="1801"/>
         <location filename="../../BackendFreeRDP.cpp" line="1805"/>
+        <source>subject: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendFreeRDP.cpp" line="1802"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1806"/>
         <source>issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1803"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1804"/>
         <source>Old Certificate details:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1808"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1809"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1858"/>
         <source>Consent message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1858"/>
         <source>Service message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1869"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1870"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1875"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1876"/>
         <source>Gateway message</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CConnectLayerQTcpSocket</name>
+    <message>
+        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
+        <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -316,12 +324,17 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="608"/>
-        <source>OK(&amp;O)</source>
+        <location filename="../../DlgSetFreeRDP.ui" line="589"/>
+        <source>Enable input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="615"/>
+        <source>OK(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="622"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -413,8 +426,8 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="299"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="378"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="438"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="381"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="441"/>
         <source>Local screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -469,42 +482,42 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="503"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="487"/>
         <source>Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="510"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="494"/>
         <source>Clear all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="522"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="506"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="528"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="512"/>
         <source>Play remote audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="534"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="518"/>
         <source>On this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="544"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="528"/>
         <source>On remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="554"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="538"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="567"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="551"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -522,22 +535,22 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="457"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="460"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="466"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="573"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="576"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="579"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="582"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="473"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="476"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="479"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="457"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="460"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="482"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="466"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -624,7 +637,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="103"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="105"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -634,54 +647,54 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="118"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="120"/>
         <source>Options for redirection of audio output:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="125"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="127"/>
         <source>Options for redirection of audio input:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="217"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="219"/>
         <source>Modem(56 kpbs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="218"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="220"/>
         <source>Broadband low(256 kbps - 2 Mbps)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="219"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="221"/>
         <source>Satellite(2 Mbps - 16 Mbps, High latency)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="220"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="222"/>
         <source>Broadband high(2 Mbps - 10 Mbps)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="221"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="223"/>
         <source>Wan(10 Mbps or higher speed, High latency)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="222"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="224"/>
         <source>Lan(10 Mbps or higher speed)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="223"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="225"/>
         <source>Automatically detect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="592"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="595"/>
         <source>Selected counts: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -725,20 +738,33 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
+    <name>ConnectLayerSSHTunnel</name>
+    <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
+        <source>The server is empty, please input it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1633"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1634"/>
         <source>Valid from: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1634"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1635"/>
         <source>Valid to: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1635"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1642"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1636"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1643"/>
         <source>Fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>

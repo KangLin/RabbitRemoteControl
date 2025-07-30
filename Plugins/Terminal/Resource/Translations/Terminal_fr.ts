@@ -106,25 +106,25 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="191"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="187"/>
         <source>VS 2022 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="189"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="185"/>
         <source>VS 2022 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="195"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="191"/>
         <source>VS 2019 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="193"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="189"/>
         <source>VS 2019 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
@@ -198,17 +198,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="115"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="115"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
         <source>The shell is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="171"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="167"/>
         <source>Select shell</source>
         <translation type="unfinished"></translation>
     </message>
@@ -234,12 +234,12 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="87"/>
+        <location filename="../../Terminal.cpp" line="96"/>
         <source>Open working directory with file explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="96"/>
+        <location filename="../../Terminal.cpp" line="105"/>
         <source>Copy working directory to clipboard</source>
         <translation type="unfinished"></translation>
     </message>

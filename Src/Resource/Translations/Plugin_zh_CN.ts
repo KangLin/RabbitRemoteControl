@@ -14,159 +14,159 @@
         <translation>SSH 失败：ssh_new</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="105"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="106"/>
         <source>SSH failed: the server is empty</source>
         <translation>SSH 失败：服务器为空</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="113"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="114"/>
         <source>SSH failed: Set host fail. host:</source>
         <translation>SSH 失败：设置主机失败。主机：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="125"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="126"/>
         <source>SSH failed: Set port fail. port:</source>
         <translation>SSH 失败：设置端口失败。端口：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="148"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="149"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
         <translation>SSH 失败：ssh_pcap_file_new: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="156"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="157"/>
         <source>SSH failed: ssh connect </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="181"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="182"/>
         <source>User cancel</source>
         <translation>用户取消</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="252"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="253"/>
         <source>SSH failed: Get server public key.</source>
         <translation>SSH 失败：得到服务器公钥失败</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="267"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="268"/>
         <source>SSH failed: Get public key hash value fail.</source>
         <translation>SSH 失败：得到公钥哈希值失败。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="285"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="286"/>
         <source>the host key for server changed. it is now:</source>
         <translation>服务器主机密钥改变。它现在是：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="287"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="298"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="288"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>For security reasons, connection will be stopped.</source>
         <translation>因为安全原因，连接将停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="288"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="295"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="296"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
         <translation>服务端主机密钥未发现，但是另一个健已存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="296"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="297"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
         <translation>攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="306"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="307"/>
         <source>is not find in known host file.</source>
         <translation>未能发现主机。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="307"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="308"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation>如果您在此处接受主机密钥，则将自动创建文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="309"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="333"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="334"/>
         <source>Host key hash:</source>
         <translation>主机密钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="328"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="351"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="329"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="352"/>
         <source>Reject the host key</source>
         <translation>拒绝主机密钥</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="333"/>
         <source>is unknown. Do you trust the host key?</source>
         <translation>服务器未知。您信任主机密钥吗？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="356"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="356"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
         <source>the host key hash:</source>
         <translation>公钥哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="358"/>
         <source>Will be stopped.</source>
         <translation>将停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="408"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="409"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="432"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="433"/>
         <source>Failed authenticating with password. User: </source>
         <translation>用户密码进行身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="459"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="460"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation>SSH失败：未设置公钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="468"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="469"/>
         <source>SSH failed: Import public key fail.</source>
         <translation>SSH失败：导入公钥失败。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="470"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="504"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="471"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="505"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation>文件不存在或权限被拒绝：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="482"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="515"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="483"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="516"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation>SSH 失败：身份验证失败。用户：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="491"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="492"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation>SSH 失败：未设置私钥文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="502"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="503"/>
         <source>SSH failed: Import private key fail.</source>
         <translation>SSH 失败：导入私钥失败。</translation>
     </message>
@@ -264,7 +264,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="507"/>
+        <location filename="../../FrmViewer.cpp" line="520"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>
@@ -272,19 +272,22 @@
 <context>
     <name>CHookWindows</name>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕获系统快捷键需要管理员权限。
+        <translation>捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="vanished">总是显示</translation>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>
@@ -477,7 +480,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="314"/>
-        <location filename="../../OperateDesktop.cpp" line="518"/>
+        <location filename="../../OperateDesktop.cpp" line="521"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
@@ -487,7 +490,7 @@ Restart program by administrator?</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="515"/>
+        <location filename="../../OperateDesktop.cpp" line="518"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
@@ -639,93 +642,98 @@ Restart program by administrator?</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="69"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="61"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="17"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="68"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
         <source>Connecter name</source>
         <translation>连接名</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="197"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="81"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="204"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="214"/>
+        <source>Enable local input method</source>
+        <translation>允话本地输入法</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="88"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密键用于加密保存的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="105"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="102"/>
         <source>Encrypt key:</source>
         <translation>加密键</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="133"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="175"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="172"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="34"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="195"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
         <source>Enable save password</source>
         <translation>允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="202"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="49"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="87"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="89"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="91"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="93"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="96"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="99"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>

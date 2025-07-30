@@ -31,7 +31,8 @@
     - 文件传输
       - SFTP
       - FTP
-  - 增加活动菜单
+- 增加活动菜单
+- [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 
 ### v0.0.36
 - Client:

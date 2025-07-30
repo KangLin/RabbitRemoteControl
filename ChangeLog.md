@@ -33,7 +33,8 @@
       - SFTP
       - FTP
 
-  - Add activity menu
+- Add activity menu
+- [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 
 ### v0.0.36
 - Client:
