@@ -42,6 +42,10 @@ int CTerminal::Start()
                 m_pTerminal->setWindowTitle(m_pTerminal->title());
                 emit sigUpdateName(m_pTerminal->title());
             }
+            if(m_Parameters.GetRestoreDirectory()) {
+                if(!m_pTerminal->workingDirectory().isEmpty())
+                    m_Parameters.SetLasterDirectory(m_pTerminal->workingDirectory());
+            }
         });
         Q_ASSERT(check);
         if(!m_Parameters.GetShell().isEmpty())
@@ -63,7 +67,12 @@ int CTerminal::Start()
 
 int CTerminal::Stop()
 {
-    m_Parameters.SetLasterDirectory(m_pTerminal->workingDirectory());
+    // if(m_Parameters.GetRestoreDirectory()) {
+    //     if(!m_pTerminal->workingDirectory().isEmpty())
+    //         m_Parameters.SetLasterDirectory(m_pTerminal->workingDirectory());
+    //     emit sigUpdateParameters(this);
+    // }
+
     if(m_pTerminal)
         m_pTerminal->close();
     emit sigFinished();

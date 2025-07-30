@@ -66,7 +66,7 @@ COperateTerminal::COperateTerminal(CPlugin *parent)
     //                 this, SLOT(slotTerminalTitleChanged()));
     // Q_ASSERT(check);
     check = connect(m_pTerminal, SIGNAL(finished()),
-                    this, SIGNAL(sigFinished()));
+                    this, SIGNAL(sigStop()));
     Q_ASSERT(check);
     // check = connect(m_pTerminal, SIGNAL(termKeyPressed(QKeyEvent*)),
     //                 this, SLOT(slotTermKeyPressed(QKeyEvent*)));

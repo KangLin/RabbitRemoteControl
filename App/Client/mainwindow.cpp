@@ -919,7 +919,7 @@ void MainWindow::slotStop()
     if(!pOperate) return;
     qDebug(log) << Q_FUNC_INFO << pOperate->Name();
     //TODO: Whether to save the setting
-    // emit pOperate->sigUpdateParameters(pOperate);
+    emit pOperate->sigUpdateParameters(pOperate);
     pOperate->Stop();
 }
 
