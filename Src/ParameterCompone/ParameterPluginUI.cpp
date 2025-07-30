@@ -30,6 +30,7 @@ int CParameterPluginUI::Accept()
         return -1;
     m_pPara->SetNativeWindowReceiveKeyboard(
         ui->cbNativeWindowReceiveKeyboard->isChecked());
+    m_pPara->SetEnableLocalInputMethod(ui->cbEnableLocalInputMethod->isChecked());
     m_pPara->SetPromptAdministratorPrivilege(
         ui->cbPromptAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
@@ -79,6 +80,7 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
         return -1;
     ui->cbNativeWindowReceiveKeyboard->setChecked(
         m_pPara->GetNativeWindowReceiveKeyboard());
+    ui->cbEnableLocalInputMethod->setChecked(m_pPara->GetEnableLocalInputMethod());
     ui->cbPromptAdminPrivilege->setChecked(
         m_pPara->GetPromptAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());

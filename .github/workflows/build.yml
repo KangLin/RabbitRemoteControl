@@ -285,5 +285,4 @@ jobs:
           name: Release.md
           path: |
             ${{github.workspace}}/Release.md
-            ${{github.workspace}}/CheckSum
-         
+            ${{github.workspace}}/CheckSum.md

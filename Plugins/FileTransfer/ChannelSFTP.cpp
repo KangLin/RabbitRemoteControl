@@ -9,6 +9,12 @@
 #if defined(Q_OS_LINUX)
 #include <sys/stat.h>
 #endif
+#ifdef _MSC_VER
+#define S_IRUSR  0400  // Owner read permission
+#define S_IWUSR  0200  // Owner write permission
+#define S_IXUSR  0100  // Owner execute permission
+#define S_IRWXU  (S_IRUSR | S_IWUSR | S_IXUSR)  // Owner read, write, execute
+#endif
 
 static Q_LOGGING_CATEGORY(log, "Channel.SFTP")
 

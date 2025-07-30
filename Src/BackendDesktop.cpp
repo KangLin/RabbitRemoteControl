@@ -230,6 +230,10 @@ int CBackendDesktop::SetViewer(CFrmViewer *pView,
                         this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
+        check = connect(pView, SIGNAL(sigInputMethodEvent(QInputMethodEvent*)),
+                        this, SLOT(slotInputMethodEvent(QInputMethodEvent*)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
     } else {
         check = connect(pView, SIGNAL(sigMousePressEvent(QMouseEvent*, QPoint)),
                         this, SLOT(slotMousePressEvent(QMouseEvent*, QPoint)));
@@ -248,6 +252,9 @@ int CBackendDesktop::SetViewer(CFrmViewer *pView,
         Q_ASSERT(check);
         check = connect(pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
                         this, SLOT(slotKeyReleaseEvent(QKeyEvent*)));
+        Q_ASSERT(check);
+        check = connect(pView, SIGNAL(sigInputMethodEvent(QInputMethodEvent*)),
+                        this, SLOT(slotInputMethodEvent(QInputMethodEvent*)));
         Q_ASSERT(check);
     }
     
@@ -324,6 +331,15 @@ void CBackendDesktop::slotKeyReleaseEvent(QKeyEvent *event)
     WakeUp();
 }
 
+void CBackendDesktop::slotInputMethodEvent(QInputMethodEvent *event)
+{
+    if(event->commitString().isEmpty()) return;
+    QInputMethodEvent* e = new QInputMethodEvent(event->preeditString(), event->attributes());
+    e->setCommitString(event->commitString(), event->replacementStart(), event->replacementLength());
+    QCoreApplication::postEvent(this, e);
+    WakeUp();
+}
+
 void CBackendDesktop::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug(logMouse) << "Need to implement CBackendDesktop::mouseMoveEvent";
@@ -354,6 +370,11 @@ void CBackendDesktop::keyReleaseEvent(QKeyEvent *event)
     qDebug(logMouse) << "Need to implement CBackendDesktop::keyReleaseEvent";
 }
 
+void CBackendDesktop::InputMethodEvent(QInputMethodEvent *event)
+{
+    qDebug(logMouse) << "Need to implement CBackendDesktop::InputMethodEvent";
+}
+
 int CBackendDesktop::WakeUp()
 {
     return 0;
@@ -381,6 +402,9 @@ bool CBackendDesktop::event(QEvent *event)
         break;
     case QEvent::KeyRelease:
         keyReleaseEvent((QKeyEvent*)event);
+        break;
+    case QEvent::InputMethod:
+        InputMethodEvent((QInputMethodEvent*) event);
         break;
 #if HAVE_QT6_RECORD
     case TypeRecordVideo:

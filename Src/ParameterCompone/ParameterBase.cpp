@@ -8,6 +8,7 @@ CParameterBase::CParameterBase(QObject* parent)
     , m_Net(this)
     , m_Proxy(this)
     , m_Record(this)
+    , m_bEnableInputMethod(false)
 {
     Init();
 }
@@ -53,6 +54,7 @@ int CParameterBase::OnLoad(QSettings &set)
         (CFrmViewer::ADAPT_WINDOWS)
         set.value("Viewer/AdaptType",
                   (int)GetGlobalParameters()->GetAdaptWindows()).toInt());
+    SetEnableInputMethod(set.value("InputMethod", GetEnableInputMethod()).toBool());
     return 0;
 }
 
@@ -69,6 +71,7 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("LedState", GetLedState());
     set.setValue("Viewer/ZoomFactor", GetZoomFactor());
     set.setValue("Viewer/AdaptType", (int)GetAdaptWindows());
+    set.setValue("InputMethod", GetEnableInputMethod());
     return 0;
 }
 
@@ -232,7 +235,23 @@ void CParameterBase::slotSetGlobalParameters()
 
     SetAdaptWindows(pPlugin->GetAdaptWindows());
 
+    SetEnableInputMethod(pPlugin->GetEnableLocalInputMethod());
+
     m_Record = pPlugin->m_Record;
 
     return;
+}
+
+bool CParameterBase::GetEnableInputMethod() const
+{
+    return m_bEnableInputMethod;
+}
+
+void CParameterBase::SetEnableInputMethod(bool enable)
+{
+    if(m_bEnableInputMethod == enable)
+        return;
+    m_bEnableInputMethod = enable;
+    SetModified(true);
+    emit sigEnableInputMethod(m_bEnableInputMethod);
 }

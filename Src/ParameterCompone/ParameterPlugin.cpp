@@ -3,6 +3,7 @@
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
     , m_bNativeWindowReceiveKeyboard(false)
+    , m_bEnableLocalInputMethod(false)
     , m_bPromptAdministratorPrivilege(true)
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
@@ -27,6 +28,7 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetNativeWindowReceiveKeyboard(
         set.value("NativeWindowRecieveKeyboard",
                   GetNativeWindowReceiveKeyboard()).toBool());
+    SetEnableLocalInputMethod(set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
         set.value("AdministratorPrivilege/Prompt",
@@ -52,6 +54,7 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.beginGroup("Client");
     set.setValue("NativeWindowRecieveKeyboard",
                  GetNativeWindowReceiveKeyboard());
+    set.setValue("InputMethod", GetEnableLocalInputMethod());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
     set.setValue("Password/Prompty/Type",
@@ -77,6 +80,19 @@ void CParameterPlugin::SetNativeWindowReceiveKeyboard(bool newNativeWindowReciev
     m_bNativeWindowReceiveKeyboard = newNativeWindowRecieveKeyboard;
     SetModified(true);
     emit sigNativeWindowRecieveKeyboard();
+}
+
+bool CParameterPlugin::GetEnableLocalInputMethod() const
+{
+    return m_bEnableLocalInputMethod;
+}
+
+void CParameterPlugin::SetEnableLocalInputMethod(bool enable)
+{
+    if(m_bEnableLocalInputMethod == enable)
+        return;
+    m_bEnableLocalInputMethod = enable;
+    SetModified(true);
 }
 
 bool CParameterPlugin::GetPromptAdministratorPrivilege()

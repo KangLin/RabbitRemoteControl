@@ -90,6 +90,7 @@ public Q_SLOTS:
     virtual void slotWheelEvent(QWheelEvent* event, QPoint pos);
     virtual void slotKeyPressEvent(QKeyEvent *event);
     virtual void slotKeyReleaseEvent(QKeyEvent *event);
+    virtual void slotInputMethodEvent(QInputMethodEvent* event);
     
 protected:
     /*!
@@ -105,6 +106,7 @@ protected:
     virtual void wheelEvent(QWheelEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual void InputMethodEvent(QInputMethodEvent* event);
     
     // QObject interface
 public:

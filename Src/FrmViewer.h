@@ -133,6 +133,10 @@ public Q_SLOTS:
      * \brief Enable mouse and keyboard
      */
     void slotRunning();
+    /*!
+     * \brief Enable input method
+     */
+    void slotEnableInputMethod(bool bEnable);
 
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent* event, QPoint pos);
@@ -142,6 +146,7 @@ Q_SIGNALS:
     void sigWheelEvent(QWheelEvent *event, QPoint pos);
     void sigKeyPressEvent(QKeyEvent *event);
     void sigKeyReleaseEvent(QKeyEvent *event);
+    void sigInputMethodEvent(QInputMethodEvent *event);
 
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
@@ -166,6 +171,7 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void inputMethodEvent(QInputMethodEvent *event) override;
 
 private:
     QImage m_Desktop;

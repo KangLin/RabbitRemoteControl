@@ -7,7 +7,9 @@
 #include <QSettings>
 #include <QScreen>
 #include <QApplication>
+#include <QLoggingCategory>
 
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter")
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterBase(parent),
     m_nWidth(GetScreenGeometry().width()),

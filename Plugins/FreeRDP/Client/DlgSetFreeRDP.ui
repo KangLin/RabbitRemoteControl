@@ -451,23 +451,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="cbClipboard">
-         <property name="toolTip">
-          <string>Clipboard: Redirection the clipboard</string>
-         </property>
-         <property name="statusTip">
-          <string>Clipboard: Redirection the clipboard</string>
-         </property>
-         <property name="whatsThis">
-          <string>Clipboard: Redirection the clipboard</string>
-         </property>
-         <property name="text">
-          <string>Clipboard: Redirection the clipboard</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="toolTip">
           <string>Redirect the following selected drives to the remote computer</string>
@@ -581,6 +565,29 @@
            <widget class="QLineEdit" name="leAudin"/>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="cbClipboard">
+         <property name="toolTip">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="statusTip">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="whatsThis">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="text">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbEnableInputMethod">
+         <property name="text">
+          <string>Enable input method</string>
+         </property>
         </widget>
        </item>
       </layout>

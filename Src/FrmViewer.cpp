@@ -29,6 +29,7 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 {
     qDebug(log) << Q_FUNC_INFO;
     setAttribute(Qt::WA_DeleteOnClose);
+
     //qDebug(log) << "autoFillBackground:" << autoFillBackground();
     //setAutoFillBackground(true);
     //setAttribute(Qt::WA_OpaquePaintEvent);
@@ -255,6 +256,13 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
     event->accept();
 }
 
+void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
+{
+    qDebug(logKey) << Q_FUNC_INFO << event;
+    emit sigInputMethodEvent(event);
+    event->accept();
+}
+
 QSize CFrmViewer::GetDesktopSize()
 {
     return m_DesktopSize;
@@ -323,6 +331,11 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
 void CFrmViewer::slotRunning()
 {
     setEnabled(true);
+}
+
+void CFrmViewer::slotEnableInputMethod(bool bEnable)
+{
+    setAttribute(Qt::WA_InputMethodEnabled, bEnable);
 }
 
 void CFrmViewer::slotSetName(const QString& szName)

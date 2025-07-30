@@ -874,7 +874,8 @@ BOOL CBackendFreeRDP::cb_pre_connect(freerdp* instance)
         settings, FreeRDP_PerformanceFlags, pParameter->GetPerformanceFlags());
     freerdp_performance_flags_split(settings);
 
-	return TRUE;
+    freerdp_settings_set_bool(settings, FreeRDP_UnicodeInput, pParameter->GetEnableInputMethod());
+    return TRUE;
 }
 
 const char* CBackendFreeRDP::GetTitle(freerdp* instance)
@@ -2255,6 +2256,24 @@ void CBackendFreeRDP::keyReleaseEvent(QKeyEvent *event)
         freerdp_input_send_keyboard_event_ex(
             m_pContext->Context.input, false, k);
 #endif
+}
+
+void CBackendFreeRDP::InputMethodEvent(QInputMethodEvent *event)
+{
+    qDebug(logKey) << Q_FUNC_INFO << event;
+    if(!m_pContext) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
+    QString szText = event->commitString();
+    if(szText.isEmpty())
+        return;
+    for(int i = 0; i < szText.length(); i++) {
+        QChar c = szText.at(i);
+#if FREERDP_VERSION_MAJOR >= 3
+        freerdp_input_send_unicode_keyboard_event(m_pContext->Context.context.input, 0, (UINT16)c.unicode());
+#else
+        freerdp_input_send_unicode_keyboard_event(m_pContext->Context.input, 0, (UINT16)c.unicode());
+#endif
+    }
 }
 
 int CBackendFreeRDP::RedirectionSound()

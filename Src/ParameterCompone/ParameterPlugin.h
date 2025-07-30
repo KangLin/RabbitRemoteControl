@@ -53,6 +53,12 @@ private:
     bool m_bNativeWindowReceiveKeyboard;
 
 public:
+    bool GetEnableLocalInputMethod() const;
+    void SetEnableLocalInputMethod(bool enable);
+private:
+    bool m_bEnableLocalInputMethod;
+
+public:
     bool GetPromptAdministratorPrivilege();
     void SetPromptAdministratorPrivilege(bool bShow);
 Q_SIGNALS:

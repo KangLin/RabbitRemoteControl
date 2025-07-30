@@ -420,7 +420,7 @@ int COperateDesktop::SetParameter(CParameterBase *p)
                             emit this->sigUpdateParameters(this);
                         });
         Q_ASSERT(check);
-        CFrmViewer* pViewer = qobject_cast<CFrmViewer*>(GetViewer());
+        CFrmViewer* pViewer = m_pFrmViewer;
         if(pViewer) {
             check = connect(GetParameter(), SIGNAL(sigZoomFactorChanged(double)),
                             pViewer, SLOT(slotSetZoomFactor(double)));
@@ -429,6 +429,9 @@ int COperateDesktop::SetParameter(CParameterBase *p)
                 GetParameter(),
                 SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
                 pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
+            Q_ASSERT(check);
+            check = connect(GetParameter(), SIGNAL(sigEnableInputMethod(bool)),
+                            pViewer, SLOT(slotEnableInputMethod(bool)));
             Q_ASSERT(check);
         }
     }

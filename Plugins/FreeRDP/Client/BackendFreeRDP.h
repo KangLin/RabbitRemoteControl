@@ -148,6 +148,7 @@ protected:
     virtual void wheelEvent(QWheelEvent* event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void InputMethodEvent(QInputMethodEvent *event) override;
     virtual int WakeUp() override;
 
 private:
