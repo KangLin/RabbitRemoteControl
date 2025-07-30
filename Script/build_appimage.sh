@@ -22,6 +22,7 @@ usage_long() {
     echo "  --source: Set source directory"
     echo "  --tools: Set tools directory"
     echo "  --build: set build directory"
+    exit
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)

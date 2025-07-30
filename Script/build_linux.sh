@@ -28,6 +28,7 @@ usage_long() {
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
     echo "  --tools: Set tools directory"
+    exit
 }
 
 # [如何使用 getopt 和 getopts 命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
@@ -230,12 +231,6 @@ if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
     ./build_depend.sh --system_update --base --default \
         --rabbitcommon --tigervnc --pcapplusplus \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
-
-    ./build_depend.sh --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

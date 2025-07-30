@@ -1,4 +1,8 @@
 # https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+# The desktop directory:
+# /usr/share/applications/
+# /usr/local/share/applications/
+# ~/.local/share/applications/
 
 [Desktop Entry]
 Type=Application

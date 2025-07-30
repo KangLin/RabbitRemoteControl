@@ -19,6 +19,7 @@ usage_long() {
     echo "  --install: Set depend libraries install directory"
     echo "  --source: Set source directory"
     echo "  --tools: Set tools directory"
+    exit
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)

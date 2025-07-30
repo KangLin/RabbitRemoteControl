@@ -49,6 +49,7 @@ usage_long() {
     echo "  --libdatachannel: Install libdatachannel"
     echo "  --QtService: Install QtService"
     echo "  --qtermwidget: Install qtermwidget"
+    exit
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)

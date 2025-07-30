@@ -123,15 +123,25 @@ jobs:
           export QT_XCB_GL_INTEGRATION=none
           #export QT_DEBUG_PLUGINS=1
           ARCH=`uname -m`
-          mv RabbitRemoteControl_$ARCH.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage
-          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum
-          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum|awk '{print $1}'`
-          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage: ${MD5SUM}"
+          cp RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          mkdir -p RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+          pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+          cp ${{github.workspace}}/RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          chmod u+x RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          cp ${{github.workspace}}/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop io.github.KangLin.RabbitRemoteControl.desktop
+          cp ${{github.workspace}}/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg io.github.KangLin.RabbitRemoteControl.svg
+          cp ${{github.workspace}}/Script/SetupRabbitRemoteControlAppimage.sh SetupRabbitRemoteControlAppimage.sh
+          chmod u+x SetupRabbitRemoteControlAppimage.sh
+          popd
+          zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage.md5sum
+          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage: ${MD5SUM}"
           echo "Generate update configure file ......"
-          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
+          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.os}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
-            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
+            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage?viasf=1" \
             --md5 "${MD5SUM}"
 
@@ -141,7 +151,8 @@ jobs:
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}_${{matrix.PACKAGE}}
           path: |
-            ${{github.workspace}}/RabbitRemoteControl_*.AppImage
+            #${{github.workspace}}/RabbitRemoteControl_*.AppImage
+            ${{github.workspace}}/RabbitRemoteControl_*.zip
             ${{github.workspace}}/rabbitremotecontrol_*.deb
             ${{github.workspace}}/update_*.json
             ${{github.workspace}}/version.json

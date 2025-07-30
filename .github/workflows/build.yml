@@ -180,6 +180,7 @@ jobs:
           echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
           BUILD_TIME=`date --rfc-3339=second`
           echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
+          echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add test comment in Release.md file
@@ -193,14 +194,16 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
+          echo "[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/CheckSum.md)" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add artifact sha256sum in Release.md file
         run: |
           echo "" >> ${{github.workspace}}/Release.md
-          echo "## File checksum:" >> ${{github.workspace}}/Release.md
-          echo "" >> ${{github.workspace}}/Release.md
-          echo "|File|Checksum(md5)|Checksum(sha256)|" >> ${{github.workspace}}/Release.md
-          echo "| :- |    :-       |:-|" >> ${{github.workspace}}/Release.md
+          echo "## File checksum:" >> ${{github.workspace}}/CheckSum.md
+          echo "" >> ${{github.workspace}}/CheckSum.md
+          echo "|File|Checksum(md5)|Checksum(sha256)|" >> ${{github.workspace}}/CheckSum.md
+          echo "| :- |    :-       |:-|" >> ${{github.workspace}}/CheckSum.md
           cd ${{ env.artifact_path }}
           for file in *
           do
@@ -209,7 +212,7 @@ jobs:
                   if [ "${file##*.}" != "xml" ] && [ "${file##*.}" != "json" ]; then
                       SumMd5=`md5sum $file | awk '{print  "|", $2, "|", $1, "|"}'`
                       Sum256=`sha256sum $file | awk '{print $1, "|"}'`
-                      echo "${SumMd5}${Sum256}" >> ${{github.workspace}}/Release.md
+                      echo "${SumMd5}${Sum256}" >> ${{github.workspace}}/CheckSum.md
                   fi
               else
                  rm -fr $file
@@ -230,7 +233,8 @@ jobs:
           echo "|Windows|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.1_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win64_msvc2022_64_qt6.9.1_Portable.zip)|[EXE](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2019_qt5.15.2_Setup.exe) [Portable](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_win32_msvc2019_qt5.15.2_Portable.zip)| | | |" >> ${{github.workspace}}/Release.md
           echo "|Android|[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_x86_64_qt6.9.1_Release.apk) | |[APK](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_android_arm64_v8a_qt6.9.1_Release.apk)| | |" >> ${{github.workspace}}/Release.md
           echo "|Macos|[zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_macos.zip)|||||" >> ${{github.workspace}}/Release.md
-          echo "|Linux|[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.AppImage)| |[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64.AppImage)| |sudo chmod u+x RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.AppImage|" >> ${{github.workspace}}/Release.md
+          #echo "|Linux|[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.AppImage) [Setup zip file](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64_Setup.zip)| |[AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64.AppImage) [Setup zip file](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64_Setup.zip)| |sudo chmod u+x RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.AppImage|" >> ${{github.workspace}}/Release.md
+          echo "|Linux|[zip file of install AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64_Setup.zip)| |[zip file of install AppImage](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_aarch64_Setup.zip)| |Unzip the file and execute 'SetupRabbitRemoteControlAppimage.sh'|" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04_amd64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_ubuntu-24.04-arm_arm64.deb)| | |" >> ${{github.workspace}}/Release.md
           echo "|Fedora |[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${{env.RabbitRemoteControl_VERSION}}-1.fc41.x86_64.rpm)| |[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${{env.RabbitRemoteControl_VERSION}}-1.fc41.aarch64.rpm)| | |" >> ${{github.workspace}}/Release.md
 
@@ -281,4 +285,5 @@ jobs:
           name: Release.md
           path: |
             ${{github.workspace}}/Release.md
+            ${{github.workspace}}/CheckSum
          

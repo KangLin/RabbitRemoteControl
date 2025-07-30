@@ -16,6 +16,7 @@ usage_long() {
     echo "  -v|--verbose: Show build verbose"
     echo "  --install: Set depend libraries install directory"
     echo "  --rabbitcommon: Install RabbitCommon"
+    exit
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
