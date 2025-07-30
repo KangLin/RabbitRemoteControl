@@ -228,8 +228,14 @@ pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
-    ./build_depend.sh --system_update --base --default  \
+    ./build_depend.sh --system_update --base --default \
         --rabbitcommon --tigervnc --pcapplusplus \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    ./build_depend.sh --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -241,7 +247,7 @@ fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
-    ./build_depend.sh --system_update --base --rabbitcommon\
+    ./build_depend.sh --system_update --base --rabbitcommon \
         --tigervnc --freerdp --pcapplusplus \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \

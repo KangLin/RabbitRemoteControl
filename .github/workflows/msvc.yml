@@ -107,7 +107,7 @@ jobs:
       - name: build npcap
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\npcap (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/npcap (
               C:\msys64\usr\bin\pacman.exe -S --noconfirm unzip
               C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.13.zip
               C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.13.zip
@@ -118,7 +118,7 @@ jobs:
       - name: build PcapPlusPlus
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\pcapplusplus (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus (
               git clone --recursive https://github.com/seladb/PcapPlusPlus.git
               cd PcapPlusPlus
               git checkout -b v24.09 v24.09
@@ -183,7 +183,7 @@ jobs:
         if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC (
             git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
             cd RabbitVNC
             cmake -E make_directory build
@@ -211,7 +211,7 @@ jobs:
         #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/tigervnc (
             git clone --depth=1 https://github.com/KangLin/tigervnc.git
             cd tigervnc
             cmake -E make_directory build
@@ -240,7 +240,7 @@ jobs:
         #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer (
             git clone --depth=1 https://github.com/KangLin/libvncserver.git
             #git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
@@ -279,7 +279,7 @@ jobs:
         if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qxmpp (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/qxmpp (
             git clone https://invent.kde.org/libraries/qxmpp.git
             cd qxmpp
             git checkout -b v1.10.3 v1.10.3
@@ -306,7 +306,7 @@ jobs:
         if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\QtService (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
             git clone --depth=1 "https://github.com/KangLin/qt-solutions.git"
             cd qt-solutions/qtservice
             cmake -E make_directory build
@@ -331,7 +331,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         if: ${{ matrix.qt_version == '6.9.1' }}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\share\cmake\lxqt2-build-tools (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools (
               git clone -b 2.2.0 --depth=1 "https://github.com/lxqt/lxqt-build-tools.git"
               cd lxqt-build-tools
               cmake -E make_directory build
@@ -346,7 +346,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         if: ${{ matrix.qt_version == '6.9.1' }}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qtermwidget6 (
+          IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 (
               git clone --depth=1 "https://github.com/KangLin/qtermwidget.git"
               cd qtermwidget
               cmake -E make_directory build
