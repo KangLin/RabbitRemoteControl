@@ -192,6 +192,7 @@ Legend:
   - [Terminal](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
   - [TELNET](Plugins/Telnet)
+- [File transfer](Plugins/FileTransfer)
 
 ## Status
 

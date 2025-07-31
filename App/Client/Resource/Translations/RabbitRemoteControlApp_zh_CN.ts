@@ -376,7 +376,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="268"/>
         <source>Elided</source>
-        <translation>省略</translation>
+        <translation>省略号</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="280"/>
