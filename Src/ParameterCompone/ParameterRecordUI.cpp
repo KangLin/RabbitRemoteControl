@@ -81,7 +81,7 @@ int CParameterRecordUI::SetParameter(CParameter *pParameter)
         return 1;
     ui->gbVideo->setChecked(m_pParameters->GetEnableVideo());
     ui->gbAudio->setChecked(m_pParameters->GetEnableAudio());
-    ui->leFolder->setText(m_pParameters->GetPath());
+    ui->leFolder->setText(m_pParameters->GetVideoPath());
 #if HAVE_QT6_MULTIMEDIA
     int nIndex = -1;
     nIndex = ui->cmbFileFormat->findData((int)m_pParameters->GetFileFormat());
@@ -126,13 +126,13 @@ int CParameterRecordUI::Accept()
 {
     m_pParameters->SetEnableVideo(ui->gbVideo->isChecked());
     m_pParameters->SetEnableAudio(ui->gbAudio->isChecked());
-    m_pParameters->SetPath(ui->leFolder->text());
-    QString szFile = m_pParameters->GetPath()
+    m_pParameters->SetVideoPath(ui->leFolder->text());
+    QString szFile = m_pParameters->GetVideoPath()
                      + QDir::separator()
                      + QDateTime::currentDateTime().toLocalTime()
                            .toString("yyyy_MM_dd_hh_mm_ss_zzz");
     m_pParameters->SetImageFile(szFile + ".png");
-    m_pParameters->SetFile(szFile);
+    m_pParameters->SetVideoFile(szFile);
 #if HAVE_QT6_MULTIMEDIA
     int nData = ui->cmbFileFormat->currentData().toInt();
     m_pParameters->SetFileFormat((QMediaFormat::FileFormat)nData);
@@ -166,7 +166,7 @@ void CParameterRecordUI::on_pbFolder_clicked()
     QString szPath;
     szPath = QFileDialog::getExistingDirectory(
         this, tr("Open path"),
-        m_pParameters->GetPath());
+        m_pParameters->GetVideoPath());
     if(szPath.isEmpty())
         return;
     ui->leFolder->setText(szPath);

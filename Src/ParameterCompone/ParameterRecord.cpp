@@ -22,22 +22,22 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
     , m_AudioSampleRate(-1)
     , m_EndAction(ENDACTION::No)
 {
-    m_szPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+    m_szVideoPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
     QDir d;
-    if(m_szPath.isEmpty() || !d.exists(m_szPath))
-        m_szPath = RabbitCommon::CDir::Instance()->GetDirUserImage();
-    m_szPath += QDir::separator() + QString::fromUtf8(tr("RabbitRemoteControl").toStdString().c_str())
-                + QDir::separator() + QString::fromUtf8(tr("Record").toStdString().c_str());
+    if(m_szVideoPath.isEmpty() || !d.exists(m_szVideoPath))
+        m_szVideoPath = RabbitCommon::CDir::Instance()->GetDirUserImage();
+    m_szVideoPath += QDir::separator() + QString("RabbitRemoteControl")
+                + QDir::separator() + QString("Record");
 
-    if(!d.exists(m_szPath))
-        d.mkpath(m_szPath);
+    if(!d.exists(m_szVideoPath))
+        d.mkpath(m_szVideoPath);
 
     m_szImagePath = QStandardPaths::writableLocation(
         QStandardPaths::PicturesLocation);
     if(m_szImagePath.isEmpty() || !d.exists(m_szImagePath))
         m_szImagePath = RabbitCommon::CDir::Instance()->GetDirUserImage();
-    m_szImagePath += QDir::separator() +  QString::fromUtf8(tr("RabbitRemoteControl").toStdString().c_str())
-                     + QDir::separator() +  QString::fromUtf8(tr("ScreenShot").toStdString().c_str());
+    m_szImagePath += QDir::separator() + QString("RabbitRemoteControl")
+                     + QDir::separator() + QString("ScreenShot");
     if(!d.exists(m_szImagePath))
         d.mkpath(m_szImagePath);
 }
@@ -48,9 +48,9 @@ CParameterRecord& CParameterRecord::operator =(const CParameterRecord& in)
         return *this;
     m_bEnableVideo = in.m_bEnableVideo;
     m_bEnableAudio = in.m_bEnableAudio;
-    m_szFile = in.m_szFile;
+    m_szVideoFile = in.m_szVideoFile;
     m_szImageFile = in.m_szImageFile;
-    m_szPath = in.m_szPath;
+    m_szVideoPath = in.m_szVideoPath;
     m_szImagePath = in.m_szImagePath;
 
 #if HAVE_QT6_MULTIMEDIA
@@ -122,6 +122,9 @@ void CParameterRecord::SetImagePath(const QString &newImagePath)
         return;
     m_szImagePath = newImagePath;
     SetModified(true);
+    QDir d(m_szImagePath);
+    if(!d.exists())
+        d.mkpath(m_szImagePath);
     emit ImagePathChanged();
 }
 
@@ -131,8 +134,8 @@ int CParameterRecord::OnLoad(QSettings &set)
 
     SetEnableVideo(set.value("EnableVideo", GetEnableVideo()).toBool());
     SetEnableAudio(set.value("EnableAudio", GetEnableAudio()).toBool());
-    SetPath(set.value("Path", GetPath()).toString());
-    SetImagePath(set.value("ImagePath", GetImagePath()).toString());
+    SetVideoPath(set.value("Path/Video", GetVideoPath()).toString());
+    SetImagePath(set.value("Path/Image", GetImagePath()).toString());
 #if HAVE_QT6_MULTIMEDIA
     SetFileFormat((QMediaFormat::FileFormat)
                   set.value("FileFormat", (int)GetFileFormat()).toInt());
@@ -158,8 +161,8 @@ int CParameterRecord::OnSave(QSettings &set)
 
     set.setValue("EnableVideo", GetEnableVideo());
     set.setValue("EnableAudio", GetEnableAudio());
-    set.setValue("Path", GetPath());
-    set.setValue("ImagePath", GetImagePath());
+    set.setValue("Path/Video", GetVideoPath());
+    set.setValue("Path/Image", GetImagePath());
 #if HAVE_QT6_MULTIMEDIA
     set.setValue("FileFormat", (int)GetFileFormat());
     set.setValue("Video/Codec", (int)GetVideoCodec());
@@ -174,22 +177,22 @@ int CParameterRecord::OnSave(QSettings &set)
     return 0;
 }
 
-const QString CParameterRecord::GetFile(bool bAuto)
+const QString CParameterRecord::GetVideoFile(bool bAuto)
 {
     if(bAuto)
-        m_szFile = GetPath() + QDir::separator()
+        m_szVideoFile = GetVideoPath() + QDir::separator()
                    + QDateTime::currentDateTime().toLocalTime()
                          .toString("yyyy_MM_dd_hh_mm_ss_zzz");
 
-    return m_szFile;
+    return m_szVideoFile;
 }
 
-int CParameterRecord::SetFile(const QString &szFile)
+int CParameterRecord::SetVideoFile(const QString &szFile)
 {
-    if(m_szFile == szFile)
+    if(m_szVideoFile == szFile)
         return 0;
     SetModified(true);
-    m_szFile = szFile;
+    m_szVideoFile = szFile;
     return 0;
 }
 
@@ -214,17 +217,20 @@ void CParameterRecord::SetImageFile(const QString &newImageFile)
     emit sigImageFileChanged();
 }
 
-const QString CParameterRecord::GetPath() const
+const QString CParameterRecord::GetVideoPath() const
 {
-    return m_szPath;
+    return m_szVideoPath;
 }
 
-int CParameterRecord::SetPath(const QString &szPath)
+int CParameterRecord::SetVideoPath(const QString &szPath)
 {
-    if(m_szPath == szPath)
+    if(m_szVideoPath == szPath)
         return 0;
-    m_szPath = szPath;
+    m_szVideoPath = szPath;
     SetModified(true);
+    QDir d(m_szVideoPath);
+    if(!d.exists())
+        d.mkpath(m_szVideoPath);
     return 0;
 }
 
@@ -341,7 +347,7 @@ CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder)
     para.SetQuality(recorder.quality());
     para.SetEncodingMode(recorder.encodingMode());
 #endif
-    para.SetFile(recorder.outputLocation().toString());
+    para.SetVideoFile(recorder.outputLocation().toString());
     return para;
 }
 
@@ -359,7 +365,7 @@ CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder)
     recorder.setEncodingMode(para.GetEncodingMode());
 #endif
 
-    if(!para.GetFile(true).isEmpty())
-        recorder.setOutputLocation(QUrl::fromLocalFile(para.GetFile(true)));
+    if(!para.GetVideoFile(true).isEmpty())
+        recorder.setOutputLocation(QUrl::fromLocalFile(para.GetVideoFile(true)));
     return para;
 }

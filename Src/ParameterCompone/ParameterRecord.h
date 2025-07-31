@@ -20,16 +20,16 @@ public:
     explicit CParameterRecord(QObject *parent = nullptr,
                               const QString& szPrefix = QString());
 
-    const QString GetPath() const;
-    int SetPath(const QString& szPath);
+    const QString GetVideoPath() const;
+    int SetVideoPath(const QString& szPath);
 
     /*! \param bAuto:
      *         - true: Automatically generated
      *         - false: use the value of SetFile()
      *  \param ext: filename extension
      */
-    const QString GetFile(bool bAuto = false);
-    int SetFile(const QString& szFile);
+    const QString GetVideoFile(bool bAuto = false);
+    int SetVideoFile(const QString& szFile);
 
     QString GetImageFile(bool bAuto = false);
     void SetImageFile(const QString &newImageFile);
@@ -88,8 +88,8 @@ Q_SIGNALS:
 private:
     bool m_bEnableVideo;
     bool m_bEnableAudio;
-    QString m_szFile;
-    QString m_szPath;
+    QString m_szVideoFile;
+    QString m_szVideoPath;
     QString m_szImageFile;
     QString m_szImagePath;
 
