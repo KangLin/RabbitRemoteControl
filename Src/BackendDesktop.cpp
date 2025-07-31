@@ -24,7 +24,7 @@ public:
     }
     ~QRecordVideoEvent()
     {
-        qDebug(log) << Q_FUNC_INFO;
+        //qDebug(log) << Q_FUNC_INFO;
     }
     
     QImage GetImage()
@@ -461,7 +461,7 @@ void CBackendDesktop::slotRecordVideo(const QImage &img)
 
 void CBackendDesktop::RecordVideo(QRecordVideoEvent *e)
 {
-    qDebug(log) << "Update image";
+    //qDebug(log) << "Update image";
     if(!e) return;
     if(QMediaRecorder::RecordingState != m_Recorder.recorderState()) {
         qCritical(log) << "Recorder is inavailable";

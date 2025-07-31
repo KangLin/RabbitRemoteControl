@@ -70,7 +70,7 @@
         <item>
          <widget class="QLabel" name="label_9">
           <property name="text">
-           <string>EncodingMode::</string>
+           <string>Encoding Mode:</string>
           </property>
          </widget>
         </item>

@@ -537,12 +537,19 @@ void CFrmViewer::slotRecordVideo(bool bRecord, qreal nRate)
 {
     m_bRecordVideo = bRecord;
     if(0 == nRate) {
+        qWarning(log) << "The video frame rate is 0. it is not record static remote desktop."
+                      << "If need record static remote desktop,"
+                      << "please 'Record->Video->Encoding mode' don't select 'Constant quality' in settings dialog,"
+                      << "then set 'Record->Video->Video frame'";
         return;
     }
 
     m_bRecordVideo = false;
-    if(bRecord)
-        m_TimerRecordVideo.start(1000 / nRate);
+    if(bRecord) {
+        qreal ms = 1000 / nRate;
+        //qDebug(log) << "Rate:" << nRate << ms << "ms";
+        m_TimerRecordVideo.start(ms);
+    }
     else
         m_TimerRecordVideo.stop();
 }

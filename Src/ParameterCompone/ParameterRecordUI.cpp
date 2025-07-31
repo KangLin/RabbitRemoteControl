@@ -178,7 +178,9 @@ void CParameterRecordUI::on_cmbEncodingMode_currentIndexChanged(int index)
     if(ui->cmbEncodingMode->itemData(index) == QMediaRecorder::ConstantQualityEncoding) {
         ui->cmbQuality->setEnabled(true);
         ui->dsbFrameRate->setEnabled(false);
+        ui->dsbFrameRate->setToolTip(tr("'Encoding mode' is 'constant quality'"));
         ui->sbSampleRate->setEnabled(false);
+        ui->sbSampleRate->setToolTip(tr("'Encoding mode' is 'constant quality'"));
         if(ui->dsbFrameRate->value() != 0)
             ui->dsbFrameRate->setValue(0);
         if(ui->sbSampleRate->value() != -1)
@@ -186,7 +188,10 @@ void CParameterRecordUI::on_cmbEncodingMode_currentIndexChanged(int index)
     } else {
         ui->cmbQuality->setEnabled(false);
         ui->dsbFrameRate->setEnabled(true);
+        ui->dsbFrameRate->setToolTip(tr("A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.") + "\n" +
+                                     tr("If record remote desktop, recommended options: 24, 50, 60"));
         ui->sbSampleRate->setEnabled(true);
+        ui->sbSampleRate->setToolTip(tr("A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc"));
         if(ui->dsbFrameRate->value() == 0)
             ui->dsbFrameRate->setValue(24);
         if(ui->sbSampleRate->value() == -1)
