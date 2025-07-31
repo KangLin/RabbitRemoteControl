@@ -127,11 +127,11 @@ jobs:
           mkdir -p RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           cp ${{github.workspace}}/RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
-          chmod u+x RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          chmod a+x RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
           cp ${{github.workspace}}/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop io.github.KangLin.RabbitRemoteControl.desktop
           cp ${{github.workspace}}/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg io.github.KangLin.RabbitRemoteControl.svg
           cp ${{github.workspace}}/Script/SetupRabbitRemoteControlAppimage.sh SetupRabbitRemoteControlAppimage.sh
-          chmod u+x SetupRabbitRemoteControlAppimage.sh
+          chmod a+x SetupRabbitRemoteControlAppimage.sh
           popd
           zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
           md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage.md5sum
