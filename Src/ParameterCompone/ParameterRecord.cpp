@@ -20,7 +20,7 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
 #endif
     , m_VideoFrameRate(0)
     , m_AudioSampleRate(-1)
-    , m_EndAction(ENDACTION::No)
+    , m_EndAction(ENDACTION::OpenFile)
 {
     m_szVideoPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
     QDir d;

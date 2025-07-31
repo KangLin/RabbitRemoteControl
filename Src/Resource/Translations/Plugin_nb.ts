@@ -270,26 +270,6 @@
     </message>
 </context>
 <context>
-    <name>CHookWindows</name>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
-        <source>Always shown</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CManager</name>
     <message>
         <location filename="../../Manager.cpp" line="115"/>
@@ -785,25 +765,6 @@ Restart program by administrator?</source>
     </message>
 </context>
 <context>
-    <name>CParameterRecord</name>
-    <message>
-        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="29"/>
-        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="39"/>
-        <source>RabbitRemoteControl</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
-        <source>Record</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
-        <source>ScreenShot</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CParameterRecordUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
@@ -829,7 +790,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="73"/>
-        <source>EncodingMode::</source>
+        <source>Encoding Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -856,6 +817,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -901,37 +863,45 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="193"/>
         <source>If record remote desktop, recommended options: 24, 50, 60</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="195"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="56"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="168"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
         <source>Open path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="182"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="184"/>
+        <source>&apos;Encoding mode&apos; is &apos;constant quality&apos;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
