@@ -32,7 +32,7 @@ class QRecordVideoEvent;
  *
  * \~
  * \see COperateDesktop CFrmViewer
- * \ingroup PLUGIN_API
+ * \ingroup gOperateDesktop
  */
 class PLUGIN_EXPORT CBackendDesktop : public CBackend
 {

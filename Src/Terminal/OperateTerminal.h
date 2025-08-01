@@ -8,10 +8,19 @@
 
 class CBackendThread;
 /*!
- * \~chinese 终端接口
- * \~english Terminal interface
+ * \~chinese
+ * \defgroup gOperateTerminal 终端类
+ * \~english
+ * \defgroup gOperateTerminal Terminal class
  * \~
  * \ingroup PLUGIN_API
+ */
+
+/*!
+ * \~chinese 终端操作接口
+ * \~english Terminal operate interface
+ * \~
+ * \ingroup gOperateTerminal
  */
 class PLUGIN_EXPORT COperateTerminal : public COperate
 {

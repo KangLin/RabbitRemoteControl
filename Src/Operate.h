@@ -53,6 +53,10 @@ class PLUGIN_EXPORT COperate : public QObject
 public:
     explicit COperate(CPlugin *plugin);
     virtual ~COperate();
+    
+    //!@{
+    //! \~chinese \name 属性
+    //! \~english \name Property
 
     //! Identity
     [[nodiscard]] virtual const QString Id();
@@ -66,8 +70,9 @@ public:
     [[nodiscard]] virtual const qint16 Version() const = 0;
     //! Icon
     [[nodiscard]] virtual const QIcon Icon() const;
-
+    //! Get type name
     [[nodiscard]] virtual const QString GetTypeName() const;
+    //!@}
 
     /*!
      * \~chinese
@@ -300,7 +305,10 @@ private:
      * \see OpenDialogSettings
      */
     [[nodiscard]] virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
-
+    
+    //!@{
+    //! \~chinese \name 加载和保存参数
+    //! \~english \name Load and save settings
 public:
     /* \~chinese 得到配置文件名
      * \~english Get settings file name
@@ -340,6 +348,7 @@ protected:
      * \see CManger::SaveOperate
      */
     Q_INVOKABLE virtual int Save(QString szFile = QString());
+    //!@}
 
 private Q_SLOTS:
     void slotUpdateName();

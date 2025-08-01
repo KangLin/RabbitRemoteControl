@@ -39,7 +39,8 @@
  *    so that the parameter is running main thread.
  *
  * \~
- * \ingroup CLIENT_PARAMETER_COMPONE
+ * \ingroup CLIENT_PARAMETER_COMPONE 
+ * \ingroup gOperateDesktop
  */
 class PLUGIN_EXPORT CParameterBase : public CParameterOperate
 {

@@ -9,8 +9,18 @@
 #include "FrmScroll.h"
 
 class CBackendThread;
+
 /*!
- * \~chinese 远程桌面接口
+ * \~chinese
+ * \defgroup gOperateDesktop 桌面类
+ * \~english
+ * \defgroup gOperateDesktop Desktop class
+ * \~
+ * \ingroup PLUGIN_API 
+ */
+
+/*!
+ * \~chinese 远程桌面操作接口
  *
  * \details
  * 默认启动一个后台线程。实现一个后台线程处理一个后端操作。
@@ -29,7 +39,7 @@ class CBackendThread;
  *      具体的插件需要实现下面接口：
  *         1. 实现 InstanceBackend() ，生成连接对象。连接对象运行在后台线程中。
  *
- * \~english Remote desktop interface
+ * \~english Remote desktop operate interface
  * \details
  *  It starts a background thread by default.
  *  It implements a background thread to handle a operate.
@@ -53,7 +63,7 @@ class CBackendThread;
  *
  * \~
  * \see CBackend CBackendThread COperate CPlugin CFrmViewer
- * \ingroup PLUGIN_API
+ * \ingroup gOperateDesktop
  */
 class PLUGIN_EXPORT COperateDesktop : public COperate
 {

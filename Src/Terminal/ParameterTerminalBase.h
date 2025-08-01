@@ -6,6 +6,14 @@
 #include "ParameterTerminal.h"
 #include "ParameterSSH.h"
 
+/*!
+ * \~chinese
+ * \brief 终端基本参数
+ * \~english
+ * \brief Terminal base parameter
+ * \~
+ * \ingroup gOperateTerminal
+ */
 class PLUGIN_EXPORT CParameterTerminalBase : public CParameterOperate
 {
     Q_OBJECT

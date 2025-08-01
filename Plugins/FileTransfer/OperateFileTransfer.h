@@ -7,6 +7,9 @@
 #include "FrmFileTransfer.h"
 #include "ParameterFileTransfer.h"
 
+/*!
+ * \brief File transfer operate interface
+ */
 class COperateFileTransfer : public COperate
 {
     Q_OBJECT

@@ -6,6 +6,10 @@
 #include "FrmWakeOnLan.h"
 #include "Arp.h"
 
+/*!
+ * \~chinese 局域网唤醒操作接口
+ * \~english Wake on lan operate interface
+ */
 class COperateWakeOnLan : public COperate
 {
     Q_OBJECT
