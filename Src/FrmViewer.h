@@ -74,7 +74,7 @@ public:
     };
     Q_ENUM(ADAPT_WINDOWS)
     ADAPT_WINDOWS GetAdaptWindows();
-    
+
     /*!
      * \~chinese 调整缩放系数。
      *  调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。
@@ -97,7 +97,7 @@ public:
 public Q_SLOTS:
     void slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
     int slotSetZoomFactor(double newZoomFactor);
-    
+
     /*================== Internal calls ==================*/
     /*!
      * \brief Update desktop size
@@ -172,6 +172,7 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void inputMethodEvent(QInputMethodEvent *event) override;
+    virtual QVariant inputMethodQuery( Qt::InputMethodQuery query ) const override;
 
 private:
     QImage m_Desktop;
