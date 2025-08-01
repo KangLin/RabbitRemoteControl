@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QFileInfo>
 #include <QLoggingCategory>
+#include <QMessageBox>
 
 #if defined(Q_OS_LINUX)
 #include <sys/stat.h>
@@ -164,10 +165,16 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
     Q_ASSERT_X(pChild->GetType(), "AppendChild", "Must set all the properties before call them");
 
-    if(m_vChild.contains(pChild)) {
-        qDebug(log) << pChild->GetName() << "is exist";
-        return 0;
-    }
+    // if(m_vChild.contains(pChild)) {
+    //     qDebug(log) << pChild->GetName() << "is exist";
+    //     return 0;
+    // }
+    // foreach(auto c, m_vChild) {
+    //     if(c->GetPath() == pChild->GetPath()) {
+    //         qDebug(log) << pChild->GetName() << "is exist";
+    //         return 0;
+    //     }
+    // }
     m_vChild.append(pChild);
     if(pChild->GetType() & TYPE::FILE)
         m_FileCount++;
@@ -186,7 +193,22 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 
 int CRemoteFileSystem::RemoveChild(int index)
 {
+    if(0 > index || m_vChild.size() < index)
+        return -1;
+    auto pChild = m_vChild.at(index);
+    if(!pChild) return -1;
+    if(pChild->GetType() & TYPE::FILE)
+        m_FileCount--;
+    if(pChild->GetType() & TYPE::DIR)
+        m_DirCount--;
+    if(pChild->GetType() & TYPE::DRIVE)
+        m_DirCount--;
+    if(pChild->GetType() & TYPE::SYMLINK)
+        m_FileCount--;
+    if(pChild->GetType() & TYPE::SPECIAL)
+        m_FileCount--;
     m_vChild.removeAt(index);
+    Q_ASSERT(m_vChild.size() == m_FileCount + m_DirCount);
     return 0;
 }
 
@@ -591,4 +613,27 @@ void CRemoteFileSystemModel::slotGetDir(
         endInsertRows();
     } else
         emit dataChanged(parentIndex, parentIndex);
+}
+
+void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
+{
+    auto p = GetRemoteFileSystemFromIndex(index);
+    if(p && !p->GetPath().isEmpty()) {
+        if(QMessageBox::question(
+                nullptr, tr("Delete directory"),
+                tr("Are you sure you want to delete '%1'?").arg(p->GetPath()),
+                QMessageBox::Yes | QMessageBox::No)
+            != QMessageBox::Yes)
+            return;
+        if(p->GetType() == CRemoteFileSystem::TYPE::DIR)
+            emit sigRemoveDir(p->GetPath());
+        else
+            emit sigRemoveFile(p->GetPath());
+        
+        auto pParent = p->GetParent();
+        if(!pParent) pParent = m_pRoot;
+        pParent->RemoveChild(pParent->IndexOf(p));
+        pParent->SetState(CRemoteFileSystem::State::No);
+        fetchMore(index.parent());
+    }
 }

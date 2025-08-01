@@ -91,7 +91,7 @@ QSharedPointer<CRemoteFileSystem> CChannelSFTP::GetFileNode(
     /*
     qDebug(log) << szPath << "name:" << attributes->name
                 << "size:" << attributes->size << "type:" << attributes->type;//*/
-    QString szName(attributes->name);
+    QString szName = QString::fromUtf8(attributes->name);
     if("." == szName || ".." == szName)
         return nullptr;
     CRemoteFileSystem::TYPE type = CRemoteFileSystem::TYPE::NO;
@@ -187,23 +187,77 @@ int CChannelSFTP::MakeDir(const QString &dir)
         {
             qCritical(log) << "Can't create directory:" << nRet
                     << ssh_get_error(m_Session);
-        }
+        } else
+            qDebug(log) << "Create directory:" << dir;
     }
     return nRet;
 }
 
-int CChannelSFTP::RemoveDir(const QString &dir)
+int CChannelSFTP::RemoveDir(const QString& dir)
 {
-    int nRet = SSH_FX_OK;
-    if(!m_SessionSftp)
+    if (!m_SessionSftp)
         return SSH_FX_NO_CONNECTION;
-    nRet = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
-    if (nRet != SSH_OK)
-    {
-        qCritical(log) << "Can't remove directory:" << nRet
-                       << ssh_get_error(m_Session);
+    
+    // 1. 打开目录
+    sftp_dir sftpDir = sftp_opendir(m_SessionSftp, dir.toStdString().c_str());
+    if (!sftpDir) {
+        qCritical(log) << "Failed to open directory for remove:" << dir;
+        // 如果打不开目录，尝试直接删除（可能是空目录或者文件）
+        int ret = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
+        if (ret == SSH_OK) {
+            qDebug(log) << "Removed directory (directly):" << dir;
+            return SSH_OK;
+        } else {
+            qCritical(log) << "Can't remove directory:" << ssh_get_error(m_Session) << dir;
+            return ret;
+        }
     }
-    return nRet;
+    
+    // 2. 遍历目录内容
+    sftp_attributes attr;
+    while ((attr = sftp_readdir(m_SessionSftp, sftpDir)) != NULL) {
+        QString name = QString::fromUtf8(attr->name);
+        if (name == "." || name == "..") {
+            sftp_attributes_free(attr);
+            continue;
+        }
+        QString fullPath = dir + "/" + name;
+        if (attr->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+            // 递归删除子目录
+            RemoveDir(fullPath);
+        } else {
+            // 删除文件
+            int ret = sftp_unlink(m_SessionSftp, fullPath.toStdString().c_str());
+            if (ret != SSH_OK) {
+                qCritical(log) << "Can't remove file:" << fullPath << ssh_get_error(m_Session);
+            } else {
+                qDebug(log) << "Removed file:" << fullPath;
+            }
+        }
+        sftp_attributes_free(attr);
+    }
+    sftp_closedir(sftpDir);
+    
+    // 3. 删除空目录
+    int ret = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
+    if (ret != SSH_OK) {
+        qCritical(log) << "Can't remove directory:" << ssh_get_error(m_Session) << dir;
+    } else {
+        qDebug(log) << "Removed directory:" << dir;
+    }
+    return ret;
+}
+
+int CChannelSFTP::RemoveFile(const QString &file)
+{
+    // 删除文件
+    int ret = sftp_unlink(m_SessionSftp, file.toStdString().c_str());
+    if (ret != SSH_OK) {
+        qCritical(log) << "Can't remove file:" << file << ssh_get_error(m_Session);
+    } else {
+        qDebug(log) << "Removed file:" << file;
+    }
+    return ret;
 }
 
 int CChannelSFTP::Rename(const QString &oldPath, const QString &newPath)

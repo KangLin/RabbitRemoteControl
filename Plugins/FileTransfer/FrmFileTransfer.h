@@ -23,11 +23,15 @@ public:
 
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
+
+    void sigGetDir(CRemoteFileSystem*);
     void sigGetDir(CRemoteFileSystem*,
                        QVector<QSharedPointer<CRemoteFileSystem> > contents,
                        bool bEnd);
-Q_SIGNALS:
-    void sigGetDir(CRemoteFileSystem*);
+
+    void sigMakeDir(const QString &szPath);
+    void sigRemoveDir(const QString &szPath);
+    void sigRemoveFile(const QString& szFile);
 
 private:
     //! Set local root path
@@ -68,6 +72,7 @@ private Q_SLOTS:
     void slotTreeRemoteNew();
     void slotTreeRemoteDelete();
     void slotTreeRemoteRename();
+    void slotTreeRemoteRefresh();
     void slotTreeRemoteCopyToClipboard();
 
     void on_tabRemote_customContextMenuRequested(const QPoint &pos);

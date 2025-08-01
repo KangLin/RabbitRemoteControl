@@ -24,7 +24,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
 {
     bool check = false;
     ui->setupUi(this);
-    
+
     m_pModelLocalDir = new QFileSystemModel(this);
     m_pModelLocalDir->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     m_pModelLocalDir->setReadOnly(false);
@@ -54,13 +54,19 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabLocal->verticalHeader()->hide();
     ui->tabLocal->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
-    
+
     m_pModelRemoteDir = new CRemoteFileSystemModel(this);
     check = connect(m_pModelRemoteDir, SIGNAL(sigGetDir(CRemoteFileSystem*)),
                     this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
                     m_pModelRemoteDir, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+    Q_ASSERT(check);
+    check = connect(m_pModelRemoteDir, SIGNAL(sigRemoveDir(const QString&)),
+                    this, SIGNAL(sigRemoveDir(const QString&)));
+    Q_ASSERT(check);
+    check = connect(m_pModelRemoteDir, SIGNAL(sigRemoveFile(const QString&)),
+                    this, SIGNAL(sigRemoveFile(const QString&)));
     Q_ASSERT(check);
     m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
@@ -81,6 +87,12 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*,QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
                     m_pModelRemoteFile, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+    Q_ASSERT(check);
+    check = connect(m_pModelRemoteFile, SIGNAL(sigRemoveDir(const QString&)),
+                    this, SIGNAL(sigRemoveDir(const QString&)));
+    Q_ASSERT(check);
+    check = connect(m_pModelRemoteFile, SIGNAL(sigRemoveFile(const QString&)),
+                    this, SIGNAL(sigRemoveFile(const QString&)));
     Q_ASSERT(check);
     m_pModelRemoteFile->SetRootPath("/");
     //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
@@ -350,6 +362,8 @@ void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &po
                        this, SLOT(slotTreeRemoteDelete()));
         menu.addAction(tr("Rename"),
                        this, SLOT(slotTreeRemoteRename()));
+        menu.addAction(QIcon::fromTheme("refresh"), tr("Refresh"),
+                       this, SLOT(slotTreeRemoteRefresh()));
         menu.addAction(tr("Copy url to clipboard"),
                        this, SLOT(slotTreeRemoteCopyToClipboard()));
     }
@@ -366,14 +380,41 @@ void CFrmFileTransfer::slotTreeRemoteAddToList()
 
 void CFrmFileTransfer::slotTreeRemoteNew()
 {
+    QString szName = QInputDialog::getText(
+        this, tr("New folder"), tr("Folder name:"));
+    if(szName.isEmpty()) return;
+    auto idx = ui->treeRemote->currentIndex();
+    if(idx.isValid()) {
+        auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
+        if(p && !p->GetPath().isEmpty()) {
+            QString szPath = p->GetPath() + "/" + szName;
+            emit sigMakeDir(szPath);
+        }
+    }
 }
 
 void CFrmFileTransfer::slotTreeRemoteDelete()
 {
+    auto idx = ui->treeRemote->currentIndex();
+    if(idx.isValid())
+        m_pModelRemoteDir->RemoveDir(idx);
+}
+
+void CFrmFileTransfer::slotTreeRemoteRefresh()
+{
+    auto idx = ui->treeRemote->currentIndex();
+    if(idx.isValid()) {
+        auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
+        if(p && !p->GetPath().isEmpty()) {
+            p->SetState(CRemoteFileSystem::State::No);
+            ui->treeRemote->expand(idx);
+        }
+    }
 }
 
 void CFrmFileTransfer::slotTreeRemoteRename()
 {
+    ui->treeRemote->edit(ui->treeRemote->currentIndex());
 }
 
 void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()

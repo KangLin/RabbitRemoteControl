@@ -24,7 +24,10 @@ protected:
     virtual int OnProcess() override;
 
 private Q_SLOTS:
+    void slotMakeDir(const QString& szDir);
+    void slotRemoveDir(const QString& szDir);
     void slotGetDir(CRemoteFileSystem*);
+    void slotRemoveFile(const QString& szFile);
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 

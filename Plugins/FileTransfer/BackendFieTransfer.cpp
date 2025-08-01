@@ -13,6 +13,7 @@ public:
     enum class Command {
         MakeDir,
         RemoveDir,
+        RemoveFile,
         GetDir,
         Upload,
         Download
@@ -57,11 +58,22 @@ bool CBackendFieTransfer::event(QEvent *event)
     if(event->type() == QEvent::Type::User) {
         CFileTransferEvent* pEvent = (CFileTransferEvent*)event;
         switch(pEvent->m_Command) {
+        case CFileTransferEvent::Command::MakeDir:
+            if(m_pSFTP)
+                m_pSFTP->MakeDir(pEvent->m_szSourcePath);
+            break;
+        case CFileTransferEvent::Command::RemoveDir:
+            if(m_pSFTP)
+                m_pSFTP->RemoveDir(pEvent->m_szSourcePath);
+            break;
+        case CFileTransferEvent::Command::RemoveFile:
+            if(m_pSFTP)
+                m_pSFTP->RemoveFile(pEvent->m_szSourcePath);
+            break;
         case CFileTransferEvent::Command::GetDir:
         {
-            if(m_pSFTP) {
+            if(m_pSFTP)
                 m_pSFTP->slotGetDir(pEvent->m_pRemoteFileSystem);
-            }
             break;
         }
         case CFileTransferEvent::Command::Upload:
@@ -112,6 +124,15 @@ int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
     check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
                     pForm, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));
     Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigMakeDir(const QString&)),
+                    this, SLOT(slotMakeDir(const QString&)));
+    Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigRemoveDir(const QString&)),
+                    this, SLOT(slotRemoveDir(const QString&)));
+    Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigRemoveFile(const QString&)),
+                    this, SLOT(slotRemoveFile(const QString&)));
+    Q_ASSERT(check);
     return nRet;
 }
 
@@ -127,6 +148,33 @@ CBackendFieTransfer::OnInitReturnValue CBackendFieTransfer::InitSFTP()
         return OnInitReturnValue::Fail;
     emit sigRunning();
     return OnInitReturnValue::UseOnProcess;
+}
+
+void CBackendFieTransfer::slotMakeDir(const QString &szDir)
+{
+    if(szDir.isEmpty()) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::MakeDir, szDir);
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
+}
+
+void CBackendFieTransfer::slotRemoveDir(const QString &szDir)
+{
+    if(szDir.isEmpty()) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::RemoveDir, szDir);
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
+}
+
+void CBackendFieTransfer::slotRemoveFile(const QString &szFile)
+{
+    if(szFile.isEmpty()) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::RemoveFile, szFile);
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
 }
 
 void CBackendFieTransfer::slotGetDir(CRemoteFileSystem *p)

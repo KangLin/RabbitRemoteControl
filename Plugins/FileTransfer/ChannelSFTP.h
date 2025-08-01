@@ -23,6 +23,7 @@ public:
     int GetDir(CRemoteFileSystem* p);
     int MakeDir(const QString& dir);
     int RemoveDir(const QString& dir);
+    int RemoveFile(const QString& file);
     int Rename(const QString& oldPath, const QString& newPath);
     int Process();
 

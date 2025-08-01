@@ -121,6 +121,7 @@ public:
     [[nodiscard]] CRemoteFileSystem* GetRemoteFileSystemFromIndex(const QModelIndex &index) const;
     void SetFilter(CRemoteFileSystem::TYPES filter);
     [[nodiscard]] CRemoteFileSystem::TYPES GetFilter();
+    void RemoveDir(QModelIndex index);
 
     // Header:
     QVariant headerData(int section,
@@ -140,6 +141,8 @@ public:
 
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p);
+    void sigRemoveDir(const QString& szPath);
+    void sigRemoveFile(const QString& szFile);
 public Q_SLOTS:
     void slotGetDir(CRemoteFileSystem* p,
                        QVector<QSharedPointer<CRemoteFileSystem> > contents,
