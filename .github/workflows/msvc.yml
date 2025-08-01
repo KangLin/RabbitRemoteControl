@@ -109,8 +109,8 @@ jobs:
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/npcap (
               C:\msys64\usr\bin\pacman.exe -S --noconfirm unzip
-              C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.13.zip
-              C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.13.zip
+              C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.15.zip
+              C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.15.zip
           )
 
       # 因为 vcpkg 中 PcapPlusPlus 依赖 winpcap , winpcap 不能在 windows 10 上工作，
