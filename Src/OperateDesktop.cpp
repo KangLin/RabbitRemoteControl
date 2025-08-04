@@ -47,7 +47,6 @@ const QString COperateDesktop::Id()
         if(!GetParameter()->m_Net.GetHost().isEmpty())
             szId += "_" + GetParameter()->m_Net.GetHost()
                     + "_" + QString::number(GetParameter()->m_Net.GetPort());
-        
         CParameterNet* net = nullptr;
         QString szType;
         switch(GetParameter()->m_Proxy.GetUsedType())
@@ -72,7 +71,6 @@ const QString COperateDesktop::Id()
         default:
             break;
         }
-        
         if(!szType.isEmpty() && !net->GetHost().isEmpty()) {
             szId += "_" + szType + "_";
             szId += net->GetHost() + "_" + QString::number(net->GetPort());
@@ -89,7 +87,6 @@ const QString COperateDesktop::Name()
     if(GetParameter() && GetParameter()->GetGlobalParameters()
         && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-    
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         szName += GetParameter()->GetName();
     else
@@ -180,9 +177,9 @@ int COperateDesktop::Initial()
     check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
-    
+
     nRet = InitialMenu();
-    
+
     return nRet;
 }
 
@@ -195,7 +192,6 @@ int COperateDesktop::Clean()
         delete m_pScroll;
         m_pScroll = nullptr;
     }
-    
     nRet = COperate::Clean();
     return nRet;
 }
@@ -204,14 +200,17 @@ int COperateDesktop::InitialMenu()
 {
     int nRet = 0;
     bool check = false;
-    
+
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
     pMenuZoom->setIcon(QIcon::fromTheme("zoom"));
+    pMenuZoom->setStatusTip(tr("Zoom"));
     m_pMenuZoom = m_Menu.addMenu(pMenuZoom);
     m_pZoomToWindow = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-fit-best"), tr("Zoom to window"));
     m_pZoomToWindow->setCheckable(true);
+    m_pZoomToWindow->setStatusTip(tr("Zoom to window"));
+    m_pZoomToWindow->setToolTip(tr("Zoom to window"));
     check = connect(m_pZoomToWindow, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
@@ -222,6 +221,8 @@ int COperateDesktop::InitialMenu()
         QIcon::fromTheme("zoom-aspect-ratio"),
         tr("Keep aspect ration to windows"));
     m_pZoomAspectRatio->setCheckable(true);
+    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ration to windows"));
+    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ration to windows"));
     check = connect(m_pZoomAspectRatio, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
@@ -231,6 +232,8 @@ int COperateDesktop::InitialMenu()
     m_pZoomOriginal = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-original"), tr("Original"));
     m_pZoomOriginal->setCheckable(true);
+    m_pZoomOriginal->setStatusTip(tr("Original"));
+    m_pZoomOriginal->setToolTip(tr("Original"));
     check = connect(m_pZoomOriginal, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
@@ -239,6 +242,8 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_pZoomIn = pMenuZoom->addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"));
     m_pZoomIn->setCheckable(true);
+    m_pZoomIn->setStatusTip(tr("Zoom in"));
+    m_pZoomIn->setToolTip(tr("Zoom in"));
     check = connect(
         m_pZoomIn, &QAction::triggered, this,
         [&](){
@@ -253,6 +258,8 @@ int COperateDesktop::InitialMenu()
     m_pZoomOut = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-out"), tr("Zoom out"));
     m_pZoomOut->setCheckable(true);
+    m_pZoomOut->setStatusTip(tr("Zoom out"));
+    m_pZoomOut->setToolTip(tr("Zoom out"));
     check = connect(
         m_pZoomOut, &QAction::triggered, this,
         [&](){
@@ -293,7 +300,7 @@ int COperateDesktop::InitialMenu()
     QWidgetAction* pFactor = new QWidgetAction(pMenuZoom);
     pFactor->setDefaultWidget(m_psbZoomFactor);
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
-    
+
     QMenu* pMenuShortCut = new QMenu(&m_Menu);
     pMenuShortCut->setTitle(tr("Send shortcut key"));
     m_Menu.addMenu(pMenuShortCut);
@@ -301,10 +308,12 @@ int COperateDesktop::InitialMenu()
         tr("Send Ctl+Alt+Del"), this, SLOT(slotShortcutCtlAltDel()));
     pMenuShortCut->addAction(
         tr("Send lock screen (Win+L)"), this, SLOT(slotShortcutLock()));
-    
+
     m_Menu.addSeparator();
     m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
                                 tr("ScreenShot"), &m_Menu);
+    m_pScreenShot->setStatusTip(tr("ScreenShot"));
+    m_pScreenShot->setToolTip(tr("ScreenShot"));
     check = connect(m_pScreenShot, SIGNAL(triggered()),
                     this, SLOT(slotScreenShot()));
     Q_ASSERT(check);
@@ -313,12 +322,16 @@ int COperateDesktop::InitialMenu()
     m_pRecord = new QAction(
         QIcon::fromTheme("media-record"), tr("Start record"), &m_Menu);
     m_pRecord->setCheckable(true);
+    m_pRecord->setStatusTip(tr("Start record"));
+    m_pRecord->setToolTip(tr("Start record"));
     check = connect(m_pRecord, SIGNAL(triggered(bool)),
                     this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
     m_pRecordPause = new QAction(
         QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
+    m_pRecordPause->setToolTip(tr("Record pause"));
+    m_pRecordPause->setStatusTip(tr("Record pause"));
     m_pRecordPause->setCheckable(true);
     m_pRecordPause->setEnabled(false);
     check = connect(m_pRecordPause, SIGNAL(triggered(bool)),
@@ -601,7 +614,6 @@ QString COperateDesktop::ServerName()
         return GetParameter()->m_Net.GetHost()
         + ":" + QString::number(GetParameter()->m_Net.GetPort());
     }
-    
     if(m_szServerName.isEmpty() && GetParameter())
         return GetParameter()->GetServerName();
     return m_szServerName;
