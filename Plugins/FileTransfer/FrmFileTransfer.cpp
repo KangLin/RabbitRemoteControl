@@ -56,21 +56,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
         QHeaderView::ResizeToContents);
 
     m_pModelRemoteDir = new CRemoteFileSystemModel(this);
-    check = connect(m_pModelRemoteDir, SIGNAL(sigGetDir(CRemoteFileSystem*)),
-                    this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    m_pModelRemoteDir, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
-    Q_ASSERT(check);
-    check = connect(m_pModelRemoteDir, SIGNAL(sigRemoveDir(const QString&)),
-                    this, SIGNAL(sigRemoveDir(const QString&)));
-    Q_ASSERT(check);
-    check = connect(m_pModelRemoteDir, SIGNAL(sigRemoveFile(const QString&)),
-                    this, SIGNAL(sigRemoveFile(const QString&)));
-    Q_ASSERT(check);
-    check = connect(m_pModelRemoteDir, SIGNAL(sigRename(const QString&, const QString&)),
-                    this, SIGNAL(sigRename(const QString&, const QString&)));
-    Q_ASSERT(check);
+    SetRemoteConnecter(m_pModelRemoteDir);
     m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);
@@ -85,18 +71,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
     
     m_pModelRemoteFile = new CRemoteFileSystemModel(this);
-    check = connect(m_pModelRemoteFile, SIGNAL(sigGetDir(CRemoteFileSystem*)),
-                    this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*,QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    m_pModelRemoteFile, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
-    Q_ASSERT(check);
-    check = connect(m_pModelRemoteFile, SIGNAL(sigRemoveDir(const QString&)),
-                    this, SIGNAL(sigRemoveDir(const QString&)));
-    Q_ASSERT(check);
-    check = connect(m_pModelRemoteFile, SIGNAL(sigRemoveFile(const QString&)),
-                    this, SIGNAL(sigRemoveFile(const QString&)));
-    Q_ASSERT(check);
+    SetRemoteConnecter(m_pModelRemoteFile);
     m_pModelRemoteFile->SetRootPath("/");
     //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
     ui->tabRemote->setModel(m_pModelRemoteFile);
@@ -124,6 +99,28 @@ CFrmFileTransfer::~CFrmFileTransfer()
 {
     qDebug(log) << Q_FUNC_INFO;
     delete ui;
+}
+
+void CFrmFileTransfer::SetRemoteConnecter(CRemoteFileSystemModel *p)
+{
+    bool check = connect(p, SIGNAL(sigGetDir(CRemoteFileSystem*)),
+                    this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
+                    p, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigRemoveDir(const QString&)),
+                    this, SIGNAL(sigRemoveDir(const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigRemoveFile(const QString&)),
+                    this, SIGNAL(sigRemoveFile(const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigRename(const QString&, const QString&)),
+                    this, SIGNAL(sigRename(const QString&, const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigMakeDir(const QString&)),
+                    this, SIGNAL(sigMakeDir(const QString&)));
+    Q_ASSERT(check);
 }
 
 int CFrmFileTransfer::SetLocalRoot(const QString &root)
@@ -387,13 +384,8 @@ void CFrmFileTransfer::slotTreeRemoteNew()
         this, tr("New folder"), tr("Folder name:"));
     if(szName.isEmpty()) return;
     auto idx = ui->treeRemote->currentIndex();
-    if(idx.isValid()) {
-        auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
-        if(p && !p->GetPath().isEmpty()) {
-            QString szPath = p->GetPath() + "/" + szName;
-            emit sigMakeDir(szPath);
-        }
-    }
+    if(idx.isValid())
+        m_pModelRemoteDir->CreateDir(idx, szName);
 }
 
 void CFrmFileTransfer::slotTreeRemoteDelete()

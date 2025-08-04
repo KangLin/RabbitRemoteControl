@@ -52,6 +52,7 @@ public:
     [[nodiscard]] CRemoteFileSystem* GetChild(int nIndex);
     [[nodiscard]] CRemoteFileSystem* GetParent();
     [[nodiscard]] int IndexOf(CRemoteFileSystem* pChild);
+    [[nodiscard]] int IndexOf(const QString& szPath);
     [[nodiscard]] int IndexOfParent();
 
     enum class State{
@@ -121,6 +122,7 @@ public:
     [[nodiscard]] CRemoteFileSystem* GetRemoteFileSystemFromIndex(const QModelIndex &index) const;
     void SetFilter(CRemoteFileSystem::TYPES filter);
     [[nodiscard]] CRemoteFileSystem::TYPES GetFilter();
+    void CreateDir(QModelIndex index, const QString& dir);
     void RemoveDir(QModelIndex index);
 
     // Header:
@@ -142,6 +144,7 @@ public:
 
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p);
+    void sigMakeDir(const QString& dir);
     void sigRemoveDir(const QString& szPath);
     void sigRemoveFile(const QString& szFile);
     void sigRename(const QString& oldName, const QString& newName);

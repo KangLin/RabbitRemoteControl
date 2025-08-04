@@ -39,6 +39,7 @@ private:
     int SetLocalRoot(const QString &root);
     //! Get local root path
     [[nodiscard]] QString GetLocalRoot() const;
+    void SetRemoteConnecter(CRemoteFileSystemModel* p);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);

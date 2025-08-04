@@ -165,16 +165,16 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
     Q_ASSERT_X(pChild->GetType(), "AppendChild", "Must set all the properties before call them");
 
-    // if(m_vChild.contains(pChild)) {
-    //     qDebug(log) << pChild->GetName() << "is exist";
-    //     return 0;
-    // }
-    // foreach(auto c, m_vChild) {
-    //     if(c->GetPath() == pChild->GetPath()) {
-    //         qDebug(log) << pChild->GetName() << "is exist";
-    //         return 0;
-    //     }
-    // }
+    if(m_vChild.contains(pChild)) {
+        qDebug(log) << pChild->GetName() << "is exist";
+        return 0;
+    }
+    if(-1 != IndexOf(pChild->GetPath()))
+    {
+        qDebug(log) << pChild->GetName() << "is exist";
+        return 0;
+    }
+
     m_vChild.append(pChild);
     if(pChild->GetType() & TYPE::FILE)
         m_FileCount++;
@@ -222,6 +222,16 @@ CRemoteFileSystem* CRemoteFileSystem::GetChild(int nIndex)
 int CRemoteFileSystem::IndexOf(CRemoteFileSystem* pChild)
 {
     return m_vChild.indexOf(pChild);
+}
+
+int CRemoteFileSystem::IndexOf(const QString& szPath)
+{
+    for(int i = 0; i < m_vChild.size(); i++) {
+        auto p = m_vChild[i];
+        if(p && p->GetPath() == szPath)
+            return i;
+    }
+    return -1;
 }
 
 int CRemoteFileSystem::IndexOfParent()
@@ -613,6 +623,24 @@ void CRemoteFileSystemModel::slotGetDir(
         endInsertRows();
     } else
         emit dataChanged(parentIndex, parentIndex);
+}
+
+void CRemoteFileSystemModel::CreateDir(QModelIndex index, const QString &dir)
+{
+    auto p = GetRemoteFileSystemFromIndex(index);
+    if(!p) p = m_pRoot;
+    if(p && !p->GetPath().isEmpty()) {
+        QString szPath = p->GetPath() + "/" + dir;
+        if(p->IndexOf(szPath) > -1) {
+            qCritical(log) << "The path is exist:" << szPath;
+            QMessageBox::critical(nullptr, tr("Error"), tr("The path is exist: %1").arg(szPath));
+            return;
+        }
+        emit sigMakeDir(szPath);
+
+        p->SetState(CRemoteFileSystem::State::No);
+        fetchMore(index.parent());
+    }
 }
 
 void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
