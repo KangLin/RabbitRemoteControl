@@ -8,13 +8,13 @@
 #include "OperateFileTransfer.h"
 #include "ChannelSFTP.h"
 
-class CBackendFieTransfer : public CBackend
+class CBackendFileTransfer : public CBackend
 {
     Q_OBJECT
 
 public:
-    CBackendFieTransfer(COperateFileTransfer* pOperate);
-    virtual ~CBackendFieTransfer();
+    CBackendFileTransfer(COperateFileTransfer* pOperate);
+    virtual ~CBackendFileTransfer();
 
     virtual bool event(QEvent *event) override;
 

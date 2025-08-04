@@ -655,4 +655,5 @@ bool CRemoteFileSystemModel::setData(const QModelIndex &index, const QVariant &v
         pParent->SetState(CRemoteFileSystem::State::No);
         fetchMore(index.parent());
     }
+    return true;
 }

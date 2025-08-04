@@ -3,7 +3,7 @@
 
 #include <QLoggingCategory>
 #include "ChannelSFTP.h"
-#include "BackendFieTransfer.h"
+#include "BackendFileTransfer.h"
 #include "RemoteFileSystemModel.h"
 
 #if defined(Q_OS_LINUX)
@@ -24,7 +24,7 @@ CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
     , m_SessionSftp(nullptr)
 {
     bool check = false;
-    CBackendFieTransfer* pB = qobject_cast<CBackendFieTransfer*>(pBackend);
+    CBackendFileTransfer* pB = qobject_cast<CBackendFileTransfer*>(pBackend);
     if(pB) {
         check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
                         pB, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));

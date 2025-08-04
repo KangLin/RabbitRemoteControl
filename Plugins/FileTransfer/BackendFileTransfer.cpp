@@ -3,7 +3,7 @@
 
 #include <QCoreApplication>
 #include <QLoggingCategory>
-#include "BackendFieTransfer.h"
+#include "BackendFileTransfer.h"
 
 static Q_LOGGING_CATEGORY(log, "FileTransfer.Backend")
 
@@ -40,7 +40,7 @@ CFileTransferEvent::CFileTransferEvent(Command cmd,
 {
 }
 
-CBackendFieTransfer::CBackendFieTransfer(COperateFileTransfer *pOperate)
+CBackendFileTransfer::CBackendFileTransfer(COperateFileTransfer *pOperate)
     : CBackend(pOperate)
     , m_pOperate(pOperate)
     , m_pSFTP(nullptr)
@@ -49,12 +49,12 @@ CBackendFieTransfer::CBackendFieTransfer(COperateFileTransfer *pOperate)
     SetConnect(pOperate);
 }
 
-CBackendFieTransfer::~CBackendFieTransfer()
+CBackendFileTransfer::~CBackendFileTransfer()
 {
     qDebug(log) << Q_FUNC_INFO;
 }
 
-bool CBackendFieTransfer::event(QEvent *event)
+bool CBackendFileTransfer::event(QEvent *event)
 {
     if(event->type() == QEvent::Type::User) {
         CFileTransferEvent* pEvent = (CFileTransferEvent*)event;
@@ -90,13 +90,13 @@ bool CBackendFieTransfer::event(QEvent *event)
     return CBackend::event(event);
 }
 
-CBackend::OnInitReturnValue CBackendFieTransfer::OnInit()
+CBackend::OnInitReturnValue CBackendFileTransfer::OnInit()
 {
     OnInitReturnValue nRet = InitSFTP();
     return nRet;
 }
 
-int CBackendFieTransfer::OnClean()
+int CBackendFileTransfer::OnClean()
 {
     int nRet = 0;
     if(m_pSFTP) {
@@ -107,7 +107,7 @@ int CBackendFieTransfer::OnClean()
     return nRet;
 }
 
-int CBackendFieTransfer::OnProcess()
+int CBackendFileTransfer::OnProcess()
 {
     int nRet = 0;
     
@@ -116,7 +116,7 @@ int CBackendFieTransfer::OnProcess()
     return nRet;
 }
 
-int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
+int CBackendFileTransfer::SetConnect(COperateFileTransfer *pOperate)
 {
     int nRet = 0;
     bool check = false;
@@ -144,7 +144,7 @@ int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
     return nRet;
 }
 
-CBackendFieTransfer::OnInitReturnValue CBackendFieTransfer::InitSFTP()
+CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
 {
     CParameterSSH* ssh = &m_pOperate->GetParameter()->m_SSH;
     m_pSFTP = new CChannelSFTP(this, ssh);
@@ -158,7 +158,7 @@ CBackendFieTransfer::OnInitReturnValue CBackendFieTransfer::InitSFTP()
     return OnInitReturnValue::UseOnProcess;
 }
 
-void CBackendFieTransfer::slotMakeDir(const QString &szDir)
+void CBackendFileTransfer::slotMakeDir(const QString &szDir)
 {
     if(szDir.isEmpty()) return;
     CFileTransferEvent* pEvent = new CFileTransferEvent(
@@ -167,7 +167,7 @@ void CBackendFieTransfer::slotMakeDir(const QString &szDir)
     WakeUp();
 }
 
-void CBackendFieTransfer::slotRemoveDir(const QString &szDir)
+void CBackendFileTransfer::slotRemoveDir(const QString &szDir)
 {
     if(szDir.isEmpty()) return;
     CFileTransferEvent* pEvent = new CFileTransferEvent(
@@ -176,7 +176,7 @@ void CBackendFieTransfer::slotRemoveDir(const QString &szDir)
     WakeUp();
 }
 
-void CBackendFieTransfer::slotRemoveFile(const QString &szFile)
+void CBackendFileTransfer::slotRemoveFile(const QString &szFile)
 {
     if(szFile.isEmpty()) return;
     CFileTransferEvent* pEvent = new CFileTransferEvent(
@@ -185,16 +185,16 @@ void CBackendFieTransfer::slotRemoveFile(const QString &szFile)
     WakeUp();
 }
 
-void CBackendFieTransfer::slotRename(const QString &oldName, const QString &newName)
+void CBackendFileTransfer::slotRename(const QString &oldName, const QString &newName)
 {
-    if(szFile.isEmpty()) return;
+    if(oldName.isEmpty() && newName.isEmpty()) return;
     CFileTransferEvent* pEvent = new CFileTransferEvent(
         CFileTransferEvent::Command::Rename, oldName, newName);
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }
 
-void CBackendFieTransfer::slotGetDir(CRemoteFileSystem *p)
+void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *p)
 {
     if(!p || p->GetPath().isEmpty())
         return;

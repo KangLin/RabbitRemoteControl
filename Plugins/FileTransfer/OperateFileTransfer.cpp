@@ -4,7 +4,7 @@
 #include <QLoggingCategory>
 #include <QRegularExpression>
 
-#include "BackendFieTransfer.h"
+#include "BackendFileTransfer.h"
 #include "OperateFileTransfer.h"
 #include "Plugin.h"
 #include "DlgFileTransfer.h"
@@ -30,7 +30,7 @@ COperateFileTransfer::~COperateFileTransfer()
 
 CBackend* COperateFileTransfer::InstanceBackend()
 {
-    return new CBackendFieTransfer(this);
+    return new CBackendFileTransfer(this);
 }
 
 CParameterFileTransfer* COperateFileTransfer::GetParameter()
