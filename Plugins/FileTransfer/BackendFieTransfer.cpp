@@ -14,6 +14,7 @@ public:
         MakeDir,
         RemoveDir,
         RemoveFile,
+        Rename,
         GetDir,
         Upload,
         Download
@@ -69,6 +70,10 @@ bool CBackendFieTransfer::event(QEvent *event)
         case CFileTransferEvent::Command::RemoveFile:
             if(m_pSFTP)
                 m_pSFTP->RemoveFile(pEvent->m_szSourcePath);
+            break;
+        case CFileTransferEvent::Command::Rename:
+            if(m_pSFTP)
+                m_pSFTP->Rename(pEvent->m_szSourcePath, pEvent->m_szDestination);
             break;
         case CFileTransferEvent::Command::GetDir:
         {
@@ -133,6 +138,9 @@ int CBackendFieTransfer::SetConnect(COperateFileTransfer *pOperate)
     check = connect(pForm, SIGNAL(sigRemoveFile(const QString&)),
                     this, SLOT(slotRemoveFile(const QString&)));
     Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigRename(const QString&, const QString&)),
+                    this, SLOT(slotRename(const QString&, const QString&)));
+    Q_ASSERT(check);
     return nRet;
 }
 
@@ -173,6 +181,15 @@ void CBackendFieTransfer::slotRemoveFile(const QString &szFile)
     if(szFile.isEmpty()) return;
     CFileTransferEvent* pEvent = new CFileTransferEvent(
         CFileTransferEvent::Command::RemoveFile, szFile);
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
+}
+
+void CBackendFieTransfer::slotRename(const QString &oldName, const QString &newName)
+{
+    if(szFile.isEmpty()) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::Rename, oldName, newName);
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }

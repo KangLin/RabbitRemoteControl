@@ -134,7 +134,8 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
+    
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     virtual void fetchMore(const QModelIndex &parent) override;
     virtual bool canFetchMore(const QModelIndex &parent) const override;
@@ -143,6 +144,7 @@ Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p);
     void sigRemoveDir(const QString& szPath);
     void sigRemoveFile(const QString& szFile);
+    void sigRename(const QString& oldName, const QString& newName);
 public Q_SLOTS:
     void slotGetDir(CRemoteFileSystem* p,
                        QVector<QSharedPointer<CRemoteFileSystem> > contents,

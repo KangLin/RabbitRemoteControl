@@ -68,6 +68,9 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     check = connect(m_pModelRemoteDir, SIGNAL(sigRemoveFile(const QString&)),
                     this, SIGNAL(sigRemoveFile(const QString&)));
     Q_ASSERT(check);
+    check = connect(m_pModelRemoteDir, SIGNAL(sigRename(const QString&, const QString&)),
+                    this, SIGNAL(sigRename(const QString&, const QString&)));
+    Q_ASSERT(check);
     m_pModelRemoteDir->SetRootPath("/");
     //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);

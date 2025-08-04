@@ -32,6 +32,7 @@ Q_SIGNALS:
     void sigMakeDir(const QString &szPath);
     void sigRemoveDir(const QString &szPath);
     void sigRemoveFile(const QString& szFile);
+    void sigRename(const QString& oldName, const QString& newName);
 
 private:
     //! Set local root path

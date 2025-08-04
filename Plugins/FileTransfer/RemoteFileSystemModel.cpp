@@ -637,3 +637,22 @@ void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
         fetchMore(index.parent());
     }
 }
+
+bool CRemoteFileSystemModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if(!index.isValid())
+        return false;
+    if(Qt::DisplayRole != role) {
+        return QAbstractItemModel::setData(index, value, role);
+    }
+    auto p = GetRemoteFileSystemFromIndex(index);
+    if(p && !p->GetPath().isEmpty()) {
+        emit sigRename(p->GetPath(), value.toString());
+
+        auto pParent = p->GetParent();
+        if(!pParent) pParent = m_pRoot;
+        pParent->RemoveChild(pParent->IndexOf(p));
+        pParent->SetState(CRemoteFileSystem::State::No);
+        fetchMore(index.parent());
+    }
+}

@@ -28,6 +28,7 @@ private Q_SLOTS:
     void slotRemoveDir(const QString& szDir);
     void slotGetDir(CRemoteFileSystem*);
     void slotRemoveFile(const QString& szFile);
+    void slotRename(const QString& oldName, const QString& newName);
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 
