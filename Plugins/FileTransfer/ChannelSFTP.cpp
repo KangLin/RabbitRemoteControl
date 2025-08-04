@@ -270,9 +270,11 @@ int CChannelSFTP::Rename(const QString &oldPath, const QString &newPath)
                        newPath.toStdString().c_str());
     if (nRet != SSH_OK)
     {
-        qCritical(log) << "Can't rename:" << nRet
-                       << ssh_get_error(m_Session);
-    }
+        qCritical(log) << "Fail: Can't rename:" << nRet
+                       << ssh_get_error(m_Session)
+                       << oldPath << newPath;
+    } else
+        qDebug(log) << "Rename:" << oldPath << "to" << newPath;
     return nRet;
 }
 

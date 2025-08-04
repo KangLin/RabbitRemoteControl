@@ -668,14 +668,18 @@ void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
 
 bool CRemoteFileSystemModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    qDebug(log) << Q_FUNC_INFO << index << value << role;
     if(!index.isValid())
         return false;
-    if(Qt::DisplayRole != role) {
+    if(Qt::EditRole != role) {
         return QAbstractItemModel::setData(index, value, role);
     }
     auto p = GetRemoteFileSystemFromIndex(index);
-    if(p && !p->GetPath().isEmpty()) {
-        emit sigRename(p->GetPath(), value.toString());
+    QString szName = value.toString();
+    if(p && !p->GetPath().isEmpty() && p->GetName() != szName) {
+        QFileInfo fi(p->GetPath());
+        szName = fi.path() + "/" + szName;
+        emit sigRename(p->GetPath(), szName);
 
         auto pParent = p->GetParent();
         if(!pParent) pParent = m_pRoot;
@@ -684,4 +688,15 @@ bool CRemoteFileSystemModel::setData(const QModelIndex &index, const QVariant &v
         fetchMore(index.parent());
     }
     return true;
+}
+
+Qt::ItemFlags CRemoteFileSystemModel::flags(const QModelIndex &index) const
+{
+    Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
+    if (!index.isValid())
+        return defaultFlags;
+    // 例如，只允许名称列可编辑
+    if (index.column() == (int)CRemoteFileSystem::ColumnValue::Name)
+        return defaultFlags | Qt::ItemIsEditable;
+    return defaultFlags;
 }
