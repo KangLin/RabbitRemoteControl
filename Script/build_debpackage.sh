@@ -146,7 +146,7 @@ $BUILD_DEPS "debian/control"
 #                              do not check builtin build dependencies.
 
 #The -us -uc tell it there is no need to GPG sign the package. the -b is build binary
-$BUILD_PKG -us -uc -b -d
+$BUILD_PKG -us -uc -b
 
 #The -us -uc tell it there is no need to GPG sign the package. the -S is build source package
 #$BUILD_PKG -us -uc -S

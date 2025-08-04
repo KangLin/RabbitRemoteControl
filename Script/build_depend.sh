@@ -444,7 +444,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     echo "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/pcapplusplus ]; then
-        git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+        git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         cd PcapPlusPlus
         cmake -E make_directory build
         cd build
@@ -499,27 +499,34 @@ fi
 if [ $QTERMWIDGET -eq 1 ]; then
     echo "Install qtermwidget ......"
     pushd "$SOURCE_DIR"
+    #CMAKE=`/usr/bin/qtpaths6 --query QT_HOST_BINS`/qt-cmake
+    #echo "CMAKE: $CMAKE"
     if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
         echo "Install lxqt-build-tools ......"
         if [ ! -d lxqt-build-tools ]; then
-            git clone --depth=1 https://github.com/lxqt/lxqt-build-tools.git
+            git clone --depth=1 -b 2.2.1 https://github.com/lxqt/lxqt-build-tools.git
         fi
         cd lxqt-build-tools
+        sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
         cmake -E make_directory build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
     fi
     if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
-        git clone https://github.com/KangLin/qtermwidget.git
+        if [ ! -d qtermwidget ]; then
+            git clone --depth=1 https://github.com/KangLin/qtermwidget.git
+        fi
         cd qtermwidget
         cmake -E make_directory build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
         cmake --build . --config Release --parallel $(nproc)
