@@ -18,8 +18,11 @@ QTelnet::QTelnet(SocketType type, QObject *parent) :
     connect(&m_tcpSocket, &QTcpSocket::errorOccurred, this, &QTelnet::socketError);
     connect(&m_tcpSocket, &QTcpSocket::readyRead, this, &QTelnet::onTcpReadyRead);
     connect(&m_tcpSocket, &QTcpSocket::stateChanged, this, &QTelnet::onStateChanged);
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
     connect(&m_webSocket, &QWebSocket::errorOccurred, this, &QTelnet::socketError);
+#else
+    connect(&m_webSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error), this, &QTelnet::socketError);
+#endif
     connect(&m_webSocket, &QWebSocket::binaryMessageReceived, this, &QTelnet::binaryMessageReceived);
     connect(&m_webSocket, &QWebSocket::stateChanged, this, &QTelnet::onStateChanged);
 }
