@@ -12,11 +12,12 @@ class CRemoteFileSystem : public QObject
 public:
     enum class TYPE {
         NO = 0x00,
-        DRIVE = 0x01,
-        DIR = 0x02,
-        FILE = 0x04,
+        FILE = 0x01,
+        DRIVE = 0x02,
+        DIR = 0x04,
         SYMLINK = 0x08,
         SPECIAL = 0x10,
+        DIRS = DRIVE | DIR | SYMLINK | SPECIAL,
         ALL = DRIVE | DIR | FILE | SYMLINK | SPECIAL
     };
     Q_ENUM(TYPE)
@@ -39,7 +40,7 @@ public:
     [[nodiscard]] static QString HeaderData(int section);
     [[nodiscard]] QVariant Data(int column);
 
-    [[nodiscard]] int ChildCount(TYPES filter = TYPE::ALL);
+    [[nodiscard]] int ChildCount();
     [[nodiscard]] int ColumnCount();
 
     void SetParent(CRemoteFileSystem* pParent);
@@ -105,8 +106,6 @@ private:
     Permissions m_Permissions;
     QString m_szOwner;
     State m_State;
-    int m_DirCount;
-    int m_FileCount;
 };
 
 class CRemoteFileSystemModel : public QAbstractItemModel
@@ -114,21 +113,24 @@ class CRemoteFileSystemModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit CRemoteFileSystemModel(QObject *parent = nullptr);
+    explicit CRemoteFileSystemModel(
+        QObject *parent = nullptr,
+        CRemoteFileSystem::TYPES filter = CRemoteFileSystem::TYPE::ALL
+        );
     virtual ~CRemoteFileSystemModel();
 
     QModelIndex SetRootPath(const QString &szPath);
     [[nodiscard]] CRemoteFileSystem* GetRoot();
     [[nodiscard]] CRemoteFileSystem* GetRemoteFileSystemFromIndex(const QModelIndex &index) const;
-    void SetFilter(CRemoteFileSystem::TYPES filter);
     [[nodiscard]] CRemoteFileSystem::TYPES GetFilter();
+
     void CreateDir(QModelIndex index, const QString& dir);
     void RemoveDir(QModelIndex index);
 
-    // Header:
     QVariant headerData(int section,
                         Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
+
     [[nodiscard]] QModelIndex index(CRemoteFileSystem *node, int column = 0) const;
     [[nodiscard]] QModelIndex index(const QString& szPath) const;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
@@ -136,7 +138,7 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    
+
     virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -158,8 +160,7 @@ private:
     CRemoteFileSystem* m_pRoot;
     CRemoteFileSystem::TYPES m_Filter;
     QList<CRemoteFileSystem*> m_GetFolder;
-    
+
 private:
     void DeleteRemoteFileSystem(CRemoteFileSystem* p);
-
 };

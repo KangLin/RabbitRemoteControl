@@ -208,7 +208,7 @@ int CChannelSFTP::RemoveDir(const QString& dir)
             qDebug(log) << "Removed directory (directly):" << dir;
             return SSH_OK;
         } else {
-            qCritical(log) << "Can't remove directory:" << ssh_get_error(m_Session) << dir;
+            qCritical(log) << "Can't remove directory:" << dir << ssh_get_error(m_Session);
             return ret;
         }
     }
@@ -241,7 +241,7 @@ int CChannelSFTP::RemoveDir(const QString& dir)
     // 3. 删除空目录
     int ret = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
     if (ret != SSH_OK) {
-        qCritical(log) << "Can't remove directory:" << ssh_get_error(m_Session) << dir;
+        qCritical(log) << "Can't remove directory:" << dir << ssh_get_error(m_Session);
     } else {
         qDebug(log) << "Removed directory:" << dir;
     }

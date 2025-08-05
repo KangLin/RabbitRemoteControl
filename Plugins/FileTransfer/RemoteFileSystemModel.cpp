@@ -1,7 +1,6 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
 // Author Kang Lin <kl222@126.com>
 
-
 #include <QStyle>
 #include <QApplication>
 #include <QIcon>
@@ -26,8 +25,6 @@ CRemoteFileSystem::CRemoteFileSystem(
     , m_Type(type)
     , m_Permissions(Permission::No)
     , m_State(State::No)
-    , m_DirCount(0)
-    , m_FileCount(0)
 {
 }
 
@@ -141,14 +138,9 @@ int CRemoteFileSystem::ColumnCount()
 #endif
 }
 
-int CRemoteFileSystem::ChildCount(TYPES filter)
+int CRemoteFileSystem::ChildCount()
 {
-    int nCount = 0;
-    if(filter & TYPE::FILE)
-        nCount += m_FileCount;
-    if(filter & TYPE::DIR)
-        nCount += m_DirCount;
-    return nCount;
+    return m_vChild.size();
 }
 
 void CRemoteFileSystem::SetParent(CRemoteFileSystem *pParent)
@@ -165,10 +157,10 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
 {
     Q_ASSERT_X(pChild->GetType(), "AppendChild", "Must set all the properties before call them");
 
-    if(m_vChild.contains(pChild)) {
-        qDebug(log) << pChild->GetName() << "is exist";
-        return 0;
-    }
+    // if(m_vChild.contains(pChild)) {
+    //     qDebug(log) << pChild->GetName() << "is exist";
+    //     return 0;
+    // }
     if(-1 != IndexOf(pChild->GetPath()))
     {
         qDebug(log) << pChild->GetName() << "is exist";
@@ -176,17 +168,6 @@ int CRemoteFileSystem::AppendChild(CRemoteFileSystem *pChild)
     }
 
     m_vChild.append(pChild);
-    if(pChild->GetType() & TYPE::FILE)
-        m_FileCount++;
-    if(pChild->GetType() & TYPE::DIR)
-        m_DirCount++;
-    if(pChild->GetType() & TYPE::DRIVE)
-        m_DirCount++;
-    if(pChild->GetType() & TYPE::SYMLINK)
-        m_FileCount++;
-    if(pChild->GetType() & TYPE::SPECIAL)
-        m_FileCount++;
-    Q_ASSERT(m_vChild.size() == m_FileCount + m_DirCount);
     pChild->SetParent(this);
     return 0;
 }
@@ -195,20 +176,7 @@ int CRemoteFileSystem::RemoveChild(int index)
 {
     if(0 > index || m_vChild.size() < index)
         return -1;
-    auto pChild = m_vChild.at(index);
-    if(!pChild) return -1;
-    if(pChild->GetType() & TYPE::FILE)
-        m_FileCount--;
-    if(pChild->GetType() & TYPE::DIR)
-        m_DirCount--;
-    if(pChild->GetType() & TYPE::DRIVE)
-        m_DirCount--;
-    if(pChild->GetType() & TYPE::SYMLINK)
-        m_FileCount--;
-    if(pChild->GetType() & TYPE::SPECIAL)
-        m_FileCount--;
     m_vChild.removeAt(index);
-    Q_ASSERT(m_vChild.size() == m_FileCount + m_DirCount);
     return 0;
 }
 
@@ -345,10 +313,11 @@ const CRemoteFileSystem::State CRemoteFileSystem::GetState() const
     return m_State;
 }
 
-CRemoteFileSystemModel::CRemoteFileSystemModel(QObject *parent)
+CRemoteFileSystemModel::CRemoteFileSystemModel(
+    QObject *parent, CRemoteFileSystem::TYPES filter)
     : QAbstractItemModel(parent)
     , m_pRoot(nullptr)
-    , m_Filter(CRemoteFileSystem::TYPE::ALL)
+    , m_Filter(filter)
 {}
 
 CRemoteFileSystemModel::~CRemoteFileSystemModel()
@@ -380,9 +349,9 @@ QModelIndex CRemoteFileSystemModel::SetRootPath(const QString &szPath)
         m_pRoot = nullptr;
     }
     m_pRoot = new CRemoteFileSystem(szPath, CRemoteFileSystem::TYPE::DIR);
+    endResetModel();
     QModelIndex idx = index(m_pRoot);
     qDebug(log) << Q_FUNC_INFO << this << idx << szPath;
-    endResetModel();
     return idx;
 }
 
@@ -396,11 +365,6 @@ CRemoteFileSystem* CRemoteFileSystemModel::GetRemoteFileSystemFromIndex(const QM
     if(index.isValid())
         return static_cast<CRemoteFileSystem*>(index.internalPointer());
     return nullptr;
-}
-
-void CRemoteFileSystemModel::SetFilter(CRemoteFileSystem::TYPES filter)
-{
-    m_Filter = filter;
 }
 
 CRemoteFileSystem::TYPES CRemoteFileSystemModel::GetFilter()
@@ -428,7 +392,7 @@ int CRemoteFileSystemModel::rowCount(const QModelIndex &parent) const
     if(!pItem)
         pItem = m_pRoot;
     if(pItem)
-        return pItem->ChildCount(m_Filter);
+        return pItem->ChildCount();
     return 0;
 }
 
@@ -542,7 +506,7 @@ QModelIndex CRemoteFileSystemModel::parent(const QModelIndex &child) const
 bool CRemoteFileSystemModel::canFetchMore(const QModelIndex &parent) const
 {
     if(!parent.isValid()) {
-        qDebug(log) << "canFetchMore: true";
+        qDebug(log) << "canFetchMore: true" << parent;
         return true;
     }
     CRemoteFileSystem* p = GetRemoteFileSystemFromIndex(parent);
@@ -563,20 +527,25 @@ bool CRemoteFileSystemModel::canFetchMore(const QModelIndex &parent) const
 
 void CRemoteFileSystemModel::fetchMore(const QModelIndex &parent)
 {
+    qDebug(log) << Q_FUNC_INFO << parent;
     auto p = GetRemoteFileSystemFromIndex(parent);
     if(!p)
         p = m_pRoot;
     if(!p) {
-        qCritical(log) << "fetchMore:" << "The pointer is nullptr";
+        qCritical(log) << "fetchMore:" << parent << "The pointer is nullptr";
+        return;
+    }
+    if(p->GetType() & CRemoteFileSystem::TYPE::FILE) {
+        qCritical(log) << "fetchMore:" << parent << "The node is file";
         return;
     }
     QString szPath = p->GetPath();
     if(szPath.isEmpty()) {
-        qCritical(log) << "The path is empty";
+        qCritical(log) << "fetchMore:" << parent << "The path is empty";
         return;
     }
     if(p->GetState() != CRemoteFileSystem::State::No) {
-        qDebug(log) << p->GetState() << "The state is not NO";
+        qDebug(log) << "fetchMore:" << parent << p->GetState() << "The state is not NO";
         return;
     }
     p->SetState(CRemoteFileSystem::State::Getting);
@@ -612,6 +581,7 @@ void CRemoteFileSystemModel::slotGetDir(
         beginInsertRows(parentIndex, 0, contents.size() - 1);
         foreach(auto p, contents) {
             if(!p) continue;
+            if(!(p->GetType() & GetFilter())) continue;
             CRemoteFileSystem* pRfs =
                 new CRemoteFileSystem(p->GetPath(), p->GetType());
             pRfs->SetSize(p->GetSize());
@@ -657,7 +627,7 @@ void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
             emit sigRemoveDir(p->GetPath());
         else
             emit sigRemoveFile(p->GetPath());
-        
+
         auto pParent = p->GetParent();
         if(!pParent) pParent = m_pRoot;
         pParent->RemoveChild(pParent->IndexOf(p));
@@ -695,7 +665,7 @@ Qt::ItemFlags CRemoteFileSystemModel::flags(const QModelIndex &index) const
     Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
     if (!index.isValid())
         return defaultFlags;
-    // 例如，只允许名称列可编辑
+    // 只允许名称列可编辑
     if (index.column() == (int)CRemoteFileSystem::ColumnValue::Name)
         return defaultFlags | Qt::ItemIsEditable;
     return defaultFlags;

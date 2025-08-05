@@ -25,7 +25,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     bool check = false;
     ui->setupUi(this);
 
-    m_pModelLocalDir = new QFileSystemModel(this);
+    m_pModelLocalDir = new QFileSystemModel(ui->treeLocal);
     m_pModelLocalDir->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     m_pModelLocalDir->setReadOnly(false);
     ui->treeLocal->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -43,7 +43,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeLocal->header()->hideSection(2);
     ui->treeLocal->header()->hideSection(3);
 
-    m_pModelLocalFile = new QFileSystemModel(this);
+    m_pModelLocalFile = new QFileSystemModel(ui->tabLocal);
     m_pModelLocalFile->setFilter(QDir::Files);
     m_pModelLocalFile->setReadOnly(false);
     ui->tabLocal->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -55,10 +55,9 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->tabLocal->horizontalHeader()->setSectionResizeMode(
         QHeaderView::ResizeToContents);
 
-    m_pModelRemoteDir = new CRemoteFileSystemModel(this);
+    m_pModelRemoteDir = new CRemoteFileSystemModel(ui->treeRemote, CRemoteFileSystem::TYPE::DIRS);
     SetRemoteConnecter(m_pModelRemoteDir);
     m_pModelRemoteDir->SetRootPath("/");
-    //m_pModelRemoteDir->SetFilter((CRemoteFileSystem::TYPES)(CRemoteFileSystem::TYPE::DIR) | CRemoteFileSystem::TYPE::DRIVE);
     ui->treeRemote->setModel(m_pModelRemoteDir);
     ui->treeRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -70,10 +69,9 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Permission);
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
     
-    m_pModelRemoteFile = new CRemoteFileSystemModel(this);
+    m_pModelRemoteFile = new CRemoteFileSystemModel(ui->tabRemote, CRemoteFileSystem::TYPE::FILE);
     SetRemoteConnecter(m_pModelRemoteFile);
     m_pModelRemoteFile->SetRootPath("/");
-    //m_pModelRemoteFile->SetFilter(CRemoteFileSystem::TYPE::FILE);
     ui->tabRemote->setModel(m_pModelRemoteFile);
     ui->tabRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tabRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -82,7 +80,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     // ui->tabRemote->horizontalHeader()->setSectionResizeMode(
     //     QHeaderView::ResizeToContents);
 
-    m_pListFileModel = new CListFileModel(this);
+    m_pListFileModel = new CListFileModel(ui->tabList);
     ui->tabList->setModel(m_pListFileModel);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
     ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Time, true);
@@ -330,7 +328,8 @@ void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
     QString szPath = pRemoteFileSystem->GetPath();
     if(szPath.isEmpty()) return;
     qDebug(log) << Q_FUNC_INFO << szPath;
-    m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
+    if(m_pModelRemoteFile)
+        m_pModelRemoteFile->SetRootPath(pRemoteFileSystem->GetPath());
     if(-1 == ui->cbRemote->findText(szPath)) {
         ui->cbRemote->addItem(szPath, index);
     }
