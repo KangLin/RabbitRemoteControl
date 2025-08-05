@@ -213,8 +213,8 @@
     </message>
     <message>
         <location filename="../../PluginFileTransfer.cpp" line="45"/>
-        <source>File transfer: include sftp, ftp etc</source>
-        <translation>文件传输：包括 sftp、ftp 等</translation>
+        <source>File transfer: include sftp, ftp</source>
+        <translation>文件传输：包括 sftp、ftp</translation>
     </message>
 </context>
 <context>

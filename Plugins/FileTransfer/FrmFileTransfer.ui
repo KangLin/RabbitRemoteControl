@@ -134,7 +134,11 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QTableView" name="tabList"/>
+         <widget class="QTableView" name="tabList">
+          <property name="contextMenuPolicy">
+           <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

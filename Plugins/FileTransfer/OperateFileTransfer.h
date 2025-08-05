@@ -44,6 +44,9 @@ protected:
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
+    
+private Q_SLOTS:
+    void slotCopyUrlToClipboard(const QString& szPath);
 
 private:
     CFrmFileTransfer* m_frmFileTransfer;

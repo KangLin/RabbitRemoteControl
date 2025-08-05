@@ -29,6 +29,9 @@ CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
         check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
                         pB, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));
         Q_ASSERT(check);
+        check = connect(this, SIGNAL(sigError(int,QString)),
+                        pB, SIGNAL(sigError(int,QString)));
+        Q_ASSERT(check);
     }
 }
 
@@ -43,18 +46,18 @@ int CChannelSFTP::Process()
 
     fd_set set;
     FD_ZERO(&set);
-    socket_t fd = SSH_INVALID_SOCKET;
+    socket_t fdEvent = SSH_INVALID_SOCKET;
     if(m_pEvent)
-        fd = m_pEvent->GetFd();
-    if(SSH_INVALID_SOCKET != fd)
-        FD_SET(fd, &set);
+        fdEvent = m_pEvent->GetFd();
+    if(SSH_INVALID_SOCKET != fdEvent)
+        FD_SET(fdEvent, &set);
 
     socket_t sshFd = ssh_get_fd(m_Session);
     if(SSH_INVALID_SOCKET != sshFd)
         FD_SET(sshFd, &set);
 
-    socket_t f = qMax(sshFd, fd);
-    //qDebug(log) << "ssh_select:" << fd;
+    socket_t f = qMax(sshFd, fdEvent);
+    //qDebug(log) << "ssh_select:" << fdEvent;
     nRet = ssh_select(channels, channel_out, f + 1, &set, &timeout);
     //qDebug(log) << "ssh_select end:" << nRet;
     if(EINTR == nRet)
@@ -69,11 +72,16 @@ int CChannelSFTP::Process()
         return -3;
     }
 
-    if(SSH_INVALID_SOCKET != fd && FD_ISSET(fd, &set)) {
+    if(SSH_INVALID_SOCKET != fdEvent && FD_ISSET(fdEvent, &set)) {
         //qDebug(log) << "fires event";
         if(m_pEvent) {
             nRet = m_pEvent->Reset();
-            if(nRet) return -4;
+            if(nRet) {
+                QString szErr = "Reset event fail";
+                qCritical(log) << szErr;
+                setErrorString(szErr);
+                return -4;
+            }
         }
     }
 
@@ -110,6 +118,7 @@ QSharedPointer<CRemoteFileSystem> CChannelSFTP::GetFileNode(
         break;
     default:
         qWarning(log) << "Unsupported type:" << attributes->type;
+        return nullptr;
         break;
     }
     if(szPath.right(1) == '/')
@@ -137,9 +146,11 @@ int CChannelSFTP::GetDir(CRemoteFileSystem* p)
     dir = sftp_opendir(m_SessionSftp, szPath.toStdString().c_str());
     if (!dir)
     {
-        qCritical(log) << "Directory not opened:"
-                       << sftp_get_error(m_SessionSftp)
-                       << ssh_get_error(m_Session);
+        QString szErr = "Directory not opened:"
+                            + QString::number(sftp_get_error(m_SessionSftp))
+                            + ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        emit sigError(-1, szErr);
         return SSH_ERROR;
     }
 
@@ -185,8 +196,11 @@ int CChannelSFTP::MakeDir(const QString &dir)
     {
         if (sftp_get_error(m_SessionSftp) != SSH_FX_FILE_ALREADY_EXISTS)
         {
-            qCritical(log) << "Can't create directory:" << nRet
-                    << ssh_get_error(m_Session);
+            QString szErr = "Can't create directory: "
+                            + dir + QString::number(nRet)
+                            + ssh_get_error(m_Session);
+            qCritical(log) << szErr;
+            emit sigError(nRet, szErr);
         } else
             qDebug(log) << "Create directory:" << dir;
     }
@@ -197,7 +211,7 @@ int CChannelSFTP::RemoveDir(const QString& dir)
 {
     if (!m_SessionSftp)
         return SSH_FX_NO_CONNECTION;
-    
+
     // 1. 打开目录
     sftp_dir sftpDir = sftp_opendir(m_SessionSftp, dir.toStdString().c_str());
     if (!sftpDir) {
@@ -208,11 +222,13 @@ int CChannelSFTP::RemoveDir(const QString& dir)
             qDebug(log) << "Removed directory (directly):" << dir;
             return SSH_OK;
         } else {
-            qCritical(log) << "Can't remove directory:" << dir << ssh_get_error(m_Session);
+            QString szErr = "Can't remove directory:" + dir + ssh_get_error(m_Session);
+            qCritical(log) << szErr;
+            emit sigError(ret, szErr);
             return ret;
         }
     }
-    
+
     // 2. 遍历目录内容
     sftp_attributes attr;
     while ((attr = sftp_readdir(m_SessionSftp, sftpDir)) != NULL) {
@@ -229,19 +245,24 @@ int CChannelSFTP::RemoveDir(const QString& dir)
             // 删除文件
             int ret = sftp_unlink(m_SessionSftp, fullPath.toStdString().c_str());
             if (ret != SSH_OK) {
-                qCritical(log) << "Can't remove file:" << fullPath << ssh_get_error(m_Session);
+                QString szErr = "Can't remove file:" + fullPath + ssh_get_error(m_Session);
+                qCritical(log) << szErr;
+                emit sigError(ret, szErr);
             } else {
                 qDebug(log) << "Removed file:" << fullPath;
             }
         }
         sftp_attributes_free(attr);
     }
+
     sftp_closedir(sftpDir);
     
     // 3. 删除空目录
     int ret = sftp_rmdir(m_SessionSftp, dir.toStdString().c_str());
     if (ret != SSH_OK) {
-        qCritical(log) << "Can't remove directory:" << dir << ssh_get_error(m_Session);
+        QString szErr = "Can't remove directory:" + dir + ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        emit sigError(ret, szErr);
     } else {
         qDebug(log) << "Removed directory:" << dir;
     }
@@ -253,7 +274,9 @@ int CChannelSFTP::RemoveFile(const QString &file)
     // 删除文件
     int ret = sftp_unlink(m_SessionSftp, file.toStdString().c_str());
     if (ret != SSH_OK) {
-        qCritical(log) << "Can't remove file:" << file << ssh_get_error(m_Session);
+        QString szErr = "Can't remove file:" + file + ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        emit sigError(ret, szErr);
     } else {
         qDebug(log) << "Removed file:" << file;
     }
@@ -270,9 +293,11 @@ int CChannelSFTP::Rename(const QString &oldPath, const QString &newPath)
                        newPath.toStdString().c_str());
     if (nRet != SSH_OK)
     {
-        qCritical(log) << "Fail: Can't rename:" << nRet
-                       << ssh_get_error(m_Session)
-                       << oldPath << newPath;
+        QString szErr = "Fail: Can't rename: " + QString::number(nRet)
+                       + ssh_get_error(m_Session)
+                       + " " + oldPath + " to " + newPath;
+        qCritical(log) << szErr;
+        emit sigError(nRet, szErr);
     } else
         qDebug(log) << "Rename:" << oldPath << "to" << newPath;
     return nRet;
@@ -299,14 +324,19 @@ int CChannelSFTP::OnOpen(ssh_session session)
     m_SessionSftp = sftp_new(session);
     if (!m_SessionSftp)
     {
-        qCritical(log) << "Error allocating SFTP session:" << ssh_get_error(session);
+        QString szErr = "Error allocating SFTP session: ";
+        szErr += ssh_get_error(session);
+        qCritical(log) << szErr;
+        emit sigError(nRet, szErr);
         return SSH_ERROR;
     }
 
     nRet = sftp_init(m_SessionSftp);
     if (SSH_OK != nRet)
     {
-        qCritical(log) << "Error initializing SFTP session:" << sftp_get_error(m_SessionSftp);
+        QString szErr = "Error initializing SFTP session:" + sftp_get_error(m_SessionSftp);
+        qCritical(log) << szErr;
+        emit sigError(nRet, szErr);
         sftp_free(m_SessionSftp);
         m_SessionSftp = nullptr;
         return nRet;

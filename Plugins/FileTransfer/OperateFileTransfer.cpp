@@ -3,6 +3,10 @@
 
 #include <QLoggingCategory>
 #include <QRegularExpression>
+#include <QClipboard>
+#include <QApplication>
+#include <QMimeData>
+#include <QUrl>
 
 #include "BackendFileTransfer.h"
 #include "OperateFileTransfer.h"
@@ -61,6 +65,11 @@ int COperateFileTransfer::Initial()
     }
 
     m_frmFileTransfer = new CFrmFileTransfer();
+    if(m_frmFileTransfer) {
+        bool check = connect(m_frmFileTransfer, SIGNAL(sigCopyUrlToClipboard(const QString&)),
+                             this, SLOT(slotCopyUrlToClipboard(const QString&)));
+        Q_ASSERT(check);
+    }
 
     return nRet;
 }
@@ -199,4 +208,35 @@ const QString COperateFileTransfer::Id()
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
+}
+
+void COperateFileTransfer::slotCopyUrlToClipboard(const QString &szPath)
+{
+    QUrl url;
+    url.setPath(szPath);
+    CParameterNet* pNet = nullptr;
+    if(m_Parameter.GetProtocol() == CParameterFileTransfer::Protocol::SFTP) {
+        pNet = &m_Parameter.m_SSH.m_Net;
+        if(pNet->GetHost().isEmpty()) {
+            return;
+        }
+        url.setScheme("sftp");
+    }
+    if(m_Parameter.GetProtocol() == CParameterFileTransfer::Protocol::FTP) {
+        pNet = &m_Parameter.m_Net;
+        if(pNet->GetHost().isEmpty()) {
+            return;
+        }
+        url.setScheme("ftp");
+    }
+    if(!pNet) return;
+    url.setUserName(pNet->m_User.GetUser());
+    //url.setPassword(pNet->m_User.GetPassword());
+    url.setHost(pNet->GetHost());
+    url.setPort(pNet->GetPort());
+    QClipboard* pClipboard = QApplication::clipboard();
+    pClipboard->setText(url.toString());
+    // QMimeData* d = new QMimeData();
+    // d->setUrls(QList<QUrl>() << QUrl(url));
+    // pClipboard->setMimeData(d);
 }

@@ -9,6 +9,7 @@ CParameterFileTransfer::CParameterFileTransfer(QObject *parent, const QString &s
     , m_SSH(this)
     , m_Protocol(Protocol::SFTP)
 {
+    m_Net.SetPort(21);
 }
 
 CParameterFileTransfer::Protocol CParameterFileTransfer::GetProtocol() const

@@ -82,15 +82,27 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
 
     m_pListFileModel = new CListFileModel(ui->tabList);
     ui->tabList->setModel(m_pListFileModel);
-    ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
-    ui->tabList->setColumnHidden((int)CListFileModel::ColumnValue::Time, true);
+    //ui->tabList->verticalHeader()->hide();
+    ui->tabList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tabList->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tabList->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tabList->setColumnHidden((int)CFileTransfer::ColumnValue::Explanation, true);
+    ui->tabList->setColumnHidden((int)CFileTransfer::ColumnValue::Time, true);
     ui->tabFail->setModel(m_pListFileModel);
-    ui->tabFail->setColumnHidden((int)CListFileModel::ColumnValue::State, true);
-    ui->tabFail->setColumnHidden((int)CListFileModel::ColumnValue::Speed, true);
+    ui->tabFail->verticalHeader()->hide();
+    ui->tabFail->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tabFail->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tabFail->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tabFail->setColumnHidden((int)CFileTransfer::ColumnValue::State, true);
+    ui->tabFail->setColumnHidden((int)CFileTransfer::ColumnValue::Speed, true);
     ui->tabSuccess->setModel(m_pListFileModel);
-    ui->tabSuccess->setColumnHidden((int)CListFileModel::ColumnValue::State, true);
-    ui->tabSuccess->setColumnHidden((int)CListFileModel::ColumnValue::Speed, true);
-    ui->tabSuccess->setColumnHidden((int)CListFileModel::ColumnValue::Explanation, true);
+    ui->tabSuccess->verticalHeader()->hide();
+    ui->tabSuccess->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tabSuccess->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tabSuccess->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tabSuccess->setColumnHidden((int)CFileTransfer::ColumnValue::State, true);
+    ui->tabSuccess->setColumnHidden((int)CFileTransfer::ColumnValue::Speed, true);
+    ui->tabSuccess->setColumnHidden((int)CFileTransfer::ColumnValue::Explanation, true);
 }
 
 CFrmFileTransfer::~CFrmFileTransfer()
@@ -173,9 +185,9 @@ void CFrmFileTransfer::on_treeLocal_customContextMenuRequested(const QPoint &pos
     if(idx.isValid()) {
         menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
                        this, SLOT(slotTreeLocalDelete()));
-        menu.addAction(tr("Rename"),
+        menu.addAction(QIcon::fromTheme("rename"), tr("Rename"),
                        this, SLOT(slotTreeLocalRename()));
-        menu.addAction(tr("Copy path to clipboard"),
+        menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy path to clipboard"),
                        this, SLOT(slotTreeLocalCopyToClipboard()));
     }
     menu.exec(ui->treeLocal->viewport()->mapToGlobal(pos));
@@ -225,9 +237,6 @@ void CFrmFileTransfer::slotTreeLocalCopyToClipboard()
     if(szPath.isEmpty()) return;
     QClipboard* pClipboard = QApplication::clipboard();
     pClipboard->setText(szPath);
-    // QMimeData* d = new QMimeData();
-    // d->setUrls(QList<QUrl>() << QUrl::fromLocalFile(szPath));
-    // pClipboard->setMimeData(d);
 }
 
 void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
@@ -246,9 +255,9 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
                        this, SLOT(slotTabLocalEdit()));
         menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
                        this, SLOT(slotTabLocalDelete()));
-        menu.addAction(tr("Rename"),
+        menu.addAction(QIcon::fromTheme("rename"), tr("Rename"),
                        this, SLOT(slotTabLocalRename()));
-        menu.addAction(tr("Copy path to clipboard"),
+        menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy path to clipboard"),
                        this, SLOT(slotTabLocalCopyToClipboard()));
     }
     menu.exec(ui->tabLocal->viewport()->mapToGlobal(pos));
@@ -261,17 +270,40 @@ void CFrmFileTransfer::slotTabLocalCopyToClipboard()
     if(szPath.isEmpty()) return;
     QClipboard* pClipboard = QApplication::clipboard();
     pClipboard->setText(szPath);
-    // QMimeData* d = new QMimeData();
-    // d->setUrls(QList<QUrl>() << QUrl::fromLocalFile(szPath));
-    // pClipboard->setMimeData(d);
 }
 
 void CFrmFileTransfer::slotTabLocalUpload()
 {
+    auto idx = ui->tabLocal->currentIndex();
+    QString szPath = m_pModelLocalDir->filePath(idx);
+    if(szPath.isEmpty()) return;
 }
 
 void CFrmFileTransfer::slotTabLocalAddToList()
 {
+    QString szRemote = ui->cbRemote->currentText();
+    if(szRemote.isEmpty()) {
+        QMessageBox::critical(this, tr("Error"), tr("Please select remote directory"));
+        return;
+    }
+    auto indexs = ui->tabLocal->selectionModel()->selectedRows();
+    foreach(auto idx, indexs) {
+        QString szLocal = m_pModelLocalFile->filePath(idx);
+        if(szLocal.isEmpty()) {
+            qDebug(log) << "The select is empty:" << idx;
+            continue;
+        }
+        QFileInfo fi(szLocal);
+        if(!fi.exists()) {
+            QMessageBox::critical(this, tr("Error"), tr("The file is not exists:") + szLocal);
+            continue;
+        }
+        QSharedPointer<CFileTransfer> f(new CFileTransfer(
+            szLocal, szRemote + "/" + fi.fileName(),
+            CFileTransfer::Direction::Upload));
+        f->SetFileSize(fi.size());
+        m_pListFileModel->AddFileTransfer(f);
+    }
 }
 
 void CFrmFileTransfer::slotTabLocalOpen()
@@ -359,11 +391,11 @@ void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &po
     if(idx.isValid()) {
         menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
                        this, SLOT(slotTreeRemoteDelete()));
-        menu.addAction(tr("Rename"),
+        menu.addAction(QIcon::fromTheme("rename"), tr("Rename"),
                        this, SLOT(slotTreeRemoteRename()));
-        menu.addAction(QIcon::fromTheme("refresh"), tr("Refresh"),
+        menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                        this, SLOT(slotTreeRemoteRefresh()));
-        menu.addAction(tr("Copy url to clipboard"),
+        menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy url to clipboard"),
                        this, SLOT(slotTreeRemoteCopyToClipboard()));
     }
     menu.exec(ui->treeRemote->viewport()->mapToGlobal(pos));
@@ -401,7 +433,7 @@ void CFrmFileTransfer::slotTreeRemoteRefresh()
         auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
         if(p && !p->GetPath().isEmpty()) {
             p->SetState(CRemoteFileSystem::State::No);
-            ui->treeRemote->expand(idx);
+            m_pModelRemoteDir->fetchMore(idx);
         }
     }
 }
@@ -417,12 +449,8 @@ void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()
     if(idx.isValid()) {
         auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
         if(p) {
-            QClipboard* pClipboard = QApplication::clipboard();
-            //TODO: add protocol + host
-            QString u = p->GetPath();
-            QUrl url(u);
-            pClipboard->setText(p->GetPath());
-            //pClipboard->mimeData()->setUrls(QList<QUrl>() << url);
+            QString szPath = p->GetPath();
+            emit sigCopyUrlToClipboard(szPath);
         }
     }
 }
@@ -443,9 +471,9 @@ void CFrmFileTransfer::on_tabRemote_customContextMenuRequested(const QPoint &pos
     if(idx.isValid()) {
         menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
                        this, SLOT(slotTabRemoteDelete()));
-        menu.addAction(tr("Rename"),
+        menu.addAction(QIcon::fromTheme("rename"), tr("Rename"),
                        this, SLOT(slotTabRemoteRename()));
-        menu.addAction(tr("Copy url to clipboard"),
+        menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy url to clipboard"),
                        this, SLOT(slotTabRemoteCopyToClipboard()));
     }
     menu.exec(ui->tabRemote->viewport()->mapToGlobal(pos));
@@ -457,6 +485,25 @@ void CFrmFileTransfer::slotTabRemoteDownload()
 
 void CFrmFileTransfer::slotTabRemoteAddToList()
 {
+    QString szLocal = ui->cbLocal->currentText();
+    if(szLocal.isEmpty()) {
+        QMessageBox::critical(this, tr("Error"), tr("Please select local directory"));
+        return;
+    }
+    auto indexs = ui->tabRemote->selectionModel()->selectedRows();
+    foreach(auto idx, indexs) {
+        auto p = m_pModelRemoteFile->GetRemoteFileSystemFromIndex(idx);
+        QString szRemote = p->GetPath();
+        if(szRemote.isEmpty()) {
+            qDebug(log) << "The select is empty:" << idx;
+            continue;
+        }
+        QSharedPointer<CFileTransfer> f(
+            new CFileTransfer(szLocal + QDir::separator() + p->GetName(),
+                              szRemote, CFileTransfer::Direction::Download));
+        f->SetFileSize(p->GetSize());
+        m_pListFileModel->AddFileTransfer(f);
+    }
 }
 
 void CFrmFileTransfer::slotTabRemoteNew()
@@ -471,4 +518,32 @@ void CFrmFileTransfer::slotTabRemoteRename()
 {}
 
 void CFrmFileTransfer::slotTabRemoteCopyToClipboard()
-{}
+{
+    auto idx = ui->tabRemote->currentIndex();
+    if(idx.isValid()) {
+        auto p = m_pModelRemoteFile->GetRemoteFileSystemFromIndex(idx);
+        if(p) {
+            QString szPath = p->GetPath();
+            emit sigCopyUrlToClipboard(szPath);
+        }
+    }
+}
+
+void CFrmFileTransfer::on_tabList_customContextMenuRequested(const QPoint &pos)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    auto idx = ui->tabList->currentIndex();
+    QMenu menu;
+    if(idx.isValid()) {
+        menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
+                       this, SLOT(slotTabListDelete()));
+    }
+    menu.exec(ui->tabList->viewport()->mapToGlobal(pos));
+}
+
+void CFrmFileTransfer::slotTabListDelete()
+{
+    auto idx = ui->tabList->currentIndex();
+    auto p = m_pListFileModel->GetFileTransfer(idx);
+    m_pListFileModel->RemoveFileTransfer(p->GetId());
+}

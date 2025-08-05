@@ -18,7 +18,7 @@ SET(PLUGIN_PATH plugins)
 
 ## Desktop
 
-option(BUILD_RABBITVNC "Build RabbitVNC plugin" OFF)
+option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)
 if(BUILD_RABBITVNC)
     add_subdirectory(RabbitVNC)
 endif()

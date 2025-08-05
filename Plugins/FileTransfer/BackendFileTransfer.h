@@ -39,4 +39,5 @@ private:
 private:
     COperateFileTransfer* m_pOperate;
     CChannelSFTP* m_pSFTP;
+    CParameterFileTransfer* m_pPara;
 };

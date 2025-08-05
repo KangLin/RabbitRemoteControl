@@ -25,23 +25,14 @@ public:
     int RemoveDir(const QString& dir);
     int RemoveFile(const QString& file);
     int Rename(const QString& oldPath, const QString& newPath);
-    int Process();
 
-    enum class TYPE {
-        UNKNOWN = 0x00,
-        DIR,
-        FILE,
-        SYMLINK,
-        SPECIAL
-    };
-    Q_ENUM(TYPE)
+    int Process();
 
 public Q_SLOTS:
     /*!
      * \brief Get the directory asynchronously
      */
     void slotGetDir(CRemoteFileSystem *p);
-
 private:
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);

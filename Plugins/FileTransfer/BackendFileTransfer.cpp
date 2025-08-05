@@ -44,8 +44,11 @@ CBackendFileTransfer::CBackendFileTransfer(COperateFileTransfer *pOperate)
     : CBackend(pOperate)
     , m_pOperate(pOperate)
     , m_pSFTP(nullptr)
+    , m_pPara(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
+    if(m_pOperate)
+        m_pPara = m_pOperate->GetParameter();
     SetConnect(pOperate);
 }
 
@@ -92,7 +95,9 @@ bool CBackendFileTransfer::event(QEvent *event)
 
 CBackend::OnInitReturnValue CBackendFileTransfer::OnInit()
 {
-    OnInitReturnValue nRet = InitSFTP();
+    OnInitReturnValue nRet = OnInitReturnValue::Fail;
+    if(m_pPara->GetProtocol() == CParameterFileTransfer::Protocol::SFTP)
+        nRet = InitSFTP();
     return nRet;
 }
 
@@ -110,9 +115,10 @@ int CBackendFileTransfer::OnClean()
 int CBackendFileTransfer::OnProcess()
 {
     int nRet = 0;
-    
+
     if(m_pSFTP)
         nRet = m_pSFTP->Process();
+
     return nRet;
 }
 

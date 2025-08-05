@@ -42,7 +42,7 @@ const QString CPluginFileTransfer::DisplayName() const
 
 const QString CPluginFileTransfer::Description() const
 {
-    return tr("File transfer: include sftp, ftp etc");
+    return tr("File transfer: include sftp, ftp");
 }
 
 const QString CPluginFileTransfer::Version() const

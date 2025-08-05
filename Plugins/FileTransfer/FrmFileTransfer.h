@@ -23,11 +23,12 @@ public:
 
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
+    void sigCopyUrlToClipboard(const QString& szPath);
 
     void sigGetDir(CRemoteFileSystem*);
     void sigGetDir(CRemoteFileSystem*,
-                       QVector<QSharedPointer<CRemoteFileSystem> > contents,
-                       bool bEnd);
+                   QVector<QSharedPointer<CRemoteFileSystem> > contents,
+                   bool bEnd);
 
     void sigMakeDir(const QString &szPath);
     void sigRemoveDir(const QString &szPath);
@@ -84,12 +85,16 @@ private Q_SLOTS:
     void slotTabRemoteDelete();
     void slotTabRemoteRename();
     void slotTabRemoteCopyToClipboard();
+    
+    void on_tabList_customContextMenuRequested(const QPoint &pos);
+    void slotTabListDelete();
 
 private:
     Ui::CFrmFileTransfer *ui;
+
     QFileSystemModel* m_pModelLocalDir;
     QFileSystemModel* m_pModelLocalFile;
-    
+
     CRemoteFileSystemModel* m_pModelRemoteDir;
     CRemoteFileSystemModel* m_pModelRemoteFile;
 

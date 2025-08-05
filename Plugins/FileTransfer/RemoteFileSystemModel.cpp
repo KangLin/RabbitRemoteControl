@@ -65,15 +65,7 @@ QVariant CRemoteFileSystem::Data(int column)
         return GetName();
     }
     case ColumnValue::Size: {
-        qint64 size = GetSize();
-        if(1024 >= size)
-            return QString("%1 B").arg(size);
-        else if(1024* 1024 >= size)
-            return QString::number(size / 1024.0, 'f', 2) + QString(" KB");
-        else if(1024 * 1024 * 1024 >= size)
-            return QString::number(size / (1024.0 * 1024.0), 'f', 2) + QString(" MB");
-        else
-            return QString::number(size / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
+        return CChannel::GetSize(GetSize());
     }
     case ColumnValue::Type: {
         if(GetType() & TYPE::FILE)
@@ -374,12 +366,12 @@ CRemoteFileSystem::TYPES CRemoteFileSystemModel::GetFilter()
 
 QVariant CRemoteFileSystemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    if(Qt::DisplayRole != role)
+        return QVariant();
     if(Qt::Vertical == orientation) {
-        if(Qt::DisplayRole == role)
-            return QString::number(section + 1);
+        return QString::number(section + 1);
     } else {
-        if(Qt::DisplayRole == role)
-            return CRemoteFileSystem::HeaderData(section);
+        return CRemoteFileSystem::HeaderData(section);
     }
     return QVariant();
 }

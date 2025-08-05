@@ -87,7 +87,7 @@ if [ $INSTALL_DIR != $ROOT_DIR ]; then
     cp io.github.KangLin.RabbitRemoteControl.desktop $INSTALL_DIR/io.github.KangLin.RabbitRemoteControl.desktop
 fi
 
-sed -i "s#Exec=.*#Exec=${INSTALL_DIR}/${APPIMAGE_FILE}#g" $ROOT_DIR/io.github.KangLin.RabbitRemoteControl.desktop
+sed -i "s#Exec=.*#Exec=${INSTALL_DIR}/${APPIMAGE_FILE}#g" $INSTALL_DIR/io.github.KangLin.RabbitRemoteControl.desktop
 if [ ! -f ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop ]; then
     ln -s $INSTALL_DIR/io.github.KangLin.RabbitRemoteControl.desktop ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop
 fi

@@ -52,6 +52,8 @@ public:
     static int InitTranslation();
     //! \brief Remove translation
     static int RemoveTranslation();
+    
+    static QString GetSize(qint64 size);
 
 Q_SIGNALS:
     /*!
