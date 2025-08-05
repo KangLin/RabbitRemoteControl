@@ -444,7 +444,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     echo "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/pcapplusplus ]; then
-        git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+        git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         cd PcapPlusPlus
         cmake -E make_directory build
         cd build
@@ -511,7 +511,6 @@ if [ $QTERMWIDGET -eq 1 ]; then
         cmake -E make_directory build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
@@ -526,7 +525,6 @@ if [ $QTERMWIDGET -eq 1 ]; then
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
         cmake --build . --config Release --parallel $(nproc)

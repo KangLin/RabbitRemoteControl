@@ -236,11 +236,11 @@ if [ $DEB -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    ./build_depend.sh --qtermwidget \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
+#    ./build_depend.sh --qtermwidget \
+#        --install=${INSTALL_DIR} \
+#        --source=${SOURCE_DIR} \
+#        --tools=${TOOLS_DIR} \
+#        --verbose=${BUILD_VERBOSE}
 
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon
