@@ -225,9 +225,45 @@ void CFrmFileTransfer::slotTreeLocalUpload()
     // TODO: implemented
 }
 
+int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
+{
+    int nRet = 0;
+    foreach (auto f, d.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
+        QString szLocal = d.absoluteFilePath(f);
+        if(szLocal.isEmpty()) {
+            qDebug(log) << "The select is empty";
+            continue;
+        }
+        QFileInfo fi(szLocal);
+        if(!fi.exists()) {
+            QMessageBox::critical(this, tr("Error"), tr("The file is not exists:") + szLocal);
+            continue;
+        }
+        QSharedPointer<CFileTransfer> fileTransfer(new CFileTransfer(
+            szLocal, szRemote + "/" + fi.fileName(),
+            CFileTransfer::Direction::Upload));
+        fileTransfer->SetFileSize(fi.size());
+        m_pListFileModel->AddFileTransfer(fileTransfer);
+    }
+    foreach(auto file, d.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    {
+        QDir dir(d.absoluteFilePath(file));
+        nRet = EnumLocalDirectory(dir, szRemote);
+    }
+    return nRet;
+}
+
 void CFrmFileTransfer::slotTreeLocalAddToList()
 {
-    // TODO: implemented
+    QString szRemote = ui->cbRemote->currentText();
+    if(szRemote.isEmpty()) {
+        QMessageBox::critical(this, tr("Error"), tr("Please select remote directory"));
+        return;
+    }
+    auto idx = ui->treeLocal->currentIndex();
+    QString szPath = m_pModelLocalDir->filePath(idx);
+    if(!m_pModelLocalDir->isDir(idx) || szPath.isEmpty()) return;
+    EnumLocalDirectory(QDir(szPath), szRemote);
 }
 
 void CFrmFileTransfer::slotTreeLocalCopyToClipboard()

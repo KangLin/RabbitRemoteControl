@@ -41,6 +41,8 @@ private:
     //! Get local root path
     [[nodiscard]] QString GetLocalRoot() const;
     void SetRemoteConnecter(CRemoteFileSystemModel* p);
+    
+    int EnumLocalDirectory(QDir d, const QString& szRemote);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);
