@@ -35,6 +35,9 @@ Q_SIGNALS:
     void sigRemoveFile(const QString& szFile);
     void sigRename(const QString& oldName, const QString& newName);
 
+    void sigStartFileTransfer(QSharedPointer<CFileTransfer> f);
+    void sigStopFileTransfer(QSharedPointer<CFileTransfer> f);
+
 private:
     //! Set local root path
     int SetLocalRoot(const QString &root);
@@ -91,6 +94,9 @@ private Q_SLOTS:
     
     void on_tabList_customContextMenuRequested(const QPoint &pos);
     void slotTabListDelete();
+    
+    void slotProcessFileTransfer();
+    void slotFileTransferUpdate(QSharedPointer<CFileTransfer> f);
 
 private:
     Ui::CFrmFileTransfer *ui;

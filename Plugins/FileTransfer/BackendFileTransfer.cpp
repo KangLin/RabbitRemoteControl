@@ -16,8 +16,8 @@ public:
         RemoveFile,
         Rename,
         GetDir,
-        Upload,
-        Download
+        StartFileTransfer,
+        StopFileTransfer
     };
     Q_ENUM(Command)
     CFileTransferEvent(Command cmd,
@@ -28,6 +28,7 @@ public:
     QString m_szSourcePath;
     QString m_szDestination;
     CRemoteFileSystem* m_pRemoteFileSystem;
+    QSharedPointer<CFileTransfer> m_FileTransfer;
 };
 
 CFileTransferEvent::CFileTransferEvent(Command cmd,
@@ -84,8 +85,18 @@ bool CBackendFileTransfer::event(QEvent *event)
                 m_pSFTP->slotGetDir(pEvent->m_pRemoteFileSystem);
             break;
         }
-        case CFileTransferEvent::Command::Upload:
-        case CFileTransferEvent::Command::Download:
+        case CFileTransferEvent::Command::StartFileTransfer:
+        {
+            if(m_pSFTP)
+                m_pSFTP->slotStartFileTransfer(pEvent->m_FileTransfer);
+            break;
+        }
+        case CFileTransferEvent::Command::StopFileTransfer:
+        {
+            if(m_pSFTP)
+                m_pSFTP->slotStopFileTransfer(pEvent->m_FileTransfer);
+            break;
+        }
         default:
             break;
         }
@@ -146,6 +157,15 @@ int CBackendFileTransfer::SetConnect(COperateFileTransfer *pOperate)
     Q_ASSERT(check);
     check = connect(pForm, SIGNAL(sigRename(const QString&, const QString&)),
                     this, SLOT(slotRename(const QString&, const QString&)));
+    Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigStartFileTransfer(QSharedPointer<CFileTransfer>)),
+                    this, SLOT(slotStartFileTransfer(QSharedPointer<CFileTransfer>)));
+    Q_ASSERT(check);
+    check = connect(pForm, SIGNAL(sigStopFileTransfer(QSharedPointer<CFileTransfer>)),
+                    this, SLOT(slotStopFileTransfer(QSharedPointer<CFileTransfer>)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigFileTransferUpdate(QSharedPointer<CFileTransfer>)),
+                    pForm, SLOT(slotFileTransferUpdate(QSharedPointer<CFileTransfer>)));
     Q_ASSERT(check);
     return nRet;
 }
@@ -208,6 +228,26 @@ void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *p)
     CFileTransferEvent* pEvent = new CFileTransferEvent(
         CFileTransferEvent::Command::GetDir, szPath);
     pEvent->m_pRemoteFileSystem = (CRemoteFileSystem*) p;
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
+}
+
+void CBackendFileTransfer::slotStartFileTransfer(QSharedPointer<CFileTransfer> f)
+{
+    if(!f) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::StartFileTransfer);
+    pEvent->m_FileTransfer = f;
+    QCoreApplication::postEvent(this, pEvent);
+    WakeUp();
+}
+
+void CBackendFileTransfer::slotStopFileTransfer(QSharedPointer<CFileTransfer> f)
+{
+    if(!f) return;
+    CFileTransferEvent* pEvent = new CFileTransferEvent(
+        CFileTransferEvent::Command::StopFileTransfer);
+    pEvent->m_FileTransfer = f;
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }

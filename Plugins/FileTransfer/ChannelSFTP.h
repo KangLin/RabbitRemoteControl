@@ -7,6 +7,7 @@
 #include <QDateTime>
 
 class CRemoteFileSystem;
+class CFileTransfer;
 class CChannelSFTP : public CChannelSSH
 {
     Q_OBJECT
@@ -33,9 +34,14 @@ public Q_SLOTS:
      * \brief Get the directory asynchronously
      */
     void slotGetDir(CRemoteFileSystem *p);
-private:
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
+
+public Q_SLOTS:
+    void slotStartFileTransfer(QSharedPointer<CFileTransfer> f);
+    void slotStopFileTransfer(QSharedPointer<CFileTransfer> f);
+Q_SIGNALS:
+    void sigFileTransferUpdate(QSharedPointer<CFileTransfer> f);
 
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
@@ -62,9 +68,15 @@ private:
         QVector<QSharedPointer<CRemoteFileSystem> > vFileNode;
         int Error;
     };
+    struct FILE_AIO {
+        sftp_file remote;
+        int local;
+        STATE state;
+        QSharedPointer<CFileTransfer> fileTransfer;
+    };
 
 private:
     sftp_session m_SessionSftp;
     QVector<QSharedPointer<DIR_READER> > m_vDirs;
-    QVector<sftp_file> m_vFiles;
+    QVector<QSharedPointer<FILE_AIO> > m_vFiles;
 };

@@ -5,6 +5,7 @@
 #include "ChannelSFTP.h"
 #include "BackendFileTransfer.h"
 #include "RemoteFileSystemModel.h"
+#include "ListFileModel.h"
 
 #if defined(Q_OS_LINUX)
 #include <sys/stat.h>
@@ -28,6 +29,9 @@ CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
     if(pB) {
         check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)),
                         pB, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> >, bool)));
+        Q_ASSERT(check);
+        check = connect(this, SIGNAL(sigFileTransferUpdate(QSharedPointer<CFileTransfer>)),
+                        pB, SIGNAL(sigFileTransferUpdate(QSharedPointer<CFileTransfer>)));
         Q_ASSERT(check);
         check = connect(this, SIGNAL(sigError(int,QString)),
                         pB, SIGNAL(sigError(int,QString)));
@@ -347,11 +351,28 @@ int CChannelSFTP::OnOpen(ssh_session session)
 
 void CChannelSFTP::OnClose()
 {
+    foreach (auto d, m_vDirs) {
+        if(d->sftp) {
+            sftp_closedir(d->sftp);
+            d->sftp = nullptr;
+        }
+    }
+    m_vDirs.clear();
+    foreach(auto f, m_vFiles) {
+        if(f->remote) {
+            sftp_close(f->remote);
+            f->remote = nullptr;
+        }
+        if(-1 != f->local) {
+            ::close(f->local);
+            f->local = -1;
+        }
+    }
+    m_vFiles.clear();
     if(m_SessionSftp) {
         sftp_free(m_SessionSftp);
         m_SessionSftp = nullptr;
     }
-    m_vDirs.clear();
 }
 
 void CChannelSFTP::slotGetDir(CRemoteFileSystem *p)
@@ -476,4 +497,37 @@ int CChannelSFTP::AsyncReadDir()
     }
 
     return nRet;
+}
+
+void CChannelSFTP::slotStartFileTransfer(QSharedPointer<CFileTransfer> f)
+{
+    f->slotSetstate(CFileTransfer::State::Connecting);
+    QSharedPointer<FILE_AIO> file(new FILE_AIO);
+    file->fileTransfer = f;
+    file->local = -1;
+    file->remote = nullptr;
+    file->state = STATE::OPEN;
+    m_vFiles.append(file);
+    emit sigFileTransferUpdate(f);
+    WakeUp();
+}
+
+void CChannelSFTP::slotStopFileTransfer(QSharedPointer<CFileTransfer> f)
+{
+    foreach(auto file, m_vFiles) {
+        if(file->fileTransfer == f) {
+            m_vFiles.removeAll(file);
+            if(-1 != file->local) {
+                ::close(file->local);
+                file->local = -1;
+            }
+            if(file->remote) {
+                sftp_close(file->remote);
+                file->remote = nullptr;
+            }
+            f->slotSetstate(CFileTransfer::State::Stop);
+            emit sigFileTransferUpdate(f);
+            break;
+        }
+    }
 }

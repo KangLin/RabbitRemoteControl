@@ -239,8 +239,13 @@ int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
             QMessageBox::critical(this, tr("Error"), tr("The file is not exists:") + szLocal);
             continue;
         }
+        QString szRemoteFile = szRemote;
+        if(szRemote.right(1) == "/")
+            szRemoteFile += fi.fileName();
+        else
+            szRemoteFile += "/" + fi.fileName();
         QSharedPointer<CFileTransfer> fileTransfer(new CFileTransfer(
-            szLocal, szRemote + "/" + fi.fileName(),
+            szLocal, szRemoteFile,
             CFileTransfer::Direction::Upload));
         fileTransfer->SetFileSize(fi.size());
         m_pListFileModel->AddFileTransfer(fileTransfer);
@@ -336,8 +341,12 @@ void CFrmFileTransfer::slotTabLocalAddToList()
             QMessageBox::critical(this, tr("Error"), tr("The file is not exists:") + szLocal);
             continue;
         }
-        QSharedPointer<CFileTransfer> f(new CFileTransfer(
-            szLocal, szRemote + "/" + fi.fileName(),
+        QString szRemoteFile = szRemote;
+        if(szRemote.right(1) == "/")
+            szRemoteFile += fi.fileName();
+        else
+            szRemoteFile += "/" + fi.fileName();
+        QSharedPointer<CFileTransfer> f(new CFileTransfer(szLocal, szRemoteFile,
             CFileTransfer::Direction::Upload));
         f->SetFileSize(fi.size());
         m_pListFileModel->AddFileTransfer(f);
@@ -553,8 +562,13 @@ void CFrmFileTransfer::slotTabRemoteAddToList()
             qDebug(log) << "The select is empty:" << idx;
             continue;
         }
+        QString szLocalFile = szLocal;
+        if(szLocalFile.right(1) == "/" || szLocalFile.right(1) == "\\")
+            szLocalFile += p->GetName();
+        else
+            szLocalFile += QDir::separator() + p->GetName();
         QSharedPointer<CFileTransfer> f(
-            new CFileTransfer(szLocal + QDir::separator() + p->GetName(),
+            new CFileTransfer(szLocalFile,
                               szRemote, CFileTransfer::Direction::Download));
         f->SetFileSize(p->GetSize());
         m_pListFileModel->AddFileTransfer(f);
@@ -590,6 +604,15 @@ void CFrmFileTransfer::on_tabList_customContextMenuRequested(const QPoint &pos)
     auto idx = ui->tabList->currentIndex();
     QMenu menu;
     if(idx.isValid()) {
+        auto f = m_pListFileModel->GetFileTransfer(idx);
+        if(f) {
+            if(((int)f->GetState() & (int)CFileTransfer::State::Process))
+                menu.addAction(QIcon::fromTheme("media-playback-stop"),
+                               tr("Stop"), this, SLOT(slotProcessFileTransfer()));
+            else if(f->GetState() != CFileTransfer::State::Finish)
+                menu.addAction(QIcon::fromTheme("media-playback-start"),
+                               tr("Start"), this, SLOT(slotProcessFileTransfer()));
+        }
         menu.addAction(QIcon::fromTheme("remove"), tr("Delete"),
                        this, SLOT(slotTabListDelete()));
     }
@@ -605,7 +628,34 @@ void CFrmFileTransfer::slotTabListDelete()
                   return a.row() > b.row();
               });
     foreach(const QModelIndex &idx, indexs) {
+        auto f = m_pListFileModel->GetFileTransfer(idx);
+        if(f) {
+            if((int)f->GetState() & (int)CFileTransfer::State::Process) {
+                QMessageBox::critical(this, tr("Error"), tr("Please stop the file transfer first"));
+                return;
+            }
+        }
         m_pListFileModel->removeRow(idx.row(), idx.parent());
     }
     return;
+}
+
+void CFrmFileTransfer::slotProcessFileTransfer()
+{
+    auto idx = ui->tabList->currentIndex();
+    if(!idx.isValid()) return;
+    auto f = m_pListFileModel->GetFileTransfer(idx);
+    if(!f) return;
+    if((int)f->GetState() & (int)CFileTransfer::State::Process) {
+        emit sigStopFileTransfer(f);
+    }
+    if((int)f->GetState() & (int)CFileTransfer::State::CanStart) {
+        f->slotSetstate(CFileTransfer::State::Connecting);
+        emit sigStartFileTransfer(f);
+    }
+}
+
+void CFrmFileTransfer::slotFileTransferUpdate(QSharedPointer<CFileTransfer> f)
+{
+    m_pListFileModel->UpdateFileTransfer(f);
 }

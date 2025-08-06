@@ -583,6 +583,8 @@ void CRemoteFileSystemModel::slotGetDir(
             pRemoteFileSystem->AppendChild(pRfs);
         }
         endInsertRows();
+        emit dataChanged(index(0, 0, index(pRemoteFileSystem)),
+                         index(pRemoteFileSystem->ChildCount(), 0, index(pRemoteFileSystem)));
     } else
         emit dataChanged(parentIndex, parentIndex);
 }

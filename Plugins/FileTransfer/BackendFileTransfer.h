@@ -31,6 +31,11 @@ private Q_SLOTS:
     void slotRename(const QString& oldName, const QString& newName);
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
+private Q_SLOTS:
+    void slotStartFileTransfer(QSharedPointer<CFileTransfer> f);
+    void slotStopFileTransfer(QSharedPointer<CFileTransfer> f);
+Q_SIGNALS:
+    void sigFileTransferUpdate(QSharedPointer<CFileTransfer> f);
 
 private:
     int SetConnect(COperateFileTransfer *pOperate);

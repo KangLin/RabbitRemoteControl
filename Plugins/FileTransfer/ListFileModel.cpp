@@ -303,6 +303,7 @@ QModelIndex CListFileModel::AddFileTransfer(QSharedPointer<CFileTransfer> f)
     beginInsertRows(QModelIndex(), r, r);
     m_lstFile.append(f);
     endInsertRows();
+    emit dataChanged(index(r, 0), index(r, (int)CFileTransfer::ColumnValue::End));
     return index(r, 0);
 }
 
@@ -353,4 +354,12 @@ bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
     m_lstFile.remove(row, count);
     endRemoveRows();
     return true;
+}
+
+void CListFileModel::UpdateFileTransfer(QSharedPointer<CFileTransfer> f)
+{
+    int r = m_lstFile.indexOf(f);
+    QModelIndex topLeft = index(r, 0);
+    QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End);
+    emit dataChanged(topLeft, bootRight);
 }

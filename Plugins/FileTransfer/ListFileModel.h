@@ -49,13 +49,15 @@ public:
     void SetFileSize(qint64 size);
 
     enum class State{
-        No,
-        Connecting,
-        Transferring,
-        Disconnecting,
-        Stop,
-        Finish,
-        Fail
+        No = 0x01,
+        Connecting = 0x02,
+        Transferring = 0x04,
+        Disconnecting = 0x08,
+        Stop = 0x10,
+        Finish = 0x20,
+        Fail = 0x40,
+        Process = Connecting | Transferring | Disconnecting,
+        CanStart = No | Stop | Fail
     };
     Q_ENUM(State)
     State GetState();
@@ -106,6 +108,7 @@ public:
     int RemoveFileTransfer(int id);
     int RemoveFileTransfer(QList<int> ids);
     QSharedPointer<CFileTransfer> GetFileTransfer(const QModelIndex& index);
+    void UpdateFileTransfer(QSharedPointer<CFileTransfer> f);
 
     QVariant headerData(int section,
                         Qt::Orientation orientation,
