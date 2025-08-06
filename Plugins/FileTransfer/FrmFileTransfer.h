@@ -43,6 +43,7 @@ private:
     void SetRemoteConnecter(CRemoteFileSystemModel* p);
     
     int EnumLocalDirectory(QDir d, const QString& szRemote);
+    int EnumRemoteDirectory(CRemoteFileSystem* p, const QString& szLocal);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);

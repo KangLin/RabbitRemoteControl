@@ -104,6 +104,7 @@ public:
     
     QModelIndex AddFileTransfer(QSharedPointer<CFileTransfer> f);
     int RemoveFileTransfer(int id);
+    int RemoveFileTransfer(QList<int> ids);
     QSharedPointer<CFileTransfer> GetFileTransfer(const QModelIndex& index);
 
     QVariant headerData(int section,
@@ -114,6 +115,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    virtual bool removeRows(int row, int count, const QModelIndex &parent) override;
 
 private:
     QList<QSharedPointer<CFileTransfer> > m_lstFile;

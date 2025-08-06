@@ -31,33 +31,24 @@ CFileTransfer::CFileTransfer(const QString& localFile,
 QString CFileTransfer::HeaderData(int section)
 {
     switch((ColumnValue)section) {
-    case ColumnValue::LocalFiles: {
+    case ColumnValue::LocalFiles:
         return tr("Local files");
-    }
-    case ColumnValue::Direction: {
+    case ColumnValue::Direction:
         return tr("Direction");
-    }
-    case ColumnValue::RemoteFiles: {
+    case ColumnValue::RemoteFiles:
         return tr("Remote files");
-    }
-    case ColumnValue::FileSize: {
+    case ColumnValue::FileSize:
         return tr("File size");
-    }
-    case ColumnValue::Speed: {
+    case ColumnValue::Speed:
         return tr("Speed");
-    }
-    case ColumnValue::State: {
+    case ColumnValue::State:
         return tr("state");
-    }
-    case ColumnValue::Time: {
+    case ColumnValue::Time:
         return tr("Time");
-    }
-    case ColumnValue::Explanation: {
+    case ColumnValue::Explanation:
         return tr("Explanation");
-    }
-    case ColumnValue::Priority: {
+    case ColumnValue::Priority:
         return tr("Priority");
-    }
     default:
         break;
     }
@@ -325,10 +316,25 @@ int CListFileModel::RemoveFileTransfer(int id)
                 beginRemoveRows(QModelIndex(), i, i);
                 m_lstFile.removeAt(i);
                 endRemoveRows();
+                return 0;
             }
         }
     }
     return nRet;
+}
+
+int CListFileModel::RemoveFileTransfer(QList<int> ids)
+{
+    if(ids.isEmpty()) return 0;
+    std::sort(ids.begin(), ids.end());
+    beginResetModel();
+    auto it = std::remove_if(m_lstFile.begin(), m_lstFile.end(),
+                             [&](QSharedPointer<CFileTransfer> f){
+                                 return ids.contains(f->GetId());
+                             });
+    m_lstFile.erase(it, m_lstFile.end());
+    endResetModel();
+    return 0;
 }
 
 QSharedPointer<CFileTransfer> CListFileModel::GetFileTransfer(const QModelIndex &index)
@@ -339,4 +345,12 @@ QSharedPointer<CFileTransfer> CListFileModel::GetFileTransfer(const QModelIndex 
     if(0 > r || m_lstFile.size() <= r)
         return QSharedPointer<CFileTransfer>();
     return m_lstFile.at(r);
+}
+
+bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    beginRemoveRows(parent, row, row + count - 1);
+    m_lstFile.remove(row, count);
+    endRemoveRows();
+    return true;
 }

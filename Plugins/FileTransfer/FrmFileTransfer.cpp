@@ -82,7 +82,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
 
     m_pListFileModel = new CListFileModel(ui->tabList);
     ui->tabList->setModel(m_pListFileModel);
-    //ui->tabList->verticalHeader()->hide();
+    ui->tabList->verticalHeader()->hide();
     ui->tabList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tabList->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tabList->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -248,7 +248,7 @@ int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
     foreach(auto file, d.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
     {
         QDir dir(d.absoluteFilePath(file));
-        nRet = EnumLocalDirectory(dir, szRemote);
+        nRet = EnumLocalDirectory(dir, szRemote + "/" + file);
     }
     return nRet;
 }
@@ -261,9 +261,11 @@ void CFrmFileTransfer::slotTreeLocalAddToList()
         return;
     }
     auto idx = ui->treeLocal->currentIndex();
+    if(!idx.isValid()) return;
     QString szPath = m_pModelLocalDir->filePath(idx);
     if(!m_pModelLocalDir->isDir(idx) || szPath.isEmpty()) return;
-    EnumLocalDirectory(QDir(szPath), szRemote);
+    QFileInfo fi(szPath);
+    EnumLocalDirectory(QDir(szPath), szRemote + "/" + fi.fileName());
 }
 
 void CFrmFileTransfer::slotTreeLocalCopyToClipboard()
@@ -416,12 +418,12 @@ void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &po
     qDebug(log) << Q_FUNC_INFO;
     auto idx = ui->treeRemote->currentIndex();
     QMenu menu;
-    if(idx.isValid()) {
-        menu.addAction(QIcon::fromTheme("emblem-downloads"), tr("Download"),
-                       this, SLOT(slotTreeRemoteDownload()));
-        menu.addAction(QIcon::fromTheme("list-add"), tr("Add to list"),
-                       this, SLOT(slotTreeRemoteAddToList()));
-    }
+    // if(idx.isValid()) {
+    //     menu.addAction(QIcon::fromTheme("emblem-downloads"), tr("Download"),
+    //                    this, SLOT(slotTreeRemoteDownload()));
+    //     menu.addAction(QIcon::fromTheme("list-add"), tr("Add to list"),
+    //                    this, SLOT(slotTreeRemoteAddToList()));
+    // }
     menu.addAction(QIcon::fromTheme("document-new"), tr("New"),
                    this, SLOT(slotTreeRemoteNew()));
     if(idx.isValid()) {
@@ -441,8 +443,25 @@ void CFrmFileTransfer::slotTreeRemoteDownload()
 {
 }
 
+int CFrmFileTransfer::EnumRemoteDirectory(CRemoteFileSystem *p, const QString &szLocal)
+{
+    int nRet = 0;
+    
+    return nRet;
+}
+
 void CFrmFileTransfer::slotTreeRemoteAddToList()
 {
+    QString szLocal = ui->cbLocal->currentText();
+    if(szLocal.isEmpty()) {
+        QMessageBox::critical(this, tr("Error"), tr("Please select local directory"));
+        return;
+    }
+    auto idx = ui->treeRemote->currentIndex();
+    if(!idx.isValid()) return;
+    auto p = m_pModelRemoteDir->GetRemoteFileSystemFromIndex(idx);
+    if(p && !(p->GetType() & CRemoteFileSystem::TYPE::FILE))
+        EnumRemoteDirectory(p, szLocal);
 }
 
 void CFrmFileTransfer::slotTreeRemoteNew()
@@ -579,7 +598,14 @@ void CFrmFileTransfer::on_tabList_customContextMenuRequested(const QPoint &pos)
 
 void CFrmFileTransfer::slotTabListDelete()
 {
-    auto idx = ui->tabList->currentIndex();
-    auto p = m_pListFileModel->GetFileTransfer(idx);
-    m_pListFileModel->RemoveFileTransfer(p->GetId());
+    auto indexs = ui->tabList->selectionModel()->selectedRows();
+    // 倒序排序
+    std::sort(indexs.begin(), indexs.end(),
+              [](const QModelIndex &a, const QModelIndex &b) {
+                  return a.row() > b.row();
+              });
+    foreach(const QModelIndex &idx, indexs) {
+        m_pListFileModel->removeRow(idx.row(), idx.parent());
+    }
+    return;
 }
