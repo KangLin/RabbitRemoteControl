@@ -26,7 +26,10 @@ CChannelSSH::~CChannelSSH()
 
 QString CChannelSSH::GetDetails()
 {
-    return "- " + tr("libssh version:") + " " + ssh_version(0) + "\n";
+    QString szDetail = "- " + tr("libssh version:") + " " + ssh_version(0) + "\n";
+    szDetail += "  - " + tr("libssh protocol version:") + " " + QString::number(ssh_get_version(m_Session)) + "\n";
+    szDetail += "  - " + tr("OpenSSH server:") + " " + QString::number(ssh_get_openssh_version(m_Session)) + "\n";
+    return szDetail;
 }
 
 void CChannelSSH::cb_log(ssh_session session,

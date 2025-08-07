@@ -650,7 +650,7 @@ void CFrmFileTransfer::slotProcessFileTransfer()
         emit sigStopFileTransfer(f);
     }
     if((int)f->GetState() & (int)CFileTransfer::State::CanStart) {
-        f->slotSetstate(CFileTransfer::State::Connecting);
+        f->slotSetstate(CFileTransfer::State::Opening);
         emit sigStartFileTransfer(f);
     }
 }

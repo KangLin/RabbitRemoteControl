@@ -50,13 +50,13 @@ public:
 
     enum class State{
         No = 0x01,
-        Connecting = 0x02,
+        Opening = 0x02,
         Transferring = 0x04,
-        Disconnecting = 0x08,
+        Closing = 0x08,
         Stop = 0x10,
         Finish = 0x20,
         Fail = 0x40,
-        Process = Connecting | Transferring | Disconnecting,
+        Process = Opening | Transferring | Closing,
         CanStart = No | Stop | Fail
     };
     Q_ENUM(State)

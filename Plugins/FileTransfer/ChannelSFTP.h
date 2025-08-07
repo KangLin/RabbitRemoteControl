@@ -48,11 +48,6 @@ protected:
     virtual qint64 writeData(const char *data, qint64 len) override;
 
 private:
-    virtual int OnOpen(ssh_session session) override;
-    virtual void OnClose() override;
-    QSharedPointer<CRemoteFileSystem> GetFileNode(const QString &szPath, sftp_attributes attributes);
-    int AsyncReadDir();
-
     enum class STATE {
         OPEN,
         READ,
@@ -74,6 +69,13 @@ private:
         STATE state;
         QSharedPointer<CFileTransfer> fileTransfer;
     };
+
+    virtual int OnOpen(ssh_session session) override;
+    virtual void OnClose() override;
+    QSharedPointer<CRemoteFileSystem> GetFileNode(const QString &szPath, sftp_attributes attributes);
+    int AsyncReadDir();
+    int AsyncFile();
+    int CleanFileAIO(QSharedPointer<FILE_AIO> aio);
 
 private:
     sftp_session m_SessionSftp;

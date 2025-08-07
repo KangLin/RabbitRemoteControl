@@ -9,14 +9,19 @@
 
 #if defined(Q_OS_LINUX)
 #include <sys/stat.h>
+#include <fcntl.h>
 #endif
 #ifdef _MSC_VER
 #define S_IRUSR  0400  // Owner read permission
 #define S_IWUSR  0200  // Owner write permission
 #define S_IXUSR  0100  // Owner execute permission
 #define S_IRWXU  (S_IRUSR | S_IWUSR | S_IXUSR)  // Owner read, write, execute
+
+// See: [_topen](https://learn.microsoft.com/zh-cn/cpp/c-runtime-library/reference/open-wopen?view=msvc-170)
+#include <io.h>
 #endif
 
+#define BUF_SIZE 4096
 static Q_LOGGING_CATEGORY(log, "Channel.SFTP")
 
 CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
@@ -89,9 +94,9 @@ int CChannelSFTP::Process()
         }
     }
 
-    nRet = AsyncReadDir();
-    if(SSH_OK != nRet)
-        return -1;
+    AsyncReadDir();
+
+    AsyncFile();
 
     return 0;
 }
@@ -403,7 +408,6 @@ void CChannelSFTP::slotGetDir(CRemoteFileSystem *p)
 
 int CChannelSFTP::AsyncReadDir()
 {
-    int nRet = SSH_OK;
     //qDebug(log) << Q_FUNC_INFO;
     for(auto it = m_vDirs.begin(); it != m_vDirs.end();) {
         auto d = *it;
@@ -462,15 +466,13 @@ int CChannelSFTP::AsyncReadDir()
                 d->state = STATE::FINISH;
                 break;
             }
-            nRet = sftp_closedir(d->sftp);
-            if(SSH_OK == nRet) {
+            int rc = sftp_closedir(d->sftp);
+            if(SSH_NO_ERROR == rc) {
                 d->state = STATE::FINISH;
                 d->sftp = nullptr;
                 break;
             }
             int err = ssh_get_error_code(m_Session);
-            if(err == SSH_REQUEST_DENIED)
-                break;
             qCritical(log) << "Error close directory:" << d->szPath
                            << "Error:" << err << ssh_get_error(m_Session);
             d->state = STATE::FINISH;
@@ -491,17 +493,15 @@ int CChannelSFTP::AsyncReadDir()
             break;
         }
 
-        if(SSH_ERROR == nRet)
-            break;
         it++;
     }
 
-    return nRet;
+    return 0;
 }
 
 void CChannelSFTP::slotStartFileTransfer(QSharedPointer<CFileTransfer> f)
 {
-    f->slotSetstate(CFileTransfer::State::Connecting);
+    f->slotSetstate(CFileTransfer::State::Opening);
     QSharedPointer<FILE_AIO> file(new FILE_AIO);
     file->fileTransfer = f;
     file->local = -1;
@@ -530,4 +530,106 @@ void CChannelSFTP::slotStopFileTransfer(QSharedPointer<CFileTransfer> f)
             break;
         }
     }
+}
+
+int CChannelSFTP::AsyncFile()
+{
+    for(auto it = m_vFiles.begin(); it != m_vFiles.end();) {
+        auto file = *it;
+        switch(file->state) {
+        case STATE::OPEN: {
+            int remoteFlag = O_WRONLY | O_CREAT | O_TRUNC;
+            int localFlag = O_RDONLY;
+            if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
+                remoteFlag = O_RDONLY;
+                localFlag = O_WRONLY | O_CREAT | O_TRUNC;
+            }
+            file->remote = sftp_open(
+                m_SessionSftp,
+                file->fileTransfer->GetRemoteFile().toStdString().c_str(),
+                remoteFlag, S_IRWXU);
+            if (!file->remote)
+            {
+                file->state = STATE::ERR;
+                QString szErr = "Can't open remote file: " + file->fileTransfer->GetRemoteFile() 
+                        + ssh_get_error(m_Session);
+                qCritical(log) << szErr;
+                break;
+            }
+            sftp_file_set_nonblocking(file->remote);
+            
+            file->local = ::open(file->fileTransfer->GetLocalFile().toStdString().c_str(), localFlag);
+            if(-1 == file->local) {
+                file->state = STATE::ERR;
+                QString szErr = "Can't open local file: " + file->fileTransfer->GetLocalFile() + strerror(errno);
+                qCritical(log) << szErr;
+                break;
+            }
+            
+            if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
+                int rc = sftp_async_read_begin(file->remote, BUF_SIZE);
+                if(rc < 0) {
+                    file->state = STATE::ERR;
+                    QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
+                    qCritical(log) << szErr;
+                    break;
+                }
+            } else {
+                // int rc = sftp_async_write_begin(file->remote, BUF_SIZE);
+                // if(rc < 0) {
+                //     file->state = STATE::ERR;
+                //     QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
+                //     qCritical(log) << szErr;
+                //     break;
+                // }
+            }
+            file->state = STATE::READ;
+            file->fileTransfer->slotSetstate(CFileTransfer::State::Transferring);
+            emit sigFileTransferUpdate(file->fileTransfer);
+        }
+        case STATE::READ: {
+            if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
+                
+            } else {
+                
+            }
+            break;
+        }
+        case STATE::CLOSE: {
+            file->state = STATE::FINISH;
+            file->fileTransfer->slotSetstate(CFileTransfer::State::Closing);
+            emit sigFileTransferUpdate(file->fileTransfer);
+            break;
+        }
+        case STATE::FINISH: {
+            CleanFileAIO(file);
+            it = m_vFiles.erase(it);
+            file->fileTransfer->slotSetstate(CFileTransfer::State::Finish);
+            emit sigFileTransferUpdate(file->fileTransfer);
+            continue;
+        }
+        case STATE::ERR: {
+            CleanFileAIO(file);
+            it = m_vFiles.erase(it);
+            file->fileTransfer->slotSetstate(CFileTransfer::State::Fail);
+            emit sigFileTransferUpdate(file->fileTransfer);
+            continue;
+        }
+        }
+
+        it++;
+    }
+}
+
+int CChannelSFTP::CleanFileAIO(QSharedPointer<FILE_AIO> file)
+{
+    if(file->remote) {
+        sftp_close(file->remote);
+        file->remote == nullptr;
+    }
+    if(-1 != file->local) {
+        ::close(file->local);
+        file->local = -1;
+    }
+    return 0;
 }

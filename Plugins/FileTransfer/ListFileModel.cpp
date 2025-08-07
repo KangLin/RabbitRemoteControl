@@ -186,11 +186,11 @@ QString CFileTransfer::GetStateName()
     switch (GetState()) {
     case State::No:
         return QString();
-    case State::Connecting:
+    case State::Opening:
         return tr("Connecting");
     case State::Transferring:
         return tr("Transferring");
-    case State::Disconnecting:
+    case State::Closing:
         return tr("Disconnecting");
     case State::Stop:
         return tr("Stop");
