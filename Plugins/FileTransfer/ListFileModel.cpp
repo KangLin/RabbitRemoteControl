@@ -16,7 +16,9 @@ CFileTransfer::CFileTransfer(const QString& localFile,
                              Direction dir)
     : QObject()
     , m_szLocalFile(localFile)
+    , m_LocalPermission(0x0644)
     , m_szRemoteFile(remoteFile)
+    , m_RemotePermission(0x0644)
     , m_nFileSize(0)
     , m_nTransferSize(0)
     , m_nLastSize(0)
@@ -179,6 +181,26 @@ QString CFileTransfer::GetFinishTime()
 void CFileTransfer::slotFinish()
 {
     m_FinishTime = QDateTime::currentDateTime();
+}
+
+quint32 CFileTransfer::GetLocalPermission() const
+{
+    return m_LocalPermission;
+}
+
+void CFileTransfer::SetLocalPermission(quint32 newLocalPermission)
+{
+    m_LocalPermission = newLocalPermission;
+}
+
+quint32 CFileTransfer::GetRemotePermission() const
+{
+    return m_RemotePermission;
+}
+
+void CFileTransfer::SetRemotePermission(quint32 newRemotePermission)
+{
+    m_RemotePermission = newRemotePermission;
 }
 
 QString CFileTransfer::GetStateName()

@@ -7,21 +7,18 @@
 #include "RemoteFileSystemModel.h"
 #include "ListFileModel.h"
 
-#if defined(Q_OS_LINUX)
-#include <sys/stat.h>
 #include <fcntl.h>
-#endif
+#include <sys/stat.h>
+
 #ifdef _MSC_VER
-#define S_IRUSR  0400  // Owner read permission
-#define S_IWUSR  0200  // Owner write permission
-#define S_IXUSR  0100  // Owner execute permission
-#define S_IRWXU  (S_IRUSR | S_IWUSR | S_IXUSR)  // Owner read, write, execute
-
-// See: [_topen](https://learn.microsoft.com/zh-cn/cpp/c-runtime-library/reference/open-wopen?view=msvc-170)
-#include <io.h>
+    // See: [_topen](https://learn.microsoft.com/zh-cn/cpp/c-runtime-library/reference/open-wopen?view=msvc-170)
+    #include <io.h>
+    #define S_IRUSR  0400  // Owner read permission
+    #define S_IWUSR  0200  // Owner write permission
+    #define S_IXUSR  0100  // Owner execute permission
+    #define S_IRWXU  (S_IREAD | S_IWRITE | S_IEXEC)  // Owner read, write, execute
 #endif
 
-#define BUF_SIZE 4096
 static Q_LOGGING_CATEGORY(log, "Channel.SFTP")
 
 CChannelSFTP::CChannelSFTP(CBackend *pBackend, CParameterSSH *pPara,
@@ -136,7 +133,7 @@ QSharedPointer<CRemoteFileSystem> CChannelSFTP::GetFileNode(
         szName = szPath + "/" + szName;
     QSharedPointer<CRemoteFileSystem> p(new CRemoteFileSystem(szName, type));
     p->SetSize(attributes->size);
-    p->SetPermissions((CRemoteFileSystem::Permissions)attributes->permissions);
+    p->SetPermissions((QFileDevice::Permissions)attributes->permissions);
     p->SetLastModified(QDateTime::fromSecsSinceEpoch(attributes->mtime));
     p->SetCreateTime(QDateTime::fromSecsSinceEpoch(attributes->createtime));
     return p;
@@ -503,9 +500,12 @@ void CChannelSFTP::slotStartFileTransfer(QSharedPointer<CFileTransfer> f)
 {
     f->slotSetstate(CFileTransfer::State::Opening);
     QSharedPointer<FILE_AIO> file(new FILE_AIO);
+    memset(file.data(), 0, sizeof(FILE_AIO));
     file->fileTransfer = f;
     file->local = -1;
     file->remote = nullptr;
+    file->asyncReadId = -1;
+    file->offset = 0;
     file->state = STATE::OPEN;
     m_vFiles.append(file);
     emit sigFileTransferUpdate(f);
@@ -535,6 +535,7 @@ void CChannelSFTP::slotStopFileTransfer(QSharedPointer<CFileTransfer> f)
 int CChannelSFTP::AsyncFile()
 {
     for(auto it = m_vFiles.begin(); it != m_vFiles.end();) {
+        //qDebug(log) << Q_FUNC_INFO;
         auto file = *it;
         switch(file->state) {
         case STATE::OPEN: {
@@ -544,6 +545,7 @@ int CChannelSFTP::AsyncFile()
                 remoteFlag = O_RDONLY;
                 localFlag = O_WRONLY | O_CREAT | O_TRUNC;
             }
+
             file->remote = sftp_open(
                 m_SessionSftp,
                 file->fileTransfer->GetRemoteFile().toStdString().c_str(),
@@ -553,35 +555,48 @@ int CChannelSFTP::AsyncFile()
                 file->state = STATE::ERR;
                 QString szErr = "Can't open remote file: " + file->fileTransfer->GetRemoteFile() 
                         + ssh_get_error(m_Session);
+                file->fileTransfer->slotSetExplanation(szErr);
                 qCritical(log) << szErr;
                 break;
             }
             sftp_file_set_nonblocking(file->remote);
             
-            file->local = ::open(file->fileTransfer->GetLocalFile().toStdString().c_str(), localFlag);
+            file->local = ::open(
+                file->fileTransfer->GetLocalFile().toStdString().c_str(),
+                localFlag, file->fileTransfer->GetRemotePermission());
             if(-1 == file->local) {
                 file->state = STATE::ERR;
-                QString szErr = "Can't open local file: " + file->fileTransfer->GetLocalFile() + strerror(errno);
+                QString szErr = "Can't open local file: " + file->fileTransfer->GetLocalFile() + " " + strerror(errno);
+                file->fileTransfer->slotSetExplanation(szErr);
                 qCritical(log) << szErr;
                 break;
             }
             
             if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
-                int rc = sftp_async_read_begin(file->remote, BUF_SIZE);
-                if(rc < 0) {
+                file->asyncReadId = sftp_async_read_begin(file->remote, BUF_SIZE);
+                if(file->asyncReadId < 0) {
                     file->state = STATE::ERR;
                     QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
+                    file->fileTransfer->slotSetExplanation(szErr);
                     qCritical(log) << szErr;
                     break;
                 }
             } else {
-                // int rc = sftp_async_write_begin(file->remote, BUF_SIZE);
-                // if(rc < 0) {
-                //     file->state = STATE::ERR;
-                //     QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
-                //     qCritical(log) << szErr;
-                //     break;
-                // }
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+                if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
+                    int rc = sftp_aio_begin_write(file->remote, buffer, BUF_SIZE, file->aio);
+                    if(rc < 0) {
+                        file->state = STATE::ERR;
+                        QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
+                        qCritical(log) << szErr;
+                        break;
+                    }
+                }
+#else
+                file->state = STATE::ERR;
+                file->fileTransfer->slotSetExplanation(tr("Error: Asynchronous uploads are not supported"));
+                break;
+#endif
             }
             file->state = STATE::READ;
             file->fileTransfer->slotSetstate(CFileTransfer::State::Transferring);
@@ -589,9 +604,40 @@ int CChannelSFTP::AsyncFile()
         }
         case STATE::READ: {
             if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
-                
+                int nbytes = sftp_async_read(file->remote, file->buffer + file->offset, BUF_SIZE, file->asyncReadId);
+                if (nbytes > 0 || SSH_AGAIN == nbytes) {
+                    if(nbytes > 0 ) {
+                        int nLen = ::write(file->local, file->buffer + file->offset, nbytes);
+                        if(nLen > 0) {
+                            file->fileTransfer->slotTransferSize(nLen);
+                            //TODO: add nLen < nbytes
+                            emit sigFileTransferUpdate(file->fileTransfer);
+                        } else {
+                            file->state = STATE::ERR;
+                            QString szErr = "Write local file fail:" + sftp_get_error(m_SessionSftp);
+                            file->fileTransfer->slotSetExplanation(szErr);
+                        }
+                    }
+                    // Start next async read
+                    if (file->asyncReadId = sftp_async_read_begin(file->remote, BUF_SIZE) < 0) {
+                        file->state = STATE::ERR;
+                        QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
+                        file->fileTransfer->slotSetExplanation(szErr);
+                        qCritical(log) << szErr;
+                    }
+                } else if (nbytes == 0) {
+                    file->state = STATE::CLOSE;
+                    file->asyncReadId = -1;
+                } else {                    
+                        file->state = STATE::ERR;
+                        QString szErr = "sftp_async_read failed." + sftp_get_error(m_SessionSftp);
+                        file->fileTransfer->slotSetExplanation(szErr);
+                        qCritical(log) << szErr;
+                }
             } else {
-                
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+#else
+#endif
             }
             break;
         }
@@ -619,6 +665,7 @@ int CChannelSFTP::AsyncFile()
 
         it++;
     }
+    return 0;
 }
 
 int CChannelSFTP::CleanFileAIO(QSharedPointer<FILE_AIO> file)

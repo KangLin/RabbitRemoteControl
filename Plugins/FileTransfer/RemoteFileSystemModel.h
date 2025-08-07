@@ -4,6 +4,7 @@
 #pragma once
 #include <QAbstractItemModel>
 #include <QDateTime>
+#include <QFileDevice>
 #include "ChannelSFTP.h"
 
 class CRemoteFileSystem : public QObject
@@ -80,17 +81,8 @@ public:
     [[nodiscard]] QDateTime GetLastModified();
     void SetLastModified(const QDateTime& date);
 
-    enum class Permission {
-        No = 0x00,
-        Exec = 0x01,
-        Write = 0x02,
-        Read = 0x04
-    };
-    Q_ENUM(Permission)
-    Q_DECLARE_FLAGS(Permissions, Permission)
-    Q_FLAG(Permissions)
-    void SetPermissions(Permissions privileges);
-    [[nodiscard]] Permissions GetPermissions();
+    void SetPermissions(QFileDevice::Permissions privileges);
+    [[nodiscard]] QFileDevice::Permissions GetPermissions();
 
     [[nodiscard]] QString GetOwner();
     void SetOwner(QString szOwner);
@@ -103,7 +95,7 @@ private:
     TYPES m_Type;
     QDateTime m_createTime;
     QDateTime m_lastModifed;
-    Permissions m_Permissions;
+    QFileDevice::Permissions m_Permissions;
     QString m_szOwner;
     State m_State;
 };

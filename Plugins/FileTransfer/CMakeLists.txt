@@ -32,6 +32,10 @@ SET(FileTransfer_UI_FILES
     DlgFileTransfer.ui
     )
 
+# if(MSVC)
+#     list(APPEND FileTransfer_DEFINED _CRT_INTERNAL_NONSTDC_NAMES)
+# endif()
+
 list(APPEND FileTransfer_QT_COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${FileTransfer_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
@@ -45,6 +49,7 @@ endif()
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${FileTransfer_SOURCE_FILES} ${FileTransfer_HEADER_FILES} ${FileTransfer_UI_FILES}
+    PRIVATE_DEFINITIONS ${FileTransfer_DEFINED}
     PRIVATE_LIBS ${FileTransfer_LIBS}
     INSTALL_DIR ${PLUGIN_PATH}
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/${PLUGIN_PATH}

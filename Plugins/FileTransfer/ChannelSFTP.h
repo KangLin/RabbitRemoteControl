@@ -6,6 +6,8 @@
 #include "libssh/sftp.h"
 #include <QDateTime>
 
+#define BUF_SIZE 4096
+
 class CRemoteFileSystem;
 class CFileTransfer;
 class CChannelSFTP : public CChannelSSH
@@ -66,6 +68,12 @@ private:
     struct FILE_AIO {
         sftp_file remote;
         int local;
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+        sftp_aio aio;
+#endif
+        int asyncReadId;
+        char buffer[BUF_SIZE];
+        qint64 offset;
         STATE state;
         QSharedPointer<CFileTransfer> fileTransfer;
     };

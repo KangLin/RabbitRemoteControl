@@ -23,7 +23,7 @@ CRemoteFileSystem::CRemoteFileSystem(
     , m_szPath(szPath)
     , m_nSize(0)
     , m_Type(type)
-    , m_Permissions(Permission::No)
+    , m_Permissions(QFileDevice::Permission::WriteOwner | QFileDevice::Permission::ReadOwner)
     , m_State(State::No)
 {
 }
@@ -275,12 +275,12 @@ void CRemoteFileSystem::SetLastModified(const QDateTime &date)
     m_lastModifed = date;
 }
 
-CRemoteFileSystem::Permissions CRemoteFileSystem::GetPermissions()
+QFileDevice::Permissions CRemoteFileSystem::GetPermissions()
 {
     return m_Permissions;
 }
 
-void CRemoteFileSystem::SetPermissions(Permissions privileges)
+void CRemoteFileSystem::SetPermissions(QFileDevice::Permissions privileges)
 {
     m_Permissions = privileges;
 }

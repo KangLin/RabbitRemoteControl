@@ -349,6 +349,7 @@ void CFrmFileTransfer::slotTabLocalAddToList()
         QSharedPointer<CFileTransfer> f(new CFileTransfer(szLocal, szRemoteFile,
             CFileTransfer::Direction::Upload));
         f->SetFileSize(fi.size());
+        f->SetLocalPermission(m_pModelLocalFile->permissions(idx));
         m_pListFileModel->AddFileTransfer(f);
     }
 }
@@ -571,6 +572,7 @@ void CFrmFileTransfer::slotTabRemoteAddToList()
             new CFileTransfer(szLocalFile,
                               szRemote, CFileTransfer::Direction::Download));
         f->SetFileSize(p->GetSize());
+        f->SetRemotePermission(p->GetPermissions());
         m_pListFileModel->AddFileTransfer(f);
     }
 }

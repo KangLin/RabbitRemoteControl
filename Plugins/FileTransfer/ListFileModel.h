@@ -73,7 +73,12 @@ public:
 
     QString GetExplanation();
     QString GetFinishTime();
-
+    
+    quint32 GetLocalPermission() const;
+    void SetLocalPermission(quint32 newLocalPermission);
+    quint32 GetRemotePermission() const;
+    void SetRemotePermission(quint32 newRemotePermission);
+    
 Q_SIGNALS:
     void sigStart(CFileTransfer* pFile);
 public Q_SLOTS:
@@ -86,7 +91,9 @@ public Q_SLOTS:
 private:
     int m_nId;
     QString m_szLocalFile;
+    quint32 m_LocalPermission;
     QString m_szRemoteFile;
+    quint32 m_RemotePermission;
     qint64 m_nFileSize;
     qint64 m_nTransferSize;
     qint64 m_nLastSize;
