@@ -209,11 +209,11 @@ QString CFileTransfer::GetStateName()
     case State::No:
         return QString();
     case State::Opening:
-        return tr("Connecting");
+        return tr("Opening");
     case State::Transferring:
         return tr("Transferring");
     case State::Closing:
-        return tr("Disconnecting");
+        return tr("Closing");
     case State::Stop:
         return tr("Stop");
     case State::Fail:

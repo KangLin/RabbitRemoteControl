@@ -253,14 +253,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
-    <name>CConnectLayerQTcpSocket</name>
-    <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CDlgDesktopSize</name>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="14"/>
@@ -321,11 +313,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="14"/>
         <source>Set FreeRdp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="589"/>
-        <source>Enable input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -519,6 +506,11 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="551"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="589"/>
+        <source>Enable local input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -734,19 +726,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="125"/>
         <source>Build date: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ConnectLayerSSHTunnel</name>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
-        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

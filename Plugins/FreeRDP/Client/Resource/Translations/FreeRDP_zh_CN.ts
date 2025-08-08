@@ -257,9 +257,8 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation>服务器为空，请输入</translation>
+        <translation type="vanished">服务器为空，请输入</translation>
     </message>
 </context>
 <context>
@@ -324,11 +323,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.ui" line="14"/>
         <source>Set FreeRdp</source>
         <translation>设置 FreeRdp</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="589"/>
-        <source>Enable input method</source>
-        <translation>允许输入法</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="615"/>
@@ -527,6 +521,11 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.ui" line="551"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在远程计算机上使用本计算机的麦克风</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="589"/>
+        <source>Enable local input method</source>
+        <translation>允许本地输入法</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="438"/>
@@ -744,14 +743,12 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>服务器为空，请输入</translation>
+        <translation type="vanished">服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>错误</translation>
+        <translation type="vanished">错误</translation>
     </message>
 </context>
 <context>
