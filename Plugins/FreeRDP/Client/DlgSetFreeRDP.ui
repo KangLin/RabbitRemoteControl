@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>532</width>
-    <height>587</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -584,9 +584,9 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QCheckBox" name="cbEnableInputMethod">
+        <widget class="QCheckBox" name="cbEnableLocalInputMethod">
          <property name="text">
-          <string>Enable input method</string>
+          <string>Enable local input method</string>
          </property>
         </widget>
        </item>

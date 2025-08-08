@@ -874,7 +874,7 @@ BOOL CBackendFreeRDP::cb_pre_connect(freerdp* instance)
         settings, FreeRDP_PerformanceFlags, pParameter->GetPerformanceFlags());
     freerdp_performance_flags_split(settings);
 
-    freerdp_settings_set_bool(settings, FreeRDP_UnicodeInput, pParameter->GetEnableInputMethod());
+    freerdp_settings_set_bool(settings, FreeRDP_UnicodeInput, pParameter->GetEnableLocalInputMethod());
     return TRUE;
 }
 

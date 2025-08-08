@@ -22,7 +22,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 static Q_LOGGING_CATEGORY(logKey, "Client.FrmViewer.Key")
 static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
-static Q_LOGGING_CATEGORY(logInputMethod, "Client.FrmViewer.Mouse")
+static Q_LOGGING_CATEGORY(logInputMethod, "Client.FrmViewer.InputMethod")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)

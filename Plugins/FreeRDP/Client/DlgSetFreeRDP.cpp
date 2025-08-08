@@ -91,7 +91,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     // Redirection printer
     ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
 
-    ui->cbEnableInputMethod->setChecked(m_pSettings->GetEnableInputMethod());
+    ui->cbEnableLocalInputMethod->setChecked(m_pSettings->GetEnableLocalInputMethod());
 
     // Redirection audio output
     ui->gbAudio->setEnabled(HasAudioOutput() || HasAudioInput());
@@ -282,7 +282,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Redirection
     m_pSettings->SetRedirectionPrinter(ui->cbPrinter->isChecked());
-    m_pSettings->SetEnableInputMethod(ui->cbEnableInputMethod->isChecked());
+    m_pSettings->SetEnableLocalInputMethod(ui->cbEnableLocalInputMethod->isChecked());
     if(HasAudioOutput()) {
         CParameterFreeRDP::RedirecionSoundType tRdirectionSound
             = CParameterFreeRDP::RedirecionSoundType::Disable;

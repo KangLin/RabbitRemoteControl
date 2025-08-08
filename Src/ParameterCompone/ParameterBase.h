@@ -88,8 +88,8 @@ public:
     bool GetLedState() const;
     void SetLedState(bool state);
 
-    bool GetEnableInputMethod() const;
-    void SetEnableInputMethod(bool enable);
+    bool GetEnableLocalInputMethod() const;
+    void SetEnableLocalInputMethod(bool enable);
 
 Q_SIGNALS:
     void sigNameChanged(const QString &name = QString());
@@ -109,7 +109,7 @@ private:
     bool m_bClipboard;
     bool m_bSupportsDesktopResize;
     bool m_bLedState;
-    bool m_bEnableInputMethod;
+    bool m_bEnableLocalInputMethod;
 
     // Viewer
 public:

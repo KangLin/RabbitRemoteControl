@@ -8,7 +8,7 @@ CParameterBase::CParameterBase(QObject* parent)
     , m_Net(this)
     , m_Proxy(this)
     , m_Record(this)
-    , m_bEnableInputMethod(false)
+    , m_bEnableLocalInputMethod(false)
 {
     Init();
 }
@@ -54,7 +54,7 @@ int CParameterBase::OnLoad(QSettings &set)
         (CFrmViewer::ADAPT_WINDOWS)
         set.value("Viewer/AdaptType",
                   (int)GetGlobalParameters()->GetAdaptWindows()).toInt());
-    SetEnableInputMethod(set.value("InputMethod", GetEnableInputMethod()).toBool());
+    SetEnableLocalInputMethod(set.value("LocalInputMethod", GetEnableLocalInputMethod()).toBool());
     return 0;
 }
 
@@ -71,7 +71,7 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("LedState", GetLedState());
     set.setValue("Viewer/ZoomFactor", GetZoomFactor());
     set.setValue("Viewer/AdaptType", (int)GetAdaptWindows());
-    set.setValue("InputMethod", GetEnableInputMethod());
+    set.setValue("LocalInputMethod", GetEnableLocalInputMethod());
     return 0;
 }
 
@@ -235,23 +235,23 @@ void CParameterBase::slotSetGlobalParameters()
 
     SetAdaptWindows(pPlugin->GetAdaptWindows());
 
-    SetEnableInputMethod(pPlugin->GetEnableLocalInputMethod());
+    SetEnableLocalInputMethod(pPlugin->GetEnableLocalInputMethod());
 
     m_Record = pPlugin->m_Record;
 
     return;
 }
 
-bool CParameterBase::GetEnableInputMethod() const
+bool CParameterBase::GetEnableLocalInputMethod() const
 {
-    return m_bEnableInputMethod;
+    return m_bEnableLocalInputMethod;
 }
 
-void CParameterBase::SetEnableInputMethod(bool enable)
+void CParameterBase::SetEnableLocalInputMethod(bool enable)
 {
-    if(m_bEnableInputMethod == enable)
+    if(m_bEnableLocalInputMethod == enable)
         return;
-    m_bEnableInputMethod = enable;
+    m_bEnableLocalInputMethod = enable;
     SetModified(true);
-    emit sigEnableInputMethod(m_bEnableInputMethod);
+    emit sigEnableInputMethod(m_bEnableLocalInputMethod);
 }
