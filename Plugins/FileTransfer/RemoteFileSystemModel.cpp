@@ -222,12 +222,12 @@ QString CRemoteFileSystem::GetName()
     return szName;
 }
 
-qint64 CRemoteFileSystem::GetSize()
+quint64 CRemoteFileSystem::GetSize()
 {
     return m_nSize;
 }
 
-void CRemoteFileSystem::SetSize(qint64 size)
+void CRemoteFileSystem::SetSize(quint64 size)
 {
     m_nSize = size;
 }

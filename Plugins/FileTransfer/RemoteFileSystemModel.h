@@ -69,8 +69,8 @@ public:
     [[nodiscard]] QString GetPath();
     [[nodiscard]] QString GetName();
 
-    [[nodiscard]] qint64 GetSize();
-    void SetSize(qint64 size);
+    [[nodiscard]] quint64 GetSize();
+    void SetSize(quint64 size);
 
     [[nodiscard]] TYPES GetType();
     [[nodiscard]] bool IsDir();
@@ -91,7 +91,7 @@ private:
     CRemoteFileSystem* m_pParent;
     QVector<CRemoteFileSystem*> m_vChild;
     QString m_szPath;
-    qint64 m_nSize;
+    quint64 m_nSize;
     TYPES m_Type;
     QDateTime m_createTime;
     QDateTime m_lastModifed;

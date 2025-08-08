@@ -158,17 +158,17 @@ void CFileTransfer::SetRemoteFile(const QString &szFile)
     m_szRemoteFile = szFile;
 }
 
-qint64 CFileTransfer::GetFileSize()
+quint64 CFileTransfer::GetFileSize()
 {
     return m_nFileSize;
 }
 
-void CFileTransfer::SetFileSize(qint64 size)
+void CFileTransfer::SetFileSize(quint64 size)
 {
     m_nFileSize = size;
 }
 
-void CFileTransfer::slotTransferSize(int nAddSize)
+void CFileTransfer::slotTransferSize(quint64 nAddSize)
 {
     m_nTransferSize += nAddSize;
 }
@@ -380,7 +380,11 @@ bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
 
 void CListFileModel::UpdateFileTransfer(QSharedPointer<CFileTransfer> f)
 {
+    if(!f) return;
     int r = m_lstFile.indexOf(f);
+    if(-1 == r)
+        return;
+    qDebug(log) << "Find:" << r;
     QModelIndex topLeft = index(r, 0);
     QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End);
     emit dataChanged(topLeft, bootRight);

@@ -68,14 +68,20 @@ private:
     struct FILE_AIO {
         sftp_file remote;
         int local;
-#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
-        sftp_aio aio;
-#endif
-        int asyncReadId;
-        char buffer[BUF_SIZE];
-        qint64 offset;
         STATE state;
         QSharedPointer<CFileTransfer> fileTransfer;
+
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+        QVector<sftp_aio> aio;
+        // The chunk size to use for the transfer
+        quint64 nChunkSize;
+        quint64 nTransfers;
+        int nConcurrentCount;
+        char *buffer;
+#else
+        int asyncReadId;
+#endif
+        
     };
 
     virtual int OnOpen(ssh_session session) override;

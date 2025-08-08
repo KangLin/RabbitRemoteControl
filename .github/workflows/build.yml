@@ -245,7 +245,7 @@ jobs:
           if [ "${{ github.ref_name }}" == "master" ]; then
             export BRANCH_NAME=test_${{ github.ref_name }}
           fi
-          echo "|Flatpak|[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)||flatpak install "flatpak File" [--user] |" >> ${{github.workspace}}/Release.md
+          echo "|Flatpak|[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v${{env.RabbitRemoteControl_VERSION}}_Linux_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak)||flatpak install \"flatpak File\" [--user] |" >> ${{github.workspace}}/Release.md
 
       - name: Add snap donwload in Release.md file
         run: |

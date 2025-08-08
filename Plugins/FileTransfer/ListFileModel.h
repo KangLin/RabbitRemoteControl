@@ -45,8 +45,8 @@ public:
     QString GetRemoteFile();
     void SetRemoteFile(const QString& szFile);
     
-    qint64 GetFileSize();
-    void SetFileSize(qint64 size);
+    quint64 GetFileSize();
+    void SetFileSize(quint64 size);
 
     enum class State{
         No = 0x01,
@@ -83,7 +83,7 @@ Q_SIGNALS:
     void sigStart(CFileTransfer* pFile);
 public Q_SLOTS:
     void slotSetstate(State s);
-    void slotTransferSize(int nAddSize);
+    void slotTransferSize(quint64 nAddSize);
     void slotSetPrority(Priority p);
     void slotSetExplanation(const QString& explanation);
     void slotFinish();
@@ -94,9 +94,9 @@ private:
     quint32 m_LocalPermission;
     QString m_szRemoteFile;
     quint32 m_RemotePermission;
-    qint64 m_nFileSize;
-    qint64 m_nTransferSize;
-    qint64 m_nLastSize;
+    quint64 m_nFileSize;
+    quint64 m_nTransferSize;
+    quint64 m_nLastSize;
     Direction m_Direction;
     State m_State;
     Priority m_Priority;

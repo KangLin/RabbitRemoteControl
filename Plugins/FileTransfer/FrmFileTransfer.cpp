@@ -309,6 +309,7 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
 void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 {
     auto idx = ui->tabLocal->currentIndex();
+    if(!idx.isValid()) return;
     QString szPath = m_pModelLocalDir->filePath(idx);
     if(szPath.isEmpty()) return;
     QClipboard* pClipboard = QApplication::clipboard();
@@ -318,6 +319,7 @@ void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 void CFrmFileTransfer::slotTabLocalUpload()
 {
     auto idx = ui->tabLocal->currentIndex();
+    if(!idx.isValid()) return;
     QString szPath = m_pModelLocalDir->filePath(idx);
     if(szPath.isEmpty()) return;
 }
@@ -357,6 +359,7 @@ void CFrmFileTransfer::slotTabLocalAddToList()
 void CFrmFileTransfer::slotTabLocalOpen()
 {
     auto idx = ui->tabLocal->currentIndex();
+    if(!idx.isValid()) return;
     auto szPath = m_pModelLocalFile->filePath(idx);
     QDesktopServices::openUrl(QUrl(szPath));
 }
@@ -370,12 +373,15 @@ void CFrmFileTransfer::slotTabLocalEdit()
 void CFrmFileTransfer::slotTabLocalDelete()
 {
     auto idx = ui->tabLocal->currentIndex();
-    m_pModelLocalDir->remove(idx);
+    if(idx.isValid())
+        m_pModelLocalDir->remove(idx);
 }
 
 void CFrmFileTransfer::slotTabLocalRename()
 {
-    ui->tabLocal->edit(ui->tabLocal->currentIndex());
+    auto idx = ui->tabLocal->currentIndex();
+    if(idx.isValid())
+        ui->tabLocal->edit(idx);
 }
 
 void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
@@ -505,7 +511,9 @@ void CFrmFileTransfer::slotTreeRemoteRefresh()
 
 void CFrmFileTransfer::slotTreeRemoteRename()
 {
-    ui->treeRemote->edit(ui->treeRemote->currentIndex());
+    auto idx = ui->treeRemote->currentIndex();
+    if(!idx.isValid()) return;
+    ui->treeRemote->edit(idx);
 }
 
 void CFrmFileTransfer::slotTreeRemoteCopyToClipboard()
@@ -659,5 +667,6 @@ void CFrmFileTransfer::slotProcessFileTransfer()
 
 void CFrmFileTransfer::slotFileTransferUpdate(QSharedPointer<CFileTransfer> f)
 {
+    if(!f) return;
     m_pListFileModel->UpdateFileTransfer(f);
 }
