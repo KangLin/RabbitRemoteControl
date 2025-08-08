@@ -501,12 +501,14 @@ void CChannelSFTP::slotStartFileTransfer(QSharedPointer<CFileTransfer> f)
     f->slotSetstate(CFileTransfer::State::Opening);
     QSharedPointer<FILE_AIO> file(new FILE_AIO);
     memset(file.data(), 0, sizeof(FILE_AIO));
-    file->fileTransfer = f;
     file->local = -1;
     file->remote = nullptr;
-    file->asyncReadId = -1;
-    file->offset = 0;
     file->state = STATE::OPEN;
+    file->fileTransfer = f;
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+    file->nChunkSize = BUF_SIZE;
+    file->nConcurrentCount = 5;
+#endif
     m_vFiles.append(file);
     emit sigFileTransferUpdate(f);
     WakeUp();
@@ -559,6 +561,7 @@ int CChannelSFTP::AsyncFile()
                 qCritical(log) << szErr;
                 break;
             }
+
             sftp_file_set_nonblocking(file->remote);
             
             file->local = ::open(
@@ -573,6 +576,50 @@ int CChannelSFTP::AsyncFile()
             }
             
             if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+                if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
+                    sftp_limits_t lim = sftp_limits(m_SessionSftp);
+                    if(lim) {
+                        file->nChunkSize = lim->max_read_length;
+                        qDebug(log) << "limits: max_open_handles:" << lim->max_open_handles
+                                    << "max_packet_length" << lim->max_packet_length
+                                    << "max_read_length" << lim->max_read_length
+                                    << "max_write_length:" << lim->max_write_length;
+                        sftp_limits_free(lim);
+                    }
+
+                    qint64 nRequestBytes = 0;
+                    for(int i = 0;
+                         i < file->nConcurrentCount
+                         && nRequestBytes < file->fileTransfer->GetFileSize();
+                         i++) {
+                        sftp_aio aio = nullptr;
+                        int nRequest = file->fileTransfer->GetFileSize();
+                        if(nRequest > file->nChunkSize)
+                            nRequest = file->nChunkSize;
+                        int nRet = sftp_aio_begin_read(file->remote, nRequest, &aio);
+                        if(0 > nRet) {
+                            int rc = ssh_get_error_code(m_Session);
+                            if (rc != SSH_NO_ERROR) {
+                                QString szErr = "Error during sftp aio download: " + QString::number(rc);
+                                szErr += ssh_get_error(m_Session);
+                                qCritical(log) << szErr;
+                                break;
+                            }
+                        }
+                        if ((size_t)nRequest != nRet) {
+                            QString szErr =
+                                    "Error during sftp aio download: sftp_aio_begin_read() "
+                                    "requesting less bytes even when the number of bytes "
+                                    "asked to read are within the max limit";
+                            qWarning(log) << szErr << nRequest << nRet;
+                        }
+
+                        nRequestBytes += nRet;
+                        file->aio.append(aio);
+                    }
+                }
+#else
                 file->asyncReadId = sftp_async_read_begin(file->remote, BUF_SIZE);
                 if(file->asyncReadId < 0) {
                     file->state = STATE::ERR;
@@ -581,29 +628,86 @@ int CChannelSFTP::AsyncFile()
                     qCritical(log) << szErr;
                     break;
                 }
-            } else {
-#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
-                if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
-                    int rc = sftp_aio_begin_write(file->remote, buffer, BUF_SIZE, file->aio);
-                    if(rc < 0) {
-                        file->state = STATE::ERR;
-                        QString szErr = "sftp_async_read_begin failed." + sftp_get_error(m_SessionSftp);
-                        qCritical(log) << szErr;
-                        break;
-                    }
-                }
-#else
-                file->state = STATE::ERR;
-                file->fileTransfer->slotSetExplanation(tr("Error: Asynchronous uploads are not supported"));
-                break;
 #endif
+            } else { // Upload
+
             }
+
             file->state = STATE::READ;
             file->fileTransfer->slotSetstate(CFileTransfer::State::Transferring);
             emit sigFileTransferUpdate(file->fileTransfer);
         }
         case STATE::READ: {
             if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
+                if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
+                    for(auto it = file->aio.begin(); it != file->aio.end();) {
+                        auto aio = *it;
+                        QSharedPointer<char> buffer(new char[file->nChunkSize]);
+                        int nRet = sftp_aio_wait_read(&aio, buffer.data(), file->nChunkSize);
+                        if (nRet < 0) {
+                            if(SSH_AGAIN == nRet)
+                                break;
+                            int rc = ssh_get_error_code(m_Session);
+                            if (rc != SSH_NO_ERROR) {
+                                file->state = STATE::ERR;
+                                QString szErr = "Error during sftp aio download: " + QString::number(rc);
+                                szErr += ssh_get_error(m_Session);
+                                qCritical(log) << szErr;
+                                break;
+                            }
+                        }
+                        it = file->aio.erase(it);
+                        file->nTransfers += (size_t)nRet;
+
+                        int nLen = ::write(file->local, buffer.data(), nRet);
+                        if(nLen < 0) {
+                            if(EAGAIN != nLen)
+                                file->state = STATE::ERR;
+                            break;
+                        }
+                        if(nLen != nRet) {
+                            qCritical(log) << "Write file error:" << file->fileTransfer->GetLocalFile();
+                        }
+                        file->fileTransfer->slotTransferSize(nRet);
+                        emit sigFileTransferUpdate(file->fileTransfer);
+                    }
+                    if(file->fileTransfer->GetFileSize() == file->nTransfers) {
+                        file->state = STATE::CLOSE;
+                        break;
+                    }
+
+                    qint64 nRequestBytes = file->nTransfers;
+                    for(int i = 0;
+                         i < file->nConcurrentCount
+                         && nRequestBytes < file->fileTransfer->GetFileSize();
+                         i++) {
+                        sftp_aio aio = nullptr;
+                        int nRequest = file->fileTransfer->GetFileSize();
+                        if(nRequest > file->nChunkSize)
+                            nRequest = file->nChunkSize;
+                        int nRet = sftp_aio_begin_read(file->remote, nRequest, &aio);
+                        if(0 > nRet) {
+                            int rc = ssh_get_error_code(m_Session);
+                            if (rc != SSH_NO_ERROR) {
+                                QString szErr = "Error during sftp aio download: " + QString::number(rc);
+                                szErr += ssh_get_error(m_Session);
+                                qCritical(log) << szErr;
+                                break;
+                            }
+                        }
+                        nRequestBytes += nRet;
+                        file->aio.append(aio);
+                    }
+
+                } else {
+                    file->state = STATE::ERR;
+                    QString szErr = tr("Error: Asynchronous uploads are not supported");
+                    file->fileTransfer->slotSetExplanation(szErr);
+                    qCritical(log) << szErr;
+                    break;
+                }
+#else
                 int nbytes = sftp_async_read(file->remote, file->buffer + file->offset, BUF_SIZE, file->asyncReadId);
                 if (nbytes > 0 || SSH_AGAIN == nbytes) {
                     if(nbytes > 0 ) {
@@ -634,10 +738,10 @@ int CChannelSFTP::AsyncFile()
                         file->fileTransfer->slotSetExplanation(szErr);
                         qCritical(log) << szErr;
                 }
-            } else {
-#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
-#else
 #endif
+            } else { // Upload
+
+
             }
             break;
         }
@@ -655,6 +759,9 @@ int CChannelSFTP::AsyncFile()
             continue;
         }
         case STATE::ERR: {
+            foreach (auto aio, file->aio) {
+                sftp_aio_free(aio);
+            }
             CleanFileAIO(file);
             it = m_vFiles.erase(it);
             file->fileTransfer->slotSetstate(CFileTransfer::State::Fail);

@@ -380,6 +380,7 @@ bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
 
 void CListFileModel::UpdateFileTransfer(QSharedPointer<CFileTransfer> f)
 {
+    if(!f) return;
     int r = m_lstFile.indexOf(f);
     QModelIndex topLeft = index(r, 0);
     QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End);
