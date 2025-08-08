@@ -236,8 +236,8 @@ void CFileTransfer::slotSetstate(State s)
 QString CFileTransfer::GetPriority()
 {
     switch((Priority)m_Priority) {
-    case Priority::Hight:
-        return tr("Hight");
+    case Priority::Height:
+        return tr("Height");
     case Priority::Normal:
         return tr("Normal");
     case Priority::Lower:

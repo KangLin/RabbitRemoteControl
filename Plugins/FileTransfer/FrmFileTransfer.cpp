@@ -329,8 +329,8 @@ void CFrmFileTransfer::slotTabLocalAddToList()
         QMessageBox::critical(this, tr("Error"), tr("Please select remote directory"));
         return;
     }
-    auto indexs = ui->tabLocal->selectionModel()->selectedRows();
-    foreach(auto idx, indexs) {
+    auto indexes = ui->tabLocal->selectionModel()->selectedRows();
+    foreach(auto idx, indexes) {
         QString szLocal = m_pModelLocalFile->filePath(idx);
         if(szLocal.isEmpty()) {
             qDebug(log) << "The select is empty:" << idx;
@@ -555,8 +555,8 @@ void CFrmFileTransfer::slotTabRemoteAddToList()
         QMessageBox::critical(this, tr("Error"), tr("Please select local directory"));
         return;
     }
-    auto indexs = ui->tabRemote->selectionModel()->selectedRows();
-    foreach(auto idx, indexs) {
+    auto indexes = ui->tabRemote->selectionModel()->selectedRows();
+    foreach(auto idx, indexes) {
         auto p = m_pModelRemoteFile->GetRemoteFileSystemFromIndex(idx);
         QString szRemote = p->GetPath();
         if(szRemote.isEmpty()) {
@@ -623,13 +623,13 @@ void CFrmFileTransfer::on_tabList_customContextMenuRequested(const QPoint &pos)
 
 void CFrmFileTransfer::slotTabListDelete()
 {
-    auto indexs = ui->tabList->selectionModel()->selectedRows();
+    auto indexes = ui->tabList->selectionModel()->selectedRows();
     // 倒序排序
-    std::sort(indexs.begin(), indexs.end(),
+    std::sort(indexes.begin(), indexes.end(),
               [](const QModelIndex &a, const QModelIndex &b) {
                   return a.row() > b.row();
               });
-    foreach(const QModelIndex &idx, indexs) {
+    foreach(const QModelIndex &idx, indexes) {
         auto f = m_pListFileModel->GetFileTransfer(idx);
         if(f) {
             if((int)f->GetState() & (int)CFileTransfer::State::Process) {

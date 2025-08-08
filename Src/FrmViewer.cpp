@@ -22,6 +22,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 static Q_LOGGING_CATEGORY(logKey, "Client.FrmViewer.Key")
 static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
+static Q_LOGGING_CATEGORY(logInputMethod, "Client.FrmViewer.Mouse")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
@@ -192,8 +193,10 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
     event->accept();
 
     if(testAttribute(Qt::WA_InputMethodEnabled)
-        && event->button() == Qt::LeftButton)
+        && event->button() == Qt::LeftButton) {
+        qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
         updateMicroFocus();
+    }
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
@@ -262,7 +265,7 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 
 void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
 {
-    qDebug(logKey) << Q_FUNC_INFO << event;
+    qDebug(logInputMethod) << Q_FUNC_INFO << event;
     emit sigInputMethodEvent(event);
     event->accept();
     /*
@@ -274,7 +277,7 @@ void CFrmViewer::inputMethodEvent(QInputMethodEvent *event)
 
 QVariant CFrmViewer::inputMethodQuery(Qt::InputMethodQuery query) const
 {
-    qDebug(logKey) << Q_FUNC_INFO << query;
+    qDebug(logInputMethod) << Q_FUNC_INFO << query;
     switch ( query )
     {
     case Qt::ImCursorRectangle: {
@@ -362,6 +365,7 @@ void CFrmViewer::slotRunning()
 
 void CFrmViewer::slotEnableInputMethod(bool bEnable)
 {
+    qDebug(logInputMethod) << Q_FUNC_INFO << bEnable;
     setAttribute(Qt::WA_InputMethodEnabled, bEnable);
 }
 
@@ -412,16 +416,20 @@ void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 {
     //qDebug(log) << Q_FUNC_INFO << cursor;
     setCursor(cursor);
-    if(testAttribute(Qt::WA_InputMethodEnabled))
+    if(testAttribute(Qt::WA_InputMethodEnabled)) {
+        qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
         updateMicroFocus();
+    }
 }
 
 void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 {
     //qDebug(log) << Q_FUNC_INFO << pos;
     cursor().setPos(pos);
-    if(testAttribute(Qt::WA_InputMethodEnabled))
+    if(testAttribute(Qt::WA_InputMethodEnabled)) {
+        qDebug(logInputMethod) << Q_FUNC_INFO << "Update micro focus";
         updateMicroFocus();
+    }
 }
 
 #if ! (defined(Q_OS_WIN) || defined(Q_OS_APPLE) || defined(Q_OS_ANDROID) || defined(Q_OS_APPLE) || defined(Q_OS_MACOS))

@@ -64,7 +64,7 @@ public:
     QString GetStateName();
     
     enum class Priority{
-        Hight,
+        Height,
         Normal,
         Lower
     };
