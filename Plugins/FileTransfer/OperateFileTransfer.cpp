@@ -200,10 +200,20 @@ const QString COperateFileTransfer::Protocol() const
 const QString COperateFileTransfer::Id()
 {
     QString szId = COperate::Id();
-    auto &net = m_Parameter.m_Net;
-    if(!net.GetHost().isEmpty())
-        szId += "_" + net.GetHost()
-                + "_" + QString::number(net.GetPort());
+    CParameterNet* pNet = nullptr;
+    switch(m_Parameter.GetProtocol()) {
+    case CParameterFileTransfer::Protocol::SFTP:
+        pNet = &m_Parameter.m_SSH.m_Net;
+        break;
+    case CParameterFileTransfer::Protocol::FTP:
+        pNet = &m_Parameter.m_Net;
+        break;
+    default:
+        break;
+    }
+    if(pNet && !pNet->GetHost().isEmpty())
+        szId += "_" + pNet->GetHost()
+                + "_" + QString::number(pNet->GetPort());
     
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
