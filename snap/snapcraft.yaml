@@ -68,6 +68,27 @@ parts:
     prime:
       - -*
 
+  libssh:
+    plugin: cmake
+    source: https://git.libssh.org/projects/libssh.git/
+    source-type: git
+    source-tag: libssh-0.11.2
+    source-depth: 1
+    build-packages:
+      - libssl-dev
+      - libcrypt-dev
+    #stage-packages:
+    cmake-parameters:
+      # See: https://snapcraft.io/docs/parts-environment-variables
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_VERBOSE_MAKEFILE=ON
+    stage:
+      - -usr/include
+    prime:
+      - -usr/local/include
+      - -usr/local/lib/cmake
+      - -usr/local/lib/pkgconfig
+
   freerdp:
     # see: https://snapcraft.io/docs/supported-plugins
     # See 'snapcraft plugins'
@@ -260,9 +281,10 @@ parts:
     plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
     source: .
     after:
-      - tigervnc
       - rabbitcommon
+      - libssh
       - freerdp
+      - tigervnc
       - pcapplusplus
       - qtermwidget
  #     - qt
@@ -272,7 +294,6 @@ parts:
       - libpcap-dev
       - libx11-dev
       - libxcb-keysyms1-dev
-      - libssh-dev
       # opengl development headers and libraries
       - libglx-dev
       - libgl1-mesa-dev
