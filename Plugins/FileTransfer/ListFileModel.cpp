@@ -410,9 +410,9 @@ void CListFileModel::UpdateFileTransfer(QSharedPointer<CFileTransfer> f)
     int r = m_lstFile.indexOf(f);
     if(-1 == r)
         return;
-    qDebug(log) << "Find:" << r;
+    //qDebug(log) << "Find:" << r;
     QModelIndex topLeft = index(r, 0);
-    QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End);
+    QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End - 1);
     emit dataChanged(topLeft, bootRight);
 }
 

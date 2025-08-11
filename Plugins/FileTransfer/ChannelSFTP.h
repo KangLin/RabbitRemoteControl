@@ -65,7 +65,16 @@ private:
         QVector<QSharedPointer<CRemoteFileSystem> > vFileNode;
         int Error;
     };
-    struct FILE_AIO {
+
+    struct _AIO {
+        sftp_aio aio;
+        quint64 nStart;
+        quint64 nRequests;
+        quint64 nTransfers;
+        char* buffer;
+    };
+
+    struct _AFILE {
         sftp_file remote;
         int local;
         STATE state;
@@ -75,6 +84,7 @@ private:
         QVector<sftp_aio> aio;
         // The chunk size to use for the transfer
         quint64 nChunkSize;
+        quint64 nRequests;
         quint64 nTransfers;
         int nConcurrentCount;
         char *buffer;
@@ -89,10 +99,10 @@ private:
     QSharedPointer<CRemoteFileSystem> GetFileNode(const QString &szPath, sftp_attributes attributes);
     int AsyncReadDir();
     int AsyncFile();
-    int CleanFileAIO(QSharedPointer<FILE_AIO> aio);
+    int CleanFileAIO(QSharedPointer<_AFILE> aio);
 
 private:
     sftp_session m_SessionSftp;
     QVector<QSharedPointer<DIR_READER> > m_vDirs;
-    QVector<QSharedPointer<FILE_AIO> > m_vFiles;
+    QVector<QSharedPointer<_AFILE> > m_vFiles;
 };

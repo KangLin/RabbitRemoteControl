@@ -177,6 +177,7 @@ endif()
 
 find_package(libssh)
 if(libssh_FOUND)
+    message("libssh version: ${libssh_VERSION}")
     option(WITH_EVENTFD "Enable eventfd" ON)
     if(WITH_EVENTFD)
         check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
