@@ -670,3 +670,16 @@ void CFrmFileTransfer::slotFileTransferUpdate(QSharedPointer<CFileTransfer> f)
     if(!f) return;
     m_pListFileModel->UpdateFileTransfer(f);
 }
+
+int CFrmFileTransfer::Load(QSettings &set)
+{
+    m_pListFileModel->Load(set);
+    return 0;
+}
+
+int CFrmFileTransfer::Save(QSettings &set)
+{
+    if(m_pListFileModel)
+        m_pListFileModel->Save(set);
+    return 0;
+}

@@ -21,6 +21,9 @@ public:
     explicit CFrmFileTransfer(QWidget *parent = nullptr);
     virtual ~CFrmFileTransfer();
 
+    virtual int Load(QSettings &set);
+    virtual int Save(QSettings &set);
+
 Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
     void sigCopyUrlToClipboard(const QString& szPath);

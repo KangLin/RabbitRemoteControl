@@ -21,11 +21,11 @@ CFileTransfer::CFileTransfer(const QString& localFile,
     , m_RemotePermission(0x0644)
     , m_nFileSize(0)
     , m_nTransferSize(0)
-    , m_nLastSize(0)
     , m_Direction(dir)
     , m_State(State::No)
     , m_Priority(Priority::Normal)
-    , m_FinishTime(QDateTime::currentDateTime())
+    , m_nLastSize(0)
+    , m_fSpeed(0)
 {
     m_nId = g_Id++;
 }
@@ -83,7 +83,7 @@ QVariant CFileTransfer::Data(int column, int role)
             szData = GetRemoteFile();
             break;
         case ColumnValue::FileSize: {
-            szData = CChannel::GetSize(m_nTransferSize) + "/" + CChannel::GetSize(GetFileSize());
+            szData = CChannel::GetSize(GetTransferSize()) + "/" + CChannel::GetSize(GetFileSize());
             break;
         }
         case ColumnValue::Direction:
@@ -94,6 +94,9 @@ QVariant CFileTransfer::Data(int column, int role)
             break;
         case ColumnValue::Priority:
             szData = GetPriority();
+            break;
+        case ColumnValue::Speed:
+            szData = CChannel::GetSize(GetSpeed());
             break;
         case ColumnValue::Time:
             szData = GetFinishTime();
@@ -168,9 +171,25 @@ void CFileTransfer::SetFileSize(quint64 size)
     m_nFileSize = size;
 }
 
+quint64 CFileTransfer::GetTransferSize()
+{
+    return m_nTransferSize;
+}
+
 void CFileTransfer::slotTransferSize(quint64 nAddSize)
 {
     m_nTransferSize += nAddSize;
+    QDateTime tmCur = QDateTime::currentDateTime();
+    int nSec = m_tmLast.secsTo(tmCur);
+    if(nSec < 1) return;
+    m_fSpeed = ((float_t)(m_nTransferSize - m_nLastSize)) / (float_t)nSec;
+    m_tmLast = tmCur;
+    m_nLastSize = m_nTransferSize;
+}
+
+float_t CFileTransfer::GetSpeed()
+{
+    return m_fSpeed;
 }
 
 QString CFileTransfer::GetFinishTime()
@@ -181,6 +200,11 @@ QString CFileTransfer::GetFinishTime()
 void CFileTransfer::slotFinish()
 {
     m_FinishTime = QDateTime::currentDateTime();
+}
+
+void CFileTransfer::SetFinishTime(QString szTime) {
+    if(szTime.isEmpty()) return;
+    m_FinishTime = QDateTime::fromString(szTime, QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 }
 
 quint32 CFileTransfer::GetLocalPermission() const
@@ -230,6 +254,8 @@ CFileTransfer::State CFileTransfer::GetState()
 
 void CFileTransfer::slotSetstate(State s)
 {
+    if(State::Opening == s)
+        m_tmLast = QDateTime::currentDateTime();
     m_State = s;
 }
 
@@ -388,4 +414,58 @@ void CListFileModel::UpdateFileTransfer(QSharedPointer<CFileTransfer> f)
     QModelIndex topLeft = index(r, 0);
     QModelIndex bootRight = index(r, (int)CFileTransfer::ColumnValue::End);
     emit dataChanged(topLeft, bootRight);
+}
+
+int CListFileModel::Load(QSettings &set)
+{
+    int nCount = 0;
+    beginResetModel();
+    nCount = set.value("Model/ListFile/Count").toInt();
+    for(int i = 0; i < nCount; i++) {
+        set.beginGroup("Model/ListFile/FileTransfer" + QString::number(i));
+        QString szLocal = set.value("Local/File").toString();
+        CFileTransfer::Direction direction =
+            (CFileTransfer::Direction)set.value("Direction", (int)CFileTransfer::Direction::Upload).toInt();
+        QString szRemoteFile = set.value("Remote/File").toString();
+        QSharedPointer<CFileTransfer> f(
+            new CFileTransfer(szLocal, szRemoteFile, direction));
+        f->SetRemotePermission(set.value("Remote/Permission", f->GetRemotePermission()).toULongLong());
+        f->SetFileSize(set.value("File/Size", f->GetFileSize()).toULongLong());
+        f->slotTransferSize(set.value("File/Size/Transfer", f->GetTransferSize()).toULongLong());
+        CFileTransfer::State state = (CFileTransfer::State)set.value("State", (int)f->GetState()).toInt();
+        if(!(CFileTransfer::State::Finish == state || CFileTransfer::State::Fail == state))
+            state = CFileTransfer::State::No;
+        f->slotSetstate(state);
+        //f->slotSetPrority((CFileTransfer::Priority)set.value("Prioity", f->GetPriority()).toInt());
+        f->slotSetExplanation(set.value("Explanation", f->GetExplanation()).toString());
+        f->SetFinishTime(set.value("FinishTime", f->GetFinishTime()).toString());
+        set.endGroup();
+        m_lstFile.append(f);
+    }
+    endResetModel();
+    return 0;
+}
+
+int CListFileModel::Save(QSettings &set)
+{
+    set.setValue("Model/ListFile/Count", m_lstFile.size());
+    for(int i = 0; i < m_lstFile.size(); i++) {
+        auto f = m_lstFile.at(i);
+        set.beginGroup("Model/ListFile/FileTransfer" + QString::number(i));
+        set.setValue("Local/File", f->GetLocalFile());
+        set.setValue("Direction", (int)f->GetDirection());
+        set.setValue("Remote/File", f->GetRemoteFile());
+        set.setValue("Remote/Permission", f->GetRemotePermission());
+        set.setValue("File/Size", f->GetFileSize());
+        set.setValue("File/Size/Transfer", f->GetTransferSize());
+        CFileTransfer::State state = f->GetState();
+        if(!(CFileTransfer::State::Finish == state || CFileTransfer::State::Fail == state))
+            state = CFileTransfer::State::No;
+        set.setValue("State", (int)state);
+        //set.setValue("Prioity", f->GetPriority());
+        set.setValue("Explanation", f->GetExplanation());
+        set.setValue("FinishTime", f->GetFinishTime());
+        set.endGroup();
+    }
+    return 0;
 }

@@ -5,6 +5,7 @@
 
 #include <QAbstractTableModel>
 #include <QDateTime>
+#include <QSettings>
 
 class CFileTransfer : public QObject
 {
@@ -47,6 +48,7 @@ public:
     
     quint64 GetFileSize();
     void SetFileSize(quint64 size);
+    quint64 GetTransferSize();
 
     enum class State{
         No = 0x01,
@@ -79,6 +81,8 @@ public:
     quint32 GetRemotePermission() const;
     void SetRemotePermission(quint32 newRemotePermission);
     
+    void SetFinishTime(QString szTime);
+
 Q_SIGNALS:
     void sigStart(CFileTransfer* pFile);
 public Q_SLOTS:
@@ -89,6 +93,9 @@ public Q_SLOTS:
     void slotFinish();
 
 private:
+    float_t GetSpeed();
+
+private:
     int m_nId;
     QString m_szLocalFile;
     quint32 m_LocalPermission;
@@ -96,12 +103,15 @@ private:
     quint32 m_RemotePermission;
     quint64 m_nFileSize;
     quint64 m_nTransferSize;
-    quint64 m_nLastSize;
     Direction m_Direction;
     State m_State;
     Priority m_Priority;
     QString m_szExplanation;
     QDateTime m_FinishTime;
+    
+    quint64 m_nLastSize;
+    QDateTime m_tmLast;
+    float_t m_fSpeed;
 };
 
 class CListFileModel : public QAbstractTableModel
@@ -110,7 +120,10 @@ class CListFileModel : public QAbstractTableModel
 
 public:
     explicit CListFileModel(QObject *parent = nullptr);
-    
+
+    virtual int Load(QSettings &set);
+    virtual int Save(QSettings &set);
+
     QModelIndex AddFileTransfer(QSharedPointer<CFileTransfer> f);
     int RemoveFileTransfer(int id);
     int RemoveFileTransfer(QList<int> ids);

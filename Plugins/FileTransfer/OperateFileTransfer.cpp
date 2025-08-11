@@ -122,11 +122,15 @@ QDialog *COperateFileTransfer::OnOpenDialogSettings(QWidget *parent)
 
 int COperateFileTransfer::Load(QSettings &set)
 {
+    if(m_frmFileTransfer)
+        m_frmFileTransfer->Load(set);
     return m_Parameter.Load(set);
 }
 
 int COperateFileTransfer::Save(QSettings &set)
 {
+    if(m_frmFileTransfer)
+        m_frmFileTransfer->Save(set);
     return m_Parameter.Save(set);
 }
 
