@@ -542,7 +542,7 @@ int CChannelSFTP::AsyncFile()
         case STATE::OPEN: {
             int remoteFlag = O_WRONLY | O_CREAT | O_TRUNC;
             int localFlag = O_RDONLY;
-            quint32 premission = file->fileTransfer->GetRemotePermission();
+            quint32 permission = file->fileTransfer->GetRemotePermission();
 
             if(file->fileTransfer->GetDirection() == CFileTransfer::Direction::Download) {
                 remoteFlag = O_RDONLY;
@@ -552,7 +552,7 @@ int CChannelSFTP::AsyncFile()
             file->remote = sftp_open(
                 m_SessionSftp,
                 file->fileTransfer->GetRemoteFile().toStdString().c_str(),
-                remoteFlag, premission); // S_IRWXU);
+                remoteFlag, permission); // S_IRWXU);
             if (!file->remote)
             {
                 file->state = STATE::ERR;
@@ -568,7 +568,7 @@ int CChannelSFTP::AsyncFile()
 
             file->local = ::open(
                 file->fileTransfer->GetLocalFile().toStdString().c_str(),
-                localFlag, premission);
+                localFlag, permission);
             if(-1 == file->local) {
                 file->state = STATE::ERR;
                 QString szErr = "Can't open local file: " + file->fileTransfer->GetLocalFile() + " " + strerror(errno);
