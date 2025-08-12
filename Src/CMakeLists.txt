@@ -253,6 +253,12 @@ if(WITH_QTERMWIDGET)
         list(APPEND PLUGIN_UI_FILES
             Terminal/ParameterTerminalUI.ui
         )
+        option(INSTALL_QTERMWIDGET "Install qtermwidget libraries" OFF)
+        if(INSTALL_QTERMWIDGET)
+            INSTALL_TARGETS(TARGETS qtermwidget${QT_VERSION_MAJOR})
+            INSTALL(FILES $<TARGET_FILE_DIR:qtermwidget${QT_VERSION_MAJOR}>/../share/
+                DESTINATION "${CMAKE_INSTALL_DATADIR}")
+        endif()
     endif()
 endif()
 
