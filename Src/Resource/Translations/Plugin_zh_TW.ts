@@ -69,7 +69,7 @@
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
@@ -767,42 +767,42 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterProxy</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="14"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="12"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
         <source>System settings</source>
         <translation>系統設置</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="13"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
         <source>Sockes V5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
         <source>Http</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
         <source>SSH tunnel</source>
         <translation>SSH 隧道</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="26"/>
         <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
         <translation>&quot;代理-&gt;Http&quot;中主機為空。請設置。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="30"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="33"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
         <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="37"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="40"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
         <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
     </message>

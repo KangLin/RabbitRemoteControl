@@ -23,57 +23,62 @@
 <context>
     <name>COperateWakeOnLan</name>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="59"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="106"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="108"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="68"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="115"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="69"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="116"/>
         <source>Please select a item</source>
         <translation>請選擇一個項目</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="76"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="123"/>
         <source>Remove</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="79"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="75"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="85"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <source>Copy ip address to clipbord</source>
+        <translation>復製 IP 地址到剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../OperateWakeOnLan.cpp" line="81"/>
         <source>Get mac address</source>
         <translation>得到 MAC 地址</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="98"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="93"/>
         <source>Wake on lan</source>
         <translation>局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="159"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="175"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="160"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="176"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
         <translation>沒有管理員權限，一些功能(得到 MAC 地址)受限。請用管理員權限重啟程序。</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="164"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="180"/>
         <source>Always shown</source>
         <translation>總是顯示</translation>
     </message>
@@ -223,52 +228,52 @@
 <context>
     <name>CWakeOnLanModel</name>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="37"/>
+        <location filename="../../WakeOnLanModel.cpp" line="36"/>
         <source>State</source>
         <translation>狀態</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="39"/>
+        <location filename="../../WakeOnLanModel.cpp" line="38"/>
         <source>IP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="41"/>
+        <location filename="../../WakeOnLanModel.cpp" line="40"/>
         <source>MAC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="43"/>
+        <location filename="../../WakeOnLanModel.cpp" line="42"/>
         <source>Broadcast address</source>
         <translation>廣播地址</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="45"/>
+        <location filename="../../WakeOnLanModel.cpp" line="44"/>
         <source>Network interface</source>
         <translation>網絡接口</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="47"/>
+        <location filename="../../WakeOnLanModel.cpp" line="46"/>
         <source>Port</source>
         <translation>端口</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="99"/>
+        <location filename="../../WakeOnLanModel.cpp" line="98"/>
         <source>Online</source>
         <translation>在線</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="105"/>
+        <location filename="../../WakeOnLanModel.cpp" line="104"/>
         <source>Offline</source>
         <translation>離線</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="111"/>
+        <location filename="../../WakeOnLanModel.cpp" line="110"/>
         <source>Get mac ...</source>
         <translation>得到 MAC 地址 ...</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLanModel.cpp" line="117"/>
+        <location filename="../../WakeOnLanModel.cpp" line="116"/>
         <source>Wake on lan ...</source>
         <translation>局域網喚醒 ...</translation>
     </message>
