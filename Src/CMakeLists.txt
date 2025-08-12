@@ -34,7 +34,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     BackendThread.h
     BackendDesktop.h
     Channel/Channel.h
-    SSH/Event.h
+    Event.h
     DlgUserPassword.h
     Parameter.h
     ParameterUI.h
@@ -72,7 +72,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     BackendDesktop.cpp
     FrmScroll.cpp
     Channel/Channel.cpp
-    SSH/Event.cpp
+    Event.cpp
     Parameter.cpp
     ParameterUI.cpp
     ParameterOperate.cpp
@@ -175,31 +175,32 @@ if(UNIX AND (NOT ANDROID))
     endif()
 endif()
 
+option(WITH_EVENTFD "Enable eventfd" ON)
+if(WITH_EVENTFD)
+    check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
+    check_function_exists("eventfd" HAVE_EVENTFD)
+    if(HAVE_EVENTFD AND HAVE_EVENTFD_INCLUDE)
+        list(APPEND PLUGIN_DEFINITIONS HAVE_EVENTFD)
+    endif()
+endif(WITH_EVENTFD)
+
+option(WITH_UNIX_DOMAIN_SOCKET "Enable unix domain socket" ON)
+if(WITH_UNIX_DOMAIN_SOCKET)
+    if(WIN32)
+        #check_include_file("afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
+        check_struct_has_member("struct sockaddr_un" sun_path "afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
+    else()
+        #check_include_file("sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
+        check_struct_has_member("struct sockaddr_un" sun_path "sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
+    endif()
+    if(HAVE_UNIX_DOMAIN_SOCKET)
+        list(APPEND PLUGIN_DEFINITIONS HAVE_UNIX_DOMAIN_SOCKET)
+    endif()
+endif(WITH_UNIX_DOMAIN_SOCKET)
+
 find_package(libssh)
 if(libssh_FOUND)
     message("libssh version: ${libssh_VERSION}")
-    option(WITH_EVENTFD "Enable eventfd" ON)
-    if(WITH_EVENTFD)
-        check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
-        check_function_exists("eventfd" HAVE_EVENTFD)
-        if(HAVE_EVENTFD AND HAVE_EVENTFD_INCLUDE)
-            list(APPEND PLUGIN_DEFINITIONS HAVE_EVENTFD)
-        endif()
-    endif(WITH_EVENTFD)
-
-    option(WITH_UNIX_DOMAIN_SOCKET "Enable unix domain socket" ON)
-    if(WITH_UNIX_DOMAIN_SOCKET)
-        if(WIN32)
-            #check_include_file("afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
-            check_struct_has_member("struct sockaddr_un" sun_path "afunix.h" HAVE_UNIX_DOMAIN_SOCKET)
-        else()
-            #check_include_file("sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
-            check_struct_has_member("struct sockaddr_un" sun_path "sys/un.h" HAVE_UNIX_DOMAIN_SOCKET)
-        endif()
-        if(HAVE_UNIX_DOMAIN_SOCKET)
-            list(APPEND PLUGIN_DEFINITIONS HAVE_UNIX_DOMAIN_SOCKET)
-        endif()
-    endif(WITH_UNIX_DOMAIN_SOCKET)
 
     list(APPEND PLUGIN_DEFINITIONS HAVE_LIBSSH)
     if(WIN32)

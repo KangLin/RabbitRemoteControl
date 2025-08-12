@@ -14,7 +14,6 @@ SET(FileTransfer_SOURCE_FILES
     DlgFileTransfer.cpp
     ListFileModel.cpp
     RemoteFileSystemModel.cpp
-    ChannelSFTP.cpp
     )
 SET(FileTransfer_HEADER_FILES
     PluginFileTransfer.h
@@ -25,12 +24,21 @@ SET(FileTransfer_HEADER_FILES
     DlgFileTransfer.h
     ListFileModel.h
     RemoteFileSystemModel.h
-    ChannelSFTP.h
     )
 SET(FileTransfer_UI_FILES
     FrmFileTransfer.ui
     DlgFileTransfer.ui
     )
+
+find_package(libssh 0.11.0)
+if(libssh_FOUND)
+    list(APPEND FileTransfer_DEFINED HAVE_LIBSSH)
+    list(APPEND FileTransfer_LIBS ssh)
+    list(APPEND FileTransfer_SOURCE_FILES
+        ChannelSFTP.cpp)
+    list(APPEND FileTransfer_HEADER_FILES
+        ChannelSFTP.h)
+endif()
 
 # if(MSVC)
 #     list(APPEND FileTransfer_DEFINED _CRT_INTERNAL_NONSTDC_NAMES)

@@ -59,6 +59,7 @@
 #include "ConnectLayerSSHTunnel.h"
 #endif
 #endif
+#include "Channel.h"
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
 static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")

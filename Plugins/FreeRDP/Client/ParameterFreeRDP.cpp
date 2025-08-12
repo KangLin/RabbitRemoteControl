@@ -29,12 +29,15 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
 {
     m_Net.SetPort(3389);
     
-    m_Proxy.SetType(
-        QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
-                                       << CParameterProxy::TYPE::SockesV5
-                                       << CParameterProxy::TYPE::Http
-                                       << CParameterProxy::TYPE::SSHTunnel);
-    
+    QList<CParameterProxy::TYPE> lstType;
+    lstType << CParameterProxy::TYPE::None
+            << CParameterProxy::TYPE::SockesV5
+            << CParameterProxy::TYPE::Http;
+#if HAVA_LIBSSH
+    lstType << CParameterProxy::TYPE::SSHTunnel;
+#endif
+    m_Proxy.SetType(lstType);
+
     m_szRedirectionSoundParameters = 
         #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT)
             "sys:winmm"

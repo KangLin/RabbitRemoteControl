@@ -4,16 +4,19 @@ CParameterProxy::CParameterProxy(CParameterOperate *parent, const QString &szPre
     : CParameterOperate(parent, szPrefix)
     , m_SockesV5(this, "Proxy/SockesV5")
     , m_Http(this, "Proxy/Http")
-    ,m_SSH(this, "Proxy/SSH/Tunnel")
+    , m_SSH(this, "Proxy/SSH/Tunnel")
     , m_UsedType(TYPE::None)
 {
-    m_Type << TYPE::None << TYPE::System << TYPE::SockesV5 << TYPE::Http << TYPE::SSHTunnel;
+    m_Type << TYPE::None << TYPE::System << TYPE::SockesV5 << TYPE::Http;
+#if HAVA_LIBSSH
+    m_Type << TYPE::SSHTunnel;
+#endif
     m_TypeName = {{TYPE::None, tr("None")},
                   {TYPE::System, tr("System settings")},
                   {TYPE::SockesV5, tr("Sockes V5")},
                   {TYPE::Http, tr("Http")},
                   {TYPE::SSHTunnel, tr("SSH tunnel")}};
-    
+
     QList<CParameterUser::TYPE> lstType;
     m_Http.SetPort(80);
     lstType.clear();

@@ -6,7 +6,10 @@
 #include <QEvent>
 #include "Backend.h"
 #include "OperateFileTransfer.h"
+
+#if HAVE_LIBSSH
 #include "ChannelSFTP.h"
+#endif
 
 class CBackendFileTransfer : public CBackend
 {
@@ -43,6 +46,8 @@ private:
 
 private:
     COperateFileTransfer* m_pOperate;
+#if HAVE_LIBSSH
     CChannelSFTP* m_pSFTP;
+#endif
     CParameterFileTransfer* m_pPara;
 };

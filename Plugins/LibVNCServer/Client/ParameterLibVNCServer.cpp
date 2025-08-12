@@ -6,11 +6,14 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     m_Net.SetPort(5900);
     m_Net.m_User.SetType(QList<CParameterUser::TYPE>() << CParameterUser::TYPE::OnlyPassword);
     m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
-    
-    m_Proxy.SetType(
-        QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
-                                       << CParameterProxy::TYPE::SSHTunnel);
-    
+
+    QList<CParameterProxy::TYPE> lstType;
+    lstType << CParameterProxy::TYPE::None;
+#if HAVA_LIBSSH
+    lstType << CParameterProxy::TYPE::SSHTunnel;
+#endif
+    m_Proxy.SetType(lstType);
+
     SetShared(true);
     
     SetClipboard(true);

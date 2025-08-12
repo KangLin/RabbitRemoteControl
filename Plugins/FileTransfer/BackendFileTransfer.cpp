@@ -44,7 +44,9 @@ CFileTransferEvent::CFileTransferEvent(Command cmd,
 CBackendFileTransfer::CBackendFileTransfer(COperateFileTransfer *pOperate)
     : CBackend(pOperate)
     , m_pOperate(pOperate)
+#if HAVE_LIBSSH
     , m_pSFTP(nullptr)
+#endif
     , m_pPara(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -64,20 +66,28 @@ bool CBackendFileTransfer::event(QEvent *event)
         CFileTransferEvent* pEvent = (CFileTransferEvent*)event;
         switch(pEvent->m_Command) {
         case CFileTransferEvent::Command::MakeDir:
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->MakeDir(pEvent->m_szSourcePath);
+#endif
             break;
         case CFileTransferEvent::Command::RemoveDir:
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->RemoveDir(pEvent->m_szSourcePath);
+#endif
             break;
         case CFileTransferEvent::Command::RemoveFile:
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->RemoveFile(pEvent->m_szSourcePath);
+#endif
             break;
         case CFileTransferEvent::Command::Rename:
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->Rename(pEvent->m_szSourcePath, pEvent->m_szDestination);
+#endif
             break;
         case CFileTransferEvent::Command::GetDir:
         {
@@ -87,14 +97,18 @@ bool CBackendFileTransfer::event(QEvent *event)
         }
         case CFileTransferEvent::Command::StartFileTransfer:
         {
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->slotStartFileTransfer(pEvent->m_FileTransfer);
+#endif
             break;
         }
         case CFileTransferEvent::Command::StopFileTransfer:
         {
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->slotStopFileTransfer(pEvent->m_FileTransfer);
+#endif
             break;
         }
         default:
@@ -115,21 +129,23 @@ CBackend::OnInitReturnValue CBackendFileTransfer::OnInit()
 int CBackendFileTransfer::OnClean()
 {
     int nRet = 0;
+#if HAVE_LIBSSH
     if(m_pSFTP) {
         m_pSFTP->close();
         m_pSFTP->deleteLater();
         m_pSFTP = nullptr;
     }
+#endif
     return nRet;
 }
 
 int CBackendFileTransfer::OnProcess()
 {
     int nRet = 0;
-
+#if HAVE_LIBSSH
     if(m_pSFTP)
         nRet = m_pSFTP->Process();
-
+#endif
     return nRet;
 }
 
@@ -173,6 +189,7 @@ int CBackendFileTransfer::SetConnect(COperateFileTransfer *pOperate)
 CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
 {
     CParameterSSH* ssh = &m_pOperate->GetParameter()->m_SSH;
+#if HAVE_LIBSSH
     m_pSFTP = new CChannelSFTP(this, ssh);
     if(!m_pSFTP) {
         return OnInitReturnValue::Fail;
@@ -180,6 +197,7 @@ CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
     bool bRet = m_pSFTP->open(QIODevice::ReadWrite);
     if(!bRet)
         return OnInitReturnValue::Fail;
+#endif
     emit sigRunning();
     return OnInitReturnValue::UseOnProcess;
 }
