@@ -8,6 +8,8 @@
 #include <QCheckBox>
 #include <QtGlobal>
 #include <QCoreApplication>
+#include <QClipboard>
+#include <QApplication>
 #include "RabbitCommonTools.h"
 #include "Plugin.h"
 
@@ -56,6 +58,51 @@ int COperateWakeOnLan::Initial()
                     });
     Q_ASSERT(check);
 
+    m_Menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy ip address to clipbord"),
+                     this, [&](){
+                         if(!m_pModel || !m_pView)
+                             return;
+                         foreach(auto index, m_pView->GetSelect()) {
+                             QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
+                             if(!p) continue;
+                             QString szIp = p->m_Net.GetHost();
+                             if(szIp.isEmpty()) continue;
+                             QApplication::clipboard()->setText(szIp);
+                         }
+                     });
+    m_Menu.addSeparator();
+
+    m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                     this, [&](){
+                         foreach(auto p, m_pModel->m_Data)
+                         m_Arp.GetMac(p);
+                     });
+    m_Menu.addAction(
+        QIcon::fromTheme("mac"), tr("Get mac address"),
+        this, [&](){
+            if(!m_pModel || !m_pView)
+                return;
+            foreach(auto index, m_pView->GetSelect()) {
+                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
+                if(!p) continue;
+                if(m_Arp.GetMac(p))
+                    p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
+            }
+        });
+    m_Menu.addAction(
+        QIcon::fromTheme("lan"), tr("Wake on lan"),
+        this, [&](){
+            if(!m_pModel || !m_pView)
+                return;
+            foreach(auto index, m_pView->GetSelect()) {
+                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
+                if(!p) continue;
+                if(!m_Arp.WakeOnLan(p))
+                    p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
+            }
+        });
+    m_Menu.addSeparator();
+
     m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
                      this, SLOT(slotAdd()));
     m_Menu.addAction(QIcon::fromTheme("document-edit"), tr("Edit"),
@@ -75,37 +122,6 @@ int COperateWakeOnLan::Initial()
                      });
     m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
                      m_pView, SLOT(slotRemoveRow()));
-
-    m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                     this, [&](){
-                         foreach(auto p, m_pModel->m_Data)
-                             m_Arp.GetMac(p);
-                     });
-    m_Menu.addAction(
-        QIcon::fromTheme("mac"), tr("Get mac address"),
-        this, [&](){
-            if(!m_pModel || !m_pView)
-                return;
-            foreach(auto index, m_pView->GetSelect()) {
-                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
-                if(!p) continue;
-                if(m_Arp.GetMac(p))
-                    p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
-            }
-        });
-
-    m_Menu.addAction(
-        QIcon::fromTheme("lan"), tr("Wake on lan"),
-        this, [&](){
-            if(!m_pModel || !m_pView)
-                return;
-            foreach(auto index, m_pView->GetSelect()) {
-                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
-                if(!p) continue;
-                if(!m_Arp.WakeOnLan(p))
-                    p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
-            }
-        });
 
     return 0;
 }

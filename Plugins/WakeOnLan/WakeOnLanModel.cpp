@@ -8,7 +8,6 @@
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Model")
 CWakeOnLanModel::CWakeOnLanModel(QObject *parent)
     : QAbstractTableModel{parent}
-    , m_Colume(6)
 {}
 
 CWakeOnLanModel::~CWakeOnLanModel()
@@ -23,7 +22,7 @@ int CWakeOnLanModel::rowCount(const QModelIndex &parent) const
 
 int CWakeOnLanModel::columnCount(const QModelIndex &parent) const
 {
-    return m_Colume;
+    return (int)ColumeValue::End;
 }
 
 QVariant CWakeOnLanModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -56,7 +55,7 @@ Qt::ItemFlags CWakeOnLanModel::flags(const QModelIndex &index) const
         return Qt::NoItemFlags;
     int r = index.row();
     int c = index.column();
-    if(r >= m_Data.size() || c >= m_Colume)
+    if(r >= m_Data.size() || c >= (int)ColumeValue::End)
         return Qt::NoItemFlags;
     Qt::ItemFlags f = QAbstractTableModel::flags(index);
     if(1 == c || 2 == c) {
@@ -69,8 +68,8 @@ QVariant CWakeOnLanModel::data(const QModelIndex &index, int role) const
 {
     QVariant val;
     int r = index.row();
-    int c = index.column();
-    if(r >= m_Data.size() || c >= m_Colume)
+    ColumeValue c = (ColumeValue)index.column();
+    if(r >= m_Data.size() || c >= ColumeValue::End)
         return val;
 
     auto para = m_Data.at(r);
@@ -90,7 +89,7 @@ QVariant CWakeOnLanModel::data(const QModelIndex &index, int role) const
             break;
         }
 
-    if(0 == c) {
+    if(ColumeValue::State == c) {
         switch(para->GetHostState()) {
         case CParameterWakeOnLan::HostState::Online:
             if(Qt::DecorationRole == role)
@@ -121,15 +120,15 @@ QVariant CWakeOnLanModel::data(const QModelIndex &index, int role) const
     } else {
         if(Qt::DisplayRole == role)
         {
-            if(1 == c)
+            if(ColumeValue::Ip == c)
                 val = para->m_Net.GetHost();
-            else if(2 == c)
+            else if(ColumeValue::Mac == c)
                 val = para->GetMac();
-            else if(3 == c)
+            else if(ColumeValue::BroadcastAddress == c)
                 val = para->GetBroadcastAddress();
-            else if(4 == c)
+            else if(ColumeValue::NetworkInterface == c)
                 val = para->GetNetworkInterface();
-            else if(5 == c)
+            else if(ColumeValue::Port == c)
                 val = para->GetPort();
         }
     }
@@ -143,13 +142,13 @@ bool CWakeOnLanModel::setData(const QModelIndex &index, const QVariant &value, i
         return false;
     }
     int r = index.row();
-    int c = index.column();
-    if(r >= m_Data.size() || c >= m_Colume)
+    ColumeValue c = (ColumeValue)index.column();
+    if(r >= m_Data.size() || c >= ColumeValue::End)
         return false;
     if(value.isNull() || value.toString().isEmpty())
         return false;
     auto p = m_Data.at(r);
-    if(1 == c)
+    if(ColumeValue::Ip == c)
     {
         p->m_Net.SetHost(value.toString());
         foreach(auto iface, QNetworkInterface::allInterfaces()) {
@@ -177,13 +176,13 @@ bool CWakeOnLanModel::setData(const QModelIndex &index, const QVariant &value, i
             }
         }
     }
-    else if(2 == c)
+    else if(ColumeValue::Mac == c)
         p->SetMac(value.toString());
-    else if(3 == c)
+    else if(ColumeValue::BroadcastAddress == c)
         p->SetBroadcastAddress(value.toString());
-    else if(4 == c)
+    else if(ColumeValue::NetworkInterface == c)
         p->SetNetworkInterface(value.toString());
-    else if(5 == c)
+    else if(ColumeValue::Port == c)
         p->SetPort(value.toInt());
     return true;
 }
@@ -312,7 +311,7 @@ void CWakeOnLanModel::slotHostStateChanged()
     for(int i = 0; i < m_Data.size(); i++)
     {
         if(m_Data.at(i)->m_Net.GetHost() == szIp) {
-            emit dataChanged(index(i, 0), index(i, m_Colume));
+            emit dataChanged(index(i, 0), index(i, (int)ColumeValue::End - 1));
             break;
         }
     }

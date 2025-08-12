@@ -38,7 +38,15 @@ private Q_SLOTS:
     void slotHostStateChanged();
 
 private:
-    int m_Colume;
+    enum class ColumeValue {
+        State = 0,
+        Ip,
+        Mac,
+        BroadcastAddress,
+        NetworkInterface,
+        Port,
+        End
+    };
 };
 
 #endif // WAKEONLANMODEL_H
