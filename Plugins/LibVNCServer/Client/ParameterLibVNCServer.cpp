@@ -9,7 +9,7 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
 
     QList<CParameterProxy::TYPE> lstType;
     lstType << CParameterProxy::TYPE::None;
-#if HAVA_LIBSSH
+#if HAVE_LIBSSH
     lstType << CParameterProxy::TYPE::SSHTunnel;
 #endif
     m_Proxy.SetType(lstType);

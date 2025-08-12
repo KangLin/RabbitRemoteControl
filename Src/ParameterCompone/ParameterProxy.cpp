@@ -8,7 +8,7 @@ CParameterProxy::CParameterProxy(CParameterOperate *parent, const QString &szPre
     , m_UsedType(TYPE::None)
 {
     m_Type << TYPE::None << TYPE::System << TYPE::SockesV5 << TYPE::Http;
-#if HAVA_LIBSSH
+#if HAVE_LIBSSH
     m_Type << TYPE::SSHTunnel;
 #endif
     m_TypeName = {{TYPE::None, tr("None")},

@@ -223,6 +223,11 @@ if(libssh_FOUND)
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
         )
+
+    option(INSTALL_LIBSSH "Install libssh libraries" OFF)
+    if(INSTALL_LIBSSH)
+        INSTALL_TARGETS(TARGETS ssh)
+    endif()
 endif()
 
 option(WITH_QTERMWIDGET "With qtermwidget" ON)

@@ -230,7 +230,7 @@ pushd $REPO_ROOT/Script
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
     ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus \
+        --rabbitcommon --tigervnc --pcapplusplus --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -242,6 +242,7 @@ if [ $DEB -eq 1 ]; then
 #        --tools=${TOOLS_DIR} \
 #        --verbose=${BUILD_VERBOSE}
 
+    export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon
 fi
@@ -249,7 +250,7 @@ fi
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
     ./build_depend.sh --system_update --base --rabbitcommon \
-        --tigervnc --freerdp --pcapplusplus \
+        --tigervnc --freerdp --pcapplusplus --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -281,7 +282,7 @@ fi
 if [ $RPM -eq 1 ]; then
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
-        --rabbitcommon --tigervnc --pcapplusplus \
+        --rabbitcommon --tigervnc --pcapplusplus --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

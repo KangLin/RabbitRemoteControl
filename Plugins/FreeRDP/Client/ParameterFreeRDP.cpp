@@ -33,7 +33,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     lstType << CParameterProxy::TYPE::None
             << CParameterProxy::TYPE::SockesV5
             << CParameterProxy::TYPE::Http;
-#if HAVA_LIBSSH
+#if HAVE_LIBSSH
     lstType << CParameterProxy::TYPE::SSHTunnel;
 #endif
     m_Proxy.SetType(lstType);

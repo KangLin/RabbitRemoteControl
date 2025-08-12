@@ -25,9 +25,10 @@ RabbitCommon=0
 libdatachannel=0
 QtService=0
 QTERMWIDGET=0
+LIBSSH=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -45,6 +46,7 @@ usage_long() {
     echo "  --rabbitcommon: Install RabbitCommon"
     echo "  --freerdp: Install FreeRDP"
     echo "  --tigervnc: Install TigerVNC"
+    echo "  --libssh: Install libssh"
     echo "  --pcapplusplus: Install PcapPlusPlus"
     echo "  --libdatachannel: Install libdatachannel"
     echo "  --QtService: Install QtService"
@@ -62,7 +64,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -166,6 +168,15 @@ if command -V getopt >/dev/null; then
                     TIGERVNC=1;;
                 *)
                     TIGERVNC=$2;;
+            esac
+            shift 2
+            ;;
+        --libssh)
+            case $2 in
+                "")
+                    LIBSSH=1;;
+                *)
+                    LIBSSH=$2;;
             esac
             shift 2
             ;;
@@ -297,7 +308,7 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
             libxkbcommon-dev
         # Base dependency
-        apt install -y -q liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libssh-dev libtelnet-dev
+        apt install -y -q liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
         # RabbitCommon dependency
         apt install -y -q libcmark-dev cmark
         # VNC dependency
@@ -436,6 +447,24 @@ if [ $TIGERVNC -eq 1 ]; then
           -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
+    fi
+    popd
+fi
+
+if [ $LIBSSH -eq 1 ]; then
+    echo "Install libssh ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/libssh ]; then
+        git clone -b libssh-0.11.2 --depth=1 https://git.libssh.org/projects/libssh.git
+        cd libssh
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DWITH_EXAMPLES=OFF
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
     fi
     popd
 fi
