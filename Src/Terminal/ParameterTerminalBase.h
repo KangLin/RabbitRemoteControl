@@ -24,6 +24,12 @@ public:
     CParameterTerminal m_Terminal;
 
 public:
+    [[nodiscard]] const QString GetName() const;
+    void SetName(const QString& szName);
+private:
+    QString m_szName;
+
+public:
     [[nodiscard]] const QString GetShellName() const;
     int SetShellName(const QString& name);
 private:

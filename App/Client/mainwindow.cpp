@@ -845,9 +845,10 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     m_pActionmenuActivity->setChecked(true);
     //*/
 
-    pOperate->Start();
-
-    return 0;
+    nRet = pOperate->Start();
+    if(nRet)
+        pOperate->Stop();
+    return nRet;
 }
 
 //! [MainWindow slotRunning]

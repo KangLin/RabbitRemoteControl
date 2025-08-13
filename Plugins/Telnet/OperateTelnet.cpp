@@ -50,6 +50,7 @@ int COperateTelnet::Start()
         return -1;
 
     slotUpdateParameter(this);
+
     bool check = false;
     check = connect(&m_Telnet, &QTelnet::stateChanged,
                     this, [=](QAbstractSocket::SocketState socketState){

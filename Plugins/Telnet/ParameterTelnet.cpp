@@ -4,7 +4,7 @@
 static Q_LOGGING_CATEGORY(log, "Plugin.Telnet.Parameter")
 
 CParameterTelnet::CParameterTelnet(CParameterOperate *parent, const QString &szPrefix)
-    : CParameterTerminalBase{parent}
+    : CParameterTerminalBase{parent, szPrefix}
     , m_Net(this)
     , m_szLogin(".*login:")
     , m_szPassword(".*Password:")

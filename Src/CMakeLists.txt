@@ -257,7 +257,8 @@ if(WITH_QTERMWIDGET)
         if(INSTALL_QTERMWIDGET)
             INSTALL_TARGETS(TARGETS qtermwidget${QT_VERSION_MAJOR})
             INSTALL(FILES $<TARGET_FILE_DIR:qtermwidget${QT_VERSION_MAJOR}>/../share/
-                DESTINATION "${CMAKE_INSTALL_DATADIR}")
+                DESTINATION "${CMAKE_INSTALL_DATADIR}"
+                    COMPONENT DependLibraries)
         endif()
     endif()
 endif()

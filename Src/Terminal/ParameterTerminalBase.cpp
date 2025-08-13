@@ -29,6 +29,7 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
 int CParameterTerminalBase::OnLoad(QSettings &set)
 {
     set.beginGroup("Terminal");
+    SetName(set.value("Name", GetName()).toString());
     SetShell(set.value("Shell", GetShell()).toString());
     SetShellName(set.value("Shell/Name", GetShellName()).toString());
     SetShellParameters(set.value("Shell/Parameters", GetShellParameters()).toString());
@@ -43,6 +44,7 @@ int CParameterTerminalBase::OnLoad(QSettings &set)
 int CParameterTerminalBase::OnSave(QSettings &set)
 {
     set.beginGroup("Terminal");
+    set.setValue("Name", GetName());
     set.setValue("Shell", GetShell());
     set.setValue("Shell/Name", GetShellName());
     set.setValue("Shell/Parameters", GetShellParameters());
@@ -60,10 +62,23 @@ void CParameterTerminalBase::slotSetGlobalParameters()
     if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
-        Q_ASSERT_X(false, "CParameterBase", szErr.toStdString().c_str());
+        Q_ASSERT_X(false, "CParameterTerminalBase", szErr.toStdString().c_str());
         return;
     }
     m_Terminal = pPlugin->m_Terminal;
+}
+
+const QString CParameterTerminalBase::GetName() const
+{
+    return m_szName;
+}
+
+void CParameterTerminalBase::SetName(const QString &szName)
+{
+    if(m_szName == szName)
+        return;
+    m_szName = szName;
+    SetModified(true);
 }
 
 int CParameterTerminalBase::SetShell(const QString& shell)

@@ -383,7 +383,7 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
                  "(CParameterOperate or its derived classes) "
                  "See CManager::CreateOperate. "
                  "If you are sure the parameter of operate "
-                 "does not need CParameterClient. "
+                 "does not need CParameterPlugin. "
                  "Please overload the SetGlobalParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();

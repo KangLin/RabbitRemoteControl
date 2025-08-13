@@ -47,7 +47,7 @@ const CPlugin::TYPE CPluginTelnet::Type() const
 
 const QString CPluginTelnet::Version() const
 {
-    return 0;
+    return PluginTelnet_VERSION;
 }
 
 COperate *CPluginTelnet::OnCreateOperate(const QString &szId)
