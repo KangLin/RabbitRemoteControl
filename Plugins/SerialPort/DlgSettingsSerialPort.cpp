@@ -19,7 +19,7 @@ CDlgSettingsSerialPort::CDlgSettingsSerialPort(CParameterSerialPort *pPara, QWid
         ui->tabWidget->addTab(m_pFrmParaAppearnce,
                               m_pFrmParaAppearnce->windowTitle());
     }
-    
+
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
     {
         /*

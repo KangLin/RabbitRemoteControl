@@ -234,13 +234,53 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="96"/>
+        <location filename="../../Terminal.cpp" line="97"/>
         <source>Open working directory with file explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="105"/>
+        <location filename="../../Terminal.cpp" line="106"/>
         <source>Copy working directory to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="151"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="154"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="157"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="166"/>
+        <source>Shell name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="168"/>
+        <source>Shell path: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="170"/>
+        <source>Shell parameters: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="173"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="176"/>
+        <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

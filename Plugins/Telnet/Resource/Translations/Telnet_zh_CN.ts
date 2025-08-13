@@ -57,74 +57,74 @@
 <context>
     <name>COperateTelnet</name>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="65"/>
+        <location filename="../../OperateTelnet.cpp" line="66"/>
         <source>Telnet error:
 %1.</source>
         <translation>Telnet 错误：
 %1.</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="109"/>
+        <location filename="../../OperateTelnet.cpp" line="110"/>
         <source>Unconnected</source>
         <translation>未连接</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="112"/>
+        <location filename="../../OperateTelnet.cpp" line="113"/>
         <source>Resolve DNS %1</source>
         <translation>解析 DNS %1</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="115"/>
+        <location filename="../../OperateTelnet.cpp" line="116"/>
         <source>Connecting a %1</source>
         <translation>连接 %1</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="118"/>
+        <location filename="../../OperateTelnet.cpp" line="119"/>
         <source>Connected a %1</source>
         <translation>连接到 %1</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="121"/>
+        <location filename="../../OperateTelnet.cpp" line="122"/>
         <source>Bound</source>
         <translation>绑定</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="124"/>
+        <location filename="../../OperateTelnet.cpp" line="125"/>
         <source>Listening</source>
         <translation>监听</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="127"/>
+        <location filename="../../OperateTelnet.cpp" line="128"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="168"/>
+        <location filename="../../OperateTelnet.cpp" line="169"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="171"/>
+        <location filename="../../OperateTelnet.cpp" line="172"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="174"/>
+        <location filename="../../OperateTelnet.cpp" line="175"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="184"/>
+        <location filename="../../OperateTelnet.cpp" line="185"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="188"/>
+        <location filename="../../OperateTelnet.cpp" line="189"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="191"/>
+        <location filename="../../OperateTelnet.cpp" line="192"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
