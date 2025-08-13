@@ -107,13 +107,6 @@ const QString COperateTerminal::Description()
         szDescription += "\n";
     }
 
-    if(!GetParameter()->GetShellName().isEmpty())
-        szDescription += tr("Shell name: ") + GetParameter()->GetShellName() + "\n";
-    if(!GetParameter()->GetShell().isEmpty())
-        szDescription += tr("Shell path: ") + GetParameter()->GetShell() + "\n";
-    if(!GetParameter()->GetShellParameters().isEmpty())
-        szDescription += tr("Shell parameters: ") + GetParameter()->GetShellParameters() + "\n";
-
     if(GetSecurityLevel() != SecurityLevel::No)
         szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
 
@@ -257,14 +250,6 @@ int COperateTerminal::SetParameter(CParameterTerminalBase* pPara)
     check = connect(this, SIGNAL(sigUpdateParameters(COperate*)),
                     this, SLOT(slotUpdateParameter(COperate*)));
     Q_ASSERT(check);
-    check = connect(GetParameter(), &CParameterTerminalBase::sigEnableTitleChanged,
-                    this, [&](bool changed) {
-                        if(changed)
-                            slotTerminalTitleChanged();
-                        else
-                            emit sigUpdateName(Name());
-                    });
-    Q_ASSERT(check);
 
     return nRet;
 }
@@ -298,12 +283,6 @@ void COperateTerminal::slotUpdateParameter(COperate* pOperate)
     //    m_pTerminal->setMonitorActivity(false);
     //    m_pTerminal->setMonitorSilence(false);
     //    m_pTerminal->setBlinkingCursor(true);
-}
-
-void COperateTerminal::slotTerminalTitleChanged()
-{
-    if(!m_pTerminal) return;
-    emit sigUpdateName(m_pTerminal->title());
 }
 
 void COperateTerminal::slotZoomReset()

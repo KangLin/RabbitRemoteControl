@@ -7,12 +7,14 @@ set(lib_terminal Plugin)
 SET(SOURCE_FILES
     PluginTerminal.cpp
     DlgSettingsTerminal.cpp
+    TerminalParameter.cpp
     Terminal.cpp
     )
 
 SET(HEADER_FILES
     PluginTerminal.h
     DlgSettingsTerminal.h
+    TerminalParameter.h
     Terminal.h
     )
 

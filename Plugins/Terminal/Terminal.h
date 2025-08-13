@@ -2,6 +2,7 @@
 
 #pragma once
 #include "OperateTerminal.h"
+#include "TerminalParameter.h"
 
 class CTerminal : public COperateTerminal
 {
@@ -14,6 +15,7 @@ public:
 public:
     [[nodiscard]] virtual const QString Id() override;
     [[nodiscard]] virtual const QString Name() override;
+    [[nodiscard]] virtual const QString Description() override;
 
     [[nodiscard]] virtual CBackend *InstanceBackend() override;
 
@@ -26,9 +28,14 @@ protected:
 
 private:
    [[nodiscard]] virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-
+private Q_SLOTS:
+   void slotTerminalTitleChanged();
 private:
-    CParameterTerminalBase m_Parameters;
+    CTerminalParameter m_Parameters;
     QAction* m_pOpenFolderWithExplorer;
     QAction* m_pCopyToClipboard;
+
+    // COperateTerminal interface
+public:
+    virtual int SetParameter(CParameterTerminalBase *pPara) override;
 };

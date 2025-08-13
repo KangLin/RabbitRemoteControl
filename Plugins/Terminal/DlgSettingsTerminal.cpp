@@ -13,7 +13,7 @@
 
 static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.DlgSettings")
 
-CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidget *parent) :
+CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *parent) :
     QDialog(parent)
     , ui(new Ui::CDlgSettingsTerminal)
     , m_pPara(pPara)

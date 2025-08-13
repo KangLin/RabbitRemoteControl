@@ -7,6 +7,7 @@
 
 #include "Terminal.h"
 #include "DlgSettingsTerminal.h"
+#include "Plugin.h"
 
 static Q_LOGGING_CATEGORY(log, "Plugin.Terminal.Operate")
 
@@ -117,8 +118,8 @@ const QString CTerminal::Id()
 {
     QString szId;
     szId = COperateTerminal::Id();
-    if(GetParameter() && !GetParameter()->GetShellName().isEmpty())
-        szId += "_" + GetParameter()->GetShellName();
+    if(GetParameter() && !m_Parameters.GetShellName().isEmpty())
+        szId += "_" + m_Parameters.GetShellName();
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
@@ -126,8 +127,8 @@ const QString CTerminal::Id()
 
 const QString CTerminal::Name()
 {
-    if(GetParameter() && !GetParameter()->GetShellName().isEmpty())
-        return COperateTerminal::Name() + " - " + GetParameter()->GetShellName();
+    if(GetParameter() && !m_Parameters.GetShellName().isEmpty())
+        return COperateTerminal::Name() + " - " + m_Parameters.GetShellName();
     return COperateTerminal::Name();
 }
 
@@ -140,4 +141,58 @@ void CTerminal::SetShotcuts(bool bEnable)
     }
     m_pOpenFolderWithExplorer->setShortcut(QKeySequence());
     m_pCopyToClipboard->setShortcut(QKeySequence());
+}
+
+
+const QString CTerminal::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+    
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
+    
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
+#ifdef DEBUG
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
+#endif
+        szDescription += "\n";
+    }
+    
+    if(!m_Parameters.GetShellName().isEmpty())
+        szDescription += tr("Shell name: ") + m_Parameters.GetShellName() + "\n";
+    if(!m_Parameters.GetShell().isEmpty())
+        szDescription += tr("Shell path: ") + m_Parameters.GetShell() + "\n";
+    if(!m_Parameters.GetShellParameters().isEmpty())
+        szDescription += tr("Shell parameters: ") + m_Parameters.GetShellParameters() + "\n";
+    
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+    
+    return szDescription;
+}
+
+int CTerminal::SetParameter(CParameterTerminalBase *pPara)
+{
+    bool check = connect(&m_Parameters, &CTerminalParameter::sigEnableTitleChanged,
+                    this, [&](bool changed) {
+                        if(changed)
+                            slotTerminalTitleChanged();
+                        else
+                            emit sigUpdateName(Name());
+                    });
+    Q_ASSERT(check);
+    return COperateTerminal::SetParameter(pPara);
+}
+
+void CTerminal::slotTerminalTitleChanged()
+{
+    if(!m_pTerminal) return;
+    emit sigUpdateName(m_pTerminal->title());
 }

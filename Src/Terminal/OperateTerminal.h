@@ -66,7 +66,6 @@ protected:
     int WriteTerminal(const char* buf, int len);
 
 private Q_SLOTS:
-    void slotTerminalTitleChanged();
     void slotZoomReset();
     void slotCustomContextMenu(const QPoint & pos);
     void slotActivateUrl(const QUrl& url, bool fromContextMenu);

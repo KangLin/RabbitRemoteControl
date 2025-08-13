@@ -4,7 +4,7 @@
 
 #include <QDialog>
 
-#include "ParameterTerminalBase.h"
+#include "TerminalParameter.h"
 #include "ParameterTerminalUI.h"
 
 namespace Ui {
@@ -16,7 +16,7 @@ class CDlgSettingsTerminal : public QDialog
     Q_OBJECT
 
 public:
-    explicit CDlgSettingsTerminal(CParameterTerminalBase *pPara, QWidget *parent = nullptr);
+    explicit CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *parent = nullptr);
     ~CDlgSettingsTerminal();
 
 private slots:
@@ -37,7 +37,7 @@ private:
 
 private:
     Ui::CDlgSettingsTerminal *ui;
-    CParameterTerminalBase* m_pPara;
+    CTerminalParameter* m_pPara;
     CParameterTerminalUI* m_pFrmParaAppearnce;
 };
 
