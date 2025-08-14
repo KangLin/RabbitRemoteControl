@@ -94,12 +94,12 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 - Terminal
 
-|        |Windows|Unix/linux|Android|MAC|
-|--------|-------|----------|-------|---|
-|Terminal|✓      |✓         |       |   |
-|SSH     |✓      |✓         |       |   |
-|TELNET  |✓      |✓         |       |   |
-
+|             |Windows|Unix/linux|Android|MAC|
+|-------------|-------|----------|-------|---|
+|Terminal     |✓      |✓         |       |   |
+|SSH          |✓      |✓         |       |   |
+|TELNET       |✓      |✓         |       |   |
+|Serial port  |✓      |✓         |       |   |
 - File Transfer
 
 |        |Windows|Unix/linux|Android|MAC|
@@ -153,17 +153,18 @@ Legend:
 
 #### Function list
 
-|        |Server|Client|Desktop  |Clipboard|File|Audio|Redirection|P2P|Proxy|Terminal|
-|:------:|:-----:|:---:|:-------:|:-------:|:--:|:---:|:---------:|:-:|:---:|:------:|
-|  RDP   |  ✓    |  ✓  |     ✓   |✓        | …… |  ✓  | ……        |   | ✓   | ❌     |
-|  RFB   | ……    |  ✓  |     ✓   |✓        |    | ❌  | ❌         |✓ |  ✓   |       |
-|Spice   |       |     |         |         |    |     | ❌        |   |      |       |
-|Scrcpy  |       |     |         |         |    |     | ❌        |   |      |       |
-|Terminal|       |  ✓  | ❌      |✓        | ❌ | ❌   | ❌        |   |      |       |
-|TELNET  |       |  ✓  | ❌      |✓        | ❌ | ❌   |  ❌       |   |      |       |
-|  SSH   |       |  ✓  | ❌      |✓        |    | ❌   | ❌        |   |      |       |
-|  FTP   |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
-| SFTP   |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
+|            |Server|Client|Desktop  |Clipboard|File|Audio|Redirection|P2P|Proxy|Terminal|
+|:---------:|:-----:|:---:|:-------:|:-------:|:--:|:---:|:---------:|:-:|:---:|:------:|
+|  RDP      |  ✓    |  ✓  |     ✓   |✓        | …… |  ✓  | ……        |   | ✓   | ❌     |
+|  RFB      | ……    |  ✓  |     ✓   |✓        |    | ❌  | ❌         |✓ |  ✓   |       |
+|Spice      |       |     |         |         |    |     | ❌        |   |      |       |
+|Scrcpy     |       |     |         |         |    |     | ❌        |   |      |       |
+|Terminal   |       |  ✓  | ❌      |✓        | ❌ | ❌   | ❌        |   |      |       |
+|TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌   |  ❌       |   |      |       |
+|  SSH      |       |  ✓  | ❌      |✓        |    | ❌   | ❌        |   |      |       |
+|Serial port|       |  ✓  | ❌      |✓        |    | ❌   | ❌        |   |      |       |
+|  FTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
+| SFTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
@@ -192,6 +193,7 @@ Legend:
   - [Terminal](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
   - [TELNET](Plugins/Telnet)
+  - [Serial Port](Plugins/SerialPort)
 - [File transfer](Plugins/FileTransfer)
 
 ## Status

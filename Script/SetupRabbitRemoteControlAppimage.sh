@@ -64,6 +64,7 @@ fi
 if [ -f ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop ]; then
     OLD_UNINSTALL=$(dirname $(readlink -f ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop))
     if [ -f $OLD_UNINSTALL/uninstall.sh ]; then
+        echo ""
         $OLD_UNINSTALL/uninstall.sh
     fi
 fi
@@ -107,6 +108,7 @@ chmod u+x $INSTALL_DIR/$APPIMAGE_FILE
 
 echo ""
 echo "Install rabbit remote control AppImage to \"$INSTALL_DIR\"."
+echo ""
 echo "If you want to uninstall it. Please execute:"
 echo "    $INSTALL_DIR/unistasll.sh"
 echo ""

@@ -98,6 +98,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 |终端     |✓      |✓         |       |   |
 |SSH     |✓      |✓         |       |   |
 |TELNET  |       |✓         |       |   |
+|串口     |✓      |✓         |       |   |
 
 - 文件传输
 
@@ -160,6 +161,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 |终端    |     | ✓   | ❌   |✓   | ❌    | ❌     | ❌  |    |   |    |
 |TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
 |  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
+|  串口  |     | ✓   | ❌   |    |       | ❌     | ❌  |   |    |   |
 |  FTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
 | SFTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
 
@@ -190,6 +192,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
   - [本地终端](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
   - [TELNET](Plugins/Telnet)
+  - [串口](Plugins/SerialPort)
 - [文件传输](Plugins/FileTransfer)
 
 ## 状态

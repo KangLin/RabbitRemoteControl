@@ -29,6 +29,7 @@
     - Terminal
     - Terminal SSH
     - Terminal telnet
+    - Serail port
     - Add file transfer
       - SFTP
       - FTP

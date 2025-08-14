@@ -28,6 +28,7 @@
     - 终端
     - SSH 终端
     - Telnet
+    - 串口
     - 文件传输
       - SFTP
       - FTP
