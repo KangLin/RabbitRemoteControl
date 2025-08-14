@@ -13,8 +13,6 @@ public:
     CParameterSerialPort(CParameterOperate *parent = nullptr,
                          const QString& szPrefix = QString());
 
-    CParameterTerminal m_Terminal;
-    
     [[nodiscard]] int GetSerialPort() const;
     void SetSerialPort(int index);
     [[nodiscard]] const QString GetSerialPortName() const;

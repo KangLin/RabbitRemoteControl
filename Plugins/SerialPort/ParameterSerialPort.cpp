@@ -9,7 +9,6 @@ static Q_LOGGING_CATEGORY(log, "SerialPort.Parameter")
 CParameterSerialPort::CParameterSerialPort(
     CParameterOperate *parent, const QString &szPrefix)
     : CParameterTerminalBase{parent, szPrefix}
-    , m_Terminal(this)
     , m_nSerialPort(-1)
     , m_nBaudRate(9600)
     , m_DataBits(QSerialPort::DataBits::Data8)

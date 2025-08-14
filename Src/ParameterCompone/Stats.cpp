@@ -31,8 +31,10 @@ void CStats::AddReceives(quint64 size)
 
 int CStats::OnLoad(QSettings &set)
 {
+    return 0;
 }
 
 int CStats::OnSave(QSettings &set)
 {
+    return 0;
 }

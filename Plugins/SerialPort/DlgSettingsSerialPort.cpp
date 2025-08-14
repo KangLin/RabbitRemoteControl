@@ -51,7 +51,8 @@ CDlgSettingsSerialPort::CDlgSettingsSerialPort(CParameterSerialPort *pPara, QWid
     if(-1 < nSerialPort && nSerialPort < ui->cbSerialPort->count()) {
         ui->cbSerialPort->setCurrentIndex(nSerialPort);
     }
-    info = QSerialPortInfo::availablePorts().at(ui->cbSerialPort->currentIndex());
+    if(-1 != ui->cbSerialPort->currentIndex())
+        info = QSerialPortInfo::availablePorts().at(ui->cbSerialPort->currentIndex());
     QSerialPort serialPort(info);
 
     if(!m_pPara->GetSerialPortName().isEmpty()

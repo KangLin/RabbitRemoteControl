@@ -170,7 +170,11 @@ const QString CTerminal::Description()
         szDescription += tr("Shell path: ") + m_Parameters.GetShell() + "\n";
     if(!m_Parameters.GetShellParameters().isEmpty())
         szDescription += tr("Shell parameters: ") + m_Parameters.GetShellParameters() + "\n";
-    
+    if(m_Parameters.GetCommands().size() > 0) {
+        szDescription += tr("Start commands:") + "\n";
+        foreach(auto cmd, m_Parameters.GetCommands())
+            szDescription += "  " + cmd;
+    }
     if(GetSecurityLevel() != SecurityLevel::No)
         szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
     
