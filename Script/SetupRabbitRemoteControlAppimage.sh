@@ -107,7 +107,7 @@ chmod u+x $INSTALL_DIR/$APPIMAGE_FILE
 
 echo ""
 echo "Install rabbit remote control AppImage to \"$INSTALL_DIR\"."
-echo "If you are uninstall it. Please execute:"
+echo "If you want to uninstall it. Please execute:"
 echo "    $INSTALL_DIR/unistasll.sh"
 echo ""
 

@@ -83,9 +83,39 @@
 <context>
     <name>COperateSerialPort</name>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="81"/>
+        <location filename="../../OperateSerialPort.cpp" line="82"/>
         <source>Open Serial port [%1] fail errno[%2]: %3</source>
         <translation>打开串口[%1]失败，错误号[%2]:%3</translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="132"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="135"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="138"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="147"/>
+        <source>Serial port: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="150"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="153"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

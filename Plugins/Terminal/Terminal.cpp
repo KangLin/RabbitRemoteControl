@@ -127,7 +127,9 @@ const QString CTerminal::Id()
 
 const QString CTerminal::Name()
 {
-    if(GetParameter() && !m_Parameters.GetShellName().isEmpty())
+    if(!m_Parameters.GetName().isEmpty())
+        return m_Parameters.GetName();
+    if(!m_Parameters.GetShellName().isEmpty())
         return COperateTerminal::Name() + " - " + m_Parameters.GetShellName();
     return COperateTerminal::Name();
 }

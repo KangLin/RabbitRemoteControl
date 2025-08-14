@@ -80,14 +80,17 @@ const QString COperateSSH::Id()
 const QString COperateSSH::Name()
 {
     QString szName;
-        auto &sshNet = m_Parameters.m_SSH.m_Net;
-        if(!sshNet.GetHost().isEmpty()) {
-            if(m_Parameters.GetGlobalParameters()
-                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
-                szName = Protocol() + ":";
-            szName += sshNet.GetHost()
-                      + ":" + QString::number(sshNet.GetPort());
-        }
+    if(!m_Parameters.GetName().isEmpty())
+        return m_Parameters.GetName();
+    
+    auto &sshNet = m_Parameters.m_SSH.m_Net;
+    if(!sshNet.GetHost().isEmpty()) {
+        if(m_Parameters.GetGlobalParameters()
+            && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
+            szName = Protocol() + ":";
+        szName += sshNet.GetHost()
+                  + ":" + QString::number(sshNet.GetPort());
+    }
     if(szName.isEmpty())
         szName = COperateTerminal::Name();
     return szName;

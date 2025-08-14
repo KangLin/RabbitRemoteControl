@@ -29,5 +29,11 @@ private Q_SLOTS:
 private:
     CParameterSerialPort m_Parameter;
     QSerialPort m_SerialPort;
+    
+    // COperate interface
+public:
+    virtual const QString Id() override;
+    virtual const QString Name() override;
+    virtual const QString Description() override;
 };
 

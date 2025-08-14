@@ -148,6 +148,9 @@ const QString COperateTelnet::Name()
 {
     QString szName;
 
+    if(!m_Parameters.GetName().isEmpty())
+        return m_Parameters.GetName();
+
     auto &net = m_Parameters.m_Net;
     if(!net.GetHost().isEmpty()) {
         if(m_Parameters.GetGlobalParameters()

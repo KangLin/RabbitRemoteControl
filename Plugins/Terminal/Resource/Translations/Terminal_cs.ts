@@ -244,42 +244,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="151"/>
+        <location filename="../../Terminal.cpp" line="153"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="154"/>
+        <location filename="../../Terminal.cpp" line="156"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="157"/>
+        <location filename="../../Terminal.cpp" line="159"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="166"/>
+        <location filename="../../Terminal.cpp" line="168"/>
         <source>Shell name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="168"/>
+        <location filename="../../Terminal.cpp" line="170"/>
         <source>Shell path: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="170"/>
+        <location filename="../../Terminal.cpp" line="172"/>
         <source>Shell parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="173"/>
+        <location filename="../../Terminal.cpp" line="175"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="176"/>
+        <location filename="../../Terminal.cpp" line="178"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

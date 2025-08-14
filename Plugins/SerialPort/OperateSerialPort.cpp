@@ -2,6 +2,7 @@
 #include <QLoggingCategory>
 #include "OperateSerialPort.h"
 #include "DlgSettingsSerialPort.h"
+#include "Plugin.h"
 
 static Q_LOGGING_CATEGORY(log, "SerialPort.Operate")
 
@@ -46,7 +47,8 @@ int COperateSerialPort::Start()
     check = connect(&m_SerialPort, &QSerialPort::errorOccurred,
                     this, [&](QSerialPort::SerialPortError error) {
         qCritical(log) << m_SerialPort.errorString() << error;
-        emit sigError(error, m_SerialPort.errorString());
+        if(m_SerialPort.isOpen())
+            emit sigError(error, m_SerialPort.errorString());
     });
     Q_ASSERT(check);
 
@@ -107,4 +109,60 @@ void COperateSerialPort::slotReadyRead()
         return;
     auto data = m_SerialPort.readAll();
     WriteTerminal(data.data(), data.length());
+}
+
+const QString COperateSerialPort::Id()
+{
+    QString szId;
+    szId = COperateTerminal::Id();
+    if(!m_Parameter.GetSerialPortName().isEmpty())
+        szId += "_" + m_Parameter.GetSerialPortName();
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
+    szId = szId.replace(exp, "_");
+    return szId;
+}
+
+const QString COperateSerialPort::Name()
+{
+    QString szName;
+
+    if(!m_Parameter.GetName().isEmpty())
+        return m_Parameter.GetName();
+
+    if(!m_Parameter.GetSerialPortName().isEmpty())
+        szName = m_Parameter.GetSerialPortName();
+
+    if(szName.isEmpty())
+        szName = COperateTerminal::Name();
+    return szName;
+}
+
+const QString COperateSerialPort::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
+#ifdef DEBUG
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
+#endif
+        szDescription += "\n";
+    }
+
+    if(!m_Parameter.GetSerialPortName().isEmpty())
+        szDescription += tr("Serial port: ") + m_Parameter.GetSerialPortName() + "\n";
+
+    if(GetSecurityLevel() != SecurityLevel::No)
+        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+
+    return szDescription;
 }

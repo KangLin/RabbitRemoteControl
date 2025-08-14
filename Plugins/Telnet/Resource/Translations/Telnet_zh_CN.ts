@@ -99,32 +99,32 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="169"/>
+        <location filename="../../OperateTelnet.cpp" line="172"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="172"/>
+        <location filename="../../OperateTelnet.cpp" line="175"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="175"/>
+        <location filename="../../OperateTelnet.cpp" line="178"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="185"/>
+        <location filename="../../OperateTelnet.cpp" line="188"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="189"/>
+        <location filename="../../OperateTelnet.cpp" line="192"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="192"/>
+        <location filename="../../OperateTelnet.cpp" line="195"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

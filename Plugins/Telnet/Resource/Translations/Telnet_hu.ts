@@ -98,32 +98,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="169"/>
+        <location filename="../../OperateTelnet.cpp" line="172"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="172"/>
+        <location filename="../../OperateTelnet.cpp" line="175"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="175"/>
+        <location filename="../../OperateTelnet.cpp" line="178"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="185"/>
+        <location filename="../../OperateTelnet.cpp" line="188"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="189"/>
+        <location filename="../../OperateTelnet.cpp" line="192"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="192"/>
+        <location filename="../../OperateTelnet.cpp" line="195"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
