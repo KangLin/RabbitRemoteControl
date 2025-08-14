@@ -94,4 +94,9 @@ private:
     QAction* m_pZoomOut;
     QAction* m_pZoomOriginal;
     QAction* m_pClear;
+
+    // COperate interface
+public:
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Name() override;
 };

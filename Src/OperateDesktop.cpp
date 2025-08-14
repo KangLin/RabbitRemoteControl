@@ -40,40 +40,41 @@ COperateDesktop::~COperateDesktop()
 const QString COperateDesktop::Id()
 {
     QString szId = COperate::Id();
-    if(GetParameter())
-    {
-        if(!GetParameter()->GetName().isEmpty())
+    if(GetParameter()) {
+        if(GetParameter()->GetName().isEmpty()) {
+            if(!GetParameter()->m_Net.GetHost().isEmpty())
+                szId += "_" + GetParameter()->m_Net.GetHost()
+                        + "_" + QString::number(GetParameter()->m_Net.GetPort());
+            CParameterNet* net = nullptr;
+            QString szType;
+            switch(GetParameter()->m_Proxy.GetUsedType())
+            {
+            case CParameterProxy::TYPE::Http: {
+                net = &GetParameter()->m_Proxy.m_Http;
+                szType = "http";
+                break;
+            }
+            case CParameterProxy::TYPE::SockesV5:
+            {
+                net = &GetParameter()->m_Proxy.m_SockesV5;
+                szType = "sockesv5";
+                break;
+            }
+            case CParameterProxy::TYPE::SSHTunnel:
+            {
+                net = &GetParameter()->m_Proxy.m_SSH.m_Net;
+                szType = "ssh";
+                break;
+            }
+            default:
+                break;
+            }
+            if(!szType.isEmpty() && !net->GetHost().isEmpty()) {
+                szId += "_" + szType + "_";
+                szId += net->GetHost() + "_" + QString::number(net->GetPort());
+            }
+        } else {
             szId += "_" + GetParameter()->GetName();
-        if(!GetParameter()->m_Net.GetHost().isEmpty())
-            szId += "_" + GetParameter()->m_Net.GetHost()
-                    + "_" + QString::number(GetParameter()->m_Net.GetPort());
-        CParameterNet* net = nullptr;
-        QString szType;
-        switch(GetParameter()->m_Proxy.GetUsedType())
-        {
-        case CParameterProxy::TYPE::Http: {
-            net = &GetParameter()->m_Proxy.m_Http;
-            szType = "http";
-            break;
-        }
-        case CParameterProxy::TYPE::SockesV5:
-        {
-            net = &GetParameter()->m_Proxy.m_SockesV5;
-            szType = "sockesv5";
-            break;
-        }
-        case CParameterProxy::TYPE::SSHTunnel:
-        {
-            net = &GetParameter()->m_Proxy.m_SSH.m_Net;
-            szType = "ssh";
-            break;
-        }
-        default:
-            break;
-        }
-        if(!szType.isEmpty() && !net->GetHost().isEmpty()) {
-            szId += "_" + szType + "_";
-            szId += net->GetHost() + "_" + QString::number(net->GetPort());
         }
     }
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
@@ -84,13 +85,16 @@ const QString COperateDesktop::Id()
 const QString COperateDesktop::Name()
 {
     QString szName;
-    if(GetParameter() && GetParameter()->GetGlobalParameters()
-        && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
-        szName = Protocol() + ":";
+
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         szName += GetParameter()->GetName();
-    else
+    else {
+        if(GetParameter() && GetParameter()->GetGlobalParameters()
+            && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
+            szName = Protocol() + ":";
         szName += ServerName();
+    }
+
     return szName;
 }
 
@@ -612,7 +616,7 @@ QString COperateDesktop::ServerName()
         && GetParameter()->GetGlobalParameters()->GetShowIpPortInName())
     {
         return GetParameter()->m_Net.GetHost()
-        + ":" + QString::number(GetParameter()->m_Net.GetPort());
+            + ":" + QString::number(GetParameter()->m_Net.GetPort());
     }
     if(m_szServerName.isEmpty() && GetParameter())
         return GetParameter()->GetServerName();

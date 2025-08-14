@@ -41,7 +41,6 @@ int CParameterBase::Init()
 
 int CParameterBase::OnLoad(QSettings &set)
 {
-    SetName(set.value("Name", GetName()).toString());
     SetServerName(set.value("ServerName", GetServerName()).toString());
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
@@ -57,12 +56,11 @@ int CParameterBase::OnLoad(QSettings &set)
         set.value("Viewer/AdaptType",
                   (int)GetGlobalParameters()->GetAdaptWindows()).toInt());
     SetEnableLocalInputMethod(set.value("LocalInputMethod", GetEnableLocalInputMethod()).toBool());
-    return 0;
+    return CParameterOperate::OnLoad(set);
 }
 
 int CParameterBase::OnSave(QSettings &set)
 {
-    set.setValue("Name", GetName());
     set.setValue("ServerName", GetServerName());
     set.setValue("ShowServerName", GetShowServerName());
     set.setValue("OnlyView", GetOnlyView());
@@ -74,21 +72,7 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("Viewer/ZoomFactor", GetZoomFactor());
     set.setValue("Viewer/AdaptType", (int)GetAdaptWindows());
     set.setValue("LocalInputMethod", GetEnableLocalInputMethod());
-    return 0;
-}
-
-const QString CParameterBase::GetName() const
-{
-    return m_szName;
-}
-
-void CParameterBase::SetName(const QString& szName)
-{
-    if(m_szName == szName)
-        return;
-    m_szName = szName;
-    SetModified(true);
-    emit sigNameChanged(m_szName);
+    return CParameterOperate::OnSave(set);
 }
 
 const QString CParameterBase::GetServerName() const

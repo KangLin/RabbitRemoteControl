@@ -14,19 +14,17 @@ CParameterTerminalBase::CParameterTerminalBase(CParameterOperate *parent,
 int CParameterTerminalBase::OnLoad(QSettings &set)
 {
     set.beginGroup("Terminal");
-    SetName(set.value("Name", GetName()).toString());
     SetCommands(set.value("Commands", GetCommands()).toStringList());
     set.endGroup();
-    return 0;
+    return CParameterOperate::OnLoad(set);
 }
 
 int CParameterTerminalBase::OnSave(QSettings &set)
 {
     set.beginGroup("Terminal");
-    set.setValue("Name", GetName());
     set.setValue("Commands", GetCommands());
     set.endGroup();
-    return 0;
+    return CParameterOperate::OnSave(set);
 }
 
 void CParameterTerminalBase::slotSetGlobalParameters()
@@ -39,19 +37,6 @@ void CParameterTerminalBase::slotSetGlobalParameters()
         return;
     }
     m_Terminal = pPlugin->m_Terminal;
-}
-
-const QString CParameterTerminalBase::GetName() const
-{
-    return m_szName;
-}
-
-void CParameterTerminalBase::SetName(const QString &szName)
-{
-    if(m_szName == szName)
-        return;
-    m_szName = szName;
-    SetModified(true);
 }
 
 QStringList CParameterTerminalBase::GetCommands() const

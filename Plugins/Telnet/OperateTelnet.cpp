@@ -134,13 +134,16 @@ void COperateTelnet::slotStateChanged(QAbstractSocket::SocketState state)
 
 const QString COperateTelnet::Id()
 {
-    QString szId = COperateTerminal::Id();
-    
-    auto &net = m_Parameters.m_Net;
-    if(!net.GetHost().isEmpty())
-        szId += "_" + net.GetHost()
-                + "_" + QString::number(net.GetPort());
-    
+    QString szId = COperate::Id();
+    if(GetParameter()) {
+        if(GetParameter()->GetName().isEmpty()) {
+            auto &net = m_Parameters.m_Net;
+            if(!net.GetHost().isEmpty())
+                szId += "_" + net.GetHost()
+                        + "_" + QString::number(net.GetPort());
+        } else
+            szId += "_" + GetParameter()->GetName();
+    }
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
@@ -148,22 +151,17 @@ const QString COperateTelnet::Id()
 
 const QString COperateTelnet::Name()
 {
-    QString szName;
-
-    if(!m_Parameters.GetName().isEmpty())
-        return m_Parameters.GetName();
-
-    auto &net = m_Parameters.m_Net;
-    if(!net.GetHost().isEmpty()) {
-        if(m_Parameters.GetGlobalParameters()
-            && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
-            szName = Protocol() + ":";
-        szName += net.GetHost()
-                  + ":" + QString::number(net.GetPort());
+    QString szName = COperateTerminal::Name();
+    if(szName.isEmpty()) {
+        auto &net = m_Parameters.m_Net;
+        if(!net.GetHost().isEmpty()) {
+            if(m_Parameters.GetGlobalParameters()
+                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
+                szName = Protocol() + ":";
+            szName += net.GetHost()
+                      + ":" + QString::number(net.GetPort());
+        }
     }
-
-    if(szName.isEmpty())
-        szName = COperateTerminal::Name();
     return szName;
 }
 

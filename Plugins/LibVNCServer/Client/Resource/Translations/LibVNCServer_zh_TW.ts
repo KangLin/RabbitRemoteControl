@@ -58,7 +58,7 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="58"/>
         <source>Server</source>
-        <translation>服務</translation>
+        <translation>服務器</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="100"/>

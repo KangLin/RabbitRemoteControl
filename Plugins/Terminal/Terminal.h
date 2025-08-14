@@ -13,7 +13,6 @@ public:
     virtual ~CTerminal() override;
 
 public:
-    [[nodiscard]] virtual const QString Id() override;
     [[nodiscard]] virtual const QString Name() override;
     [[nodiscard]] virtual const QString Description() override;
 

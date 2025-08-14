@@ -56,9 +56,6 @@ public:
     explicit CParameterBase(CParameterOperate* parent,
                             const QString& szPrefix = QString());
 
-    const QString GetName() const;
-    void SetName(const QString& szName);
-
     const QString GetServerName() const;
     void SetServerName(const QString& szName);
 
@@ -91,14 +88,11 @@ public:
     void SetEnableLocalInputMethod(bool enable);
 
 Q_SIGNALS:
-    void sigNameChanged(const QString &name = QString());
     void sigShowServerNameChanged();
     void sigEnableInputMethod(bool bEnable);
 
 private:
     int Init();
-
-    QString m_szName;
     
     QString m_szServerName;
     bool m_bShowServerName;

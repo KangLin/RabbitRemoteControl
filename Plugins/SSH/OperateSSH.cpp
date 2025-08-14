@@ -66,12 +66,16 @@ void COperateSSH::slotReceiveData(const QByteArray &data)
 
 const QString COperateSSH::Id()
 {
-    QString szId = COperateTerminal::Id();
-        auto &sshNet = m_Parameters.m_SSH.m_Net;
-        if(!sshNet.GetHost().isEmpty())
-            szId += "_" + sshNet.GetHost()
-                    + "_" + QString::number(sshNet.GetPort());
-    
+    QString szId = COperate::Id();
+    if(GetParameter()) {
+        if(GetParameter()->GetName().isEmpty()) {
+            auto &sshNet = m_Parameters.m_SSH.m_Net;
+            if(!sshNet.GetHost().isEmpty())
+                szId += "_" + sshNet.GetHost()
+                        + "_" + QString::number(sshNet.GetPort());
+        } else
+            szId += "_" + GetParameter()->GetName();
+    }
     static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
@@ -79,20 +83,17 @@ const QString COperateSSH::Id()
 
 const QString COperateSSH::Name()
 {
-    QString szName;
-    if(!m_Parameters.GetName().isEmpty())
-        return m_Parameters.GetName();
-    
-    auto &sshNet = m_Parameters.m_SSH.m_Net;
-    if(!sshNet.GetHost().isEmpty()) {
-        if(m_Parameters.GetGlobalParameters()
-            && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
-            szName = Protocol() + ":";
-        szName += sshNet.GetHost()
-                  + ":" + QString::number(sshNet.GetPort());
+    QString szName = COperateTerminal::Name();
+    if(szName.isEmpty()) {
+        auto &sshNet = m_Parameters.m_SSH.m_Net;
+        if(!sshNet.GetHost().isEmpty()) {
+            if(m_Parameters.GetGlobalParameters()
+                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
+                szName = Protocol() + ":";
+            szName += sshNet.GetHost()
+                      + ":" + QString::number(sshNet.GetPort());
+        }
     }
-    if(szName.isEmpty())
-        szName = COperateTerminal::Name();
     return szName;
 }
 

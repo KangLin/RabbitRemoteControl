@@ -33,8 +33,8 @@ COperate::~COperate()
 const QString COperate::Id()
 {
     Q_ASSERT(GetPlugin());
-    QString szId = QString::number((int)GetPlugin()->Type()) + "_" + Protocol()
-                   + "_" + GetPlugin()->Name();
+    QString szId = GetPlugin()->Name() + "_" + Protocol()
+                   + "_" + QString::number((int)GetPlugin()->Type());
     return szId;
 }
 

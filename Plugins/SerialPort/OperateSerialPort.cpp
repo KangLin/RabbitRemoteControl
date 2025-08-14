@@ -115,17 +115,6 @@ void COperateSerialPort::slotReadyRead()
     WriteTerminal(data.data(), data.length());
 }
 
-const QString COperateSerialPort::Id()
-{
-    QString szId;
-    szId = COperateTerminal::Id();
-    if(!m_Parameter.GetSerialPortName().isEmpty())
-        szId += "_" + m_Parameter.GetSerialPortName();
-    static QRegularExpression exp("[-@:/#%!^&* \\.]");
-    szId = szId.replace(exp, "_");
-    return szId;
-}
-
 const QString COperateSerialPort::Name()
 {
     QString szName;

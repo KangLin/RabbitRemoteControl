@@ -114,17 +114,6 @@ int CTerminal::Initial()
     return nRet;
 }
 
-const QString CTerminal::Id()
-{
-    QString szId;
-    szId = COperateTerminal::Id();
-    if(GetParameter() && !m_Parameters.GetShellName().isEmpty())
-        szId += "_" + m_Parameters.GetShellName();
-    static QRegularExpression exp("[-@:/#%!^&* \\.]");
-    szId = szId.replace(exp, "_");
-    return szId;
-}
-
 const QString CTerminal::Name()
 {
     if(!m_Parameters.GetName().isEmpty())

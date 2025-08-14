@@ -4,7 +4,6 @@
 
 #include "OperateTerminal.h"
 #include "ParameterSerialPort.h"
-#include "Stats.h"
 
 class COperateSerialPort : public COperateTerminal
 {
@@ -13,7 +12,6 @@ public:
     explicit COperateSerialPort(CPlugin *plugin);
     virtual ~COperateSerialPort();
 
-    [[nodiscard]] const QString Id() override;
     [[nodiscard]] const QString Name() override;
     [[nodiscard]] const QString Description() override;
 

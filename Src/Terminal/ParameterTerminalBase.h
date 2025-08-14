@@ -22,12 +22,6 @@ public:
                                     const QString& szPrefix = QString());
 
     CParameterTerminal m_Terminal;
-
-public:
-    [[nodiscard]] const QString GetName() const;
-    void SetName(const QString& szName);
-private:
-    QString m_szName;
     
 public:
     [[nodiscard]] QStringList GetCommands() const;

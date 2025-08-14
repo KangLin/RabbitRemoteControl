@@ -219,6 +219,9 @@ public:
     CParameterPlugin* GetGlobalParameters();
     int SetGlobalParameters(CParameterPlugin *p);
 
+    const QString GetName() const;
+    void SetName(const QString& szName);
+
 private:
 Q_SIGNALS:
     /*!
@@ -228,6 +231,7 @@ Q_SIGNALS:
      * \see slotSetGlobalParameters
      */
     void sigSetGlobalParameters();
+    void sigNameChanged(const QString &name = QString());
 
 protected Q_SLOTS:
     /*!
@@ -254,4 +258,11 @@ private:
      * \see CManager::CreateConnecter COperate::SetGlobalParameters
      */
     CParameterPlugin* m_pParameterPlugin;
+
+    QString m_szName;
+
+    // CParameter interface
+protected:
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 };

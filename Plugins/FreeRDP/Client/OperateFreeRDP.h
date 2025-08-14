@@ -16,7 +16,7 @@ public:
     [[nodiscard]] virtual const qint16 Version() const override;
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    Q_INVOKABLE [[nodiscard]] virtual CBackend *InstanceBackend() override;
+    Q_INVOKABLE virtual CBackend *InstanceBackend() override;
     virtual int Initial() override;
     virtual int Clean() override;
 

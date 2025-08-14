@@ -409,3 +409,27 @@ void COperateTerminal::SetShotcuts(bool bEnable)
     m_pActionFind->setShortcut(QKeySequence());
     m_pClear->setShortcut(QKeySequence());
 }
+
+const QString COperateTerminal::Id()
+{
+    QString szId = COperate::Id();
+    if(GetParameter()) {
+        if(GetParameter()->GetName().isEmpty())
+            szId += "_" + Name();
+        else
+            szId += "_" + GetParameter()->GetName();
+    }
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
+    szId = szId.replace(exp, "_");
+    return szId;
+}
+
+const QString COperateTerminal::Name()
+{
+    QString szName;
+    if(GetParameter())
+        szName = GetParameter()->GetName();
+    if(szName.isEmpty())
+        szName = COperate::Name();
+    return szName;
+}

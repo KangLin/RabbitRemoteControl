@@ -154,3 +154,29 @@ int CParameterOperate::SavePassword(const QString &szKey,
     set.setValue(szKey + "_sum", PasswordSum(password.toStdString(), key));
     return 0;
 }
+
+const QString CParameterOperate::GetName() const
+{
+    return m_szName;
+}
+
+void CParameterOperate::SetName(const QString& szName)
+{
+    if(m_szName == szName)
+        return;
+    m_szName = szName;
+    SetModified(true);
+    emit sigNameChanged(m_szName);
+}
+
+int CParameterOperate::OnLoad(QSettings &set)
+{
+    SetName(set.value("Name", GetName()).toString());
+    return 0;
+}
+
+int CParameterOperate::OnSave(QSettings &set)
+{
+    set.setValue("Name", GetName());
+    return 0;
+}
