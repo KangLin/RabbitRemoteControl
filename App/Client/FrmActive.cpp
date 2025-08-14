@@ -29,7 +29,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
     //setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(tr("List active"));
+    setWindowTitle(tr("Activity list"));
 
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     if(!pLayout) {

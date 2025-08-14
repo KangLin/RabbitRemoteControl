@@ -31,7 +31,7 @@ CFrmListRecent::CFrmListRecent(
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QVBoxLayout(this));
-    setWindowTitle(tr("List recent"));
+    setWindowTitle(tr("Recently list"));
 
     m_pToolBar = new QToolBar(this);
 

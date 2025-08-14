@@ -70,7 +70,7 @@
     <name>CFrmActive</name>
     <message>
         <location filename="../../FrmActive.cpp" line="32"/>
-        <source>List active</source>
+        <source>Activity list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -124,7 +124,7 @@
     <name>CFrmListRecent</name>
     <message>
         <location filename="../../FrmListRecent.cpp" line="34"/>
-        <source>List recent</source>
+        <source>Recently list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

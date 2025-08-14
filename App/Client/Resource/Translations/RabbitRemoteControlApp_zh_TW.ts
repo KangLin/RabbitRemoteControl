@@ -70,8 +70,8 @@
     <name>CFrmActive</name>
     <message>
         <location filename="../../FrmActive.cpp" line="32"/>
-        <source>List active</source>
-        <translation>活動列表</translation>
+        <source>Activity list</source>
+        <translation>活動的列表</translation>
     </message>
     <message>
         <location filename="../../FrmActive.cpp" line="71"/>
@@ -124,8 +124,8 @@
     <name>CFrmListRecent</name>
     <message>
         <location filename="../../FrmListRecent.cpp" line="34"/>
-        <source>List recent</source>
-        <translation>最近列表</translation>
+        <source>Recently list</source>
+        <translation>最近的列表</translation>
     </message>
     <message>
         <location filename="../../FrmListRecent.cpp" line="39"/>
@@ -680,7 +680,7 @@
     <message>
         <location filename="../../mainwindow.cpp" line="82"/>
         <source>Recently</source>
-        <translation>最近</translation>
+        <translation>最近的</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="115"/>
