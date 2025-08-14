@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['the_20view_20api_0',['The view API',['../group__ViewApi.html',1,'']]],
-  ['thread_20module_1',['Thread module',['../group__LIBAPI__THREAD.html',1,'']]]
+  ['service_20configure_20programe_0',['Rabbit remote control service configure programe',['../group__ServiceConfigure.html',1,'']]],
+  ['service_20library_1',['Service library',['../group__LIBAPI__SERVICE.html',1,'']]],
+  ['service_20programe_2',['Rabbit remote control service programe',['../group__Service.html',1,'']]]
 ];

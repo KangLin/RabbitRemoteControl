@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -87,13 +87,35 @@ $(function() {
 <div class="dynheader">
 类 CHook 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCHook.png" usemap="#CHook_map" alt=""/>
-  <map id="CHook_map" name="CHook_map">
-<area href="classCHookUnix.html" alt="CHookUnix" shape="rect" coords="0,112,100,136"/>
-<area href="classCHookWindows.html" alt="CHookWindows" shape="rect" coords="110,112,210,136"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCHook__inherit__graph.png" border="0" usemap="#aCHook_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCHook_inherit__map" id="aCHook_inherit__map">
+<area shape="rect" title="The class is the HOOK abstract class." alt="" coords="87,79,152,104"/>
+<area shape="rect" href="classCHookUnix.html" title=" " alt="" coords="5,152,100,177"/>
+<area shape="poly" title=" " alt="" coords="101,116,65,154,62,150,97,113"/>
+<area shape="rect" href="classCHookWindows.html" title=" " alt="" coords="124,152,248,177"/>
+<area shape="poly" title=" " alt="" coords="142,113,177,150,173,154,138,116"/>
+<area shape="rect" title=" " alt="" coords="82,5,157,31"/>
+<area shape="poly" title=" " alt="" coords="122,44,122,79,117,79,117,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CHook 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHook__coll__graph.png" border="0" usemap="#aCHook_coll__map" alt="Collaboration graph"/></div>
+<map name="aCHook_coll__map" id="aCHook_coll__map">
+<area shape="rect" title="The class is the HOOK abstract class." alt="" coords="15,331,81,356"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="37,44,29,92,29,256,35,297,46,330,41,331,30,298,24,257,24,91,32,43"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="64,80,163,105"/>
+<area shape="poly" title=" " alt="" coords="66,39,104,78,100,82,62,43"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="64,243,203,268"/>
+<area shape="poly" title=" " alt="" coords="114,280,62,332,58,328,110,276"/>
+<area shape="poly" title=" " alt="" coords="115,119,113,155,113,180,121,213,131,241,126,243,116,215,108,180,108,155,109,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="122,155,265,180"/>
+<area shape="poly" title=" " alt="" coords="138,113,182,152,178,156,134,117"/>
+<area shape="poly" title=" " alt="" coords="179,193,144,244,140,241,175,190"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
@@ -106,19 +128,19 @@ Public 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a1a6fcb80bcca56ac65505f0038d4fde1" id="r_a1a6fcb80bcca56ac65505f0038d4fde1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCHook.html">CHook</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHook.html#a1a6fcb80bcca56ac65505f0038d4fde1">GetHook</a> (<a class="el" href="classCParameterClient.html">CParameterClient</a> *pParaClient, QObject *parent=nullptr)</td></tr>
-<tr class="separator:a1a6fcb80bcca56ac65505f0038d4fde1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e76ae1a3659b7596ecff5beab9432e" id="r_a16e76ae1a3659b7596ecff5beab9432e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCHook.html">CHook</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHook.html#a16e76ae1a3659b7596ecff5beab9432e">GetHook</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="separator:a16e76ae1a3659b7596ecff5beab9432e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
-<tr class="memitem:a310a985f9b7dc25ed226aef015a4e22e" id="r_a310a985f9b7dc25ed226aef015a4e22e"><td class="memItemLeft" align="right" valign="top"><a id="a310a985f9b7dc25ed226aef015a4e22e" name="a310a985f9b7dc25ed226aef015a4e22e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CHook</b> (<a class="el" href="classCParameterClient.html">CParameterClient</a> *pParaClient, QObject *parent=nullptr)</td></tr>
-<tr class="separator:a310a985f9b7dc25ed226aef015a4e22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ada1a29cc7875d551f0d3c7fa12ed8e" id="r_a2ada1a29cc7875d551f0d3c7fa12ed8e"><td class="memItemLeft" align="right" valign="top"><a id="a2ada1a29cc7875d551f0d3c7fa12ed8e" name="a2ada1a29cc7875d551f0d3c7fa12ed8e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CHook</b> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="separator:a2ada1a29cc7875d551f0d3c7fa12ed8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:ab8f73517fefb013c5943f05c54a857ee" id="r_ab8f73517fefb013c5943f05c54a857ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterClient.html">CParameterClient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHook.html#ab8f73517fefb013c5943f05c54a857ee">m_pParameterClient</a></td></tr>
-<tr class="separator:ab8f73517fefb013c5943f05c54a857ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3d882b42b339b9aba6ccdc9a7f7e123" id="r_ae3d882b42b339b9aba6ccdc9a7f7e123"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHook.html#ae3d882b42b339b9aba6ccdc9a7f7e123">m_pParameterPlugin</a></td></tr>
+<tr class="separator:ae3d882b42b339b9aba6ccdc9a7f7e123"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>The class is the HOOK abstract class. </p>
@@ -192,8 +214,8 @@ Protected 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="a1a6fcb80bcca56ac65505f0038d4fde1" name="a1a6fcb80bcca56ac65505f0038d4fde1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a6fcb80bcca56ac65505f0038d4fde1">&#9670;&#160;</a></span>GetHook()</h2>
+<a id="a16e76ae1a3659b7596ecff5beab9432e" name="a16e76ae1a3659b7596ecff5beab9432e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e76ae1a3659b7596ecff5beab9432e">&#9670;&#160;</a></span>GetHook()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,8 +226,8 @@ Protected 属性</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classCHook.html">CHook</a> * CHook::GetHook </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classCParameterClient.html">CParameterClient</a> *&#160;</td>
-          <td class="paramname"><em>pParaClient</em>, </td>
+          <td class="paramtype"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td>
+          <td class="paramname"><em>pPara</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -285,8 +307,8 @@ Protected 属性</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">类成员变量说明</h2>
-<a id="ab8f73517fefb013c5943f05c54a857ee" name="ab8f73517fefb013c5943f05c54a857ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8f73517fefb013c5943f05c54a857ee">&#9670;&#160;</a></span>m_pParameterClient</h2>
+<a id="ae3d882b42b339b9aba6ccdc9a7f7e123" name="ae3d882b42b339b9aba6ccdc9a7f7e123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3d882b42b339b9aba6ccdc9a7f7e123">&#9670;&#160;</a></span>m_pParameterPlugin</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +317,7 @@ Protected 属性</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCParameterClient.html">CParameterClient</a>* CHook::m_pParameterClient</td>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CHook::m_pParameterPlugin</td>
         </tr>
       </table>
   </td>
@@ -310,8 +332,8 @@ Protected 属性</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Hook_8h_source.html">Hook.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Hook_8cpp_source.html">Hook.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Hook_8h_source.html">Hook.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Hook_8cpp_source.html">Hook.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

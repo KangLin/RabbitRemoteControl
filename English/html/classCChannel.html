@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -89,14 +89,35 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for CChannel:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCChannel.png" usemap="#CChannel_map" alt=""/>
-  <map id="CChannel_map" name="CChannel_map">
-<area href="classCChannelIce.html" title="The ICE channel interface class." alt="CChannelIce" shape="rect" coords="0,112,179,136"/>
-<area href="classCChannelSSHTunnel.html" title="ssh tunnel class" alt="CChannelSSHTunnel" shape="rect" coords="189,112,368,136"/>
-<area href="classCChannelSSHTunnelForward.html" title="Includes SSH tunneling and a local socket service for forwarding data." alt="CChannelSSHTunnelForward" shape="rect" coords="189,168,368,192"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCChannel__inherit__graph.png" border="0" usemap="#aCChannel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCChannel_inherit__map" id="aCChannel_inherit__map">
+<area shape="rect" title="The channel interface class." alt="" coords="121,79,205,104"/>
+<area shape="rect" href="classCChannelIce.html" title="The ICE channel interface class." alt="" coords="46,152,149,177"/>
+<area shape="poly" title=" " alt="" coords="145,116,110,154,106,150,141,113"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="173,152,283,177"/>
+<area shape="poly" title=" " alt="" coords="185,113,219,150,215,154,181,116"/>
+<area shape="rect" title=" " alt="" coords="117,5,208,31"/>
+<area shape="poly" title=" " alt="" coords="165,44,165,79,160,79,160,44"/>
+<area shape="rect" href="classCChannelSFTP.html" title=" " alt="" coords="5,225,120,251"/>
+<area shape="poly" title=" " alt="" coords="190,185,91,228,89,223,188,180"/>
+<area shape="rect" href="classCChannelSSHTerminal.html" title=" " alt="" coords="145,225,311,251"/>
+<area shape="poly" title=" " alt="" coords="231,191,231,225,225,225,225,191"/>
+<area shape="rect" href="classCChannelSSHTunnel.html" title="ssh tunnel class" alt="" coords="336,225,488,251"/>
+<area shape="poly" title=" " alt="" coords="271,180,383,223,381,228,269,185"/>
+<area shape="rect" href="classCChannelSSHTunnelForward.html" title="Includes SSH tunneling and a local socket service for forwarding data." alt="" coords="310,299,514,324"/>
+<area shape="poly" title=" " alt="" coords="415,264,415,299,409,299,409,264"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CChannel:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannel__coll__graph.png" border="0" usemap="#aCChannel_coll__map" alt="Collaboration graph"/></div>
+<map name="aCChannel_coll__map" id="aCChannel_coll__map">
+<area shape="rect" title="The channel interface class." alt="" coords="9,79,93,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,96,31"/>
+<area shape="poly" title=" " alt="" coords="53,44,53,79,48,79,48,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
@@ -134,6 +155,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a049af7801157d4bade669f37769aa48a" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
 <tr class="memdesc:a049af7801157d4bade669f37769aa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation.  <br /></td></tr>
 <tr class="separator:a049af7801157d4bade669f37769aa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07365838d88a3fdfbbb7a38e71f8fe3f" id="r_a07365838d88a3fdfbbb7a38e71f8fe3f"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a07365838d88a3fdfbbb7a38e71f8fe3f">GetSize</a> (qint64 size)</td></tr>
+<tr class="separator:a07365838d88a3fdfbbb7a38e71f8fe3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -160,7 +183,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>The channel interface class. </p>
 <p>This class implements a TCP channel by default. </p>
 
-<p class="definition">Definition at line <a class="el" href="Channel_8h_source.html#l00024">24</a> of file <a class="el" href="Channel_8h_source.html">Channel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Channel_8h_source.html#l00026">26</a> of file <a class="el" href="Channel_8h_source.html">Channel.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af80ab8220269cccf1cd9fd5fb74271cc" name="af80ab8220269cccf1cd9fd5fb74271cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af80ab8220269cccf1cd9fd5fb74271cc">&#9670;&#160;</a></span>CChannel() <span class="overload">[1/2]</span></h2>
@@ -317,9 +340,37 @@ Private Attributes</h2></td></tr>
 
 <p>Depend on information. </p>
 
-<p>Reimplemented in <a class="el" href="classCChannelSSHTunnel.html#a0948560e82533584c0ed221e5053488f">CChannelSSHTunnel</a>.</p>
+<p>Reimplemented in <a class="el" href="classCChannelSSH.html#a6fe7142304957fe259665f685cc4a794">CChannelSSH</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="Channel_8cpp_source.html#l00125">125</a> of file <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a07365838d88a3fdfbbb7a38e71f8fe3f" name="a07365838d88a3fdfbbb7a38e71f8fe3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07365838d88a3fdfbbb7a38e71f8fe3f">&#9670;&#160;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CChannel::GetSize </td>
+          <td>(</td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Channel_8cpp_source.html#l00145">145</a> of file <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +460,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classCChannelSSHTunnel.html#a3418109b6493fb3e1bc7041638b689bb">CChannelSSHTunnel</a>, and <a class="el" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward</a>.</p>
+<p>Reimplemented in <a class="el" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">CChannelSSH</a>, and <a class="el" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="Channel_8cpp_source.html#l00088">88</a> of file <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a>.</p>
 
@@ -569,21 +620,21 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Channel_8h_source.html#l00068">68</a> of file <a class="el" href="Channel_8h_source.html">Channel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Channel_8h_source.html#l00072">72</a> of file <a class="el" href="Channel_8h_source.html">Channel.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/<a class="el" href="Channel_8h_source.html">Channel.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/<a class="el" href="Channel_8cpp_source.html">Channel.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8h_source.html">Channel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8cpp_source.html">Channel.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -73,18 +73,18 @@ $(function() {
   <div class="headertitle"><div class="title">Compiling for Windows</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md170"></a> Author: Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> <br  />
+<div class="textblock"><p><a class="anchor" id="autotoc_md172"></a> Author: Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> <br  />
  Translator: Allan Nordhøy <a href="#" onclick="location.href='mai'+'lto:'+'epo'+'st'+'@an'+'ot'+'her'+'ag'+'enc'+'y.'+'no'; return false;">epost<span class="obfuscator">.nosp@m.</span>@ano<span class="obfuscator">.nosp@m.</span>thera<span class="obfuscator">.nosp@m.</span>genc<span class="obfuscator">.nosp@m.</span>y.no</a></p>
-<h2><a class="anchor" id="autotoc_md171"></a>
+<h2><a class="anchor" id="autotoc_md173"></a>
 Environment</h2>
-<h3><a class="anchor" id="autotoc_md172"></a>
+<h3><a class="anchor" id="autotoc_md174"></a>
 Operating system</h3>
 <pre class="fragment">Windows 10, version 20H2 (19042.985)
-</pre> <h3><a class="anchor" id="autotoc_md173"></a>
+</pre> <h3><a class="anchor" id="autotoc_md175"></a>
 QtCreator</h3>
 <p>Version: v14.0.2 It is recommended to use version v5.0.2 or later. <br  />
  Prior versions don't have CMake support.</p>
-<h2><a class="anchor" id="autotoc_md174"></a>
+<h2><a class="anchor" id="autotoc_md176"></a>
 Tools</h2>
 <ul>
 <li>Compiler<ul>
@@ -144,10 +144,10 @@ cmake -DQT_ROOT=[Qt install root] -DQt5_DIR=[Qt install root] ......
 <li>Nsis: <a href="https://nsis.sourceforge.io/Download">https://nsis.sourceforge.io/Download</a></li>
 <li>vcpkg: <a href="https://github.com/microsoft/vcpkg">https://github.com/microsoft/vcpkg</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md175"></a>
+<h2><a class="anchor" id="autotoc_md177"></a>
 Compilation</h2>
 <p>See: <a href="../../.github/workflows/msvc.yml">Compile integration</a></p>
-<h2><a class="anchor" id="autotoc_md176"></a>
+<h2><a class="anchor" id="autotoc_md178"></a>
 Library dependencies</h2>
 <ul>
 <li>[MUST] RabbitCommon: <a href="https://github.com/KangLin/RabbitCommon">https://github.com/KangLin/RabbitCommon</a></li>
@@ -174,6 +174,8 @@ Library dependencies</h2>
 </ul>
 </li>
 <li>[OPTIONAL] QTermWidget: <a href="https://github.com/lxqt/qtermwidget">https://github.com/lxqt/qtermwidget</a></li>
+<li>[OPTIONAL] QtSsh: <a href="https://github.com/condo4/QtSsh.git">https://github.com/condo4/QtSsh.git</a></li>
+<li>[OPTIONAL] <a class="el" href="classQTelnet.html">QTelnet</a>: <a href="https://github.com/silderan/QTelnet.git">https://github.com/silderan/QTelnet.git</a></li>
 <li>[OPTIONAL] libtelnet: <a href="https://github.com/seanmiddleditch/libtelnet">https://github.com/seanmiddleditch/libtelnet</a></li>
 <li>[OPTIONAL] libdatachannel: <a href="https://github.com/paullouisageneau/libdatachannel">https://github.com/paullouisageneau/libdatachannel</a></li>
 <li>[OPTIONAL] QXmpp: <a href="https://github.com/qxmpp-project/qxmpp">https://github.com/qxmpp-project/qxmpp</a></li>
@@ -181,7 +183,7 @@ Library dependencies</h2>
 <li>[OPTIONAL] PcapPlusPlus: <a href="https://github.com/seladb/PcapPlusPlus">https://github.com/seladb/PcapPlusPlus</a></li>
 <li>[OPTIONAL] <a href="https://ffmpeg.org/">FFMPEG:</a> Multimedia capabilities required</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md177"></a>
+<h3><a class="anchor" id="autotoc_md179"></a>
 RabbitCommon</h3>
 <ul>
 <li>This library is placed in the same directory level as the project by default. <pre class="fragment">git clone https://github.com/KangLin/RabbitRemoteControl.git
@@ -195,7 +197,7 @@ cd RabbitRemoteControl
 cmake -DRabbitCommon_ROOT=[RabbitCommon installation path] ......
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md178"></a>
+<h3><a class="anchor" id="autotoc_md180"></a>
 FreeRDP</h3>
 <ul>
 <li>Use vcpkg<ul>
@@ -228,7 +230,7 @@ vcpkg install freerdp
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md179"></a>
+<h3><a class="anchor" id="autotoc_md181"></a>
 LibVNCServer</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -246,7 +248,7 @@ cmake --build . --config Release --target install
 <li>When LibVNCServer is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md180"></a>
+<h3><a class="anchor" id="autotoc_md182"></a>
 RabbitVNC</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -264,7 +266,7 @@ cmake --build . --config Release --target install
 <li>When RabbitVNC is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md181"></a>
+<h3><a class="anchor" id="autotoc_md183"></a>
 TigerVNC</h3>
 <ul>
 <li>Compile from source code</li>
@@ -284,7 +286,7 @@ cmake --build . --config Release --target install
 <li>When TigerVNC is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md182"></a>
+<h3><a class="anchor" id="autotoc_md184"></a>
 libdatachannel</h3>
 <ul>
 <li>Use vcpkg<ul>
@@ -309,7 +311,7 @@ cmake --build . --config Release --target install
 <li>When libdatachannel is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md183"></a>
+<h3><a class="anchor" id="autotoc_md185"></a>
 QXmpp</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -325,7 +327,7 @@ cmake --build . --config Release --target install
 <li>When QXmpp is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md184"></a>
+<h3><a class="anchor" id="autotoc_md186"></a>
 QTermWidget (Not currently supported on Windows)</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -335,7 +337,7 @@ QTermWidget (Not currently supported on Windows)</h3>
 <li>When QTermWidget is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md185"></a>
+<h3><a class="anchor" id="autotoc_md187"></a>
 libssh</h3>
 <ul>
 <li>Use vcpkg<ul>
@@ -352,7 +354,7 @@ vcpkg install libssh
 <li>When libssh is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md186"></a>
+<h3><a class="anchor" id="autotoc_md188"></a>
 QtService</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -368,7 +370,7 @@ cmake --build . --config Release --target install
 <li>When QtService is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DQtService_DIR=[QtService installation path]/lib/cmake/QtService
 </pre> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md187"></a>
+<h2><a class="anchor" id="autotoc_md189"></a>
 PcapPlusPlus</h2>
 <ul>
 <li>Compile from source code<ul>
@@ -386,7 +388,7 @@ vcpkg install pcapplusplus
 <li>When PcapPlusPlus is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 </pre> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md188"></a>
+<h2><a class="anchor" id="autotoc_md190"></a>
 Compile this project</h2>
 <ul>
 <li>Project location: <a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>

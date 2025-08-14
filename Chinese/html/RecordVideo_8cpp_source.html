@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/RecordVideo.cpp 源文件</title>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/RecordVideo.cpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -165,7 +165,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    m_CaptureSession.setVideoFrameInput(&amp;m_VideoFrameInput);</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">//m_CaptureSession.setAudioBufferInput(&amp;m_AudioBufferInput);</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    m_CaptureSession.setRecorder(&amp;m_Recorder);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_Parameter.<a class="code hl_function" href="classCParameterRecord.html#a80766b84ffcaf5ac8235e1c946eba5de">GetFile</a>(<span class="keyword">true</span>)));</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_Parameter.GetFile(<span class="keyword">true</span>)));</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    m_Recorder.record();</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> nRet;</div>
@@ -198,7 +198,6 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
-<div class="ttc" id="aclassCParameterRecord_html_a80766b84ffcaf5ac8235e1c946eba5de"><div class="ttname"><a href="classCParameterRecord.html#a80766b84ffcaf5ac8235e1c946eba5de">CParameterRecord::GetFile</a></div><div class="ttdeci">const QString GetFile(bool bAuto=false)</div><div class="ttdef"><b>Definition</b> <a href="ParameterRecord_8cpp_source.html#l00177">ParameterRecord.cpp:177</a></div></div>
 <div class="ttc" id="aclassCRecordVideoThread_html"><div class="ttname"><a href="classCRecordVideoThread.html">CRecordVideoThread</a></div><div class="ttdoc">录制视频线程</div><div class="ttdef"><b>Definition</b> <a href="RecordVideo_8h_source.html#l00028">RecordVideo.h:29</a></div></div>
 <div class="ttc" id="aclassCRecordVideo_html"><div class="ttname"><a href="classCRecordVideo.html">CRecordVideo</a></div><div class="ttdoc">Record video to file</div><div class="ttdef"><b>Definition</b> <a href="RecordVideo_8h_source.html#l00050">RecordVideo.h:51</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

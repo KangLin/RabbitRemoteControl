@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -72,7 +72,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classCPluginLibSSH-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CPluginLibSSH Class Reference</div></div>
 </div><!--header-->
@@ -80,95 +80,98 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for CPluginLibSSH:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCPluginLibSSH.png" usemap="#CPluginLibSSH_map" alt=""/>
-  <map id="CPluginLibSSH_map" name="CPluginLibSSH_map">
-<area href="classCPluginClient.html" title="The plugin interface." alt="CPluginClient" shape="rect" coords="0,56,98,80"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCPluginLibSSH__inherit__graph.png" border="0" usemap="#aCPluginLibSSH_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginLibSSH_inherit__map" id="aCPluginLibSSH_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,121,177"/>
+<area shape="rect" href="classCPlugin.html" title="Plugin interface." alt="" coords="28,79,99,104"/>
+<area shape="poly" title=" " alt="" coords="66,118,66,152,61,152,61,118"/>
+<area shape="rect" title=" " alt="" coords="26,5,101,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CPluginLibSSH:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginLibSSH__coll__graph.png" border="0" usemap="#aCPluginLibSSH_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginLibSSH_coll__map" id="aCPluginLibSSH_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,121,177"/>
+<area shape="rect" href="classCPlugin.html" title="Plugin interface." alt="" coords="28,79,99,104"/>
+<area shape="poly" title=" " alt="" coords="66,118,66,152,61,152,61,118"/>
+<area shape="rect" title=" " alt="" coords="26,5,101,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:acabde831a6e6a9e2024b7c6260bbb2c8" id="r_acabde831a6e6a9e2024b7c6260bbb2c8"><td class="memItemLeft" align="right" valign="top"><a id="acabde831a6e6a9e2024b7c6260bbb2c8" name="acabde831a6e6a9e2024b7c6260bbb2c8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPluginLibSSH</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:acabde831a6e6a9e2024b7c6260bbb2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25ceb9ead8dcec858982a8ad87ed8b21" id="r_a25ceb9ead8dcec858982a8ad87ed8b21"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a25ceb9ead8dcec858982a8ad87ed8b21">Protocol</a> () const override</td></tr>
 <tr class="memdesc:a25ceb9ead8dcec858982a8ad87ed8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plugin Protocol.  <br /></td></tr>
 <tr class="separator:a25ceb9ead8dcec858982a8ad87ed8b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa86ffed5e243a292eae4fc8bd1a3143" id="r_afa86ffed5e243a292eae4fc8bd1a3143"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#afa86ffed5e243a292eae4fc8bd1a3143">Name</a> () const override</td></tr>
 <tr class="memdesc:afa86ffed5e243a292eae4fc8bd1a3143"><td class="mdescLeft">&#160;</td><td class="mdescRight">This name must be the same as the project name (${PROJECT_NAME}). The translation file (${PROJECT_NAME}_*.ts)) name is associated with it.  <br /></td></tr>
 <tr class="separator:afa86ffed5e243a292eae4fc8bd1a3143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a466922098fd0bc66cb55ff14e8753e84" id="r_a466922098fd0bc66cb55ff14e8753e84"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a466922098fd0bc66cb55ff14e8753e84">DisplayName</a> () const override</td></tr>
+<tr class="memdesc:a466922098fd0bc66cb55ff14e8753e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plugin display name.  <br /></td></tr>
+<tr class="separator:a466922098fd0bc66cb55ff14e8753e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad311c8909a3813656d90357546b0856b" id="r_ad311c8909a3813656d90357546b0856b"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ad311c8909a3813656d90357546b0856b">Description</a> () const override</td></tr>
 <tr class="memdesc:ad311c8909a3813656d90357546b0856b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plugin description.  <br /></td></tr>
 <tr class="separator:ad311c8909a3813656d90357546b0856b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97a69b468d7ccb5d42036df939f7dbf3" id="r_a97a69b468d7ccb5d42036df939f7dbf3"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a97a69b468d7ccb5d42036df939f7dbf3">Icon</a> () const override</td></tr>
 <tr class="separator:a97a69b468d7ccb5d42036df939f7dbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classCPluginClient"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPluginClient')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCPluginClient.html">CPluginClient</a></td></tr>
-<tr class="memitem:ae0646989bbd8183af945557b9016ce2e inherit pub_methods_classCPluginClient" id="r_ae0646989bbd8183af945557b9016ce2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#ae0646989bbd8183af945557b9016ce2e">CPluginClient</a> (QObject *parent=nullptr)</td></tr>
-<tr class="memdesc:ae0646989bbd8183af945557b9016ce2e inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the derived class is implemented, The plugin global resources are initialized are loaded here.  <br /></td></tr>
-<tr class="separator:ae0646989bbd8183af945557b9016ce2e inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac20a71597521801c707fbd28f2882af3 inherit pub_methods_classCPluginClient" id="r_ac20a71597521801c707fbd28f2882af3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#ac20a71597521801c707fbd28f2882af3">~CPluginClient</a> ()</td></tr>
-<tr class="memdesc:ac20a71597521801c707fbd28f2882af3 inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the derived class is implemented, the resources are clean are unloaded here.  <br /></td></tr>
-<tr class="separator:ac20a71597521801c707fbd28f2882af3 inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33d235f502024a800f2fb12a65487f7c inherit pub_methods_classCPluginClient" id="r_a33d235f502024a800f2fb12a65487f7c"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a33d235f502024a800f2fb12a65487f7c">Id</a> () const</td></tr>
-<tr class="memdesc:a33d235f502024a800f2fb12a65487f7c inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID. Default: <a class="el" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd" title="Plugin Protocol.">Protocol()</a> + ":" + <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256" title="This name must be the same as the project name (${PROJECT_NAME}). The translation file (${PROJECT_NAM...">Name()</a>  <br /></td></tr>
-<tr class="separator:a33d235f502024a800f2fb12a65487f7c inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a371798270a0cb15a9072386c0db65a65 inherit pub_methods_classCPluginClient" id="r_a371798270a0cb15a9072386c0db65a65"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a371798270a0cb15a9072386c0db65a65">DisplayName</a> () const</td></tr>
-<tr class="memdesc:a371798270a0cb15a9072386c0db65a65 inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plugin display name.  <br /></td></tr>
-<tr class="separator:a371798270a0cb15a9072386c0db65a65 inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48a52bc2fca449ddd78829da815e90b1 inherit pub_methods_classCPluginClient" id="r_a48a52bc2fca449ddd78829da815e90b1"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a48a52bc2fca449ddd78829da815e90b1">Version</a> () const =0</td></tr>
-<tr class="memdesc:a48a52bc2fca449ddd78829da815e90b1 inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version.  <br /></td></tr>
-<tr class="separator:a48a52bc2fca449ddd78829da815e90b1 inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc828bd2d9f691514015f8dad125aa4 inherit pub_methods_classCPluginClient" id="r_a2dc828bd2d9f691514015f8dad125aa4"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a2dc828bd2d9f691514015f8dad125aa4">Details</a> () const</td></tr>
-<tr class="memdesc:a2dc828bd2d9f691514015f8dad125aa4 inherit pub_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display more information in About dialog or log.  <br /></td></tr>
-<tr class="separator:a2dc828bd2d9f691514015f8dad125aa4 inherit pub_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa987d320d6bf8b40bd9b33e40b66405c" id="r_aa987d320d6bf8b40bd9b33e40b66405c"><td class="memItemLeft" align="right" valign="top">virtual const TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#aa987d320d6bf8b40bd9b33e40b66405c">Type</a> () const override</td></tr>
+<tr class="separator:aa987d320d6bf8b40bd9b33e40b66405c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae55addf7d8b8edba69ed92085f1e5781" id="r_ae55addf7d8b8edba69ed92085f1e5781"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ae55addf7d8b8edba69ed92085f1e5781">Version</a> () const override</td></tr>
+<tr class="memdesc:ae55addf7d8b8edba69ed92085f1e5781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version.  <br /></td></tr>
+<tr class="separator:ae55addf7d8b8edba69ed92085f1e5781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89cd2b79dcca84a74c75486245c4018" id="r_ad89cd2b79dcca84a74c75486245c4018"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ad89cd2b79dcca84a74c75486245c4018">Details</a> () const override</td></tr>
+<tr class="memdesc:ad89cd2b79dcca84a74c75486245c4018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display more information in About dialog or log.  <br /></td></tr>
+<tr class="separator:ad89cd2b79dcca84a74c75486245c4018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin" id="r_a17ff51c3ec0301ef927f8b5b8ef0c49e"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPlugin</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin" id="r_af62099c6e9224ddf7c94208b8fcc78c9"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#af62099c6e9224ddf7c94208b8fcc78c9">TypeName</a> (const TYPE t) const</td></tr>
+<tr class="separator:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a688781ec76edfd5a945ff8aaaa037018 inherit pub_methods_classCPlugin" id="r_a688781ec76edfd5a945ff8aaaa037018"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a688781ec76edfd5a945ff8aaaa037018">Id</a> ()</td></tr>
+<tr class="memdesc:a688781ec76edfd5a945ff8aaaa037018 inherit pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID. Default: Type() + ":" + <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="Plugin Protocol.">Protocol()</a> + ":" + <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="This name must be the same as the project name (${PROJECT_NAME}). The translation file (${PROJECT_NAM...">Name()</a>  <br /></td></tr>
+<tr class="separator:a688781ec76edfd5a945ff8aaaa037018 inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:ad9331d46d540236e638d3f83f74b8112" id="r_ad9331d46d540236e638d3f83f74b8112"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ad9331d46d540236e638d3f83f74b8112">CreateConnecter</a> (const QString &amp;szProtocol) override</td></tr>
-<tr class="separator:ad9331d46d540236e638d3f83f74b8112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a41f69906d9a363ee3f85ceb5f2177e36" id="r_a41f69906d9a363ee3f85ceb5f2177e36"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a41f69906d9a363ee3f85ceb5f2177e36">OnCreateOperate</a> (const QString &amp;szId) override</td></tr>
+<tr class="separator:a41f69906d9a363ee3f85ceb5f2177e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin" id="r_ac8cec990249ce5b34f0d43148925079e"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e">CreateOperate</a> (const QString &amp;szId, <a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *para)</td></tr>
+<tr class="memdesc:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">New <a class="el" href="classCOperate.html" title="Operate interface.">COperate</a> instance.  <br /></td></tr>
+<tr class="separator:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin" id="r_a63a012a7bf038de8006c30ef924e2c34"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *p)</td></tr>
+<tr class="memdesc:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCOperate.html" title="Operate interface.">COperate</a>.  <br /></td></tr>
+<tr class="separator:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classCPluginClient"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCPluginClient')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCPluginClient.html">CPluginClient</a></td></tr>
-<tr class="memitem:a70718085a80fa2dae9eee8eacad54a24 inherit pro_methods_classCPluginClient" id="r_a70718085a80fa2dae9eee8eacad54a24"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a70718085a80fa2dae9eee8eacad54a24">CreateConnecter</a> (const QString &amp;szId, <a class="el" href="classCParameterClient.html">CParameterClient</a> *para)</td></tr>
-<tr class="memdesc:a70718085a80fa2dae9eee8eacad54a24 inherit pro_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">New <a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a> instance.  <br /></td></tr>
-<tr class="separator:a70718085a80fa2dae9eee8eacad54a24 inherit pro_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99baf7a7bf0e04cbec1873e1eec81a2c inherit pro_methods_classCPluginClient" id="r_a99baf7a7bf0e04cbec1873e1eec81a2c"><td class="memItemLeft" align="right" valign="top">
-virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreateConnecter</b> (const QString &amp;szId)=0</td></tr>
-<tr class="separator:a99baf7a7bf0e04cbec1873e1eec81a2c inherit pro_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af31634217cb2656de81dea61c1522ebd inherit pro_methods_classCPluginClient" id="r_af31634217cb2656de81dea61c1522ebd"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#af31634217cb2656de81dea61c1522ebd">DeleteConnecter</a> (<a class="el" href="classCConnecter.html">CConnecter</a> *p)</td></tr>
-<tr class="memdesc:af31634217cb2656de81dea61c1522ebd inherit pro_methods_classCPluginClient"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a>.  <br /></td></tr>
-<tr class="separator:af31634217cb2656de81dea61c1522ebd inherit pro_methods_classCPluginClient"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin" id="r_a5d659d10d26bdd085103b2315fc174b7"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TYPE</b> { <br />
+&#160;&#160;<b>RemoteDesktop</b>
+, <b>Terminal</b>
+, <b>Client</b>
+, <b>Service</b>
+, <br />
+&#160;&#160;<b>FileTransfers</b>
+, <b>NetworkTools</b>
+, <b>Tools</b>
+, <b>Custom</b> = 1000
+<br />
+ }</td></tr>
+<tr class="separator:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8h_source.html#l00009">9</a> of file <a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8h_source.html#l00007">7</a> of file <a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3d9277bc6f80466f7c5d4deb928f2863" name="a3d9277bc6f80466f7c5d4deb928f2863"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d9277bc6f80466f7c5d4deb928f2863">&#9670;&#160;</a></span>CPluginLibSSH()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">CPluginLibSSH::CPluginLibSSH </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00008">8</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
-
-</div>
-</div>
 <a id="aaac409825b0a135ac64980693d197c4b" name="aaac409825b0a135ac64980693d197c4b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaac409825b0a135ac64980693d197c4b">&#9670;&#160;</a></span>~CPluginLibSSH()</h2>
 
@@ -192,39 +195,11 @@ virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00012">12</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00014">14</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad9331d46d540236e638d3f83f74b8112" name="ad9331d46d540236e638d3f83f74b8112"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9331d46d540236e638d3f83f74b8112">&#9670;&#160;</a></span>CreateConnecter()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCConnecter.html">CConnecter</a> * CPluginLibSSH::CreateConnecter </td>
-          <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>szProtocol</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00037">37</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
-
-</div>
-</div>
 <a id="ad311c8909a3813656d90357546b0856b" name="ad311c8909a3813656d90357546b0856b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad311c8909a3813656d90357546b0856b">&#9670;&#160;</a></span>Description()</h2>
 
@@ -250,9 +225,73 @@ virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td
 
 <p>Plugin description. </p>
 
-<p>Implements <a class="el" href="classCPluginClient.html#a44d5e732c7155e384114b066f668b0bb">CPluginClient</a>.</p>
+<p>Implements <a class="el" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">CPlugin</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00027">27</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00034">34</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad89cd2b79dcca84a74c75486245c4018" name="ad89cd2b79dcca84a74c75486245c4018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89cd2b79dcca84a74c75486245c4018">&#9670;&#160;</a></span>Details()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Details </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Display more information in About dialog or log. </p>
+<p>eg: Include the plugin depends on the library version and description</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginFreeRDP.html#ad380980f75232976c82aa1013e768986" title="Show the plugin depends on the freerdp version.">CPluginFreeRDP::Details()</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classCPlugin.html#a4e83c9d4e9ebc627208e8ff09ec1ee8c">CPlugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00061">61</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a466922098fd0bc66cb55ff14e8753e84" name="a466922098fd0bc66cb55ff14e8753e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a466922098fd0bc66cb55ff14e8753e84">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The plugin display name. </p>
+
+<p>Reimplemented from <a class="el" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">CPlugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00029">29</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
 
 </div>
 </div>
@@ -279,9 +318,9 @@ virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCPluginClient.html">CPluginClient</a>.</p>
+<p>Implements <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00032">32</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00046">46</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,9 +349,39 @@ virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td
 
 <p>This name must be the same as the project name (${PROJECT_NAME}). The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. </p>
 
-<p>Implements <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256">CPluginClient</a>.</p>
+<p>Implements <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">CPlugin</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00022">22</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00024">24</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a41f69906d9a363ee3f85ceb5f2177e36" name="a41f69906d9a363ee3f85ceb5f2177e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f69906d9a363ee3f85ceb5f2177e36">&#9670;&#160;</a></span>OnCreateOperate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperate.html">COperate</a> * CPluginLibSSH::OnCreateOperate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00073">73</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,23 +410,83 @@ virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td
 
 <p>Plugin Protocol. </p>
 
-<p>Implements <a class="el" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd">CPluginClient</a>.</p>
+<p>Implements <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c">CPlugin</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00017">17</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00019">19</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa987d320d6bf8b40bd9b33e40b66405c" name="aa987d320d6bf8b40bd9b33e40b66405c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa987d320d6bf8b40bd9b33e40b66405c">&#9670;&#160;</a></span>Type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CPlugin::TYPE CPluginLibSSH::Type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00051">51</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae55addf7d8b8edba69ed92085f1e5781" name="ae55addf7d8b8edba69ed92085f1e5781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae55addf7d8b8edba69ed92085f1e5781">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Version. </p>
+
+<p>Implements <a class="el" href="classCPlugin.html#a3b1052c480954aec5d80e6f91bb93092">CPlugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PluginLibSSH_8cpp_source.html#l00056">56</a> of file <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/LibSSH/<a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/LibSSH/<a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

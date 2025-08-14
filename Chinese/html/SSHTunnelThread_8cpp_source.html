@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/SSH/SSHTunnelThread.cpp 源文件</title>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/SSH/SSHTunnelThread.cpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_24453028cfa33b693ee754987a32d1d8.html">SSH</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_929c58e4268c86b7ece49131a5a4067f.html">SSH</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,11 +90,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;ChannelSSHTunnelForward.h&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;SSHTunnelThread.h&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;Channel.SSH.Tunnel.Thread&quot;</span>)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;SSH.Tunnel.Thread&quot;</span>)</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_class" href="classCSSHTunnelThread.html">CSSHTunnelThread</a>::<a class="code hl_class" href="classCSSHTunnelThread.html">CSSHTunnelThread</a>(<a class="code hl_class" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a> *parameter, <a class="code hl_class" href="classCParameterNet.html">CParameterNet</a> *remote, <a class="code hl_class" href="classCConnect.html">CConnect</a> *pConnect)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_class" href="classCSSHTunnelThread.html">CSSHTunnelThread</a>::<a class="code hl_class" href="classCSSHTunnelThread.html">CSSHTunnelThread</a>(<a class="code hl_class" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a> *parameter, <a class="code hl_class" href="classCParameterNet.html">CParameterNet</a> *remote, <a class="code hl_class" href="classCBackend.html">CBackend</a> *pBackend)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    : QThread(<span class="keywordtype">nullptr</span>),</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    m_pConnect(pConnect),</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    m_pBackend(pBackend),</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    m_bExit(false),</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    m_pParameter(parameter),</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    m_pRemoteNet(remote)</div>
@@ -120,7 +120,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> nRet = 0;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    qDebug(log) &lt;&lt; <span class="stringliteral">&quot;CSSHTunnelThread run&quot;</span>;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classCChannelSSHTunnelForward.html">CChannelSSHTunnelForward</a>* p = <span class="keyword">new</span> <a class="code hl_class" href="classCChannelSSHTunnelForward.html">CChannelSSHTunnelForward</a>(</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        m_pParameter, m_pRemoteNet, m_pConnect);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        m_pParameter, m_pRemoteNet, m_pBackend);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span>(!p)</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
@@ -136,7 +136,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        Q_ASSERT(check);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span>(!p-&gt;<a class="code hl_function" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">open</a>(QIODevice::ReadWrite)) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            emit m_pConnect-&gt;<a class="code hl_signal" href="classCConnect.html#a4b2aa2d4f48200519aec24987b0f8c82">sigShowMessageBox</a>(</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            emit m_pBackend-&gt;<a class="code hl_signal" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a>(</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                tr(<span class="stringliteral">&quot;Error&quot;</span>), p-&gt;errorString(), QMessageBox::Critical);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            nRet = -1;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">break</span>;</div>
@@ -155,18 +155,18 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span>(nRet)</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        emit sigError(nRet, p-&gt;errorString());</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    emit sigDisconnect();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    emit sigStop();</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    p-&gt;deleteLater();</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    qDebug(log) &lt;&lt; <span class="stringliteral">&quot;CSSHTunnelThread end&quot;</span>;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+<div class="ttc" id="aclassCBackend_html"><div class="ttname"><a href="classCBackend.html">CBackend</a></div><div class="ttdoc">后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...</div><div class="ttdef"><b>Definition</b> <a href="Backend_8h_source.html#l00041">Backend.h:42</a></div></div>
+<div class="ttc" id="aclassCBackend_html_a5e011ebbb8577c03f32fbbba33e759d8"><div class="ttname"><a href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">CBackend::sigShowMessageBox</a></div><div class="ttdeci">void sigShowMessageBox(const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</div><div class="ttdoc">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程</div></div>
 <div class="ttc" id="aclassCChannelSSHTunnelForward_html"><div class="ttname"><a href="classCChannelSSHTunnelForward.html">CChannelSSHTunnelForward</a></div><div class="ttdoc">包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnelForward_8h_source.html#l00022">ChannelSSHTunnelForward.h:23</a></div></div>
 <div class="ttc" id="aclassCChannelSSHTunnelForward_html_a6c822a661d20a1361f1ace9d4d9c7aee"><div class="ttname"><a href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward::open</a></div><div class="ttdeci">virtual bool open(OpenMode mode) override</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnelForward_8cpp_source.html#l00201">ChannelSSHTunnelForward.cpp:201</a></div></div>
 <div class="ttc" id="aclassCChannelSSHTunnelForward_html_a7dde44495da24f9978b52df38d472ffb"><div class="ttname"><a href="classCChannelSSHTunnelForward.html#a7dde44495da24f9978b52df38d472ffb">CChannelSSHTunnelForward::Process</a></div><div class="ttdeci">virtual int Process()</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnelForward_8cpp_source.html#l00372">ChannelSSHTunnelForward.cpp:372</a></div></div>
-<div class="ttc" id="aclassCConnect_html"><div class="ttname"><a href="classCConnect.html">CConnect</a></div><div class="ttdoc">连接接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Connect()、 slotTimeOut()、 OnProcess() 。 当然，它仍...</div><div class="ttdef"><b>Definition</b> <a href="Connect_8h_source.html#l00044">Connect.h:45</a></div></div>
-<div class="ttc" id="aclassCConnect_html_a4b2aa2d4f48200519aec24987b0f8c82"><div class="ttname"><a href="classCConnect.html#a4b2aa2d4f48200519aec24987b0f8c82">CConnect::sigShowMessageBox</a></div><div class="ttdeci">void sigShowMessageBox(const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</div><div class="ttdoc">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程</div></div>
 <div class="ttc" id="aclassCParameterNet_html"><div class="ttname"><a href="classCParameterNet.html">CParameterNet</a></div><div class="ttdoc">网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI</div><div class="ttdef"><b>Definition</b> <a href="ParameterNet_8h_source.html#l00025">ParameterNet.h:27</a></div></div>
-<div class="ttc" id="aclassCParameterSSHTunnel_html"><div class="ttname"><a href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterSSHTunnel_8h_source.html#l00010">ParameterSSHTunnel.h:11</a></div></div>
+<div class="ttc" id="aclassCParameterSSHTunnel_html"><div class="ttname"><a href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterSSH_8h_source.html#l00027">ParameterSSH.h:28</a></div></div>
 <div class="ttc" id="aclassCSSHTunnelThread_html"><div class="ttname"><a href="classCSSHTunnelThread.html">CSSHTunnelThread</a></div><div class="ttdoc">实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。</div><div class="ttdef"><b>Definition</b> <a href="SSHTunnelThread_8h_source.html#l00025">SSHTunnelThread.h:26</a></div></div>
 <div class="ttc" id="aclassCSSHTunnelThread_html_af7331934e10cb9d1d89226f4f25cb5f0"><div class="ttname"><a href="classCSSHTunnelThread.html#af7331934e10cb9d1d89226f4f25cb5f0">CSSHTunnelThread::sigServer</a></div><div class="ttdeci">void sigServer(QString szHost, quint16 nPort)</div><div class="ttdoc">当 SOCKET 服务建立监听后触发，用于通知其它本地 SOCKET 可以连接它</div></div>
 </div><!-- fragment --></div><!-- contents -->

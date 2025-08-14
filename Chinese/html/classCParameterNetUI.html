@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -76,7 +76,7 @@ $(function() {
 <a href="#pri-slots">Private 槽</a> &#124;
 <a href="#pri-attribs">Private 属性</a> &#124;
 <a href="classCParameterNetUI-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">CParameterNetUI类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
+  <div class="headertitle"><div class="title">CParameterNetUI类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,12 +87,45 @@ $(function() {
 <div class="dynheader">
 类 CParameterNetUI 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCParameterNetUI.png" usemap="#CParameterNetUI_map" alt=""/>
-  <map id="CParameterNetUI_map" name="CParameterNetUI_map">
-<area href="classCParameterUI.html" title="参数界面接口" alt="CParameterUI" shape="rect" coords="0,56,109,80"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCParameterNetUI__inherit__graph.png" border="0" usemap="#aCParameterNetUI_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterNetUI_inherit__map" id="aCParameterNetUI_inherit__map">
+<area shape="rect" title="The net parameter UI" alt="" coords="5,152,140,177"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="17,79,129,104"/>
+<area shape="poly" title=" " alt="" coords="75,118,75,152,70,152,70,118"/>
+<area shape="rect" title=" " alt="" coords="33,5,112,31"/>
+<area shape="poly" title=" " alt="" coords="75,44,75,79,70,79,70,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterNetUI 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterNetUI__coll__graph.png" border="0" usemap="#aCParameterNetUI_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterNetUI_coll__map" id="aCParameterNetUI_coll__map">
+<area shape="rect" title="The net parameter UI" alt="" coords="63,581,198,607"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="5,493,117,519"/>
+<area shape="poly" title=" " alt="" coords="82,528,123,579,119,582,77,531"/>
+<area shape="rect" title=" " alt="" coords="22,405,101,431"/>
+<area shape="poly" title=" " alt="" coords="64,445,64,493,59,493,59,445"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="142,493,263,519"/>
+<area shape="poly" title=" " alt="" coords="186,531,143,583,139,579,182,527"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="117,331,267,356"/>
+<area shape="poly" title=" " alt="" coords="196,370,205,493,199,493,191,370"/>
+<area shape="poly" title=" " alt="" coords="282,336,294,343,286,350,268,353,267,347,284,345,289,343,279,341"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="213,405,341,431"/>
+<area shape="poly" title=" " alt="" coords="218,363,265,403,262,407,214,367"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="172,80,271,105"/>
+<area shape="poly" title=" " alt="" coords="219,119,199,243,195,330,189,330,193,242,213,118"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="208,243,347,268"/>
+<area shape="poly" title=" " alt="" coords="231,118,251,179,275,242,270,244,245,181,226,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="259,155,402,180"/>
+<area shape="poly" title=" " alt="" coords="252,111,315,152,312,157,249,115"/>
+<area shape="rect" title=" " alt="" coords="184,5,259,31"/>
+<area shape="poly" title=" " alt="" coords="224,45,224,80,219,80,219,45"/>
+<area shape="poly" title=" " alt="" coords="258,280,206,332,202,328,254,276"/>
+<area shape="poly" title=" " alt="" coords="318,193,287,244,282,241,314,191"/>
+<area shape="poly" title=" " alt="" coords="260,443,215,495,211,491,256,439"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 信号</h2></td></tr>
@@ -136,6 +169,7 @@ Private 属性</h2></td></tr>
 额外继承的成员函数</h2></td></tr>
 <tr class="inherit_header pub_slots_classCParameterUI"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCParameterUI')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCParameterUI.html">CParameterUI</a></td></tr>
 <tr class="memitem:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI" id="r_acb901ac45af7e1780f327b954c7aacfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#acb901ac45af7e1780f327b954c7aacfa">slotSetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)</td></tr>
+<tr class="memdesc:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
 <tr class="separator:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fde885a63c974d7822bc415fb64e033 inherit pub_slots_classCParameterUI" id="r_a5fde885a63c974d7822bc415fb64e033"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a5fde885a63c974d7822bc415fb64e033">slotAccept</a> ()</td></tr>
 <tr class="separator:a5fde885a63c974d7822bc415fb64e033 inherit pub_slots_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -356,8 +390,8 @@ Private 属性</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/ParameterCompone/<a class="el" href="ParameterNetUI_8h_source.html">ParameterNetUI.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/ParameterCompone/<a class="el" href="ParameterNetUI_8cpp_source.html">ParameterNetUI.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterNetUI_8h_source.html">ParameterNetUI.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterNetUI_8cpp_source.html">ParameterNetUI.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,26 +75,40 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classCManageConnect-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">CManageConnect Class Reference<div class="ingroups"><a class="el" href="group__LIBAPI.html">Libraries</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">Client library</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">Thread module</a></div></div></div>
+  <div class="headertitle"><div class="title">CManageConnect Class Reference<div class="ingroups"><a class="el" href="group__LIBAPI.html">Libraries</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">Plugin library</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">Thread module</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Manage <a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a>.  
+<p>Manage CConnecter.  
  <a href="classCManageConnect.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CManageConnect:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCManageConnect.png" alt=""/>
- </div></div>
+<div class="center"><img src="classCManageConnect__inherit__graph.png" border="0" usemap="#aCManageConnect_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCManageConnect_inherit__map" id="aCManageConnect_inherit__map">
+<area shape="rect" title="Manage CConnecter." alt="" coords="5,79,141,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,111,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CManageConnect:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCManageConnect__coll__graph.png" border="0" usemap="#aCManageConnect_coll__map" alt="Collaboration graph"/></div>
+<map name="aCManageConnect_coll__map" id="aCManageConnect_coll__map">
+<area shape="rect" title="Manage CConnecter." alt="" coords="5,79,141,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,111,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a16ebd05cad9d5318cdfa132dc10841e8" id="r_a16ebd05cad9d5318cdfa132dc10841e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a16ebd05cad9d5318cdfa132dc10841e8">slotConnect</a> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *pConnecter)</td></tr>
+<tr class="memitem:a16ebd05cad9d5318cdfa132dc10841e8" id="r_a16ebd05cad9d5318cdfa132dc10841e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a16ebd05cad9d5318cdfa132dc10841e8">slotConnect</a> (CConnecterConnect *pConnecter)</td></tr>
 <tr class="separator:a16ebd05cad9d5318cdfa132dc10841e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5438d36b74366725955a6bfaf11e1ddb" id="r_a5438d36b74366725955a6bfaf11e1ddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a5438d36b74366725955a6bfaf11e1ddb">slotDisconnect</a> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *pConnecter)</td></tr>
+<tr class="memitem:a5438d36b74366725955a6bfaf11e1ddb" id="r_a5438d36b74366725955a6bfaf11e1ddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a5438d36b74366725955a6bfaf11e1ddb">slotDisconnect</a> (CConnecterConnect *pConnecter)</td></tr>
 <tr class="separator:a5438d36b74366725955a6bfaf11e1ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -105,13 +119,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a69c90f536c48e0bf9f4c63ad5cfb41a1" id="r_a69c90f536c48e0bf9f4c63ad5cfb41a1"><td class="memItemLeft" align="right" valign="top">QMap&lt; <a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *, <a class="el" href="classCConnect.html">CConnect</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a69c90f536c48e0bf9f4c63ad5cfb41a1">m_Connects</a></td></tr>
+<tr class="memitem:a69c90f536c48e0bf9f4c63ad5cfb41a1" id="r_a69c90f536c48e0bf9f4c63ad5cfb41a1"><td class="memItemLeft" align="right" valign="top">QMap&lt; CConnecterConnect *, CConnect * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a69c90f536c48e0bf9f4c63ad5cfb41a1">m_Connects</a></td></tr>
 <tr class="separator:a69c90f536c48e0bf9f4c63ad5cfb41a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Manage <a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a>. </p>
+<div class="textblock"><p>Manage CConnecter. </p>
 <p>only used by <a class="el" href="classCPluginThread.html" title="One thread handles multiple CConnecterConnect.">CPluginThread</a></p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginThread.html" title="One thread handles multiple CConnecterConnect.">CPluginThread</a> <a class="el" href="classCPluginClientThread.html" title="It starts a background thread by default.">CPluginClientThread</a> <a class="el" href="classCConnecterConnect.html" title="The connector interface of the plug-in, which is only used by the plug-in.">CConnecterConnect</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginThread.html" title="One thread handles multiple CConnecterConnect.">CPluginThread</a> <a class="el" href="classCPluginClientThread.html" title="It starts a background thread by default.">CPluginClientThread</a> CConnecterConnect </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ManageConnect_8h_source.html#l00014">14</a> of file <a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -155,7 +169,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void CManageConnect::slotConnect </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *&#160;</td>
+          <td class="paramtype">CConnecterConnect *&#160;</td>
           <td class="paramname"><em>pConnecter</em></td><td>)</td>
           <td></td>
         </tr>
@@ -183,7 +197,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void CManageConnect::slotDisconnect </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *&#160;</td>
+          <td class="paramtype">CConnecterConnect *&#160;</td>
           <td class="paramname"><em>pConnecter</em></td><td>)</td>
           <td></td>
         </tr>
@@ -210,7 +224,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QMap&lt;<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a>*, <a class="el" href="classCConnect.html">CConnect</a>*&gt; CManageConnect::m_Connects</td>
+          <td class="memname">QMap&lt;CConnecterConnect*, CConnect*&gt; CManageConnect::m_Connects</td>
         </tr>
       </table>
   </td>
@@ -225,16 +239,16 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

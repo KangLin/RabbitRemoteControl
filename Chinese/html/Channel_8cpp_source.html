@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/Channel.cpp 源文件</title>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/Channel.cpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7a790ea2fe71a6341cb1983b26689944.html">Channel</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_9251c372efb4b87298ad9817ccd9eec3.html">Channel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -235,7 +235,21 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
 </div>
-<div class="ttc" id="aclassCChannel_html"><div class="ttname"><a href="classCChannel.html">CChannel</a></div><div class="ttdoc">通道接口类。此类默认实现一个 TCP 的通道。</div><div class="ttdef"><b>Definition</b> <a href="Channel_8h_source.html#l00024">Channel.h:25</a></div></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>QString CChannel::GetSize(qint64 size)</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    QString szSize;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span>(1024 &gt;= size)</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        szSize = QString::number(size) + <span class="stringliteral">&quot; &quot;</span> + tr(<span class="stringliteral">&quot;B&quot;</span>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(1024* 1024 &gt;= size)</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        szSize = QString::number(size / 1024.0, <span class="charliteral">&#39;f&#39;</span>, 2) + <span class="stringliteral">&quot; &quot;</span> + tr(<span class="stringliteral">&quot;KB&quot;</span>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(1024 * 1024 * 1024 &gt;= size)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        szSize = QString::number(size / (1024.0 * 1024.0), <span class="charliteral">&#39;f&#39;</span>, 2) + <span class="stringliteral">&quot; &quot;</span> + tr(<span class="stringliteral">&quot;MB&quot;</span>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        szSize = QString::number(size / (1024.0 * 1024.0 * 1024.0), <span class="charliteral">&#39;f&#39;</span>, 2) + <span class="stringliteral">&quot; &quot;</span> + tr(<span class="stringliteral">&quot; GB&quot;</span>);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">return</span> szSize;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>}</div>
+<div class="ttc" id="aclassCChannel_html"><div class="ttname"><a href="classCChannel.html">CChannel</a></div><div class="ttdoc">通道接口类。此类默认实现一个 TCP 的通道。</div><div class="ttdef"><b>Definition</b> <a href="Channel_8h_source.html#l00026">Channel.h:27</a></div></div>
 <div class="ttc" id="aclassCChannel_html_a049af7801157d4bade669f37769aa48a"><div class="ttname"><a href="classCChannel.html#a049af7801157d4bade669f37769aa48a">CChannel::RemoveTranslation</a></div><div class="ttdeci">static int RemoveTranslation()</div><div class="ttdoc">Remove translation</div><div class="ttdef"><b>Definition</b> <a href="Channel_8cpp_source.html#l00138">Channel.cpp:138</a></div></div>
 <div class="ttc" id="aclassCChannel_html_a17424001491e79f13e3080ba40f7d422"><div class="ttname"><a href="classCChannel.html#a17424001491e79f13e3080ba40f7d422">CChannel::InitTranslation</a></div><div class="ttdeci">static int InitTranslation()</div><div class="ttdoc">Initial translation</div><div class="ttdef"><b>Definition</b> <a href="Channel_8cpp_source.html#l00130">Channel.cpp:130</a></div></div>
 <div class="ttc" id="aclassCChannel_html_a270a6dcabcec7d72426e29d0df2001c8"><div class="ttname"><a href="classCChannel.html#a270a6dcabcec7d72426e29d0df2001c8">CChannel::sigConnected</a></div><div class="ttdeci">void sigConnected()</div><div class="ttdoc">emit when the channel is connected.</div></div>

@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,28 +75,42 @@ $(function() {
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="classCPluginThread-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">CPluginThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">线程模型</a></div></div></div>
+  <div class="headertitle"><div class="title">CPluginThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">线程模型</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>一个线程处理多个连接者 <a class="el" href="classCConnecterConnect.html" title="插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。">CConnecterConnect</a> 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> 由插件使用。  
+<p>一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> 由插件使用。  
  <a href="classCPluginThread.html#details">更多...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PluginThread_8h_source.html">PluginThread.h</a>&gt;</code></p>
 <div class="dynheader">
 类 CPluginThread 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCPluginThread.png" alt=""/>
- </div></div>
+<div class="center"><img src="classCPluginThread__inherit__graph.png" border="0" usemap="#aCPluginThread_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginThread_inherit__map" id="aCPluginThread_inherit__map">
+<area shape="rect" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。" alt="" coords="5,79,121,104"/>
+<area shape="rect" title=" " alt="" coords="25,5,102,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginThread__coll__graph.png" border="0" usemap="#aCPluginThread_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginThread_coll__map" id="aCPluginThread_coll__map">
+<area shape="rect" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。" alt="" coords="5,79,121,104"/>
+<area shape="rect" title=" " alt="" coords="25,5,102,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 信号</h2></td></tr>
 <tr class="memitem:ad159eabe8a41f7a614a9298d8b214969" id="r_ad159eabe8a41f7a614a9298d8b214969"><td class="memItemLeft" align="right" valign="top"><a id="ad159eabe8a41f7a614a9298d8b214969" name="ad159eabe8a41f7a614a9298d8b214969"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sigConnect</b> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigConnect</b> (CConnecterConnect *)</td></tr>
 <tr class="separator:ad159eabe8a41f7a614a9298d8b214969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a5c058eeab3013811143465bc68c4c8" id="r_a4a5c058eeab3013811143465bc68c4c8"><td class="memItemLeft" align="right" valign="top"><a id="a4a5c058eeab3013811143465bc68c4c8" name="a4a5c058eeab3013811143465bc68c4c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDisconnect</b> (<a class="el" href="classCConnecterConnect.html">CConnecterConnect</a> *)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDisconnect</b> (CConnecterConnect *)</td></tr>
 <tr class="separator:a4a5c058eeab3013811143465bc68c4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -108,12 +122,12 @@ Public 成员函数</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
 <tr class="memitem:a1cb58f1ce169344a4419406d47ffa8c2" id="r_a1cb58f1ce169344a4419406d47ffa8c2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginThread.html#a1cb58f1ce169344a4419406d47ffa8c2">run</a> () override</td></tr>
-<tr class="memdesc:a1cb58f1ce169344a4419406d47ffa8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">One thread handles multiple <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a>.  <br /></td></tr>
+<tr class="memdesc:a1cb58f1ce169344a4419406d47ffa8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">One thread handles multiple CConnecter.  <br /></td></tr>
 <tr class="separator:a1cb58f1ce169344a4419406d47ffa8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>一个线程处理多个连接者 <a class="el" href="classCConnecterConnect.html" title="插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。">CConnecterConnect</a> 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> 由插件使用。 </p>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> <a class="el" href="classCManageConnect.html" title="管理连接。此类仅用于 CPluginThread">CManageConnect</a> <a class="el" href="classCConnecterConnect.html" title="插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。">CConnecterConnect</a> </dd></dl>
+<div class="textblock"><p>一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> 由插件使用。 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> <a class="el" href="classCManageConnect.html" title="管理连接。此类仅用于 CPluginThread">CManageConnect</a> CConnecterConnect </dd></dl>
 
 <p class="definition">在文件 <a class="el" href="PluginThread_8h_source.html">PluginThread.h</a> 第 <a class="el" href="PluginThread_8h_source.html#l00023">23</a> 行定义.</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
@@ -168,7 +182,7 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>One thread handles multiple <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a>. </p>
+<p>One thread handles multiple CConnecter. </p>
 <p>Register sigConnect and sigDisconnect, then enter event loop. </p>
 
 <p class="definition">在文件 <a class="el" href="PluginThread_8cpp_source.html">PluginThread.cpp</a> 第 <a class="el" href="PluginThread_8cpp_source.html#l00022">22</a> 行定义.</p>
@@ -176,8 +190,8 @@ Protected 成员函数</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="PluginThread_8h_source.html">PluginThread.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="PluginThread_8cpp_source.html">PluginThread.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="PluginThread_8h_source.html">PluginThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="PluginThread_8cpp_source.html">PluginThread.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

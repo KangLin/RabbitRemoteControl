@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -73,8 +73,8 @@ $(function() {
   <div class="headertitle"><div class="title">为 Linux 编译</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md131"></a> 作者：康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
-<h2><a class="anchor" id="autotoc_md132"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md133"></a> 作者：康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
+<h2><a class="anchor" id="autotoc_md134"></a>
 快速开始</h2>
 <pre class="fragment"># 仅编译 AppImage
 ./Script/build_linux.sh --appimage
@@ -83,9 +83,9 @@ $(function() {
 # 仅编译 rpm 包
 ./Script/build_linux.sh --rpm
 </pre><p> 详见：脚本</p>
-<h2><a class="anchor" id="autotoc_md133"></a>
+<h2><a class="anchor" id="autotoc_md135"></a>
 环境</h2>
-<h3><a class="anchor" id="autotoc_md134"></a>
+<h3><a class="anchor" id="autotoc_md136"></a>
 操作系统</h3>
 <ul>
 <li>Ubuntu <pre class="fragment">~$ lsb_release -a
@@ -106,12 +106,12 @@ Codename: bookworm
 Fedora release 42 (Adams)
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md135"></a>
+<h3><a class="anchor" id="autotoc_md137"></a>
 Qt Creator</h3>
 <p>版本：v15.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。</p>
-<h2><a class="anchor" id="autotoc_md136"></a>
+<h2><a class="anchor" id="autotoc_md138"></a>
 工具</h2>
-<h3><a class="anchor" id="autotoc_md137"></a>
+<h3><a class="anchor" id="autotoc_md139"></a>
 安装开发工具软件包</h3>
 <pre class="fragment">  ~$ sudo apt install build-essential
 </pre><ul>
@@ -126,16 +126,16 @@ Qt Creator</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md138"></a>
+<h3><a class="anchor" id="autotoc_md140"></a>
 GIT: &lt;a href="http://www.git-scm.com" &gt;http://www.git-scm.com&lt;/a&gt;</h3>
 <pre class="fragment">  ~$ sudo apt install git
-</pre> <h3><a class="anchor" id="autotoc_md139"></a>
+</pre> <h3><a class="anchor" id="autotoc_md141"></a>
 CMAKE: &lt;a href="http://www.cmake.org" &gt;http://www.cmake.org&lt;/a&gt;</h3>
 <p>版本: 大于 3.27.0 </p><pre class="fragment">~$ sudo apt install cmake
-</pre> <h3><a class="anchor" id="autotoc_md140"></a>
+</pre> <h3><a class="anchor" id="autotoc_md142"></a>
 打包工具: debhelper</h3>
 <pre class="fragment">  ~$ sudo apt install debhelper
-</pre> <h3><a class="anchor" id="autotoc_md141"></a>
+</pre> <h3><a class="anchor" id="autotoc_md143"></a>
 Qt</h3>
 <ul>
 <li>Qt 官方发行版本： <a href="https://download.qt.io/official_releases/qt/">https://download.qt.io/official_releases/qt/</a><ul>
@@ -214,16 +214,16 @@ QTLIBDIR="/usr/lib/aarch64-linux-gnu"
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md142"></a>
+<h3><a class="anchor" id="autotoc_md144"></a>
 [可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。</h3>
 <pre class="fragment">  ~$ sudo apt install qtcreator
-</pre> <h3><a class="anchor" id="autotoc_md143"></a>
+</pre> <h3><a class="anchor" id="autotoc_md145"></a>
 OpenGL: 运行 Qt 需要</h3>
 <pre class="fragment">  ~$ sudo apt install libglu1-mesa-dev
-</pre> <h3><a class="anchor" id="autotoc_md144"></a>
+</pre> <h3><a class="anchor" id="autotoc_md146"></a>
 Doxygen: &lt;a href="http://www.doxygen.nl/" &gt;http://www.doxygen.nl/&lt;/a&gt;</h3>
 <pre class="fragment">  ~$ sudo apt install doxygen
-</pre> <h2><a class="anchor" id="autotoc_md145"></a>
+</pre> <h2><a class="anchor" id="autotoc_md147"></a>
 依赖库</h2>
 <ul>
 <li>[必选] 玉兔公共库: <a href="https://github.com/KangLin/RabbitCommon">https://github.com/KangLin/RabbitCommon</a></li>
@@ -249,6 +249,8 @@ Doxygen: &lt;a href="http://www.doxygen.nl/" &gt;http://www.doxygen.nl/&lt;/a&gt
 </li>
 </ul>
 </li>
+<li>[可选] QtSsh: <a href="https://github.com/condo4/QtSsh.git">https://github.com/condo4/QtSsh.git</a></li>
+<li>[可选] <a class="el" href="classQTelnet.html">QTelnet</a>: <a href="https://github.com/silderan/QTelnet.git">https://github.com/silderan/QTelnet.git</a></li>
 <li>[可选] libtelnet: <a href="https://github.com/seanmiddleditch/libtelnet">https://github.com/seanmiddleditch/libtelnet</a></li>
 <li>[可选] libdatachannel: <a href="https://github.com/paullouisageneau/libdatachannel">https://github.com/paullouisageneau/libdatachannel</a></li>
 <li>[可选] QXmpp: <a href="https://github.com/qxmpp-project/qxmpp">https://github.com/qxmpp-project/qxmpp</a></li>
@@ -256,7 +258,7 @@ Doxygen: &lt;a href="http://www.doxygen.nl/" &gt;http://www.doxygen.nl/&lt;/a&gt
 <li>[可选] PcapPlusPlus: <a href="https://github.com/seladb/PcapPlusPlus">https://github.com/seladb/PcapPlusPlus</a>。插件 WakeOnLan 需要。</li>
 <li>[可选] FFMPEG: <a href="https://ffmpeg.org/">https://ffmpeg.org/</a>。 Qt 多媒体功能需要</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md146"></a>
+<h3><a class="anchor" id="autotoc_md148"></a>
 玉兔公共库</h3>
 <ul>
 <li>此库默认放在与本项目同级目录下 <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
@@ -270,7 +272,7 @@ Doxygen: &lt;a href="http://www.doxygen.nl/" &gt;http://www.doxygen.nl/&lt;/a&gt
 ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon 安装目录] ......
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md147"></a>
+<h3><a class="anchor" id="autotoc_md149"></a>
 FreeRDP</h3>
 <ul>
 <li>使用系统预编译开发库 <pre class="fragment">~$ sudo apt install freerdp3-dev
@@ -305,7 +307,7 @@ FreeRDP</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md148"></a>
+<h3><a class="anchor" id="autotoc_md150"></a>
 LibVNCServer</h3>
 <ul>
 <li>使用系统预编译开发库 <pre class="fragment">~$ sudo apt install libvncserver-dev
@@ -317,7 +319,7 @@ LibVNCServer</h3>
 <li>当 LibVNCServer 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md149"></a>
+<h3><a class="anchor" id="autotoc_md151"></a>
 RabbitVNC</h3>
 <ul>
 <li>从源码编译<ul>
@@ -334,7 +336,7 @@ RabbitVNC</h3>
 <li>当 RabbitVNC 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md150"></a>
+<h3><a class="anchor" id="autotoc_md152"></a>
 TigerVNC</h3>
 <ul>
 <li>从源码编译</li>
@@ -351,7 +353,7 @@ TigerVNC</h3>
 <li>当 TigerVNC 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md151"></a>
+<h3><a class="anchor" id="autotoc_md153"></a>
 libdatachannel</h3>
 <ul>
 <li>使用 vcpkg<ul>
@@ -377,7 +379,7 @@ libdatachannel</h3>
 <li>当 libdatachannel 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DLibDataChannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md152"></a>
+<h3><a class="anchor" id="autotoc_md154"></a>
 QXmpp</h3>
 <ul>
 <li>使用系统预编译开发库 <pre class="fragment">~$ sudo apt install libqxmpp-dev
@@ -395,7 +397,7 @@ QXmpp</h3>
 <li>当 QXmpp 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md153"></a>
+<h3><a class="anchor" id="autotoc_md155"></a>
 QTermWidget</h3>
 <ul>
 <li>使用系统预编译开发库 <pre class="fragment">~$ sudo apt install libqtermwidget5-0-dev
@@ -407,7 +409,7 @@ QTermWidget</h3>
 <li>当 QTermWidget 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md154"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 libssh</h3>
 <ul>
 <li>使用系统预编译开发库 <pre class="fragment">~$ sudo apt install libssh-dev 
@@ -427,7 +429,7 @@ libssh</h3>
 <li>当 libssh 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-Dlibssh_DIR=[libssh 安装目录]/lib/cmake/libssh
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md155"></a>
+<h3><a class="anchor" id="autotoc_md157"></a>
 QtService</h3>
 <ul>
 <li>从源码编译<ul>
@@ -443,7 +445,7 @@ QtService</h3>
 <li>当 QtService 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 </pre> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md156"></a>
+<h2><a class="anchor" id="autotoc_md158"></a>
 PcapPlusPlus</h2>
 <ul>
 <li>从源码编译<ul>
@@ -461,7 +463,7 @@ PcapPlusPlus</h2>
 <li>当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数： <pre class="fragment">-DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md157"></a>
+<h3><a class="anchor" id="autotoc_md159"></a>
 libpcap</h3>
 <p>PcapPlusPlus 依赖此库。</p>
 <ul>
@@ -469,16 +471,16 @@ libpcap</h3>
 </pre></li>
 <li>源码位置：https://github.com/the-tcpdump-group/libpcap</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md158"></a>
+<h2><a class="anchor" id="autotoc_md160"></a>
 编译本项目</h2>
-<h3><a class="anchor" id="autotoc_md159"></a>
+<h3><a class="anchor" id="autotoc_md161"></a>
 源码</h3>
 <ul>
 <li>项目位置：<a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>
 <li>下载源码 <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md160"></a>
+<h3><a class="anchor" id="autotoc_md162"></a>
 CMake 参数或者环境变量</h3>
 <ul>
 <li>CMake 参数或者环境变量<ul>
@@ -526,7 +528,7 @@ CMake 参数或者环境变量</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md161"></a>
+<h3><a class="anchor" id="autotoc_md163"></a>
 编译</h3>
 <ul>
 <li>命令行编译<ul>
@@ -566,7 +568,7 @@ export QtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md162"></a>
+<h3><a class="anchor" id="autotoc_md164"></a>
 运行</h3>
 <ul>
 <li>程序安装在 install/bin 下 <pre class="fragment">~$ cd RabbitRemoteControl
@@ -584,9 +586,9 @@ export QtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md163"></a>
+<h2><a class="anchor" id="autotoc_md165"></a>
 编译例子</h2>
-<h3><a class="anchor" id="autotoc_md164"></a>
+<h3><a class="anchor" id="autotoc_md166"></a>
 Ubuntu</h3>
 <pre class="fragment">```bash
 # 安装开发工具软件包
@@ -657,7 +659,7 @@ Ubuntu</h3>
 ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 ```
 </pre><p> 详见：脚本</p>
-<h2><a class="anchor" id="autotoc_md165"></a>
+<h2><a class="anchor" id="autotoc_md167"></a>
 &lt;a href="https://github.com/linuxdeploy/linuxdeploy" &gt;AppImage&lt;/a&gt;</h2>
 <ul>
 <li>构建 <pre class="fragment">~/RabbitRemoteControl/build$ cmake .. \
@@ -712,7 +714,7 @@ export EXTRA_QT_MODULES="svg"
 </li>
 <li>脚本：<a href="../../Script/build_appimage.sh">build_appimage.sh</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md166"></a>
+<h2><a class="anchor" id="autotoc_md168"></a>
 snap</h2>
 <ul>
 <li>安装 snapcraft <pre class="fragment">sudo snap install snapcraft --classic
@@ -784,7 +786,7 @@ $ snapcraft prime freerdp --shell-after -v --debug
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md167"></a>
+<h2><a class="anchor" id="autotoc_md169"></a>
 Flatpak</h2>
 <ul>
 <li>准备<ul>
@@ -901,7 +903,7 @@ export DISPLAY=:99.0
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md168"></a>
+<h2><a class="anchor" id="autotoc_md170"></a>
 rpm 包</h2>
 <ul>
 <li>安装 rpm-build 的相关 rpm 包 <pre class="fragment">dnf -y install rpm-build rpmdevtools
@@ -933,7 +935,7 @@ BUILD  RPMS  SOURCES  SPECS  SRPMS
   -13: _topdir    %(echo $HOME)/rpmbuild
 </pre> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md169"></a>
+<h2><a class="anchor" id="autotoc_md171"></a>
 脚本</h2>
 <ul>
 <li>构建脚本<ul>

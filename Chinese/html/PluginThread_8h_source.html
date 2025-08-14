@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/PluginThread.h 源文件</title>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/PluginThread.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -102,8 +102,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCPluginThread.html">~CPluginThread</a>();</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>Q_SIGNALS:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> sigConnect(<a class="code hl_class" href="classCConnecterConnect.html">CConnecterConnect</a>*);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> sigDisconnect(<a class="code hl_class" href="classCConnecterConnect.html">CConnecterConnect</a>*);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> sigConnect(CConnecterConnect*);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> sigDisconnect(CConnecterConnect*);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> run() <span class="keyword">override</span>;</div>
@@ -111,7 +111,6 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif </span><span class="comment">// CPLUGINHREAD_H_KL_2021_08_05</span></div>
-<div class="ttc" id="aclassCConnecterConnect_html"><div class="ttname"><a href="classCConnecterConnect.html">CConnecterConnect</a></div><div class="ttdoc">插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8h_source.html#l00034">ConnecterConnect.h:35</a></div></div>
 <div class="ttc" id="aclassCPluginThread_html"><div class="ttname"><a href="classCPluginThread.html">CPluginThread</a></div><div class="ttdoc">一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。</div><div class="ttdef"><b>Definition</b> <a href="PluginThread_8h_source.html#l00023">PluginThread.h:24</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

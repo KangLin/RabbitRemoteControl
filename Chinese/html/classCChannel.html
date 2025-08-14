@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -89,14 +89,35 @@ $(function() {
 <div class="dynheader">
 类 CChannel 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCChannel.png" usemap="#CChannel_map" alt=""/>
-  <map id="CChannel_map" name="CChannel_map">
-<area href="classCChannelIce.html" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="CChannelIce" shape="rect" coords="0,112,179,136"/>
-<area href="classCChannelSSHTunnel.html" title="SSH 隧道" alt="CChannelSSHTunnel" shape="rect" coords="189,112,368,136"/>
-<area href="classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="CChannelSSHTunnelForward" shape="rect" coords="189,168,368,192"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCChannel__inherit__graph.png" border="0" usemap="#aCChannel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCChannel_inherit__map" id="aCChannel_inherit__map">
+<area shape="rect" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="121,79,205,104"/>
+<area shape="rect" href="classCChannelIce.html" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="46,152,149,177"/>
+<area shape="poly" title=" " alt="" coords="145,116,110,154,106,150,141,113"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="173,152,283,177"/>
+<area shape="poly" title=" " alt="" coords="185,113,219,150,215,154,181,116"/>
+<area shape="rect" title=" " alt="" coords="117,5,208,31"/>
+<area shape="poly" title=" " alt="" coords="165,44,165,79,160,79,160,44"/>
+<area shape="rect" href="classCChannelSFTP.html" title=" " alt="" coords="5,225,120,251"/>
+<area shape="poly" title=" " alt="" coords="190,185,91,228,89,223,188,180"/>
+<area shape="rect" href="classCChannelSSHTerminal.html" title=" " alt="" coords="145,225,311,251"/>
+<area shape="poly" title=" " alt="" coords="231,191,231,225,225,225,225,191"/>
+<area shape="rect" href="classCChannelSSHTunnel.html" title="SSH 隧道" alt="" coords="336,225,488,251"/>
+<area shape="poly" title=" " alt="" coords="271,180,383,223,381,228,269,185"/>
+<area shape="rect" href="classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="310,299,514,324"/>
+<area shape="poly" title=" " alt="" coords="415,264,415,299,409,299,409,264"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CChannel 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannel__coll__graph.png" border="0" usemap="#aCChannel_coll__map" alt="Collaboration graph"/></div>
+<map name="aCChannel_coll__map" id="aCChannel_coll__map">
+<area shape="rect" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="9,79,93,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,96,31"/>
+<area shape="poly" title=" " alt="" coords="53,44,53,79,48,79,48,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 信号</h2></td></tr>
@@ -134,6 +155,8 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a049af7801157d4bade669f37769aa48a" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
 <tr class="memdesc:a049af7801157d4bade669f37769aa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation  <br /></td></tr>
 <tr class="separator:a049af7801157d4bade669f37769aa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07365838d88a3fdfbbb7a38e71f8fe3f" id="r_a07365838d88a3fdfbbb7a38e71f8fe3f"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a07365838d88a3fdfbbb7a38e71f8fe3f">GetSize</a> (qint64 size)</td></tr>
+<tr class="separator:a07365838d88a3fdfbbb7a38e71f8fe3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
@@ -159,7 +182,7 @@ Private 属性</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>通道接口类。此类默认实现一个 TCP 的通道。 </p>
 
-<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00024">24</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00026">26</a> 行定义.</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="af80ab8220269cccf1cd9fd5fb74271cc" name="af80ab8220269cccf1cd9fd5fb74271cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af80ab8220269cccf1cd9fd5fb74271cc">&#9670;&#160;</a></span>CChannel() <span class="overload">[1/2]</span></h2>
@@ -316,9 +339,37 @@ Private 属性</h2></td></tr>
 
 <p>依赖信息 </p>
 
-<p>被 <a class="el" href="classCChannelSSHTunnel.html#a0948560e82533584c0ed221e5053488f">CChannelSSHTunnel</a> 重载.</p>
+<p>被 <a class="el" href="classCChannelSSH.html#a6fe7142304957fe259665f685cc4a794">CChannelSSH</a> 重载.</p>
 
 <p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a07365838d88a3fdfbbb7a38e71f8fe3f" name="a07365838d88a3fdfbbb7a38e71f8fe3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07365838d88a3fdfbbb7a38e71f8fe3f">&#9670;&#160;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CChannel::GetSize </td>
+          <td>(</td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00145">145</a> 行定义.</p>
 
 </div>
 </div>
@@ -408,7 +459,7 @@ Private 属性</h2></td></tr>
   </dd>
 </dl>
 
-<p>被 <a class="el" href="classCChannelSSHTunnel.html#a3418109b6493fb3e1bc7041638b689bb">CChannelSSHTunnel</a> , 以及 <a class="el" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward</a> 重载.</p>
+<p>被 <a class="el" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">CChannelSSH</a> , 以及 <a class="el" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward</a> 重载.</p>
 
 <p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00088">88</a> 行定义.</p>
 
@@ -568,13 +619,13 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00068">68</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00072">72</a> 行定义.</p>
 
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/<a class="el" href="Channel_8h_source.html">Channel.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/<a class="el" href="Channel_8cpp_source.html">Channel.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8h_source.html">Channel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8cpp_source.html">Channel.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

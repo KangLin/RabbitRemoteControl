@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -88,12 +88,31 @@ $(function() {
 <div class="dynheader">
 类 CChannelIce 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCChannelIce.png" usemap="#CChannelIce_map" alt=""/>
-  <map id="CChannelIce_map" name="CChannelIce_map">
-<area href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="CChannel" shape="rect" coords="0,56,85,80"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCChannelIce__inherit__graph.png" border="0" usemap="#aCChannelIce_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCChannelIce_inherit__map" id="aCChannelIce_inherit__map">
+<area shape="rect" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="5,152,108,177"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="15,79,99,104"/>
+<area shape="poly" title=" " alt="" coords="59,118,59,152,54,152,54,118"/>
+<area shape="rect" title=" " alt="" coords="11,5,102,31"/>
+<area shape="poly" title=" " alt="" coords="59,44,59,79,54,79,54,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CChannelIce 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannelIce__coll__graph.png" border="0" usemap="#aCChannelIce_coll__map" alt="Collaboration graph"/></div>
+<map name="aCChannelIce_coll__map" id="aCChannelIce_coll__map">
+<area shape="rect" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="54,168,157,193"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="9,80,93,105"/>
+<area shape="poly" title=" " alt="" coords="68,115,100,166,95,169,63,118"/>
+<area shape="rect" title=" " alt="" coords="5,5,96,31"/>
+<area shape="poly" title=" " alt="" coords="53,45,53,80,48,80,48,45"/>
+<area shape="rect" href="classCIceSignal.html" title="ICE 信令接口类" alt="" coords="117,80,208,105"/>
+<area shape="poly" title=" " alt="" coords="150,118,116,169,111,166,145,115"/>
+<area shape="rect" title=" " alt="" coords="125,5,200,31"/>
+<area shape="poly" title=" " alt="" coords="165,45,165,80,160,80,160,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
@@ -208,6 +227,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (int nEr
 <tr class="memitem:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
 <tr class="memdesc:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation  <br /></td></tr>
 <tr class="separator:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07365838d88a3fdfbbb7a38e71f8fe3f inherit pub_static_methods_classCChannel" id="r_a07365838d88a3fdfbbb7a38e71f8fe3f"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a07365838d88a3fdfbbb7a38e71f8fe3f">GetSize</a> (qint64 size)</td></tr>
+<tr class="separator:a07365838d88a3fdfbbb7a38e71f8fe3f inherit pub_static_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>ICE 通道类。此类实现一个 ICE 的通道。 </p>
@@ -1190,8 +1211,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (int nEr
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/ICE/<a class="el" href="ChannelIce_8h_source.html">ChannelIce.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Channel/ICE/<a class="el" href="ChannelIce_8cpp_source.html">ChannelIce.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="ChannelIce_8h_source.html">ChannelIce.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="ChannelIce_8cpp_source.html">ChannelIce.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

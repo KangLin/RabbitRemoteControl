@@ -1,0 +1,35 @@
+<map id="COperateTerminal" name="COperateTerminal">
+<area shape="rect" id="Node000001" title="终端操作接口" alt="" coords="211,541,349,567"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="操作接口。" alt="" coords="243,179,325,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,218,283,289,283,467,283,541,277,541,277,467,277,289,280,218"/>
+<area shape="rect" id="Node000005" href="$classCBackendThread.html" title="The backend thread" alt="" coords="88,277,219,303"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="230,208,198,219,178,230,163,254,157,278,152,277,158,251,174,226,196,214,229,203"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="272,5,347,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="318,43,325,96,324,126,317,156,300,180,296,177,312,154,319,125,320,96,313,44"/>
+<area shape="rect" id="Node000004" href="$classCPlugin.html" title="插件接口" alt="" coords="215,80,286,105"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="293,43,262,81,258,78,289,40"/>
+<area shape="rect" id="Node000007" href="$classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="99,129,186,155"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="274,39,239,59,204,82,176,107,154,131,151,127,173,103,201,78,236,54,271,35"/>
+<area shape="rect" id="Node000010" href="$classCParameter.html" title="参数接口" alt="" coords="437,80,536,105"/>
+<area shape="poly" id="edge13_Node000010_Node000003" title=" " alt="" coords="351,33,460,78,458,82,349,38"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="243,119,241,137,244,154,253,166,265,177,262,181,249,170,239,156,235,137,238,118"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="158,316,167,369,186,428,206,462,228,493,270,539,266,543,224,496,201,465,182,430,162,370,153,317"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,179,83,204"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="69,211,114,251,142,275,138,279,110,255,65,215"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="145,168,145,204,154,277,149,278,140,204,139,168"/>
+<area shape="rect" id="Node000008" href="$classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="317,453,504,479"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="383,488,299,543,296,539,380,484"/>
+<area shape="rect" id="Node000009" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="414,365,565,391"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="472,403,424,455,420,451,468,399"/>
+<area shape="poly" id="edge14_Node000009_Node000009" title=" " alt="" coords="579,370,591,378,583,385,565,388,564,383,581,381,586,378,577,374"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="539,109,566,127,615,179,634,205,648,231,657,258,657,285,649,314,631,343,606,358,566,369,564,363,604,353,627,339,644,312,652,285,651,259,643,233,629,208,610,182,562,131,536,113"/>
+<area shape="rect" id="Node000011" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="419,277,557,303"/>
+<area shape="poly" id="edge16_Node000011_Node000010" title=" " alt="" coords="517,112,547,140,561,158,572,178,574,196,572,221,565,255,550,269,532,280,529,275,547,265,560,252,566,220,569,196,567,179,557,161,543,144,513,116"/>
+<area shape="rect" id="Node000012" href="$classCParameterRecord.html" title=" " alt="" coords="415,179,558,204"/>
+<area shape="poly" id="edge18_Node000012_Node000010" title=" " alt="" coords="489,119,489,179,484,179,484,119"/>
+<area shape="rect" id="Node000013" href="$classCParameterTerminal.html" title=" " alt="" coords="300,228,455,253"/>
+<area shape="poly" id="edge20_Node000013_Node000010" title=" " alt="" coords="463,117,433,145,405,180,392,206,383,229,378,227,387,203,400,177,429,142,460,113"/>
+<area shape="poly" id="edge15_Node000009_Node000011" title=" " alt="" coords="491,317,492,365,486,365,486,317"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="490,218,491,277,485,277,484,218"/>
+<area shape="poly" id="edge19_Node000008_Node000013" title=" " alt="" coords="384,266,412,453,406,453,378,267"/>
+</map>

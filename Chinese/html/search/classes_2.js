@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handle_0',['Handle',['../classCClient_1_1Handle.html',1,'CClient']]]
+  ['dir_5freader_0',['DIR_READER',['../structCChannelSFTP_1_1DIR__READER.html',1,'CChannelSFTP']]]
 ];

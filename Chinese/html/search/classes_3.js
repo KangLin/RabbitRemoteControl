@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['layeruserdata_0',['LayerUserData',['../structCConnectLayer_1_1LayerUserData.html',1,'CConnectLayer']]]
+  ['handle_0',['Handle',['../classCManager_1_1Handle.html',1,'CManager']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wakeup_0',['wakeup',['../classCConnectDesktop.html#a6683d66d639156d0ee94cd1115ea4aef',1,'CConnectDesktop::WakeUp()'],['../classCConnectFreeRDP.html#a932c6095d2ca46b411b799fe9222fa1d',1,'CConnectFreeRDP::WakeUp()'],['../classCConnectLibVNCServer.html#a2947f021688c143521f59576f5eed89a',1,'CConnectLibVNCServer::WakeUp()'],['../classCConnectVnc.html#ae67333fe2ed17545a6309db66efed718',1,'CConnectVnc::WakeUp()']]]
+  ['wakeup_0',['wakeup',['../classCBackendFreeRDP.html#afa754f1e7f79731d329eddd13e01c628',1,'CBackendFreeRDP::WakeUp()'],['../classCBackendLibVNCServer.html#a9adb6b4e9755e42a51807ec4f9e1bae9',1,'CBackendLibVNCServer::WakeUp()'],['../classCBackendSSH.html#a49f0b274da496340a74ced136ffb3abf',1,'CBackendSSH::WakeUp()'],['../classCBackendVnc.html#acdfa2607298878e57023b8bbda463e48',1,'CBackendVnc::WakeUp()'],['../classCBackend.html#a1869c058b1696dc9043bbf734dad9b76',1,'CBackend::WakeUp()'],['../classCBackendDesktop.html#ada865c1ad4a76f9a92513cde4a80f44f',1,'CBackendDesktop::WakeUp()']]]
 ];

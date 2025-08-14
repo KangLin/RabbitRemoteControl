@@ -1,0 +1,17 @@
+<map id="CParameterTerminalBase" name="CParameterTerminalBase">
+<area shape="rect" id="Node000001" title="Terminal base parameter." alt="" coords="257,225,443,251"/>
+<area shape="rect" id="Node000005" href="$classCParameterSerialPort.html" title=" " alt="" coords="5,299,167,324"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="295,257,129,301,128,296,294,252"/>
+<area shape="rect" id="Node000006" href="$classCParameterTelnet.html" title=" " alt="" coords="191,299,328,324"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="326,261,276,301,273,296,323,257"/>
+<area shape="rect" id="Node000007" href="$classCParameterTerminalSSH.html" title=" " alt="" coords="352,299,532,324"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="377,257,429,296,425,301,374,261"/>
+<area shape="rect" id="Node000008" href="$classCTerminalParameter.html" title=" " alt="" coords="557,299,711,324"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="409,251,589,296,587,301,408,257"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="275,152,425,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="353,191,353,225,347,225,347,191"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="301,79,399,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="353,118,353,152,347,152,347,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="313,5,387,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="353,44,353,79,347,79,347,44"/>
+</map>

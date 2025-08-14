@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -176,7 +176,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    ui-&gt;lePassword-&gt;setText(m_pWakeOnLan-&gt;GetPassword());</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    ui-&gt;pbSave-&gt;setChecked(m_pWakeOnLan-&gt;GetSavePassword());</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    on_pbSave_clicked();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    ui-&gt;pbShow-&gt;setEnabled(m_pWakeOnLan-&gt;<a class="code hl_function" href="classCParameterConnecter.html#a0a166ace34678f5dd6116c85eff001b0">GetParameterClient</a>()-&gt;GetViewPassowrd());</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    ui-&gt;pbShow-&gt;setEnabled(m_pWakeOnLan-&gt;<a class="code hl_function" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">GetGlobalParameters</a>()-&gt;GetViewPassowrd());</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    ui-&gt;sbRepeat-&gt;setValue(m_pWakeOnLan-&gt;GetRepeat());</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    ui-&gt;sbInterval-&gt;setValue(m_pWakeOnLan-&gt;<a class="code hl_function" href="classCParameterWakeOnLan.html#afd4cdaaf88ec6c4200e92419514631aa">GetInterval</a>());</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    ui-&gt;sbTimeOut-&gt;setValue(m_pWakeOnLan-&gt;<a class="code hl_function" href="classCParameterWakeOnLan.html#adf401fce46ae5b756daa6fe9b44e3efa">GetTimeOut</a>());</div>
@@ -377,7 +377,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>{</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    slotHostChanged(ui-&gt;leIP-&gt;text());</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>}</div>
-<div class="ttc" id="aclassCParameterConnecter_html_a0a166ace34678f5dd6116c85eff001b0"><div class="ttname"><a href="classCParameterConnecter.html#a0a166ace34678f5dd6116c85eff001b0">CParameterConnecter::GetParameterClient</a></div><div class="ttdeci">CParameterClient * GetParameterClient()</div><div class="ttdoc">Get CParameterClient</div><div class="ttdef"><b>Definition</b> <a href="ParameterConnecter_8cpp_source.html#l00032">ParameterConnecter.cpp:32</a></div></div>
+<div class="ttc" id="aclassCParameterOperate_html_abed288f5e0d87a08f113126f31227a80"><div class="ttname"><a href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">CParameterOperate::GetGlobalParameters</a></div><div class="ttdeci">CParameterPlugin * GetGlobalParameters()</div><div class="ttdoc">Get CParameterPlugin</div><div class="ttdef"><b>Definition</b> <a href="ParameterOperate_8cpp_source.html#l00032">ParameterOperate.cpp:32</a></div></div>
 <div class="ttc" id="aclassCParameterWakeOnLanUI_html"><div class="ttname"><a href="classCParameterWakeOnLanUI.html">CParameterWakeOnLanUI</a></div><div class="ttdoc">The wake on lan parameters UI</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLanUI_8h_source.html#l00019">ParameterWakeOnLanUI.h:20</a></div></div>
 <div class="ttc" id="aclassCParameterWakeOnLanUI_html_a08e0d9b1be40b68e21ffca2499ef3687"><div class="ttname"><a href="classCParameterWakeOnLanUI.html#a08e0d9b1be40b68e21ffca2499ef3687">CParameterWakeOnLanUI::SetParameter</a></div><div class="ttdeci">int SetParameter(CParameter *pParameter)</div><div class="ttdoc">设置参数，并初始化界面</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLanUI_8cpp_source.html#l00075">ParameterWakeOnLanUI.cpp:75</a></div></div>
 <div class="ttc" id="aclassCParameterWakeOnLanUI_html_a0d2349f790766d4ebda1599d07d42f0d"><div class="ttname"><a href="classCParameterWakeOnLanUI.html#a0d2349f790766d4ebda1599d07d42f0d">CParameterWakeOnLanUI::Accept</a></div><div class="ttdeci">int Accept()</div><div class="ttdoc">接受参数</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLanUI_8cpp_source.html#l00164">ParameterWakeOnLanUI.cpp:164</a></div></div>
@@ -387,7 +387,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassCParameterWakeOnLan_html_a6343a2465ba2e273092a3f7316f0f2be"><div class="ttname"><a href="classCParameterWakeOnLan.html#a6343a2465ba2e273092a3f7316f0f2be">CParameterWakeOnLan::GetNetworkInterface</a></div><div class="ttdeci">const QString GetNetworkInterface() const</div><div class="ttdoc">Get network interface.</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00146">ParameterWakeOnLan.cpp:146</a></div></div>
 <div class="ttc" id="aclassCParameterWakeOnLan_html_adf401fce46ae5b756daa6fe9b44e3efa"><div class="ttname"><a href="classCParameterWakeOnLan.html#adf401fce46ae5b756daa6fe9b44e3efa">CParameterWakeOnLan::GetTimeOut</a></div><div class="ttdeci">const int GetTimeOut() const</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00230">ParameterWakeOnLan.cpp:230</a></div></div>
 <div class="ttc" id="aclassCParameterWakeOnLan_html_afd4cdaaf88ec6c4200e92419514631aa"><div class="ttname"><a href="classCParameterWakeOnLan.html#afd4cdaaf88ec6c4200e92419514631aa">CParameterWakeOnLan::GetInterval</a></div><div class="ttdeci">const int GetInterval() const</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00216">ParameterWakeOnLan.cpp:216</a></div></div>
-<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00168">Parameter.h:169</a></div></div>
+<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00208">Parameter.h:209</a></div></div>
 <div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition</b> <a href="FrmFullScreenToolBar_8h_source.html#l00014">FrmFullScreenToolBar.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

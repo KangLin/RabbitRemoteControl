@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['通道_0',['通道',['../group__LIBAPI__CHANNEL.html',1,'']]]
+  ['线程模型_0',['线程模型',['../group__LIBAPI__THREAD.html',1,'']]]
 ];

@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -84,12 +84,27 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for CParameterApp:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCParameterApp.png" usemap="#CParameterApp_map" alt=""/>
-  <map id="CParameterApp_map" name="CParameterApp_map">
-<area href="classCParameter.html" title="Parameter interface." alt="CParameter" shape="rect" coords="0,56,102,80"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCParameterApp__inherit__graph.png" border="0" usemap="#aCParameterApp_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterApp_inherit__map" id="aCParameterApp_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,128,177"/>
+<area shape="rect" href="classCParameter.html" title="Parameter interface." alt="" coords="17,79,116,104"/>
+<area shape="poly" title=" " alt="" coords="69,118,69,152,64,152,64,118"/>
+<area shape="rect" title=" " alt="" coords="29,5,104,31"/>
+<area shape="poly" title=" " alt="" coords="69,44,69,79,64,79,64,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CParameterApp:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterApp__coll__graph.png" border="0" usemap="#aCParameterApp_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterApp_coll__map" id="aCParameterApp_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,128,177"/>
+<area shape="rect" href="classCParameter.html" title="Parameter interface." alt="" coords="17,79,116,104"/>
+<area shape="poly" title=" " alt="" coords="69,118,69,152,64,152,64,118"/>
+<area shape="rect" title=" " alt="" coords="29,5,104,31"/>
+<area shape="poly" title=" " alt="" coords="69,44,69,79,64,79,64,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -100,7 +115,7 @@ Public Types</h2></td></tr>
 <tr class="memitem:a5b2f2f1a0480ae44342e910858163583" id="r_a5b2f2f1a0480ae44342e910858163583"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>SystemTrayIconMenuType</b> { <br />
 &#160;&#160;<b>No</b>
 , <b>RecentOpen</b>
-, <b>Remote</b>
+, <b>Operate</b>
 , <b>View</b>
 , <br />
 &#160;&#160;<b>Tools</b>
@@ -129,6 +144,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEnableTabToolTipCh
 <tr class="memitem:a3800c8e24e9d21a7edcbc9dfa2ab957f" id="r_a3800c8e24e9d21a7edcbc9dfa2ab957f"><td class="memItemLeft" align="right" valign="top"><a id="a3800c8e24e9d21a7edcbc9dfa2ab957f" name="a3800c8e24e9d21a7edcbc9dfa2ab957f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEnableTabIconChanged</b> ()</td></tr>
 <tr class="separator:a3800c8e24e9d21a7edcbc9dfa2ab957f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2ab0b21d57a2c3d05cf9c29bcb673c" id="r_a9b2ab0b21d57a2c3d05cf9c29bcb673c"><td class="memItemLeft" align="right" valign="top"><a id="a9b2ab0b21d57a2c3d05cf9c29bcb673c" name="a9b2ab0b21d57a2c3d05cf9c29bcb673c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigTabElided</b> ()</td></tr>
+<tr class="separator:a9b2ab0b21d57a2c3d05cf9c29bcb673c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aced731d500268a8d2f1cbfefa009a0af" id="r_aced731d500268a8d2f1cbfefa009a0af"><td class="memItemLeft" align="right" valign="top"><a id="aced731d500268a8d2f1cbfefa009a0af" name="aced731d500268a8d2f1cbfefa009a0af"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRecentMenuMaxCountChanged</b> (int)</td></tr>
 <tr class="separator:aced731d500268a8d2f1cbfefa009a0af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +162,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigOpenLasterCloseCha
 <tr class="memitem:a5518b8b48e189cb5abece4f06508aa41" id="r_a5518b8b48e189cb5abece4f06508aa41"><td class="memItemLeft" align="right" valign="top"><a id="a5518b8b48e189cb5abece4f06508aa41" name="a5518b8b48e189cb5abece4f06508aa41"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigFavoriteEditChanged</b> (bool FavoriteEdit)</td></tr>
 <tr class="separator:a5518b8b48e189cb5abece4f06508aa41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6927adb5c9c0c43a4214dfa70cf0507" id="r_ac6927adb5c9c0c43a4214dfa70cf0507"><td class="memItemLeft" align="right" valign="top"><a id="ac6927adb5c9c0c43a4214dfa70cf0507" name="ac6927adb5c9c0c43a4214dfa70cf0507"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStartByTypeChanged</b> ()</td></tr>
+<tr class="separator:ac6927adb5c9c0c43a4214dfa70cf0507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="classCParameter.html">CParameter</a></td></tr>
 <tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
@@ -178,6 +199,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab40f836cb94c89417be98548e9a6066c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b044839551bd747d6d9d2ff65beb19" id="r_ae5b044839551bd747d6d9d2ff65beb19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ae5b044839551bd747d6d9d2ff65beb19">SetEnableTabIcon</a> (bool bEnable)</td></tr>
 <tr class="separator:ae5b044839551bd747d6d9d2ff65beb19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd263167481fbdf4a5caab9f4bf33788" id="r_afd263167481fbdf4a5caab9f4bf33788"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#afd263167481fbdf4a5caab9f4bf33788">GetTabElided</a> () const</td></tr>
+<tr class="separator:afd263167481fbdf4a5caab9f4bf33788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ec11ee5233d19734af8d470611c266" id="r_ac2ec11ee5233d19734af8d470611c266"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ac2ec11ee5233d19734af8d470611c266">SetTabElided</a> (bool bElided)</td></tr>
+<tr class="separator:ac2ec11ee5233d19734af8d470611c266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad761c8668176441f81ca806048a664c7" id="r_ad761c8668176441f81ca806048a664c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ad761c8668176441f81ca806048a664c7">GetRecentMenuMaxCount</a> () const</td></tr>
 <tr class="separator:ad761c8668176441f81ca806048a664c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8acef8fc6cde23173506ab2c2a247c39" id="r_a8acef8fc6cde23173506ab2c2a247c39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a8acef8fc6cde23173506ab2c2a247c39">SetRecentMenuMaxCount</a> (int newRecentMenuMaxCount)</td></tr>
@@ -214,10 +239,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a441243c5892ebc494ed6752d5632bea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a365dc89aed40a8dc5207a3410096ffa7" id="r_a365dc89aed40a8dc5207a3410096ffa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a365dc89aed40a8dc5207a3410096ffa7">SetMessageBoxDisplayInformation</a> (bool bEnable)</td></tr>
 <tr class="separator:a365dc89aed40a8dc5207a3410096ffa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82d0b0be24d668acf423999924d1bbb4" id="r_a82d0b0be24d668acf423999924d1bbb4"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a82d0b0be24d668acf423999924d1bbb4">GetDockListConnectersShowToolBar</a> () const</td></tr>
-<tr class="separator:a82d0b0be24d668acf423999924d1bbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fd019495225d2fd48b4b424ca8d0b2c" id="r_a8fd019495225d2fd48b4b424ca8d0b2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a8fd019495225d2fd48b4b424ca8d0b2c">SetDockListConnectersShowToolBar</a> (bool bEnable)</td></tr>
-<tr class="separator:a8fd019495225d2fd48b4b424ca8d0b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cd369ada35978099bcf41e3603a4fa5" id="r_a1cd369ada35978099bcf41e3603a4fa5"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a1cd369ada35978099bcf41e3603a4fa5">GetDockListActiveShowToolBar</a> () const</td></tr>
+<tr class="separator:a1cd369ada35978099bcf41e3603a4fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4daa93971518f8c7952f4717edd57f66" id="r_a4daa93971518f8c7952f4717edd57f66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a4daa93971518f8c7952f4717edd57f66">SetDockListActiveShowToolBar</a> (bool bEnable)</td></tr>
+<tr class="separator:a4daa93971518f8c7952f4717edd57f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae47e9527e64537ccbc06a6b490cd5896" id="r_ae47e9527e64537ccbc06a6b490cd5896"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ae47e9527e64537ccbc06a6b490cd5896">GetDockListRecentShowToolBar</a> () const</td></tr>
 <tr class="separator:ae47e9527e64537ccbc06a6b490cd5896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae637a3591eca307ceb0de7b92e47c002" id="r_ae637a3591eca307ceb0de7b92e47c002"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ae637a3591eca307ceb0de7b92e47c002">SetDockListRecentShowToolBar</a> (bool bEnable)</td></tr>
@@ -226,6 +251,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aab013f3947121c5ddfea78800883f9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72ee143a7eec524243aef68fe9cfe31d" id="r_a72ee143a7eec524243aef68fe9cfe31d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a72ee143a7eec524243aef68fe9cfe31d">SetKeepSplitViewWhenFullScreen</a> (bool newKeepSplitViewWhenFullScreen)</td></tr>
 <tr class="separator:a72ee143a7eec524243aef68fe9cfe31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96066de1769b2fd430a091f8e892213c" id="r_a96066de1769b2fd430a091f8e892213c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a96066de1769b2fd430a091f8e892213c">GetStartByType</a> () const</td></tr>
+<tr class="separator:a96066de1769b2fd430a091f8e892213c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87539e09cfbe2613b195974f7f20eb74" id="r_a87539e09cfbe2613b195974f7f20eb74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a87539e09cfbe2613b195974f7f20eb74">SetStartByType</a> (bool newStartByType)</td></tr>
+<tr class="separator:a87539e09cfbe2613b195974f7f20eb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCParameter.html">CParameter</a></td></tr>
 <tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
 <tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,10 +265,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file.  <br /></td></tr>
 <tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
-<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from storage.  <br /></td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings.  <br /></td></tr>
 <tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
-<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to storage.  <br /></td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings.  <br /></td></tr>
 <tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
 <tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the parameter is valid to decide whether to use or save the parameter.  <br /></td></tr>
@@ -308,6 +337,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a883cf989566c04b4df5cf8976513ba09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a34fa7abe73ff4e608185408701c776" id="r_a7a34fa7abe73ff4e608185408701c776"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a7a34fa7abe73ff4e608185408701c776">m_bEnableTabIcon</a></td></tr>
 <tr class="separator:a7a34fa7abe73ff4e608185408701c776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4813dd6f54cd5c952ee49a3e1a98916d" id="r_a4813dd6f54cd5c952ee49a3e1a98916d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a4813dd6f54cd5c952ee49a3e1a98916d">m_bTabElided</a></td></tr>
+<tr class="separator:a4813dd6f54cd5c952ee49a3e1a98916d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23ad00bb2ba9bfa0ef710e3e2def66aa" id="r_a23ad00bb2ba9bfa0ef710e3e2def66aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a23ad00bb2ba9bfa0ef710e3e2def66aa">m_nRecentMenuMaxCount</a></td></tr>
 <tr class="separator:a23ad00bb2ba9bfa0ef710e3e2def66aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62937a9c2dc4f8df679a6e98050c008e" id="r_a62937a9c2dc4f8df679a6e98050c008e"><td class="memItemLeft" align="right" valign="top">SystemTrayIconMenuType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a62937a9c2dc4f8df679a6e98050c008e">m_SystemTrayIconType</a></td></tr>
@@ -326,12 +357,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a52855d07401e15b07e7c6dbdc59dd7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7fee54f0bbdc22fae57efc8bcedd40e" id="r_ab7fee54f0bbdc22fae57efc8bcedd40e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ab7fee54f0bbdc22fae57efc8bcedd40e">m_bMessageBoxDisplayInfomation</a></td></tr>
 <tr class="separator:ab7fee54f0bbdc22fae57efc8bcedd40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ad97073e5e2e0afa7b863d5aab3b060" id="r_a9ad97073e5e2e0afa7b863d5aab3b060"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a9ad97073e5e2e0afa7b863d5aab3b060">m_bDockListConnectersShowToolBar</a></td></tr>
-<tr class="separator:a9ad97073e5e2e0afa7b863d5aab3b060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae97fbb21fc73db12123c6231152be86a" id="r_ae97fbb21fc73db12123c6231152be86a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#ae97fbb21fc73db12123c6231152be86a">m_bDockListActiveShowToolBar</a></td></tr>
+<tr class="separator:ae97fbb21fc73db12123c6231152be86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660ba370825227d28f6ec6498951dd5a" id="r_a660ba370825227d28f6ec6498951dd5a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#a660ba370825227d28f6ec6498951dd5a">m_bDockListRecentShowToolBar</a></td></tr>
 <tr class="separator:a660ba370825227d28f6ec6498951dd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac2eac0c28b40879dc360fb1cc9fe811" id="r_aac2eac0c28b40879dc360fb1cc9fe811"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#aac2eac0c28b40879dc360fb1cc9fe811">m_bKeepSplitViewWhenFullScreen</a></td></tr>
 <tr class="separator:aac2eac0c28b40879dc360fb1cc9fe811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa758eb01236a53fe79ea0c6e5d9a3c71" id="r_aa758eb01236a53fe79ea0c6e5d9a3c71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterApp.html#aa758eb01236a53fe79ea0c6e5d9a3c71">m_bStartByType</a></td></tr>
+<tr class="separator:aa758eb01236a53fe79ea0c6e5d9a3c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -357,7 +390,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00088">88</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00096">96</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -437,19 +470,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00031">31</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00033">33</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a82d0b0be24d668acf423999924d1bbb4" name="a82d0b0be24d668acf423999924d1bbb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82d0b0be24d668acf423999924d1bbb4">&#9670;&#160;</a></span>GetDockListConnectersShowToolBar()</h2>
+<a id="a1cd369ada35978099bcf41e3603a4fa5" name="a1cd369ada35978099bcf41e3603a4fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cd369ada35978099bcf41e3603a4fa5">&#9670;&#160;</a></span>GetDockListActiveShowToolBar()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool CParameterApp::GetDockListConnectersShowToolBar </td>
+          <td class="memname">const bool CParameterApp::GetDockListActiveShowToolBar </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -457,7 +490,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00367">367</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00389">389</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -476,7 +509,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00380">380</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00402">402</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,7 +528,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00272">272</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00294">294</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -514,7 +547,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00230">230</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00238">238</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -533,7 +566,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00216">216</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00224">224</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -552,7 +585,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00301">301</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00323">323</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -571,7 +604,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00393">393</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00415">415</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -590,7 +623,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00341">341</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00363">363</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +642,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00354">354</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00376">376</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +661,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00287">287</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00309">309</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -647,7 +680,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00159">159</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00167">167</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -666,7 +699,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00244">244</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00266">266</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -685,7 +718,26 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00173">173</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00181">181</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a96066de1769b2fd430a091f8e892213c" name="a96066de1769b2fd430a091f8e892213c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96066de1769b2fd430a091f8e892213c">&#9670;&#160;</a></span>GetStartByType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterApp::GetStartByType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00428">428</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -704,7 +756,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00315">315</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00337">337</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -723,7 +775,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00258">258</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00280">280</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -742,7 +794,26 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00328">328</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00350">350</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afd263167481fbdf4a5caab9f4bf33788" name="afd263167481fbdf4a5caab9f4bf33788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd263167481fbdf4a5caab9f4bf33788">&#9670;&#160;</a></span>GetTabElided()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterApp::GetTabElided </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00252">252</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -761,7 +832,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00202">202</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00210">210</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -780,7 +851,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00187">187</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00195">195</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -810,7 +881,7 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classCParameter.html">CParameter</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00035">35</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00037">37</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -840,18 +911,18 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classCParameter.html">CParameter</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00107">107</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00112">112</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a8fd019495225d2fd48b4b424ca8d0b2c" name="a8fd019495225d2fd48b4b424ca8d0b2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fd019495225d2fd48b4b424ca8d0b2c">&#9670;&#160;</a></span>SetDockListConnectersShowToolBar()</h2>
+<a id="a4daa93971518f8c7952f4717edd57f66" name="a4daa93971518f8c7952f4717edd57f66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4daa93971518f8c7952f4717edd57f66">&#9670;&#160;</a></span>SetDockListActiveShowToolBar()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CParameterApp::SetDockListConnectersShowToolBar </td>
+          <td class="memname">void CParameterApp::SetDockListActiveShowToolBar </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>bEnable</em></td><td>)</td>
@@ -860,7 +931,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00372">372</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00394">394</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -880,7 +951,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00385">385</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00407">407</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -900,7 +971,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00277">277</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00299">299</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -920,7 +991,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00235">235</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00243">243</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -940,7 +1011,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00221">221</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00229">229</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -960,7 +1031,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00306">306</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00328">328</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -980,7 +1051,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00398">398</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00420">420</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1071,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00346">346</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00368">368</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1020,7 +1091,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00359">359</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00381">381</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1040,7 +1111,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00292">292</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00314">314</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +1131,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00164">164</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00172">172</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1151,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00249">249</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00271">271</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1171,27 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00178">178</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00186">186</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a87539e09cfbe2613b195974f7f20eb74" name="a87539e09cfbe2613b195974f7f20eb74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87539e09cfbe2613b195974f7f20eb74">&#9670;&#160;</a></span>SetStartByType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterApp::SetStartByType </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newStartByType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00433">433</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1120,7 +1211,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00320">320</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00342">342</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1140,7 +1231,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00263">263</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00285">285</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1160,7 +1251,27 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00333">333</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00355">355</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac2ec11ee5233d19734af8d470611c266" name="ac2ec11ee5233d19734af8d470611c266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2ec11ee5233d19734af8d470611c266">&#9670;&#160;</a></span>SetTabElided()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterApp::SetTabElided </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bElided</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00257">257</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1180,7 +1291,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00207">207</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00215">215</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
@@ -1200,13 +1311,13 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00192">192</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8cpp_source.html#l00200">200</a> of file <a class="el" href="ParameterApp_8cpp_source.html">ParameterApp.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a9ad97073e5e2e0afa7b863d5aab3b060" name="a9ad97073e5e2e0afa7b863d5aab3b060"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ad97073e5e2e0afa7b863d5aab3b060">&#9670;&#160;</a></span>m_bDockListConnectersShowToolBar</h2>
+<a id="ae97fbb21fc73db12123c6231152be86a" name="ae97fbb21fc73db12123c6231152be86a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97fbb21fc73db12123c6231152be86a">&#9670;&#160;</a></span>m_bDockListActiveShowToolBar</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1215,7 +1326,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CParameterApp::m_bDockListConnectersShowToolBar</td>
+          <td class="memname">bool CParameterApp::m_bDockListActiveShowToolBar</td>
         </tr>
       </table>
   </td>
@@ -1225,7 +1336,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00160">160</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00169">169</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1360,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00166">166</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00175">175</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1273,7 +1384,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00107">107</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00115">115</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1345,7 +1456,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00125">125</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00134">134</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1369,7 +1480,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00172">172</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00182">182</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1393,7 +1504,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00146">146</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00155">155</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1417,7 +1528,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00153">153</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00162">162</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1441,7 +1552,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00116">116</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00124">124</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1493,6 +1604,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aa758eb01236a53fe79ea0c6e5d9a3c71" name="aa758eb01236a53fe79ea0c6e5d9a3c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa758eb01236a53fe79ea0c6e5d9a3c71">&#9670;&#160;</a></span>m_bStartByType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterApp::m_bStartByType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00190">190</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+
+</div>
+</div>
 <a id="ac00a0db7f8219647d80141704b4a14ad" name="ac00a0db7f8219647d80141704b4a14ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac00a0db7f8219647d80141704b4a14ad">&#9670;&#160;</a></span>m_bStatusBar</h2>
 
@@ -1513,7 +1648,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00132">132</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00141">141</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1537,7 +1672,31 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00139">139</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00148">148</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+
+</div>
+</div>
+<a id="a4813dd6f54cd5c952ee49a3e1a98916d" name="a4813dd6f54cd5c952ee49a3e1a98916d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4813dd6f54cd5c952ee49a3e1a98916d">&#9670;&#160;</a></span>m_bTabElided</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterApp::m_bTabElided</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00084">84</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1561,7 +1720,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00084">84</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00092">92</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1585,7 +1744,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00106">106</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00114">114</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1658,7 +1817,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00117">117</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00125">125</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1730,7 +1889,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00126">126</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00135">135</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1754,7 +1913,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00147">147</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00156">156</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1778,7 +1937,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00154">154</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00163">163</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1826,7 +1985,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00085">85</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00093">93</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1874,7 +2033,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00133">133</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00142">142</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1898,7 +2057,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00108">108</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00116">116</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1922,7 +2081,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00140">140</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParameterApp_8h_source.html#l00149">149</a> of file <a class="el" href="ParameterApp_8h_source.html">ParameterApp.h</a>.</p>
 
 </div>
 </div>
@@ -1958,9 +2117,9 @@ Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

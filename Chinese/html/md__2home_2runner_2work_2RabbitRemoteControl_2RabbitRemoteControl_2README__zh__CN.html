@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -73,7 +73,7 @@ $(function() {
   <div class="headertitle"><div class="title">&lt;img src="App/Client/Resource/Image/app.png" width="48" height="48" /&gt;&lt;a href="https://github.com/KangLin/RabbitRemoteControl" &gt;玉兔远程控制&lt;/a&gt;</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md311"></a> 作者: 康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md313"></a> 作者: 康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
 <hr  />
 <p><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README.html">:us: English</a></p>
 <hr  />
@@ -101,7 +101,6 @@ $(function() {
 <li>状态</li>
 <li>捐赠</li>
 <li>贡献</li>
-<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2ChangeLog__zh__CN.html">修改日志</a></li>
 <li>下载</li>
 <li>开发<ul>
 <li>编译<ul>
@@ -114,12 +113,12 @@ $(function() {
 <li>许可协议</li>
 </ul>
 <hr  />
- <h1><a class="anchor" id="autotoc_md315"></a>
+ <h1><a class="anchor" id="autotoc_md317"></a>
 简介</h1>
 <p>**玉兔远程控制**是一个开源、跨平台、支持多协议的远程控制软件。</p>
 <p>能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。</p>
-<p>它包括远程桌面、远程控制、远程终端、播放器、网络工具等功能。</p>
-<h2><a class="anchor" id="autotoc_md316"></a>
+<p>它包括远程桌面、远程控制、文件传输（FTP、SFTP）、终端、远程终端（SSH、TELNET）、播放器、网络工具等功能。</p>
+<h2><a class="anchor" id="autotoc_md318"></a>
 截屏</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -127,7 +126,7 @@ $(function() {
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><img src="MainWindows.png" alt="" class="inline" title="主窗口"/>      </td><td class="markdownTableBodyNone"><img src="RecentMenu.png" alt="" class="inline" title="最近列表窗口"/>      </td><td class="markdownTableBodyNone"><img src="Connect.png" alt="" class="inline" title="连接窗口"/>      </td><td class="markdownTableBodyNone"><img src="Work.png" alt="" class="inline" title="Work"/>      </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md317"></a>
+<h3><a class="anchor" id="autotoc_md319"></a>
 多样式</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,10 +134,10 @@ $(function() {
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter"><img src="DefaultStyle.png" alt="" class="inline" title="默认样式"/>      </td><td class="markdownTableBodyCenter"><img src="Green.png" alt="" class="inline" title="黑绿样式"/>      </td><td class="markdownTableBodyCenter"><img src="black.png" alt="" class="inline" title="黑色样式"/>      </td><td class="markdownTableBodyCenter"><img src="white.png" alt="" class="inline" title="白色样式"/>      </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md318"></a>
+<h2><a class="anchor" id="autotoc_md320"></a>
 视频</h2>
 <p><a href="https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78">https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78</a></p>
-<h2><a class="anchor" id="autotoc_md319"></a>
+<h2><a class="anchor" id="autotoc_md321"></a>
 项目位置</h2>
 <ul>
 <li>主库：https://github.com/KangLin/RabbitRemoteControl</li>
@@ -151,9 +150,9 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md320"></a>
+<h1><a class="anchor" id="autotoc_md322"></a>
 功能</h1>
-<h2><a class="anchor" id="autotoc_md321"></a>
+<h2><a class="anchor" id="autotoc_md323"></a>
 支持操作系统</h2>
 <ul>
 <li>[x] Windows 7 SP1 及以后</li>
@@ -186,11 +185,13 @@ $(function() {
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Windows   </th><th class="markdownTableHeadNone">Unix/linux   </th><th class="markdownTableHeadNone">Android   </th><th class="markdownTableHeadNone">MAC    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">终端   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">终端   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">SSH   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">SSH   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">TELNET   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">串口   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 </table>
 <ul>
 <li>文件传输</li>
@@ -199,9 +200,9 @@ $(function() {
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Windows   </th><th class="markdownTableHeadNone">Unix/linux   </th><th class="markdownTableHeadNone">Android   </th><th class="markdownTableHeadNone">MAC    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">FTP   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">FTP   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">SFTP   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">SFTP   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td></tr>
 </table>
 <ul>
 <li>工具</li>
@@ -218,7 +219,7 @@ $(function() {
 </table>
 <p>图例： <br  />
  ✓ : 完成; …… : 正在工作; ⭕ : 未完成; 空：未开始; ❌: 不支持</p>
-<h2><a class="anchor" id="autotoc_md322"></a>
+<h2><a class="anchor" id="autotoc_md324"></a>
 支持多语言</h2>
 <ul>
 <li>[x] 英语</li>
@@ -228,9 +229,9 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md323"></a>
+<h2><a class="anchor" id="autotoc_md325"></a>
 支持协议</h2>
-<h3><a class="anchor" id="autotoc_md324"></a>
+<h3><a class="anchor" id="autotoc_md326"></a>
 远程控制协议</h3>
 <ul>
 <li>[x] VNC（虚拟网络计算）也叫 RFB(远程帧缓存): <a href="https://github.com/rfbproto/rfbproto">https://github.com/rfbproto/rfbproto</a></li>
@@ -244,8 +245,9 @@ $(function() {
 <li>[x] TELNET: <a href="https://www.rfc-editor.org/info/rfc318">https://www.rfc-editor.org/info/rfc318</a></li>
 <li>[ ] scrcpy: <a href="https://github.com/Genymobile/scrcpy">https://github.com/Genymobile/scrcpy</a></li>
 <li>[ ] FTP（文件传输协议）: <a href="https://www.rfc-editor.org/info/rfc959">https://www.rfc-editor.org/info/rfc959</a></li>
+<li>[x] SFTP(安全 Shell 文件传输协议)：<a href="https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02">https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02</a></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md325"></a>
+<h3><a class="anchor" id="autotoc_md327"></a>
 网络协议</h3>
 <ul>
 <li>[x] 端到端（P2P）协议<ul>
@@ -261,13 +263,13 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md326"></a>
+<h3><a class="anchor" id="autotoc_md328"></a>
 功能列表</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter"></th><th class="markdownTableHeadCenter">服务器   </th><th class="markdownTableHeadCenter">客户端   </th><th class="markdownTableHeadCenter">远程桌面   </th><th class="markdownTableHeadCenter">剪切板   </th><th class="markdownTableHeadCenter">文件传输   </th><th class="markdownTableHeadCenter">音频传输   </th><th class="markdownTableHeadCenter">资源重定向   </th><th class="markdownTableHeadCenter">P2P   </th><th class="markdownTableHeadCenter">代理   </th><th class="markdownTableHeadCenter">终端    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">RDP   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌    </td></tr>
+<td class="markdownTableBodyCenter">RDP   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">RFB   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
@@ -275,15 +277,17 @@ $(function() {
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">Scrcpy   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">终端   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">⭕   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">终端   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">TELNET   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">⭕   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">TELNET   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">SSH   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">⭕   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">SSH   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">FTP   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">串口   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">SFTP   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">FTP   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">SFTP   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 </table>
 <p>图例： <br  />
  ✓ : 完成; …… : 正在工作; ⭕ : 未完成; 空：未开始; ❌: 不支持</p>
@@ -301,7 +305,7 @@ $(function() {
 </table>
 <p>图例： <br  />
  ✓ : 完成; …… : 正在工作; ⭕ : 未完成; 空：未开始; ❌: 不支持</p>
-<h3><a class="anchor" id="autotoc_md327"></a>
+<h3><a class="anchor" id="autotoc_md329"></a>
 插件</h3>
 <ul>
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2FreeRDP_2README__zh__CN.html">FreeRDP</a></li>
@@ -314,16 +318,26 @@ $(function() {
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2WakeOnLan_2README__zh__CN.html">局域网唤醒</a></li>
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2Player_2README__zh__CN.html">播放器</a></li>
 <li>屏幕捕获：示例</li>
+<li>终端<ul>
+<li><a href="Plugins/Terminal">本地终端</a></li>
+<li><a href="Plugins/LibSSH">SSH</a></li>
+<li><a href="Plugins/Telnet">TELNET</a></li>
+<li><a href="Plugins/SerialPort">串口</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md328"></a>
+</li>
+<li><a href="Plugins/FileTransfer">文件传输</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md330"></a>
 状态</h1>
 <p><a href="https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html"><img src="https://img.shields.io/badge/documentation-online-blue?label=文档" alt="文档" class="inline"/></a></p>
-<p><a href="https://star-history.com/#KangLin/RabbitRemoteControl&amp;Date"><img src="https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量" alt="GitHub stars" class="inline"/></a> <a href="https://gitee.com/kl222/RabbitRemoteControl/stargazers"><img src="https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark" alt="Gitee stars" style="pointer-events: none;" class="inline"/></a></p>
 <p><a href="https://github.com/KangLin/RabbitRemoteControl/releases"><img src="https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本" alt="Github 发行版本" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/releases"><img src="https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本" alt="Github 最后发行版本" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/badge.svg" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a></p>
 <p><a href="http://gra.caldis.me/?user=KangLin&amp;repo=RabbitRemoteControl"><img src="https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量" alt="Github 所有发行版本下载量" class="inline"/></a> <a href="https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download"><img src="https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20下载总量" alt="从 sourceforge 下载量" style="pointer-events: none;" class="inline"/></a></p>
 <p><a href="https://gitter.im/RabbitRemoteControl/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/RabbitRemoteControl/community.svg" alt="Gitter" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl"><img src="https://img.shields.io/github/forks/KangLin/RabbitRemoteControl" alt="GitHub forks" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/issues"><img src="https://img.shields.io/github/issues/KangLin/RabbitRemoteControl?label=问题" alt="GitHub issues" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/graphs/contributors"><img src="https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者" alt="贡献者" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulse"><img src="https://img.shields.io/github/commit-activity/m/KangLin/RabbitRemoteControl?label=提交活动" alt="提交活动" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulse"><img src="https://img.shields.io/github/last-commit/KangLin/RabbitRemoteControl?label=最后提交" alt="最后提交" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls"><img src="https://img.shields.io/badge/PRs-welcome-yellow.svg" alt="PRs Welcome" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls"><img src="https://img.shields.io/github/issues-pr/KangLin/RabbitRemoteControl?label=打开%20PRS" alt="Open PRs" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/KangLin/RabbitRemoteControl?label=关闭%20PRS" alt="Closed PRs" class="inline"/></a></p>
 <p><a href="https://en.cppreference.com/"><img src="https://img.shields.io/badge/language-c++-red.svg" alt="C++" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/github/languages/top/kanglin/RabbitRemoteControl" alt="Language" class="inline"/> <a href="https://doc.qt.io/qt-5/"><img src="https://img.shields.io/badge/Qt-5-brightgreen" alt="Qt5" class="inline"/></a> <a href="https://doc.qt.io/qt-6/"><img src="https://img.shields.io/badge/Qt-6-brightgreen" alt="Qt6" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl"><img src="https://img.shields.io/badge/平台-windows%20|%20linux%20|%20android%20|%20macos-blue.svg" alt="平台" style="pointer-events: none;" class="inline"/></a></p>
-<h2><a class="anchor" id="autotoc_md329"></a>
+<h2><a class="anchor" id="autotoc_md331"></a>
+点赞数</h2>
+<p><a href="https://star-history.com/#KangLin/RabbitRemoteControl&amp;Date"><img src="https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量" alt="GitHub stars" class="inline"/></a> <a href="https://gitee.com/kl222/RabbitRemoteControl/stargazers"><img src="https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark" alt="Gitee stars" style="pointer-events: none;" class="inline"/></a> <a href="https://starchart.cc/KangLin/RabbitRemoteControl"><img src="https://starchart.cc/KangLin/RabbitRemoteControl.svg" alt="Stargazers over time" style="pointer-events: none;" class="inline"/></a></p>
+<h2><a class="anchor" id="autotoc_md332"></a>
 编译状态</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -331,7 +345,7 @@ $(function() {
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter"><a href="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml"><img src="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml/badge.svg" alt="build" style="pointer-events: none;" class="inline"/></a>   </td><td class="markdownTableBodyCenter"><a href="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml"><img src="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml/badge.svg?branch=develop" alt="build" style="pointer-events: none;" class="inline"/></a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md330"></a>
+<h1><a class="anchor" id="autotoc_md333"></a>
 捐赠</h1>
 <p>本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！</p>
 <p><a href="https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png" title="捐赠">![捐赠](https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png "捐赠")</a></p>
@@ -343,7 +357,7 @@ $(function() {
 <li><a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></li>
 <li><a href="https://jami.net">jami</a>: eddacfd6c7b70b258e511e812ffab7d3490396fa</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md331"></a>
+<h1><a class="anchor" id="autotoc_md334"></a>
 贡献</h1>
 <ul>
 <li><a href="https://sourceforge.net/p/rabbitremotecontrol/mailman/">邮件列表</a><ul>
@@ -360,20 +374,20 @@ $(function() {
 <li>[ ] Debian: 需要维护官方包</li>
 <li>[ ] rpm: 需要维护官方包</li>
 <li>[x] AppImage</li>
-<li>[x] Snap</li>
+<li>[x] Snap: <a href="https://snapcraft.io/rabbitremotecontrol">https://snapcraft.io/rabbitremotecontrol</a></li>
 <li>[x] Flatpak: <a href="https://github.com/flathub/io.github.KangLin.RabbitRemoteControl">https://github.com/flathub/io.github.KangLin.RabbitRemoteControl</a></li>
 </ul>
 </li>
 <li>[ ] Windows<ul>
-<li>[ ] Windows 应用商店</li>
+<li>[ ] Windows 应用商店: 需要维护官方包</li>
 </ul>
 </li>
-<li>[ ] Macos</li>
-<li>[ ] Android</li>
+<li>[ ] Macos: 需要维护官方包</li>
+<li>[ ] Android: 需要维护官方包</li>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md332"></a>
+<h1><a class="anchor" id="autotoc_md335"></a>
 下载</h1>
 <ul>
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2ChangeLog__zh__CN.html">修改日志</a></li>
@@ -387,167 +401,21 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md333"></a>
-安装包说明</h2>
-<ul>
-<li>Windows: 扩展名为 .exe<ul>
-<li>架构:<ul>
-<li>win64:<ul>
-<li>安装包：RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Setup.exe">从　sourceforge 下载</a></li>
-</ul>
-</li>
-<li>便携包：RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip <br  />
- 如果系统没有安装 npcap ，安装程序位于：RabbitRemoteControl\bin\npcap-1.80.exe<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win64_msvc2022_64_qt6.9.0_Portable.zip">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>win32: RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_win32_msvc2017_qt5.12.12_Setup.exe">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Linux:<ul>
-<li>AppImage 包：扩展名为 .AppImage ，用于所有 Linux 系统<ul>
-<li>架构:<ul>
-<li>x86_64: RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage">从　sourceforge 下载</a> <pre class="fragment"># 设置执行权限
-chmod a+x RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
-# 运行
-./RabbitRemoteControl_0.0.36_Linux_x86_64.AppImage
-</pre></li>
-</ul>
-</li>
-<li>aarch64: RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_0.0.36_Linux_aarch64.AppImage">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Snap 包: 用于所有支持 Snap 的 Linux 系统。Ubuntu 默认使用此安装包。<ul>
-<li><a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/badge.svg" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a></li>
-</ul>
-</li>
-<li>Flatpak 包：扩展名为 .flatpak ，用于所有支持 Flatpak 的 Linux 系统。Fedora 默认使用此安装包。<ul>
-<li><a href="https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl"><img src="https://flathub.org/api/badge?locale=zh-Hans" alt="从 Flathub 下载" class="inline"/></a></li>
-<li>架构:<ul>
-<li>x86_64: RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak">从　sourceforge 下载</a> <pre class="fragment"># 安装包
-flatpak --user install RabbitRemoteControl_v0.0.36_Linux_x86_64.flatpak
-# 运行
-flatpak run io.github.KangLin.RabbitRemoteControl
-# 或者点击桌面图标运行
-</pre></li>
-</ul>
-</li>
-<li>aarch64: RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_Linux_aarch64.flatpak">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>deb 包：扩展名为 .deb ，用于 Debian、Ubuntu 等<ul>
-<li>架构:<ul>
-<li>amd64: rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb">从　sourceforge 下载</a> <pre class="fragment"># 安装包
-sudo apt install ./rabbitremotecontrol_0.0.36_ubuntu-24.04_amd64.deb
-# 运行
-rabbitremotecontrol
-# 或者点击桌面图标运行
-</pre></li>
-</ul>
-</li>
-<li>arm64: rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol_0.0.36_ubuntu-24.04-arm_arm64.deb">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>rpm 包：扩展名为 .rpm ，用于 RedHat、Fedora、CentOS 等<ul>
-<li>架构:<ul>
-<li>x86_64: rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm">从　sourceforge 下载</a> <pre class="fragment"># 安装包
-dnf install rabbitremotecontrol-0.0.36-1.fc41.x86_64.rpm
-# 运行
-rabbitremotecontrol
-# 或者点击桌面图标运行
-</pre></li>
-</ul>
-</li>
-<li>aarch64: rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/rabbitremotecontrol-0.0.36-1.fc41.aarch64.rpm">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Android: 扩展名为 .apk<ul>
-<li>架构:<ul>
-<li>arm64_v8a: RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_arm64_v8a_qt6.9.0_Release.apk">从　sourceforge 下载</a></li>
-</ul>
-</li>
-<li>x86_64: RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_android_x86_64_qt6.9.0_Release.apk">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>苹果操作系统: RabbitRemoteControl_v0.0.36_macos.zip 由于没有相关设备，所以没有进行测试。希望有兴趣的朋友参与开发和测试。<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_macos.zip">从　sourceforge 下载</a></li>
-</ul>
-</li>
-<li>开发文档：RabbitRemoteControl_v0.0.36_document.zip<ul>
-<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip">从　github　下载</a></li>
-<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.36/RabbitRemoteControl_v0.0.36_document.zip">从　sourceforge 下载</a></li>
-</ul>
-</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md334"></a>
+<h1><a class="anchor" id="autotoc_md336"></a>
 @ref "/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/docs/Doxygen/Develop_zh_CN.md" "开发"</h1>
-<h2><a class="anchor" id="autotoc_md335"></a>
+<h2><a class="anchor" id="autotoc_md337"></a>
 在线开发文档</h2>
 <ul>
-<li><a href="https://rabbitremotecontrol.sourceforge.io/v0.0.36/Chinese/html/index.html">sourceforge</a></li>
+<li><a href="https://rabbitremotecontrol.sourceforge.io/v0.0.37/Chinese/html/index.html">sourceforge</a></li>
 <li><a href="https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html">github.io</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md336"></a>
+<h2><a class="anchor" id="autotoc_md338"></a>
 编译</h2>
 <ul>
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux__zh__CN.html">为 Linux 编译</a></li>
 <li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows__zh__CN.html">为 Windows 编译</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md337"></a>
+<h1><a class="anchor" id="autotoc_md339"></a>
 @ref "/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/License.md" "License.md"</h1>
 <p>请遵守本项目<a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2License.html">License.md</a>和依赖库的许可协议，并感谢依赖库和工具的作者。 </p>
 </div></div><!-- contents -->

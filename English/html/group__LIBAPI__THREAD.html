@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -72,23 +72,29 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">Thread module<div class="ingroups"><a class="el" href="group__LIBAPI.html">Libraries</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">Client library</a></div></div></div>
+  <div class="headertitle"><div class="title">Thread module<div class="ingroups"><a class="el" href="group__LIBAPI.html">Libraries</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">Plugin library</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Thread module.  
 <a href="#details">More...</a></p>
+<div class="dynheader">
+Collaboration diagram for Thread module:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__LIBAPI__THREAD.png" border="0" usemap="#agroup____LIBAPI____THREAD" alt=""/></div>
+<map name="agroup____LIBAPI____THREAD" id="agroup____LIBAPI____THREAD">
+<area shape="rect" href="group__LIBAPI__PLUGIN.html" title="Plugin library." alt="" coords="5,5,113,31"/>
+<area shape="rect" title="Thread module." alt="" coords="161,5,281,31"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectThread.html">CConnectThread</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class only is used by <a class="el" href="classCConnecterThread.html" title="It starts a background thread by default.">CConnecterThread</a>.  <a href="classCConnectThread.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html">CManageConnect</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manage <a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a>.  <a href="classCManageConnect.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manage CConnecter.  <a href="classCManageConnect.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginThread.html">CPluginThread</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One thread handles multiple <a class="el" href="classCConnecterConnect.html" title="The connector interface of the plug-in, which is only used by the plug-in.">CConnecterConnect</a>.  <a href="classCPluginThread.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One thread handles multiple CConnecterConnect.  <a href="classCPluginThread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -96,26 +102,26 @@ Classes</h2></td></tr>
 <ul>
 <li>Thread classification<ul>
 <li>Main thread(UI thread)<ul>
-<li><a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a></li>
+<li><a class="el" href="classCOperate.html" title="Operate interface.">COperate</a></li>
 <li>CFrmView</li>
 <li><a class="el" href="classCParameter.html" title="Parameter interface.">CParameter</a></li>
 </ul>
 </li>
 <li>Work thread<ul>
-<li><a class="el" href="classCConnect.html" title="Connect interface.">CConnect</a></li>
+<li>CConnect</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The module of work thread<ul>
-<li>Blocked: Most control protocol implementation library connections are blocking. <dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginClient.html" title="The plugin interface.">CPluginClient</a> <a class="el" href="classCConnecterThread.html" title="It starts a background thread by default.">CConnecterThread</a></dd></dl>
+<li>Blocked: Most control protocol implementation library connections are blocking. <dl class="section see"><dt>See also</dt><dd>CPluginClient COperateThread</dd></dl>
 </li>
-<li>No-blocking: eg: qt event. A thread can handle multiple connections. <dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginClientThread.html" title="It starts a background thread by default.">CPluginClientThread</a> CConnecterDesktop</dd></dl>
+<li>No-blocking: eg: qt event. A thread can handle multiple connections. <dl class="section see"><dt>See also</dt><dd><a class="el" href="classCPluginClientThread.html" title="It starts a background thread by default.">CPluginClientThread</a> <a class="el" href="classCOperateDesktop.html" title="Remote desktop operate interface.">COperateDesktop</a></dd></dl>
 </li>
 </ul>
 </li>
 <li>Class relationship <div class="image">
-<object type="image/svg+xml" data="PluginClientAPI.svg" style="pointer-events: none;"></object>
+<object type="image/svg+xml" data="PluginAPI.svg" style="pointer-events: none;"></object>
 </div>
  </li>
 </ul>
@@ -123,9 +129,9 @@ Classes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

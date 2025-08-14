@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['服务器_0',['服务器',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2FreeRDP_2README__zh__CN.html#autotoc_md244',1,'服务器'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2LibVNCServer_2README__zh__CN.html#autotoc_md254',1,'服务器'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2RabbitVNC_2README__zh__CN.html#autotoc_md268',1,'服务器'],['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2TigerVnc_2README__zh__CN.html#autotoc_md278',1,'服务器']]],
-  ['服务端库_1',['服务端库',['../group__LIBAPI__SERVICE.html',1,'']]]
+  ['支持不够。_0',['[可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux__zh__CN.html#autotoc_md144',1,'']]],
+  ['支持协议_1',['支持协议',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html#autotoc_md325',1,'']]],
+  ['支持多语言_2',['支持多语言',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html#autotoc_md324',1,'']]],
+  ['支持操作系统_3',['支持操作系统',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html#autotoc_md323',1,'']]]
 ];

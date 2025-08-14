@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -80,20 +80,34 @@ $(function() {
 <a href="#pri-methods">Private 成员函数</a> &#124;
 <a href="#pri-attribs">Private 属性</a> &#124;
 <a href="classCFrmViewer-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">CFrmViewer类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PLUGIN__API.html">客户端插件接口</a></div></div></div>
+  <div class="headertitle"><div class="title">CFrmViewer类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__PLUGIN__API.html">插件接口</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>用于显示从 <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> 输出的图像，和向 <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> 发送键盘、鼠标事件。  
+<p>用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。  
  <a href="classCFrmViewer.html#details">更多...</a></p>
 
 <p><code>#include &lt;<a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a>&gt;</code></p>
 <div class="dynheader">
 类 CFrmViewer 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCFrmViewer.png" alt=""/>
- </div></div>
+<div class="center"><img src="classCFrmViewer__inherit__graph.png" border="0" usemap="#aCFrmViewer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmViewer_inherit__map" id="aCFrmViewer_inherit__map">
+<area shape="rect" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="5,79,107,104"/>
+<area shape="rect" title=" " alt="" coords="17,5,95,31"/>
+<area shape="poly" title=" " alt="" coords="59,44,59,79,53,79,53,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmViewer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmViewer__coll__graph.png" border="0" usemap="#aCFrmViewer_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmViewer_coll__map" id="aCFrmViewer_coll__map">
+<area shape="rect" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="5,79,107,104"/>
+<area shape="rect" title=" " alt="" coords="17,5,95,31"/>
+<area shape="poly" title=" " alt="" coords="59,44,59,79,53,79,53,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public 类型</h2></td></tr>
@@ -142,9 +156,12 @@ Public 槽</h2></td></tr>
 <tr class="separator:ae87d2b6fa1ea93627bde8df253862bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9a7a755dc8ed356aedee665b2054eec" id="r_ac9a7a755dc8ed356aedee665b2054eec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#ac9a7a755dc8ed356aedee665b2054eec">slotUpdateLedState</a> (unsigned int state)</td></tr>
 <tr class="separator:ac9a7a755dc8ed356aedee665b2054eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac003aeab1e26a7476f4a2e6e735b60b0" id="r_ac003aeab1e26a7476f4a2e6e735b60b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#ac003aeab1e26a7476f4a2e6e735b60b0">slotConnected</a> ()</td></tr>
-<tr class="memdesc:ac003aeab1e26a7476f4a2e6e735b60b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable mouse and keyboard  <br /></td></tr>
-<tr class="separator:ac003aeab1e26a7476f4a2e6e735b60b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7eb452bcf1f64babcb622b2a842d316" id="r_ac7eb452bcf1f64babcb622b2a842d316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#ac7eb452bcf1f64babcb622b2a842d316">slotRunning</a> ()</td></tr>
+<tr class="memdesc:ac7eb452bcf1f64babcb622b2a842d316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable mouse and keyboard  <br /></td></tr>
+<tr class="separator:ac7eb452bcf1f64babcb622b2a842d316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb15ebb0bd90211d93c145ed978eba6b" id="r_aeb15ebb0bd90211d93c145ed978eba6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#aeb15ebb0bd90211d93c145ed978eba6b">slotEnableInputMethod</a> (bool bEnable)</td></tr>
+<tr class="memdesc:aeb15ebb0bd90211d93c145ed978eba6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable input method  <br /></td></tr>
+<tr class="separator:aeb15ebb0bd90211d93c145ed978eba6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f29aca63bd41b6f9e01b9035d2d46c4" id="r_a4f29aca63bd41b6f9e01b9035d2d46c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#a4f29aca63bd41b6f9e01b9035d2d46c4">slotRecordVideo</a> (bool bRecord, qreal nRate=0)</td></tr>
 <tr class="separator:a4f29aca63bd41b6f9e01b9035d2d46c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18a19a85bcbce8c1db87c4fd4ce0cf80" id="r_a18a19a85bcbce8c1db87c4fd4ce0cf80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#a18a19a85bcbce8c1db87c4fd4ce0cf80">slotRecordVideo</a> ()</td></tr>
@@ -173,6 +190,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigKeyPressEvent</b> 
 <tr class="memitem:a57f8259b43b33d4d32e7f8b8f06abf14" id="r_a57f8259b43b33d4d32e7f8b8f06abf14"><td class="memItemLeft" align="right" valign="top"><a id="a57f8259b43b33d4d32e7f8b8f06abf14" name="a57f8259b43b33d4d32e7f8b8f06abf14"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigKeyReleaseEvent</b> (QKeyEvent *event)</td></tr>
 <tr class="separator:a57f8259b43b33d4d32e7f8b8f06abf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d63a2e58d675227569a030643dce8f9" id="r_a6d63a2e58d675227569a030643dce8f9"><td class="memItemLeft" align="right" valign="top"><a id="a6d63a2e58d675227569a030643dce8f9" name="a6d63a2e58d675227569a030643dce8f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigInputMethodEvent</b> (QInputMethodEvent *event)</td></tr>
+<tr class="separator:a6d63a2e58d675227569a030643dce8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d0566f1e4a6759764829475f3507c48" id="r_a5d0566f1e4a6759764829475f3507c48"><td class="memItemLeft" align="right" valign="top"><a id="a5d0566f1e4a6759764829475f3507c48" name="a5d0566f1e4a6759764829475f3507c48"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sigServerName</b> (const QString &amp;szName)</td></tr>
 <tr class="separator:a5d0566f1e4a6759764829475f3507c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,9 +206,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRecordVideo</b> (c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:af59851f79dc1501c40731c10f58d52b4" id="r_af59851f79dc1501c40731c10f58d52b4"><td class="memItemLeft" align="right" valign="top"><a id="af59851f79dc1501c40731c10f58d52b4" name="af59851f79dc1501c40731c10f58d52b4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CFrmViewer</b> (QWidget *parent=nullptr)</td></tr>
-<tr class="separator:af59851f79dc1501c40731c10f58d52b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f6b7b87222383c38782eaaa61e3afb" id="r_ad3f6b7b87222383c38782eaaa61e3afb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#ad3f6b7b87222383c38782eaaa61e3afb">CFrmViewer</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ad3f6b7b87222383c38782eaaa61e3afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ba9a9b0896d46821e8dded13fc80c26" id="r_a0ba9a9b0896d46821e8dded13fc80c26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#a0ba9a9b0896d46821e8dded13fc80c26">GetAdaptWindows</a> ()</td></tr>
 <tr class="separator:a0ba9a9b0896d46821e8dded13fc80c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd35ed62d031dde1a6efb4378591da21" id="r_afd35ed62d031dde1a6efb4378591da21"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#afd35ed62d031dde1a6efb4378591da21">GetZoomFactor</a> () const</td></tr>
@@ -219,6 +238,10 @@ Protected 成员函数</h2></td></tr>
 <tr class="separator:a33fbd71f62f8c7ef7ca55b9c7f65bee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa71d8a8a7bd624474bac40aea8b03a6b" id="r_aa71d8a8a7bd624474bac40aea8b03a6b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#aa71d8a8a7bd624474bac40aea8b03a6b">keyReleaseEvent</a> (QKeyEvent *event) override</td></tr>
 <tr class="separator:aa71d8a8a7bd624474bac40aea8b03a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5819cbb12d25987de46b2ad3b92abbc1" id="r_a5819cbb12d25987de46b2ad3b92abbc1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#a5819cbb12d25987de46b2ad3b92abbc1">inputMethodEvent</a> (QInputMethodEvent *event) override</td></tr>
+<tr class="separator:a5819cbb12d25987de46b2ad3b92abbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba6185e927535080163ac90e5051301f" id="r_aba6185e927535080163ac90e5051301f"><td class="memItemLeft" align="right" valign="top">virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewer.html#aba6185e927535080163ac90e5051301f">inputMethodQuery</a> (Qt::InputMethodQuery query) const override</td></tr>
+<tr class="separator:aba6185e927535080163ac90e5051301f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 属性</h2></td></tr>
@@ -252,12 +275,12 @@ Private 属性</h2></td></tr>
 <tr class="separator:aab542bae934c41b30f46046143576d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>用于显示从 <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> 输出的图像，和向 <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> 发送键盘、鼠标事件。 </p>
+<div class="textblock"><p>用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。 </p>
 <ul>
-<li>当新的输出图像从 <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> 输出时，它调用 <a class="el" href="classCFrmViewer.html#ab96bbb5a67a52cfb86b35ab4fa8e97be">slotUpdateRect</a> 更新显示。</li>
+<li>当新的输出图像从 CConnectDesktop 输出时，它调用 <a class="el" href="classCFrmViewer.html#ab96bbb5a67a52cfb86b35ab4fa8e97be">slotUpdateRect</a> 更新显示。</li>
 <li>当鼠标更新时，调用 <a class="el" href="classCFrmViewer.html#ab1fdd007650e1db1bd952f0a5fb6bca1">slotUpdateCursor</a> ；位置更新时，调用 <a class="el" href="classCFrmViewer.html#ae87d2b6fa1ea93627bde8df253862bf7">slotUpdateCursorPosition</a></li>
 </ul>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> <a class="el" href="classCConnectDesktop.html" title="远程桌面连接接口。它由协议插件实现。">CConnectDesktop</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd>CConnecter CConnectDesktop </dd></dl>
 
 <p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00047">47</a> 行定义.</p>
 </div><h2 class="groupheader">成员枚举类型说明</h2>
@@ -318,6 +341,34 @@ Private 属性</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ad3f6b7b87222383c38782eaaa61e3afb" name="ad3f6b7b87222383c38782eaaa61e3afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3f6b7b87222383c38782eaaa61e3afb">&#9670;&#160;</a></span>CFrmViewer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Client FrmViewer static Key Client FrmViewer InputMethod CFrmViewer::CFrmViewer </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
 <a id="a40d85957e0be8671a65411cb54b608f6" name="a40d85957e0be8671a65411cb54b608f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a40d85957e0be8671a65411cb54b608f6">&#9670;&#160;</a></span>~CFrmViewer()</h2>
 
@@ -341,7 +392,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00054">54</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00056">56</a> 行定义.</p>
 
 </div>
 </div>
@@ -370,7 +421,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00542">542</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00603">603</a> 行定义.</p>
 
 </div>
 </div>
@@ -398,7 +449,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00548">548</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00609">609</a> 行定义.</p>
 
 </div>
 </div>
@@ -417,7 +468,7 @@ Private 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00305">305</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00343">343</a> 行定义.</p>
 
 </div>
 </div>
@@ -444,7 +495,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00059">59</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00061">61</a> 行定义.</p>
 
 </div>
 </div>
@@ -463,7 +514,7 @@ Private 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00258">258</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00296">296</a> 行定义.</p>
 
 </div>
 </div>
@@ -484,7 +535,7 @@ Private 属性</h2></td></tr>
 
 <p>调整缩放系数。 调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。 </p>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00263">263</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00301">301</a> 行定义.</p>
 
 </div>
 </div>
@@ -534,7 +585,63 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00513">513</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00567">567</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5819cbb12d25987de46b2ad3b92abbc1" name="a5819cbb12d25987de46b2ad3b92abbc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5819cbb12d25987de46b2ad3b92abbc1">&#9670;&#160;</a></span>inputMethodEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewer::inputMethodEvent </td>
+          <td>(</td>
+          <td class="paramtype">QInputMethodEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba6185e927535080163ac90e5051301f" name="aba6185e927535080163ac90e5051301f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6185e927535080163ac90e5051301f">&#9670;&#160;</a></span>inputMethodQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CFrmViewer::inputMethodQuery </td>
+          <td>(</td>
+          <td class="paramtype">Qt::InputMethodQuery&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00278">278</a> 行定义.</p>
 
 </div>
 </div>
@@ -562,7 +669,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00244">244</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00252">252</a> 行定义.</p>
 
 </div>
 </div>
@@ -590,7 +697,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00251">251</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00259">259</a> 行定义.</p>
 
 </div>
 </div>
@@ -618,7 +725,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00211">211</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00219">219</a> 行定义.</p>
 
 </div>
 </div>
@@ -646,7 +753,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00176">176</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00178">178</a> 行定义.</p>
 
 </div>
 </div>
@@ -674,7 +781,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00194">194</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00202">202</a> 行定义.</p>
 
 </div>
 </div>
@@ -701,7 +808,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00087">87</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00089">89</a> 行定义.</p>
 
 </div>
 </div>
@@ -729,7 +836,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00131">131</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00133">133</a> 行定义.</p>
 
 </div>
 </div>
@@ -767,12 +874,12 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00277">277</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00315">315</a> 行定义.</p>
 
 </div>
 </div>
-<a id="ac003aeab1e26a7476f4a2e6e735b60b0" name="ac003aeab1e26a7476f4a2e6e735b60b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac003aeab1e26a7476f4a2e6e735b60b0">&#9670;&#160;</a></span>slotConnected</h2>
+<a id="aeb15ebb0bd90211d93c145ed978eba6b" name="aeb15ebb0bd90211d93c145ed978eba6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb15ebb0bd90211d93c145ed978eba6b">&#9670;&#160;</a></span>slotEnableInputMethod</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -781,9 +888,10 @@ Private 属性</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CFrmViewer::slotConnected </td>
+          <td class="memname">void CFrmViewer::slotEnableInputMethod </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -794,9 +902,9 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Enable mouse and keyboard </p>
+<p>Enable input method </p>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00323">323</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00366">366</a> 行定义.</p>
 
 </div>
 </div>
@@ -823,7 +931,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00537">537</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00598">598</a> 行定义.</p>
 
 </div>
 </div>
@@ -861,7 +969,36 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00523">523</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00577">577</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac7eb452bcf1f64babcb622b2a842d316" name="ac7eb452bcf1f64babcb622b2a842d316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7eb452bcf1f64babcb622b2a842d316">&#9670;&#160;</a></span>slotRunning</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewer::slotRunning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable mouse and keyboard </p>
+
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00361">361</a> 行定义.</p>
 
 </div>
 </div>
@@ -889,7 +1026,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00285">285</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00323">323</a> 行定义.</p>
 
 </div>
 </div>
@@ -937,7 +1074,7 @@ Private 属性</h2></td></tr>
 </dl>
 <dl class="section note"><dt>注解</dt><dd>The plugin is use CConnectDesktop::sigSetDesktopSize </dd></dl>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00310">310</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00348">348</a> 行定义.</p>
 
 </div>
 </div>
@@ -973,7 +1110,7 @@ Private 属性</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00328">328</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00372">372</a> 行定义.</p>
 
 </div>
 </div>
@@ -1001,7 +1138,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00268">268</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00306">306</a> 行定义.</p>
 
 </div>
 </div>
@@ -1037,7 +1174,7 @@ Private 属性</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00371">371</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00415">415</a> 行定义.</p>
 
 </div>
 </div>
@@ -1073,7 +1210,7 @@ Private 属性</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00376">376</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00425">425</a> 行定义.</p>
 
 </div>
 </div>
@@ -1101,7 +1238,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00428">428</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00482">482</a> 行定义.</p>
 
 </div>
 </div>
@@ -1129,7 +1266,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00334">334</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00378">378</a> 行定义.</p>
 
 </div>
 </div>
@@ -1176,7 +1313,7 @@ Private 属性</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00346">346</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00390">390</a> 行定义.</p>
 
 </div>
 </div>
@@ -1214,7 +1351,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00139">139</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00141">141</a> 行定义.</p>
 
 </div>
 </div>
@@ -1242,7 +1379,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00229">229</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a> 第 <a class="el" href="FrmViewer_8cpp_source.html#l00237">237</a> 行定义.</p>
 
 </div>
 </div>
@@ -1267,7 +1404,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00174">174</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00181">181</a> 行定义.</p>
 
 </div>
 </div>
@@ -1291,7 +1428,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00192">192</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00199">199</a> 行定义.</p>
 
 </div>
 </div>
@@ -1315,7 +1452,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00175">175</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00182">182</a> 行定义.</p>
 
 </div>
 </div>
@@ -1339,7 +1476,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00171">171</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00178">178</a> 行定义.</p>
 
 </div>
 </div>
@@ -1363,7 +1500,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00172">172</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00179">179</a> 行定义.</p>
 
 </div>
 </div>
@@ -1387,7 +1524,7 @@ Private 属性</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00191">191</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a> 第 <a class="el" href="FrmViewer_8h_source.html#l00198">198</a> 行定义.</p>
 
 </div>
 </div>
@@ -1417,8 +1554,8 @@ Private 属性</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="FrmViewer_8h_source.html">FrmViewer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="FrmViewer_8cpp_source.html">FrmViewer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['贡献者_0',['贡献者',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Authors__zh__CN.html#autotoc_md5',1,'']]],
-  ['贡献_1',['贡献',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html#autotoc_md331',1,'']]]
+  ['设置全局变量_0',['设置全局变量',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Android.html#autotoc_md91',1,'']]]
 ];

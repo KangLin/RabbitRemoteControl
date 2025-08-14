@@ -1,0 +1,8 @@
+<map id="Plugin library" name="Plugin library">
+<area shape="rect" id="Node000003" href="$group__APP__API.html" title="Application interface." alt="" coords="288,5,445,31"/>
+<area shape="rect" id="Node000006" href="$group__CLIENT__PARAMETER.html" title="Parameter interface." alt="" coords="291,55,442,80"/>
+<area shape="rect" id="Node000002" href="$group__LIBAPI.html" title=" " alt="" coords="5,80,84,105"/>
+<area shape="rect" id="Node000001" title="Plugin library." alt="" coords="132,80,240,105"/>
+<area shape="rect" id="Node000005" href="$group__LIBAPI__THREAD.html" title="Thread module." alt="" coords="307,104,427,129"/>
+<area shape="rect" id="Node000004" href="$group__PLUGIN__API.html" title="Plugin interfaces." alt="" coords="301,153,432,179"/>
+</map>

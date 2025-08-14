@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,6 +75,69 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md8"></a> </p>
 <h2><a class="anchor" id="autotoc_md9"></a>
+v0.0.37</h2>
+<ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/47">Refactor</a><ul>
+<li>App:<ul>
+<li>Rename UI prompts</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Old name   </th><th class="markdownTableHeadNone">New name   </th><th class="markdownTableHeadNone">Function    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Remote   </td><td class="markdownTableBodyNone">Operate   </td><td class="markdownTableBodyNone">Menu    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Remote-&gt;Connect   </td><td class="markdownTableBodyNone">Operate-&gt;Start   </td><td class="markdownTableBodyNone">Menu or tool bar    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Remote-&gt;Disconnect   </td><td class="markdownTableBodyNone">Operate-&gt;Stop   </td><td class="markdownTableBodyNone">Menu or tool bar   </td></tr>
+</table>
+<ul>
+<li>Rename class name</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Old name   </th><th class="markdownTableHeadNone">New Name    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CConnecter   </td><td class="markdownTableBodyNone"><a class="el" href="classCOperate.html" title="Operate interface.">COperate</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Connect   </td><td class="markdownTableBodyNone"><a class="el" href="classCBackend.html" title="Backend interface.">CBackend</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ConnectThread   </td><td class="markdownTableBodyNone"><a class="el" href="classCBackendThread.html" title="The backend thread.">CBackendThread</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CConnecterThread   </td><td class="markdownTableBodyNone"><a class="el" href="classCOperateDesktop.html" title="Remote desktop operate interface.">COperateDesktop</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CPluginClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCPlugin.html" title="Plugin interface.">CPlugin</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCManager.html" title="Manage plugins.">CManager</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CParameterConnecter   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterOperate.html" title="Operational parameter interface.">CParameterOperate</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CParameterClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterPlugin.html" title="Global parameters of plugins.">CParameterPlugin</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">FrmParameterClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterPluginUI.html">CParameterPluginUI</a>   </td></tr>
+</table>
+<ul>
+<li>Plugin<ul>
+<li>Terminal</li>
+<li>Terminal SSH</li>
+<li>Terminal telnet</li>
+<li>Serail port</li>
+<li>Add file transfer<ul>
+<li>SFTP</li>
+<li>FTP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Add activity menu</p><ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/48">Add input method in freerdp</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
 v0.0.36</h2>
 <ul>
 <li>Client:<ul>
@@ -91,7 +154,7 @@ v0.0.36</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 v0.0.35</h2>
 <ul>
 <li>App:<ul>
@@ -110,12 +173,12 @@ v0.0.35</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 v0.0.34</h2>
 <ul>
 <li>App: add splitter view</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 v0.0.33</h2>
 <ul>
 <li>Remove donate bitcoin</li>
@@ -128,17 +191,17 @@ v0.0.33</h2>
 </li>
 <li>CI: add arm64(aarch64) release</li>
 <li>Client: modify interfaces<ul>
-<li><a class="el" href="classCPluginClient.html" title="The plugin interface.">CPluginClient</a><ul>
+<li>CPluginClient<ul>
 <li>Add CPluginClient::OnCreateConnecter</li>
 <li>Modify CPlginClient::CreateConnecter</li>
 </ul>
 </li>
-<li><a class="el" href="classCClient.html" title="manage plugins and connecter">CClient</a><ul>
-<li>Modify <a class="el" href="classCClient.html#a3cc3b315e8244e7283e3ba2b760df1d0" title="New CConnecter pointer, the owner is caller.">CClient::CreateConnecter</a></li>
-<li>Modify <a class="el" href="classCClient.html#ab0b63e490609694baff826303b8458c3" title="Delete CConnecter.">CClient::DeleteConnecter</a></li>
+<li>CClient<ul>
+<li>Modify CClient::CreateConnecter</li>
+<li>Modify CClient::DeleteConnecter</li>
 </ul>
 </li>
-<li><a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a><ul>
+<li>CConnecter<ul>
 <li>Add CConnecter::GetSettingsFile</li>
 <li>Add CConnecter::SetSettingsFile</li>
 </ul>
@@ -166,27 +229,27 @@ v0.0.33</h2>
 </li>
 <li>Application: Rename CFrmListConnects to CFrmListRecnetConnects</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 v0.0.32</h2>
 <ul>
 <li>Fix player menu bug</li>
 <li>Fix player name</li>
 <li>Fix wake on lan bug</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 v0.0.31</h2>
 <ul>
 <li>Use <a href="https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2">RabbitCommon v2.3.2</a></li>
 <li>Fix: full screen bar position bug in Qt6. Because wayland is no coordinate system, borderless forms cannot be dragged and positioned. qt6 use wayland by default. qt5 use xcb default. So that prefix 'qputenv("QT_QPA_PLATFORM", "xcb")' at the beginning of the main function.</li>
 <li>Fix: AppImage load icon fail bug</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 v0.0.30</h2>
 <ul>
-<li>Client: fix <a class="el" href="classCFrmParameterClient.html">CFrmParameterClient</a> don't save parameters</li>
+<li>Client: fix CFrmParameterClient don't save parameters</li>
 <li>App: fix core when the application exit. Because the background thread does not exit when the application exiting, the resource is not released correctly. For the time being, wait 1 second to solve the problem</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 v0.0.29</h2>
 <ul>
 <li>FreeRDP<ul>
@@ -195,7 +258,7 @@ v0.0.29</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 v0.0.28</h2>
 <ul>
 <li>Client parameters<ul>
@@ -205,12 +268,12 @@ v0.0.28</h2>
 </li>
 <li>App: remove border when full screen</li>
 <li>Client:<ul>
-<li>Add <a class="el" href="classCConnectDesktop.html" title="Remote desktop connect interface.">CConnectDesktop</a></li>
+<li>Add CConnectDesktop</li>
 <li>Add CClient::Details()</li>
 <li>Add <a class="el" href="classCParameterUI.html" title="The parameter UI interface.">CParameterUI</a></li>
 <li>Add CConnecter::QMenu* GetMenu(QWidget* parent = nullptr)</li>
-<li>Rename CConnecterDesktop to <a class="el" href="classCConnecterConnect.html" title="The connector interface of the plug-in, which is only used by the plug-in.">CConnecterConnect</a></li>
-<li>Rename CConnecterDesktopThread to <a class="el" href="classCConnecterThread.html" title="It starts a background thread by default.">CConnecterThread</a></li>
+<li>Rename CConnecterDesktop to CConnecterConnect</li>
+<li>Rename CConnecterDesktopThread to CConnecterThread</li>
 </ul>
 </li>
 <li>FreeRDP: prepare default settings <br  />
@@ -230,11 +293,11 @@ v0.0.28</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 v0.0.27</h2>
 <ul>
 <li>Client:<ul>
-<li>add OnInitReturnValue in <a class="el" href="classCConnect.html" title="Connect interface.">CConnect</a></li>
+<li>add OnInitReturnValue in CConnect</li>
 <li>Modify debian package</li>
 <li>Use <a href="https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6">RabbitCommon v2.2.6</a></li>
 <li>Refactor parameter<ul>
@@ -263,7 +326,7 @@ v0.0.27</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 v0.0.26</h2>
 <ul>
 <li>Use RabbitCommon v2</li>
@@ -313,13 +376,13 @@ v0.0.26</h2>
 </ul>
 </li>
 <li>Client interface<ul>
-<li>Add <a class="el" href="classCConnecter.html#aba9467320f4244675d3cca45daf937d0" title="Notify the user to disconnect.">CConnecter::sigDisconnect()</a></li>
-<li>Add <a class="el" href="classCConnect.html#a6f8663e035f3fd8e549054f897b4aceb" title="Notify the user to call disconnect.">CConnect::sigDisconnect()</a></li>
+<li>Add CConnecter::sigDisconnect()</li>
+<li>Add CConnect::sigDisconnect()</li>
 <li>Add CConnect::sigUpdateRect(const QImage&amp; image)</li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 v0.0.25</h2>
 <ul>
 <li>Modify CI for automation update</li>
@@ -338,21 +401,21 @@ v0.0.25</h2>
 </li>
 <li>Fix pop menu bug in favorite</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 v0.0.24</h2>
 <ul>
 <li>Install FreeRDP dll</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 v0.0.23</h2>
 <ul>
 <li>Rename<ul>
 <li>Rename the directory viewer to client</li>
-<li>Rename the class CPluginViewer to <a class="el" href="classCPluginClient.html" title="The plugin interface.">CPluginClient</a></li>
+<li>Rename the class CPluginViewer to CPluginClient</li>
 <li>Rename the class CPluginViewerThread to <a class="el" href="classCPluginClientThread.html" title="It starts a background thread by default.">CPluginClientThread</a></li>
-<li>Rename the class CParameterViewer to <a class="el" href="classCParameterClient.html" title="The parameters of client.">CParameterClient</a></li>
-<li>Rename the class CManagePlugin to <a class="el" href="classCClient.html" title="manage plugins and connecter">CClient</a></li>
-<li>Rename the functioin CConnecter::SetParameterViewer to <a class="el" href="classCConnecter.html#a64b2286b4ea91a7f9356e1e693696200" title="Set CParameterClient.">CConnecter::SetParameterClient</a></li>
+<li>Rename the class CParameterViewer to CParameterClient</li>
+<li>Rename the class CManagePlugin to CClient</li>
+<li>Rename the functioin CConnecter::SetParameterViewer to CConnecter::SetParameterClient</li>
 </ul>
 </li>
 <li>FreeRDP:<ul>
@@ -366,7 +429,7 @@ v0.0.23</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 v0.0.22</h2>
 <ul>
 <li>Add keyboard hook<ul>
@@ -375,22 +438,22 @@ v0.0.22</h2>
 </li>
 <li>Refactor parameter</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 v0.0.21</h2>
 <ul>
 <li>Add core dump in windows</li>
 <li>FIX install MSVC system libraries in windows. See RabbitCommon</li>
 <li>FIX: divide by 0 crash. Affects all previous releases. See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f</li>
 <li>Viewer: add QCheckBox in show dialog</li>
-<li>Viewer: optimize <a class="el" href="classCConnecter.html#ae4cbb2eba65bc7ea0eee3eb0f1738cae" title="Name.">CConnecter::Name()</a> and CConnecter::ServerName()</li>
+<li>Viewer: optimize CConnecter::Name() and CConnecter::ServerName()</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 v0.0.20</h2>
 <ul>
 <li>Add version suffix to Windows dynamic library. see RabbitCommon</li>
 <li>RabbitCommon adds openssl version judgment.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 v0.0.19</h2>
 <ul>
 <li>Add OpenGL form</li>
@@ -401,7 +464,7 @@ v0.0.19</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 v0.0.18</h2>
 <ul>
 <li>Organize documents</li>
@@ -415,7 +478,7 @@ v0.0.18</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 v0.0.17</h2>
 <ul>
 <li>FIX the bug disconnect from server</li>
@@ -425,10 +488,10 @@ v0.0.17</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 v0.0.16</h2>
 <ul>
-<li><a class="el" href="classCConnecter.html" title="Connecter interface.">CConnecter</a> add block dialog</li>
+<li>CConnecter add block dialog</li>
 <li>Add enable set system tray icon</li>
 <li>Add RabbitVNC plugin</li>
 <li>Fix same bug<ul>
@@ -437,7 +500,7 @@ v0.0.16</h2>
 </li>
 <li>Support Qt6</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 v0.0.15</h2>
 <ul>
 <li>Refactor CConneter parameters interface</li>
@@ -456,13 +519,13 @@ v0.0.15</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 v0.0.14</h2>
 <ul>
 <li>Add system tray icon</li>
 <li>Fix same bug</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 v0.0.13</h2>
 <ul>
 <li>Modify UI<ul>
@@ -475,7 +538,7 @@ v0.0.13</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 v0.0.12</h2>
 <ul>
 <li>Add settings</li>
@@ -483,7 +546,7 @@ v0.0.12</h2>
 <li>Optimize main windows、toolbar</li>
 <li>FIX: shot screen window</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 v0.0.11</h2>
 <ul>
 <li>FIX main window focus bug</li>
@@ -496,7 +559,7 @@ v0.0.11</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 v0.0.10</h2>
 <ul>
 <li>Add zoom view</li>
@@ -504,7 +567,7 @@ v0.0.10</h2>
 <li>Reface viewer parameters</li>
 <li>Add screenslot</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 v0.0.9</h2>
 <ul>
 <li>Add server<ul>
@@ -521,7 +584,7 @@ v0.0.9</h2>
 <li>App: Add viewer automation adjust scroll bar by mouse move</li>
 <li>Fix some bug</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 v0.0.8</h2>
 <ul>
 <li>FIX tab view show bug when full screen</li>
@@ -537,35 +600,35 @@ v0.0.8</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 v0.0.7</h2>
 <ul>
 <li>Use update RabbitCommon::CStyle to change style</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 v0.0.6</h2>
 <ul>
 <li>UI: Use QUIWidget to modify the interface, it can customize the style of the window title bar</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 v0.0.5</h2>
 <ul>
 <li>FIX: LibVnc cursor bug</li>
 <li>Support Qt6</li>
 <li>FIX: Port range bug</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 v0.0.4</h2>
 <ul>
 <li>Modify ci</li>
 <li>Add send ctl-alt-del</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 v0.0.3</h2>
 <ul>
 <li>Fix some bugs</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 v0.0.2</h2>
 <ul>
 <li>Modify plugins interface</li>
@@ -575,7 +638,7 @@ v0.0.2</h2>
 <li>Add SSH</li>
 <li>RDP</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 v0.0.1</h2>
 <ul>
 <li>Gui<ul>
@@ -617,9 +680,9 @@ v0.0.1</h2>
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

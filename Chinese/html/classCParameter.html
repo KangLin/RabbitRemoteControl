@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -78,7 +78,7 @@ $(function() {
 <a href="#pri-methods">Private 成员函数</a> &#124;
 <a href="#pri-attribs">Private 属性</a> &#124;
 <a href="classCParameter-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">CParameter类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &#124; <a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PLUGIN__API.html">客户端插件接口</a></div></div></div>
+  <div class="headertitle"><div class="title">CParameter类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &#124; <a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__PLUGIN__API.html">插件接口</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -89,29 +89,69 @@ $(function() {
 <div class="dynheader">
 类 CParameter 继承关系图:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classCParameter.png" usemap="#CParameter_map" alt=""/>
-  <map id="CParameter_map" name="CParameter_map">
-<area href="classCParameterApp.html" alt="CParameterApp" shape="rect" coords="0,112,165,136"/>
-<area href="classCParameterClient.html" title="客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。" alt="CParameterClient" shape="rect" coords="175,112,340,136"/>
-<area href="classCParameterConnecter.html" title="连接参数接口。仅在插件内有效。" alt="CParameterConnecter" shape="rect" coords="875,112,1040,136"/>
-<area href="classCParameterRecord.html" alt="CParameterRecord" shape="rect" coords="1050,112,1215,136"/>
-<area href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="CParameterBase" shape="rect" coords="350,168,515,192"/>
-<area href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="CParameterNet" shape="rect" coords="525,168,690,192"/>
-<area href="classCParameterProxy.html" title="The proxy parameters." alt="CParameterProxy" shape="rect" coords="700,168,865,192"/>
-<area href="classCParameterSSHTunnel.html" alt="CParameterSSHTunnel" shape="rect" coords="875,168,1040,192"/>
-<area href="classCParameterTerminal.html" alt="CParameterTerminal" shape="rect" coords="1050,168,1215,192"/>
-<area href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="CParameterUser" shape="rect" coords="1225,168,1390,192"/>
-<area href="classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="CParameterWakeOnLan" shape="rect" coords="1400,168,1565,192"/>
-<area href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="CParameterFreeRDP" shape="rect" coords="0,224,165,248"/>
-<area href="classCParameterLibVNCServer.html" alt="CParameterLibVNCServer" shape="rect" coords="175,224,340,248"/>
-<area href="classCParameterPlayer.html" alt="CParameterPlayer" shape="rect" coords="350,224,515,248"/>
-<area href="classCParameterScreenCapture.html" alt="CParameterScreenCapture" shape="rect" coords="525,224,690,248"/>
-<area href="classCParameterVnc.html" alt="CParameterVnc" shape="rect" coords="700,224,865,248"/>
-<area href="classCParameterSSH.html" alt="CParameterSSH" shape="rect" coords="962,224,1127,248"/>
-<area href="classCParameterTelnet.html" alt="CParameterTelnet" shape="rect" coords="1137,224,1302,248"/>
-  </map>
-</div></div>
+<div class="center"><img src="classCParameter__inherit__graph.png" border="0" usemap="#aCParameter_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameter_inherit__map" id="aCParameter_inherit__map">
+<area shape="rect" title="参数接口" alt="" coords="128,325,227,351"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="291,227,413,252"/>
+<area shape="poly" title=" " alt="" coords="201,314,234,287,273,261,300,250,302,255,276,266,237,291,204,318"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="277,276,427,301"/>
+<area shape="poly" title=" " alt="" coords="235,319,305,299,307,304,237,324"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="283,325,421,351"/>
+<area shape="poly" title=" " alt="" coords="241,335,282,335,282,341,241,341"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="281,375,423,400"/>
+<area shape="poly" title=" " alt="" coords="237,352,307,372,305,377,235,357"/>
+<area shape="rect" href="classCParameterTerminal.html" title=" " alt="" coords="275,424,429,449"/>
+<area shape="poly" title=" " alt="" coords="204,358,237,385,276,410,302,421,300,426,273,415,234,389,201,362"/>
+<area shape="rect" title=" " alt="" coords="5,325,80,351"/>
+<area shape="poly" title=" " alt="" coords="94,335,128,335,128,341,94,341"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="509,79,639,104"/>
+<area shape="poly" title=" " alt="" coords="421,267,427,262,441,244,448,226,450,188,453,151,460,132,476,113,491,103,508,96,510,100,493,107,479,117,465,135,458,152,455,189,453,227,446,246,431,265,425,271"/>
+<area shape="rect" href="classCParameterFileTransfer.html" title=" " alt="" coords="487,128,661,153"/>
+<area shape="poly" title=" " alt="" coords="419,267,428,261,438,250,444,238,450,213,457,188,464,175,476,163,494,151,497,156,479,167,468,178,462,190,455,214,449,240,443,253,431,265,423,272"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="513,177,635,203"/>
+<area shape="poly" title=" " alt="" coords="415,268,428,261,442,249,451,237,460,224,476,212,512,197,514,202,479,216,464,228,455,240,446,253,431,266,417,273"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="507,227,641,252"/>
+<area shape="poly" title=" " alt="" coords="423,270,515,249,517,255,424,276"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="512,276,636,301"/>
+<area shape="poly" title=" " alt="" coords="441,286,512,286,512,291,441,291"/>
+<area shape="rect" href="classCParameterScreenCapture.html" title=" " alt="" coords="477,325,671,351"/>
+<area shape="poly" title=" " alt="" coords="424,302,517,323,515,328,423,307"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="481,375,667,400"/>
+<area shape="poly" title=" " alt="" coords="420,304,431,310,446,324,455,337,464,349,479,361,504,372,502,377,476,366,460,353,451,340,442,327,428,315,417,309"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="510,424,638,449"/>
+<area shape="poly" title=" " alt="" coords="425,306,431,311,443,323,450,337,456,362,461,387,468,399,479,411,511,427,509,432,476,415,464,402,456,389,450,364,445,338,438,326,428,315,422,310"/>
+<area shape="rect" href="classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="" coords="487,473,661,499"/>
+<area shape="poly" title=" " alt="" coords="427,307,431,311,446,330,453,349,455,388,458,425,465,443,479,460,495,471,492,476,476,464,460,445,453,426,450,388,448,351,441,333,427,314,423,311"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="735,5,889,31"/>
+<area shape="poly" title=" " alt="" coords="622,72,718,39,758,28,760,33,719,45,623,77"/>
+<area shape="rect" href="classCParameterLibVNCServer.html" title=" " alt="" coords="719,55,905,80"/>
+<area shape="poly" title=" " alt="" coords="653,81,718,74,719,79,653,86"/>
+<area shape="rect" href="classCParameterPlayer.html" title=" " alt="" coords="743,104,881,129"/>
+<area shape="poly" title=" " alt="" coords="653,97,743,107,742,112,653,102"/>
+<area shape="rect" href="classCParameterVnc.html" title=" " alt="" coords="751,153,873,179"/>
+<area shape="poly" title=" " alt="" coords="649,105,672,113,696,126,720,138,758,151,756,156,718,143,693,130,670,118,647,110"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="729,276,895,301"/>
+<area shape="poly" title=" " alt="" coords="650,286,728,286,728,291,650,291"/>
+<area shape="rect" href="classCParameterSerialPort.html" title=" " alt="" coords="731,325,893,351"/>
+<area shape="poly" title=" " alt="" coords="648,369,749,348,750,353,650,374"/>
+<area shape="rect" href="classCParameterTelnet.html" title=" " alt="" coords="743,375,881,400"/>
+<area shape="poly" title=" " alt="" coords="681,385,743,385,743,390,681,390"/>
+<area shape="rect" href="classCParameterTerminalSSH.html" title=" " alt="" coords="722,424,902,449"/>
+<area shape="poly" title=" " alt="" coords="650,400,750,421,749,427,648,405"/>
+<area shape="rect" href="classCTerminalParameter.html" title=" " alt="" coords="735,473,889,499"/>
+<area shape="poly" title=" " alt="" coords="656,402,672,410,688,423,697,436,706,448,720,460,745,471,743,476,717,464,702,452,692,439,684,427,669,415,653,407"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameter 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameter__coll__graph.png" border="0" usemap="#aCParameter_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameter_coll__map" id="aCParameter_coll__map">
+<area shape="rect" title="参数接口" alt="" coords="5,79,104,104"/>
+<area shape="rect" title=" " alt="" coords="17,5,92,31"/>
+<area shape="poly" title=" " alt="" coords="57,44,57,79,52,79,52,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 信号</h2></td></tr>
@@ -131,10 +171,10 @@ Public 成员函数</h2></td></tr>
 <tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
 <tr class="separator:aa1b057f5f3873a1d0ee546e466205982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
-<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from storage  <br /></td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
 <tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
-<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to storage  <br /></td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
 <tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5744cebce5aa518a7d1d086b05001943" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
 <tr class="memdesc:a5744cebce5aa518a7d1d086b05001943"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
@@ -185,14 +225,16 @@ Private 属性</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>参数接口 </p>
 <h1><a class="anchor" id="sub_CParameter_CATEGORY_USAGE"></a>
-参数分类使用</h1>
-<p>因为可能会有很多参数，所以需要按参数类型分类来管理。每个分类可以从此类派生出一个单独的类。 然后每个分类再做为参数的成员变量。</p>
+分类使用</h1>
+<p>因为可能会有很多参数，所以需要按分类来管理。每个分类可以从此类派生出一个单独的类。 然后每个分类再做为参数的成员变量。</p>
 <p>例如：<br  />
  连接参数包括以下几种类型：</p><ul>
-<li>视频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterVideo : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
-<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00168">Parameter.h:169</a></div></div>
+<li>网络参数 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterNet.html">CParameterNet</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+<div class="ttc" id="aclassCParameterNet_html"><div class="ttname"><a href="classCParameterNet.html">CParameterNet</a></div><div class="ttdoc">网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI</div><div class="ttdef"><b>Definition</b> <a href="ParameterNet_8h_source.html#l00025">ParameterNet.h:27</a></div></div>
+<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00208">Parameter.h:209</a></div></div>
 </div><!-- fragment --></li>
-<li>音频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterAudio : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+<li>用户参数 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classCParameterUser.html">CParameterUser</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+<div class="ttc" id="aclassCParameterUser_html"><div class="ttname"><a href="classCParameterUser.html">CParameterUser</a></div><div class="ttdoc">用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI</div><div class="ttdef"><b>Definition</b> <a href="ParameterUser_8h_source.html#l00021">ParameterUser.h:22</a></div></div>
 </div><!-- fragment --></li>
 </ul>
 <p>那么连接参数可以是以上类型的集合：</p>
@@ -201,20 +243,20 @@ Private 属性</h2></td></tr>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keyword">explicit</span> CParameterConnect(<a class="code hl_class" href="classCParameter.html">CParameter</a> *parent = <span class="keyword">nullptr</span>);</div>
 <div class="line"> </div>
-<div class="line">    CParameterVideo m_Video;</div>
-<div class="line">    CParameterAudio m_Audio;</div>
+<div class="line">    <a class="code hl_class" href="classCParameterNet.html">CParameterNet</a> m_Net;</div>
+<div class="line">    <a class="code hl_class" href="classCParameterUser.html">CParameterUser</a> m_User;</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line">CParameterConnect::CParameterConnect(<a class="code hl_class" href="classCParameter.html">CParameter</a> *parent = <span class="keyword">nullptr</span>)</div>
 <div class="line"> : <a class="code hl_class" href="classCParameter.html">CParameter</a>(parent),</div>
-<div class="line">   m_Video(this),</div>
-<div class="line">   m_Audio(this)</div>
+<div class="line">   m_Net(this), <span class="comment">// 允许自动嵌套调用 CParameter 类型成员的 OnXXX 函数</span></div>
+<div class="line">   m_User(this)</div>
 <div class="line">{}</div>
 </div><!-- fragment --><dl class="section note"><dt>注解</dt><dd>当成员实例化时，必须设置构造函数的参数 parent 为 this</dd></dl>
 <h1><a class="anchor" id="CParameter_Functions"></a>
 CParameter 接口功能</h1>
 <ul>
-<li>从存储中加载和保存参数<ul>
+<li>从存储中加载或保存参数到存储中<ul>
 <li>如果要自动嵌套调用 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数（例如: OnLoad)， 在成员实例化时，设置构造函数的 parent 为 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a>(一般用this） 类型实例。</li>
 <li>如果要自己控制 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数（例如: OnLoad)， 在成员实例化时，设置构造函数的 parent 为空或者设置为非 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型实例。</li>
 </ul>
@@ -223,7 +265,7 @@ CParameter 接口功能</h1>
 <li>检查参数的有效性。调用 <a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943" title="检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 OnCheckValidity() ，用于检查参数。">CheckValidity()</a> </li>
 </ul>
 
-<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00168">168</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00208">208</a> 行定义.</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="af01ed678eb8a06464823ded27b39c734" name="af01ed678eb8a06464823ded27b39c734"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af01ed678eb8a06464823ded27b39c734">&#9670;&#160;</a></span>CParameter()</h2>
@@ -268,7 +310,7 @@ CParameter 接口功能</h1>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d" title="Load from storage">Load(QSettings &amp;set)</a> <a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982" title="Save to file">Save</a>(QSettings &amp;set, bool bForce = true) </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d" title="Load from QSettings">Load(QSettings &amp;set)</a> <a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982" title="Save to file">Save</a>(QSettings &amp;set, bool bForce = true) </dd></dl>
 
 </div>
 </div>
@@ -446,9 +488,7 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p>Load from storage </p>
-
-<p>被 <a class="el" href="classCParameterTerminal.html#afbdd370b893af1c42d184de3c6a3eab7">CParameterTerminal</a> 重载.</p>
+<p>Load from QSettings </p>
 
 <p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00058">58</a> 行定义.</p>
 
@@ -544,7 +584,7 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p>在 <a class="el" href="classCParameterClient.html#a7355c527730dd1835a1720c80fa52c6e">CParameterClient</a>, <a class="el" href="classCParameterNet.html#aeff5049c4a8c47664527a110875c0c05">CParameterNet</a> , 以及 <a class="el" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">CParameterWakeOnLan</a> 内被实现.</p>
+<p>在 <a class="el" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">CParameterWakeOnLan</a>, <a class="el" href="classCParameterNet.html#aeff5049c4a8c47664527a110875c0c05">CParameterNet</a> , 以及 <a class="el" href="classCParameterPlugin.html#a9f09bdd6e372eb351c3cff9702f2e61e">CParameterPlugin</a> 内被实现.</p>
 
 </div>
 </div>
@@ -572,7 +612,7 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p>在 <a class="el" href="classCParameterClient.html#a988a0231d16a66b0ed43cfc4ce1a85ea">CParameterClient</a> 内被实现.</p>
+<p>在 <a class="el" href="classCParameterPlugin.html#a0d2a9bb34083c7d34d352d8ede4148c2">CParameterPlugin</a> 内被实现.</p>
 
 </div>
 </div>
@@ -610,7 +650,7 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p>Save to storage </p>
+<p>Save to QSettings </p>
 
 <p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00079">79</a> 行定义.</p>
 
@@ -743,7 +783,7 @@ CParameter 接口功能</h1>
 
 <p>标识参数是否有修改。如果 false，则保存文件时，不保存 </p>
 
-<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00294">294</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00334">334</a> 行定义.</p>
 
 </div>
 </div>
@@ -769,7 +809,7 @@ CParameter 接口功能</h1>
 
 <p>类别 </p>
 
-<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00300">300</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00340">340</a> 行定义.</p>
 
 </div>
 </div>
@@ -793,7 +833,7 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00286">286</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00326">326</a> 行定义.</p>
 
 </div>
 </div>
@@ -818,13 +858,13 @@ CParameter 接口功能</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00171">171</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00211">211</a> 行定义.</p>
 
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Parameter_8h_source.html">Parameter.h</a></li>
-<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Parameter_8h_source.html">Parameter.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

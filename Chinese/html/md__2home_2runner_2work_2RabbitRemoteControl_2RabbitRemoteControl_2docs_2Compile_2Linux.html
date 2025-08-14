@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -73,9 +73,9 @@ $(function() {
   <div class="headertitle"><div class="title">Compiling for Linux</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md93"></a> Author: Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> <br  />
+<div class="textblock"><p><a class="anchor" id="autotoc_md95"></a> Author: Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> <br  />
  Translator: Allan Nordhøy <a href="#" onclick="location.href='mai'+'lto:'+'epo'+'st'+'@an'+'ot'+'her'+'ag'+'enc'+'y.'+'no'; return false;">epost<span class="obfuscator">.nosp@m.</span>@ano<span class="obfuscator">.nosp@m.</span>thera<span class="obfuscator">.nosp@m.</span>genc<span class="obfuscator">.nosp@m.</span>y.no</a></p>
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md96"></a>
 Quickly started</h2>
 <pre class="fragment"># Only build AppImage
 ./Script/build_linux.sh --appimage
@@ -84,9 +84,9 @@ Quickly started</h2>
 # Only build rpm package
 ./Script/build_linux.sh --rpm
 </pre><p> See: Script</p>
-<h2><a class="anchor" id="autotoc_md95"></a>
+<h2><a class="anchor" id="autotoc_md97"></a>
 Environment</h2>
-<h3><a class="anchor" id="autotoc_md96"></a>
+<h3><a class="anchor" id="autotoc_md98"></a>
 Operating system</h3>
 <ul>
 <li>Ubuntu <pre class="fragment">~$ lsb_release -a
@@ -107,13 +107,13 @@ Codename: bookworm
 Fedora release 42 (Adams)
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md97"></a>
+<h3><a class="anchor" id="autotoc_md99"></a>
 Qt Creator</h3>
 <p>Version: v15.0.0 It is recommended to use version v5.0.2 or later. <br  />
  Prior versions don't have CMake support.</p>
-<h2><a class="anchor" id="autotoc_md98"></a>
+<h2><a class="anchor" id="autotoc_md100"></a>
 Tools</h2>
-<h3><a class="anchor" id="autotoc_md99"></a>
+<h3><a class="anchor" id="autotoc_md101"></a>
 Install the development tools package</h3>
 <pre class="fragment">  ~$ sudo apt install build-essential
 </pre><ul>
@@ -128,16 +128,16 @@ Install the development tools package</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md100"></a>
+<h3><a class="anchor" id="autotoc_md102"></a>
 Git: &lt;a href="https://www.git-scm.com/" &gt;https://www.git-scm.com&lt;/a&gt;</h3>
 <pre class="fragment">  ~$ sudo apt install git
-</pre> <h3><a class="anchor" id="autotoc_md101"></a>
+</pre> <h3><a class="anchor" id="autotoc_md103"></a>
 CMake: &lt;a href="https://cmake.org/" &gt;https://cmake.org&lt;/a&gt;</h3>
 <p>Version: Greater than 3.27.0 </p><pre class="fragment">~$ sudo apt install cmake
-</pre> <h3><a class="anchor" id="autotoc_md102"></a>
+</pre> <h3><a class="anchor" id="autotoc_md104"></a>
 Package tools: debhelper</h3>
 <pre class="fragment">  ~$ sudo apt install debhelper
-</pre> <h3><a class="anchor" id="autotoc_md103"></a>
+</pre> <h3><a class="anchor" id="autotoc_md105"></a>
 Qt</h3>
 <ul>
 <li>Qt (official release): <a href="https://download.qt.io/official_releases/qt/">https://download.qt.io/official_releases/qt/</a><ul>
@@ -218,16 +218,16 @@ QTLIBDIR="/usr/lib/aarch64-linux-gnu"
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md104"></a>
+<h3><a class="anchor" id="autotoc_md106"></a>
 [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.</h3>
 <p>Prior versions don't have CMake support. </p><pre class="fragment">~$ sudo apt install qtcreator
-</pre> <h3><a class="anchor" id="autotoc_md105"></a>
+</pre> <h3><a class="anchor" id="autotoc_md107"></a>
 OpenGL: Required to run Qt.</h3>
 <pre class="fragment">  ~$ sudo apt install libglu1-mesa-dev
-</pre> <h3><a class="anchor" id="autotoc_md106"></a>
+</pre> <h3><a class="anchor" id="autotoc_md108"></a>
 Doxygen: &lt;a href="http://www.doxygen.nl/" &gt;http://www.doxygen.nl/&lt;/a&gt;</h3>
 <pre class="fragment">  ~$ sudo apt install doxygen
-</pre> <h2><a class="anchor" id="autotoc_md107"></a>
+</pre> <h2><a class="anchor" id="autotoc_md109"></a>
 Library dependencies</h2>
 <ul>
 <li>[MUST] RabbitCommon: <a href="https://github.com/KangLin/RabbitCommon">https://github.com/KangLin/RabbitCommon</a></li>
@@ -240,6 +240,7 @@ Library dependencies</h2>
 </ul>
 </li>
 <li>[OPTIONAL] QTermWidget: <a href="https://github.com/lxqt/qtermwidget">https://github.com/lxqt/qtermwidget</a></li>
+<li>[OPTIONAL] QtSsh: <a href="https://github.com/condo4/QtSsh.git">https://github.com/condo4/QtSsh.git</a></li>
 <li>[OPTIONAL] [SSH]<ul>
 <li>libssh:<ul>
 <li><a href="https://www.libssh.org/">https://www.libssh.org</a></li>
@@ -253,6 +254,7 @@ Library dependencies</h2>
 </li>
 </ul>
 </li>
+<li>[OPTIONAL] <a class="el" href="classQTelnet.html">QTelnet</a>: <a href="https://github.com/silderan/QTelnet.git">https://github.com/silderan/QTelnet.git</a></li>
 <li>[OPTIONAL] libtelnet: <a href="https://github.com/seanmiddleditch/libtelnet">https://github.com/seanmiddleditch/libtelnet</a></li>
 <li>[OPTIONAL] libdatachannel: <a href="https://github.com/paullouisageneau/libdatachannel">https://github.com/paullouisageneau/libdatachannel</a></li>
 <li>[OPTIONAL] QXmpp: <a href="https://github.com/qxmpp-project/qxmpp">https://github.com/qxmpp-project/qxmpp</a></li>
@@ -260,7 +262,7 @@ Library dependencies</h2>
 <li>[OPTIONAL] PcapPlusPlus: <a href="https://github.com/seladb/PcapPlusPlus">https://github.com/seladb/PcapPlusPlus</a>. The WakeOnLan plugin required.</li>
 <li>[OPTIONAL] FFMPEG: <a href="https://ffmpeg.org/">https://ffmpeg.org/</a>. QtMultimedia required.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md108"></a>
+<h3><a class="anchor" id="autotoc_md110"></a>
 RabbitCommon</h3>
 <ul>
 <li>This library is placed in the same directory level as the project by default. <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
@@ -274,7 +276,7 @@ RabbitCommon</h3>
 ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon installation path] ......
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md109"></a>
+<h3><a class="anchor" id="autotoc_md111"></a>
 FreeRDP</h3>
 <ul>
 <li>Use the system-packaged development library <pre class="fragment">~$ sudo apt install freerdp3-dev
@@ -310,7 +312,7 @@ FreeRDP</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md110"></a>
+<h3><a class="anchor" id="autotoc_md112"></a>
 LibVNCServer</h3>
 <ul>
 <li>Use the system-packaged development library <pre class="fragment">~$ sudo apt install libvncserver-dev
@@ -323,7 +325,7 @@ LibVNCServer</h3>
 <li>When LibVNCServer is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md111"></a>
+<h3><a class="anchor" id="autotoc_md113"></a>
 RabbitVNC</h3>
 <ul>
 <li>Compile from source code Source-code location: <a href="https://github.com/KangLin/RabbitVNC">https://github.com/KangLin/RabbitVNC</a> <br  />
@@ -337,7 +339,7 @@ RabbitVNC</h3>
 <li>When RabbitVNC is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md112"></a>
+<h3><a class="anchor" id="autotoc_md114"></a>
 TigerVNC</h3>
 <ul>
 <li>Compile from source code</li>
@@ -354,7 +356,7 @@ TigerVNC</h3>
 <li>When TigerVNC is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md113"></a>
+<h3><a class="anchor" id="autotoc_md115"></a>
 libdatachannel</h3>
 <ul>
 <li>Use vcpkg<ul>
@@ -380,7 +382,7 @@ libdatachannel</h3>
 <li>When libdatachannel is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md114"></a>
+<h3><a class="anchor" id="autotoc_md116"></a>
 QXmpp</h3>
 <ul>
 <li>Use the system-packaged development library <pre class="fragment">~$ sudo apt install libqxmpp-dev
@@ -398,7 +400,7 @@ QXmpp</h3>
 <li>When QXmpp is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md115"></a>
+<h3><a class="anchor" id="autotoc_md117"></a>
 QTermWidget</h3>
 <ul>
 <li>Use the system-packaged development library <pre class="fragment">~$ sudo apt install libqtermwidget5-0-dev
@@ -410,7 +412,7 @@ QTermWidget</h3>
 <li>When QTermWidget is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md116"></a>
+<h3><a class="anchor" id="autotoc_md118"></a>
 libssh</h3>
 <ul>
 <li>Use the system-packaged development library <pre class="fragment">~$ sudo apt install libssh-dev 
@@ -430,7 +432,7 @@ libssh</h3>
 <li>When libssh is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md117"></a>
+<h3><a class="anchor" id="autotoc_md119"></a>
 QtService</h3>
 <ul>
 <li>Compile from source code<ul>
@@ -446,7 +448,7 @@ QtService</h3>
 <li>When QtService is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DQtService_DIR=[QtService installation path]/lib/cmake/QtService
 </pre> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md118"></a>
+<h2><a class="anchor" id="autotoc_md120"></a>
 PcapPlusPlus</h2>
 <ul>
 <li>Compile from source code<ul>
@@ -464,7 +466,7 @@ PcapPlusPlus</h2>
 <li>When PcapPlusPlus is compiled from source, the CMake parameter needs to be specified to compile this project: <pre class="fragment">-DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md119"></a>
+<h3><a class="anchor" id="autotoc_md121"></a>
 libpcap</h3>
 <p>It is depended by PcapPlusPlus</p>
 <ul>
@@ -472,16 +474,16 @@ libpcap</h3>
 </pre></li>
 <li>Sourc-code location: <a href="https://github.com/the-tcpdump-group/libpcap">https://github.com/the-tcpdump-group/libpcap</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md122"></a>
 Compile this project</h2>
-<h3><a class="anchor" id="autotoc_md121"></a>
+<h3><a class="anchor" id="autotoc_md123"></a>
 Source code</h3>
 <ul>
 <li>Project location: <a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>
 <li>Download the source code: <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md122"></a>
+<h3><a class="anchor" id="autotoc_md124"></a>
 CMake parameters or environment variable</h3>
 <ul>
 <li>CMake parameters or environment variable<ul>
@@ -529,7 +531,7 @@ CMake parameters or environment variable</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md123"></a>
+<h3><a class="anchor" id="autotoc_md125"></a>
 Compilation</h3>
 <ul>
 <li>Compile from the command-line<ul>
@@ -571,7 +573,7 @@ export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md124"></a>
+<h3><a class="anchor" id="autotoc_md126"></a>
 Run</h3>
 <ul>
 <li>The application is installed in install/bin <pre class="fragment">~$ cd RabbitRemoteControl
@@ -581,9 +583,9 @@ Run</h3>
 ~/RabbitRemoteControl$ ./RabbitRemoteControlApp
 </pre> <b>Note:</b> If the plugin does not load. It may be that the plugin's dependencies are not installed on the system. You can add the path of the dependency libraries to the environment variable LD_LIBRARY_PATH. You can also add the path of the dependency libraries to the /etc/ld.so.conf file, and then run ldconfig to add the dependency libraries to the system.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md125"></a>
+<h3><a class="anchor" id="autotoc_md127"></a>
 Compilation example</h3>
-<h4><a class="anchor" id="autotoc_md126"></a>
+<h4><a class="anchor" id="autotoc_md128"></a>
 Ubuntu</h4>
 <pre class="fragment">```bash
 #Install the development tools package
@@ -654,7 +656,7 @@ Ubuntu</h4>
 ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 ```
 </pre><p> See: Script</p>
-<h4><a class="anchor" id="autotoc_md127"></a>
+<h4><a class="anchor" id="autotoc_md129"></a>
 &lt;a href="https://github.com/linuxdeploy/linuxdeploy" &gt;AppImage&lt;/a&gt;</h4>
 <ul>
 <li>Compile <pre class="fragment">~/RabbitRemoteControl/build$ cmake .. \
@@ -708,7 +710,7 @@ export EXTRA_QT_MODULES="svg"
 </ul>
 </li>
 </ul>
-<h4><a class="anchor" id="autotoc_md128"></a>
+<h4><a class="anchor" id="autotoc_md130"></a>
 snap</h4>
 <ul>
 <li>Install snapcraft <pre class="fragment">sudo snap install snapcraft --classic
@@ -754,7 +756,7 @@ snapcraft-test #
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md129"></a>
+<h2><a class="anchor" id="autotoc_md131"></a>
 Flatpak</h2>
 <ul>
 <li>Install the software you need to build and run Flatpak: flatpak and flatpak-builder<ul>
@@ -798,7 +800,7 @@ $ flatpak-builder --user --force-clean --install build-dir /home/RabbitRemoteCon
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md130"></a>
+<h2><a class="anchor" id="autotoc_md132"></a>
 Script</h2>
 <ul>
 <li>Build script<ul>

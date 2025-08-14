@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['版本号说明：_0',['版本号说明：',['../index.html#autotoc_md220',1,'']]]
+  ['桌面类_0',['桌面类',['../group__gOperateDesktop.html',1,'']]]
 ];

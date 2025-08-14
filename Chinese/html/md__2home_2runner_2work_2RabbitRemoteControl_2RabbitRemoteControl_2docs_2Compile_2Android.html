@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -73,19 +73,19 @@ $(function() {
   <div class="headertitle"><div class="title">为 Android 编译</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md82"></a> 作者：康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
-<h2><a class="anchor" id="autotoc_md83"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md84"></a> 作者：康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
+<h2><a class="anchor" id="autotoc_md85"></a>
 环境</h2>
-<h3><a class="anchor" id="autotoc_md84"></a>
+<h3><a class="anchor" id="autotoc_md86"></a>
 操作系统</h3>
 <ul>
 <li>Windows 10 版本 20H2 (19045.2604)</li>
 <li>Ubuntu 22.04.4 LTS</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md85"></a>
+<h3><a class="anchor" id="autotoc_md87"></a>
 Qt Creator</h3>
 <p>当前版本：v13.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。</p>
-<h2><a class="anchor" id="autotoc_md86"></a>
+<h2><a class="anchor" id="autotoc_md88"></a>
 工具</h2>
 <ul>
 <li>编译器<ul>
@@ -113,10 +113,10 @@ Qt Creator</h3>
 <li><a href="https://ninja-build.org/">ninja</a></li>
 <li>vcpkg: <a href="https://github.com/microsoft/vcpkg">https://github.com/microsoft/vcpkg</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md87"></a>
+<h2><a class="anchor" id="autotoc_md89"></a>
 编译</h2>
 <p>参见：<a href="../../.github/workflows/android.yml">编译集成</a></p>
-<h3><a class="anchor" id="autotoc_md88"></a>
+<h3><a class="anchor" id="autotoc_md90"></a>
 依赖库</h3>
 <ul>
 <li>[必选] 玉兔公共库: <a href="https://github.com/KangLin/RabbitCommon">https://github.com/KangLin/RabbitCommon</a></li>
@@ -145,7 +145,7 @@ Qt Creator</h3>
 <li>[可选] PcapPlusPlus: <a href="https://github.com/seladb/PcapPlusPlus">https://github.com/seladb/PcapPlusPlus</a></li>
 <li>[可选] <a href="https://ffmpeg.org/">FFMPEG:</a> 多媒体功能需要</li>
 </ul>
-<h4><a class="anchor" id="autotoc_md89"></a>
+<h4><a class="anchor" id="autotoc_md91"></a>
 设置全局变量</h4>
 <ul>
 <li>windows <pre class="fragment">set INSTALL_DIR=`pwd`/install
@@ -191,7 +191,7 @@ export BUILD_TYPE=Release
 </ul>
 </li>
 </ul>
-<h4><a class="anchor" id="autotoc_md90"></a>
+<h4><a class="anchor" id="autotoc_md92"></a>
 编译 TigerVNC</h4>
 <ul>
 <li>下载源码： <code>git clone <a href="https://github.com/KangLin/tigervnc">https://github.com/KangLin/tigervnc</a></code></li>
@@ -217,7 +217,7 @@ export BUILD_TYPE=Release
 <li>安装 <pre class="fragment">cmake --install .
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md91"></a>
+<h3><a class="anchor" id="autotoc_md93"></a>
 玉兔公共库</h3>
 <ul>
 <li>此库默认放在与本项目同级目录下 <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
@@ -231,7 +231,7 @@ export BUILD_TYPE=Release
 ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon 安装目录] ......
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md92"></a>
+<h3><a class="anchor" id="autotoc_md94"></a>
 编译本项目</h3>
 <ul>
 <li>项目位置：<a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>

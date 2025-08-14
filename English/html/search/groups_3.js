@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['libraries_0',['Libraries',['../group__LIBAPI.html',1,'']]],
-  ['library_1',['library',['../group__LIBAPI__CLIENT.html',1,'Client library'],['../group__LIBAPI__SERVICE.html',1,'Service library']]]
+  ['ice_0',['ICE',['../group__LIBAPI__ICE.html',1,'']]],
+  ['interface_1',['interface',['../group__APP__API.html',1,'Application interface'],['../group__CLIENT__PARAMETER.html',1,'Parameter interface']]],
+  ['interfaces_2',['Plugin interfaces',['../group__PLUGIN__API.html',1,'']]]
 ];

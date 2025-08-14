@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">Rabbit Remote Control<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -110,7 +110,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    ),</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    ui(<span class="keyword">new</span> Ui::CFrmFullScreenToolBar),</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    m_ToolBar(<span class="keyword">this</span>),</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    m_pConnecterMenu(<span class="keyword">nullptr</span>),</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    m_pOperateMenu(<span class="keyword">nullptr</span>),</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    m_pNail(<span class="keyword">nullptr</span>),</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    m_pMain(pMain),</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    m_TimeOut(3000),</div>
@@ -134,12 +134,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    m_ToolBar.addAction(m_pMain-&gt;ui-&gt;actionFull_screen_F);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    m_ToolBar.addSeparator();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span>(m_pMain-&gt;m_pActionConnecterMenu) {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        m_pConnecterMenu = m_pMain-&gt;m_pActionConnecterMenu;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        m_ToolBar.addAction(m_pConnecterMenu);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span>(m_pMain-&gt;m_pActionOperateMenu) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        m_pOperateMenu = m_pMain-&gt;m_pActionOperateMenu;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        m_ToolBar.addAction(m_pOperateMenu);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    m_ToolBar.addAction(m_pMain-&gt;ui-&gt;actionDisconnect_D);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    m_ToolBar.addAction(m_pMain-&gt;ui-&gt;actionStop);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    m_ToolBar.addSeparator();</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    m_ToolBar.addAction(m_pMain-&gt;ui-&gt;actionExit_E);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
@@ -244,23 +244,23 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    set.setValue(<span class="stringliteral">&quot;FullScreen/Nail&quot;</span>, m_pNail-&gt;isChecked());</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keywordtype">void</span> CFrmFullScreenToolBar::slotConnecterMenuChanged(QAction* pAction)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keywordtype">void</span> CFrmFullScreenToolBar::slotOperateMenuChanged(QAction* pAction)</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>{</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">if</span>(m_pConnecterMenu) {</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        m_ToolBar.removeAction(m_pConnecterMenu);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        m_pConnecterMenu = pAction;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        m_ToolBar.insertAction(m_pMain-&gt;ui-&gt;actionDisconnect_D, m_pConnecterMenu);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">if</span>(m_pOperateMenu) {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        m_ToolBar.removeAction(m_pOperateMenu);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        m_pOperateMenu = pAction;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        m_ToolBar.insertAction(m_pMain-&gt;ui-&gt;actionStop, m_pOperateMenu);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
 <div class="ttc" id="aclassCFrmFullScreenToolBar_html"><div class="ttname"><a href="classCFrmFullScreenToolBar.html">CFrmFullScreenToolBar</a></div><div class="ttdef"><b>Definition</b> <a href="FrmFullScreenToolBar_8h_source.html#l00018">FrmFullScreenToolBar.h:19</a></div></div>
-<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">The MainWindow class.</div><div class="ttdef"><b>Definition</b> <a href="App_2Client_2mainwindow_8h_source.html#l00032">mainwindow.h:33</a></div></div>
+<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">The MainWindow class.</div><div class="ttdef"><b>Definition</b> <a href="App_2Client_2mainwindow_8h_source.html#l00033">mainwindow.h:34</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer">
-<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<a href="mailto:kl222@126.com" >Author: Kang Lin (kl222@126.com)</a>
 <p/>
-<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+<a href="https://github.com/KangLin/LunarCalendar">Copyright (c) Kang Lin Studios All Rights Reserved</a>
 </address>
 </body>
 </html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['设置全局变量_0',['设置全局变量',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Android.html#autotoc_md89',1,'']]]
+  ['视频_0',['视频',['../md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html#autotoc_md320',1,'']]]
 ];

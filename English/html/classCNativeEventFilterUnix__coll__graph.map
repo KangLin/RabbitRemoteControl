@@ -1,0 +1,14 @@
+<map id="CNativeEventFilterUnix" name="CNativeEventFilterUnix">
+<area shape="rect" id="Node000001" title=" " alt="" coords="39,331,213,356"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,243,204,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,281,126,329,120,331,108,282"/>
+<area shape="rect" id="Node000003" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="229,243,367,268"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,277,151,333,148,328,262,272"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="226,80,325,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="281,119,289,180,299,242,293,243,283,180,276,119"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="297,155,440,180"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="303,112,355,152,352,156,299,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="238,5,313,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,45,278,80,273,80,273,45"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="353,192,310,244,306,240,349,189"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['库_0',['库',['../group__LIBAPI.html',1,'']]]
+  ['应用程序接口_0',['应用程序接口',['../group__APP__API.html',1,'']]]
 ];

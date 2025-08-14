@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/ParameterCompone/ParameterRecordUI.cpp 源文件</title>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/ParameterRecordUI.cpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_f1a7097209429bff11468b0b24730d31.html">ParameterCompone</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_9969bbf38046c339398142ac3b7518a1.html">ParameterCompone</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -165,7 +165,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    ui-&gt;gbVideo-&gt;setChecked(m_pParameters-&gt;GetEnableVideo());</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    ui-&gt;gbAudio-&gt;setChecked(m_pParameters-&gt;GetEnableAudio());</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    ui-&gt;leFolder-&gt;setText(m_pParameters-&gt;GetPath());</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    ui-&gt;leFolder-&gt;setText(m_pParameters-&gt;GetVideoPath());</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#if HAVE_QT6_MULTIMEDIA</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">int</span> nIndex = -1;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    nIndex = ui-&gt;cmbFileFormat-&gt;findData((<span class="keywordtype">int</span>)m_pParameters-&gt;GetFileFormat());</div>
@@ -210,13 +210,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    m_pParameters-&gt;SetEnableVideo(ui-&gt;gbVideo-&gt;isChecked());</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    m_pParameters-&gt;SetEnableAudio(ui-&gt;gbAudio-&gt;isChecked());</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    m_pParameters-&gt;SetPath(ui-&gt;leFolder-&gt;text());</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    QString szFile = m_pParameters-&gt;GetPath()</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    m_pParameters-&gt;SetVideoPath(ui-&gt;leFolder-&gt;text());</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    QString szFile = m_pParameters-&gt;GetVideoPath()</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                     + QDir::separator()</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                     + QDateTime::currentDateTime().toLocalTime()</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                           .toString(<span class="stringliteral">&quot;yyyy_MM_dd_hh_mm_ss_zzz&quot;</span>);</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    m_pParameters-&gt;SetImageFile(szFile + <span class="stringliteral">&quot;.png&quot;</span>);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    m_pParameters-&gt;SetFile(szFile);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    m_pParameters-&gt;SetVideoFile(szFile);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#if HAVE_QT6_MULTIMEDIA</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">int</span> nData = ui-&gt;cmbFileFormat-&gt;currentData().toInt();</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    m_pParameters-&gt;SetFileFormat((QMediaFormat::FileFormat)nData);</div>
@@ -250,7 +250,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    QString szPath;</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    szPath = QFileDialog::getExistingDirectory(</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keyword">this</span>, tr(<span class="stringliteral">&quot;Open path&quot;</span>),</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        m_pParameters-&gt;GetPath());</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        m_pParameters-&gt;GetVideoPath());</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">if</span>(szPath.isEmpty())</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    ui-&gt;leFolder-&gt;setText(szPath);</div>
@@ -262,26 +262,31 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">if</span>(ui-&gt;cmbEncodingMode-&gt;itemData(index) == QMediaRecorder::ConstantQualityEncoding) {</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        ui-&gt;cmbQuality-&gt;setEnabled(<span class="keyword">true</span>);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        ui-&gt;dsbFrameRate-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        ui-&gt;sbSampleRate-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">if</span>(ui-&gt;dsbFrameRate-&gt;value() != 0)</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            ui-&gt;dsbFrameRate-&gt;setValue(0);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">if</span>(ui-&gt;sbSampleRate-&gt;value() != -1)</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            ui-&gt;sbSampleRate-&gt;setValue(-1);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        ui-&gt;cmbQuality-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        ui-&gt;dsbFrameRate-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        ui-&gt;sbSampleRate-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">if</span>(ui-&gt;dsbFrameRate-&gt;value() == 0)</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            ui-&gt;dsbFrameRate-&gt;setValue(24);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">if</span>(ui-&gt;sbSampleRate-&gt;value() == -1)</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            ui-&gt;sbSampleRate-&gt;setValue(8000);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    }</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        ui-&gt;dsbFrameRate-&gt;setToolTip(tr(<span class="stringliteral">&quot;&#39;Encoding mode&#39; is &#39;constant quality&#39;&quot;</span>));</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        ui-&gt;sbSampleRate-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        ui-&gt;sbSampleRate-&gt;setToolTip(tr(<span class="stringliteral">&quot;&#39;Encoding mode&#39; is &#39;constant quality&#39;&quot;</span>));</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">if</span>(ui-&gt;dsbFrameRate-&gt;value() != 0)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            ui-&gt;dsbFrameRate-&gt;setValue(0);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">if</span>(ui-&gt;sbSampleRate-&gt;value() != -1)</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            ui-&gt;sbSampleRate-&gt;setValue(-1);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        ui-&gt;cmbQuality-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        ui-&gt;dsbFrameRate-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        ui-&gt;dsbFrameRate-&gt;setToolTip(tr(<span class="stringliteral">&quot;A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.&quot;</span>) + <span class="stringliteral">&quot;\n&quot;</span> +</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                                     tr(<span class="stringliteral">&quot;If record remote desktop, recommended options: 24, 50, 60&quot;</span>));</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        ui-&gt;sbSampleRate-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        ui-&gt;sbSampleRate-&gt;setToolTip(tr(<span class="stringliteral">&quot;A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc&quot;</span>));</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">if</span>(ui-&gt;dsbFrameRate-&gt;value() == 0)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            ui-&gt;dsbFrameRate-&gt;setValue(24);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">if</span>(ui-&gt;sbSampleRate-&gt;value() == -1)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            ui-&gt;sbSampleRate-&gt;setValue(8000);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
 <div class="ttc" id="aclassCParameterRecordUI_html"><div class="ttname"><a href="classCParameterRecordUI.html">CParameterRecordUI</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterRecordUI_8h_source.html#l00013">ParameterRecordUI.h:14</a></div></div>
 <div class="ttc" id="aclassCParameterUI_html"><div class="ttname"><a href="classCParameterUI.html">CParameterUI</a></div><div class="ttdoc">参数界面接口</div><div class="ttdef"><b>Definition</b> <a href="ParameterUI_8h_source.html#l00014">ParameterUI.h:15</a></div></div>
-<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00168">Parameter.h:169</a></div></div>
+<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00208">Parameter.h:209</a></div></div>
 <div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition</b> <a href="FrmFullScreenToolBar_8h_source.html#l00014">FrmFullScreenToolBar.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->

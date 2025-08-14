@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -95,13 +95,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;freerdp/client/cliprdr.h&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;winpr/clipboard.h&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">class </span><a class="code hl_class" href="classCConnectFreeRDP.html">CConnectFreeRDP</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">class </span><a class="code hl_class" href="classCBackendFreeRDP.html">CBackendFreeRDP</a>;</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classCClipboardFreeRDP.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a> : <span class="keyword">public</span> QObject</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    Q_OBJECT</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a>(<a class="code hl_class" href="classCConnectFreeRDP.html">CConnectFreeRDP</a> *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a>(<a class="code hl_class" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *parent = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCClipboardFreeRDP.html">~CClipboardFreeRDP</a>();</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">int</span> Init(CliprdrClientContext *context, <span class="keywordtype">bool</span> bEnable);</div>
@@ -172,7 +172,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span> sigServerFileContentsRespose(UINT32 streamId, QByteArray&amp; data);</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_class" href="classCConnectFreeRDP.html">CConnectFreeRDP</a>* m_pConnect;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_class" href="classCBackendFreeRDP.html">CBackendFreeRDP</a>* m_pConnect;</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    CliprdrClientContext* m_pCliprdrClientContext;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">friend</span> <a class="code hl_class" href="classCClipboardMimeData.html">CClipboardMimeData</a>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    QList&lt;qint32&gt; m_lstClipboardMimeDataId;</div>
@@ -188,10 +188,10 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif </span><span class="comment">// CCLIPBOARDFREERDP_H</span></div>
+<div class="ttc" id="aclassCBackendFreeRDP_html"><div class="ttname"><a href="classCBackendFreeRDP.html">CBackendFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="BackendFreeRDP_8h_source.html#l00025">BackendFreeRDP.h:26</a></div></div>
 <div class="ttc" id="aclassCClipboardFreeRDP_html"><div class="ttname"><a href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="ClipboardFreeRDP_8h_source.html#l00015">ClipboardFreeRDP.h:16</a></div></div>
 <div class="ttc" id="aclassCClipboardFreeRDP_html_af885d0c7464037eb57df9269dff17d62"><div class="ttname"><a href="classCClipboardFreeRDP.html#af885d0c7464037eb57df9269dff17d62">CClipboardFreeRDP::sigServerFormatData</a></div><div class="ttdeci">void sigServerFormatData(const BYTE *pData, UINT32 nLen, UINT32 formatId)</div><div class="ttdoc">Notify clipboard get data from server</div></div>
 <div class="ttc" id="aclassCClipboardMimeData_html"><div class="ttname"><a href="classCClipboardMimeData.html">CClipboardMimeData</a></div><div class="ttdef"><b>Definition</b> <a href="ClipboardMimeData_8h_source.html#l00018">ClipboardMimeData.h:19</a></div></div>
-<div class="ttc" id="aclassCConnectFreeRDP_html"><div class="ttname"><a href="classCConnectFreeRDP.html">CConnectFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="ConnectFreeRDP_8h_source.html#l00025">ConnectFreeRDP.h:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
 <!-- start footer part -->

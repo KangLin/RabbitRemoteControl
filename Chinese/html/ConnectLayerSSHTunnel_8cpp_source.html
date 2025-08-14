@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.36</span>
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.37</span>
    </div>
   </td>
  </tr>
@@ -90,7 +90,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">static</span> Q_LOGGING_CATEGORY(log, <span class="stringliteral">&quot;FreeRDP.Connect.Layer.SSH&quot;</span>)</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><a class="code hl_class" href="classConnectLayerSSHTunnel.html">ConnectLayerSSHTunnel</a>::<a class="code hl_class" href="classConnectLayerSSHTunnel.html">ConnectLayerSSHTunnel</a>(<a class="code hl_class" href="classCConnectFreeRDP.html">CConnectFreeRDP</a> *connect)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><a class="code hl_class" href="classConnectLayerSSHTunnel.html">ConnectLayerSSHTunnel</a>::<a class="code hl_class" href="classConnectLayerSSHTunnel.html">ConnectLayerSSHTunnel</a>(<a class="code hl_class" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *connect)</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    : <a class="code hl_class" href="classCConnectLayer.html">CConnectLayer</a>{connect}</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    , m_pChannelSSH(<span class="keyword">nullptr</span>)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    , m_hSshSocket(<span class="keyword">nullptr</span>)</div>
@@ -106,10 +106,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">int</span> nRet = 0;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    m_pChannelSSH = <span class="keyword">new</span> <a class="code hl_class" href="classCChannelSSHTunnel.html">CChannelSSHTunnel</a>(</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        &amp;m_pParameter-&gt;m_Proxy.m_SSH, &amp;m_pParameter-&gt;m_Net, m_pConnect);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        &amp;m_pParameter-&gt;m_Proxy.m_SSH, &amp;m_pParameter-&gt;m_Net, m_pOperate);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">if</span>(!m_pChannelSSH)</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">bool</span> bRet = m_pChannelSSH-&gt;<a class="code hl_function" href="classCChannelSSHTunnel.html#a3418109b6493fb3e1bc7041638b689bb">open</a>(QIODevice::ReadWrite);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">bool</span> bRet = m_pChannelSSH-&gt;<a class="code hl_function" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">open</a>(QIODevice::ReadWrite);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span>(!bRet)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span>(SSH_INVALID_SOCKET == m_pChannelSSH-&gt;GetSocket()) {</div>
@@ -129,8 +129,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        QString szErr;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        szErr = tr(<span class="stringliteral">&quot;The server is empty, please input it&quot;</span>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        qCritical(log) &lt;&lt; szErr;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        emit m_pConnect-&gt;<a class="code hl_signal" href="classCConnect.html#a4b2aa2d4f48200519aec24987b0f8c82">sigShowMessageBox</a>(tr(<span class="stringliteral">&quot;Error&quot;</span>), szErr, QMessageBox::Critical);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        emit m_pConnect-&gt;<a class="code hl_signal" href="classCConnect.html#a049f5e9ab7f280e90baa7ca08187f17b">sigError</a>(-1, szErr.toStdString().c_str());</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        emit m_pOperate-&gt;<a class="code hl_signal" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a>(tr(<span class="stringliteral">&quot;Error&quot;</span>), szErr, QMessageBox::Critical);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        emit m_pOperate-&gt;<a class="code hl_signal" href="classCBackend.html#a67bf8156353fc085dbe5b5afaf3425cc">sigError</a>(-1, szErr.toStdString().c_str());</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
@@ -220,12 +220,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">//qDebug(log) &lt;&lt; Q_FUNC_INFO;</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span> m_hSshSocket;</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
-<div class="ttc" id="aclassCChannelSSHTunnel_html"><div class="ttname"><a href="classCChannelSSHTunnel.html">CChannelSSHTunnel</a></div><div class="ttdoc">SSH 隧道</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnel_8h_source.html#l00030">ChannelSSHTunnel.h:31</a></div></div>
-<div class="ttc" id="aclassCChannelSSHTunnel_html_a3418109b6493fb3e1bc7041638b689bb"><div class="ttname"><a href="classCChannelSSHTunnel.html#a3418109b6493fb3e1bc7041638b689bb">CChannelSSHTunnel::open</a></div><div class="ttdeci">virtual bool open(OpenMode mode) override</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnel_8cpp_source.html#l00095">ChannelSSHTunnel.cpp:95</a></div></div>
-<div class="ttc" id="aclassCConnectFreeRDP_html"><div class="ttname"><a href="classCConnectFreeRDP.html">CConnectFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="ConnectFreeRDP_8h_source.html#l00025">ConnectFreeRDP.h:26</a></div></div>
+<div class="ttc" id="aclassCBackendFreeRDP_html"><div class="ttname"><a href="classCBackendFreeRDP.html">CBackendFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="BackendFreeRDP_8h_source.html#l00025">BackendFreeRDP.h:26</a></div></div>
+<div class="ttc" id="aclassCBackend_html_a5e011ebbb8577c03f32fbbba33e759d8"><div class="ttname"><a href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">CBackend::sigShowMessageBox</a></div><div class="ttdeci">void sigShowMessageBox(const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</div><div class="ttdoc">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程</div></div>
+<div class="ttc" id="aclassCBackend_html_a67bf8156353fc085dbe5b5afaf3425cc"><div class="ttname"><a href="classCBackend.html#a67bf8156353fc085dbe5b5afaf3425cc">CBackend::sigError</a></div><div class="ttdeci">void sigError(const int nError, const QString &amp;szError=QString())</div><div class="ttdoc">当有错误产生时触发</div></div>
+<div class="ttc" id="aclassCChannelSSHTunnel_html"><div class="ttname"><a href="classCChannelSSHTunnel.html">CChannelSSHTunnel</a></div><div class="ttdoc">SSH 隧道</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSHTunnel_8h_source.html#l00022">ChannelSSHTunnel.h:23</a></div></div>
+<div class="ttc" id="aclassCChannelSSH_html_ab7059859f5ea9058734f2573525b9962"><div class="ttname"><a href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">CChannelSSH::open</a></div><div class="ttdeci">virtual bool open(OpenMode mode) override</div><div class="ttdef"><b>Definition</b> <a href="ChannelSSH_8cpp_source.html#l00060">ChannelSSH.cpp:60</a></div></div>
 <div class="ttc" id="aclassCConnectLayer_html"><div class="ttname"><a href="classCConnectLayer.html">CConnectLayer</a></div><div class="ttdoc">The connect layer class</div><div class="ttdef"><b>Definition</b> <a href="ConnectLayer_8h_source.html#l00017">ConnectLayer.h:18</a></div></div>
-<div class="ttc" id="aclassCConnect_html_a049f5e9ab7f280e90baa7ca08187f17b"><div class="ttname"><a href="classCConnect.html#a049f5e9ab7f280e90baa7ca08187f17b">CConnect::sigError</a></div><div class="ttdeci">void sigError(const int nError, const QString &amp;szError=QString())</div><div class="ttdoc">当有错误产生时触发</div></div>
-<div class="ttc" id="aclassCConnect_html_a4b2aa2d4f48200519aec24987b0f8c82"><div class="ttname"><a href="classCConnect.html#a4b2aa2d4f48200519aec24987b0f8c82">CConnect::sigShowMessageBox</a></div><div class="ttdeci">void sigShowMessageBox(const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</div><div class="ttdoc">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程</div></div>
 <div class="ttc" id="aclassConnectLayerSSHTunnel_html"><div class="ttname"><a href="classConnectLayerSSHTunnel.html">ConnectLayerSSHTunnel</a></div><div class="ttdef"><b>Definition</b> <a href="ConnectLayerSSHTunnel_8h_source.html#l00009">ConnectLayerSSHTunnel.h:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.16-->
