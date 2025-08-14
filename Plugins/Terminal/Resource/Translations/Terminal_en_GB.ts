@@ -274,12 +274,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="175"/>
+        <location filename="../../Terminal.cpp" line="174"/>
+        <source>Start commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="179"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="178"/>
+        <location filename="../../Terminal.cpp" line="182"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

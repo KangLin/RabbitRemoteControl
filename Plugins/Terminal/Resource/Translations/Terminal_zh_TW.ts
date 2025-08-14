@@ -61,7 +61,7 @@
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="152"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="64"/>
@@ -246,42 +246,47 @@
     <message>
         <location filename="../../Terminal.cpp" line="153"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <location filename="../../Terminal.cpp" line="156"/>
         <source>Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <location filename="../../Terminal.cpp" line="159"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>協議：</translation>
     </message>
     <message>
         <location filename="../../Terminal.cpp" line="168"/>
         <source>Shell name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Shell 名稱：</translation>
     </message>
     <message>
         <location filename="../../Terminal.cpp" line="170"/>
         <source>Shell path: </source>
-        <translation type="unfinished"></translation>
+        <translation>Shell 路徑：</translation>
     </message>
     <message>
         <location filename="../../Terminal.cpp" line="172"/>
         <source>Shell parameters: </source>
-        <translation type="unfinished"></translation>
+        <translation>Shell 參數：</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="175"/>
+        <location filename="../../Terminal.cpp" line="174"/>
+        <source>Start commands:</source>
+        <translation>開始命令：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal.cpp" line="179"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="178"/>
+        <location filename="../../Terminal.cpp" line="182"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>描述：</translation>
     </message>
 </context>
 </TS>

@@ -2,29 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="uk_UA">
 <context>
-    <name>CChannel</name>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="149"/>
-        <source>B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="151"/>
-        <source>KB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="153"/>
-        <source>MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="155"/>
-        <source> GB</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CChannelSSH</name>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
@@ -303,6 +280,26 @@
     </message>
 </context>
 <context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CManager</name>
     <message>
         <location filename="../../Manager.cpp" line="115"/>
@@ -353,37 +350,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="128"/>
+        <location filename="../../Operate.cpp" line="133"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="130"/>
+        <location filename="../../Operate.cpp" line="135"/>
         <source>Secure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="132"/>
+        <location filename="../../Operate.cpp" line="137"/>
         <source>Non-secure authentication over a secure channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="134"/>
+        <location filename="../../Operate.cpp" line="139"/>
         <source>Channel is secure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="136"/>
+        <location filename="../../Operate.cpp" line="141"/>
         <source>There is security verification, not a secure channel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="138"/>
+        <location filename="../../Operate.cpp" line="143"/>
         <source>Risky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="233"/>
+        <location filename="../../Operate.cpp" line="238"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -600,7 +597,7 @@
 <context>
     <name>CParameterNet</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
+        <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
         <source>The host is empty. please set it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,7 +625,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="45"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="46"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,7 +634,7 @@
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="12"/>
         <source>Plugin</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,7 +655,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
         <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
@@ -728,22 +725,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="89"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="90"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="93"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="96"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="99"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation type="unfinished"></translation>
     </message>
@@ -751,42 +748,42 @@
 <context>
     <name>CParameterProxy</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
         <source>System settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
         <source>Sockes V5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
         <source>Http</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="19"/>
         <source>SSH tunnel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="26"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="27"/>
         <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="33"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="34"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="40"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="41"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -794,7 +791,7 @@
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="29"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -804,7 +801,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="20"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -851,8 +848,8 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="191"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -897,45 +894,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="35"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="193"/>
         <source>If record remote desktop, recommended options: 24, 50, 60</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="194"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="41"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="195"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="56"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="168"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
         <source>Open path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="181"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="183"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="182"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="184"/>
         <source>&apos;Encoding mode&apos; is &apos;constant quality&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -976,12 +973,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="48"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="49"/>
         <source>Save packet capture file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="51"/>
         <source>Packet capture (*.pcap *.cap)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1119,48 +1116,48 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="50"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
         <source>Username and password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
         <source>Public key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
         <source>Password with X509 none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Password with X509</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>Username and password with X509 none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
         <source>Username and password with X509</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="64"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
         <source>Passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1184,7 +1181,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
         <source>Input user name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1195,8 +1192,8 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="159"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1204,8 +1201,8 @@
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1216,8 +1213,8 @@
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1270,7 +1267,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="260"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1285,55 +1282,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
         <source>Please input the public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
         <source>Please input the private key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="19"/>
         <source>Please input the passphrase of private key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
         <source>View password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="161"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="162"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="184"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="173"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="185"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="262"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
         <source>Open X509 certificate authentication file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="293"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="294"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1387,6 +1384,29 @@
     <message>
         <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CStats</name>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="12"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="14"/>
+        <source>KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="16"/>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
+        <source> GB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

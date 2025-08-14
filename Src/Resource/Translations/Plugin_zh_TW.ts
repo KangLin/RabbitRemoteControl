@@ -2,29 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>CChannel</name>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="149"/>
-        <source>B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="151"/>
-        <source>KB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="153"/>
-        <source>MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Channel/Channel.cpp" line="155"/>
-        <source> GB</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CChannelSSH</name>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
@@ -305,19 +282,22 @@
 <context>
     <name>CHookWindows</name>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="vanished">捕獲系統快捷鍵需要管理員權限。
+        <translation>捕獲系統快捷鍵需要管理員權限。
 需要以管理員權限重啟程序嗎？</translation>
     </message>
     <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="vanished">總是顯示</translation>
+        <translation>總是顯示</translation>
     </message>
 </context>
 <context>
@@ -371,37 +351,37 @@ Restart program by administrator?</source>
         <translation>設置 </translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="128"/>
+        <location filename="../../Operate.cpp" line="133"/>
         <source>No</source>
         <translation>不安全</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="130"/>
+        <location filename="../../Operate.cpp" line="135"/>
         <source>Secure</source>
         <translation>安全的</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="132"/>
+        <location filename="../../Operate.cpp" line="137"/>
         <source>Non-secure authentication over a secure channel</source>
         <translation>在安全通道之上的非安全驗證</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="134"/>
+        <location filename="../../Operate.cpp" line="139"/>
         <source>Channel is secure.</source>
         <translation>通道是安全的。</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="136"/>
+        <location filename="../../Operate.cpp" line="141"/>
         <source>There is security verification, not a secure channel.</source>
         <translation>安全驗證，非安全通道。</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="138"/>
+        <location filename="../../Operate.cpp" line="143"/>
         <source>Risky</source>
         <translation>危險的</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="233"/>
+        <location filename="../../Operate.cpp" line="238"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
@@ -634,7 +614,7 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterNet</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
+        <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
         <source>The host is empty. please set it</source>
         <translation>主機是空，請設置它。</translation>
     </message>
@@ -662,7 +642,7 @@ Restart program by administrator?</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="45"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="46"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
@@ -671,7 +651,7 @@ Restart program by administrator?</source>
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="12"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
@@ -692,7 +672,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理員權限</translation>
     </message>
@@ -762,22 +742,22 @@ Restart program by administrator?</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="89"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="90"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="93"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="96"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="99"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
@@ -785,42 +765,42 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterProxy</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
         <source>System settings</source>
         <translation>系統設置</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
         <source>Sockes V5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
         <source>Http</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="19"/>
         <source>SSH tunnel</source>
         <translation>SSH 隧道</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="26"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="27"/>
         <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
         <translation>&quot;代理-&gt;Http&quot;中主機為空。請設置。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="33"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="34"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
         <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="40"/>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="41"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
         <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
     </message>
@@ -828,7 +808,7 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="29"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>
@@ -853,7 +833,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="20"/>
         <source>Record</source>
         <translation>錄製</translation>
     </message>
@@ -900,8 +880,8 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="33"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="191"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
         <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
     </message>
@@ -946,45 +926,45 @@ Restart program by administrator?</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="35"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="193"/>
         <source>If record remote desktop, recommended options: 24, 50, 60</source>
         <translation>如果錄製遠程桌面,建議選擇: 24, 50, 60</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="194"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="41"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="195"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
         <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。選項：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="56"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
         <translation>編碼的目標是具有恒定的質量，調整比特率以適應。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation>編碼將嘗試保持平均比特率設置，但會根據需要使用或多或少。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
         <translation>首先處理媒體以確定特征，然後第二次處理，將更多位分配給需要它的區域。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="168"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
         <source>Open path</source>
         <translation>打開文件夾</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="181"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="183"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="182"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="184"/>
         <source>&apos;Encoding mode&apos; is &apos;constant quality&apos;</source>
         <translation>&apos;編碼模式&apos;是&apos;constant quality&apos;</translation>
     </message>
@@ -1025,12 +1005,12 @@ Restart program by administrator?</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="48"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="49"/>
         <source>Save packet capture file</source>
         <translation>保存包捕獲文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="50"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="51"/>
         <source>Packet capture (*.pcap *.cap)</source>
         <translation>包捕獲文件(*.pcap *.cap)</translation>
     </message>
@@ -1168,48 +1148,48 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="50"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
         <source>Username and password</source>
         <translation>用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
         <source>Public key</source>
         <translation>公鑰</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
         <source>Password with X509 none</source>
         <translation>密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Password with X509</source>
         <translation>密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>Username and password with X509 none</source>
         <translation>用戶名和密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
         <source>Username and password with X509</source>
         <translation>用戶名和密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="64"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
         <source>Passphrase</source>
         <translation>密碼</translation>
     </message>
@@ -1233,7 +1213,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="260"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
         <source>Input passphrase</source>
         <translation>輸入密碼</translation>
     </message>
@@ -1244,7 +1224,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
         <source>Input user name</source>
         <translation>輸入用戶名：</translation>
     </message>
@@ -1255,8 +1235,8 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="159"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
@@ -1264,8 +1244,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation>菜單: 工具→設置→插件→密碼→允許查看密碼</translation>
     </message>
@@ -1276,8 +1256,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation>菜單：工具→設置→插件→密碼→允許保存密碼</translation>
     </message>
@@ -1334,55 +1314,55 @@ Restart program by administrator?</source>
         <translation>用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
         <source>Please input the public key file</source>
         <translation>請輸入公鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
         <source>Please input the private key file</source>
         <translation>請輸入私鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="19"/>
         <source>Please input the passphrase of private key file</source>
         <translation>請輸入私鑰文件的密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="59"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="70"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="73"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
         <source>View password</source>
         <translation>查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="161"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="162"/>
         <source>Please checked save password to enable</source>
         <translation>請選中保存密碼按鈕</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="172"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="184"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="173"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="185"/>
         <source>Open public key file</source>
         <translation>打開公鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="262"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
         <source>Please checked save passphrase to enable</source>
         <translation>請選中保存密碼，允許輸入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="281"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打開 X509 認證證書文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="293"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="294"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation>打開 X509 證書吊銷列表文件</translation>
     </message>
@@ -1512,6 +1492,29 @@ Restart program by administrator?</source>
         <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
         <translation>錯誤</translation>
+    </message>
+</context>
+<context>
+    <name>CStats</name>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="12"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="14"/>
+        <source>KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="16"/>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
+        <source> GB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

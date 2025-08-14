@@ -29,53 +29,53 @@
         <translation>波特率</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.ui" line="105"/>
+        <location filename="../../DlgSettingsSerialPort.ui" line="108"/>
         <source>Flow control:</source>
         <translation>流量控製：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.ui" line="126"/>
+        <location filename="../../DlgSettingsSerialPort.ui" line="129"/>
         <source>Stop bits:</source>
         <translation>停止位：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.ui" line="147"/>
+        <location filename="../../DlgSettingsSerialPort.ui" line="150"/>
         <source>Serial port:</source>
         <translation>串口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="86"/>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="110"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="87"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="111"/>
         <source>None</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="87"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="88"/>
         <source>Even</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="88"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="89"/>
         <source>Odd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="89"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="90"/>
         <source>Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="90"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="91"/>
         <source>Mark</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="111"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="112"/>
         <source>HardWare</source>
         <translation>硬件</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSerialPort.cpp" line="112"/>
+        <location filename="../../DlgSettingsSerialPort.cpp" line="113"/>
         <source>SoftWare</source>
         <translation>軟件</translation>
     </message>
@@ -83,37 +83,37 @@
 <context>
     <name>COperateSerialPort</name>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="83"/>
+        <location filename="../../OperateSerialPort.cpp" line="85"/>
         <source>Open Serial port [%1] fail errno[%2]: %3</source>
         <translation>打開串口[%1]失敗，錯誤號[%2]:%3</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="144"/>
+        <location filename="../../OperateSerialPort.cpp" line="148"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="147"/>
+        <location filename="../../OperateSerialPort.cpp" line="151"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="150"/>
+        <location filename="../../OperateSerialPort.cpp" line="154"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="159"/>
+        <location filename="../../OperateSerialPort.cpp" line="163"/>
         <source>Serial port: </source>
         <translation>串口：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="162"/>
+        <location filename="../../OperateSerialPort.cpp" line="166"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="165"/>
+        <location filename="../../OperateSerialPort.cpp" line="169"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

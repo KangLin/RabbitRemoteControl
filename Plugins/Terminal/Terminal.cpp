@@ -173,7 +173,7 @@ const QString CTerminal::Description()
     if(m_Parameters.GetCommands().size() > 0) {
         szDescription += tr("Start commands:") + "\n";
         foreach(auto cmd, m_Parameters.GetCommands())
-            szDescription += "  " + cmd;
+            szDescription += "  " + cmd + "\n";
     }
     if(GetSecurityLevel() != SecurityLevel::No)
         szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
