@@ -70,6 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
+    ui->menubar->show();
 
     //setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
