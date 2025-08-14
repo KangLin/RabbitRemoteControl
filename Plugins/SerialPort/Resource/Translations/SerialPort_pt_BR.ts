@@ -83,37 +83,37 @@
 <context>
     <name>COperateSerialPort</name>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="82"/>
+        <location filename="../../OperateSerialPort.cpp" line="83"/>
         <source>Open Serial port [%1] fail errno[%2]: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="132"/>
+        <location filename="../../OperateSerialPort.cpp" line="144"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="135"/>
+        <location filename="../../OperateSerialPort.cpp" line="147"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="138"/>
+        <location filename="../../OperateSerialPort.cpp" line="150"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="147"/>
+        <location filename="../../OperateSerialPort.cpp" line="159"/>
         <source>Serial port: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="150"/>
+        <location filename="../../OperateSerialPort.cpp" line="162"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="153"/>
+        <location filename="../../OperateSerialPort.cpp" line="165"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

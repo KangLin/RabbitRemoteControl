@@ -52,22 +52,22 @@
     <message>
         <location filename="../../DlgSettingsSerialPort.cpp" line="87"/>
         <source>Even</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSerialPort.cpp" line="88"/>
         <source>Odd</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSerialPort.cpp" line="89"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSerialPort.cpp" line="90"/>
         <source>Mark</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSerialPort.cpp" line="111"/>
@@ -83,39 +83,39 @@
 <context>
     <name>COperateSerialPort</name>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="82"/>
+        <location filename="../../OperateSerialPort.cpp" line="83"/>
         <source>Open Serial port [%1] fail errno[%2]: %3</source>
         <translation>打开串口[%1]失败，错误号[%2]:%3</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="132"/>
+        <location filename="../../OperateSerialPort.cpp" line="144"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateSerialPort.cpp" line="135"/>
-        <source>Type: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateSerialPort.cpp" line="138"/>
-        <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../../OperateSerialPort.cpp" line="147"/>
-        <source>Serial port: </source>
-        <translation type="unfinished"></translation>
+        <source>Type: </source>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../../OperateSerialPort.cpp" line="150"/>
-        <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <source>Protocol: </source>
+        <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="153"/>
+        <location filename="../../OperateSerialPort.cpp" line="159"/>
+        <source>Serial port: </source>
+        <translation>串口：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="162"/>
+        <source>Security level: </source>
+        <translation>安全级别：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateSerialPort.cpp" line="165"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>描述：</translation>
     </message>
 </context>
 <context>

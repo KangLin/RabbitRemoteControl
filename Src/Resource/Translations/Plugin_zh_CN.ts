@@ -949,7 +949,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>If record remote desktop, recommended options: 24, 50, 60</source>
-        <translation>如果錄製遠程桌面,建議選擇: 24, 50, 60</translation>
+        <translation>如果录制远程桌面，建议选择: 24, 50, 60</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="40"/>
