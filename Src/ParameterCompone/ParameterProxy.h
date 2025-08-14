@@ -1,5 +1,4 @@
-#ifndef CPARAMETERPROXY_H
-#define CPARAMETERPROXY_H
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 #include "ParameterSSH.h"
@@ -49,5 +48,3 @@ private:
 
     QMap<TYPE, QString> m_TypeName;
 };
-
-#endif // CPARAMETERPROXY_H

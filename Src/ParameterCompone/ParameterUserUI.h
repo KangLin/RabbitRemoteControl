@@ -1,5 +1,6 @@
-#ifndef PARAMETERUSERUI_H
-#define PARAMETERUSERUI_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QPushButton>
 #include <QWidget>
@@ -61,5 +62,3 @@ private:
     Ui::CParameterUserUI *ui;
     CParameterUser* m_pUser;
 };
-
-#endif // PARAMETERUSERUI_H

@@ -1,5 +1,6 @@
-#ifndef CPARAMETERPROXYUI_H
-#define CPARAMETERPROXYUI_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include <QLabel>
 #include <QComboBox>
@@ -51,5 +52,3 @@ private:
     
     CParameterProxy* m_Proxy;
 };
-
-#endif // CPARAMETERPROXYUI_H

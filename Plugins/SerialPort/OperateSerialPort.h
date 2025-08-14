@@ -4,6 +4,7 @@
 
 #include "OperateTerminal.h"
 #include "ParameterSerialPort.h"
+#include "Stats.h"
 
 class COperateSerialPort : public COperateTerminal
 {
@@ -11,6 +12,10 @@ class COperateSerialPort : public COperateTerminal
 public:
     explicit COperateSerialPort(CPlugin *plugin);
     virtual ~COperateSerialPort();
+
+    [[nodiscard]] const QString Id() override;
+    [[nodiscard]] const QString Name() override;
+    [[nodiscard]] const QString Description() override;
 
     virtual int Start() override;
     virtual int Stop() override;
@@ -29,11 +34,5 @@ private Q_SLOTS:
 private:
     CParameterSerialPort m_Parameter;
     QSerialPort m_SerialPort;
-    
-    // COperate interface
-public:
-    virtual const QString Id() override;
-    virtual const QString Name() override;
-    virtual const QString Description() override;
 };
 

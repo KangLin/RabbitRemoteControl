@@ -1,6 +1,6 @@
-#ifndef PARAMETERNETUI_H
-#define PARAMETERNETUI_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QWidget>
 #include "ParameterNet.h"
 #include "ParameterUI.h"
@@ -54,5 +54,3 @@ private:
     Ui::CParameterNetUI *ui;
     CParameterNet* m_pNet;
 };
-
-#endif // PARAMETERNETUI_H

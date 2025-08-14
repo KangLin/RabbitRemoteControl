@@ -65,7 +65,7 @@ QVariant CRemoteFileSystem::Data(int column)
         return GetName();
     }
     case ColumnValue::Size: {
-        return CChannel::GetSize(GetSize());
+        return CStats::Convertbytes(GetSize());
     }
     case ColumnValue::Type: {
         if(GetType() & TYPE::FILE)

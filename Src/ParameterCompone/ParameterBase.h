@@ -1,5 +1,4 @@
-#ifndef CPARAMETERBASE_H
-#define CPARAMETERBASE_H
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 #include "ParameterNet.h"
@@ -137,5 +136,3 @@ protected:
     // CParameterOperate interface
     virtual void slotSetGlobalParameters() override;
 };
-
-#endif // CPARAMETERBASE_H

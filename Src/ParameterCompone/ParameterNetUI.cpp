@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 #include "ParameterNetUI.h"
 #include "ui_ParameterNetUI.h"
 #include <QLoggingCategory>

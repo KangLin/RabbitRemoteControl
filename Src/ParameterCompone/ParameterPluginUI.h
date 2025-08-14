@@ -1,6 +1,6 @@
-#ifndef FRMPARAMETERVIEWER_H
-#define FRMPARAMETERVIEWER_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include "ParameterUI.h"
 #include "ParameterPlugin.h"
 
@@ -29,5 +29,3 @@ public:
     virtual int SetParameter(CParameter *pParameter) override;
     virtual int Accept() override;
 };
-
-#endif // FRMPARAMETERVIEWER_H

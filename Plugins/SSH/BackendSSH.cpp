@@ -78,8 +78,11 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
         }
         if(m_pTerminal && nRet > 0) {
             QByteArray data(buf, nRet);
-            if(m_pOperate)
+            if(m_pOperate) {
                 emit m_pOperate->sigReceiveData(data);
+                if(m_pOperate->GetStats())
+                    m_pOperate->GetStats()->AddReceives(nRet);
+            }
         } else
             qCritical(log) << "The m_pTerminal is nullptr or nRet <= 0";
         //qDebug(log) << "Write data to QTermWidget: " << nRet << nLen;
@@ -91,6 +94,8 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
                     this, [&](const char* data, int len){
         QEventTerminal* d = new QEventTerminal((char*)data, len);
         QCoreApplication::postEvent(this, d);
+        if(m_pOperate && m_pOperate->GetStats())
+            m_pOperate->GetStats()->AddSends(len);
         m_pChannelSSH->WakeUp();
     }, Qt::DirectConnection);
     Q_ASSERT(check);

@@ -1,6 +1,6 @@
-#ifndef CPARAMETERNET_H
-#define CPARAMETERNET_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QObject>
 
 #include "ParameterUser.h"
@@ -58,5 +58,3 @@ public:
 private:
     QString m_szPrompt;    
 };
-
-#endif // CPARAMETERNET_H

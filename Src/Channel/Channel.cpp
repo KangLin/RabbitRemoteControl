@@ -141,17 +141,3 @@ int CChannel::RemoveTranslation()
         RabbitCommon::CTools::Instance()->RemoveTranslator(g_Translator);
     return 0;
 }
-
-QString CChannel::GetSize(qint64 size)
-{
-    QString szSize;
-    if(1024 >= size)
-        szSize = QString::number(size) + " " + tr("B");
-    else if(1024* 1024 >= size)
-        szSize = QString::number(size / 1024.0, 'f', 2) + " " + tr("KB");
-    else if(1024 * 1024 * 1024 >= size)
-        szSize = QString::number(size / (1024.0 * 1024.0), 'f', 2) + " " + tr("MB");
-    else
-        szSize = QString::number(size / (1024.0 * 1024.0 * 1024.0), 'f', 2) + " " + tr(" GB");
-    return szSize;
-}

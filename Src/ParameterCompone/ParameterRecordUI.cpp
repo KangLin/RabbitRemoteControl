@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 #include <QDir>
 #include <QDateTime>
 #include <QFileDialog>

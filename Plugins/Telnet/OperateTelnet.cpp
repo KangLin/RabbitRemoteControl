@@ -76,6 +76,8 @@ int COperateTelnet::Start()
         QByteArray data(buf, len);
         //qDebug(log) << "Send data:" << data << data.toHex(':');
         m_Telnet.sendData(data);
+        if(GetStats())
+            GetStats()->AddSends(len);
     });
     Q_ASSERT(check);
     check = connect(&m_Telnet, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
@@ -202,6 +204,9 @@ void COperateTelnet::slotNewData(const char *buf, int len)
     //QByteArray data(buf, len);
     //qDebug(log) << "Receive data:" << data << data.toHex(':');
     WriteTerminal(buf, len);
+    
+    if(GetStats())
+        GetStats()->AddReceives(len);
 
     if(!m_bLogin) {
         QRegularExpression reLogin(m_Parameters.GetLogin(), QRegularExpression::CaseInsensitiveOption);

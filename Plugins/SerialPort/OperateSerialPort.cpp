@@ -38,7 +38,9 @@ int COperateSerialPort::Start()
                         if(!m_SerialPort.isOpen()) return;
                         QByteArray data(buf, len);
                         //qDebug(log) << "Send data:" << data << data.toHex(':');
-                        m_SerialPort.write(data);
+                        qint64 nLen = m_SerialPort.write(data);
+                        if(GetStats())
+                            GetStats()->AddSends(nLen);
                     });
     Q_ASSERT(check);
     check = connect(&m_SerialPort, SIGNAL(readyRead()),
@@ -108,6 +110,8 @@ void COperateSerialPort::slotReadyRead()
     if(!m_SerialPort.isOpen())
         return;
     auto data = m_SerialPort.readAll();
+    if(GetStats())
+        GetStats()->AddReceives(data.length());
     WriteTerminal(data.data(), data.length());
 }
 

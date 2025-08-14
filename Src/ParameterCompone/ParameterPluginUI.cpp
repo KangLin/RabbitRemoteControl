@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 #include "ParameterPluginUI.h"
 #include "ui_ParameterPluginUI.h"
 #include <RabbitCommonTools.h>

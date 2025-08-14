@@ -1,5 +1,4 @@
-#ifndef PARAMETERRECORDUI_H
-#define PARAMETERRECORDUI_H
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
@@ -29,5 +28,3 @@ private:
     Ui::CParameterRecordUI *ui;
     CParameterRecord* m_pParameters;
 };
-
-#endif // PARAMETERRECORDUI_H

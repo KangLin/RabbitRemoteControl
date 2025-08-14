@@ -1,5 +1,6 @@
-#ifndef PARAMETERSSHTUNNELUI_H
-#define PARAMETERSSHTUNNELUI_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #pragma once
 
@@ -30,5 +31,3 @@ public:
 private slots:
     void on_pbBrowser_clicked();
 };
-
-#endif // PARAMETERSSHTUNNELUI_H

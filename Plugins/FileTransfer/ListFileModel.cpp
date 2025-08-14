@@ -6,6 +6,7 @@
 #include <QLocale>
 #include "ListFileModel.h"
 #include "ChannelSFTP.h"
+#include "Stats.h"
 
 static Q_LOGGING_CATEGORY(log, "FileTransfer.ListFileModel")
 
@@ -83,7 +84,7 @@ QVariant CFileTransfer::Data(int column, int role)
             szData = GetRemoteFile();
             break;
         case ColumnValue::FileSize: {
-            szData = CChannel::GetSize(GetTransferSize()) + "/" + CChannel::GetSize(GetFileSize());
+            szData = CStats::Convertbytes(GetTransferSize()) + "/" + CStats::Convertbytes(GetFileSize());
             break;
         }
         case ColumnValue::Direction:
@@ -96,7 +97,7 @@ QVariant CFileTransfer::Data(int column, int role)
             szData = GetPriority();
             break;
         case ColumnValue::Speed:
-            szData = CChannel::GetSize(GetSpeed());
+            szData = CStats::Convertbytes(GetSpeed());
             break;
         case ColumnValue::Time:
             szData = GetFinishTime();

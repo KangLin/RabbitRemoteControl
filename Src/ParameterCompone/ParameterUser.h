@@ -1,5 +1,6 @@
-#ifndef CPARAMETERUSERPASSWORD_H
-#define CPARAMETERUSERPASSWORD_H
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
 
 #include "ParameterOperate.h"
 
@@ -119,5 +120,3 @@ private:
     
     QMap<TYPE, QString> m_TypeName;
 };
-
-#endif // CPARAMETERUSERPASSWORD_H

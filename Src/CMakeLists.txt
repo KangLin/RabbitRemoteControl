@@ -51,6 +51,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterRecordUI.h
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
+    ParameterCompone/Stats.h
     )
 
 list(APPEND PLUGIN_HEADER_FILES
@@ -89,6 +90,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterRecordUI.cpp
     ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
+    ParameterCompone/Stats.cpp
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp

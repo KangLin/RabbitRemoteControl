@@ -7,6 +7,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include "ParameterPlugin.h"
+#include "Stats.h"
 
 class CPlugin;
 
@@ -113,12 +114,14 @@ public:
      */
     [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
+    [[nodiscard]] virtual CStats* GetStats();
+
     enum class SecurityLevel {
         No,                       // No the function
         Secure,                   // Both authentication and channels are secure. Green
         NonSecureAuthentication,  // Non-secure authentication over a secure channel. Blue
         SecureChannel,            // Channel is secure. Yellow
-        Normal = SecureChannel, 
+        Normal = SecureChannel,
         SecureAuthentication,     // There is security verification, not a secure channel. Orange
         Risky                     // Red
     };
@@ -413,4 +416,5 @@ private Q_SLOTS:
 
 private:
     CPlugin* m_pPlugin;
+    CStats m_Stats;
 };

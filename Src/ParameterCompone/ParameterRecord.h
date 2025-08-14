@@ -1,8 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef PARAMETERRECORD_H
-#define PARAMETERRECORD_H
-
 #pragma once
 
 #if HAVE_QT6_MULTIMEDIA
@@ -116,4 +113,3 @@ PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecor
 PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
 PLUGIN_EXPORT CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder);
 
-#endif // PARAMETERRECORD_H

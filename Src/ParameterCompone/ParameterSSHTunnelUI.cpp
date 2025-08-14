@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 #include <QFileDialog>
 #include <QStandardPaths>
 #include "ParameterSSHTunnelUI.h"

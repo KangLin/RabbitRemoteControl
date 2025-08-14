@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 #include "ParameterUserUI.h"
 #include "ui_ParameterUserUI.h"
 #include "QFileDialog"
