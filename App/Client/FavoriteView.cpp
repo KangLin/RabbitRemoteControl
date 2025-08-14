@@ -290,7 +290,7 @@ void CFavoriteView::slotMenu()
         m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
 
     m_pMenu->addSeparator();
-    m_pMenu->addAction(tr("Add to favorite"), this, SIGNAL(sigFavorite()));
+    m_pMenu->addAction(tr("Add current operate to favorite"), this, SIGNAL(sigFavorite()));
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)

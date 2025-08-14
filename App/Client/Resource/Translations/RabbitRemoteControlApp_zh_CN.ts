@@ -42,8 +42,8 @@
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="293"/>
-        <source>Add to favorite</source>
-        <translation>增加到收藏夹</translation>
+        <source>Add current operate to favorite</source>
+        <translation>增加当前操作到收藏夹</translation>
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="336"/>

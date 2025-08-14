@@ -42,7 +42,7 @@
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="293"/>
-        <source>Add to favorite</source>
+        <source>Add current operate to favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
