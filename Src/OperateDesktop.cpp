@@ -90,7 +90,8 @@ const QString COperateDesktop::Name()
         szName += GetParameter()->GetName();
     else {
         if(GetParameter() && GetParameter()->GetGlobalParameters()
-            && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix())
+            && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix()
+            && !Protocol().isEmpty())
             szName = Protocol() + ":";
         szName += ServerName();
     }

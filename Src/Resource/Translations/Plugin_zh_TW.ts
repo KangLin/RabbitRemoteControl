@@ -678,8 +678,8 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
-        <source>Connecter name</source>
-        <translation>連接名</translation>
+        <source>Name</source>
+        <translation>名稱</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="197"/>

@@ -12,7 +12,7 @@ CPluginSerialPort::~CPluginSerialPort()
 
 const QString CPluginSerialPort::Protocol() const
 {
-    return QString();
+    return "Raw stream";
 }
 
 const QString CPluginSerialPort::Name() const
@@ -22,7 +22,7 @@ const QString CPluginSerialPort::Name() const
 
 const QString CPluginSerialPort::DisplayName() const
 {
-    return tr("Serial port terminal");
+    return tr("Terminal") + " - " + tr("Serial port");
 }
 
 const QString CPluginSerialPort::Description() const

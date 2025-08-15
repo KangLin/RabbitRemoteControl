@@ -151,17 +151,20 @@ const QString COperateTelnet::Id()
 
 const QString COperateTelnet::Name()
 {
-    QString szName = COperateTerminal::Name();
+    QString szName = m_Parameters.GetName();
     if(szName.isEmpty()) {
         auto &net = m_Parameters.m_Net;
         if(!net.GetHost().isEmpty()) {
             if(m_Parameters.GetGlobalParameters()
-                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix())
+                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix()
+                && !Protocol().isEmpty())
                 szName = Protocol() + ":";
             szName += net.GetHost()
                       + ":" + QString::number(net.GetPort());
         }
     }
+    if(szName.isEmpty())
+        szName = COperateTerminal::Name();
     return szName;
 }
 
