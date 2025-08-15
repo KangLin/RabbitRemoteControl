@@ -26,4 +26,6 @@ private:
     // QDialog interface
 public slots:
     virtual void accept() override;
+private slots:
+    void on_cbType_currentIndexChanged(int index);
 };

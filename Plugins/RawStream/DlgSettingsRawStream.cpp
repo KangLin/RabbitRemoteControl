@@ -19,7 +19,8 @@ CDlgSettingsRawStream::CDlgSettingsRawStream(CParameterRawStream *pPara, QWidget
 
     ui->leName->setText(m_pPara->GetName());
     ui->cbType->addItem(CParameterRawStream::GetTypeName(CParameterRawStream::TYPE::TCP), (int)CParameterRawStream::TYPE::TCP);
-    ui->cbType->addItem(CParameterRawStream::GetTypeName(CParameterRawStream::TYPE::NamePipe), (int)CParameterRawStream::TYPE::NamePipe);
+    //TODO: add it
+    //ui->cbType->addItem(CParameterRawStream::GetTypeName(CParameterRawStream::TYPE::NamePipe), (int)CParameterRawStream::TYPE::NamePipe);
     
     CParameterRawStream::TYPE type = m_pPara->GetType();
     int index = ui->cbType->findData((int)type);
@@ -53,4 +54,15 @@ void CDlgSettingsRawStream::accept()
     ui->wTcpNet->Accept();
 
     QDialog::accept();
+}
+
+void CDlgSettingsRawStream::on_cbType_currentIndexChanged(int index)
+{
+    CParameterRawStream::TYPE type = (CParameterRawStream::TYPE)ui->cbType->itemData(index).toInt();
+    ui->gpTcp->hide();
+    ui->gpNamePipe->hide();
+    if(CParameterRawStream::TYPE::TCP == type)
+        ui->gpTcp->show();
+    if(CParameterRawStream::TYPE::NamePipe == type)
+        ui->gpNamePipe->show();
 }
