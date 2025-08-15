@@ -13,7 +13,7 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterTerminalSSH *pPara, QWidget *parent)
     ui->setupUi(this);
     
     Q_ASSERT(m_pPara);
-    
+    ui->leName->setText(m_pPara->GetName());
     ui->wNet->SetParameter(&m_pPara->m_SSH.m_Net);
     m_pFrmParaAppearnce =
         new CParameterTerminalUI(this);
@@ -42,6 +42,7 @@ void CDlgSettingsSSH::on_pbOK_clicked()
     ui->wNet->Accept();
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
+    m_pPara->SetName(ui->leName->text());
     QStringList cmds;
     for(int i = 0; i < ui->lvCommands->count(); i++) {
         auto c = ui->lvCommands->item(i)->data(Qt::DisplayRole).toString();

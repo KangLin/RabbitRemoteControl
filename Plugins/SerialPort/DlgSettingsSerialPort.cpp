@@ -20,6 +20,7 @@ CDlgSettingsSerialPort::CDlgSettingsSerialPort(CParameterSerialPort *pPara, QWid
                               m_pFrmParaAppearnce->windowTitle());
     }
 
+    ui->leName->setText(m_pPara->GetName());
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
     {
         /*
@@ -129,7 +130,8 @@ void CDlgSettingsSerialPort::accept()
 {
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
-    
+
+    m_pPara->SetName(ui->leName->text());
     m_pPara->SetSerialPort(ui->cbSerialPort->currentIndex());
     m_pPara->SetSerialPortName(ui->cbSerialPort->currentText());
     m_pPara->SetBaudRate(ui->cbBaudRate->currentText().toInt());

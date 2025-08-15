@@ -12,6 +12,7 @@ CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTelnet *pPara, QWidget *parent)
 
     Q_ASSERT(m_pPara);
 
+    ui->leName->setText(m_pPara->GetName());
     ui->leLogin->setText(pPara->GetLogin());
     ui->lePassword->setText(pPara->GetPassword());
 
@@ -45,6 +46,7 @@ void CDlgSettingsTelnet::on_pbOK_clicked()
     if(m_pFrmParaAppearnce)
         m_pFrmParaAppearnce->Accept();
 
+    m_pPara->SetName(ui->leName->text());
     m_pPara->SetLogin(ui->leLogin->text());
     m_pPara->SetPassword(ui->lePassword->text());
 

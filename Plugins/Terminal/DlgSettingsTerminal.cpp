@@ -74,6 +74,8 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
     ui->teHelp->show();
 #endif
 
+    ui->leName->setText(m_pPara->GetName());
+
     QString szShell(m_pPara->GetShell());
     AddShell(szShell);
     if(!m_pPara->GetShellName().isEmpty())
@@ -111,6 +113,7 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
         QMessageBox::critical(this, tr("Error"), tr("The shell is empty"));
         return;
     }
+    m_pPara->SetName(ui->leName->text());
     m_pPara->SetShell(ui->cbShell->currentData().toString());
     m_pPara->SetShellName(ui->cbShell->currentText());
     m_pPara->SetShellParameters(ui->leParameters->text());

@@ -17,6 +17,7 @@ CDlgSettingsRawStream::CDlgSettingsRawStream(CParameterRawStream *pPara, QWidget
                               m_pFrmParaAppearnce->windowTitle());
     }
 
+    ui->leName->setText(m_pPara->GetName());
     ui->cbType->addItem(CParameterRawStream::GetTypeName(CParameterRawStream::TYPE::TCP), (int)CParameterRawStream::TYPE::TCP);
     ui->cbType->addItem(CParameterRawStream::GetTypeName(CParameterRawStream::TYPE::NamePipe), (int)CParameterRawStream::TYPE::NamePipe);
     
@@ -47,6 +48,7 @@ void CDlgSettingsRawStream::accept()
         return;
     }
 
+    m_pPara->SetName(ui->leName->text());
     m_pPara->SetType((CParameterRawStream::TYPE)ui->cbType->currentData().toInt());
     ui->wTcpNet->Accept();
 
