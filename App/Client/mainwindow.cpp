@@ -187,6 +187,9 @@ MainWindow::MainWindow(QWidget *parent)
                             SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
+            check = connect(pListRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
+                            m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
+            Q_ASSERT(check);
             m_pDockListRecent->setWidget(pListRecent);
             m_pDockListRecent->setWindowTitle(
                 pListRecent->windowTitle());
@@ -1347,7 +1350,7 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
     {
         if(c->GetViewer() == p)
         {
-            m_pFavoriteView->AddFavorite(c->Name(), c->Description(),
+            m_pFavoriteView->slotAddToFavorite(c->Name(), c->Description(),
                                          c->Icon(), c->GetSettingsFile());
         }
     }

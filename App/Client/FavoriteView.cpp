@@ -173,11 +173,12 @@ int CFavoriteView::Save()
     return nRet;
 }
 
-int CFavoriteView::AddFavorite(const QString &szName,
-                               const QString &szDescription, const QIcon &icon,
+void CFavoriteView::slotAddToFavorite(const QString &szName,
+                               const QString &szDescription,
+                                     const QIcon &icon,
                                const QString &szFile)
 {
-    if(!m_pModel) return -1;
+    if(!m_pModel) return;
     QStandardItem* pItem = nullptr;
     QString szGroup;
     auto indexes = selectionModel()->selectedIndexes();
@@ -198,7 +199,7 @@ int CFavoriteView::AddFavorite(const QString &szName,
                     break;
             }
             if(it.end() != i)
-                return 1;
+                return;
             pItem = new QStandardItem(szName);
             pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
             pItem->setToolTip(szDescription);
@@ -228,12 +229,12 @@ int CFavoriteView::AddFavorite(const QString &szName,
                 pItem->setToolTip(szDescription);
                 pGroup->appendRow(pItem);
             } else {
-                if(lstGroup[0]->data().isValid()) return 2;
+                if(lstGroup[0]->data().isValid()) return;
                 for(int i = 0; i < lstGroup[0]->rowCount(); i++)
                 {
                     auto item = lstGroup[0]->child(i);
                     if(item->text() == szName)
-                        return -3;
+                        return;
                 }
                 pItem = new QStandardItem(szName);
                 pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
@@ -244,7 +245,7 @@ int CFavoriteView::AddFavorite(const QString &szName,
     }
     if(pItem)
         pItem->setData(szFile);
-    return 0;
+    return;
 }
 
 void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)

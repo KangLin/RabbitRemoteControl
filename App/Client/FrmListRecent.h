@@ -33,6 +33,7 @@ public:
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings = false);
+    void sigAddToFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
 
 private slots:
     void slotEditConnect();
@@ -46,10 +47,20 @@ private slots:
     void slotDoubleClicked(const QModelIndex& index);
     void slotLoadFiles();
     void slotStartByType();
+    void slotAddToFavorite();
 
 private:
     int InsertItem(COperate* c, QString &szFile);
     QList<QStandardItem*> GetItem(COperate* c, QString &szFile);
+
+    enum ColumnNo {
+        Name = 0,
+        Protocol,
+        Type,
+        Date,
+        ID,
+        File
+    };
 
 private:
     MainWindow* m_pMainWindow;
@@ -65,11 +76,10 @@ private:
     QAction* m_pDelete;
     QAction* m_pDetail;
     QAction* m_pRefresh;
+    QAction* m_pAddToFavorite;
 
     QTableView* m_pTableView;
     QStandardItemModel* m_pModel;
     CManager* m_pManager;
-    int m_nFileRow;
-    int m_nId;
     bool m_bDock;
 };

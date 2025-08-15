@@ -13,7 +13,8 @@ public:
     virtual ~CFavoriteView();
     
     RabbitCommon::CTitleBar* m_pDockTitleBar;
-    int AddFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
+public Q_SLOTS:
+    void slotAddToFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings);
