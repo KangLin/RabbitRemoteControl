@@ -15,9 +15,9 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.9.1, 5.15.2]
+        qt_version: [6.8.1, 6.7.3, 5.15.2]
         include:
-          - qt_version: 6.9.1
+          - qt_version: 6.8.1
             qt_arch: win64_msvc2022_64
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
@@ -329,7 +329,7 @@ jobs:
 
       - name: lxqt-build-tools
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.qt_version == '6.9.1' }}
+        if: ${{ matrix.qt_version != '5.15.2' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools (
               git clone -b 2.2.0 --depth=1 "https://github.com/lxqt/lxqt-build-tools.git"
@@ -344,7 +344,7 @@ jobs:
 
       - name: qtermwidget6
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.qt_version == '6.9.1' }}
+        if: ${{ matrix.qt_version != '5.15.2' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 (
               git clone --depth=1 "https://github.com/KangLin/qtermwidget.git"
@@ -363,7 +363,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' && startsWith(github.ref, 'refs/heads/master')}}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.1' && startsWith(github.ref, 'refs/heads/master')}}
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -473,7 +473,7 @@ jobs:
             ${{github.workspace}}\build\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip
 
       - name: Update artifact update_windows.xml
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.1' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_xml
