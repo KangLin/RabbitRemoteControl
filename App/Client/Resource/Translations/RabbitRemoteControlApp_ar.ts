@@ -4,8 +4,8 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="286"/>
-        <location filename="../../FavoriteView.cpp" line="290"/>
+        <location filename="../../FavoriteView.cpp" line="287"/>
+        <location filename="../../FavoriteView.cpp" line="291"/>
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,42 +21,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="281"/>
+        <location filename="../../FavoriteView.cpp" line="282"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="282"/>
+        <location filename="../../FavoriteView.cpp" line="283"/>
         <source>Open settings and Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="283"/>
+        <location filename="../../FavoriteView.cpp" line="284"/>
         <source>Delete operate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="288"/>
+        <location filename="../../FavoriteView.cpp" line="289"/>
         <source>Delete group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="336"/>
+        <location filename="../../FavoriteView.cpp" line="337"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="336"/>
+        <location filename="../../FavoriteView.cpp" line="337"/>
         <source>Input group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="341"/>
+        <location filename="../../FavoriteView.cpp" line="342"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="341"/>
+        <location filename="../../FavoriteView.cpp" line="342"/>
         <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -64,38 +64,43 @@
 <context>
     <name>CFrmActive</name>
     <message>
-        <location filename="../../FrmActive.cpp" line="32"/>
+        <location filename="../../FrmActive.cpp" line="33"/>
         <source>Activity list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="71"/>
+        <location filename="../../FrmActive.cpp" line="69"/>
+        <source>Add to favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../FrmActive.cpp" line="77"/>
+        <location filename="../../FrmActive.cpp" line="85"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="81"/>
+        <location filename="../../FrmActive.cpp" line="88"/>
         <source>Show tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="117"/>
+        <location filename="../../FrmActive.cpp" line="124"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="118"/>
+        <location filename="../../FrmActive.cpp" line="125"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="119"/>
+        <location filename="../../FrmActive.cpp" line="126"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmActive.cpp" line="120"/>
+        <location filename="../../FrmActive.cpp" line="127"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -118,134 +123,133 @@
 <context>
     <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="34"/>
+        <location filename="../../FrmListRecent.cpp" line="32"/>
         <source>Recently list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecent.cpp" line="37"/>
         <location filename="../../FrmListRecent.cpp" line="39"/>
-        <location filename="../../FrmListRecent.cpp" line="41"/>
-        <location filename="../../FrmListRecent.cpp" line="42"/>
-        <location filename="../../FrmListRecent.cpp" line="497"/>
+        <location filename="../../FrmListRecent.cpp" line="40"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecent.cpp" line="42"/>
         <location filename="../../FrmListRecent.cpp" line="44"/>
-        <location filename="../../FrmListRecent.cpp" line="46"/>
-        <location filename="../../FrmListRecent.cpp" line="47"/>
-        <location filename="../../FrmListRecent.cpp" line="498"/>
+        <location filename="../../FrmListRecent.cpp" line="45"/>
         <source>Edit and Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="54"/>
+        <location filename="../../FrmListRecent.cpp" line="52"/>
+        <location filename="../../FrmListRecent.cpp" line="56"/>
+        <location filename="../../FrmListRecent.cpp" line="57"/>
         <location filename="../../FrmListRecent.cpp" line="58"/>
-        <location filename="../../FrmListRecent.cpp" line="59"/>
-        <location filename="../../FrmListRecent.cpp" line="60"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecent.cpp" line="64"/>
         <location filename="../../FrmListRecent.cpp" line="66"/>
-        <location filename="../../FrmListRecent.cpp" line="68"/>
-        <location filename="../../FrmListRecent.cpp" line="69"/>
-        <location filename="../../FrmListRecent.cpp" line="501"/>
+        <location filename="../../FrmListRecent.cpp" line="67"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecent.cpp" line="68"/>
         <location filename="../../FrmListRecent.cpp" line="70"/>
-        <location filename="../../FrmListRecent.cpp" line="72"/>
-        <location filename="../../FrmListRecent.cpp" line="73"/>
-        <location filename="../../FrmListRecent.cpp" line="502"/>
+        <location filename="../../FrmListRecent.cpp" line="71"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecent.cpp" line="73"/>
         <location filename="../../FrmListRecent.cpp" line="75"/>
-        <location filename="../../FrmListRecent.cpp" line="77"/>
-        <location filename="../../FrmListRecent.cpp" line="78"/>
-        <location filename="../../FrmListRecent.cpp" line="504"/>
+        <location filename="../../FrmListRecent.cpp" line="76"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="80"/>
-        <location filename="../../FrmListRecent.cpp" line="84"/>
-        <location filename="../../FrmListRecent.cpp" line="85"/>
+        <location filename="../../FrmListRecent.cpp" line="78"/>
+        <location filename="../../FrmListRecent.cpp" line="82"/>
+        <location filename="../../FrmListRecent.cpp" line="83"/>
         <source>Detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="90"/>
+        <location filename="../../FrmListRecent.cpp" line="85"/>
+        <source>Add to favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../FrmListRecent.cpp" line="92"/>
-        <location filename="../../FrmListRecent.cpp" line="93"/>
-        <location filename="../../FrmListRecent.cpp" line="507"/>
+        <location filename="../../FrmListRecent.cpp" line="94"/>
+        <location filename="../../FrmListRecent.cpp" line="95"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="96"/>
         <location filename="../../FrmListRecent.cpp" line="98"/>
-        <location filename="../../FrmListRecent.cpp" line="99"/>
+        <location filename="../../FrmListRecent.cpp" line="100"/>
+        <location filename="../../FrmListRecent.cpp" line="101"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="107"/>
-        <location filename="../../FrmListRecent.cpp" line="110"/>
+        <location filename="../../FrmListRecent.cpp" line="109"/>
+        <location filename="../../FrmListRecent.cpp" line="112"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="125"/>
+        <location filename="../../FrmListRecent.cpp" line="128"/>
         <source>Show tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="156"/>
+        <location filename="../../FrmListRecent.cpp" line="159"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="157"/>
+        <location filename="../../FrmListRecent.cpp" line="160"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="158"/>
+        <location filename="../../FrmListRecent.cpp" line="161"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="159"/>
+        <location filename="../../FrmListRecent.cpp" line="162"/>
         <source>Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="161"/>
+        <location filename="../../FrmListRecent.cpp" line="163"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="163"/>
+        <location filename="../../FrmListRecent.cpp" line="164"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="332"/>
-        <location filename="../../FrmListRecent.cpp" line="425"/>
+        <location filename="../../FrmListRecent.cpp" line="333"/>
+        <location filename="../../FrmListRecent.cpp" line="426"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="333"/>
+        <location filename="../../FrmListRecent.cpp" line="334"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="426"/>
+        <location filename="../../FrmListRecent.cpp" line="427"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -557,7 +561,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="201"/>
-        <location filename="../../mainwindow.cpp" line="439"/>
+        <location filename="../../mainwindow.cpp" line="445"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -566,9 +570,9 @@
         <location filename="../../mainwindow.ui" line="207"/>
         <location filename="../../mainwindow.ui" line="210"/>
         <location filename="../../mainwindow.ui" line="213"/>
-        <location filename="../../mainwindow.cpp" line="440"/>
-        <location filename="../../mainwindow.cpp" line="441"/>
-        <location filename="../../mainwindow.cpp" line="442"/>
+        <location filename="../../mainwindow.cpp" line="446"/>
+        <location filename="../../mainwindow.cpp" line="447"/>
+        <location filename="../../mainwindow.cpp" line="448"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -643,20 +647,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="478"/>
+        <location filename="../../mainwindow.cpp" line="484"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="479"/>
-        <location filename="../../mainwindow.cpp" line="480"/>
-        <location filename="../../mainwindow.cpp" line="481"/>
+        <location filename="../../mainwindow.cpp" line="485"/>
+        <location filename="../../mainwindow.cpp" line="486"/>
+        <location filename="../../mainwindow.cpp" line="487"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="708"/>
-        <location filename="../../mainwindow.cpp" line="727"/>
+        <location filename="../../mainwindow.cpp" line="714"/>
+        <location filename="../../mainwindow.cpp" line="733"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -664,7 +668,7 @@
         <location filename="../../mainwindow.ui" line="270"/>
         <location filename="../../mainwindow.ui" line="273"/>
         <location filename="../../mainwindow.ui" line="276"/>
-        <location filename="../../mainwindow.cpp" line="719"/>
+        <location filename="../../mainwindow.cpp" line="725"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -681,57 +685,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="289"/>
+        <location filename="../../mainwindow.cpp" line="295"/>
         <source>ICE signal status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="721"/>
+        <location filename="../../mainwindow.cpp" line="727"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="816"/>
+        <location filename="../../mainwindow.cpp" line="822"/>
         <source>Starting: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="889"/>
+        <location filename="../../mainwindow.cpp" line="895"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="998"/>
+        <location filename="../../mainwindow.cpp" line="1004"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1007"/>
+        <location filename="../../mainwindow.cpp" line="1013"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1046"/>
+        <location filename="../../mainwindow.cpp" line="1052"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1235"/>
+        <location filename="../../mainwindow.cpp" line="1241"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1236"/>
+        <location filename="../../mainwindow.cpp" line="1242"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1266"/>
+        <location filename="../../mainwindow.cpp" line="1272"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1267"/>
+        <location filename="../../mainwindow.cpp" line="1273"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
