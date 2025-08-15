@@ -84,6 +84,8 @@ CFrmListRecent::CFrmListRecent(
     m_pToolBar->addSeparator();
     m_pAddToFavorite = m_pToolBar->addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
                           this, SLOT(slotAddToFavorite()));
+    m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
+    m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
     if(m_bDock) {
         m_pRefresh = m_pToolBar->addAction(
             QIcon::fromTheme("view-refresh"),

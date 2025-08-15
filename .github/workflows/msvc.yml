@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.8.1, 6.7.3, 5.15.2]
+        qt_version: [6.8.1, 5.15.2]
         include:
           - qt_version: 6.8.1
             qt_arch: win64_msvc2022_64

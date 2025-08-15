@@ -220,6 +220,9 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(m_pFrmActive, SIGNAL(sigChanged(COperate*)),
                             this, SLOT(slotOperateChanged(COperate*)));
             Q_ASSERT(check);
+            check = connect(m_pFrmActive, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
+                            m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
+            Q_ASSERT(check);
         }
         m_pDockActive->setObjectName("dockListActive");
 #if defined(Q_OS_ANDROID)

@@ -36,6 +36,7 @@
 
 - Add activity menu
 - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+- [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
 
 ### v0.0.36
 - Client:

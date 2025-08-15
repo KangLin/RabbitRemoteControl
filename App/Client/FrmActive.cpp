@@ -19,6 +19,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     , m_pStop(pStop)
     , m_pRecentMenu(pRecentMenu)
     , m_Operates(operates)
+    , m_pAddToFavorite(nullptr)
     , m_ParameterApp(parameterApp)
     , m_pTableView(nullptr)
     , m_pModel(nullptr)
@@ -64,6 +65,11 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     m_pToolBar->addWidget(ptbStart);
 
     m_pToolBar->addAction(m_pStop);
+    m_pToolBar->addSeparator();
+    m_pAddToFavorite = m_pToolBar->addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
+                                             this, SLOT(slotAddToFavorite()));
+    m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
+    m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
     layout()->addWidget(m_pToolBar);
 
     m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
@@ -72,11 +78,12 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     m_pMenu->addMenu(m_pRecentMenu);
     m_pMenu->addMenu(m_pOperate);
     m_pMenu->addAction(m_pStop);
+    m_pMenu->addAction(m_pAddToFavorite);
+
     QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
         QIcon::fromTheme("tools"), m_pDockTitleBar);
     pTools->setToolTip(tr("Tools"));
     pTools->setMenu(m_pMenu);
-    m_pMenu->addAction(m_pStop);
     m_pMenu->addSeparator();
     auto pShowToolBar = m_pMenu->addAction(tr("Show tool bar"), this, [&](){
         QAction* a = (QAction*)sender();
@@ -173,6 +180,8 @@ void CFrmActive::slotCustomContextMenu(const QPoint &pos)
     menu.addMenu(m_pRecentMenu);
     menu.addMenu(m_pOperate);
     menu.addAction(m_pStop);
+    menu.addSeparator();
+    menu.addAction(m_pAddToFavorite);
     menu.exec(mapToGlobal(pos));
 }
 
@@ -225,4 +234,22 @@ void CFrmActive::slotViewChanged(const QWidget *pView)
     if(-1 >= nIndex)
         return;
     m_pTableView->selectRow(nIndex);
+}
+
+void CFrmActive::slotAddToFavorite()
+{
+    QItemSelectionModel* pSelect = m_pTableView->selectionModel();
+    QModelIndexList lstIndex = pSelect->selectedRows();
+    foreach(auto index, lstIndex)
+    {
+        if(!index.isValid()) continue;
+        QVariant v = m_pModel->item(index.row(), m_nId)->data();
+        COperate* c = v.value<COperate*>();
+        if(!c) continue;
+        QString szName = c->Name();
+        QIcon icon = c->Icon();
+        QString szDescription = c->Description();
+        QString szFile = c->GetSettingsFile();
+        emit sigAddToFavorite(szName, szDescription, icon, szFile);
+    }
 }
