@@ -14,42 +14,47 @@
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="32"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="29"/>
+        <source>Name:</source>
+        <translation>名称：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="46"/>
         <source>Login prompt regular expression:</source>
         <translation>登录提示正则表达式：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="46"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="60"/>
         <source>Password prompt regular expression:</source>
         <translation>密码提示正则表达式：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="58"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="72"/>
         <source>Automatically execute the follow commands after logging in:</source>
         <translation>登录后自动执行下列命令：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="73"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
         <source>Input commands and push add button</source>
         <translation>输入命令并按“增加”按钮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="80"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="94"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="101"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="138"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="152"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="145"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
@@ -99,32 +104,32 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="174"/>
+        <location filename="../../OperateTelnet.cpp" line="175"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="177"/>
+        <location filename="../../OperateTelnet.cpp" line="178"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="180"/>
+        <location filename="../../OperateTelnet.cpp" line="181"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="190"/>
+        <location filename="../../OperateTelnet.cpp" line="191"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="194"/>
+        <location filename="../../OperateTelnet.cpp" line="195"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="197"/>
+        <location filename="../../OperateTelnet.cpp" line="198"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

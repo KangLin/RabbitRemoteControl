@@ -389,135 +389,135 @@ Restart program by administrator?</source>
 <context>
     <name>COperateDesktop</name>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="101"/>
+        <location filename="../../OperateDesktop.cpp" line="106"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="104"/>
+        <location filename="../../OperateDesktop.cpp" line="109"/>
         <source>Type:</source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="107"/>
+        <location filename="../../OperateDesktop.cpp" line="112"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="116"/>
+        <location filename="../../OperateDesktop.cpp" line="121"/>
         <source>Server name: </source>
         <translation>服务器名：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="120"/>
+        <location filename="../../OperateDesktop.cpp" line="125"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="123"/>
+        <location filename="../../OperateDesktop.cpp" line="128"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="129"/>
+        <location filename="../../OperateDesktop.cpp" line="134"/>
         <source>SSH tunnel</source>
         <translation>SSH 隧道</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="136"/>
+        <location filename="../../OperateDesktop.cpp" line="141"/>
         <source>Sockes v5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="150"/>
+        <location filename="../../OperateDesktop.cpp" line="155"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="153"/>
+        <location filename="../../OperateDesktop.cpp" line="158"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="205"/>
-        <location filename="../../OperateDesktop.cpp" line="207"/>
+        <location filename="../../OperateDesktop.cpp" line="210"/>
+        <location filename="../../OperateDesktop.cpp" line="212"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="210"/>
-        <location filename="../../OperateDesktop.cpp" line="212"/>
-        <location filename="../../OperateDesktop.cpp" line="213"/>
+        <location filename="../../OperateDesktop.cpp" line="215"/>
+        <location filename="../../OperateDesktop.cpp" line="217"/>
+        <location filename="../../OperateDesktop.cpp" line="218"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="222"/>
-        <location filename="../../OperateDesktop.cpp" line="224"/>
-        <location filename="../../OperateDesktop.cpp" line="225"/>
+        <location filename="../../OperateDesktop.cpp" line="227"/>
+        <location filename="../../OperateDesktop.cpp" line="229"/>
+        <location filename="../../OperateDesktop.cpp" line="230"/>
         <source>Keep aspect ration to windows</source>
         <translation>保持高宽比缩放</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="233"/>
-        <location filename="../../OperateDesktop.cpp" line="235"/>
-        <location filename="../../OperateDesktop.cpp" line="236"/>
+        <location filename="../../OperateDesktop.cpp" line="238"/>
+        <location filename="../../OperateDesktop.cpp" line="240"/>
+        <location filename="../../OperateDesktop.cpp" line="241"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="243"/>
-        <location filename="../../OperateDesktop.cpp" line="245"/>
-        <location filename="../../OperateDesktop.cpp" line="246"/>
+        <location filename="../../OperateDesktop.cpp" line="248"/>
+        <location filename="../../OperateDesktop.cpp" line="250"/>
+        <location filename="../../OperateDesktop.cpp" line="251"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="259"/>
-        <location filename="../../OperateDesktop.cpp" line="261"/>
-        <location filename="../../OperateDesktop.cpp" line="262"/>
+        <location filename="../../OperateDesktop.cpp" line="264"/>
+        <location filename="../../OperateDesktop.cpp" line="266"/>
+        <location filename="../../OperateDesktop.cpp" line="267"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="305"/>
+        <location filename="../../OperateDesktop.cpp" line="310"/>
         <source>Send shortcut key</source>
         <translation>发送快捷键</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="308"/>
+        <location filename="../../OperateDesktop.cpp" line="313"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>发送 Ctl+Alt+Del</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="310"/>
+        <location filename="../../OperateDesktop.cpp" line="315"/>
         <source>Send lock screen (Win+L)</source>
         <translation>发送锁屏快捷键 (Win+L)</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="314"/>
-        <location filename="../../OperateDesktop.cpp" line="315"/>
-        <location filename="../../OperateDesktop.cpp" line="316"/>
+        <location filename="../../OperateDesktop.cpp" line="319"/>
+        <location filename="../../OperateDesktop.cpp" line="320"/>
+        <location filename="../../OperateDesktop.cpp" line="321"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="323"/>
-        <location filename="../../OperateDesktop.cpp" line="325"/>
-        <location filename="../../OperateDesktop.cpp" line="326"/>
-        <location filename="../../OperateDesktop.cpp" line="534"/>
+        <location filename="../../OperateDesktop.cpp" line="328"/>
+        <location filename="../../OperateDesktop.cpp" line="330"/>
+        <location filename="../../OperateDesktop.cpp" line="331"/>
+        <location filename="../../OperateDesktop.cpp" line="539"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="332"/>
-        <location filename="../../OperateDesktop.cpp" line="333"/>
-        <location filename="../../OperateDesktop.cpp" line="334"/>
+        <location filename="../../OperateDesktop.cpp" line="337"/>
+        <location filename="../../OperateDesktop.cpp" line="338"/>
+        <location filename="../../OperateDesktop.cpp" line="339"/>
         <source>Record pause</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="531"/>
+        <location filename="../../OperateDesktop.cpp" line="536"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>

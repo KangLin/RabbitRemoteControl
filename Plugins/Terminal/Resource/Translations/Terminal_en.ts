@@ -9,7 +9,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="71"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="85"/>
         <source>Enable restore the laster directory when start</source>
         <translation type="unfinished"></translation>
     </message>
@@ -29,42 +29,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="80"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="66"/>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="94"/>
         <source>Shell Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="100"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="114"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="111"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="125"/>
         <source>Shell Parameters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="123"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="137"/>
         <source>Automatically execute the follow commands:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="138"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="152"/>
         <source>Input commands and push add button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="145"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="159"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="152"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="166"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="64"/>
+        <location filename="../../DlgSettingsTerminal.ui" line="78"/>
         <source>Enable title changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -106,25 +111,25 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="34"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="187"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="190"/>
         <source>VS 2022 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="35"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="185"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="188"/>
         <source>VS 2022 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="36"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="191"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="194"/>
         <source>VS 2019 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="37"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="189"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="192"/>
         <source>VS 2019 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
@@ -198,17 +203,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="113"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="111"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="113"/>
         <source>The shell is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="167"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="170"/>
         <source>Select shell</source>
         <translation type="unfinished"></translation>
     </message>
@@ -234,57 +239,57 @@
 <context>
     <name>CTerminal</name>
     <message>
-        <location filename="../../Terminal.cpp" line="97"/>
+        <location filename="../../Terminal.cpp" line="98"/>
         <source>Open working directory with file explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="106"/>
+        <location filename="../../Terminal.cpp" line="107"/>
         <source>Copy working directory to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="153"/>
+        <location filename="../../Terminal.cpp" line="143"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="156"/>
+        <location filename="../../Terminal.cpp" line="146"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="159"/>
+        <location filename="../../Terminal.cpp" line="149"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="168"/>
+        <location filename="../../Terminal.cpp" line="158"/>
         <source>Shell name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="170"/>
+        <location filename="../../Terminal.cpp" line="160"/>
         <source>Shell path: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="172"/>
+        <location filename="../../Terminal.cpp" line="162"/>
         <source>Shell parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="174"/>
+        <location filename="../../Terminal.cpp" line="164"/>
         <source>Start commands:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="179"/>
+        <location filename="../../Terminal.cpp" line="169"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="182"/>
+        <location filename="../../Terminal.cpp" line="172"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

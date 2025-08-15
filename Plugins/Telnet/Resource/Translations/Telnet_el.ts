@@ -14,42 +14,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="32"/>
-        <source>Login prompt regular expression:</source>
+        <location filename="../../DlgSettingsTelnet.ui" line="29"/>
+        <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="46"/>
+        <source>Login prompt regular expression:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="60"/>
         <source>Password prompt regular expression:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="58"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="72"/>
         <source>Automatically execute the follow commands after logging in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="73"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
         <source>Input commands and push add button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="80"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="94"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="101"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="138"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="152"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="131"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="145"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -98,32 +103,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="174"/>
+        <location filename="../../OperateTelnet.cpp" line="175"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="177"/>
+        <location filename="../../OperateTelnet.cpp" line="178"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="180"/>
+        <location filename="../../OperateTelnet.cpp" line="181"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="190"/>
+        <location filename="../../OperateTelnet.cpp" line="191"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="194"/>
+        <location filename="../../OperateTelnet.cpp" line="195"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="197"/>
+        <location filename="../../OperateTelnet.cpp" line="198"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

@@ -27,24 +27,29 @@
         <translation>服務器</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSSH.ui" line="64"/>
+        <location filename="../../DlgSettingsSSH.ui" line="63"/>
+        <source>Name:</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsSSH.ui" line="78"/>
         <source>Automatically execute the follow commands after logging in:</source>
         <translation>登錄後自動執行下列命令：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSSH.ui" line="79"/>
+        <location filename="../../DlgSettingsSSH.ui" line="93"/>
         <source>Input commands and push add button</source>
         <translation>輸入命令並按「增加」按鈕</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSSH.ui" line="86"/>
+        <location filename="../../DlgSettingsSSH.ui" line="100"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSSH.ui" line="93"/>
+        <location filename="../../DlgSettingsSSH.ui" line="107"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsSSH.ui" line="35"/>
@@ -55,32 +60,32 @@
 <context>
     <name>COperateSSH</name>
     <message>
-        <location filename="../../OperateSSH.cpp" line="103"/>
+        <location filename="../../OperateSSH.cpp" line="109"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="106"/>
+        <location filename="../../OperateSSH.cpp" line="112"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="109"/>
+        <location filename="../../OperateSSH.cpp" line="115"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="119"/>
+        <location filename="../../OperateSSH.cpp" line="125"/>
         <source>Server address: </source>
         <translation>服務器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="123"/>
+        <location filename="../../OperateSSH.cpp" line="129"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="126"/>
+        <location filename="../../OperateSSH.cpp" line="132"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

@@ -41,9 +41,8 @@
         <translation>刪除組</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="293"/>
         <source>Add current operate to favorite</source>
-        <translation>增加當前操作到收藏夾</translation>
+        <translation type="vanished">增加當前操作到收藏夾</translation>
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="336"/>
@@ -443,7 +442,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="201"/>
-        <location filename="../../mainwindow.cpp" line="438"/>
+        <location filename="../../mainwindow.cpp" line="439"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -641,9 +640,9 @@
         <location filename="../../mainwindow.ui" line="207"/>
         <location filename="../../mainwindow.ui" line="210"/>
         <location filename="../../mainwindow.ui" line="213"/>
-        <location filename="../../mainwindow.cpp" line="439"/>
         <location filename="../../mainwindow.cpp" line="440"/>
         <location filename="../../mainwindow.cpp" line="441"/>
+        <location filename="../../mainwindow.cpp" line="442"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -652,20 +651,20 @@
         <translation type="vanished">ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="477"/>
+        <location filename="../../mainwindow.cpp" line="478"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="478"/>
         <location filename="../../mainwindow.cpp" line="479"/>
         <location filename="../../mainwindow.cpp" line="480"/>
+        <location filename="../../mainwindow.cpp" line="481"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="707"/>
-        <location filename="../../mainwindow.cpp" line="726"/>
+        <location filename="../../mainwindow.cpp" line="708"/>
+        <location filename="../../mainwindow.cpp" line="727"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
@@ -673,74 +672,74 @@
         <location filename="../../mainwindow.ui" line="270"/>
         <location filename="../../mainwindow.ui" line="273"/>
         <location filename="../../mainwindow.ui" line="276"/>
-        <location filename="../../mainwindow.cpp" line="718"/>
+        <location filename="../../mainwindow.cpp" line="719"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="82"/>
+        <location filename="../../mainwindow.cpp" line="83"/>
         <source>Recently</source>
         <translation>最近的</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="115"/>
         <location filename="../../mainwindow.cpp" line="116"/>
         <location filename="../../mainwindow.cpp" line="117"/>
+        <location filename="../../mainwindow.cpp" line="118"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="288"/>
+        <location filename="../../mainwindow.cpp" line="289"/>
         <source>ICE signal status</source>
         <translation>ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="720"/>
+        <location filename="../../mainwindow.cpp" line="721"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="815"/>
+        <location filename="../../mainwindow.cpp" line="816"/>
         <source>Starting: </source>
         <translation>開始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="888"/>
+        <location filename="../../mainwindow.cpp" line="889"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="997"/>
+        <location filename="../../mainwindow.cpp" line="998"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1006"/>
+        <location filename="../../mainwindow.cpp" line="1007"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1045"/>
+        <location filename="../../mainwindow.cpp" line="1046"/>
         <source>Use message box to display information</source>
         <translation>使用消息框顯示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1234"/>
+        <location filename="../../mainwindow.cpp" line="1235"/>
         <source>Hide menu bar</source>
         <translation>隱藏菜單欄</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1235"/>
+        <location filename="../../mainwindow.cpp" line="1236"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>將隱藏菜單欄，必須顯示工具條。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1265"/>
+        <location filename="../../mainwindow.cpp" line="1266"/>
         <source>Hide tool bar</source>
         <translation>隱藏工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1266"/>
+        <location filename="../../mainwindow.cpp" line="1267"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>
