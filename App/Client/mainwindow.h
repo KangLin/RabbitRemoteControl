@@ -118,6 +118,18 @@ private Q_SLOTS:
     void on_actionSettings_triggered();
     void slotShortCut();
 
+    ///////// Status bar //////////
+private:
+    enum class MessageLevel {
+        Normal,
+        Error,
+        Warning
+    };
+private Q_SLOTS:
+    void slotStatusMessage(QString szMessage, MessageLevel level = MessageLevel::Normal);
+private:
+    QLabel m_StatusBarMessage;
+
     ///////// Secure level /////////
 private:
     QLabel* m_pSecureLevel;

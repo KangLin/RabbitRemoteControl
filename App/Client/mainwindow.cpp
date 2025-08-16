@@ -66,11 +66,16 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pRecentMenu(nullptr)
     , m_pDockFavorite(nullptr)
     , m_pFavoriteView(nullptr)
+    , m_StatusBarMessage(this)
 {
     bool check = false;
 
     ui->setupUi(this);
     ui->menubar->show();
+
+    m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
+                                  QSizePolicy::Policy::Preferred);
+    this->statusBar()->addWidget(&m_StatusBarMessage);
 
     //setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
@@ -711,7 +716,7 @@ void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
     COperate* p = m_Manager.LoadOperate(szFile);
     if(nullptr == p)
     {
-        slotInformation(tr("Load file fail: ") + szFile);
+        slotStatusMessage(tr("Load file fail: ") + szFile, MessageLevel::Error);
         return;
     }
     
@@ -730,7 +735,7 @@ void MainWindow::on_actionOpenRRCFile_triggered()
     COperate* p = m_Manager.LoadOperate(szFile);
     if(nullptr == p)
     {
-        slotInformation(tr("Load file fail: ") + szFile);
+        slotStatusMessage(tr("Load file fail: ") + szFile, MessageLevel::Error);
         return;
     }
 
@@ -1020,7 +1025,7 @@ void MainWindow::slotSignalDisconnected()
 void MainWindow::slotSignalError(const int nError, const QString &szInfo)
 {
     slotSignalDisconnected();
-    slotInformation(szInfo);
+    slotError(nError, szInfo);
 }
 
 void MainWindow::slotSignalPushButtonClicked(bool checked)
@@ -1036,7 +1041,7 @@ void MainWindow::slotSignalPushButtonClicked(bool checked)
 void MainWindow::slotError(const int nError, const QString &szInfo)
 {
     Q_UNUSED(nError);
-    slotInformation(szInfo);
+    slotStatusMessage(szInfo, MessageLevel::Error);
 }
 
 void MainWindow::slotShowMessageBox(
@@ -1062,7 +1067,25 @@ void MainWindow::slotShowMessageBox(
 
 void MainWindow::slotInformation(const QString& szInfo)
 {
-    statusBar()->showMessage(szInfo);
+    slotStatusMessage(szInfo, MessageLevel::Normal);
+}
+
+void MainWindow::slotStatusMessage(QString szMessage, MessageLevel level)
+{
+    QPalette pe;
+    switch ((MessageLevel)level) {
+    case MessageLevel::Error:
+        pe.setColor(QPalette::WindowText, Qt::red);
+        break;
+    case MessageLevel::Warning:
+        pe.setColor(QPalette::WindowText, Qt::yellow);
+        break;
+    default:
+        break;
+    }
+
+    m_StatusBarMessage.setPalette(pe);
+    m_StatusBarMessage.setText(szMessage);
 }
 
 void MainWindow::slotUpdateName()
