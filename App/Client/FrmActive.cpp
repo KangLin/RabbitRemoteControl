@@ -70,6 +70,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
                                              this, SLOT(slotAddToFavorite()));
     m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
+    m_pAddToFavorite->setEnabled(false);
     layout()->addWidget(m_pToolBar);
 
     m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
@@ -197,6 +198,7 @@ void CFrmActive::slotLoad()
     if(!m_pModel)
         return;
     m_pModel->removeRows(0, m_pModel->rowCount());
+    m_pAddToFavorite->setEnabled(m_Operates.size() > 0);
     foreach(auto c, m_Operates) {
         QList<QStandardItem*> lstItem;
         QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());

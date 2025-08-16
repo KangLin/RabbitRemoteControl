@@ -86,6 +86,7 @@ CFrmListRecent::CFrmListRecent(
                           this, SLOT(slotAddToFavorite()));
     m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
+    m_pAddToFavorite->setEnabled(false);
     if(m_bDock) {
         m_pRefresh = m_pToolBar->addAction(
             QIcon::fromTheme("view-refresh"),
@@ -223,20 +224,12 @@ void CFrmListRecent::slotLoadFiles()
         m_pManager->DeleteOperate(pOperate);
     }
 
-    if(m_pModel->rowCount() > 0)
-    {
-        m_pStart->setEnabled(true);
-        m_pEditOperate->setEnabled(true);
-        m_pEdit->setEnabled(true);
-        m_pCopy->setEnabled(true);
-        m_pDelete->setEnabled(true);
-    } else {
-        m_pStart->setEnabled(false);
-        m_pEditOperate->setEnabled(false);
-        m_pEdit->setEnabled(false);
-        m_pCopy->setEnabled(false);
-        m_pDelete->setEnabled(false);
-    }
+    m_pStart->setEnabled(m_pModel->rowCount() > 0);
+    m_pEditOperate->setEnabled(m_pModel->rowCount() > 0);
+    m_pEdit->setEnabled(m_pModel->rowCount() > 0);
+    m_pCopy->setEnabled(m_pModel->rowCount() > 0);
+    m_pDelete->setEnabled(m_pModel->rowCount() > 0);
+    m_pAddToFavorite->setEnabled(m_pModel->rowCount() > 0);
 
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
