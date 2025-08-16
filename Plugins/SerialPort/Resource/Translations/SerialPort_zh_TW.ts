@@ -90,7 +90,7 @@
     <message>
         <location filename="../../OperateSerialPort.cpp" line="85"/>
         <source>Open Serial port [%1] fail errno[%2]: %3</source>
-        <translation>打開串口[%1]失敗，錯誤號[%2]:%3</translation>
+        <translation>打開串口[%1]失敗，錯誤號[%2]: %3</translation>
     </message>
     <message>
         <location filename="../../OperateSerialPort.cpp" line="137"/>

@@ -12,7 +12,7 @@ CPluginRawStream::~CPluginRawStream()
 
 const QString CPluginRawStream::Protocol() const
 {
-    return "Raw stream";
+    return QString(); //"Raw stream";
 }
 
 const QString CPluginRawStream::Name() const
