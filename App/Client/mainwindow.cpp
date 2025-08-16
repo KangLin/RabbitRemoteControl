@@ -1331,6 +1331,9 @@ void MainWindow::on_actionOpenListRecent_triggered()
     bool check = connect(p, SIGNAL(sigStart(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));
     Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
+                    m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
+    Q_ASSERT(check);
 
     QDialog d;
     d.resize(540, 400);
