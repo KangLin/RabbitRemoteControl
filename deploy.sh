@@ -58,7 +58,7 @@ sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 
-DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
+DEBIAN_VERSION=${VERSION/#v/}
 sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/rabbitremotecontrol-[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol-${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/RabbitRemoteControl_[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
@@ -69,7 +69,8 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_V
 sed -i "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 
 sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
-sed -i "s/Version:.*[0-9]\+\.[0-9]\+\.[0-9]\+/Version:        ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
+RPM_DEBIAN_VERSION=${DEBIAN_VERSION/-/\~}
+sed -i "s/Version:.*[0-9]\+\.[0-9]\+\.[0-9]\+/Version:        ${RPM_DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
 CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
 CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog
