@@ -32,6 +32,8 @@ private slots:
     
     void on_pbDeleteCommands_clicked();
     
+    void on_pbHelp_clicked();
+
 private:
     int AddShell(QString szShell, const QString& name = QString());
 

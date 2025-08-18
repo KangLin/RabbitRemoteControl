@@ -20,6 +20,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
 {
     ui->setupUi(this);
     ui->teHelp->hide();
+    ui->pbHelp->hide();
 
 #if defined(Q_OS_UNIX)    
     AddShell("/bin/sh");
@@ -71,7 +72,8 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
     szHelp += tr("    - VS 2019 Professional x86 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
     ui->teHelp->setMarkdown(szHelp);
-    ui->teHelp->show();
+    //ui->teHelp->show();
+    ui->pbHelp->show();
 #endif
 
     ui->leName->setText(m_pPara->GetName());
@@ -214,4 +216,16 @@ void CDlgSettingsTerminal::on_pbDeleteCommands_clicked()
 {
     auto item = ui->lvCommands->currentItem();
     delete item;
+}
+
+void CDlgSettingsTerminal::on_pbHelp_clicked()
+{
+    if(ui->teHelp->isVisible())
+    {
+        ui->teHelp->hide();
+        ui->pbHelp->setText(tr("Help(&H)"));
+    } else {
+        ui->teHelp->show();
+        ui->pbHelp->setText(tr("Hide help(&H)"));
+    }
 }

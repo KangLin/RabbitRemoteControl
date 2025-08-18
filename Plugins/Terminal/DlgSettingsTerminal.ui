@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>455</height>
+    <height>462</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,13 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbHelp">
+       <property name="text">
+        <string>Help(&amp;H)</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbOk">
