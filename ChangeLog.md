@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.37
+- Fix play is not sound in msvc
+
 ### v0.0.36
 - Client:
   - Fix recode video rate bug
