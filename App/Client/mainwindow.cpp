@@ -74,8 +74,39 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menubar->show();
 
     m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
-                                  QSizePolicy::Policy::Preferred);
+                                  QSizePolicy::Policy::Fixed);
     this->statusBar()->addWidget(&m_StatusBarMessage);
+
+    m_SendRate.setToolTip(tr("Send rate"));
+    m_SendRate.setStatusTip(tr("Send rate"));
+    m_SendRate.setSizePolicy(QSizePolicy::Policy::Preferred,
+                             QSizePolicy::Policy::Fixed);
+    this->statusBar()->addPermanentWidget(&m_SendRate);
+    m_ReceivesRate.setToolTip(tr("Receives rate"));
+    m_ReceivesRate.setStatusTip(tr("Receives rate"));
+    m_ReceivesRate.setSizePolicy(QSizePolicy::Policy::Preferred,
+                                 QSizePolicy::Policy::Fixed);
+    this->statusBar()->addPermanentWidget(&m_ReceivesRate);
+    m_TotalSends.setToolTip(tr("Total sends"));
+    m_TotalSends.setStatusTip(tr("Total sends"));
+    m_TotalSends.setSizePolicy(QSizePolicy::Policy::Preferred,
+                               QSizePolicy::Policy::Fixed);
+    this->statusBar()->addPermanentWidget(&m_TotalSends);
+    m_TotalReceives.setToolTip(tr("Total receives"));
+    m_TotalReceives.setStatusTip(tr("Total receives"));
+    m_TotalReceives.setSizePolicy(QSizePolicy::Policy::Preferred,
+                               QSizePolicy::Policy::Fixed);
+    this->statusBar()->addPermanentWidget(&m_TotalReceives);
+
+    check = connect(&m_Timer, SIGNAL(timeout()), this, SLOT(slotTimeOut()));
+    Q_ASSERT(check);
+
+    m_pSecureLevel = new QLabel(statusBar());
+    // QIcon icon = QIcon::fromTheme("newwork-wired");
+    // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
+    // m_pSecureLevel->setPixmap(pixmap);
+    m_pSecureLevel->hide();
+    statusBar()->addPermanentWidget(m_pSecureLevel);
 
     //setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
@@ -271,13 +302,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     EnableMenu(false);
     slotShortCut();
-
-    m_pSecureLevel = new QLabel(statusBar());
-    // QIcon icon = QIcon::fromTheme("newwork-wired");
-    // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
-    // m_pSecureLevel->setPixmap(pixmap);
-    m_pSecureLevel->hide();
-    statusBar()->addPermanentWidget(m_pSecureLevel);
 
 #ifdef HAVE_ICE
     if(CICE::Instance()->GetSignal())
@@ -568,6 +592,7 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
     foreach(auto o, m_Operates) {
         if(o->GetViewer() == pView) {
             SetSecureLevel(o);
+            SetStatsVisible(o->GetStats());
             foreach (auto a, ui->menuActivity->actions()) {
                 if(a->data().value<COperate*>() == o)
                     a->setChecked(true);
@@ -843,6 +868,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         Q_ASSERT(check);
     }
     m_Operates.push_back(pOperate);
+    StartTimer();
 
     m_pFrmActive->slotLoad();
     m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());
@@ -967,6 +993,8 @@ void MainWindow::slotFinished()
             ui->toolBar->removeAction(m_pActionOperateMenu);
             m_pActionOperateMenu = nullptr;
         }
+
+    StartTimer();
 }
 
 // 该函数将label控件变成一个圆形指示灯，需要指定颜色color以及直径size
@@ -1507,4 +1535,57 @@ void MainWindow::slotEnableSystemTrayIcon()
             m_TrayIcon.reset();
     } else
         slotSystemTrayIconTypeChanged();
+}
+
+void MainWindow::slotTimeOut()
+{
+    auto pWin = m_pView->GetCurrentView();
+    if(!pWin) {
+        qDebug(log) << "The current view is empty";
+        return;
+    }
+    foreach(auto p, m_Operates)
+    {
+        if(p->GetViewer() == pWin)
+        {
+            auto pStats = p->GetStats();
+            if(!pStats) {
+                SetStatsVisible(false);
+                break;
+            }
+            SetStatsVisible(true);
+            pStats->slotCalculating();
+            m_TotalSends.setText("⇈ " + pStats->TotalSends());
+            m_TotalReceives.setText("⇊ " + pStats->TotalReceives());
+            m_SendRate.setText("↑ " + pStats->SendRate());
+            m_ReceivesRate.setText("↓ " + pStats->ReceiveRate());
+            break;
+        }
+    }
+}
+
+void MainWindow::SetStatsVisible(bool visible)
+{
+    if(m_SendRate.isVisible() == visible)
+        return;
+    m_SendRate.setVisible(visible);
+    m_ReceivesRate.setVisible(visible);
+    m_TotalSends.setVisible(visible);
+    m_TotalReceives.setVisible(visible);
+}
+
+void MainWindow::StartTimer()
+{
+    bool bStart = false;
+    int nMinInterval = 60;
+    foreach(auto o, m_Operates) {
+        if(o && o->GetStats()) {
+            nMinInterval = qMin(nMinInterval, o->GetStats()->GetInterval());
+            bStart = true;
+        }
+    }
+    if(bStart)
+        m_Timer.start(1000);
+    else
+        m_Timer.stop();
 }

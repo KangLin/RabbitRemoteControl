@@ -50,10 +50,14 @@ public:
      */
     virtual int SetParameter(CParameterTerminalBase *pPara);
 
-    [[nodiscard]] QWidget* GetViewer() override;
+    [[nodiscard]] virtual const QString Id() override;
+    [[nodiscard]] virtual const QString Name() override;
     [[nodiscard]] virtual const QString Description() override;
     [[nodiscard]] virtual const qint16 Version() const override;
     [[nodiscard]] static const QString Details();
+
+    [[nodiscard]] CStats *GetStats() override;
+    [[nodiscard]] QWidget* GetViewer() override;
 
 public Q_SLOTS:
     virtual int Start() override;
@@ -95,8 +99,5 @@ private:
     QAction* m_pZoomOriginal;
     QAction* m_pClear;
 
-    // COperate interface
-public:
-    [[nodiscard]] virtual const QString Id() override;
-    [[nodiscard]] virtual const QString Name() override;
+    CStats m_Stats;
 };

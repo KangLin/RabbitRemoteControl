@@ -191,3 +191,8 @@ void CTerminal::slotTerminalTitleChanged()
     if(!m_pTerminal) return;
     emit sigUpdateName(m_pTerminal->title());
 }
+
+CStats* CTerminal::GetStats()
+{
+    return nullptr;
+}

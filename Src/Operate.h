@@ -416,5 +416,4 @@ private Q_SLOTS:
 
 private:
     CPlugin* m_pPlugin;
-    CStats m_Stats;
 };

@@ -113,7 +113,7 @@ QMenu* COperate::GetMenu(QWidget* parent)
 
 CStats *COperate::GetStats()
 {
-    return &m_Stats;
+    return nullptr;
 }
 
 COperate::SecurityLevel COperate::GetSecurityLevel()

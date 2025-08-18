@@ -37,4 +37,8 @@ private:
     // COperateTerminal interface
 public:
     virtual int SetParameter(CParameterTerminalBase *pPara) override;
+
+    // COperate interface
+public:
+    CStats *GetStats();
 };

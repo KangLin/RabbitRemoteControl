@@ -121,6 +121,11 @@ QWidget* COperateTerminal::GetViewer()
     return m_pTerminal;
 }
 
+CStats* COperateTerminal::GetStats()
+{
+    return &m_Stats;
+}
+
 int COperateTerminal::Load(QSettings &set)
 {
     int nRet = 0;
