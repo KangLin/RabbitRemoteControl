@@ -27,6 +27,7 @@
 #include "Ice.h"
 #endif
 
+#include <QFontMetrics>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QCheckBox>
@@ -75,27 +76,28 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
                                   QSizePolicy::Policy::Fixed);
+    //m_StatusBarMessage.setWordWrap(true);
     this->statusBar()->addWidget(&m_StatusBarMessage);
 
     m_SendRate.setToolTip(tr("Send rate"));
     m_SendRate.setStatusTip(tr("Send rate"));
-    m_SendRate.setSizePolicy(QSizePolicy::Policy::Preferred,
-                             QSizePolicy::Policy::Fixed);
+    // m_SendRate.setSizePolicy(QSizePolicy::Policy::Preferred,
+    //                          QSizePolicy::Policy::Fixed);
     this->statusBar()->addPermanentWidget(&m_SendRate);
     m_ReceivesRate.setToolTip(tr("Receives rate"));
     m_ReceivesRate.setStatusTip(tr("Receives rate"));
-    m_ReceivesRate.setSizePolicy(QSizePolicy::Policy::Preferred,
-                                 QSizePolicy::Policy::Fixed);
+    // m_ReceivesRate.setSizePolicy(QSizePolicy::Policy::Preferred,
+    //                              QSizePolicy::Policy::Fixed);
     this->statusBar()->addPermanentWidget(&m_ReceivesRate);
     m_TotalSends.setToolTip(tr("Total sends"));
     m_TotalSends.setStatusTip(tr("Total sends"));
-    m_TotalSends.setSizePolicy(QSizePolicy::Policy::Preferred,
-                               QSizePolicy::Policy::Fixed);
+    // m_TotalSends.setSizePolicy(QSizePolicy::Policy::Preferred,
+    //                            QSizePolicy::Policy::Fixed);
     this->statusBar()->addPermanentWidget(&m_TotalSends);
     m_TotalReceives.setToolTip(tr("Total receives"));
     m_TotalReceives.setStatusTip(tr("Total receives"));
-    m_TotalReceives.setSizePolicy(QSizePolicy::Policy::Preferred,
-                               QSizePolicy::Policy::Fixed);
+    // m_TotalReceives.setSizePolicy(QSizePolicy::Policy::Preferred,
+    //                            QSizePolicy::Policy::Fixed);
     this->statusBar()->addPermanentWidget(&m_TotalReceives);
 
     check = connect(&m_Timer, SIGNAL(timeout()), this, SLOT(slotTimeOut()));
@@ -1113,6 +1115,11 @@ void MainWindow::slotStatusMessage(QString szMessage, MessageLevel level)
     }
 
     m_StatusBarMessage.setPalette(pe);
+    m_StatusBarMessage.setToolTip(szMessage);
+    QFontMetrics metrics(m_StatusBarMessage.font());
+
+    szMessage = metrics.elidedText(szMessage, Qt::ElideRight, m_StatusBarMessage.width());
+
     m_StatusBarMessage.setText(szMessage);
 }
 
