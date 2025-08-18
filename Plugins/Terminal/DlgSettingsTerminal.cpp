@@ -30,12 +30,23 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
 #elif defined(Q_OS_WIN)
     AddShell("C:\\Windows\\System32\\cmd.exe");
     AddShell("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "msys64 bash shell");
-    AddShell("C:\\Windows\\System32\\cmd.exe", "cygwin64 bash shell");
-    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x86"));
-    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x64"));
-    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x86"));
-    AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x64"));
+    QFileInfo fi;
+    if(fi.exists("c:\\msys64\\usr\\bin\\bash.exe"))
+        AddShell("C:\\Windows\\System32\\cmd.exe", "msys64 bash shell");
+    if(fi.exists("c:\\cygwin64\\bin\\bash.exe"))
+        AddShell("C:\\Windows\\System32\\cmd.exe", "cygwin64 bash shell");
+    if(fi.exists("C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat")) {
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Community x86"));
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Community x64"));
+    }
+    if(fi.exists("C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat")) {
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x86"));
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2022 Professional x64"));
+    }
+    if(fi.exists("C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat")) {
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x86"));
+        AddShell("C:\\Windows\\System32\\cmd.exe", tr("VS 2019 Professional x64"));
+    }
     AddShell(qgetenv("ComSpec"));
     QString szHelp;
     szHelp = tr("Help:") + "\n";
@@ -63,6 +74,10 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
     szHelp += tr("- Set VS sdk shell:") + "\n";
     szHelp += tr("  cmd shell with parameters:") + " \"/k %SDK_PATH%\"\n";
     szHelp += tr("  eg:") + "\n";
+    szHelp += tr("    - VS 2022 Community x64 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64\n";
+    szHelp += tr("    - VS 2022 Community x86 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
+    szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
     szHelp += tr("    - VS 2022 Professional x64 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64\n";
     szHelp += tr("    - VS 2022 Professional x86 default path:") + " \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
@@ -72,7 +87,6 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
     szHelp += tr("    - VS 2019 Professional x86 default path:") + " \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\",\n";
     szHelp += tr("      So that cmd shell with parameters:") + "/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86\n";
     ui->teHelp->setMarkdown(szHelp);
-    //ui->teHelp->show();
     ui->pbHelp->show();
 #endif
 
@@ -80,8 +94,14 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CTerminalParameter *pPara, QWidget *p
 
     QString szShell(m_pPara->GetShell());
     AddShell(szShell);
-    if(!m_pPara->GetShellName().isEmpty())
-        ui->cbShell->setCurrentText(m_pPara->GetShellName());
+
+    if(!m_pPara->GetShellName().isEmpty()) {
+        ui->cbShellName->setCurrentText(m_pPara->GetShellName());
+        int nIndex = ui->cbShellName->findText(m_pPara->GetShellName(), Qt::MatchFixedString);
+        if(-1 != nIndex)
+            ui->cbShellName->setCurrentIndex(nIndex);
+    }
+    ui->leShellPath->setText(m_pPara->GetShell());
     ui->leParameters->setText(m_pPara->GetShellParameters());
 
     ui->cbRestoreDirctory->setChecked(m_pPara->GetRestoreDirectory());
@@ -108,16 +128,16 @@ CDlgSettingsTerminal::~CDlgSettingsTerminal()
 
 void CDlgSettingsTerminal::on_pbOk_clicked()
 {
-    if(!ui->cbShell->currentData().isValid())
+    if(ui->leShellPath->text().isEmpty())
     {
         ui->tabWidget->setCurrentIndex(0);
-        ui->cbShell->setFocus();
+        ui->leShellPath->setFocus();
         QMessageBox::critical(this, tr("Error"), tr("The shell is empty"));
         return;
     }
     m_pPara->SetName(ui->leName->text());
-    m_pPara->SetShell(ui->cbShell->currentData().toString());
-    m_pPara->SetShellName(ui->cbShell->currentText());
+    m_pPara->SetShellName(ui->cbShellName->currentText());
+    m_pPara->SetShell(ui->leShellPath->text());
     m_pPara->SetShellParameters(ui->leParameters->text());
     m_pPara->SetRestoreDirectory(ui->cbRestoreDirctory->isChecked());
     if(m_pFrmParaAppearnce)
@@ -153,15 +173,15 @@ int CDlgSettingsTerminal::AddShell(QString szShell, const QString &name)
     if(szName.isEmpty())
         szName = fi.baseName();
 
-    nIndex = ui->cbShell->findText(szName, Qt::MatchFixedString);
+    nIndex = ui->cbShellName->findText(szName, Qt::MatchFixedString);
     if(-1 == nIndex) {
-        ui->cbShell->addItem(szName, szShell);
-        nIndex = ui->cbShell->findText(szName, Qt::MatchFixedString);
+        ui->cbShellName->addItem(szName, szShell);
+        nIndex = ui->cbShellName->findText(szName, Qt::MatchFixedString);
     }
 
-    ui->cbShell->setItemData(nIndex, szShell, Qt::ToolTipRole);
-    ui->cbShell->setItemData(nIndex, szShell, Qt::StatusTipRole);
-    ui->cbShell->setCurrentIndex(nIndex);
+    ui->cbShellName->setItemData(nIndex, szShell, Qt::ToolTipRole);
+    ui->cbShellName->setItemData(nIndex, szShell, Qt::StatusTipRole);
+    ui->cbShellName->setCurrentIndex(nIndex);
 
     return 0;
 }
@@ -170,31 +190,41 @@ void CDlgSettingsTerminal::on_pbShellBrowse_clicked()
 {
     QUrl url = QFileDialog::getOpenFileUrl(
         this, tr("Select shell"),
-        QUrl::fromLocalFile(ui->cbShell->currentData().toString()));
+        QUrl::fromLocalFile(ui->leShellPath->text()));
     if(url.isEmpty())
         return;
     AddShell(url.toLocalFile());
 }
 
-void CDlgSettingsTerminal::on_cbShell_currentIndexChanged(int index)
+void CDlgSettingsTerminal::on_cbShellName_currentIndexChanged(int index)
 {
     QString szData, szName;
-    szData = ui->cbShell->itemData(index).toString();
-    szName = ui->cbShell->itemText(index);
-    ui->cbShell->setToolTip(szData);
-    ui->cbShell->setStatusTip(szData);
-    if("msys64 bash shell" == szName && ui->leParameters->text().isEmpty())
+    szData = ui->cbShellName->itemData(index).toString();
+    szName = ui->cbShellName->itemText(index);
+    ui->cbShellName->setToolTip(szData);
+    ui->cbShellName->setStatusTip(szData);
+    ui->leShellPath->setText(szData);
+    ui->leParameters->setText("");
+
+    if("msys64 bash shell" == szName)
         ui->leParameters->setText("/k c:\\msys64\\usr\\bin\\bash.exe -l");
-    if("cygwin64 bash shell" == szName && ui->leParameters->text().isEmpty())
+    if("cygwin64 bash shell" == szName)
         ui->leParameters->setText("/k c:\\cygwin64\\bin\\bash.exe -l");
-    if(tr("VS 2022 Professional x64") == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2022 Community x64") == szName)
+        ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
+    if(tr("VS 2022 Community x86") == szName)
+        ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
+    if(tr("VS 2022 Professional x64") == szName)
         ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
-    if(tr("VS 2022 Professional x86") == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2022 Professional x86") == szName)
         ui->leParameters->setText("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
-    if(tr("VS 2019 Professional x64") == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2019 Professional x64") == szName)
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x64");
-    if(tr("VS 2019 Professional x86") == szName && ui->leParameters->text().isEmpty())
+    if(tr("VS 2019 Professional x86") == szName)
         ui->leParameters->setText("/k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86");
+
+    if(m_pPara->GetShellName() == szName)
+        ui->leParameters->setText(m_pPara->GetShellParameters());
 }
 
 void CDlgSettingsTerminal::on_pbAddCommand_clicked()

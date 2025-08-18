@@ -23,15 +23,10 @@ private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
     void on_pbShellBrowse_clicked();
-    
-    void on_cbShell_currentIndexChanged(int index);
-    
+    void on_cbShellName_currentIndexChanged(int index);
     void on_pbAddCommand_clicked();
-    
     void on_leCommand_editingFinished();
-    
     void on_pbDeleteCommands_clicked();
-    
     void on_pbHelp_clicked();
 
 private:

@@ -1,4 +1,5 @@
 #include <QLoggingCategory>
+#include <QFileInfo>
 #include "TerminalParameter.h"
 
 static Q_LOGGING_CATEGORY(log, "Terminal.Parameter")
@@ -17,8 +18,9 @@ CTerminalParameter::CTerminalParameter(CParameterOperate *parent, const QString 
     m_szShell = qgetenv("ComSpec");
     if(m_szShell.isEmpty()) {
         m_szShell = "C:\\Windows\\System32\\cmd.exe";
-        m_szShellName = "CMD";
     }
+    QFileInfo fi(m_szShell);
+    m_szShellName = fi.baseName();
 #endif
 }
 

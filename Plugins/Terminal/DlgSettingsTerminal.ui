@@ -98,12 +98,12 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Shell Path:</string>
+            <string>Shell Name:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="cbShell">
+          <widget class="QComboBox" name="cbShellName">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -115,6 +115,20 @@
            </property>
           </widget>
          </item>
+        </layout>
+       </item>
+       <item row="4" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Shell Path:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leShellPath"/>
+         </item>
          <item>
           <widget class="QPushButton" name="pbShellBrowse">
            <property name="text">
@@ -124,7 +138,7 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLabel" name="label_2">
@@ -138,7 +152,7 @@
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Automatically execute the follow commands:</string>
@@ -179,7 +193,7 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QTextBrowser" name="teHelp">
          <property name="openExternalLinks">
           <bool>true</bool>
