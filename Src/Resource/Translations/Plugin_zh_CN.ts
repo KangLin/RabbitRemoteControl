@@ -525,16 +525,19 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation type="vanished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation type="vanished">类型：</translation>
+        <translation>类型：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation type="vanished">协议：</translation>
+        <translation>协议：</translation>
     </message>
     <message>
         <source>Server address: </source>
@@ -553,44 +556,59 @@ Restart program by administrator?</source>
         <translation type="vanished">Shell 参数：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation type="vanished">安全级别：</translation>
+        <translation>安全级别：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation type="vanished">描述：</translation>
+        <translation>描述：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="153"/>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">复制选择到剪切板</translation>
+        <translation>复制选择到剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
         <source>Paste clipboard</source>
-        <translation type="vanished">粘贴剪切板</translation>
+        <translation>粘贴剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Paste selection</source>
-        <translation type="vanished">粘贴到选择</translation>
+        <translation>粘贴到选择</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
         <source>Zoom in</source>
-        <translation type="vanished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="162"/>
         <source>Zoom out</source>
-        <translation type="vanished">缩小</translation>
+        <translation>缩小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
         <source>Zoom reset</source>
-        <translation type="vanished">重置缩放</translation>
+        <translation>重置缩放</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="179"/>
         <source>Find ......</source>
-        <translation type="vanished">查找 ……</translation>
+        <translation>查找 ……</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Clear</source>
-        <translation type="vanished">清除</translation>
+        <translation>清除</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="338"/>
+        <source>QTermWidget:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1000,100 +1018,131 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterTerminalUI</name>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="vanished">通用</translation>
+        <translation>通用</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="22"/>
         <source>Font:</source>
-        <translation type="vanished">字体：</translation>
+        <translation>字体：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="62"/>
         <source>Color scheme:</source>
-        <translation type="vanished">颜色方案：</translation>
+        <translation>颜色方案：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="86"/>
         <source>Cursor shape:</source>
-        <translation type="vanished">光标形状：</translation>
+        <translation>光标形状：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
         <source>Scroll bar positioin:</source>
-        <translation type="vanished">滚动条位置：</translation>
+        <translation>滚动条位置：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
         <source>Terminal Transparency:</source>
-        <translation type="vanished">透明度：</translation>
+        <translation>透明度：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
         <source>Background Image:</source>
-        <translation type="vanished">背景图像：</translation>
+        <translation>背景图像：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
         <source>Browser(&amp;B)</source>
-        <translation type="vanished">浏览(&amp;B)</translation>
+        <translation>浏览(&amp;B)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
         <source>Key binding:</source>
-        <translation type="vanished">键盘绑定：</translation>
+        <translation>键盘绑定：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="vanished">窗口大小改变时显示其大小</translation>
+        <translation>窗口大小改变时显示其大小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
         <source>Enable bi-directional text support</source>
-        <translation type="vanished">允许双向文本</translation>
+        <translation>允许双向文本</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="233"/>
         <source>History</source>
-        <translation type="vanished">历史记录</translation>
+        <translation>历史记录</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
         <source>History size(in lines):</source>
-        <translation type="vanished">历史记录大小（行数）：</translation>
+        <translation>历史记录大小（行数）：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
         <source>Unlimited</source>
-        <translation type="vanished">无限制</translation>
+        <translation>无限制</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="267"/>
         <source>Flow Control</source>
-        <translation type="vanished">流量控制</translation>
+        <translation>流量控制</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="274"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="vanished">示例：显示字体</translation>
+        <translation>示例：显示字体</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="vanished">背景图像</translation>
+        <translation>背景图像</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="vanished">方块光标</translation>
+        <translation>方块光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="vanished">下划线光标</translation>
+        <translation>下划线光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="vanished">I 形光标</translation>
+        <translation>I 形光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>No</source>
-        <translation type="vanished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="vanished">左</translation>
+        <translation>左</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="vanished">右</translation>
+        <translation>右</translation>
     </message>
 </context>
 <context>

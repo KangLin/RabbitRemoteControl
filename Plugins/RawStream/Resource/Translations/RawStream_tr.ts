@@ -73,6 +73,14 @@
     </message>
 </context>
 <context>
+    <name>CParameterRawStream</name>
+    <message>
+        <location filename="../../ParameterRawStream.cpp" line="44"/>
+        <source>Name pipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginRawStream</name>
     <message>
         <location filename="../../PluginRawStream.cpp" line="25"/>
