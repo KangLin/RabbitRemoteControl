@@ -96,7 +96,7 @@ jobs:
           /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
             -f "${{github.workspace}}/update_ubuntu.json" \
             --foc 1 \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb?viasf=1" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb?viasf=1" \
             --md5 "${MD5SUM}"
           mv "${{github.workspace}}/update_ubuntu.json.xml" update_linux.xml
 
@@ -142,7 +142,7 @@ jobs:
             -f "${{github.workspace}}/update_appimage_${{matrix.os}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://master.dl.sourceforge.net/project/rabbitremotecontrol/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage?viasf=1" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage?viasf=1" \
             --md5 "${MD5SUM}"
 
       - name: Update artifact
