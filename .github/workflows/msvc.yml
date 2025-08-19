@@ -402,9 +402,9 @@ jobs:
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_APP=ON ^
-            -DRABBIT_ENABLE_INSTALL_DEPENDENT=OFF ^
+            -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
             -DRABBIT_ENABLE_INSTALL_QT=ON ^
-            -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=OFF ^
+            -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON ^
             -DBUILD_FREERDP=ON ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
