@@ -18,6 +18,10 @@
 
 - 版本号说明： [https://semver.org/lang/zh-CN/](https://semver.org/lang/zh-CN/)
 
+### 用户手册
+
+- [用户手册](https://github.com/KangLin/RabbitRemoteControl/wiki/%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C)
+
 ### 依赖
 
 #### 工具

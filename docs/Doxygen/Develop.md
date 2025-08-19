@@ -18,6 +18,10 @@ Author: Kang Lin kl222@126.com
 
 - Semantic Versioning: [https://semver.org/](https://semver.org/)
 
+### User manual
+
+- [User manual](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual)
+
 ### Dependent
 
 #### Tools

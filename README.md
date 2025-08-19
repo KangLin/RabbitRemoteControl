@@ -198,7 +198,7 @@ Legend:
 
 ## Status
 
-[![Documentation](https://img.shields.io/badge/documentation-online-blue)](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
+[![Development documentation](https://img.shields.io/badge/documentation-online-blue?label=Development%20documents)](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 [![User manual](https://img.shields.io/badge/documentation-online-blue?label=User%20manual)](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual)
 
 [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
