@@ -42,11 +42,13 @@ if [ -z "$VERSION" ]; then
     VERSION=`git rev-parse --short HEAD`
 fi
 
+VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\.0-9A-Za-z-]*"
+
 sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/Windows.nsi
 #sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
 #sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
 #sed -i "s/RabbitRemoteControlVersion:.*/RabbitRemoteControlVersion: ${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
-sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/docs/Doxygen/Develop*.md
+sed -i "s/v${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/docs/Doxygen/Develop*.md
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
@@ -54,23 +56,22 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
-sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
+sed -i "s/v${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
-sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+sed -i "s/          \"version\":[[:blank:]]*\"v\?${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 
 DEBIAN_VERSION=${VERSION/#v/}
-sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
-sed -i "s/rabbitremotecontrol-[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol-${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
-sed -i "s/RabbitRemoteControl_[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 sed -i "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 
-sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
-RPM_DEBIAN_VERSION=${DEBIAN_VERSION/-/\~}
-sed -i "s/Version:.*[0-9]\+\.[0-9]\+\.[0-9]\+/Version:        ${RPM_DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
+sed -i "s/version:.*'${VERSION_PATTERN}'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
+
+RPM_DEBIAN_VERSION=${DEBIAN_VERSION//-/\~}
+RPM_VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\._~\^0-9A-Za-z]*"
+sed -i "s/Version:.*${RPM_VERSION_PATTERN}/Version:        ${RPM_DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
 CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
 CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog
@@ -93,12 +94,12 @@ echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`"
 #    mv ${CHANGLOG_TMP} ${CHANGLOG_FILE}
 #fi
 
-sed -i "s/android:versionName=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
+sed -i "s/android:versionName=\"${VERSION_PATTERN}\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/linux.yml
 if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
-    sed -i "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
+    sed -i "s/  \"version-string\":.*\"${VERSION_PATTERN}\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
 fi
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
