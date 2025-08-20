@@ -105,7 +105,7 @@ jobs:
           arch: 'linux_gcc_64'
           set-env: false
           cache: true
-          cache-key-prefix: cached_qt
+          cache-key-prefix: cached-qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v4
@@ -118,7 +118,7 @@ jobs:
           arch: 'gcc_64'
           set-env: false
           cache: true
-          cache-key-prefix: cached_qt
+          cache-key-prefix: cached-qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
       - name: Install Qt of android
         uses: jurplel/install-qt-action@v3
@@ -136,7 +136,7 @@ jobs:
           # Additional Qt modules to install
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cache: true
-          cache-key-prefix: cached_qt
+          cache-key-prefix: cached-qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
       - name: chmod qt-cmake
         run: |
