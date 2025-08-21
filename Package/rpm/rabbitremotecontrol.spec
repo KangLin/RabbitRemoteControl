@@ -61,7 +61,10 @@ multi-protocol remote control software.
 Allows you to use any device and system in anywhere and remotely manage
 any device and system in any way. 
 
-It include remote desktop, remote control, remote terminal, player, network tools etc functions.
+It's goal is to be simple, convenient, security and easy to use, improving work efficiency.
+
+It include remote desktop, remote control, file transfer(FTP, SFTP),
+terminal, remote terminal(SSH, TELNET), player, network tools etc functions.
 
 Author: Kang Lin <kl222@126.com>
 

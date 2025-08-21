@@ -38,6 +38,8 @@ Author: Kang Lin <kl222@126.com>
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
+Its goal is to be simple, convenient, security and easy to use, improving work efficiency.
+
 It include remote desktop, remote control, file transfer(FTP, SFTP), terminal, remote terminal(SSH, TELNET), player, network tools etc functions.
 
 ### Screenshot
