@@ -4,7 +4,7 @@
 <context>
     <name>CChannelSFTP</name>
     <message>
-        <location filename="../../ChannelSFTP.cpp" line="597"/>
+        <location filename="../../ChannelSFTP.cpp" line="761"/>
         <source>Error: Asynchronous uploads are not supported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -25,102 +25,102 @@
 <context>
     <name>CFileTransfer</name>
     <message>
-        <location filename="../../ListFileModel.cpp" line="37"/>
+        <location filename="../../ListFileModel.cpp" line="38"/>
         <source>Local files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="39"/>
+        <location filename="../../ListFileModel.cpp" line="40"/>
         <source>Direction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="41"/>
+        <location filename="../../ListFileModel.cpp" line="42"/>
         <source>Remote files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="43"/>
+        <location filename="../../ListFileModel.cpp" line="44"/>
         <source>File size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="45"/>
+        <location filename="../../ListFileModel.cpp" line="46"/>
         <source>Speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="47"/>
+        <location filename="../../ListFileModel.cpp" line="48"/>
         <source>state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="49"/>
+        <location filename="../../ListFileModel.cpp" line="50"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="51"/>
+        <location filename="../../ListFileModel.cpp" line="52"/>
         <source>Explanation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="53"/>
+        <location filename="../../ListFileModel.cpp" line="54"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="123"/>
+        <location filename="../../ListFileModel.cpp" line="127"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="126"/>
+        <location filename="../../ListFileModel.cpp" line="130"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="212"/>
+        <location filename="../../ListFileModel.cpp" line="237"/>
         <source>Opening</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="216"/>
+        <location filename="../../ListFileModel.cpp" line="241"/>
         <source>Closing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="214"/>
+        <location filename="../../ListFileModel.cpp" line="267"/>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ListFileModel.cpp" line="239"/>
         <source>Transferring</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="218"/>
+        <location filename="../../ListFileModel.cpp" line="243"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="220"/>
+        <location filename="../../ListFileModel.cpp" line="245"/>
         <source>Fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="222"/>
+        <location filename="../../ListFileModel.cpp" line="247"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="240"/>
-        <source>Hight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ListFileModel.cpp" line="242"/>
+        <location filename="../../ListFileModel.cpp" line="269"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="244"/>
+        <location filename="../../ListFileModel.cpp" line="271"/>
         <source>Lower</source>
         <translation type="unfinished"></translation>
     </message>
@@ -166,7 +166,7 @@
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="178"/>
         <location filename="../../FrmFileTransfer.cpp" line="293"/>
-        <location filename="../../FrmFileTransfer.cpp" line="531"/>
+        <location filename="../../FrmFileTransfer.cpp" line="539"/>
         <source>Add to list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -178,25 +178,25 @@
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="183"/>
-        <location filename="../../FrmFileTransfer.cpp" line="437"/>
-        <location filename="../../FrmFileTransfer.cpp" line="534"/>
+        <location filename="../../FrmFileTransfer.cpp" line="443"/>
+        <location filename="../../FrmFileTransfer.cpp" line="542"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="186"/>
         <location filename="../../FrmFileTransfer.cpp" line="299"/>
-        <location filename="../../FrmFileTransfer.cpp" line="440"/>
-        <location filename="../../FrmFileTransfer.cpp" line="537"/>
-        <location filename="../../FrmFileTransfer.cpp" line="618"/>
+        <location filename="../../FrmFileTransfer.cpp" line="446"/>
+        <location filename="../../FrmFileTransfer.cpp" line="545"/>
+        <location filename="../../FrmFileTransfer.cpp" line="626"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="188"/>
         <location filename="../../FrmFileTransfer.cpp" line="301"/>
-        <location filename="../../FrmFileTransfer.cpp" line="442"/>
-        <location filename="../../FrmFileTransfer.cpp" line="539"/>
+        <location filename="../../FrmFileTransfer.cpp" line="448"/>
+        <location filename="../../FrmFileTransfer.cpp" line="547"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
@@ -208,36 +208,36 @@
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="206"/>
-        <location filename="../../FrmFileTransfer.cpp" line="480"/>
+        <location filename="../../FrmFileTransfer.cpp" line="486"/>
         <source>New folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="206"/>
-        <location filename="../../FrmFileTransfer.cpp" line="480"/>
+        <location filename="../../FrmFileTransfer.cpp" line="486"/>
         <source>Folder name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="239"/>
         <location filename="../../FrmFileTransfer.cpp" line="265"/>
-        <location filename="../../FrmFileTransfer.cpp" line="329"/>
-        <location filename="../../FrmFileTransfer.cpp" line="341"/>
-        <location filename="../../FrmFileTransfer.cpp" line="467"/>
-        <location filename="../../FrmFileTransfer.cpp" line="555"/>
-        <location filename="../../FrmFileTransfer.cpp" line="636"/>
+        <location filename="../../FrmFileTransfer.cpp" line="331"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
+        <location filename="../../FrmFileTransfer.cpp" line="473"/>
+        <location filename="../../FrmFileTransfer.cpp" line="563"/>
+        <location filename="../../FrmFileTransfer.cpp" line="644"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="239"/>
-        <location filename="../../FrmFileTransfer.cpp" line="341"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
         <source>The file is not exists:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="265"/>
-        <location filename="../../FrmFileTransfer.cpp" line="329"/>
+        <location filename="../../FrmFileTransfer.cpp" line="331"/>
         <source>Please select remote directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -247,39 +247,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="444"/>
+        <location filename="../../FrmFileTransfer.cpp" line="450"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="467"/>
-        <location filename="../../FrmFileTransfer.cpp" line="555"/>
+        <location filename="../../FrmFileTransfer.cpp" line="473"/>
+        <location filename="../../FrmFileTransfer.cpp" line="563"/>
         <source>Please select local directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="529"/>
+        <location filename="../../FrmFileTransfer.cpp" line="537"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="613"/>
+        <location filename="../../FrmFileTransfer.cpp" line="621"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="616"/>
+        <location filename="../../FrmFileTransfer.cpp" line="624"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="636"/>
+        <location filename="../../FrmFileTransfer.cpp" line="644"/>
         <source>Please stop the file transfer first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="446"/>
-        <location filename="../../FrmFileTransfer.cpp" line="541"/>
+        <location filename="../../FrmFileTransfer.cpp" line="452"/>
+        <location filename="../../FrmFileTransfer.cpp" line="549"/>
         <source>Copy url to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -287,32 +287,32 @@
 <context>
     <name>COperateFileTransfer</name>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="161"/>
+        <location filename="../../OperateFileTransfer.cpp" line="165"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="164"/>
+        <location filename="../../OperateFileTransfer.cpp" line="168"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="167"/>
+        <location filename="../../OperateFileTransfer.cpp" line="171"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="177"/>
+        <location filename="../../OperateFileTransfer.cpp" line="181"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="181"/>
+        <location filename="../../OperateFileTransfer.cpp" line="185"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="184"/>
+        <location filename="../../OperateFileTransfer.cpp" line="188"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

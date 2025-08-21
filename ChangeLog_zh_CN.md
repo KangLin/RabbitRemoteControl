@@ -32,6 +32,9 @@
     - 文件传输
       - SFTP
       - FTP
+    - 播放器
+      - 增加显示字幕
+
 - 增加活动菜单
 - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)

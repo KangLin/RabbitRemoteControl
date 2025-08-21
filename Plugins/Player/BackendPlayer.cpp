@@ -125,7 +125,7 @@ CBackendPlayer::CBackendPlayer(COperatePlayer *pOperate)
                                 qDebug(log) << "Video tracks:" << m_Player.videoTracks()
                                 << "Audio tracks:" << m_Player.audioTracks()
                                 << "Subtitle tracks:" << m_Player.subtitleTracks();
-                                
+
                                 if(m_Player.subtitleTracks().size() > 0) {
                                     int nIndex = 0;
                                     for(int i = 0; i < m_Player.subtitleTracks().size(); i++) {

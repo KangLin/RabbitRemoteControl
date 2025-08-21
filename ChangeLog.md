@@ -33,6 +33,8 @@
     - Add file transfer
       - SFTP
       - FTP
+    - Player
+      - Add display subtitle
 
 - Add activity menu
 - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)

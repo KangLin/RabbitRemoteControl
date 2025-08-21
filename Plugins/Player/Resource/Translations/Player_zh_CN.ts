@@ -25,69 +25,74 @@
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="78"/>
+        <location filename="../../DlgPlayer.ui" line="165"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="89"/>
+        <location filename="../../DlgPlayer.ui" line="187"/>
+        <source>Enable subtitle</source>
+        <translation>允许字幕</translation>
+    </message>
+    <message>
+        <location filename="../../DlgPlayer.ui" line="62"/>
         <source>Audio input</source>
         <translation>音频输入</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="103"/>
-        <location filename="../../DlgPlayer.ui" line="143"/>
+        <location filename="../../DlgPlayer.ui" line="76"/>
+        <location filename="../../DlgPlayer.ui" line="116"/>
         <source>Muted</source>
         <translation>静音</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="110"/>
-        <location filename="../../DlgPlayer.ui" line="150"/>
+        <location filename="../../DlgPlayer.ui" line="83"/>
+        <location filename="../../DlgPlayer.ui" line="123"/>
         <source>Volume:</source>
         <translation>音量：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="129"/>
+        <location filename="../../DlgPlayer.ui" line="102"/>
         <source>Audio output</source>
         <translation>音频输出：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="63"/>
+        <location filename="../../DlgPlayer.cpp" line="66"/>
         <source>Camera</source>
         <translation>摄像头</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="71"/>
+        <location filename="../../DlgPlayer.cpp" line="74"/>
         <source>Url</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="100"/>
+        <location filename="../../DlgPlayer.cpp" line="103"/>
         <source>The url is empty. please set!</source>
         <translation>Url 是空，请设置!</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="101"/>
+        <location filename="../../DlgPlayer.cpp" line="104"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="121"/>
+        <location filename="../../DlgPlayer.cpp" line="124"/>
         <source>Camera: </source>
         <translation>摄像头：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="128"/>
+        <location filename="../../DlgPlayer.cpp" line="131"/>
         <source>Url: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="180"/>
+        <location filename="../../DlgPlayer.cpp" line="186"/>
         <source>Media files(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;All files(*.*)</source>
         <translation>多媒体文件(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="182"/>
+        <location filename="../../DlgPlayer.cpp" line="188"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
