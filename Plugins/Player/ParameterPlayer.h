@@ -84,6 +84,12 @@ private:
     bool m_bEnableAudioOutput;
     bool m_bAudioOutputMuted;
     float m_fAudioOutputVolume;
+    
+public:
+    bool GetSubtitle() const;
+    void SetSubtitle(bool subtitle);
+private:
+    bool m_bSubtitle;
 
 public:
     const int GetScreen() const;

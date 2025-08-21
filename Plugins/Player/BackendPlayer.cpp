@@ -119,6 +119,29 @@ CBackendPlayer::CBackendPlayer(COperatePlayer *pOperate)
                     this, [&](QMediaPlayer::PlaybackState state){
                         qDebug(log) << "Player state changed:" << state
                                     << m_Player.source();
+#if HAVE_QT6_RECORD
+                        if(QMediaPlayer::PlaybackState::PlayingState == state) {
+                            if(m_pParameters->GetSubtitle()) {
+                                qDebug(log) << "Video tracks:" << m_Player.videoTracks()
+                                << "Audio tracks:" << m_Player.audioTracks()
+                                << "Subtitle tracks:" << m_Player.subtitleTracks();
+                                
+                                if(m_Player.subtitleTracks().size() > 0) {
+                                    int nIndex = 0;
+                                    for(int i = 0; i < m_Player.subtitleTracks().size(); i++) {
+                                        auto m = m_Player.subtitleTracks().at(i);
+                                        QVariant v = m.value(QMediaMetaData::Language);
+                                        if(!v.isValid()) continue;
+                                        if(v.toLocale().language() == QLocale::system().language()) {
+                                            nIndex = i;
+                                            break;
+                                        }
+                                    }
+                                    m_Player.setActiveSubtitleTrack(nIndex);
+                                }
+                            }
+                        }
+#endif
                     });
     Q_ASSERT(check);
 #if HAVE_QVideoWidget
@@ -204,6 +227,7 @@ void CBackendPlayer::slotStart()
             m_Player.setAudioBufferOutput(&m_AudioBufferOutput);
 #endif
         m_Player.play();
+
         m_nPosition = m_Player.position();
         m_nDuration = m_Player.duration();
         break;

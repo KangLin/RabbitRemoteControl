@@ -15,6 +15,7 @@ CParameterPlayer::CParameterPlayer(QObject *parent)
     , m_bAudioOutputMuted(false)
     , m_fAudioOutputVolume(100)
     , m_nScreen(-1)
+    , m_bSubtitle(true)
 {}
 
 const CParameterPlayer::TYPE CParameterPlayer::GetType() const
@@ -189,6 +190,8 @@ int CParameterPlayer::OnLoad(QSettings &set)
     SetType((TYPE)set.value("Type", (int)GetType()).toInt());
     SetUrl(set.value("Url", GetUrl()).toString());
     SetCamera(set.value("Camera", GetCamera()).toInt());
+    
+    SetSubtitle(set.value("Subtitle", GetSubtitle()).toBool());
 
     set.beginGroup("Audio/Input");
     SetAudioInput(set.value("Device", GetAudioInput()).toInt());
@@ -218,6 +221,7 @@ int CParameterPlayer::OnSave(QSettings &set)
     set.setValue("Type", (int)GetType());
     set.setValue("Url", GetUrl());
     set.setValue("Camera", GetCamera());
+    set.setValue("Subtitle", GetSubtitle());
 
     set.beginGroup("Audio/Input");
     set.setValue("Device", GetAudioInput());
@@ -249,4 +253,17 @@ int CParameterPlayer::SetScreen(int nIndex)
     m_nScreen = nIndex;
     SetModified(true);
     return 0;
+}
+
+bool CParameterPlayer::GetSubtitle() const
+{
+    return m_bSubtitle;
+}
+
+void CParameterPlayer::SetSubtitle(bool subtitle)
+{
+    if(m_bSubtitle == subtitle)
+        return;
+    m_bSubtitle = subtitle;
+    SetModified(true);
 }

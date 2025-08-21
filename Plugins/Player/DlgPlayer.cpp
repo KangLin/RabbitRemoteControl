@@ -58,6 +58,9 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->cbAudioOutputMuted->setChecked(m_pParameters->GetAudioOutputMuted());
     ui->dsAudioOutputVolume->setValue(m_pParameters->GetAudioOutputVolume());
 
+    ui->cbEnableSubtitle->setCheckable(true);
+    ui->cbEnableSubtitle->setChecked(m_pParameters->GetSubtitle());
+    
     if(QMediaDevices::videoInputs().size() > 0)
     {
         ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
@@ -128,7 +131,8 @@ void CDlgPlayer::accept()
             m_pParameters->SetName(tr("Url: ") + fi.fileName());
         break;
     }
-
+    
+    m_pParameters->SetSubtitle(ui->cbEnableSubtitle->isChecked());
     m_pParameters->SetEnableAudioInput(ui->gbAudioInput->isChecked());
     m_pParameters->SetAudioInput(ui->cmbAudioInput->currentIndex());
     m_pParameters->SetAudioInputMuted(ui->cbAudioInputMuted->isChecked());
@@ -157,11 +161,13 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
     case CParameterPlayer::TYPE::Camera:
         ui->cmbCamera->setVisible(true);
         ui->gbAudioInput->setChecked(true);
+        ui->cbEnableSubtitle->hide();
         break;
     case CParameterPlayer::TYPE::Url:
         ui->leUrl->setVisible(true);
         ui->pbUrlBrowse->setVisible(true);
         ui->gbAudioInput->setChecked(false);
+        ui->cbEnableSubtitle->show();
         break;
     default:
         break;
