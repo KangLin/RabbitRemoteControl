@@ -120,19 +120,30 @@ CBackendPlayer::CBackendPlayer(COperatePlayer *pOperate)
                         qDebug(log) << "Player state changed:" << state
                                     << m_Player.source();
 #if HAVE_QT6_RECORD
-                        if(QMediaPlayer::PlaybackState::PlayingState == state) {
+                        if(QMediaPlayer::PlaybackState::PlayingState == state) {/*
+                            qDebug(log) << "Video tracks:" << m_Player.videoTracks()
+                            << "Audio tracks:" << m_Player.audioTracks()
+                            << "Subtitle tracks:" << m_Player.subtitleTracks()
+                            << "Video:" << m_Player.activeVideoTrack()
+                            << "Audio:" << m_Player.activeAudioTrack()
+                            << "Subtitle:" << m_Player.activeSubtitleTrack();//*/
+                            if(-1 == m_Player.activeAudioTrack()
+                                && m_Player.audioTracks().size() > 0) {
+                                m_Player.setActiveAudioTrack(0);
+                            }
+                            if(-1 == m_Player.activeVideoTrack()
+                                && m_Player.videoTracks().size() > 0) {
+                                m_Player.setActiveVideoTrack(0);
+                            }
                             if(m_pParameters->GetSubtitle()) {
-                                qDebug(log) << "Video tracks:" << m_Player.videoTracks()
-                                << "Audio tracks:" << m_Player.audioTracks()
-                                << "Subtitle tracks:" << m_Player.subtitleTracks();
-
                                 if(m_Player.subtitleTracks().size() > 0) {
                                     int nIndex = 0;
                                     for(int i = 0; i < m_Player.subtitleTracks().size(); i++) {
                                         auto m = m_Player.subtitleTracks().at(i);
                                         QVariant v = m.value(QMediaMetaData::Language);
                                         if(!v.isValid()) continue;
-                                        if(v.toLocale().language() == QLocale::system().language()) {
+                                        if(v.toLocale().language() == QLocale::AnyLanguage
+                                            || v.toLocale().language() == QLocale::system().language()) {
                                             nIndex = i;
                                             break;
                                         }
