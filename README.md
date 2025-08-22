@@ -56,7 +56,7 @@ It include remote desktop, remote control, file transfer(FTP, SFTP), terminal, r
 
 ### Video
 
-https://github.com/user-attachments/assets/6924ec88-5f8c-43e8-8c62-0ed82f73ee83
+https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
 
 ### Project repository position
 

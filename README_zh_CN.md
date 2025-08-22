@@ -55,7 +55,7 @@
 
 ### 视频
 
-https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
+https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 ### 项目位置
 
