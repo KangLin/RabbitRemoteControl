@@ -195,8 +195,13 @@ CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
         return OnInitReturnValue::Fail;
     }
     bool bRet = m_pSFTP->open(QIODevice::ReadWrite);
-    if(!bRet)
+    if(!bRet) {
+        QString szErr;
+        szErr = tr("Open SFTP fail.") + m_pSFTP->errorString();
+        qCritical(log) << szErr;
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         return OnInitReturnValue::Fail;
+    }
 #endif
     emit sigRunning();
     return OnInitReturnValue::UseOnProcess;

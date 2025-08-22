@@ -19,7 +19,7 @@ public:
         SYMLINK = 0x08,
         SPECIAL = 0x10,
         DIRS = DRIVE | DIR | SYMLINK | SPECIAL,
-        ALL = DRIVE | DIR | FILE | SYMLINK | SPECIAL
+        ALL = DIRS | FILE
     };
     Q_ENUM(TYPE)
     Q_DECLARE_FLAGS(TYPES, TYPE)
