@@ -892,7 +892,7 @@ int CChannelSFTP::CleanFileAIO(QSharedPointer<_AFILE> file)
     }
     if(file->remote) {
         sftp_close(file->remote);
-        file->remote == nullptr;
+        file->remote = nullptr;
     }
     if(-1 != file->local) {
         ::close(file->local);

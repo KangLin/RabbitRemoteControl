@@ -42,7 +42,7 @@ public:
     [[nodiscard]] QVariant Data(int column);
 
     [[nodiscard]] int ChildCount();
-    [[nodiscard]] int ColumnCount();
+    [[nodiscard]] static int ColumnCount();
 
     void SetParent(CRemoteFileSystem* pParent);
     /*!
