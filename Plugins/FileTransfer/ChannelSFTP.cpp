@@ -476,7 +476,7 @@ int CChannelSFTP::AsyncReadDir()
         }
         case STATE::FINISH:
             if(d && STATE::FINISH == d->state) {
-                qDebug(log) << "Remote" << d->szPath << d->vFileNode.size();
+                qDebug(log) << "Remote get path finish:" << d->szPath << d->vFileNode.size();
                 emit sigGetDir(d->remoteFileSystem, d->vFileNode, true);
                 it = m_vDirs.erase(it);
             }

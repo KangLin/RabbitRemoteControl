@@ -413,8 +413,7 @@ int CRemoteFileSystemModel::columnCount(const QModelIndex &parent) const
 QVariant CRemoteFileSystemModel::data(const QModelIndex &index, int role) const
 {
     /*
-    if(Qt::DisplayRole == role)
-        qDebug(log) << Q_FUNC_INFO << index;//*/
+    qDebug(log) << Q_FUNC_INFO << index << role;//*/
     if (!index.isValid())
         return QVariant();
     if (role != Qt::DisplayRole && role != Qt::DecorationRole)
@@ -427,7 +426,7 @@ QVariant CRemoteFileSystemModel::data(const QModelIndex &index, int role) const
         return QVariant();
     if(Qt::DecorationRole == role && index.column() == 0)
         return pItem->Icon();
-    if(Qt::DisplayRole == role)
+    if(Qt::DisplayRole == role || Qt::EditRole == role)
         return pItem->Data(index.column());
     if(Qt::ToolTipRole == role)
         return pItem->GetPath();
@@ -618,9 +617,8 @@ void CRemoteFileSystemModel::CreateDir(QModelIndex index, const QString &dir)
             return;
         }
         emit sigMakeDir(szPath);
-
         p->SetState(CRemoteFileSystem::State::No);
-        fetchMore(index.parent());
+        fetchMore(parent(this->index(p)));
     }
 }
 
@@ -640,10 +638,15 @@ void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
             emit sigRemoveFile(p->GetPath());
 
         auto pParent = p->GetParent();
-        if(!pParent) pParent = m_pRoot;
-        pParent->RemoveChild(pParent->IndexOf(p));
-        pParent->SetState(CRemoteFileSystem::State::No);
-        fetchMore(index.parent());
+        if(pParent) {
+            int nIdx = pParent->IndexOf(p);
+            beginRemoveRows(index.parent(), nIdx, nIdx);
+            pParent->RemoveChild(nIdx);
+            DeleteRemoteFileSystem(p);
+            endRemoveRows();
+            pParent->SetState(CRemoteFileSystem::State::No);
+            fetchMore(index.parent());
+        }
     }
 }
 
@@ -656,18 +659,25 @@ bool CRemoteFileSystemModel::setData(
     if(Qt::EditRole != role) {
         return QAbstractItemModel::setData(index, value, role);
     }
+
+    // Rename
     auto p = GetRemoteFileSystemFromIndex(index);
     QString szName = value.toString();
     if(p && !p->GetPath().isEmpty() && p->GetName() != szName) {
         QFileInfo fi(p->GetPath());
         szName = fi.path() + "/" + szName;
         emit sigRename(p->GetPath(), szName);
-
         auto pParent = p->GetParent();
-        if(!pParent) pParent = m_pRoot;
-        pParent->RemoveChild(pParent->IndexOf(p));
-        pParent->SetState(CRemoteFileSystem::State::No);
-        fetchMore(index.parent());
+        if(pParent) {
+            Q_ASSERT(pParent == GetRemoteFileSystemFromIndex(index.parent()));
+            int nIdx = pParent->IndexOf(p);
+            beginRemoveRows(index.parent(), nIdx, nIdx);
+            pParent->RemoveChild(nIdx);
+            DeleteRemoteFileSystem(p);
+            endRemoveRows();
+            pParent->SetState(CRemoteFileSystem::State::No);
+            fetchMore(index.parent());
+        }
     }
     return true;
 }
