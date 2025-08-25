@@ -297,7 +297,7 @@ jobs:
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
               -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
+              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install/RabbitRemoteControl.App/Contents \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
               -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
@@ -316,8 +316,37 @@ jobs:
               -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 \
               -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
-          cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
-          7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
+          if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            
+            if [ -n "${Qt5_DIR}" ]; then
+              QT_ROOT=${Qt5_DIR}
+            fi
+            if [ -n "${Qt6_DIR}" ]; then
+              QT_ROOT=${Qt6_DIR}
+            fi
+            # for file in plugins/*.dylib; do
+            #     if [ -f "$file" ]; then # 如果是文件
+            #         exe_file="-executable=${file} $exe_file"
+            #         fi
+            # done
+            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3 -executable=`pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp $exe_file 
+
+            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
+          else
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
+          fi
 
       - name: Update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.1' }}

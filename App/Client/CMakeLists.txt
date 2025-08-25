@@ -73,14 +73,23 @@ else()
     message(FATAL_ERROR "Qt${QT_VERSION_MAJOR} don't found")
 endif()
 
+set(APP_ID io.github.KangLin.RabbitRemoteControl)
+if(APPLE)
+    SET(AppImage ${CMAKE_CURRENT_BINARY_DIR}/${APP_ID}.svg)
+    file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
+        "${AppImage}")
+    set_source_files_properties(${AppImage} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
     VERSION ${RabbitRemoteControl_VERSION}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
-      RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS Plugin ${QT_LIBRARIES})
+        RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
+    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES} ${AppImage}
+    PRIVATE_LIBS Plugin ${QT_LIBRARIES}
+    BUNDLE_GUI_IDENTIFIER ${APP_ID}
+    BUNDLE_ICON_FILE ${APP_ID})
 
 # Install other files
 set(OTHER_FILES
@@ -118,7 +127,6 @@ if(WIN32)
             COMPONENT Application)
 endif()
 if(UNIX AND NOT ANDROID)
-    set(APP_ID io.github.KangLin.RabbitRemoteControl)
     configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
@@ -143,12 +151,26 @@ if(UNIX AND NOT ANDROID)
         DESTINATION share/icons/hicolor/scalable/apps
             COMPONENT Application
         RENAME ${APP_ID}.svg)
+    
     string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
     configure_file(${CMAKE_SOURCE_DIR}/share/metainfo/${APP_ID}.metainfo.xml.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml @ONLY)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml
         DESTINATION "${CMAKE_INSTALL_DATADIR}/metainfo"
             COMPONENT Application)
+endif()
+
+if(APPLE)
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
+        RENAME ${APP_ID}.png
+        DESTINATION "Resources" COMPONENT Application)
+    # 设置 bundle 属性 (如果是 GUI 应用)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
+        MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+    )
 endif()
 
 # Install QIcon theme
