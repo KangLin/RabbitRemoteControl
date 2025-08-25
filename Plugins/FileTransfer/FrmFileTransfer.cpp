@@ -389,6 +389,12 @@ void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
     qDebug(log) << Q_FUNC_INFO << szPath;
     if(szPath.isEmpty()) return;
     if(!m_pModelRemoteDir) return;
+    QModelIndex index = m_pModelRemoteDir->index(szPath);
+    if(index.isValid()) {
+        on_treeRemote_clicked(index);
+        return;
+    }
+    
     auto idx = m_pModelRemoteDir->SetRootPath(szPath);
     ui->treeRemote->setRootIndex(idx);
 }
@@ -403,17 +409,17 @@ void CFrmFileTransfer::on_cbRemote_editTextChanged(const QString &szPath)
 //     }
 // }
 
-// void CFrmFileTransfer::on_cbRemote_currentIndexChanged(int index)
-// {
-//     QModelIndex idx = ui->cbRemote->itemData(index).value<QModelIndex>();
-//     if(idx.isValid()) {
-//         ui->treeRemote->setCurrentIndex(idx);
-//         on_treeRemote_clicked(idx);
-//         return;
-//     }
-//     QString szPath = ui->cbRemote->itemText(index);
-//     on_cbRemote_editTextChanged(szPath);
-// }
+void CFrmFileTransfer::on_cbRemote_currentIndexChanged(int index)
+{
+    QModelIndex idx = ui->cbRemote->itemData(index).value<QModelIndex>();
+    if(idx.isValid()) {
+        ui->treeRemote->setCurrentIndex(idx);
+        on_treeRemote_clicked(idx);
+        return;
+    }
+    QString szPath = ui->cbRemote->itemText(index);
+    on_cbRemote_editTextChanged(szPath);
+}
 
 void CFrmFileTransfer::on_treeRemote_clicked(const QModelIndex &index)
 {

@@ -87,6 +87,9 @@
           </item>
           <item>
            <widget class="QComboBox" name="cbRemote">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -94,7 +97,7 @@
              </sizepolicy>
             </property>
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>

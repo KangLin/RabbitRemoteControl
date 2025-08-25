@@ -75,7 +75,7 @@ private Q_SLOTS:
 
     void on_cbRemote_editTextChanged(const QString &szPath);
     //void on_cbRemote_currentTextChanged(const QString &szPath);
-    //void on_cbRemote_currentIndexChanged(int index);
+    void on_cbRemote_currentIndexChanged(int index);
 
     void on_treeRemote_clicked(const QModelIndex &index);
     void on_treeRemote_doubleClicked(const QModelIndex &index);

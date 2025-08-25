@@ -427,6 +427,8 @@ QModelIndex CRemoteFileSystemModel::index(const QString& szPath) const
     while(idx.isValid()) {
         idx = index(r++, 0, idxParent);
         CRemoteFileSystem* pRemoteFileSystem = GetRemoteFileSystemFromIndex(idx);
+        if(!pRemoteFileSystem)
+            continue;
         QString szDir = pRemoteFileSystem->GetPath();
         qDebug(log) << szDir << szPath;
         if(szDir == szPath)
