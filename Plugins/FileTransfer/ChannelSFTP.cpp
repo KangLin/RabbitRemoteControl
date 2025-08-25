@@ -377,11 +377,9 @@ void CChannelSFTP::OnClose()
     }
 }
 
-void CChannelSFTP::slotGetDir(CRemoteFileSystem *p)
+void CChannelSFTP::slotGetDir(const QString &szPath, CRemoteFileSystem *p)
 {
-    if(!p) return;
-    QString szPath = p->GetPath();
-    if(szPath.isEmpty()) {
+    if(szPath.isEmpty() || !p) {
         qCritical(log) << "The path is empty";
         return;
     }

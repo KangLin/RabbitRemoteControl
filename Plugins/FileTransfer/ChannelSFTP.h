@@ -35,7 +35,7 @@ public Q_SLOTS:
     /*!
      * \brief Get the directory asynchronously
      */
-    void slotGetDir(CRemoteFileSystem *p);
+    void slotGetDir(const QString& szPath, CRemoteFileSystem *p);
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 

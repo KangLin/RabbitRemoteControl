@@ -92,7 +92,7 @@ bool CBackendFileTransfer::event(QEvent *event)
         case CFileTransferEvent::Command::GetDir:
         {
             if(m_pSFTP)
-                m_pSFTP->slotGetDir(pEvent->m_pRemoteFileSystem);
+                m_pSFTP->slotGetDir(pEvent->m_szSourcePath, pEvent->m_pRemoteFileSystem);
             break;
         }
         case CFileTransferEvent::Command::StartFileTransfer:
