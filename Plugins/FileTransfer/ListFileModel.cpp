@@ -400,7 +400,13 @@ QSharedPointer<CFileTransfer> CListFileModel::GetFileTransfer(const QModelIndex 
 bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row + count - 1);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     m_lstFile.remove(row, count);
+#else
+    for(int i = row + count - 1; i >= row && i < m_lstFile.size();) {
+        m_lstFile.removeAt(i--);
+    }
+#endif
     endRemoveRows();
     return true;
 }

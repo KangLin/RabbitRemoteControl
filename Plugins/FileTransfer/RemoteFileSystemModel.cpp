@@ -16,6 +16,8 @@
 
 static Q_LOGGING_CATEGORY(log, "RemoteFileSystem.Model")
 
+static int g_CRemoteFileSystem = qRegisterMetaType<CRemoteFileSystem>("CRemoteFileSystem");
+
 CRemoteFileSystem::CRemoteFileSystem(
     const QString& szPath, TYPES type)
     : QObject()
@@ -31,6 +33,20 @@ CRemoteFileSystem::CRemoteFileSystem(
 CRemoteFileSystem::~CRemoteFileSystem()
 {
     //qDebug(log) << Q_FUNC_INFO << m_szPath;
+}
+
+CRemoteFileSystem::CRemoteFileSystem(const CRemoteFileSystem &file)
+{
+    m_pParent = file.m_pParent;
+    m_vChild = file.m_vChild;
+    m_szPath = file.m_szPath;
+    m_nSize = file.m_nSize;
+    m_Type = file.m_Type;
+    m_createTime = file.m_createTime;
+    m_lastModifed = file.m_lastModifed;
+    m_Permissions = file.m_Permissions;
+    m_szOwner = file.m_szOwner;
+    m_State = file.m_State;
 }
 
 #if defined(Q_OS_LINUX)
@@ -618,7 +634,7 @@ void CRemoteFileSystemModel::RemoveDir(QModelIndex index)
                 QMessageBox::Yes | QMessageBox::No)
             != QMessageBox::Yes)
             return;
-        if(p->GetType() == CRemoteFileSystem::TYPE::DIR)
+        if(p->GetType() & CRemoteFileSystem::TYPE::DIR)
             emit sigRemoveDir(p->GetPath());
         else
             emit sigRemoveFile(p->GetPath());

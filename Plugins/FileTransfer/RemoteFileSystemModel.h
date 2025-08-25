@@ -27,6 +27,7 @@ public:
 
     explicit CRemoteFileSystem(const QString& szPath, TYPES type);
     virtual ~CRemoteFileSystem();
+    CRemoteFileSystem(const CRemoteFileSystem &file);
 
     enum class ColumnValue {
         Name = 0,
