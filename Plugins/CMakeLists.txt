@@ -56,7 +56,7 @@ if(QT_VERSION GREATER_EQUAL "6.8.0")
     endif()
 endif()
 
-option(BUILD_FILE_TRANSFER "Build file transfaer" ON)
+option(BUILD_FILE_TRANSFER "Build file transfaer" OFF)
 if(BUILD_FILE_TRANSFER)
     add_subdirectory(FileTransfer)
 endif()

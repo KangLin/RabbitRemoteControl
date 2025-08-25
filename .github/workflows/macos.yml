@@ -317,6 +317,11 @@ jobs:
               -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
           cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
+          cp ${{env.INSTALL_DIR}}/lib/*.dylib install/lib
+          cp vcpkg_installed/${{matrix.VCPKG_TARGET_TRIPLET}}/lib/*.dylib install/lib
+          if [ -d ${{env.INSTALL_DIR}}/share/qtermwidget6 ]; then
+              cp -r -a ${{env.INSTALL_DIR}}/share/qtermwidget6/* install/share/qtermwidget6
+          fi
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file
