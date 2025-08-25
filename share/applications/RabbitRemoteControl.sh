@@ -7,7 +7,15 @@ PRONAME=$(readlink -f $0)
 #获取文件运行的当前目录
 INSTALL_PATH=$(readlink -f $(dirname $(dirname $PRONAME)))
 
+xattr -r -d com.apple.quarantine "$INSTALL_PATH"
+
 echo "INSTALL_PATH:$INSTALL_PATH"
-export LD_LIBRARY_PATH=$INSTALL_PATH/bin:$INSTALL_PATH/lib:$INSTALL_PATH/lib/`uname -m`-linux-gnu:$INSTALL_PATH/plugins/Client:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$INSTALL_PATH/bin:$INSTALL_PATH/lib:$HOMEBREW_PREFIX/lib:$INSTALL_PATH/lib/`uname -m`-linux-gnu:$INSTALL_PATH/plugins/Client:$LD_LIBRARY_PATH
 echo "LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH=$INSTALL_PATH/lib
+echo "DYLD_LIBRARY_PATH:$DYLD_LIBRARY_PATH"
+DYLD_FRAMEWORK_PATH=$HOMEBREW_PREFIX/lib
+eval "$(/usr/local/bin/brew shellenv)"
+export DYLD_FRAMEWORK_PATH=$DYLD_FRAMEWORK_PATH:$HOMEBREW_PREFIX/lib
+echo "DYLD_FRAMEWORK_PATH:$DYLD_FRAMEWORK_PATH"
 $INSTALL_PATH/bin/RabbitRemoteControlApp $*
