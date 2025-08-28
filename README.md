@@ -34,13 +34,13 @@ Author: Kang Lin <kl222@126.com>
 
 ## Introduction
 
-**Rabbit Remote Control** is a open-source, cross-platform, multi-protocol remote control software.
+**Rabbit Remote Control** is an open-source, cross-platform, multi-protocol remote control software.
 
-**Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
+**Allows you to use any device and system from anywhere and remotely manage any device and system in any way**. 
 
-Its goal is to be simple, convenient, security and easy to use, improving work efficiency.
+Its goal is to be simple, convenient, secure and easy to use, improving work efficiency.
 
-It include remote desktop, remote control, file transfer(FTP, SFTP), terminal, remote terminal(SSH, TELNET), player, network tools etc functions.
+It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal, remote terminal (SSH, Telnet), player, network tools, and more.
 
 ### Screenshot
 
@@ -80,10 +80,10 @@ https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25
 See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html),
 [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
-I have no the mac devices so I did not compile and test. Please test by yourself if you have devices.
+I do not have Mac devices, so I did not compile and test. Please test by yourself if you have Mac devices.
 Interested and capable friends are welcome to participate in the development of the project.
 
-If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
+If you want to donate the development devices to me, please contact: (email: kl222@126.com)
 
 - Remote desktop
 
@@ -190,7 +190,7 @@ Legend:
   - [LibVNCServer](Plugins/LibVNCServer/README.md)
 - [Wake on lan](Plugins/WakeOnLan/README.md)
 - [Player](Plugins/Player/README.md)
-- [Screen capture: Example](Plugins/ScreenCaptue)
+- [Screen capture: Example](Plugins/ScreenCapture)
 - Terminal
   - [Terminal](Plugins/Terminal)
   - [SSH](Plugins/LibSSH)
@@ -272,7 +272,7 @@ Contact me:
     - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
   - Windows
     - [ ] Windows store: Need to maintain official packages
-  - [ ] Macos: Need to maintain official packages
+  - [ ] macOS: Need to maintain official packages
   - [ ] Android: Need to maintain official packages
 
 ## Download
@@ -295,6 +295,7 @@ Contact me:
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation
+- [Compiling for Android](docs/Compile/Android_zh_CN.md)
 - [Compiling for Linux](docs/Compile/Linux.md)
 - [Compiling for Windows](docs/Compile/Windows.md)
 - [Compiling for macOS](docs/Compile/macOS.md)
