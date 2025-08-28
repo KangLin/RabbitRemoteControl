@@ -326,6 +326,9 @@ jobs:
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
             
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+
             if [ -n "${Qt5_DIR}" ]; then
               QT_ROOT=${Qt5_DIR}
             fi
