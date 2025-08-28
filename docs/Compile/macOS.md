@@ -17,34 +17,38 @@ Prior versions don't have CMake support.
 
 #### Install the development tools packages
 
-      ~$ xcode-select --install
+    ~$ xcode-select --install
 
   - The Xcode development tools package already includes the installation of the following:
     - Compiler
       - GCC/g++
       - automake、autoconf、make、fakeroot
 
-            ~$ brew install automake fakeroot
+          ~$ brew install automake fakeroot
 
 #### Ninja: [https://ninja-build.org/](https://ninja-build.org/)
 
-      ~$ brew install ninja
+    ~$ brew install ninja
 
 #### Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
-      ~$ brew install git
+    ~$ brew install git
         
 #### CMake: [https://cmake.org](https://cmake.org/)
 
   Version: Greater than 3.27.0
 
-      ~$ brew install cmake
+    ~$ brew install cmake
+
+#### vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
+
+    ~$ brew install vcpkg
 
 #### Qt: [https://download.qt.io/official_releases/qt/](https://download.qt.io/official_releases/qt/)
   - Qt (official release)
     Current version: Qt 6.9.2
 
-      ~$ brew install qt
+        ~$ brew install qt
 
     - Set environment variable or cmake parameters:
       - QT_ROOT
@@ -78,12 +82,10 @@ Prior versions don't have CMake support.
     
       - Set the Qt version of your current environment
 
-            export QT_SELECT=qt6  # Set the Qt6 version of your current environment
-
             # Set the Qt version of your current environment
-            QT_SELECT="qt6"
-            QTTOOLDIR="$QT_ROOT/bin"
-            QTLIBDIR="$HOMEBREW_PREFIX/lib"
+            export QT_SELECT="qt6"
+            export QTTOOLDIR="$QT_ROOT/bin"
+            export QTLIBDIR="$HOMEBREW_PREFIX/lib"
 
 #### [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
   Prior versions don't have CMake support.
@@ -140,7 +142,7 @@ Prior versions don't have CMake support.
 
 #### FreeRDP
 
-- Use the system-packaged development library
+- Use the brew-packaged development library
 
       ~$ brew install freerdp
     
@@ -179,7 +181,7 @@ Prior versions don't have CMake support.
 
 #### LibVNCServer
 
-- Use the system-packaged development library
+- Use the brew-packaged development library
 
       ~$ brew install libvncserver
 
@@ -260,7 +262,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 #### QXmpp
 
-- Use the system-packaged development library
+- Use the brew-packaged development library
 
       ~$ brew install qxmpp
 
@@ -290,7 +292,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 #### libssh
 
-- Use the system-packaged development library
+- Use the brew-packaged development library
 
       ~$ brew install libssh 
 
@@ -349,13 +351,13 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 #### libpcap
 
-It is depended by PcapPlusPlus
+It is dependent on PcapPlusPlus
 
-- Use the system-packaged development library
+- Use the brew-packaged development library
 
       ~$ brew install libpcap
 
-- Sourc-code location: https://github.com/the-tcpdump-group/libpcap
+- Source-code location: https://github.com/the-tcpdump-group/libpcap
 
 ### Compile this project
 
@@ -405,7 +407,7 @@ It is depended by PcapPlusPlus
 
 #### Compilation
 
-- Compile from the command-line
+- Compile from the command line
   - Not using vcpkg
 
         ~$ cd RabbitRemoteControl
@@ -432,7 +434,7 @@ It is depended by PcapPlusPlus
   - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
   - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
   - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
-    - If need install: select install in target
+    - If needed, install: select install in target
   - If using vcpkg: Menu→ Preferences→ Kits→ Cmake Configureration: add `-DCMAKE_TOOLCHAIN_FILE:FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake`
   - If using Ninja from Homebrew: Menu→ Preferences→ Kits→ Cmake Configureration: add `-DCMAKE_MAKE_PROGRAM:FILE=/opt/homebrew/bin/ninja`
 
