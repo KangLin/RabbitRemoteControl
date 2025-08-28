@@ -161,8 +161,8 @@ if(UNIX AND NOT ANDROID)
 endif()
 
 if(APPLE)
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        RENAME ${APP_ID}.png
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/app.icns
+        RENAME ${APP_ID}.icns
         DESTINATION "Resources" COMPONENT Application)
     # 设置 bundle 属性 (如果是 GUI 应用)
     set_target_properties(${PROJECT_NAME} PROPERTIES
