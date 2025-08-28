@@ -340,6 +340,13 @@ jobs:
             ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3 -executable=`pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp $exe_file 
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
+            lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+
           else
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
@@ -366,3 +373,4 @@ jobs:
           path: |
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip
             ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
+            ${{github.workspace}}/build/*.dmg
