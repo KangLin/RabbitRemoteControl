@@ -170,7 +170,12 @@ if(APPLE)
         MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
         MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
-    )
+        )
+    configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
+        ${CMAKE_CURRENT_BINARY_DIR}/App.Info.plist
+        @ONLY)
+    INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/App.Info.plist
+        DESTINATION "." COMPONENT Application)
 endif()
 
 # Install QIcon theme
