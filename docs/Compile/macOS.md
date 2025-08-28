@@ -1,0 +1,453 @@
+## Compiling for macOS
+
+Author: Eduardo Mozart de Oliveira <eduardomozart182@gmail.com>
+
+### Environment
+#### Operating system
+
+- macOS Sequoia, version 15.6.1
+
+#### Qt Creator
+
+Version: v17.0.1 (ARM64) 
+It is recommended to use version v5.0.2 or later.  
+Prior versions don't have CMake support.
+
+### Tools
+
+#### Install the development tools packages
+
+      ~$ xcode-select --install
+
+  - The Xcode development tools package already includes the installation of the following:
+    - Compiler
+      - GCC/g++
+      - automake、fakeroot
+
+            ~$ brew install automake fakeroot
+
+#### Ninja:
+
+      ~$ brew install ninja
+
+#### Git: [https://www.git-scm.com](https://www.git-scm.com/)
+
+      ~$ brew install git
+        
+#### CMake: [https://cmake.org](https://cmake.org/)
+
+  Version: Greater than 3.27.0
+
+      ~$ brew install cmake
+
+#### Qt: [https://download.qt.io/official_releases/qt/](https://download.qt.io/official_releases/qt/)
+  - Qt (official release)
+    Current version: Qt 6.9.2
+
+      ~$ brew install qt
+
+    - Set environment variable or cmake parameters:
+      - QT_ROOT
+      - Qt6: Qt6_ROOT or Qt6_DIR .
+        See: https://doc.qt.io/qt-6/cmake-get-started.html
+      - Qt5: Qt5_ROOT or Qt5_DIR .
+        See: https://doc.qt.io/qt-5/cmake-get-started.html
+      - Environment variable
+
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+            export QT_ROOT=$HOMEBREW_PREFIX/Cellar/qt/6.9.2
+
+            # When Qt6
+            export Qt6_ROOT=$QT_ROOT
+            # When Qt5
+            export Qt5_ROOT=$QT_ROOT
+
+            # Or
+
+            # When Qt6
+            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+            # When Qt5
+            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+
+      - CMAKE parameters
+
+            # Qt6
+            cmake -DQT_ROOT=/opt/homebrew/Cellar/qt/6.9.2 -DQt6_DIR=/opt/homebrew/Cellar/qt/6.9.2/lib/cmake/Qt6 ......
+            # Qt5 
+            cmake -DQT_ROOT=/opt/homebrew/Cellar/qt/6.9.2 -DQt5_DIR=/opt/homebrew/Cellar/qt/6.9.2/lib/cmake/Qt5 ......
+    
+      - Set the Qt version of your current environment
+
+            export QT_SELECT=qt6  # Set the Qt6 version of your current environment
+
+            # Set the Qt version of your current environment
+            QT_SELECT="qt6"
+            QTTOOLDIR="$QT_ROOT/bin"
+            QTLIBDIR="$HOMEBREW_PREFIX/lib"
+
+#### [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
+  Prior versions don't have CMake support.
+
+      ~$ brew install --cask qt-creator
+      
+#### Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+
+      ~$ brew install doxygen
+
+### Library dependencies
+
+- [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [MUST] [Openssl:](https://github.com/openssl/openssl) Required to run Qt.
+- [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [OPTIONAL] RFB
+  + [OPTIONAL] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
+  + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
+- [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+- [OPTIONAL] QtSsh: [https://github.com/condo4/QtSsh.git](https://github.com/condo4/QtSsh.git)
+- [OPTIONAL] [SSH]
+  + libssh:
+    - [https://www.libssh.org](https://www.libssh.org/)
+    - [libssh API](https://api.libssh.org/stable/index.html)
+  + libssh2:
+    - [https://www.libssh2.org](https://www.libssh2.org/)
+    - [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)
+- [OPTIONAL] QTelnet: [https://github.com/silderan/QTelnet.git](https://github.com/silderan/QTelnet.git)
+- [OPTIONAL] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
+- [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
+- [OPTIONAL] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
+- [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus).
+  The WakeOnLan plugin required.
+- [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/).
+  QtMultimedia required.
+
+#### RabbitCommon
+
+- This library is placed in the same directory level as the project by default.
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      ~$ git clone https://github.com/KangLin/RabbitCommon.git
+
+- If not, you must specify the CMake parameters or environment variable:
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      # Set environment variable
+      ~$ export RabbitCommon_ROOT=[RabbitCommon install root]
+      ~$ cd RabbitRemoteControl
+      # Or set CMake parameters
+      ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon installation path] ......
+
+#### FreeRDP
+
+- Use the system-packaged development library
+
+      ~$ brew install freerdp
+    
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+  
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./bootstrap-vcpkg.sh
+        ~/vcpkg$ ./vcpkg install freerdp
+
+  + Specify the CMake parameters:
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  + With vcpkg, the FreeRDP service is not a default feature,
+    so you need to specify it manually.
+
+- Compile from source code
+  + Source-code location: https://github.com/FreeRDP/FreeRDP
+  + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
+  
+          ~$ git clone https://github.com/FreeRDP/FreeRDP.git
+          ~$ cd FreeRDP
+          ~/FreeRDP$ mkdir build
+          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_INSTALL_PREFIX=`pwd`/install -DWITH_SERVER=ON
+          ~/FreeRDP/build$ cmake --build . --config Release --target install
+          
+- When FreeRDP is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  - -DBUILD_FREERDP=ON
+  - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client3
+  - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP3
+  - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR3
+  - -DFreeRDP-Shadow_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Shadow3
+  - -DFreeRDP-Server_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Server3
+
+#### LibVNCServer
+
+- Use the system-packaged development library
+
+      ~$ brew install libvncserver
+
+- Compile from source code
+  + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
+  It is recommended to use the patches from: https://github.com/KangLin/libvncserver
+- When LibVNCServer is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
+
+#### RabbitVNC
+
+- Compile from source code
+Source-code location: https://github.com/KangLin/RabbitVNC  
+
+      ~$ sudo brew install pixman
+      ~$ git clone https://github.com/KangLin/RabbitVNC.git
+      ~$ cd RabbitVNC
+      ~/RabbitVNC$ mkdir build
+      ~/RabbitVNC$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+      ~/RabbitVNC$ cmake --build . --config Release --target install
+    
+- When RabbitVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
+
+#### TigerVNC
+
+- Compile from source code
+
+The official program does not support libraries.
+See: https://github.com/TigerVNC/tigervnc/issues/1123  
+The KangLin fork has support.
+Source-code location: https://github.com/KangLin/tigervnc  
+
+    ~$ brew install pixman
+    ~$ git clone https://github.com/KangLin/tigervnc.git
+    ~$ cd tigervnc
+    ~/tigervnc$ mkdir build
+    ~/tigervnc$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/tigervnc$ cmake --build . --config Release --target install
+    
+- When TigerVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
+
+#### libdatachannel
+
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./vcpkg install libdatachannel
+      
+  + Specify the CMake parameters:
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  
+- Compile from source code
+  + Source-code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+  + Compilation: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
+  
+        ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
+        ~$ cd libdatachannel
+        ~/libdatachannel$ git submodule update --init --recursive
+        ~/libdatachannel$ mkdir build
+        ~/libdatachannel$ cd build
+        ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+        ~/libdatachannel/build$ cmake --build . --config Release --target install
+
+- When libdatachannel is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
+
+#### QXmpp
+
+- Use the system-packaged development library
+
+      ~$ brew install qxmpp
+
+- Compile from source code
+  + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
+  
+        ~$ git clone https://github.com/qxmpp-project/qxmpp.git
+        ~$ cd qxmpp
+        ~/qxmpp$ mkdir build
+        ~/qxmpp$ cd build
+        ~/qxmpp/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
+        ~/qxmpp/build$ cmake --build . --config Release --target install
+
+- When QXmpp is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+
+#### QTermWidget
+      
+- Compile from source code
+  + Source-code location: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+- When QTermWidget is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+
+#### libssh
+
+- Use the system-packaged development library
+
+      ~$ brew install libssh 
+
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+ 
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./vcpkg install libssh
+
+  + Specify the CMake parameters:
+  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+- Compile from source code
+  + Source-code location: [https://www.libssh.org](https://www.libssh.org)
+- When libssh is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
+
+#### QtService
+
+- Compile from source code
+  + Source-code location: https://github.com/KangLin/qt-solutions/
+  
+        ~$ git clone https://github.com/KangLin/qt-solutions.git
+        ~$ cd qt-solutions
+        ~/qt-solutions$ mkdir build
+        ~/qt-solutions$ cd build
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+        ~/qt-solutions/build$ cmake --build . --config Release --target install
+  
+- When QtService is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
+
+### PcapPlusPlus
+
+- Compile from source code
+  + Source-code location: https://github.com/seladb/PcapPlusPlus
+
+        ~$ git clone https://github.com/seladb/PcapPlusPlus.git
+
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./vcpkg install pcapplusplus
+
+- When PcapPlusPlus is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+#### libpcap
+
+It is depended by PcapPlusPlus
+
+- Use the system-packaged development library
+
+      ~$ brew install libpcap
+
+- Sourc-code location: https://github.com/the-tcpdump-group/libpcap
+
+### Compile this project
+
+#### Source code
+
+- Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
+- Download the source code:
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+
+#### CMake parameters or environment variable
+
+- CMake parameters or environment variable
+  + [Qt](#Qt)
+    + QT_ROOT: Qt install root
+    + Qt6: See: https://doc.qt.io/qt-6/cmake-get-started.html
+      + Qt6_ROOT: Is same QT_ROOT
+      + Qt6_DIR: $QT_ROOT/lib/cmake/Qt6
+    + Qt5: See: https://doc.qt.io/qt-5/cmake-get-started.html
+      + Qt5_ROOT: Is same QT_ROOT
+      + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
+  + RabbitCommon_ROOT: RabbitCommon source code location
+  + BUILD_CLIENT: Compile client. the default is ON
+  + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
+  + BUILD_PLUGINS: Compile plugins. the default is ON
+  + BUILD_APP: Compile applaction. the default is ON
+  + BUILD_DOCS: Build docmenets. the default is OFF
+  + BUILD_SHARED_LIBS: Compile shared libraries. the default is ON
+  + BUILD_FREERDP: If compile FreeRDP. the default is OFF
+  + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR3
+  + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP3
+  + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client3
+  + BUILD_RABBITVNC: Compile RabbitVNC. the default is ON
+  + RabbitVNC_DIR: [RabbitVNC installation path]/lib/cmake/RabbitVNC
+  + BUILD_TigerVNC: Compile TigerVNC. the default is ON
+  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
+  + BUILD_LibVNCServer: Compile LibVNCServer. the default is ON
+  + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
+  + LibDataChannel_DIR: [libdatachannel installation path]/lib/cmake/LibDataChannel
+  + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
+  + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
+  + libssh_DIR: [libssh installation path]/lib/cmake/libssh
+  + QtService_DIR: [QtService installation path]/lib/cmake/QtService
+  + PcapPlusPlus_DIR: [PcapPlusPlus install path]/lib/cmake/pcapplusplus
+- If using vcpkg, please set the CMake parameters:
+  + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+#### Compilation
+
+- Compile from the command-line
+  - Not using vcpkg
+
+        ~$ cd RabbitRemoteControl
+        ~/RabbitRemoteControl$ mkdir build
+        ~/RabbitRemoteControl/build$ cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=`pwd`/install [...]
+        ~/RabbitRemoteControl/build$ cmake --build . \
+            --config Release --target install
+
+  - If using vcpkg
+
+        ~$ cd RabbitRemoteControl
+        ~/RabbitRemoteControl$ mkdir build
+        ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+            -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake \
+            [options libraries]
+        ~/RabbitRemoteControl/build$ cmake --build . \
+            --config Release --target install
+
+- Using an IDE (Qt Creator)
+  - Qt Versions: Menu→ Preferences→ Kits→ Qt Versions→ Add→ `/opt/homebrew/opt/qt/bin/qmake`
+  - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
+  - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
+  - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
+    - If need install: select install in target
+  - If using vcpkg: Menu→ Preferences→ Kits→ Cmake Configureration: add `-DCMAKE_TOOLCHAIN_FILE:FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake`
+  - If using Ninja from Homebrew: Menu→ Preferences→ Kits→ Cmake Configureration: add `-DCMAKE_MAKE_PROGRAM:FILE=/opt/homebrew/bin/ninja`
+
+#### Run
+
+- The application is installed in install/bin
+
+      ~$ cd RabbitRemoteControl
+      ~/RabbitRemoteControl$ cd build/install/bin
+      ~/RabbitRemoteControl$ ./RabbitRemoteControl.sh
+      # Or
+      ~/RabbitRemoteControl$ ./RabbitRemoteControlApp
+      
+**Note:** If the plugin does not load.
+It may be that the plugin's dependencies are not installed on the system.
+You can add the path of the dependency libraries to the environment variable LD_LIBRARY_PATH and/or DYLD_FRAMEWORK_PATH.
+You can also add the path of the dependency libraries to the /etc/ld.so.conf file,
+and then run ldconfig to add the dependency libraries to the system.
