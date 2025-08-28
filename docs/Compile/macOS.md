@@ -26,7 +26,7 @@ Prior versions don't have CMake support.
 
             ~$ brew install automake fakeroot
 
-#### Ninja:
+#### Ninja: [https://ninja-build.org/](https://ninja-build.org/)
 
       ~$ brew install ninja
 
