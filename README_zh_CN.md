@@ -297,6 +297,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - [为 Linux 编译](docs/Compile/Linux_zh_CN.md)
 - [为 Windows 编译](docs/Compile/Windows_zh_CN.md)
+- [为 macOS 编译 (English)](docs/Compile/macOS.md)
 
 ## [许可协议](License.md "License.md")
 
