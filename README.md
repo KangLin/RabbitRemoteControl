@@ -297,6 +297,7 @@ Contact me:
 ### Compilation
 - [Compiling for Linux](docs/Compile/Linux.md)
 - [Compiling for Windows](docs/Compile/Windows.md)
+- [Compiling for macOS](docs/Compile/macOS.md)
 
 ## [License Agreement](License.md "License.md")
 
