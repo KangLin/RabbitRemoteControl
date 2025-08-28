@@ -22,7 +22,7 @@ Prior versions don't have CMake support.
   - The Xcode development tools package already includes the installation of the following:
     - Compiler
       - GCC/g++
-      - automake、fakeroot
+      - automake、autoconf、make、fakeroot
 
             ~$ brew install automake fakeroot
 
