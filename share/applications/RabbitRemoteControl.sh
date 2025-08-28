@@ -18,6 +18,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   else
     # Development
     xattr -r -d com.apple.quarantine "$INSTALL_PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     DYLD_FRAMEWORK_PATH=$HOMEBREW_PREFIX/lib
     eval "$(/usr/local/bin/brew shellenv)"
     export DYLD_FRAMEWORK_PATH=$DYLD_FRAMEWORK_PATH:$HOMEBREW_PREFIX/lib
