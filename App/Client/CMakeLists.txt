@@ -172,9 +172,9 @@ if(APPLE)
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
         )
     configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
-        ${CMAKE_CURRENT_BINARY_DIR}/App.Info.plist
+        ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
         @ONLY)
-    INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/App.Info.plist
+    INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
         DESTINATION "." COMPONENT Application)
 endif()
 
