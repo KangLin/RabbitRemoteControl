@@ -171,11 +171,15 @@ if(APPLE)
         MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
         )
-    configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
-        ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
-        @ONLY)
-    INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
-        DESTINATION "." COMPONENT Application)
+
+    target_add_resources(${PROJECT_NAME} . "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.icns")
+
+    # configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
+    #     ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+    #     @ONLY)
+    # INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+    #     DESTINATION "." COMPONENT Application)
+
 endif()
 
 # Install QIcon theme
