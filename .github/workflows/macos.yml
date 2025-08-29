@@ -278,7 +278,7 @@ jobs:
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
-        run: git clone https://github.com/KangLin/RabbitCommon.git
+        run: git clone -b develop https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl
         working-directory: ${{env.BUILD_DIR}}
@@ -297,7 +297,7 @@ jobs:
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
               -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install/RabbitRemoteControl.App/Contents \
+              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
               -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
