@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Set FreeRdp</string>
+   <string>FreeRdp Settings</string>
   </property>
   <property name="windowIcon">
    <iconset>

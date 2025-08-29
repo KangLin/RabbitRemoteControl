@@ -89,7 +89,7 @@ QVariant CRemoteFileSystem::Data(int column)
         if(GetType() & TYPE::DIR)
             return tr("Folder");
         if(GetType() & TYPE::DRIVE)
-            return tr("Driver");
+            return tr("Drive");
         if(GetType() & TYPE::SYMLINK)
             return tr("Symlink");
         if(GetType() & TYPE::SPECIAL)

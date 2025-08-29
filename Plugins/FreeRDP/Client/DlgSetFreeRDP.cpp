@@ -216,7 +216,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     if(m_pSettings->GetConnectType() > 0 && m_pSettings->GetPerformanceFlags() > 0)
         m_vPerformanceFlags[m_pSettings->GetConnectType() - 1] = m_pSettings->GetPerformanceFlags();
     // Connect type
-    ui->cbConnectType->addItem(tr("Modem(56 kpbs)"), CONNECTION_TYPE_MODEM);
+    ui->cbConnectType->addItem(tr("Modem(56 kbps)"), CONNECTION_TYPE_MODEM);
     ui->cbConnectType->addItem(tr("Broadband low(256 kbps - 2 Mbps)"), CONNECTION_TYPE_BROADBAND_LOW);
     ui->cbConnectType->addItem(tr("Satellite(2 Mbps - 16 Mbps, High latency)"), CONNECTION_TYPE_SATELLITE);
     ui->cbConnectType->addItem(tr("Broadband high(2 Mbps - 10 Mbps)"), CONNECTION_TYPE_BROADBAND_HIGH);
