@@ -340,14 +340,17 @@ jobs:
             #         exe_file="-executable=${file} $exe_file"
             #         fi
             # done
-            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3 -executable=`pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp $exe_file 
+            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
             lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
             lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
             lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+            otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
 
           else
