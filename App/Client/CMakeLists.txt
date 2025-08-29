@@ -83,6 +83,7 @@ endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
+    IS_MACOSX_BUNDLE
     VERSION ${RabbitRemoteControl_VERSION}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
         RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
@@ -161,12 +162,10 @@ if(UNIX AND NOT ANDROID)
 endif()
 
 if(APPLE)
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/app.icns
-        RENAME ${APP_ID}.icns
-        DESTINATION "Resources" COMPONENT Application)
     # 设置 bundle 属性 (如果是 GUI 应用)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
+        MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
         MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
         MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
