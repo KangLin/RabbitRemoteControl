@@ -59,6 +59,25 @@
 
           ~$ sudo apt install automake autoconf make fakeroot
 
+  - 动态库工具
+    - ldd: 查看动态库依赖
+      
+          ldd file
+      
+    - ldconfig: 更新动态库缓存。执行 ldconfig 命令，默认会在 /lib 和 /usr/lib
+      目录以及动态库配置文件 /etc/ld.so.conf 内所列出的目录下，搜索出可共享的动态链接库（格式如 lib*.so*），
+      进而创建出动态装入程序（ld.so）所需的连接和缓存文件。缓存文件默认为 /etc/ld.so.cache，
+      此文件保存已排好序的动态链接库名字列表，为了让动态链接库为系统所共享，就需要运行动态链接库的管理命令 ldconfig。
+
+    - readelf: 查看elf结构
+
+          readelf -d "file"    #可查看　runPath(rpath)
+
+    - 加载动态库搜索顺序
+      + 代码中指定的位置　(rpath)
+      + 环境变量： LD_CONFIG_PATH
+      + 系统库位置 (/lib、/usr/lib 等)
+
 #### GIT: [http://www.git-scm.com](http://www.git-scm.com)
 
       ~$ sudo apt install git
