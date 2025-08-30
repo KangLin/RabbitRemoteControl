@@ -104,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     m_pSecureLevel = new QLabel(statusBar());
-    // QIcon icon = QIcon::fromTheme("newwork-wired");
+    // QIcon icon = QIcon::fromTheme("network-wired");
     // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
     // m_pSecureLevel->setPixmap(pixmap);
     m_pSecureLevel->hide();
