@@ -178,7 +178,7 @@ private:
     int AppendPlugin(CPlugin* plugin);
 
 private Q_SLOTS:
-    void slotNativeWindowRecieveKeyboard();
+    void slotNativeWindowReceiveKeyboard();
 
 private:
     QString m_szSettingsFile;

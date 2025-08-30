@@ -55,7 +55,7 @@
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>The format is error. Please enter the width×height correctly</string>
+      <string>The format is wrong. Please enter the width×height correctly</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

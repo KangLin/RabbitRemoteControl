@@ -39,8 +39,8 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
         LoadSettings(m_szSettingsFile);
-        check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
-                        this, SLOT(slotNativeWindowRecieveKeyboard()));
+        check = connect(m_pParameter, SIGNAL(sigNativeWindowReceiveKeyboard()),
+                        this, SLOT(slotNativeWindowReceiveKeyboard()));
         m_pHook = CHook::GetHook(m_pParameter, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
@@ -439,7 +439,7 @@ const QString CManager::Details() const
     return m_szDetails;
 }
 
-void CManager::slotNativeWindowRecieveKeyboard()
+void CManager::slotNativeWindowReceiveKeyboard()
 {
     Q_ASSERT(m_pParameter);
     if(m_pParameter->GetNativeWindowReceiveKeyboard()) {

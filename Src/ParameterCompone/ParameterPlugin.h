@@ -46,9 +46,9 @@ protected:
 
 public:
     bool GetNativeWindowReceiveKeyboard() const;
-    void SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard);
+    void SetNativeWindowReceiveKeyboard(bool newNativeWindowReceiveKeyboard);
 Q_SIGNALS:
-    void sigNativeWindowRecieveKeyboard();
+    void sigNativeWindowReceiveKeyboard();
 private:
     bool m_bNativeWindowReceiveKeyboard;
 

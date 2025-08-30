@@ -24,8 +24,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Application details**
-- The application version (Open applicatoin → help → about)
-- Compile date (Open applicatoin → help → about)
+- The application version (Open application → help → about)
+- Compile date (Open application → help → about)
 - Log file
 
 **Qt**
