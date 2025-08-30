@@ -45,6 +45,9 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 #include <QThread>
+#include <QGuiApplication>
+#include <QPalette>
+#include <QStyleHints>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
@@ -1498,7 +1501,33 @@ void MainWindow::slotSystemTrayIconTypeChanged()
             this,
             SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
         Q_ASSERT(check);
-        m_TrayIcon->setIcon(this->windowIcon());
+
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                      QSettings::IniFormat);
+        QString szThemeName = set.value("Style/Icon/Theme").toString();
+
+        #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+            const auto scheme = QGuiApplication::styleHints()->colorScheme();
+            bool isDarkMode = scheme == Qt::ColorScheme::Dark;
+        #else
+            const QPalette defaultPalette;
+            const auto text = defaultPalette.color(QPalette::WindowText);
+            const auto window = defaultPalette.color(QPalette::Window);
+            bool isDarkMode = text.lightness() > window.lightness();
+        #endif // QT_VERSION
+
+        #ifdef Q_OS_MACOS
+            // Always load white icon on macOS
+            m_TrayIcon->setIcon(QIcon::fromTheme("app-invert"));
+        #elif
+            if (isDarkMode && szThemeName == "rabbit-black") {
+                // Load white icon on dark system themes
+                m_TrayIcon->setIcon(QIcon::fromTheme("app-invert"));
+            } else {
+                m_TrayIcon->setIcon(this->windowIcon());
+            }
+        #endif
+
         m_TrayIcon->setToolTip(windowTitle());
         m_TrayIcon->show();
     } else
