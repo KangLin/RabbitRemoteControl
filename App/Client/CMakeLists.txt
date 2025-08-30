@@ -88,8 +88,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES} ${AppImage}
     PRIVATE_LIBS Plugin ${QT_LIBRARIES}
-    BUNDLE_GUI_IDENTIFIER ${APP_ID}
-    BUNDLE_ICON_FILE ${APP_ID})
+    )
 
 # Install other files
 set(OTHER_FILES
