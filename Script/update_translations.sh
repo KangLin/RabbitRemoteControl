@@ -1,0 +1,22 @@
+#!/bin/bash
+# Author: Eduardo Mozart de Oliveira <eduardomozart182@gmail.com>
+
+# This script finds all files with the .ts extension recursively
+# from the current directory and then executes a command on each one.
+
+# Get the directory of the script itself, regardless of where it's executed from.
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# Remove the '/Script' component from the end of the directory path.
+SCRIPT_DIR="${SCRIPT_DIR%/Script}"
+
+echo "Starting recursive search for *.ts files in $SCRIPT_DIR..."
+
+find "$SCRIPT_DIR" -name "*.ts" | while read -r TS_FILE; do
+    # Use 'sed' to remove the "/Resources/Translations/" part from the file name.
+    # The 's' command stands for substitute. The pipes '|' are used as delimiters
+    # instead of the more common '/' to avoid escaping the slashes in the path.
+    PROJECT_PATH=$(echo "$TS_FILE" | sed 's|/Resources/Translations/||')
+
+    lupdate $PROJECT_PATH -ts "$TS_FILE" 
+done
