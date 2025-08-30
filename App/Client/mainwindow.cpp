@@ -1517,8 +1517,10 @@ void MainWindow::slotSystemTrayIconTypeChanged()
         #endif // QT_VERSION
 
         #ifdef Q_OS_MACOS
-            // Always load white icon on macOS
-            m_TrayIcon->setIcon(QIcon::fromTheme("app-invert"));
+            // Load white icon on macOS
+            if (szThemeName == "rabbit-black") {
+                m_TrayIcon->setIcon(QIcon::fromTheme("app-invert"));
+            }
         #elif
             if (isDarkMode && szThemeName == "rabbit-black") {
                 // Load white icon on dark system themes
