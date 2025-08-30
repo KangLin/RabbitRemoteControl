@@ -13,10 +13,12 @@ SCRIPT_DIR="${SCRIPT_DIR%/Script}"
 echo "Starting recursive search for *.ts files in $SCRIPT_DIR..."
 
 find "$SCRIPT_DIR" -name "*.ts" | while read -r TS_FILE; do
-    # Use 'sed' to remove the "/Resources/Translations/" part from the file name.
-    # The 's' command stands for substitute. The pipes '|' are used as delimiters
-    # instead of the more common '/' to avoid escaping the slashes in the path.
-    PROJECT_PATH=$(echo "$TS_FILE" | sed 's|/Resources/Translations/||')
-
-    lupdate $PROJECT_PATH -ts "$TS_FILE" 
+    if [[ "$TS_FILE" == *"Translations"* ]]; then
+        # Use 'sed' to remove the "/Resources/Translations/" part from the file name.
+        # The 's' command stands for substitute. The pipes '|' are used as delimiters
+        # instead of the more common '/' to avoid escaping the slashes in the path.
+        PROJECT_PATH=$(echo "$TS_FILE" | sed 's|/Resources/Translations/||')
+    
+        lupdate $PROJECT_PATH -ts "$TS_FILE" 
+    fi
 done
