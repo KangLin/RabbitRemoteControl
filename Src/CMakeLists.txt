@@ -255,6 +255,8 @@ if(WITH_QTERMWIDGET)
         list(APPEND PLUGIN_UI_FILES
             Terminal/ParameterTerminalUI.ui
         )
+        file(COPY "${qtermwidget${QT_VERSION_MAJOR}_DIR}/../../../share/"
+            DESTINATION "${CMAKE_BINARY_DIR}/share")
         option(INSTALL_QTERMWIDGET "Install qtermwidget libraries" OFF)
         if(INSTALL_QTERMWIDGET)
             INSTALL_TARGETS(TARGETS qtermwidget${QT_VERSION_MAJOR})
