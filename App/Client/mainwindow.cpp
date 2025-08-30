@@ -1040,7 +1040,7 @@ void MainWindow::slotSignalConnected()
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Connected"));
-    m_pSignalStatus->setIcon(QIcon::fromTheme("newwork-wired"));
+    m_pSignalStatus->setIcon(QIcon::fromTheme("network-wired"));
 }
 
 void MainWindow::slotSignalDisconnected()
