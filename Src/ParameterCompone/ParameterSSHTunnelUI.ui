@@ -68,9 +68,9 @@
       <widget class="QLineEdit" name="lePcapFile"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pbBrowser">
+      <widget class="QPushButton" name="pbBrowse">
        <property name="text">
-        <string>Browser</string>
+        <string>Browse(&amp;B)</string>
        </property>
       </widget>
      </item>

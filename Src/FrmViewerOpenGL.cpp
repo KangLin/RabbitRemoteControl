@@ -211,7 +211,7 @@ void CFrmViewerOpenGL::SetAdaptWindows(ADAPT_WINDOWS aw)
             InitVertor();
             break;
         }
-        case KeepAspectRationToWindow:
+        case KeepAspectRatioToWindow:
         {
             QRectF r = GetAspectRationRect();
             m_VertexData = { -((float)r.width()/(float)width()), (float)r.height()/(float)height(), 0.0, 0.0,
@@ -360,7 +360,7 @@ int CFrmViewerOpenGL::TranslationMousePoint(QPointF inPos, QPointF &outPos)
         outPos.setX(m_Desktop.width() * inPos.x() / width());
         outPos.setY(m_Desktop.height() * inPos.y() / height());
         break;
-    case KeepAspectRationToWindow:
+    case KeepAspectRatioToWindow:
     {
         QRectF r = GetAspectRationRect();
         if(inPos.x() < r.left()

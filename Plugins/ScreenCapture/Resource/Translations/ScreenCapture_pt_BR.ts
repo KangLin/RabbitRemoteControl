@@ -7,48 +7,48 @@
         <location filename="../../DlgCapture.ui" line="20"/>
         <location filename="../../DlgCapture.cpp" line="17"/>
         <source>Screen capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura de tela</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="30"/>
         <location filename="../../DlgCapture.ui" line="65"/>
         <source>Target</source>
-        <translation type="unfinished"></translation>
+        <translation>Alvo</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="36"/>
         <source>Operate</source>
-        <translation type="unfinished"></translation>
+        <translation>Operação</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="42"/>
         <source>Shot</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="49"/>
         <source>Record</source>
-        <translation type="unfinished"></translation>
+        <translation>Gravação</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="73"/>
         <source>Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Tela</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="100"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Janela</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="119"/>
         <source>Custom rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Retângulo</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="126"/>
         <source>Customize</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizado</translation>
     </message>
 </context>
 <context>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="27"/>
         <source>Capture screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Capturar tela</translation>
     </message>
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="32"/>
         <source>Capture or record screen and window. This is a sample example.</source>
-        <translation type="unfinished"></translation>
+        <translation>Capture ou grave a tela e a janela. Esta é uma amostra de exemplo.</translation>
     </message>
 </context>
 <context>
@@ -69,12 +69,12 @@
     <message>
         <location filename="../../ScreenCapture.cpp" line="53"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <location filename="../../ScreenCapture.cpp" line="57"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar</translation>
     </message>
 </context>
 </TS>

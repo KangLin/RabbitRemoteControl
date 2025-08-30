@@ -43,7 +43,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     Q_ASSERT(check);
 
     m_paPause = m_ToolBar.addAction(
-        QIcon::fromTheme("media-playback-pause"), tr("pause"));
+        QIcon::fromTheme("media-playback-pause"), tr("Pause"));
     m_paPause->setCheckable(true);
     m_paPause->setEnabled(false);
 
@@ -88,7 +88,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 
 #if HAVE_QT6_RECORD
     m_paRecordPause = m_ToolBar.addAction(
-        QIcon::fromTheme("media-playback-pause"), tr("Record pause"));
+        QIcon::fromTheme("media-playback-pause"), tr("Pause record"));
     m_paRecordPause->setCheckable(true);
     m_paRecordPause->setEnabled(false);
 

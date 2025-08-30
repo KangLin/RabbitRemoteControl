@@ -102,7 +102,7 @@ void CFrmViewer::paintDesktop()
         dstRect.setWidth(m_DesktopSize.width());
         dstRect.setHeight(m_DesktopSize.height());
         break;
-    case ADAPT_WINDOWS::KeepAspectRationToWindow:
+    case ADAPT_WINDOWS::KeepAspectRatioToWindow:
     {
         dstRect = GetAspectRationRect();
         break;
@@ -115,7 +115,7 @@ void CFrmViewer::paintDesktop()
     
     QPainter painter(this);
     // Clear background
-    if(ADAPT_WINDOWS::KeepAspectRationToWindow == m_AdaptWindows)
+    if(ADAPT_WINDOWS::KeepAspectRatioToWindow == m_AdaptWindows)
     {
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
         painter.fillRect(rect(), QBrush(palette().color(QPalette::Window)));
@@ -156,7 +156,7 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
         outPos.setX(m_DesktopSize.width() * inPos.x() / width());
         outPos.setY(m_DesktopSize.height() * inPos.y() / height());
         break;
-    case ADAPT_WINDOWS::KeepAspectRationToWindow:
+    case ADAPT_WINDOWS::KeepAspectRatioToWindow:
     {
         QRectF r = GetAspectRationRect();
         if(inPos.x() < r.left()

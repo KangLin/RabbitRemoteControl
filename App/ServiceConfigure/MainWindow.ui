@@ -161,7 +161,7 @@
     <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open Configure folder</string>
+    <string>Open configure folder</string>
    </property>
    <property name="toolTip">
     <string>Open configure folder</string>
@@ -181,13 +181,13 @@
     <string>Open</string>
    </property>
    <property name="toolTip">
-    <string>Open stype</string>
+    <string>Open style</string>
    </property>
    <property name="statusTip">
-    <string>Open stype</string>
+    <string>Open style</string>
    </property>
    <property name="whatsThis">
-    <string>Open stype</string>
+    <string>Open style</string>
    </property>
   </action>
  </widget>

@@ -43,7 +43,7 @@ bool CParameterSSHTunnelUI::CheckValidity(bool validity)
     return ui->wNet->CheckValidity(validity);
 }
 
-void CParameterSSHTunnelUI::on_pbBrowser_clicked()
+void CParameterSSHTunnelUI::on_pbBrowse_clicked()
 {
     QString fileName = QFileDialog::getSaveFileName(
         this, tr("Save packet capture file"),

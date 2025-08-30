@@ -155,19 +155,19 @@
     <iconset theme="system-software-update"/>
    </property>
    <property name="text">
-    <string>Update(&amp;U)</string>
+    <string>Check for updates(&amp;U)</string>
    </property>
    <property name="iconText">
-    <string>Update</string>
+    <string>Check for updates</string>
    </property>
    <property name="toolTip">
-    <string>Update</string>
+    <string>Check for updates</string>
    </property>
    <property name="statusTip">
-    <string>Update</string>
+    <string>Check for updates</string>
    </property>
    <property name="whatsThis">
-    <string>Update</string>
+    <string>Check for updates</string>
    </property>
   </action>
   <action name="actionToolBar_T">
@@ -369,16 +369,16 @@
     <iconset theme="emblem-favorite"/>
    </property>
    <property name="text">
-    <string>Add to favorite</string>
+    <string>Add to favorites</string>
    </property>
    <property name="toolTip">
-    <string>Add to favorite</string>
+    <string>Add to favorites</string>
    </property>
    <property name="statusTip">
-    <string>Add to favorite</string>
+    <string>Add to favorites</string>
    </property>
    <property name="whatsThis">
-    <string>Add to favorite</string>
+    <string>Add to favorites</string>
    </property>
   </action>
   <action name="actionOpenListRecent">

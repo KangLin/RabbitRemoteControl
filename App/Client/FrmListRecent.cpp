@@ -75,14 +75,14 @@ CFrmListRecent::CFrmListRecent(
     m_pDelete->setToolTip(tr("Delete"));
     m_pDelete->setStatusTip(tr("Delete"));
     m_pDetail = m_pToolBar->addAction(
-        QIcon::fromTheme("dialog-information"), tr("Detail"),
+        QIcon::fromTheme("dialog-information"), tr("Details"),
         this, SLOT(slotDetail()));
     m_pDetail->setCheckable(true);
     m_pDetail->setChecked(false);
-    m_pDetail->setToolTip(tr("Detail"));
-    m_pDetail->setStatusTip(tr("Detail"));
+    m_pDetail->setToolTip(tr("Details"));
+    m_pDetail->setStatusTip(tr("Details"));
     m_pToolBar->addSeparator();
-    m_pAddToFavorite = m_pToolBar->addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
+    m_pAddToFavorite = m_pToolBar->addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorites"),
                           this, SLOT(slotAddToFavorite()));
     m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
@@ -324,7 +324,7 @@ void CFrmListRecent::slotNew()
             QMessageBox::StandardButton r
                 = QMessageBox::warning(
                     this, tr("Warning"),
-                    tr("The file is exists. whether to overwrite it? File: %1").arg(szFile),
+                    tr("The file already exists. whether to overwrite it? File: %1").arg(szFile),
                     QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
                     QMessageBox::StandardButton::No);
             if(QMessageBox::StandardButton::Ok == r)
@@ -417,7 +417,7 @@ void CFrmListRecent::slotCopy()
                         = QMessageBox::warning(
                             this,
                             tr("Warning"),
-                            tr("The file is exists. whether to overwrite it?"
+                            tr("The file already exists. whether to overwrite it?"
                                " If select No, please modify the name."),
                             QMessageBox::StandardButton::Ok
                                 | QMessageBox::StandardButton::No

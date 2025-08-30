@@ -57,7 +57,7 @@ int COperatePlayer::InitialMenu()
     Q_ASSERT(check);
 
     m_pRecordPause = new QAction(
-        QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
+        QIcon::fromTheme("media-playback-pause"), tr("Pause record"), &m_Menu);
     m_pRecordPause->setCheckable(true);
     m_pRecordPause->setEnabled(false);
     check = connect(m_pRecordPause, SIGNAL(toggled(bool)),
@@ -157,7 +157,7 @@ int COperatePlayer::InitialMenu()
                     });
     Q_ASSERT(check);
     m_pPause = m_Menu.addAction(
-        QIcon::fromTheme("media-playback-pause"), tr("pause"));
+        QIcon::fromTheme("media-playback-pause"), tr("Pause"));
     m_pPause->setCheckable(true);
     check = connect(m_pPause, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigPause(bool)));

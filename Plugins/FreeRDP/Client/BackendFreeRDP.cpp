@@ -215,9 +215,9 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
     case CParameterProxy::TYPE::System:
         break;
     case CParameterProxy::TYPE::Http:
-    case CParameterProxy::TYPE::SockesV5:
+    case CParameterProxy::TYPE::SocksV5:
     {
-        CParameterNet* net = &m_pParameter->m_Proxy.m_SockesV5;
+        CParameterNet* net = &m_pParameter->m_Proxy.m_SocksV5;
         if (!freerdp_settings_set_uint32(settings, FreeRDP_ProxyType, PROXY_TYPE_SOCKS))
             return OnInitReturnValue::Fail;
         if(CParameterProxy::TYPE::Http == m_pParameter->m_Proxy.GetUsedType()) {
@@ -550,9 +550,9 @@ int CBackendFreeRDP::cbClientStart(rdpContext *context)
     szServer = net.GetHost() + ":" + QString::number(net.GetPort());
     auto &proxy = pThis->m_pParameter->m_Proxy;
     switch(proxy.GetUsedType()) {
-    case CParameterProxy::TYPE::SockesV5:
+    case CParameterProxy::TYPE::SocksV5:
     {
-        auto &sockesV5 = proxy.m_SockesV5;
+        auto &sockesV5 = proxy.m_SocksV5;
         szServer = sockesV5.GetHost() + ":" + QString::number(sockesV5.GetPort())
                    + " -> " + szServer;
         break;

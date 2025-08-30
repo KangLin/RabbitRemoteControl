@@ -20,7 +20,7 @@ public:
     enum class TYPE{
         None = 0,
         System,
-        SockesV5,
+        SocksV5,
         Http,
         SSHTunnel,
     };
@@ -31,7 +31,7 @@ public:
     int SetUsedType(TYPE type);
     
     CParameterNet m_Http;
-    CParameterNet m_SockesV5;
+    CParameterNet m_SocksV5;
     CParameterSSHTunnel m_SSH;
     
     int SetTypeName(TYPE t, const QString& szName);

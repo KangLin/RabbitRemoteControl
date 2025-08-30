@@ -307,7 +307,7 @@ int CChannelSSH::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_NOT_FOUND:
         nRet = -5;
-        szErr = net.GetHost() + " " + tr("is not find in known host file.") + "\n";
+        szErr = net.GetHost() + " " + tr("is not found in known host file.") + "\n";
         szErr += tr("If you accept the host key here, the file will be "
                     "automatically created.") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
@@ -460,7 +460,7 @@ int CChannelSSH::authenticationPublicKey(
     do {
         if(szPublicKeyFile.isEmpty())
         {
-            szErr = tr("SSH failed: There is not set public key file.");
+            szErr = tr("SSH failed: There is no public key file defined.");
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;
@@ -492,7 +492,7 @@ int CChannelSSH::authenticationPublicKey(
         
         if(szPrivateKeyFile.isEmpty())
         {
-            szErr = tr("SSH failed: There is not set private key file.");
+            szErr = tr("SSH failed: There is no private key file defined.");
             qCritical(log) << szErr;
             setErrorString(szErr);
             break;

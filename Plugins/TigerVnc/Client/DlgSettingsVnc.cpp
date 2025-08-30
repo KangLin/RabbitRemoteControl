@@ -114,7 +114,7 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
         ui->rbFull->setChecked(true);
         break;
     case CParameterVnc::Medium:
-        ui->rbMeduim->setChecked(true);
+        ui->rbMedium->setChecked(true);
         break;
     case CParameterVnc::Low:
         ui->rbLow->setChecked(true);
@@ -216,7 +216,7 @@ void CDlgSettingsVnc::on_pbOK_clicked()
 #endif
         
         if(ui->rbFull->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Full);
-        if(ui->rbMeduim->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Medium);
+        if(ui->rbMedium->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Medium);
         if(ui->rbLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Low);
         if(ui->rbVeryLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::VeryLow);
         

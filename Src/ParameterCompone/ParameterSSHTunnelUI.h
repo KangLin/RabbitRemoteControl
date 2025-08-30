@@ -29,5 +29,5 @@ public:
     virtual int Accept() override;
     bool CheckValidity(bool validity = false) override;
 private slots:
-    void on_pbBrowser_clicked();
+    void on_pbBrowse_clicked();
 };

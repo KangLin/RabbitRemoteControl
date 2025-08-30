@@ -3,18 +3,18 @@
 
 CParameterProxy::CParameterProxy(CParameterOperate *parent, const QString &szPrefix)
     : CParameterOperate(parent, szPrefix)
-    , m_SockesV5(this, "Proxy/SockesV5")
+    , m_SocksV5(this, "Proxy/SocksV5")
     , m_Http(this, "Proxy/Http")
     , m_SSH(this, "Proxy/SSH/Tunnel")
     , m_UsedType(TYPE::None)
 {
-    m_Type << TYPE::None << TYPE::System << TYPE::SockesV5 << TYPE::Http;
+    m_Type << TYPE::None << TYPE::System << TYPE::SocksV5 << TYPE::Http;
 #if HAVE_LIBSSH
     m_Type << TYPE::SSHTunnel;
 #endif
     m_TypeName = {{TYPE::None, tr("None")},
                   {TYPE::System, tr("System settings")},
-                  {TYPE::SockesV5, tr("Sockes V5")},
+                  {TYPE::SocksV5, tr("Sockes V5")},
                   {TYPE::Http, tr("Http")},
                   {TYPE::SSHTunnel, tr("SSH tunnel")}};
 
@@ -26,12 +26,12 @@ CParameterProxy::CParameterProxy(CParameterOperate *parent, const QString &szPre
     m_Http.m_User.SetType(lstType);
     m_Http.SetPrompt(tr("The host is empty in \"Proxy->Http\". please set it"));
     
-    m_SockesV5.SetPort(1080);
+    m_SocksV5.SetPort(1080);
     lstType.clear();
     lstType << CParameterUser::TYPE::None
         << CParameterUser::TYPE::UserPassword;
-    m_SockesV5.m_User.SetType(lstType);
-    m_SockesV5.SetPrompt(tr("The host is empty in \"Proxy->SockesV5\". please set it"));
+    m_SocksV5.m_User.SetType(lstType);
+    m_SocksV5.SetPrompt(tr("The host is empty in \"Proxy->SocksV5\". please set it"));
 
     m_SSH.m_Net.SetPort(22);
     lstType.clear();

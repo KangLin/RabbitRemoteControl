@@ -47,7 +47,7 @@ private:
     QComboBox* m_cbType;
     
     CParameterNetUI* m_uiHttp;
-    CParameterNetUI* m_uiSockesV5;
+    CParameterNetUI* m_uiSocksV5;
     CParameterSSHTunnelUI* m_uiSSH;
     
     CParameterProxy* m_Proxy;

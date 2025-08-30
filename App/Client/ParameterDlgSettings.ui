@@ -37,7 +37,7 @@
        <item row="2" column="0">
         <widget class="QCheckBox" name="cbFavoriteDoubleEdit">
          <property name="text">
-          <string>Favorite: select it then double node edit, other start</string>
+          <string>Favorites: select it then double click node to edit, otherwise start</string>
          </property>
         </widget>
        </item>
@@ -145,7 +145,7 @@
           <item row="0" column="0">
            <widget class="QRadioButton" name="rbSystemTrayIconNo">
             <property name="text">
-             <string>No</string>
+             <string>None</string>
             </property>
            </widget>
           </item>
@@ -194,7 +194,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>North</string>
+                <string>Top</string>
                </property>
               </widget>
              </item>
@@ -207,7 +207,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>South</string>
+                <string>Bottom</string>
                </property>
               </widget>
              </item>
@@ -220,7 +220,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>West</string>
+                <string>Left</string>
                </property>
               </widget>
              </item>
@@ -233,7 +233,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>East</string>
+                <string>Right</string>
                </property>
               </widget>
              </item>
@@ -265,7 +265,7 @@
             <item>
              <widget class="QCheckBox" name="cbElided">
               <property name="text">
-               <string>Elided</string>
+               <string>Text elide</string>
               </property>
              </widget>
             </item>
@@ -277,7 +277,7 @@
        <item row="6" column="0">
         <widget class="QCheckBox" name="cbKeepSplitView">
          <property name="text">
-          <string>When the split view is full-screen, the split view is maintained</string>
+          <string>When the split view (&quot;View-&gt;Type&quot;) is full-screen, the split view is maintained</string>
          </property>
         </widget>
        </item>

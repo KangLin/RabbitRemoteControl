@@ -128,9 +128,9 @@ int CHookWindows::RegisterKeyboard()
         int nRet = 0;
         QMessageBox msg(
             QMessageBox::Warning, tr("Warning"),
-            tr("The programe is not administrator privilege.\n"
-               "Don't disable system shortcuts(eg: Ctrl+Alt+del).\n"
-               "Restart program by administrator?"),
+            tr("The program doesn't have administrator privileges.\n"
+               "It doesn't disable system shortcuts (e.g., Ctrl+Alt+Del).\n"
+               "Restart the program as administrator?"),
             QMessageBox::Yes | QMessageBox::No);
         msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
         msg.checkBox()->setCheckable(true);

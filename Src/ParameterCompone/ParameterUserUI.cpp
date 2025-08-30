@@ -159,7 +159,7 @@ void CParameterUserUI::on_pbSave_clicked()
         ui->lePassword->setEnabled(true);
         ui->lePassword->setPlaceholderText(tr("Input password"));
     } else {
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
+        ui->lePassword->setPlaceholderText(tr("Please check save password to enable"));
         ui->lePassword->setEnabled(false);
     }
 }
@@ -260,7 +260,7 @@ void CParameterUserUI::on_pbSavePassphrase_clicked()
         ui->lePassphrase->setEnabled(true);
         ui->lePassphrase->setPlaceholderText(tr("Input passphrase"));
     } else {
-        ui->lePassphrase->setPlaceholderText(tr("Please checked save passphrase to enable"));
+        ui->lePassphrase->setPlaceholderText(tr("Please check save passphrase to enable"));
         ui->lePassphrase->setEnabled(false);
     }
 }
@@ -279,7 +279,7 @@ void CParameterUserUI::on_pbBrowseCAFile_clicked()
 #if defined(Q_OS_LINUX)
     dir = "~/.vnc";
 #endif
-    QString szFile = QFileDialog::getOpenFileName(this, tr("Open X509 certificate authentication file"), dir);
+    QString szFile = QFileDialog::getOpenFileName(this, tr("Open X509 Certificate Authority file"), dir);
     if(szFile.isEmpty())
         return;
     ui->leCAFile->setText(szFile);

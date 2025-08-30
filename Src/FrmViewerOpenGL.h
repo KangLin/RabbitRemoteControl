@@ -39,7 +39,7 @@ public:
                                       ///< \~chinese 缩放窗口大小等于桌面大小 * 系数
         ZoomToWindow = 5,             ///< \~english Desktop adapt to windows
                                       ///< \~chinese 桌面缩放到窗口大小，窗口是固定的
-        KeepAspectRationToWindow = 6, ///< \~english Keep desktop aspectration adapt to windows
+        KeepAspectRatioToWindow = 6, ///< \~english Keep desktop aspectration adapt to windows
                                       ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);

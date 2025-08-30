@@ -123,8 +123,8 @@ bool CParameterWakeOnLanUI::CheckValidity(bool validity)
     if(QValidator::Acceptable != ipValidator.validate(szIp, pos))
     {
         QMessageBox::critical(this, tr("Error"),
-                              tr("The ip address is error"));
-        qCritical(log) << "The ip address is error";
+                              tr("The ip address is wrong"));
+        qCritical(log) << "The ip address is wrong";
         ui->leIP->setFocus();
         return false;
     }
@@ -132,8 +132,8 @@ bool CParameterWakeOnLanUI::CheckValidity(bool validity)
     if(QValidator::Acceptable != ipValidator.validate(szBroadAddress, pos))
     {
         QMessageBox::critical(this, tr("Error"),
-                              tr("The broadcast address is error"));
-        qCritical(log) << "The broadcast address is error";
+                              tr("The broadcast address is wrong"));
+        qCritical(log) << "The broadcast address is wrong";
         ui->leBroadcastAddress->setFocus();
         return false;
     }
@@ -142,10 +142,10 @@ bool CParameterWakeOnLanUI::CheckValidity(bool validity)
     if(QValidator::Acceptable != passwordValidator.validate(szPassword, pos))
     {
         QMessageBox::critical(this, tr("Error"),
-                              tr("The password is error."
+                              tr("The password is wrong."
                                  " A password string of length 6. "
                                  "or Hexadecimal representation of 6 bytes"));
-        qCritical(log) << "The password is error";
+        qCritical(log) << "The password is wrong";
         ui->lePassword->setFocus();
         return false;
     }
@@ -153,8 +153,8 @@ bool CParameterWakeOnLanUI::CheckValidity(bool validity)
     QString szMac = ui->leMac->text();
     if(QValidator::Acceptable != macValidator.validate(szMac, pos)) {
         QMessageBox::critical(this, tr("Error"),
-                              tr("The mac address is error"));
-        qCritical(log) << "The mac address is error";
+                              tr("The mac address is wrong"));
+        qCritical(log) << "The mac address is wrong";
         ui->leMac->setFocus();
         return false;
     }

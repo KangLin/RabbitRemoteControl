@@ -187,11 +187,11 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         emit sigRunning();
         return OnInitReturnValue::UseOnProcess;
     }
-    /*case CParameterProxy::TYPE::SockesV5:
+    /*case CParameterProxy::TYPE::SocksV5:
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        auto &net = m_pParameter->m_Proxy.m_SockesV5;
+        auto &net = m_pParameter->m_Proxy.m_SocksV5;
         proxy.setHostName(net.GetHost());
         if(net.GetHost().isEmpty())
         {

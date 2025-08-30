@@ -6,7 +6,7 @@
 CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     : CParameterUI(parent)
     , m_uiHttp(nullptr)
-    , m_uiSockesV5(nullptr)
+    , m_uiSocksV5(nullptr)
     , m_uiSSH(nullptr)
 {
     bool bCheck = false;
@@ -19,8 +19,8 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     m_uiHttp = new CParameterNetUI(this);
     layout()->addWidget(m_uiHttp);
 
-    m_uiSockesV5 = new CParameterNetUI(this);
-    layout()->addWidget(m_uiSockesV5);
+    m_uiSocksV5 = new CParameterNetUI(this);
+    layout()->addWidget(m_uiSocksV5);
 
     m_uiSSH = new CParameterSSHTunnelUI(this);
     layout()->addWidget(m_uiSSH);
@@ -46,8 +46,8 @@ void CParameterProxyUI::slotTypeChanged(int nIndex)
     int type = m_cbType->currentData().toInt();
     if(m_uiHttp)
         m_uiHttp->setVisible((int)CParameterProxy::TYPE::Http == type);
-    if(m_uiSockesV5)
-        m_uiSockesV5->setVisible((int)CParameterProxy::TYPE::SockesV5 == type);
+    if(m_uiSocksV5)
+        m_uiSocksV5->setVisible((int)CParameterProxy::TYPE::SocksV5 == type);
     if(m_uiSSH)
         m_uiSSH->setVisible((int)CParameterProxy::TYPE::SSHTunnel == type);
 }
@@ -58,7 +58,7 @@ int CParameterProxyUI::SetParameter(CParameter *pParameter)
     if(!m_Proxy)
         return -1;
     m_uiHttp->SetParameter(&m_Proxy->m_Http);
-    m_uiSockesV5->SetParameter(&m_Proxy->m_SockesV5);
+    m_uiSocksV5->SetParameter(&m_Proxy->m_SocksV5);
     m_uiSSH->SetParameter(&m_Proxy->m_SSH);
     
     m_cbType->clear();
@@ -78,8 +78,8 @@ bool CParameterProxyUI::CheckValidity(bool validity)
     int type = m_cbType->currentData().toInt();
     switch(type)
     {
-    case (int)CParameterProxy::TYPE::SockesV5: {
-        bRet = m_uiSockesV5->CheckValidity(validity);
+    case (int)CParameterProxy::TYPE::SocksV5: {
+        bRet = m_uiSocksV5->CheckValidity(validity);
         if(!bRet) return bRet;
         break;
     }
@@ -106,8 +106,8 @@ int CParameterProxyUI::Accept()
     int type = m_cbType->currentData().toInt();
     switch(type)
     {
-    case (int)CParameterProxy::TYPE::SockesV5: {
-        nRet = m_uiSockesV5->Accept();
+    case (int)CParameterProxy::TYPE::SocksV5: {
+        nRet = m_uiSocksV5->Accept();
         if(nRet) return nRet;
         break;
     }

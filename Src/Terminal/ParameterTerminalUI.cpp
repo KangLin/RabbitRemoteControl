@@ -69,7 +69,7 @@ int CParameterTerminalUI::Accept()
     return 0;
 }
 
-void CParameterTerminalUI::on_pbBrowser_clicked()
+void CParameterTerminalUI::on_pbBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
                                                tr("Backgroup image"), QString(),
@@ -105,7 +105,7 @@ int CParameterTerminalUI::SetParameter(CParameter *pParameter)
     if(!m_pPara->GetColorScheme().isEmpty())
         ui->cbColorScheme->setCurrentText(m_pPara->GetColorScheme());
 
-    ui->cbScrollBarPositioin->addItem(tr("No"), QTermWidget::NoScrollBar);
+    ui->cbScrollBarPositioin->addItem(tr("None"), QTermWidget::NoScrollBar);
     ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
     ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
     ui->cbScrollBarPositioin->setCurrentIndex(m_pPara->GetScrollBarPosition());

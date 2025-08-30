@@ -283,7 +283,7 @@ int CBackendVnc::SocketInit()
         // Set sock
         switch(m_pPara->m_Proxy.GetUsedType())
         {
-        case CParameterProxy::TYPE::SockesV5:
+        case CParameterProxy::TYPE::SocksV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
         case CParameterProxy::TYPE::System:
@@ -307,7 +307,7 @@ int CBackendVnc::SocketInit()
         case QNetworkProxy::Socks5Proxy:
         {
             QNetworkProxy proxy;
-            auto net = &m_pPara->m_Proxy.m_SockesV5;
+            auto net = &m_pPara->m_Proxy.m_SocksV5;
             if(QNetworkProxy::HttpProxy == type) {
                 net = &m_pPara->m_Proxy.m_Http;
             }

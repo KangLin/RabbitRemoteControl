@@ -13,7 +13,7 @@ CDlgInputPassword::CDlgInputPassword(bool bShow, QString szTitle, QWidget *paren
 
     QString szDescript = tr("The encryption key is used to encrypt the password that is saved to the file.");
     if(!szTitle.isEmpty())
-        szDescript += tr("If you forget the encryption key, please use input %1.").arg(szTitle);
+        szDescript += tr("If you forget the encryption key, please use %1.").arg(szTitle);
     ui->lbDescript->setText(szDescript);
     if(szTitle.isEmpty())
         ui->rbPassword->setVisible(false);

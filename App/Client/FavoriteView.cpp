@@ -25,7 +25,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
     m_pDockTitleBar(nullptr),
     m_pModel(nullptr)
 {
-    setWindowTitle(tr("Favorite"));
+    setWindowTitle(tr("Favorites"));
     setFocusPolicy(Qt::NoFocus);
     header()->hide();
     
@@ -339,7 +339,7 @@ void CFavoriteView::slotNewGroup()
     auto lstItem = m_pModel->findItems(szGroup);
     if(!lstItem.isEmpty())
     {
-        QMessageBox::critical(this, tr("Error"), tr("The group [%1] is existed").arg(szGroup));
+        QMessageBox::critical(this, tr("Error"), tr("The group [%1] already exists").arg(szGroup));
         return;
     }
 

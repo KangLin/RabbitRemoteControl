@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
                     qCritical(log) << "Generate update fail";
                 }
                 qInfo(log) << app.applicationName() + " " + app.applicationVersion()
-                                  + " " + QObject::tr("Generate update json file End");
+                                  + " Generate update json file End";
                 return 0;
             }
         } else {
@@ -165,6 +165,6 @@ int main(int argc, char *argv[])
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
     
-    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + QObject::tr("End");
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " End";
     return nRet;
 }

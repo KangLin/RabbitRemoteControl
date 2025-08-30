@@ -204,9 +204,9 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QRadioButton" name="rbMeduim">
+           <widget class="QRadioButton" name="rbMedium">
             <property name="text">
-             <string>Meduim</string>
+             <string>Medium</string>
             </property>
            </widget>
           </item>
@@ -409,7 +409,7 @@
   <tabstop>rbCopyRect</tabstop>
   <tabstop>rbRaw</tabstop>
   <tabstop>rbFull</tabstop>
-  <tabstop>rbMeduim</tabstop>
+  <tabstop>rbMedium</tabstop>
   <tabstop>rbLow</tabstop>
   <tabstop>rbVeryLow</tabstop>
   <tabstop>cbCompress</tabstop>

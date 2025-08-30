@@ -24,7 +24,7 @@ private slots:
     void on_fontComboBox_currentFontChanged(const QFont &f);
     void on_spFontSize_valueChanged(int size);
 
-    void on_pbBrowser_clicked();
+    void on_pbBrowse_clicked();
 
 private:
     Ui::CParameterTerminalUI *ui;

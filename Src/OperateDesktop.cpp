@@ -54,9 +54,9 @@ const QString COperateDesktop::Id()
                 szType = "http";
                 break;
             }
-            case CParameterProxy::TYPE::SockesV5:
+            case CParameterProxy::TYPE::SocksV5:
             {
-                net = &GetParameter()->m_Proxy.m_SockesV5;
+                net = &GetParameter()->m_Proxy.m_SocksV5;
                 szType = "sockesv5";
                 break;
             }
@@ -106,7 +106,7 @@ const QString COperateDesktop::Description()
         szDescription = tr("Name: ") + Name() + "\n";
     
     if(!GetTypeName().isEmpty())
-        szDescription += tr("Type:") + GetTypeName() + "\n";
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
     
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
@@ -135,9 +135,9 @@ const QString COperateDesktop::Description()
                        + QString::number(sshNet.GetPort());
             break;
         }
-        case CParameterProxy::TYPE::SockesV5:
+        case CParameterProxy::TYPE::SocksV5:
         {
-            auto &sockesV5 = proxy.m_SockesV5;
+            auto &sockesV5 = proxy.m_SocksV5;
             szProxy += "(" + tr("Sockes v5") + "): " + sockesV5.GetHost() + ":"
                        + QString::number(sockesV5.GetPort());
             break;
@@ -226,12 +226,12 @@ int COperateDesktop::InitialMenu()
         QIcon::fromTheme("zoom-aspect-ratio"),
         tr("Keep aspect ration to windows"));
     m_pZoomAspectRatio->setCheckable(true);
-    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ration to windows"));
-    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ration to windows"));
+    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ratio to window"));
+    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ratio to window"));
     check = connect(m_pZoomAspectRatio, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
-                            CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
+                            CFrmViewer::ADAPT_WINDOWS::KeepAspectRatioToWindow);
                     });
     Q_ASSERT(check);
     m_pZoomOriginal = pMenuZoom->addAction(
@@ -334,9 +334,9 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
     m_pRecordPause = new QAction(
-        QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
-    m_pRecordPause->setToolTip(tr("Record pause"));
-    m_pRecordPause->setStatusTip(tr("Record pause"));
+        QIcon::fromTheme("media-playback-pause"), tr("Pause record"), &m_Menu);
+    m_pRecordPause->setToolTip(tr("Pause record"));
+    m_pRecordPause->setStatusTip(tr("Pause record"));
     m_pRecordPause->setCheckable(true);
     m_pRecordPause->setEnabled(false);
     check = connect(m_pRecordPause, SIGNAL(triggered(bool)),
@@ -468,7 +468,7 @@ int COperateDesktop::LoadAdaptWindows()
             if(m_pZoomToWindow) {
                 m_pZoomToWindow->trigger();
             }
-        } else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw) {
+        } else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRatioToWindow == aw) {
             if(m_pZoomAspectRatio) {
                 m_pZoomAspectRatio->trigger();
             }

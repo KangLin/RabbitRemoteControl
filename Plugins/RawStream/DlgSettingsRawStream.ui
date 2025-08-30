@@ -21,7 +21,7 @@
      </property>
      <widget class="QWidget" name="Property">
       <attribute name="title">
-       <string>Property</string>
+       <string>Properties</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
@@ -87,7 +87,7 @@
        <item row="3" column="0">
         <widget class="QGroupBox" name="gpNamePipe">
          <property name="title">
-          <string>Name pipe</string>
+          <string>Named pipe</string>
          </property>
         </widget>
        </item>

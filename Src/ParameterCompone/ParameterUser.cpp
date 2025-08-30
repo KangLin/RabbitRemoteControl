@@ -17,9 +17,9 @@ CParameterUser::CParameterUser(CParameterOperate *parent, const QString &szPrefi
         {TYPE::OnlyPassword, tr("Password")},
         {TYPE::UserPassword, tr("Username and password")},
         {TYPE::PublicKey, tr("Public key")},
-        {TYPE::OnlyPasswordX509None, tr("Password with X509 none")},
+        {TYPE::OnlyPasswordX509None, tr("Password without X509")},
         {TYPE::OnlyPasswordX509, tr("Password with X509")},
-        {TYPE::UserPasswordX509None, tr("Username and password with X509 none")},
+        {TYPE::UserPasswordX509None, tr("Username and password without X509")},
         {TYPE::UserPasswordX509, tr("Username and password with X509")}
     };
 }

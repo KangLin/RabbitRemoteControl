@@ -31,7 +31,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     
     QList<CParameterProxy::TYPE> lstType;
     lstType << CParameterProxy::TYPE::None
-            << CParameterProxy::TYPE::SockesV5
+            << CParameterProxy::TYPE::SocksV5
             << CParameterProxy::TYPE::Http;
 #if HAVE_LIBSSH
     lstType << CParameterProxy::TYPE::SSHTunnel;
