@@ -386,19 +386,19 @@
     <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the recent list(&amp;R)</string>
    </property>
    <property name="iconText">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the recent list</string>
    </property>
    <property name="toolTip">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the recent list</string>
    </property>
    <property name="statusTip">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the recent list</string>
    </property>
    <property name="whatsThis">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the recent list</string>
    </property>
   </action>
   <action name="actionMain_menu_bar_M">
