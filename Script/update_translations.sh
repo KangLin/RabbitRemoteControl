@@ -19,6 +19,6 @@ find "$SCRIPT_DIR" -name "*.ts" | while read -r TS_FILE; do
         # instead of the more common '/' to avoid escaping the slashes in the path.
         PROJECT_PATH=$(echo $(dirname "$TS_FILE") | sed 's|/Resource/Translations||')
     
-        lupdate $PROJECT_PATH -ts "$TS_FILE" -no-obsolete
+        lupdate $PROJECT_PATH -ts "$TS_FILE"
     fi
 done
