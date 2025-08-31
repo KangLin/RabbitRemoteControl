@@ -224,13 +224,13 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="122"/>
-        <source>Yes(&amp;Y)</source>
-        <translation>Sim(&amp;S)</translation>
+        <source>OK(&amp;O)</source>
+        <translation>OK(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="129"/>
-        <source>No(&amp;N)</source>
-        <translation>Não(&amp;N)</translation>
+        <location filename="../../DlgInputPassword.ui" line="132"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="14"/>
