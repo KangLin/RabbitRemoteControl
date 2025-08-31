@@ -91,14 +91,24 @@
         <translation>Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
-        <source>is not find in known host file.</source>
-        <translation>não foi encontrada no arquivo known_host.</translation>
+        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
+        <source>SSH failed: There is no public key file defined.</source>
+        <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
+        <source>SSH failed: There is no private key file defined.</source>
+        <translation>Falha no SSH: não há nenhum arquivo de chave privada definido.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation>Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
+        <source>is not found in known hosts file.</source>
+        <translation>não foi encontrado no arquivo known_hosts.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
@@ -149,11 +159,6 @@
         <translation>Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
-        <source>SSH failed: There is not set public key file.</source>
-        <translation>Falha no SSH: não há um arquivo de chave pública definido.</translation>
-    </message>
-    <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
         <source>SSH failed: Import public key fail.</source>
         <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
@@ -169,11 +174,6 @@
         <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
-    </message>
-    <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
-        <source>SSH failed: There is not set private key file.</source>
-        <translation>Falha no SSH: não há um arquivo de chave privada definido.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="39"/>
-        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
+        <source>The encryption key is used to encrypt the password that is saved to the file. If you forgot the encryption key, please use input password.</source>
         <translation>A chave de criptografia é usada para criptografar a senha salva no arquivo. Se você esqueceu a chave de criptografia, use Informe a senha.</translation>
     </message>
     <message>
@@ -239,7 +239,7 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="16"/>
-        <source>If you forget the encryption key, please use input %1.</source>
+        <source>If you forgot the encryption key, please use %1.</source>
         <translation>Se você esqueceu a chave de criptografia, use %1.</translation>
     </message>
     <message>
@@ -272,6 +272,90 @@
     </message>
 </context>
 <context>
+    <name>CFrmParameterICE</name>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="14"/>
+        <source>ICE</source>
+        <translation>ICE</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="28"/>
+        <source>Enable ICE</source>
+        <translation>Habilitar ICE</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="35"/>
+        <source>Enable ICE debug</source>
+        <translation>Habilitar depuração do ICE</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="48"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="158"/>
+        <source>Connect</source>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="66"/>
+        <source>Signal server:</source>
+        <translation>Servidor de sinal:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="76"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="138"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="166"/>
+        <source>Port:</source>
+        <translation>Porta:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="94"/>
+        <source>Signal user:</source>
+        <translation>Usuário de sinal:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="101"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="104"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="107"/>
+        <source>Format: user@domain/Resource</source>
+        <translation>Formato: usuário@domain/Recurso</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="114"/>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="194"/>
+        <source>Password:</source>
+        <translation>Senha:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="128"/>
+        <source>Stun server:</source>
+        <translation>Servidor STUN:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="156"/>
+        <source>Turn server:</source>
+        <translation>Servidor TURN:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="184"/>
+        <source>Turn user:</source>
+        <translation>Usuário TURN:</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="122"/>
+        <source>The user name format is wrong. please use format: user@domain/resource</source>
+        <translation>O formato do nome de usuário está errado. Por favor, use o formato: usuário@domínio/Resource</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="123"/>
+        <source>Error</source>
+        <translation>Erro</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="154"/>
+        <source>Disconnect</source>
+        <translation>Desconectar</translation>
+    </message>
+</context>
+<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
@@ -288,17 +372,35 @@
     </message>
     <message>
         <location filename="../../Windows/HookWindows.cpp" line="131"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation>O programa não possui privilégios de administrador.
-Ele não desativa os atalhos do sistema (por exemplo: Ctrl+Alt+Del).
+        <source>The program doesn&apos;t have administrator privileges.
+It doesn&apos;t disable system shortcuts (e.g., Ctrl+Alt+Del).
+Restart the program as administrator?</source>
+        <translation>O programa não tem privilégios de administrador.
+Ele não desativa os atalhos do sistema (por exemplo, Ctrl+Alt+Del).
 Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
         <translation>Sempre exibir</translation>
+    </message>
+</context>
+<context>
+    <name>CIceSignalQxmpp</name>
+    <message>
+        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="169"/>
+        <source>Socket error</source>
+        <translation>Erro de soquete</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="172"/>
+        <source>Keep alive error</source>
+        <translation>Erro de keep alive</translation>
+    </message>
+    <message>
+        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="175"/>
+        <source>xmpp stream error</source>
+        <translation>Erro de stream xmpp</translation>
     </message>
 </context>
 <context>
@@ -396,7 +498,7 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="109"/>
-        <source>Type:</source>
+        <source>Type: </source>
         <translation>Tipo: </translation>
     </message>
     <message>
@@ -456,7 +558,7 @@ Reiniciar o programa como administrador?</translation>
         <location filename="../../OperateDesktop.cpp" line="227"/>
         <location filename="../../OperateDesktop.cpp" line="229"/>
         <location filename="../../OperateDesktop.cpp" line="230"/>
-        <source>Keep aspect ration to windows</source>
+        <source>Keep aspect ratio to window</source>
         <translation>Manter a proporção para a janela</translation>
     </message>
     <message>
@@ -514,7 +616,7 @@ Reiniciar o programa como administrador?</translation>
         <location filename="../../OperateDesktop.cpp" line="337"/>
         <location filename="../../OperateDesktop.cpp" line="338"/>
         <location filename="../../OperateDesktop.cpp" line="339"/>
-        <source>Record pause</source>
+        <source>Pause record</source>
         <translation>Pausar gravação</translation>
     </message>
     <message>
@@ -551,47 +653,47 @@ Reiniciar o programa como administrador?</translation>
         <translation>Descrição: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="153"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
         <translation>Copiar seleção para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
         <translation>Colar da área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
         <translation>Colar seleção</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
         <translation>Ampliar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="162"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
         <translation>Diminuir o zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
         <translation>Redefinição de zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="179"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
         <translation>Encontrar ...</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
         <translation>Limpar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="338"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
         <source>QTermWidget:</source>
         <translation>QTermWidget:</translation>
     </message>
@@ -743,7 +845,7 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
-        <source>Keep desktop aspectration adapt to windows</source>
+        <source>Keep aspect ratio to window</source>
         <translation>Manter a proporção para a janela</translation>
     </message>
 </context>
@@ -781,7 +883,7 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="34"/>
-        <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
+        <source>The host is empty in &quot;Proxy-&gt;SocksV5&quot;. please set it</source>
         <translation>O host está vazio em &quot;Proxy-&gt;SocksV5&quot;. Por favor, configure-o</translation>
     </message>
     <message>
@@ -908,24 +1010,69 @@ Reiniciar o programa como administrador?</translation>
         <translation>Um valor de -1 indica que o gravador deve fazer uma escolha ideal com base no que está disponível na fonte de áudio e nas limitações do codec. Opções: 8 kHz, 11,025 kHz, 22,05 kHz, 16 kHz, 37,8 kHz, 44,1 kHz, 48 kHz, 96 kHz, 192 kHz etc.</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="43"/>
+        <source>Very high</source>
+        <translation>Muito alta</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="44"/>
+        <source>High</source>
+        <translation>Alta</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="45"/>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="46"/>
+        <source>Low</source>
+        <translation>Baixa</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="47"/>
+        <source>Very low</source>
+        <translation>Muito baixa</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="49"/>
+        <source>Constant quality</source>
+        <translation>Qualidade constante</translation>
+    </message>
+    <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation>A codificação terá como objetivo ter uma qualidade constante, ajustando a taxa de bits.</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="54"/>
+        <source>Constant bit rate</source>
+        <translation>Bit rate constante</translation>
+    </message>
+    <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
-        <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
+        <source>Encoding will use a constant bit rate, adjusting quality to fit.</source>
         <translation>A codificação usará uma taxa de bits constante, ajustando a qualidade.</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="59"/>
+        <source>Average bit rate</source>
+        <translation>Taxa de bits média</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="64"/>
+        <source>Two pass</source>
+        <translation>2-pass</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
+        <source>The media will first be processed to determine its characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
+        <translation>A mídia será processada primeiro para determinar suas características e, em seguida, processada uma segunda vez, alocando mais bits para as áreas que precisam.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation>A codificação tentará manter uma configuração de taxa de bits média, mas usará mais ou menos bits conforme necessário.</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
-        <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
-        <translation>A mídia será processada primeiro para determinar suas características e, em seguida, processada uma segunda vez, alocando mais bits para as áreas que precisam dela.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
@@ -971,7 +1118,7 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
-        <source>Browser</source>
+        <source>Browse(&amp;B)</source>
         <translation>Procurar(&amp;P)</translation>
     </message>
     <message>
@@ -1008,11 +1155,6 @@ Reiniciar o programa como administrador?</translation>
         <translation>Cursor:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
-        <source>Scroll bar positioin:</source>
-        <translation>Barra de scroll:</translation>
-    </message>
-    <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
         <source>Terminal Transparency:</source>
         <translation>Transparência do Terminal:</translation>
@@ -1028,19 +1170,24 @@ Reiniciar o programa como administrador?</translation>
         <translation>Imagem de Fundo:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
-        <source>Browser(&amp;B)</source>
-        <translation>Procurar(&amp;P)</translation>
-    </message>
-    <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
         <source>Key binding:</source>
         <translation>Mapeamento de teclas:</translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
-        <source>Show terminal size when windows resize</source>
-        <translation>Redimensionar o tamanho do terminal ao redimensionar a janela</translation>
+        <source>Resize terminal size when window resize</source>
+        <translation>Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
+        <source>Scroll bar position:</source>
+        <translation>Barra de rolagem:</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
+        <source>Browse(&amp;B)</source>
+        <translation>Procurar(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
@@ -1055,7 +1202,7 @@ Reiniciar o programa como administrador?</translation>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
         <source>History size(in lines):</source>
-        <translation>Tamanho do histórico (em linhas)</translation>
+        <translation>Tamanho do histórico (em linhas):</translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
@@ -1101,8 +1248,8 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
-        <source>No</source>
-        <translation>Nenhuma</translation>
+        <source>None</source>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
@@ -1140,18 +1287,18 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
-        <source>Password with X509 none</source>
-        <translation>Senha, sem X509</translation>
+        <source>Password without X509</source>
+        <translation>Senha sem X509</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <source>Username and password without X509</source>
+        <translation>Usuário e senha sem X509</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Password with X509</source>
         <translation>Senha, com X509</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
-        <source>Username and password with X509 none</source>
-        <translation>Usuário e senha, com X509</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
@@ -1312,24 +1459,24 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="162"/>
-        <source>Please checked save password to enable</source>
-        <translation>Por favor, marque salvar senha para habilitar</translation>
+        <source>Please check save password to enable</source>
+        <translation>Por favor, marque salvar senha para ativar</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
+        <source>Please check save passphrase to enable</source>
+        <translation>Por favor, marque salvar senha para ativar</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
+        <source>Open X509 Certificate Authority file</source>
+        <translation>Abrir arquivo de CA X509</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="173"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="185"/>
         <source>Open public key file</source>
         <translation>Abrir arquivo de chave pública</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
-        <source>Please checked save passphrase to enable</source>
-        <translation>Por favor, marque salvar senha para habilitar</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
-        <source>Open X509 certificate authentication file</source>
-        <translation>Abrir arquivo de CA X509</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="294"/>
@@ -1372,8 +1519,8 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="55"/>
-        <source>File transfers</source>
-        <translation>Transferência de Arquivos</translation>
+        <source>File Transfer</source>
+        <translation>Transferência de Arquivo</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="57"/>
@@ -1392,24 +1539,30 @@ Reiniciar o programa como administrador?</translation>
 <context>
     <name>CStats</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="12"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="14"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
         <source>KB</source>
         <translation>KB</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="16"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
-        <source> GB</source>
+        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
+        <source>GB</source>
         <translation>GB</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="60"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="65"/>
+        <source>S</source>
+        <translation>S</translation>
     </message>
 </context>
 </TS>

@@ -2,9 +2,22 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pt_BR">
 <context>
+    <name>CBackendFileTransfer</name>
+    <message>
+        <location filename="../../BackendFileTransfer.cpp" line="200"/>
+        <source>Open SFTP fail.</source>
+        <translation>Falha na conexão SFTP.</translation>
+    </message>
+    <message>
+        <location filename="../../BackendFileTransfer.cpp" line="202"/>
+        <source>Error</source>
+        <translation>Erro</translation>
+    </message>
+</context>
+<context>
     <name>CChannelSFTP</name>
     <message>
-        <location filename="../../ChannelSFTP.cpp" line="761"/>
+        <location filename="../../ChannelSFTP.cpp" line="759"/>
         <source>Error: Asynchronous uploads are not supported</source>
         <translation>Erro: não há suporte para uploads assíncronos</translation>
     </message>
@@ -90,11 +103,6 @@
         <translation>Fechando</translation>
     </message>
     <message>
-        <location filename="../../ListFileModel.cpp" line="267"/>
-        <source>Height</source>
-        <translation>Alta</translation>
-    </message>
-    <message>
         <location filename="../../ListFileModel.cpp" line="239"/>
         <source>Transferring</source>
         <translation>Transferindo</translation>
@@ -113,6 +121,11 @@
         <location filename="../../ListFileModel.cpp" line="247"/>
         <source>Finish</source>
         <translation>Terminada</translation>
+    </message>
+    <message>
+        <location filename="../../ListFileModel.cpp" line="267"/>
+        <source>High</source>
+        <translation>Alta</translation>
     </message>
     <message>
         <location filename="../../ListFileModel.cpp" line="269"/>
@@ -143,17 +156,17 @@
         <translation>Remoto:</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.ui" line="133"/>
+        <location filename="../../FrmFileTransfer.ui" line="136"/>
         <source>List</source>
         <translation>Lista</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.ui" line="150"/>
+        <location filename="../../FrmFileTransfer.ui" line="153"/>
         <source>Fail</source>
         <translation>Falha</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.ui" line="160"/>
+        <location filename="../../FrmFileTransfer.ui" line="163"/>
         <source>Success</source>
         <translation>Sucesso</translation>
     </message>
@@ -166,7 +179,7 @@
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="178"/>
         <location filename="../../FrmFileTransfer.cpp" line="293"/>
-        <location filename="../../FrmFileTransfer.cpp" line="539"/>
+        <location filename="../../FrmFileTransfer.cpp" line="555"/>
         <source>Add to list</source>
         <translation>Adicionar a lista</translation>
     </message>
@@ -178,25 +191,25 @@
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="183"/>
-        <location filename="../../FrmFileTransfer.cpp" line="443"/>
-        <location filename="../../FrmFileTransfer.cpp" line="542"/>
+        <location filename="../../FrmFileTransfer.cpp" line="459"/>
+        <location filename="../../FrmFileTransfer.cpp" line="558"/>
         <source>New</source>
         <translation>Novo</translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="186"/>
         <location filename="../../FrmFileTransfer.cpp" line="299"/>
-        <location filename="../../FrmFileTransfer.cpp" line="446"/>
-        <location filename="../../FrmFileTransfer.cpp" line="545"/>
-        <location filename="../../FrmFileTransfer.cpp" line="626"/>
+        <location filename="../../FrmFileTransfer.cpp" line="462"/>
+        <location filename="../../FrmFileTransfer.cpp" line="561"/>
+        <location filename="../../FrmFileTransfer.cpp" line="642"/>
         <source>Delete</source>
         <translation>Excluir</translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="188"/>
         <location filename="../../FrmFileTransfer.cpp" line="301"/>
-        <location filename="../../FrmFileTransfer.cpp" line="448"/>
-        <location filename="../../FrmFileTransfer.cpp" line="547"/>
+        <location filename="../../FrmFileTransfer.cpp" line="464"/>
+        <location filename="../../FrmFileTransfer.cpp" line="563"/>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
@@ -208,13 +221,13 @@
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="206"/>
-        <location filename="../../FrmFileTransfer.cpp" line="486"/>
+        <location filename="../../FrmFileTransfer.cpp" line="502"/>
         <source>New folder</source>
         <translation>Nova pasta</translation>
     </message>
     <message>
         <location filename="../../FrmFileTransfer.cpp" line="206"/>
-        <location filename="../../FrmFileTransfer.cpp" line="486"/>
+        <location filename="../../FrmFileTransfer.cpp" line="502"/>
         <source>Folder name:</source>
         <translation>Nome da pasta:</translation>
     </message>
@@ -223,9 +236,9 @@
         <location filename="../../FrmFileTransfer.cpp" line="265"/>
         <location filename="../../FrmFileTransfer.cpp" line="331"/>
         <location filename="../../FrmFileTransfer.cpp" line="343"/>
-        <location filename="../../FrmFileTransfer.cpp" line="473"/>
-        <location filename="../../FrmFileTransfer.cpp" line="563"/>
-        <location filename="../../FrmFileTransfer.cpp" line="644"/>
+        <location filename="../../FrmFileTransfer.cpp" line="489"/>
+        <location filename="../../FrmFileTransfer.cpp" line="579"/>
+        <location filename="../../FrmFileTransfer.cpp" line="660"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -247,39 +260,39 @@
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="450"/>
+        <location filename="../../FrmFileTransfer.cpp" line="466"/>
         <source>Refresh</source>
         <translation>Atualizar</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="473"/>
-        <location filename="../../FrmFileTransfer.cpp" line="563"/>
+        <location filename="../../FrmFileTransfer.cpp" line="489"/>
+        <location filename="../../FrmFileTransfer.cpp" line="579"/>
         <source>Please select local directory</source>
         <translation>Selecione o diretório local</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="537"/>
+        <location filename="../../FrmFileTransfer.cpp" line="553"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="621"/>
+        <location filename="../../FrmFileTransfer.cpp" line="637"/>
         <source>Stop</source>
         <translation>Parar</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="624"/>
+        <location filename="../../FrmFileTransfer.cpp" line="640"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="644"/>
+        <location filename="../../FrmFileTransfer.cpp" line="660"/>
         <source>Please stop the file transfer first</source>
         <translation>Por favor, pare a transferência de arquivos primeiro</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="452"/>
-        <location filename="../../FrmFileTransfer.cpp" line="549"/>
+        <location filename="../../FrmFileTransfer.cpp" line="468"/>
+        <location filename="../../FrmFileTransfer.cpp" line="565"/>
         <source>Copy url to clipboard</source>
         <translation>Copiar URL para a área de transferência</translation>
     </message>
@@ -289,32 +302,32 @@
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="165"/>
         <source>Name: </source>
-        <translation>Nome:</translation>
+        <translation>Nome: </translation>
     </message>
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="168"/>
         <source>Type: </source>
-        <translation>Tipo:</translation>
+        <translation>Tipo: </translation>
     </message>
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="171"/>
         <source>Protocol: </source>
-        <translation>Protocolo:</translation>
+        <translation>Protocolo: </translation>
     </message>
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="181"/>
         <source>Server address: </source>
-        <translation>Endereço do servidor:</translation>
+        <translation>Endereço do servidor: </translation>
     </message>
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="185"/>
         <source>Security level: </source>
-        <translation>Nível de segurança:</translation>
+        <translation>Nível de segurança: </translation>
     </message>
     <message>
         <location filename="../../OperateFileTransfer.cpp" line="188"/>
         <source>Description: </source>
-        <translation>Descrição:</translation>
+        <translation>Descrição: </translation>
     </message>
 </context>
 <context>
@@ -333,62 +346,62 @@
 <context>
     <name>CRemoteFileSystem</name>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="72"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="88"/>
         <source>File</source>
         <translation>Arquivo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="74"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="90"/>
         <source>Folder</source>
         <translation>Pasta</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="76"/>
-        <source>Driver</source>
+        <location filename="../../RemoteFileSystemModel.cpp" line="92"/>
+        <source>Drive</source>
         <translation>Drive</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="78"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="94"/>
         <source>Symlink</source>
         <translation>Link simbólico</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="80"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="96"/>
         <source>Special</source>
         <translation>Especial</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="107"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="123"/>
         <source>File name</source>
         <translation>Nome do arquivo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="109"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="125"/>
         <source>File size</source>
         <translation>Tamanho do arquivo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="111"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="127"/>
         <source>File type</source>
         <translation>Tipo de arquivo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="113"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="129"/>
         <source>File last modified time</source>
         <translation>Data da última modificação do arquivo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="115"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="131"/>
         <source>Permissions</source>
         <translation>Permissões</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="221"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="237"/>
         <source>getting</source>
         <translation>obtendo</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="117"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="133"/>
         <source>Owner/Group</source>
         <translation>Proprietário/Grupo</translation>
     </message>
@@ -396,22 +409,22 @@
 <context>
     <name>CRemoteFileSystemModel</name>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="600"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="616"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="600"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="616"/>
         <source>The path is exist: %1</source>
         <translation>O caminho existe: %1</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="615"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="630"/>
         <source>Delete directory</source>
         <translation>Excluir diretório</translation>
     </message>
     <message>
-        <location filename="../../RemoteFileSystemModel.cpp" line="616"/>
+        <location filename="../../RemoteFileSystemModel.cpp" line="631"/>
         <source>Are you sure you want to delete &apos;%1&apos;?</source>
         <translation>Tem certeza de que deseja excluir &apos;%1&apos;?</translation>
     </message>

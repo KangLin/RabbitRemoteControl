@@ -119,7 +119,7 @@ void CFrmParameterICE::on_leSignalName_editingFinished()
     if(QXmppUtils::jidToDomain(user).isEmpty()
             || QXmppUtils::jidToResource(user).isEmpty())
     {
-        QString szMsg = tr("The user name format is error. please use format: user@domain/resource");
+        QString szMsg = tr("The user name format is wrong. please use format: user@domain/resource");
         QMessageBox::critical(this, tr("Error"), szMsg);
     }
 #endif

@@ -165,12 +165,12 @@ limite:</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.ui" line="285"/>
-        <source>OK</source>
+        <source>Ok(&amp;O)</source>
         <translation>OK(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.ui" line="298"/>
-        <source>Cancel</source>
+        <source>Cancel(&amp;C)</source>
         <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
@@ -183,23 +183,23 @@ limite:</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="126"/>
-        <source>The ip address is error</source>
-        <translation>O endereço IP está incorreto</translation>
+        <source>The ip address is wrong</source>
+        <translation>O endereço IP está errado</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="135"/>
-        <source>The broadcast address is error</source>
-        <translation>O endereço broadcast está incorreto</translation>
+        <source>The broadcast address is wrong</source>
+        <translation>O endereço de broadcast está errado</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="145"/>
-        <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation>A senha está incorreta. Uma string de senha de comprimento 6 ou representação hexadecimal de 6 bytes</translation>
+        <source>The password is wrong. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
+        <translation>A senha está errada. Uma string de senha de comprimento 6 ou representação hexadecimal de 6 bytes</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="156"/>
-        <source>The mac address is error</source>
-        <translation>O endereço MAC está incorreto</translation>
+        <source>The mac address is wrong</source>
+        <translation>O endereço MAC está errado</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="212"/>

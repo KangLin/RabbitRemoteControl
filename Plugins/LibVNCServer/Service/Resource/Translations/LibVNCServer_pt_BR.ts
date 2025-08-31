@@ -27,12 +27,12 @@
 <context>
     <name>CPluginServiceLibVNCServer</name>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="29"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="30"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC (Virtual Network Console): Acesse áreas de trabalho remotas, como Unix/Linux, Windows etc.</translation>
     </message>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="30"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="31"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC é um conjunto de programas que usam o protocolo RFB (Remote Frame Buffer).</translation>
     </message>

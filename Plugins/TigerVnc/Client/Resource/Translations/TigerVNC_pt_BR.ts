@@ -134,11 +134,6 @@
         <translation>Baixo</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="209"/>
-        <source>Meduim</source>
-        <translation>Médio</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
         <translation>Muito baixo</translation>
@@ -199,6 +194,11 @@
         <location filename="../../DlgSettingsVnc.ui" line="183"/>
         <source>Compression</source>
         <translation>Compressão</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
+        <source>Medium</source>
+        <translation>Médio</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="278"/>
@@ -313,7 +313,7 @@
     </message>
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="44"/>
-        <source>The plugin is used TigerVNC</source>
+        <source>The plugin uses TigerVNC</source>
         <translation>O plugin usa TigerVNC</translation>
     </message>
 </context>

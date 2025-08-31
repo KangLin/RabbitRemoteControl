@@ -9,18 +9,13 @@
         <translation>Configurações de Terminal</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="92"/>
-        <source>Enable restore the laster directory when start</source>
-        <translation>Restaurar o último diretório ao iniciar</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="42"/>
         <source>OK(&amp;O)</source>
         <translation>OK (&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="257"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="256"/>
         <source>Help(&amp;H)</source>
         <translation>Ajuda (&amp;A)</translation>
     </message>
@@ -31,13 +26,23 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="65"/>
-        <source>Property</source>
+        <source>Properties</source>
         <translation>Propriedades</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="73"/>
         <source>Name:</source>
         <translation>Nome:</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="85"/>
+        <source>Enable window title changes</source>
+        <translation>Ativar alterações de título de janela</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTerminal.ui" line="92"/>
+        <source>Enable restore the last directory when start</source>
+        <translation>Restaurar o último diretório ao iniciar</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="101"/>
@@ -61,7 +66,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="158"/>
-        <source>Automatically execute the follow commands:</source>
+        <source>Automatically execute the following commands:</source>
         <translation>Execute automaticamente os seguintes comandos:</translation>
     </message>
     <message>
@@ -78,11 +83,6 @@
         <location filename="../../DlgSettingsTerminal.ui" line="187"/>
         <source>Delete</source>
         <translation>Remover</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsTerminal.ui" line="85"/>
-        <source>Enable title changed</source>
-        <translation>Habilitar mudanças de título</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="52"/>
@@ -122,37 +122,37 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="39"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="216"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="215"/>
         <source>VS 2022 Community x86</source>
         <translation>VS 2022 Community x86</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="40"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="214"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="213"/>
         <source>VS 2022 Community x64</source>
         <translation>VS 2022 Community x64</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="43"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="220"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="219"/>
         <source>VS 2022 Professional x86</source>
         <translation>VS 2022 Professional x86</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="44"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="218"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="217"/>
         <source>VS 2022 Professional x64</source>
         <translation>VS 2022 Professional x64</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="47"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="224"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="223"/>
         <source>VS 2019 Professional x86</source>
         <translation>VS 2019 Professional x86</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="48"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="222"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="221"/>
         <source>VS 2019 Professional x64</source>
         <translation>VS 2019 Professional x64</translation>
     </message>
@@ -253,7 +253,7 @@
         <translation>Selecionar shell</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="260"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="259"/>
         <source>Hide help(&amp;H)</source>
         <translation>Esconder ajuda (&amp;A)</translation>
     </message>

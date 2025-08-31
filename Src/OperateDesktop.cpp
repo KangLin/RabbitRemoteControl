@@ -224,7 +224,7 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_pZoomAspectRatio = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-aspect-ratio"),
-        tr("Keep aspect ration to windows"));
+        tr("Keep aspect ratio to window"));
     m_pZoomAspectRatio->setCheckable(true);
     m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ratio to window"));
     m_pZoomAspectRatio->setToolTip(tr("Keep aspect ratio to window"));

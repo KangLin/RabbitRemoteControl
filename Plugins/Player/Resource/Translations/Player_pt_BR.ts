@@ -106,11 +106,6 @@
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="46"/>
-        <source>pause</source>
-        <translation>Pausar</translation>
-    </message>
-    <message>
         <location filename="../../FrmPlayer.cpp" line="51"/>
         <source>Backward</source>
         <translation>Retroceder</translation>
@@ -126,9 +121,14 @@
         <translation>Captura de tela</translation>
     </message>
     <message>
+        <location filename="../../FrmPlayer.cpp" line="46"/>
+        <source>Pause</source>
+        <translation>Pausar</translation>
+    </message>
+    <message>
         <location filename="../../FrmPlayer.cpp" line="91"/>
-        <source>Record pause</source>
-        <translation>Parar gravação</translation>
+        <source>Pause record</source>
+        <translation>Pausar gravação</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="96"/>
@@ -166,7 +166,7 @@
     </message>
     <message>
         <location filename="../../OperatePlayer.cpp" line="60"/>
-        <source>Record pause</source>
+        <source>Pause record</source>
         <translation>Pausar gravação</translation>
     </message>
     <message>
@@ -187,7 +187,7 @@
     </message>
     <message>
         <location filename="../../OperatePlayer.cpp" line="160"/>
-        <source>pause</source>
+        <source>Pause</source>
         <translation>Pausar</translation>
     </message>
 </context>

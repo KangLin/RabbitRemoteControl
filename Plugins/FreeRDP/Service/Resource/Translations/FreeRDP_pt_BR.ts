@@ -73,8 +73,8 @@
     </message>
     <message>
         <location filename="../../PluginServiceFreeRDP.cpp" line="30"/>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation>RDP (Windows Remote Desktop Protocol): Acesse áreas de trabalho remotas, como o Windows.</translation>
+        <source>RDP(Windows remote desktop protocol): Access remote desktops such as windows.</source>
+        <translation>RDP (Windows Remote Desktop Protocol): acesse áreas de trabalho remotas, como o Windows.</translation>
     </message>
 </context>
 </TS>

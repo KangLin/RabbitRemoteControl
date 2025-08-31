@@ -282,7 +282,7 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
     </message>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="58"/>
-        <source>The format is error. Please enter the width×height correctly</source>
+        <source>The format is wrong. Please enter the width×height correctly</source>
         <translation>O formato está errado. Insira a largura×altura corretamente</translation>
     </message>
 </context>
@@ -665,7 +665,7 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="219"/>
-        <source>Modem(56 kpbs)</source>
+        <source>Modem(56 kbps)</source>
         <translation>Modem (56 kbps)</translation>
     </message>
     <message>

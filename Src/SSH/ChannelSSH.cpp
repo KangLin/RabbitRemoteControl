@@ -307,7 +307,7 @@ int CChannelSSH::verifyKnownhost(ssh_session session)
         break;
     case SSH_KNOWN_HOSTS_NOT_FOUND:
         nRet = -5;
-        szErr = net.GetHost() + " " + tr("is not found in known host file.") + "\n";
+        szErr = net.GetHost() + " " + tr("is not found in known hosts file.") + "\n";
         szErr += tr("If you accept the host key here, the file will be "
                     "automatically created.") + "\n";
         szErr += tr("Host key hash:") + "\n" + szHash;
