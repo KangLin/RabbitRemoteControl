@@ -155,19 +155,19 @@
     <iconset theme="system-software-update"/>
    </property>
    <property name="text">
-    <string>Check for updates(&amp;U)</string>
+    <string>Update(&amp;U)</string>
    </property>
    <property name="iconText">
-    <string>Check for updates</string>
+    <string>Update</string>
    </property>
    <property name="toolTip">
-    <string>Check for updates</string>
+    <string>Update</string>
    </property>
    <property name="statusTip">
-    <string>Check for updates</string>
+    <string>Update</string>
    </property>
    <property name="whatsThis">
-    <string>Check for updates</string>
+    <string>Update</string>
    </property>
   </action>
   <action name="actionToolBar_T">
