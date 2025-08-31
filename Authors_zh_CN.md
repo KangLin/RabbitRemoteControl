@@ -5,6 +5,7 @@
 ## 贡献者
 - Allan Nordhøy <epost@anotheragency.no>
 - 豆子 <942vip@gmail.com>
+- Eduardo Mozart de Oliveira
 
 详见: [https://github.com/KangLin/RabbitRemoteControl/graphs/contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 

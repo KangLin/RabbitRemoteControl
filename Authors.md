@@ -5,6 +5,7 @@
 ## Contributors
 - Allan Nordhøy <epost@anotheragency.no>
 - zgml <942vip@gmail.com>
+- Eduardo Mozart de Oliveira
 
 See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
