@@ -685,7 +685,7 @@ Reiniciar o programa como administrador?</translation>
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
-        <translation>Encontrar ...</translation>
+        <translation>Localizar ...</translation>
     </message>
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
