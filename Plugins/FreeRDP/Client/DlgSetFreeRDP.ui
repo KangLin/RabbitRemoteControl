@@ -429,7 +429,7 @@
      </widget>
      <widget class="QWidget" name="LocalResource">
       <attribute name="title">
-       <string>Local resource</string>
+       <string>Local resources</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="1" column="0">

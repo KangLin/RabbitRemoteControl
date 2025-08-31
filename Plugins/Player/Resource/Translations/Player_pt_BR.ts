@@ -54,7 +54,7 @@
     <message>
         <location filename="../../DlgPlayer.ui" line="102"/>
         <source>Audio output</source>
-        <translation>Entrada de áudio</translation>
+        <translation>Saída de áudio</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.cpp" line="66"/>

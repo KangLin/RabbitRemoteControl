@@ -27,13 +27,13 @@
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="283"/>
-        <source>Open settings and Start</source>
-        <translation>Abrir configurações e Iniciar</translation>
+        <source>Edit and Start</source>
+        <translation>Editar e Iniciar</translation>
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="284"/>
         <source>Delete operate</source>
-        <translation>Remover operação</translation>
+        <translation>Remover atividade</translation>
     </message>
     <message>
         <location filename="../../FavoriteView.cpp" line="289"/>
@@ -67,6 +67,12 @@
         <location filename="../../FrmActive.cpp" line="33"/>
         <source>Activity list</source>
         <translation>Atividades</translation>
+    </message>
+    <message>
+        <location filename="../../FrmActive.cpp" line="63"/>
+        <location filename="../../FrmActive.cpp" line="64"/>
+        <source>Start</source>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <location filename="../../FrmActive.cpp" line="69"/>
@@ -300,7 +306,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="70"/>
         <source>Resume the operates when it was last closed at startup</source>
-        <translation>Retomar as últimas operações na inicialização</translation>
+        <translation>Retomar as últimas atividades na inicialização</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="128"/>
@@ -310,7 +316,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="134"/>
         <source>Operate</source>
-        <translation>Operações</translation>
+        <translation>Atividades</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="141"/>
@@ -373,6 +379,11 @@
         <translation>A exibição dividida (&quot;Ver-&gt;Tipo&quot;) é mantida em tela cheia</translation>
     </message>
     <message>
+        <location filename="../../ParameterDlgSettings.ui" line="320"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>Cancelar(&amp;C)</translation>
+    </message>
+    <message>
         <location filename="../../ParameterDlgSettings.ui" line="248"/>
         <source>Icon</source>
         <translation>Ícone</translation>
@@ -385,17 +396,12 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="287"/>
         <source>&quot;Menu-&gt;Operate-&gt;Start&quot;: group by plugin type</source>
-        <translation>&quot;Menu-&gt;Operações-&gt;Iniciar&quot;: agrupar por tipo de plug-in</translation>
+        <translation>&quot;Menu-&gt;Atividades-&gt;Iniciar&quot;: agrupar por tipo de plug-in</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="313"/>
         <source>Ok(&amp;O)</source>
-        <translation>Ok(&amp;O)</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterDlgSettings.ui" line="320"/>
-        <source>No(&amp;N)</source>
-        <translation>Não(&amp;N)</translation>
+        <translation>OK(&amp;O)</translation>
     </message>
 </context>
 <context>
@@ -416,9 +422,16 @@
         <translation>Ver(&amp;V)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="52"/>
+        <location filename="../../mainwindow.ui" line="55"/>
+        <location filename="../../mainwindow.ui" line="58"/>
+        <source>Activities</source>
+        <translation>Atividades</translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="76"/>
         <source>Operate(&amp;O)</source>
-        <translation>Operações(&amp;O)</translation>
+        <translation>Atividades(&amp;A)</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="98"/>
@@ -449,7 +462,7 @@
         <location filename="../../mainwindow.ui" line="167"/>
         <location filename="../../mainwindow.ui" line="170"/>
         <source>Update</source>
-        <translation>Verificar por atualizações</translation>
+        <translation>Atualizar</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="184"/>
@@ -492,6 +505,19 @@
         <location filename="../../mainwindow.ui" line="381"/>
         <source>Add to favorites</source>
         <translation>Adicionar aos favoritos</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="389"/>
+        <source>Open the recent list(&amp;R)</source>
+        <translation>Abrir a lista de atividades recentes(&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="392"/>
+        <location filename="../../mainwindow.ui" line="395"/>
+        <location filename="../../mainwindow.ui" line="398"/>
+        <location filename="../../mainwindow.ui" line="401"/>
+        <source>Open the recent list</source>
+        <translation>Abrir a lista de atividades recentes</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="412"/>
@@ -544,13 +570,6 @@
         <location filename="../../mainwindow.ui" line="42"/>
         <source>Type</source>
         <translation>Tipo</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="52"/>
-        <location filename="../../mainwindow.ui" line="55"/>
-        <location filename="../../mainwindow.ui" line="58"/>
-        <source>Activity</source>
-        <translation>Atividade</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="80"/>
@@ -609,15 +628,6 @@
         <location filename="../../mainwindow.ui" line="364"/>
         <source>Clone</source>
         <translation>Clonar</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="389"/>
-        <location filename="../../mainwindow.ui" line="392"/>
-        <location filename="../../mainwindow.ui" line="395"/>
-        <location filename="../../mainwindow.ui" line="398"/>
-        <location filename="../../mainwindow.ui" line="401"/>
-        <source>Open the list of recent(&amp;R)</source>
-        <translation>Abrir a lista de recentes(&amp;R)</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="264"/>
@@ -780,6 +790,16 @@
         <location filename="../../main.cpp" line="95"/>
         <source>Kang Lin Studio</source>
         <translation>Kang Lin Studio</translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="120"/>
+        <source>Generate update json file End</source>
+        <translation>Fim da geração do arquivo JSON de atualização</translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="168"/>
+        <source>End</source>
+        <translation>Fim</translation>
     </message>
 </context>
 </TS>

@@ -35,12 +35,12 @@ Version: [e.g. 5.12.11]
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows/Linux/iOS/...]
- - Version [e.g. 22]
+ - Version: [e.g. 22]
 
 **Smartphone (please complete the following information):**
  - Device: [e.g. Android/iPhone6/...]
  - OS: [e.g. iOS8.1]
- - Version [e.g. 22]
+ - Version: [e.g. 22]
 
 **Additional context**
 Add any other context about the problem here.

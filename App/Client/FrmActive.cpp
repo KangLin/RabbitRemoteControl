@@ -60,8 +60,8 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     ptbStart->setMenu(m_pOperate);
     ptbStart->setIcon(m_pOperate->icon());
     ptbStart->setText(m_pOperate->title());
-    ptbStart->setToolTip(m_pOperate->title());
-    ptbStart->setStatusTip(m_pOperate->title());
+    ptbStart->setToolTip(tr("Start"));
+    ptbStart->setStatusTip(tr("Start"));
     m_pToolBar->addWidget(ptbStart);
 
     m_pToolBar->addAction(m_pStop);

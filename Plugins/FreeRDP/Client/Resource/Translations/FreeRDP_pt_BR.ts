@@ -327,6 +327,11 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation>Configurações do FreeRdp</translation>
     </message>
     <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="432"/>
+        <source>Local resources</source>
+        <translation>Recursos Locais</translation>
+    </message>
+    <message>
         <location filename="../../DlgSetFreeRDP.ui" line="615"/>
         <source>OK(&amp;O)</source>
         <translation>OK (&amp;O)</translation>
@@ -473,11 +478,6 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <location filename="../../DlgSetFreeRDP.ui" line="421"/>
         <source>Visual theme</source>
         <translation>Estilos visuais</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="432"/>
-        <source>Local resource</source>
-        <translation>Recursos Locais</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="487"/>

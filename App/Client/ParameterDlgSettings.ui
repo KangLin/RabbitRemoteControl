@@ -317,7 +317,7 @@
      <item>
       <widget class="QPushButton" name="pbNo">
        <property name="text">
-        <string>No(&amp;N)</string>
+        <string>Cancel(&amp;C)</string>
        </property>
       </widget>
      </item>

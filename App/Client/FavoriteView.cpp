@@ -280,7 +280,7 @@ void CFavoriteView::slotMenu()
     {
         if(item->data().isValid()) {
             m_pMenu->addAction(tr("Start"), this, SLOT(slotStart()));
-            m_pMenu->addAction(tr("Open settings and Start"), this, SLOT(slotOpenStart()));
+            m_pMenu->addAction(tr("Edit and Start"), this, SLOT(slotOpenStart()));
             m_pMenu->addAction(tr("Delete operate"), this, SLOT(slotDelete()));
         }
         m_pMenu->addSeparator();

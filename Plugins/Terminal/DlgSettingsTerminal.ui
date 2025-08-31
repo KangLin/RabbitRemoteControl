@@ -82,7 +82,7 @@
        <item row="1" column="0">
         <widget class="QCheckBox" name="cbTitleChanged">
          <property name="text">
-          <string>Enable title changes</string>
+          <string>Enable window title changes</string>
          </property>
         </widget>
        </item>

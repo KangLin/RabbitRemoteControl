@@ -56,12 +56,12 @@
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="27"/>
         <source>Capture screen</source>
-        <translation>Capturar tela</translation>
+        <translation>Captura de tela</translation>
     </message>
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="32"/>
-        <source>Capture or record screen and window. This is a sample example.</source>
-        <translation>Capture ou grave a tela e a janela. Esta é uma amostra de exemplo.</translation>
+        <source>Capture or record screen or window. This is a sample example.</source>
+        <translation>Capture ou grave a tela ou a janela. Esta é uma amostra de exemplo.</translation>
     </message>
 </context>
 <context>

@@ -49,13 +49,13 @@
     </widget>
     <widget class="QMenu" name="menuActivity">
      <property name="toolTip">
-      <string>Activity</string>
+      <string>Activities</string>
      </property>
      <property name="statusTip">
-      <string>Activity</string>
+      <string>Activities</string>
      </property>
      <property name="title">
-      <string>Activity</string>
+      <string>Activities</string>
      </property>
      <property name="icon">
       <iconset theme="network-wired"/>
