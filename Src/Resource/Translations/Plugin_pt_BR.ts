@@ -220,7 +220,7 @@
         <location filename="../../DlgInputPassword.ui" line="54"/>
         <location filename="../../DlgInputPassword.cpp" line="12"/>
         <source>Input encrypt key</source>
-        <translation>Chave de encriptação</translation>
+        <translation>Chave de criptografia</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="122"/>
