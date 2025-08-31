@@ -350,9 +350,16 @@ MainWindow::MainWindow(QWidget *parent)
         ui->actionMain_menu_bar_M->setChecked(m_Parameter.GetMenuBar());
         menuBar()->setVisible(m_Parameter.GetMenuBar());
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
+        // macOS: Hide 'Main menu bar' on macOS since it's always visible
+        #ifdef Q_OS_MACOS
+        // Hide 'Main menu bar' on View menu
+        ui->actionMain_menu_bar_M->setVisible(false);
+        #else
+        // Show 'Main menu bar' toolbar icon
         if(!m_Parameter.GetMenuBar())
             ui->toolBar->insertAction(ui->actionTabBar_B,
                                       ui->actionMain_menu_bar_M);
+        #endif
     }
 
     slotEnableSystemTrayIcon();
