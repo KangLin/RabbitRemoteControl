@@ -93,7 +93,7 @@ jobs:
           MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb.md5sum|awk '{print $1}'`
           echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb: ${MD5SUM}"
           echo "Generate update configure file ......"
-          /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
+          /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
             -f "${{github.workspace}}/update_ubuntu.json" \
             --foc 1 \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb?viasf=1" \
