@@ -303,6 +303,7 @@ jobs:
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DVCPKG_VERBOSE=ON \
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+              -DRABBIT_WITH_MACDEPLOY=OFF \
               -DBUILD_FREERDP=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
@@ -326,6 +327,9 @@ jobs:
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
             
+            if [ -d "${{env.INSTALL_DIR}}\share\qtermwidget6" ]; then
+                cp -r "${{env.INSTALL_DIR}}\share\qtermwidget6" install/RabbitRemoteControl.App/Contents/Resources/qtermwidget6
+            fi
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
 
