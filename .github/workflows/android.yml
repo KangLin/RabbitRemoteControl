@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.8.1]
+        qt_version: [6.9.2]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -96,7 +96,7 @@ jobs:
 
       - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v4
-        if: ${{ matrix.qt_version == '6.8.1' }}
+        if: ${{ matrix.qt_version == '6.9.2' }}
         with:
           dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
