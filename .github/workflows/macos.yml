@@ -278,7 +278,7 @@ jobs:
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
-        run: git clone -b develop https://github.com/KangLin/RabbitCommon.git
+        run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl
         working-directory: ${{env.BUILD_DIR}}
@@ -346,7 +346,7 @@ jobs:
             # done
             ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
 
-            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
+            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/RabbitRemoteControl.App
             lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
             otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
             otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
