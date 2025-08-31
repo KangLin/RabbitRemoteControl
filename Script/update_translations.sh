@@ -17,7 +17,7 @@ find "$SCRIPT_DIR" -name "*.ts" | while read -r TS_FILE; do
         # Use 'sed' to remove the "/Resources/Translations/" part from the file name.
         # The 's' command stands for substitute. The pipes '|' are used as delimiters
         # instead of the more common '/' to avoid escaping the slashes in the path.
-        PROJECT_PATH=$(echo "$TS_FILE" | sed 's|/Resources/Translations/||')
+        PROJECT_PATH=$(echo $(dirname "$TS_FILE") | sed 's|/Resource/Translations||')
     
         lupdate $PROJECT_PATH -ts "$TS_FILE" -no-obsolete
     fi
