@@ -26,9 +26,10 @@ libdatachannel=0
 QtService=0
 QTERMWIDGET=0
 LIBSSH=0
+MACOS=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--macos=[0|1]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -43,6 +44,7 @@ usage_long() {
     echo "  --package-tool: Package install tool, apk or dnf"
     echo "  --package: Install package"
     echo "  --qt: Install QT"
+    echo "  --macos: Install macos tools and dependency libraries"
     echo "  --rabbitcommon: Install RabbitCommon"
     echo "  --freerdp: Install FreeRDP"
     echo "  --tigervnc: Install TigerVNC"
@@ -153,6 +155,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --macos)
+            case $2 in
+                "")
+                    MACOS=1;;
+                *)
+                    MACOS=$2;;
+            esac
+            shift 2
+            ;;  
         --freerdp)
             case $2 in
                 "")
@@ -395,6 +406,10 @@ if [ $QT -eq 1 ]; then
         fi
     fi
     popd
+fi
+
+if [ $MACOS -eq 1 ]; then
+    echo "Install macos tools and dependency libraries ......"
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
