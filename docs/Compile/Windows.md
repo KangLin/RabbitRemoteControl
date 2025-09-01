@@ -253,6 +253,14 @@ Source-code location: https://github.com/KangLin/tigervnc
 
       -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
+- When install, Need to copy resources to install directory
+
+      IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
+          xcopy "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6 /Y /S /I
+      )
+
+  Reference: [msvc.yml](../../.github/workflows/msvc.yml)
+  
 #### libssh
 
 - Use vcpkg

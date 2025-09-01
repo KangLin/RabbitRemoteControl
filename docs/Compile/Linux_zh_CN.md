@@ -369,6 +369,14 @@
 
       -Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
+- 安装时，需要复制资源到安装目录
+
+      if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+          cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+      else
+          echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+      fi
+
 #### libssh
 
 - 使用系统预编译开发库

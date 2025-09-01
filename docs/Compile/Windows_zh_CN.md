@@ -240,6 +240,14 @@
 
       -Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
+- 安装时，需要复制资源到安装目录
+
+      IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
+          xcopy "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6 /Y /S /I
+      )
+
+  参考： [msvc.yml](../../.github/workflows/msvc.yml)
+  
 #### libssh
 
 - 使用 vcpkg
