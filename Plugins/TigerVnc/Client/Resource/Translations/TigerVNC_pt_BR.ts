@@ -6,7 +6,7 @@
     <message>
         <location filename="../../BackendVnc.cpp" line="317"/>
         <source>The proxy server is empty, please input it</source>
-        <translation type="unfinished"></translation>
+        <translation>O servidor proxy está vazio, insira-o</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="319"/>
@@ -15,38 +15,38 @@
         <location filename="../../BackendVnc.cpp" line="542"/>
         <location filename="../../BackendVnc.cpp" line="557"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="349"/>
         <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
+        <translation>O servidor está vazio, insira-o</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="384"/>
         <source>Failed to open SSH tunnel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao abrir o túnel SSH:</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="536"/>
         <source>Logon to </source>
-        <translation type="unfinished"></translation>
+        <translation>Logon em </translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="540"/>
         <location filename="../../BackendVnc.cpp" line="553"/>
         <source> fail.</source>
-        <translation type="unfinished"></translation>
+        <translation> falhou.</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="541"/>
         <source>Please check that the username and password are correct.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifique se o nome de usuário e a senha estão corretos.</translation>
     </message>
     <message>
         <location filename="../../BackendVnc.cpp" line="549"/>
         <source>Connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>Conexão a </translation>
     </message>
 </context>
 <context>
@@ -54,199 +54,201 @@
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="14"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="28"/>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="88"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="95"/>
         <location filename="../../DlgSettingsVnc.ui" line="98"/>
         <location filename="../../DlgSettingsVnc.ui" line="101"/>
         <source>Connecter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="112"/>
         <source>Shared</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartilhado</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="119"/>
         <source>Only view</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas visualizar</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="130"/>
         <source>Show local cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir cursor local</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="77"/>
         <source>Enable clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar Ctrl+C/V</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="52"/>
         <source>Support windows resize</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimens. de janelas</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="59"/>
         <source>Real time update</source>
-        <translation type="unfinished"></translation>
+        <translation>Atual. em tempo real</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="70"/>
         <source>Show server name</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir nome do servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="146"/>
         <source>Ice:</source>
-        <translation type="unfinished"></translation>
+        <translation>ICE:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="160"/>
         <source>Peer user:</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário peer:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="189"/>
         <source>Color level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de cor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="195"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>Completo</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="202"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="209"/>
-        <source>Meduim</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixo</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
-        <translation type="unfinished"></translation>
+        <translation>Muito baixo</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="238"/>
         <source>0=fast, 9=best</source>
-        <translation type="unfinished"></translation>
+        <translation>0=rápido,
+9=melhor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="249"/>
         <source>Enable JPEG compress</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar compressão JPEG</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="263"/>
         <source>0=Worst, 9=best</source>
-        <translation type="unfinished"></translation>
+        <translation>0=pior,
+9=melhor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="272"/>
         <source>preferred Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codificação preferencial</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="313"/>
         <source>Tight</source>
-        <translation type="unfinished"></translation>
+        <translation>Tight</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="306"/>
         <source>Hextile</source>
-        <translation type="unfinished"></translation>
+        <translation>Hextile</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="320"/>
         <source>Raw</source>
-        <translation type="unfinished"></translation>
+        <translation>Raw</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="285"/>
         <source>ZRLE</source>
-        <translation type="unfinished"></translation>
+        <translation>ZRLE</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="137"/>
         <source>Cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição do cursor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="175"/>
         <source>Led state</source>
-        <translation type="unfinished"></translation>
+        <translation>LED do teclado (Caps, Num e Scroll lock)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="183"/>
         <source>Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Compressão</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
+        <source>Medium</source>
+        <translation>Médio</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="278"/>
         <source>CoRRE</source>
-        <translation type="unfinished"></translation>
+        <translation>CoRRE</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="292"/>
         <source>RRE</source>
-        <translation type="unfinished"></translation>
+        <translation>RRE</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="299"/>
         <source>copyRect</source>
-        <translation type="unfinished"></translation>
+        <translation>copyRect</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="327"/>
         <source>H.264</source>
-        <translation type="unfinished"></translation>
+        <translation>H.264</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="337"/>
         <source>Compress level:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de compressão:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="344"/>
         <source>Auto select</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto selecionar</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="370"/>
         <source>Ok(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation>OK(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="380"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.cpp" line="29"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.cpp" line="33"/>
         <source>Record</source>
-        <translation type="unfinished"></translation>
+        <translation>Gravação</translation>
     </message>
 </context>
 <context>
@@ -254,42 +256,42 @@
     <message>
         <location filename="../../ParameterVnc.cpp" line="21"/>
         <source>Standard VNC authentication (insecure without encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticação VNC padrão (insegura, sem criptografia)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="22"/>
         <source>Username and password (insecure without encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuário e senha (insegura, sem criptografia)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="23"/>
         <source>Standard VNC authentication (secure with x509 encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticação VNC padrão (segura, com criptografia x509)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="24"/>
         <source>Standard VNC authentication (secure with x509 none encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticação VNC padrão (segura, com criptografia x509 nenhuma)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="25"/>
         <source>Username and password (secure with x509 encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuário e senha (segura, com criptografia x509)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="26"/>
         <source>Username and password (secure with x509 none encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuário e senha (segura, com criptografia x509 nenhuma)</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="77"/>
         <source>Ice signal password</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha do sinal do ICE</translation>
     </message>
     <message>
         <location filename="../../ParameterVnc.cpp" line="90"/>
         <source>Ice turn password</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha de TURN do ICE</translation>
     </message>
 </context>
 <context>
@@ -297,22 +299,22 @@
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="37"/>
         <source>TigerVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>TigerVNC</translation>
     </message>
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="42"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC (Virtual Network Console): Acesse áreas de trabalho remotas, como Unix/Linux, Windows etc.</translation>
     </message>
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="43"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC é um conjunto de programas que usam o protocolo RFB (Remote Frame Buffer).</translation>
     </message>
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="44"/>
         <source>The plugin is used TigerVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>O plugin usa TigerVNC</translation>
     </message>
 </context>
 <context>

@@ -6,62 +6,62 @@
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="14"/>
         <source>Set FreeRDP parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar parâmetros do FreeRDP</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="22"/>
         <source>Sam File:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo SAM:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="36"/>
         <source>Tls Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Segurança TLS</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="43"/>
         <source>Rdp Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Segurança RDP</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="52"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="61"/>
         <source>Nla Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Segurança NLA</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="68"/>
         <source>Nla Extend Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Segurança NLA Extendido</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="79"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="97"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="111"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticação</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="118"/>
         <source>May Interact</source>
-        <translation type="unfinished"></translation>
+        <translation>Pode Interagir</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="125"/>
         <source>May View</source>
-        <translation type="unfinished"></translation>
+        <translation>Pode Ver</translation>
     </message>
 </context>
 <context>
@@ -69,12 +69,12 @@
     <message>
         <location filename="../../PluginServiceFreeRDP.cpp" line="25"/>
         <source>FreeRDP</source>
-        <translation type="unfinished"></translation>
+        <translation>FreeRDP</translation>
     </message>
     <message>
         <location filename="../../PluginServiceFreeRDP.cpp" line="30"/>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="unfinished"></translation>
+        <source>RDP(Windows remote desktop protocol): Access remote desktops such as windows.</source>
+        <translation>RDP (Windows Remote Desktop Protocol): acesse áreas de trabalho remotas, como o Windows.</translation>
     </message>
 </context>
 </TS>

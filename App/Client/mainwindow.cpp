@@ -104,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     m_pSecureLevel = new QLabel(statusBar());
-    // QIcon icon = QIcon::fromTheme("newwork-wired");
+    // QIcon icon = QIcon::fromTheme("network-wired");
     // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
     // m_pSecureLevel->setPixmap(pixmap);
     m_pSecureLevel->hide();
@@ -1047,7 +1047,7 @@ void MainWindow::slotSignalConnected()
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Connected"));
-    m_pSignalStatus->setIcon(QIcon::fromTheme("newwork-wired"));
+    m_pSignalStatus->setIcon(QIcon::fromTheme("network-wired"));
 }
 
 void MainWindow::slotSignalDisconnected()

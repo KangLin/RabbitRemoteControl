@@ -38,10 +38,10 @@ const QString CParameterRawStream::GetTypeName(TYPE type)
     QString szType;
     switch((TYPE)type) {
     case TYPE::TCP:
-        szType = "TCP";
+        szType = tr("TCP");
         break;
     case TYPE::NamePipe:
-        szType = tr("Name pipe");
+        szType = tr("Named pipe");
         break;
     }
     return szType;

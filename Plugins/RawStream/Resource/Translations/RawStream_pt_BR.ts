@@ -6,32 +6,32 @@
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="24"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriedades</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="32"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="46"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="71"/>
         <source>TCP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="90"/>
-        <source>Name pipe</source>
-        <translation type="unfinished"></translation>
+        <source>Named pipe</source>
+        <translation>Pipe nomeado</translation>
     </message>
 </context>
 <context>
@@ -39,45 +39,50 @@
     <message>
         <location filename="../../OperateRawStream.cpp" line="148"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nome: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="151"/>
         <source>Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="154"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>Protocolo: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="162"/>
         <source>Raw stream type: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de fluxo bruto: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="167"/>
         <source>Server address: </source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço do servidor: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="172"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de segurança: </translation>
     </message>
     <message>
         <location filename="../../OperateRawStream.cpp" line="175"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição: </translation>
     </message>
 </context>
 <context>
     <name>CParameterRawStream</name>
     <message>
+        <location filename="../../ParameterRawStream.cpp" line="41"/>
+        <source>TCP</source>
+        <translation>TCP</translation>
+    </message>
+    <message>
         <location filename="../../ParameterRawStream.cpp" line="44"/>
-        <source>Name pipe</source>
-        <translation type="unfinished"></translation>
+        <source>Named pipe</source>
+        <translation>Pipe nomeado</translation>
     </message>
 </context>
 <context>
@@ -86,13 +91,13 @@
         <location filename="../../PluginRawStream.cpp" line="25"/>
         <location filename="../../PluginRawStream.cpp" line="30"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../../PluginRawStream.cpp" line="25"/>
         <location filename="../../PluginRawStream.cpp" line="30"/>
         <source>Raw stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Fluxo bruto</translation>
     </message>
 </context>
 </TS>

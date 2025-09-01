@@ -97,7 +97,7 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
                             tr("Zoom to window"),
                             (int)CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-aspect-ratio"),
-                            tr("Keep desktop aspectration adapt to windows"),
+                            tr("Keep aspect ratio to window"),
                             (int)CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
     int nIndex = ui->cbViewZoom->findData((int)m_pPara->GetAdaptWindows());
     if(-1 != nIndex)

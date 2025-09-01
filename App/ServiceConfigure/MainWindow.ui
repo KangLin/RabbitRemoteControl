@@ -55,6 +55,9 @@
         <property name="text">
          <string>Save(&amp;S)</string>
         </property>
+        <property name="default">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
