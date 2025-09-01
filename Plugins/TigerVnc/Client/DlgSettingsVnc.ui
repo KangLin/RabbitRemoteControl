@@ -206,7 +206,7 @@
           <item row="2" column="0">
            <widget class="QRadioButton" name="rbMeduim">
             <property name="text">
-             <string>Meduim</string>
+             <string>Medium</string>
             </property>
            </widget>
           </item>

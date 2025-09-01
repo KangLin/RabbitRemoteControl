@@ -103,7 +103,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Scroll bar positioin:</string>
+        <string>Scroll bar position:</string>
        </property>
        <property name="wordWrap">
         <bool>false</bool>
@@ -183,7 +183,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Browser(&amp;B)</string>
+        <string>Browse(&amp;B)</string>
        </property>
       </widget>
      </item>

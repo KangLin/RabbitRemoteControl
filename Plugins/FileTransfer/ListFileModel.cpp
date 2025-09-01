@@ -264,7 +264,7 @@ QString CFileTransfer::GetPriority()
 {
     switch((Priority)m_Priority) {
     case Priority::Height:
-        return tr("Height");
+        return tr("High");
     case Priority::Normal:
         return tr("Normal");
     case Priority::Lower:

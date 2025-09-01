@@ -87,7 +87,7 @@
        <item row="3" column="0">
         <widget class="QGroupBox" name="gpNamePipe">
          <property name="title">
-          <string>Name pipe</string>
+          <string>Named pipe</string>
          </property>
         </widget>
        </item>

@@ -4,24 +4,24 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../../MainWindow.cpp" line="141"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../MainWindow.cpp" line="142"/>
-        <source>Start service</source>
-        <translation type="unfinished"></translation>
+        <source>Start</source>
+        <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="148"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../MainWindow.cpp" line="143"/>
+        <source>Start service</source>
+        <translation>Iniciar serviço</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="149"/>
+        <source>Stop</source>
+        <translation>Parar</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="150"/>
         <source>Stop service</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar serviço</translation>
     </message>
 </context>
 <context>
@@ -29,102 +29,97 @@
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
         <source>Rabbit remote control service configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de serviço do Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="57"/>
+        <location filename="../../MainWindow.ui" line="56"/>
         <source>Save(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="64"/>
+        <location filename="../../MainWindow.ui" line="66"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="83"/>
+        <location filename="../../MainWindow.ui" line="85"/>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Serviço</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="91"/>
+        <location filename="../../MainWindow.ui" line="93"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="97"/>
+        <location filename="../../MainWindow.ui" line="99"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="128"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="131"/>
         <location filename="../../MainWindow.ui" line="134"/>
         <location filename="../../MainWindow.ui" line="137"/>
         <source>Start service</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar serviço</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="146"/>
+        <location filename="../../MainWindow.ui" line="145"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="155"/>
+        <location filename="../../MainWindow.ui" line="153"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="158"/>
-        <location filename="../../MainWindow.ui" line="161"/>
+        <location filename="../../MainWindow.ui" line="156"/>
+        <location filename="../../MainWindow.ui" line="159"/>
         <source>Default style</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo padrão</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="167"/>
+        <source>Open Configure folder</source>
+        <translation>Abrir pasta de configuração</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="187"/>
+        <location filename="../../MainWindow.ui" line="190"/>
+        <location filename="../../MainWindow.ui" line="193"/>
+        <source>Open stype</source>
+        <translation>Abrir estilo</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="170"/>
-        <source>Open Configure folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../MainWindow.ui" line="173"/>
         <location filename="../../MainWindow.ui" line="176"/>
-        <location filename="../../MainWindow.ui" line="179"/>
         <source>Open configure folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir pasta de configuração</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="188"/>
+        <location filename="../../MainWindow.ui" line="184"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="191"/>
-        <location filename="../../MainWindow.ui" line="194"/>
-        <location filename="../../MainWindow.ui" line="197"/>
-        <source>Open stype</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="206"/>
-        <source>Style(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="72"/>
+        <location filename="../../main.cpp" line="71"/>
         <source>Rabbit remote control service configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de serviço do Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="73"/>
+        <location filename="../../main.cpp" line="72"/>
         <source>Kang Lin studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Kang Link studio</translation>
     </message>
 </context>
 </TS>

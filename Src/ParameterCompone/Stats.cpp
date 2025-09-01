@@ -21,7 +21,7 @@ QString CStats::Convertbytes(quint64 bytes)
     else if(1024 * 1024 * 1024 >= bytes)
         szBytes = QString::number(bytes / (1024.0 * 1024.0), 'f', 2) + " " + tr("MB");
     else
-        szBytes = QString::number(bytes / (1024.0 * 1024.0 * 1024.0), 'f', 2) + " " + tr(" GB");
+        szBytes = QString::number(bytes / (1024.0 * 1024.0 * 1024.0), 'f', 2) + " " + tr("GB");
     return szBytes;
 }
 
