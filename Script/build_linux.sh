@@ -7,6 +7,7 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
+MACOS=0
 if [ -z "$QT_VERSION" ]; then
     QT_VERSION=6.9.0
 fi
@@ -15,13 +16,14 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--docker-image=<docker image>] [--qt[=[0|1|version]]] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker=[0|1]]] [--deb=[0|1]]] [--rpm=[0|1]]] [--appimage=[0|1]]] [--macos=[0|1]]] [--docker-image=<docker image>] [--qt[=[0|1|version]]] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --docker: run docket for build"
     echo "  --deb: build deb package"
     echo "  --rpm: build rpm package"
     echo "  --appimage: build AppImage"
+    echo "  --macos: build macOS"
     echo "  --qt: Install QT(only --appimage)"
     echo "  --docker-image: The name of docker image"
     echo "Directory:"
@@ -41,7 +43,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,docker-image::,qt:,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image::,qt:,install:,source:,tools:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -114,6 +116,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --macos)
+            case $2 in
+                "")
+                    MACOS=1;;
+                *)
+                    MACOS=$2;;
+            esac
+            shift 2
+            ;;    
         --docker-image)
             case $2 in
                 "")
@@ -280,6 +291,7 @@ if [ $APPIMAGE -eq 1 ]; then
 fi
 
 if [ $RPM -eq 1 ]; then
+    echo "build rpm package ......"
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --libssh \
@@ -293,6 +305,17 @@ if [ $RPM -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+fi
+
+if [ $MACOS -eq 1 ]; then
+    echo "build macos bundle package ......"
+    ./build_depend.sh --macos --package-tool=dnf \
+        --rabbitcommon --tigervnc --pcapplusplus --libssh \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+    
 fi
 
 popd

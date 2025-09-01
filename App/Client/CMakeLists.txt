@@ -74,12 +74,6 @@ else()
 endif()
 
 set(APP_ID io.github.KangLin.RabbitRemoteControl)
-if(APPLE)
-    SET(AppImage ${CMAKE_CURRENT_BINARY_DIR}/${APP_ID}.svg)
-    file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        "${AppImage}")
-    set_source_files_properties(${AppImage} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
@@ -162,12 +156,13 @@ endif()
 
 if(APPLE)
     # 设置 bundle 属性 (如果是 GUI 应用)
+    # See: https://developer.apple.com/documentation/bundleresources/information-property-list
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
         MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
-        MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+        MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
         )
     target_add_resources(${PROJECT_NAME} . "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.icns")
 endif()

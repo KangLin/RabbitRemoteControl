@@ -322,19 +322,28 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
-            
-            if [ -d "${{env.INSTALL_DIR}}\share\qtermwidget6" ]; then
-                echo "Copy qtermwidget6 resources to install/RabbitRemoteControlApp.app/Contents/Resources/qtermwidget6 ......"
-                cp -r "${{env.INSTALL_DIR}}\share\qtermwidget6" install/RabbitRemoteControlApp.app/Contents/Resources/qtermwidget6
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
+
+            echo "Rename RabbitRemoteControlApp.app to RabbitRemoteControl.App"
+            pushd install
+            mv RabbitRemoteControlApp.app RabbitRemoteControl.App
+            popd
+
+            if [ -d "${{env.INSTALL_DIR}}/share/qtermwidget6" ]; then
+                echo "Copy qtermwidget6 resources to install/RabbitRemoteControl.App/Contents/Resources/qtermwidget6 ......"
+                cp -r "${{env.INSTALL_DIR}}/share/qtermwidget6/." install/RabbitRemoteControl.App/Contents/Resources/
             fi
-            echo "otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/MacOS/RabbitRemoteControlApp"
-            otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/MacOS/RabbitRemoteControlApp
-            echo "otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/libPlugin.dylib"
-            otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/libPlugin.dylib
+
+            echo "Copy file to RabbitRemoteControl.App/Contents"
+            rsync -av --exclude="RabbitRemoteControl.App" install/. install/RabbitRemoteControl.App/Contents
+
+            #echo "otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp"
+            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            #echo "otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib"
+            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
 
             if [ -n "${Qt5_DIR}" ]; then
               QT_ROOT=${Qt5_DIR}
@@ -347,25 +356,26 @@ jobs:
             #         exe_file="-executable=${file} $exe_file"
             #         fi
             # done
-            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControlApp.app -dmg -verbose=3
+            echo "executable ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3"
+            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
 
-            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/RabbitRemoteControlApp.app
-            lipo -info  `pwd`/install/RabbitRemoteControlApp.app/Contents/MacOS/RabbitRemoteControlApp
-            otool -l `pwd`/install/RabbitRemoteControlApp.app/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
-            otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/MacOS/RabbitRemoteControlApp
-            lipo -info  `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/libPlugin.dylib
-            otool -l `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
-            otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/libPlugin.dylib
-            lipo -info  `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/QtGui.framework/QtGui
-            otool -l `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
-            otool -L `pwd`/install/RabbitRemoteControlApp.app/Contents/FrameWorks/QtGui.framework/QtGui
+            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/RabbitRemoteControl.App
+            #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
+            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
+            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+            #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
+            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
 
           else
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
           fi
 
       - name: Update configure file
@@ -386,4 +396,4 @@ jobs:
           path: |
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip
             ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
-            ${{github.workspace}}/build/*.dmg
+            ${{github.workspace}}/build/install/*.dmg
