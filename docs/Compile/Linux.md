@@ -374,6 +374,14 @@ Source-code location: https://github.com/KangLin/tigervnc
   
       -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
+- When install, Need to copy resources to install directory
+
+      if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+          cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+      else
+          echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+      fi
+
 #### libssh
 
 - Use the system-packaged development library
