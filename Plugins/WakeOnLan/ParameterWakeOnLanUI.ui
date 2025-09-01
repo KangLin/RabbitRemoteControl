@@ -282,7 +282,10 @@
      <item>
       <widget class="QPushButton" name="pbOK">
        <property name="text">
-        <string>OK</string>
+        <string>Ok(&amp;O)</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
@@ -295,7 +298,7 @@
      <item>
       <widget class="QPushButton" name="pbCancel">
        <property name="text">
-        <string>Cancel</string>
+        <string>Cancel(&amp;C)</string>
        </property>
       </widget>
      </item>

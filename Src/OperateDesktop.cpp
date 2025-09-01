@@ -106,7 +106,7 @@ const QString COperateDesktop::Description()
         szDescription = tr("Name: ") + Name() + "\n";
     
     if(!GetTypeName().isEmpty())
-        szDescription += tr("Type:") + GetTypeName() + "\n";
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
     
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
@@ -224,10 +224,10 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_pZoomAspectRatio = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-aspect-ratio"),
-        tr("Keep aspect ration to windows"));
+        tr("Keep aspect ratio to window"));
     m_pZoomAspectRatio->setCheckable(true);
-    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ration to windows"));
-    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ration to windows"));
+    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ratio to window"));
+    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ratio to window"));
     check = connect(m_pZoomAspectRatio, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
