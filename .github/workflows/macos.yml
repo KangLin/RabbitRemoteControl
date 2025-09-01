@@ -19,11 +19,17 @@ jobs:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
         qt_version: [6.9.2, 5.15.2]
+        WITH_MACOSX_BUNDLE: [true, false]
         qt_arch: [clang_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
           - qt_version: 6.9.2
             qt_modules: qtscxml qtmultimedia qtserialport qt5compat qtwebsockets
+            WITH_MACOSX_BUNDLE: false
+
+          - qt_version: 6.9.2
+            qt_modules: qtscxml qtmultimedia qtserialport qt5compat qtwebsockets
+            WITH_MACOSX_BUNDLE: true
 
           - qt_version: 5.15.2
 
@@ -81,29 +87,6 @@ jobs:
       - name: install nasm
         run: |
           brew install nasm
-
-#      - name: build FreeRDP
-#        working-directory: ${{env.SOURCE_DIR}}
-#        run: |
-#          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-#            git clone https://github.com/FreeRDP/FreeRDP.git
-#            # git clone https://github.com/KangLin/FreeRDP.git
-#            cd FreeRDP
-#            git checkout -b 04fa5b3033722df4fba45c02056be8e7cb45d7c6 04fa5b3033722df4fba45c02056be8e7cb45d7c6
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-#                -DWITH_SERVER=ON \
-#                -DWITH_CLIENT_SDL=OFF \
-#                -DWITH_KRB5=OFF \
-#                -DWITH_MANPAGES=OFF \
-#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --parallel $(nproc)
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-#          fi
 
       - name: build RabbitVNC
         if: false
@@ -172,26 +155,6 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
-
-#      - name: build libdatachannel
-#        working-directory: ${{env.SOURCE_DIR}}
-#        run: |
-#          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
-#            git clone -b v0.22.2 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
-#            cd libdatachannel
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-#                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
-#                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libdatachannel/vcpkg_installed \
-#                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-#                -DVCPKG_VERBOSE=ON \
-#                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-#          fi
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -280,7 +243,8 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: Build RabbitRemoteControl
+      - name: Build RabbitRemoteControl BUNDLE
+        if: ${{matrix.WITH_MACOSX_BUNDLE}}
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -305,26 +269,12 @@ jobs:
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
               -DRABBIT_WITH_MACDEPLOY=OFF \
               -DBUILD_FREERDP=ON \
-              -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
-              -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
-              -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
-              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
-              -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService \
-              -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-              -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 \
-              -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 \
-              -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 \
-              -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 \
-              -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
+              -DWITH_MACOSX_BUNDLE=ON
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
           if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
 
             echo "Rename RabbitRemoteControlApp.app to RabbitRemoteControl.App"
@@ -356,10 +306,10 @@ jobs:
             #         exe_file="-executable=${file} $exe_file"
             #         fi
             # done
-            echo "executable ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3"
-            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
+            echo "executable ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -verbose=3"
+            ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -verbose=3
 
-            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/RabbitRemoteControl.App
+            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos_bundle.zip ./install/RabbitRemoteControl.App
             #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
             #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
             #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
@@ -378,22 +328,75 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
           fi
 
+      - name: Build RabbitRemoteControl
+        if: ${{!matrix.WITH_MACOSX_BUNDLE}}
+        working-directory: ${{env.BUILD_DIR}}
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        run: |
+          if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
+              export BUILD_SERVICE=OFF
+          else
+              export BUILD_SERVICE=ON
+          fi
+          cmake ${{github.workspace}} \
+              -DCMARK_SHARED=OFF \
+              -DCMARK_TESTS=OFF \
+              -DCMARK_STATIC=ON \
+              -DWITH_CMARK=OFF \
+              -DWITH_CMARK_GFM=ON \
+              -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/RabbitRemoteControl.App/Contents \
+              -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
+              -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+              -DVCPKG_VERBOSE=ON \
+              -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+              -DRABBIT_WITH_MACDEPLOY=OFF \
+              -DBUILD_FREERDP=ON
+          cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
+          if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
+
+            if [ -d "${{env.INSTALL_DIR}}/share/qtermwidget6" ]; then
+                echo "Copy qtermwidget6 resources to RabbitRemoteControl.App/Contents/Resources/qtermwidget6 ......"
+                cp -r "${{env.INSTALL_DIR}}/share/qtermwidget6/." RabbitRemoteControl.App/Contents/Resources/
+            fi
+
+            if [ -n "${Qt5_DIR}" ]; then
+              QT_ROOT=${Qt5_DIR}
+            fi
+            if [ -n "${Qt6_DIR}" ]; then
+              QT_ROOT=${Qt6_DIR}
+            fi
+            echo "executable ${QT_ROOT}/bin/macdeployqt `pwd`/RabbitRemoteControl.App -dmg -verbose=3"
+            ${QT_ROOT}/bin/macdeployqt `pwd`/RabbitRemoteControl.App -dmg -verbose=3
+
+            7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./RabbitRemoteControl.App
+            mv RabbitRemoteControl.dmg RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.dmg
+          fi
+
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.2' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.2' && !matrix.WITH_MACOSX_BUNDLE }}
         working-directory: ${{github.workspace}}/build
         run: |
-          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
-               "${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json" \
-               RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip \
-               macos ${{matrix.config_arch}} \
-               "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
+          MD5SUM=`md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip: ${MD5SUM}"
+          RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp \
+            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip?viasf=1" \
+            --md5 "${MD5SUM}"
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.2' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
+          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.WITH_MACOSX_BUNDLE}}
           path: |
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip
+            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos_bundle.zip
             ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
-            ${{github.workspace}}/build/install/*.dmg
+            ${{github.workspace}}/build/*.dmg

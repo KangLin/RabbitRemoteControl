@@ -42,7 +42,7 @@ See: [Script](#Script)
 
 #### Qt Creator
 
-Version: v15.0.0 
+Version: v17.0.0 
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -77,7 +77,8 @@ Prior versions don't have CMake support.
       ~$ sudo apt install debhelper
 
 #### Qt
-  - Qt (official release): https://download.qt.io/official_releases/qt/
+  - Qt (official release): https://download.qt.io/official_releases/qt/  
+    Current version: Qt 6.9.2
     - Set environment variable or cmake parameters:
       - QT_ROOT
       - Qt6: Qt6_ROOT or Qt6_DIR .

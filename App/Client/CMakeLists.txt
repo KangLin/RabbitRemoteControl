@@ -73,11 +73,15 @@ else()
     message(FATAL_ERROR "Qt${QT_VERSION_MAJOR} don't found")
 endif()
 
+option(WITH_MACOSX_BUNDLE "Create BUNDLE directory" OFF)
+if(WITH_MACOSX_BUNDLE)
+    set(IS_MACOSX_BUNDLE "IS_MACOSX_BUNDLE")
+endif()
 set(APP_ID io.github.KangLin.RabbitRemoteControl)
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
-    IS_MACOSX_BUNDLE
+    ${IS_MACOSX_BUNDLE}
     VERSION ${RabbitRemoteControl_VERSION}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
         RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
@@ -119,8 +123,26 @@ if(WIN32)
     install(FILES Resource/icons/rabbit-green/ico/app.ico
         DESTINATION .
             COMPONENT Application)
-endif()
-if(UNIX AND NOT ANDROID)
+elseif(APPLE)
+    if(WITH_MACOSX_BUNDLE)
+    # 设置 bundle 属性 (如果是 GUI 应用)
+    # See: https://developer.apple.com/documentation/bundleresources/information-property-list
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
+        MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
+        MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
+        )
+    else()
+        configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
+            ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+                     @ONLY)
+        INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+            DESTINATION "." COMPONENT Application)
+    endif()
+    target_add_resources(${PROJECT_NAME} . "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.icns")
+elseif(UNIX AND NOT ANDROID)
     configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
@@ -152,19 +174,6 @@ if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml
         DESTINATION "${CMAKE_INSTALL_DATADIR}/metainfo"
             COMPONENT Application)
-endif()
-
-if(APPLE)
-    # 设置 bundle 属性 (如果是 GUI 应用)
-    # See: https://developer.apple.com/documentation/bundleresources/information-property-list
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
-        MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
-        MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
-        MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
-        )
-    target_add_resources(${PROJECT_NAME} . "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.icns")
 endif()
 
 # Install QIcon theme
