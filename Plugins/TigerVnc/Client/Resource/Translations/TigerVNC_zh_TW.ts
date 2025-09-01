@@ -134,11 +134,6 @@
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="209"/>
-        <source>Meduim</source>
-        <translation>中</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
         <translation>極低</translation>
@@ -197,6 +192,11 @@
         <location filename="../../DlgSettingsVnc.ui" line="183"/>
         <source>Compression</source>
         <translation>壓縮</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
+        <source>Medium</source>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="278"/>

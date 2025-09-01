@@ -164,13 +164,13 @@
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.ui" line="285"/>
-        <source>OK</source>
-        <translation>確定</translation>
+        <source>Ok(&amp;O)</source>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ParameterWakeOnLanUI.ui" line="298"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
+        <location filename="../../ParameterWakeOnLanUI.ui" line="301"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.cpp" line="125"/>
