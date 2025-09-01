@@ -41,7 +41,7 @@
       
 #### Qt Creator
 
-版本：v15.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v17.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -93,7 +93,8 @@
       ~$ sudo apt install debhelper
 
 #### Qt
-  - Qt 官方发行版本： https://download.qt.io/official_releases/qt/
+  - Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
+    当前使用版本：Qt 6.9.2
     - 则需要设置环境变量（或者 CMAKE 参数）：
       - QT_ROOT
       - Qt6：Qt6_ROOT 或者 Qt6_DIR 。

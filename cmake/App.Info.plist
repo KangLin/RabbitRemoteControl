@@ -2,38 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleExecutable</key>
-	<string>@PROJECT_NAME@</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string>@APP_ID@</string>
-	<key>CFBundleIdentifier</key>
-	<string>@APP_ID@</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleLongVersionString</key>
-	<string></string>
-	<key>CFBundleName</key>
-	<string>Rabbit Remote Control</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+
+	<key>CFBundleNameDisplayName</key>
+	<string>Rabbit Remote Control</string>
+	<key>CFBundleName</key>
+	<string>Rabbit Remote Control</string>
+	<key>CFBundleExecutable</key>
+	<string>@PROJECT_NAME@</string>
+
+	<key>CFBundleIdentifier</key>
+	<string>@APP_ID@</string>
+	<key>CFBundleIconFile</key>
+	<string>@APP_ID@</string>
+
 	<key>CFBundleShortVersionString</key>
 	<string>@RabbitRemoteControl_VERSION@</string>
 	<key>CFBundleVersion</key>
 	<string>@RabbitRemoteControl_VERSION@</string>
-	<key>CSResourcesFileMapped</key>
-	<true/>
-	<key>NSHumanReadableCopyright</key>
-	<string></string>
-	<key>CFBundleAllowMixedLocalizations</key>
-	<true/>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>NSSupportsAutomaticGraphicsSwitching</key>
-	<true/>
+
 	<key>LSMinimumSystemVersion</key>
 	<string>13.7</string>
 </dict>

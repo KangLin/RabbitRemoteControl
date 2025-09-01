@@ -10,7 +10,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 
 #### QtCreator
 
-Version: v14.0.2
+Version: v17.0.0
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -37,7 +37,7 @@ Prior versions don't have CMake support.
   Required to run Qt.
 - Qt
   - Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 6.8.2
+    Current version: Qt 6.9.2
     - Set environment variable or cmake parameters: QT_ROOT, Qt6_DIR or Qt6_DIR
       - Environment variable
 
