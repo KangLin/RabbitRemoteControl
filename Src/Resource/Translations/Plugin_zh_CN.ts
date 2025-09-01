@@ -46,7 +46,7 @@
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH 连接失败</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
@@ -224,13 +224,13 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="122"/>
-        <source>Yes(&amp;Y)</source>
-        <translation>是(&amp;Y)</translation>
+        <source>Ok(&amp;O)</source>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="129"/>
-        <source>No(&amp;N)</source>
-        <translation>否(&amp;N)</translation>
+        <location filename="../../DlgInputPassword.ui" line="132"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="14"/>
@@ -282,22 +282,19 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>捕获系统快捷键需要管理员权限。
+        <translation type="vanished">捕获系统快捷键需要管理员权限。
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>总是显示</translation>
+        <translation type="vanished">总是显示</translation>
     </message>
 </context>
 <context>
@@ -395,7 +392,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="109"/>
-        <source>Type:</source>
+        <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
@@ -455,8 +452,8 @@ Restart program by administrator?</source>
         <location filename="../../OperateDesktop.cpp" line="227"/>
         <location filename="../../OperateDesktop.cpp" line="229"/>
         <location filename="../../OperateDesktop.cpp" line="230"/>
-        <source>Keep aspect ration to windows</source>
-        <translation>保持高宽比缩放</translation>
+        <source>Keep aspect ratio to window</source>
+        <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="238"/>
@@ -566,49 +563,49 @@ Restart program by administrator?</source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="153"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
         <translation>复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
         <translation>粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
         <translation>粘贴到选择</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="162"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
         <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="179"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
         <translation>查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="338"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
         <source>QTermWidget:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -758,7 +755,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
-        <source>Keep desktop aspectration adapt to windows</source>
+        <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
 </context>
@@ -938,19 +935,68 @@ Restart program by administrator?</source>
         <translation>值为 -1 表示录制器应根据音频源中可用的内容和编解码器的限制做出最佳选择。选项：8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz、96kHz 等</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="43"/>
+        <source>Very high</source>
+        <translation>非常高</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="44"/>
+        <source>High</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="45"/>
+        <source>Normal</source>
+        <translation>正常</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="46"/>
+        <source>Low</source>
+        <translation>低</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="47"/>
+        <source>Very low</source>
+        <translation>非常低</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="49"/>
+        <source>Constant quality</source>
+        <translation>恒定的质量</translation>
+    </message>
+    <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
         <translation>编码的目标是具有恒定的质量，调整比特率以适应。</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="54"/>
+        <source>Constant bit rate</source>
+        <translation>恒定的比特率</translation>
+    </message>
+    <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
+        <source>Encoding will use a constant bit rate, adjusting quality to fit.</source>
+        <translation>编码的目标是具有恒定的比特率，调整质量以适应。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="59"/>
+        <source>Average bit rate</source>
+        <translation>平均比特率</translation>
+    </message>
+    <message>
         <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
-        <translation>编码的目标是具有恒定的质量，调整比特率以适应。</translation>
+        <translation>编码的目标是具有恒定的比特率，调整质量以适应。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
         <translation>编码将尝试保持平均比特率设置，但会根据需要使用或多或少。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="64"/>
+        <source>Two pass</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
@@ -1001,8 +1047,8 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
-        <source>Browser</source>
-        <translation>浏览</translation>
+        <source>Browse(&amp;B)</source>
+        <translation>浏览(&amp;B)</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="49"/>
@@ -1038,19 +1084,9 @@ Restart program by administrator?</source>
         <translation>光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
-        <source>Scroll bar positioin:</source>
-        <translation>滚动条位置：</translation>
-    </message>
-    <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
         <source>Terminal Transparency:</source>
         <translation>透明度：</translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
@@ -1058,8 +1094,18 @@ Restart program by administrator?</source>
         <translation>背景图像：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
+        <source>Scroll bar position:</source>
+        <translation>滚动条位置：</translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
+        <source>%</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
-        <source>Browser(&amp;B)</source>
+        <source>Browse(&amp;B)</source>
         <translation>浏览(&amp;B)</translation>
     </message>
     <message>
@@ -1131,7 +1177,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
-        <source>No</source>
+        <source>None</source>
         <translation>无</translation>
     </message>
     <message>
@@ -1477,7 +1523,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="55"/>
-        <source>File transfers</source>
+        <source>File Transfer</source>
         <translation>文件传输</translation>
     </message>
     <message>
@@ -1497,23 +1543,29 @@ Restart program by administrator?</source>
 <context>
     <name>CStats</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="12"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
         <source>B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="14"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
         <source>KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="16"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
         <source>MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
-        <source> GB</source>
+        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
+        <source>GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="60"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="65"/>
+        <source>S</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
