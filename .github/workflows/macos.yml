@@ -290,22 +290,12 @@ jobs:
             echo "Copy file to RabbitRemoteControl.App/Contents"
             rsync -av --exclude="RabbitRemoteControl.App" install/. install/RabbitRemoteControl.App/Contents
 
-            #echo "otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp"
-            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
-            #echo "otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib"
-            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
-
             if [ -n "${Qt5_DIR}" ]; then
               QT_ROOT=${Qt5_DIR}
             fi
             if [ -n "${Qt6_DIR}" ]; then
               QT_ROOT=${Qt6_DIR}
             fi
-            # for file in plugins/*.dylib; do
-            #     if [ -f "$file" ]; then # 如果是文件
-            #         exe_file="-executable=${file} $exe_file"
-            #         fi
-            # done
             echo "executable ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -verbose=3"
             ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControl.App -verbose=3
 
@@ -376,7 +366,9 @@ jobs:
             ${QT_ROOT}/bin/macdeployqt `pwd`/RabbitRemoteControl.App -dmg -verbose=3
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./RabbitRemoteControl.App
-            mv RabbitRemoteControl.dmg RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.dmg
+            if [ -f RabbitRemoteControl.dmg ]; then
+              cp RabbitRemoteControl.dmg RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.dmg
+            fi
           fi
 
       - name: Update configure file
@@ -399,4 +391,4 @@ jobs:
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos_bundle.zip
             ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
-            ${{github.workspace}}/build/*.dmg
+            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.dmg
