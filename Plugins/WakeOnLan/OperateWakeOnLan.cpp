@@ -178,10 +178,9 @@ int COperateWakeOnLan::Start()
                    "Please restart the program with administrative privileges."),
                 QMessageBox::Yes | QMessageBox::No);
             msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
-            msg.checkBox()->setCheckable(true);
-            nRet = msg.exec();
             msg.checkBox()->setChecked(
                 m_pParameterPlugin->GetPromptAdministratorPrivilege());
+            nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
                 RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
             }
