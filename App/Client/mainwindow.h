@@ -237,7 +237,9 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotEnableSystemTrayIcon();
-
+    
+    void on_actionUser_manual_triggered();
+    
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

@@ -31,6 +31,7 @@
      <string>Help(&amp;H)</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionUser_manual"/>
     <addaction name="actionUpdate"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -475,6 +476,11 @@
    </property>
    <property name="statusTip">
     <string>Split view</string>
+   </property>
+  </action>
+  <action name="actionUser_manual">
+   <property name="text">
+    <string>User manual</string>
    </property>
   </action>
  </widget>

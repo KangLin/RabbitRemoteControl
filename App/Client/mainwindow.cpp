@@ -1603,3 +1603,11 @@ void MainWindow::StartTimer()
     else
         m_Timer.stop();
 }
+
+void MainWindow::on_actionUser_manual_triggered()
+{
+    QString szUrl = "https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual";
+    if(RabbitCommon::CTools::GetLanguage() == "zh_CN"
+        || RabbitCommon::CTools::GetLanguage() == "zh_TW")
+        szUrl += "_zh_CN";    
+}

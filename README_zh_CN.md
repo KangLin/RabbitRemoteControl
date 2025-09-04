@@ -200,7 +200,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 ## 状态
 
 [![开发文档](https://img.shields.io/badge/documentation-online-blue?label=开发文档)](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
-[![用户手册](https://img.shields.io/badge/documentation-online-blue?label=用户手册)](https://github.com/KangLin/RabbitRemoteControl/wiki/%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C)
+[![用户手册](https://img.shields.io/badge/documentation-online-blue?label=用户手册)](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual)
 
 [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
@@ -278,7 +278,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - [修改日志](ChangeLog_zh_CN.md)
 - 版本号说明： https://semver.org/lang/zh-CN/
-- [用户手册](https://github.com/KangLin/RabbitRemoteControl/wiki/%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C)
+- [用户手册](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual)
 - 发行版本：
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
