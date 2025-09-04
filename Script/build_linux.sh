@@ -309,13 +309,16 @@ fi
 
 if [ $MACOS -eq 1 ]; then
     echo "build macos bundle package ......"
-    ./build_depend.sh --macos --package-tool=dnf \
-        --rabbitcommon --tigervnc --pcapplusplus --libssh \
+    ./build_depend.sh --macos \
+        --rabbitcommon --tigervnc \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
-    
+    ./build_macos.sh --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 fi
 
 popd

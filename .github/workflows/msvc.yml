@@ -22,14 +22,16 @@ jobs:
             qt_arch: win64_msvc2022_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel
             BUILD_TYPE: Release
+            os: windows-latest
 
           - CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             qt_version: 6.9.2
             qt_arch: win64_msvc2022_arm64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel
+            qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets
             BUILD_TYPE: Release
+            os: windows-11-arm
 
           - CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
@@ -39,6 +41,7 @@ jobs:
             qt_version: 5.15.2
             qt_arch: win32_msvc2019
             BUILD_TYPE: Release
+            os: windows-latest
 
           # - CMAKE_GENERATOR_PLATFORM: Win32
           #   VCPKG_TARGET_TRIPLET: x86-windows
@@ -52,7 +55,7 @@ jobs:
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: windows-latest
+    runs-on: ${{matrix.os}}
 
     env:
       BUILD_DIR:   ${{github.workspace}}/build
@@ -114,6 +117,7 @@ jobs:
           vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
 
       - name: build npcap
+        if: ${{matrix.os != 'windows-11-arm'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/npcap (
@@ -125,6 +129,7 @@ jobs:
       # 因为 vcpkg 中 PcapPlusPlus 依赖 winpcap , winpcap 不能在 windows 10 上工作，
       # 所以编译依赖于 npcap
       - name: build PcapPlusPlus
+        if: ${{matrix.os != 'windows-11-arm'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus (
@@ -144,7 +149,9 @@ jobs:
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
                   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=OFF ^
                   -DVCPKG_APPLOCAL_DEPS=OFF ^
-                  -DVCPKG_TRACE_FIND_PACKAGE=ON
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON ^
+                  -DPCAPPP_BUILD_TESTS=OFF ^
+                  -DPCAPPP_BUILD_EXAMPLES=OFF
               cmake --build . --config ${{matrix.BUILD_TYPE}}
               cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
@@ -369,7 +376,7 @@ jobs:
             -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
             -DRABBIT_ENABLE_INSTALL_QT=ON ^
             -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON ^
-            -DBUILD_FREERDP=ON ^
+            -DBUILD_FREERDP=ON
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"

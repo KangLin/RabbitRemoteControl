@@ -50,7 +50,9 @@
         "libjpeg-turbo",
         "libpng",
         "pixman",
-        "libssh"
+        "libssh",
+        "lzo",
+        "zlib"
       ]
     },
 
