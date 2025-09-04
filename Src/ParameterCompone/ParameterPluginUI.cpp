@@ -18,7 +18,7 @@ CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
             tr("Prompt administrator privilege"));
         ui->cbPromptAdminPrivilege->show();
     }
-    ui->pbEncryptKey->setToolTip(tr("Password→Enable view password"));
+    ui->pbEncryptKey->setToolTip(tr("Enable view password"));
 }
 
 CParameterPluginUI::~CParameterPluginUI()

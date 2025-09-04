@@ -52,6 +52,102 @@
         </item>
        </layout>
       </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>Key used to encrypt saved password:</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Encrypt key:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="leEncryptKey">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::EchoMode::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pbEncryptKey">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="eye-on"/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Prompt type:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="rbPromptNo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>No</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="rbPromptFirst">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>First</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="rbPromptAlways">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Always</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -81,102 +177,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="6" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Key used to encrypt saved password:</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Encrypt key:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="leEncryptKey">
-          <property name="inputMask">
-           <string/>
-          </property>
-          <property name="echoMode">
-           <enum>QLineEdit::EchoMode::Password</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pbEncryptKey">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="eye-on"/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Prompt type:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rbPromptNo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>No</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rbPromptFirst">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>First</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rbPromptAlways">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Always</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QCheckBox" name="cbPromptAdminPrivilege">
