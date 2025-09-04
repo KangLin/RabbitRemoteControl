@@ -33,7 +33,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.36
       artifact_name: build_appimage
-      qt_modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat'
+      qt_modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtpositioning qtwebchannel'
 
     # Map the job outputs to step outputs
     outputs:

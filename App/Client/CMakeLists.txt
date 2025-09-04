@@ -135,7 +135,7 @@ elseif(APPLE)
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
         )
     else()
-        configure_file(${CMAKE_SOURCE_DIR}/cmake/App.Info.plist
+        configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Resource/App.Info.plist
             ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
                      @ONLY)
         INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
