@@ -281,6 +281,7 @@ jobs:
           gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
    
       - name: Update artifact
+        if: false
         uses: actions/upload-artifact@v4
         with:
           name: Release.md

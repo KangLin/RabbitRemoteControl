@@ -71,7 +71,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_macos
+          key: install_macos_${{env.VCPKG_TARGET_TRIPLET}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
