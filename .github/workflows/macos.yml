@@ -39,11 +39,11 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel"
-      VCPKGGITCOMMITID: 44a1e4eca5211434b5fefcc25a69bba246c3f861
+      qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine"
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
-      VCPKG_MANIFEST_FEATURES: "vnc"
+      VCPKG_MANIFEST_FEATURES: "freerdp,vnc,terminal"
       artifact_name: build_macos
       RabbitRemoteControl_VERSION: v0.0.36
 
@@ -71,7 +71,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_macos
+          key: install_macos_${{env.VCPKG_TARGET_TRIPLET}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -81,7 +81,8 @@ jobs:
 
       - name: install nasm
         run: |
-          brew install nasm qt doxygen graphviz freerdp libvncserver libssh zstd libpcap
+          brew update
+          brew install nasm autoconf automake libtool pkg-config zstd libpcap libvncserver
 
       - name: build RabbitVNC
         if: false
@@ -114,6 +115,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
@@ -126,7 +128,6 @@ jobs:
           fi
 
       - name: Install Qt
-        if: false
         uses: jurplel/install-qt-action@v3
         with:
           dir: '${{env.TOOLS_DIR}}/qt' # optional
@@ -224,6 +225,7 @@ jobs:
               cmake -E make_directory build
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=Release \
+                  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
@@ -257,6 +259,7 @@ jobs:
               -DCMARK_STATIC=ON \
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
+              -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
@@ -326,6 +329,7 @@ jobs:
               -DCMARK_STATIC=ON \
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
+              -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/RabbitRemoteControl.App/Contents \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
@@ -348,7 +352,7 @@ jobs:
             fi
 
             echo "executable bin/macdeployqt `pwd`/RabbitRemoteControl.App -dmg -verbose=3"
-            macdeployqt `pwd`/RabbitRemoteControl.App -dmg -verbose=3
+            macdeployqt RabbitRemoteControl.App -dmg -verbose=3
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip ./RabbitRemoteControl.App
             if [ -f RabbitRemoteControl.dmg ]; then
@@ -366,8 +370,8 @@ jobs:
           echo "RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip md5sum: ${MD5SUM}"
           RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip?viasf=1" \
-            --md5 "${MD5SUM}"
+            --md5 "${MD5SUM}" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip?viasf=1"
 
       - name: Update artifact
         uses: actions/upload-artifact@v4

@@ -24,8 +24,8 @@ BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
-
 BuildRequires: qtermwidget-devel
+BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
 BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
 BuildRequires: libvncserver-devel libpcap-devel
@@ -46,8 +46,9 @@ Requires: libvncserver libwinpr freerdp fuse3 libpcap
 Requires: zlib gnutls nettle gmp pam 
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
-
 Requires: qtermwidget
+BuildRequires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
+
 Requires: libXext libX11 libXi libXfixes libXtst
 Requires: libXdamage libXrandr libXt libXdmcp
 Requires: libXinerama mesa-libGL libxshmfence

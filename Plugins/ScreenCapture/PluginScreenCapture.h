@@ -8,6 +8,7 @@ class CPluginScreenCapture : public CPlugin
     Q_OBJECT
 public:
     explicit CPluginScreenCapture(QObject *parent = nullptr);
+    virtual ~CPluginScreenCapture();
 
     Q_INTERFACES(CPlugin)
 

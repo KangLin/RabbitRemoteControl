@@ -2,10 +2,19 @@
 
 #include "PluginScreenCapture.h"
 #include "ScreenCapture.h"
+#include <QLoggingCategory>
 
+static Q_LOGGING_CATEGORY(log, "ScreenCapture.Plugin")
 CPluginScreenCapture::CPluginScreenCapture(QObject *parent)
     : CPlugin{parent}
-{}
+{
+    qDebug(log) << Q_FUNC_INFO;
+}
+
+CPluginScreenCapture::~CPluginScreenCapture()
+{
+    qDebug(log) << Q_FUNC_INFO;
+}
 
 const CPlugin::TYPE CPluginScreenCapture::Type() const
 {

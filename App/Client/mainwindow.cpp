@@ -927,9 +927,10 @@ void MainWindow::slotRunning()
     SetSecureLevel(p);
 
     auto m = p->GetMenu();
-    m->addSeparator();
-    m->addAction(ui->actionClone);
-
+    if(m) {
+        m->addSeparator();
+        m->addAction(ui->actionClone);
+    }
     slotLoadOperateMenu();
 
     slotInformation(tr("Connected to ") + p->Name());

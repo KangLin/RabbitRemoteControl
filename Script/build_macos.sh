@@ -1,7 +1,6 @@
 #!/bin/bash
 # Author: Kang Lin <kl222@126.com>
 
-
 #See: https://blog.csdn.net/alwaysbefine/article/details/114187380
 #set -x
 set -e
@@ -10,7 +9,6 @@ set -e
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
-
 
 usage_long() {
     echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"
@@ -107,6 +105,7 @@ fi
 if [ -z "$INSTALL_DIR" ]; then
     INSTALL_DIR=${BUILD_MACOS_DIR}/install_lib
 fi
+mkdir -p $BUILD_MACOS_DIR
 #rm -fr $SOURCE_DIR
 mkdir -p $SOURCE_DIR
 #rm -fr $TOOLS_DIR
@@ -121,11 +120,21 @@ echo "BUILD_MACOS_DIR: $BUILD_MACOS_DIR"
 echo "TOOLS_DIR: $TOOLS_DIR"
 echo "SOURCE_DIR: $SOURCE_DIR"
 echo "INSTALL_DIR: $INSTALL_DIR"
+echo "VCPKG_ROOT: $VCPKG_ROOT"
+echo "VCPKG_TARGET_TRIPLET: $VCPKG_TARGET_TRIPLET"
+
+if [ -z "${VCPKG_TARGET_TRIPLET}" -o -z "${VCPKG_ROOT}" ]; then
+    echo "Do't install vcpkg. please install vcpkg."
+    exit -1
+fi
 
 pushd "$BUILD_MACOS_DIR"
 
+#echo "Install macos tools and dependency libraries ......"
+#brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
+
 cmake "$REPO_ROOT" \
-  -DCMAKE_INSTALL_PREFIX=install \
+  -DCMAKE_INSTALL_PREFIX=install/RabbitRemoteControl.App/Contents \
   -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
@@ -134,27 +143,29 @@ cmake "$REPO_ROOT" \
   -DWITH_CMARK_GFM=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_PREFIX_PATH=${INSTALL_DIR}/lib/cmake \
-  -DCMAKE_TOOLCHAIN_FILE="$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
+  -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
   -DVCPKG_VERBOSE=ON \
-  -DVCPKG_TARGET_TRIPLET=$env{VCPKG_TARGET_TRIPLET} \
+  -DVCPKG_TARGET_TRIPLET=${VCPKG_TARGET_TRIPLET} \
   -DRABBIT_WITH_MACDEPLOY=OFF \
-  -DBUILD_FREERDP=ON
+  -DBUILD_FREERDP=ON \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries
 cmake --install . --config Release --strip --component Runtime
 cmake --install . --config Release --strip --component Plugin
 cmake --install . --config Release --strip --component Application
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
-    cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+    cp -r "${INSTALL_DIR}/share/qtermwidget6/." 
+    cp -r ${INSTALL_DIR}/share/qtermwidget6 install/RabbitRemoteControl.App/Contents/Resources/
 else
     echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
 fi
 
-rsync -av --exclude="RabbitRemoteControlApp.app" install install/RabbitRemoteControlApp.app/Contents
-
-if [ -d "${QT_ROOT}/bin/macdeployqt" ]; then
-    ${QT_ROOT}/bin/macdeployqt `pwd`/install/RabbitRemoteControlApp.app -dmg -verbose=3
+MACDEPLOYQT=`whereis macdeployqt`
+if [ -d "${MACDEPLOYQT}" ]; then
+    ${MACDEPLOYQT} `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
 else
     echo "Don't found macdeployqt, please set QT_ROOT"
 fi
