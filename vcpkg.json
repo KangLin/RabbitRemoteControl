@@ -3,10 +3,9 @@
   "version-string": "0.0.36",
   "license": "GPL-3.0",
   "homepage": "https://github.com/KangLin/RabbitRemoteControl",
-   
+
   "dependencies": [
     "openssl",
-    "zlib",
     "cmark"
   ],
 
@@ -50,7 +49,9 @@
         "libjpeg-turbo",
         "libpng",
         "pixman",
-        "libssh"
+        "libssh",
+        "lzo",
+        "zlib"
       ]
     },
 

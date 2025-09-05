@@ -9,6 +9,7 @@ class CPluginPlayer : public CPlugin
     Q_OBJECT
 public:
     explicit CPluginPlayer(QObject *parent = nullptr);
+    virtual ~CPluginPlayer();
 
     // [Qt plugin interface]
     Q_INTERFACES(CPlugin)

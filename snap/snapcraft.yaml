@@ -34,7 +34,7 @@ description: |
 base: core24 # the base snap is the execution environment for this snap
 platforms:
   amd64:
-#  arm64:
+  arm64:
 #base: core22
 #architectures:
 #  - build-on: amd64
@@ -72,7 +72,7 @@ parts:
     plugin: cmake
     source: https://git.libssh.org/projects/libssh.git/
     source-type: git
-    source-tag: libssh-0.11.2
+    source-tag: libssh-0.11.3
     source-depth: 1
     build-packages:
       - libssl-dev
