@@ -43,6 +43,8 @@ int main(int argc, char *argv[])
     int nRet = 0;
 
     qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
+    
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
