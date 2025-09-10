@@ -1,0 +1,530 @@
+// Author: Kang Lin <kl222@126.com>
+
+#include "FrmWebBrowser.h"
+#include <QMenu>
+#include <QFile>
+#include <QInputDialog>
+#include <QSplitter>
+#include <QVBoxLayout>
+#include <QWebEngineProfile>
+#include <QWebEngineSettings>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+#include <QWebEngineProfileBuilder>
+#endif
+#include <QLoggingCategory>
+
+static QScopedPointer<QWebEngineProfile> g_profile;
+static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
+CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
+    : QWidget{parent}
+    , m_pDownload(nullptr)
+    , m_pInspector(nullptr)
+{
+    bool check = false;
+    QVBoxLayout* pLayout = new QVBoxLayout(this);
+    if(!pLayout) {
+        return;
+    }
+    pLayout->setSpacing(0);
+    pLayout->setContentsMargins(0, 0, 0, 0);
+    setLayout(pLayout);
+
+    m_pToolBar = new QToolBar(this);
+    if(m_pToolBar) {
+        pLayout->addWidget(m_pToolBar);
+    }
+
+    m_pBack = m_pToolBar->addAction(
+        QIcon::fromTheme("go-previous"), tr("Back"),
+        this, [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb && pWeb->page())
+                pWeb->page()->action(QWebEnginePage::Back)->trigger();
+        });
+    m_pBack->setEnabled(false);
+    m_pForward = m_pToolBar->addAction(
+        QIcon::fromTheme("go-next"), tr("Forward"),
+        this, [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb && pWeb->page())
+                pWeb->page()->action(QWebEnginePage::Forward)->trigger();
+        });
+    m_pForward->setEnabled(false);
+    m_pRefresh = m_pToolBar->addAction(
+        QIcon::fromTheme("view-refresh"), tr("Refresh"),
+        this, [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb && pWeb->page())
+                pWeb->page()->action(QWebEnginePage::Reload)->trigger();
+        });
+    m_pRefresh->setShortcut(QKeySequence(QKeySequence::Refresh));
+
+    m_pUrlLineEdit = new QLineEdit(this);
+    m_pFavAction = new QAction(m_pUrlLineEdit);
+    m_pUrlLineEdit->addAction(m_pFavAction, QLineEdit::LeadingPosition);
+    m_pUrlLineEdit->setClearButtonEnabled(true);
+    m_pToolBar->addWidget(m_pUrlLineEdit);
+    check = connect(m_pUrlLineEdit, &QLineEdit::returnPressed,
+                         this, &CFrmWebBrowser::slotReturnPressed);
+    Q_ASSERT(check);
+    // check = connect(m_pUrlLineEdit, &QLineEdit::editingFinished,
+    //                 this, &CFrmWebBrowser::slotReturnPressed);
+    // Q_ASSERT(check);
+    m_pGo = new QAction(QIcon::fromTheme("go-next"), tr("go"), m_pUrlLineEdit);
+    check = connect(m_pGo, &QAction::triggered, this, &CFrmWebBrowser::slotReturnPressed);
+    Q_ASSERT(check);
+    m_pUrlLineEdit->addAction(m_pGo, QLineEdit::TrailingPosition);
+    m_pGo->setVisible(false);
+    check = connect(m_pUrlLineEdit, &QLineEdit::textEdited,
+                    this, [&](const QString &text){
+        QLineEdit* pLineEdit = qobject_cast<QLineEdit*>(sender());
+        if(pLineEdit) {
+            if(text.isEmpty()) {
+                if(m_pGo->isVisible())
+                    m_pGo->setVisible(false);
+            } else {
+                if(!m_pGo->isVisible())
+                    m_pGo->setVisible(true);
+            }
+        }
+    });
+    Q_ASSERT(check);
+
+    m_pAdd = m_pToolBar->addAction(QIcon::fromTheme("add"), tr("Add"),
+                                   this, [&](){
+        createWindow(QWebEnginePage::WebBrowserTab);
+    });
+    Q_ASSERT(check);
+    m_pDownload = m_pToolBar->addAction(QIcon::fromTheme("emblem-downloads"), tr("Download"));
+    m_pDownload->setCheckable(true);
+    check = connect(m_pDownload, &QAction::toggled,
+                    this, [&](bool checked){
+                        if(checked)
+                            m_DownloadManager.show();
+                        else
+                            m_DownloadManager.hide();
+                    });
+    Q_ASSERT(check);
+    check = connect(&m_DownloadManager, &CFrmDownloadManager::sigVisible, this,
+                    [&](bool visible){
+                        if(m_pDownload)
+                            m_pDownload->setChecked(visible);
+    });
+    Q_ASSERT(check);
+
+    m_pProgressBar = new QProgressBar(this);
+    if(m_pProgressBar) {
+        pLayout->addWidget(m_pProgressBar);
+        m_pProgressBar->setMaximumHeight(1);
+        m_pProgressBar->setTextVisible(false);
+        m_pProgressBar->show();
+        m_pProgressBar->setStyleSheet("QProgressBar {border: 0px} QProgressBar::chunk {background-color: #da4453}");
+    }
+
+    m_pTab = new QTabWidget(this);
+    if(m_pTab) {
+        m_pTab->setTabsClosable(true);
+        m_pTab->setUsesScrollButtons(true);
+        m_pTab->setMovable(true);
+        m_pTab->setElideMode(Qt::TextElideMode::ElideRight);
+        pLayout->addWidget(m_pTab);
+    }
+    check = connect(m_pTab, &QTabWidget::currentChanged,
+                    this, &CFrmWebBrowser::slotTabCurrentChanged);
+    Q_ASSERT(check);
+    check = connect(m_pTab, &QTabWidget::tabCloseRequested,
+                    this, &CFrmWebBrowser::slotTabCloseRequested);
+    Q_ASSERT(check);
+
+    m_DownloadManager.hide();
+    QObject::connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
+                     &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+}
+
+CFrmWebBrowser::~CFrmWebBrowser()
+{
+    if(m_pToolBar) {
+        m_pToolBar->deleteLater();
+        m_pToolBar = nullptr;
+    }
+    if(m_pTab) {
+        m_pTab->deleteLater();
+        m_pTab = nullptr;
+    }
+}
+
+QWebEngineView* CFrmWebBrowser::createWindow(QWebEnginePage::WebWindowType type)
+{
+    qDebug(log) << "Create window:" << type;
+    
+    CFrmWebView* pView = nullptr;
+    switch (type) {
+    case QWebEnginePage::WebBrowserTab: {
+        auto pTab = CreateTab(&pView);
+        int index = m_pTab->addTab(pTab, pView->favIcon(), tr("New tab"));
+        if(-1 < index)
+            m_pTab->setCurrentIndex(index);
+        break;
+    }
+    case QWebEnginePage::WebBrowserBackgroundTab: {
+        auto pTab = CreateTab(&pView);
+        int index = m_pTab->currentIndex();
+        m_pTab->addTab(pTab, pView->favIcon(), tr("New tab"));
+        if(-1 < index)
+            m_pTab->setCurrentIndex(index);
+        break;
+    }
+    case QWebEnginePage::WebBrowserWindow:
+    case QWebEnginePage::WebDialog: {
+        qDebug(log) << "Don't support type:" << type;
+    }
+    }
+
+    return pView;
+}
+
+void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
+{
+    bool check = false;
+    if(!pWeb) return;
+    check = connect(pWeb, &QWebEngineView::urlChanged,
+                    this, [&](const QUrl &url){
+                        CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
+                        if(IsCurrentView(pWeb))
+                            m_pUrlLineEdit->setText(url.toString());
+                    });
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::titleChanged,
+                    this, [&](const QString &title) {
+                        CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
+                        int index = IndexOfTab(pWeb);
+                        if(-1 < index)
+                            m_pTab->setTabText(index, title);
+                    });
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::favIconChanged,
+                    this, [&](const QIcon &icon){
+                        CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
+                        int index = IndexOfTab(pWeb);
+                        if(-1 < index)
+                            m_pTab->setTabIcon(index, icon);
+                    });
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::loadProgress,
+                    this, [&](int progress){
+                        CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
+                        if(IsCurrentView(pWeb))
+                            m_pProgressBar->setValue(progress);
+                    });
+    Q_ASSERT(check);
+    m_pProgressBar->setValue(pWeb->progress());
+}
+
+QWebEngineProfile* CFrmWebBrowser::GetProfile()
+{
+    if (!g_profile) {
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+        const QString name = "io.github.KangLin.RabbitRemoteControl."
+                             + QLatin1StringView(qWebEngineChromiumVersion());
+        QWebEngineProfileBuilder profileBuilder;
+        g_profile.reset(profileBuilder.createProfile(name));
+#else
+        const QString name = "io.github.KangLin.RabbitRemoteControl";
+        g_profile.reset(new QWebEngineProfile(name));
+#endif
+        if(!g_profile)
+            return QWebEngineProfile::defaultProfile();
+
+        g_profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+        g_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
+        g_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+        g_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+        g_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
+        g_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
+        #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
+        g_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
+        #endif
+        QObject::connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
+                         &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+        qDebug(log) << "Persistent path:" << g_profile->persistentStoragePath()
+                    << "Cache path:" << g_profile->cachePath()
+                    << "Storage name:" << g_profile->storageName()
+                    << "Is off the Record:" << g_profile->isOffTheRecord();
+    }
+    return g_profile? g_profile.get() : QWebEngineProfile::defaultProfile();
+}
+
+CFrmWebView *CFrmWebBrowser::CreateWebView()
+{
+    auto pView = new CFrmWebView(this);
+    if(pView) {
+        auto profile = GetProfile();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        profile->setPersistentPermissionsPolicy(QWebEngineProfile::PersistentPermissionsPolicy::AskEveryTime);
+#endif
+        auto page = new QWebEnginePage(profile, pView);
+        pView->setPage(page);
+    }
+    return pView;
+}
+
+QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view)
+{
+    QSplitter *pSplitter = new QSplitter(Qt::Vertical, this);
+    if(pSplitter) {
+        //pSplitter->setContentsMargins(0, 0, 0, 0);
+        CFrmWebView* pWeb = nullptr;
+        if(view) {
+            if(*view) {
+                pWeb = *view;
+            } else {
+                pWeb = CreateWebView();
+                *view = pWeb;
+            }
+        } else {
+            pWeb = CreateWebView();
+        }
+        if(pWeb) {
+            pSplitter->addWidget(pWeb);
+            SetConnect(pWeb);
+            auto pDevTools = CreateWebView();
+            if(pDevTools) {
+                pDevTools->hide();
+                pSplitter->addWidget(pDevTools);
+                bool check = connect(pWeb, &CFrmWebView::sigDevToolsRequested,
+                                     this, [&](){
+                    m_pInspector->setChecked(true);
+                });
+                Q_ASSERT(check);
+            }
+        }
+    }
+    return pSplitter;
+}
+
+CFrmWebView *CFrmWebBrowser::CurrentView(ViewType idx)
+{
+    auto w = m_pTab->currentWidget();
+    if(!w) return nullptr;
+    QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
+    if(!pSplitter) return nullptr;
+    int index = (int)idx;
+    if(0 > index && pSplitter->count() <= index) return nullptr;
+    return qobject_cast<CFrmWebView*>(pSplitter->widget(index));
+}
+
+bool CFrmWebBrowser::IsCurrentView(CFrmWebView *pView)
+{
+    auto w = m_pTab->currentWidget();
+    if(!w) return false;
+    QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
+    if(!pSplitter) return false;
+    return -1 != pSplitter->indexOf(pView);
+}
+
+int CFrmWebBrowser::IndexOfTab(CFrmWebView *pView)
+{
+    int nRet = -1;
+    if(!pView) return nRet;
+    QWidget* p = qobject_cast<QWidget*>(pView->parent());
+    if(!p) return nRet;
+    nRet = m_pTab->indexOf(p);
+    return nRet;
+}
+
+int CFrmWebBrowser::InitMenu(QMenu *pMenu)
+{
+    bool check = false;
+    if(!pMenu) return 0;
+    pMenu->addAction(m_pAdd);
+    pMenu->addAction(m_pBack);
+    pMenu->addAction(m_pForward);
+    pMenu->addAction(m_pRefresh);
+
+    pMenu->addSeparator();
+    m_pFind = pMenu->addAction(
+        QIcon::fromTheme("edit-find"), tr("&Find"), this,
+        [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb) {
+                bool ok = false;
+                 QString search = QInputDialog::getText(this, tr("Find"),
+                                   tr("Find:"), QLineEdit::Normal,
+                                   m_szFindText, &ok);
+                if (ok && !search.isEmpty()) {
+                    m_szFindText = search;
+                    pWeb->findText(m_szFindText);
+                    // pWeb->findText(m_szFindText, QWebEnginePage::FindFlags(), [this](bool found) {
+                    //     if (!found)
+                    //         statusBar()->showMessage(tr("\"%1\" not found.").arg(m_szFindText));
+                    // });
+                }
+            }
+        });
+    m_pFind->setShortcuts(QKeySequence::Find);
+
+    m_pFindNext = pMenu->addAction(
+        QIcon::fromTheme("go-next"), tr("Find &Next"), this,
+            [this]() {
+               CFrmWebView* pWeb = CurrentView();
+               if(pWeb && !m_szFindText.isEmpty()) {
+                   pWeb->findText(m_szFindText);
+               }
+        });
+    m_pFindNext->setShortcut(QKeySequence::FindNext);
+
+    m_pFindPrevious = pMenu->addAction(
+        QIcon::fromTheme("go-previous"), tr("Find &Previous"), this,
+        [&]() {
+           CFrmWebView* pWeb = CurrentView();
+           if(pWeb && !m_szFindText.isEmpty()) {
+               pWeb->findText(m_szFindText, QWebEnginePage::FindBackward);
+           }
+        });
+    m_pFindPrevious->setShortcut(QKeySequence::FindPrevious);
+
+    pMenu->addSeparator();
+    m_pZoomOriginal = pMenu->addAction(
+        QIcon::fromTheme("zoom-original"), tr("Original"));
+    m_pZoomOriginal->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_0));
+    m_pZoomOriginal->setStatusTip(tr("Original"));
+    m_pZoomOriginal->setToolTip(tr("Original"));
+    check = connect(m_pZoomOriginal, &QAction::triggered, this,
+                    [&](){
+                        CFrmWebView* pWeb = CurrentView();
+                        if(pWeb)
+                            pWeb->setZoomFactor(1.0);
+                    });
+    Q_ASSERT(check);
+    m_pZoomIn = pMenu->addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"));
+    m_pZoomIn->setShortcut(QKeySequence::ZoomIn);
+    m_pZoomIn->setStatusTip(tr("Zoom in"));
+    m_pZoomIn->setToolTip(tr("Zoom in"));
+    check = connect(
+        m_pZoomIn, &QAction::triggered, this,
+        [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb)
+                pWeb->setZoomFactor(pWeb->zoomFactor() + 0.1);
+        });
+    Q_ASSERT(check);
+    m_pZoomOut = pMenu->addAction(
+        QIcon::fromTheme("zoom-out"), tr("Zoom out"));
+    m_pZoomOut->setShortcut(QKeySequence::ZoomOut);
+    m_pZoomOut->setStatusTip(tr("Zoom out"));
+    m_pZoomOut->setToolTip(tr("Zoom out"));
+    check = connect(
+        m_pZoomOut, &QAction::triggered, this,
+        [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb)
+                pWeb->setZoomFactor(pWeb->zoomFactor() - 0.1);
+        });
+    Q_ASSERT(check);
+
+    pMenu->addSeparator();
+    pMenu->addAction(m_pDownload);
+    if(!m_pInspector) {
+        m_pInspector = pMenu->addAction(QIcon::fromTheme("tools"), tr("Inspector"));
+        check = connect(m_pInspector, &QAction::toggled,
+                        this, &CFrmWebBrowser::slotInspector);
+        Q_ASSERT(check);
+        m_pInspector->setCheckable(true);
+        m_pInspector->setEnabled(false);
+    }
+
+    EnableAction(false);
+    return 0;
+}
+
+void CFrmWebBrowser::slotTabCurrentChanged(int index)
+{
+    bool check = false;
+    if(-1 == index) return;
+    CFrmWebView* pWeb = CurrentView();
+    if(pWeb) {
+        m_pUrlLineEdit->setText(pWeb->url().toString());
+        m_pProgressBar->setValue(pWeb->progress());
+        EnableAction(true);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        auto page = pWeb->page();
+        if(page) {
+            auto action = page->action(QWebEnginePage::Back);
+            if(action && m_pBack) {
+                m_pBack->setEnabled(action->isEnabled());
+                check = connect(action, &QAction::enabledChanged,
+                                     m_pBack, &QAction::setEnabled);
+                Q_ASSERT(check);
+            }
+            action = page->action(QWebEnginePage::Forward);
+            if(action && m_pForward) {
+                m_pForward->setEnabled(action->isEnabled());
+                check = connect(action, &QAction::enabledChanged,
+                                m_pForward, &QAction::setEnabled);
+                Q_ASSERT(check);
+            }
+            m_pInspector->setEnabled(true);
+            m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
+        }
+#endif        
+    } else {
+        m_pUrlLineEdit->setText("");
+        m_pProgressBar->setValue(100);
+        EnableAction(false);
+        m_pBack->setEnabled(false);
+        m_pForward->setEnabled(false);
+        m_pInspector->setChecked(false);
+    }
+}
+
+void CFrmWebBrowser::EnableAction(bool enable)
+{
+    m_pRefresh->setEnabled(enable);
+    m_pFind->setEnabled(enable);
+    m_pFindNext->setEnabled(enable);
+    m_pFindPrevious->setEnabled(enable);
+    m_pZoomOriginal->setEnabled(enable);
+    m_pZoomIn->setEnabled(enable);
+    m_pZoomOut->setEnabled(enable);
+    m_pInspector->setEnabled(enable);
+}
+
+void CFrmWebBrowser::slotTabCloseRequested(int index)
+{
+    qDebug(log) << "slotTabCloseRequested:" << index;
+    if(-1 == index) return;
+    auto pView = m_pTab->widget(index);
+    if(pView)
+        pView->deleteLater();
+    m_pTab->removeTab(index);
+}
+
+void CFrmWebBrowser::slotReturnPressed()
+{
+    QUrl u = QUrl::fromUserInput(m_pUrlLineEdit->text());
+    // if(u.scheme().isEmpty())
+    //     u.setScheme("https");
+    qDebug(log) << "Open url:" << u.toString();
+    CFrmWebView* pWeb = CurrentView();
+    if(!pWeb)
+        pWeb = qobject_cast<CFrmWebView*>(createWindow(QWebEnginePage::WebBrowserTab));
+    pWeb->load(u);
+    if(m_pGo->isVisible())
+        m_pGo->setVisible(false);
+}
+
+void CFrmWebBrowser::slotInspector(bool checked)
+{
+    CFrmWebView* pWeb = CurrentView();
+    auto dev = CurrentView(ViewType::DevTools);
+    if(pWeb && pWeb->page() && checked) {
+        pWeb->page()->setDevToolsPage(dev->page());
+        if(dev->isHidden())
+            dev->show();
+    } else {
+        pWeb->page()->setDevToolsPage(nullptr);
+        if(!dev->isHidden())
+            dev->hide();
+    }
+}

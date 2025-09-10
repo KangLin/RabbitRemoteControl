@@ -1,0 +1,69 @@
+// Author: Kang Lin <kl222@126.com>
+
+#pragma once
+
+#include <QIcon>
+#include <QWebEngineView>
+#include <QWebEnginePage>
+#include <QWebEngineSettings>
+#include <QWebEngineCertificateError>
+#include <QWebEngineRegisterProtocolHandlerRequest>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
+#include <QWebEngineFileSystemAccessRequest>
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+#include <QWebEngineWebAuthUxRequest>
+#include <QWebEngineDesktopMediaRequest>
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+#include <QWebEnginePermission>
+#endif
+#include <QActionGroup>
+
+class CFrmWebBrowser;
+class CFrmWebView : public QWebEngineView
+{
+    Q_OBJECT
+
+public:
+    explicit CFrmWebView(CFrmWebBrowser* parent = nullptr);
+    ~CFrmWebView();
+    void setPage(QWebEnginePage *page);
+
+    [[nodiscard]] int progress() const;
+    [[nodiscard]] QIcon favIcon() const;
+
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
+    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) override;
+
+signals:
+    void favIconChanged(const QIcon &icon);
+    void sigDevToolsRequested(QWebEnginePage *source);
+private slots:
+    void slotSelectClientCertificate(QWebEngineClientCertificateSelection clientCertSelection);
+    void slotAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth);
+    void slotProxyAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth,
+                                         const QString &proxyHost);
+    void handleRegisterProtocolHandlerRequested(QWebEngineRegisterProtocolHandlerRequest request);
+    
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    void slotCertificateError(QWebEngineCertificateError error);
+    void slotPermissionRequested(QWebEnginePermission permission);
+    void handleImageAnimationPolicyChange(QWebEngineSettings::ImageAnimationPolicy policy);
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
+    void slotFileSystemAccessRequested(QWebEngineFileSystemAccessRequest request);
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+    void slotDesktopMediaRequest(const QWebEngineDesktopMediaRequest &request);
+    void slotWebAuthUxRequested(QWebEngineWebAuthUxRequest *request);
+    void onStateChanged(QWebEngineWebAuthUxRequest::WebAuthUxState state);
+#endif
+
+private:
+    CFrmWebBrowser* m_pBrowser;
+    int m_loadProgress = 100;
+    //WebAuthDialog *m_authDialog = nullptr;
+    QActionGroup *m_imageAnimationGroup = nullptr;
+};
