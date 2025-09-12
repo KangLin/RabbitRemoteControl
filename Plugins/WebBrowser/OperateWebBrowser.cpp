@@ -56,11 +56,15 @@ QDialog *COperateWebBrowser::OnOpenDialogSettings(QWidget *parent)
 int COperateWebBrowser::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
-    m_pWeb = new CFrmWebBrowser();
     int nRet = COperate::Initial();
     if(nRet) return nRet;
-    if(m_pWeb)
+    m_pWeb = new CFrmWebBrowser();
+    if(m_pWeb) {
         m_pWeb->InitMenu(&m_Menu);
+        bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
+                             this, &COperateWebBrowser::sigInformation);
+        Q_ASSERT(check);
+    }
     return nRet;
     m_Menu.addSeparator();
     if(m_pActionSettings)

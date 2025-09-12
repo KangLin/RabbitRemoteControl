@@ -23,11 +23,15 @@ public:
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
     int InitMenu(QMenu* pMenu);
 
+Q_SIGNALS:
+    void sigInformation(const QString& szInfo);
+
 private Q_SLOTS:
     void slotTabCurrentChanged(int index);
     void slotTabCloseRequested(int index);
     void slotReturnPressed();
     void slotInspector(bool checked);
+
 private:
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);

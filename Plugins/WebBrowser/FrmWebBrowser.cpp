@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
+#include <QWebEngineFindTextResult>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
 #include <QWebEngineProfileBuilder>
 #endif
@@ -374,11 +375,21 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                                    m_szFindText, &ok);
                 if (ok && !search.isEmpty()) {
                     m_szFindText = search;
-                    pWeb->findText(m_szFindText);
-                    // pWeb->findText(m_szFindText, QWebEnginePage::FindFlags(), [this](bool found) {
-                    //     if (!found)
-                    //         statusBar()->showMessage(tr("\"%1\" not found.").arg(m_szFindText));
-                    // });
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                    pWeb->findText(m_szFindText, QWebEnginePage::FindFlags(),
+                                   [&](const QWebEngineFindTextResult& result){
+                                       if (result.numberOfMatches() == 0) {
+                                           emit sigInformation(tr("\"%1\" not found.").arg(m_szFindText));
+                                       } else {
+                                           emit sigInformation(tr("\"%1\" found: %2/%3").arg(m_szFindText, QString::number(result.activeMatch()), QString::number(result.numberOfMatches())));
+                                       }
+                    });
+#else
+                    pWeb->findText(m_szFindText, QWebEnginePage::FindFlags(), [this](bool found) {
+                        if (!found)
+                            emit sigInformation(tr("\"%1\" not found.").arg(m_szFindText));
+                    });
+#endif
                 }
             }
         });
@@ -526,9 +537,7 @@ void CFrmWebBrowser::slotTabCloseRequested(int index)
 void CFrmWebBrowser::slotReturnPressed()
 {
     QUrl u = QUrl::fromUserInput(m_pUrlLineEdit->text());
-    // if(u.scheme().isEmpty())
-    //     u.setScheme("https");
-    qDebug(log) << "Open url:" << u.toString();
+    emit sigInformation(u.toString());
     CFrmWebView* pWeb = CurrentView();
     if(!pWeb)
         pWeb = qobject_cast<CFrmWebView*>(createWindow(QWebEnginePage::WebBrowserTab));
