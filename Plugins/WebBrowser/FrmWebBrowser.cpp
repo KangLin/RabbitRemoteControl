@@ -43,6 +43,7 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
                 pWeb->page()->action(QWebEnginePage::Back)->trigger();
         });
     m_pBack->setEnabled(false);
+    m_pBack->setStatusTip(m_pBack->text());
     m_pForward = m_pToolBar->addAction(
         QIcon::fromTheme("go-next"), tr("Forward"),
         this, [&](){
@@ -51,6 +52,7 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
                 pWeb->page()->action(QWebEnginePage::Forward)->trigger();
         });
     m_pForward->setEnabled(false);
+    m_pForward->setStatusTip(m_pForward->text());
     m_pRefresh = m_pToolBar->addAction(
         QIcon::fromTheme("view-refresh"), tr("Refresh"),
         this, [&](){
@@ -59,6 +61,7 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
                 pWeb->page()->action(QWebEnginePage::Reload)->trigger();
         });
     m_pRefresh->setShortcut(QKeySequence(QKeySequence::Refresh));
+    m_pRefresh->setStatusTip(m_pRefresh->text());
 
     m_pUrlLineEdit = new QLineEdit(this);
     m_pFavAction = new QAction(m_pUrlLineEdit);
@@ -72,6 +75,7 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
     //                 this, &CFrmWebBrowser::slotReturnPressed);
     // Q_ASSERT(check);
     m_pGo = new QAction(QIcon::fromTheme("go-next"), tr("go"), m_pUrlLineEdit);
+    m_pGo->setStatusTip(m_pGo->text());
     check = connect(m_pGo, &QAction::triggered, this, &CFrmWebBrowser::slotReturnPressed);
     Q_ASSERT(check);
     m_pUrlLineEdit->addAction(m_pGo, QLineEdit::TrailingPosition);
@@ -95,9 +99,11 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
                                    this, [&](){
         createWindow(QWebEnginePage::WebBrowserTab);
     });
+    m_pAddPage->setStatusTip(m_pAddPage->text());
     Q_ASSERT(check);
     m_pDownload = m_pToolBar->addAction(QIcon::fromTheme("emblem-downloads"), tr("Download"));
     m_pDownload->setCheckable(true);
+    m_pDownload->setStatusTip(m_pDownload->text());
     check = connect(m_pDownload, &QAction::toggled,
                     this, [&](bool checked){
                         if(checked)
@@ -354,6 +360,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             createWindow(QWebEnginePage::WebBrowserWindow);
         });
     m_pAddWindow->setVisible(false);
+    m_pAddWindow->setStatusTip(m_pAddWindow->text());
 
     pMenu->addSeparator();
     m_pFind = pMenu->addAction(
@@ -376,6 +383,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             }
         });
     m_pFind->setShortcuts(QKeySequence::Find);
+    m_pFind->setStatusTip(m_pFind->text());
 
     m_pFindNext = pMenu->addAction(
         QIcon::fromTheme("go-next"), tr("Find &Next"), this,
@@ -386,6 +394,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                }
         });
     m_pFindNext->setShortcut(QKeySequence::FindNext);
+    m_pFindNext->setText(m_pFindNext->text());
 
     m_pFindPrevious = pMenu->addAction(
         QIcon::fromTheme("go-previous"), tr("Find &Previous"), this,
@@ -396,6 +405,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
            }
         });
     m_pFindPrevious->setShortcut(QKeySequence::FindPrevious);
+    m_pFindPrevious->setStatusTip(m_pFindPrevious->text());
 
     pMenu->addSeparator();
     m_pZoomOriginal = pMenu->addAction(
