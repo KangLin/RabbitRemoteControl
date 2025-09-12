@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QWebEngineView 视频支持测试</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #28a745; }
+        .warning { color: #ffc107; }
+        .error { color: #dc3545; }
+        video {
+            width: 100%;
+            max-width: 640px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QWebEngineView 视频支持测试</h1>
+    
+    <div class="test-section">
+        <h2>编解码器支持检测</h2>
+        <div id="codec-results">
+            <p>H.264/AVC: <span id="h264-status">检测中...</span></p>
+            <p>VP8: <span id="vp8-status">检测中...</span></p>
+            <p>VP9: <span id="vp9-status">检测中...</span></p>
+            <p>AV1: <span id="av1-status">检测中...</span></p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>H.264 视频测试</h2>
+        <video controls id="h264-video">
+            <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4">
+            您的浏览器不支持 H.264 视频
+        </video>
+        <p id="h264-result" class="warning">测试中...</p>
+    </div>
+
+    <div class="test-section">
+        <h2>WebM 视频测试 (备用)</h2>
+        <video controls id="webm-video">
+            <source src="https://test-videos.co.uk/vids/bigbuckbunny/webm/vp8/720/Big_Buck_Bunny_720_10s_1MB.webm" type="video/webm">
+            您的浏览器不支持 WebM 视频
+        </video>
+        <p id="webm-result" class="warning">测试中...</p>
+    </div>
+
+    <script>
+        // 检测编解码器支持
+        function detectCodecs() {
+            const video = document.createElement('video');
+            const codecs = [
+                { id: 'h264', type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"' },
+                { id: 'vp8', type: 'video/webm; codecs="vp8, vorbis"' },
+                { id: 'vp9', type: 'video/webm; codecs="vp9, opus"' },
+                { id: 'av1', type: 'video/webm; codecs="av01.0.05M.08, opus"' }
+            ];
+
+            codecs.forEach(codec => {
+                const support = video.canPlayType(codec.type);
+                const statusElement = document.getElementById(`${codec.id}-status`);
+                
+                statusElement.textContent = support || '不支持';
+                statusElement.className = support ? 'success' : 'error';
+            });
+        }
+
+        // 监听视频播放事件
+        function setupVideoTests() {
+            const videos = [
+                { id: 'h264-video', result: 'h264-result' },
+                { id: 'webm-video', result: 'webm-result' }
+            ];
+
+            videos.forEach(video => {
+                const element = document.getElementById(video.id);
+                const resultElement = document.getElementById(video.result);
+
+                element.addEventListener('canplay', () => {
+                    resultElement.textContent = '✓ 可以播放';
+                    resultElement.className = 'success';
+                });
+
+                element.addEventListener('error', (e) => {
+                    resultElement.textContent = '✗ 播放失败';
+                    resultElement.className = 'error';
+                    console.error('Video error:', e);
+                });
+            });
+        }
+
+        // 页面加载完成后执行检测
+        window.addEventListener('load', () => {
+            detectCodecs();
+            setupVideoTests();
+        });
+    </script>
+</body>
+</html>

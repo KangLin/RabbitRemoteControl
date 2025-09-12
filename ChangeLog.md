@@ -35,11 +35,13 @@
       - FTP
     - Player
       - Add display subtitle
+    - Add web browser
 
 - Add activity menu
 - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
 - Add build_mscos.sh. add App bundle
+- Add run the program directly without installation for windows install package
 
 ### v0.0.36
 - Client:

@@ -247,7 +247,24 @@
       )
 
   参考： [msvc.yml](../../.github/workflows/msvc.yml)
+
+#### QtWebEngine
   
+默认情况下，包括 Webm(开源),不包括 x264、x265(版权原因)
+- 检查支持
+  在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
+- 在 QtWebEngine 程序中，访问 https://www.webmfiles.org/demo-files/ 或 https://html5test.com/，上传或播放 H264/H265 视频文件，测试支持性。
+- 重新编译QtWebEngine，包括相应解码器。
+  相关编译参数：
+  - -webengine-proprietary-codecs
+    启用专有编解码支持（H264、MP3、AAC 等）。
+  - -webengine-ffmpeg
+    指定使用自定义 ffmpeg。
+
+        ./configure -webengine-proprietary-codecs
+        make -j$(nproc)
+        make install
+          
 #### libssh
 
 - 使用 vcpkg

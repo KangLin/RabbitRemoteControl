@@ -93,90 +93,107 @@
       ~$ sudo apt install debhelper
 
 #### Qt
-  - Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.9.2
-    - 则需要设置环境变量（或者 CMAKE 参数）：
-      - QT_ROOT
-      - Qt6：Qt6_ROOT 或者 Qt6_DIR 。
-        详见：https://doc.qt.io/qt-6/cmake-get-started.html
-      - Qt5：Qt5_ROOT 或者 Qt5_DIR 。
-        详见：https://doc.qt.io/qt-5/cmake-get-started.html
-      - 环境变量
+- Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
+  当前使用版本：Qt 6.9.2
+  - 则需要设置环境变量（或者 CMAKE 参数）：
+    - QT_ROOT
+    - Qt6：Qt6_ROOT 或者 Qt6_DIR 。
+      详见：https://doc.qt.io/qt-6/cmake-get-started.html
+    - Qt5：Qt5_ROOT 或者 Qt5_DIR 。
+      详见：https://doc.qt.io/qt-5/cmake-get-started.html
+    - 环境变量
 
-            export QT_ROOT=Qt 安装位置
-            # 编译 AppImage 需要
-            export QMAKE=$QT_ROOT/bin/qmake
+          export QT_ROOT=Qt 安装位置
+          # 编译 AppImage 需要
+          export QMAKE=$QT_ROOT/bin/qmake
 
-            # 当使用 Qt6 时
-            export Qt6_ROOT=$QT_ROOT
-            # 当使用 Qt5 时
-            export Qt5_ROOT=$QT_ROOT
+          # 当使用 Qt6 时
+          export Qt6_ROOT=$QT_ROOT
+          # 当使用 Qt5 时
+          export Qt5_ROOT=$QT_ROOT
 
-            # 或者
-            # 当使用 Qt6 时
-            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
-            # 当使用 Qt5 时
-            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+          # 或者
+          # 当使用 Qt6 时
+          export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+          # 当使用 Qt5 时
+          export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
 
-      - CMAKE 参数
+    - CMAKE 参数
 
-            #当使用 Qt6 时
-            cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
-            #当使用 Qt5 时
-            cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
-            # 编译 AppImage 需要
-            export QMAKE=$QT_ROOT/bin/qmake
+          #当使用 Qt6 时
+          cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
+          #当使用 Qt5 时
+          cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
+          # 编译 AppImage 需要
+          export QMAKE=$QT_ROOT/bin/qmake
 
-  - 系统自带：
-    - Qt5:
+- 系统自带：
+  - Qt5:
 
-          ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+        ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
 
-    - Qt6: 详见： [Script/build_depend.sh](../../Script/build_depend.sh)
+  - Qt6: 详见： [Script/build_depend.sh](../../Script/build_depend.sh)
 
-          ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
+        ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
 
-    - 系统安装多个分发版本 Qt 时。例如：同时安装 Qt5 和 Qt6 。
-      系统使用 qtchooser 工具来选择当前的 Qt 版本。
+  - 系统安装多个分发版本 Qt 时。例如：同时安装 Qt5 和 Qt6 。
+    系统使用 qtchooser 工具来选择当前的 Qt 版本。
   
-          l@l:/home/RabbitRemoteControl$ qtchooser 
-          Usage:
-            qtchooser { -l | -list-versions | -print-env }
-            qtchooser -install [-f] [-local] <name> <path-to-qmake>
-            qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
-            <executable name> [-qt=<Qt version>] [program arguments]
+        l@l:/home/RabbitRemoteControl$ qtchooser 
+        Usage:
+          qtchooser { -l | -list-versions | -print-env }
+          qtchooser -install [-f] [-local] <name> <path-to-qmake>
+          qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
+          <executable name> [-qt=<Qt version>] [program arguments]
+        Environment variables accepted:
+          QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
+          QT_SELECT          version of Qt to be run (same as the -qt argument)
+ 
+    - 查看当前系统安装的 Qt 版本
 
-          Environment variables accepted:
-           QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
-           QT_SELECT          version of Qt to be run (same as the -qt argument)
-  
-      - 查看当前系统安装的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser -l
+          4
+          5
+          default
+          qt4-x86_64-linux-gnu
+          qt4
+          qt5-x86_64-linux-gnu
+          qt5
+          qt6
 
-            l@l:/home/RabbitRemoteControl$ qtchooser -l
-            4
-            5
-            default
-            qt4-x86_64-linux-gnu
-            qt4
-            qt5-x86_64-linux-gnu
-            qt5
-            qt6
-
-            # 查看当前环境的 Qt 版本
-            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
-            QT_SELECT="default"
-            QTTOOLDIR="[Paths]"
-            QTLIBDIR="Prefix=/usr"
+          # 查看当前环境的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+          QT_SELECT="default"
+          QTTOOLDIR="[Paths]"
+          QTLIBDIR="Prefix=/usr"
     
-      - 设置当前环境的 Qt 版本
+    - 设置当前环境的 Qt 版本
 
-            export QT_SELECT=qt6  #设置当前环境 Qt 版本为 6
+          export QT_SELECT=qt6  #设置当前环境 Qt 版本为 6
 
-            # 查看当前环境的 Qt 版本
-            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
-            QT_SELECT="qt6"
-            QTTOOLDIR="/usr/lib/qt6/bin"
-            QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+          # 查看当前环境的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+          QT_SELECT="qt6"
+          QTTOOLDIR="/usr/lib/qt6/bin"
+          QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+          
+  - QtWebEngine
+    默认情况下，包括 Webm(开源),不包括 x264、x265(版权原因)
+    - 检查支持
+      在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
+
+    - 在 QtWebEngine 程序中，访问 https://www.webmfiles.org/demo-files/ 或 https://html5test.com/，上传或播放 H264/H265 视频文件，测试支持性。
+    
+    - 重新编译QtWebEngine，包括相应解码器。
+      相关编译参数：
+      - -webengine-proprietary-codecs
+        启用专有编解码支持（H264、MP3、AAC 等）。
+      - -webengine-ffmpeg
+        指定使用自定义 ffmpeg。
+
+            ./configure -webengine-proprietary-codecs
+            make -j$(nproc)
+            make install
 
 #### [可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 

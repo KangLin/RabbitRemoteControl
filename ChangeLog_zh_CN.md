@@ -34,11 +34,13 @@
       - FTP
     - 播放器
       - 增加显示字幕
+    - 增加网页浏览器
 
 - 增加活动菜单
 - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
 - 增加 macOS 编译脚本。生成　App 捆绑包
+- 为 windows 安装包增加“不安装执行功能”。
 
 ### v0.0.36
 - Client:

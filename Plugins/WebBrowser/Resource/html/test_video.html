@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWebEngineView 视频播放解决方案</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .solution {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+        .code {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+        }
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        video {
+            max-width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .warning {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>QWebEngineView 视频播放解决方案</h1>
+    
+    <div class="section">
+        <h2>问题描述</h2>
+        <p>QWebEngineView 基于 Chromium，但 Qt 的默认构建可能不包含专有编解码器（如 H.264），这会导致许多视频无法播放。</p>
+        
+        <div class="video-container">
+            <video controls>
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4">
+                您的浏览器不支持 HTML5 视频播放
+            </video>
+            <p>示例 MP4 (H.264) 视频 - 可能在 QWebEngineView 中无法播放</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>解决方案</h2>
+        
+        <div class="solution">
+            <h3>方案 1: 使用 WebM 格式视频 (推荐)</h3>
+            <p>WebM 是开源格式，通常被 QWebEngineView 良好支持。</p>
+            
+            <div class="video-container">
+                <video controls>
+                    <source src="https://test-videos.co.uk/vids/bigbuckbunny/webm/vp8/720/Big_Buck_Bunny_720_10s_1MB.webm" type="video/webm">
+                    您的浏览器不支持 HTML5 视频播放
+                </video>
+                <p>WebM 格式视频 - 应该在 QWebEngineView 中正常播放</p>
+            </div>
+            
+            <div class="code">
+                // 在Qt代码中加载包含WebM视频的页面<br>
+                QWebEngineView *view = new QWebEngineView(parent);<br>
+                view->load(QUrl("https://example.com/page-with-webm-video.html"));<br>
+                view->show();
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>方案 2: 安装额外的编解码器</h3>
+            <p>在Windows上，可以安装编解码器包来增加对H.264等格式的支持。</p>
+            
+            <div class="code">
+                // 在应用程序启动时检查编解码器支持<br>
+                QWebEngineProfile::defaultProfile()-&gt;setHttpUserAgent("Chrome/...");<br><br>
+                
+                // 或者尝试使用系统安装的编解码器<br>
+                // 设置环境变量 QTWEBENGINE_CHROMIUM_FLAGS="--enable-features=PlatformEncryptedVideo"<br>
+            </div>
+            
+            <div class="note">
+                <p class="warning">注意：</p>
+                <p>这种方法可能受到许可限制，特别是在商业应用中。</p>
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>方案 3: 使用外部播放器</h3>
+            <p>对于无法播放的视频格式，可以调用系统默认播放器。</p>
+            
+            <div class="code">
+                // 在网页中检测视频无法播放时，提供备用方案<br>
+                &lt;script&gt;<br>
+                document.querySelector('video').addEventListener('error', function() {<br>
+                &nbsp;&nbsp;// 显示使用外部播放器的链接<br>
+                &nbsp;&nbsp;document.getElementById('fallback').style.display = 'block';<br>
+                });<br>
+                &lt;/script&gt;
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>检测视频支持情况</h2>
+        <p>使用以下JavaScript代码检测浏览器支持的视频格式：</p>
+        
+        <div class="code">
+            // 检测H.264支持<br>
+            var h264Support = document.createElement('video').canPlayType('video/mp4; codecs="avc1.42E01E"');<br><br>
+            
+            // 检测WebM支持<br>
+            var webmSupport = document.createElement('video').canPlayType('video/webm; codecs="vp8, vorbis"');<br><br>
+            
+            console.log("H.264支持:", h264Support);<br>
+            console.log("WebM支持:", webmSupport);
+        </div>
+        
+        <div class="note">
+            <p class="success">提示：</p>
+            <p>在应用程序中，可以根据支持的格式动态选择视频源。</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Qt代码示例</h2>
+        <p>在Qt应用程序中设置QWebEngineView以优化视频播放：</p>
+        
+        <div class="code">
+            #include &lt;QWebEngineView&gt;<br>
+            #include &lt;QWebEngineSettings&gt;<br><br>
+            
+            // 创建并设置QWebEngineView<br>
+            QWebEngineView *view = new QWebEngineView(this);<br><br>
+            
+            // 启用插件（如果需要）<br>
+            view->settings()-&gt;setAttribute(QWebEngineSettings::PluginsEnabled, true);<br><br>
+            
+            // 启用屏幕捕获（对于WebRTC应用）<br>
+            view->settings()-&gt;setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);<br><br>
+            
+            // 加载页面<br>
+            view->load(QUrl("https://example.com"));<br>
+            view->show();
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>总结</h2>
+        <p>解决QWebEngineView视频播放问题的主要方法：</p>
+        <ol>
+            <li>优先使用WebM格式视频</li>
+            <li>确保系统安装了必要的编解码器</li>
+            <li>在应用程序中检测格式支持并提供备用方案</li>
+            <li>考虑使用外部播放器作为后备方案</li>
+        </ol>
+        
+        <div class="note">
+            <p class="success">提示：</p>
+            <p>从Qt 5.12开始，官方提供的预构建二进制文件已经包含了对专有编解码器的基本支持，但具体支持情况可能因版本和平台而异。</p>
+        </div>
+    </div>
+</body>
+</html>
