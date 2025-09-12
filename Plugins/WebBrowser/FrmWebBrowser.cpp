@@ -161,7 +161,7 @@ QWebEngineView* CFrmWebBrowser::createWindow(QWebEnginePage::WebWindowType type)
     switch (type) {
     case QWebEnginePage::WebBrowserTab: {
         auto pTab = CreateTab(&pView);
-        int index = m_pTab->addTab(pTab, pView->favIcon(), tr("New tab"));
+        int index = m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
         if(-1 < index)
             m_pTab->setCurrentIndex(index);
         break;
