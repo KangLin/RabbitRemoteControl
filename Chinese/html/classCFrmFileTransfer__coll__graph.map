@@ -1,0 +1,18 @@
+<map id="CFrmFileTransfer" name="CFrmFileTransfer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="198,271,329,296"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="63,168,141,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,198,246,268,244,273,131,203"/>
+<area shape="rect" id="Node000003" href="$classCRemoteFileSystemModel.html" title=" " alt="" coords="166,168,361,193"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="266,207,266,271,261,271,261,207"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,80,161,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="121,109,240,165,238,170,119,114"/>
+<area shape="rect" id="Node000005" href="$classCRemoteFileSystem.html" title=" " alt="" coords="186,80,341,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="266,119,266,167,261,167,261,119"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="356,85,367,93,359,99,341,102,341,97,357,94,362,93,353,90"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="226,5,301,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="266,45,266,80,261,80,261,45"/>
+<area shape="rect" id="Node000007" href="$classCListFileModel.html" title=" " alt="" coords="457,168,574,193"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="491,204,455,227,412,249,371,263,330,274,328,268,369,258,410,244,452,223,488,199"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="462,80,622,105"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="537,119,522,168,516,167,532,117"/>
+</map>

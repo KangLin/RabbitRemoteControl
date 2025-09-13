@@ -1,0 +1,26 @@
+<map id="CParameterWakeOnLanUI" name="CParameterWakeOnLanUI">
+<area shape="rect" id="Node000001" title="The wake on lan parameters UI" alt="" coords="5,669,193,695"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="41,581,115,607"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,619,99,668,94,669,82,621"/>
+<area shape="rect" id="Node000003" href="$classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="" coords="140,581,315,607"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,617,118,671,115,667,197,612"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="167,331,317,356"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="238,370,224,437,219,478,219,518,228,581,223,582,214,519,214,477,218,436,232,369"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="332,336,344,343,336,350,318,353,317,347,334,345,339,343,329,341"/>
+<area shape="rect" id="Node000009" href="$classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="229,493,351,519"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="252,369,270,430,289,492,284,494,265,431,247,370"/>
+<area shape="rect" id="Node000010" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="279,405,407,431"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="271,362,328,403,325,407,268,366"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="参数接口" alt="" coords="222,80,321,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="269,119,249,243,245,330,239,330,243,242,263,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="258,243,397,268"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="281,118,301,179,325,242,320,244,295,181,276,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterRecord.html" title=" " alt="" coords="309,155,452,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="302,111,365,152,362,157,299,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="234,5,309,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="274,45,274,80,269,80,269,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="308,280,256,332,252,328,304,276"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="368,193,337,244,332,241,364,191"/>
+<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="276,531,238,582,234,579,271,528"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="331,444,300,494,295,491,327,441"/>
+</map>

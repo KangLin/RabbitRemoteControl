@@ -1,0 +1,15 @@
+<map id="CBackendThread" name="CBackendThread">
+<area shape="rect" id="Node000001" title="The backend thread." alt="" coords="83,267,213,292"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,179,83,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,211,136,264,132,268,67,215"/>
+<area shape="rect" id="Node000003" href="$classCOperate.html" title="Operate interface." alt="" coords="107,179,189,204"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,218,151,266,145,266,145,218"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="140,5,215,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="157,42,143,60,132,81,128,107,130,134,145,177,140,179,125,135,122,107,127,79,138,57,153,39"/>
+<area shape="rect" id="Node000005" href="$classCPlugin.html" title="Plugin interface." alt="" coords="142,80,213,105"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="180,45,180,80,175,80,175,45"/>
+<area shape="rect" id="Node000006" href="$classCBackend.html" title="Backend interface." alt="" coords="229,129,315,155"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="197,40,265,128,261,131,193,43"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="154,117,145,130,142,155,147,178,141,179,137,155,140,128,149,114"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="272,169,263,207,253,227,241,245,222,259,201,269,199,264,219,254,237,241,249,224,258,205,267,168"/>
+</map>

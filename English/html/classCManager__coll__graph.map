@@ -1,0 +1,17 @@
+<map id="CManager" name="CManager">
+<area shape="rect" id="Node000001" title="Manage plugins." alt="" coords="44,419,132,444"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="19,5,93,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="33,42,16,65,10,78,8,92,8,344,14,368,28,387,47,404,66,416,63,421,43,408,24,391,9,370,3,345,3,91,5,76,11,62,29,39"/>
+<area shape="rect" id="Node000003" href="$classCHook.html" title="The class is the HOOK abstract class." alt="" coords="55,331,121,356"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="59,45,59,91,59,257,61,277,67,297,83,329,78,332,62,299,56,278,53,257,53,91,53,45"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="93,80,192,105"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="82,38,130,78,127,82,79,42"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="91,370,91,418,85,418,85,370"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="120,243,259,268"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="230,274,244,291,246,299,244,308,229,338,211,359,161,397,119,421,116,416,159,392,208,355,224,335,239,306,241,299,239,293,226,278"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="127,276,103,294,94,312,91,331,86,330,89,310,99,290,124,272"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="146,119,148,148,155,179,169,214,184,241,180,244,164,216,149,181,143,149,140,119"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="163,155,306,180"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="170,112,221,152,218,156,166,116"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="224,194,198,243,193,241,220,191"/>
+</map>

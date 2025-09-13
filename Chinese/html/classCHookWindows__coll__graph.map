@@ -1,0 +1,15 @@
+<map id="CHookWindows" name="CHookWindows">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,405,129,431"/>
+<area shape="rect" id="Node000002" href="$classCHook.html" title="The class is the HOOK abstract class." alt="" coords="35,331,100,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,370,70,405,65,405,65,370"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="25,5,99,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,44,49,92,49,256,55,297,65,330,60,331,49,298,43,257,43,91,51,43"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="参数接口" alt="" coords="83,80,182,105"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="85,39,123,78,119,82,81,43"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="83,243,222,268"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="133,280,81,332,77,328,129,276"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,119,133,155,133,180,141,213,150,241,145,243,136,215,127,180,127,155,129,119"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="141,155,284,180"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="157,113,201,152,198,156,154,117"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="199,193,163,244,159,241,194,190"/>
+</map>

@@ -1,0 +1,39 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,425,80,451"/>
+<area shape="rect" id="Node000001" href="$classCDlgCapture.html" title=" " alt="" coords="187,5,291,31"/>
+<area shape="poly" id="edge38_Node000000_Node000001" title=" " alt="" coords="43,412,51,328,67,217,91,110,107,69,126,40,154,22,186,15,187,20,156,27,130,44,112,71,96,112,72,217,57,328,49,412"/>
+<area shape="rect" id="Node000002" href="$classCDlgDesktopSize.html" title=" " alt="" coords="172,55,307,80"/>
+<area shape="poly" id="edge39_Node000000_Node000002" title=" " alt="" coords="44,411,54,337,71,240,94,149,109,114,126,89,147,75,171,67,173,72,149,80,130,93,114,116,100,151,76,241,59,337,49,412"/>
+<area shape="rect" id="Node000003" href="$classCDlgFileTransfer.html" title=" " alt="" coords="175,104,303,129"/>
+<area shape="poly" id="edge40_Node000000_Node000003" title=" " alt="" coords="40,411,43,355,54,281,64,242,79,205,100,169,126,139,149,124,174,116,176,121,151,129,130,143,104,172,84,207,69,244,59,282,48,355,46,411"/>
+<area shape="rect" id="Node000004" href="$classCDlgGetUserPasswordFreeRDP.html" title=" " alt="" coords="128,153,351,179"/>
+<area shape="poly" id="edge41_Node000000_Node000004" title=" " alt="" coords="42,411,47,363,61,302,85,241,104,213,126,188,143,177,146,181,130,192,108,216,90,243,66,304,53,364,48,411"/>
+<area shape="rect" id="Node000005" href="$classCDlgInputPassword.html" title=" " alt="" coords="166,203,313,228"/>
+<area shape="poly" id="edge42_Node000000_Node000005" title=" " alt="" coords="45,411,53,372,68,325,91,278,107,256,126,237,145,226,165,218,167,223,147,230,130,241,111,259,96,280,73,327,58,373,50,412"/>
+<area shape="rect" id="Node000006" href="$classCDlgPlayer.html" title=" " alt="" coords="192,252,287,277"/>
+<area shape="poly" id="edge43_Node000000_Node000006" title=" " alt="" coords="49,411,59,382,76,348,98,315,126,286,158,271,191,264,192,269,160,276,130,291,102,318,80,351,64,384,54,413"/>
+<area shape="rect" id="Node000007" href="$classCDlgSetFreeRDP.html" title=" " alt="" coords="175,301,304,327"/>
+<area shape="poly" id="edge44_Node000000_Node000007" title=" " alt="" coords="56,412,85,372,104,352,127,336,149,325,173,318,175,323,151,330,129,340,108,356,89,376,60,415"/>
+<area shape="rect" id="Node000008" href="$classCDlgSettings.html" title=" " alt="" coords="186,351,293,376"/>
+<area shape="poly" id="edge45_Node000000_Node000008" title=" " alt="" coords="72,415,127,385,185,369,186,374,129,390,74,420"/>
+<area shape="rect" id="Node000009" href="$classCDlgSettingsLibVnc.html" title=" " alt="" coords="165,400,314,425"/>
+<area shape="poly" id="edge46_Node000000_Node000009" title=" " alt="" coords="93,429,164,420,165,425,94,434"/>
+<area shape="rect" id="Node000010" href="$classCDlgSettingsRawStream.html" title=" " alt="" coords="149,449,330,475"/>
+<area shape="poly" id="edge47_Node000000_Node000010" title=" " alt="" coords="94,441,149,448,148,454,93,447"/>
+<area shape="rect" id="Node000011" href="$classCDlgSettingsSSH.html" title=" " alt="" coords="173,499,305,524"/>
+<area shape="poly" id="edge48_Node000000_Node000011" title=" " alt="" coords="75,456,129,484,174,497,172,502,127,488,73,460"/>
+<area shape="rect" id="Node000012" href="$classCDlgSettingsSerialPort.html" title=" " alt="" coords="155,548,324,573"/>
+<area shape="poly" id="edge49_Node000000_Node000012" title=" " alt="" coords="61,461,90,499,108,517,129,533,157,545,155,550,127,538,105,522,86,502,57,464"/>
+<area shape="rect" id="Node000013" href="$classCDlgSettingsTelnet.html" title=" " alt="" coords="167,597,312,623"/>
+<area shape="poly" id="edge50_Node000000_Node000013" title=" " alt="" coords="54,463,81,524,102,556,130,583,147,593,167,600,165,605,145,598,126,587,98,559,76,527,49,465"/>
+<area shape="rect" id="Node000014" href="$classCDlgSettingsTerminal.html" title=" " alt="" coords="158,647,321,672"/>
+<area shape="poly" id="edge51_Node000000_Node000014" title=" " alt="" coords="50,464,58,502,73,548,97,594,112,614,130,632,159,648,156,653,126,636,108,618,92,596,68,550,53,503,45,465"/>
+<area shape="rect" id="Node000015" href="$classCDlgSettingsVnc.html" title=" " alt="" coords="174,696,305,721"/>
+<area shape="poly" id="edge52_Node000000_Node000015" title=" " alt="" coords="48,464,53,512,66,570,91,630,108,658,130,681,150,695,174,702,173,707,148,699,126,685,104,661,86,633,61,572,48,512,42,465"/>
+<area shape="rect" id="Node000016" href="$classCDlgUserPassword.html" title=" " alt="" coords="167,745,311,771"/>
+<area shape="poly" id="edge53_Node000000_Node000016" title=" " alt="" coords="46,464,48,520,59,592,70,630,85,667,104,701,130,731,147,743,168,751,166,756,145,748,126,735,100,704,80,669,65,632,54,593,43,521,41,464"/>
+<area shape="rect" id="Node000017" href="$classCParameterDlgSettings.html" title=" " alt="" coords="153,795,326,820"/>
+<area shape="poly" id="edge54_Node000000_Node000017" title=" " alt="" coords="50,464,59,538,76,633,100,723,114,757,130,780,154,796,151,800,126,784,109,760,95,724,71,634,54,539,44,465"/>
+<area shape="rect" id="Node000018" href="$classCParameterWakeOnLanUI.html" title="The wake on lan parameters UI" alt="" coords="145,844,333,869"/>
+<area shape="poly" id="edge55_Node000000_Node000018" title=" " alt="" coords="49,464,57,547,73,657,97,762,112,802,130,830,146,842,143,846,126,833,107,805,92,764,67,658,52,548,43,465"/>
+</map>

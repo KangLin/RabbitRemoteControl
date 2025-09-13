@@ -1,0 +1,34 @@
+<map id="COperateWakeOnLan" name="COperateWakeOnLan">
+<area shape="rect" id="Node000001" title="局域网唤醒操作接口" alt="" coords="274,344,433,369"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="操作接口。" alt="" coords="5,168,88,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,204,83,242,114,279,150,305,191,324,233,338,274,346,273,351,232,343,189,329,147,310,110,283,78,245,56,207"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="199,5,273,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="215,42,177,82,155,115,146,130,130,146,108,160,85,170,83,166,105,155,126,142,142,127,151,112,173,78,211,38"/>
+<area shape="rect" id="Node000004" href="$classCPlugin.html" title="插件接口" alt="" coords="29,80,99,105"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="186,36,129,57,83,82,81,77,127,52,184,31"/>
+<area shape="rect" id="Node000009" href="$classCArp.html" title=" " alt="" coords="331,168,384,193"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="262,38,299,78,332,126,354,166,349,169,327,129,295,82,258,42"/>
+<area shape="rect" id="Node000010" href="$classCWakeOnLanQt.html" title=" " alt="" coords="364,80,487,105"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="288,32,346,52,403,77,401,82,344,57,286,37"/>
+<area shape="rect" id="Node000013" href="$classCParameter.html" title="参数接口" alt="" coords="187,80,285,105"/>
+<area shape="poly" id="edge16_Node000013_Node000003" title=" " alt="" coords="239,45,239,80,233,80,233,45"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="60,119,57,130,51,168,46,167,52,129,55,118"/>
+<area shape="rect" id="Node000005" href="$classCFrmWakeOnLan.html" title=" " alt="" coords="425,256,557,281"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="462,291,373,346,371,341,459,286"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="451,168,530,193"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="493,207,493,255,488,255,488,207"/>
+<area shape="rect" id="Node000007" href="$classCWakeOnLanModel.html" title=" " alt="" coords="581,256,728,281"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="610,288,502,323,406,347,405,341,501,317,608,283"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="575,168,735,193"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="657,207,657,255,652,255,652,207"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="359,207,356,344,351,344,354,207"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="410,118,369,169,365,166,405,115"/>
+<area shape="rect" id="Node000011" href="$classCWakeOnLan.html" title=" " alt="" coords="372,5,479,31"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="428,45,428,80,423,80,423,45"/>
+<area shape="rect" id="Node000012" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="124,256,263,281"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="191,295,192,308,197,318,208,327,226,334,275,344,273,349,225,339,205,331,193,322,187,309,185,296"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="253,116,265,142,275,172,277,204,266,233,252,248,235,258,232,254,249,244,262,231,271,203,269,173,260,144,248,118"/>
+<area shape="rect" id="Node000014" href="$classCParameterRecord.html" title=" " alt="" coords="113,168,255,193"/>
+<area shape="poly" id="edge18_Node000014_Node000013" title=" " alt="" coords="224,119,194,169,189,166,220,116"/>
+<area shape="poly" id="edge17_Node000012_Node000014" title=" " alt="" coords="189,207,195,255,189,256,184,208"/>
+</map>

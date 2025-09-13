@@ -1,0 +1,16 @@
+<map id="CParameterPluginUI" name="CParameterPluginUI">
+<area shape="rect" id="Node000001" title=" " alt="" coords="59,331,211,356"/>
+<area shape="rect" id="Node000002" href="$classCParameterUI.html" title="The parameter UI interface." alt="" coords="5,243,117,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,277,126,328,122,332,78,280"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,155,101,180"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="64,194,64,242,59,242,59,194"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="141,243,280,268"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,280,147,332,143,328,189,277"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="148,80,247,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,119,212,242,207,243,197,119"/>
+<area shape="rect" id="Node000007" href="$classCParameterRecord.html" title=" " alt="" coords="219,155,362,180"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="225,112,277,152,274,156,221,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="160,5,235,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="200,45,200,80,195,80,195,45"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="273,192,224,244,220,240,269,188"/>
+</map>

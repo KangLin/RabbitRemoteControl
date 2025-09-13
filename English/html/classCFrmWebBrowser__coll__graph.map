@@ -1,0 +1,23 @@
+<map id="CFrmWebBrowser" name="CFrmWebBrowser">
+<area shape="rect" id="Node000001" title=" " alt="" coords="63,493,200,519"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,331,84,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="35,370,28,400,28,415,32,429,47,450,65,467,105,491,102,496,62,471,43,453,28,432,23,416,22,399,30,369"/>
+<area shape="rect" id="Node000009" href="$classCFrmDownloadManager.html" title=" " alt="" coords="42,405,221,431"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="71,363,119,403,115,407,67,367"/>
+<area shape="rect" id="Node000003" href="$classCParameterWebBrowser.html" title=" " alt="" coords="245,405,423,431"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,443,303,459,285,472,243,489,201,499,199,494,242,484,282,467,300,454,315,440"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="259,331,409,356"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="337,370,337,405,331,405,331,370"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="424,336,436,343,428,350,410,353,409,347,426,345,431,343,421,341"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="298,80,397,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="343,119,329,186,324,227,325,268,334,330,329,331,319,268,319,226,324,185,338,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="334,243,473,268"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="357,118,377,179,401,242,396,244,371,181,352,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterRecord.html" title=" " alt="" coords="385,155,528,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="378,111,441,152,438,157,375,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="310,5,385,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="350,45,350,80,345,80,345,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="387,281,346,332,342,328,383,277"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="444,193,413,244,408,241,440,191"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="134,445,134,493,129,493,129,445"/>
+</map>
