@@ -382,9 +382,9 @@ jobs:
       - name: Update artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.WITH_MACOSX_BUNDLE}}
+          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.os}}_${{matrix.WITH_MACOSX_BUNDLE}}
           path: |
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip
-            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_bundle.zip
+            #${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_bundle.zip
             ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
             ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.dmg
