@@ -115,7 +115,8 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |-----------|-------|----------|-------|---|
 |Player     |✓      |✓         |✓      |✓  |
 |Wake on lan|✓      |✓         |✓      |✓  |
-|Screenshot |✓      |✓         |❌      |✓  |
+|Screenshot |✓      |✓         |❌     |✓  |
+|Web browser|✓      |✓         |❌     |✓  |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
@@ -161,10 +162,10 @@ Legend:
 |  RFB      | ……    |  ✓  |     ✓   |✓        |    | ❌  | ❌         |✓ |  ✓   |       |
 |Spice      |       |     |         |         |    |     | ❌        |   |      |       |
 |Scrcpy     |       |     |         |         |    |     | ❌        |   |      |       |
-|Terminal   |       |  ✓  | ❌      |✓        | ❌ | ❌   | ❌        |   |      |       |
-|TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌   |  ❌       |   |      |       |
-|  SSH      |       |  ✓  | ❌      |✓        |    | ❌   | ❌        |   |      |       |
-|Serial port|       |  ✓  | ❌      |✓        |    | ❌   | ❌        |   |      |       |
+|Terminal   |       |  ✓  | ❌      |✓        | ❌ | ❌  | ❌        |   |      |       |
+|TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌  |  ❌       |   |      |       |
+|  SSH      |       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
+|Serial port|       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
 |  FTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
 | SFTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
 
@@ -197,6 +198,7 @@ Legend:
   - [TELNET](Plugins/Telnet)
   - [Serial Port](Plugins/SerialPort)
 - [File transfer](Plugins/FileTransfer)
+- [Web browser](Plugins/WebBrowser)
 
 ## Status
 

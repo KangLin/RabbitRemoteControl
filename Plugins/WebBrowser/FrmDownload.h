@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include <QWidget>
+#include <QFrame>
 #include <QLabel>
 #include <QPushButton>
 #include <QProgressBar>
@@ -15,30 +15,39 @@
 #define QWebEngineDownloadRequest QWebEngineDownloadItem
 #endif
 
-class CFrmDownload : public QWidget
+namespace Ui {
+class CFrmDownload;
+}
+
+class CFrmDownload : public QFrame
 {
     Q_OBJECT
+
 public:
     explicit CFrmDownload(QWebEngineDownloadRequest* downalod, QWidget *parent = nullptr);
-    virtual ~CFrmDownload();
+    ~CFrmDownload();
 
 Q_SIGNALS:
     // This signal is emitted when the user indicates that they want to remove
     // this download from the downloads list.
     void sigRemoveClicked(CFrmDownload *self);
+    void sigSelected(CFrmDownload* item);
+
+protected:
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
 private slots:
     void slotUpdateWidget();
     void slotCustomContextMenuRequested(const QPoint &pos);
-private:
-    QLabel* m_pTitle;
-    QPushButton* m_pButton;
-    QLabel* m_pUrl;
-    QProgressBar* m_pProgressBar;
-    QLabel* m_pFileInfo;
 
+    void on_pbButton_clicked();
+
+private:
+    Ui::CFrmDownload *ui;
     QWebEngineDownloadRequest* m_pDownload;
 
     QElapsedTimer m_timeAdded;
     QFileSystemWatcher m_FileWatcher;
 };
+

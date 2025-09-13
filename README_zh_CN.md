@@ -115,7 +115,8 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |------------|-------|----------|-------|---|
 |播放器       |✓      |✓         |✓      |✓  |
 |局域网唤醒主机 |✓      |✓         |✓      |✓  |
-|截屏         |✓      |✓         |❌      |✓  |
+|截屏         |✓      |✓         |❌     |✓  |
+|网页浏览器    |✓      |✓         |❌     |✓  |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
@@ -196,6 +197,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
   - [TELNET](Plugins/Telnet)
   - [串口](Plugins/SerialPort)
 - [文件传输](Plugins/FileTransfer)
+- [网页浏览器](Plugins/WebBrowser)
 
 ## 状态
 

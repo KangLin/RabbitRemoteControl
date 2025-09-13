@@ -20,9 +20,11 @@ Q_SIGNALS:
 protected:
     void showEvent(QShowEvent *event);
     void hideEvent(QHideEvent *event);
+private Q_SLOTS:
+    void Add(CFrmDownload* item);
+    void Remove(CFrmDownload* item);
+    void slotSelected(CFrmDownload* item);
 private:
-    int Add(CFrmDownload* item);
-    int Remove(CFrmDownload* item);
     int m_nCount;
     QVBoxLayout* m_pItems;
 };

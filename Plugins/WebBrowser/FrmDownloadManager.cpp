@@ -42,23 +42,38 @@ void CFrmDownloadManager::slotDownloadRequested(QWebEngineDownloadRequest *downl
     show();
 }
 
-int CFrmDownloadManager::Add(CFrmDownload *item)
+void CFrmDownloadManager::Add(CFrmDownload *item)
 {
-    if(!item || !m_pItems) return 0;
+    if(!item || !m_pItems) return;
     bool check = connect(item, &CFrmDownload::sigRemoveClicked, this, &CFrmDownloadManager::Remove);
+    Q_ASSERT(check);
+    check = connect(item, &CFrmDownload::sigSelected, this, &CFrmDownloadManager::slotSelected);
     Q_ASSERT(check);
     m_pItems->insertWidget(0, item, 0, Qt::AlignTop);
     m_nCount++;
-    return 0;
 }
 
-int CFrmDownloadManager::Remove(CFrmDownload *item)
+void CFrmDownloadManager::Remove(CFrmDownload *item)
 {
-    if(!item || !m_pItems) return 0;
+    if(!item || !m_pItems) return;
     m_pItems->removeWidget(item);
     item->deleteLater();
     m_nCount--;
-    return 0;
+}
+
+void CFrmDownloadManager::slotSelected(CFrmDownload *item)
+{
+    for(int i = 0; i < m_pItems->count(); i++)
+    {
+        auto it = m_pItems->itemAt(i);
+        if(!it) continue;
+        auto w = it->widget();
+        if(!w) continue;
+        if(w == item) {
+            item->setFrameShadow(QFrame::Sunken);
+        }
+    }
+    item->setFrameShadow(QFrame::Raised);
 }
 
 void CFrmDownloadManager::showEvent(QShowEvent *event)

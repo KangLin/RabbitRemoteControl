@@ -37,7 +37,7 @@ set(WebBrowser_HEADER_FILES
     FrmDownloadManager.h
     )
 set(WebBrowser_UI_FILES
-  #  WebAuthDialog.ui
+    FrmDownload.ui
     )
 if(QT_VERSION GREATER_EQUAL "6.0.0")
     list(APPEND WebBrowser_SOURCE_FILES
