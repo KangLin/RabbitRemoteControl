@@ -98,6 +98,11 @@ inline QString questionForPermissionType(QWebEnginePermission::PermissionType pe
 
 void CFrmWebView::setPage(QWebEnginePage *page)
 {
+    CreateWebActionTrigger(page,QWebEnginePage::Forward);
+    CreateWebActionTrigger(page,QWebEnginePage::Back);
+    CreateWebActionTrigger(page,QWebEnginePage::Reload);
+    CreateWebActionTrigger(page,QWebEnginePage::Stop);
+
     if (auto oldPage = QWebEngineView::page()) {
         oldPage->disconnect(this);
     }
@@ -160,6 +165,21 @@ QWebEngineView *CFrmWebView::createWindow(QWebEnginePage::WebWindowType type)
     if(m_pBrowser)
         return m_pBrowser->createWindow(type);
     return this;
+}
+
+void CFrmWebView::CreateWebActionTrigger(QWebEnginePage *page, QWebEnginePage::WebAction webAction)
+{
+    QAction *action = page->action(webAction);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    connect(action, &QAction::enabledChanged, [this, action, webAction](bool enabled){
+        qDebug(log) << "webAction:" << webAction << enabled;
+        emit sigWebActionEnabledChanged(webAction, enabled);
+    });
+#else
+    connect(action, &QAction::changed, [this, action, webAction]{
+        emit sigWebActionEnabledChanged(webAction, action->isEnabled());
+    });
+#endif
 }
 
 void CFrmWebView::contextMenuEvent(QContextMenuEvent *event)

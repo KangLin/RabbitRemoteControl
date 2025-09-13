@@ -36,12 +36,14 @@ public:
 protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) override;
+    void CreateWebActionTrigger(QWebEnginePage *page, QWebEnginePage::WebAction);
 
 signals:
     void favIconChanged(const QIcon &icon);
     void sigDevToolsRequested(QWebEnginePage *source);
     void sigCloseRequested();
     void sigLinkHovered(const QString &url);
+    void sigWebActionEnabledChanged(QWebEnginePage::WebAction webAction, bool enabled);
 
 private slots:
     void slotSelectClientCertificate(QWebEngineClientCertificateSelection clientCertSelection);

@@ -54,6 +54,7 @@ private:
     QAction* m_pBack;
     QAction* m_pForward;
     QAction* m_pRefresh;
+    QAction* m_pStop;
     QAction* m_pFind;
     QAction* m_pFindNext;
     QAction* m_pFindPrevious;

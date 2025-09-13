@@ -18,6 +18,7 @@ static QScopedPointer<QWebEngineProfile> g_profile;
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
     : QWidget{parent}
+    , m_pStop(nullptr)
     , m_pAddWindow(nullptr)
     , m_pDownload(nullptr)
     , m_pInspector(nullptr)
@@ -199,6 +200,26 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
 {
     bool check = false;
     if(!pWeb) return;
+    check = connect(pWeb, &CFrmWebView::sigWebActionEnabledChanged,
+                    this, [this, pWeb](QWebEnginePage::WebAction webAction, bool enabled){
+        if(!IsCurrentView(pWeb)) return;
+        switch(webAction){
+        case QWebEnginePage::WebAction::Back:
+            m_pBack->setEnabled(enabled);
+            break;
+        case QWebEnginePage::WebAction::Forward:
+            m_pForward->setEnabled(enabled);
+            break;
+        case QWebEnginePage::WebAction::Reload:
+            m_pRefresh->setEnabled(enabled);
+            break;
+        case QWebEnginePage::WebAction::Stop:
+            m_pStop->setEnabled(enabled);
+            break;
+        default:
+            break;
+        }
+    });
     check = connect(pWeb, &QWebEngineView::urlChanged,
                     this, [&](const QUrl &url){
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
@@ -364,6 +385,13 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addAction(m_pBack);
     pMenu->addAction(m_pForward);
     pMenu->addAction(m_pRefresh);
+    m_pStop = pMenu->addAction(QIcon::fromTheme("stop"), tr("Stop"),
+                     this, [&](){
+        CFrmWebView* pWeb = CurrentView();
+        if(pWeb && pWeb->page())
+            pWeb->page()->action(QWebEnginePage::Stop)->trigger();
+    });
+    m_pStop->setEnabled(false);
 
     pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
@@ -493,40 +521,38 @@ void CFrmWebBrowser::slotTabCurrentChanged(int index)
         m_pUrlLineEdit->setText(pWeb->url().toString());
         m_pProgressBar->setValue(pWeb->progress());
         EnableAction(true);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
         auto page = pWeb->page();
         if(page) {
             auto action = page->action(QWebEnginePage::Back);
             if(action && m_pBack) {
                 m_pBack->setEnabled(action->isEnabled());
-                check = connect(action, &QAction::enabledChanged,
-                                     m_pBack, &QAction::setEnabled);
-                Q_ASSERT(check);
             }
             action = page->action(QWebEnginePage::Forward);
             if(action && m_pForward) {
                 m_pForward->setEnabled(action->isEnabled());
-                check = connect(action, &QAction::enabledChanged,
-                                m_pForward, &QAction::setEnabled);
-                Q_ASSERT(check);
             }
-            m_pInspector->setEnabled(true);
+            action = page->action(QWebEnginePage::Reload);
+            if(action && m_pRefresh)
+                m_pRefresh->setEnabled(action->isEnabled());
+            action = page->action(QWebEnginePage::Stop);
+            if(action && m_pStop)
+                m_pStop->setEnabled(action->isEnabled());
             m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
         }
-#endif        
     } else {
         m_pUrlLineEdit->setText("");
         m_pProgressBar->setValue(100);
         EnableAction(false);
-        m_pBack->setEnabled(false);
-        m_pForward->setEnabled(false);
         m_pInspector->setChecked(false);
     }
 }
 
 void CFrmWebBrowser::EnableAction(bool enable)
 {
+    m_pBack->setEnabled(false);
+    m_pForward->setEnabled(false);
     m_pRefresh->setEnabled(enable);
+    m_pStop->setEnabled(false);
     m_pFind->setEnabled(enable);
     m_pFindNext->setEnabled(enable);
     m_pFindPrevious->setEnabled(enable);
