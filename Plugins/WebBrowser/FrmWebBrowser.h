@@ -25,10 +25,13 @@ public:
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
+    //! Title or icon changed
+    void sigUpdateTitle();
 
 private Q_SLOTS:
     void slotTabCurrentChanged(int index);
     void slotTabCloseRequested(int index);
+    void slotViewCloseRequested();
     void slotReturnPressed();
     void slotInspector(bool checked);
 

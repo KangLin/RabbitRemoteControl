@@ -13,6 +13,22 @@ COperateWebBrowser::~COperateWebBrowser()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+const QString COperateWebBrowser::Name()
+{
+    QString szName = COperate::Name();
+    if(m_pWeb)
+        szName = m_pWeb->windowTitle();
+    return szName;
+}
+
+const QIcon COperateWebBrowser::Icon() const
+{
+    QIcon icon = COperate::Icon();
+    if(m_pWeb)
+        icon = m_pWeb->windowIcon();
+    return icon;
+}
+
 const qint16 COperateWebBrowser::Version() const
 {
     return 0;
@@ -63,6 +79,9 @@ int COperateWebBrowser::Initial()
         m_pWeb->InitMenu(&m_Menu);
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
                              this, &COperateWebBrowser::sigInformation);
+        Q_ASSERT(check);
+        check = connect(m_pWeb, &CFrmWebBrowser::sigUpdateTitle,
+                        this, &COperateWebBrowser::slotUpdateName);
         Q_ASSERT(check);
     }
     return nRet;

@@ -636,6 +636,6 @@ void COperateDesktop::slotSetServerName(const QString& szName)
             return;
         GetParameter()->SetServerName(szName);
     }
-    
-    emit sigUpdateName(Name());
+
+    slotUpdateName();
 }

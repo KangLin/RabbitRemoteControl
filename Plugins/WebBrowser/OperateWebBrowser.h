@@ -12,8 +12,9 @@ public:
     COperateWebBrowser(CPlugin *plugin);
     virtual ~COperateWebBrowser();
 
-    // COperate interface
 public:
+    virtual const QString Name() override;
+    virtual const QIcon Icon() const override;
     virtual const qint16 Version() const override;
     virtual QWidget *GetViewer() override;
     virtual int Start() override;

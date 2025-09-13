@@ -210,17 +210,29 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                     this, [&](const QString &title) {
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         int index = IndexOfTab(pWeb);
-                        if(-1 < index)
+                        if(-1 < index) {
                             m_pTab->setTabText(index, title);
+                            setWindowTitle(title);
+                            emit sigUpdateTitle();
+                        }
                     });
     Q_ASSERT(check);
     check = connect(pWeb, &CFrmWebView::favIconChanged,
                     this, [&](const QIcon &icon){
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         int index = IndexOfTab(pWeb);
-                        if(-1 < index)
+                        if(-1 < index) {
                             m_pTab->setTabIcon(index, icon);
+                            setWindowIcon(icon);
+                            emit sigUpdateTitle();
+                        }
                     });
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::sigLinkHovered,
+                    this, &CFrmWebBrowser::sigInformation);
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::sigCloseRequested,
+                    this, &CFrmWebBrowser::slotViewCloseRequested);
     Q_ASSERT(check);
     check = connect(pWeb, &CFrmWebView::loadProgress,
                     this, [&](int progress){
@@ -532,6 +544,14 @@ void CFrmWebBrowser::slotTabCloseRequested(int index)
     if(pView)
         pView->deleteLater();
     m_pTab->removeTab(index);
+}
+
+void CFrmWebBrowser::slotViewCloseRequested()
+{
+    CFrmWebView* p = qobject_cast<CFrmWebView*>(sender());
+    if(!p) return;
+    int index = IndexOfTab(p);
+    slotTabCloseRequested(index);
 }
 
 void CFrmWebBrowser::slotReturnPressed()

@@ -208,8 +208,9 @@ Q_SIGNALS:
      */
     void sigViewerFocusIn(QWidget* pView);
     /*!
-     * \~chinese \note 名称更新。此信号仅由本类触发
-     * \~english \note The name is changed. This signal is only triggered by this class
+     * \~chinese \note 名称更新。此信号仅由本类触发。其派生类如需使用，请用 slotUpdateName
+     * \~english \note The name is changed. This signal is only triggered by this class.
+     *   If you need to use its derived class, please use slotUpdateName
      */
     void sigUpdateName(const QString& szName);
     /*!
@@ -353,9 +354,10 @@ protected:
     Q_INVOKABLE virtual int Save(QString szFile = QString());
     //!@}
 
-private Q_SLOTS:
+protected Q_SLOTS:
     void slotUpdateName();
 
+private Q_SLOTS:
     /*!
      * \~chinese
      * 阻塞后台线程，并在前台线程中显示窗口。

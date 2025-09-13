@@ -40,6 +40,9 @@ protected:
 signals:
     void favIconChanged(const QIcon &icon);
     void sigDevToolsRequested(QWebEnginePage *source);
+    void sigCloseRequested();
+    void sigLinkHovered(const QString &url);
+
 private slots:
     void slotSelectClientCertificate(QWebEngineClientCertificateSelection clientCertSelection);
     void slotAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth);

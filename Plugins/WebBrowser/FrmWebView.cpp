@@ -102,6 +102,9 @@ void CFrmWebView::setPage(QWebEnginePage *page)
         oldPage->disconnect(this);
     }
     QWebEngineView::setPage(page);
+    connect(page, &QWebEnginePage::linkHovered, this, &CFrmWebView::sigLinkHovered);
+    connect(page, &QWebEnginePage::windowCloseRequested,
+            this, &CFrmWebView::sigCloseRequested);
     connect(page, &QWebEnginePage::selectClientCertificate,
             this, &CFrmWebView::slotSelectClientCertificate);
     connect(page, &QWebEnginePage::authenticationRequired, this,
