@@ -4,6 +4,7 @@
 
 #include "Operate.h"
 #include "FrmWebBrowser.h"
+#include "ParameterWebBrowser.h"
 
 class COperateWebBrowser : public COperate
 {
@@ -30,7 +31,10 @@ private:
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
 
 private:
     CFrmWebBrowser* m_pWeb;
+    CParameterWebBrowser m_Parameter;
 };

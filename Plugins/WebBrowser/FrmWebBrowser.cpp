@@ -16,12 +16,29 @@
 
 static QScopedPointer<QWebEngineProfile> g_profile;
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
-CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
+CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     : QWidget{parent}
+    , m_pPara(pPara)
+    , m_pToolBar(nullptr)
+    , m_pBack(nullptr)
+    , m_pForward(nullptr)
+    , m_pRefresh(nullptr)
     , m_pStop(nullptr)
+    , m_pFind(nullptr)
+    , m_pFindNext(nullptr)
+    , m_pFindPrevious(nullptr)
+    , m_pZoomOriginal(nullptr)
+    , m_pZoomIn(nullptr)
+    , m_pZoomOut(nullptr)
+    , m_pFavAction(nullptr)
+    , m_pGo(nullptr)
+    , m_pAddPage(nullptr)
     , m_pAddWindow(nullptr)
     , m_pDownload(nullptr)
     , m_pInspector(nullptr)
+    , m_pUrlLineEdit(nullptr)
+    , m_pProgressBar(nullptr)
+    , m_pTab(nullptr)
 {
     bool check = false;
     QVBoxLayout* pLayout = new QVBoxLayout(this);
@@ -73,9 +90,9 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
     check = connect(m_pUrlLineEdit, &QLineEdit::returnPressed,
                          this, &CFrmWebBrowser::slotReturnPressed);
     Q_ASSERT(check);
-    // check = connect(m_pUrlLineEdit, &QLineEdit::editingFinished,
-    //                 this, &CFrmWebBrowser::slotReturnPressed);
-    // Q_ASSERT(check);
+    check = connect(m_pUrlLineEdit, &QLineEdit::editingFinished,
+                    this, &CFrmWebBrowser::slotReturnPressed);
+    Q_ASSERT(check);
     m_pGo = new QAction(QIcon::fromTheme("go-next"), tr("go"), m_pUrlLineEdit);
     m_pGo->setStatusTip(m_pGo->text());
     check = connect(m_pGo, &QAction::triggered, this, &CFrmWebBrowser::slotReturnPressed);
@@ -99,7 +116,11 @@ CFrmWebBrowser::CFrmWebBrowser(QWidget *parent)
 
     m_pAddPage = m_pToolBar->addAction(QIcon::fromTheme("add"), tr("Add tab page"),
                                    this, [&](){
-        createWindow(QWebEnginePage::WebBrowserTab);
+        auto pView = createWindow(QWebEnginePage::WebBrowserTab);
+        if(!m_pPara->GetTabUrl().isEmpty()) {
+            m_pUrlLineEdit->setText(m_pPara->GetTabUrl());
+            slotReturnPressed();
+        }
     });
     m_pAddPage->setStatusTip(m_pAddPage->text());
     Q_ASSERT(check);
@@ -510,6 +531,14 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 
     EnableAction(false);
     return 0;
+}
+
+int CFrmWebBrowser::Start()
+{
+    int nRet = 0;
+    // Add new web view
+    m_pAddPage->trigger();
+    return nRet;
 }
 
 void CFrmWebBrowser::slotTabCurrentChanged(int index)

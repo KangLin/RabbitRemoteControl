@@ -1,5 +1,6 @@
 #include "OperateWebBrowser.h"
 #include <QLoggingCategory>
+#include <DlgSettings.h>
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Operate")
 COperateWebBrowser::COperateWebBrowser(CPlugin *plugin): COperate(plugin)
@@ -43,7 +44,8 @@ int COperateWebBrowser::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-
+    if(m_pWeb)
+        m_pWeb->Start();
     emit sigRunning();
     return nRet;
 }
@@ -66,7 +68,7 @@ int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
 QDialog *COperateWebBrowser::OnOpenDialogSettings(QWidget *parent)
 {
     qDebug(log) << Q_FUNC_INFO;
-    return nullptr;
+    return new CDlgSettings(&m_Parameter, parent);
 }
 
 int COperateWebBrowser::Initial()
@@ -74,7 +76,7 @@ int COperateWebBrowser::Initial()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = COperate::Initial();
     if(nRet) return nRet;
-    m_pWeb = new CFrmWebBrowser();
+    m_pWeb = new CFrmWebBrowser(&m_Parameter);
     if(m_pWeb) {
         m_pWeb->InitMenu(&m_Menu);
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
@@ -84,7 +86,6 @@ int COperateWebBrowser::Initial()
                         this, &COperateWebBrowser::slotUpdateName);
         Q_ASSERT(check);
     }
-    return nRet;
     m_Menu.addSeparator();
     if(m_pActionSettings)
         m_Menu.addAction(m_pActionSettings);
@@ -99,5 +100,20 @@ int COperateWebBrowser::Clean()
         delete m_pWeb;
         m_pWeb = nullptr;
     }
+    return nRet;
+}
+
+
+int COperateWebBrowser::Load(QSettings &set)
+{
+    int nRet = 0;
+    nRet = m_Parameter.Load(set);
+    return nRet;
+}
+
+int COperateWebBrowser::Save(QSettings &set)
+{
+    int nRet = 0;
+    nRet = m_Parameter.Save(set);
     return nRet;
 }

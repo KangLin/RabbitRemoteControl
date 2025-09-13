@@ -27,6 +27,8 @@ set(WebBrowser_SOURCE_FILES
     FrmWebView.cpp
     FrmDownload.cpp
     FrmDownloadManager.cpp
+    DlgSettings.cpp
+    ParameterWebBrowser.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -35,9 +37,12 @@ set(WebBrowser_HEADER_FILES
     FrmWebView.h
     FrmDownload.h
     FrmDownloadManager.h
+    DlgSettings.h
+    ParameterWebBrowser.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
+    DlgSettings.ui
     )
 if(QT_VERSION GREATER_EQUAL "6.0.0")
     list(APPEND WebBrowser_SOURCE_FILES

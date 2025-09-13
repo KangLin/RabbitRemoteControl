@@ -1,0 +1,24 @@
+// Author: Kang Lin <kl222@126.com>
+#pragma once
+#include <QDialog>
+#include "ParameterWebBrowser.h"
+
+namespace Ui {
+class CDlgSettings;
+}
+
+class CDlgSettings : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit CDlgSettings(CParameterWebBrowser* para, QWidget *parent = nullptr);
+    ~CDlgSettings();
+
+public slots:
+    virtual void accept() override;
+
+private:
+    Ui::CDlgSettings *ui;
+    CParameterWebBrowser* m_pPara;
+};

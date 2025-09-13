@@ -11,17 +11,19 @@
 
 #include "FrmWebView.h"
 #include "FrmDownloadManager.h"
+#include "ParameterWebBrowser.h"
 
 class CFrmWebBrowser : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CFrmWebBrowser(QWidget *parent = nullptr);
+    explicit CFrmWebBrowser(CParameterWebBrowser* pPara, QWidget *parent = nullptr);
     virtual ~CFrmWebBrowser();
 
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
     int InitMenu(QMenu* pMenu);
+    int Start();
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
@@ -50,6 +52,7 @@ private:
     [[nodiscard]] int IndexOfTab(CFrmWebView* pView);
 
 private:
+    CParameterWebBrowser* m_pPara;
     QToolBar* m_pToolBar;
     QAction* m_pBack;
     QAction* m_pForward;
