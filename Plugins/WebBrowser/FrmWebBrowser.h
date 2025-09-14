@@ -25,6 +25,8 @@ public:
     int InitMenu(QMenu* pMenu);
     int Start();
     int Stop();
+    int Load(QSettings &set);
+    int Save(QSettings &set);
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);

@@ -560,8 +560,10 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 int CFrmWebBrowser::Start()
 {
     int nRet = 0;
-    // Add new web view
-    m_pAddPage->trigger();
+    if(m_pTab->count() == 0) {
+        // Add new web view
+        m_pAddPage->trigger();
+    }
     return nRet;
 }
 
@@ -677,4 +679,41 @@ void CFrmWebBrowser::slotInspector(bool checked)
         if(!dev->isHidden())
             dev->hide();
     }
+}
+
+int CFrmWebBrowser::Load(QSettings &set)
+{
+    if(m_pPara && m_pPara->GetOpenPrevious()) {
+        set.beginGroup("OpenPrevious");
+        int nCount = 0;
+        nCount = set.value("Count", 0).toInt();
+        int nCurrent = set.value("Current",  -1).toInt();
+        for(int i = 0; i < nCount; i++)
+        {
+            QString u = set.value(QString::number(i)).toString();
+            auto pView = createWindow(QWebEnginePage::WebBrowserTab);
+            pView->load(QUrl(u));
+        }
+        if(-1 < nCurrent && m_pTab->count() > nCurrent)
+            m_pTab->setCurrentIndex(nCurrent);
+        set.endGroup();
+    }
+    return 0;
+}
+
+int CFrmWebBrowser::Save(QSettings &set)
+{
+    if(m_pPara && m_pPara->GetOpenPrevious()) {
+        set.beginGroup("OpenPrevious");
+        set.setValue("Count", m_pTab->count());
+        set.setValue("Current", m_pTab->currentIndex());
+        for(int i = 0; i < m_pTab->count(); i++) {
+            auto v = GetView(i);
+            if(v) {
+                set.setValue(QString::number(i), v->url().toString());
+            }
+        }
+        set.endGroup();
+    }
+    return 0;
 }

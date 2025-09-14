@@ -104,11 +104,12 @@ int COperateWebBrowser::Clean()
     return nRet;
 }
 
-
 int COperateWebBrowser::Load(QSettings &set)
 {
     int nRet = 0;
     nRet = m_Parameter.Load(set);
+    if(m_pWeb)
+        nRet = m_pWeb->Load(set);
     return nRet;
 }
 
@@ -116,5 +117,7 @@ int COperateWebBrowser::Save(QSettings &set)
 {
     int nRet = 0;
     nRet = m_Parameter.Save(set);
+    if(m_pWeb)
+        nRet = m_pWeb->Save(set);
     return nRet;
 }

@@ -20,7 +20,7 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     int nRet = 0;
     SetHomeUrl(set.value("Url/Home", GetHomeUrl()).toString());
     SetTabUrl(set.value("Url/Tab", GetTabUrl()).toString());
-    SetOpenPrevious(set.value("OpenPrevious", GetOpenPrevious()).toBool());
+    SetOpenPrevious(set.value("OpenPrevious/Enable", GetOpenPrevious()).toBool());
     SetDownloadFolder(set.value("Download/Folder", GetDownloadFolder()).toString());
     return nRet;
 }
@@ -30,7 +30,7 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     int nRet = 0;
     set.setValue("Url/Home", GetHomeUrl());
     set.setValue("Url/Tab", GetTabUrl());
-    set.setValue("OpenPrevious", GetOpenPrevious());
+    set.setValue("OpenPrevious/Enable", GetOpenPrevious());
     set.setValue("Download/Folder", GetDownloadFolder());
     return nRet;
 }
