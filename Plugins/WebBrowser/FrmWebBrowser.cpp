@@ -36,6 +36,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_pAddWindow(nullptr)
     , m_pDownload(nullptr)
     , m_pInspector(nullptr)
+    , m_pUrl(nullptr)
     , m_pUrlLineEdit(nullptr)
     , m_pProgressBar(nullptr)
     , m_pTab(nullptr)
@@ -87,7 +88,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     m_pFavAction = new QAction(m_pUrlLineEdit);
     m_pUrlLineEdit->addAction(m_pFavAction, QLineEdit::LeadingPosition);
     m_pUrlLineEdit->setClearButtonEnabled(true);
-    m_pToolBar->addWidget(m_pUrlLineEdit);
+    m_pUrl = m_pToolBar->addWidget(m_pUrlLineEdit);
     check = connect(m_pUrlLineEdit, &QLineEdit::returnPressed,
                          this, &CFrmWebBrowser::slotReturnPressed);
     Q_ASSERT(check);
@@ -232,12 +233,22 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
         case QWebEnginePage::WebAction::Forward:
             m_pForward->setEnabled(enabled);
             break;
-        case QWebEnginePage::WebAction::Reload:
+        case QWebEnginePage::WebAction::Reload: {
             m_pRefresh->setEnabled(enabled);
+            if(m_pRefresh->isEnabled())
+                m_pToolBar->insertAction(m_pUrl, m_pRefresh);
+            else
+                m_pToolBar->removeAction(m_pRefresh);
             break;
-        case QWebEnginePage::WebAction::Stop:
+        }
+        case QWebEnginePage::WebAction::Stop: {
             m_pStop->setEnabled(enabled);
+            if(m_pStop->isEnabled())
+                m_pToolBar->insertAction(m_pUrl, m_pStop);
+            else
+                m_pToolBar->removeAction(m_pStop);
             break;
+        }
         default:
             break;
         }
@@ -370,15 +381,27 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view)
     return pSplitter;
 }
 
-CFrmWebView *CFrmWebBrowser::CurrentView(ViewType idx)
+CFrmWebView *CFrmWebBrowser::CurrentView(ViewType type)
 {
     auto w = m_pTab->currentWidget();
     if(!w) return nullptr;
     QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
     if(!pSplitter) return nullptr;
-    int index = (int)idx;
+    int index = (int)type;
     if(0 > index && pSplitter->count() <= index) return nullptr;
     return qobject_cast<CFrmWebView*>(pSplitter->widget(index));
+}
+
+CFrmWebView* CFrmWebBrowser::GetView(int index, ViewType type)
+{
+    if(0 > index || m_pTab->count() <= index) return nullptr;
+    auto w = m_pTab->widget(index);
+    if(!w) return nullptr;
+    QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
+    if(!pSplitter) return nullptr;
+    int idx = (int)type;
+    if(0 > idx && pSplitter->count() <= idx) return nullptr;
+    return qobject_cast<CFrmWebView*>(pSplitter->widget(idx));
 }
 
 bool CFrmWebBrowser::IsCurrentView(CFrmWebView *pView)
@@ -407,7 +430,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addAction(m_pBack);
     pMenu->addAction(m_pForward);
     pMenu->addAction(m_pRefresh);
-    m_pStop = pMenu->addAction(QIcon::fromTheme("stop"), tr("Stop"),
+    m_pStop = pMenu->addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),
                      this, [&](){
         CFrmWebView* pWeb = CurrentView();
         if(pWeb && pWeb->page())
@@ -542,6 +565,17 @@ int CFrmWebBrowser::Start()
     return nRet;
 }
 
+int CFrmWebBrowser::Stop()
+{
+    int nRet = 0;
+    for(int i = 0; i < m_pTab->count(); i++) {
+        auto v = GetView(i);
+        if(!v) continue;
+        v->stop();
+    }
+    return nRet;
+}
+
 void CFrmWebBrowser::slotTabCurrentChanged(int index)
 {
     bool check = false;
@@ -564,9 +598,17 @@ void CFrmWebBrowser::slotTabCurrentChanged(int index)
             action = page->action(QWebEnginePage::Reload);
             if(action && m_pRefresh)
                 m_pRefresh->setEnabled(action->isEnabled());
+            if(m_pRefresh->isEnabled())
+                m_pToolBar->insertAction(m_pUrl, m_pRefresh);
+            else
+                m_pToolBar->removeAction(m_pRefresh);
             action = page->action(QWebEnginePage::Stop);
             if(action && m_pStop)
                 m_pStop->setEnabled(action->isEnabled());
+            if(m_pStop->isEnabled())
+                m_pToolBar->insertAction(m_pUrl, m_pStop);
+            else
+                m_pToolBar->removeAction(m_pStop);
             m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
         }
     } else {

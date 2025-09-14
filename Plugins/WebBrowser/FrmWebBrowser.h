@@ -24,6 +24,7 @@ public:
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
     int InitMenu(QMenu* pMenu);
     int Start();
+    int Stop();
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
@@ -47,9 +48,10 @@ private:
         Web = 0,
         DevTools = 1
     };
-    [[nodiscard]] CFrmWebView *CurrentView(ViewType index = ViewType::Web);
+    [[nodiscard]] CFrmWebView *CurrentView(ViewType type = ViewType::Web);
     [[nodiscard]] bool IsCurrentView(CFrmWebView *pView);
     [[nodiscard]] int IndexOfTab(CFrmWebView* pView);
+    [[nodiscard]] CFrmWebView* GetView(int index, ViewType type = ViewType::Web);
 
 private:
     CParameterWebBrowser* m_pPara;
@@ -70,6 +72,7 @@ private:
     QAction* m_pAddWindow;
     QAction* m_pDownload;
     QAction* m_pInspector;
+    QAction* m_pUrl;
     QLineEdit* m_pUrlLineEdit;
     QProgressBar* m_pProgressBar;
     QTabWidget* m_pTab;

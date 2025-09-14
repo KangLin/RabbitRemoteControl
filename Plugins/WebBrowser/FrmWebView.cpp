@@ -63,7 +63,6 @@ CFrmWebView::~CFrmWebView()
         delete m_imageAnimationGroup;
 
     m_imageAnimationGroup = nullptr;
-    this->stop();
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)

@@ -45,7 +45,7 @@ int COperateWebBrowser::Start()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(m_pWeb)
-        m_pWeb->Start();
+        nRet = m_pWeb->Start();
     emit sigRunning();
     return nRet;
 }
@@ -54,7 +54,8 @@ int COperateWebBrowser::Stop()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-
+    if(m_pWeb)
+        nRet = m_pWeb->Stop();
     emit sigFinished();
     return nRet;
 }
