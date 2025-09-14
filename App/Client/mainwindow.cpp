@@ -51,6 +51,7 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , m_pToolBarMenuAction(nullptr)
     , m_pMenuActivityGroup(nullptr)
     , m_ptbMenuActivity(nullptr)
     , m_pActionOperateMenu(nullptr)
@@ -175,6 +176,24 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigEnableTabIconChanged()),
                     this, SLOT(slotUpdateName()));
     Q_ASSERT(check);
+
+    auto pTbMenu = new QToolButton(ui->toolBar);
+    pTbMenu->setFocusPolicy(Qt::NoFocus);
+    pTbMenu->setPopupMode(QToolButton::InstantPopup);
+    //m_pTbMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    pTbMenu->setText(ui->actionMain_menu_bar_M->text());
+    pTbMenu->setIcon(ui->actionMain_menu_bar_M->icon());
+    pTbMenu->setToolTip(ui->actionMain_menu_bar_M->toolTip());
+    pTbMenu->setStatusTip(ui->actionMain_menu_bar_M->statusTip());
+    QMenu *pMenu = new QMenu(pTbMenu);
+    pMenu->addActions(this->menuBar()->actions());
+    pTbMenu->setMenu(pMenu);
+    m_pToolBarMenuAction = ui->toolBar->insertWidget(ui->actionTabBar_B, pTbMenu);
+#if defined(Q_OS_ANDROID)
+    m_pToolBarMenuAction->setVisible(true);
+#else
+    m_pToolBarMenuAction->setVisible(false);
+#endif
 
     m_Manager.EnumPlugins(this);
     check = connect(&m_Parameter, SIGNAL(sigStartByTypeChanged()),
@@ -356,9 +375,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->actionMain_menu_bar_M->setVisible(false);
         #else
         // Show 'Main menu bar' toolbar icon
-        if(!m_Parameter.GetMenuBar())
-            ui->toolBar->insertAction(ui->actionTabBar_B,
-                                      ui->actionMain_menu_bar_M);
+        if(!m_Parameter.GetMenuBar()) {
+            m_pToolBarMenuAction->setVisible(true);
+        }
         #endif
     }
 
@@ -1310,23 +1329,24 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
                                             | QMessageBox::StandardButton::No))
         {
             ui->actionToolBar_T->setChecked(true);
+            if(m_pToolBarMenuAction)
+                m_pToolBarMenuAction->setVisible(true);
         } else {
             ui->actionMain_menu_bar_M->setChecked(true);
+#if !defined(Q_OS_ANDROID)
+            if(m_pToolBarMenuAction)
+                m_pToolBarMenuAction->setVisible(false);
+#endif
             return;
         }
     }
-    
+
     menuBar()->setVisible(checked);
     m_Parameter.SetMenuBar(checked);
-    if(checked)
-    {
-        ui->toolBar->removeAction(ui->actionMain_menu_bar_M);
-    }
-    else
-    {
-        ui->toolBar->insertAction(ui->actionTabBar_B,
-                                  ui->actionMain_menu_bar_M);
-    }
+#if !defined(Q_OS_ANDROID)
+    if(m_pToolBarMenuAction)
+        m_pToolBarMenuAction->setVisible(!checked);
+#endif
 }
 
 void MainWindow::on_actionToolBar_T_toggled(bool checked)
@@ -1627,6 +1647,10 @@ void MainWindow::on_actionLayoutDefault_triggered()
         ui->actionTabBar_B->trigger();
     if(!ui->actionMain_menu_bar_M->isChecked()) {
         ui->actionMain_menu_bar_M->trigger();
+#if !defined(Q_OS_ANDROID)
+        m_pToolBarMenuAction->setVisible(false);
+#endif
+    }
     if(!ui->actionToolBar_T->isChecked())
         ui->actionToolBar_T->trigger();
     addToolBar(Qt::TopToolBarArea, ui->toolBar);
@@ -1648,6 +1672,10 @@ void MainWindow::on_actionLayoutSimple_triggered()
         ui->actionTabBar_B->trigger();
     if(!ui->actionMain_menu_bar_M->isChecked()) {
         ui->actionMain_menu_bar_M->trigger();
+#if !defined(Q_OS_ANDROID)
+        m_pToolBarMenuAction->setVisible(false);
+#endif
+    }
     if(!ui->actionToolBar_T->isChecked())
         ui->actionToolBar_T->trigger();
     addToolBar(Qt::LeftToolBarArea, ui->toolBar);
@@ -1670,6 +1698,8 @@ void MainWindow::on_actionLayoutMinimalism_triggered()
 #if !defined(Q_OS_MACOS)
     if(ui->actionMain_menu_bar_M->isChecked()) {
         ui->actionMain_menu_bar_M->trigger();
+        m_pToolBarMenuAction->setVisible(true);
+    }
 #endif
     if(!ui->actionToolBar_T->isChecked())
         ui->actionToolBar_T->trigger();

@@ -130,23 +130,9 @@ int main(int argc, char *argv[])
     MainWindow* w = new MainWindow();
     try {
         //w->setWindowIcon(QIcon::themeName("app"));
-        //w->setWindowTitle(a.applicationDisplayName());
+        //w->setWindowTitle(app.applicationDisplayName());
 
-#ifdef BUILD_QUIWidget
-        QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
-        bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
-                                        SLOT(showFullScreen()));
-        Q_ASSERT(check);
-        check = quiwidget->connect(w, SIGNAL(sigShowNormal()),
-                                   SLOT(showNormal()));
-        Q_ASSERT(check);
-        //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
-        //quiwidget.setTitle(a.applicationDisplayName());
-        quiwidget->setMainWidget(w);
-        quiwidget->show();
-#else
         w->show();
-#endif
 
         nRet = app.exec();
     } catch (std::exception &e) {
@@ -155,9 +141,7 @@ int main(int argc, char *argv[])
         qCritical(log) << "exception:";
     }
 
-#ifndef BUILD_QUIWidget
     delete w;
-#endif
 
     RabbitCommon::CTools::Instance()->Clean();
     if(tApp)
