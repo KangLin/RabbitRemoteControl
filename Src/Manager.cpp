@@ -269,7 +269,7 @@ COperate* CManager::LoadOperate(const QString &szFile)
 {
     COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
-    
+    qDebug(log) << "LoadOperate:"<< szFile;
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
@@ -299,8 +299,8 @@ COperate* CManager::LoadOperate(const QString &szFile)
         pOperate->SetSettingsFile(szFile);
     }
     else
-        qCritical(log) << "Don't create Operate:" << protocol;
-    
+        qCritical(log) << "Don't create Operate:" << name << protocol << id << szFile;
+
     return pOperate;
 }
 

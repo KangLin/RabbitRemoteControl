@@ -8,7 +8,7 @@ endif()
 
 set(libssh_LIB ssh)
 
-project(SSH DESCRIPTION "SSH terminal")
+project(SSH DESCRIPTION "SSH terminal plugin")
 
 list(APPEND libssh_LIB Plugin)
 

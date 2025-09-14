@@ -7,6 +7,7 @@ static Q_LOGGING_CATEGORY(log, "WebBrowser.Plugin")
 CPluginWebBrowser::CPluginWebBrowser(QObject *parent)
     : CPlugin(parent)
 {
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CPluginWebBrowser::~CPluginWebBrowser()
