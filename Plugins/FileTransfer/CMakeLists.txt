@@ -2,7 +2,7 @@
 # Author Kang Lin <kl222@126.com>
 
 project(FileTransfer LANGUAGES CXX
-  DESCRIPTION "File transfers")
+  DESCRIPTION "File transfers plugin")
 
 SET(FileTransfer_LIBS Plugin)
 SET(FileTransfer_SOURCE_FILES

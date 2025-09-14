@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -62,8 +62,29 @@
       <iconset theme="network-wired"/>
      </property>
     </widget>
+    <widget class="QMenu" name="menuLayout">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="toolTip">
+      <string>Layout</string>
+     </property>
+     <property name="statusTip">
+      <string>Layout</string>
+     </property>
+     <property name="title">
+      <string>Layout</string>
+     </property>
+     <property name="icon">
+      <iconset theme="layout"/>
+     </property>
+     <addaction name="actionLayoutDefault"/>
+     <addaction name="actionLayoutSimple"/>
+     <addaction name="actionLayoutMinimalism"/>
+    </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="menuType"/>
+    <addaction name="menuLayout"/>
     <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
@@ -481,6 +502,39 @@
   <action name="actionUser_manual">
    <property name="text">
     <string>User manual</string>
+   </property>
+  </action>
+  <action name="actionLayoutDefault">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+   <property name="statusTip">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionLayoutSimple">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Simple</string>
+   </property>
+   <property name="statusTip">
+    <string>Simple</string>
+   </property>
+  </action>
+  <action name="actionLayoutMinimalism">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Minimalism</string>
+   </property>
+   <property name="statusTip">
+    <string>Minimalism</string>
    </property>
   </action>
  </widget>

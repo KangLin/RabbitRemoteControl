@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(WebBrowser LANGUAGES CXX)
+project(WebBrowser LANGUAGES CXX
+   DESCRIPTION "Web browser plugin")
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)

@@ -200,6 +200,12 @@ private Q_SLOTS:
 private:
     void SetView(CView* pView);
 
+    ///////// Layout /////////
+private Q_SLOTS:
+    void on_actionLayoutDefault_triggered();
+    void on_actionLayoutSimple_triggered();
+    void on_actionLayoutMinimalism_triggered();
+
     ///////// Recent open /////////
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;

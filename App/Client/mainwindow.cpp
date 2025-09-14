@@ -1612,3 +1612,72 @@ void MainWindow::on_actionUser_manual_triggered()
         || RabbitCommon::CTools::GetLanguage() == "zh_TW")
         szUrl += "_zh_CN";    
 }
+
+void MainWindow::on_actionLayoutDefault_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(!m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(!m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::North);
+    if(!ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+    if(!ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+    addToolBar(Qt::TopToolBarArea, ui->toolBar);
+    if(!ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
+}
+
+void MainWindow::on_actionLayoutSimple_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::East);
+    if(!ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+    if(!ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+    if(!ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
+}
+
+void MainWindow::on_actionLayoutMinimalism_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::East);
+    if(ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+#if !defined(Q_OS_MACOS)
+    if(ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+#endif
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+#if defined(Q_OS_LINUX)
+    addToolBar(Qt::RightToolBarArea, ui->toolBar);
+#else
+    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+#endif
+    if(ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
+}
