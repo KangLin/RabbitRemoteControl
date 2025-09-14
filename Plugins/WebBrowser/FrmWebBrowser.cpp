@@ -39,6 +39,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_pUrlLineEdit(nullptr)
     , m_pProgressBar(nullptr)
     , m_pTab(nullptr)
+    , m_DownloadManager(pPara)
 {
     bool check = false;
     QVBoxLayout* pLayout = new QVBoxLayout(this);
@@ -124,7 +125,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     });
     m_pAddPage->setStatusTip(m_pAddPage->text());
     Q_ASSERT(check);
-    m_pDownload = m_pToolBar->addAction(QIcon::fromTheme("emblem-downloads"), tr("Download"));
+    m_pDownload = m_pToolBar->addAction(QIcon::fromTheme("emblem-downloads"), tr("Download Manager"));
     m_pDownload->setCheckable(true);
     m_pDownload->setStatusTip(m_pDownload->text());
     check = connect(m_pDownload, &QAction::toggled,

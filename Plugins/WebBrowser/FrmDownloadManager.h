@@ -4,12 +4,13 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "FrmDownload.h"
+#include <ParameterWebBrowser.h>
 
 class CFrmDownloadManager : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CFrmDownloadManager(QWidget *parent = nullptr);
+    explicit CFrmDownloadManager(CParameterWebBrowser* para, QWidget *parent = nullptr);
     virtual ~CFrmDownloadManager();
     
 public Q_SLOTS:
@@ -27,6 +28,7 @@ private Q_SLOTS:
 private:
     int m_nCount;
     QVBoxLayout* m_pItems;
+    CParameterWebBrowser* m_pPara;
 };
 
 #endif // FRMDOWNLOADMANAGER_H

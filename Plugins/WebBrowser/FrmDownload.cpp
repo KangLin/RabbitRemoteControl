@@ -77,6 +77,7 @@ void CFrmDownload::on_pbButton_clicked()
     case QWebEngineDownloadRequest::DownloadCancelled:
     case QWebEngineDownloadRequest::DownloadInterrupted: {
         m_pDownload->resume();
+        ui->lbFileInfo->hide();
         break;
     }
     case QWebEngineDownloadRequest::DownloadCompleted: {
@@ -104,6 +105,7 @@ void CFrmDownload::slotUpdateWidget()
     auto state = m_pDownload->state();
     switch (state) {
     case QWebEngineDownloadRequest::DownloadRequested:
+        ui->progressBar->setDisabled(false);
         m_pDownload->accept();
         break;
     case QWebEngineDownloadRequest::DownloadInProgress:
@@ -158,6 +160,8 @@ void CFrmDownload::slotUpdateWidget()
         static QIcon cancelIcon(QIcon::fromTheme("view-refresh"));
         ui->pbButton->setIcon(cancelIcon);
         ui->pbButton->setToolTip(tr("Resumes downloading"));
+        ui->lbFileInfo->setText(m_pDownload->interruptReasonString());
+        ui->lbFileInfo->show();
         break;
     }
     case QWebEngineDownloadRequest::DownloadCompleted: {

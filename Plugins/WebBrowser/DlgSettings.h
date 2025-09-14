@@ -18,6 +18,11 @@ public:
 public slots:
     virtual void accept() override;
 
+private slots:
+    void on_leHomeUrl_editingFinished();
+
+    void on_pbDownloadFolder_clicked();
+
 private:
     Ui::CDlgSettings *ui;
     CParameterWebBrowser* m_pPara;

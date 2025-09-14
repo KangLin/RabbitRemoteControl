@@ -26,6 +26,11 @@ public:
     void SetOpenPrevious(bool bOpen);
 private:
     bool m_bOpenPrevious;
+public:
+    QString GetDownloadFolder();
+    int SetDownloadFolder(const QString& folder);
+private:
+    QString m_szDownloadFolder;
 
     // CParameter interface
 protected:

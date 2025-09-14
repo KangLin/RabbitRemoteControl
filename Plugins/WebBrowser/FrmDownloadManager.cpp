@@ -3,12 +3,16 @@
 #include <QLoggingCategory>
 #include <QScrollArea>
 #include <QUrl>
+#include <QFileInfo>
+#include <QDir>
 #include "FrmDownloadManager.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Download.Manager")
-CFrmDownloadManager::CFrmDownloadManager(QWidget *parent)
+CFrmDownloadManager::CFrmDownloadManager(CParameterWebBrowser *para, QWidget *parent)
     : QWidget{parent}
     , m_nCount(0)
+    , m_pItems(nullptr)
+    , m_pPara(para)
 {
     setWindowTitle(tr("Download manager"));
     auto layout = new QVBoxLayout(this);
@@ -33,8 +37,11 @@ void CFrmDownloadManager::slotDownloadRequested(QWebEngineDownloadRequest *downl
 {
     Q_ASSERT(download && download->state() == QWebEngineDownloadRequest::DownloadRequested);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    download->setDownloadDirectory(m_pPara->GetDownloadFolder());
     qDebug(log) << "slotDownloadRequested:" << download->downloadDirectory() << download->downloadFileName() << download->url();
 #else
+    QFileInfo fi(download->path());
+    download->setPath(m_pPara->GetDownloadFolder() + QDir::separator() + fi.fileName());
     qDebug(log) << "slotDownloadRequested:" << download->path() << download->url();
 #endif
     auto pDownload = new CFrmDownload(download);

@@ -1,13 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QStandardPaths>
 #include <QLoggingCategory>
 #include "ParameterWebBrowser.h"
-static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 
+static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_bOpenPrevious(false)
-{}
+{
+    m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+}
 
 CParameterWebBrowser::~CParameterWebBrowser()
 {}
@@ -18,6 +21,7 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetHomeUrl(set.value("Url/Home", GetHomeUrl()).toString());
     SetTabUrl(set.value("Url/Tab", GetTabUrl()).toString());
     SetOpenPrevious(set.value("OpenPrevious", GetOpenPrevious()).toBool());
+    SetDownloadFolder(set.value("Download/Folder", GetDownloadFolder()).toString());
     return nRet;
 }
 
@@ -27,6 +31,7 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("Url/Home", GetHomeUrl());
     set.setValue("Url/Tab", GetTabUrl());
     set.setValue("OpenPrevious", GetOpenPrevious());
+    set.setValue("Download/Folder", GetDownloadFolder());
     return nRet;
 }
 
@@ -73,4 +78,18 @@ void CParameterWebBrowser::SetOpenPrevious(bool bOpen)
         return;
     m_bOpenPrevious = bOpen;
     SetModified(true);
+}
+
+QString CParameterWebBrowser::GetDownloadFolder()
+{
+    return m_szDownloadFolder;
+}
+
+int CParameterWebBrowser::SetDownloadFolder(const QString& folder)
+{
+    if(m_szDownloadFolder == folder)
+        return 0;
+    m_szDownloadFolder = folder;
+    SetModified(true);
+    return 0;
 }
