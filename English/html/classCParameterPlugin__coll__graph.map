@@ -1,0 +1,10 @@
+<map id="CParameterPlugin" name="CParameterPlugin">
+<area shape="rect" id="Node000001" title="Global parameters of plugins." alt="" coords="5,243,144,268"/>
+<area shape="rect" id="Node000002" href="$classCParameter.html" title="Parameter interface." alt="" coords="20,80,119,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,119,77,243,72,243,68,119"/>
+<area shape="rect" id="Node000004" href="$classCParameterRecord.html" title=" " alt="" coords="91,155,234,180"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="97,112,149,152,146,156,93,116"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="32,5,107,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="72,45,72,80,67,80,67,45"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,191,89,244,85,240,139,188"/>
+</map>

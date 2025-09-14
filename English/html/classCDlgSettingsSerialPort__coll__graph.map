@@ -1,0 +1,32 @@
+<map id="CDlgSettingsSerialPort" name="CDlgSettingsSerialPort">
+<area shape="rect" id="Node000001" title=" " alt="" coords="43,581,213,607"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,493,80,519"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,527,118,579,114,583,62,531"/>
+<area shape="rect" id="Node000003" href="$classCParameterSerialPort.html" title=" " alt="" coords="307,493,469,519"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="341,526,164,584,162,579,339,521"/>
+<area shape="rect" id="Node000004" href="$classCParameterTerminalBase.html" title="Terminal base parameter." alt="" coords="295,419,481,444"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="391,458,391,493,385,493,385,458"/>
+<area shape="rect" id="Node000005" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="345,331,495,356"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="413,370,395,419,390,417,408,368"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="510,335,522,343,514,351,496,354,495,348,512,346,517,344,507,340"/>
+<area shape="rect" id="Node000006" href="$classCParameter.html" title="Parameter interface." alt="" coords="280,80,379,105"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="328,119,324,189,329,229,341,267,353,286,369,303,402,328,399,333,365,307,349,289,336,269,324,230,319,189,322,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="351,243,489,268"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="345,116,416,241,411,244,340,119"/>
+<area shape="rect" id="Node000009" href="$classCParameterRecord.html" title=" " alt="" coords="393,155,535,180"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="364,110,444,152,441,157,362,114"/>
+<area shape="rect" id="Node000010" href="$classCParameterTerminal.html" title=" " alt="" coords="165,331,320,356"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="301,116,288,131,264,185,251,243,246,294,245,330,240,330,240,294,246,242,259,184,283,128,297,112"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="292,5,367,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="332,45,332,80,327,80,327,45"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="423,282,423,330,417,330,417,282"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="454,194,428,243,424,241,449,191"/>
+<area shape="poly" id="edge12_Node000004_Node000010" title=" " alt="" coords="270,362,316,392,363,416,360,421,313,397,267,366"/>
+<area shape="rect" id="Node000011" href="$classCParameterTerminalUI.html" title=" " alt="" coords="44,419,212,444"/>
+<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="211,365,186,382,141,421,138,417,182,378,208,361"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="131,458,131,581,125,581,125,458"/>
+<area shape="rect" id="Node000012" href="$classCParameterUI.html" title="The parameter UI interface." alt="" coords="29,331,141,356"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="100,367,124,417,120,419,95,370"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="46,243,125,268"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="88,282,88,330,83,330,83,282"/>
+</map>

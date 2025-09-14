@@ -1,0 +1,30 @@
+<map id="CParameterTerminalSSH" name="CParameterTerminalSSH">
+<area shape="rect" id="Node000001" title=" " alt="" coords="135,680,315,705"/>
+<area shape="rect" id="Node000002" href="$classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="223,416,410,441"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="311,455,231,681,226,679,306,453"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="5,341,156,367"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,368,280,413,279,419,130,373"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="170,346,183,354,174,361,156,363,156,358,172,356,177,354,168,351"/>
+<area shape="rect" id="Node000009" href="$classCParameterSSH.html" title=" " alt="" coords="47,592,171,617"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="66,380,60,392,31,461,28,491,38,528,48,547,62,564,93,590,89,594,59,568,44,550,33,530,23,492,26,459,56,390,62,377"/>
+<area shape="rect" id="Node000010" href="$classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="48,504,169,529"/>
+<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="70,380,61,410,60,425,62,441,79,475,100,502,96,506,75,478,57,442,54,425,56,409,65,379"/>
+<area shape="rect" id="Node000011" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="71,416,199,441"/>
+<area shape="poly" id="edge17_Node000011_Node000003" title=" " alt="" coords="100,377,129,414,124,417,96,380"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="85,80,183,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,119,98,179,85,216,75,254,75,279,82,341,76,341,70,279,70,253,80,214,93,177,119,117"/>
+<area shape="rect" id="Node000006" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="85,253,223,279"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="131,119,126,155,126,180,137,220,151,252,146,254,132,222,121,180,121,154,126,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterRecord.html" title=" " alt="" coords="136,155,279,180"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="158,113,197,152,194,156,154,117"/>
+<area shape="rect" id="Node000008" href="$classCParameterTerminal.html" title=" " alt="" coords="239,204,394,229"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="198,104,247,122,271,136,292,153,309,178,317,203,312,205,304,181,288,156,268,140,244,127,196,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="97,5,171,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="137,45,137,80,131,80,131,45"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="137,291,93,343,89,339,133,287"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="174,190,160,205,154,230,155,253,149,253,149,229,156,203,170,186"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="319,243,319,416,314,416,314,243"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="137,623,210,678,207,682,134,628"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="111,543,111,591,106,591,106,543"/>
+<area shape="poly" id="edge16_Node000010_Node000011" title=" " alt="" coords="130,455,115,504,110,503,125,453"/>
+</map>

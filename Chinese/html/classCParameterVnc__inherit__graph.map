@@ -1,0 +1,11 @@
+<map id="CParameterVnc" name="CParameterVnc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="19,299,142,324"/>
+<area shape="rect" id="Node000002" href="$classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="15,225,146,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,264,83,299,78,299,78,264"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="5,152,156,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,191,83,225,78,225,78,191"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="参数接口" alt="" coords="31,79,130,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,118,83,152,78,152,78,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="43,5,118,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="83,44,83,79,78,79,78,44"/>
+</map>

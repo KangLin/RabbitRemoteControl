@@ -1,0 +1,11 @@
+<map id="CBackendVnc" name="CBackendVnc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="100,225,211,251"/>
+<area shape="rect" id="Node000002" href="$classCBackendDesktop.html" title="Remote desktop interface." alt="" coords="5,152,145,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,184,144,223,140,227,96,188"/>
+<area shape="rect" id="Node000003" href="$classCBackend.html" title="Backend interface." alt="" coords="32,79,119,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,118,78,152,73,152,73,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="38,5,113,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,44,78,79,73,79,73,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="170,152,301,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="214,188,170,227,167,223,211,184"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="CParameterDlgSettings" name="CParameterDlgSettings">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,179,268"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="13,155,88,180"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,191,89,241,84,243,60,194"/>
+<area shape="rect" id="Node000003" href="$classCParameterApp.html" title=" " alt="" coords="112,155,235,180"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,192,105,244,101,240,151,188"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="124,80,223,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="176,120,176,154,171,154,171,120"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="136,5,211,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="176,45,176,80,171,80,171,45"/>
+</map>
