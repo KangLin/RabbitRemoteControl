@@ -164,7 +164,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     CView* m_pView;
-
+    QAction* m_pToolBarMenuAction;
     void EnableMenu(bool bEnable);
 
 private Q_SLOTS:
