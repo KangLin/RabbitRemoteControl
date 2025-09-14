@@ -164,6 +164,24 @@ Prior versions don't have CMake support.
             QTTOOLDIR="/usr/lib/qt6/bin"
             QTLIBDIR="/usr/lib/aarch64-linux-gnu"
 
+  - QtWebEngine
+    By default, WebM (open source) is included, while x264 and x265 are not included due to copyright reasons.
+    - Check supportYou can access chrome://media-internals or chrome://gpu in your QtWebEngine application to see the currently supported decoding formats.
+    - In the QtWebEngine program, visit:
+      - https://www.webmfiles.org/demo-files/ to upload or play H264/H265 video files to test support
+      - https://html5test.com/
+      - https://webrtc.github.io/test-pages/
+      - https://browserleaks.com/webrtc
+    - Recompile QtWebEngine, including the appropriate decoders.  
+      Related compilation parameters:
+      - -webengine-proprietary-codecsEnable  
+        proprietary codec support (H264, MP3, AAC, etc.).
+      - -webengine-ffmpegSpecify  
+        using a custom ffmpeg.
+      
+            ./configure -webengine-proprietary-codecs
+            make -j$(nproc)make install
+
 #### [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
   Prior versions don't have CMake support.
 

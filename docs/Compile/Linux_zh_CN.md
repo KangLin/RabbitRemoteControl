@@ -182,7 +182,11 @@
     - 检查支持
       在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
 
-    - 在 QtWebEngine 程序中，访问 https://www.webmfiles.org/demo-files/ 或 https://html5test.com/，上传或播放 H264/H265 视频文件，测试支持性。
+    - 在 QtWebEngine 程序中，访问:
+      - https://www.webmfiles.org/demo-files/ 上传或播放 H264/H265 视频文件，测试支持性
+      - https://html5test.com/
+      - https://webrtc.github.io/test-pages/ 
+      - https://browserleaks.com/webrtc
     
     - 重新编译QtWebEngine，包括相应解码器。
       相关编译参数：
