@@ -1,5 +1,3 @@
-// Author: Kang Lin <kl222@126.com>
-
 #include "OperateWebBrowser.h"
 #include <QLoggingCategory>
 #include <DlgSettings.h>
@@ -18,24 +16,17 @@ COperateWebBrowser::~COperateWebBrowser()
 
 const QString COperateWebBrowser::Name()
 {
-    QString szName;
-    szName = m_Parameter.GetName();
-    if(szName.isEmpty()) {
-        if(m_pWeb)
-            szName = m_pWeb->windowTitle();
-    }
-    if(szName.isEmpty())
-        szName = COperate::Name();
+    QString szName = COperate::Name();
+    if(m_pWeb)
+        szName = m_pWeb->windowTitle();
     return szName;
 }
 
 const QIcon COperateWebBrowser::Icon() const
 {
-    QIcon icon;
+    QIcon icon = COperate::Icon();
     if(m_pWeb)
         icon = m_pWeb->windowIcon();
-    if(icon.isNull())
-        icon = COperate::Icon();
     return icon;
 }
 
@@ -49,11 +40,29 @@ QWidget *COperateWebBrowser::GetViewer()
     return m_pWeb;
 }
 
+int COperateWebBrowser::Start()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    int nRet = 0;
+    if(m_pWeb)
+        nRet = m_pWeb->Start();
+    emit sigRunning();
+    return nRet;
+}
+
+int COperateWebBrowser::Stop()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    int nRet = 0;
+    if(m_pWeb)
+        nRet = m_pWeb->Stop();
+    emit sigFinished();
+    return nRet;
+}
+
 int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
-    m_Parameter.SetGlobalParameters(pPara);
-    nRet = COperate::SetGlobalParameters(pPara);
     return nRet;
 }
 
@@ -92,26 +101,6 @@ int COperateWebBrowser::Clean()
         delete m_pWeb;
         m_pWeb = nullptr;
     }
-    return nRet;
-}
-
-int COperateWebBrowser::Start()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    if(m_pWeb)
-        nRet = m_pWeb->Start();
-    emit sigRunning();
-    return nRet;
-}
-
-int COperateWebBrowser::Stop()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    if(m_pWeb)
-        nRet = m_pWeb->Stop();
-    emit sigFinished();
     return nRet;
 }
 

@@ -1,5 +1,3 @@
-// Author: Kang Lin <kl222@126.com>
-
 #include "PluginWebBrowser.h"
 #include "OperateWebBrowser.h"
 #include <QWebEngineProfile>

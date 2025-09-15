@@ -10,6 +10,7 @@ public:
     explicit CParameterWebBrowser(QObject *parent = nullptr,
                                   const QString& szPrefix = QString());
     virtual ~CParameterWebBrowser();
+
 public:
     QString GetHomeUrl();
     int SetHomeUrl(const QString& url);
