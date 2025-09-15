@@ -53,7 +53,6 @@ int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
     m_Parameter.SetGlobalParameters(pPara);
-    nRet = COperate::SetGlobalParameters(pPara);
     return nRet;
 }
 
