@@ -10,6 +10,12 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_bOpenPrevious(false)
 {
     m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    SetSearchEngine("https://cn.bing.com/search?q=%s");
+    SetSearchRelaceString("%s");
+    QStringList searchEngines;
+    searchEngines << "https://cn.bing.com/search?q=%s";
+    searchEngines << "https://www.google.com/search?q=%s";
+    SetSearchEngineList(searchEngines);
 }
 
 CParameterWebBrowser::~CParameterWebBrowser()
@@ -22,6 +28,9 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetTabUrl(set.value("Url/Tab", GetTabUrl()).toString());
     SetOpenPrevious(set.value("OpenPrevious/Enable", GetOpenPrevious()).toBool());
     SetDownloadFolder(set.value("Download/Folder", GetDownloadFolder()).toString());
+    SetSearchEngine(set.value("SearchEngine", GetSearchEngine()).toString());
+    SetSearchRelaceString(set.value("SearchEngine/SearchEngine", GetSearchRelaceString()).toString());
+    SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
     return nRet;
 }
 
@@ -32,6 +41,9 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("Url/Tab", GetTabUrl());
     set.setValue("OpenPrevious/Enable", GetOpenPrevious());
     set.setValue("Download/Folder", GetDownloadFolder());
+    set.setValue("SearchEngine", GetSearchEngine());
+    set.setValue("SearchEngine/SearchEngine", GetSearchRelaceString());
+    set.setValue("SearchEngine/List", GetSearchEngineList());
     return nRet;
 }
 
@@ -92,4 +104,43 @@ int CParameterWebBrowser::SetDownloadFolder(const QString& folder)
     m_szDownloadFolder = folder;
     SetModified(true);
     return 0;
+}
+
+QString CParameterWebBrowser::GetSearchEngine() const
+{
+    return m_szSearchEngine;
+}
+
+void CParameterWebBrowser::SetSearchEngine(const QString &newSearchEngine)
+{
+    if(m_szSearchEngine == newSearchEngine)
+        return;
+    m_szSearchEngine = newSearchEngine;
+    SetModified(true);
+}
+
+QString CParameterWebBrowser::GetSearchRelaceString() const
+{
+    return m_szSearchRelaceString;
+}
+
+void CParameterWebBrowser::SetSearchRelaceString(const QString &newSearchRelaceString)
+{
+    if(m_szSearchRelaceString == newSearchRelaceString)
+        return;
+    m_szSearchRelaceString = newSearchRelaceString;
+    SetModified(true);
+}
+
+QStringList CParameterWebBrowser::GetSearchEngineList() const
+{
+    return m_SearchEngineList;
+}
+
+void CParameterWebBrowser::SetSearchEngineList(const QStringList &newSearchEngineList)
+{
+    if(m_SearchEngineList == newSearchEngineList)
+        return;
+    m_SearchEngineList = newSearchEngineList;
+    SetModified(true);
 }

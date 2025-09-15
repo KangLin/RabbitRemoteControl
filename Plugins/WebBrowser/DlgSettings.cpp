@@ -10,6 +10,7 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgSettings)
     , m_pPara(para)
+    , m_pSearchModel(nullptr)
 {
     ui->setupUi(this);
     ui->leName->setText(m_pPara->GetName());
@@ -20,6 +21,19 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
         ui->leTabUrl->setText(m_pPara->GetTabUrl());
     ui->leDownloadFolder->setText(m_pPara->GetDownloadFolder());
     ui->cbOpenPreious->setChecked(m_pPara->GetOpenPrevious());
+
+    m_pSearchModel = new QStandardItemModel(this);
+    auto searchList = m_pPara->GetSearchEngineList();
+    foreach(auto i, searchList)
+    {
+        QStandardItem* item = new QStandardItem(i);
+        m_pSearchModel->appendRow(item);
+    }
+    ui->lstSearchEngine->setModel(m_pSearchModel);
+    int index = searchList.indexOf(m_pPara->GetSearchEngine());
+    QModelIndex indexModel;
+    indexModel = m_pSearchModel->index(index, 0);
+    ui->lstSearchEngine->setCurrentIndex(indexModel);
 }
 
 CDlgSettings::~CDlgSettings()
@@ -34,6 +48,11 @@ void CDlgSettings::accept()
     m_pPara->SetTabUrl(ui->leTabUrl->text());
     m_pPara->SetDownloadFolder(ui->leDownloadFolder->text());
     m_pPara->SetOpenPrevious(ui->cbOpenPreious->isChecked());
+    auto index = ui->lstSearchEngine->currentIndex();
+    if(index.isValid()) {
+        auto search = m_pSearchModel->item(index.row())->text();
+        m_pPara->SetSearchEngine(search);
+    }
     QDialog::accept();
 }
 
