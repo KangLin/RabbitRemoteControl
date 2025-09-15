@@ -88,7 +88,7 @@ int COperateWebBrowser::Clean()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(m_pWeb) {
-        delete m_pWeb;
+        m_pWeb->deleteLater();
         m_pWeb = nullptr;
     }
     return nRet;
@@ -100,7 +100,8 @@ int COperateWebBrowser::Start()
     int nRet = 0;
     if(m_pWeb)
         nRet = m_pWeb->Start();
-    emit sigRunning();
+    if(!nRet)
+        emit sigRunning();
     return nRet;
 }
 
