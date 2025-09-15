@@ -30,6 +30,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     pType->addWidget(m_lbType);
 
     m_cbType = new QComboBox(this);
+    m_cbType->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     pType->addWidget(m_cbType);
     bCheck = connect(m_cbType, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(slotTypeChanged(int)));
