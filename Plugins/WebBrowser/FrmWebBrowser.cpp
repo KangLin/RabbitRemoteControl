@@ -172,9 +172,8 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     Q_ASSERT(check);
 
     m_DownloadManager.hide();
-    check = connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
+    QObject::connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
                      &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
-    Q_ASSERT(check);
 }
 
 CFrmWebBrowser::~CFrmWebBrowser()
@@ -329,10 +328,9 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
         g_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
         #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
         g_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
-#endif
-        bool check = connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
-                        &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
-        Q_ASSERT(check);
+        #endif
+        QObject::connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
+                         &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
         qDebug(log) << "Persistent path:" << g_profile->persistentStoragePath()
                     << "Cache path:" << g_profile->cachePath()
                     << "Storage name:" << g_profile->storageName()

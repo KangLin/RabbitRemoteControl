@@ -8,8 +8,6 @@ static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_bOpenPrevious(false)
-    , m_bShowDownloadManager(false)
-    , m_bShowDownloadLocation(false)
 {
     m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     SetSearchEngine("https://cn.bing.com/search?q=%s");
@@ -30,8 +28,6 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetTabUrl(set.value("Url/Tab", GetTabUrl()).toString());
     SetOpenPrevious(set.value("OpenPrevious/Enable", GetOpenPrevious()).toBool());
     SetDownloadFolder(set.value("Download/Folder", GetDownloadFolder()).toString());
-    SetShowDownloadManager(set.value("Download/Show/Manager", GetShowDownloadManager()).toBool());
-    SetShowDownloadLocation(set.value("Download/Show/Location", GetShowDownloadLocation()).toBool());
     SetSearchEngine(set.value("SearchEngine", GetSearchEngine()).toString());
     SetSearchRelaceString(set.value("SearchEngine/SearchEngine", GetSearchRelaceString()).toString());
     SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
@@ -45,8 +41,6 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("Url/Tab", GetTabUrl());
     set.setValue("OpenPrevious/Enable", GetOpenPrevious());
     set.setValue("Download/Folder", GetDownloadFolder());
-    set.setValue("Download/Show/Manager", GetShowDownloadManager());
-    set.setValue("Download/Show/Location", GetShowDownloadLocation());
     set.setValue("SearchEngine", GetSearchEngine());
     set.setValue("SearchEngine/SearchEngine", GetSearchRelaceString());
     set.setValue("SearchEngine/List", GetSearchEngineList());
@@ -110,32 +104,6 @@ int CParameterWebBrowser::SetDownloadFolder(const QString& folder)
     m_szDownloadFolder = folder;
     SetModified(true);
     return 0;
-}
-
-bool CParameterWebBrowser::GetShowDownloadManager() const
-{
-    return m_bShowDownloadManager;
-}
-
-void CParameterWebBrowser::SetShowDownloadManager(bool newShowDownloadManager)
-{
-    if(m_bShowDownloadManager == newShowDownloadManager)
-        return;
-    m_bShowDownloadManager = newShowDownloadManager;
-    SetModified(true);
-}
-
-bool CParameterWebBrowser::GetShowDownloadLocation() const
-{
-    return m_bShowDownloadLocation;
-}
-
-void CParameterWebBrowser::SetShowDownloadLocation(bool newShowDownloadLocation)
-{
-    if(m_bShowDownloadLocation == newShowDownloadLocation)
-        return;
-    m_bShowDownloadLocation = newShowDownloadLocation;
-    SetModified(true);
 }
 
 QString CParameterWebBrowser::GetSearchEngine() const

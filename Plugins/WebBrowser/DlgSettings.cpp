@@ -20,8 +20,6 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     else
         ui->leTabUrl->setText(m_pPara->GetTabUrl());
     ui->leDownloadFolder->setText(m_pPara->GetDownloadFolder());
-    ui->cbDownloadShowWindow->setChecked(m_pPara->GetShowDownloadManager());
-    ui->cbDownloadSave->setChecked(m_pPara->GetShowDownloadLocation());
     ui->cbOpenPreious->setChecked(m_pPara->GetOpenPrevious());
 
     m_pSearchModel = new QStandardItemModel(this);
@@ -49,8 +47,6 @@ void CDlgSettings::accept()
     m_pPara->SetHomeUrl(ui->leHomeUrl->text());
     m_pPara->SetTabUrl(ui->leTabUrl->text());
     m_pPara->SetDownloadFolder(ui->leDownloadFolder->text());
-    m_pPara->SetShowDownloadManager(ui->cbDownloadShowWindow->isChecked());
-    m_pPara->SetShowDownloadLocation(ui->cbDownloadSave->isChecked());
     m_pPara->SetOpenPrevious(ui->cbOpenPreious->isChecked());
     auto index = ui->lstSearchEngine->currentIndex();
     if(index.isValid()) {
