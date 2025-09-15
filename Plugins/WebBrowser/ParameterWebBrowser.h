@@ -30,21 +30,7 @@ public:
     int SetDownloadFolder(const QString& folder);
 private:
     QString m_szDownloadFolder;
-public:
-    QString GetSearchEngine() const;
-    void SetSearchEngine(const QString &newSearchEngine);
-private:
-    QString m_szSearchEngine;
-public:
-    QString GetSearchRelaceString() const;
-    void SetSearchRelaceString(const QString &newSearchRelaceString);
-private:
-    QString m_szSearchRelaceString;
-public:
-    QStringList GetSearchEngineList() const;
-    void SetSearchEngineList(const QStringList &newSearchEngineList);
-private:
-    QStringList m_SearchEngineList;
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;

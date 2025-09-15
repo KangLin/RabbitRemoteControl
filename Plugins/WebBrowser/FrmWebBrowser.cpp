@@ -9,7 +9,6 @@
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
 #include <QWebEngineFindTextResult>
-#include <QRegularExpression>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
 #include <QWebEngineProfileBuilder>
 #endif
@@ -680,16 +679,6 @@ void CFrmWebBrowser::slotViewCloseRequested()
 void CFrmWebBrowser::slotReturnPressed()
 {
     QUrl u = QUrl::fromUserInput(m_pUrlLineEdit->text());
-    qDebug(log) << u << m_pUrlLineEdit->text();
-    if(u.isEmpty()) {
-        QString szSearch;
-        if(m_pPara) {
-            szSearch = m_pPara->GetSearchEngine();
-            u = szSearch.replace(m_pPara->GetSearchRelaceString(),
-                                 QUrl::toPercentEncoding(m_pUrlLineEdit->text()));
-        }
-    }
-    qDebug(log) << u << m_pUrlLineEdit->text();
     emit sigInformation(u.toString());
     CFrmWebView* pWeb = CurrentView();
     if(!pWeb)

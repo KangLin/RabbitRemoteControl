@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 #pragma once
 #include <QDialog>
-#include <QStandardItemModel>
 #include "ParameterWebBrowser.h"
 
 namespace Ui {
@@ -27,5 +26,4 @@ private slots:
 private:
     Ui::CDlgSettings *ui;
     CParameterWebBrowser* m_pPara;
-    QStandardItemModel* m_pSearchModel;
 };
