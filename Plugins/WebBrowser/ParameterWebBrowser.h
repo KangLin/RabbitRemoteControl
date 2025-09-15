@@ -25,11 +25,23 @@ public:
     void SetOpenPrevious(bool bOpen);
 private:
     bool m_bOpenPrevious;
+
 public:
     QString GetDownloadFolder();
     int SetDownloadFolder(const QString& folder);
 private:
     QString m_szDownloadFolder;
+public:
+    bool GetShowDownloadManager() const;
+    void SetShowDownloadManager(bool newShowDownloadManager);    
+private:
+    bool m_bShowDownloadManager;
+public:
+    bool GetShowDownloadLocation() const;
+    void SetShowDownloadLocation(bool newShowDownloadLocation);
+private:
+    bool m_bShowDownloadLocation;
+    
 public:
     QString GetSearchEngine() const;
     void SetSearchEngine(const QString &newSearchEngine);
@@ -45,6 +57,7 @@ public:
     void SetSearchEngineList(const QStringList &newSearchEngineList);
 private:
     QStringList m_SearchEngineList;
+    
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;

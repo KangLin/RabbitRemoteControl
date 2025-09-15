@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QFileDialog>
 #include <QLoggingCategory>
 #include <QScrollArea>
 #include <QUrl>
@@ -36,17 +37,30 @@ CFrmDownloadManager::~CFrmDownloadManager()
 void CFrmDownloadManager::slotDownloadRequested(QWebEngineDownloadRequest *download)
 {
     Q_ASSERT(download && download->state() == QWebEngineDownloadRequest::DownloadRequested);
+    QString szPath;
+    szPath = m_pPara->GetDownloadFolder();
+    if(m_pPara->GetShowDownloadLocation()) {
+        szPath = QFileDialog::getExistingDirectory(this, tr("Save as ......"), szPath);
+        if(szPath.isEmpty())
+            return;
+    }
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    download->setDownloadDirectory(m_pPara->GetDownloadFolder());
+    download->setDownloadDirectory(szPath);
     qDebug(log) << "slotDownloadRequested:" << download->downloadDirectory() << download->downloadFileName() << download->url();
 #else
     QFileInfo fi(download->path());
-    download->setPath(m_pPara->GetDownloadFolder() + QDir::separator() + fi.fileName());
+    download->setPath(szPath + QDir::separator() + fi.fileName());
     qDebug(log) << "slotDownloadRequested:" << download->path() << download->url();
 #endif
     auto pDownload = new CFrmDownload(download);
     Add(pDownload);
-    show();
+    if(m_pPara) {
+        if(m_pPara->GetShowDownloadManager()) {
+            show();
+            activateWindow();
+        }
+    }
 }
 
 void CFrmDownloadManager::Add(CFrmDownload *item)
