@@ -723,14 +723,9 @@ int CFrmWebBrowser::Load(QSettings &set)
         int nCurrent = set.value("Current",  -1).toInt();
         for(int i = 0; i < nCount; i++)
         {
-            QString u = set.value("Url/" + QString::number(i)).toString();
+            QString u = set.value(QString::number(i)).toString();
             auto pView = CreateWindow(QWebEnginePage::WebBrowserTab);
             pView->load(QUrl(u));
-
-            QByteArray history;
-            history = set.value("History/" + QString::number(i)).toByteArray();
-            QDataStream d(&history, QIODeviceBase::ReadWrite);
-            d >> *pView->history();
         }
         if(-1 < nCurrent && m_pTab->count() > nCurrent)
             m_pTab->setCurrentIndex(nCurrent);
@@ -745,18 +740,12 @@ int CFrmWebBrowser::Save(QSettings &set)
         set.beginGroup("OpenPrevious");
         set.setValue("Count", m_pTab->count());
         set.setValue("Current", m_pTab->currentIndex());
-
         for(int i = 0; i < m_pTab->count(); i++) {
             auto v = GetView(i);
             if(v) {
-                set.setValue("Url/" + QString::number(i), v->url().toString());
-                QByteArray history;
-                QDataStream d(&history, QIODeviceBase::ReadWrite);
-                d << *v->history();
-                set.setValue("History/" + QString::number(i), history);
+                set.setValue(QString::number(i), v->url().toString());
             }
         }
-
         set.endGroup();
     }
     return 0;
