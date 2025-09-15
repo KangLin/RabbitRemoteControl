@@ -12,6 +12,7 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     , m_pPara(para)
 {
     ui->setupUi(this);
+    ui->leName->setText(m_pPara->GetName());
     ui->leHomeUrl->setText(m_pPara->GetHomeUrl());
     if(m_pPara->GetTabUrl().isEmpty() && !m_pPara->GetHomeUrl().isEmpty())
         ui->leTabUrl->setText(m_pPara->GetHomeUrl());
@@ -28,6 +29,7 @@ CDlgSettings::~CDlgSettings()
 
 void CDlgSettings::accept()
 {
+    m_pPara->SetName(ui->leName->text());
     m_pPara->SetHomeUrl(ui->leHomeUrl->text());
     m_pPara->SetTabUrl(ui->leTabUrl->text());
     m_pPara->SetDownloadFolder(ui->leDownloadFolder->text());
