@@ -275,11 +275,11 @@ protected:
     Q_INVOKABLE virtual int Clean();
     /*!
      * \~chinese 应用插件全局参数
-     * \note 调用 CParameterOperate::SetGlobalParameters 设置操作参数的全局参数，并连接与全局参数相关的信号
+     * \note 如果不需要插件的全局参数，请在派生类中重载它，并忽略。
      *
      * \~english Apply the global parameters of the plug-in
-     * \note Call CParameterOperate::SetGlobalParameters to set the global parameters for the operation parameters,
-     *       and connect the signals related to the global parameters.
+     * \note If you don't need the global parameters of the plugin,
+     *       override it in the derived class and ignore.
      * \see CManager::CreateOperate CParameterPlugin
      */
     Q_INVOKABLE virtual int SetGlobalParameters(CParameterPlugin* pPara) = 0;
@@ -289,7 +289,7 @@ protected:
      * \brief Get plugin
      * \see CManager::DeleteOperate 
      */
-    Q_INVOKABLE CPlugin* GetPlugin() const;
+    [[nodiscard]] Q_INVOKABLE CPlugin* GetPlugin() const;
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
 

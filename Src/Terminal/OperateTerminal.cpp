@@ -353,16 +353,7 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
     if(GetParameter())
     {
         GetParameter()->SetGlobalParameters(pPara);
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
-                                 this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-        }
-        return 0;
+        return COperate::SetGlobalParameters(pPara);
     } else {
         QString szMsg = "There is not parameters! "
                         "please first create parameters, "

@@ -390,17 +390,7 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
     if(GetParameter())
     {
         GetParameter()->SetGlobalParameters(pPara);
-
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
-                                 this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-        }
-
+        COperate::SetGlobalParameters(pPara);
         LoadAdaptWindows();
         return 0;
     } else {

@@ -263,24 +263,16 @@ CPlugin* COperate::GetPlugin() const
 
 int COperate::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    QString szMsg = "There is not parameters! "
-                    "please first create parameters, "
-                    "then call SetParameter() in the ";
-    szMsg += metaObject()->className() + QString("::")
-             + metaObject()->className();
-    szMsg += QString("() or ") + metaObject()->className()
-             + QString("::") + "Initial()";
-    szMsg += " to set the parameters pointer. "
-             "Default set CParameterClient for the parameters of operate "
-             "(CParameterOperate or its derived classes) "
-             "See CManager::CreateOperate. "
-             "If you are sure the parameter of operate "
-             "does not need CParameterClient. "
-             "Please overload the SetGlobalParameters() in the ";
-    szMsg += QString(metaObject()->className()) + " . don't set it";
-    qCritical(log) << szMsg.toStdString().c_str();
-    Q_ASSERT_X(false, Q_FUNC_INFO, szMsg.toStdString().c_str());
-
+    auto pPlugin = pPara;
+    if(pPlugin)
+    {
+        bool check = connect(pPlugin, SIGNAL(sigShowProtocolPrefixChanged()),
+                             this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+        check = connect(pPlugin, SIGNAL(sigSHowIpPortInNameChanged()),
+                        this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+    }
     return 0;
 }
 
