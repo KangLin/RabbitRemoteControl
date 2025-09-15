@@ -33,9 +33,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_pFavAction(nullptr)
     , m_pGo(nullptr)
     , m_pAddPage(nullptr)
-    , m_pAddPageIncognito(nullptr)
     , m_pAddWindow(nullptr)
-    , m_pAddWindowIncognito(nullptr)
     , m_pDownload(nullptr)
     , m_pInspector(nullptr)
     , m_pUrl(nullptr)
@@ -120,7 +118,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
 
     m_pAddPage = m_pToolBar->addAction(QIcon::fromTheme("add"), tr("Add tab page"),
                                    this, [&](){
-        CreateWindow(QWebEnginePage::WebBrowserTab);
+        auto pView = createWindow(QWebEnginePage::WebBrowserTab);
         if(!m_pPara->GetTabUrl().isEmpty()) {
             m_pUrlLineEdit->setText(m_pPara->GetTabUrl());
             slotReturnPressed();
@@ -187,22 +185,21 @@ CFrmWebBrowser::~CFrmWebBrowser()
     }
 }
 
-QWebEngineView* CFrmWebBrowser::CreateWindow(
-    QWebEnginePage::WebWindowType type, bool offTheRecord)
+QWebEngineView* CFrmWebBrowser::createWindow(QWebEnginePage::WebWindowType type)
 {
     qDebug(log) << "Create window:" << type;
     
     CFrmWebView* pView = nullptr;
     switch (type) {
     case QWebEnginePage::WebBrowserTab: {
-        auto pTab = CreateTab(&pView, offTheRecord);
+        auto pTab = CreateTab(&pView);
         int index = m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
         if(-1 < index)
             m_pTab->setCurrentIndex(index);
         break;
     }
     case QWebEnginePage::WebBrowserBackgroundTab: {
-        auto pTab = CreateTab(&pView, offTheRecord);
+        auto pTab = CreateTab(&pView);
         int index = m_pTab->currentIndex();
         m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
         if(-1 < index)
@@ -210,14 +207,12 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
         break;
     }
     case QWebEnginePage::WebBrowserWindow: {
-        auto pWin = CreateTab(&pView, offTheRecord);
+        auto pWin = CreateTab(&pView);
         pWin->show();
         break;
     }
     case QWebEnginePage::WebDialog: {
         qDebug(log) << "Don't support type:" << type;
-        auto pWin = CreateTab(&pView, offTheRecord);
-        pWin->show();
     }
     }
 
@@ -303,9 +298,9 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
     m_pProgressBar->setValue(pWeb->progress());
 }
 
-QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
+QWebEngineProfile* CFrmWebBrowser::GetProfile()
 {
-    if (!offTheRecord && !g_profile) {
+    if (!g_profile) {
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
         const QString name = "io.github.KangLin.RabbitRemoteControl."
@@ -335,14 +330,14 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
                     << "Storage name:" << g_profile->storageName()
                     << "Is off the Record:" << g_profile->isOffTheRecord();
     }
-    return offTheRecord ? QWebEngineProfile::defaultProfile() : g_profile.get();
+    return g_profile? g_profile.get() : QWebEngineProfile::defaultProfile();
 }
 
-CFrmWebView *CFrmWebBrowser::CreateWebView(bool offTheRecord)
+CFrmWebView *CFrmWebBrowser::CreateWebView()
 {
     auto pView = new CFrmWebView(this);
     if(pView) {
-        auto profile = GetProfile(offTheRecord);
+        auto profile = GetProfile();
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
         profile->setPersistentPermissionsPolicy(QWebEngineProfile::PersistentPermissionsPolicy::AskEveryTime);
 #endif
@@ -352,7 +347,7 @@ CFrmWebView *CFrmWebBrowser::CreateWebView(bool offTheRecord)
     return pView;
 }
 
-QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
+QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view)
 {
     QSplitter *pSplitter = new QSplitter(Qt::Vertical, this);
     if(pSplitter) {
@@ -362,16 +357,16 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
             if(*view) {
                 pWeb = *view;
             } else {
-                pWeb = CreateWebView(offTheRecord);
+                pWeb = CreateWebView();
                 *view = pWeb;
             }
         } else {
-            pWeb = CreateWebView(offTheRecord);
+            pWeb = CreateWebView();
         }
         if(pWeb) {
             pSplitter->addWidget(pWeb);
             SetConnect(pWeb);
-            auto pDevTools = CreateWebView(offTheRecord);
+            auto pDevTools = CreateWebView();
             if(pDevTools) {
                 pDevTools->hide();
                 pSplitter->addWidget(pDevTools);
@@ -445,30 +440,13 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 
     pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
-    m_pAddPageIncognito = pMenu->addAction(
-        QIcon::fromTheme("add"), tr("Add incognito tab"),
-        this, [&](){
-            CreateWindow(QWebEnginePage::WebBrowserTab, true);
-            if(!m_pPara->GetTabUrl().isEmpty()) {
-                m_pUrlLineEdit->setText(m_pPara->GetTabUrl());
-                slotReturnPressed();
-            }
-        });
-    m_pAddPageIncognito->setStatusTip(m_pAddPageIncognito->text());
     m_pAddWindow = pMenu->addAction(
         QIcon::fromTheme("add"), tr("Add window"),
         this, [&](){
-            CreateWindow(QWebEnginePage::WebBrowserWindow);
+            createWindow(QWebEnginePage::WebBrowserWindow);
         });
     m_pAddWindow->setVisible(false);
     m_pAddWindow->setStatusTip(m_pAddWindow->text());
-    m_pAddWindowIncognito = pMenu->addAction(
-        QIcon::fromTheme("add"), tr("Add Incognito Window"),
-        this, [&](){
-            CreateWindow(QWebEnginePage::WebBrowserWindow, true);
-        });
-    m_pAddWindowIncognito->setVisible(false);
-    m_pAddWindowIncognito->setStatusTip(m_pAddWindowIncognito->text());
 
     pMenu->addSeparator();
     m_pFind = pMenu->addAction(
@@ -682,7 +660,7 @@ void CFrmWebBrowser::slotReturnPressed()
     emit sigInformation(u.toString());
     CFrmWebView* pWeb = CurrentView();
     if(!pWeb)
-        pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+        pWeb = qobject_cast<CFrmWebView*>(createWindow(QWebEnginePage::WebBrowserTab));
     pWeb->load(u);
     if(m_pGo->isVisible())
         m_pGo->setVisible(false);
@@ -713,7 +691,7 @@ int CFrmWebBrowser::Load(QSettings &set)
         for(int i = 0; i < nCount; i++)
         {
             QString u = set.value(QString::number(i)).toString();
-            auto pView = CreateWindow(QWebEnginePage::WebBrowserTab);
+            auto pView = createWindow(QWebEnginePage::WebBrowserTab);
             pView->load(QUrl(u));
         }
         if(-1 < nCurrent && m_pTab->count() > nCurrent)

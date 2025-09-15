@@ -163,7 +163,7 @@ QIcon CFrmWebView::favIcon() const
 QWebEngineView *CFrmWebView::createWindow(QWebEnginePage::WebWindowType type)
 {
     if(m_pBrowser)
-        return m_pBrowser->CreateWindow(type);
+        return m_pBrowser->createWindow(type);
     return this;
 }
 
