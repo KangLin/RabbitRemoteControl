@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QFileDialog>
 #include <QLoggingCategory>
 #include <QScrollArea>
 #include <QUrl>
@@ -20,9 +21,9 @@ CFrmDownloadManager::CFrmDownloadManager(CParameterWebBrowser *para, QWidget *pa
     auto scroll = new QScrollArea(this);
     scroll->setWidgetResizable(true);
     layout->addWidget(scroll);
-    QWidget *pWin = new QWidget(this);
+    QWidget *pWin = new QWidget(scroll);
     scroll->setWidget(pWin);
-    m_pItems = new QVBoxLayout(this);
+    m_pItems = new QVBoxLayout(pWin);
     pWin->setLayout (m_pItems);
     m_pItems->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding));
     resize(600, 300);
@@ -35,18 +36,32 @@ CFrmDownloadManager::~CFrmDownloadManager()
 
 void CFrmDownloadManager::slotDownloadRequested(QWebEngineDownloadRequest *download)
 {
+    qDebug(log) << Q_FUNC_INFO;
     Q_ASSERT(download && download->state() == QWebEngineDownloadRequest::DownloadRequested);
+    QString szPath;
+    szPath = m_pPara->GetDownloadFolder();
+    if(m_pPara->GetShowDownloadLocation()) {
+        szPath = QFileDialog::getExistingDirectory(this, tr("Save as ......"), szPath);
+        if(szPath.isEmpty())
+            return;
+    }
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    download->setDownloadDirectory(m_pPara->GetDownloadFolder());
+    download->setDownloadDirectory(szPath);
     qDebug(log) << "slotDownloadRequested:" << download->downloadDirectory() << download->downloadFileName() << download->url();
 #else
     QFileInfo fi(download->path());
-    download->setPath(m_pPara->GetDownloadFolder() + QDir::separator() + fi.fileName());
+    download->setPath(szPath + QDir::separator() + fi.fileName());
     qDebug(log) << "slotDownloadRequested:" << download->path() << download->url();
 #endif
     auto pDownload = new CFrmDownload(download);
     Add(pDownload);
-    show();
+    if(m_pPara) {
+        if(m_pPara->GetShowDownloadManager()) {
+            show();
+            activateWindow();
+        }
+    }
 }
 
 void CFrmDownloadManager::Add(CFrmDownload *item)

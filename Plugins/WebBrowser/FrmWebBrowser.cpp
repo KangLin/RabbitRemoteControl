@@ -130,7 +130,8 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     });
     m_pAddPage->setStatusTip(m_pAddPage->text());
     Q_ASSERT(check);
-    m_pDownload = m_pToolBar->addAction(QIcon::fromTheme("emblem-downloads"), tr("Download Manager"));
+    m_pDownload = m_pToolBar->addAction(
+        QIcon::fromTheme("emblem-downloads"), tr("Download Manager"));
     m_pDownload->setCheckable(true);
     m_pDownload->setStatusTip(m_pDownload->text());
     check = connect(m_pDownload, &QAction::toggled,
@@ -173,8 +174,9 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     Q_ASSERT(check);
 
     m_DownloadManager.hide();
-    QObject::connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
+    check = connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
                      &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+    Q_ASSERT(check);
 }
 
 CFrmWebBrowser::~CFrmWebBrowser()
@@ -330,12 +332,15 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
         #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
         g_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
         #endif
-        QObject::connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
-                         &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
-        qDebug(log) << "Persistent path:" << g_profile->persistentStoragePath()
+        bool check = connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
+                        &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+        Q_ASSERT(check);
+        qDebug(log) << "User agent:" << g_profile->httpUserAgent()
+                    << "Persistent path:" << g_profile->persistentStoragePath()
                     << "Cache path:" << g_profile->cachePath()
                     << "Storage name:" << g_profile->storageName()
-                    << "Is off the Record:" << g_profile->isOffTheRecord();
+                    << "Is off the Record:" << g_profile->isOffTheRecord()
+                    << "Download:" << g_profile->downloadPath();
     }
     return offTheRecord ? QWebEngineProfile::defaultProfile() : g_profile.get();
 }

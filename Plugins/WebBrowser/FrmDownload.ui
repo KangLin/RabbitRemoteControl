@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>186</width>
-    <height>93</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Title</string>
        </property>
       </widget>
      </item>
@@ -51,7 +51,7 @@
    <item row="2" column="0">
     <widget class="QLabel" name="lbFileInfo">
      <property name="text">
-      <string>TextLabel</string>
+      <string>File Information</string>
      </property>
     </widget>
    </item>
