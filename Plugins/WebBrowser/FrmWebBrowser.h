@@ -21,12 +21,12 @@ public:
     explicit CFrmWebBrowser(CParameterWebBrowser* pPara, QWidget *parent = nullptr);
     virtual ~CFrmWebBrowser();
 
-    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
     int InitMenu(QMenu* pMenu);
-    int Start();
-    int Stop();
     int Load(QSettings &set);
     int Save(QSettings &set);
+    int Start();
+    int Stop();
+    QWebEngineView *CreateWindow(QWebEnginePage::WebWindowType type, bool offTheRecord = false);
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
@@ -43,9 +43,9 @@ private Q_SLOTS:
 private:
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);
-    [[nodiscard]] QWebEngineProfile* GetProfile();
-    [[nodiscard]] CFrmWebView *CreateWebView();
-    [[nodiscard]] QWidget* CreateTab(/*[in/out]*/CFrmWebView **view = nullptr);
+    [[nodiscard]] QWebEngineProfile* GetProfile(bool offTheRecord = false);
+    [[nodiscard]] CFrmWebView *CreateWebView(bool offTheRecord = false);
+    [[nodiscard]] QWidget* CreateTab(/*[in/out]*/CFrmWebView **view = nullptr, bool offTheRecord = false);
     enum class ViewType{
         Web = 0,
         DevTools = 1
@@ -71,7 +71,9 @@ private:
     QAction* m_pFavAction;
     QAction* m_pGo;
     QAction* m_pAddPage;
+    QAction* m_pAddPageIncognito;
     QAction* m_pAddWindow;
+    QAction* m_pAddWindowIncognito;
     QAction* m_pDownload;
     QAction* m_pInspector;
     QAction* m_pUrl;
