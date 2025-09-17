@@ -2,6 +2,7 @@
 
 #include <QStandardPaths>
 #include <QLoggingCategory>
+#include <QWebEngineProfile>
 #include "ParameterWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
@@ -10,8 +11,12 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_bOpenPrevious(false)
     , m_bShowDownloadManager(false)
     , m_bShowDownloadLocation(false)
+    , m_ClearHttpCache(false)
+    , m_ClearCookie(false)
 {
-    m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    //m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    SetDownloadFolder(QWebEngineProfile::defaultProfile()->downloadPath());
+    qDebug(log) << "Download folder:" << GetDownloadFolder();
     SetSearchEngine("https://cn.bing.com/search?q=%s");
     SetSearchRelaceString("%s");
     QStringList searchEngines;
@@ -32,6 +37,8 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetDownloadFolder(set.value("Download/Folder", GetDownloadFolder()).toString());
     SetShowDownloadManager(set.value("Download/Show/Manager", GetShowDownloadManager()).toBool());
     SetShowDownloadLocation(set.value("Download/Show/Location", GetShowDownloadLocation()).toBool());
+    SetClearHttpCache(set.value("Clear/HttpCache", GetClearHttpCache()).toBool());
+    SetClearCookie(set.value("Clear/Cookie", GetClearCookie()).toBool());
     SetSearchEngine(set.value("SearchEngine", GetSearchEngine()).toString());
     SetSearchRelaceString(set.value("SearchEngine/SearchEngine", GetSearchRelaceString()).toString());
     SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
@@ -47,6 +54,8 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("Download/Folder", GetDownloadFolder());
     set.setValue("Download/Show/Manager", GetShowDownloadManager());
     set.setValue("Download/Show/Location", GetShowDownloadLocation());
+    set.setValue("Clear/HttpCache", GetClearHttpCache());
+    set.setValue("Clear/Cookie", GetClearCookie());
     set.setValue("SearchEngine", GetSearchEngine());
     set.setValue("SearchEngine/SearchEngine", GetSearchRelaceString());
     set.setValue("SearchEngine/List", GetSearchEngineList());
@@ -109,6 +118,7 @@ int CParameterWebBrowser::SetDownloadFolder(const QString& folder)
         return 0;
     m_szDownloadFolder = folder;
     SetModified(true);
+    emit sigDownloadFolderChanged();
     return 0;
 }
 
@@ -135,6 +145,32 @@ void CParameterWebBrowser::SetShowDownloadLocation(bool newShowDownloadLocation)
     if(m_bShowDownloadLocation == newShowDownloadLocation)
         return;
     m_bShowDownloadLocation = newShowDownloadLocation;
+    SetModified(true);
+}
+
+bool CParameterWebBrowser::GetClearCookie() const
+{
+    return m_ClearCookie;
+}
+
+void CParameterWebBrowser::SetClearCookie(bool newClearCookie)
+{
+    if(m_ClearCookie == newClearCookie)
+        return;
+    m_ClearCookie = newClearCookie;
+    SetModified(true);
+}
+
+bool CParameterWebBrowser::GetClearHttpCache() const
+{
+    return m_ClearHttpCache;
+}
+
+void CParameterWebBrowser::SetClearHttpCache(bool newClearHttpCache)
+{
+    if(m_ClearHttpCache == newClearHttpCache)
+        return;
+    m_ClearHttpCache = newClearHttpCache;
     SetModified(true);
 }
 

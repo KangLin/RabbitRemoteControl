@@ -11,6 +11,7 @@
 #include <QWebEngineSettings>
 #include <QWebEngineFindTextResult>
 #include <QRegularExpression>
+#include <QWebEngineCookieStore>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
 #include <QWebEngineProfileBuilder>
 #endif
@@ -173,8 +174,16 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     Q_ASSERT(check);
 
     m_DownloadManager.hide();
+    QWebEngineProfile::defaultProfile()->setDownloadPath(m_pPara->GetDownloadFolder());
     check = connect(QWebEngineProfile::defaultProfile(), &QWebEngineProfile::downloadRequested,
                      &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+    Q_ASSERT(check);
+    check = connect(m_pPara, &CParameterWebBrowser::sigDownloadFolderChanged,
+                    this, [&](){
+        QWebEngineProfile::defaultProfile()->setDownloadPath(m_pPara->GetDownloadFolder());
+        if(m_profile)
+            m_profile->setDownloadPath(m_pPara->GetDownloadFolder());
+    });
     Q_ASSERT(check);
 }
 
@@ -188,13 +197,18 @@ CFrmWebBrowser::~CFrmWebBrowser()
         m_pTab->deleteLater();
         m_pTab = nullptr;
     }
+
+    if(m_pPara->GetClearCookie() && m_profile)
+        m_profile->cookieStore()->deleteAllCookies();
+    if(m_pPara->GetClearHttpCache() && m_profile)
+        m_profile->clearHttpCache();
 }
 
 QWebEngineView* CFrmWebBrowser::CreateWindow(
     QWebEnginePage::WebWindowType type, bool offTheRecord)
 {
     qDebug(log) << "Create window:" << type;
-    
+
     CFrmWebView* pView = nullptr;
     switch (type) {
     case QWebEnginePage::WebBrowserTab: {
@@ -320,7 +334,7 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     m_profile.reset(profileBuilder.createProfile(name));
 #else
     const QString name = "io.github.KangLin.RabbitRemoteControl";
-    g_profile.reset(new QWebEngineProfile(name));
+    m_profile.reset(new QWebEngineProfile(name));
 #endif
     if(!m_profile)
         return QWebEngineProfile::defaultProfile();
@@ -334,6 +348,7 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
     m_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
 #endif
+    m_profile->setDownloadPath(m_pPara->GetDownloadFolder());
     bool check = connect(m_profile.get(), &QWebEngineProfile::downloadRequested,
                          &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
     Q_ASSERT(check);
@@ -341,6 +356,7 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
                 << "Persistent path:" << m_profile->persistentStoragePath()
                 << "Cache path:" << m_profile->cachePath()
                 << "Storage name:" << m_profile->storageName()
+                << "Cookie:" << m_profile->cookieStore()
                 << "Is off the Record:" << m_profile->isOffTheRecord()
                 << "Download:" << m_profile->downloadPath();
     return m_profile.get();
@@ -600,11 +616,13 @@ int CFrmWebBrowser::Start()
 int CFrmWebBrowser::Stop()
 {
     int nRet = 0;
+
     for(int i = 0; i < m_pTab->count(); i++) {
         auto v = GetView(i);
         if(!v) continue;
         v->stop();
     }
+
     return nRet;
 }
 

@@ -29,6 +29,8 @@ private:
 public:
     QString GetDownloadFolder();
     int SetDownloadFolder(const QString& folder);
+Q_SIGNALS:
+    void sigDownloadFolderChanged();
 private:
     QString m_szDownloadFolder;
 public:
@@ -41,7 +43,18 @@ public:
     void SetShowDownloadLocation(bool newShowDownloadLocation);
 private:
     bool m_bShowDownloadLocation;
-    
+
+public:
+    bool GetClearHttpCache() const;
+    void SetClearHttpCache(bool newClearHttpCache);
+private:
+    bool m_ClearHttpCache;
+public:
+    bool GetClearCookie() const;
+    void SetClearCookie(bool newClearCookie);
+private:
+    bool m_ClearCookie;
+
 public:
     QString GetSearchEngine() const;
     void SetSearchEngine(const QString &newSearchEngine);

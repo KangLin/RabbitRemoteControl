@@ -23,6 +23,8 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     ui->cbDownloadShowWindow->setChecked(m_pPara->GetShowDownloadManager());
     ui->cbDownloadSave->setChecked(m_pPara->GetShowDownloadLocation());
     ui->cbOpenPreious->setChecked(m_pPara->GetOpenPrevious());
+    ui->cbClearCookie->setChecked(m_pPara->GetClearCookie());
+    ui->cbClearHttpCache->setChecked(m_pPara->GetClearHttpCache());
 
     m_pSearchModel = new QStandardItemModel(this);
     auto searchList = m_pPara->GetSearchEngineList();
@@ -52,6 +54,8 @@ void CDlgSettings::accept()
     m_pPara->SetShowDownloadManager(ui->cbDownloadShowWindow->isChecked());
     m_pPara->SetShowDownloadLocation(ui->cbDownloadSave->isChecked());
     m_pPara->SetOpenPrevious(ui->cbOpenPreious->isChecked());
+    m_pPara->SetClearHttpCache(ui->cbClearHttpCache->isChecked());
+    m_pPara->SetClearCookie(ui->cbClearCookie->isChecked());
     auto index = ui->lstSearchEngine->currentIndex();
     if(index.isValid()) {
         auto search = m_pSearchModel->item(index.row())->text();
