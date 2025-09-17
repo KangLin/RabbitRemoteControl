@@ -71,8 +71,8 @@ LangString LANG_AUTO_BOOT ${LANG_SIMPCHINESE} "开机自启动"
 LangString LANG_DIRECTORY_PERMISSION ${LANG_ENGLISH} "Don't directory permission"
 LangString LANG_DIRECTORY_PERMISSION ${LANG_SIMPCHINESE} "无目录访问权限"
 
-LangString LANG_SELECT_OPERATE ${LANG_ENGLISH} "Please select operate:$\n$\n  Yes - Install programe.$\n  No - Run the program directly without installation(Unpack to a temporary folder, then run the program directly)."
-LangString LANG_SELECT_OPERATE ${LANG_SIMPCHINESE} "请选择操作：$\n$\n  是 - 安装程序。$\n  否 - 不安装(解压到临时文件夹，然后直接运行程序)。"
+LangString LANG_SELECT_OPERATE ${LANG_ENGLISH} "Install Rabbit Remote Control, Please select operate:$\n$\n  Yes - Install programe.$\n  No - Do not install programe, just run the program (Unpack to a temporary folder, it will take about a few minutes).$\n  Cancel - Cancel install."
+LangString LANG_SELECT_OPERATE ${LANG_SIMPCHINESE} "安装 玉兔远程控制 程序，请选择操作：$\n$\n  是 - 安装程序。$\n  否 - 不安装程序,直接运行程序(解压到临时文件夹，大约需要几分钟)。$\n  取消 - 取消安装。"
 
 LangString LANG_DOWNLOAD_NPCAP ${LANG_ENGLISH} "Network-related functions (Wake on LAN) require the pcap package. Do you want to download the npcap installation package?"
 LangString LANG_DOWNLOAD_NPCAP ${LANG_SIMPCHINESE} "网络相关功能（局域网唤醒）需要 pcap 包，是否下载 npcap 安装包？"
@@ -163,7 +163,8 @@ Function .onInit
   ClearErrors
 
   ; 弹出选择框
-  MessageBox MB_YESNO|MB_ICONQUESTION "$(LANG_SELECT_OPERATE)" IDYES InstallProgram IDNO RunProgram
+  MessageBox MB_YESNOCANCEL|MB_ICONQUESTION "$(LANG_SELECT_OPERATE)" IDYES InstallProgram IDNO RunProgram
+  Abort
 RunProgram:
     SetOutPath "$TEMP\Rabbit\Package\RabbitRemoteControl"
     IfFileExists "$OUTDIR\*.*" +2 0
