@@ -80,6 +80,7 @@ private:
     QLineEdit* m_pUrlLineEdit;
     QProgressBar* m_pProgressBar;
     QTabWidget* m_pTab;
+    QScopedPointer<QWebEngineProfile> m_profile;
     CFrmDownloadManager m_DownloadManager;
     QString m_szFindText;
 };

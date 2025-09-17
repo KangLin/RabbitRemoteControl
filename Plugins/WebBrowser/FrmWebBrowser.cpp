@@ -16,7 +16,6 @@
 #endif
 #include <QLoggingCategory>
 
-static QScopedPointer<QWebEngineProfile> g_profile;
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     : QWidget{parent}
@@ -309,40 +308,42 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
 
 QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
 {
-    if (!offTheRecord && !g_profile) {
+    if(offTheRecord)
+        return QWebEngineProfile::defaultProfile();
+    if(m_profile)
+        return m_profile.get();
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
-        const QString name = "io.github.KangLin.RabbitRemoteControl."
-                             + QLatin1StringView(qWebEngineChromiumVersion());
-        QWebEngineProfileBuilder profileBuilder;
-        g_profile.reset(profileBuilder.createProfile(name));
+    const QString name = "io.github.KangLin.RabbitRemoteControl."
+                         + QLatin1StringView(qWebEngineChromiumVersion());
+    QWebEngineProfileBuilder profileBuilder;
+    m_profile.reset(profileBuilder.createProfile(name));
 #else
-        const QString name = "io.github.KangLin.RabbitRemoteControl";
-        g_profile.reset(new QWebEngineProfile(name));
+    const QString name = "io.github.KangLin.RabbitRemoteControl";
+    g_profile.reset(new QWebEngineProfile(name));
 #endif
-        if(!g_profile)
-            return QWebEngineProfile::defaultProfile();
+    if(!m_profile)
+        return QWebEngineProfile::defaultProfile();
 
-        g_profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-        g_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
-        g_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-        g_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
-        g_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
-        g_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
-        #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
-        g_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
-        #endif
-        bool check = connect(g_profile.get(), &QWebEngineProfile::downloadRequested,
-                        &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
-        Q_ASSERT(check);
-        qDebug(log) << "User agent:" << g_profile->httpUserAgent()
-                    << "Persistent path:" << g_profile->persistentStoragePath()
-                    << "Cache path:" << g_profile->cachePath()
-                    << "Storage name:" << g_profile->storageName()
-                    << "Is off the Record:" << g_profile->isOffTheRecord()
-                    << "Download:" << g_profile->downloadPath();
-    }
-    return offTheRecord ? QWebEngineProfile::defaultProfile() : g_profile.get();
+    m_profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    m_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
+    m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+    m_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
+    m_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
+    m_profile->settings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
+#endif
+    bool check = connect(m_profile.get(), &QWebEngineProfile::downloadRequested,
+                         &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
+    Q_ASSERT(check);
+    qDebug(log) << "User agent:" << m_profile->httpUserAgent()
+                << "Persistent path:" << m_profile->persistentStoragePath()
+                << "Cache path:" << m_profile->cachePath()
+                << "Storage name:" << m_profile->storageName()
+                << "Is off the Record:" << m_profile->isOffTheRecord()
+                << "Download:" << m_profile->downloadPath();
+    return m_profile.get();
 }
 
 CFrmWebView *CFrmWebBrowser::CreateWebView(bool offTheRecord)
