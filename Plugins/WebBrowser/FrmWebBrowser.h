@@ -40,6 +40,11 @@ private Q_SLOTS:
     void slotReturnPressed();
     void slotInspector(bool checked);
 
+    void slotPrint();
+    void slotPrintFinished(bool success);
+    void slotPrintToPdf();
+    void slotPdfPrintingFinished(const QString& szFile, bool success);
+
 private:
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);
@@ -74,6 +79,8 @@ private:
     QAction* m_pAddPageIncognito;
     QAction* m_pAddWindow;
     QAction* m_pAddWindowIncognito;
+    QAction* m_pPrint;
+    QAction* m_pPrintToPdf;
     QAction* m_pDownload;
     QAction* m_pInspector;
     QAction* m_pUrl;

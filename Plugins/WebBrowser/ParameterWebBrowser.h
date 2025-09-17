@@ -70,7 +70,12 @@ public:
     void SetSearchEngineList(const QStringList &newSearchEngineList);
 private:
     QStringList m_SearchEngineList;
-    
+public:
+    bool GetPromptPrintFinished() const;
+    void SetPromptPrintFinished(bool newPromptPrintFinished);
+private:
+    bool m_bPromptPrintFinished;
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;

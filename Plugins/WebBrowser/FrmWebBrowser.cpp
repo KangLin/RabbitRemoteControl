@@ -1,8 +1,11 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "FrmWebBrowser.h"
+#include <QMessageBox>
 #include <QMenu>
 #include <QFile>
+#include <QDir>
+#include <QPrinter>
 #include <QInputDialog>
 #include <QSplitter>
 #include <QVBoxLayout>
@@ -12,10 +15,12 @@
 #include <QWebEngineFindTextResult>
 #include <QRegularExpression>
 #include <QWebEngineCookieStore>
+#include <QStandardPaths>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
 #include <QWebEngineProfileBuilder>
 #endif
 #include <QLoggingCategory>
+#include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
@@ -37,6 +42,8 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_pAddPage(nullptr)
     , m_pAddPageIncognito(nullptr)
     , m_pAddWindow(nullptr)
+    , m_pPrint(nullptr)
+    , m_pPrintToPdf(nullptr)
     , m_pAddWindowIncognito(nullptr)
     , m_pDownload(nullptr)
     , m_pInspector(nullptr)
@@ -318,6 +325,14 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                     });
     Q_ASSERT(check);
     m_pProgressBar->setValue(pWeb->progress());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+    check = connect(pWeb, &CFrmWebView::printFinished,
+                    this, &CFrmWebBrowser::slotPrintFinished);
+    Q_ASSERT(check);
+    check = connect(pWeb, &CFrmWebView::pdfPrintingFinished,
+                    this, &CFrmWebBrowser::slotPdfPrintingFinished);
+    Q_ASSERT(check);
+#endif
 }
 
 QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
@@ -589,6 +604,16 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     Q_ASSERT(check);
 
     pMenu->addSeparator();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+    m_pPrint = pMenu->addAction(
+        QIcon::fromTheme("document-print"), tr("Print"),
+        this, &CFrmWebBrowser::slotPrint);
+    m_pPrint->setVisible(false);
+    m_pPrintToPdf = pMenu->addAction(
+        QIcon::fromTheme("document-print"), tr("Print to pdf"),
+        this, &CFrmWebBrowser::slotPrintToPdf);
+#endif
+
     pMenu->addAction(m_pDownload);
     if(!m_pInspector) {
         m_pInspector = pMenu->addAction(QIcon::fromTheme("tools"), tr("Inspector"));
@@ -785,4 +810,49 @@ int CFrmWebBrowser::Save(QSettings &set)
         set.endGroup();
     }
     return 0;
+}
+
+void CFrmWebBrowser::slotPrint()
+{
+    CFrmWebView* pWeb = CurrentView();
+    if(pWeb) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+        QPrinter printer;
+        pWeb->print(&printer);
+#endif
+    }
+}
+
+void CFrmWebBrowser::slotPrintFinished(bool success)
+{
+    if(success && m_pPara->GetPromptPrintFinished()) {
+        QMessageBox::information(this, tr("Print finished"),
+                                 tr("Successfully printed"));
+    }
+}
+
+void CFrmWebBrowser::slotPrintToPdf()
+{
+    CFrmWebView* pWeb = CurrentView();
+    if(pWeb) {
+        QString szPath;
+        szPath += RabbitCommon::CDir::Instance()->GetDirUserData()
+                  + QDir::separator() + "pdf";
+        QDir d(szPath);
+        if(!d.exists())
+            d.mkpath(szPath);
+        szPath += QDir::separator() + pWeb->page()->title() + ".pdf";
+        qDebug(log) << "pdf:" << szPath;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+        pWeb->printToPdf(szPath);
+#endif
+    }
+}
+
+void CFrmWebBrowser::slotPdfPrintingFinished(const QString& szFile, bool success) {
+    if(success && m_pPara->GetPromptPrintFinished())
+        QMessageBox::information(this, tr("Print to pdf finished"),
+                                 tr("Successfully printed to PDF.") + "\n"
+                                     + tr("PDF file: ") + szFile);
+    qDebug(log) << "Print to pdf:" << szFile << success;
 }

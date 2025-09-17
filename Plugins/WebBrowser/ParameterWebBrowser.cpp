@@ -13,6 +13,7 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_bShowDownloadLocation(false)
     , m_ClearHttpCache(false)
     , m_ClearCookie(false)
+    , m_bPromptPrintFinished(true)
 {
     //m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     SetDownloadFolder(QWebEngineProfile::defaultProfile()->downloadPath());
@@ -42,6 +43,7 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetSearchEngine(set.value("SearchEngine", GetSearchEngine()).toString());
     SetSearchRelaceString(set.value("SearchEngine/SearchEngine", GetSearchRelaceString()).toString());
     SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
+    SetPromptPrintFinished(set.value("Print/Finished", GetPromptPrintFinished()).toBool());
     return nRet;
 }
 
@@ -59,6 +61,7 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("SearchEngine", GetSearchEngine());
     set.setValue("SearchEngine/SearchEngine", GetSearchRelaceString());
     set.setValue("SearchEngine/List", GetSearchEngineList());
+    set.setValue("Print/Finished", GetPromptPrintFinished());
     return nRet;
 }
 
@@ -210,5 +213,18 @@ void CParameterWebBrowser::SetSearchEngineList(const QStringList &newSearchEngin
     if(m_SearchEngineList == newSearchEngineList)
         return;
     m_SearchEngineList = newSearchEngineList;
+    SetModified(true);
+}
+
+bool CParameterWebBrowser::GetPromptPrintFinished() const
+{
+    return m_bPromptPrintFinished;
+}
+
+void CParameterWebBrowser::SetPromptPrintFinished(bool newPromptPrintFinished)
+{
+    if(m_bPromptPrintFinished == newPromptPrintFinished)
+        return;
+    m_bPromptPrintFinished = newPromptPrintFinished;
     SetModified(true);
 }

@@ -82,7 +82,7 @@ void CFrmDownload::on_pbButton_clicked()
     }
     case QWebEngineDownloadRequest::DownloadCompleted: {
         RabbitCommon::CTools::LocateFileWithExplorer(
-            QDir(m_pDownload->downloadDirectory()).filePath(m_pDownload->downloadFileName()));
+            QDir(m_pDownload->downloadDirectory()).absoluteFilePath(m_pDownload->downloadFileName()));
         break;
     }
     default: {
