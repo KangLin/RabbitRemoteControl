@@ -1,7 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FrmWebView.h"
-#include "FrmWebBrowser.h"
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QMessageBox>
@@ -9,6 +7,10 @@
 #include <QTimer>
 #include <QStyle>
 #include <QLoggingCategory>
+
+#include "FrmWebView.h"
+#include "FrmWebBrowser.h"
+#include "DlgUserPassword.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.View")
 
@@ -290,32 +292,18 @@ void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
 void CFrmWebView::slotAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth)
 {
     qDebug(log) << Q_FUNC_INFO;
-    /*
-    QDialog dialog(window());
-    dialog.setModal(true);
-    dialog.setWindowFlags(dialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
-    Ui::PasswordDialog passwordDialog;
-    passwordDialog.setupUi(&dialog);
-
-    passwordDialog.m_iconLabel->setText(QString());
-    QIcon icon(window()->style()->standardIcon(QStyle::SP_MessageBoxQuestion, 0, window()));
-    passwordDialog.m_iconLabel->setPixmap(icon.pixmap(32, 32));
-
-    QString introMessage(tr("Enter username and password for \"%1\" at %2")
-                                 .arg(auth->realm(),
-                                      requestUrl.toString().toHtmlEscaped()));
-    passwordDialog.m_infoLabel->setText(introMessage);
-    passwordDialog.m_infoLabel->setWordWrap(true);
-
-    if (dialog.exec() == QDialog::Accepted) {
-        auth->setUser(passwordDialog.m_userNameLineEdit->text());
-        auth->setPassword(passwordDialog.m_passwordLineEdit->text());
+    CParameterNet net(nullptr);
+    net.SetHost(requestUrl.toString().toHtmlEscaped());
+    CDlgUserPassword dlg(this);
+    dlg.SetContext(&net);
+    if (dlg.exec() == QDialog::Accepted) {
+        auto &user = net.m_User;
+        auth->setUser(user.GetName());
+        auth->setPassword(user.GetPassword());
     } else {
         // Set authenticator null if dialog is cancelled
         *auth = QAuthenticator();
     }
-    */
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
@@ -344,6 +332,18 @@ void CFrmWebView::slotProxyAuthenticationRequired(const QUrl &url, QAuthenticato
                                                 const QString &proxyHost)
 {
     qDebug(log) << Q_FUNC_INFO;
+    CParameterNet net(nullptr);
+    net.SetHost(proxyHost.toHtmlEscaped());
+    CDlgUserPassword dlg(this);
+    dlg.SetContext(&net);
+    if (dlg.exec() == QDialog::Accepted) {
+        auto &user = net.m_User;
+        auth->setUser(user.GetName());
+        auth->setPassword(user.GetPassword());
+    } else {
+        // Set authenticator null if dialog is cancelled
+        *auth = QAuthenticator();
+    }
     /*
     QDialog dialog(window());
     dialog.setModal(true);
