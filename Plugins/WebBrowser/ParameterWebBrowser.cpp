@@ -9,7 +9,7 @@ static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_bOpenPrevious(false)
-    , m_bShowDownloadManager(false)
+    , m_bShowDownloadManager(true)
     , m_bShowDownloadLocation(false)
     , m_ClearHttpCache(false)
     , m_ClearCookie(false)
