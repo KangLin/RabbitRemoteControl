@@ -281,7 +281,7 @@ if [ $APPIMAGE -eq 1 ]; then
 
     apt install -y -q fuse3
 
-    ./build_depend.sh --qtermwidget \
+    ./build_depend.sh --qtermwidget --qtkeychain \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

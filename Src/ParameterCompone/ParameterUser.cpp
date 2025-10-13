@@ -1,5 +1,11 @@
 // Author: Kang Lin <kl222@126.com>
+
+#if HAVE_QTKEYCHAIN
+    #include "keychain.h"
+#endif
+
 #include "ParameterUser.h"
+#include "ParameterNet.h"
 #include "RabbitCommonTools.h"
 #include <QLoggingCategory>
 
@@ -47,11 +53,27 @@ int CParameterUser::OnLoad(QSettings &set)
     SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
     if(GetSavePassword())
     {
-        QString szPassword;
-        if(!LoadPassword(tr("Password"), "Password", szPassword, set))
-            SetPassword(szPassword);
+#if HAVE_QTKEYCHAIN
+        auto para = GetGlobalParameters();
+        if(para && para->GetUseSystemCredential()) {
+            QString key("Password");
+            auto net = qobject_cast<CParameterNet*>(parent());
+            if(net) {
+                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+            }
+            auto pReadJob = new QKeychain::ReadPasswordJob("io.github.KangLin/RabbitRemoteControl");
+            connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassword);
+            pReadJob->setKey(key);
+            pReadJob->start();
+        } else
+#endif
+        {
+            QString szPassword;
+            if(!LoadPassword(tr("Password"), "Password", szPassword, set))
+                SetPassword(szPassword);
+        }
     }
-    
+
     set.beginGroup("PublicKey");
     set.beginGroup("File");
     SetUseSystemFile(set.value("UseSystemFile", GetUseSystemFile()).toBool());
@@ -61,11 +83,27 @@ int CParameterUser::OnLoad(QSettings &set)
                                 GetPrivateKeyFile()).toString());
     SetSavePassphrase(set.value("SavePassphrase", GetSavePassphrase()).toBool());
     if(GetSavePassphrase()) {
-        QString szPassword;
-        if(!LoadPassword(tr("Passphrase"), "Passphrase", szPassword, set))
-            SetPassphrase(szPassword);
+#if HAVE_QTKEYCHAIN
+        auto para = GetGlobalParameters();
+        if(para && para->GetUseSystemCredential()) {
+            QString key("Passphrase");
+            auto net = qobject_cast<CParameterNet*>(parent());
+            if(net) {
+                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+            }
+            auto pReadJob = new QKeychain::ReadPasswordJob("io.github.KangLin/RabbitRemoteControl");
+            connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassPhrase);
+            pReadJob->setKey(key);
+            pReadJob->start();
+        } else
+#endif
+        {
+            QString szPassword;
+            if(!LoadPassword(tr("Passphrase"), "Passphrase", szPassword, set))
+                SetPassphrase(szPassword);
+        }
     }
-    
+
     SetCAFile(set.value("CA", GetCAFile()).toString());
     SetCRLFile(set.value("CRL", GetCRLFile()).toString());
     
@@ -91,16 +129,66 @@ int CParameterUser::OnSave(QSettings &set)
     set.setValue("Type/Used", (int)GetUsedType());
 
     set.setValue("SavePassword", GetSavePassword());
-    SavePassword("Password", GetPassword(), set, GetSavePassword());
-    
+    if(GetSavePassword() && !GetPassword().isEmpty()) {
+#if HAVE_QTKEYCHAIN
+        auto para = GetGlobalParameters();
+        if(para && para->GetUseSystemCredential()) {
+            QString key("Password");
+            auto net = qobject_cast<CParameterNet*>(parent());
+            if(net) {
+                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+            }
+            auto pWriteJob = new QKeychain::WritePasswordJob("io.github.KangLin/RabbitRemoteControl");
+            connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
+                if (pWriteJob->error()) {
+                    qCritical(log) << "Fail: write key" << key << ";" << pWriteJob->errorString();
+                    return;
+                }
+                qDebug(log) << "Write key" << key << "succeeded.";
+            });
+            pWriteJob->setKey(key);
+            pWriteJob->setTextData(GetPassword());
+            pWriteJob->start();
+        } else
+#endif
+        {
+            SavePassword("Password", GetPassword(), set, GetSavePassword());
+        }
+    }
+
     set.beginGroup("PublicKey");
     set.beginGroup("File");
     set.setValue("UseSystemFile", GetUseSystemFile());
     set.setValue("PublicKey", GetPublicKeyFile());
     set.setValue("PrivateKey", GetPrivateKeyFile());
     set.setValue("SavePassphrase", GetSavePassphrase());
-    SavePassword("Passphrase", GetPassphrase(), set, GetSavePassphrase());
-    
+    if(GetSavePassphrase() && !GetPassphrase().isEmpty()) {
+#if HAVE_QTKEYCHAIN
+        auto para = GetGlobalParameters();
+        if(para && para->GetUseSystemCredential()) {
+            QString key("Passphrase");
+            auto net = qobject_cast<CParameterNet*>(parent());
+            if(net) {
+                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+            }
+            auto pWriteJob = new QKeychain::WritePasswordJob("io.github.KangLin/RabbitRemoteControl");
+            connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
+                if (pWriteJob->error()) {
+                    qCritical(log) << "Fail: write pass phrase key" << key << ";" << pWriteJob->errorString();
+                    return;
+                }
+                qDebug(log) << "Writepass phrase  key" << key << "succeeded.";
+            });
+            pWriteJob->setKey(key);
+            pWriteJob->setTextData(GetPassphrase());
+            pWriteJob->start();
+        } else
+#endif
+        {
+            SavePassword("Passphrase", GetPassphrase(), set, GetSavePassphrase());
+        }
+    }
+
     set.setValue("CA", GetCAFile());
     set.setValue("CRL", GetCRLFile());
     
@@ -188,7 +276,7 @@ void CParameterUser::slotSetGlobalParameters()
         Q_ASSERT_X(false, "CParameterUser", szErr.toStdString().c_str());
         return;
     }
-
+    
     if(GetGlobalParameters())
     {
         if(GetGlobalParameters()->GetEnableSystemUserToUser())
@@ -196,7 +284,7 @@ void CParameterUser::slotSetGlobalParameters()
         SetSavePassword(GetGlobalParameters()->GetSavePassword());
         SetSavePassphrase(GetGlobalParameters()->GetSavePassword());
     }
-
+    
     return;
 }
 //! [Initialize parameter after set CParameterPlugin]
@@ -309,4 +397,36 @@ int CParameterUser::SetTypeName(TYPE t, const QString& szName)
 {
     m_TypeName[t] = szName;
     return 0;
+}
+
+void CParameterUser::slotLoadPassword()
+{
+#if HAVE_QTKEYCHAIN
+    qDebug(log) << Q_FUNC_INFO;
+    QKeychain::ReadPasswordJob* pReadJob = qobject_cast<QKeychain::ReadPasswordJob*>(sender());
+    if(!pReadJob) return;
+    QString key = pReadJob->key();
+    if (pReadJob->error()) {
+        qCritical(log) << "Fail: read key" << key << ";" << pReadJob->errorString();
+        return;
+    }
+    qDebug(log) << "Read key" << key << "succeeded.";
+    SetPassword(pReadJob->textData());
+#endif
+}
+
+void CParameterUser::slotLoadPassPhrase()
+{
+#if HAVE_QTKEYCHAIN
+    qDebug(log) << Q_FUNC_INFO;
+    QKeychain::ReadPasswordJob* pReadJob = qobject_cast<QKeychain::ReadPasswordJob*>(sender());
+    if(!pReadJob) return;
+    QString key = pReadJob->key();   
+    if (pReadJob->error()) {
+        qCritical(log) << "Fail: read pass phrase key" << key << ";" << pReadJob->errorString();
+        return;
+    }
+    qDebug(log) << "Read pass phrase key" << key << "succeeded.";
+    SetPassphrase(pReadJob->textData());
+#endif
 }

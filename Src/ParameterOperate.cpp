@@ -86,10 +86,10 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
         key = GetGlobalParameters()->GetEncryptKey().toStdString().c_str();
     if(!key.empty())
         e.SetPassword(key.c_str());
-
+    
     if(!e.Dencode(pwByte, password)
-            && PasswordSum(password.toStdString(), key) == sum)
-            return 0;
+        && PasswordSum(password.toStdString(), key) == sum)
+        return 0;
 
     qDebug(log) << "Password don't dencode or sum is error";
     CDlgInputPassword d(GetGlobalParameters()->GetViewPassowrd(), szTitle);

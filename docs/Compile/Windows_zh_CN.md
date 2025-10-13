@@ -89,7 +89,8 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
-- [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
+- [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) 多媒体功能需要
+- [可选] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
 
 #### 玉兔公共库
 

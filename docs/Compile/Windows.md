@@ -92,7 +92,8 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: https://github.com/KangLin/qt-solutions/
 - [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
-- [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
+- [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) Multimedia capabilities required
+- [OPTIONAL] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
 
 #### RabbitCommon
 

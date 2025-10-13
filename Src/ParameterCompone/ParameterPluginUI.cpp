@@ -39,6 +39,7 @@ int CParameterPluginUI::Accept()
     m_pPara->SetAdaptWindows(
         (CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
 
+    m_pPara->SetUseSystemCredential(ui->cbSystemCredential->isChecked());
     m_pPara->SetEncryptKey(ui->leEncryptKey->text());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
@@ -104,6 +105,11 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     if(-1 != nIndex)
         ui->cbViewZoom->setCurrentIndex(nIndex);
 
+#if HAVE_QTKEYCHAIN
+    ui->cbSystemCredential->setChecked(m_pPara->GetUseSystemCredential());
+#else
+    ui->cbSystemCredential->hide();
+#endif
     ui->leEncryptKey->setText(m_pPara->GetEncryptKey());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
@@ -119,7 +125,13 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
         ui->rbPromptNo->setChecked(true);
         break;
     }
+
     ui->cbShowPrefix->setChecked(m_pPara->GetShowProtocolPrefix());
     ui->cbShowIPPort->setChecked(m_pPara->GetShowIpPortInName());
     return 0;
+}
+
+void CParameterPluginUI::on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state)
+{
+    ui->gpEncryptKey->setEnabled(Qt::Unchecked == state);
 }

@@ -11,6 +11,7 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_PromptType(PromptType::No)
     , m_nPromptCount(0)
     , m_bViewPassowrd(false)
+    , m_bUseSystemCredential(true)
     , m_bShowProtocolPrefix(false)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
@@ -42,6 +43,7 @@ int CParameterPlugin::OnLoad(QSettings &set)
                               ));
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
     SetViewPassowrd(set.value("Password/View", GetViewPassowrd()).toBool());
+    SetUseSystemCredential(set.value("Password/UseSystemCredential", GetUseSystemCredential()).toBool());
     SetShowProtocolPrefix(set.value("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
@@ -62,6 +64,7 @@ int CParameterPlugin::OnSave(QSettings& set)
                  static_cast<int>(GetPromptType()));
     set.setValue("Password/Save", GetSavePassword());
     set.setValue("Password/View", GetViewPassowrd());
+    set.setValue("Password/UseSystemCredential", GetUseSystemCredential());
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
@@ -191,6 +194,19 @@ void CParameterPlugin::SetViewPassowrd(bool NewViewPassowrd)
     m_bViewPassowrd = NewViewPassowrd;
     SetModified(true);
     emit sigViewPassowrdChanged(m_bViewPassowrd);
+}
+
+bool CParameterPlugin::GetUseSystemCredential() const
+{
+    return m_bUseSystemCredential;
+}
+
+void CParameterPlugin::SetUseSystemCredential(bool newUseSystemCredential)
+{
+    if(m_bUseSystemCredential == newUseSystemCredential)
+        return;
+    m_bUseSystemCredential = newUseSystemCredential;
+    SetModified(true);
 }
 
 bool CParameterPlugin::GetShowProtocolPrefix() const

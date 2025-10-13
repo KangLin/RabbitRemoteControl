@@ -258,7 +258,26 @@ if(WITH_QTERMWIDGET)
         option(INSTALL_QTERMWIDGET "Install qtermwidget libraries" OFF)
         if(INSTALL_QTERMWIDGET)
             INSTALL_TARGETS(TARGETS qtermwidget${QT_VERSION_MAJOR})
+            # Install resources
             INSTALL(FILES $<TARGET_FILE_DIR:qtermwidget${QT_VERSION_MAJOR}>/../share/
+                DESTINATION "${CMAKE_INSTALL_DATADIR}"
+                    COMPONENT DependLibraries)
+        endif()
+    endif()
+endif()
+
+option(WITH_QtKEYCHAIN "With qtkeychain" ON)
+if(WITH_QtKEYCHAIN)
+    find_package(Qt${QT_VERSION_MAJOR}Keychain)
+    if(Qt${QT_VERSION_MAJOR}Keychain_FOUND)
+        list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTKEYCHAIN)
+        list(APPEND PLUGIN_LIBS Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain)
+        list(APPEND PLUGIN_INCLUDE_DIRS $<BUILD_INTERFACE:${QTKEYCHAIN_INCLUDE_DIRS}/qt${QT_VERSION_MAJOR}keychain>)
+        option(INSTALL_QTKEYCHAIN "Install qtkeychain resources" OFF)
+        if(INSTALL_QTKEYCHAIN)
+            INSTALL_TARGETS(TARGETS Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain)
+            # Install translations
+            Install(FILES $<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain>/../share/
                 DESTINATION "${CMAKE_INSTALL_DATADIR}"
                     COMPONENT DependLibraries)
         endif()

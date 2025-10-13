@@ -27,9 +27,10 @@ QtService=0
 QTERMWIDGET=0
 LIBSSH=0
 MACOS=0
+QTKEYCHAIN=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--macos=[0|1]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--macos=[0|1]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]] [--qtkeychain[=[0|1]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -53,6 +54,7 @@ usage_long() {
     echo "  --libdatachannel: Install libdatachannel"
     echo "  --QtService: Install QtService"
     echo "  --qtermwidget: Install qtermwidget"
+    echo "  --qtkeychain: Install qtkeychain"
     exit
 }
 
@@ -66,7 +68,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -236,6 +238,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --qtkeychain)
+            case $2 in
+                "")
+                    QTKEYCHAIN=1;;
+                *)
+                    QTKEYCHAIN=$2;;
+            esac
+            shift 2
+            ;;
         --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
             shift
             break
@@ -340,6 +351,8 @@ if [ $BASE_LIBS -eq 1 ]; then
         apt install -y -q libfuse-dev libfuse3-dev
         # Other
         apt install -y -q libvncserver-dev
+        # Needed by qtkeychain
+        apt install -y -q libsecret-1-dev
     fi
 
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
@@ -373,7 +386,7 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
             libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
             qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-websockets-dev \
             qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
-        apt-get install -y -q freerdp2-dev
+        apt-get install -y -q freerdp2-dev qtkeychain-qt6-dev
     fi
     
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
@@ -574,6 +587,24 @@ if [ $QTERMWIDGET -eq 1 ]; then
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
+    fi
+    popd
+fi
+
+if [ $QTKEYCHAIN -eq 1 ]; then
+    echo "Install QtKeyChain ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/Qt6Keychain ]; then
+        git clone --depth=1 https://github.com/frankosterfeld/qtkeychain.git
+        cd qtkeychain
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+            -DBUILD_WITH_QT6:BOOL=ON
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
     fi

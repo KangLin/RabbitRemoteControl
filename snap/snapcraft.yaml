@@ -275,6 +275,24 @@ parts:
     prime:
       - -usr/local/include
 
+  qtkeychain:
+    plugin: cmake
+    source: https://github.com/frankosterfeld/qtkeychain.git
+    source-type: git
+    #source-tag: 2.2.0
+    source-branch: main
+    source-depth: 1
+    build-packages:
+      - libsecret-1-dev
+    stage-packages:
+      - libsecret-1-0
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
+      - -DBUILD_WITH_QT6:BOOL=ON
+    prime:
+      - -usr/local/include
+
   rabbitremotecontrol:
     # See 'snapcraft plugins'
     # see: https://snapcraft.io/docs/supported-plugins

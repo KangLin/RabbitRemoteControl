@@ -72,8 +72,8 @@ public:
     void SetEnableSystemUserToUser(bool enable);
 private:
     bool m_bEnableSystemUserToUser;
-    //////////////// Password ////////////////
 
+    //////////////// Password ////////////////
 public:
     const QString &GetEncryptKey() const;
     void SetEncryptKey(const QString &newPassword);
@@ -126,6 +126,12 @@ Q_SIGNALS:
 private:
     bool m_bViewPassowrd;
     Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
+
+public:
+    bool GetUseSystemCredential() const;
+    void SetUseSystemCredential(bool newUseSystemCredential);
+private:
+    bool m_bUseSystemCredential;
 
     //////////////// Password end ////////////////
     

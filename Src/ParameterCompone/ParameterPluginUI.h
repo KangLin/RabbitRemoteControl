@@ -28,4 +28,6 @@ private:
 public:
     virtual int SetParameter(CParameter *pParameter) override;
     virtual int Accept() override;
+private slots:
+    void on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state);
 };

@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CHOOK_H
-#define CHOOK_H
+#pragma once
 
 #include <QObject>
 #include "ParameterPlugin.h"
@@ -31,4 +30,3 @@ protected:
     virtual ~CHook();
 };
 
-#endif // CHOOK_H
