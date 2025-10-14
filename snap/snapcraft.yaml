@@ -193,7 +193,7 @@ parts:
     plugin: cmake
     source: https://github.com/seladb/PcapPlusPlus.git
     source-type: git
-    source-tag: v24.09
+    source-tag: v25.05
     source-depth: 1
     build-packages:
       - libpcap-dev

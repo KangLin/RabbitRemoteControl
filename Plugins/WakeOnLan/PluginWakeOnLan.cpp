@@ -1,14 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
-#include <QLoggingCategory>
-#include <QDir>
-
-#include "PluginWakeOnLan.h"
-#include "OperateWakeOnLan.h"
 
 #ifdef HAVE_PCAPPLUSPLUS
     #include "PcapPlusPlusVersion.h"
     #include "PcapDevice.h"
     #include <Logger.h>
+    #include <QLoggingCategory>
     static Q_LOGGING_CATEGORY(logPcpp, "WOL.PCPP")
     void Pcpp_Logger(pcpp::Logger::LogLevel logLevel,
                      const std::string& logMessage,
@@ -30,6 +26,12 @@
         }
     }
 #endif
+    
+#include <QLoggingCategory>
+#include <QDir>
+    
+#include "PluginWakeOnLan.h"
+#include "OperateWakeOnLan.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Plugin")
 CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)

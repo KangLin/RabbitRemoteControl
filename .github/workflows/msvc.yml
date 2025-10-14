@@ -128,7 +128,7 @@ jobs:
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus (
               git clone --recursive https://github.com/seladb/PcapPlusPlus.git
               cd PcapPlusPlus
-              git checkout -b v24.09 v24.09
+              git checkout -b v25.05 v25.05
               cmake -E make_directory build
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^

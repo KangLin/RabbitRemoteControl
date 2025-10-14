@@ -138,7 +138,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/pcapplusplus ]; then
-              git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+              git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
               cd PcapPlusPlus
               cmake -E make_directory build
               cd build
