@@ -112,19 +112,6 @@
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QRadioButton" name="rbPromptAlways">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Always</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
         </layout>
@@ -229,7 +216,6 @@
   <tabstop>pbEncryptKey</tabstop>
   <tabstop>rbPromptNo</tabstop>
   <tabstop>rbPromptFirst</tabstop>
-  <tabstop>rbPromptAlways</tabstop>
   <tabstop>cbSavePassword</tabstop>
   <tabstop>cbEnableViewPassword</tabstop>
   <tabstop>cbShowPrefix</tabstop>

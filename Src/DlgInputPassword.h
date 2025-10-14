@@ -15,16 +15,11 @@ class CDlgInputPassword : public QDialog
     
 public:
     explicit CDlgInputPassword(bool bShow = false,
-                               QString szTitle = QString(),
+                               bool bStore = true,
                                QWidget *parent = nullptr);
     virtual ~CDlgInputPassword();
-    
-    enum InputType{
-        Encrypt,
-        Password
-    };
-    
-    int GetValue(InputType &t, QString &password);
+
+    QString GetPassword();
 
 private slots:
     void on_pbNo_clicked();

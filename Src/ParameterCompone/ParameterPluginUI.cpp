@@ -43,8 +43,6 @@ int CParameterPluginUI::Accept()
     m_pPara->SetEncryptKey(ui->leEncryptKey->text());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
-    if(ui->rbPromptAlways->isChecked())
-        m_pPara->SetPromptType(CParameterPlugin::PromptType::Always);
     if(ui->rbPromptFirst->isChecked())
         m_pPara->SetPromptType(CParameterPlugin::PromptType::First);
     if(ui->rbPromptNo->isChecked())
@@ -115,9 +113,6 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
     ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
     switch (m_pPara->GetPromptType()) {
-    case CParameterPlugin::PromptType::Always:
-        ui->rbPromptAlways->setChecked(true);
-        break;
     case CParameterPlugin::PromptType::First:
         ui->rbPromptFirst->setChecked(true);
         break;

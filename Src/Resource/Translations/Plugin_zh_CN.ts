@@ -165,9 +165,8 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
-        <location filename="../../DlgInputPassword.cpp" line="12"/>
         <source>Input encrypt key</source>
-        <translation>输入加密键</translation>
+        <translation>输入加密密钥</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="122"/>
@@ -180,17 +179,27 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="14"/>
+        <location filename="../../DlgInputPassword.cpp" line="13"/>
+        <source>Store password</source>
+        <translation>保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <source>Restore password</source>
+        <translation>恢复密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="17"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
         <translation>加密密钥用于加密保存到文件中的密码。</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="16"/>
+        <location filename="../../DlgInputPassword.cpp" line="19"/>
         <source>If you forget the encryption key, please use input %1.</source>
         <translation>如果您忘记了加密密钥，请使用输入 %1。</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="21"/>
+        <location filename="../../DlgInputPassword.cpp" line="24"/>
         <source>Input %1</source>
         <translation>输入 %1</translation>
     </message>
@@ -630,12 +639,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>加密键用于加密保存的密码</translation>
+        <translation>加密密钥用于加密保存的密码</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
         <source>Encrypt key:</source>
-        <translation>加密键</translation>
+        <translation>加密密钥：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
@@ -1104,7 +1113,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="70"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="72"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
@@ -1139,7 +1148,7 @@ Restart program by administrator?</source>
         <translation>用户名和密码（使用 X509 认证加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="98"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="102"/>
         <source>Passphrase</source>
         <translation>密码</translation>
     </message>

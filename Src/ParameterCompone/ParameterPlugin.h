@@ -97,8 +97,7 @@ public:
     enum class PromptType
     {
         No,
-        First,
-        Always,
+        First
     };
     Q_ENUM(PromptType)
     PromptType GetPromptType() const;
