@@ -54,6 +54,9 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_DownloadManager(pPara)
 {
     bool check = false;
+
+    setWindowIcon(QIcon::fromTheme("web-browser"));
+
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     if(!pLayout) {
         return;
@@ -653,7 +656,6 @@ int CFrmWebBrowser::Stop()
 
 void CFrmWebBrowser::slotTabCurrentChanged(int index)
 {
-    bool check = false;
     if(-1 == index) return;
     CFrmWebView* pWeb = CurrentView();
     if(pWeb) {

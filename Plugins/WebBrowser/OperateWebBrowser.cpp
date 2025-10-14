@@ -70,6 +70,7 @@ int COperateWebBrowser::Initial()
     m_pWeb = new CFrmWebBrowser(&m_Parameter);
     if(m_pWeb) {
         m_pWeb->InitMenu(&m_Menu);
+        m_pWeb->setWindowIcon(COperate::Icon());
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
                              this, &COperateWebBrowser::sigInformation);
         Q_ASSERT(check);

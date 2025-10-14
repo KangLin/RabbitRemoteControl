@@ -1170,6 +1170,7 @@ void MainWindow::slotUpdateName(const QString& szName)
     foreach(auto a, ui->menuActivity->actions()) {
         if(a->data().value<COperate*>() == p) {
             a->setText(szName);
+            a->setIcon(p->Icon());
             break;
         }
     }
