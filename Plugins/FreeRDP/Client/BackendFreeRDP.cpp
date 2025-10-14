@@ -805,10 +805,8 @@ BOOL CBackendFreeRDP::cb_pre_connect(freerdp* instance)
         auto &user = pParameter->m_Net.m_User;
         if(!freerdp_settings_get_string(settings, FreeRDP_Username)) {
             if(user.GetUser().isEmpty()) {
-                if(user.GetUser().isEmpty()) {
-                    // Will be call instance->Authenticate = cb_authenticate
-                    qWarning(log) << "Auth-only, but no user name set. Will be call instance->Authenticate.";
-                    }
+                // Will be call instance->Authenticate = cb_authenticate
+                qWarning(log) << "Auth-only, but no user name set. Will be call instance->Authenticate.";
             } else
                 freerdp_settings_set_string(
                     settings, FreeRDP_Username,
@@ -1545,7 +1543,7 @@ BOOL CBackendFreeRDP::cb_authenticate(freerdp* instance, char** username,
             *domain = _strdup(szDomain.toStdString().c_str());
         if(!szName.isEmpty() && username)
             *username = _strdup(szName.toStdString().c_str());
-        if(!szPassword.isEmpty() && password)
+        if(password)
             *password = _strdup(szPassword.toStdString().c_str());
     } else
         return FALSE;
@@ -1576,7 +1574,7 @@ BOOL CBackendFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
             *domain = _strdup(szDomain.toStdString().c_str());
         if(!szName.isEmpty() && username)
             *username = _strdup(szName.toStdString().c_str());
-        if(!szPassword.isEmpty() && password)
+        if(password)
             *password = _strdup(szPassword.toStdString().c_str());
     } else
         return FALSE;
