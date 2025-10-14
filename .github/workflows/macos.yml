@@ -18,7 +18,7 @@ jobs:
       matrix:
         include:
           - VCPKG_TARGET_TRIPLET: x64-osx
-            os: macos-13
+            os: macos-15-intel
             qt_version: 6.9.2
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
@@ -87,8 +87,9 @@ jobs:
 
       - name: install nasm
         run: |
+          # See: https://formulae.brew.sh/
           brew update
-          brew install nasm autoconf automake libtool pkg-config zstd libpcap libvncserver
+          brew install nasm autoconf automake libtool pkg-config zstd libpcap libvncserver # pcapplusplus qt qtkeychain
 
       - name: build RabbitVNC
         if: false
@@ -133,6 +134,28 @@ jobs:
             cmake --install . --config Release --strip
           fi
 
+      - name: pcapplusplus
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/pcapplusplus ]; then
+              git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+              cd PcapPlusPlus
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=Release \
+                  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DPCAPPP_BUILD_EXAMPLES=OFF \
+                  -DPCAPPP_BUILD_TESTS=OFF \
+                  -DPCAPPP_BUILD_TUTORIALS=OFF
+              cmake --build . --config Release
+              cmake --build . --config Release --target install
+          fi
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -156,6 +179,7 @@ jobs:
                 -DCMAKE_BUILD_TYPE=Release \
                 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+                -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
@@ -222,27 +246,25 @@ jobs:
               cmake --build . --config Release --target install
           fi
 
-      - name: pcapplusplus
+      - name: qtkeychain
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/pcapplusplus ]; then
-              git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
-              cd PcapPlusPlus
-              cmake -E make_directory build
-              cd build
-              cmake .. -DCMAKE_BUILD_TYPE=Release \
-                  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
-                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-                  -DVCPKG_VERBOSE=ON \
-                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
-                  -DPCAPPP_BUILD_EXAMPLES=OFF \
-                  -DPCAPPP_BUILD_TESTS=OFF \
-                  -DPCAPPP_BUILD_TUTORIALS=OFF
-              cmake --build . --config Release
-              cmake --build . --config Release --target install
-          fi
+            if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/Qt6Keychain ]; then
+                git clone -b 0.15.0 https://github.com/frankosterfeld/qtkeychain.git
+                cd qtkeychain
+                cmake -E make_directory build
+                cd build
+                cmake .. -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                    -DBUILD_WITH_QT6:BOOL=ON \
+                    -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                    -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                    -DVCPKG_VERBOSE=ON \
+                    -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
+                cmake --build . --config Release
+                cmake --build . --config Release --target install
+            fi
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
@@ -274,8 +296,9 @@ jobs:
               -DVCPKG_VERBOSE=ON \
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
               -DRABBIT_WITH_MACDEPLOY=OFF \
+              -DWITH_MACOSX_BUNDLE=ON \
               -DBUILD_FREERDP=ON \
-              -DWITH_MACOSX_BUNDLE=ON
+              -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --config Release
           if [ "Release" == "Release" ]; then
             cmake --install . --config Release --component DependLibraries --strip
@@ -300,12 +323,12 @@ jobs:
             macdeployqt `pwd`/install/RabbitRemoteControl.App -verbose=3
 
             7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_bundle.zip ./install/RabbitRemoteControl.App
-            #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
-            #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
-            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
-            #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
-            #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
-            #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            otool -l `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
+            otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
             #lipo -info  `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
             #otool -l `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
             #otool -L `pwd`/install/RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
@@ -344,7 +367,8 @@ jobs:
               -DVCPKG_VERBOSE=ON \
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
               -DRABBIT_WITH_MACDEPLOY=OFF \
-              -DBUILD_FREERDP=ON
+              -DBUILD_FREERDP=ON \
+              -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --config Release
           if [ "Release" == "Release" ]; then
             cmake --install . --config Release --component DependLibraries --strip
@@ -364,6 +388,17 @@ jobs:
             if [ -f RabbitRemoteControl.dmg ]; then
               cp RabbitRemoteControl.dmg RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.dmg
             fi
+            
+            lipo -info RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            otool -l RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp | grep -A2 LC_RPATH
+            otool -L RabbitRemoteControl.App/Contents/MacOS/RabbitRemoteControlApp
+            lipo -info RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            otool -l RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib | grep -A3 -B1 "LC_RPATH"
+            otool -L RabbitRemoteControl.App/Contents/FrameWorks/libPlugin.dylib
+            #lipo -info RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+            #otool -l RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui | grep -A3 -B1 "LC_RPATH"
+            #otool -L RabbitRemoteControl.App/Contents/FrameWorks/QtGui.framework/QtGui
+
           fi
 
       - name: Update configure file

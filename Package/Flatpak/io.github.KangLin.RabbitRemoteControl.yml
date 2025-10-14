@@ -68,7 +68,7 @@ modules:
       - /share/doc
       - /share/man
       - /lib/systemd
-            
+
   - name: krb5
     disabled: false
     sources:
@@ -112,6 +112,7 @@ modules:
       - -Dutils=false
 
   - shared-modules/libusb/libusb.json
+  - shared-modules/libsecret/libsecret.json
 
   - name: FreeRDP
     disabled: false
@@ -241,6 +242,18 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+
+  - name: qtkeychain
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/frankosterfeld/qtkeychain.git
+        tag: 0.15.0
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_WITH_QT6=ON
 
   - name: RabbitCommon
     disabled: false

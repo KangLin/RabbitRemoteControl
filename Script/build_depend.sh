@@ -597,7 +597,7 @@ if [ $QTKEYCHAIN -eq 1 ]; then
     echo "Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/Qt6Keychain ]; then
-        git clone --depth=1 https://github.com/frankosterfeld/qtkeychain.git
+        git clone -b 0.15.0 https://github.com/frankosterfeld/qtkeychain.git
         cd qtkeychain
         cmake -E make_directory build
         cd build
