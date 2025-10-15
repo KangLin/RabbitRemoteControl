@@ -389,6 +389,7 @@ apps:
      - kde-neon-6
      #- kde-neon-qt6
    # See: https://snapcraft.io/docs/supported-interfaces
+   # Interface:　run `snap interface -all`
    plugs:
      - network
      - network-status
@@ -406,6 +407,7 @@ apps:
      - audio-playback
      - audio-record
      - camera
+     - joystick
      - account-control
      - accounts-service
      - shared-memory
@@ -426,3 +428,7 @@ apps:
      - ssh-keys
      - ssh-public-keys
      - pkcs11
+     - mount-observe
+     - removable-media
+     #- personal-files
+     #- system-files

@@ -385,9 +385,9 @@ CFrmWebView *CFrmWebBrowser::CreateWebView(bool offTheRecord)
     auto pView = new CFrmWebView(this);
     if(pView) {
         auto profile = GetProfile(offTheRecord);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-        profile->setPersistentPermissionsPolicy(QWebEngineProfile::PersistentPermissionsPolicy::AskEveryTime);
-#endif
+// #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+//         profile->setPersistentPermissionsPolicy(QWebEngineProfile::PersistentPermissionsPolicy::AskEveryTime);
+// #endif
         auto page = new QWebEnginePage(profile, pView);
         pView->setPage(page);
     }

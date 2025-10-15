@@ -45,6 +45,11 @@ int main(int argc, char *argv[])
     qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
+    // 修复 qtwebengine 沙箱权限问题
+    if(!qEnvironmentVariable("SNAP").isEmpty()) {
+        qputenv("QTWEBENGINE_DISABLE_SANDBOX", "1");
+    }
+
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
 #if (defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) \

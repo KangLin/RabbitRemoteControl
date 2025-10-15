@@ -808,6 +808,18 @@ PcapPlusPlus 依赖此库。
 - 参考：
   - [如何在 Linux 上安装和使用 Snapcraft](https://cn.linux-terminal.com/?p=1776)
 
+- 问题：
+  - 运行时，出现下列错误：
+  
+        [27470:27470:1015/151510.941749:FATAL:credentials.cc(130)] Check failed: . : Permission denied (13)
+        追踪或断点陷阱 (核心已转储)
+
+    这是因为 Qt WebEngine 没有访问系统凭据的权限导致的。解决方案：
+
+        export QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox" && rabbitremotecontrol
+        # 或者：
+        export QTWEBENGINE_DISABLE_SANDBOX=1 && rabbitremotecontrol
+
 ### Flatpak
 
 - 准备
