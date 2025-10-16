@@ -15,8 +15,17 @@
 #include "ParameterPluginUI.h"
 #include "ParameterRecordUI.h"
 #if defined(HAVE_QTERMWIDGET)
-#include "ParameterTerminalUI.h"
+    #include "ParameterTerminalUI.h"
+    #include "OperateTerminal.h"
 #endif
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSH.h"
+#endif
+
+#if HAVE_QTKEYCHAIN
+    #include "keychain.h"
+#endif
+
 #include "Channel.h"
 #include "Manager.h"
 
@@ -112,7 +121,7 @@ int CManager::LoadPlugins()
     }
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
-        m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
+        m_szDetails = "#### " + tr("Plugins") + "\n" + m_szDetails;
 
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
     return nRet;
@@ -194,7 +203,7 @@ int CManager::AppendPlugin(CPlugin *p)
         << "initial translator fail" << bRet << val;
     }
 
-    m_szDetails += "#### " + p->DisplayName() + "\n"
+    m_szDetails += "##### " + p->DisplayName() + "\n"
                    + tr("Version:") + " " + p->Version() + "  \n"
                    + p->Description() + "\n";
     if(!p->Details().isEmpty())
@@ -436,7 +445,25 @@ int CManager::EnumPlugins(std::function<int(const QString &, CPlugin *)> cb)
 
 const QString CManager::Details() const
 {
-    return m_szDetails;
+    QString szDetail;
+#if HAVE_QTERMWIDGET
+    szDetail += COperateTerminal::Details();
+#endif
+#ifdef HAVE_LIBSSH
+    CChannelSSH channel(nullptr, nullptr);
+    szDetail += channel.GetDetails();
+#endif
+#if HAVE_QTKEYCHAIN
+    szDetail += "- QtKeyChain\n" +
+        QString("  - ") + tr("Version:")
+                + " 0x" + QString::number(QTKEYCHAIN_VERSION, 16) + "\n";
+#endif
+
+    if(!szDetail.isEmpty()) {
+        szDetail = "#### " + tr("Dependency libraries:") + "\n" + szDetail;
+    }
+    szDetail += m_szDetails;
+    return szDetail;
 }
 
 void CManager::slotNativeWindowRecieveKeyboard()

@@ -2,8 +2,9 @@
 
 #include "OperateSSH.h"
 #include "PluginLibSSH.h"
-#include "ChannelSSH.h"
-
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSH.h"
+#endif
 #include <QLoggingCategory>
 static Q_LOGGING_CATEGORY(log, "Plugin.SSH")
 
