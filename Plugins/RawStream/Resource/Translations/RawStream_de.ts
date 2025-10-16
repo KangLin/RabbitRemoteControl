@@ -30,7 +30,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="90"/>
-        <source>Name pipe</source>
+        <source>Named pipe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -75,8 +75,13 @@
 <context>
     <name>CParameterRawStream</name>
     <message>
+        <location filename="../../ParameterRawStream.cpp" line="41"/>
+        <source>TCP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../ParameterRawStream.cpp" line="44"/>
-        <source>Name pipe</source>
+        <source>Named pipe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

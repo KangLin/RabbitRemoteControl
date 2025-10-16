@@ -94,78 +94,78 @@
         <translation>連接取消了。</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="848"/>
+        <location filename="../../BackendFreeRDP.cpp" line="846"/>
         <source>Invalid dimensions:</source>
         <translation>無效尺寸</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1002"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1000"/>
         <source>FreeRDP logon info: [</source>
         <translation>FreeRDP 登錄信息：[</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1307"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
         <source>Choose</source>
         <translation>選擇</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1307"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
         <source>Please choose smartcard</source>
         <translation>請選擇智能卡</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1698"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1791"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1696"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1789"/>
         <source>RDP-Server</source>
         <translation>RDP-服務器</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1700"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1793"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1698"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1791"/>
         <source>RDP-Gateway</source>
         <translation>RDP-網關</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1702"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1795"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1700"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1793"/>
         <source>RDP-Redirect</source>
         <translation>RDP-重定向</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1704"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1702"/>
         <source>Verify certificate</source>
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1707"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1799"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1705"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1797"/>
         <source>: %1:%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1708"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1706"/>
         <source>Common name: </source>
         <translation>公共名稱：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1709"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1707"/>
         <source>Subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1710"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1708"/>
         <source>Issuer: </source>
         <translation>頒發者：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1714"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1712"/>
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>上面 X.509 證書已改變。
 可能服務器更換了證書，也可能受到了攻擊。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1720"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1718"/>
         <source>The above X.509 certificate could not be verified.
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
@@ -173,83 +173,83 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 可能是在你的證書庫中沒有，或者證書過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1728"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1817"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1726"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1815"/>
         <source>Yes - trusted</source>
         <translation>是 - 信任</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1729"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1818"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1727"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1816"/>
         <source>Ignore - temporary trusted</source>
         <translation>忽略 - 臨時信任</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1730"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1819"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1728"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1817"/>
         <source>No - no trusted</source>
         <translation>否 - 不信任</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1736"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1825"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1734"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1823"/>
         <source>Don&apos;t show again</source>
         <translation>不再顯示</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1797"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1795"/>
         <source>Verify changed certificate</source>
         <translation>驗證證書改變</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1800"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1798"/>
         <source>New Certificate details:</source>
         <translation>新證書細節：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1801"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1799"/>
         <source>name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1802"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1806"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1800"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1804"/>
         <source>subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1803"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1807"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1801"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1805"/>
         <source>issuer: </source>
         <translation>發行者：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1805"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1803"/>
         <source>Old Certificate details:</source>
         <translation>老證書細節：</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1810"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1808"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>無法驗證上述 X.509 證書，可能是因為 CA 證書未存儲在您的證書存儲中，或者證書已過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1859"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
         <source>Consent message</source>
         <translation>同意消息</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1859"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
         <source>Service message</source>
         <translation>服務留言</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1871"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1869"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
         <translation>我理解並同意本政策的條款（是/否）</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1877"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1875"/>
         <source>Gateway message</source>
         <translation>網關消息</translation>
     </message>
@@ -754,18 +754,18 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1635"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1633"/>
         <source>Valid from: </source>
         <translation>有效期從:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1636"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1634"/>
         <source>Valid to: </source>
         <translation>有效期到:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1637"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1644"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1635"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1642"/>
         <source>Fingerprint: </source>
         <translation>指紋：</translation>
     </message>

@@ -12,8 +12,8 @@
         <location filename="../../BackendLibVNCServer.cpp" line="82"/>
         <location filename="../../BackendLibVNCServer.cpp" line="162"/>
         <location filename="../../BackendLibVNCServer.cpp" line="177"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="958"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="993"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="956"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -28,22 +28,22 @@
         <translation>Falha: Conexão a %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="942"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="940"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation>Conectará ao servidor de soquete local: %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="951"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="949"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation>Falha: Conexão a %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="981"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="979"/>
         <source>Will connect to local socket server: </source>
         <translation>Conectará ao servidor de soquete local: </translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="988"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="986"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation>Falha: Conexão a %1:%2 com %3</translation>
     </message>

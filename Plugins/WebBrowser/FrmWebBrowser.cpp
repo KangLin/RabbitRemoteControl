@@ -613,7 +613,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         this, &CFrmWebBrowser::slotPrint);
     m_pPrint->setVisible(false);
     m_pPrintToPdf = pMenu->addAction(
-        QIcon::fromTheme("document-print"), tr("Print to pdf"),
+        QIcon::fromTheme("document-print"), tr("Print to PDF"),
         this, &CFrmWebBrowser::slotPrintToPdf);
 #endif
 
@@ -853,8 +853,8 @@ void CFrmWebBrowser::slotPrintToPdf()
 
 void CFrmWebBrowser::slotPdfPrintingFinished(const QString& szFile, bool success) {
     if(success && m_pPara->GetPromptPrintFinished())
-        QMessageBox::information(this, tr("Print to pdf finished"),
+        QMessageBox::information(this, tr("Print to PDF finished"),
                                  tr("Successfully printed to PDF.") + "\n"
                                      + tr("PDF file: ") + szFile);
-    qDebug(log) << "Print to pdf:" << szFile << success;
+    qDebug(log) << "Print to PDF:" << szFile << success;
 }

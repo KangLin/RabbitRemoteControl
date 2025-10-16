@@ -4,248 +4,208 @@
 <context>
     <name>CChannelSSH</name>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation>Versão do libssh:</translation>
+        <translation type="vanished">Versão do libssh:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation>Versão de protocolo do libssh:</translation>
+        <translation type="vanished">Versão de protocolo do libssh:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation>Servidor OpenSSH:</translation>
+        <translation type="vanished">Servidor OpenSSH:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation>Falha no SSH: ssh_new.</translation>
+        <translation type="vanished">Falha no SSH: ssh_new.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation>Falha no SSH: o servidor está vazio</translation>
+        <translation type="vanished">Falha no SSH: o servidor está vazio</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation>Falha no SSH: falha na definição de host. Host:</translation>
+        <translation type="vanished">Falha no SSH: falha na definição de host. Host:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation>Falha no SSH: falha na definição de porta. Porta:</translation>
+        <translation type="vanished">Falha no SSH: falha na definição de porta. Porta:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation>Falha no SSH: ssh_pcap_file_new: </translation>
+        <translation type="vanished">Falha no SSH: ssh_pcap_file_new: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation>Falha no SSH: ssh connect </translation>
+        <translation type="vanished">Falha no SSH: ssh connect </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation>Cancelado pelo usuário</translation>
+        <translation type="vanished">Cancelado pelo usuário</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="256"/>
         <source>SSH failed: Get server public key.</source>
-        <translation>Falha no SSH: obtenção da chave pública do servidor.</translation>
+        <translation type="vanished">Falha no SSH: obtenção da chave pública do servidor.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="271"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation>Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
+        <translation type="vanished">Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
         <source>the host key for server changed. it is now:</source>
-        <translation>a chave do host para o servidor foi alterada. Agora é:</translation>
+        <translation type="vanished">a chave do host para o servidor foi alterada. Agora é:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation>Por motivos de segurança, a conexão será interrompida.</translation>
+        <translation type="vanished">Por motivos de segurança, a conexão será interrompida.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="292"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="303"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
+        <translation type="vanished">Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation>a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
+        <translation type="vanished">a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation>Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
+        <translation type="vanished">Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
         <source>is not find in known host file.</source>
-        <translation>não foi encontrado no arquivo known_hosts.</translation>
+        <translation type="vanished">não foi encontrado no arquivo known_hosts.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation>Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
+        <translation type="vanished">Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
         <source>Host key hash:</source>
-        <translation>Hash da chave do host:</translation>
+        <translation type="vanished">Hash da chave do host:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="316"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
         <source>Reject the host key</source>
-        <translation>Chave de host rejeitada</translation>
+        <translation type="vanished">Chave de host rejeitada</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation>é desconhecida. Você confia na chave do host?</translation>
+        <translation type="vanished">é desconhecida. Você confia na chave do host?</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Error:</source>
-        <translation>Erro:</translation>
+        <translation type="vanished">Erro:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="360"/>
         <source>the host key hash:</source>
-        <translation>o hash da chave do host:</translation>
+        <translation type="vanished">o hash da chave do host:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
         <source>Will be stopped.</source>
-        <translation>Será interrompido.</translation>
+        <translation type="vanished">Será interrompido.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="412"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation>Falha no SSH: Falha na autenticação com a chave pública:</translation>
+        <translation type="vanished">Falha no SSH: Falha na autenticação com a chave pública:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="436"/>
         <source>Failed authenticating with password. User: </source>
-        <translation>Falha na autenticação com senha. Usuário: </translation>
+        <translation type="vanished">Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
+        <translation type="vanished">Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
+        <translation type="vanished">Falha no SSH: importação do arquivo de chave pública.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation>O arquivo não existe ou a permissão foi negada:</translation>
+        <translation type="vanished">O arquivo não existe ou a permissão foi negada:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="486"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
+        <translation type="vanished">Falha no SSH: falha na autenticação. Usuário:</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation>SSH failed: There is no private key file defined.</translation>
+        <translation type="vanished">SSH failed: There is no private key file defined.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation>Falha no SSH: importação do arquivo de chave privada.</translation>
+        <translation type="vanished">Falha no SSH: importação do arquivo de chave privada.</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation>Falha no SSH: open forward.</translation>
+        <translation type="vanished">Falha no SSH: open forward.</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
         <source>The channel is eof</source>
-        <translation>O canal é EOF</translation>
+        <translation type="vanished">O canal é EOF</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation>O canal é EOF</translation>
+        <translation type="vanished">O canal é EOF</translation>
     </message>
 </context>
 <context>
     <name>CDlgInputPassword</name>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
-        <location filename="../../DlgInputPassword.ui" line="64"/>
         <source>Input password</source>
         <translation>Informe a senha</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="39"/>
         <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation>A chave de criptografia é usada para criptografar a senha salva no arquivo. Se você esquecer a chave de criptografia, use Informe a senha.</translation>
+        <translation type="vanished">A chave de criptografia é usada para criptografar a senha salva no arquivo. Se você esquecer a chave de criptografia, use Informe a senha.</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="122"/>
+        <location filename="../../DlgInputPassword.ui" line="54"/>
         <source>Ok(&amp;O)</source>
         <translation>OK(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="54"/>
-        <location filename="../../DlgInputPassword.cpp" line="12"/>
         <source>Input encrypt key</source>
-        <translation>Chave de criptografia</translation>
+        <translation type="vanished">Chave de criptografia</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="132"/>
+        <location filename="../../DlgInputPassword.ui" line="64"/>
         <source>Cancel(&amp;C)</source>
         <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="14"/>
+        <location filename="../../DlgInputPassword.ui" line="26"/>
+        <location filename="../../DlgInputPassword.cpp" line="16"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
         <translation>A chave de criptografia é usada para criptografar a senha salva no arquivo.</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="16"/>
         <source>If you forget the encryption key, please use input %1.</source>
-        <translation>Se você esquecer a chave de criptografia, use %1.</translation>
+        <translation type="vanished">Se você esquecer a chave de criptografia, use %1.</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="21"/>
         <source>Input %1</source>
-        <translation>Informe a %1</translation>
+        <translation type="vanished">Informe a %1</translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="13"/>
+        <source>Store password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <source>Restore password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -274,85 +234,64 @@
 <context>
     <name>CFrmParameterICE</name>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="14"/>
         <source>ICE</source>
-        <translation>ICE</translation>
+        <translation type="vanished">ICE</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="28"/>
         <source>Enable ICE</source>
-        <translation>Habilitar ICE</translation>
+        <translation type="vanished">Habilitar ICE</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="35"/>
         <source>Enable ICE debug</source>
-        <translation>Habilitar depuração do ICE</translation>
+        <translation type="vanished">Habilitar depuração do ICE</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="48"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="158"/>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation type="vanished">Conectar</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="66"/>
         <source>Signal server:</source>
-        <translation>Servidor de sinal:</translation>
+        <translation type="vanished">Servidor de sinal:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="76"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="138"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="166"/>
         <source>Port:</source>
-        <translation>Porta:</translation>
+        <translation type="vanished">Porta:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="94"/>
         <source>Signal user:</source>
-        <translation>Usuário de sinal:</translation>
+        <translation type="vanished">Usuário de sinal:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="101"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="104"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="107"/>
         <source>Format: user@domain/Resource</source>
-        <translation>Formato: usuário@domain/Recurso</translation>
+        <translation type="vanished">Formato: usuário@domain/Recurso</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="114"/>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="194"/>
         <source>Password:</source>
-        <translation>Senha:</translation>
+        <translation type="vanished">Senha:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="128"/>
         <source>Stun server:</source>
-        <translation>Servidor STUN:</translation>
+        <translation type="vanished">Servidor STUN:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="156"/>
         <source>Turn server:</source>
-        <translation>Servidor TURN:</translation>
+        <translation type="vanished">Servidor TURN:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.ui" line="184"/>
         <source>Turn user:</source>
-        <translation>Usuário TURN:</translation>
+        <translation type="vanished">Usuário TURN:</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="122"/>
         <source>The user name format is error. please use format: user@domain/resource</source>
-        <translation>O formato do nome de usuário está errado. Por favor, use o formato: usuário@domínio/Resource</translation>
+        <translation type="vanished">O formato do nome de usuário está errado. Por favor, use o formato: usuário@domínio/Resource</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="123"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/FrmParameterICE.cpp" line="154"/>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation type="vanished">Desconectar</translation>
     </message>
 </context>
 <context>
@@ -366,59 +305,63 @@
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation>Aviso</translation>
+        <translation type="vanished">Aviso</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation>O programa não tem privilégios de administrador.
+        <translation type="vanished">O programa não tem privilégios de administrador.
 Ele não desativa os atalhos do sistema (por exemplo, Ctrl+Alt+Del).
 Reiniciar o programa como administrador?</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation>Sempre exibir</translation>
+        <translation type="vanished">Sempre exibir</translation>
     </message>
 </context>
 <context>
     <name>CIceSignalQxmpp</name>
     <message>
-        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="169"/>
         <source>Socket error</source>
-        <translation>Erro de soquete</translation>
+        <translation type="vanished">Erro de soquete</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="172"/>
         <source>Keep alive error</source>
-        <translation>Erro de keep alive</translation>
+        <translation type="vanished">Erro de keep alive</translation>
     </message>
     <message>
-        <location filename="../../Channel/ICE/IceSignalQxmpp.cpp" line="175"/>
         <source>xmpp stream error</source>
-        <translation>Erro de stream xmpp</translation>
+        <translation type="vanished">Erro de stream xmpp</translation>
     </message>
 </context>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
         <source>### Plugins</source>
-        <translation>### Plugins</translation>
+        <translation type="vanished">### Plugins</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="198"/>
+        <location filename="../../Manager.cpp" line="124"/>
+        <source>Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="207"/>
+        <location filename="../../Manager.cpp" line="458"/>
         <source>Version:</source>
         <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="396"/>
+        <location filename="../../Manager.cpp" line="405"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="463"/>
+        <source>Dependency libraries:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -615,12 +558,12 @@ Reiniciar o programa como administrador?</translation>
         <location filename="../../OperateDesktop.cpp" line="328"/>
         <location filename="../../OperateDesktop.cpp" line="330"/>
         <location filename="../../OperateDesktop.cpp" line="331"/>
-        <location filename="../../OperateDesktop.cpp" line="539"/>
+        <location filename="../../OperateDesktop.cpp" line="549"/>
         <source>Start record</source>
         <translation>Iniciar gravação</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="536"/>
+        <location filename="../../OperateDesktop.cpp" line="546"/>
         <source>Stop record</source>
         <translation>Parar gravação</translation>
     </message>
@@ -694,8 +637,17 @@ Reiniciar o programa como administrador?</translation>
     </message>
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
+        <source>Version:</source>
+        <translation type="unfinished">Versão:</translation>
+    </message>
+    <message>
         <source>QTermWidget:</source>
-        <translation>QTermWidget:</translation>
+        <translation type="vanished">QTermWidget:</translation>
     </message>
 </context>
 <context>
@@ -753,63 +705,67 @@ Reiniciar o programa como administrador?</translation>
         <translation>Usar o usuário do sistema como o usuário</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="69"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="141"/>
+        <source>Store password with system credential manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
         <source>Viewer zoom:</source>
         <translation>Zoom do visualizador:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
         <source>Prompt administrator privilege</source>
         <translation>Solicitar privilégios de administrador</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="197"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
         <source>Show protocol prefix in name</source>
         <translation>Mostrar prefixo de protocolo no nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="204"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="198"/>
         <source>Only show ip:port in name</source>
         <translation>Mostrar apenas ip:porta no nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="214"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
         <source>Enable local input method</source>
         <translation>Ativar método de entrada local</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="88"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
         <source>Key used to encrypt saved password:</source>
         <translation>Chave usada para criptografar a senha salva:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="102"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
         <source>Encrypt key:</source>
         <translation>Chave de criptografia:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="133"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
         <source>Prompt type:</source>
         <translation>Solicitar tipo:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="98"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
         <source>First</source>
         <translation>Primeira vez</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="172"/>
         <source>Always</source>
-        <translation>Sempre</translation>
+        <translation type="vanished">Sempre</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
@@ -819,12 +775,13 @@ Reiniciar o programa como administrador?</translation>
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
         <source>Enable save password</source>
         <translation>Ativar salvar senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="49"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="132"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
         <source>Enable view password</source>
         <translation>Ativar senha de visualização</translation>
     </message>
@@ -1265,48 +1222,48 @@ Reiniciar o programa como administrador?</translation>
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>None</source>
         <translation>Nenhum</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="72"/>
         <source>Password</source>
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="24"/>
         <source>Username and password</source>
         <translation>Usuário e senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="25"/>
         <source>Public key</source>
         <translation>Chave pública</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="26"/>
         <source>Password with X509 none</source>
         <translation>Senha, sem X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="27"/>
         <source>Password with X509</source>
         <translation>Senha, com X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="28"/>
         <source>Username and password with X509 none</source>
         <translation>Usuário e senha, sem X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="29"/>
         <source>Username and password with X509</source>
         <translation>Usuário e senha, com X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="102"/>
         <source>Passphrase</source>
         <translation>Senha</translation>
     </message>
@@ -1531,9 +1488,8 @@ Reiniciar o programa como administrador?</translation>
 <context>
     <name>CSSHTunnelThread</name>
     <message>
-        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
 </context>
 <context>

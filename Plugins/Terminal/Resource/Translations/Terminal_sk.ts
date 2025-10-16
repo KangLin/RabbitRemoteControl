@@ -20,7 +20,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="257"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="256"/>
         <source>Help(&amp;H)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -122,37 +122,37 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="39"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="216"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="215"/>
         <source>VS 2022 Community x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="40"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="214"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="213"/>
         <source>VS 2022 Community x64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="43"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="220"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="219"/>
         <source>VS 2022 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="44"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="218"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="217"/>
         <source>VS 2022 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="47"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="224"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="223"/>
         <source>VS 2019 Professional x86</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.cpp" line="48"/>
-        <location filename="../../DlgSettingsTerminal.cpp" line="222"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="221"/>
         <source>VS 2019 Professional x64</source>
         <translation type="unfinished"></translation>
     </message>
@@ -253,7 +253,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="260"/>
+        <location filename="../../DlgSettingsTerminal.cpp" line="259"/>
         <source>Hide help(&amp;H)</source>
         <translation type="unfinished"></translation>
     </message>

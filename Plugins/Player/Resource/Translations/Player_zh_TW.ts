@@ -194,37 +194,37 @@
 <context>
     <name>CPluginPlayer</name>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="27"/>
+        <location filename="../../PluginPlayer.cpp" line="35"/>
         <source>Player</source>
         <translation>播放器</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="32"/>
+        <location filename="../../PluginPlayer.cpp" line="40"/>
         <source>Player: play media files or camera.</source>
         <translation>播放器：播放多媒體或攝像頭。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="34"/>
+        <location filename="../../PluginPlayer.cpp" line="42"/>
         <source> Record camera or media stream.</source>
         <translation> 錄製攝像頭或多媒體流。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="60"/>
+        <location filename="../../PluginPlayer.cpp" line="68"/>
         <source>Qt version:</source>
         <translation>Qt 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="61"/>
+        <location filename="../../PluginPlayer.cpp" line="69"/>
         <source>Compile version: </source>
         <translation>編譯版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="62"/>
+        <location filename="../../PluginPlayer.cpp" line="70"/>
         <source>Runtime version: </source>
         <translation>運行版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="64"/>
+        <location filename="../../PluginPlayer.cpp" line="72"/>
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>

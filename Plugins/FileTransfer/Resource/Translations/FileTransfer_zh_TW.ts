@@ -6,12 +6,12 @@
     <message>
         <location filename="../../BackendFileTransfer.cpp" line="200"/>
         <source>Open SFTP fail.</source>
-        <translation type="unfinished"></translation>
+        <translation>打開 SFTP 失敗。</translation>
     </message>
     <message>
         <location filename="../../BackendFileTransfer.cpp" line="202"/>
         <source>Error</source>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
 </context>
 <context>
@@ -124,11 +124,7 @@
     <message>
         <location filename="../../ListFileModel.cpp" line="267"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Height</source>
-        <translation type="vanished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <location filename="../../ListFileModel.cpp" line="269"/>
@@ -359,13 +355,9 @@
         <translation>文件夾</translation>
     </message>
     <message>
-        <source>Driver</source>
-        <translation type="vanished">驅動器</translation>
-    </message>
-    <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="92"/>
         <source>Drive</source>
-        <translation type="unfinished"></translation>
+        <translation>驅動器</translation>
     </message>
     <message>
         <location filename="../../RemoteFileSystemModel.cpp" line="94"/>
