@@ -30,6 +30,7 @@ set(WebBrowser_SOURCE_FILES
     FrmDownloadManager.cpp
     DlgSettings.cpp
     ParameterWebBrowser.cpp
+    FrmPopup.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -40,6 +41,7 @@ set(WebBrowser_HEADER_FILES
     FrmDownloadManager.h
     DlgSettings.h
     ParameterWebBrowser.h
+    FrmPopup.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui

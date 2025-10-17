@@ -26,7 +26,7 @@ class CFrmWebView : public QWebEngineView
     Q_OBJECT
 
 public:
-    explicit CFrmWebView(CFrmWebBrowser* parent = nullptr);
+    explicit CFrmWebView(CFrmWebBrowser* pFrmWebBrowser, QWidget* parent = nullptr);
     ~CFrmWebView();
     void setPage(QWebEnginePage *page);
 

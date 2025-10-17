@@ -15,9 +15,9 @@
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.View")
 
-CFrmWebView::CFrmWebView(CFrmWebBrowser *parent)
+CFrmWebView::CFrmWebView(CFrmWebBrowser *pFrmWebBrowser, QWidget *parent)
     : QWebEngineView(parent)
-    , m_pBrowser(parent)
+    , m_pBrowser(pFrmWebBrowser)
 {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(200, 100);

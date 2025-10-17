@@ -22,6 +22,7 @@
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "FrmWebBrowser.h"
+#include "FrmPopup.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -254,7 +255,7 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
         auto pTab = CreateTab(&pView, offTheRecord);
         int index = m_pTab->currentIndex();
         m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
-        if(-1 < index)
+        if(-1 < index && index != m_pTab->currentIndex())
             m_pTab->setCurrentIndex(index);
         break;
     }
@@ -273,9 +274,8 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
         break;
     }
     case QWebEnginePage::WebDialog: {
-        qDebug(log) << "Don't support type:" << type;
-        auto pWin = CreateTab(&pView, offTheRecord);
-        pWin->show();
+        auto popup = new CFrmPopup(GetProfile(offTheRecord), this);
+        pView = popup->GetView();
     }
     }
 
