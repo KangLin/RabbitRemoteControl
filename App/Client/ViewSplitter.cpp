@@ -27,6 +27,7 @@ CViewSplitter::CViewSplitter(CParameterApp *pPara, QWidget *parent)
     setLayout(p);
     m_pMain = new QSplitter(Qt::Vertical, this);
     if(!m_pMain) {
+        m_pMain->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         qCritical(log) << "m_pMain is nullptr";
         return;
     }
@@ -67,6 +68,7 @@ int CViewSplitter::AddView(QWidget *pView)
     if(m_nCount + 1 > m_nRow * m_nRow) {
         QSplitter* p = new QSplitter(Qt::Horizontal, m_pMain);
         if(p) {
+            p->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             //p->setStyleSheet("QSplitter::handle { background-color: blue }");
             m_Row.append(p);
             m_nRow++;

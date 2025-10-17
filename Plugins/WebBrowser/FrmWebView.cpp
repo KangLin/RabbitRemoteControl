@@ -19,6 +19,8 @@ CFrmWebView::CFrmWebView(CFrmWebBrowser *parent)
     : QWebEngineView(parent)
     , m_pBrowser(parent)
 {
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    setMinimumSize(200, 100);
     connect(this, &QWebEngineView::loadStarted, [this]() {
         m_loadProgress = 0;
         emit favIconChanged(favIcon());

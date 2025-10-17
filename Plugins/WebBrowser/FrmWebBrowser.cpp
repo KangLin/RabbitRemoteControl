@@ -434,6 +434,7 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
 {
     QSplitter *pSplitter = new QSplitter(Qt::Vertical, this);
     if(pSplitter) {
+        pSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         //pSplitter->setContentsMargins(0, 0, 0, 0);
         CFrmWebView* pWeb = nullptr;
         if(view) {
