@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QStyle>
 #include <QLoggingCategory>
+#include <QWebEngineProfile>
 
 #include "FrmWebView.h"
 #include "FrmWebBrowser.h"
@@ -165,7 +166,8 @@ QIcon CFrmWebView::favIcon() const
 QWebEngineView *CFrmWebView::createWindow(QWebEnginePage::WebWindowType type)
 {
     if(m_pBrowser)
-        return m_pBrowser->CreateWindow(type);
+        return m_pBrowser->CreateWindow(
+            type, this->page()->profile()->isOffTheRecord());
     return this;
 }
 

@@ -286,6 +286,12 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
 {
     bool check = false;
     if(!pWeb) return;
+    check = connect(pWeb, &CFrmWebView::sigDevToolsRequested,
+                         this, [&](){
+                             if(m_pInspector)
+                                 m_pInspector->setChecked(true);
+                         });
+    Q_ASSERT(check);
     check = connect(pWeb, &CFrmWebView::sigWebActionEnabledChanged,
                     this, [this, pWeb](QWebEnginePage::WebAction webAction, bool enabled){
         if(!IsCurrentView(pWeb)) return;
@@ -387,7 +393,6 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
 #endif
     if(!m_profile)
         return QWebEngineProfile::defaultProfile();
-
     m_profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
@@ -444,17 +449,6 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
         if(pWeb) {
             pSplitter->addWidget(pWeb);
             SetConnect(pWeb);
-            auto pDevTools = CreateWebView(offTheRecord);
-            if(pDevTools) {
-                pDevTools->hide();
-                pSplitter->addWidget(pDevTools);
-                bool check = connect(pWeb, &CFrmWebView::sigDevToolsRequested,
-                                     this, [&](){
-                    if(m_pInspector)
-                        m_pInspector->setChecked(true);
-                });
-                Q_ASSERT(check);
-            }
         }
     }
     return pSplitter;
@@ -720,8 +714,9 @@ void CFrmWebBrowser::slotTabCurrentChanged(int index)
                 m_pToolBar->insertAction(m_pUrl, m_pStop);
             else
                 m_pToolBar->removeAction(m_pStop);
-            if(m_pInspector)
-                m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
+            if(m_pInspector) {
+                m_pInspector->setChecked(CurrentView(ViewType::DevTools));
+            }
         }
     } else {
         setWindowTitle(tr("Web browser"));
@@ -806,13 +801,34 @@ void CFrmWebBrowser::slotInspector(bool checked)
     CFrmWebView* pWeb = CurrentView();
     auto dev = CurrentView(ViewType::DevTools);
     if(pWeb && pWeb->page() && checked) {
-        pWeb->page()->setDevToolsPage(dev->page());
-        if(dev->isHidden())
-            dev->show();
+        if(!dev) {
+            auto w = m_pTab->currentWidget();
+            if(!w) return;
+            QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
+            if(!pSplitter || 1 != pSplitter->count()) return;
+            dev = CreateWebView(pWeb->page()->profile()->isOffTheRecord());
+            if(dev) {
+                dev->show();
+                pSplitter->addWidget(dev);
+                bool check = connect(pWeb, &CFrmWebView::sigDevToolsRequested,
+                                     this, [&](){
+                                         if(m_pInspector)
+                                             m_pInspector->setChecked(true);
+                                     });
+                Q_ASSERT(check);
+            }
+        }
+        if(dev) {
+            pWeb->page()->setDevToolsPage(dev->page());
+            if(dev->isHidden())
+                dev->show();
+        }
     } else {
         pWeb->page()->setDevToolsPage(nullptr);
-        if(!dev->isHidden())
-            dev->hide();
+        if(dev) {
+            dev->setParent(nullptr);
+            dev->deleteLater();
+        }
     }
 }
 
