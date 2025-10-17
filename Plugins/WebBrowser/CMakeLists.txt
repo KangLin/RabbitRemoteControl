@@ -46,11 +46,17 @@ set(WebBrowser_HEADER_FILES
 set(WebBrowser_UI_FILES
     FrmDownload.ui
     DlgSettings.ui
+    DlgWebAuth.ui
     )
-if(QT_VERSION GREATER_EQUAL "6.0.0")
+if(QT_VERSION GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
+        DlgWebAuth.cpp
         )
     list(APPEND WebBrowser_HEADER_FILES
+        DlgWebAuth.h
+        )
+    set(WebBrowser_UI_FILES
+        DlgWebAuth.ui
         )
 endif()
 ADD_PLUGIN_TARGET(NAME Plugin${PROJECT_NAME}
