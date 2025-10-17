@@ -18,6 +18,9 @@ static Q_LOGGING_CATEGORY(log, "WebBrowser.View")
 CFrmWebView::CFrmWebView(CFrmWebBrowser *pFrmWebBrowser, QWidget *parent)
     : QWebEngineView(parent)
     , m_pBrowser(pFrmWebBrowser)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+    , m_pDlgWebAuth(nullptr)
+#endif
 {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(200, 100);
@@ -386,33 +389,32 @@ void CFrmWebView::slotDesktopMediaRequest(const QWebEngineDesktopMediaRequest &r
 void CFrmWebView::slotWebAuthUxRequested(QWebEngineWebAuthUxRequest *request)
 {
     qDebug(log) << Q_FUNC_INFO;
-    /*
-    if (m_authDialog)
-        delete m_authDialog;
 
-    m_authDialog = new WebAuthDialog(request, window());
-    m_authDialog->setModal(false);
-    m_authDialog->setWindowFlags(m_authDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    if (m_pDlgWebAuth)
+        delete m_pDlgWebAuth;
+
+    m_pDlgWebAuth = new CDlgWebAuth(request, window());
+    m_pDlgWebAuth->setModal(false);
+    m_pDlgWebAuth->setWindowFlags(m_pDlgWebAuth->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     connect(request, &QWebEngineWebAuthUxRequest::stateChanged, this, &CFrmWebView::onStateChanged);
-    m_authDialog->show();
-*/
+    m_pDlgWebAuth->show();
+
 }
 
 void CFrmWebView::onStateChanged(QWebEngineWebAuthUxRequest::WebAuthUxState state)
 {
     qDebug(log) << Q_FUNC_INFO;
-    /*
+
     if (QWebEngineWebAuthUxRequest::WebAuthUxState::Completed == state
         || QWebEngineWebAuthUxRequest::WebAuthUxState::Cancelled == state) {
-        if (m_authDialog) {
-            delete m_authDialog;
-            m_authDialog = nullptr;
+        if (m_pDlgWebAuth) {
+            delete m_pDlgWebAuth;
+            m_pDlgWebAuth = nullptr;
         }
     } else {
-        m_authDialog->updateDisplay();
+        m_pDlgWebAuth->updateDisplay();
     }
-*/
 }
 #endif
 

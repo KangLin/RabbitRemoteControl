@@ -14,6 +14,7 @@
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
 #include <QWebEngineWebAuthUxRequest>
 #include <QWebEngineDesktopMediaRequest>
+#include "DlgWebAuth.h"
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 #include <QWebEnginePermission>
@@ -27,7 +28,7 @@ class CFrmWebView : public QWebEngineView
 
 public:
     explicit CFrmWebView(CFrmWebBrowser* pFrmWebBrowser, QWidget* parent = nullptr);
-    ~CFrmWebView();
+    virtual ~CFrmWebView();
     void setPage(QWebEnginePage *page);
 
     [[nodiscard]] int progress() const;
@@ -71,4 +72,7 @@ private:
     int m_loadProgress = 100;
     //WebAuthDialog *m_authDialog = nullptr;
     QActionGroup *m_imageAnimationGroup = nullptr;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+    CDlgWebAuth* m_pDlgWebAuth;
+#endif
 };

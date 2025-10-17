@@ -3,18 +3,24 @@
 #include <QVBoxLayout>
 #include <QWebEnginePage>
 #include <QWindow>
+#include <QLoggingCategory>
 #include "FrmPopup.h"
 #include "FrmWebView.h"
+#include "FrmWebBrowser.h"
 
+static Q_LOGGING_CATEGORY(log, "WebBrowser.Widget.Popup")
 CFrmPopup::CFrmPopup(QWebEngineProfile *profile, CFrmWebBrowser* pWebBrowser, QWidget *parent)
     : QWidget{parent}
     , m_pleUrl(nullptr)
     , m_pFavAction(nullptr)
     , m_pView(nullptr)
 {
+    qDebug(log) << Q_FUNC_INFO;
     bool check = false;
     setAttribute(Qt::WA_DeleteOnClose);
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+    this->resize(pWebBrowser->size());
 
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setContentsMargins(0, 0, 0, 0);
@@ -40,6 +46,11 @@ CFrmPopup::CFrmPopup(QWebEngineProfile *profile, CFrmWebBrowser* pWebBrowser, QW
     Q_ASSERT(check);
     check = connect(m_pView->page(), &QWebEnginePage::windowCloseRequested, this, &QWidget::close);
     Q_ASSERT(check);
+}
+
+CFrmPopup::~CFrmPopup()
+{
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CFrmWebView* CFrmPopup::GetView()

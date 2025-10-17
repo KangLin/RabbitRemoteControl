@@ -5,6 +5,7 @@
 #include <QAction>
 #include <QWidget>
 #include <QWebEnginePage>
+
 class CFrmWebView;
 class CFrmWebBrowser;
 class CFrmPopup : public QWidget
@@ -12,6 +13,7 @@ class CFrmPopup : public QWidget
     Q_OBJECT
 public:
     explicit CFrmPopup(QWebEngineProfile *profile, CFrmWebBrowser* pWebBrowser, QWidget *parent = nullptr);
+    virtual ~CFrmPopup();
 
     CFrmWebView* GetView();
 private Q_SLOTS:
