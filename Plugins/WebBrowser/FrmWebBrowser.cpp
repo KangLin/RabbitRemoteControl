@@ -1,6 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FrmWebBrowser.h"
 #include <QMessageBox>
 #include <QMenu>
 #include <QFile>
@@ -17,14 +16,17 @@
 #include <QWebEngineCookieStore>
 #include <QStandardPaths>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
-#include <QWebEngineProfileBuilder>
+    #include <QWebEngineProfileBuilder>
 #endif
 #include <QLoggingCategory>
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+#include "FrmWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
-CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
+CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
     : QWidget{parent}
+    , m_pMenuBar(nullptr)
     , m_pPara(pPara)
     , m_pToolBar(nullptr)
     , m_pBack(nullptr)
@@ -53,6 +55,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
     , m_pTab(nullptr)
     , m_DownloadManager(pPara)
 {
+    qDebug(log) << Q_FUNC_INFO;
     bool check = false;
 
     setWindowIcon(QIcon::fromTheme("web-browser"));
@@ -195,10 +198,22 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, QWidget *parent)
             m_profile->setDownloadPath(m_pPara->GetDownloadFolder());
     });
     Q_ASSERT(check);
+
+    InitMenu(&m_Menu);
+    if(bMenuBar)
+    {
+        m_pMenuBar = new QMenuBar(this);
+        if(m_pMenuBar) {
+            m_Menu.setTitle(tr("Operate"));
+            m_pMenuBar->addMenu(&m_Menu);
+            pLayout->setMenuBar(m_pMenuBar);
+        }
+    }
 }
 
 CFrmWebBrowser::~CFrmWebBrowser()
 {
+    qDebug(log) << Q_FUNC_INFO;
     if(m_pToolBar) {
         m_pToolBar->deleteLater();
         m_pToolBar = nullptr;
@@ -212,6 +227,13 @@ CFrmWebBrowser::~CFrmWebBrowser()
         m_profile->cookieStore()->deleteAllCookies();
     if(m_pPara->GetClearHttpCache() && m_profile)
         m_profile->clearHttpCache();
+}
+
+QMenu* CFrmWebBrowser::GetMenu(QWidget *parent)
+{
+    if(m_Menu.actions().isEmpty())
+        return nullptr;
+    return &m_Menu;
 }
 
 QWebEngineView* CFrmWebBrowser::CreateWindow(
@@ -237,8 +259,17 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
         break;
     }
     case QWebEnginePage::WebBrowserWindow: {
-        auto pWin = CreateTab(&pView, offTheRecord);
-        pWin->show();
+        auto pWin = new CFrmWebBrowser(m_pPara, true);
+        if(pWin) {
+            pView = qobject_cast<CFrmWebView*>(
+                pWin->CreateWindow(QWebEnginePage::WebBrowserTab));
+            pWin->setAttribute(Qt::WA_DeleteOnClose);
+            auto pMainWin = RabbitCommon::CTools::GetMainWindow();
+            if(pMainWin)
+                pWin->resize(pMainWin->frameGeometry().width(),
+                             pMainWin->frameGeometry().height());
+            pWin->show();
+        }
         break;
     }
     case QWebEnginePage::WebDialog: {
@@ -419,7 +450,8 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
                 pSplitter->addWidget(pDevTools);
                 bool check = connect(pWeb, &CFrmWebView::sigDevToolsRequested,
                                      this, [&](){
-                    m_pInspector->setChecked(true);
+                    if(m_pInspector)
+                        m_pInspector->setChecked(true);
                 });
                 Q_ASSERT(check);
             }
@@ -659,6 +691,8 @@ void CFrmWebBrowser::slotTabCurrentChanged(int index)
     if(-1 == index) return;
     CFrmWebView* pWeb = CurrentView();
     if(pWeb) {
+        setWindowTitle(pWeb->title());
+        setWindowIcon(pWeb->icon());
         m_pUrlLineEdit->setText(pWeb->url().toString());
         m_pProgressBar->setValue(pWeb->progress());
         EnableAction(true);
@@ -686,29 +720,45 @@ void CFrmWebBrowser::slotTabCurrentChanged(int index)
                 m_pToolBar->insertAction(m_pUrl, m_pStop);
             else
                 m_pToolBar->removeAction(m_pStop);
-            m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
+            if(m_pInspector)
+                m_pInspector->setChecked(!CurrentView(ViewType::DevTools)->isHidden());
         }
     } else {
+        setWindowTitle(tr("Web browser"));
+        setWindowIcon(QIcon::fromTheme("web-browser"));
         m_pUrlLineEdit->setText("");
         m_pProgressBar->setValue(100);
         EnableAction(false);
-        m_pInspector->setChecked(false);
+        if(m_pInspector)
+            m_pInspector->setChecked(false);
     }
+    emit sigUpdateTitle();
 }
 
 void CFrmWebBrowser::EnableAction(bool enable)
 {
-    m_pBack->setEnabled(false);
-    m_pForward->setEnabled(false);
-    m_pRefresh->setEnabled(enable);
-    m_pStop->setEnabled(false);
-    m_pFind->setEnabled(enable);
-    m_pFindNext->setEnabled(enable);
-    m_pFindPrevious->setEnabled(enable);
-    m_pZoomOriginal->setEnabled(enable);
-    m_pZoomIn->setEnabled(enable);
-    m_pZoomOut->setEnabled(enable);
-    m_pInspector->setEnabled(enable);
+    if(m_pBack)
+        m_pBack->setEnabled(false);
+    if(m_pForward)
+        m_pForward->setEnabled(false);
+    if(m_pRefresh)
+        m_pRefresh->setEnabled(enable);
+    if(m_pStop)
+        m_pStop->setEnabled(false);
+    if(m_pFind)
+        m_pFind->setEnabled(enable);
+    if(m_pFindNext)
+        m_pFindNext->setEnabled(enable);
+    if(m_pFindPrevious)
+        m_pFindPrevious->setEnabled(enable);
+    if(m_pZoomOriginal)
+        m_pZoomOriginal->setEnabled(enable);
+    if(m_pZoomIn)
+        m_pZoomIn->setEnabled(enable);
+    if(m_pZoomOut)
+        m_pZoomOut->setEnabled(enable);
+    if(m_pInspector)
+        m_pInspector->setEnabled(enable);
 }
 
 void CFrmWebBrowser::slotTabCloseRequested(int index)

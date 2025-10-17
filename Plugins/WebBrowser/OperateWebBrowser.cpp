@@ -1,8 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "OperateWebBrowser.h"
 #include <QLoggingCategory>
 #include <DlgSettings.h>
+#include "Plugin.h"
+#include "OperateWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Operate")
 COperateWebBrowser::COperateWebBrowser(CPlugin *plugin): COperate(plugin)
@@ -49,6 +50,13 @@ QWidget *COperateWebBrowser::GetViewer()
     return m_pWeb;
 }
 
+QMenu* COperateWebBrowser::GetMenu(QWidget *parent)
+{
+    if(m_pWeb)
+        return m_pWeb->GetMenu(parent);
+    return COperate::GetMenu(parent);
+}
+
 int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
@@ -67,9 +75,14 @@ int COperateWebBrowser::Initial()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = COperate::Initial();
     if(nRet) return nRet;
+    QMenu* pMenu = &m_Menu;
     m_pWeb = new CFrmWebBrowser(&m_Parameter);
     if(m_pWeb) {
-        m_pWeb->InitMenu(&m_Menu);
+        pMenu = m_pWeb->GetMenu();
+        pMenu->setIcon(GetPlugin()->Icon());
+        pMenu->setTitle(GetPlugin()->DisplayName());
+        pMenu->setToolTip(GetPlugin()->DisplayName());
+        pMenu->setStatusTip(GetPlugin()->DisplayName());
         m_pWeb->setWindowIcon(COperate::Icon());
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
                              this, &COperateWebBrowser::sigInformation);
@@ -78,9 +91,11 @@ int COperateWebBrowser::Initial()
                         this, &COperateWebBrowser::slotUpdateName);
         Q_ASSERT(check);
     }
-    m_Menu.addSeparator();
-    if(m_pActionSettings)
-        m_Menu.addAction(m_pActionSettings);
+    if(pMenu) {
+        pMenu->addSeparator();
+        if(m_pActionSettings)
+            pMenu->addAction(m_pActionSettings);
+    }
     return nRet;
 }
 

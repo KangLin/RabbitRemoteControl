@@ -14,10 +14,11 @@ public:
     virtual ~COperateWebBrowser();
 
 public:
-    virtual const QString Name() override;
-    virtual const QIcon Icon() const override;
-    virtual const qint16 Version() const override;
-    virtual QWidget *GetViewer() override;
+    [[nodiscard]] virtual const QString Name() override;
+    [[nodiscard]] virtual const QIcon Icon() const override;
+    [[nodiscard]] virtual const qint16 Version() const override;
+    [[nodiscard]] virtual QWidget *GetViewer() override;
+    [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr) override;
     virtual int Start() override;
     virtual int Stop() override;
 

@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <QMenuBar>
+#include <QMenu>
 #include <QWidget>
 #include <QWebEngineView>
 #include <QToolBar>
@@ -18,15 +20,15 @@ class CFrmWebBrowser : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmWebBrowser(CParameterWebBrowser* pPara, QWidget *parent = nullptr);
+    explicit CFrmWebBrowser(CParameterWebBrowser* pPara, bool bMenuBar = false, QWidget *parent = nullptr);
     virtual ~CFrmWebBrowser();
 
-    int InitMenu(QMenu* pMenu);
     int Load(QSettings &set);
     int Save(QSettings &set);
     int Start();
     int Stop();
     QWebEngineView *CreateWindow(QWebEnginePage::WebWindowType type, bool offTheRecord = false);
+    [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
@@ -46,6 +48,7 @@ private Q_SLOTS:
     void slotPdfPrintingFinished(const QString& szFile, bool success);
 
 private:
+    int InitMenu(QMenu* pMenu);
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);
     [[nodiscard]] QWebEngineProfile* GetProfile(bool offTheRecord = false);
@@ -61,6 +64,8 @@ private:
     [[nodiscard]] CFrmWebView* GetView(int index, ViewType type = ViewType::Web);
 
 private:
+    QMenuBar* m_pMenuBar;
+    QMenu m_Menu;
     CParameterWebBrowser* m_pPara;
     QToolBar* m_pToolBar;
     QAction* m_pBack;
