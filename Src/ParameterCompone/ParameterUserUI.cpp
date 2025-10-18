@@ -56,10 +56,13 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     ui->lePassword->setText(m_pUser->GetPassword());
     ui->pbSave->setChecked(m_pUser->GetSavePassword());
     on_pbSave_clicked();
-    ui->pbSave->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    auto plugPara = m_pUser->GetGlobalParameters();
+    if(plugPara)
+        ui->pbSave->setEnabled(plugPara->GetSavePassword());
     SetPushButtonTooltip(ui->pbSave, tr("Save password"),
                          tr("Menu: Tools→Settings→Plugin→Password→Enable Save password"));
-    ui->pbShow->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
+    if(plugPara)
+        ui->pbShow->setEnabled(plugPara->GetViewPassowrd());
     SetPushButtonTooltip(ui->pbShow, tr("View password"),
                          tr("Menu: Tools→Settings→Plugin→Password→Enable view password"));
     ui->lePublicFile->setText(m_pUser->GetPublicKeyFile());
@@ -67,10 +70,12 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     ui->lePassphrase->setText(m_pUser->GetPassphrase());
     ui->pbSavePassphrase->setChecked(m_pUser->GetSavePassphrase());
     on_pbSavePassphrase_clicked();
-    ui->pbSavePassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetSavePassword());
+    if(plugPara)
+        ui->pbSavePassphrase->setEnabled(plugPara->GetSavePassword());
     SetPushButtonTooltip(ui->pbSavePassphrase, tr("Save password"),
                          tr("Menu: Tools→Settings→Plugin→Password→Enable Save password"));
-    ui->pbShowPassphrase->setEnabled(m_pUser->GetGlobalParameters()->GetViewPassowrd());
+    if(plugPara)
+        ui->pbShowPassphrase->setEnabled(plugPara->GetViewPassowrd());
     SetPushButtonTooltip(ui->pbShowPassphrase, tr("View password"),
                          tr("Menu: Tools→Settings→Plugin→Password→Enable view password"));
 

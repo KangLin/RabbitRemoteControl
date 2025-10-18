@@ -274,6 +274,7 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
         break;
     }
     case QWebEnginePage::WebDialog: {
+        // Test: Resource\html\TestQWebEnginePageWebDialog.html
         auto popup = new CFrmPopup(GetProfile(offTheRecord), this);
         pView = popup->GetView();
     }
