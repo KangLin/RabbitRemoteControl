@@ -296,15 +296,18 @@ void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
 }
 #endif
 
+// Test:
+// - https://postman-echo.com/basic-auth
+// - https://httpbin.org/basic-auth/user/passwd
+//   - httpbin.org 提供基本的 HTTP 认证测试
+//   - 用户名: user, 密码: passwd
 void CFrmWebView::slotAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth)
 {
     qDebug(log) << Q_FUNC_INFO;
-    CParameterNet net(nullptr);
-    net.SetHost(requestUrl.toString().toHtmlEscaped());
+    CParameterUser user(nullptr);
     CDlgUserPassword dlg(this);
-    dlg.SetContext(&net);
+    dlg.SetUser(tr("Set user and password") + "\n" + requestUrl.toString(), &user);
     if (dlg.exec() == QDialog::Accepted) {
-        auto &user = net.m_User;
         auth->setUser(user.GetName());
         auth->setPassword(user.GetPassword());
     } else {
