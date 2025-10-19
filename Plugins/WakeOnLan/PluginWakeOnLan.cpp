@@ -23,6 +23,8 @@
         case pcpp::Logger::LogLevel::Error:
             qCritical(logPcpp) << logMessage.c_str();
             break;
+        default:
+            break;
         }
     }
 #endif
@@ -45,7 +47,7 @@ CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
     // suppressing errors to avoid cluttering stdout
     pcpp::Logger::getInstance().enableLogs();
     pcpp::Logger::getInstance().setLogLevel(
-        pcpp::LogModule::PcapLogModuleLiveDevice, pcpp::Logger::Info);
+        pcpp::LogModule::PcapLogModuleLiveDevice, pcpp::Logger::LogLevel::Info);
 #endif
 }
 

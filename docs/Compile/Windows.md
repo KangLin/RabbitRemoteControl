@@ -302,6 +302,14 @@ Source-code location: https://github.com/KangLin/tigervnc
 
         git clone https://github.com/seladb/PcapPlusPlus.git
 
+  + Download `npcap SDK` from [npcap](https://npcap.com)
+  + Set CMake parameters:
+
+        -DPCAP_ROOT=[npcap SDK directory] ^
+        -DPCAPPP_BUILD_TESTS=OFF ^
+        -DPCAPPP_BUILD_EXAMPLES=OFF
+
+  + See: https://pcapplusplus.github.io/docs/install#build-from-source
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
 
@@ -316,6 +324,8 @@ So compile from source, relying on the npcap library.
 - When PcapPlusPlus is compiled from source,
   the CMake parameter needs to be specified to compile this project:
 
+      -DPCAP_ROOT=[npcap SDK directory] ^
+      -DPacket_ROOT=[npcap SDK directory] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 
 ### Compile this project

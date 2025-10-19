@@ -307,6 +307,14 @@
   
         git clone https://github.com/seladb/PcapPlusPlus.git
 
+  + 从 [npcap](https://npcap.com) 下载 `npcap SDK`
+  + 指定 CMake 参数：
+
+        -DPCAP_ROOT=[npcap SDK 目录] ^
+        -DPCAPPP_BUILD_TESTS=OFF ^
+        -DPCAPPP_BUILD_EXAMPLES=OFF
+
+  + 参见： https://pcapplusplus.github.io/docs/install#build-from-source
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
 
@@ -314,11 +322,13 @@
         cd vcpkg
         vcpkg install pcapplusplus
 
-**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 工作。
-所以从源码编译，依赖 npcap 库。
+**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 及以后的版本上工作。
+所以从源码编译，依赖 [npcap](https://npcap.com) 库。
 
 - 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
 
+      -DPCAP_ROOT=[npcap SDK 目录] ^
+      -DPacket_ROOT=[npcap SDK 目录] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
 
 ### 编译本项目
