@@ -316,38 +316,14 @@ void CFrmWebView::slotAuthenticationRequired(const QUrl &requestUrl, QAuthentica
     }
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-void CFrmWebView::slotPermissionRequested(QWebEnginePermission permission)
-{
-    qDebug(log) << Q_FUNC_INFO;
-    QString title = tr("Permission Request");
-    QString question = questionForPermissionType(permission.permissionType()).arg(permission.origin().host());
-    if (!question.isEmpty() && QMessageBox::question(window(), title, question) == QMessageBox::Yes)
-        permission.grant();
-    else
-        permission.deny();
-}
-
-void CFrmWebView::handleImageAnimationPolicyChange(QWebEngineSettings::ImageAnimationPolicy policy)
-{
-    qDebug(log) << Q_FUNC_INFO;
-    if (!page())
-        return;
-    
-    page()->settings()->setImageAnimationPolicy(policy);
-}
-#endif
-
 void CFrmWebView::slotProxyAuthenticationRequired(const QUrl &url, QAuthenticator *auth,
-                                                const QString &proxyHost)
+                                                  const QString &proxyHost)
 {
     qDebug(log) << Q_FUNC_INFO;
-    CParameterNet net(nullptr);
-    net.SetHost(proxyHost.toHtmlEscaped());
+    CParameterUser user(nullptr);
     CDlgUserPassword dlg(this);
-    dlg.SetContext(&net);
+    dlg.SetUser(tr("Set user and password of proxy") + "\n" + proxyHost.toHtmlEscaped(), &user);
     if (dlg.exec() == QDialog::Accepted) {
-        auto &user = net.m_User;
         auth->setUser(user.GetName());
         auth->setPassword(user.GetPassword());
     } else {
@@ -380,6 +356,28 @@ void CFrmWebView::slotProxyAuthenticationRequired(const QUrl &url, QAuthenticato
     }
     */
 }
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+void CFrmWebView::slotPermissionRequested(QWebEnginePermission permission)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    QString title = tr("Permission Request");
+    QString question = questionForPermissionType(permission.permissionType()).arg(permission.origin().host());
+    if (!question.isEmpty() && QMessageBox::question(window(), title, question) == QMessageBox::Yes)
+        permission.grant();
+    else
+        permission.deny();
+}
+
+void CFrmWebView::handleImageAnimationPolicyChange(QWebEngineSettings::ImageAnimationPolicy policy)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if (!page())
+        return;
+    
+    page()->settings()->setImageAnimationPolicy(policy);
+}
+#endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
 void CFrmWebView::slotDesktopMediaRequest(const QWebEngineDesktopMediaRequest &request)

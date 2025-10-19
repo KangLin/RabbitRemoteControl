@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理认证测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>代理认证测试页面</h1>
+    
+    <div class="container">
+        <h2>测试说明</h2>
+        <p>此页面用于测试 QWebEnginePage 的代理认证功能。当页面尝试访问需要代理认证的资源时，会触发 <code>proxyAuthenticationRequired</code> 信号。</p>
+        <p>您可以使用下面的测试按钮来验证代理认证是否正常工作。</p>
+    </div>
+    
+    <div class="container">
+        <h2>连接状态</h2>
+        <div id="status" class="status info">
+            等待测试...
+        </div>
+        
+        <div class="test-section">
+            <h3>测试1: 访问需要代理认证的资源</h3>
+            <p>点击下面的按钮将尝试访问一个可能需要代理认证的外部资源。</p>
+            <button id="testProxyAuth">测试代理认证</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>测试2: 加载外部资源</h3>
+            <p>点击下面的按钮将尝试加载一个外部图片，用于测试代理认证。</p>
+            <button id="loadExternalImage">加载外部图片</button>
+            <div id="imageContainer" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>测试3: 发送AJAX请求</h3>
+            <p>点击下面的按钮将发送一个AJAX请求到外部API，测试代理认证。</p>
+            <button id="sendAjaxRequest">发送AJAX请求</button>
+            <div id="ajaxResult" style="margin-top: 10px;"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>测试结果</h2>
+        <div id="results">
+            <p>暂无测试结果</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('testProxyAuth').addEventListener('click', function() {
+            const status = document.getElementById('status');
+            status.className = 'status info';
+            status.textContent = '正在测试代理认证...';
+            
+            // 尝试访问一个可能需要代理认证的资源
+            fetch('https://httpbin.org/basic-auth/user/passwd', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('user:passwd')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    status.className = 'status success';
+                    status.textContent = '代理认证测试成功！';
+                    addResult('代理认证测试', '成功', '成功通过代理认证访问了受保护的资源。');
+                } else {
+                    status.className = 'status error';
+                    status.textContent = '代理认证测试失败：HTTP ' + response.status;
+                    addResult('代理认证测试', '失败', 'HTTP状态码: ' + response.status);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                status.className = 'status error';
+                status.textContent = '代理认证测试失败：' + error.message;
+                addResult('代理认证测试', '失败', error.message);
+            });
+        });
+        
+        document.getElementById('loadExternalImage').addEventListener('click', function() {
+            const status = document.getElementById('status');
+            const imageContainer = document.getElementById('imageContainer');
+            
+            status.className = 'status info';
+            status.textContent = '正在加载外部图片...';
+            imageContainer.innerHTML = '<p>加载中...</p>';
+            
+            // 尝试加载一个外部图片
+            const img = new Image();
+            img.onload = function() {
+                status.className = 'status success';
+                status.textContent = '外部图片加载成功！';
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(img);
+                addResult('外部图片加载', '成功', '成功通过代理加载了外部图片。');
+            };
+            img.onerror = function() {
+                status.className = 'status error';
+                status.textContent = '外部图片加载失败！';
+                imageContainer.innerHTML = '<p>图片加载失败</p>';
+                addResult('外部图片加载', '失败', '无法通过代理加载外部图片。');
+            };
+            img.src = 'https://picsum.photos/200/100?' + new Date().getTime(); // 添加时间戳避免缓存
+        });
+        
+        document.getElementById('sendAjaxRequest').addEventListener('click', function() {
+            const status = document.getElementById('status');
+            const ajaxResult = document.getElementById('ajaxResult');
+            
+            status.className = 'status info';
+            status.textContent = '正在发送AJAX请求...';
+            ajaxResult.innerHTML = '<p>请求中...</p>';
+            
+            // 发送AJAX请求到外部API
+            fetch('https://httpbin.org/get')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('HTTP ' + response.status);
+                }
+            })
+            .then(data => {
+                status.className = 'status success';
+                status.textContent = 'AJAX请求成功！';
+                ajaxResult.innerHTML = '<p>请求成功！响应数据:</p><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                addResult('AJAX请求', '成功', '成功通过代理发送了AJAX请求。');
+            })
+            .catch(error => {
+                status.className = 'status error';
+                status.textContent = 'AJAX请求失败：' + error.message;
+                ajaxResult.innerHTML = '<p>请求失败: ' + error.message + '</p>';
+                addResult('AJAX请求', '失败', error.message);
+            });
+        });
+        
+        function addResult(testName, status, message) {
+            const results = document.getElementById('results');
+            const resultItem = document.createElement('div');
+            resultItem.className = 'test-result';
+            resultItem.innerHTML = `
+                <h4>${testName} - <span style="color: ${status === '成功' ? 'green' : 'red'}">${status}</span></h4>
+                <p>${message}</p>
+                <hr>
+            `;
+            
+            // 如果还没有结果，替换"暂无测试结果"
+            if (results.querySelector('p') && results.querySelector('p').textContent === '暂无测试结果') {
+                results.innerHTML = '';
+            }
+            
+            results.appendChild(resultItem);
+        }
+    </script>
+</body>
+</html>
