@@ -95,4 +95,6 @@ private:
     QScopedPointer<QWebEngineProfile> m_profile;
     CFrmDownloadManager m_DownloadManager;
     QString m_szFindText;
+
+    friend CFrmWebView;
 };

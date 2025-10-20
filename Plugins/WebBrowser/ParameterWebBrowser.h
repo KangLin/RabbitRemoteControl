@@ -75,6 +75,11 @@ public:
     void SetPromptPrintFinished(bool newPromptPrintFinished);
 private:
     bool m_bPromptPrintFinished;
+public:
+    bool GetAutoFillUserAndPassword() const;
+    void SetAutoFillUserAndPassword(bool newAutoFillUserAndPassword);
+private:
+    bool m_bAutoFillUserAndPassword;
 
     // CParameter interface
 protected:

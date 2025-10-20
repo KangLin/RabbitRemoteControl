@@ -8,6 +8,8 @@
 #include <QStyle>
 #include <QLoggingCategory>
 #include <QWebEngineProfile>
+#include <QWebEngineScript>
+#include <QWebEngineScriptCollection>
 
 #include "FrmWebView.h"
 #include "FrmWebBrowser.h"
@@ -21,25 +23,42 @@ CFrmWebView::CFrmWebView(CFrmWebBrowser *pFrmWebBrowser, QWidget *parent)
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
     , m_pDlgWebAuth(nullptr)
 #endif
+    , m_pWebChannel(nullptr)
+    , m_pPasswordStore(nullptr)
 {
+    bool check = false;
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(200, 100);
-    connect(this, &QWebEngineView::loadStarted, [this]() {
+    Q_ASSERT(m_pBrowser);
+    check = connect(this, &QWebEngineView::loadStarted, [this]() {
         m_loadProgress = 0;
         emit favIconChanged(favIcon());
     });
-    connect(this, &QWebEngineView::loadProgress, [this](int progress) {
+    Q_ASSERT(check);
+    check = connect(this, &QWebEngineView::loadProgress, [this](int progress) {
         m_loadProgress = progress;
     });
-    connect(this, &QWebEngineView::loadFinished, [this](bool success) {
+    Q_ASSERT(check);
+    check = connect(this, &QWebEngineView::loadFinished, [this](bool success) {
         m_loadProgress = success ? 100 : -1;
         emit favIconChanged(favIcon());
+        if(m_pBrowser->m_pPara->GetAutoFillUserAndPassword() && m_pWebChannel && m_pPasswordStore)
+            InjectScriptAutoFill();
+        return;
+        QString szUser, szPassword;
+        int nRet = GetUserAndPassword(this->url(), szUser, szPassword);
+        if(0 == nRet) {
+            SetupAutoFillScript();
+            GlobalFillForm(szUser, szPassword);
+            //FillForm(szUser, szPassword);
+        }
     });
-    connect(this, &QWebEngineView::iconChanged, [this](const QIcon &) {
+    Q_ASSERT(check);
+    check = connect(this, &QWebEngineView::iconChanged, [this](const QIcon &) {
         emit favIconChanged(favIcon());
     });
-
-    connect(this, &QWebEngineView::renderProcessTerminated,
+    Q_ASSERT(check);
+    check = connect(this, &QWebEngineView::renderProcessTerminated,
             [this](QWebEnginePage::RenderProcessTerminationStatus termStatus, int statusCode) {
         QString status;
         switch (termStatus) {
@@ -62,6 +81,7 @@ CFrmWebView::CFrmWebView(CFrmWebBrowser *pFrmWebBrowser, QWidget *parent)
         if (btn == QMessageBox::Yes)
             QTimer::singleShot(0, this, &CFrmWebView::reload);
     });
+    Q_ASSERT(check);
 }
 
 CFrmWebView::~CFrmWebView()
@@ -106,6 +126,7 @@ inline QString questionForPermissionType(QWebEnginePermission::PermissionType pe
 
 void CFrmWebView::setPage(QWebEnginePage *page)
 {
+    Q_ASSERT(page);
     CreateWebActionTrigger(page,QWebEnginePage::Forward);
     CreateWebActionTrigger(page,QWebEnginePage::Back);
     CreateWebActionTrigger(page,QWebEnginePage::Reload);
@@ -142,6 +163,21 @@ void CFrmWebView::setPage(QWebEnginePage *page)
     connect(page, &QWebEnginePage::webAuthUxRequested,
             this, &CFrmWebView::slotWebAuthUxRequested);
     #endif
+
+    Q_ASSERT(m_pBrowser);
+    if(m_pBrowser->m_pPara->GetAutoFillUserAndPassword()) {
+        if(!m_pWebChannel)
+            m_pWebChannel = new QWebChannel(this);
+        if(!m_pPasswordStore)
+            m_pPasswordStore = new CPasswordStore(m_pBrowser->m_pPara, this);
+        if(m_pWebChannel && m_pPasswordStore) {
+            // 创建并注册 QWebChannel 对象，暴露 passwordStore 给 JS
+            m_pWebChannel->registerObject(QStringLiteral("PasswordManager"), m_pPasswordStore);
+            page->setWebChannel(m_pWebChannel);
+            InjectScriptQWebChannel();
+        } else
+            qCritical(log) << "Don't register PasswordManager";
+    }
 }
 
 int CFrmWebView::progress() const
@@ -465,3 +501,172 @@ void CFrmWebView::slotFileSystemAccessRequested(QWebEngineFileSystemAccessReques
         request.reject();
 }
 #endif
+
+QString CFrmWebView::AutoFillForm()
+{
+    return R"(
+                // 自动填充用户名和密码字段
+                function autoFillForm(username, password) {
+                    // 查找用户名输入框
+                    var usernameFields = [
+                        'input[type="text"]',
+                        'input[type="email"]',
+                        'input[name="username"]',
+                        'input[name="user"]',
+                        'input[name="email"]',
+                        'input[id="username"]',
+                        'input[id="user"]',
+                        'input[id="email"]'
+                    ];
+
+                    // 查找密码输入框
+                    var passwordFields = [
+                        'input[type="password"]',
+                        'input[name="password"]',
+                        'input[name="pass"]',
+                        'input[id="password"]',
+                        'input[id="pass"]'
+                    ];
+
+                    var arrUser = [];
+                    var arrPassword = [];
+
+                    // 尝试填充用户名
+                    usernameFields.forEach(function(selector) {
+                        var field = document.querySelector(selector);
+                        if (field && !field.value) {
+                            arrUser.push(field);
+                            // 触发 change 事件
+                            //var event = new Event('input', { bubbles: true });
+                            //field.dispatchEvent(event);
+                        }
+                    });
+
+                    // 尝试填充密码
+                    passwordFields.forEach(function(selector) {
+                        var field = document.querySelector(selector);
+                        if (field && !field.value) {
+                            arrPassword.push(field);
+                            // 触发 change 事件
+                            //var event = new Event('input', { bubbles: true });
+                            //field.dispatchEvent(event);
+                        }
+                    });
+
+                    arrUser.forEach(function(input) {
+                        if(!input.disabled && !input.readOnly)
+                            input.value = username;
+                    });
+                    arrPassword.forEach(function(input) {
+                        if(!input.disabled && !input.readOnly)
+                            input.value = password;
+                    });
+                }
+        )";
+}
+
+void CFrmWebView::SetupAutoFillScript() {
+    // 创建自动填充的 JavaScript
+    QString autoFillScript = "(function() {";
+    autoFillScript += AutoFillForm();
+    autoFillScript += R"(
+                // 暴露函数到全局作用域
+                window.autoFillForm = autoFillForm;
+            })();
+        )";
+    
+    QWebEngineScript script;
+    script.setSourceCode(autoFillScript);
+    script.setInjectionPoint(QWebEngineScript::DocumentCreation);
+    script.setWorldId(QWebEngineScript::MainWorld);
+    page()->scripts().insert(script);
+}
+
+void CFrmWebView::GlobalFillForm(const QString &szUse, const QString &szPassword)
+{
+    QString js = QString("window.autoFillForm('%1', '%2');").arg(szUse, szPassword);
+    page()->runJavaScript(js);
+}
+
+void CFrmWebView::FillForm(const QString &szUse, const QString &szPassword)
+{
+    QString js = AutoFillForm();
+    js += QString("autoFillForm('%1', '%2');").arg(szUse, szPassword);
+    page()->runJavaScript(js);
+}
+
+int CFrmWebView::GetUserAndPassword(QUrl url, QString &szUser, QString &szPassword)
+{
+    int nRet = 0;
+    //TODO:
+    szUser = "aa2";
+    szPassword = "p12";
+    return nRet;
+}
+
+void CFrmWebView::InjectScriptQWebChannel()
+{
+    Q_ASSERT(page());
+
+    // 从资源载入 qwebchannel.js 和 autofill.js
+    // 你需要在 resources.qrc 中把 js/qwebchannel.js 和 js/autofill.js 注册为资源
+    auto loadResource = [](const QString &rcPath)->QString{
+        QFile f(rcPath);
+        if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qCritical(log) << "Cannot open resource" << rcPath;
+            return QString();
+        }
+        return QString::fromUtf8(f.readAll());
+    };
+
+    QString qwebchannelJs = loadResource(":/js/QWebChannel.js");
+    if (qwebchannelJs.isEmpty()) {
+        qCritical(log) << "QWebChannel.js not found in resources!";
+        return;
+    }
+    
+    // 先注入 QWebChannel.js，再注入 AutoFill 脚本。将两者合并到一个 QWebEngineScript 也可以。
+    QWebEngineScript channelScript;
+    channelScript.setName("qwebchannel.js");
+    channelScript.setInjectionPoint(QWebEngineScript::DocumentCreation);
+    channelScript.setRunsOnSubFrames(true);
+    channelScript.setWorldId(QWebEngineScript::MainWorld);
+    channelScript.setSourceCode(qwebchannelJs);
+    page()->scripts().insert(channelScript);
+}
+
+void CFrmWebView::InjectScriptAutoFill()
+{
+    Q_ASSERT(page());
+
+    // 从资源载入 qwebchannel.js 和 autofill.js
+    // 你需要在 resources.qrc 中把 js/qwebchannel.js 和 js/autofill.js 注册为资源
+    auto loadResource = [](const QString &rcPath)->QString{
+        QFile f(rcPath);
+        if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qCritical(log) << "Cannot open resource" << rcPath;
+            return QString();
+        }
+        return QString::fromUtf8(f.readAll());
+    };
+
+    QString autofillJs = loadResource(":/js/AutoFill.js");
+    if (autofillJs.isEmpty()) {
+        qCritical(log) << "AutoFill.js not found in resources!";
+        return;
+    }
+    // QWebEngineScript autoScript;
+    // autoScript.setName("autofill.js");
+    // autoScript.setInjectionPoint(QWebEngineScript::DocumentReady);
+    // autoScript.setRunsOnSubFrames(true);
+    // autoScript.setWorldId(QWebEngineScript::MainWorld);
+    // autoScript.setSourceCode(autofillJs);
+    // page()->scripts().insert(autoScript);
+
+    page()->runJavaScript(autofillJs);
+    //qDebug(log) << "autofillJs:" << autofillJs;
+    // page()->runJavaScript("typeof qt !== 'undefined' ? 'qt-ok' : 'no-qt'",
+    //                       [](const QVariant &v){ qCritical(log) << v.toString(); });
+    // page()->runJavaScript("typeof qt !== 'undefined' && typeof qt.webChannelTransport !== 'undefined' ? 'transport-ok' : 'no-transport'",
+    //                       [](const QVariant &v){ qCritical(log) << v.toString(); });
+}

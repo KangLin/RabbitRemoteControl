@@ -14,6 +14,7 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_ClearHttpCache(false)
     , m_ClearCookie(false)
     , m_bPromptPrintFinished(true)
+    , m_bAutoFillUserAndPassword(false)
 {
     //m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     SetDownloadFolder(QWebEngineProfile::defaultProfile()->downloadPath());
@@ -43,6 +44,7 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetSearchEngine(set.value("SearchEngine", GetSearchEngine()).toString());
     SetSearchRelaceString(set.value("SearchEngine/SearchEngine", GetSearchRelaceString()).toString());
     SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
+    SetAutoFillUserAndPassword(set.value("AutoFillUserPassword", GetAutoFillUserAndPassword()).toBool());
     SetPromptPrintFinished(set.value("Print/Finished", GetPromptPrintFinished()).toBool());
     return nRet;
 }
@@ -61,6 +63,7 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("SearchEngine", GetSearchEngine());
     set.setValue("SearchEngine/SearchEngine", GetSearchRelaceString());
     set.setValue("SearchEngine/List", GetSearchEngineList());
+    set.setValue("AutoFillUserPassword", GetAutoFillUserAndPassword());
     set.setValue("Print/Finished", GetPromptPrintFinished());
     return nRet;
 }
@@ -226,5 +229,18 @@ void CParameterWebBrowser::SetPromptPrintFinished(bool newPromptPrintFinished)
     if(m_bPromptPrintFinished == newPromptPrintFinished)
         return;
     m_bPromptPrintFinished = newPromptPrintFinished;
+    SetModified(true);
+}
+
+bool CParameterWebBrowser::GetAutoFillUserAndPassword() const
+{
+    return m_bAutoFillUserAndPassword;
+}
+
+void CParameterWebBrowser::SetAutoFillUserAndPassword(bool newAutoFillUserAndPassword)
+{
+    if(m_bAutoFillUserAndPassword == newAutoFillUserAndPassword)
+        return;
+    m_bAutoFillUserAndPassword = newAutoFillUserAndPassword;
     SetModified(true);
 }

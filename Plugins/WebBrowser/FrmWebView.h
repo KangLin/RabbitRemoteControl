@@ -20,6 +20,9 @@
 #include <QWebEnginePermission>
 #endif
 #include <QActionGroup>
+#include <QtWebChannel>
+
+#include "PasswordStore.h"
 
 class CFrmWebBrowser;
 class CFrmWebView : public QWebEngineView
@@ -45,6 +48,15 @@ signals:
     void sigCloseRequested();
     void sigLinkHovered(const QString &url);
     void sigWebActionEnabledChanged(QWebEnginePage::WebAction webAction, bool enabled);
+
+private:
+    void SetupAutoFillScript();
+    void GlobalFillForm(const QString &username, const QString &szPassword);
+    void FillForm(const QString &szUse, const QString &szPassword);
+    QString AutoFillForm();
+    int GetUserAndPassword(QUrl url, QString &szUser, QString &szPassword);
+    void InjectScriptQWebChannel();
+    void InjectScriptAutoFill();
 
 private slots:
     void slotSelectClientCertificate(QWebEngineClientCertificateSelection clientCertSelection);
@@ -75,4 +87,6 @@ private:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
     CDlgWebAuth* m_pDlgWebAuth;
 #endif
+    QWebChannel* m_pWebChannel;
+    CPasswordStore* m_pPasswordStore;
 };

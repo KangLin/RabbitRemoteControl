@@ -213,12 +213,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="16"/>
+        <location filename="../../DlgUserPassword.cpp" line="17"/>
         <source>Set user and password</source>
         <translation>设置用户名和密码</translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="37"/>
+        <location filename="../../DlgUserPassword.cpp" line="38"/>
         <source>Server: </source>
         <translation>服务器：</translation>
     </message>
@@ -480,19 +480,16 @@ Restart program by administrator?</source>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation>名称：</translation>
+        <translation type="vanished">名称：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation type="vanished">类型：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation>协议：</translation>
+        <translation type="vanished">协议：</translation>
     </message>
     <message>
         <source>Server address: </source>
@@ -511,64 +508,48 @@ Restart program by administrator?</source>
         <translation type="vanished">Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation>安全级别：</translation>
+        <translation type="vanished">安全级别：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation type="vanished">描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
-        <translation>复制选择到剪切板</translation>
+        <translation type="vanished">复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
-        <translation>粘贴剪切板</translation>
+        <translation type="vanished">粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
-        <translation>粘贴到选择</translation>
+        <translation type="vanished">粘贴到选择</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
-        <translation>放大</translation>
+        <translation type="vanished">放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
-        <translation>缩小</translation>
+        <translation type="vanished">缩小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
-        <translation>重置缩放</translation>
+        <translation type="vanished">重置缩放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
-        <translation>查找 ……</translation>
+        <translation type="vanished">查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
-        <translation>清除</translation>
+        <translation type="vanished">清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
-        <source>QTermWidget</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
         <source>Version:</source>
-        <translation>版本：</translation>
+        <translation type="vanished">版本：</translation>
     </message>
 </context>
 <context>
@@ -1032,131 +1013,100 @@ Restart program by administrator?</source>
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="22"/>
         <source>Font:</source>
-        <translation>字体：</translation>
+        <translation type="vanished">字体：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="62"/>
         <source>Color scheme:</source>
-        <translation>颜色方案：</translation>
+        <translation type="vanished">颜色方案：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="86"/>
         <source>Cursor shape:</source>
-        <translation>光标形状：</translation>
+        <translation type="vanished">光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
         <source>Terminal Transparency:</source>
-        <translation>透明度：</translation>
+        <translation type="vanished">透明度：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
         <source>Background Image:</source>
-        <translation>背景图像：</translation>
+        <translation type="vanished">背景图像：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
         <source>Scroll bar position:</source>
-        <translation>滚动条位置：</translation>
+        <translation type="vanished">滚动条位置：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
         <source>Browse(&amp;B)</source>
-        <translation>浏览(&amp;B)</translation>
+        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
         <source>Key binding:</source>
-        <translation>键盘绑定：</translation>
+        <translation type="vanished">键盘绑定：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
         <source>Show terminal size when windows resize</source>
-        <translation>窗口大小改变时显示其大小</translation>
+        <translation type="vanished">窗口大小改变时显示其大小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
         <source>Enable bi-directional text support</source>
-        <translation>允许双向文本</translation>
+        <translation type="vanished">允许双向文本</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="233"/>
         <source>History</source>
-        <translation>历史记录</translation>
+        <translation type="vanished">历史记录</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
         <source>History size(in lines):</source>
-        <translation>历史记录大小（行数）：</translation>
+        <translation type="vanished">历史记录大小（行数）：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
         <source>Unlimited</source>
-        <translation>无限制</translation>
+        <translation type="vanished">无限制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="267"/>
         <source>Flow Control</source>
-        <translation>流量控制</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="274"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>示例：显示字体</translation>
+        <translation type="vanished">示例：显示字体</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation>背景图像</translation>
+        <translation type="vanished">背景图像</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation>方块光标</translation>
+        <translation type="vanished">方块光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation>下划线光标</translation>
+        <translation type="vanished">下划线光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation>I 形光标</translation>
+        <translation type="vanished">I 形光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation>左</translation>
+        <translation type="vanished">左</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation>右</translation>
+        <translation type="vanished">右</translation>
     </message>
 </context>
 <context>
@@ -1227,7 +1177,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="266"/>
         <source>Input passphrase</source>
         <translation>输入密码</translation>
     </message>
@@ -1250,7 +1200,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="165"/>
         <source>Input password</source>
         <translation>输入密码</translation>
     </message>
@@ -1258,8 +1208,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="67"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="80"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation>菜单: 工具→设置→插件→密码→允许查看密码</translation>
     </message>
@@ -1270,8 +1220,8 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="76"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation>菜单：工具→设置→插件→密码→允许保存密码</translation>
     </message>
@@ -1343,40 +1293,40 @@ Restart program by administrator?</source>
         <translation>请输入私钥文件的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="79"/>
         <source>View password</source>
         <translation>查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="162"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="167"/>
         <source>Please checked save password to enable</source>
         <translation>请选中保存密码按钮</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="173"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="185"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="178"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="190"/>
         <source>Open public key file</source>
         <translation>打开公钥文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="268"/>
         <source>Please checked save passphrase to enable</source>
         <translation>请选中保存密码，允许输入</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="287"/>
         <source>Open X509 certificate authentication file</source>
         <translation>打开 X509 认证证书文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="294"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="299"/>
         <source>Open X509 Certificate Revocation List file</source>
         <translation>打开 X509 证书吊销列表文件</translation>
     </message>

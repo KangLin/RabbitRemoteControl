@@ -8,79 +8,109 @@
         <translation type="vanished">认证</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="24"/>
         <source>General</source>
-        <translation type="vanished">通用</translation>
+        <translation>通用</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="71"/>
         <source>Download</source>
-        <translation type="vanished">下载</translation>
+        <translation>下载</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="79"/>
         <source>Download folder:</source>
-        <translation type="vanished">下载文件夹：</translation>
+        <translation>下载文件夹：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="102"/>
         <source>Browser</source>
-        <translation type="vanished">浏览器</translation>
+        <translation>浏览器</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="111"/>
         <source>Always show the download manager window</source>
-        <translation type="vanished">始终显示下载管理器窗口</translation>
+        <translation>始终显示下载管理器窗口</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="118"/>
+        <location filename="../../DlgSettings.ui" line="121"/>
+        <location filename="../../DlgSettings.ui" line="124"/>
         <source>Always show the option to choose the download save location.</source>
-        <translation type="vanished">始终显示选择下载保存位置的选项。</translation>
+        <translation>始终显示选择下载保存位置的选项。</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="127"/>
         <source>Always ask for the download file save location</source>
-        <translation type="vanished">始终询问下载文件的保存位置</translation>
+        <translation>始终询问下载文件的保存位置</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="64"/>
         <source>Clean up the cookie when the program exits</source>
-        <translation type="vanished">程序退出时清理&#x3000;cookie</translation>
+        <translation>程序退出时清理&#x3000;cookie</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="167"/>
         <source>New tab url:</source>
-        <translation type="vanished">新标签 url:</translation>
+        <translation>新标签 url:</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="137"/>
         <source>Open previous windows and tabs</source>
-        <translation type="vanished">打开之前的窗口和标签页</translation>
+        <translation>打开之前的窗口和标签页</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="45"/>
         <source>Name:</source>
-        <translation type="vanished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="144"/>
         <source>Clean up the HTTP cache when the program exits</source>
-        <translation type="vanished">程序退出时清理 HTTP 缓存</translation>
+        <translation>程序退出时清理 HTTP 缓存</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="153"/>
         <source>Home or new window:</source>
-        <translation type="vanished">主页或新窗口：</translation>
+        <translation>主页或新窗口：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="57"/>
         <source>Print completion prompt</source>
-        <translation type="vanished">打印完成提示</translation>
+        <translation>打印完成提示</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="14"/>
+        <source>Set</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="179"/>
+        <source>Auto fill user name and password</source>
+        <translation>自动填充用户名和密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="187"/>
         <source>Search</source>
-        <translation type="vanished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="217"/>
         <source>Add</source>
-        <translation type="vanished">增加</translation>
+        <translation>增加</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="227"/>
         <source>Edit</source>
-        <translation type="vanished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
+        <location filename="../../DlgSettings.ui" line="237"/>
         <source>Remove</source>
-        <translation type="vanished">移除</translation>
+        <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="80"/>
+        <location filename="../../DlgSettings.cpp" line="82"/>
         <source>Download folder</source>
         <translation>下载文件夹</translation>
     </message>
@@ -292,16 +322,24 @@
 <context>
     <name>CFrmDownload</name>
     <message>
+        <location filename="../../FrmDownload.ui" line="14"/>
         <source>Frame</source>
-        <translation type="vanished">框架</translation>
+        <translation>框架</translation>
     </message>
     <message>
+        <location filename="../../FrmDownload.ui" line="31"/>
         <source>Title</source>
-        <translation type="vanished">标题</translation>
+        <translation>标题</translation>
     </message>
     <message>
+        <location filename="../../FrmDownload.ui" line="38"/>
+        <source>PushButton</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../FrmDownload.ui" line="54"/>
         <source>File Information</source>
-        <translation type="vanished">文件信息</translation>
+        <translation>文件信息</translation>
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="116"/>
@@ -557,105 +595,105 @@
 <context>
     <name>CFrmWebView</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="56"/>
+        <location filename="../../FrmWebView.cpp" line="66"/>
         <source>Render process normal exit</source>
         <translation>渲染过程正常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="59"/>
+        <location filename="../../FrmWebView.cpp" line="69"/>
         <source>Render process abnormal exit</source>
         <translation>渲染过程异常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="62"/>
+        <location filename="../../FrmWebView.cpp" line="72"/>
         <source>Render process crashed</source>
         <translation>渲染进程崩溃了</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="65"/>
+        <location filename="../../FrmWebView.cpp" line="75"/>
         <source>Render process killed</source>
         <translation>渲染进程被终止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="69"/>
+        <location filename="../../FrmWebView.cpp" line="79"/>
         <source>Render process exited with code: %1
 Do you want to reload the page ?</source>
         <translation>渲染过程以代码退出：%1
 您想要重新加载页面吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="217"/>
+        <location filename="../../FrmWebView.cpp" line="244"/>
         <source>Open inspector</source>
         <translation>打开检查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="220"/>
+        <location filename="../../FrmWebView.cpp" line="248"/>
         <source>Inspect element</source>
         <translation>检查元素</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="224"/>
+        <location filename="../../FrmWebView.cpp" line="252"/>
         <source>Image animation policy</source>
         <translation>图像动画政策</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="230"/>
+        <location filename="../../FrmWebView.cpp" line="258"/>
         <source>Disable all image animation</source>
         <translation>禁用所有图像动画</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="237"/>
+        <location filename="../../FrmWebView.cpp" line="265"/>
         <source>Allow animated images, but only once</source>
         <translation>允许动画图像，但只能使用一次</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="242"/>
+        <location filename="../../FrmWebView.cpp" line="270"/>
         <source>Allow all animated images</source>
         <translation>允许所有图像动画</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="293"/>
+        <location filename="../../FrmWebView.cpp" line="321"/>
         <source>If you wish so, you may continue with an unverified certificate. Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.</source>
         <translation>如果你愿意，可以继续使用未验证的证书。接受未验证的证书意味着你可能没有与尝试连接的主机建立连接。</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="295"/>
+        <location filename="../../FrmWebView.cpp" line="323"/>
         <source>Do you wish to override the security check and continue ?</source>
         <translation>您是否希望覆盖安全检查并继续？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="296"/>
+        <location filename="../../FrmWebView.cpp" line="324"/>
         <source>Certificate Error</source>
         <translation>证书错误</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="317"/>
+        <location filename="../../FrmWebView.cpp" line="345"/>
         <source>Set user and password</source>
         <translation>设置用户名和密码</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="333"/>
+        <location filename="../../FrmWebView.cpp" line="361"/>
         <source>Set user and password of proxy</source>
         <translation>设置代理用户名和密码</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="372"/>
-        <location filename="../../FrmWebView.cpp" line="435"/>
+        <location filename="../../FrmWebView.cpp" line="400"/>
+        <location filename="../../FrmWebView.cpp" line="463"/>
         <source>Permission Request</source>
         <translation>权限请求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="436"/>
+        <location filename="../../FrmWebView.cpp" line="464"/>
         <source>Allow %1 to open all %2 links?</source>
         <translation>允许 %1 打开所有 %2 链接？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="465"/>
+        <location filename="../../FrmWebView.cpp" line="493"/>
         <source>File system access request</source>
         <translation>文件系统访问请求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="466"/>
+        <location filename="../../FrmWebView.cpp" line="494"/>
         <source>Give %1 %2 access to %3?</source>
         <translation>给予 %1 %2 对 %3 的访问权限吗？</translation>
     </message>
@@ -697,54 +735,54 @@ Do you want to reload the page ?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="90"/>
+        <location filename="../../FrmWebView.cpp" line="101"/>
         <source>Allow %1 to access your location information?</source>
         <translation>允许 %1 访问您的位置信息吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="92"/>
+        <location filename="../../FrmWebView.cpp" line="103"/>
         <source>Allow %1 to access your microphone?</source>
         <translation>允许 %1 访问您的麦克风吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="94"/>
+        <location filename="../../FrmWebView.cpp" line="105"/>
         <source>Allow %1 to access your webcam?</source>
         <translation>允许 %1 访问您的摄像头吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="96"/>
+        <location filename="../../FrmWebView.cpp" line="107"/>
         <source>Allow %1 to access your microphone and webcam?</source>
         <translation>允许 %1 访问您的麦克风和摄像头吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="98"/>
+        <location filename="../../FrmWebView.cpp" line="109"/>
         <source>Allow %1 to lock your mouse cursor?</source>
         <translation>允许 %1 锁定你的鼠标光标吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="100"/>
+        <location filename="../../FrmWebView.cpp" line="111"/>
         <source>Allow %1 to capture video of your desktop?</source>
         <translation>允许 %1 捕获您桌面的录像吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="102"/>
+        <location filename="../../FrmWebView.cpp" line="113"/>
         <source>Allow %1 to capture audio and video of your desktop?</source>
         <translation>允许 %1 捕获您桌面的音频和视频吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="104"/>
+        <location filename="../../FrmWebView.cpp" line="115"/>
         <source>Allow %1 to show notification on your desktop?</source>
         <translation>允许 %1 在您的桌面上显示通知？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="106"/>
+        <location filename="../../FrmWebView.cpp" line="117"/>
         <source>Allow %1 to read from and write to the clipboard?</source>
         <translation>允许 %1 从剪贴板读取和写入吗？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="108"/>
+        <location filename="../../FrmWebView.cpp" line="119"/>
         <source>Allow %1 to access fonts stored on this machine?</source>
-        <translation>允许%1访问存储在此机器上的字体吗？</translation>
+        <translation>允许 %1 访问存储在此机器上的字体吗？</translation>
     </message>
 </context>
 </TS>

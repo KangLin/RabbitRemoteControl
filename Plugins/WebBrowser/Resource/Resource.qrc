@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/js">
+        <file alias="AutoFill.js">js/AutoFill.js</file>
+        <file alias="QWebChannel.js">js/QWebChannel.js</file>
+    </qresource>
+</RCC>

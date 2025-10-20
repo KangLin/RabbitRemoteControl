@@ -166,7 +166,7 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
                 else
                     qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
             }
-        }else{
+        } else {
             QString szMsg;
             szMsg = "Error: Load plugin fail from " + szPlugins;
             if(!loader.errorString().isEmpty())
