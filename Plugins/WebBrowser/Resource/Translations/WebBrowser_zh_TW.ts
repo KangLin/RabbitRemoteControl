@@ -4,101 +4,80 @@
 <context>
     <name>CDlgSettings</name>
     <message>
-        <location filename="../../DlgSettings.ui" line="14"/>
         <source>Authenticate</source>
-        <translation>認證</translation>
+        <translation type="vanished">認證</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="24"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="30"/>
         <source>Download</source>
-        <translation>下載</translation>
+        <translation type="vanished">下載</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="38"/>
         <source>Download folder:</source>
-        <translation>下載文件夾：</translation>
+        <translation type="vanished">下載文件夾：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="61"/>
         <source>Browser</source>
-        <translation>瀏覽器</translation>
+        <translation type="vanished">瀏覽器</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="70"/>
         <source>Always show the download manager window</source>
-        <translation>始終顯示下載管理器窗口</translation>
+        <translation type="vanished">始終顯示下載管理器窗口</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="77"/>
-        <location filename="../../DlgSettings.ui" line="80"/>
-        <location filename="../../DlgSettings.ui" line="83"/>
         <source>Always show the option to choose the download save location.</source>
-        <translation>始終顯示選擇下載保存位置的選項。</translation>
+        <translation type="vanished">始終顯示選擇下載保存位置的選項。</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="86"/>
         <source>Always ask for the download file save location</source>
-        <translation>始終詢問下載文件的保存位置</translation>
+        <translation type="vanished">始終詢問下載文件的保存位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="109"/>
         <source>Clean up the cookie when the program exits</source>
-        <translation>程序退出時清理&#x3000;cookie</translation>
+        <translation type="vanished">程序退出時清理&#x3000;cookie</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="118"/>
         <source>New tab url:</source>
-        <translation>新標簽 url:</translation>
+        <translation type="vanished">新標簽 url:</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="130"/>
         <source>Open previous windows and tabs</source>
-        <translation>打開之前的窗口和標簽頁</translation>
+        <translation type="vanished">打開之前的窗口和標簽頁</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="139"/>
         <source>Name:</source>
-        <translation>名稱：</translation>
+        <translation type="vanished">名稱：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="151"/>
         <source>Clean up the HTTP cache when the program exits</source>
-        <translation>程序退出時清理 HTTP 緩存</translation>
+        <translation type="vanished">程序退出時清理 HTTP 緩存</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="160"/>
         <source>Home or new window:</source>
-        <translation>主頁或新窗口：</translation>
+        <translation type="vanished">主頁或新窗口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="172"/>
         <source>Print completion prompt</source>
-        <translation>打印完成提示</translation>
+        <translation type="vanished">打印完成提示</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="180"/>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation type="vanished">搜索</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="210"/>
         <source>Add</source>
-        <translation>增加</translation>
+        <translation type="vanished">增加</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="220"/>
         <source>Edit</source>
-        <translation>編輯</translation>
+        <translation type="vanished">編輯</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="230"/>
         <source>Remove</source>
-        <translation>移除</translation>
+        <translation type="vanished">移除</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.cpp" line="80"/>
@@ -139,173 +118,173 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="93"/>
+        <location filename="../../DlgWebAuth.cpp" line="96"/>
         <source>Choose a Passkey</source>
         <translation>選擇一個密碼鑰</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="94"/>
+        <location filename="../../DlgWebAuth.cpp" line="97"/>
         <source>Which passkey do you want to use for </source>
         <translation>你想使用哪個通行密鑰</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="95"/>
+        <location filename="../../DlgWebAuth.cpp" line="98"/>
         <source>? </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="111"/>
+        <location filename="../../DlgWebAuth.cpp" line="114"/>
         <source>Ok</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="120"/>
+        <location filename="../../DlgWebAuth.cpp" line="123"/>
         <source>Use your security key with</source>
         <translation>使用您的安全密鑰</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="123"/>
+        <location filename="../../DlgWebAuth.cpp" line="126"/>
         <source>Touch your security key again to complete the request.</source>
         <translation>再次觸摸您的安全密鑰以完成請求。</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="136"/>
+        <location filename="../../DlgWebAuth.cpp" line="139"/>
         <source>Next</source>
         <translation>下一個</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="145"/>
+        <location filename="../../DlgWebAuth.cpp" line="148"/>
         <source>PIN Required</source>
         <translation>需要輸入 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="146"/>
+        <location filename="../../DlgWebAuth.cpp" line="149"/>
         <source>Enter the PIN for your security key</source>
         <translation>輸入您的安全密鑰的 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="151"/>
+        <location filename="../../DlgWebAuth.cpp" line="154"/>
         <source>New PIN Required</source>
         <translation>需要新的 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="152"/>
+        <location filename="../../DlgWebAuth.cpp" line="155"/>
         <source>Set new PIN for your security key</source>
         <translation>為您的安全密鑰設置新的 PIN 碼</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="154"/>
+        <location filename="../../DlgWebAuth.cpp" line="157"/>
         <source>Change PIN Required</source>
         <translation>需要更改 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="155"/>
+        <location filename="../../DlgWebAuth.cpp" line="158"/>
         <source>Change PIN for your security key</source>
         <translation>更改您的安全密鑰的 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="166"/>
+        <location filename="../../DlgWebAuth.cpp" line="169"/>
         <source>Internal User Verification Locked </source>
         <translation>內部用戶驗證被鎖定</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="169"/>
+        <location filename="../../DlgWebAuth.cpp" line="172"/>
         <source>Wrong PIN</source>
         <translation>錯誤 PIN</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="172"/>
+        <location filename="../../DlgWebAuth.cpp" line="175"/>
         <source>Too Short</source>
         <translation>太短</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="175"/>
+        <location filename="../../DlgWebAuth.cpp" line="178"/>
         <source>Invalid Characters</source>
         <translation>無效字符</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="178"/>
+        <location filename="../../DlgWebAuth.cpp" line="181"/>
         <source>Same as current PIN</source>
         <translation>與當前 PIN 相同</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="182"/>
+        <location filename="../../DlgWebAuth.cpp" line="185"/>
         <source> </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="183"/>
+        <location filename="../../DlgWebAuth.cpp" line="186"/>
         <source> attempts remaining</source>
         <translation> 剩余嘗試次數</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="213"/>
+        <location filename="../../DlgWebAuth.cpp" line="216"/>
         <source>Something went wrong</source>
         <translation>出了點問題</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="217"/>
+        <location filename="../../DlgWebAuth.cpp" line="220"/>
         <source>Request Timeout</source>
         <translation>請求超時</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="220"/>
+        <location filename="../../DlgWebAuth.cpp" line="223"/>
         <source>Key not registered</source>
         <translation>密鑰未註冊</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="223"/>
+        <location filename="../../DlgWebAuth.cpp" line="226"/>
         <source>You already registered this device.Try again with device</source>
         <translation>您已註冊此設備。請使用設備重試。</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="229"/>
+        <location filename="../../DlgWebAuth.cpp" line="232"/>
         <source>The security key is locked because the wrong PIN was entered too many times.To unlock it, remove and reinsert it.</source>
         <translation>安全密鑰已被鎖定，因為輸入錯誤的PIN碼次數過多。要解鎖，請取出並重新插入它。</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="235"/>
+        <location filename="../../DlgWebAuth.cpp" line="238"/>
         <source>The security key is locked because the wrong PIN was entered too many times. You&apos;ll need to reset the security key.</source>
         <translation>由於多次輸入錯誤的 PIN，安全密鑰已被鎖定。您需要重置安全密鑰。</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="240"/>
+        <location filename="../../DlgWebAuth.cpp" line="243"/>
         <source>Authenticator removed during verification. Please reinsert and try again</source>
         <translation>驗證過程中認證器被移除。請重新插入並重試</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="243"/>
+        <location filename="../../DlgWebAuth.cpp" line="246"/>
         <source>Authenticator doesn&apos;t have resident key support</source>
         <translation>身份驗證器不支持常駐密鑰</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="246"/>
+        <location filename="../../DlgWebAuth.cpp" line="249"/>
         <source>Authenticator missing user verification</source>
         <translation>驗證器缺少用戶驗證</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="249"/>
         <location filename="../../DlgWebAuth.cpp" line="252"/>
+        <location filename="../../DlgWebAuth.cpp" line="255"/>
         <source>Authenticator missing Large Blob support</source>
         <translation>身份驗證器缺少大數據塊支持</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="255"/>
+        <location filename="../../DlgWebAuth.cpp" line="258"/>
         <source>Storage Full</source>
         <translation>存儲已滿</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="258"/>
+        <location filename="../../DlgWebAuth.cpp" line="261"/>
         <source>User consent denied</source>
         <translation>用戶拒絕了同意</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="261"/>
+        <location filename="../../DlgWebAuth.cpp" line="264"/>
         <source>User Cancelled Request</source>
         <translation>用戶取消了請求</translation>
     </message>
     <message>
-        <location filename="../../DlgWebAuth.cpp" line="274"/>
+        <location filename="../../DlgWebAuth.cpp" line="277"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
@@ -313,24 +292,16 @@
 <context>
     <name>CFrmDownload</name>
     <message>
-        <location filename="../../FrmDownload.ui" line="14"/>
         <source>Frame</source>
-        <translation>框架</translation>
+        <translation type="vanished">框架</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.ui" line="31"/>
         <source>Title</source>
-        <translation>標題</translation>
+        <translation type="vanished">標題</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.ui" line="38"/>
-        <source>PushButton</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../FrmDownload.ui" line="54"/>
         <source>File Information</source>
-        <translation>文件信息</translation>
+        <translation type="vanished">文件信息</translation>
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="116"/>
@@ -461,124 +432,124 @@
         <translation>新頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="507"/>
+        <location filename="../../FrmWebBrowser.cpp" line="508"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="518"/>
+        <location filename="../../FrmWebBrowser.cpp" line="519"/>
         <source>Add incognito tab</source>
         <translation>添加隱身標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="528"/>
+        <location filename="../../FrmWebBrowser.cpp" line="529"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="535"/>
+        <location filename="../../FrmWebBrowser.cpp" line="536"/>
         <source>Add Incognito Window</source>
         <translation>添加隱身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="544"/>
+        <location filename="../../FrmWebBrowser.cpp" line="545"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="549"/>
+        <location filename="../../FrmWebBrowser.cpp" line="550"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="550"/>
+        <location filename="../../FrmWebBrowser.cpp" line="551"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="558"/>
-        <location filename="../../FrmWebBrowser.cpp" line="566"/>
+        <location filename="../../FrmWebBrowser.cpp" line="559"/>
+        <location filename="../../FrmWebBrowser.cpp" line="567"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未發現</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="560"/>
+        <location filename="../../FrmWebBrowser.cpp" line="561"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 發現：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="576"/>
+        <location filename="../../FrmWebBrowser.cpp" line="577"/>
         <source>Find &amp;Next</source>
         <translation>查找下一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="587"/>
+        <location filename="../../FrmWebBrowser.cpp" line="588"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="599"/>
-        <location filename="../../FrmWebBrowser.cpp" line="601"/>
+        <location filename="../../FrmWebBrowser.cpp" line="600"/>
         <location filename="../../FrmWebBrowser.cpp" line="602"/>
+        <location filename="../../FrmWebBrowser.cpp" line="603"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="610"/>
-        <location filename="../../FrmWebBrowser.cpp" line="612"/>
+        <location filename="../../FrmWebBrowser.cpp" line="611"/>
         <location filename="../../FrmWebBrowser.cpp" line="613"/>
+        <location filename="../../FrmWebBrowser.cpp" line="614"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="623"/>
-        <location filename="../../FrmWebBrowser.cpp" line="625"/>
+        <location filename="../../FrmWebBrowser.cpp" line="624"/>
         <location filename="../../FrmWebBrowser.cpp" line="626"/>
+        <location filename="../../FrmWebBrowser.cpp" line="627"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="639"/>
+        <location filename="../../FrmWebBrowser.cpp" line="640"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="643"/>
+        <location filename="../../FrmWebBrowser.cpp" line="644"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="649"/>
+        <location filename="../../FrmWebBrowser.cpp" line="650"/>
         <source>Inspector</source>
         <translation>檢查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="723"/>
+        <location filename="../../FrmWebBrowser.cpp" line="724"/>
         <source>Web browser</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="898"/>
+        <location filename="../../FrmWebBrowser.cpp" line="899"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="899"/>
+        <location filename="../../FrmWebBrowser.cpp" line="900"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="923"/>
+        <location filename="../../FrmWebBrowser.cpp" line="924"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="924"/>
+        <location filename="../../FrmWebBrowser.cpp" line="925"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="925"/>
+        <location filename="../../FrmWebBrowser.cpp" line="926"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
@@ -586,90 +557,105 @@
 <context>
     <name>CFrmWebView</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="45"/>
+        <location filename="../../FrmWebView.cpp" line="56"/>
         <source>Render process normal exit</source>
         <translation>渲染過程正常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="48"/>
+        <location filename="../../FrmWebView.cpp" line="59"/>
         <source>Render process abnormal exit</source>
         <translation>渲染過程異常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="51"/>
+        <location filename="../../FrmWebView.cpp" line="62"/>
         <source>Render process crashed</source>
         <translation>渲染進程崩潰了</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="54"/>
+        <location filename="../../FrmWebView.cpp" line="65"/>
         <source>Render process killed</source>
         <translation>渲染進程被終止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="58"/>
+        <location filename="../../FrmWebView.cpp" line="69"/>
         <source>Render process exited with code: %1
 Do you want to reload the page ?</source>
         <translation>渲染過程以代碼退出：%1
 您想要重新加載頁面嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="210"/>
+        <location filename="../../FrmWebView.cpp" line="217"/>
+        <source>Open inspector</source>
+        <translation>打開檢查器</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebView.cpp" line="220"/>
         <source>Inspect element</source>
         <translation>檢查元素</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="214"/>
+        <location filename="../../FrmWebView.cpp" line="224"/>
         <source>Image animation policy</source>
         <translation>圖像動畫政策</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="220"/>
+        <location filename="../../FrmWebView.cpp" line="230"/>
         <source>Disable all image animation</source>
         <translation>禁用所有圖像動畫</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="227"/>
+        <location filename="../../FrmWebView.cpp" line="237"/>
         <source>Allow animated images, but only once</source>
         <translation>允許動畫圖像，但只能使用一次</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="232"/>
+        <location filename="../../FrmWebView.cpp" line="242"/>
         <source>Allow all animated images</source>
         <translation>允許所有圖像動畫</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="283"/>
+        <location filename="../../FrmWebView.cpp" line="293"/>
         <source>If you wish so, you may continue with an unverified certificate. Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.</source>
         <translation>如果你願意，可以繼續使用未驗證的證書。接受未驗證的證書意味著你可能沒有與嘗試連接的主機建立連接。</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="285"/>
+        <location filename="../../FrmWebView.cpp" line="295"/>
         <source>Do you wish to override the security check and continue ?</source>
         <translation>您是否希望覆蓋安全檢查並繼續？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="286"/>
+        <location filename="../../FrmWebView.cpp" line="296"/>
         <source>Certificate Error</source>
         <translation>證書錯誤</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="318"/>
-        <location filename="../../FrmWebView.cpp" line="424"/>
+        <location filename="../../FrmWebView.cpp" line="317"/>
+        <source>Set user and password</source>
+        <translation>設置用戶名和密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebView.cpp" line="333"/>
+        <source>Set user and password of proxy</source>
+        <translation>設置代理用戶名和密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebView.cpp" line="372"/>
+        <location filename="../../FrmWebView.cpp" line="435"/>
         <source>Permission Request</source>
         <translation>權限請求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="425"/>
+        <location filename="../../FrmWebView.cpp" line="436"/>
         <source>Allow %1 to open all %2 links?</source>
         <translation>允許 %1 打開所有 %2 鏈接？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="454"/>
+        <location filename="../../FrmWebView.cpp" line="465"/>
         <source>File system access request</source>
         <translation>文件系統訪問請求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="455"/>
+        <location filename="../../FrmWebView.cpp" line="466"/>
         <source>Give %1 %2 access to %3?</source>
         <translation>給予 %1 %2 對 %3 的訪問權限嗎？</translation>
     </message>
@@ -711,52 +697,52 @@ Do you want to reload the page ?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="79"/>
+        <location filename="../../FrmWebView.cpp" line="90"/>
         <source>Allow %1 to access your location information?</source>
         <translation>允許 %1 訪問您的位置信息嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="81"/>
+        <location filename="../../FrmWebView.cpp" line="92"/>
         <source>Allow %1 to access your microphone?</source>
         <translation>允許 %1 訪問您的麥克風嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="83"/>
+        <location filename="../../FrmWebView.cpp" line="94"/>
         <source>Allow %1 to access your webcam?</source>
         <translation>允許 %1 訪問您的攝像頭嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="85"/>
+        <location filename="../../FrmWebView.cpp" line="96"/>
         <source>Allow %1 to access your microphone and webcam?</source>
         <translation>允許 %1 訪問您的麥克風和攝像頭嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="87"/>
+        <location filename="../../FrmWebView.cpp" line="98"/>
         <source>Allow %1 to lock your mouse cursor?</source>
         <translation>允許 %1 鎖定你的鼠標光標嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="89"/>
+        <location filename="../../FrmWebView.cpp" line="100"/>
         <source>Allow %1 to capture video of your desktop?</source>
         <translation>允許 %1 捕獲您桌面的錄像嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="91"/>
+        <location filename="../../FrmWebView.cpp" line="102"/>
         <source>Allow %1 to capture audio and video of your desktop?</source>
         <translation>允許 %1 捕獲您桌面的音頻和視頻嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="93"/>
+        <location filename="../../FrmWebView.cpp" line="104"/>
         <source>Allow %1 to show notification on your desktop?</source>
         <translation>允許 %1 在您的桌面上顯示通知？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="95"/>
+        <location filename="../../FrmWebView.cpp" line="106"/>
         <source>Allow %1 to read from and write to the clipboard?</source>
         <translation>允許 %1 從剪貼板讀取和寫入嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="97"/>
+        <location filename="../../FrmWebView.cpp" line="108"/>
         <source>Allow %1 to access fonts stored on this machine?</source>
         <translation>允許%1訪問存儲在此機器上的字體嗎？</translation>
     </message>

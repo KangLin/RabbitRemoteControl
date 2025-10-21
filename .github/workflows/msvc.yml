@@ -416,6 +416,7 @@ jobs:
             -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
             -DRABBIT_ENABLE_INSTALL_QT=ON ^
             -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON ^
+            -DWITH_WebEngineWidgets=ON ^
             -DBUILD_FREERDP=ON ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
             -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^

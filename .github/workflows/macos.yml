@@ -367,6 +367,7 @@ jobs:
               -DVCPKG_VERBOSE=ON \
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
               -DRABBIT_WITH_MACDEPLOY=OFF \
+              -DWITH_WebEngineWidgets=ON \
               -DBUILD_FREERDP=ON \
               -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --config Release

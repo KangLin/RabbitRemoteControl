@@ -376,6 +376,7 @@ jobs:
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+              -DWITH_WebEngineWidgets=ON \
               -DBUILD_LibVNCServer=OFF \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DBUILD_FREERDP=ON \

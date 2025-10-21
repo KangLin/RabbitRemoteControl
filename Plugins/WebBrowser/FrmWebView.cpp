@@ -205,9 +205,9 @@ void CFrmWebView::contextMenuEvent(QContextMenuEvent *event)
         auto viewSource = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::ViewSource));
         if (viewSource == actions.cend())
             menu->addSeparator();
-
-        QAction *action = menu->addAction("Open inspector");
-        connect(action, &QAction::triggered, [this]() { emit sigDevToolsRequested(page());});
+        QAction *action = menu->addAction(tr("Open inspector"));
+        connect(action, &QAction::triggered,
+                [this]() { emit sigDevToolsRequested(page());});
     } else {
         (*inspectElement)->setText(tr("Inspect element"));
     }

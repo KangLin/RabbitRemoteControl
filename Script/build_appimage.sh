@@ -181,6 +181,7 @@ cmake "$REPO_ROOT" \
   -DCMARK_STATIC=ON \
   -DWITH_CMARK=OFF \
   -DWITH_CMARK_GFM=ON \
+  -DWITH_WebEngineWidgets=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
