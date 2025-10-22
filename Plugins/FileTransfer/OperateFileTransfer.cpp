@@ -111,8 +111,7 @@ int COperateFileTransfer::Stop()
 
 int COperateFileTransfer::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    m_Parameter.SetGlobalParameters(pPara);
-    return COperate::SetGlobalParameters(pPara);
+    return m_Parameter.SetGlobalParameters(pPara);
 }
 
 QDialog *COperateFileTransfer::OnOpenDialogSettings(QWidget *parent)

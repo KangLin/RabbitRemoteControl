@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #endif
 
+#include "Stats.h"
 #include "RemoteFileSystemModel.h"
 
 static Q_LOGGING_CATEGORY(log, "RemoteFileSystem.Model")

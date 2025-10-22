@@ -5,7 +5,6 @@
 #include <QLoggingCategory>
 #include <QLocale>
 #include "ListFileModel.h"
-#include "ChannelSFTP.h"
 #include "Stats.h"
 
 static Q_LOGGING_CATEGORY(log, "FileTransfer.ListFileModel")

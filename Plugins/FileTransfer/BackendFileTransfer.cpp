@@ -91,8 +91,10 @@ bool CBackendFileTransfer::event(QEvent *event)
             break;
         case CFileTransferEvent::Command::GetDir:
         {
+#if HAVE_LIBSSH
             if(m_pSFTP)
                 m_pSFTP->slotGetDir(pEvent->m_szSourcePath, pEvent->m_pRemoteFileSystem);
+#endif
             break;
         }
         case CFileTransferEvent::Command::StartFileTransfer:

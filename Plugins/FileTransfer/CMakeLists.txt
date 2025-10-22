@@ -32,6 +32,7 @@ SET(FileTransfer_UI_FILES
 
 find_package(libssh 0.11.0)
 if(libssh_FOUND)
+    message("libssh version: ${libssh_VERSION}")
     list(APPEND FileTransfer_DEFINED HAVE_LIBSSH)
     list(APPEND FileTransfer_LIBS ssh)
     list(APPEND FileTransfer_SOURCE_FILES
@@ -57,6 +58,7 @@ endif()
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${FileTransfer_SOURCE_FILES} ${FileTransfer_HEADER_FILES} ${FileTransfer_UI_FILES}
+    INCLUDE_DIRS ${FileTransfer_INCLUDE}
     PRIVATE_DEFINITIONS ${FileTransfer_DEFINED}
     PRIVATE_LIBS ${FileTransfer_LIBS}
     INSTALL_DIR ${PLUGIN_PATH}

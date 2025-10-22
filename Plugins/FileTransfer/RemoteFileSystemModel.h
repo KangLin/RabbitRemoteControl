@@ -5,7 +5,6 @@
 #include <QAbstractItemModel>
 #include <QDateTime>
 #include <QFileDevice>
-#include "ChannelSFTP.h"
 
 class CRemoteFileSystem : public QObject
 {
