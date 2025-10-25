@@ -10,6 +10,11 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
+static QString ServiceName()
+{
+    // Use application name as the keychain service; fall back to a sensible default.
+    return "io.github.KangLin/RabbitRemoteControl";
+}
 
 CParameterUser::CParameterUser(CParameterOperate *parent, const QString &szPrefix)
     : CParameterOperate(parent, szPrefix)
@@ -59,9 +64,9 @@ int CParameterUser::OnLoad(QSettings &set)
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
             }
-            auto pReadJob = new QKeychain::ReadPasswordJob("io.github.KangLin/RabbitRemoteControl");
+            auto pReadJob = new QKeychain::ReadPasswordJob(ServiceName());
             connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassword);
             pReadJob->setKey(key);
             pReadJob->start();
@@ -89,7 +94,7 @@ int CParameterUser::OnLoad(QSettings &set)
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
             }
             auto pReadJob = new QKeychain::ReadPasswordJob("io.github.KangLin/RabbitRemoteControl");
             connect(pReadJob, &QKeychain::ReadPasswordJob::finished, this, &CParameterUser::slotLoadPassPhrase);
@@ -136,9 +141,9 @@ int CParameterUser::OnSave(QSettings &set)
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
             }
-            auto pWriteJob = new QKeychain::WritePasswordJob("io.github.KangLin/RabbitRemoteControl");
+            auto pWriteJob = new QKeychain::WritePasswordJob(ServiceName());
             connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
                 if (pWriteJob->error()) {
                     qCritical(log) << "Fail: write key" << key << ";" << pWriteJob->errorString();
@@ -169,9 +174,9 @@ int CParameterUser::OnSave(QSettings &set)
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
             if(net) {
-                key = GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
+                key = ServiceName() + "/" + GetUser() + "@" + net->GetHost() + ":" + QString::number(net->GetPort()) + "/" + key;
             }
-            auto pWriteJob = new QKeychain::WritePasswordJob("io.github.KangLin/RabbitRemoteControl");
+            auto pWriteJob = new QKeychain::WritePasswordJob(ServiceName());
             connect(pWriteJob, &QKeychain::WritePasswordJob::finished, [this, pWriteJob, key]() {
                 if (pWriteJob->error()) {
                     qCritical(log) << "Fail: write pass phrase key" << key << ";" << pWriteJob->errorString();

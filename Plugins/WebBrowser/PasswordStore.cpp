@@ -30,7 +30,7 @@ CPasswordStore::~CPasswordStore()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-static QString serviceName()
+static QString ServiceName()
 {
     // Use application name as the keychain service; fall back to a sensible default.
     return "io.github.KangLin/RabbitRemoteControl";
@@ -42,8 +42,8 @@ QVariantMap CPasswordStore::getCredentials(const QString &host)
     QVariantMap result;
     if (host.isEmpty()) return result;
 
-    const QString key = QStringLiteral("autofill/%1").arg(host);
-    auto pJob = new QKeychain::ReadPasswordJob(serviceName());
+    const QString key = ServiceName() + QStringLiteral("autofill/%1").arg(host);
+    auto pJob = new QKeychain::ReadPasswordJob(ServiceName());
     bool check = connect(pJob, &QKeychain::ReadPasswordJob::finished,
         this, [this, pJob, host]() {
             if (pJob->error() != QKeychain::NoError) {
@@ -82,14 +82,14 @@ void CPasswordStore::saveCredentials(
 {
     if (host.isEmpty() || username.isEmpty()) return;
 
-    const QString key = QStringLiteral("autofill/%1").arg(host);
+    const QString key = ServiceName() + QStringLiteral("autofill/%1").arg(host);
 
     QJsonObject obj;
     obj.insert(QStringLiteral("username"), username);
     obj.insert(QStringLiteral("password"), password);
     const QString payload =
         QString::fromUtf8(QJsonDocument(obj).toJson(QJsonDocument::Compact));
-    auto pJob = new QKeychain::WritePasswordJob(serviceName());
+    auto pJob = new QKeychain::WritePasswordJob(ServiceName());
     bool check = connect(pJob, &QKeychain::WritePasswordJob::finished,
             [this, host, pJob]() {
                 if (pJob->error() != QKeychain::NoError) {
