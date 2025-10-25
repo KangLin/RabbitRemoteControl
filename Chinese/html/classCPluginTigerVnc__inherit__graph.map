@@ -1,0 +1,7 @@
+<map id="CPluginTigerVnc" name="CPluginTigerVnc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,152,133,177"/>
+<area shape="rect" id="Node000002" href="$classCPlugin.html" title="插件接口" alt="" coords="34,79,105,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,118,72,152,67,152,67,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="32,5,107,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="72,44,72,79,67,79,67,44"/>
+</map>

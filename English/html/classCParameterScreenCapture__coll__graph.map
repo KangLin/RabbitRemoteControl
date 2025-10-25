@@ -1,0 +1,17 @@
+<map id="CParameterScreenCapture" name="CParameterScreenCapture">
+<area shape="rect" id="Node000001" title=" " alt="" coords="85,405,279,431"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="5,331,156,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,362,167,403,164,407,107,366"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="170,336,183,343,174,350,156,353,156,347,172,345,177,343,168,341"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="75,80,174,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="122,119,97,243,85,331,79,330,91,242,116,118"/>
+<area shape="rect" id="Node000005" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="106,243,245,268"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="135,118,154,179,174,242,169,243,149,181,130,119"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="163,155,305,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="155,111,218,152,215,157,152,115"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="87,5,162,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="127,45,127,80,122,80,122,45"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="139,277,116,294,100,313,89,332,84,329,96,310,112,290,136,273"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="259,189,267,202,274,209,285,208,299,205,312,205,318,217,313,242,295,286,260,357,250,373,236,387,207,407,204,403,232,383,245,370,256,355,290,284,308,240,312,217,309,210,300,210,286,213,272,214,263,206,255,192"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="210,191,198,206,187,225,181,243,176,242,182,223,193,202,206,187"/>
+</map>

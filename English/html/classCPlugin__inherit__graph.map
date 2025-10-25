@@ -1,0 +1,33 @@
+<map id="CPlugin" name="CPlugin">
+<area shape="rect" id="Node000001" title="Plugin interface." alt="" coords="128,327,199,352"/>
+<area shape="rect" id="Node000003" href="$classCPluginFileTransfer.html" title=" " alt="" coords="257,5,403,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,313,164,257,175,184,185,145,200,107,219,72,245,40,261,29,264,33,249,44,224,75,205,109,190,147,180,185,169,258,167,313"/>
+<area shape="rect" id="Node000004" href="$classCPluginFreeRDP.html" title=" " alt="" coords="267,55,393,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,312,168,265,181,205,206,143,223,115,245,89,265,76,268,81,248,93,227,118,210,146,186,207,174,266,168,313"/>
+<area shape="rect" id="Node000005" href="$classCPluginLibSSH.html" title=" " alt="" coords="272,104,388,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="166,312,174,274,188,227,211,180,245,139,270,124,273,128,248,143,216,183,193,229,179,275,171,313"/>
+<area shape="rect" id="Node000006" href="$classCPluginLibVNCServer.html" title=" " alt="" coords="250,153,410,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="170,312,196,250,218,217,245,188,264,176,267,181,248,192,222,220,201,252,175,314"/>
+<area shape="rect" id="Node000007" href="$classCPluginPlayer.html" title=" " alt="" coords="274,203,386,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="177,313,205,274,224,254,245,237,273,224,275,229,248,242,228,258,209,277,181,316"/>
+<area shape="rect" id="Node000008" href="$classCPluginRabbitVNC.html" title=" " alt="" coords="259,252,401,277"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="192,317,246,286,276,275,278,280,248,291,195,321"/>
+<area shape="rect" id="Node000009" href="$classCPluginRawStream.html" title=" " alt="" coords="257,301,403,327"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="212,329,256,323,257,328,213,335"/>
+<area shape="rect" id="Node000010" href="$classCPluginScreenCapture.html" title=" " alt="" coords="247,351,413,376"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="213,344,247,349,246,354,212,349"/>
+<area shape="rect" id="Node000011" href="$classCPluginSerialPort.html" title=" " alt="" coords="263,400,397,425"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="195,357,248,386,279,397,277,402,246,391,193,362"/>
+<area shape="rect" id="Node000012" href="$classCPluginTelnet.html" title=" " alt="" coords="275,449,385,475"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="181,363,210,401,228,420,248,436,276,449,273,454,245,440,224,424,205,404,177,366"/>
+<area shape="rect" id="Node000013" href="$classCPluginTerminal.html" title=" " alt="" coords="267,499,393,524"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="175,364,201,425,222,458,248,485,268,497,265,501,245,489,218,461,196,428,170,366"/>
+<area shape="rect" id="Node000014" href="$classCPluginTigerVnc.html" title=" " alt="" coords="266,548,394,573"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="171,365,179,403,193,449,216,495,248,535,267,547,265,551,245,539,212,498,188,451,174,404,166,366"/>
+<area shape="rect" id="Node000015" href="$classCPluginWakeOnLan.html" title=" " alt="" coords="257,597,403,623"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="168,365,174,412,187,471,210,532,227,560,248,584,264,595,261,599,245,588,223,563,206,534,181,473,168,413,163,366"/>
+<area shape="rect" id="Node000016" href="$classCPluginWebBrowser.html" title=" " alt="" coords="254,647,406,672"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="167,366,169,421,180,493,190,531,205,568,224,603,249,633,264,644,261,649,245,637,220,606,200,571,185,533,175,494,164,422,161,366"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,327,80,352"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,337,128,337,128,342,94,342"/>
+</map>

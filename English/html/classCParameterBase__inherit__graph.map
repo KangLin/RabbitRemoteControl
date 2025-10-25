@@ -1,0 +1,17 @@
+<map id="CParameterBase" name="CParameterBase">
+<area shape="rect" id="Node000001" title="The interface of connecter parameters." alt="" coords="305,225,435,251"/>
+<area shape="rect" id="Node000005" href="$classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="5,299,159,324"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="311,257,129,301,128,296,310,251"/>
+<area shape="rect" id="Node000006" href="$classCParameterLibVNCServer.html" title=" " alt="" coords="183,299,370,324"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="346,261,294,301,290,296,343,257"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlayer.html" title=" " alt="" coords="394,299,533,324"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="397,257,450,296,446,301,394,261"/>
+<area shape="rect" id="Node000008" href="$classCParameterVnc.html" title=" " alt="" coords="557,299,679,324"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="424,252,579,296,577,301,422,257"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="295,152,445,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="373,191,373,225,367,225,367,191"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="321,79,419,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="373,118,373,152,367,152,367,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="333,5,407,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="373,44,373,79,367,79,367,44"/>
+</map>

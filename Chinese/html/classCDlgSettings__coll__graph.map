@@ -1,0 +1,20 @@
+<map id="CDlgSettings" name="CDlgSettings">
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,493,117,519"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,405,80,431"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,443,64,492,58,493,46,445"/>
+<area shape="rect" id="Node000003" href="$classCParameterWebBrowser.html" title=" " alt="" coords="104,405,283,431"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,440,83,495,80,491,163,436"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="118,331,269,356"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,370,196,405,191,405,191,370"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="283,336,295,343,287,350,269,353,268,347,285,345,290,343,281,341"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="参数接口" alt="" coords="173,80,272,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="220,119,200,243,196,330,191,330,195,242,215,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="209,243,348,268"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="232,118,252,179,276,242,271,244,247,181,227,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterRecord.html" title=" " alt="" coords="261,155,403,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="253,111,316,152,313,157,250,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="185,5,260,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="225,45,225,80,220,80,220,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="259,280,207,332,203,328,255,276"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="320,193,288,244,284,241,315,191"/>
+</map>

@@ -1,0 +1,24 @@
+<map id="CFrmWebBrowser" name="CFrmWebBrowser">
+<area shape="rect" id="Node000001" title=" " alt="" coords="32,581,169,607"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,405,84,431"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="36,444,27,480,27,499,31,518,42,536,55,553,85,579,81,583,51,557,37,539,26,520,22,500,22,479,31,443"/>
+<area shape="rect" id="Node000009" href="$classCFrmDownloadManager.html" title=" " alt="" coords="41,493,219,519"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="68,439,120,491,116,495,64,443"/>
+<area shape="rect" id="Node000003" href="$classCParameterWebBrowser.html" title=" " alt="" coords="143,405,322,431"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,442,257,468,264,499,263,530,251,559,238,569,219,576,170,587,169,582,217,571,235,564,247,556,258,529,259,499,252,470,242,444"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="208,441,189,457,145,495,141,491,186,453,205,437"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="157,331,308,356"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="235,370,235,405,230,405,230,370"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="322,336,335,343,326,350,308,353,308,347,324,345,329,343,320,341"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="参数接口" alt="" coords="213,80,311,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="259,119,239,243,235,330,230,330,234,242,254,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="249,243,387,268"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="272,118,291,179,316,242,311,244,286,181,267,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterRecord.html" title=" " alt="" coords="300,155,443,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="293,111,355,152,352,157,290,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="225,5,299,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="265,45,265,80,259,80,259,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="299,280,246,332,243,328,295,276"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="359,193,328,244,323,241,355,191"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="111,531,105,544,101,563,102,581,96,581,96,563,99,542,107,528"/>
+</map>

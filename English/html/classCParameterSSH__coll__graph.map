@@ -1,0 +1,22 @@
+<map id="CParameterSSH" name="CParameterSSH">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,581,129,607"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="21,331,172,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,370,74,494,70,581,65,581,69,493,89,369"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="186,336,199,343,190,350,172,353,172,347,188,345,193,343,184,341"/>
+<area shape="rect" id="Node000007" href="$classCParameterNet.html" title="Basic network parameters." alt="" coords="84,493,205,519"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="107,369,125,430,144,492,139,494,119,431,101,370"/>
+<area shape="rect" id="Node000008" href="$classCParameterUser.html" title="It contains user and password It only valid in plugin." alt="" coords="134,405,262,431"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="126,362,183,403,180,407,123,366"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="77,80,175,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,119,103,243,99,330,94,330,98,242,118,118"/>
+<area shape="rect" id="Node000005" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="113,243,251,268"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="136,118,155,179,180,242,175,244,150,181,131,119"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="164,155,307,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="157,111,219,152,216,157,154,115"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="89,5,163,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="129,45,129,80,123,80,123,45"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="163,280,110,332,107,328,159,276"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="223,193,192,244,187,241,219,191"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="127,531,80,583,76,579,123,527"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="186,444,154,494,150,491,181,441"/>
+</map>

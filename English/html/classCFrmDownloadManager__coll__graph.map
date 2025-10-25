@@ -1,0 +1,20 @@
+<map id="CFrmDownloadManager" name="CFrmDownloadManager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,493,184,519"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="34,405,113,431"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,443,94,492,89,493,77,445"/>
+<area shape="rect" id="Node000003" href="$classCParameterWebBrowser.html" title=" " alt="" coords="137,405,316,431"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,440,114,495,111,491,196,436"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="151,331,302,356"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="229,370,229,405,224,405,224,370"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="316,336,329,343,320,350,302,353,302,347,318,345,323,343,314,341"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="207,80,305,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="253,119,233,243,229,330,224,330,228,242,248,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="243,243,381,268"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="266,118,285,179,310,242,305,244,280,181,261,119"/>
+<area shape="rect" id="Node000008" href="$classCParameterRecord.html" title=" " alt="" coords="294,155,437,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="287,111,349,152,346,157,284,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="219,5,293,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="259,45,259,80,253,80,253,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="293,280,240,332,237,328,289,276"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="353,193,322,244,317,241,349,191"/>
+</map>
