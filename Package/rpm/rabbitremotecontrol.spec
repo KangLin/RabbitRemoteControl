@@ -17,7 +17,7 @@ BuildRequires: make git rpm-build rpmdevtools
 BuildRequires: gcc-c++
 BuildRequires: automake autoconf libtool gettext gettext-autopoint
 BuildRequires: cmake desktop-file-utils appstream
-BuildRequires: curl wget
+BuildRequires: curl wget libcurl-devel
 BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel
 
 # Qt6
@@ -46,7 +46,7 @@ BuildRequires: libxkbfile-devel libXfont2-devel
 Requires: qtkeychain-qt6
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
 Requires: libvncserver libwinpr freerdp fuse3 libpcap
-Requires: zlib gnutls nettle gmp pam 
+Requires: zlib gnutls nettle gmp pam libcurl
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
 Requires: qtermwidget

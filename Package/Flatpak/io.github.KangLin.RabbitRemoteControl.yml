@@ -38,6 +38,36 @@ finish-args:
   - --filesystem=home:ro
 
 modules:
+  - shared-modules/libusb/libusb.json
+  - shared-modules/libsecret/libsecret.json
+
+  # Unity 2021 and older require OpenSSL 1.0 or 1.1. Bundle a copy of OpenSSL 1.1.
+  # https://github.com/flathub/com.unity.UnityHub/pull/73#issuecomment-1407370899
+  # https://forum.unity.com/threads/workaround-for-libssl-issue-on-ubuntu-22-04.1271405/#post-8098841
+  - name: openssl-1.1
+    buildsystem: simple
+    build-commands:
+      - ./config --prefix=/app
+      - make -j $FLATPAK_BUILDER_N_JOBS
+      - make install
+    cleanup:
+      - /share/doc
+      - /share/man
+      - '*.a'
+      # Don't mask CLI tools provided by runtime - we just want the versioned shared library
+      - /bin
+      # Don't mask unversion library symlinks from library
+      - /lib/libcrypto.so
+      - /lib/libssl.so
+    sources:
+      - type: archive
+        url: https://www.openssl.org/source/openssl-1.1.1w.tar.gz
+        sha256: cf3098950cb4d853ad95c0841f1f9c6d3dc102dccfcacd521d93925208b76ac8
+        x-checker-data:
+          type: anitya
+          project-id: 20333
+          url-template: https://www.openssl.org/source/openssl-$version.tar.gz
+
   - name: xprop
     disabled: false
     sources:
@@ -111,8 +141,15 @@ modules:
       - -Dexamples=false
       - -Dutils=false
 
-  - shared-modules/libusb/libusb.json
-  - shared-modules/libsecret/libsecret.json
+  - name: curl
+    disabled: false
+    sources:
+      - type: archive
+        url: https://github.com/curl/curl/releases/download/curl-8_16_0/curl-8.16.0.tar.xz
+        sha256: 40c8cddbcb6cc6251c03dea423a472a6cea4037be654ba5cf5dec6eb2d22ff1d
+    buildsystem: autotools
+    config-opts:
+      - --with-openssl
 
   - name: FreeRDP
     disabled: false

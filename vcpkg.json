@@ -11,7 +11,8 @@
 
   "default-features": [
     "freerdp",
-    "vnc"
+    "vnc",
+    "filetransfer"
   ],
 
   "features": {
@@ -60,6 +61,14 @@
         "dependencies": [
             "pcapplusplus"
         ]
+    },
+
+    "filetransfer" : {
+      "description": "File transfer.",
+      "dependencies": [
+          "curl",
+          "libssh"
+      ]
     }
   }
 }

@@ -38,7 +38,7 @@ jobs:
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol;filetransfer"
       BUILD_DIR:     ${{github.workspace}}/build
       SOURCE_DIR:    ${{github.workspace}}/.cache/source
       TOOLS_DIR:     ${{github.workspace}}/.cache/tools

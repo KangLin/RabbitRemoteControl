@@ -351,6 +351,8 @@ if [ $BASE_LIBS -eq 1 ]; then
         apt install -y -q libfuse-dev libfuse3-dev
         # Other
         apt install -y -q libvncserver-dev
+        # File transfer
+        apt install -y -q libcurl4-openssl-dev
         # Needed by qtkeychain
         apt install -y -q libsecret-1-dev
     fi

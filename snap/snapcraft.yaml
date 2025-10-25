@@ -324,10 +324,12 @@ parts:
       # PulseAudio client development headers and libraries
       - libpulse-dev
       - libcups2-dev # print development headers and libraries
+      - libcurl4-openssl-dev
     stage-packages:
       - libcmark0.30.2
       - libvncserver1
       - libvncclient1
+      - libcurl4
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
