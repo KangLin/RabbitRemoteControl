@@ -15,6 +15,8 @@
 #include <QRegularExpression>
 #include <QWebEngineCookieStore>
 #include <QStandardPaths>
+#include <QClipboard>
+#include <QApplication>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
     #include <QWebEngineProfileBuilder>
 #endif
@@ -547,9 +549,17 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             CFrmWebView* pWeb = CurrentView();
             if(pWeb) {
                 bool ok = false;
-                 QString search = QInputDialog::getText(this, tr("Find"),
-                                   tr("Find:"), QLineEdit::Normal,
-                                   m_szFindText, &ok);
+                if(pWeb->selectedText().isEmpty()) {
+                    if(QApplication::clipboard()
+                        && !QApplication::clipboard()->text().isEmpty())
+                        m_szFindText = QApplication::clipboard()->text();
+                } else {
+                    m_szFindText = pWeb->selectedText();
+                }
+                QString search = QInputDialog::getText(
+                    this, tr("Find"),
+                    tr("Find:"), QLineEdit::Normal,
+                    m_szFindText, &ok);
                 if (ok && !search.isEmpty()) {
                     m_szFindText = search;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
