@@ -45,7 +45,7 @@
   - Add main menu in toolbaar
 - Add build_mscos.sh. add App bundle
 - Add run the program directly without installation for windows install package
-- Add store password to system redential See: https://github.com/KangLin/RabbitRemoteControl/issues/78
+- [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
 
 ### v0.0.36
 - Client:
