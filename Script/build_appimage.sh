@@ -189,8 +189,8 @@ cmake "$REPO_ROOT" \
 cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Runtime --prefix ${INSTALL_APP_DIR}
-cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else

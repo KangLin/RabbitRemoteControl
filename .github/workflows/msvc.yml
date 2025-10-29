@@ -402,6 +402,10 @@ jobs:
             -DCMARK_STATIC=ON ^
             -DWITH_CMARK=OFF ^
             -DWITH_CMARK_GFM=ON ^
+            -DWITH_WebEngineWidgets=ON ^
+            -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
+            -DRABBIT_ENABLE_INSTALL_QT=ON ^
+            -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{env.BUILD_DIR}}/install ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}} ^
@@ -413,10 +417,6 @@ jobs:
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_APP=ON ^
-            -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
-            -DRABBIT_ENABLE_INSTALL_QT=ON ^
-            -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON ^
-            -DWITH_WebEngineWidgets=ON ^
             -DBUILD_FREERDP=ON ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
             -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^
@@ -427,16 +427,16 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
           ) else (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
           )
 
       - name: Package

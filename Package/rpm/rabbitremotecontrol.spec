@@ -113,10 +113,10 @@ cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component Runtime \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release --strip \
-    --component Application \
+    --component Plugin \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release --strip \
-    --component Plugin \
+    --component Application \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 
 #if [ -n "${INSTALL_DIR}" ]; then

@@ -137,13 +137,14 @@ int CHookWindows::RegisterKeyboard()
         msg.checkBox()->setChecked(
             m_pParameterPlugin->GetPromptAdministratorPrivilege());
         nRet = msg.exec();
-        if(QMessageBox::Yes == nRet) {
-            RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
-        }
         if(m_pParameterPlugin->GetPromptAdministratorPrivilege()
             != msg.checkBox()->isChecked()) {
             m_pParameterPlugin->SetPromptAdministratorPrivilege(
                 msg.checkBox()->isChecked());
+            emit m_pParameterPlugin->sigChanged();
+        }
+        if(QMessageBox::Yes == nRet) {
+            RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
         }
     }
 

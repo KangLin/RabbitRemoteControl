@@ -300,6 +300,7 @@ parts:
       - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
       - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
       - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
+      - -DWITH_WebEngineWidgets=ON
     # build-environment:
     #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
     #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"

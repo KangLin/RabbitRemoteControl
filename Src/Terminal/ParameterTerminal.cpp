@@ -27,7 +27,7 @@ CParameterTerminal::CParameterTerminal(QObject *parent, const QString& szPrefix)
     m_bMotionAfterPasting = false;
     m_bDisableBracketedPasteMode = false;
     m_bDirectional = true;
-
+    m_szKeyBindings = "default";
     m_szTextCodec = "UTF-8";
     m_nHistorySize = 1000;
 }
