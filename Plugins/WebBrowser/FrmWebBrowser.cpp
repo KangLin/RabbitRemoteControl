@@ -84,6 +84,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
                 pWeb->page()->action(QWebEnginePage::Back)->trigger();
         });
     m_pBack->setEnabled(false);
+    m_pBack->setShortcuts(QKeySequence::Back);
     m_pBack->setStatusTip(m_pBack->text());
     m_pForward = m_pToolBar->addAction(
         QIcon::fromTheme("go-next"), tr("Forward"),
@@ -93,6 +94,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
                 pWeb->page()->action(QWebEnginePage::Forward)->trigger();
         });
     m_pForward->setEnabled(false);
+    m_pForward->setShortcuts(QKeySequence::Forward);
     m_pForward->setStatusTip(m_pForward->text());
     m_pRefresh = m_pToolBar->addAction(
         QIcon::fromTheme("view-refresh"), tr("Refresh"),
@@ -101,7 +103,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
             if(pWeb && pWeb->page())
                 pWeb->page()->action(QWebEnginePage::Reload)->trigger();
         });
-    m_pRefresh->setShortcut(QKeySequence(QKeySequence::Refresh));
+    m_pRefresh->setShortcuts(QKeySequence::Refresh);
     m_pRefresh->setStatusTip(m_pRefresh->text());
 
     m_pUrlLineEdit = new QLineEdit(this);
@@ -145,11 +147,13 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
         }
     });
     m_pAddPage->setStatusTip(m_pAddPage->text());
+    m_pAddPage->setShortcuts(QKeySequence::AddTab);
     Q_ASSERT(check);
     m_pDownload = m_pToolBar->addAction(
         QIcon::fromTheme("emblem-downloads"), tr("Download Manager"));
     m_pDownload->setCheckable(true);
     m_pDownload->setStatusTip(m_pDownload->text());
+    m_pDownload->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
     check = connect(m_pDownload, &QAction::toggled,
                     this, [&](bool checked){
                         if(checked)
@@ -507,13 +511,14 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addAction(m_pBack);
     pMenu->addAction(m_pForward);
     pMenu->addAction(m_pRefresh);
-    m_pStop = pMenu->addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),
-                     this, [&](){
-        CFrmWebView* pWeb = CurrentView();
-        if(pWeb && pWeb->page())
-            pWeb->page()->action(QWebEnginePage::Stop)->trigger();
-    });
+    m_pStop = pMenu->addAction(
+        QIcon::fromTheme("media-playback-stop"), tr("Stop"), this, [&](){
+            CFrmWebView* pWeb = CurrentView();
+            if(pWeb && pWeb->page())
+                pWeb->page()->action(QWebEnginePage::Stop)->trigger();
+        });
     m_pStop->setEnabled(false);
+    m_pStop->setShortcuts(QKeySequence::Cancel);
 
     pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
@@ -591,7 +596,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                    pWeb->findText(m_szFindText);
                }
         });
-    m_pFindNext->setShortcut(QKeySequence::FindNext);
+    m_pFindNext->setShortcuts(QKeySequence::FindNext);
     m_pFindNext->setText(m_pFindNext->text());
 
     m_pFindPrevious = pMenu->addAction(
@@ -602,7 +607,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                pWeb->findText(m_szFindText, QWebEnginePage::FindBackward);
            }
         });
-    m_pFindPrevious->setShortcut(QKeySequence::FindPrevious);
+    m_pFindPrevious->setShortcuts(QKeySequence::FindPrevious);
     m_pFindPrevious->setStatusTip(m_pFindPrevious->text());
 
     pMenu->addSeparator();
@@ -619,7 +624,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                     });
     Q_ASSERT(check);
     m_pZoomIn = pMenu->addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"));
-    m_pZoomIn->setShortcut(QKeySequence::ZoomIn);
+    m_pZoomIn->setShortcuts(QKeySequence::ZoomIn);
     m_pZoomIn->setStatusTip(tr("Zoom in"));
     m_pZoomIn->setToolTip(tr("Zoom in"));
     check = connect(
@@ -632,7 +637,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     Q_ASSERT(check);
     m_pZoomOut = pMenu->addAction(
         QIcon::fromTheme("zoom-out"), tr("Zoom out"));
-    m_pZoomOut->setShortcut(QKeySequence::ZoomOut);
+    m_pZoomOut->setShortcuts(QKeySequence::ZoomOut);
     m_pZoomOut->setStatusTip(tr("Zoom out"));
     m_pZoomOut->setToolTip(tr("Zoom out"));
     check = connect(
@@ -650,6 +655,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         QIcon::fromTheme("document-print"), tr("Print"),
         this, &CFrmWebBrowser::slotPrint);
     m_pPrint->setVisible(false);
+    m_pPrint->setShortcuts(QKeySequence::Print);
     m_pPrintToPdf = pMenu->addAction(
         QIcon::fromTheme("document-print"), tr("Print to PDF"),
         this, &CFrmWebBrowser::slotPrintToPdf);
