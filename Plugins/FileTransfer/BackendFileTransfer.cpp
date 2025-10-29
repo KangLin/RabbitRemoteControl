@@ -245,14 +245,14 @@ void CBackendFileTransfer::slotRename(const QString &oldName, const QString &new
     WakeUp();
 }
 
-void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *p)
+void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *pRemoteFileSystem)
 {
-    if(!p || p->GetPath().isEmpty())
+    if(!pRemoteFileSystem || pRemoteFileSystem->GetPath().isEmpty())
         return;
-    QString szPath = p->GetPath();
+    QString szPath = pRemoteFileSystem->GetPath();
     CFileTransferEvent* pEvent = new CFileTransferEvent(
         CFileTransferEvent::Command::GetDir, szPath);
-    pEvent->m_pRemoteFileSystem = (CRemoteFileSystem*) p;
+    pEvent->m_pRemoteFileSystem = (CRemoteFileSystem*) pRemoteFileSystem;
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }
