@@ -18,7 +18,7 @@ jobs:
           - CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
-            qt_version: 6.9.2
+            qt_version: 6.9.3
             qt_arch: win64_msvc2022_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
             BUILD_TYPE: Release
@@ -27,7 +27,7 @@ jobs:
           - CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
-            qt_version: 6.9.2
+            qt_version: 6.9.3
             qt_arch: win64_msvc2022_arm64
             qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets
             BUILD_TYPE: Release
@@ -337,7 +337,7 @@ jobs:
 
       - name: qtkeychain6
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.qt_version == '6.9.2' }}
+        if: ${{ matrix.qt_version == '6.9.3' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain (
               git clone -b 0.15.0 "https://github.com/frankosterfeld/qtkeychain.git"
@@ -381,7 +381,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.2' && startsWith(github.ref, 'refs/heads/master')}}
+        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' && startsWith(github.ref, 'refs/heads/master')}}
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -423,12 +423,12 @@ jobs:
             -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
           ) else (
@@ -478,7 +478,7 @@ jobs:
             #${{env.BUILD_DIR}}\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip
 
       - name: Update artifact update_windows.xml
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.2' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_xml

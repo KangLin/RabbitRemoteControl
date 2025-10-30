@@ -9,7 +9,7 @@ RPM=0
 APPIMAGE=0
 MACOS=0
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.9.2
+    QT_VERSION=6.9.3
 fi
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
