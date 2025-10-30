@@ -153,7 +153,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
         QIcon::fromTheme("emblem-downloads"), tr("Download Manager"));
     m_pDownload->setCheckable(true);
     m_pDownload->setStatusTip(m_pDownload->text());
-    m_pDownload->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
+    m_pDownload->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_D));
     check = connect(m_pDownload, &QAction::toggled,
                     this, [&](bool checked){
                         if(checked)
@@ -519,6 +519,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         });
     m_pStop->setEnabled(false);
     m_pStop->setShortcuts(QKeySequence::Cancel);
+    m_pStop->setStatusTip(m_pStop->text());
 
     pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
@@ -669,6 +670,10 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         Q_ASSERT(check);
         m_pInspector->setCheckable(true);
         m_pInspector->setEnabled(false);
+        m_pInspector->setShortcuts({
+            QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_I),
+            QKeySequence(Qt::Key_F12)
+        });
     }
 
     EnableAction(false);
@@ -833,6 +838,11 @@ void CFrmWebBrowser::slotInspector(bool checked)
                                          if(m_pInspector)
                                              m_pInspector->setChecked(true);
                                      });
+                Q_ASSERT(check);
+                check = connect(dev, &CFrmWebView::sigCloseRequested,
+                                this, [this]() {
+                    m_pInspector->setChecked(false);
+                });
                 Q_ASSERT(check);
             }
         }
