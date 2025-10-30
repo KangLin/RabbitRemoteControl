@@ -499,7 +499,6 @@ int COperateDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pFrmViewer);
-    nRet = COperate::Load(set);
     if(m_pPara)
         nRet = m_pPara->Load(set);
     else {
@@ -528,7 +527,6 @@ int COperateDesktop::Save(QSettings &set)
         GetParameter()->SetAdaptWindows(m_pFrmViewer->GetAdaptWindows());
         GetParameter()->SetZoomFactor(m_pFrmViewer->GetZoomFactor());
     }
-    nRet = COperate::Save(set);
     if(m_pPara)
         nRet = m_pPara->Save(set);
     return nRet;

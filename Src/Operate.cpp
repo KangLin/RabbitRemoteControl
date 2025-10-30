@@ -197,6 +197,7 @@ int COperate::Load(QString szFile)
         qCritical(log) << "The load file is empty";
         return -1;
     }
+    qInfo(log) << "Load configure file:" << szFile;
     QSettings set(szFile, QSettings::IniFormat);
     return Load(set);
 }
@@ -208,23 +209,10 @@ int COperate::Save(QString szFile)
     {
         qCritical(log) << "The load file is empty";
         return -1;
-    }    
+    }
+    qInfo(log) << "Save configure file:" << szFile;
     QSettings set(szFile, QSettings::IniFormat);
     return Save(set);
-}
-
-int COperate::Load(QSettings &set)
-{
-    int nRet = 0;
-    Q_UNUSED(set);
-    return nRet;
-}
-
-int COperate::Save(QSettings &set)
-{
-    int nRet = 0;
-    Q_UNUSED(set);
-    return nRet;
 }
 
 int COperate::Initial()

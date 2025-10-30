@@ -278,7 +278,7 @@ COperate* CManager::LoadOperate(const QString &szFile)
 {
     COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
-    qDebug(log) << "LoadOperate:"<< szFile;
+    qDebug(log) << "Load operate configure file:"<< szFile;
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
