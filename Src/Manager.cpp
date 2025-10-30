@@ -48,8 +48,53 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
         LoadSettings(m_szSettingsFile);
+
+        bool bReboot = true;
+        QString szSnap;
+        QString szFlatpak;
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_WIN)
+        szSnap = qEnvironmentVariable("SNAP");
+        szFlatpak = qEnvironmentVariable("FLATPAK_ID");
+#else
+        szSnap = QString::fromLocal8Bit(qgetenv("SNAP"));
+        szFlatpak = QString::fromLocal8Bit(qgetenv("FLATPAK_ID"));
+#endif
+        if(!szSnap.isEmpty() || !szFlatpak.isEmpty())
+            bReboot = false;
+        if(bReboot && !RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
+            && m_pParameter->GetPromptAdministratorPrivilege())
+        {
+            int nRet = 0;
+            QString szMsg;
+            szMsg = tr("The programe is not administrator privilege.\n"
+                       "Some features are limited.\n");
+#if defined(Q_OS_WIN)
+            szMsg += tr("Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).") + "\n";
+#else
+            szMsg += tr("Eg: Can not use the wake on LAN feature.") + "\n";
+#endif
+            szMsg += tr("Restart program by administrator?");
+            QMessageBox msg(QMessageBox::Warning, tr("Warning"), szMsg,
+                QMessageBox::Yes | QMessageBox::No);
+            msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
+            msg.checkBox()->setCheckable(true);
+            msg.checkBox()->setChecked(
+                m_pParameter->GetPromptAdministratorPrivilege());
+            nRet = msg.exec();
+
+            m_pParameter->SetPromptAdministratorPrivilege(
+                msg.checkBox()->isChecked());
+            SaveSettings(m_szSettingsFile);
+
+            if(QMessageBox::Yes == nRet) {
+                RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
+                return;
+            }
+        }
+
         check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
                         this, SLOT(slotNativeWindowRecieveKeyboard()));
+        Q_ASSERT(check);
         m_pHook = CHook::GetHook(m_pParameter, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();

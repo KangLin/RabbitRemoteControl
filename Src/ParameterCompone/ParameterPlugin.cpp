@@ -1,11 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
+
+#include "RabbitCommonTools.h"
 #include "ParameterPlugin.h"
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
     , m_bNativeWindowReceiveKeyboard(false)
     , m_bEnableLocalInputMethod(false)
-    , m_bPromptAdministratorPrivilege(true)
+    , m_bPromptAdministratorPrivilege(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege())
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
     , m_PromptType(PromptType::First)
