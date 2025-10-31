@@ -28,8 +28,8 @@ Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
     void sigCopyUrlToClipboard(const QString& szPath);
 
-    void sigGetDir(CRemoteFileSystem*);
-    void sigGetDir(CRemoteFileSystem*,
+    void sigGetDir(CRemoteFileSystem* pRfs);
+    void sigGetDir(CRemoteFileSystem* pRfs,
                    QVector<QSharedPointer<CRemoteFileSystem> > contents,
                    bool bEnd);
 
@@ -46,10 +46,10 @@ private:
     int SetLocalRoot(const QString &root);
     //! Get local root path
     [[nodiscard]] QString GetLocalRoot() const;
-    void SetRemoteConnecter(CRemoteFileSystemModel* p);
+    void SetRemoteConnecter(CRemoteFileSystemModel* pRfs);
     
     int EnumLocalDirectory(QDir d, const QString& szRemote);
-    int EnumRemoteDirectory(CRemoteFileSystem* p, const QString& szLocal);
+    int EnumRemoteDirectory(CRemoteFileSystem* pRfs, const QString& szLocal);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);

@@ -978,6 +978,8 @@ PcapPlusPlus 依赖此库。
         sudo Xvfb :99 -ac -screen 0 1200x900x24 &
         export DISPLAY=:99.0
 
+  - QtWebEngine: https://github.com/flathub/io.qt.qtwebengine.BaseApp
+
 - 文档
   - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
   - [Sandbox 权限](https://docs.flatpak.org/en/latest/sandbox-permissions.html)

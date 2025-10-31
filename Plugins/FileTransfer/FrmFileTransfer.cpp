@@ -112,24 +112,24 @@ CFrmFileTransfer::~CFrmFileTransfer()
     delete ui;
 }
 
-void CFrmFileTransfer::SetRemoteConnecter(CRemoteFileSystemModel *p)
+void CFrmFileTransfer::SetRemoteConnecter(CRemoteFileSystemModel *pRfs)
 {
-    bool check = connect(p, SIGNAL(sigGetDir(CRemoteFileSystem*)),
+    bool check = connect(pRfs, SIGNAL(sigGetDir(CRemoteFileSystem*)),
                     this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    p, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+                    pRfs, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRemoveDir(const QString&)),
+    check = connect(pRfs, SIGNAL(sigRemoveDir(const QString&)),
                     this, SIGNAL(sigRemoveDir(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRemoveFile(const QString&)),
+    check = connect(pRfs, SIGNAL(sigRemoveFile(const QString&)),
                     this, SIGNAL(sigRemoveFile(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRename(const QString&, const QString&)),
+    check = connect(pRfs, SIGNAL(sigRename(const QString&, const QString&)),
                     this, SIGNAL(sigRename(const QString&, const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigMakeDir(const QString&)),
+    check = connect(pRfs, SIGNAL(sigMakeDir(const QString&)),
                     this, SIGNAL(sigMakeDir(const QString&)));
     Q_ASSERT(check);
 }
@@ -309,6 +309,7 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
 
 void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->tabLocal->currentIndex();
     if(!idx.isValid()) return;
     QString szPath = m_pModelLocalDir->filePath(idx);
@@ -319,9 +320,11 @@ void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 
 void CFrmFileTransfer::slotTabLocalUpload()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->tabLocal->currentIndex();
     if(!idx.isValid()) return;
-    QString szPath = m_pModelLocalDir->filePath(idx);
+    QString szPath;
+    szPath = m_pModelLocalDir->filePath(idx);
     if(szPath.isEmpty()) return;
 }
 
@@ -476,7 +479,7 @@ void CFrmFileTransfer::slotTreeRemoteDownload()
 {
 }
 
-int CFrmFileTransfer::EnumRemoteDirectory(CRemoteFileSystem *p, const QString &szLocal)
+int CFrmFileTransfer::EnumRemoteDirectory(CRemoteFileSystem *pRfs, const QString &szLocal)
 {
     int nRet = 0;
     
