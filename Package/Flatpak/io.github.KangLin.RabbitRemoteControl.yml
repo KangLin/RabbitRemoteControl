@@ -45,7 +45,6 @@ finish-args:
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp
   - --device=dri
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
-  - --socket=pulse
 
 modules:
   - shared-modules/libusb/libusb.json
