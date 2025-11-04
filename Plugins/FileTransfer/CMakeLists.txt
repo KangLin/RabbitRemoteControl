@@ -41,6 +41,12 @@ if(libssh_FOUND)
         ChannelSFTP.h)
 endif()
 
+find_package(CURL)
+if(CURL_FOUND)
+    list(APPEND FileTransfer_DEFINED HAVE_CURL)
+    list(APPEND FileTransfer_LIBS CURL::libcurl)
+endif()
+
 # if(MSVC)
 #     list(APPEND FileTransfer_DEFINED _CRT_INTERNAL_NONSTDC_NAMES)
 # endif()

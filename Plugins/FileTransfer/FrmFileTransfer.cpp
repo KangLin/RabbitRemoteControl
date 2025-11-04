@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include <QMessageBox>
 #include <QInputDialog>
@@ -57,7 +57,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
         QHeaderView::ResizeToContents);
 
     m_pModelRemoteDir = new CRemoteFileSystemModel(ui->treeRemote, CRemoteFileSystem::TYPE::DIRS);
-    SetRemoteConnecter(m_pModelRemoteDir);
+    SetRemoteConnect(m_pModelRemoteDir);
     ui->treeRemote->setModel(m_pModelRemoteDir);
     QModelIndex index = m_pModelRemoteDir->SetRootPath("/");
     ui->treeRemote->setRootIndex(index);
@@ -72,7 +72,7 @@ CFrmFileTransfer::CFrmFileTransfer(QWidget *parent)
     ui->treeRemote->header()->hideSection((int)CRemoteFileSystem::ColumnValue::Owner);
 
     m_pModelRemoteFile = new CRemoteFileSystemModel(ui->tabRemote, CRemoteFileSystem::TYPE::FILE);
-    SetRemoteConnecter(m_pModelRemoteFile);
+    SetRemoteConnect(m_pModelRemoteFile);
     ui->tabRemote->setModel(m_pModelRemoteFile);
     ui->tabRemote->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tabRemote->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -112,24 +112,24 @@ CFrmFileTransfer::~CFrmFileTransfer()
     delete ui;
 }
 
-void CFrmFileTransfer::SetRemoteConnecter(CRemoteFileSystemModel *p)
+void CFrmFileTransfer::SetRemoteConnect(CRemoteFileSystemModel *pRfs)
 {
-    bool check = connect(p, SIGNAL(sigGetDir(CRemoteFileSystem*)),
+    bool check = connect(pRfs, SIGNAL(sigGetDir(CRemoteFileSystem*)),
                     this, SIGNAL(sigGetDir(CRemoteFileSystem*)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)),
-                    p, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
+                    pRfs, SLOT(slotGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > , bool)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRemoveDir(const QString&)),
+    check = connect(pRfs, SIGNAL(sigRemoveDir(const QString&)),
                     this, SIGNAL(sigRemoveDir(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRemoveFile(const QString&)),
+    check = connect(pRfs, SIGNAL(sigRemoveFile(const QString&)),
                     this, SIGNAL(sigRemoveFile(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigRename(const QString&, const QString&)),
+    check = connect(pRfs, SIGNAL(sigRename(const QString&, const QString&)),
                     this, SIGNAL(sigRename(const QString&, const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigMakeDir(const QString&)),
+    check = connect(pRfs, SIGNAL(sigMakeDir(const QString&)),
                     this, SIGNAL(sigMakeDir(const QString&)));
     Q_ASSERT(check);
 }
@@ -144,7 +144,9 @@ int CFrmFileTransfer::SetLocalRoot(const QString &root)
 
 QString CFrmFileTransfer::GetLocalRoot() const
 {
-    return m_pModelLocalDir->rootPath();
+    if(m_pModelLocalDir)
+        return m_pModelLocalDir->rootPath();
+    return QString();
 }
 
 void CFrmFileTransfer::slotTreeLocalClicked(const QModelIndex &index)
@@ -160,7 +162,8 @@ void CFrmFileTransfer::slotTreeLocalClicked(const QModelIndex &index)
 
 void CFrmFileTransfer::on_cbLocal_editTextChanged(const QString &szPath)
 {
-    qDebug(log) << Q_FUNC_INFO << szPath;
+    //qDebug(log) << Q_FUNC_INFO << szPath;
+    if(!m_pModelLocalDir) return;
     auto idx = m_pModelLocalDir->index(szPath);
     if(!idx.isValid()) return;
     if(szPath.length() > 1 && (szPath.right(1) == '/' || szPath.right(1) == '\\')) return;
@@ -170,7 +173,7 @@ void CFrmFileTransfer::on_cbLocal_editTextChanged(const QString &szPath)
 
 void CFrmFileTransfer::on_treeLocal_customContextMenuRequested(const QPoint &pos)
 {
-    qDebug(log) << Q_FUNC_INFO;
+    //qDebug(log) << Q_FUNC_INFO;
     auto idx = ui->treeLocal->currentIndex();
     QMenu menu;
     if(idx.isValid()) {
@@ -196,6 +199,7 @@ void CFrmFileTransfer::on_treeLocal_customContextMenuRequested(const QPoint &pos
 
 void CFrmFileTransfer::slotTreeLocalOpen()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->treeLocal->currentIndex();
     auto szPath = m_pModelLocalDir->filePath(idx);
     QDesktopServices::openUrl(QUrl(szPath));
@@ -203,6 +207,7 @@ void CFrmFileTransfer::slotTreeLocalOpen()
 
 void CFrmFileTransfer::slotTreeLocalNew()
 {
+    if(!m_pModelLocalDir) return;
     QString szName = QInputDialog::getText(
         this, tr("New folder"), tr("Folder name:"));
     if(szName.isEmpty()) return;
@@ -212,6 +217,7 @@ void CFrmFileTransfer::slotTreeLocalNew()
 
 void CFrmFileTransfer::slotTreeLocalDelete()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->treeLocal->currentIndex();
     m_pModelLocalDir->remove(idx);
 }
@@ -223,12 +229,12 @@ void CFrmFileTransfer::slotTreeLocalRename()
 
 void CFrmFileTransfer::slotTreeLocalUpload()
 {
+    qDebug(log) << Q_FUNC_INFO << "Complete it!";
     // TODO: implemented
 }
 
-int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
+int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemoteDir)
 {
-    int nRet = 0;
     foreach (auto f, d.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
         QString szLocal = d.absoluteFilePath(f);
         if(szLocal.isEmpty()) {
@@ -237,11 +243,12 @@ int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
         }
         QFileInfo fi(szLocal);
         if(!fi.exists()) {
-            QMessageBox::critical(this, tr("Error"), tr("The file is not exists:") + szLocal);
+            QMessageBox::critical(this, tr("Error"),
+                                  tr("The file is not exists:") + szLocal);
             continue;
         }
-        QString szRemoteFile = szRemote;
-        if(szRemote.right(1) == "/")
+        QString szRemoteFile = szRemoteDir;
+        if(szRemoteDir.right(1) == "/")
             szRemoteFile += fi.fileName();
         else
             szRemoteFile += "/" + fi.fileName();
@@ -251,12 +258,12 @@ int CFrmFileTransfer::EnumLocalDirectory(QDir d, const QString& szRemote)
         fileTransfer->SetFileSize(fi.size());
         m_pListFileModel->AddFileTransfer(fileTransfer);
     }
-    foreach(auto file, d.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    foreach(auto folder, d.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
     {
-        QDir dir(d.absoluteFilePath(file));
-        nRet = EnumLocalDirectory(dir, szRemote + "/" + file);
+        QDir dir(d.absoluteFilePath(folder));
+        EnumLocalDirectory(dir, szRemoteDir + "/" + folder);
     }
-    return nRet;
+    return 0;
 }
 
 void CFrmFileTransfer::slotTreeLocalAddToList()
@@ -276,6 +283,7 @@ void CFrmFileTransfer::slotTreeLocalAddToList()
 
 void CFrmFileTransfer::slotTreeLocalCopyToClipboard()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->treeLocal->currentIndex();
     QString szPath = m_pModelLocalDir->filePath(idx);
     if(szPath.isEmpty()) return;
@@ -309,6 +317,7 @@ void CFrmFileTransfer::on_tabLocal_customContextMenuRequested(const QPoint &pos)
 
 void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->tabLocal->currentIndex();
     if(!idx.isValid()) return;
     QString szPath = m_pModelLocalDir->filePath(idx);
@@ -319,9 +328,11 @@ void CFrmFileTransfer::slotTabLocalCopyToClipboard()
 
 void CFrmFileTransfer::slotTabLocalUpload()
 {
+    if(!m_pModelLocalDir) return;
     auto idx = ui->tabLocal->currentIndex();
     if(!idx.isValid()) return;
-    QString szPath = m_pModelLocalDir->filePath(idx);
+    QString szPath;
+    szPath = m_pModelLocalDir->filePath(idx);
     if(szPath.isEmpty()) return;
 }
 
@@ -474,13 +485,19 @@ void CFrmFileTransfer::on_treeRemote_customContextMenuRequested(const QPoint &po
 
 void CFrmFileTransfer::slotTreeRemoteDownload()
 {
+    qDebug(log) << Q_FUNC_INFO;
 }
 
-int CFrmFileTransfer::EnumRemoteDirectory(CRemoteFileSystem *p, const QString &szLocal)
+int CFrmFileTransfer::EnumRemoteDirectory(CRemoteFileSystem *pRfs,
+                                          const QString &szLocalDir)
 {
-    int nRet = 0;
-    
-    return nRet;
+    qDebug(log) << Q_FUNC_INFO;
+    if(!pRfs || !pRfs->IsDir()) return -1;
+
+    for(int index = 0; index < pRfs->ChildCount(); index++) {
+        //TODO: Complete it
+    }
+    return 0;
 }
 
 void CFrmFileTransfer::slotTreeRemoteAddToList()

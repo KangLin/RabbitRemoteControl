@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include <QAtomicInt>
 #include <QLoggingCategory>
@@ -122,10 +122,10 @@ QString CFileTransfer::GetDirectionName()
 {
     switch ((Direction)GetDirection()) {
     case Direction::Upload:
-        return "---->";
+        return "→";
         return tr("Upload");
     case Direction::Download:
-        return "<----";
+        return "←";
         return tr("Download");
     }
     return QString();

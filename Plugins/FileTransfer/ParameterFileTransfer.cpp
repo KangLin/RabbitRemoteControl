@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include "ParameterFileTransfer.h"
 

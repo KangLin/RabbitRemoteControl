@@ -211,14 +211,6 @@
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation type="vanished">加密密鑰用於加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
-    </message>
-    <message>
-        <source>Input encrypt key</source>
-        <translation type="vanished">輸入加密密鑰</translation>
-    </message>
-    <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
@@ -243,14 +235,6 @@
         <location filename="../../DlgInputPassword.cpp" line="16"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
         <translation>加密密鑰用於加密保存到文件中的密碼。</translation>
-    </message>
-    <message>
-        <source>If you forget the encryption key, please use input %1.</source>
-        <translation type="vanished">如果您忘記了加密密鑰，請使用輸入 %1。</translation>
-    </message>
-    <message>
-        <source>Input %1</source>
-        <translation type="vanished">輸入 %1</translation>
     </message>
 </context>
 <context>
@@ -287,7 +271,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="68"/>
+        <location filename="../../Manager.cpp" line="69"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -295,48 +279,48 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="71"/>
+        <location filename="../../Manager.cpp" line="72"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系統快捷鍵（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="73"/>
+        <location filename="../../Manager.cpp" line="74"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域網內喚醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="75"/>
+        <location filename="../../Manager.cpp" line="76"/>
         <source>Restart program by administrator?</source>
         <translation>用管理員權限重啟程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="76"/>
+        <location filename="../../Manager.cpp" line="77"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="78"/>
+        <location filename="../../Manager.cpp" line="79"/>
         <source>Always shown</source>
         <translation>總是顯示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="168"/>
+        <location filename="../../Manager.cpp" line="169"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="251"/>
-        <location filename="../../Manager.cpp" line="502"/>
+        <location filename="../../Manager.cpp" line="252"/>
+        <location filename="../../Manager.cpp" line="503"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="449"/>
+        <location filename="../../Manager.cpp" line="450"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="507"/>
+        <location filename="../../Manager.cpp" line="508"/>
         <source>Dependency libraries:</source>
         <translation>依賴庫：</translation>
     </message>
@@ -734,10 +718,6 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
         <source>First</source>
         <translation>第一次</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="vanished">總是</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="34"/>
