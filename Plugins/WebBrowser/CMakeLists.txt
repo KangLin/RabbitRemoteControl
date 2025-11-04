@@ -54,12 +54,15 @@ set(WebBrowser_UI_FILES
 if(QT_VERSION GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
         DlgWebAuth.cpp
+        DlgScreenCapture.cpp
         )
     list(APPEND WebBrowser_HEADER_FILES
         DlgWebAuth.h
+        DlgScreenCapture.h
         )
     list(APPEND WebBrowser_UI_FILES
         DlgWebAuth.ui
+        DlgScreenCapture.ui
         )
 endif()
 option(WITH_QtKEYCHAIN "With qtkeychain" ON)

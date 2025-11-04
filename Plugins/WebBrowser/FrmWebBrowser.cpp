@@ -405,10 +405,10 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     m_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
-    m_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
     m_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
+#endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    m_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)

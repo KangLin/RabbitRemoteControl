@@ -213,7 +213,7 @@ Q_SIGNALS:
      * \param bFullScreen:
      *          - true: 全屏
      *          - false: 恢复正常
-     * \~english Full screen. emited by operate
+     * \~english Full screen. emitted by operate
      * \param bFullScreen:
      *          - true: Full screen
      *          - false: Normal

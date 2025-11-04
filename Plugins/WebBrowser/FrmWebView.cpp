@@ -352,7 +352,7 @@ void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
 }
 #endif
 
-// Test:
+// Test example:
 // - https://postman-echo.com/basic-auth
 // - https://httpbin.org/basic-auth/user/passwd
 //   - httpbin.org 提供基本的 HTTP 认证测试
@@ -436,11 +436,57 @@ void CFrmWebView::handleImageAnimationPolicyChange(QWebEngineSettings::ImageAnim
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+// Test example: https://thetbw.github.io/web-screen-recorder-demo/
+#include "DlgScreenCapture.h"
 void CFrmWebView::slotDesktopMediaRequest(const QWebEngineDesktopMediaRequest &request)
 {
     qDebug(log) << Q_FUNC_INFO;
+    QString szMsg = "- Screen:\n";
+    for(int i = 0; i < request.screensModel()->rowCount(); i++) {
+        QModelIndex index;
+        auto model = request.screensModel();
+        index = model->index(i, 0);
+        szMsg += "  - " + QString::number(i) + ": " + model->data(index).toString() + "\n";
+    }
+    szMsg += "- Windows:\n";
+    for(int w = 0; w < request.windowsModel()->rowCount(); w++) {
+        QModelIndex index;
+        auto model = request.windowsModel();
+        index = model->index(w, 0);
+        szMsg += "  - " + QString::number(w) + ": " + model->data(index).toString() + "\n";
+    }
+    qDebug(log) << szMsg;
+    CDlgScreenCapture dlg(request);
+    if(QDialog::Rejected == dlg.exec())
+        return;
     // select the primary screen
-    request.selectScreen(request.screensModel()->index(0));
+    CDlgScreenCapture::Type type;
+    int id = -1;
+    int nRet = dlg.GetIndex(type, id);
+    if(nRet) return;
+    QModelIndex index;
+    QAbstractListModel* model = nullptr;
+    switch(type) {
+    case CDlgScreenCapture::Type::Screen: {
+        model = request.screensModel();
+        if(!model) return;
+        if(0 > id || model->rowCount() <= id)
+            return;
+        index = model->index(id);
+        request.selectScreen(index);
+        break;
+    }
+    case CDlgScreenCapture::Type::Window: {
+        model = request.windowsModel();
+        if(!model) return;
+        if(0 > id || model->rowCount() <= id)
+            return;
+        index = model->index(id);
+        request.selectWindow(index);
+        break;
+    }
+    }
+
 }
 
 void CFrmWebView::slotWebAuthUxRequested(QWebEngineWebAuthUxRequest *request)
@@ -475,7 +521,7 @@ void CFrmWebView::onStateChanged(QWebEngineWebAuthUxRequest::WebAuthUxState stat
 }
 #endif
 
-// Test: https://www.webmfiles.org/demo-files/
+// Test example: https://www.webmfiles.org/demo-files/
 void CFrmWebView::slotFullScreenRequested(QWebEngineFullScreenRequest request)
 {
     qDebug(log) << "slotFullScreenRequested";
