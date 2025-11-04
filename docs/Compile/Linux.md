@@ -828,6 +828,8 @@ After install sdk and runtime, Run again:
 
         docker run --privileged -v /home/RabbitRemoteControl:/home/RabbitRemoteControl -it ubuntu
 
+  - QtWebEngine: https://github.com/flathub/io.qt.qtwebengine.BaseApp
+
 - Documents
   - [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
   - [Sandbox Permissions](https://docs.flatpak.org/en/latest/sandbox-permissions.html)
