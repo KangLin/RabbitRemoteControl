@@ -39,7 +39,7 @@ public:
     virtual ~MainWindow() override;
 
 Q_SIGNALS:
-    void sigFullScreen();
+    void sigFullScreen(bool bFullScreen);
     void sigShowNormal();
     
 private Q_SLOTS:

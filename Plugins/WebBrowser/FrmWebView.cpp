@@ -129,10 +129,10 @@ inline QString questionForPermissionType(QWebEnginePermission::PermissionType pe
 void CFrmWebView::setPage(QWebEnginePage *page)
 {
     Q_ASSERT(page);
-    CreateWebActionTrigger(page,QWebEnginePage::Forward);
-    CreateWebActionTrigger(page,QWebEnginePage::Back);
-    CreateWebActionTrigger(page,QWebEnginePage::Reload);
-    CreateWebActionTrigger(page,QWebEnginePage::Stop);
+    CreateWebActionTrigger(page, QWebEnginePage::Forward);
+    CreateWebActionTrigger(page, QWebEnginePage::Back);
+    CreateWebActionTrigger(page, QWebEnginePage::Reload);
+    CreateWebActionTrigger(page, QWebEnginePage::Stop);
 
     if (auto oldPage = QWebEngineView::page()) {
         oldPage->disconnect(this);
@@ -146,7 +146,9 @@ void CFrmWebView::setPage(QWebEnginePage *page)
     connect(page, &QWebEnginePage::authenticationRequired, this,
             &CFrmWebView::slotAuthenticationRequired);
     connect(page, &QWebEnginePage::proxyAuthenticationRequired, this,
-            &CFrmWebView::slotProxyAuthenticationRequired);   
+            &CFrmWebView::slotProxyAuthenticationRequired);
+    connect(page, &QWebEnginePage::fullScreenRequested, this,
+            &CFrmWebView::slotFullScreenRequested);
     connect(page, &QWebEnginePage::registerProtocolHandlerRequested, this,
             &CFrmWebView::handleRegisterProtocolHandlerRequested);
     #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
@@ -472,6 +474,20 @@ void CFrmWebView::onStateChanged(QWebEngineWebAuthUxRequest::WebAuthUxState stat
     }
 }
 #endif
+
+// Test: https://www.webmfiles.org/demo-files/
+void CFrmWebView::slotFullScreenRequested(QWebEngineFullScreenRequest request)
+{
+    qDebug(log) << "slotFullScreenRequested";
+    if (request.toggleOn()) {
+        request.accept();
+        this->showFullScreen();
+    } else {
+        request.accept();
+        this->showNormal();
+    }
+    m_pBrowser->slotFullScreen(request.toggleOn());
+}
 
 //! [registerProtocolHandlerRequested]
 void CFrmWebView::handleRegisterProtocolHandlerRequested(

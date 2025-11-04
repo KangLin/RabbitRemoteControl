@@ -529,13 +529,15 @@ void MainWindow::on_actionFull_screen_F_triggered()
         this->showNormal();
         this->activateWindow();
 
+        emit sigFullScreen(false);
         return;
     }
 
     qDebug(log) << "Entry full screen";
-    emit sigFullScreen();
+
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
+    emit sigFullScreen(true);
 
     ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-restore"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
@@ -850,7 +852,14 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     check = connect(pOperate, SIGNAL(sigUpdateParameters(COperate*)),
                     this, SLOT(slotUpdateParameters(COperate*)));
     Q_ASSERT(check);
-
+    check = connect(pOperate, &COperate::sigFullScreen,
+                    this, [this, pOperate](bool bFull) {
+        if(m_pView && m_pView->GetCurrentView() == pOperate->GetViewer()) {
+            if((bFull && !isFullScreen()) || (!bFull && isFullScreen()))
+                on_actionFull_screen_F_triggered();
+        }
+    });
+    Q_ASSERT(check);
     if(set)
     {
         int nRet = pOperate->OpenDialogSettings(this);

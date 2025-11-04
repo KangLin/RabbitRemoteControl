@@ -90,6 +90,9 @@ int COperateWebBrowser::Initial()
         check = connect(m_pWeb, &CFrmWebBrowser::sigUpdateTitle,
                         this, &COperateWebBrowser::slotUpdateName);
         Q_ASSERT(check);
+        check = connect(m_pWeb, &CFrmWebBrowser::sigFullScreen,
+                        this, &COperateWebBrowser::sigFullScreen);
+        Q_ASSERT(check);
     }
     if(pMenu) {
         pMenu->addSeparator();

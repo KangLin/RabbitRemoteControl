@@ -34,6 +34,7 @@ Q_SIGNALS:
     void sigInformation(const QString& szInfo);
     //! Title or icon changed
     void sigUpdateTitle();
+    void sigFullScreen(bool bFull);
 
 private Q_SLOTS:
     void slotTabCurrentChanged(int index);
@@ -46,6 +47,9 @@ private Q_SLOTS:
     void slotPrintFinished(bool success);
     void slotPrintToPdf();
     void slotPdfPrintingFinished(const QString& szFile, bool success);
+
+public Q_SLOTS:
+    void slotFullScreen(bool bFullScreen);
 
 private:
     int InitMenu(QMenu* pMenu);
@@ -96,5 +100,6 @@ private:
     CFrmDownloadManager m_DownloadManager;
     QString m_szFindText;
 
+    QString m_szStyleSheet;
     friend CFrmWebView;
 };

@@ -8,6 +8,7 @@
 #include <QWebEngineSettings>
 #include <QWebEngineCertificateError>
 #include <QWebEngineRegisterProtocolHandlerRequest>
+#include <QWebEngineFullScreenRequest>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
 #include <QWebEngineFileSystemAccessRequest>
 #endif
@@ -63,8 +64,9 @@ private slots:
     void slotAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth);
     void slotProxyAuthenticationRequired(const QUrl &requestUrl, QAuthenticator *auth,
                                          const QString &proxyHost);
+    void slotFullScreenRequested(QWebEngineFullScreenRequest fullScreenRequest);
     void handleRegisterProtocolHandlerRequested(QWebEngineRegisterProtocolHandlerRequest request);
-    
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
     void slotCertificateError(QWebEngineCertificateError error);
     void slotPermissionRequested(QWebEnginePermission permission);

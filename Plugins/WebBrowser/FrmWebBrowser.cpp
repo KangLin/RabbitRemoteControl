@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QTabBar>
 #include <QMessageBox>
 #include <QMenu>
 #include <QFile>
@@ -406,6 +407,10 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
     m_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    m_profile->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
+    m_profile->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, true);
+#endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     m_profile->settings()->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
 #endif
@@ -954,4 +959,25 @@ void CFrmWebBrowser::slotPdfPrintingFinished(const QString& szFile, bool success
                                  tr("Successfully printed to PDF.") + "\n"
                                      + tr("PDF file: ") + szFile);
     qDebug(log) << "Print to PDF:" << szFile << success;
+}
+
+void CFrmWebBrowser::slotFullScreen(bool bFullScreen)
+{
+    if(sender() == this)
+        return;
+    if(bFullScreen) {
+        m_pToolBar->hide();
+        m_pProgressBar->hide();
+        m_pTab->tabBar()->setVisible(false);
+        m_szStyleSheet = m_pTab->styleSheet();
+        m_pTab->setStyleSheet("QTabWidget::pane{top:0px;left:0px;border:none;}");
+    } else {
+        m_pToolBar->show();
+        m_pProgressBar->show();
+        m_pTab->tabBar()->setVisible(true);
+        m_pTab->setStyleSheet(m_szStyleSheet);
+        if(CurrentView() && CurrentView()->page() && CurrentView()->page()->action(QWebEnginePage::ExitFullScreen))
+            CurrentView()->page()->action(QWebEnginePage::ExitFullScreen)->toggle();
+    }
+    emit sigFullScreen(bFullScreen);
 }

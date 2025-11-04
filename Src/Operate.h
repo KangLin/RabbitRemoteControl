@@ -204,9 +204,21 @@ Q_SIGNALS:
     /*!
      * \~chinese 视图获得焦点
      * \~english The view is focus
+     * \~
      * \param pView
      */
     void sigViewerFocusIn(QWidget* pView);
+    /*!
+     * \~chinese 全屏。由操作触发
+     * \param bFullScreen:
+     *          - true: 全屏
+     *          - false: 恢复正常
+     * \~english Full screen. emited by operate
+     * \param bFullScreen:
+     *          - true: Full screen
+     *          - false: Normal
+     */
+    void sigFullScreen(bool bFullScreen);
     /*!
      * \~chinese \note 名称更新和图标。此信号仅由本类触发。其派生类如需使用，请用 slotUpdateName
      * \~english \note The name or icon is changed. This signal is only triggered by this class.
