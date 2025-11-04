@@ -429,165 +429,165 @@
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="78"/>
+        <location filename="../../FrmWebBrowser.cpp" line="80"/>
         <source>Back</source>
         <translation>後退</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="87"/>
+        <location filename="../../FrmWebBrowser.cpp" line="90"/>
         <source>Forward</source>
         <translation>前進</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="96"/>
+        <location filename="../../FrmWebBrowser.cpp" line="100"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="116"/>
+        <location filename="../../FrmWebBrowser.cpp" line="120"/>
         <source>go</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="137"/>
+        <location filename="../../FrmWebBrowser.cpp" line="141"/>
         <source>Add tab page</source>
         <translation>增加標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="148"/>
+        <location filename="../../FrmWebBrowser.cpp" line="153"/>
         <source>Download Manager</source>
         <translation>下載管理器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="208"/>
+        <location filename="../../FrmWebBrowser.cpp" line="214"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="249"/>
-        <location filename="../../FrmWebBrowser.cpp" line="257"/>
+        <location filename="../../FrmWebBrowser.cpp" line="255"/>
+        <location filename="../../FrmWebBrowser.cpp" line="263"/>
         <source>New page</source>
         <translation>新頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="508"/>
+        <location filename="../../FrmWebBrowser.cpp" line="518"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="519"/>
+        <location filename="../../FrmWebBrowser.cpp" line="530"/>
         <source>Add incognito tab</source>
         <translation>添加隱身標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="529"/>
+        <location filename="../../FrmWebBrowser.cpp" line="540"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="536"/>
+        <location filename="../../FrmWebBrowser.cpp" line="547"/>
         <source>Add Incognito Window</source>
         <translation>添加隱身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="545"/>
+        <location filename="../../FrmWebBrowser.cpp" line="556"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="550"/>
+        <location filename="../../FrmWebBrowser.cpp" line="569"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="551"/>
+        <location filename="../../FrmWebBrowser.cpp" line="570"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="559"/>
-        <location filename="../../FrmWebBrowser.cpp" line="567"/>
+        <location filename="../../FrmWebBrowser.cpp" line="578"/>
+        <location filename="../../FrmWebBrowser.cpp" line="586"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未發現</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="561"/>
+        <location filename="../../FrmWebBrowser.cpp" line="580"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 發現：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="577"/>
+        <location filename="../../FrmWebBrowser.cpp" line="596"/>
         <source>Find &amp;Next</source>
         <translation>查找下一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="588"/>
+        <location filename="../../FrmWebBrowser.cpp" line="607"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="600"/>
-        <location filename="../../FrmWebBrowser.cpp" line="602"/>
-        <location filename="../../FrmWebBrowser.cpp" line="603"/>
+        <location filename="../../FrmWebBrowser.cpp" line="619"/>
+        <location filename="../../FrmWebBrowser.cpp" line="621"/>
+        <location filename="../../FrmWebBrowser.cpp" line="622"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="611"/>
-        <location filename="../../FrmWebBrowser.cpp" line="613"/>
-        <location filename="../../FrmWebBrowser.cpp" line="614"/>
+        <location filename="../../FrmWebBrowser.cpp" line="630"/>
+        <location filename="../../FrmWebBrowser.cpp" line="632"/>
+        <location filename="../../FrmWebBrowser.cpp" line="633"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="624"/>
-        <location filename="../../FrmWebBrowser.cpp" line="626"/>
-        <location filename="../../FrmWebBrowser.cpp" line="627"/>
+        <location filename="../../FrmWebBrowser.cpp" line="643"/>
+        <location filename="../../FrmWebBrowser.cpp" line="645"/>
+        <location filename="../../FrmWebBrowser.cpp" line="646"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="640"/>
+        <location filename="../../FrmWebBrowser.cpp" line="659"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="644"/>
+        <location filename="../../FrmWebBrowser.cpp" line="664"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="650"/>
+        <location filename="../../FrmWebBrowser.cpp" line="670"/>
         <source>Inspector</source>
         <translation>檢查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="724"/>
+        <location filename="../../FrmWebBrowser.cpp" line="748"/>
         <source>Web browser</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="899"/>
+        <location filename="../../FrmWebBrowser.cpp" line="928"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="900"/>
+        <location filename="../../FrmWebBrowser.cpp" line="929"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="924"/>
+        <location filename="../../FrmWebBrowser.cpp" line="953"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="925"/>
+        <location filename="../../FrmWebBrowser.cpp" line="954"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="926"/>
+        <location filename="../../FrmWebBrowser.cpp" line="955"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
@@ -595,105 +595,115 @@
 <context>
     <name>CFrmWebView</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="66"/>
+        <location filename="../../FrmWebView.cpp" line="68"/>
         <source>Render process normal exit</source>
         <translation>渲染過程正常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="69"/>
+        <location filename="../../FrmWebView.cpp" line="71"/>
         <source>Render process abnormal exit</source>
         <translation>渲染過程異常退出</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="72"/>
+        <location filename="../../FrmWebView.cpp" line="74"/>
         <source>Render process crashed</source>
         <translation>渲染進程崩潰了</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="75"/>
+        <location filename="../../FrmWebView.cpp" line="77"/>
         <source>Render process killed</source>
         <translation>渲染進程被終止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="79"/>
+        <location filename="../../FrmWebView.cpp" line="81"/>
         <source>Render process exited with code: %1
 Do you want to reload the page ?</source>
         <translation>渲染過程以代碼退出：%1
 您想要重新加載頁面嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="244"/>
+        <location filename="../../FrmWebView.cpp" line="246"/>
         <source>Open inspector</source>
         <translation>打開檢查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="248"/>
+        <location filename="../../FrmWebView.cpp" line="250"/>
         <source>Inspect element</source>
         <translation>檢查元素</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="252"/>
+        <location filename="../../FrmWebView.cpp" line="254"/>
         <source>Image animation policy</source>
         <translation>圖像動畫政策</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="258"/>
+        <location filename="../../FrmWebView.cpp" line="260"/>
         <source>Disable all image animation</source>
         <translation>禁用所有圖像動畫</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="265"/>
+        <location filename="../../FrmWebView.cpp" line="267"/>
         <source>Allow animated images, but only once</source>
         <translation>允許動畫圖像，但只能使用一次</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="270"/>
+        <location filename="../../FrmWebView.cpp" line="272"/>
         <source>Allow all animated images</source>
         <translation>允許所有圖像動畫</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="321"/>
+        <location filename="../../FrmWebView.cpp" line="330"/>
         <source>If you wish so, you may continue with an unverified certificate. Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.</source>
-        <translation>如果你願意，可以繼續使用未驗證的證書。接受未驗證的證書意味著你可能沒有與嘗試連接的主機建立連接。</translation>
+        <translation>如果你願意，可以繼續使用未驗證的證書。接受未驗證的證書意味著你可能沒有與你希望連接的主機建立連接。</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="323"/>
-        <source>Do you wish to override the security check and continue ?</source>
-        <translation>您是否希望覆蓋安全檢查並繼續？</translation>
+        <location filename="../../FrmWebView.cpp" line="332"/>
+        <source>Yes - Always accept an unverified certificate and continue</source>
+        <translation>是 - 總是接受未驗證的證書並繼續</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="324"/>
+        <location filename="../../FrmWebView.cpp" line="333"/>
+        <source>Ok - Accept an unverified certificate and continue only this time</source>
+        <translation>確定 - 僅這次接受未驗證的證書並繼續</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebView.cpp" line="334"/>
+        <source>Cancel - Reject an unverified certificate and break</source>
+        <translation>取消 - 拒絕未驗證的證書並阻止</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebView.cpp" line="336"/>
         <source>Certificate Error</source>
         <translation>證書錯誤</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="345"/>
+        <location filename="../../FrmWebView.cpp" line="364"/>
         <source>Set user and password</source>
         <translation>設置用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="361"/>
+        <location filename="../../FrmWebView.cpp" line="380"/>
         <source>Set user and password of proxy</source>
         <translation>設置代理用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="400"/>
-        <location filename="../../FrmWebView.cpp" line="463"/>
+        <location filename="../../FrmWebView.cpp" line="419"/>
+        <location filename="../../FrmWebView.cpp" line="482"/>
         <source>Permission Request</source>
         <translation>權限請求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="464"/>
+        <location filename="../../FrmWebView.cpp" line="483"/>
         <source>Allow %1 to open all %2 links?</source>
         <translation>允許 %1 打開所有 %2 鏈接？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="493"/>
+        <location filename="../../FrmWebView.cpp" line="512"/>
         <source>File system access request</source>
         <translation>文件系統訪問請求</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="494"/>
+        <location filename="../../FrmWebView.cpp" line="513"/>
         <source>Give %1 %2 access to %3?</source>
         <translation>給予 %1 %2 對 %3 的訪問權限嗎？</translation>
     </message>
@@ -735,52 +745,52 @@ Do you want to reload the page ?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../FrmWebView.cpp" line="101"/>
+        <location filename="../../FrmWebView.cpp" line="103"/>
         <source>Allow %1 to access your location information?</source>
         <translation>允許 %1 訪問您的位置信息嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="103"/>
+        <location filename="../../FrmWebView.cpp" line="105"/>
         <source>Allow %1 to access your microphone?</source>
         <translation>允許 %1 訪問您的麥克風嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="105"/>
+        <location filename="../../FrmWebView.cpp" line="107"/>
         <source>Allow %1 to access your webcam?</source>
         <translation>允許 %1 訪問您的攝像頭嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="107"/>
+        <location filename="../../FrmWebView.cpp" line="109"/>
         <source>Allow %1 to access your microphone and webcam?</source>
         <translation>允許 %1 訪問您的麥克風和攝像頭嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="109"/>
+        <location filename="../../FrmWebView.cpp" line="111"/>
         <source>Allow %1 to lock your mouse cursor?</source>
         <translation>允許 %1 鎖定你的鼠標光標嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="111"/>
+        <location filename="../../FrmWebView.cpp" line="113"/>
         <source>Allow %1 to capture video of your desktop?</source>
         <translation>允許 %1 捕獲您桌面的錄像嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="113"/>
+        <location filename="../../FrmWebView.cpp" line="115"/>
         <source>Allow %1 to capture audio and video of your desktop?</source>
         <translation>允許 %1 捕獲您桌面的音頻和視頻嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="115"/>
+        <location filename="../../FrmWebView.cpp" line="117"/>
         <source>Allow %1 to show notification on your desktop?</source>
         <translation>允許 %1 在您的桌面上顯示通知？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="117"/>
+        <location filename="../../FrmWebView.cpp" line="119"/>
         <source>Allow %1 to read from and write to the clipboard?</source>
         <translation>允許 %1 從剪貼板讀取和寫入嗎？</translation>
     </message>
     <message>
-        <location filename="../../FrmWebView.cpp" line="119"/>
+        <location filename="../../FrmWebView.cpp" line="121"/>
         <source>Allow %1 to access fonts stored on this machine?</source>
         <translation>允許 %1 訪問存儲在此機器上的字體嗎？</translation>
     </message>

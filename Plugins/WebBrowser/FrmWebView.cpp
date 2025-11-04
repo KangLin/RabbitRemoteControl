@@ -11,6 +11,8 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
+#include "RabbitCommonDir.h"
+
 #include "FrmWebView.h"
 #include "FrmWebBrowser.h"
 #include "DlgUserPassword.h"
@@ -306,7 +308,7 @@ void CFrmWebView::slotSelectClientCertificate(QWebEngineClientCertificateSelecti
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
 {
-    qDebug(log) << Q_FUNC_INFO;
+    qDebug(log) << Q_FUNC_INFO << error.type() << error.url();
 
     // Automatically block certificate errors from page resources without prompting the user.
     // This mirrors the behavior found in other major browsers.
@@ -316,19 +318,35 @@ void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
     }
 
     error.defer();
+    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserData()
+                      + QDir::separator() + "WebBrowser.ini",
+                  QSettings::IniFormat);
+    if(set.value("Certificate/Error/Accept" + error.url().toString(), false).toBool()) {
+        error.acceptCertificate();
+        return;
+    }
     QString szMsg;
     szMsg = error.description() + "\n\n";
     szMsg += tr("If you wish so, you may continue with an unverified certificate. "
-                "Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.") +
-                "\n\n" + tr("Do you wish to override the security check and continue ?");
+                "Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.") + "\n\n"
+             + tr("Yes - Always accept an unverified certificate and continue") + "\n"
+             + tr("Ok - Accept an unverified certificate and continue only this time") + "\n"
+             + tr("Cancel - Reject an unverified certificate and break");
     int nRet = QMessageBox::critical(window(), tr("Certificate Error"), szMsg,
-                          QMessageBox::StandardButton::Yes
-                              | QMessageBox::StandardButton::No,
-                          QMessageBox::StandardButton::No);
-    if(QMessageBox::StandardButton::Yes == nRet)
+                                     QMessageBox::StandardButton::Ok
+                                         | QMessageBox::StandardButton::Yes
+                                         | QMessageBox::StandardButton::Cancel,
+                                     QMessageBox::StandardButton::Cancel);
+    switch(nRet) {
+    case QMessageBox::StandardButton::Yes:
+        set.setValue("Certificate/Error/Accept" + error.url().toString(), true);
+    case QMessageBox::StandardButton::Ok:
         error.acceptCertificate();
-    else
+        break;
+    case QMessageBox::Cancel:
         error.rejectCertificate();
+        break;
+    }
 }
 #endif
 
