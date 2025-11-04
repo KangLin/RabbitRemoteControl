@@ -23,7 +23,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 {
     qDebug(log) << Q_FUNC_INFO;
     qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
-                        << "revision:" << freerdp_get_build_revision();
+               << "revision:" << freerdp_get_build_revision();
 
     static wLogCallbacks* pCbLog = new wLogCallbacks;
     BOOL bRet = WLog_SetLogAppenderType(WLog_GetRoot(), WLOG_APPENDER_CALLBACK);

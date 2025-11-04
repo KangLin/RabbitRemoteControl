@@ -166,7 +166,7 @@ int CManager::LoadPlugins()
     }
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
-        m_szDetails = "#### " + tr("Plugins") + "\n" + m_szDetails;
+        m_szDetails = "## " + tr("Plugins") + "\n" + m_szDetails;
 
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
     return nRet;
@@ -248,7 +248,7 @@ int CManager::AppendPlugin(CPlugin *p)
         << "initial translator fail" << bRet << val;
     }
 
-    m_szDetails += "##### " + p->DisplayName() + "\n"
+    m_szDetails += "### " + p->DisplayName() + "\n"
                    + tr("Version:") + " " + p->Version() + "  \n"
                    + p->Description() + "\n";
     if(!p->Details().isEmpty())
@@ -505,7 +505,7 @@ const QString CManager::Details() const
 #endif
 
     if(!szDetail.isEmpty()) {
-        szDetail = "#### " + tr("Dependency libraries:") + "\n" + szDetail;
+        szDetail = "## " + tr("Dependency libraries:") + "\n" + szDetail;
     }
     szDetail += m_szDetails;
     return szDetail;
