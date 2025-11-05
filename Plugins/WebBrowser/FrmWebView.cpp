@@ -456,6 +456,10 @@ void CFrmWebView::slotDesktopMediaRequest(const QWebEngineDesktopMediaRequest &r
         szMsg += "  - " + QString::number(w) + ": " + model->data(index).toString() + "\n";
     }
     qDebug(log) << szMsg;
+
+    if(request.screensModel()->rowCount() <= 0 && request.windowsModel()->rowCount() <= 0)
+        return;
+
     CDlgScreenCapture dlg(request);
     if(QDialog::Rejected == dlg.exec())
         return;

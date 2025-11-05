@@ -52,6 +52,9 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
         bool bReboot = true;
         QString szSnap;
         QString szFlatpak;
+#if defined(Q_OS_ANDROID)
+        bReboot = false;
+#endif
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_WIN)
         szSnap = qEnvironmentVariable("SNAP");
         szFlatpak = qEnvironmentVariable("FLATPAK_ID");
