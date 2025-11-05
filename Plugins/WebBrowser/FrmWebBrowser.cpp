@@ -390,17 +390,24 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     if(m_profile)
         return m_profile.get();
 
+    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserData()
+                      + QDir::separator() + "WebBrowser.ini",
+                  QSettings::IniFormat);
+    QString name = "io.github.KangLin.RabbitRemoteControl";
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
-    const QString name = "io.github.KangLin.RabbitRemoteControl."
-                         + QLatin1StringView(qWebEngineChromiumVersion());
+    name += QLatin1StringView(qWebEngineChromiumVersion());
+    name = set.value("Profile/Name", name).toString();
     QWebEngineProfileBuilder profileBuilder;
     m_profile.reset(profileBuilder.createProfile(name));
 #else
-    const QString name = "io.github.KangLin.RabbitRemoteControl";
+    name = set.value("Profile/Name", name).toString();
     m_profile.reset(new QWebEngineProfile(name));
 #endif
     if(!m_profile)
         return QWebEngineProfile::defaultProfile();
+
+    set.setValue("Profile/Name", name);
+
     m_profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
     m_profile->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
