@@ -70,7 +70,7 @@ QByteArray CParameterOperate::PasswordSum(const std::string &password,
     return sum.result();
 }
 
-/*
+/*!
  * \brief Restore password
  * \details 
  * if the encryption key is incorrect, Password is set to empty.

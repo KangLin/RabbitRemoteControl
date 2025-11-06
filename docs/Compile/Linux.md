@@ -223,6 +223,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/).
   QtMultimedia required.
 - [OPTIONAL] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
+- [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
 
 #### RabbitCommon
 

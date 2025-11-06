@@ -24,6 +24,15 @@ jobs:
             BUILD_TYPE: Release
             os: windows-2022
 
+          - CMAKE_GENERATOR_PLATFORM: x64
+            VCPKG_TARGET_TRIPLET: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v143
+            qt_version: 6.8.1
+            qt_arch: win64_msvc2022_64
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
+            BUILD_TYPE: Release
+            os: windows-2022
+
           - CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
@@ -337,7 +346,7 @@ jobs:
 
       - name: qtkeychain6
         working-directory: ${{env.SOURCE_DIR}}
-        if: ${{ matrix.qt_version == '6.9.3' }}
+        if: ${{ matrix.qt_version != '5.15.2' }}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain (
               git clone -b 0.15.0 "https://github.com/frankosterfeld/qtkeychain.git"

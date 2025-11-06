@@ -1627,7 +1627,7 @@ void MainWindow::StartTimer()
         }
     }
     if(bStart)
-        m_Timer.start(1000);
+        m_Timer.start(nMinInterval * 1000);
     else
         m_Timer.stop();
 }

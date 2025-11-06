@@ -94,6 +94,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
 - [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) Multimedia capabilities required
 - [OPTIONAL] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
+- [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
 
 #### RabbitCommon
 

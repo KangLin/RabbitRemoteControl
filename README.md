@@ -98,10 +98,11 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |             |Windows|Unix/linux|Android|MAC|
 |-------------|-------|----------|-------|---|
-|Terminal     |✓      |✓         |       |   |
-|SSH          |✓      |✓         |       |   |
-|TELNET       |✓      |✓         |       |   |
-|Serial port  |✓      |✓         |       |   |
+|Terminal     |✓      |✓         |       |✓  |
+|SSH          |✓      |✓         |       |✓  |
+|TELNET       |✓      |✓         |       |✓  |
+|Serial port  |✓      |✓         |       |✓  |
+
 - File Transfer
 
 |        |Windows|Unix/linux|Android|MAC|
@@ -115,7 +116,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |-----------|-------|----------|-------|---|
 |Player     |✓      |✓         |✓      |✓  |
 |Wake on lan|✓      |✓         |✓      |✓  |
-|Screenshot |✓      |✓         |❌     |✓  |
+|Screenshot |✓      |✓         |       |✓  |
 |Web browser|✓      |✓         |❌     |✓  |
 
 Legend:  
@@ -210,7 +211,7 @@ Legend:
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
 
-[![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads)](http://gra.caldis.me/?user=KangLin&repo=RabbitRemoteControl)
+[![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads)](https://tooomm.github.io/github-release-stats/?username=KangLin&repository=RabbitRemoteControl)
 [![Downloads from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20downloads)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)

@@ -174,7 +174,7 @@ jobs:
           fi
 
       - name: Build libvncserver
-        if: false
+        #if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then

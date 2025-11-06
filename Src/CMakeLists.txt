@@ -61,6 +61,7 @@ list(APPEND PLUGIN_HEADER_FILES
     DlgInputPassword.h
     Hook.h
     ParameterCompone/ParameterPluginUI.h
+    StatsAppUsage.h
     )
 
 list(APPEND PLUGIN_SOURCE_FILES
@@ -94,6 +95,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp
+    StatsAppUsage.cpp
     )
 
 set(PLUGIN_UI_FILES

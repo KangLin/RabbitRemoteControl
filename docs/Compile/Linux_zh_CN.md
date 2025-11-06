@@ -237,6 +237,7 @@
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)。插件 WakeOnLan 需要。
 - [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/)。 Qt 多媒体功能需要
 - [可选] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
+- [可选] libcurl: [https://curl.se](https://curl.se)
 
 #### 玉兔公共库
 
