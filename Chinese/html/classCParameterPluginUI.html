@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterPluginUI类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterPluginUI-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterPluginUI类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CParameterPluginUI 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterPluginUI__inherit__graph.png" border="0" usemap="#aCParameterPluginUI_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterPluginUI_inherit__map" id="aCParameterPluginUI_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,157,177"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="25,79,137,104"/>
+<area shape="poly" title=" " alt="" coords="84,118,84,152,79,152,79,118"/>
+<area shape="rect" title=" " alt="" coords="42,5,121,31"/>
+<area shape="poly" title=" " alt="" coords="84,44,84,79,79,79,79,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterPluginUI 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterPluginUI__coll__graph.png" border="0" usemap="#aCParameterPluginUI_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterPluginUI_coll__map" id="aCParameterPluginUI_coll__map">
+<area shape="rect" title=" " alt="" coords="59,331,211,356"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="5,243,117,268"/>
+<area shape="poly" title=" " alt="" coords="82,277,126,328,122,332,78,280"/>
+<area shape="rect" title=" " alt="" coords="22,155,101,180"/>
+<area shape="poly" title=" " alt="" coords="64,194,64,242,59,242,59,194"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="141,243,280,268"/>
+<area shape="poly" title=" " alt="" coords="193,280,147,332,143,328,189,277"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="148,80,247,105"/>
+<area shape="poly" title=" " alt="" coords="202,119,212,242,207,243,197,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="219,155,362,180"/>
+<area shape="poly" title=" " alt="" coords="225,112,277,152,274,156,221,116"/>
+<area shape="rect" title=" " alt="" coords="160,5,235,31"/>
+<area shape="poly" title=" " alt="" coords="200,45,200,80,195,80,195,45"/>
+<area shape="poly" title=" " alt="" coords="273,192,224,244,220,240,269,188"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a09786a739e3a6785a54587da80b661a2" id="r_a09786a739e3a6785a54587da80b661a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a09786a739e3a6785a54587da80b661a2">on_cbEnableViewPassword_clicked</a> (bool checked)</td></tr>
+<tr class="separator:a09786a739e3a6785a54587da80b661a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f80a8d2704bdea5ebf3a03715f6dd7" id="r_a91f80a8d2704bdea5ebf3a03715f6dd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a91f80a8d2704bdea5ebf3a03715f6dd7">on_pbEncryptKey_clicked</a> ()</td></tr>
+<tr class="separator:a91f80a8d2704bdea5ebf3a03715f6dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_slots_classCParameterUI"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCParameterUI')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCParameterUI.html">CParameterUI</a></td></tr>
+<tr class="memitem:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI" id="r_acb901ac45af7e1780f327b954c7aacfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#acb901ac45af7e1780f327b954c7aacfa">slotSetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)</td></tr>
+<tr class="memdesc:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
+<tr class="separator:acb901ac45af7e1780f327b954c7aacfa inherit pub_slots_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fde885a63c974d7822bc415fb64e033 inherit pub_slots_classCParameterUI" id="r_a5fde885a63c974d7822bc415fb64e033"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a5fde885a63c974d7822bc415fb64e033">slotAccept</a> ()</td></tr>
+<tr class="separator:a5fde885a63c974d7822bc415fb64e033 inherit pub_slots_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a6a2880a01fe8f0ed6104cc6141c6e724" id="r_a6a2880a01fe8f0ed6104cc6141c6e724"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a6a2880a01fe8f0ed6104cc6141c6e724">CParameterPluginUI</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a6a2880a01fe8f0ed6104cc6141c6e724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a797241dd19e1b4e4f696efb4e86ea115" id="r_a797241dd19e1b4e4f696efb4e86ea115"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a797241dd19e1b4e4f696efb4e86ea115">SetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter) override</td></tr>
+<tr class="memdesc:a797241dd19e1b4e4f696efb4e86ea115"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
+<tr class="separator:a797241dd19e1b4e4f696efb4e86ea115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9383fae5dee009e17412cfdc72795590" id="r_a9383fae5dee009e17412cfdc72795590"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a9383fae5dee009e17412cfdc72795590">Accept</a> () override</td></tr>
+<tr class="memdesc:a9383fae5dee009e17412cfdc72795590"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受参数  <br /></td></tr>
+<tr class="separator:a9383fae5dee009e17412cfdc72795590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterUI"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterUI')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterUI.html">CParameterUI</a></td></tr>
+<tr class="memitem:a7a13e1862a436da63b143ea6f3a38dfb inherit pub_methods_classCParameterUI" id="r_a7a13e1862a436da63b143ea6f3a38dfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a7a13e1862a436da63b143ea6f3a38dfb">CParameterUI</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a7a13e1862a436da63b143ea6f3a38dfb inherit pub_methods_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a065a08e831af33efb0f85b0b368965ba inherit pub_methods_classCParameterUI" id="r_a065a08e831af33efb0f85b0b368965ba"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a065a08e831af33efb0f85b0b368965ba">CheckValidity</a> (bool validity=false)</td></tr>
+<tr class="memdesc:a065a08e831af33efb0f85b0b368965ba inherit pub_methods_classCParameterUI"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数的有效性  <br /></td></tr>
+<tr class="separator:a065a08e831af33efb0f85b0b368965ba inherit pub_methods_classCParameterUI"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a961f0b8250d7d1b6e27b8794f2c1f2ee" id="r_a961f0b8250d7d1b6e27b8794f2c1f2ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#a961f0b8250d7d1b6e27b8794f2c1f2ee">on_cbSystemCredential_checkStateChanged</a> (const Qt::CheckState &amp;state)</td></tr>
+<tr class="separator:a961f0b8250d7d1b6e27b8794f2c1f2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:afa81ff52b6f9300c24fa933fb54d8432" id="r_afa81ff52b6f9300c24fa933fb54d8432"><td class="memItemLeft" align="right" valign="top">Ui::CParameterPluginUI *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#afa81ff52b6f9300c24fa933fb54d8432">ui</a></td></tr>
+<tr class="separator:afa81ff52b6f9300c24fa933fb54d8432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa418ff561add7b08bf52db4d17dd0bd4" id="r_aa418ff561add7b08bf52db4d17dd0bd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPluginUI.html#aa418ff561add7b08bf52db4d17dd0bd4">m_pPara</a></td></tr>
+<tr class="separator:aa418ff561add7b08bf52db4d17dd0bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8h_source.html">ParameterPluginUI.h</a> 第 <a class="el" href="ParameterPluginUI_8h_source.html#l00011">11</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a6a2880a01fe8f0ed6104cc6141c6e724" name="a6a2880a01fe8f0ed6104cc6141c6e724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a2880a01fe8f0ed6104cc6141c6e724">&#9670;&#160;</a></span>CParameterPluginUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterPluginUI::CParameterPluginUI </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa7bf938eee3f5a5174a4722f882f33e0" name="aa7bf938eee3f5a5174a4722f882f33e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7bf938eee3f5a5174a4722f882f33e0">&#9670;&#160;</a></span>~CParameterPluginUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterPluginUI::~CParameterPluginUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a9383fae5dee009e17412cfdc72795590" name="a9383fae5dee009e17412cfdc72795590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9383fae5dee009e17412cfdc72795590">&#9670;&#160;</a></span>Accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPluginUI::Accept </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受参数 </p>
+<dl class="section return"><dt>返回</dt><dd>成功返回 0 。其它值为失败。 </dd></dl>
+
+<p>实现了 <a class="el" href="classCParameterUI.html#a3382d09d69fa0add98377c94d8621fc3">CParameterUI</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a09786a739e3a6785a54587da80b661a2" name="a09786a739e3a6785a54587da80b661a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09786a739e3a6785a54587da80b661a2">&#9670;&#160;</a></span>on_cbEnableViewPassword_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPluginUI::on_cbEnableViewPassword_clicked </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checked</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a961f0b8250d7d1b6e27b8794f2c1f2ee" name="a961f0b8250d7d1b6e27b8794f2c1f2ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a961f0b8250d7d1b6e27b8794f2c1f2ee">&#9670;&#160;</a></span>on_cbSystemCredential_checkStateChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPluginUI::on_cbSystemCredential_checkStateChanged </td>
+          <td>(</td>
+          <td class="paramtype">const Qt::CheckState &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a91f80a8d2704bdea5ebf3a03715f6dd7" name="a91f80a8d2704bdea5ebf3a03715f6dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91f80a8d2704bdea5ebf3a03715f6dd7">&#9670;&#160;</a></span>on_pbEncryptKey_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPluginUI::on_pbEncryptKey_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a797241dd19e1b4e4f696efb4e86ea115" name="a797241dd19e1b4e4f696efb4e86ea115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797241dd19e1b4e4f696efb4e86ea115">&#9670;&#160;</a></span>SetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPluginUI::SetParameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameter.html">CParameter</a> *&#160;</td>
+          <td class="paramname"><em>pParameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[override functions] </p>
+<p>设置参数，并初始化界面 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pParameter</td><td>相关的参数。在重载函数中转换成相应的类型。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="classCParameterUI.html#a42db4e7c45f4b24fd0a3bd17ef1bac2e">CParameterUI</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a> 第 <a class="el" href="ParameterPluginUI_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa418ff561add7b08bf52db4d17dd0bd4" name="aa418ff561add7b08bf52db4d17dd0bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa418ff561add7b08bf52db4d17dd0bd4">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a>* CParameterPluginUI::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8h_source.html">ParameterPluginUI.h</a> 第 <a class="el" href="ParameterPluginUI_8h_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afa81ff52b6f9300c24fa933fb54d8432" name="afa81ff52b6f9300c24fa933fb54d8432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa81ff52b6f9300c24fa933fb54d8432">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CParameterPluginUI* CParameterPluginUI::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPluginUI_8h_source.html">ParameterPluginUI.h</a> 第 <a class="el" href="ParameterPluginUI_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterPluginUI_8h_source.html">ParameterPluginUI.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterPluginUI_8cpp_source.html">ParameterPluginUI.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

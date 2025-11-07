@@ -1,0 +1,13 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,104,83,129"/>
+<area shape="rect" id="Node000001" href="$classCBackendThread.html" title="The backend thread" alt="" coords="145,5,275,31"/>
+<area shape="poly" id="edge74_Node000000_Node000001" title=" " alt="" coords="64,92,94,65,129,40,155,28,157,33,132,44,97,69,68,96"/>
+<area shape="rect" id="Node000002" href="$classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。" alt="" coords="152,55,268,80"/>
+<area shape="poly" id="edge75_Node000000_Node000002" title=" " alt="" coords="95,99,165,78,167,83,96,104"/>
+<area shape="rect" id="Node000003" href="$classCRecordVideoThread.html" title="录制视频线程" alt="" coords="131,104,289,129"/>
+<area shape="poly" id="edge76_Node000000_Node000003" title=" " alt="" coords="96,114,130,114,130,119,96,119"/>
+<area shape="rect" id="Node000004" href="$classCSSHTunnelThread.html" title="实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="138,153,282,179"/>
+<area shape="poly" id="edge77_Node000000_Node000004" title=" " alt="" coords="96,129,167,151,165,156,95,134"/>
+<area shape="rect" id="Node000005" href="$classCServiceThread.html" title=" " alt="" coords="148,203,272,228"/>
+<area shape="poly" id="edge78_Node000000_Node000005" title=" " alt="" coords="69,138,98,164,132,188,160,200,158,205,129,192,94,168,65,142"/>
+</map>
