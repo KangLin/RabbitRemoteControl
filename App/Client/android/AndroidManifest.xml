@@ -63,6 +63,25 @@
             <meta-data android:name="android.app.extract_android_style"
                 android:value="minimal"/>
         </activity>
+
+        <!--
+        File provider:
+          - name ：配置当前 FileProvider 的实现类。
+          - authorities：配置一个 FileProvider 的名字，它在当前系统内需要是唯一值。通常使用 ${applicationId} 来确保它与应用的包名一致。
+          - exported：表示该 FileProvider 是否需要公开出去，传 false 表示不公开。
+          - granUriPermissions：是否允许授权文件的临时访问权限。传 true 表示需要 。
+        -->
+        <provider
+           android:name="androidx.core.content.FileProvider"
+           android:authorities="${applicationId}.fileProvider"
+           android:exported="false"
+           android:grantUriPermissions="true">
+
+           <meta-data
+               android:name="android.support.FILE_PROVIDER_PATHS"
+               android:resource="@xml/file_paths" />
+        </provider>
+
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
     </application>
 
