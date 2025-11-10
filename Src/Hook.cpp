@@ -41,9 +41,7 @@ CHook* CHook::GetHook(CParameterPlugin *pPara, QObject *parent)
 int CHook::RegisterKeyboard()
 {
     int nRet = 0;
-#if defined(Q_OS_MACOS) || defined(Q_OS_ANDROID) || defined(Q_OS_MACOS)
-    qApp->installEventFilter(this);
-#elif defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) && !defined(Q_OS_MACOS) && !defined(Q_OS_ANDROID)
     if(!g_pNativeEventFilter)
         g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterPlugin);
     if(g_pNativeEventFilter)
@@ -94,10 +92,9 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
             if(focus) {
                 if(focus == watched) {
                     if(bProcess)
-                        return true;
-                    return false;
+                        return false;
                 }
-                
+
                 /*
                 QKeyEvent* ke = new QKeyEvent(
                     keyEvent->type(), keyEvent->key(),

@@ -108,7 +108,7 @@ bool CNativeEventFilterUnix::HandleKey(
     default:
         break;
     }
-    
+
     if(bRet) {
         CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
         if(focus) {
@@ -128,10 +128,16 @@ bool CNativeEventFilterUnix::HandleKey(
             default:
                 break;
             }
+            // Because the signals is `Qt::DirectConnection`,
+            // so than can delete it in here!
+            // See: CBackendDesktop::SetViewer
+            delete keyEvent;
             return true;
         }
+        /*
         QKeyEvent* keyEvent = new QKeyEvent(type, key, modifiers);
         qDebug(log) << "Process:" << keyEvent;
+        delete keyEvent;//*/
     }
     return false;
 }
@@ -139,7 +145,7 @@ bool CNativeEventFilterUnix::HandleKey(
 bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
 {
     bool bRet = false;
-    
+
     switch (event->response_type & ~0x80) {
     case XCB_KEY_PRESS: {
         xcb_key_press_event_t *ke = (xcb_key_press_event_t *)event;
@@ -172,7 +178,7 @@ bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
     default:
         break;
     }
-    
+
     return bRet;
 }
 

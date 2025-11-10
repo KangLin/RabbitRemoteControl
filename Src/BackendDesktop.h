@@ -38,8 +38,7 @@ class PLUGIN_EXPORT CBackendDesktop : public CBackend
 {
     Q_OBJECT
 public:
-    explicit CBackendDesktop(COperateDesktop *pOperate = nullptr,
-                             bool bDirectConnection = true);
+    explicit CBackendDesktop(COperateDesktop *pOperate = nullptr);
     virtual ~CBackendDesktop();
 
 public Q_SLOTS:
@@ -54,8 +53,7 @@ public Q_SLOTS:
     
 private:
     int SetConnect(COperateDesktop* pOperate);
-    int SetViewer(CFrmViewer* pView,
-                  COperateDesktop* pOperate, bool bDirectConnection);
+    int SetViewer(CFrmViewer* pView);
     
 Q_SIGNALS:
     void sigSetDesktopSize(int width, int height);
