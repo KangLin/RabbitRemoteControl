@@ -127,6 +127,7 @@ int CHookWindows::RegisterKeyboard()
     if(m_hKeyboard)
         UnRegisterKeyboard();
     DisableTaskManager(true);
+    //DisableWindowsKey();
     m_hKeyboard = SetWindowsHookExW(WH_KEYBOARD_LL, keyboardHookProc, nullptr, 0);
     if(NULL == m_hKeyboard) {
         qCritical(log) << "SetWindowsHookExW error:" << GetLastError();
@@ -143,6 +144,8 @@ int CHookWindows::UnRegisterKeyboard()
         m_hKeyboard = nullptr;
     }
     DisableTaskManager(false);
+    //EnableWindowsKey();
+    //EnableTaskManager();
     return 0;
 }
 
@@ -205,3 +208,119 @@ void CHookWindows::DisableTaskManager(bool flag)
     QSettings settings2(TASKMANAGERExplorer, QSettings::NativeFormat);
     settings2.setValue("NoLogOff", value); //注销
 }
+
+bool CHookWindows::DisableWindowsKey()
+{
+    // 方法1: 使用 RegisterHotKey 来占用 Windows 键
+    bool success = true;
+
+    // 注册热键来拦截 Windows 键
+    if (!RegisterHotKey(nullptr, 1, MOD_WIN, VK_LWIN)) {
+        qCritical(log) << "注册左 Windows 键拦截失败:" << GetLastError();
+        success = false;
+    }
+
+    if (!RegisterHotKey(nullptr, 2, MOD_WIN, VK_RWIN)) {
+        qCritical(log) << "注册右 Windows 键拦截失败:" << GetLastError();
+        success = false;
+    }
+
+    // 方法2: 修改注册表禁用 Windows 键
+    HKEY hKey;
+    LONG result = RegCreateKeyExW(HKEY_CURRENT_USER,
+                                  L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+                                  0, nullptr, 0, KEY_ALL_ACCESS, nullptr, &hKey, nullptr);
+
+    if (result == ERROR_SUCCESS) {
+        DWORD value = 1; // 1 表示禁用 Windows 键
+        result = RegSetValueExW(hKey, L"NoWinKeys", 0, REG_DWORD,
+                                reinterpret_cast<const BYTE*>(&value), sizeof(value));
+
+        if (result == ERROR_SUCCESS) {
+            qDebug(log) << "注册表设置成功，Windows 键已禁用";
+        } else {
+            qWarning(log) << "注册表设置失败:" << result;
+            success = false;
+        }
+        RegCloseKey(hKey);
+    } else {
+        qWarning(log) << "创建注册表键失败:" << result;
+        success = false;
+    }
+
+    return success;
+}
+
+bool CHookWindows::EnableWindowsKey()
+{
+    bool success = true;
+
+    // 取消注册热键
+    UnregisterHotKey(nullptr, 1);
+    UnregisterHotKey(nullptr, 2);
+
+    // 恢复注册表设置
+    HKEY hKey;
+    LONG result = RegOpenKeyExW(HKEY_CURRENT_USER,
+                                L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+                                0, KEY_ALL_ACCESS, &hKey);
+
+    if (result == ERROR_SUCCESS) {
+        result = RegDeleteValueW(hKey, L"NoWinKeys");
+        if (result == ERROR_SUCCESS || result == ERROR_FILE_NOT_FOUND) {
+            qDebug(log) << "Windows 键已恢复";
+        } else {
+            qWarning(log) << "删除注册表值失败:" << result;
+            success = false;
+        }
+        RegCloseKey(hKey);
+    }
+
+    return success;
+}
+
+bool CHookWindows::DisableTaskManager()
+{
+    bool bRet = false;
+    HKEY hKey;
+    LONG result = RegCreateKeyExW(HKEY_CURRENT_USER,
+                                  L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                                  0, nullptr, 0, KEY_ALL_ACCESS, nullptr, &hKey, nullptr);
+
+    if (result == ERROR_SUCCESS) {
+        DWORD value = 1; // 1 表示禁用任务管理器
+        result = RegSetValueExW(hKey, L"DisableTaskMgr", 0, REG_DWORD,
+                                reinterpret_cast<const BYTE*>(&value), sizeof(value));
+
+        if (result == ERROR_SUCCESS) {
+            qDebug(log) << "任务管理器已禁用";
+            bRet = true;
+        } else {
+            qWarning(log) << "禁用任务管理器失败:" << result;
+        }
+        RegCloseKey(hKey);
+    }
+
+    return bRet;
+}
+
+bool CHookWindows::EnableTaskManager()
+{
+    HKEY hKey;
+    LONG result = RegOpenKeyExW(HKEY_CURRENT_USER,
+                                L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                                0, KEY_ALL_ACCESS, &hKey);
+
+    if (result == ERROR_SUCCESS) {
+        result = RegDeleteValueW(hKey, L"DisableTaskMgr");
+        RegCloseKey(hKey);
+
+        if (result == ERROR_SUCCESS || result == ERROR_FILE_NOT_FOUND) {
+            qDebug(log) << "任务管理器已恢复";
+            return true;
+        }
+    }
+
+    return false;
+}
+

@@ -22,6 +22,10 @@ private:
     HHOOK m_hKeyboard;
 
     void DisableTaskManager(bool flag);
+    bool DisableWindowsKey();
+    bool EnableWindowsKey();
+    bool DisableTaskManager();
+    bool EnableTaskManager();
 };
 
 #endif // CHOOKWINDOWS_H

@@ -109,8 +109,14 @@ set(PLUGIN_UI_FILES
     )
 
 if(WIN32)
-    list(APPEND PLUGIN_HEADER_FILES Windows/HookWindows.h)
-    list(APPEND PLUGIN_SOURCE_FILES Windows/HookWindows.cpp)
+    list(APPEND PLUGIN_HEADER_FILES
+        Windows/HookWindows.h
+        #Windows/DesktopShortcuts.h
+        )
+    list(APPEND PLUGIN_SOURCE_FILES
+        Windows/HookWindows.cpp
+        #Windows/DesktopShortcuts.cpp
+        )
     if(MSVC)
         list(APPEND PLUGIN_PRIVATE_DEFINITIONS NOMINMAX)
     endif()
@@ -170,9 +176,9 @@ endif()
 if(UNIX AND (NOT ANDROID))
     find_package(X11)
     if(X11_FOUND)
-        list(APPEND PLUGIN_LIBS X11::X11 X11::xcb Xtst)
+        list(APPEND PLUGIN_LIBS X11::X11 X11::xcb)
         if(NOT APPLE)
-            list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms)
+            list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms Xtst)
             list(APPEND PLUGIN_HEADER_FILES
                 Unix/NativeEventFilterUnix.h
                 Unix/DesktopShortcuts.h
