@@ -98,9 +98,11 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
         check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
                         this, SLOT(slotNativeWindowRecieveKeyboard()));
         Q_ASSERT(check);
-        m_pHook = CHook::GetHook(m_pParameter, this);
-        if(m_pHook)
-            m_pHook->RegisterKeyboard();
+        if(!m_pParameter->GetNativeWindowReceiveKeyboard()) {
+            m_pHook = CHook::GetHook(m_pParameter, this);
+            if(m_pHook)
+                m_pHook->RegisterKeyboard();
+        }
     } else {
         qCritical(log) << "new CParameterPlugin() fail";
         Q_ASSERT(m_pParameter);

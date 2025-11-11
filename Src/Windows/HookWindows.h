@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CHOOKWINDOWS_H
 #define CHOOKWINDOWS_H
 

@@ -170,11 +170,19 @@ endif()
 if(UNIX AND (NOT ANDROID))
     find_package(X11)
     if(X11_FOUND)
-        list(APPEND PLUGIN_LIBS X11::X11 X11::xcb)
+        list(APPEND PLUGIN_LIBS X11::X11 X11::xcb Xtst)
         if(NOT APPLE)
-          list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms)
-          list(APPEND PLUGIN_HEADER_FILES Unix/NativeEventFilterUnix.h)
-          list(APPEND PLUGIN_SOURCE_FILES Unix/NativeEventFilterUnix.cpp)
+            list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms)
+            list(APPEND PLUGIN_HEADER_FILES
+                Unix/NativeEventFilterUnix.h
+                Unix/DesktopShortcuts.h
+                Unix/KeyInjector.h
+                )
+            list(APPEND PLUGIN_SOURCE_FILES
+                Unix/NativeEventFilterUnix.cpp
+                Unix/DesktopShortcuts.cpp
+                Unix/KeyInjector.cpp
+                )
         endif()
     endif()
 endif()

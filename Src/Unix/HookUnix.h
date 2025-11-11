@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CHOOKUNIX_H
 #define CHOOKUNIX_H
 

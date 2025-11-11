@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "NativeEventFilterUnix.h"
 
 #if defined(Q_OS_WIN)
@@ -7,6 +9,7 @@
 #include <QApplication>
 #include <QLoggingCategory>
 #include <QKeyEvent>
+#include <QProcess>
 
 static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
 
@@ -195,9 +198,36 @@ int CNativeEventFilterUnix::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t
     return nRet;
 }
 
+void CNativeEventFilterUnix::DisableSuperKeyShortcuts()
+{
+    // GNOME
+    QProcess::execute("gsettings", {"set", "org.gnome.mutter", "overlay-key", ""});
+
+    // KDE (需要检测桌面环境)
+    QString desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+    if (desktop.contains("KDE", Qt::CaseInsensitive)) {
+        QProcess::execute("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", ""});
+        QProcess::execute("kwin_x11", {"--replace"});
+    }
+}
+
+void CNativeEventFilterUnix::RestoreSuperKeyShortcuts()
+{
+    // GNOME
+    QProcess::execute("gsettings", {"reset", "org.gnome.mutter", "overlay-key"});
+
+    // KDE (需要检测桌面环境)
+    QString desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+    if (desktop.contains("KDE", Qt::CaseInsensitive)) {
+        QProcess::execute("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", "org.kde.kglobalaccel,/component/kwin,,invokeShortcut,Show Desktop Grid"});
+        QProcess::execute("kwin_x11", {"--replace"});
+    }
+}
+
 CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     : m_pParameterPlugin(pPara)
 {
+    m_DesktopShortcutManager.disableAllShortcuts();
     m_pConnect = xcb_connect(NULL, NULL);
     // 连接到 X server
     if (xcb_connection_has_error(m_pConnect)) {
@@ -208,7 +238,7 @@ CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     // 初始化 Key Symbols
     m_pKeySymbols = xcb_key_symbols_alloc(m_pConnect);
     if (!m_pKeySymbols) {
-        qCritical(log) << "无法分配键符表";
+        qCritical(log) << "Unable to allocate symbol table";
         return;
     }
 }
@@ -219,6 +249,7 @@ CNativeEventFilterUnix::~CNativeEventFilterUnix()
     if(m_pKeySymbols)
         xcb_key_symbols_free(m_pKeySymbols);
     xcb_disconnect(m_pConnect);
+    m_DesktopShortcutManager.restoreAllShortcuts();
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
