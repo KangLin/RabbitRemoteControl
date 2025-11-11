@@ -121,8 +121,10 @@ if(UNIX AND (NOT ANDROID))
         list(APPEND CLIENT_LIBS X11::X11 X11::xcb)
         if(NOT APPLE)
           list(APPEND CLIENT_PRIVATE_LIBS X11::xcb_keysyms)
-          list(APPEND CLIENT_HEADER_FILES Unix/NativeEventFilterUnix.h)
-          list(APPEND CLIENT_SOURCE_FILES Unix/NativeEventFilterUnix.cpp)
+          list(APPEND CLIENT_HEADER_FILES Unix/NativeEventFilterUnix.h
+            Unix/DesktopShortcuts.h)
+          list(APPEND CLIENT_SOURCE_FILES Unix/NativeEventFilterUnix.cpp
+            Unix/DesktopShortcuts.cpp)
         endif()
     endif()
 endif()
@@ -202,6 +204,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         ${CLIENT_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${CLIENT_INSTALL_HEADER_FILES}

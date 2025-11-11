@@ -139,6 +139,7 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed \
@@ -160,6 +161,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. \
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
@@ -239,6 +241,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \

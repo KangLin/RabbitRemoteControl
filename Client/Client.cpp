@@ -51,9 +51,11 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent)
                     m_pHook->RegisterKeyboard();
             }
         });
-        m_pHook = CHook::GetHook(m_pParameterClient, this);
-        if(m_pHook)
-            m_pHook->RegisterKeyboard();
+        if(!m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
+            m_pHook = CHook::GetHook(m_pParameterClient, this);
+            if(m_pHook)
+                m_pHook->RegisterKeyboard();
+        }
     } else {
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);

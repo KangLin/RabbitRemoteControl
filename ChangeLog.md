@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.38
+- Fix disable desktop shortcuts in linux
+
 ### v0.0.37
 - Fix play is not sound in msvc
 
