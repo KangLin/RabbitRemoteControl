@@ -4,203 +4,158 @@
 <context>
     <name>CChannelSSH</name>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation>libssh 版本：</translation>
+        <translation type="vanished">libssh 版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation>libssh 協議版本：</translation>
+        <translation type="vanished">libssh 協議版本：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation>OpenSSH 服務器：</translation>
+        <translation type="vanished">OpenSSH 服務器：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation>SSH 失敗：ssh_new</translation>
+        <translation type="vanished">SSH 失敗：ssh_new</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation>SSH 失敗：服務器為空</translation>
+        <translation type="vanished">SSH 失敗：服務器為空</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation>SSH 失敗：設置主機失敗。主機：</translation>
+        <translation type="vanished">SSH 失敗：設置主機失敗。主機：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation>SSH 失敗：設置端口失敗。端口：</translation>
+        <translation type="vanished">SSH 失敗：設置端口失敗。端口：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation>SSH 失敗：ssh_pcap_file_new: </translation>
+        <translation type="vanished">SSH 失敗：ssh_pcap_file_new: </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation>SSH 連接失敗</translation>
+        <translation type="vanished">SSH 連接失敗</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation>用戶取消</translation>
+        <translation type="vanished">用戶取消</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="256"/>
         <source>SSH failed: Get server public key.</source>
-        <translation>SSH 失敗：得到服務器公鑰失敗</translation>
+        <translation type="vanished">SSH 失敗：得到服務器公鑰失敗</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="271"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation>SSH 失敗：得到公鑰哈希值失敗。</translation>
+        <translation type="vanished">SSH 失敗：得到公鑰哈希值失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
         <source>the host key for server changed. it is now:</source>
-        <translation>服務器主機密鑰改變。它現在是：</translation>
+        <translation type="vanished">服務器主機密鑰改變。它現在是：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation>因為安全原因，連接將停止。</translation>
+        <translation type="vanished">因為安全原因，連接將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="292"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="303"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
+        <translation type="vanished">請查看 OpenSSL 文檔，關於如何增加私有證書到存儲。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation>服務端主機密鑰未發現，但是另一個健已存在。</translation>
+        <translation type="vanished">服務端主機密鑰未發現，但是另一個健已存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation>攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
+        <translation type="vanished">攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
         <source>is not find in known host file.</source>
-        <translation>未能發現主機。</translation>
+        <translation type="vanished">未能發現主機。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation>如果您在此處接受主機密鑰，則將自動創建文件。</translation>
+        <translation type="vanished">如果您在此處接受主機密鑰，則將自動創建文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
         <source>Host key hash:</source>
-        <translation>主機密鑰哈希值：</translation>
+        <translation type="vanished">主機密鑰哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="316"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
         <source>Reject the host key</source>
-        <translation>拒絕主機密鑰</translation>
+        <translation type="vanished">拒絕主機密鑰</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation>服務器未知。您信任主機密鑰嗎？</translation>
+        <translation type="vanished">服務器未知。您信任主機密鑰嗎？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Error:</source>
-        <translation>錯誤：</translation>
+        <translation type="vanished">錯誤：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="360"/>
         <source>the host key hash:</source>
-        <translation>公鑰哈希值：</translation>
+        <translation type="vanished">公鑰哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
         <source>Will be stopped.</source>
-        <translation>將停止。</translation>
+        <translation type="vanished">將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="412"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation>SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
+        <translation type="vanished">SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="436"/>
         <source>Failed authenticating with password. User: </source>
-        <translation>用戶密碼進行身份驗證失敗。用戶：</translation>
+        <translation type="vanished">用戶密碼進行身份驗證失敗。用戶：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation>SSH失敗：未設置公鑰文件。</translation>
+        <translation type="vanished">SSH失敗：未設置公鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation>SSH失敗：導入公鑰失敗。</translation>
+        <translation type="vanished">SSH失敗：導入公鑰失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation>文件不存在或權限被拒絕：</translation>
+        <translation type="vanished">文件不存在或權限被拒絕：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="486"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation>SSH 失敗：身份驗證失敗。用戶：</translation>
+        <translation type="vanished">SSH 失敗：身份驗證失敗。用戶：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation>SSH 失敗：未設置私鑰文件。</translation>
+        <translation type="vanished">SSH 失敗：未設置私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation>SSH 失敗：導入私鑰失敗。</translation>
+        <translation type="vanished">SSH 失敗：導入私鑰失敗。</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation>SSH 失敗：打開轉發。</translation>
+        <translation type="vanished">SSH 失敗：打開轉發。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
         <source>The channel is eof</source>
-        <translation>通道已結束</translation>
+        <translation type="vanished">通道已結束</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation>通道已結束</translation>
+        <translation type="vanished">通道已結束</translation>
     </message>
 </context>
 <context>
@@ -271,7 +226,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="69"/>
+        <location filename="../../Manager.cpp" line="72"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -279,48 +234,48 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="72"/>
+        <location filename="../../Manager.cpp" line="75"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系統快捷鍵（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="74"/>
+        <location filename="../../Manager.cpp" line="77"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域網內喚醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="76"/>
+        <location filename="../../Manager.cpp" line="79"/>
         <source>Restart program by administrator?</source>
         <translation>用管理員權限重啟程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="77"/>
+        <location filename="../../Manager.cpp" line="80"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="79"/>
+        <location filename="../../Manager.cpp" line="82"/>
         <source>Always shown</source>
         <translation>總是顯示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="169"/>
+        <location filename="../../Manager.cpp" line="174"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="252"/>
-        <location filename="../../Manager.cpp" line="503"/>
+        <location filename="../../Manager.cpp" line="257"/>
+        <location filename="../../Manager.cpp" line="508"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="450"/>
+        <location filename="../../Manager.cpp" line="455"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="508"/>
+        <location filename="../../Manager.cpp" line="513"/>
         <source>Dependency libraries:</source>
         <translation>依賴庫：</translation>
     </message>
@@ -649,11 +604,6 @@ Some features are limited.
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
-        <source>Enable native window receive keyboard event(shortcut key)</source>
-        <translation>允許本地窗口接收鍵盤事件（快捷鍵）</translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="27"/>
         <source>Enable use the system user as the user</source>
         <translation>允許使用系統用戶作為用戶</translation>
@@ -700,6 +650,11 @@ Some features are limited.
         <translation>加密密鑰用於加密保存的密碼</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <source>Capture all keyboard</source>
+        <translation>捕獲所有按鍵</translation>
+    </message>
+    <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
         <source>Encrypt key:</source>
         <translation>加密密鑰：</translation>
@@ -736,22 +691,22 @@ Some features are limited.
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="90"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="88"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="92"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="95"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="98"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
@@ -1501,9 +1456,8 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
-        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
 </context>
 <context>

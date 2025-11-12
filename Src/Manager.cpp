@@ -95,10 +95,10 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
             }
         }
 
-        check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
-                        this, SLOT(slotNativeWindowRecieveKeyboard()));
+        check = connect(m_pParameter, SIGNAL(sigCaptureAllKeyboard()),
+                        this, SLOT(slotCaptureAllKeyboard()));
         Q_ASSERT(check);
-        if(!m_pParameter->GetNativeWindowReceiveKeyboard()) {
+        if(m_pParameter->GetCaptureAllKeyboard()) {
             m_pHook = CHook::GetHook(m_pParameter, this);
             if(m_pHook)
                 m_pHook->RegisterKeyboard();
@@ -516,19 +516,19 @@ const QString CManager::Details() const
     return szDetail;
 }
 
-void CManager::slotNativeWindowRecieveKeyboard()
+void CManager::slotCaptureAllKeyboard()
 {
     Q_ASSERT(m_pParameter);
-    if(m_pParameter->GetNativeWindowReceiveKeyboard()) {
+    if(m_pParameter->GetCaptureAllKeyboard()) {
+        if(m_pHook) return;
+        m_pHook = CHook::GetHook(m_pParameter, this);
+        if(m_pHook)
+            m_pHook->RegisterKeyboard();
+    } else {
         if(m_pHook) {
             m_pHook->UnRegisterKeyboard();
             m_pHook->deleteLater();
             m_pHook = nullptr;
         }
-    } else {
-        if(m_pHook) return;
-        m_pHook = CHook::GetHook(m_pParameter, this);
-        if(m_pHook)
-            m_pHook->RegisterKeyboard();
     }
 }

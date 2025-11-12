@@ -71,7 +71,7 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
 {
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
     {
-        if(m_pParameterPlugin && !m_pParameterPlugin->GetNativeWindowReceiveKeyboard()) {
+        if(m_pParameterPlugin && m_pParameterPlugin->GetCaptureAllKeyboard()) {
             
             bool bProcess = false;
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -79,6 +79,8 @@ bool CHook::eventFilter(QObject *watched, QEvent *event)
             switch (key) {
             case Qt::Key_Meta:
             case Qt::Key_Alt:
+            case Qt::Key_Super_L:
+            case Qt::Key_Super_R:
                 bProcess = true;
                 break;
             default:

@@ -15,9 +15,9 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QCheckBox" name="cbNativeWindowReceiveKeyboard">
+    <widget class="QCheckBox" name="cbCaptureAllKeyboard">
      <property name="text">
-      <string>Enable native window receive keyboard event(shortcut key)</string>
+      <string>Capture all keyboard</string>
      </property>
     </widget>
    </item>

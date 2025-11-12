@@ -79,7 +79,7 @@ bool CNativeEventFilterUnix::HandleKey(
 {
     int bRet = false;
     if(!m_pParameterPlugin
-        || m_pParameterPlugin->GetNativeWindowReceiveKeyboard()) {
+        || !m_pParameterPlugin->GetCaptureAllKeyboard()) {
         qDebug(log) << "Native window receive keyboard.";
         return false;
     }

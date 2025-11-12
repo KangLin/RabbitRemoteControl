@@ -45,12 +45,12 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 public:
-    bool GetNativeWindowReceiveKeyboard() const;
-    void SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard);
+    bool GetCaptureAllKeyboard() const;
+    void SetCaptureAllKeyboard(bool bCapture);
 Q_SIGNALS:
-    void sigNativeWindowRecieveKeyboard();
+    void sigCaptureAllKeyboard();
 private:
-    bool m_bNativeWindowReceiveKeyboard;
+    bool m_bCaptureAllKeyboard;
 
 public:
     bool GetEnableLocalInputMethod() const;

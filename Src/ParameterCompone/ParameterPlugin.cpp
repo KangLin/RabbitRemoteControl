@@ -5,7 +5,7 @@
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
-    , m_bNativeWindowReceiveKeyboard(false)
+    , m_bCaptureAllKeyboard(true)
     , m_bEnableLocalInputMethod(false)
     , m_bPromptAdministratorPrivilege(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege())
     , m_bEnableSystemUserToUser(true)
@@ -29,9 +29,8 @@ CParameterPlugin::~CParameterPlugin()
 int CParameterPlugin::OnLoad(QSettings &set)
 {
     set.beginGroup("Client");
-    SetNativeWindowReceiveKeyboard(
-        set.value("NativeWindowRecieveKeyboard",
-                  GetNativeWindowReceiveKeyboard()).toBool());
+    SetCaptureAllKeyboard(
+        set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
     SetEnableLocalInputMethod(set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
@@ -57,13 +56,11 @@ int CParameterPlugin::OnLoad(QSettings &set)
 int CParameterPlugin::OnSave(QSettings& set)
 {
     set.beginGroup("Client");
-    set.setValue("NativeWindowRecieveKeyboard",
-                 GetNativeWindowReceiveKeyboard());
+    set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
     set.setValue("InputMethod", GetEnableLocalInputMethod());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
-    set.setValue("Password/Prompty/Type",
-                 static_cast<int>(GetPromptType()));
+    set.setValue("Password/Prompty/Type", static_cast<int>(GetPromptType()));
     set.setValue("Password/Save", GetSavePassword());
     set.setValue("Password/View", GetViewPassowrd());
     set.setValue("Password/UseSystemCredential", GetUseSystemCredential());
@@ -74,18 +71,18 @@ int CParameterPlugin::OnSave(QSettings& set)
     return 0;
 }
 
-bool CParameterPlugin::GetNativeWindowReceiveKeyboard() const
+bool CParameterPlugin::GetCaptureAllKeyboard() const
 {
-    return m_bNativeWindowReceiveKeyboard;
+    return m_bCaptureAllKeyboard;
 }
 
-void CParameterPlugin::SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard)
+void CParameterPlugin::SetCaptureAllKeyboard(bool bCapture)
 {
-    if(m_bNativeWindowReceiveKeyboard == newNativeWindowRecieveKeyboard)
+    if(m_bCaptureAllKeyboard == bCapture)
         return;
-    m_bNativeWindowReceiveKeyboard = newNativeWindowRecieveKeyboard;
+    m_bCaptureAllKeyboard = bCapture;
     SetModified(true);
-    emit sigNativeWindowRecieveKeyboard();
+    emit sigCaptureAllKeyboard();
 }
 
 bool CParameterPlugin::GetEnableLocalInputMethod() const

@@ -114,7 +114,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
 
     // 备份当前设置
     backupGNOMESettings();
-    
+
     // 使用正确的数据结构来存储设置
     struct GNOMESetting {
         QString schema;
@@ -123,6 +123,9 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
     };
     
     QVector<GNOMESetting> disabledSettings = {
+        // Super 键
+        {"org.gnome.mutter", "overlay-key", "''"},
+
         // 窗口管理
         {"org.gnome.desktop.wm.keybindings", "close", "['']"},
         {"org.gnome.desktop.wm.keybindings", "minimize", "['']"},
@@ -148,7 +151,10 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
         {"org.gnome.shell.keybindings", "toggle-message-tray", "['']"},
         {"org.gnome.shell.keybindings", "focus-active-notification", "['']"},
         {"org.gnome.shell.keybindings", "toggle-overview", "['']"},
-        {"org.gnome.shell.keybindings", "open-application-menu", "['']"},
+        // {"org.gnome.shell.keybindings", "screenshot", "['']"},
+        // {"org.gnome.shell.keybindings", "screenshot-window", "['']"},
+        // {"org.gnome.shell.keybindings", "show-screenshot-ui", "['']"},
+        // {"org.gnome.shell.keybindings", "show-screen-recording-ui", "['']"},
         
         // 媒体键
         {"org.gnome.settings-daemon.plugins.media-keys", "home", "['']"},
@@ -169,9 +175,6 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
         // 自定义快捷键
         {"org.gnome.settings-daemon.plugins.media-keys", "custom-keybindings", "['']"},
         
-        // Super 键
-        {"org.gnome.mutter", "overlay-key", "''"},
-        
         // 其他系统快捷键
         {"org.gnome.desktop.wm.keybindings", "panel-main-menu", "['']"},
         {"org.gnome.desktop.wm.keybindings", "panel-run-dialog", "['']"},
@@ -181,6 +184,7 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
         {"org.gnome.desktop.wm.keybindings", "switch-windows-backward", "['']"},
         {"org.gnome.desktop.wm.keybindings", "switch-group", "['']"},
         {"org.gnome.desktop.wm.keybindings", "switch-group-backward", "['']"}
+
     };
     
     // 应用设置
@@ -236,9 +240,9 @@ bool CDesktopShortcutManager::restoreGNOMEShortcuts()
             
             if (runCommand("gsettings", {"set", schema, key, value})) {
                 successCount++;
-                qDebug(log) << "Restored:" << schema << key;
+                qDebug(log) << "Restored:" << schema << key << value;
             } else {
-                qCritical(log) << "Restore failed:" << schema << key;
+                qCritical(log) << "Restore failed:" << schema << key << value;
                 allSuccess = false;
             }
         }
@@ -329,13 +333,15 @@ void CDesktopShortcutManager::backupGNOMESettings()
         QStringList keys = output.split('\n', Qt::SkipEmptyParts);
         qDebug(log) << QString("Schema %1 has %2 keys").arg(schema).arg(keys.size());
 
-        for (const QString &key : keys) {
+        foreach (const QString &key, keys) {
             QString value = getCommandOutput("gsettings", {"get", schema, key}).trimmed();
             if (!value.isEmpty()) {
                 // 使用 schema + key 作为唯一标识
                 QString settingKey = schema + "|" + key;
                 m_gnomeSettings[settingKey] = value;
                 qDebug(log) << "Backup:" << settingKey << "=" << value;
+            } else {
+                qWarning(log) << "Backup fail:" << schema + "|" + key;
             }
         }
     }
@@ -449,7 +455,7 @@ bool CDesktopShortcutManager::runCommand(const QString &program, const QStringLi
     process.setProgram(program);
     process.setArguments(args);
 
-    qDebug(log) << "RunCommand:" << program << args;
+    //qDebug(log) << "Command:" << program << args;
 
     process.start();
 
