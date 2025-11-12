@@ -1,9 +1,9 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System]
-"DisableCAD"=dword:00000001
-"DisableLockWorkstation"=dword:00000001
-"DisableTaskMgr"=dword:00000001
+;"DisableCAD"=dword:00000001
+;"DisableLockWorkstation"=dword:00000001
+;"DisableTaskMgr"=dword:00000001
 "DisableChangePassword"=dword:00000001
 "DisableSwitchUserOption"=dword:00000001
 
@@ -13,4 +13,5 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon]
 "DisableCAD"=dword:00000001
 "DisableLockWorkstation"=dword:00000001
+"DisableTaskMgr"=dword:00000001
 "SoftBoot"=dword:00000000
