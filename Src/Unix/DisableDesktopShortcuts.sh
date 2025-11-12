@@ -72,7 +72,7 @@ case $DESKTOP_ENV in
         ;;
         
     *)
-        echo "Unsupport desktop: $DESKTOP_ENV"
+        echo "Unsupported desktop: $DESKTOP_ENV"
         ;;
 esac
 

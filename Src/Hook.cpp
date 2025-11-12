@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QDesktopServices>
 #include <QLoggingCategory>
 #include <QApplication>
 #include <QKeyEvent>
@@ -47,7 +48,11 @@ int CHook::RegisterKeyboard()
     if(m_pParameterPlugin->GetDesktopShortcutsScript()
         && !m_pParameterPlugin->GetRestoreDesktopShortcutsScript().isEmpty()
         && !m_pParameterPlugin->GetDisableDesktopShortcutsScript().isEmpty()) {
+#if defined(Q_OS_WIN32)
+        QDesktopServices::openUrl(m_pParameterPlugin->GetDisableDesktopShortcutsScript());
+#else
         RunCommand(m_pParameterPlugin->GetDisableDesktopShortcutsScript());
+#endif
         m_bScript = true;
     } else {
         OnDisableDesktopShortcuts();
@@ -59,7 +64,11 @@ int CHook::RegisterKeyboard()
 int CHook::UnRegisterKeyboard()
 {
     if(m_bScript) {
+#if defined(Q_OS_WIN32)
+        QDesktopServices::openUrl(m_pParameterPlugin->GetRestoreDesktopShortcutsScript());
+#else
         RunCommand(m_pParameterPlugin->GetRestoreDesktopShortcutsScript());
+#endif
     } else {
         OnRestoreDesktopShortcuts();
     }

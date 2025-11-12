@@ -210,15 +210,18 @@ void CHookWindows::DisableTaskManager(bool flag)
     QSettings system(TASKMANAGERSystem, QSettings::NativeFormat);
     system.setValue("DisableTaskMgr", value); //任务管理器
     system.setValue("DisableChangePassword", value); //更改密码
-    system.setValue("DisableLockWorkstation", value); //锁定计算机
     system.setValue("DisableSwitchUserOption", value); //切换用户
+    system.setValue("DisableCAD", value); // Disable ctrl+alt+del
+    system.setValue("DisableLockWorkstation", value); //锁定计算机
 
     QSettings explorer(TASKMANAGERExplorer, QSettings::NativeFormat);
     explorer.setValue("NoLogOff", value); //注销
-    
-    // Disable ctrl+alt+del
+
+    /*
     QSettings winlogon(WINLOGON, QSettings::NativeFormat);
-    winlogon.setValue("DisableCAD", value);
+    winlogon.setValue("DisableCAD", value); // Disable ctrl+alt+del
+    winlogon.setValue("DisableLockWorkstation", value); //锁定计算机
+    //*/
 }
 
 bool CHookWindows::DisableWindowsKey()
