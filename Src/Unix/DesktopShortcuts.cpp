@@ -60,7 +60,8 @@ bool CDesktopShortcutManager::disableAllShortcuts()
 
     m_shortcutsDisabled = true;
     bool success = false;
-    
+
+#if defined(Q_OS_LINUX)
     if (m_desktopEnv == "GNOME") {
         success = disableGNOMEShortcuts();
     } else if (m_desktopEnv == "KDE") {
@@ -72,6 +73,7 @@ bool CDesktopShortcutManager::disableAllShortcuts()
         qWarning(log) << "Unsupported desktop environment:" << m_desktopEnv;
         return false;
     }
+#endif
 
     if (success) {
         qDebug(log) << "All desktop shortcuts have been disabled";
@@ -90,6 +92,7 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
     m_shortcutsDisabled = false;
     bool success = false;
 
+#if defined(Q_OS_LINUX)
     if (m_desktopEnv == "GNOME") {
         success = restoreGNOMEShortcuts();
         //resetGNOMEShortcuts();
@@ -99,6 +102,7 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
         qWarning(log) << "Unsupported desktop environment:" << m_desktopEnv;
         return false;
     }
+#endif
 
     if (success) {
         qDebug(log) << "All desktop shortcuts have been restored";
@@ -107,6 +111,7 @@ bool CDesktopShortcutManager::restoreAllShortcuts()
     return success;
 }
 
+#if defined(Q_OS_LINUX)
 // GNOME 快捷键管理
 bool CDesktopShortcutManager::disableGNOMEShortcuts()
 {
@@ -447,13 +452,15 @@ void CDesktopShortcutManager::backupKDESettings()
         }
     }
 }
+#endif // #if defined(Q_OS_LINUX)
 
 // 通用工具方法
 bool CDesktopShortcutManager::runCommand(const QString &program, const QStringList &args, int timeout)
 {
     QProcess process;
     process.setProgram(program);
-    process.setArguments(args);
+    if(!args.isEmpty())
+        process.setArguments(args);
 
     //qDebug(log) << "Command:" << program << args;
 

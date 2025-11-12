@@ -30,4 +30,7 @@ public:
     virtual int Accept() override;
 private slots:
     void on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state);
+    void on_pbDesktopShortcutsDisable_clicked();
+    void on_pbDesktopShortcutsRestore_clicked();
+    void on_cbCaptureAllKeyboard_checkStateChanged(const Qt::CheckState &arg1);
 };

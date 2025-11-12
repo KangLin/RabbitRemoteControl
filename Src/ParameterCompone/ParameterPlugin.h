@@ -53,6 +53,22 @@ private:
     bool m_bCaptureAllKeyboard;
 
 public:
+    bool GetDesktopShortcutsScript() const;
+    void SetDesktopShortcutsScript(bool newDesktopShortcutsScript);
+private:
+    bool m_bDesktopShortcutsScript;
+public:
+    QString GetDisableDesktopShortcutsScript() const;
+    void SetDisableDesktopShortcutsScript(const QString &newDisableDesktopShortcutsScript);
+private:
+    QString m_szDisableDesktopShortcutsScript;
+public:
+    QString GetRestoreDesktopShortcutsScript() const;
+    void SetRestoreDesktopShortcutsScript(const QString &newRestoreDesktopShortcutsScript);
+private:
+    QString m_szRestoreDesktopShortcutsScript;
+
+public:
     bool GetEnableLocalInputMethod() const;
     void SetEnableLocalInputMethod(bool enable);
 private:

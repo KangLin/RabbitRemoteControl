@@ -36,7 +36,6 @@ public:
     static void DisableSuperKeyShortcuts();
 private:
     CParameterPlugin *m_pParameterPlugin;
-    CDesktopShortcutManager m_DesktopShortcutManager;
 };
 
 #endif // CNATIVEEVENTFILTER_H

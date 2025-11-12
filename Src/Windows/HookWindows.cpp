@@ -11,7 +11,7 @@
 #include "HookWindows.h"
 #include "RabbitCommonTools.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
+static Q_LOGGING_CATEGORY(log, "Plugin.Hook.Windows")
 
 CHookWindows::CHookWindows(CParameterPlugin *pParaClient, QObject *parent)
     : CHook(pParaClient, parent),
@@ -122,12 +122,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 }
 
 // See: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw
-int CHookWindows::RegisterKeyboard()
+int CHookWindows::OnRegisterKeyboard()
 {
     if(m_hKeyboard)
         UnRegisterKeyboard();
-    DisableTaskManager(true);
-    //DisableWindowsKey();
     m_hKeyboard = SetWindowsHookExW(WH_KEYBOARD_LL, keyboardHookProc, nullptr, 0);
     if(NULL == m_hKeyboard) {
         qCritical(log) << "SetWindowsHookExW error:" << GetLastError();
@@ -136,16 +134,25 @@ int CHookWindows::RegisterKeyboard()
     return 0;
 }
 
-int CHookWindows::UnRegisterKeyboard()
+int CHookWindows::OnUnRegisterKeyboard()
 {
     if(m_hKeyboard)
     {
         UnhookWindowsHookEx(m_hKeyboard);
         m_hKeyboard = nullptr;
     }
+    return 0;
+}
+
+int CHookWindows::OnDisableDesktopShortcuts()
+{
+    DisableTaskManager(true);
+    return 0;
+}
+
+int CHookWindows::OnRestoreDesktopShortcuts()
+{
     DisableTaskManager(false);
-    //EnableWindowsKey();
-    //EnableTaskManager();
     return 0;
 }
 
@@ -195,18 +202,23 @@ bool EnableDebugPrivileges() {
 //在注册表该目录下增加新内容
 #define TASKMANAGERSystem "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
 #define TASKMANAGERExplorer "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+#define WINLOGON "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
 void CHookWindows::DisableTaskManager(bool flag)
 {
     // 屏蔽ctrl + alt +del 需要修改注册表的值， 取得管理员权限， 关闭360等杀毒软件
     int value = flag ? 0x00000001 : 0x00000000;
-    QSettings settings(TASKMANAGERSystem, QSettings::NativeFormat);
-    settings.setValue("DisableTaskMgr", value); //任务管理器
-    settings.setValue("DisableChangePassword", value); //更改密码
-    settings.setValue("DisableLockWorkstation", value); //锁定计算机
-    settings.setValue("DisableSwitchUserOption", value); //切换用户
+    QSettings system(TASKMANAGERSystem, QSettings::NativeFormat);
+    system.setValue("DisableTaskMgr", value); //任务管理器
+    system.setValue("DisableChangePassword", value); //更改密码
+    system.setValue("DisableLockWorkstation", value); //锁定计算机
+    system.setValue("DisableSwitchUserOption", value); //切换用户
 
-    QSettings settings2(TASKMANAGERExplorer, QSettings::NativeFormat);
-    settings2.setValue("NoLogOff", value); //注销
+    QSettings explorer(TASKMANAGERExplorer, QSettings::NativeFormat);
+    explorer.setValue("NoLogOff", value); //注销
+    
+    // Disable ctrl+alt+del
+    QSettings winlogon(WINLOGON, QSettings::NativeFormat);
+    winlogon.setValue("DisableCAD", value);
 }
 
 bool CHookWindows::DisableWindowsKey()

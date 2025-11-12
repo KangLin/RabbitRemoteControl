@@ -7,28 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>546</width>
-    <height>480</height>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Plugin</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QCheckBox" name="cbCaptureAllKeyboard">
-     <property name="text">
-      <string>Capture all keyboard</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QCheckBox" name="cbEnableUserName">
-     <property name="text">
-      <string>Enable use the system user as the user</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
+   <item row="6" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Password</string>
@@ -145,7 +131,51 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="8" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Name</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cbShowPrefix">
+        <property name="text">
+         <string>Show protocol prefix in name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbShowIPPort">
+        <property name="text">
+         <string>Only show ip:port in name</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="cbCaptureAllKeyboard">
+     <property name="text">
+      <string>Capture all keyboard</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QCheckBox" name="cbEnableUserName">
+     <property name="text">
+      <string>Enable use the system user as the user</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="cbEnableLocalInputMethod">
+     <property name="text">
+      <string>Enable local input method</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
@@ -172,40 +202,67 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="cbPromptAdminPrivilege">
-     <property name="text">
-      <string>Prompt administrator privilege</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="gpDesktopShortcutsSctipt">
      <property name="title">
-      <string>Name</string>
+      <string>Desktop shortcuts script</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
       <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
-        <property name="text">
-         <string>Show protocol prefix in name</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Disable script:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="leDesktopShortcutsDisableScript"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbDesktopShortcutsDisable">
+          <property name="text">
+           <string>Browser</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
-        <property name="text">
-         <string>Only show ip:port in name</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Restore script:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="leDesktopShortcutsRestoreScript"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbDesktopShortcutsRestore">
+          <property name="text">
+           <string>Browser</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QCheckBox" name="cbEnableLocalInputMethod">
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="cbPromptAdminPrivilege">
      <property name="text">
-      <string>Enable local input method</string>
+      <string>Prompt administrator privilege</string>
      </property>
     </widget>
    </item>

@@ -13,9 +13,11 @@ public:
     explicit CHookWindows(CParameterPlugin* pParaClient, QObject *parent = nullptr);
     virtual ~CHookWindows();
 
-public:
-    virtual int RegisterKeyboard() override;
-    virtual int UnRegisterKeyboard() override;
+protected:
+    virtual int OnRegisterKeyboard() override;
+    virtual int OnUnRegisterKeyboard() override;
+    virtual int OnDisableDesktopShortcuts() override;
+    virtual int OnRestoreDesktopShortcuts() override;
 
 private:
     static LRESULT CALLBACK keyboardHookProc(INT code, WPARAM wparam, LPARAM lparam);

@@ -60,6 +60,7 @@ list(APPEND PLUGIN_HEADER_FILES
     FrmScroll.h
     DlgInputPassword.h
     Hook.h
+    Unix/DesktopShortcuts.h
     ParameterCompone/ParameterPluginUI.h
     StatsAppUsage.h
     )
@@ -95,6 +96,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp
+    Unix/DesktopShortcuts.cpp
     StatsAppUsage.cpp
     )
 
@@ -181,13 +183,15 @@ if(UNIX AND (NOT ANDROID))
             list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms Xtst)
             list(APPEND PLUGIN_HEADER_FILES
                 Unix/NativeEventFilterUnix.h
-                Unix/DesktopShortcuts.h
                 Unix/KeyInjector.h
                 )
             list(APPEND PLUGIN_SOURCE_FILES
                 Unix/NativeEventFilterUnix.cpp
-                Unix/DesktopShortcuts.cpp
                 Unix/KeyInjector.cpp
+                )
+            INSTALL(FILES Unix/DisableDesktopShortcuts.sh Unix/RestoreDesktopShortcuts.sh
+                DESTINATION "${CMAKE_INSTALL_DATADIR}/Script"
+                    COMPONENT Runtime
                 )
         endif()
     endif()

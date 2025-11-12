@@ -6,6 +6,7 @@
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
     , m_bCaptureAllKeyboard(true)
+    , m_bDesktopShortcutsScript(false)
     , m_bEnableLocalInputMethod(false)
     , m_bPromptAdministratorPrivilege(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege())
     , m_bEnableSystemUserToUser(true)
@@ -31,6 +32,14 @@ int CParameterPlugin::OnLoad(QSettings &set)
     set.beginGroup("Client");
     SetCaptureAllKeyboard(
         set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
+    SetDesktopShortcutsScript(set.value("DesktopShortcutsScript/Enable",
+                                        GetDesktopShortcutsScript()).toBool());
+    SetDisableDesktopShortcutsScript(
+        set.value("DesktopShortcutsScript/Disable",
+                  GetDisableDesktopShortcutsScript()).toString());
+    SetRestoreDesktopShortcutsScript(
+        set.value("DesktopShortcutsScript/Restore",
+                  GetRestoreDesktopShortcutsScript()).toString());
     SetEnableLocalInputMethod(set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
@@ -57,6 +66,9 @@ int CParameterPlugin::OnSave(QSettings& set)
 {
     set.beginGroup("Client");
     set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
+    set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());
+    set.setValue("DesktopShortcutsScript/Disable", GetDisableDesktopShortcutsScript());
+    set.setValue("DesktopShortcutsScript/Restore", GetRestoreDesktopShortcutsScript());
     set.setValue("InputMethod", GetEnableLocalInputMethod());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
@@ -83,6 +95,45 @@ void CParameterPlugin::SetCaptureAllKeyboard(bool bCapture)
     m_bCaptureAllKeyboard = bCapture;
     SetModified(true);
     emit sigCaptureAllKeyboard();
+}
+
+bool CParameterPlugin::GetDesktopShortcutsScript() const
+{
+    return m_bDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetDesktopShortcutsScript(bool newDesktopShortcutsScript)
+{
+    if(m_bDesktopShortcutsScript == newDesktopShortcutsScript)
+        return;
+    m_bDesktopShortcutsScript = newDesktopShortcutsScript;
+    SetModified(true);
+}
+
+QString CParameterPlugin::GetRestoreDesktopShortcutsScript() const
+{
+    return m_szRestoreDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetRestoreDesktopShortcutsScript(const QString &newRestoreDesktopShortcutsScript)
+{
+    if(m_szRestoreDesktopShortcutsScript == newRestoreDesktopShortcutsScript)
+        return;
+    m_szRestoreDesktopShortcutsScript = newRestoreDesktopShortcutsScript;
+    SetModified(true);
+}
+
+QString CParameterPlugin::GetDisableDesktopShortcutsScript() const
+{
+    return m_szDisableDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetDisableDesktopShortcutsScript(const QString &newDisableDesktopShortcutsScript)
+{
+    if(m_szDisableDesktopShortcutsScript == newDisableDesktopShortcutsScript)
+        return;
+    m_szDisableDesktopShortcutsScript = newDisableDesktopShortcutsScript;
+    SetModified(true);
 }
 
 bool CParameterPlugin::GetEnableLocalInputMethod() const

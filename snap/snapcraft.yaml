@@ -310,7 +310,12 @@ parts:
       - libvncserver-dev
       - libtelnet-dev
       - libpcap-dev
+      # Xlib
       - libx11-dev
+      - libxtst-dev
+      # xcb
+      - libxcb1-dev
+      - libxcb-xtest0-dev
       - libxcb-keysyms1-dev
       # opengl development headers and libraries
       - libglx-dev
@@ -330,6 +335,10 @@ parts:
       - libvncserver1
       - libvncclient1
       - libcurl4
+      # xcb
+      - libxcb1
+      - libxcb-xtest0
+      - libxcb-keysyms1
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release

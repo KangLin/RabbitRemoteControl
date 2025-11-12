@@ -11,7 +11,7 @@
 #include <QKeyEvent>
 #include <QProcess>
 
-static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
+static Q_LOGGING_CATEGORY(log, "Plugin.Hook.NativeEventFilter")
 
 #include <xcb/xcb.h>
 #include <xcb/xcb_keysyms.h>
@@ -227,7 +227,6 @@ void CNativeEventFilterUnix::RestoreSuperKeyShortcuts()
 CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     : m_pParameterPlugin(pPara)
 {
-    m_DesktopShortcutManager.disableAllShortcuts();
     m_pConnect = xcb_connect(NULL, NULL);
     // 连接到 X server
     if (xcb_connection_has_error(m_pConnect)) {
@@ -249,7 +248,6 @@ CNativeEventFilterUnix::~CNativeEventFilterUnix()
     if(m_pKeySymbols)
         xcb_key_symbols_free(m_pKeySymbols);
     xcb_disconnect(m_pConnect);
-    m_DesktopShortcutManager.restoreAllShortcuts();
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
