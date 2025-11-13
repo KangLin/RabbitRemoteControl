@@ -5,6 +5,9 @@
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #endif
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    #include <QtX11Extras/QX11Info>
+#endif
 
 #include <QApplication>
 #include <QLoggingCategory>
@@ -226,16 +229,19 @@ void CNativeEventFilterUnix::RestoreSuperKeyShortcuts()
 
 CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     : m_pParameterPlugin(pPara)
+    , m_pKeySymbols(nullptr)
 {
-    m_pConnect = xcb_connect(NULL, NULL);
-    // 连接到 X server
-    if (xcb_connection_has_error(m_pConnect)) {
-        qCritical(log) << "Don't connect X server";
-        return;
+    xcb_connection_t *connection = nullptr;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
+        display = x11Application->display();
+        connection = x11Application->connection();
     }
-
+#else
+    connection = QX11Info::connection();
+#endif
     // 初始化 Key Symbols
-    m_pKeySymbols = xcb_key_symbols_alloc(m_pConnect);
+    m_pKeySymbols = xcb_key_symbols_alloc(connection);
     if (!m_pKeySymbols) {
         qCritical(log) << "Unable to allocate symbol table";
         return;
@@ -247,7 +253,6 @@ CNativeEventFilterUnix::~CNativeEventFilterUnix()
     // 清理
     if(m_pKeySymbols)
         xcb_key_symbols_free(m_pKeySymbols);
-    xcb_disconnect(m_pConnect);
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
