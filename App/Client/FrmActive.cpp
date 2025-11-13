@@ -28,7 +28,7 @@ CFrmActive::CFrmActive(QVector<COperate*> &operates,
     , m_nId(3)
 {
     bool check = false;
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
     //setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Activity list"));
 

@@ -1403,17 +1403,9 @@ void MainWindow::slotShortCut()
     {
         setFocusPolicy(Qt::WheelFocus);
         ui->actionFull_screen_F->setShortcuts(QKeySequence::FullScreen);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        ui->actionScreenshot->setShortcut(
-            QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
-                         QKeyCombination(Qt::Key_S)));
-#else
-        ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
-#endif
     } else {
         setFocusPolicy(Qt::NoFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence());
-        ui->actionScreenshot->setShortcut(QKeySequence());
     }
 }
 

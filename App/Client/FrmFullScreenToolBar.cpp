@@ -36,7 +36,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
 
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
     m_ToolBar.addSeparator();
