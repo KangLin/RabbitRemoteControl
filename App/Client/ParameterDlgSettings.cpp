@@ -1,5 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QScrollArea>
+#include <QFileDialog>
+#include <QLoggingCategory>
+
 #include "ParameterDlgSettings.h"
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
@@ -8,9 +12,6 @@
 #ifdef HAVE_ICE
 #include "Ice.h"
 #endif
-
-#include <QFileDialog>
-#include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.Parameter")
 
@@ -26,7 +27,10 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)
     {
-        ui->tabWidget->addTab(p, p->windowIcon(), p->windowTitle());
+        QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
+        if(!pScroll) continue;
+        pScroll->setWidget(p);
+        ui->tabWidget->addTab(pScroll, p->windowIcon(), p->windowTitle());
         bool check = false;
         check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
         if(!check)

@@ -23,35 +23,7 @@ static Q_LOGGING_CATEGORY(log, "Plugin.Hook.NativeEventFilter")
 #include <X11/keysymdef.h>
 
 /*
-int GetKeySym(xcb_key_press_event_t* event, xcb_keysym_t& keysym)
-{
-    xcb_connection_t *connection = xcb_connect(NULL, NULL);
-    // 连接到 X server
-    if (xcb_connection_has_error(connection)) {
-        qCritical(log) << "Don't connect X server";
-        return -1;
-    }
-    // 初始化 Key Symbols
-    xcb_key_symbols_t *key_symbols = xcb_key_symbols_alloc(connection);
-    if (!key_symbols) {
-        qCritical(log) << "无法分配键符表";
-        return -2;
-    }
-    // 将 keycode 转换为 keysym
-    keysym = xcb_key_symbols_get_keysym(key_symbols, event->detail, 0);
-    // 处理 Shift 组合键
-    if (event->state & XCB_MOD_MASK_SHIFT) {
-        keysym = xcb_key_symbols_get_keysym(key_symbols, event->detail, 1);
-    }
-    qDebug(log) << "keycode:" << event->detail << "keySym:" << keysym;
-    // 清理
-    xcb_key_symbols_free(key_symbols);
-    xcb_disconnect(connection);
-    return 0;
-}
-
-void
-print_modifiers (uint32_t mask)
+void print_modifiers (uint32_t mask)
 {
     const char **mod, *mods[] = {
                           "Shift", "Lock", "Ctrl", "Alt",
@@ -63,7 +35,7 @@ print_modifiers (uint32_t mask)
         if (mask & 1)
             qDebug(log) << *mod;
 }
-*/
+//*/
 
 Qt::KeyboardModifiers GetModifiers(uint32_t mask)
 {
@@ -231,10 +203,10 @@ CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     : m_pParameterPlugin(pPara)
     , m_pKeySymbols(nullptr)
 {
+    // See: https://doc.qt.io/qt-6/extras-changes-qt6.html#changes-to-qt-x11-extras
     xcb_connection_t *connection = nullptr;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
-        display = x11Application->display();
         connection = x11Application->connection();
     }
 #else
