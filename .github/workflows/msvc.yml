@@ -24,15 +24,6 @@ jobs:
             BUILD_TYPE: Release
             os: windows-2022
 
-          - CMAKE_GENERATOR_PLATFORM: x64
-            VCPKG_TARGET_TRIPLET: x64-windows
-            VCPKG_PLATFORM_TOOLSET: v143
-            qt_version: 6.8.1
-            qt_arch: win64_msvc2022_64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
-            BUILD_TYPE: Release
-            os: windows-2022
-
           - CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
@@ -456,8 +447,11 @@ jobs:
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
           IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
-              xcopy "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6 /Y /S /I
+              xcopy /Y /S /I "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6
           )
+          copy /Y %QT_ROOT_DIR%\bin\QtWebEngineProcess.exe install\bin
+          xcopy /Y /S /I %QT_ROOT_DIR%\resources install\bin\resources
+          xcopy /Y /S /I %QT_ROOT_DIR%\translations install\bin\translations
           C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-1.80.exe
           copy npcap-1.80.exe install\bin
           ;7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip .\install\*
