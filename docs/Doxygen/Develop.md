@@ -75,5 +75,5 @@ Source root
 
 ### Icon theme
 
-- Icon Theme Specification: https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
-- Icon Naming Specification: https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+- Icon Theme Specification: https://specifications.freedesktop.org/icon-theme/latest/
+- Icon Naming Specification: https://specifications.freedesktop.org/icon-naming/

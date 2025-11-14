@@ -78,5 +78,5 @@
 ### 图标主题
 
 - Qt 主题: https://github.com/KangLin/Documents/blob/master/qt/theme.md
-- 图标主题规范: https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
-- 图标命名规范: https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+- 图标主题规范: https://specifications.freedesktop.org/icon-theme/
+- 图标命名规范: https://specifications.freedesktop.org/icon-naming/

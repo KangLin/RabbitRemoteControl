@@ -192,10 +192,10 @@ Legend:
   - [LibVNCServer](Plugins/LibVNCServer/README.md)
 - [Wake on lan](Plugins/WakeOnLan/README.md)
 - [Player](Plugins/Player/README.md)
-- [Screen capture: Example](Plugins/ScreenCaptue)
+- [Screen capture: Example](Plugins/ScreenCapture)
 - Terminal
   - [Terminal](Plugins/Terminal)
-  - [SSH](Plugins/LibSSH)
+  - [SSH](Plugins/SSH)
   - [TELNET](Plugins/Telnet)
   - [Serial Port](Plugins/SerialPort)
 - [File transfer](Plugins/FileTransfer)

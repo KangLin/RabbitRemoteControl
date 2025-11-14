@@ -12,7 +12,7 @@
 ## 工具
 
 - [Qt (LGPL v2.1)](http://qt.io/)  
-- [x] c compiler
+- C compiler
   + GCC/G++
   + MSVC
 - [cmake](https://cmake.org/)

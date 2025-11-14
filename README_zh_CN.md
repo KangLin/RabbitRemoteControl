@@ -193,7 +193,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 - 屏幕捕获：示例
 - 终端
   - [本地终端](Plugins/Terminal)
-  - [SSH](Plugins/LibSSH)
+  - [SSH](Plugins/SSH)
   - [TELNET](Plugins/Telnet)
   - [串口](Plugins/SerialPort)
 - [文件传输](Plugins/FileTransfer)

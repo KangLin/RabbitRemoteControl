@@ -11,7 +11,7 @@ See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
 ## Tools
 - [Qt (LGPL v2.1)](http://qt.io/)  
-- [x] c compiler
+- C compiler
   + GCC/G++
   + MSVC
 - [cmake](https://cmake.org/)
