@@ -483,6 +483,9 @@
    </property>
   </action>
   <action name="actionUser_manual">
+   <property name="icon">
+    <iconset theme="user-manual"/>
+   </property>
    <property name="text">
     <string>User manual</string>
    </property>
