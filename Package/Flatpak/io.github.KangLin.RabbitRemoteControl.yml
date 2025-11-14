@@ -15,6 +15,7 @@ cleanup-commands:
 build-options:
   env:
     V: "1"
+    # 修复 qtwebengine 沙箱权限问题
     QTWEBENGINE_DISABLE_SANDBOX: '1'
 
 cleanup:

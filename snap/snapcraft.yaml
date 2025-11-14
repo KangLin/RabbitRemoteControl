@@ -395,6 +395,8 @@ apps:
    environment:
       LD_LIBRARY_PATH: ${SNAP}/usr/local/lib::${LD_LIBRARY_PATH}
       PATH: $SNAP/usr/local/bin:$PATH
+      # 修复 qtwebengine 沙箱权限问题
+      QTWEBENGINE_DISABLE_SANDBOX: 1
    # List extensions, run `snapcraft extensions`
    extensions:
      # [KDE neon extensions](https://documentation.ubuntu.com/snapcraft/stable/reference/extensions/kde-neon-extensions/)
