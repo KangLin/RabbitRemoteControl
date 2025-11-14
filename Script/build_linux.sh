@@ -214,6 +214,8 @@ if [ $DOCKER -eq 1 ]; then
         docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+            apt-get update -y
+            apt-get install lsb-release
             ~/RabbitRemoteControl/Script/build_linux.sh --appimage --verbose ${BUILD_VERBOSE}
             cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/build/
             "
@@ -260,13 +262,21 @@ fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
+    case "`lsb_release -s -r`" in
+        "25.04"|"25.10")
+            depend_para="--default"
+            ;;
+        "24.04"|"24.10")
+            depend_para="--qt=${QT_VERSION}"
+            ;;
+        
+    esac
     ./build_depend.sh --system_update --base --rabbitcommon \
         --tigervnc --freerdp --pcapplusplus --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE} \
-        --qt=${QT_VERSION}
+        --verbose=${BUILD_VERBOSE} ${depend_para}
 
     export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
     export Qt6_DIR=$QT_ROOT
