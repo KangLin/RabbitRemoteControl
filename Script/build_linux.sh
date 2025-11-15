@@ -268,6 +268,11 @@ if [ $APPIMAGE -eq 1 ]; then
             ;;
         "24.04"|"24.10")
             depend_para="--qt=${QT_VERSION}"
+            export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
+            export Qt6_DIR=$QT_ROOT
+            export QMAKE=$QT_ROOT/bin/qmake
+            export QT_PLUGIN_PATH=$QT_ROOT/plugins
+            export PATH=$QT_ROOT/libexec:$PATH
             ;;
         
     esac
@@ -277,14 +282,9 @@ if [ $APPIMAGE -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE} ${depend_para}
-
-    export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-    export Qt6_DIR=$QT_ROOT
-    export QMAKE=$QT_ROOT/bin/qmake
-    export PATH=$QT_ROOT/libexec:$PATH
+        
     export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
     export LD_LIBRARY_PATH=$QT_ROOT/lib:${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
-    export QT_PLUGIN_PATH=$QT_ROOT/plugins
     export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export BUILD_FREERDP=ON
