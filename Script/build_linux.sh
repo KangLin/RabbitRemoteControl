@@ -202,6 +202,8 @@ if [ $DOCKER -eq 1 ]; then
         fi
        docker run --volume ${BUILD_LINUX_DIR}:/home/build  --privileged --interactive --rm ${DOCKERT_IMAGE} \
            bash -e -x -c "
+           apt-get update -y
+           apt-get install lsb-release
            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
            ~/RabbitRemoteControl/Script/build_linux.sh --deb --verbose ${BUILD_VERBOSE}
            cp ~/rabbitremotecontrol*.deb /home/build/
@@ -214,8 +216,18 @@ if [ $DOCKER -eq 1 ]; then
         docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+            apt-get update -y
+            apt-get install lsb-release
             ~/RabbitRemoteControl/Script/build_linux.sh --appimage --verbose ${BUILD_VERBOSE}
-            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/build/
+            mkdir -p /home/build/install
+            pushd /home/build/install
+            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
+            chmod a+wrx RabbitRemoteControl_`uname -m`.AppImage
+            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
+            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
+            cp ~/RabbitRemoteControl/Script/install.sh .
+            chmod a+rx install.sh
+            popd
             "
     fi
     if [ $RPM -eq 1 ]; then
@@ -240,14 +252,8 @@ pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
-    ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus --libssh \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
-
-    ./build_depend.sh --qtermwidget \
+    ./build_depend.sh --system_update --base --default --package="freerdp2-dev" \
+        --rabbitcommon --tigervnc --pcapplusplus --libssh --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -260,22 +266,32 @@ fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
+    case "`lsb_release -s -r`" in
+        "25.04"|"25.10")
+            depend_para="--default"
+            export PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
+            export LD_LIBRARY_PATH=${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
+            export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+            ;;
+        "24.04"|"24.10")
+            depend_para="--qt=${QT_VERSION}"
+            export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
+            export Qt6_DIR=$QT_ROOT
+            export QMAKE=$QT_ROOT/bin/qmake
+            export QT_PLUGIN_PATH=$QT_ROOT/plugins
+            export PATH=$QT_ROOT/libexec:$PATH
+            export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
+            export LD_LIBRARY_PATH=$QT_ROOT/lib:${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
+            export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+            ;;
+    esac
     ./build_depend.sh --system_update --base --rabbitcommon \
-        --tigervnc --freerdp --pcapplusplus --libssh \
+        --tigervnc --pcapplusplus --freerdp --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE} \
-        --qt=${QT_VERSION}
+        --verbose=${BUILD_VERBOSE} ${depend_para}
 
-    export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-    export Qt6_DIR=$QT_ROOT
-    export QMAKE=$QT_ROOT/bin/qmake
-    export PATH=$QT_ROOT/libexec:$PATH
-    export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=$QT_ROOT/lib:${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
-    export QT_PLUGIN_PATH=$QT_ROOT/plugins
-    export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export BUILD_FREERDP=ON
 

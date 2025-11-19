@@ -43,7 +43,7 @@ usage_long() {
     echo "  --default: Install the default dependency libraries that comes with the system"
     echo "  --system_update: Update system"
     echo "  --package-tool: Package install tool, apk or dnf"
-    echo "  --package: Install package"
+    echo "  --package: Install packages. eg: \"package1 package2 ......\""
     echo "  --qt: Install QT"
     echo "  --macos: Install macos tools and dependency libraries"
     echo "  --rabbitcommon: Install RabbitCommon"
@@ -307,7 +307,10 @@ if [ $SYSTEM_UPDATE -eq 1 ]; then
 fi
 
 if [ -n "$PACKAGE" ]; then
-    ${PACKAGE_TOOL} install -y -q $PACKAGE
+    for p in $PACKAGE
+    do
+        ${PACKAGE_TOOL} install -y -q $p
+    done
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
@@ -319,7 +322,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
         if [ -z "$RabbitRemoteControl_VERSION" ]; then
-            apt install -y -q xvfb xpra
+            apt install -y -q xvfb #xpra
         fi
         # X11 and xcb
         apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
@@ -382,13 +385,21 @@ fi
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo "Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
+        case "`lsb_release -s -r`" in
+            "25.04"|"25.10")
+                DEFAULT_LIBRARIES=
+            ;;
+            "24.04"|"24.10"|*)
+                DEFAULT_LIBRARIES=
+                ;;
+        esac
         # Qt6
         apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
             qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
             libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-            qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-websockets-dev \
+            qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
             qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
-        apt-get install -y -q freerdp2-dev qtkeychain-qt6-dev
+        apt-get install -y -q qtkeychain-qt6-dev $DEFAULT_LIBRARIES
     fi
     
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
@@ -447,7 +458,7 @@ if [ $FREERDP -eq 1 ]; then
     echo "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.15.0 https://github.com/FreeRDP/FreeRDP.git
+        git clone -b 3.18.0 https://github.com/FreeRDP/FreeRDP.git
         cd FreeRDP
         git submodule update --init --recursive
         cmake -E make_directory build

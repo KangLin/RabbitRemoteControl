@@ -19,12 +19,22 @@ jobs:
         variant:
           - PACKAGE: deb
             image: ubuntu
-            lable: ":24.04"
+            lable: ":25.04"
             os: ubuntu-24.04
           - PACKAGE: deb
             image: ubuntu
-            lable: ":24.04"
+            lable: ":25.04"
             os: ubuntu-24.04-arm
+
+          - PACKAGE: appimage
+            image: ubuntu
+            lable: ":25.04"
+            os: ubuntu-24.04
+          - PACKAGE: appimage
+            image: ubuntu
+            lable: ":25.04"
+            os: ubuntu-24.04-arm
+
           - PACKAGE: rpm
             image: fedora
             lable: ":41"
@@ -56,10 +66,47 @@ jobs:
       - name: run docker
         run: |
           ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}${{matrix.variant.lable}}" --${{matrix.variant.PACKAGE}}
+
+      - name: AppIagme update configure file
+        if: ${{ matrix.variant.PACKAGE == 'appimage' }}
+        #continue-on-error: true
+        run: |
+          # OpenGL
+          sudo apt update -y -q
+          sudo apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
+          sudo apt install -y -q libfuse-dev libfuse3-dev
+          sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &
+          sleep 1
+          export DISPLAY=:91.0
+          ARCH=`uname -m`
+          pushd ${{github.workspace}}/build_linux/install
+          sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
+          popd
+          pushd ${{github.workspace}}/build_linux
+          mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+          zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
+
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum
+          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip: ${MD5SUM}"
+          echo "Generate update configure file ......"
+          pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
+             -f "${{github.workspace}}/update_appimage_${{matrix.os}}.json" \
+             --foc 1 \
+             --file-name ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip \
+             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip?viasf=1" \
+             --md5 "${MD5SUM}"
+          popd
+          popd
+
       - name: Update artifact
-        if: ${{matrix.variant.PACKAGE == 'rpm'}}
+        #if: ${{matrix.variant.PACKAGE != 'deb'}}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.os}}
           path: |
             ${{github.workspace}}/build_linux/rabbitremotecontrol*.rpm
+            ${{github.workspace}}/build_linux/rabbitremotecontrol_*.deb
+            ${{github.workspace}}/build_linux/RabbitRemoteControl_*_Setup.zip
+            ${{github.workspace}}/build_linux/update_appimage_*.json

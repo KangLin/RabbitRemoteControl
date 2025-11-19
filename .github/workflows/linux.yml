@@ -19,7 +19,7 @@ jobs:
         BUILD_TYPE: [Release]
         qt_version: [6.9.3]
         os: [ubuntu-24.04, ubuntu-24.04-arm] #, ubuntu-22.04, ubuntu-22.04-arm]
-        PACKAGE: [deb, appimage]
+        PACKAGE: [deb] #, appimage]
         exclude:
           - os: ubuntu-22.04
             PACKAGE: appimage
@@ -72,7 +72,7 @@ jobs:
       - name: build linux
         #continue-on-error: true
         run: |
-          sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install=${{env.INSTALL_DIR}} --qt=${{matrix.qt_version}}
+          sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install=${{env.INSTALL_DIR}}
 
       - name: Deb update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' }}
