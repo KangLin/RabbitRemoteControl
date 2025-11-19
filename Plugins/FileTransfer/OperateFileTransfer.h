@@ -13,6 +13,7 @@
 class COperateFileTransfer : public COperate
 {
     Q_OBJECT
+
 public:
     explicit COperateFileTransfer(CPlugin *plugin);
     virtual ~COperateFileTransfer();
@@ -26,7 +27,7 @@ public:
      *        if don't use, the caller must delete it.
      * \~see CBackendThread
      */
-    [[nodiscard]] Q_INVOKABLE virtual CBackend* InstanceBackend();
+    Q_INVOKABLE virtual CBackend* InstanceBackend();
 
     virtual const QString Id() override;
     virtual const QString Name() override;

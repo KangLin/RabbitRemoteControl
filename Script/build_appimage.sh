@@ -161,7 +161,7 @@ fi
 popd
 
 echo "Compile RabbitRemoteControl ......"
-if [ "${BUILD_VERBOSE}" = "ON" ]; then
+if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     echo "QT_ROOT: $QT_ROOT"
     echo "Qt6_DIR: $Qt6_DIR"
     echo "QMAKE: $QMAKE"
@@ -207,7 +207,7 @@ export DEPLOY_PLATFORM_THEMES=true
 export EXTRA_QT_MODULES="svg"
 export PATH=$PATH:${TOOLS_DIR}
 
-if [ "${BUILD_VERBOSE}" = "ON" ]; then
+if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     echo "QT_ROOT: $QT_ROOT"
     echo "Qt6_DIR: $Qt6_DIR"
     echo "QMAKE: $QMAKE"
