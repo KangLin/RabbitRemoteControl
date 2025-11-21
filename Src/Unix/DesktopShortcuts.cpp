@@ -140,26 +140,32 @@ bool CDesktopShortcutManager::disableGNOMEShortcuts()
         {"org.gnome.desktop.wm.keybindings", "begin-resize", "['']"},
         {"org.gnome.desktop.wm.keybindings", "toggle-fullscreen", "['']"},
         {"org.gnome.desktop.wm.keybindings", "toggle-maximized", "['']"},
+        {"org.gnome.desktop.wm.keybindings", "show-desktop", "['']"},
         
         // 工作区
         {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-left", "['']"},
         {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-right", "['']"},
         {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-up", "['']"},
         {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-down", "['']"},
+        {"org.gnome.desktop.wm.keybindings", "switch-to-workspace-last", "['']"},
         {"org.gnome.desktop.wm.keybindings", "move-to-workspace-left", "['']"},
         {"org.gnome.desktop.wm.keybindings", "move-to-workspace-right", "['']"},
         {"org.gnome.desktop.wm.keybindings", "move-to-workspace-up", "['']"},
         {"org.gnome.desktop.wm.keybindings", "move-to-workspace-down", "['']"},
-        
+
+        {"org.gnome.desktop.wm.keybindings", "switch-input-source", "['']"},
+        {"org.gnome.desktop.wm.keybindings", "switch-input-source-backward", "['']"},
+
         // 面板和 Shell
         {"org.gnome.shell.keybindings", "toggle-application-view", "['']"},
         {"org.gnome.shell.keybindings", "toggle-message-tray", "['']"},
         {"org.gnome.shell.keybindings", "focus-active-notification", "['']"},
         {"org.gnome.shell.keybindings", "toggle-overview", "['']"},
-        // {"org.gnome.shell.keybindings", "screenshot", "['']"},
-        // {"org.gnome.shell.keybindings", "screenshot-window", "['']"},
-        // {"org.gnome.shell.keybindings", "show-screenshot-ui", "['']"},
-        // {"org.gnome.shell.keybindings", "show-screen-recording-ui", "['']"},
+
+        {"org.gnome.shell.keybindings", "screenshot", "['']"},
+        {"org.gnome.shell.keybindings", "screenshot-window", "['']"},
+        {"org.gnome.shell.keybindings", "show-screenshot-ui", "['']"},
+        {"org.gnome.shell.keybindings", "show-screen-recording-ui", "['']"},
         
         // 媒体键
         {"org.gnome.settings-daemon.plugins.media-keys", "home", "['']"},
