@@ -66,6 +66,7 @@ private:
         int Error;
     };
 
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
     struct _AIO {
         sftp_aio aio;
         quint64 nStart;
@@ -73,6 +74,7 @@ private:
         quint64 nTransfers;
         char* buffer;
     };
+#endif
 
     struct _AFILE {
         sftp_file remote;
@@ -84,13 +86,13 @@ private:
         QVector<sftp_aio> aio;
         // The chunk size to use for the transfer
         quint64 nChunkSize;
-        quint64 nRequests;
-        quint64 nTransfers;
         int nConcurrentCount;
-        char *buffer;
 #else
         int asyncReadId;
 #endif
+        quint64 nRequests;
+        quint64 nTransfers;
+        char *buffer;
         
     };
 

@@ -30,10 +30,13 @@ SET(FileTransfer_UI_FILES
     DlgFileTransfer.ui
     )
 
-find_package(libssh 0.11.0)
+find_package(libssh)
 if(libssh_FOUND)
     message("libssh version: ${libssh_VERSION}")
     list(APPEND FileTransfer_DEFINED HAVE_LIBSSH)
+    if(libssh_VERSION VERSION_LESS "0.11.0")
+        message(AUTHOR_WARNING "Don't support libssh file transfer")
+    endif()
     list(APPEND FileTransfer_LIBS ssh)
     list(APPEND FileTransfer_SOURCE_FILES
         ChannelSFTP.cpp)

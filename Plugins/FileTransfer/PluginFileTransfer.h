@@ -16,7 +16,6 @@ public:
     explicit CPluginFileTransfer(QObject *parent = nullptr);
     virtual ~CPluginFileTransfer();
 
-    // CPlugin interface
 public:
     virtual const TYPE Type() const override;
     virtual const QString Protocol() const override;

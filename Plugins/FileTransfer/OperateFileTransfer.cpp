@@ -58,7 +58,7 @@ int COperateFileTransfer::Initial()
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
-    
+
     if(m_pActionSettings) {
         m_Menu.addSeparator();
         m_Menu.addAction(m_pActionSettings);
@@ -66,7 +66,8 @@ int COperateFileTransfer::Initial()
 
     m_frmFileTransfer = new CFrmFileTransfer();
     if(m_frmFileTransfer) {
-        bool check = connect(m_frmFileTransfer, SIGNAL(sigCopyUrlToClipboard(const QString&)),
+        bool check = connect(m_frmFileTransfer,
+                             SIGNAL(sigCopyUrlToClipboard(const QString&)),
                              this, SLOT(slotCopyUrlToClipboard(const QString&)));
         Q_ASSERT(check);
     }
@@ -162,10 +163,10 @@ const QString COperateFileTransfer::Description()
     QString szDescription;
     if(!Name().isEmpty())
         szDescription = tr("Name: ") + Name() + "\n";
-    
+
     if(!GetTypeName().isEmpty())
         szDescription += tr("Type: ") + GetTypeName() + "\n";
-    
+
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG

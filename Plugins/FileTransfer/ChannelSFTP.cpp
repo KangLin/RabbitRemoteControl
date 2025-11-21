@@ -762,11 +762,12 @@ int CChannelSFTP::AsyncFile()
                     break;
                 }
 #else
-                int nbytes = sftp_async_read(file->remote, file->buffer + file->offset, BUF_SIZE, file->asyncReadId);
+                int nbytes = sftp_async_read(file->remote, file->buffer + file->nTransfers, BUF_SIZE, file->asyncReadId);
                 if (nbytes > 0 || SSH_AGAIN == nbytes) {
                     if(nbytes > 0 ) {
-                        int nLen = ::write(file->local, file->buffer + file->offset, nbytes);
+                        int nLen = ::write(file->local, file->buffer + file->nTransfers, nbytes);
                         if(nLen > 0) {
+                            file->nTransfers += nbytes;
                             file->fileTransfer->slotTransferSize(nLen);
                             //TODO: add nLen < nbytes
                             emit sigFileTransferUpdate(file->fileTransfer);
@@ -794,6 +795,7 @@ int CChannelSFTP::AsyncFile()
                 }
 #endif
             } else { // Upload
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
                 if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
                     for(auto it = file->aio.begin(); it != file->aio.end();) {
                         auto aio = *it;
@@ -844,6 +846,7 @@ int CChannelSFTP::AsyncFile()
                         file->aio.append(aio);
                     }
                 }
+#endif
             }
             break;
         }
