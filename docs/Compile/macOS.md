@@ -9,7 +9,7 @@ Author: Eduardo Mozart de Oliveira <eduardomozart182@gmail.com>
 
 #### Qt Creator
 
-Version: v17.0.1 (ARM64) 
+Version: v18.0.0 (ARM64) 
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -49,7 +49,7 @@ Prior versions don't have CMake support.
 
 #### Qt: [https://download.qt.io/official_releases/qt/](https://download.qt.io/official_releases/qt/)
   - Qt (official release)
-    Current version: Qt 6.9.2
+    Current version: Qt 6.9.3
 
         ~$ brew install qt
 
