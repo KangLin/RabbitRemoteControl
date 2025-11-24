@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
@@ -29,11 +29,13 @@ protected:
 private Q_SLOTS:
     void slotMakeDir(const QString& szDir);
     void slotRemoveDir(const QString& szDir);
-    void slotGetDir(CRemoteFileSystem*);
+    void slotGetDir(CRemoteFileSystem* pRemoteFileSystem);
     void slotRemoveFile(const QString& szFile);
     void slotRename(const QString& oldName, const QString& newName);
 Q_SIGNALS:
-    void sigGetDir(CRemoteFileSystem*, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
+    void sigGetDir(CRemoteFileSystem* pRemoteFileSystem,
+                   QVector<QSharedPointer<CRemoteFileSystem> > contents,
+                   bool bEnd);
 private Q_SLOTS:
     void slotStartFileTransfer(QSharedPointer<CFileTransfer> f);
     void slotStopFileTransfer(QSharedPointer<CFileTransfer> f);

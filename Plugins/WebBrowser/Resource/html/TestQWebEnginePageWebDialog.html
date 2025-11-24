@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebDialog 功能测试</title>
+    <style>
+        .test-case { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        button { margin: 5px; padding: 8px 15px; }
+        .result { background: #f0f0f0; padding: 5px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>WebDialog 功能测试</h1>
+    
+    <div class="test-case">
+        <h3>基本 window.open 测试</h3>
+        <button onclick="openNormal()">普通窗口</button>
+        <button onclick="openDialog()">对话框样式</button>
+        <button onclick="openPopup()">弹出窗口</button>
+        <div class="result" id="result1"></div>
+    </div>
+    
+    <div class="test-case">
+        <h3>窗口特性测试</h3>
+        <button onclick="openWithFeatures('menubar=no,toolbar=no')">无菜单工具栏</button>
+        <button onclick="openWithFeatures('resizable=no')">不可调整大小</button>
+        <button onclick="openWithFeatures('width=300,height=200')">固定大小</button>
+        <div class="result" id="result2"></div>
+    </div>
+    
+    <div class="test-case">
+        <h3>多窗口测试</h3>
+        <button onclick="openMultiple()">打开多个窗口</button>
+        <button onclick="closeAll()">关闭所有窗口</button>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <script>
+        let windows = [];
+        
+        function openNormal() {
+            let win = window.open('about:blank', 'normalWindow', 'width=600,height=400');
+            if (win) {
+                win.document.write('<h2>普通测试窗口</h2><p>这是一个普通的 window.open 窗口</p>');
+                document.getElementById('result1').innerHTML = '普通窗口打开成功';
+                windows.push(win);
+            }
+        }
+        
+        function openDialog() {
+            let win = window.open('about:blank', 'dialogWindow', 'modal=yes,width=500,height=300');
+            if (win) {
+                win.document.write('<h2>对话框样式窗口</h2><p>这应该被识别为 WebDialog</p>');
+                document.getElementById('result1').innerHTML = '对话框窗口打开成功';
+                windows.push(win);
+            }
+        }
+        
+        function openPopup() {
+            let win = window.open('popup.html', 'popupWindow', 'width=400,height=300,menubar=no,toolbar=no');
+            if (win) {
+                document.getElementById('result1').innerHTML = '弹出窗口打开成功';
+                windows.push(win);
+            }
+        }
+        
+        function openWithFeatures(features) {
+            let win = window.open('features.html', 'featureTest', features);
+            if (win) {
+                win.document.write(`<h2>特性测试</h2><p>特性: ${features}</p>`);
+                document.getElementById('result2').innerHTML = `使用特性打开: ${features}`;
+                windows.push(win);
+            }
+        }
+        
+        function openMultiple() {
+            for (let i = 0; i < 3; i++) {
+                let win = window.open(`multi${i}.html`, `multi${i}`, 'width=300,height=200');
+                if (win) {
+                    win.document.write(`<h2>多窗口测试 #${i}</h2>`);
+                    windows.push(win);
+                }
+            }
+            document.getElementById('result3').innerHTML = `打开了 ${windows.length} 个窗口`;
+        }
+        
+        function closeAll() {
+            windows.forEach(win => {
+                if (win && !win.closed) {
+                    win.close();
+                }
+            });
+            windows = [];
+            document.getElementById('result3').innerHTML = '所有窗口已关闭';
+        }
+    </script>
+</body>
+</html>

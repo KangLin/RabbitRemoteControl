@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include <QApplication>
 #include <QKeyEvent>
 #include <QLoggingCategory>
@@ -9,7 +11,7 @@
 #include "HookWindows.h"
 #include "RabbitCommonTools.h"
 
-static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
+static Q_LOGGING_CATEGORY(log, "Plugin.Hook.Windows")
 
 CHookWindows::CHookWindows(CParameterPlugin *pParaClient, QObject *parent)
     : CHook(pParaClient, parent),
@@ -120,36 +122,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 }
 
 // See: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw
-int CHookWindows::RegisterKeyboard()
+int CHookWindows::OnRegisterKeyboard()
 {
-    if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
-        && m_pParameterPlugin->GetPromptAdministratorPrivilege())
-    {
-        int nRet = 0;
-        QMessageBox msg(
-            QMessageBox::Warning, tr("Warning"),
-            tr("The programe is not administrator privilege.\n"
-               "Don't disable system shortcuts(eg: Ctrl+Alt+del).\n"
-               "Restart program by administrator?"),
-            QMessageBox::Yes | QMessageBox::No);
-        msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
-        msg.checkBox()->setCheckable(true);
-        msg.checkBox()->setChecked(
-            m_pParameterPlugin->GetPromptAdministratorPrivilege());
-        nRet = msg.exec();
-        if(QMessageBox::Yes == nRet) {
-            RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
-        }
-        if(m_pParameterPlugin->GetPromptAdministratorPrivilege()
-            != msg.checkBox()->isChecked()) {
-            m_pParameterPlugin->SetPromptAdministratorPrivilege(
-                msg.checkBox()->isChecked());
-        }
-    }
-
     if(m_hKeyboard)
         UnRegisterKeyboard();
-    DisableTaskManager(true);
     m_hKeyboard = SetWindowsHookExW(WH_KEYBOARD_LL, keyboardHookProc, nullptr, 0);
     if(NULL == m_hKeyboard) {
         qCritical(log) << "SetWindowsHookExW error:" << GetLastError();
@@ -158,13 +134,24 @@ int CHookWindows::RegisterKeyboard()
     return 0;
 }
 
-int CHookWindows::UnRegisterKeyboard()
+int CHookWindows::OnUnRegisterKeyboard()
 {
     if(m_hKeyboard)
     {
         UnhookWindowsHookEx(m_hKeyboard);
         m_hKeyboard = nullptr;
     }
+    return 0;
+}
+
+int CHookWindows::OnDisableDesktopShortcuts()
+{
+    DisableTaskManager(true);
+    return 0;
+}
+
+int CHookWindows::OnRestoreDesktopShortcuts()
+{
     DisableTaskManager(false);
     return 0;
 }
@@ -215,16 +202,140 @@ bool EnableDebugPrivileges() {
 //在注册表该目录下增加新内容
 #define TASKMANAGERSystem "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
 #define TASKMANAGERExplorer "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+#define WINLOGON "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
 void CHookWindows::DisableTaskManager(bool flag)
 {
     // 屏蔽ctrl + alt +del 需要修改注册表的值， 取得管理员权限， 关闭360等杀毒软件
     int value = flag ? 0x00000001 : 0x00000000;
-    QSettings settings(TASKMANAGERSystem, QSettings::NativeFormat);
-    settings.setValue("DisableTaskMgr", value); //任务管理器
-    settings.setValue("DisableChangePassword", value); //更改密码
-    settings.setValue("DisableLockWorkstation", value); //锁定计算机
-    settings.setValue("DisableSwitchUserOption", value); //切换用户
+    QSettings system(TASKMANAGERSystem, QSettings::NativeFormat);
+    system.setValue("DisableTaskMgr", value); //任务管理器
+    system.setValue("DisableChangePassword", value); //更改密码
+    system.setValue("DisableSwitchUserOption", value); //切换用户
+    system.setValue("DisableCAD", value); // Disable ctrl+alt+del
+    system.setValue("DisableLockWorkstation", value); //锁定计算机
 
-    QSettings settings2(TASKMANAGERExplorer, QSettings::NativeFormat);
-    settings2.setValue("NoLogOff", value); //注销
+    QSettings explorer(TASKMANAGERExplorer, QSettings::NativeFormat);
+    explorer.setValue("NoLogOff", value); //注销
+
+    /*
+    QSettings winlogon(WINLOGON, QSettings::NativeFormat);
+    winlogon.setValue("DisableCAD", value); // Disable ctrl+alt+del
+    winlogon.setValue("DisableLockWorkstation", value); //锁定计算机
+    //*/
 }
+
+bool CHookWindows::DisableWindowsKey()
+{
+    // 方法1: 使用 RegisterHotKey 来占用 Windows 键
+    bool success = true;
+
+    // 注册热键来拦截 Windows 键
+    if (!RegisterHotKey(nullptr, 1, MOD_WIN, VK_LWIN)) {
+        qCritical(log) << "注册左 Windows 键拦截失败:" << GetLastError();
+        success = false;
+    }
+
+    if (!RegisterHotKey(nullptr, 2, MOD_WIN, VK_RWIN)) {
+        qCritical(log) << "注册右 Windows 键拦截失败:" << GetLastError();
+        success = false;
+    }
+
+    // 方法2: 修改注册表禁用 Windows 键
+    HKEY hKey;
+    LONG result = RegCreateKeyExW(HKEY_CURRENT_USER,
+                                  L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+                                  0, nullptr, 0, KEY_ALL_ACCESS, nullptr, &hKey, nullptr);
+
+    if (result == ERROR_SUCCESS) {
+        DWORD value = 1; // 1 表示禁用 Windows 键
+        result = RegSetValueExW(hKey, L"NoWinKeys", 0, REG_DWORD,
+                                reinterpret_cast<const BYTE*>(&value), sizeof(value));
+
+        if (result == ERROR_SUCCESS) {
+            qDebug(log) << "注册表设置成功，Windows 键已禁用";
+        } else {
+            qWarning(log) << "注册表设置失败:" << result;
+            success = false;
+        }
+        RegCloseKey(hKey);
+    } else {
+        qWarning(log) << "创建注册表键失败:" << result;
+        success = false;
+    }
+
+    return success;
+}
+
+bool CHookWindows::EnableWindowsKey()
+{
+    bool success = true;
+
+    // 取消注册热键
+    UnregisterHotKey(nullptr, 1);
+    UnregisterHotKey(nullptr, 2);
+
+    // 恢复注册表设置
+    HKEY hKey;
+    LONG result = RegOpenKeyExW(HKEY_CURRENT_USER,
+                                L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+                                0, KEY_ALL_ACCESS, &hKey);
+
+    if (result == ERROR_SUCCESS) {
+        result = RegDeleteValueW(hKey, L"NoWinKeys");
+        if (result == ERROR_SUCCESS || result == ERROR_FILE_NOT_FOUND) {
+            qDebug(log) << "Windows 键已恢复";
+        } else {
+            qWarning(log) << "删除注册表值失败:" << result;
+            success = false;
+        }
+        RegCloseKey(hKey);
+    }
+
+    return success;
+}
+
+bool CHookWindows::DisableTaskManager()
+{
+    bool bRet = false;
+    HKEY hKey;
+    LONG result = RegCreateKeyExW(HKEY_CURRENT_USER,
+                                  L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                                  0, nullptr, 0, KEY_ALL_ACCESS, nullptr, &hKey, nullptr);
+
+    if (result == ERROR_SUCCESS) {
+        DWORD value = 1; // 1 表示禁用任务管理器
+        result = RegSetValueExW(hKey, L"DisableTaskMgr", 0, REG_DWORD,
+                                reinterpret_cast<const BYTE*>(&value), sizeof(value));
+
+        if (result == ERROR_SUCCESS) {
+            qDebug(log) << "任务管理器已禁用";
+            bRet = true;
+        } else {
+            qWarning(log) << "禁用任务管理器失败:" << result;
+        }
+        RegCloseKey(hKey);
+    }
+
+    return bRet;
+}
+
+bool CHookWindows::EnableTaskManager()
+{
+    HKEY hKey;
+    LONG result = RegOpenKeyExW(HKEY_CURRENT_USER,
+                                L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                                0, KEY_ALL_ACCESS, &hKey);
+
+    if (result == ERROR_SUCCESS) {
+        result = RegDeleteValueW(hKey, L"DisableTaskMgr");
+        RegCloseKey(hKey);
+
+        if (result == ERROR_SUCCESS || result == ERROR_FILE_NOT_FOUND) {
+            qDebug(log) << "任务管理器已恢复";
+            return true;
+        }
+    }
+
+    return false;
+}
+

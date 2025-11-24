@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 
@@ -28,8 +28,8 @@ Q_SIGNALS:
     void sigUpload(const QString& source, const QString& destination);
     void sigCopyUrlToClipboard(const QString& szPath);
 
-    void sigGetDir(CRemoteFileSystem*);
-    void sigGetDir(CRemoteFileSystem*,
+    void sigGetDir(CRemoteFileSystem* pRfs);
+    void sigGetDir(CRemoteFileSystem* pRfs,
                    QVector<QSharedPointer<CRemoteFileSystem> > contents,
                    bool bEnd);
 
@@ -46,10 +46,22 @@ private:
     int SetLocalRoot(const QString &root);
     //! Get local root path
     [[nodiscard]] QString GetLocalRoot() const;
-    void SetRemoteConnecter(CRemoteFileSystemModel* p);
-    
-    int EnumLocalDirectory(QDir d, const QString& szRemote);
-    int EnumRemoteDirectory(CRemoteFileSystem* p, const QString& szLocal);
+    void SetRemoteConnect(CRemoteFileSystemModel* pRfs);
+
+    /*!
+     * \brief Enum local directory, update to remote directory
+     * \param d: local directory
+     * \param szRemoteDir: remote directory
+     * \return
+     */
+    int EnumLocalDirectory(QDir d, const QString& szRemoteDir);
+    /*!
+     * \brief Enum remote directory, download to local directory
+     * \param pRfs: remote directory
+     * \param szLocalDir: local directory
+     * \return
+     */
+    int EnumRemoteDirectory(CRemoteFileSystem* pRfs, const QString& szLocalDir);
 
 private Q_SLOTS:
     void on_cbLocal_editTextChanged(const QString &szPath);
@@ -74,6 +86,7 @@ private Q_SLOTS:
     void slotTabLocalCopyToClipboard();
 
     void on_cbRemote_editTextChanged(const QString &szPath);
+    //void on_cbRemote_currentTextChanged(const QString &szPath);
     void on_cbRemote_currentIndexChanged(int index);
 
     void on_treeRemote_clicked(const QModelIndex &index);

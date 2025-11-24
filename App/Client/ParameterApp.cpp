@@ -53,7 +53,7 @@ int CParameterApp::OnLoad(QSettings &set)
     set.endGroup();
     
     set.beginGroup("View");
-    int viewType = set.value("Type").toInt();
+    int viewType = set.value("Type", (int)GetViewType()).toInt();
     SetViewType((ViewType)viewType);
     SetTabPosition(static_cast<QTabWidget::TabPosition>(
                        set.value("TabView/Tab/Position",

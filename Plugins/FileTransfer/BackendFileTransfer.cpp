@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include <QCoreApplication>
 #include <QLoggingCategory>
@@ -91,8 +91,10 @@ bool CBackendFileTransfer::event(QEvent *event)
             break;
         case CFileTransferEvent::Command::GetDir:
         {
+#if HAVE_LIBSSH
             if(m_pSFTP)
-                m_pSFTP->slotGetDir(pEvent->m_pRemoteFileSystem);
+                m_pSFTP->slotGetDir(pEvent->m_szSourcePath, pEvent->m_pRemoteFileSystem);
+#endif
             break;
         }
         case CFileTransferEvent::Command::StartFileTransfer:
@@ -195,8 +197,13 @@ CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP()
         return OnInitReturnValue::Fail;
     }
     bool bRet = m_pSFTP->open(QIODevice::ReadWrite);
-    if(!bRet)
+    if(!bRet) {
+        QString szErr;
+        szErr = tr("Open SFTP fail.") + m_pSFTP->errorString();
+        qCritical(log) << szErr;
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         return OnInitReturnValue::Fail;
+    }
 #endif
     emit sigRunning();
     return OnInitReturnValue::UseOnProcess;
@@ -238,14 +245,14 @@ void CBackendFileTransfer::slotRename(const QString &oldName, const QString &new
     WakeUp();
 }
 
-void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *p)
+void CBackendFileTransfer::slotGetDir(CRemoteFileSystem *pRemoteFileSystem)
 {
-    if(!p || p->GetPath().isEmpty())
+    if(!pRemoteFileSystem || pRemoteFileSystem->GetPath().isEmpty())
         return;
-    QString szPath = p->GetPath();
+    QString szPath = pRemoteFileSystem->GetPath();
     CFileTransferEvent* pEvent = new CFileTransferEvent(
         CFileTransferEvent::Command::GetDir, szPath);
-    pEvent->m_pRemoteFileSystem = (CRemoteFileSystem*) p;
+    pEvent->m_pRemoteFileSystem = (CRemoteFileSystem*) pRemoteFileSystem;
     QCoreApplication::postEvent(this, pEvent);
     WakeUp();
 }

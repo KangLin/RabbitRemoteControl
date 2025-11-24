@@ -3,22 +3,18 @@
 #include "DlgInputPassword.h"
 #include "ui_DlgInputPassword.h"
 
-CDlgInputPassword::CDlgInputPassword(bool bShow, QString szTitle, QWidget *parent)
+CDlgInputPassword::CDlgInputPassword(bool bShow, bool bStore, QWidget *parent)
     : QDialog(parent),
     ui(new Ui::CDlgInputPassword)
 {
     ui->setupUi(this);
     ui->pbShow->setEnabled(bShow);
-    setWindowTitle(tr("Input encrypt key"));
-
+    if(bStore)
+        setWindowTitle(tr("Store password"));
+    else
+        setWindowTitle(tr("Restore password"));
     QString szDescript = tr("The encryption key is used to encrypt the password that is saved to the file.");
-    if(!szTitle.isEmpty())
-        szDescript += tr("If you forget the encryption key, please use input %1.").arg(szTitle);
     ui->lbDescript->setText(szDescript);
-    if(szTitle.isEmpty())
-        ui->rbPassword->setVisible(false);
-
-    ui->rbPassword->setText(tr("Input %1").arg(szTitle));
 }
 
 CDlgInputPassword::~CDlgInputPassword()
@@ -36,12 +32,9 @@ void CDlgInputPassword::on_pbYes_clicked()
     accept();
 }
 
-int CDlgInputPassword::GetValue(InputType &t, QString &password)
+QString CDlgInputPassword::GetPassword()
 {
-    if(ui->rbKey->isChecked()) t = Encrypt;
-    if(ui->rbPassword->isChecked()) t = Password;
-    password = ui->lePassword->text();
-    return 0;
+    return ui->lePassword->text();
 }
 
 void CDlgInputPassword::on_pbShow_clicked()

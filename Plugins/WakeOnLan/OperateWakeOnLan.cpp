@@ -163,38 +163,6 @@ const QString COperateWakeOnLan::Name()
 
 int COperateWakeOnLan::Start()
 {
-#if defined(Q_OS_UNIX)
-    if(!RabbitCommon::CTools::HasAdministratorPrivilege()
-        && m_pParameterPlugin->GetPromptAdministratorPrivilege())
-    {
-        static bool bShow = false;
-        if(!bShow) {
-            bShow = true;
-            int nRet = 0;
-            QMessageBox msg(
-                QMessageBox::Warning, tr("Warning"),
-                tr("There are no administrator privileges, "
-                   "and some functions(Get mac address) are restricted. "
-                   "Please restart the program with administrative privileges."),
-                QMessageBox::Yes | QMessageBox::No);
-            msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
-            msg.checkBox()->setCheckable(true);
-            nRet = msg.exec();
-            msg.checkBox()->setChecked(
-                m_pParameterPlugin->GetPromptAdministratorPrivilege());
-            if(QMessageBox::Yes == nRet) {
-                RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
-            }
-            if(m_pParameterPlugin->GetPromptAdministratorPrivilege()
-                != msg.checkBox()->isChecked()) {
-                m_pParameterPlugin->SetPromptAdministratorPrivilege(
-                    msg.checkBox()->isChecked());
-                // TODO: save settings
-                //SaveSettings();
-            }
-        }
-    }
-#endif
     emit sigRunning();
     return 0;
 }

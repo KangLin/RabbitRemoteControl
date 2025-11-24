@@ -97,7 +97,9 @@ protected Q_SLOTS:
      * \brief Initialize this parameter based on the global parameter
      */
     virtual void slotSetGlobalParameters() override;
-    
+private Q_SLOTS:
+    void slotLoadPassword();
+    void slotLoadPassPhrase();
 private:
     QList<TYPE> m_Type;
     TYPE m_UsedType;

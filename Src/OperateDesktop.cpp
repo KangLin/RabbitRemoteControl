@@ -106,7 +106,7 @@ const QString COperateDesktop::Description()
         szDescription = tr("Name: ") + Name() + "\n";
     
     if(!GetTypeName().isEmpty())
-        szDescription += tr("Type:") + GetTypeName() + "\n";
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
     
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
@@ -224,10 +224,10 @@ int COperateDesktop::InitialMenu()
     Q_ASSERT(check);
     m_pZoomAspectRatio = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-aspect-ratio"),
-        tr("Keep aspect ration to windows"));
+        tr("Keep aspect ratio to window"));
     m_pZoomAspectRatio->setCheckable(true);
-    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ration to windows"));
-    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ration to windows"));
+    m_pZoomAspectRatio->setStatusTip(tr("Keep aspect ratio to window"));
+    m_pZoomAspectRatio->setToolTip(tr("Keep aspect ratio to window"));
     check = connect(m_pZoomAspectRatio, &QAction::triggered, this,
                     [&](){
                         m_pScroll->slotSetAdaptWindows(
@@ -390,7 +390,17 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
     if(GetParameter())
     {
         GetParameter()->SetGlobalParameters(pPara);
-        COperate::SetGlobalParameters(pPara);
+
+        if(pPara)
+        {
+            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+                                 this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
+                            this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+        }
+
         LoadAdaptWindows();
         return 0;
     } else {
@@ -489,7 +499,6 @@ int COperateDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pFrmViewer);
-    nRet = COperate::Load(set);
     if(m_pPara)
         nRet = m_pPara->Load(set);
     else {
@@ -518,7 +527,6 @@ int COperateDesktop::Save(QSettings &set)
         GetParameter()->SetAdaptWindows(m_pFrmViewer->GetAdaptWindows());
         GetParameter()->SetZoomFactor(m_pFrmViewer->GetZoomFactor());
     }
-    nRet = COperate::Save(set);
     if(m_pPara)
         nRet = m_pPara->Save(set);
     return nRet;
@@ -636,6 +644,6 @@ void COperateDesktop::slotSetServerName(const QString& szName)
             return;
         GetParameter()->SetServerName(szName);
     }
-    
-    emit sigUpdateName(Name());
+
+    slotUpdateName();
 }

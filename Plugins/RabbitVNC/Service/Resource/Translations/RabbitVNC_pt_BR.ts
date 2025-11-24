@@ -6,42 +6,42 @@
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="14"/>
         <source>Set RabbitVNC parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir parâmetros do RabbitVNC</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="24"/>
         <source>Base</source>
-        <translation type="unfinished"></translation>
+        <translation>Base</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="30"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="39"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="63"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="89"/>
         <source>Channel type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de canal</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="95"/>
         <source>Enable socket</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar soquete</translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="102"/>
         <source>Enable ICE</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar ICE</translation>
     </message>
 </context>
 <context>
@@ -49,17 +49,17 @@
     <message>
         <location filename="../../PluginServiceRabbitVNC.cpp" line="46"/>
         <source>RabbitVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>RabbitVNC</translation>
     </message>
     <message>
         <location filename="../../PluginServiceRabbitVNC.cpp" line="51"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC (Virtual Network Console): Acesse áreas de trabalho remotas, como Unix/Linux, Windows etc.</translation>
     </message>
     <message>
         <location filename="../../PluginServiceRabbitVNC.cpp" line="52"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC é um conjunto de programas que usam o protocolo RFB (Remote Frame Buffer).</translation>
     </message>
 </context>
 <context>
@@ -67,7 +67,7 @@
     <message>
         <location filename="../../ServiceRabbitVNC.cpp" line="156"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sair</translation>
     </message>
 </context>
 </TS>

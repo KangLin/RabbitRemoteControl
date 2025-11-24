@@ -105,7 +105,7 @@ int CParameterTerminalUI::SetParameter(CParameter *pParameter)
     if(!m_pPara->GetColorScheme().isEmpty())
         ui->cbColorScheme->setCurrentText(m_pPara->GetColorScheme());
 
-    ui->cbScrollBarPositioin->addItem(tr("No"), QTermWidget::NoScrollBar);
+    ui->cbScrollBarPositioin->addItem(tr("None"), QTermWidget::NoScrollBar);
     ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
     ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
     ui->cbScrollBarPositioin->setCurrentIndex(m_pPara->GetScrollBarPosition());

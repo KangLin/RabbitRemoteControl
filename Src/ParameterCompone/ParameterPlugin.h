@@ -45,12 +45,28 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 public:
-    bool GetNativeWindowReceiveKeyboard() const;
-    void SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard);
+    bool GetCaptureAllKeyboard() const;
+    void SetCaptureAllKeyboard(bool bCapture);
 Q_SIGNALS:
-    void sigNativeWindowRecieveKeyboard();
+    void sigCaptureAllKeyboard();
 private:
-    bool m_bNativeWindowReceiveKeyboard;
+    bool m_bCaptureAllKeyboard;
+
+public:
+    bool GetDesktopShortcutsScript() const;
+    void SetDesktopShortcutsScript(bool newDesktopShortcutsScript);
+private:
+    bool m_bDesktopShortcutsScript;
+public:
+    QString GetDisableDesktopShortcutsScript() const;
+    void SetDisableDesktopShortcutsScript(const QString &newDisableDesktopShortcutsScript);
+private:
+    QString m_szDisableDesktopShortcutsScript;
+public:
+    QString GetRestoreDesktopShortcutsScript() const;
+    void SetRestoreDesktopShortcutsScript(const QString &newRestoreDesktopShortcutsScript);
+private:
+    QString m_szRestoreDesktopShortcutsScript;
 
 public:
     bool GetEnableLocalInputMethod() const;
@@ -72,8 +88,8 @@ public:
     void SetEnableSystemUserToUser(bool enable);
 private:
     bool m_bEnableSystemUserToUser;
-    //////////////// Password ////////////////
 
+    //////////////// Password ////////////////
 public:
     const QString &GetEncryptKey() const;
     void SetEncryptKey(const QString &newPassword);
@@ -97,8 +113,7 @@ public:
     enum class PromptType
     {
         No,
-        First,
-        Always,
+        First
     };
     Q_ENUM(PromptType)
     PromptType GetPromptType() const;
@@ -126,6 +141,12 @@ Q_SIGNALS:
 private:
     bool m_bViewPassowrd;
     Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
+
+public:
+    bool GetUseSystemCredential() const;
+    void SetUseSystemCredential(bool newUseSystemCredential);
+private:
+    bool m_bUseSystemCredential;
 
     //////////////// Password end ////////////////
     

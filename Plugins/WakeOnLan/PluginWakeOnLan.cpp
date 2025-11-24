@@ -1,14 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
-#include <QLoggingCategory>
-#include <QDir>
-
-#include "PluginWakeOnLan.h"
-#include "OperateWakeOnLan.h"
 
 #ifdef HAVE_PCAPPLUSPLUS
     #include "PcapPlusPlusVersion.h"
     #include "PcapDevice.h"
     #include <Logger.h>
+    #include <QLoggingCategory>
     static Q_LOGGING_CATEGORY(logPcpp, "WOL.PCPP")
     void Pcpp_Logger(pcpp::Logger::LogLevel logLevel,
                      const std::string& logMessage,
@@ -27,9 +23,17 @@
         case pcpp::Logger::LogLevel::Error:
             qCritical(logPcpp) << logMessage.c_str();
             break;
+        default:
+            break;
         }
     }
 #endif
+    
+#include <QLoggingCategory>
+#include <QDir>
+    
+#include "PluginWakeOnLan.h"
+#include "OperateWakeOnLan.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Plugin")
 CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
@@ -43,7 +47,7 @@ CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
     // suppressing errors to avoid cluttering stdout
     pcpp::Logger::getInstance().enableLogs();
     pcpp::Logger::getInstance().setLogLevel(
-        pcpp::LogModule::PcapLogModuleLiveDevice, pcpp::Logger::Info);
+        pcpp::LogModule::PcapLogModuleLiveDevice, pcpp::Logger::LogLevel::Info);
 #endif
 }
 

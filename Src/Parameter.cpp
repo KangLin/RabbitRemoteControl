@@ -36,6 +36,7 @@ int CParameter::Load(QString szFile)
 {
     if(szFile.isEmpty())
         szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+    qDebug(log) << "Load configure file:" << szFile;
     if(szFile.isEmpty()) return -1;
     QSettings set(szFile, QSettings::IniFormat);
     int nRet = Load(set);
@@ -48,6 +49,7 @@ int CParameter::Save(QString szFile, bool bForce)
     if(!GetModified() && !bForce) return 0;
     if(szFile.isEmpty())
         szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+    qDebug(log) << "Save configure file:" << szFile;
     if(szFile.isEmpty()) return -1;
     QSettings set(szFile, QSettings::IniFormat);
     int nRet = Save(set);

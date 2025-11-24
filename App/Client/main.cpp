@@ -11,8 +11,7 @@
  *  
  */
 
-#include "mainwindow.h"
-
+#include <QLoggingCategory>
 #include <QApplication>
 #include <QSettings>
 #include <QDebug>
@@ -34,7 +33,8 @@
     #include "QUIWidget/QUIWidget.h"
 #endif
 
-#include <QLoggingCategory>
+#include "StatsAppUsage.h"
+#include "mainwindow.h"
 
 static Q_LOGGING_CATEGORY(log, "App.Main")
 
@@ -43,6 +43,13 @@ int main(int argc, char *argv[])
     int nRet = 0;
 
     qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    
+    /* 移到　snapcraft.yaml 和　io.github.KangLin.RabbitRemoteControl.yml
+    // 修复 qtwebengine 沙箱权限问题
+    if(!qEnvironmentVariable("SNAP").isEmpty()) {
+        qputenv("QTWEBENGINE_DISABLE_SANDBOX", "1");
+    }//*/
 
     //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
 
@@ -126,27 +133,17 @@ int main(int argc, char *argv[])
     }
 #endif
 
+    CStatsAppUsage* pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
+    if(pStats) {
+        bool check = QObject::connect(pStats, &CStatsAppUsage::sigFinished, pStats, &CStatsAppUsage::deleteLater);
+        Q_ASSERT(check);
+    }
     MainWindow* w = new MainWindow();
     try {
         //w->setWindowIcon(QIcon::themeName("app"));
-        //w->setWindowTitle(a.applicationDisplayName());
+        //w->setWindowTitle(app.applicationDisplayName());
 
-#ifdef BUILD_QUIWidget
-        QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
-        bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
-                                        SLOT(showFullScreen()));
-        Q_ASSERT(check);
-        check = quiwidget->connect(w, SIGNAL(sigShowNormal()),
-                                   SLOT(showNormal()));
-        Q_ASSERT(check);
-        //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
-        //quiwidget.setTitle(a.applicationDisplayName());
-        quiwidget->setMainWidget(w);
-        quiwidget->show();
-#else
         w->show();
-#endif
-
         nRet = app.exec();
     } catch (std::exception &e) {
         qCritical(log) << "exception:" << e.what();
@@ -154,9 +151,9 @@ int main(int argc, char *argv[])
         qCritical(log) << "exception:";
     }
 
-#ifndef BUILD_QUIWidget
     delete w;
-#endif
+    if(pStats)
+        pStats->Stop();
 
     RabbitCommon::CTools::Instance()->Clean();
     if(tApp)
@@ -164,7 +161,7 @@ int main(int argc, char *argv[])
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
-    
+
     qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + QObject::tr("End");
     return nRet;
 }

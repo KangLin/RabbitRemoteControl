@@ -104,7 +104,7 @@ public:
      *        if don't use, the caller must delete it.
      * \~see CBackendThread
      */
-    [[nodiscard]] Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
+    Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
     /*!
      * \brief Get parameter
      */

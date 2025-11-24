@@ -6,179 +6,179 @@
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão do libssh:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão de protocolo do libssh:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor OpenSSH:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: ssh_new.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: o servidor está vazio</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: falha na definição de host. Host:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: falha na definição de porta. Porta:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: ssh_pcap_file_new: </translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: ssh connect </translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelado pelo usuário</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="256"/>
         <source>SSH failed: Get server public key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: obtenção da chave pública do servidor.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="271"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: falha na obtenção do valor de hash da chave pública.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="unfinished"></translation>
+        <translation>a chave do host para o servidor foi alterada. Agora é:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por motivos de segurança, a conexão será interrompida.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="292"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="303"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation type="unfinished"></translation>
+        <translation>Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>a chave de host para este servidor não foi encontrada, mas existe outro tipo de chave.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Um invasor pode alterar a chave do servidor padrão para confundir seu cliente e fazê-lo pensar que a chave não existe</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
         <source>is not find in known host file.</source>
-        <translation type="unfinished"></translation>
+        <translation>não foi encontrado no arquivo known_hosts.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se você aceitar a chave de host aqui, o arquivo será criado automaticamente.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
         <source>Host key hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hash da chave do host:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="316"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
         <source>Reject the host key</source>
-        <translation type="unfinished"></translation>
+        <translation>Chave de host rejeitada</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>é desconhecida. Você confia na chave do host?</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Error:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="360"/>
         <source>the host key hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>o hash da chave do host:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
         <source>Will be stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Será interrompido.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="412"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: Falha na autenticação com a chave pública:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="436"/>
         <source>Failed authenticating with password. User: </source>
-        <translation type="unfinished"></translation>
+        <translation>Falha na autenticação com senha. Usuário: </translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: não há nenhum arquivo de chave pública definido.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: importação do arquivo de chave pública.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não existe ou a permissão foi negada:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="486"/>
         <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: falha na autenticação. Usuário:</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH failed: There is no private key file defined.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: importação do arquivo de chave privada.</translation>
     </message>
 </context>
 <context>
@@ -186,13 +186,13 @@
     <message>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha no SSH: open forward.</translation>
     </message>
     <message>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
         <source>The channel is eof</source>
-        <translation type="unfinished"></translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
@@ -200,51 +200,56 @@
     <message>
         <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation type="unfinished"></translation>
+        <translation>O canal é EOF</translation>
     </message>
 </context>
 <context>
     <name>CDlgInputPassword</name>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
-        <location filename="../../DlgInputPassword.ui" line="64"/>
         <source>Input password</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe a senha</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="39"/>
         <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">A chave de criptografia é usada para criptografar a senha salva no arquivo. Se você esquecer a chave de criptografia, use Informe a senha.</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
-        <location filename="../../DlgInputPassword.cpp" line="12"/>
+        <source>Ok(&amp;O)</source>
+        <translation>OK(&amp;O)</translation>
+    </message>
+    <message>
         <source>Input encrypt key</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Chave de criptografia</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="122"/>
-        <source>Yes(&amp;Y)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../DlgInputPassword.ui" line="64"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>Cancelar(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="129"/>
-        <source>No(&amp;N)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgInputPassword.cpp" line="14"/>
-        <source>The encryption key is used to encrypt the password that is saved to the file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../../DlgInputPassword.ui" line="26"/>
         <location filename="../../DlgInputPassword.cpp" line="16"/>
+        <source>The encryption key is used to encrypt the password that is saved to the file.</source>
+        <translation>A chave de criptografia é usada para criptografar a senha salva no arquivo.</translation>
+    </message>
+    <message>
         <source>If you forget the encryption key, please use input %1.</source>
+        <translation type="vanished">Se você esquecer a chave de criptografia, use %1.</translation>
+    </message>
+    <message>
+        <source>Input %1</source>
+        <translation type="vanished">Informe a %1</translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="13"/>
+        <source>Store password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="21"/>
-        <source>Input %1</source>
+        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <source>Restore password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -253,22 +258,85 @@
     <message>
         <location filename="../../DlgUserPassword.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../../DlgUserPassword.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Título</translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="16"/>
+        <location filename="../../DlgUserPassword.cpp" line="17"/>
         <source>Set user and password</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir nome de usuário e senha</translation>
     </message>
     <message>
-        <location filename="../../DlgUserPassword.cpp" line="37"/>
+        <location filename="../../DlgUserPassword.cpp" line="38"/>
         <source>Server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor: </translation>
+    </message>
+</context>
+<context>
+    <name>CFrmParameterICE</name>
+    <message>
+        <source>ICE</source>
+        <translation type="vanished">ICE</translation>
+    </message>
+    <message>
+        <source>Enable ICE</source>
+        <translation type="vanished">Habilitar ICE</translation>
+    </message>
+    <message>
+        <source>Enable ICE debug</source>
+        <translation type="vanished">Habilitar depuração do ICE</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="vanished">Conectar</translation>
+    </message>
+    <message>
+        <source>Signal server:</source>
+        <translation type="vanished">Servidor de sinal:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="vanished">Porta:</translation>
+    </message>
+    <message>
+        <source>Signal user:</source>
+        <translation type="vanished">Usuário de sinal:</translation>
+    </message>
+    <message>
+        <source>Format: user@domain/Resource</source>
+        <translation type="vanished">Formato: usuário@domain/Recurso</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="vanished">Senha:</translation>
+    </message>
+    <message>
+        <source>Stun server:</source>
+        <translation type="vanished">Servidor STUN:</translation>
+    </message>
+    <message>
+        <source>Turn server:</source>
+        <translation type="vanished">Servidor TURN:</translation>
+    </message>
+    <message>
+        <source>Turn user:</source>
+        <translation type="vanished">Usuário TURN:</translation>
+    </message>
+    <message>
+        <source>The user name format is error. please use format: user@domain/resource</source>
+        <translation type="vanished">O formato do nome de usuário está errado. Por favor, use o formato: usuário@domínio/Resource</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="vanished">Erro</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="vanished">Desconectar</translation>
     </message>
 </context>
 <context>
@@ -276,44 +344,100 @@
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
         <source>Failed to update keyboard LED state</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao atualizar o estado do LED do teclado</translation>
     </message>
 </context>
 <context>
     <name>CHookWindows</name>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="130"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Aviso</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="131"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">O programa não tem privilégios de administrador.
+Ele não desativa os atalhos do sistema (por exemplo, Ctrl+Alt+Del).
+Reiniciar o programa como administrador?</translation>
     </message>
     <message>
-        <location filename="../../Windows/HookWindows.cpp" line="135"/>
         <source>Always shown</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Sempre exibir</translation>
+    </message>
+</context>
+<context>
+    <name>CIceSignalQxmpp</name>
+    <message>
+        <source>Socket error</source>
+        <translation type="vanished">Erro de soquete</translation>
+    </message>
+    <message>
+        <source>Keep alive error</source>
+        <translation type="vanished">Erro de keep alive</translation>
+    </message>
+    <message>
+        <source>xmpp stream error</source>
+        <translation type="vanished">Erro de stream xmpp</translation>
     </message>
 </context>
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
         <source>### Plugins</source>
+        <translation type="vanished">### Plugins</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="68"/>
+        <source>The programe is not administrator privilege.
+Some features are limited.
+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="198"/>
+        <location filename="../../Manager.cpp" line="71"/>
+        <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="73"/>
+        <source>Eg: Can not use the wake on LAN feature.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="75"/>
+        <source>Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="76"/>
+        <source>Warning</source>
+        <translation type="unfinished">Aviso</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="78"/>
+        <source>Always shown</source>
+        <translation type="unfinished">Sempre exibir</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="168"/>
+        <source>Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="251"/>
+        <location filename="../../Manager.cpp" line="502"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="396"/>
+        <location filename="../../Manager.cpp" line="449"/>
         <source>Terminal</source>
+        <translation>Terminal</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="507"/>
+        <source>Dependency libraries:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -322,67 +446,67 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../Operate.cpp" line="50"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nome: </translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="56"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>Protocolo: </translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="65"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de segurança: </translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="67"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição: </translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="98"/>
         <source>Set </source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de </translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="133"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Não</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="135"/>
         <source>Secure</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguro</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="137"/>
         <source>Non-secure authentication over a secure channel</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticação não segura em um canal seguro</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="139"/>
         <source>Channel is secure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Canal é seguro.</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="141"/>
         <source>There is security verification, not a secure channel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Há verificação de segurança, sem canal seguro.</translation>
     </message>
     <message>
         <location filename="../../Operate.cpp" line="143"/>
         <source>Risky</source>
-        <translation type="unfinished"></translation>
+        <translation>Em risco</translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="238"/>
+        <location filename="../../Operate.cpp" line="226"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações</translation>
     </message>
 </context>
 <context>
@@ -390,208 +514,198 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../OperateDesktop.cpp" line="106"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nome: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="109"/>
-        <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <source>Type: </source>
+        <translation>Tipo: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="112"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>Protocolo: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="121"/>
         <source>Server name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do servidor: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="125"/>
         <source>Server address: </source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço do servidor: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="128"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="134"/>
         <source>SSH tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Túnel SSH</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="141"/>
         <source>Sockes v5</source>
-        <translation type="unfinished"></translation>
+        <translation>Socks V5</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="155"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de segurança: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="158"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição: </translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="210"/>
         <location filename="../../OperateDesktop.cpp" line="212"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="215"/>
         <location filename="../../OperateDesktop.cpp" line="217"/>
         <location filename="../../OperateDesktop.cpp" line="218"/>
         <source>Zoom to window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="227"/>
-        <location filename="../../OperateDesktop.cpp" line="229"/>
-        <location filename="../../OperateDesktop.cpp" line="230"/>
-        <source>Keep aspect ration to windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="238"/>
-        <location filename="../../OperateDesktop.cpp" line="240"/>
-        <location filename="../../OperateDesktop.cpp" line="241"/>
-        <source>Original</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="248"/>
-        <location filename="../../OperateDesktop.cpp" line="250"/>
-        <location filename="../../OperateDesktop.cpp" line="251"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="264"/>
-        <location filename="../../OperateDesktop.cpp" line="266"/>
-        <location filename="../../OperateDesktop.cpp" line="267"/>
-        <source>Zoom out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="310"/>
-        <source>Send shortcut key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="313"/>
-        <source>Send Ctl+Alt+Del</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="315"/>
-        <source>Send lock screen (Win+L)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="319"/>
-        <location filename="../../OperateDesktop.cpp" line="320"/>
-        <location filename="../../OperateDesktop.cpp" line="321"/>
-        <source>ScreenShot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="328"/>
-        <location filename="../../OperateDesktop.cpp" line="330"/>
-        <location filename="../../OperateDesktop.cpp" line="331"/>
-        <location filename="../../OperateDesktop.cpp" line="539"/>
-        <source>Start record</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom para a janela</translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="337"/>
         <location filename="../../OperateDesktop.cpp" line="338"/>
         <location filename="../../OperateDesktop.cpp" line="339"/>
         <source>Record pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausar gravação</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="536"/>
+        <location filename="../../OperateDesktop.cpp" line="227"/>
+        <location filename="../../OperateDesktop.cpp" line="229"/>
+        <location filename="../../OperateDesktop.cpp" line="230"/>
+        <source>Keep aspect ratio to window</source>
+        <translation>Manter a proporção para a janela</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="238"/>
+        <location filename="../../OperateDesktop.cpp" line="240"/>
+        <location filename="../../OperateDesktop.cpp" line="241"/>
+        <source>Original</source>
+        <translation>Original</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="248"/>
+        <location filename="../../OperateDesktop.cpp" line="250"/>
+        <location filename="../../OperateDesktop.cpp" line="251"/>
+        <source>Zoom in</source>
+        <translation>Ampliar</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="264"/>
+        <location filename="../../OperateDesktop.cpp" line="266"/>
+        <location filename="../../OperateDesktop.cpp" line="267"/>
+        <source>Zoom out</source>
+        <translation>Diminuir o zoom</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="310"/>
+        <source>Send shortcut key</source>
+        <translation>Enviar tecla de atalho</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="313"/>
+        <source>Send Ctl+Alt+Del</source>
+        <translation>Enviar Ctrl+Alt+Del</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="315"/>
+        <source>Send lock screen (Win+L)</source>
+        <translation>Enviar bloqueio de tela (Win+L)</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="319"/>
+        <location filename="../../OperateDesktop.cpp" line="320"/>
+        <location filename="../../OperateDesktop.cpp" line="321"/>
+        <source>ScreenShot</source>
+        <translation>Captura de tela</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="328"/>
+        <location filename="../../OperateDesktop.cpp" line="330"/>
+        <location filename="../../OperateDesktop.cpp" line="331"/>
+        <location filename="../../OperateDesktop.cpp" line="547"/>
+        <source>Start record</source>
+        <translation>Iniciar gravação</translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="544"/>
         <source>Stop record</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar gravação</translation>
     </message>
 </context>
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Nome: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Tipo: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Protocolo: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Nível de segurança: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Descrição: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="153"/>
         <source>Copy selection to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Copiar seleção para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
         <source>Paste clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Colar da área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Paste selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Colar seleção</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="160"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Ampliar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="162"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Diminuir o zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="164"/>
         <source>Zoom reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Redefinição de zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="179"/>
         <source>Find ......</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Localizar ...</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Limpar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="338"/>
+        <source>Version:</source>
+        <translation type="obsolete">Versão:</translation>
+    </message>
+    <message>
         <source>QTermWidget:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">QTermWidget:</translation>
     </message>
 </context>
 <context>
@@ -599,7 +713,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
         <source>The host is empty. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>O host está vazio. por favor, configure-o</translation>
     </message>
 </context>
 <context>
@@ -607,27 +721,27 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="28"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="35"/>
         <source>Input host</source>
-        <translation type="unfinished"></translation>
+        <translation>Digite o host</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="46"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -636,113 +750,118 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="12"/>
         <source>Plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Enable native window receive keyboard event(shortcut key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar recebimento de evento de teclado (tecla de atalho)</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="27"/>
         <source>Enable use the system user as the user</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o usuário do sistema como o usuário</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="69"/>
-        <source>Viewer zoom:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="184"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
-        <source>Prompt administrator privilege</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="197"/>
-        <source>Show protocol prefix in name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="204"/>
-        <source>Only show ip:port in name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="214"/>
-        <source>Enable local input method</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="88"/>
-        <source>Key used to encrypt saved password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="102"/>
-        <source>Encrypt key:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="133"/>
-        <source>Prompt type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
-        <source>No</source>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="141"/>
+        <source>Store password with system credential manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
-        <source>First</source>
-        <translation type="unfinished"></translation>
+        <source>Viewer zoom:</source>
+        <translation>Zoom do visualizador:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="172"/>
-        <source>Always</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
+        <source>Prompt administrator privilege</source>
+        <translation>Solicitar privilégios de administrador</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
+        <source>Show protocol prefix in name</source>
+        <translation>Mostrar prefixo de protocolo no nome</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="198"/>
+        <source>Only show ip:port in name</source>
+        <translation>Mostrar apenas ip:porta no nome</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <source>Enable local input method</source>
+        <translation>Ativar método de entrada local</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <source>Key used to encrypt saved password:</source>
+        <translation>Chave usada para criptografar a senha salva:</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
+        <source>Encrypt key:</source>
+        <translation>Chave de criptografia:</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
+        <source>Prompt type:</source>
+        <translation>Solicitar tipo:</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="98"/>
+        <source>No</source>
+        <translation>Não</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
+        <source>First</source>
+        <translation>Primeira vez</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="vanished">Sempre</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="34"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="42"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
         <source>Enable save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar salvar senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="49"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="132"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
         <source>Enable view password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar senha de visualização</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="90"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Original</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="94"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="97"/>
         <source>Zoom to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom para a janela</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="100"/>
-        <source>Keep desktop aspectration adapt to windows</source>
-        <translation type="unfinished"></translation>
+        <source>Keep aspect ratio to window</source>
+        <translation>Manter a proporção para a janela</translation>
     </message>
 </context>
 <context>
@@ -750,42 +869,42 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="15"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="16"/>
         <source>System settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do sistema</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="17"/>
         <source>Sockes V5</source>
-        <translation type="unfinished"></translation>
+        <translation>Socks V5</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="18"/>
         <source>Http</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="19"/>
         <source>SSH tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Túnel SSH</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="27"/>
         <source>The host is empty in &quot;Proxy-&gt;Http&quot;. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>O host está vazio em &quot;Proxy-&gt;HTTP&quot;. Por favor, configure-o</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="34"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>O host está vazio em &quot;Proxy-&gt;SocksV5&quot;. Por favor, configure-o</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="41"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>O host está vazio em &quot;Proxy-&gt;Túnel SSH&quot;. Por favor, configure-o</translation>
     </message>
 </context>
 <context>
@@ -793,7 +912,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="29"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo:</translation>
     </message>
 </context>
 <context>
@@ -803,138 +922,183 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="20"/>
         <source>Record</source>
-        <translation type="unfinished"></translation>
+        <translation>Gravação</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
         <source>Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
         <source>File format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato do arquivo:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="73"/>
         <source>Encoding Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de codificação:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="94"/>
         <source>Quality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualidade:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="115"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeo</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="183"/>
         <source>Encode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Codec:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="147"/>
         <source>frame rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Frame rate:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="160"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="34"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="192"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um valor de 0 indica que o gravador deve fazer uma escolha ideal com base no que está disponível na fonte de vídeo e nas limitações do codec.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="172"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Áudio</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="204"/>
         <source>Sample rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample rate:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="217"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um valor de -1 indica que o gravador deve fazer uma escolha ideal com base no que está disponível na fonte de áudio e nas limitações do codec.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="230"/>
         <source>HZ</source>
-        <translation type="unfinished"></translation>
+        <translation>Hz</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
         <source>After the end of the action</source>
-        <translation type="unfinished"></translation>
+        <translation>Após o término da gravação</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="256"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma ação</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="272"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir pasta</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="285"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="35"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="193"/>
         <source>If record remote desktop, recommended options: 24, 50, 60</source>
-        <translation type="unfinished"></translation>
+        <translation>Ao gravar sessões da área de trabalho remota, as opções recomendadas são: 24, 50, 60</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="41"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="195"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec. options: 8kHz, 11.025kHz, 22.05kHz, 16kHz, 37.8kHz, 44.1kHz, 48kHz, 96kHz, 192kHz etc</source>
-        <translation type="unfinished"></translation>
+        <translation>Um valor de -1 indica que o gravador deve fazer uma escolha ideal com base no que está disponível na fonte de áudio e nas limitações do codec. Opções: 8 kHz, 11,025 kHz, 22,05 kHz, 16 kHz, 37,8 kHz, 44,1 kHz, 48 kHz, 96 kHz, 192 kHz etc.</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="43"/>
+        <source>Very high</source>
+        <translation>Muito alta</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="44"/>
+        <source>High</source>
+        <translation>Alta</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="45"/>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="46"/>
+        <source>Low</source>
+        <translation>Baixa</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="47"/>
+        <source>Very low</source>
+        <translation>Muito baixa</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="49"/>
+        <source>Constant quality</source>
+        <translation>Qualidade constante</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="52"/>
         <source>Encoding will aim to have a constant quality, adjusting bitrate to fit.</source>
-        <translation type="unfinished"></translation>
+        <translation>A codificação terá como objetivo ter uma qualidade constante, ajustando a taxa de bits.</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="54"/>
+        <source>Constant bit rate</source>
+        <translation>Bit rate constante</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="57"/>
-        <source>Encoding will use a constant bit rate, adjust quality to fit.</source>
-        <translation type="unfinished"></translation>
+        <source>Encoding will use a constant bit rate, adjusting quality to fit.</source>
+        <translation>A codificação usará uma taxa de bits constante, ajustando a qualidade.</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="59"/>
+        <source>Average bit rate</source>
+        <translation>Taxa de bits média</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="64"/>
+        <source>Two pass</source>
+        <translation>2-pass</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="62"/>
         <source>Encoding will try to keep an average bitrate setting, but will use more or less as needed.</source>
-        <translation type="unfinished"></translation>
+        <translation>A codificação tentará manter uma configuração de taxa de bits média, mas usará mais ou menos bits conforme necessário.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="67"/>
         <source>The media will first be processed to determine the characteristics, and then processed a second time allocating more bits to the areas that need it.</source>
-        <translation type="unfinished"></translation>
+        <translation>A mídia será processada primeiro para determinar suas características e, em seguida, processada uma segunda vez, alocando mais bits para as áreas que precisam.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="169"/>
         <source>Open path</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir pasta</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="182"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="184"/>
         <source>&apos;Encoding mode&apos; is &apos;constant quality&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;Modo de codificação&apos; é &apos;Qualidade constante&apos;</translation>
     </message>
 </context>
 <context>
@@ -942,7 +1106,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterSSH.cpp" line="14"/>
         <source>The host is empty. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>O host está vazio. Por favor, configure-o</translation>
     </message>
 </context>
 <context>
@@ -950,216 +1114,189 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="25"/>
         <source>Source host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host de origem:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="39"/>
         <source>Source port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta de origem:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="63"/>
         <source>Packet capture file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de captura de pacotes:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
-        <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <source>Browse(&amp;B)</source>
+        <translation>Procurar(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="49"/>
         <source>Save packet capture file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar arquivo de captura de pacotes</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="51"/>
         <source>Packet capture (*.pcap *.cap)</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura de pacotes (*.pcap *.cap)</translation>
     </message>
 </context>
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Geral</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="22"/>
         <source>Font:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Fonte:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="62"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Esquema de cores:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="86"/>
         <source>Cursor shape:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Cursor:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="106"/>
-        <source>Scroll bar positioin:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="130"/>
         <source>Terminal Transparency:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Transparência do Terminal:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="146"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">%</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="160"/>
         <source>Background Image:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Imagem de Fundo:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="186"/>
-        <source>Browser(&amp;B)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="197"/>
         <source>Key binding:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Mapeamento de teclas:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="219"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="226"/>
+        <source>Scroll bar position:</source>
+        <translation type="vanished">Barra de rolagem:</translation>
+    </message>
+    <message>
+        <source>Browse(&amp;B)</source>
+        <translation type="vanished">Procurar(&amp;P)</translation>
+    </message>
+    <message>
         <source>Enable bi-directional text support</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Habilitar suporte a texto bidirecional</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="233"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Histórico</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="241"/>
         <source>History size(in lines):</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Tamanho do histórico (em linhas):</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="257"/>
         <source>Unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Ilimitado</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="267"/>
         <source>Flow Control</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Controle de fluxo</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="274"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Exemplo: Fonte de exibição</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Imagem de fundo</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Imagens (*.png *.xpm *.jpg *.bmp *.jpeg);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">BlockCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">UnderlineCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">IBeamCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
+        <source>None</source>
+        <translation type="vanished">Nenhum</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Esquerda</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Direita</translation>
     </message>
 </context>
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="27"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="77"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="29"/>
         <source>Username and password</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário e senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="30"/>
         <source>Public key</source>
-        <translation type="unfinished"></translation>
+        <translation>Chave pública</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="31"/>
         <source>Password with X509 none</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha, sem X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="32"/>
         <source>Password with X509</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha, com X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="33"/>
         <source>Username and password with X509 none</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário e senha, sem X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="34"/>
         <source>Username and password with X509</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário e senha, com X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="107"/>
         <source>Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha</translation>
     </message>
 </context>
 <context>
@@ -1167,44 +1304,44 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="20"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="55"/>
         <source>Authentication type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de autenticação:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="76"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuário:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
         <source>Input user name</source>
-        <translation type="unfinished"></translation>
+        <translation>Digite o nome do usuário</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="94"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="165"/>
         <source>Input password</source>
-        <translation type="unfinished"></translation>
+        <translation>Digite a senha</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="67"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="80"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu: Ferramentas→Configurações→Plugin→Senha→Ativar senha de visualização</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
@@ -1213,27 +1350,27 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="61"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="72"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="76"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu: Ferramentas→Configurações→Plugin→Senha→Ativar Salvar senha</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu: Ferramentas→Configurações→Cliente→Senha→Ativar senha de visualização</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="163"/>
         <source>Use system public and private file</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar arquivo de chave pública e privada do sistema</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
         <source>Public file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo público:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
@@ -1245,7 +1382,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo público e privado está vazio, então use o arquivo de chave pública e privada do sistema.</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
@@ -1253,86 +1390,86 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
         <source>Private file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo privado:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
         <source>Passphrase:</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="261"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="266"/>
         <source>Input passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Digite a senha</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="308"/>
         <source>CA file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo CA:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="329"/>
         <source>CRL file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo CRL:</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
         <source>Please input the public key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Insira o arquivo de chave pública</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
         <source>Please input the private key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Insira o arquivo de chave privada</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="19"/>
         <source>Please input the passphrase of private key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Insira a senha do arquivo de chave privada</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="60"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="71"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="62"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="75"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="79"/>
         <source>View password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="162"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="167"/>
         <source>Please checked save password to enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, marque salvar senha para ativar</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="173"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="185"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="178"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="190"/>
         <source>Open public key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo de chave pública</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="263"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="268"/>
         <source>Please checked save passphrase to enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, marque salvar senha para ativar</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="282"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="287"/>
         <source>Open X509 certificate authentication file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo de CA X509</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="294"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="299"/>
         <source>Open X509 Certificate Revocation List file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo de CRL X509</translation>
     </message>
 </context>
 <context>
@@ -1341,42 +1478,42 @@ Restart program by administrator?</source>
         <location filename="../../Plugin.cpp" line="40"/>
         <location filename="../../Plugin.cpp" line="61"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Customizado</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="45"/>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliente</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="47"/>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Serviço</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="49"/>
         <source>Remote Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Área de Trabalho Remota</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="51"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="53"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramentas</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="55"/>
-        <source>File transfers</source>
-        <translation type="unfinished"></translation>
+        <source>File Transfer</source>
+        <translation>Transferência de Arquivo</translation>
     </message>
     <message>
         <location filename="../../Plugin.cpp" line="57"/>
         <source>Network Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramentas de Rede</translation>
     </message>
 </context>
 <context>
@@ -1384,30 +1521,36 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
     <name>CStats</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="12"/>
-        <source>B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="14"/>
-        <source>KB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="16"/>
-        <source>MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
-        <source> GB</source>
-        <translation type="unfinished"></translation>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
+        <source>KB</source>
+        <translation>KB</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
+        <source>MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
+        <source>GB</source>
+        <translation>GB</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="60"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="65"/>
+        <source>S</source>
+        <translation>S</translation>
     </message>
 </context>
 </TS>

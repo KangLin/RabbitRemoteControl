@@ -41,7 +41,7 @@
       
 #### Qt Creator
 
-版本：v15.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v18.0.0。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -59,6 +59,25 @@
 
           ~$ sudo apt install automake autoconf make fakeroot
 
+  - 动态库工具
+    - ldd: 查看动态库依赖
+      
+          ldd file
+      
+    - ldconfig: 更新动态库缓存。执行 ldconfig 命令，默认会在 /lib 和 /usr/lib
+      目录以及动态库配置文件 /etc/ld.so.conf 内所列出的目录下，搜索出可共享的动态链接库（格式如 lib*.so*），
+      进而创建出动态装入程序（ld.so）所需的连接和缓存文件。缓存文件默认为 /etc/ld.so.cache，
+      此文件保存已排好序的动态链接库名字列表，为了让动态链接库为系统所共享，就需要运行动态链接库的管理命令 ldconfig。
+
+    - readelf: 查看elf结构
+
+          readelf -d "file"    #可查看　runPath(rpath)
+
+    - 加载动态库搜索顺序
+      + 代码中指定的位置　(rpath)
+      + 环境变量： LD_CONFIG_PATH
+      + 系统库位置 (/lib、/usr/lib 等)
+
 #### GIT: [http://www.git-scm.com](http://www.git-scm.com)
 
       ~$ sudo apt install git
@@ -74,89 +93,111 @@
       ~$ sudo apt install debhelper
 
 #### Qt
-  - Qt 官方发行版本： https://download.qt.io/official_releases/qt/
-    - 则需要设置环境变量（或者 CMAKE 参数）：
-      - QT_ROOT
-      - Qt6：Qt6_ROOT 或者 Qt6_DIR 。
-        详见：https://doc.qt.io/qt-6/cmake-get-started.html
-      - Qt5：Qt5_ROOT 或者 Qt5_DIR 。
-        详见：https://doc.qt.io/qt-5/cmake-get-started.html
-      - 环境变量
+- Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
+  当前使用版本：Qt 6.9.3
+  - 则需要设置环境变量（或者 CMAKE 参数）：
+    - QT_ROOT
+    - Qt6：Qt6_ROOT 或者 Qt6_DIR 。
+      详见：https://doc.qt.io/qt-6/cmake-get-started.html
+    - Qt5：Qt5_ROOT 或者 Qt5_DIR 。
+      详见：https://doc.qt.io/qt-5/cmake-get-started.html
+    - 环境变量
 
-            export QT_ROOT=Qt 安装位置
-            # 编译 AppImage 需要
-            export QMAKE=$QT_ROOT/bin/qmake
+          export QT_ROOT=Qt 安装位置
+          # 编译 AppImage 需要
+          export QMAKE=$QT_ROOT/bin/qmake
 
-            # 当使用 Qt6 时
-            export Qt6_ROOT=$QT_ROOT
-            # 当使用 Qt5 时
-            export Qt5_ROOT=$QT_ROOT
+          # 当使用 Qt6 时
+          export Qt6_ROOT=$QT_ROOT
+          # 当使用 Qt5 时
+          export Qt5_ROOT=$QT_ROOT
 
-            # 或者
-            # 当使用 Qt6 时
-            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
-            # 当使用 Qt5 时
-            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+          # 或者
+          # 当使用 Qt6 时
+          export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+          # 当使用 Qt5 时
+          export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
 
-      - CMAKE 参数
+    - CMAKE 参数
 
-            #当使用 Qt6 时
-            cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
-            #当使用 Qt5 时
-            cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
-            # 编译 AppImage 需要
-            export QMAKE=$QT_ROOT/bin/qmake
+          #当使用 Qt6 时
+          cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
+          #当使用 Qt5 时
+          cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
+          # 编译 AppImage 需要
+          export QMAKE=$QT_ROOT/bin/qmake
 
-  - 系统自带：
-    - Qt5:
+- 系统自带：
+  - Qt5:
 
-          ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+        ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
 
-    - Qt6: 详见： [Script/build_depend.sh](../../Script/build_depend.sh)
+  - Qt6: 详见： [Script/build_depend.sh](../../Script/build_depend.sh)
 
-          ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
+        ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
 
-    - 系统安装多个分发版本 Qt 时。例如：同时安装 Qt5 和 Qt6 。
-      系统使用 qtchooser 工具来选择当前的 Qt 版本。
+  - 系统安装多个分发版本 Qt 时。例如：同时安装 Qt5 和 Qt6 。
+    系统使用 qtchooser 工具来选择当前的 Qt 版本。
   
-          l@l:/home/RabbitRemoteControl$ qtchooser 
-          Usage:
-            qtchooser { -l | -list-versions | -print-env }
-            qtchooser -install [-f] [-local] <name> <path-to-qmake>
-            qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
-            <executable name> [-qt=<Qt version>] [program arguments]
+        l@l:/home/RabbitRemoteControl$ qtchooser 
+        Usage:
+          qtchooser { -l | -list-versions | -print-env }
+          qtchooser -install [-f] [-local] <name> <path-to-qmake>
+          qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
+          <executable name> [-qt=<Qt version>] [program arguments]
+        Environment variables accepted:
+          QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
+          QT_SELECT          version of Qt to be run (same as the -qt argument)
+ 
+    - 查看当前系统安装的 Qt 版本
 
-          Environment variables accepted:
-           QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
-           QT_SELECT          version of Qt to be run (same as the -qt argument)
-  
-      - 查看当前系统安装的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser -l
+          4
+          5
+          default
+          qt4-x86_64-linux-gnu
+          qt4
+          qt5-x86_64-linux-gnu
+          qt5
+          qt6
 
-            l@l:/home/RabbitRemoteControl$ qtchooser -l
-            4
-            5
-            default
-            qt4-x86_64-linux-gnu
-            qt4
-            qt5-x86_64-linux-gnu
-            qt5
-            qt6
-
-            # 查看当前环境的 Qt 版本
-            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
-            QT_SELECT="default"
-            QTTOOLDIR="[Paths]"
-            QTLIBDIR="Prefix=/usr"
+          # 查看当前环境的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+          QT_SELECT="default"
+          QTTOOLDIR="[Paths]"
+          QTLIBDIR="Prefix=/usr"
     
-      - 设置当前环境的 Qt 版本
+    - 设置当前环境的 Qt 版本
 
-            export QT_SELECT=qt6  #设置当前环境 Qt 版本为 6
+          export QT_SELECT=qt6  #设置当前环境 Qt 版本为 6
 
-            # 查看当前环境的 Qt 版本
-            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
-            QT_SELECT="qt6"
-            QTTOOLDIR="/usr/lib/qt6/bin"
-            QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+          # 查看当前环境的 Qt 版本
+          l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+          QT_SELECT="qt6"
+          QTTOOLDIR="/usr/lib/qt6/bin"
+          QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+          
+  - QtWebEngine
+    默认情况下，包括 Webm(开源),不包括 x264、x265(版权原因)
+    - 检查支持
+      在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
+
+    - 在 QtWebEngine 程序中，访问:
+      - https://www.webmfiles.org/demo-files/ 上传或播放 H264/H265 视频文件，测试支持性
+      - https://html5test.com/ 
+      - https://webrtc.github.io/test-pages/ 
+      - https://browserleaks.com/webrtc
+    
+    - 重新编译QtWebEngine，包括相应解码器。
+      相关编译参数：
+      - -webengine-proprietary-codecs
+        启用专有编解码支持（H264、MP3、AAC 等）。
+      - -webengine-ffmpeg
+        指定使用自定义 ffmpeg。
+
+            ./configure -webengine-proprietary-codecs
+            make -j$(nproc)
+            make install
 
 #### [可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
@@ -195,6 +236,8 @@
 - [可选] QtService: https://github.com/KangLin/qt-solutions/
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)。插件 WakeOnLan 需要。
 - [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/)。 Qt 多媒体功能需要
+- [可选] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
+- [可选] libcurl: [https://curl.se](https://curl.se)
 
 #### 玉兔公共库
 
@@ -349,6 +392,14 @@
 - 当 QTermWidget 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
+
+- 安装时，需要复制资源到安装目录
+
+      if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+          cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+      else
+          echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+      fi
 
 #### libssh
 
@@ -758,6 +809,18 @@ PcapPlusPlus 依赖此库。
 - 参考：
   - [如何在 Linux 上安装和使用 Snapcraft](https://cn.linux-terminal.com/?p=1776)
 
+- 问题：
+  - 运行时，出现下列错误：
+  
+        [27470:27470:1015/151510.941749:FATAL:credentials.cc(130)] Check failed: . : Permission denied (13)
+        追踪或断点陷阱 (核心已转储)
+
+    这是因为 Qt WebEngine 没有访问系统凭据的权限导致的。解决方案：
+
+        export QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox" && rabbitremotecontrol
+        # 或者：
+        export QTWEBENGINE_DISABLE_SANDBOX=1 && rabbitremotecontrol
+
 ### Flatpak
 
 - 准备
@@ -915,6 +978,8 @@ PcapPlusPlus 依赖此库。
         sudo dnf install xorg-x11-server-Xvfb
         sudo Xvfb :99 -ac -screen 0 1200x900x24 &
         export DISPLAY=:99.0
+
+  - QtWebEngine: https://github.com/flathub/io.qt.qtwebengine.BaseApp
 
 - 文档
   - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)

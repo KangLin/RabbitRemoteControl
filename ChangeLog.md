@@ -35,10 +35,18 @@
       - FTP
     - Player
       - Add display subtitle
+    - Add web browser
 
 - Add activity menu
 - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+- Application
+  - [App: add favorite from activity list and recent list](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+  - Add view layout
+  - Add main menu in toolbaar
+- Add build_mscos.sh. add App bundle
+- Add run the program directly without installation for windows install package
+- [Add store password to system redential](https://github.com/KangLin/RabbitRemoteControl/issues/78)
+- Plugin: fix disable desktop shortcuts in linux. See: https://github.com/KangLin/RabbitRemoteControl/discussions/91
 
 ### v0.0.36
 - Client:

@@ -2,7 +2,7 @@
 # Author Kang Lin <kl222@126.com>
 
 project(FileTransfer LANGUAGES CXX
-  DESCRIPTION "File transfers")
+  DESCRIPTION "File transfers plugin")
 
 SET(FileTransfer_LIBS Plugin)
 SET(FileTransfer_SOURCE_FILES
@@ -30,14 +30,24 @@ SET(FileTransfer_UI_FILES
     DlgFileTransfer.ui
     )
 
-find_package(libssh 0.11.0)
+find_package(libssh)
 if(libssh_FOUND)
+    message("libssh version: ${libssh_VERSION}")
     list(APPEND FileTransfer_DEFINED HAVE_LIBSSH)
+    if(libssh_VERSION VERSION_LESS "0.11.0")
+        message(AUTHOR_WARNING "Don't support libssh file transfer")
+    endif()
     list(APPEND FileTransfer_LIBS ssh)
     list(APPEND FileTransfer_SOURCE_FILES
         ChannelSFTP.cpp)
     list(APPEND FileTransfer_HEADER_FILES
         ChannelSFTP.h)
+endif()
+
+find_package(CURL)
+if(CURL_FOUND)
+    list(APPEND FileTransfer_DEFINED HAVE_CURL)
+    list(APPEND FileTransfer_LIBS CURL::libcurl)
 endif()
 
 # if(MSVC)
@@ -57,6 +67,7 @@ endif()
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${FileTransfer_SOURCE_FILES} ${FileTransfer_HEADER_FILES} ${FileTransfer_UI_FILES}
+    INCLUDE_DIRS ${FileTransfer_INCLUDE}
     PRIVATE_DEFINITIONS ${FileTransfer_DEFINED}
     PRIVATE_LIBS ${FileTransfer_LIBS}
     INSTALL_DIR ${PLUGIN_PATH}

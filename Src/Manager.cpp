@@ -15,8 +15,17 @@
 #include "ParameterPluginUI.h"
 #include "ParameterRecordUI.h"
 #if defined(HAVE_QTERMWIDGET)
-#include "ParameterTerminalUI.h"
+    #include "ParameterTerminalUI.h"
+    #include "OperateTerminal.h"
 #endif
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSH.h"
+#endif
+
+#if HAVE_QTKEYCHAIN
+    #include "keychain.h"
+#endif
+
 #include "Channel.h"
 #include "Manager.h"
 
@@ -39,11 +48,61 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
         LoadSettings(m_szSettingsFile);
-        check = connect(m_pParameter, SIGNAL(sigNativeWindowRecieveKeyboard()),
-                        this, SLOT(slotNativeWindowRecieveKeyboard()));
-        m_pHook = CHook::GetHook(m_pParameter, this);
-        if(m_pHook)
-            m_pHook->RegisterKeyboard();
+
+        bool bReboot = true;
+        QString szSnap;
+        QString szFlatpak;
+#if defined(Q_OS_ANDROID)
+        bReboot = false;
+#endif
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_WIN)
+        szSnap = qEnvironmentVariable("SNAP");
+        szFlatpak = qEnvironmentVariable("FLATPAK_ID");
+#else
+        szSnap = QString::fromLocal8Bit(qgetenv("SNAP"));
+        szFlatpak = QString::fromLocal8Bit(qgetenv("FLATPAK_ID"));
+#endif
+        if(!szSnap.isEmpty() || !szFlatpak.isEmpty())
+            bReboot = false;
+        if(bReboot && !RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
+            && m_pParameter->GetPromptAdministratorPrivilege())
+        {
+            int nRet = 0;
+            QString szMsg;
+            szMsg = tr("The programe is not administrator privilege.\n"
+                       "Some features are limited.\n");
+#if defined(Q_OS_WIN)
+            szMsg += tr("Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).") + "\n";
+#else
+            szMsg += tr("Eg: Can not use the wake on LAN feature.") + "\n";
+#endif
+            szMsg += tr("Restart program by administrator?");
+            QMessageBox msg(QMessageBox::Warning, tr("Warning"), szMsg,
+                QMessageBox::Yes | QMessageBox::No);
+            msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
+            msg.checkBox()->setCheckable(true);
+            msg.checkBox()->setChecked(
+                m_pParameter->GetPromptAdministratorPrivilege());
+            nRet = msg.exec();
+
+            m_pParameter->SetPromptAdministratorPrivilege(
+                msg.checkBox()->isChecked());
+            SaveSettings(m_szSettingsFile);
+
+            if(QMessageBox::Yes == nRet) {
+                RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
+                return;
+            }
+        }
+
+        check = connect(m_pParameter, SIGNAL(sigCaptureAllKeyboard()),
+                        this, SLOT(slotCaptureAllKeyboard()));
+        Q_ASSERT(check);
+        if(m_pParameter->GetCaptureAllKeyboard()) {
+            m_pHook = CHook::GetHook(m_pParameter, this);
+            if(m_pHook)
+                m_pHook->RegisterKeyboard();
+        }
     } else {
         qCritical(log) << "new CParameterPlugin() fail";
         Q_ASSERT(m_pParameter);
@@ -112,7 +171,7 @@ int CManager::LoadPlugins()
     }
     nRet = FindPlugins(szPath, filters);
     if(!m_szDetails.isEmpty())
-        m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
+        m_szDetails = "## " + tr("Plugins") + "\n" + m_szDetails;
 
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
     return nRet;
@@ -157,7 +216,7 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
                 else
                     qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
             }
-        }else{
+        } else {
             QString szMsg;
             szMsg = "Error: Load plugin fail from " + szPlugins;
             if(!loader.errorString().isEmpty())
@@ -194,7 +253,7 @@ int CManager::AppendPlugin(CPlugin *p)
         << "initial translator fail" << bRet << val;
     }
 
-    m_szDetails += "#### " + p->DisplayName() + "\n"
+    m_szDetails += "### " + p->DisplayName() + "\n"
                    + tr("Version:") + " " + p->Version() + "  \n"
                    + p->Description() + "\n";
     if(!p->Details().isEmpty())
@@ -269,7 +328,7 @@ COperate* CManager::LoadOperate(const QString &szFile)
 {
     COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
-    
+    qDebug(log) << "Load operate configure file:"<< szFile;
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
@@ -299,8 +358,8 @@ COperate* CManager::LoadOperate(const QString &szFile)
         pOperate->SetSettingsFile(szFile);
     }
     else
-        qCritical(log) << "Don't create Operate:" << protocol;
-    
+        qCritical(log) << "Don't create Operate:" << name << protocol << id << szFile;
+
     return pOperate;
 }
 
@@ -436,22 +495,40 @@ int CManager::EnumPlugins(std::function<int(const QString &, CPlugin *)> cb)
 
 const QString CManager::Details() const
 {
-    return m_szDetails;
+    QString szDetail;
+#if HAVE_QTERMWIDGET
+    szDetail += COperateTerminal::Details();
+#endif
+#ifdef HAVE_LIBSSH
+    CChannelSSH channel(nullptr, nullptr);
+    szDetail += channel.GetDetails();
+#endif
+#if HAVE_QTKEYCHAIN
+    szDetail += "- QtKeyChain\n" +
+        QString("  - ") + tr("Version:")
+                + " 0x" + QString::number(QTKEYCHAIN_VERSION, 16) + "\n";
+#endif
+
+    if(!szDetail.isEmpty()) {
+        szDetail = "## " + tr("Dependency libraries:") + "\n" + szDetail;
+    }
+    szDetail += m_szDetails;
+    return szDetail;
 }
 
-void CManager::slotNativeWindowRecieveKeyboard()
+void CManager::slotCaptureAllKeyboard()
 {
     Q_ASSERT(m_pParameter);
-    if(m_pParameter->GetNativeWindowReceiveKeyboard()) {
+    if(m_pParameter->GetCaptureAllKeyboard()) {
+        if(m_pHook) return;
+        m_pHook = CHook::GetHook(m_pParameter, this);
+        if(m_pHook)
+            m_pHook->RegisterKeyboard();
+    } else {
         if(m_pHook) {
             m_pHook->UnRegisterKeyboard();
             m_pHook->deleteLater();
             m_pHook = nullptr;
         }
-    } else {
-        if(m_pHook) return;
-        m_pHook = CHook::GetHook(m_pParameter, this);
-        if(m_pHook)
-            m_pHook->RegisterKeyboard();
     }
 }

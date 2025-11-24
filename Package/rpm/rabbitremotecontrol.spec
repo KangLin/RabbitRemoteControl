@@ -17,19 +17,21 @@ BuildRequires: make git rpm-build rpmdevtools
 BuildRequires: gcc-c++
 BuildRequires: automake autoconf libtool gettext gettext-autopoint
 BuildRequires: cmake desktop-file-utils appstream
-BuildRequires: curl wget
+BuildRequires: curl wget libcurl-devel
 BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel
 
 # Qt6
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
-
 BuildRequires: qtermwidget-devel
+BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
+BuildRequires: qtkeychain-qt6-devel
 BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
 BuildRequires: libvncserver-devel libpcap-devel
 BuildRequires: libwinpr-devel freerdp-devel freerdp fuse3-devel
+
 # TigerVNC
 BuildRequires: libpciaccess-devel freetype-devel pam-devel
 BuildRequires: gnutls-devel nettle-devel gmp-devel
@@ -41,13 +43,15 @@ BuildRequires: libXinerama-devel mesa-libGL-devel libxshmfence-devel
 BuildRequires: libdrm-devel mesa-libgbm-devel
 BuildRequires: libxkbfile-devel libXfont2-devel
 
+Requires: qtkeychain-qt6
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
 Requires: libvncserver libwinpr freerdp fuse3 libpcap
-Requires: zlib gnutls nettle gmp pam 
+Requires: zlib gnutls nettle gmp pam libcurl
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
-
 Requires: qtermwidget
+Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
+
 Requires: libXext libX11 libXi libXfixes libXtst
 Requires: libXdamage libXrandr libXt libXdmcp
 Requires: libXinerama mesa-libGL libxshmfence
@@ -97,6 +101,7 @@ cmake . -B $RPM_BUILD_DIR  \
     -DCMARK_STATIC=ON \
     -DWITH_CMARK=OFF \
     -DWITH_CMARK_GFM=ON \
+    -DWITH_WebEngineWidgets=ON \
     -DBUILD_FREERDP=ON
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
@@ -108,10 +113,10 @@ cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component Runtime \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release --strip \
-    --component Application \
+    --component Plugin \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release --strip \
-    --component Plugin \
+    --component Application \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 
 #if [ -n "${INSTALL_DIR}" ]; then

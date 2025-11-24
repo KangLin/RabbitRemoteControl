@@ -1,11 +1,10 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include <QAtomicInt>
 #include <QLoggingCategory>
 #include <QLocale>
 #include "ListFileModel.h"
-#include "ChannelSFTP.h"
 #include "Stats.h"
 
 static Q_LOGGING_CATEGORY(log, "FileTransfer.ListFileModel")
@@ -123,10 +122,10 @@ QString CFileTransfer::GetDirectionName()
 {
     switch ((Direction)GetDirection()) {
     case Direction::Upload:
-        return "---->";
+        return "→";
         return tr("Upload");
     case Direction::Download:
-        return "<----";
+        return "←";
         return tr("Download");
     }
     return QString();
@@ -264,7 +263,7 @@ QString CFileTransfer::GetPriority()
 {
     switch((Priority)m_Priority) {
     case Priority::Height:
-        return tr("Height");
+        return tr("High");
     case Priority::Normal:
         return tr("Normal");
     case Priority::Lower:
@@ -400,7 +399,13 @@ QSharedPointer<CFileTransfer> CListFileModel::GetFileTransfer(const QModelIndex 
 bool CListFileModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row + count - 1);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     m_lstFile.remove(row, count);
+#else
+    for(int i = row + count - 1; i >= row && i < m_lstFile.size();) {
+        m_lstFile.removeAt(i--);
+    }
+#endif
     endRemoveRows();
     return true;
 }

@@ -1,14 +1,20 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "NativeEventFilterUnix.h"
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #endif
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    #include <QtX11Extras/QX11Info>
+#endif
 
 #include <QApplication>
 #include <QLoggingCategory>
 #include <QKeyEvent>
+#include <QProcess>
 
-static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
+static Q_LOGGING_CATEGORY(log, "Plugin.Hook.NativeEventFilter")
 
 #include <xcb/xcb.h>
 #include <xcb/xcb_keysyms.h>
@@ -17,35 +23,7 @@ static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
 #include <X11/keysymdef.h>
 
 /*
-int GetKeySym(xcb_key_press_event_t* event, xcb_keysym_t& keysym)
-{
-    xcb_connection_t *connection = xcb_connect(NULL, NULL);
-    // 连接到 X server
-    if (xcb_connection_has_error(connection)) {
-        qCritical(log) << "Don't connect X server";
-        return -1;
-    }
-    // 初始化 Key Symbols
-    xcb_key_symbols_t *key_symbols = xcb_key_symbols_alloc(connection);
-    if (!key_symbols) {
-        qCritical(log) << "无法分配键符表";
-        return -2;
-    }
-    // 将 keycode 转换为 keysym
-    keysym = xcb_key_symbols_get_keysym(key_symbols, event->detail, 0);
-    // 处理 Shift 组合键
-    if (event->state & XCB_MOD_MASK_SHIFT) {
-        keysym = xcb_key_symbols_get_keysym(key_symbols, event->detail, 1);
-    }
-    qDebug(log) << "keycode:" << event->detail << "keySym:" << keysym;
-    // 清理
-    xcb_key_symbols_free(key_symbols);
-    xcb_disconnect(connection);
-    return 0;
-}
-
-void
-print_modifiers (uint32_t mask)
+void print_modifiers (uint32_t mask)
 {
     const char **mod, *mods[] = {
                           "Shift", "Lock", "Ctrl", "Alt",
@@ -57,7 +35,7 @@ print_modifiers (uint32_t mask)
         if (mask & 1)
             qDebug(log) << *mod;
 }
-*/
+//*/
 
 Qt::KeyboardModifiers GetModifiers(uint32_t mask)
 {
@@ -76,7 +54,7 @@ bool CNativeEventFilterUnix::HandleKey(
 {
     int bRet = false;
     if(!m_pParameterPlugin
-        || m_pParameterPlugin->GetNativeWindowReceiveKeyboard()) {
+        || !m_pParameterPlugin->GetCaptureAllKeyboard()) {
         qDebug(log) << "Native window receive keyboard.";
         return false;
     }
@@ -108,7 +86,7 @@ bool CNativeEventFilterUnix::HandleKey(
     default:
         break;
     }
-    
+
     if(bRet) {
         CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
         if(focus) {
@@ -128,10 +106,16 @@ bool CNativeEventFilterUnix::HandleKey(
             default:
                 break;
             }
+            // Because the signals is `Qt::DirectConnection`,
+            // so than can delete it in here!
+            // See: CBackendDesktop::SetViewer
+            delete keyEvent;
             return true;
         }
+        /*
         QKeyEvent* keyEvent = new QKeyEvent(type, key, modifiers);
         qDebug(log) << "Process:" << keyEvent;
+        delete keyEvent;//*/
     }
     return false;
 }
@@ -139,7 +123,7 @@ bool CNativeEventFilterUnix::HandleKey(
 bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
 {
     bool bRet = false;
-    
+
     switch (event->response_type & ~0x80) {
     case XCB_KEY_PRESS: {
         xcb_key_press_event_t *ke = (xcb_key_press_event_t *)event;
@@ -172,7 +156,7 @@ bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
     default:
         break;
     }
-    
+
     return bRet;
 }
 
@@ -189,20 +173,49 @@ int CNativeEventFilterUnix::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t
     return nRet;
 }
 
+void CNativeEventFilterUnix::DisableSuperKeyShortcuts()
+{
+    // GNOME
+    QProcess::execute("gsettings", {"set", "org.gnome.mutter", "overlay-key", ""});
+
+    // KDE (需要检测桌面环境)
+    QString desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+    if (desktop.contains("KDE", Qt::CaseInsensitive)) {
+        QProcess::execute("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", ""});
+        QProcess::execute("kwin_x11", {"--replace"});
+    }
+}
+
+void CNativeEventFilterUnix::RestoreSuperKeyShortcuts()
+{
+    // GNOME
+    QProcess::execute("gsettings", {"reset", "org.gnome.mutter", "overlay-key"});
+
+    // KDE (需要检测桌面环境)
+    QString desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+    if (desktop.contains("KDE", Qt::CaseInsensitive)) {
+        QProcess::execute("kwriteconfig5", {"--file", "kwinrc", "--group", "ModifierOnlyShortcuts", "--key", "Meta", "org.kde.kglobalaccel,/component/kwin,,invokeShortcut,Show Desktop Grid"});
+        QProcess::execute("kwin_x11", {"--replace"});
+    }
+}
+
 CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterPlugin *pPara)
     : m_pParameterPlugin(pPara)
+    , m_pKeySymbols(nullptr)
 {
-    m_pConnect = xcb_connect(NULL, NULL);
-    // 连接到 X server
-    if (xcb_connection_has_error(m_pConnect)) {
-        qCritical(log) << "Don't connect X server";
-        return;
+    // See: https://doc.qt.io/qt-6/extras-changes-qt6.html#changes-to-qt-x11-extras
+    xcb_connection_t *connection = nullptr;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
+        connection = x11Application->connection();
     }
-
+#else
+    connection = QX11Info::connection();
+#endif
     // 初始化 Key Symbols
-    m_pKeySymbols = xcb_key_symbols_alloc(m_pConnect);
+    m_pKeySymbols = xcb_key_symbols_alloc(connection);
     if (!m_pKeySymbols) {
-        qCritical(log) << "无法分配键符表";
+        qCritical(log) << "Unable to allocate symbol table";
         return;
     }
 }
@@ -212,7 +225,6 @@ CNativeEventFilterUnix::~CNativeEventFilterUnix()
     // 清理
     if(m_pKeySymbols)
         xcb_key_symbols_free(m_pKeySymbols);
-    xcb_disconnect(m_pConnect);
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)

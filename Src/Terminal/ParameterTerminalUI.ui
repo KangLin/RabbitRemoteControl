@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>General</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="console"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -29,7 +32,7 @@
      <item>
       <widget class="QFontComboBox" name="fontComboBox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -103,7 +106,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Scroll bar positioin:</string>
+        <string>Scroll bar position:</string>
        </property>
        <property name="wordWrap">
         <bool>false</bool>
@@ -183,7 +186,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Browser(&amp;B)</string>
+        <string>Browse(&amp;B)</string>
        </property>
       </widget>
      </item>
@@ -244,6 +247,12 @@
         </item>
         <item>
          <widget class="QSpinBox" name="sbHistorySize">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="maximum">
            <number>99999</number>
           </property>

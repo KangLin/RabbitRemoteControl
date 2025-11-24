@@ -7,21 +7,23 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
+MACOS=0
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.9.0
+    QT_VERSION=6.9.3
 fi
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--docker-image=<docker image>] [--qt[=[0|1|version]]] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker=[0|1]]] [--deb=[0|1]]] [--rpm=[0|1]]] [--appimage=[0|1]]] [--macos=[0|1]]] [--docker-image=<docker image>] [--qt[=[0|1|version]]] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --docker: run docket for build"
     echo "  --deb: build deb package"
     echo "  --rpm: build rpm package"
     echo "  --appimage: build AppImage"
+    echo "  --macos: build macOS"
     echo "  --qt: Install QT(only --appimage)"
     echo "  --docker-image: The name of docker image"
     echo "Directory:"
@@ -41,7 +43,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,docker-image::,qt:,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image::,qt:,install:,source:,tools:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -114,6 +116,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --macos)
+            case $2 in
+                "")
+                    MACOS=1;;
+                *)
+                    MACOS=$2;;
+            esac
+            shift 2
+            ;;    
         --docker-image)
             case $2 in
                 "")
@@ -191,6 +202,8 @@ if [ $DOCKER -eq 1 ]; then
         fi
        docker run --volume ${BUILD_LINUX_DIR}:/home/build  --privileged --interactive --rm ${DOCKERT_IMAGE} \
            bash -e -x -c "
+           apt-get update -y
+           apt-get install lsb-release
            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
            ~/RabbitRemoteControl/Script/build_linux.sh --deb --verbose ${BUILD_VERBOSE}
            cp ~/rabbitremotecontrol*.deb /home/build/
@@ -203,8 +216,18 @@ if [ $DOCKER -eq 1 ]; then
         docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+            apt-get update -y
+            apt-get install lsb-release
             ~/RabbitRemoteControl/Script/build_linux.sh --appimage --verbose ${BUILD_VERBOSE}
-            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/build/
+            mkdir -p /home/build/install
+            pushd /home/build/install
+            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
+            chmod a+wrx RabbitRemoteControl_`uname -m`.AppImage
+            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
+            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
+            cp ~/RabbitRemoteControl/Script/install.sh .
+            chmod a+rx install.sh
+            popd
             "
     fi
     if [ $RPM -eq 1 ]; then
@@ -229,14 +252,8 @@ pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
-    ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus --libssh \
-        --install=${INSTALL_DIR} \
-        --source=${SOURCE_DIR} \
-        --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE}
-
-    ./build_depend.sh --qtermwidget \
+    ./build_depend.sh --system_update --base --default --package="freerdp2-dev" \
+        --rabbitcommon --tigervnc --pcapplusplus --libssh --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -249,28 +266,38 @@ fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
+    case "`lsb_release -s -r`" in
+        "25.04"|"25.10")
+            depend_para="--default"
+            export PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
+            export LD_LIBRARY_PATH=${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
+            export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+            ;;
+        "24.04"|"24.10")
+            depend_para="--qt=${QT_VERSION}"
+            export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
+            export Qt6_DIR=$QT_ROOT
+            export QMAKE=$QT_ROOT/bin/qmake
+            export QT_PLUGIN_PATH=$QT_ROOT/plugins
+            export PATH=$QT_ROOT/libexec:$PATH
+            export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
+            export LD_LIBRARY_PATH=$QT_ROOT/lib:${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
+            export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+            ;;
+    esac
     ./build_depend.sh --system_update --base --rabbitcommon \
-        --tigervnc --freerdp --pcapplusplus --libssh \
+        --tigervnc --pcapplusplus --freerdp --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE} \
-        --qt=${QT_VERSION}
+        --verbose=${BUILD_VERBOSE} ${depend_para}
 
-    export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-    export Qt6_DIR=$QT_ROOT
-    export QMAKE=$QT_ROOT/bin/qmake
-    export PATH=$QT_ROOT/libexec:$PATH
-    export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=$QT_ROOT/lib:${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
-    export QT_PLUGIN_PATH=$QT_ROOT/plugins
-    export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export BUILD_FREERDP=ON
 
     apt install -y -q fuse3
 
-    ./build_depend.sh --qtermwidget \
+    ./build_depend.sh --qtermwidget --qtkeychain \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -280,6 +307,7 @@ if [ $APPIMAGE -eq 1 ]; then
 fi
 
 if [ $RPM -eq 1 ]; then
+    echo "build rpm package ......"
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --libssh \
@@ -290,6 +318,20 @@ if [ $RPM -eq 1 ]; then
 
     ./build_rpm_package.sh \
         --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+fi
+
+if [ $MACOS -eq 1 ]; then
+    echo "build macos bundle package ......"
+    ./build_depend.sh --macos \
+        --rabbitcommon --tigervnc \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+    ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}

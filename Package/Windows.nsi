@@ -71,6 +71,18 @@ LangString LANG_AUTO_BOOT ${LANG_SIMPCHINESE} "开机自启动"
 LangString LANG_DIRECTORY_PERMISSION ${LANG_ENGLISH} "Don't directory permission"
 LangString LANG_DIRECTORY_PERMISSION ${LANG_SIMPCHINESE} "无目录访问权限"
 
+LangString LANG_SELECT_OPERATE ${LANG_ENGLISH} "Install Rabbit Remote Control, Please select operate:$\n$\n  Yes - Install programe.$\n  No - Do not install programe, just run the program (Unpack to a temporary folder, it will take about a few minutes).$\n  Cancel - Cancel install."
+LangString LANG_SELECT_OPERATE ${LANG_SIMPCHINESE} "安装 玉兔远程控制 程序，请选择操作：$\n$\n  是 - 安装程序。$\n  否 - 不安装程序,直接运行程序(解压到临时文件夹，大约需要几分钟)。$\n  取消 - 取消安装。"
+
+LangString LANG_DOWNLOAD_NPCAP ${LANG_ENGLISH} "Network-related functions (Wake on LAN) require the pcap package. Do you want to download the npcap installation package?"
+LangString LANG_DOWNLOAD_NPCAP ${LANG_SIMPCHINESE} "网络相关功能（局域网唤醒）需要 pcap 包，是否下载 npcap 安装包？"
+
+LangString LANG_EXTRACT_FILE ${LANG_ENGLISH} "Preparing for portable mode: Extract files ......"
+LangString LANG_EXTRACT_FILE ${LANG_SIMPCHINESE} "正在准备便携模式：解压缩文件中 ......"
+
+LangString LANG_EXTRACT_FILE_END ${LANG_ENGLISH} "Extract complete! Start the program ......"
+LangString LANG_EXTRACT_FILE_END ${LANG_SIMPCHINESE} "解压完成！启动程序 ......"
+
 ; MUI end ------
 
 Name "$(LANG_PRODUCT_NAME) ${PRODUCT_VERSION}"
@@ -124,15 +136,17 @@ Function InstallRuntime
 FunctionEnd
 
 Function InstallNpcap
-    IfFileExists "$INSTDIR\bin\npcap-1.80.exe" ExecNpcap
-    NSISdl::download "https://npcap.com/dist/npcap-1.80.exe" "$INSTDIR\bin\npcap-1.80.exe"
+    IfFileExists "$OUTDIR\bin\npcap-1.80.exe" ExecNpcap
+    MessageBox MB_YESNO|MB_ICONQUESTION "$(LANG_DOWNLOAD_NPCAP)" IDYES Download IDNO ExitNpcap
+    Download:
+    NSISdl::download "https://npcap.com/dist/npcap-1.80.exe" "$OUTDIR\bin\npcap-1.80.exe"
     Pop $R0 ;Get the return value
       StrCmp $R0 "success" ExecNpcap
         ExecShell "open" "https://npcap.com/#download"
         MessageBox MB_OK "Download npcap-1.80.exe failed: $R0. Please install npcap manually from https://npcap.com/#download"
         Goto ExitNpcap
 ExecNpcap:
-    ExecShell "" '"$INSTDIR\bin\npcap-1.80.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
+    ExecShell "" '"$OUTDIR\bin\npcap-1.80.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
 ExitNpcap:
 FunctionEnd
 
@@ -144,9 +158,25 @@ FunctionEnd
 
 Var UNINSTALL_PROG
 Var OLD_PATH
-Function .onInit  
+Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
   ClearErrors
+
+  ; 弹出选择框
+  MessageBox MB_YESNOCANCEL|MB_ICONQUESTION "$(LANG_SELECT_OPERATE)" IDYES InstallProgram IDNO RunProgram
+  Abort
+RunProgram:
+    SetOutPath "$TEMP\Rabbit\Package\RabbitRemoteControl"
+    IfFileExists "$OUTDIR\*.*" +2 0
+    call DirectoryPermissionErrorBox
+    SetOverwrite on
+    File /r "install\*"
+    call InstallNpcap
+    ExecWait "$OUTDIR\bin\${PRODUCT_APP_NAME}.exe"
+    RMDIR /r "$OUTDIR\"
+    Quit
+
+InstallProgram:
   ReadRegStr $UNINSTALL_PROG ${PRODUCT_UNINST_ROOT_KEY} ${PRODUCT_UNINST_KEY} "UninstallString"
   IfErrors  done
 
@@ -162,10 +192,11 @@ FunctionEnd
 
 Section "${PRODUCT_NAME}" SEC01
   SetOutPath "$INSTDIR"
-  IfFileExists "$INSTDIR\*.*" +2 0
+  IfFileExists "$OUTDIR\*.*" +2 0
   call DirectoryPermissionErrorBox
   SetOverwrite ifnewer
   File /r "install\*"
+
   ;SetShellVarContext all
   
   ;SetShellVarContext current
@@ -174,6 +205,7 @@ Section "${PRODUCT_NAME}" SEC01
 SectionEnd
 
 Section -AdditionalIcons
+  DetailPrint "Install short cut ......"
   CreateDirectory "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
   IfFileExists "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe" 0 +2
@@ -189,6 +221,7 @@ Section -AdditionalIcons
 SectionEnd
 
 Section -Post
+  DetailPrint "Install uninstall program ......"
   WriteUninstaller "$INSTDIR\uninst.exe"
 
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"

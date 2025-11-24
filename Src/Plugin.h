@@ -83,7 +83,7 @@ protected:
      * \see CClient::CreateOperate CClient::LoadOperate
      *
      */
-    [[nodiscard]] Q_INVOKABLE virtual COperate* CreateOperate(
+    Q_INVOKABLE virtual COperate* CreateOperate(
         const QString& szId, CParameterPlugin* para);
     [[nodiscard]] virtual COperate* OnCreateOperate(const QString& szId) = 0;
     /*!

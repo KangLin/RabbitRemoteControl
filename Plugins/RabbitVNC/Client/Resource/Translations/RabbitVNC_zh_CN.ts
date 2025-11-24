@@ -56,7 +56,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="390"/>
         <source>Failed to open SSH tunnel:</source>
-        <translation type="unfinished"></translation>
+        <translation>打开 SSH 隧道失败：</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="542"/>
@@ -67,7 +67,7 @@
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="546"/>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="559"/>
         <source> fail.</source>
-        <translation type="unfinished"> 失败。</translation>
+        <translation> 失败。</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="547"/>
@@ -388,12 +388,12 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="146"/>
         <source>Ice:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="160"/>
         <source>Peer user:</source>
-        <translation type="unfinished">对端用户：</translation>
+        <translation>对端用户：</translation>
     </message>
     <message>
         <source>Compress</source>
@@ -447,7 +447,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="313"/>
         <source>Tight</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="306"/>
@@ -467,17 +467,17 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="137"/>
         <source>Cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>光标位置</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="175"/>
         <source>Led state</source>
-        <translation type="unfinished"></translation>
+        <translation>Led 灯状态</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="183"/>
         <source>Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>压缩</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="278"/>
@@ -541,42 +541,42 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="21"/>
         <source>Standard VNC authentication (insecure without encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>标准 VNC 验证(未加密，不安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="22"/>
         <source>Username and password (insecure without encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名和密码(未加密，不安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="23"/>
         <source>Standard VNC authentication (secure with x509 encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>标准 VNC 验证(用 x509 加密，安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="24"/>
         <source>Standard VNC authentication (secure with x509 none encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>标准 VNC 验证(用 x509 非加密，安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="25"/>
         <source>Username and password (secure with x509 encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名和密码(用 x509 加密，安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="26"/>
         <source>Username and password (secure with x509 none encryption)</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名和密码(用 x509 非加密，安全)</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="77"/>
         <source>Ice signal password</source>
-        <translation type="unfinished">Ice 信令密码</translation>
+        <translation>Ice 信令密码</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ParameterVnc.cpp" line="90"/>
         <source>Ice turn password</source>
-        <translation type="unfinished">Turn 服务器密码</translation>
+        <translation>Turn 服务器密码</translation>
     </message>
 </context>
 <context>

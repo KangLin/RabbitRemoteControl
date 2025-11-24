@@ -161,7 +161,7 @@ fi
 popd
 
 echo "Compile RabbitRemoteControl ......"
-if [ "${BUILD_VERBOSE}" = "ON" ]; then
+if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     echo "QT_ROOT: $QT_ROOT"
     echo "Qt6_DIR: $Qt6_DIR"
     echo "QMAKE: $QMAKE"
@@ -181,6 +181,7 @@ cmake "$REPO_ROOT" \
   -DCMARK_STATIC=ON \
   -DWITH_CMARK=OFF \
   -DWITH_CMARK_GFM=ON \
+  -DWITH_WebEngineWidgets=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
@@ -188,8 +189,8 @@ cmake "$REPO_ROOT" \
 cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Runtime --prefix ${INSTALL_APP_DIR}
-cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else
@@ -201,11 +202,12 @@ echo "Build AppImage ......"
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
+export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 export EXTRA_QT_MODULES="svg"
 export PATH=$PATH:${TOOLS_DIR}
 
-if [ "${BUILD_VERBOSE}" = "ON" ]; then
+if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     echo "QT_ROOT: $QT_ROOT"
     echo "Qt6_DIR: $Qt6_DIR"
     echo "QMAKE: $QMAKE"

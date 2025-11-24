@@ -1,11 +1,10 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 #include <QAbstractItemModel>
 #include <QDateTime>
 #include <QFileDevice>
-#include "ChannelSFTP.h"
 
 class CRemoteFileSystem : public QObject
 {
@@ -19,7 +18,7 @@ public:
         SYMLINK = 0x08,
         SPECIAL = 0x10,
         DIRS = DRIVE | DIR | SYMLINK | SPECIAL,
-        ALL = DRIVE | DIR | FILE | SYMLINK | SPECIAL
+        ALL = DIRS | FILE
     };
     Q_ENUM(TYPE)
     Q_DECLARE_FLAGS(TYPES, TYPE)
@@ -27,6 +26,7 @@ public:
 
     explicit CRemoteFileSystem(const QString& szPath, TYPES type);
     virtual ~CRemoteFileSystem();
+    CRemoteFileSystem(const CRemoteFileSystem &file);
 
     enum class ColumnValue {
         Name = 0,
@@ -42,7 +42,7 @@ public:
     [[nodiscard]] QVariant Data(int column);
 
     [[nodiscard]] int ChildCount();
-    [[nodiscard]] int ColumnCount();
+    [[nodiscard]] static int ColumnCount();
 
     void SetParent(CRemoteFileSystem* pParent);
     /*!

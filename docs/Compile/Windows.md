@@ -10,7 +10,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 
 #### QtCreator
 
-Version: v14.0.2
+Version: v18.0.0
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -37,7 +37,7 @@ Prior versions don't have CMake support.
   Required to run Qt.
 - Qt
   - Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 6.8.2
+    Current version: Qt 6.9.3
     - Set environment variable or cmake parameters: QT_ROOT, Qt6_DIR or Qt6_DIR
       - Environment variable
 
@@ -55,7 +55,7 @@ Prior versions don't have CMake support.
             cmake -DQT_ROOT=[Qt install root] -DQt5_DIR=[Qt install root] ......
     
   - IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
-    Current version: 14.0.2
+    Current version: 18.0.0
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -92,7 +92,9 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: https://github.com/KangLin/qt-solutions/
 - [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
-- [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
+- [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) Multimedia capabilities required
+- [OPTIONAL] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
+- [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
 
 #### RabbitCommon
 
@@ -253,6 +255,14 @@ Source-code location: https://github.com/KangLin/tigervnc
 
       -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
+- When install, Need to copy resources to install directory
+
+      IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
+          xcopy "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6 /Y /S /I
+      )
+
+  Reference: [msvc.yml](../../.github/workflows/msvc.yml)
+  
 #### libssh
 
 - Use vcpkg
@@ -293,6 +303,14 @@ Source-code location: https://github.com/KangLin/tigervnc
 
         git clone https://github.com/seladb/PcapPlusPlus.git
 
+  + Download `npcap SDK` from [npcap](https://npcap.com)
+  + Set CMake parameters:
+
+        -DPCAP_ROOT=[npcap SDK directory] ^
+        -DPCAPPP_BUILD_TESTS=OFF ^
+        -DPCAPPP_BUILD_EXAMPLES=OFF
+
+  + See: https://pcapplusplus.github.io/docs/install#build-from-source
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
 
@@ -307,6 +325,8 @@ So compile from source, relying on the npcap library.
 - When PcapPlusPlus is compiled from source,
   the CMake parameter needs to be specified to compile this project:
 
+      -DPCAP_ROOT=[npcap SDK directory] ^
+      -DPacket_ROOT=[npcap SDK directory] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 
 ### Compile this project

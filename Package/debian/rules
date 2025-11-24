@@ -39,6 +39,7 @@ override_dh_auto_configure:
             -DCMARK_STATIC=ON \
 			-DWITH_CMARK=OFF \
 		    -DWITH_CMARK_GFM=ON \
+			-DWITH_WebEngineWidgets=ON \
             ${CMAKE_CONFIG_PARAS}
 
 override_dh_auto_build:
@@ -53,10 +54,10 @@ override_dh_auto_install:
 		--component Runtime --strip \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 	cmake --install $(BUILD_DIR) --config Release \
-		--component Application --strip \
-		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl	
-	cmake --install $(BUILD_DIR) --config Release \
 		--component Plugin --strip \
+		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
+	cmake --install $(BUILD_DIR) --config Release \
+		--component Application --strip \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 
 override_dh_shlibdeps:

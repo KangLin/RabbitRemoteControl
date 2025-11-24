@@ -10,7 +10,7 @@
 
 #### Qt Creator
 
-当前版本：v13.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+当前版本：v18.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -22,10 +22,10 @@
   - [Java](https://www.java.com/zh-CN/)
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.8.2
+    当前使用版本：Qt 6.9.3
     详见： https://doc.qt.io/qt-6/android.html
   - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
-    当前使用版本：14.0.2
+    当前使用版本：18.0.0
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)

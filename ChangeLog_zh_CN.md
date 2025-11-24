@@ -34,10 +34,18 @@
       - FTP
     - 播放器
       - 增加显示字幕
+    - 增加网页浏览器
 
 - 增加活动菜单
 - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
-- [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+- 应用程序
+  - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+  - 增加视图布局
+  - 增加菜单到工具条中
+- 增加 macOS 编译脚本。生成　App 捆绑包
+- 为 windows 安装包增加“不安装执行功能”。
+- [增加存储密码到系统凭据中。](https://github.com/KangLin/RabbitRemoteControl/issues/48)
+- 修复禁用桌面快捷键。详见: 　https://github.com/KangLin/RabbitRemoteControl/discussions/91
 
 ### v0.0.36
 - Client:

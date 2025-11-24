@@ -57,6 +57,11 @@ public:
 
 protected:
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+
+    // COperate interface
+protected:
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
 };
 
 #endif // SCREENCAPTURE_H

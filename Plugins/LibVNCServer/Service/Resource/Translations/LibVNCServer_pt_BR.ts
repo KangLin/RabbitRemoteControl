@@ -6,35 +6,35 @@
     <message>
         <location filename="../../FrmParameterServiceLibVNC.ui" line="14"/>
         <source>Set LibVNCServer parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar parâmetros do LibVNCServer</translation>
     </message>
     <message>
         <location filename="../../FrmParameterServiceLibVNC.ui" line="20"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../../FrmParameterServiceLibVNC.ui" line="29"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../../FrmParameterServiceLibVNC.ui" line="47"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha:</translation>
     </message>
 </context>
 <context>
     <name>CPluginServiceLibVNCServer</name>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="29"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="30"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC (Virtual Network Console): Acesse áreas de trabalho remotas, como Unix/Linux, Windows etc.</translation>
     </message>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="30"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="31"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC é um conjunto de programas que usam o protocolo RFB (Remote Frame Buffer).</translation>
     </message>
 </context>
 </TS>

@@ -19,10 +19,11 @@ public:
     CDlgUserPassword(const CDlgUserPassword& other);
     
     Q_INVOKABLE void SetContext(void* pContext);
+    int SetUser(const QString &szPrompt, CParameterUser* pUser);
 
 private:
     Ui::CDlgUserPassword *ui;
-    CParameterNet* m_pNet;
+    CParameterUser* m_pUser;
     
     // QDialog interface
 public slots:

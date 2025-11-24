@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #pragma once
 #include "ChannelSSH.h"
@@ -35,7 +35,7 @@ public Q_SLOTS:
     /*!
      * \brief Get the directory asynchronously
      */
-    void slotGetDir(CRemoteFileSystem *p);
+    void slotGetDir(const QString& szPath, CRemoteFileSystem *p);
 Q_SIGNALS:
     void sigGetDir(CRemoteFileSystem* p, QVector<QSharedPointer<CRemoteFileSystem> > contents, bool bEnd);
 
@@ -66,6 +66,7 @@ private:
         int Error;
     };
 
+#if  LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
     struct _AIO {
         sftp_aio aio;
         quint64 nStart;
@@ -73,6 +74,7 @@ private:
         quint64 nTransfers;
         char* buffer;
     };
+#endif
 
     struct _AFILE {
         sftp_file remote;
@@ -84,13 +86,13 @@ private:
         QVector<sftp_aio> aio;
         // The chunk size to use for the transfer
         quint64 nChunkSize;
-        quint64 nRequests;
-        quint64 nTransfers;
         int nConcurrentCount;
-        char *buffer;
 #else
         int asyncReadId;
 #endif
+        quint64 nRequests;
+        quint64 nTransfers;
+        char *buffer;
         
     };
 

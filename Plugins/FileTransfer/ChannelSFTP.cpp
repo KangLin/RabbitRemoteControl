@@ -1,5 +1,5 @@
 // Copyright Copyright (c) Kang Lin studio, All Rights Reserved
-// Author Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
 #include "ChannelSFTP.h"
@@ -377,11 +377,9 @@ void CChannelSFTP::OnClose()
     }
 }
 
-void CChannelSFTP::slotGetDir(CRemoteFileSystem *p)
+void CChannelSFTP::slotGetDir(const QString &szPath, CRemoteFileSystem *p)
 {
-    if(!p) return;
-    QString szPath = p->GetPath();
-    if(szPath.isEmpty()) {
+    if(szPath.isEmpty() || !p) {
         qCritical(log) << "The path is empty";
         return;
     }
@@ -478,7 +476,7 @@ int CChannelSFTP::AsyncReadDir()
         }
         case STATE::FINISH:
             if(d && STATE::FINISH == d->state) {
-                qDebug(log) << "Remote" << d->szPath << d->vFileNode.size();
+                qDebug(log) << "Remote get path finish:" << d->szPath << d->vFileNode.size();
                 emit sigGetDir(d->remoteFileSystem, d->vFileNode, true);
                 it = m_vDirs.erase(it);
             }
@@ -764,11 +762,12 @@ int CChannelSFTP::AsyncFile()
                     break;
                 }
 #else
-                int nbytes = sftp_async_read(file->remote, file->buffer + file->offset, BUF_SIZE, file->asyncReadId);
+                int nbytes = sftp_async_read(file->remote, file->buffer + file->nTransfers, BUF_SIZE, file->asyncReadId);
                 if (nbytes > 0 || SSH_AGAIN == nbytes) {
                     if(nbytes > 0 ) {
-                        int nLen = ::write(file->local, file->buffer + file->offset, nbytes);
+                        int nLen = ::write(file->local, file->buffer + file->nTransfers, nbytes);
                         if(nLen > 0) {
+                            file->nTransfers += nbytes;
                             file->fileTransfer->slotTransferSize(nLen);
                             //TODO: add nLen < nbytes
                             emit sigFileTransferUpdate(file->fileTransfer);
@@ -796,6 +795,7 @@ int CChannelSFTP::AsyncFile()
                 }
 #endif
             } else { // Upload
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 11, 0)
                 if(ssh_version(SSH_VERSION_INT(0, 11,0))) {
                     for(auto it = file->aio.begin(); it != file->aio.end();) {
                         auto aio = *it;
@@ -846,6 +846,7 @@ int CChannelSFTP::AsyncFile()
                         file->aio.append(aio);
                     }
                 }
+#endif
             }
             break;
         }
@@ -892,7 +893,7 @@ int CChannelSFTP::CleanFileAIO(QSharedPointer<_AFILE> file)
     }
     if(file->remote) {
         sftp_close(file->remote);
-        file->remote == nullptr;
+        file->remote = nullptr;
     }
     if(-1 != file->local) {
         ::close(file->local);

@@ -247,6 +247,7 @@ protected Q_SLOTS:
 
 protected:
     QByteArray PasswordSum(const std::string &password, const std::string &key);
+public:
     int LoadPassword(const QString &szTitle, const QString &szKey,
                      QString &password, QSettings &set);
     int SavePassword(const QString &szKey, const QString &password,

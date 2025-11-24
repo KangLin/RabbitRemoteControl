@@ -60,7 +60,9 @@ list(APPEND PLUGIN_HEADER_FILES
     FrmScroll.h
     DlgInputPassword.h
     Hook.h
+    Unix/DesktopShortcuts.h
     ParameterCompone/ParameterPluginUI.h
+    StatsAppUsage.h
     )
 
 list(APPEND PLUGIN_SOURCE_FILES
@@ -94,6 +96,8 @@ list(APPEND PLUGIN_SOURCE_FILES
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp
+    Unix/DesktopShortcuts.cpp
+    StatsAppUsage.cpp
     )
 
 set(PLUGIN_UI_FILES
@@ -107,8 +111,14 @@ set(PLUGIN_UI_FILES
     )
 
 if(WIN32)
-    list(APPEND PLUGIN_HEADER_FILES Windows/HookWindows.h)
-    list(APPEND PLUGIN_SOURCE_FILES Windows/HookWindows.cpp)
+    list(APPEND PLUGIN_HEADER_FILES
+        Windows/HookWindows.h
+        #Windows/DesktopShortcuts.h
+        )
+    list(APPEND PLUGIN_SOURCE_FILES
+        Windows/HookWindows.cpp
+        #Windows/DesktopShortcuts.cpp
+        )
     if(MSVC)
         list(APPEND PLUGIN_PRIVATE_DEFINITIONS NOMINMAX)
     endif()
@@ -170,10 +180,23 @@ if(UNIX AND (NOT ANDROID))
     if(X11_FOUND)
         list(APPEND PLUGIN_LIBS X11::X11 X11::xcb)
         if(NOT APPLE)
-          list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms)
-          list(APPEND PLUGIN_HEADER_FILES Unix/NativeEventFilterUnix.h)
-          list(APPEND PLUGIN_SOURCE_FILES Unix/NativeEventFilterUnix.cpp)
+            list(APPEND PLUGIN_PRIVATE_LIBS X11::xcb_keysyms Xtst)
+            list(APPEND PLUGIN_HEADER_FILES
+                Unix/NativeEventFilterUnix.h
+                Unix/KeyInjector.h
+                )
+            list(APPEND PLUGIN_SOURCE_FILES
+                Unix/NativeEventFilterUnix.cpp
+                Unix/KeyInjector.cpp
+                )
+            INSTALL(FILES Unix/DisableDesktopShortcuts.sh Unix/RestoreDesktopShortcuts.sh
+                DESTINATION "${CMAKE_INSTALL_DATADIR}/Script"
+                    COMPONENT Runtime
+                )
         endif()
+    endif()
+    if(Qt${QT_VERSION_MAJOR}_VERSION VERSION_LESS 6.0.0)
+        list(APPEND PLUGIN_QT_COMPONENTS X11Extras)
     endif()
 endif()
 
@@ -258,7 +281,26 @@ if(WITH_QTERMWIDGET)
         option(INSTALL_QTERMWIDGET "Install qtermwidget libraries" OFF)
         if(INSTALL_QTERMWIDGET)
             INSTALL_TARGETS(TARGETS qtermwidget${QT_VERSION_MAJOR})
+            # Install resources
             INSTALL(FILES $<TARGET_FILE_DIR:qtermwidget${QT_VERSION_MAJOR}>/../share/
+                DESTINATION "${CMAKE_INSTALL_DATADIR}"
+                    COMPONENT DependLibraries)
+        endif()
+    endif()
+endif()
+
+option(WITH_QtKEYCHAIN "With qtkeychain" ON)
+if(WITH_QtKEYCHAIN)
+    find_package(Qt${QT_VERSION_MAJOR}Keychain)
+    if(Qt${QT_VERSION_MAJOR}Keychain_FOUND)
+        list(APPEND PLUGIN_PRIVATE_DEFINITIONS HAVE_QTKEYCHAIN)
+        list(APPEND PLUGIN_PRIVATE_LIBS Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain)
+        list(APPEND PLUGIN_INCLUDE_DIRS $<BUILD_INTERFACE:${QTKEYCHAIN_INCLUDE_DIRS}/qt${QT_VERSION_MAJOR}keychain>)
+        option(INSTALL_QTKEYCHAIN "Install qtkeychain resources" OFF)
+        if(INSTALL_QTKEYCHAIN)
+            INSTALL_TARGETS(TARGETS Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain)
+            # Install translations
+            Install(FILES $<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain>/../share/
                 DESTINATION "${CMAKE_INSTALL_DATADIR}"
                     COMPONENT DependLibraries)
         endif()

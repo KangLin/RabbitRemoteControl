@@ -51,6 +51,7 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , m_pToolBarMenuAction(nullptr)
     , m_pMenuActivityGroup(nullptr)
     , m_ptbMenuActivity(nullptr)
     , m_pActionOperateMenu(nullptr)
@@ -104,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     m_pSecureLevel = new QLabel(statusBar());
-    // QIcon icon = QIcon::fromTheme("newwork-wired");
+    // QIcon icon = QIcon::fromTheme("network-wired");
     // QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(64, 64)));
     // m_pSecureLevel->setPixmap(pixmap);
     m_pSecureLevel->hide();
@@ -175,6 +176,24 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigEnableTabIconChanged()),
                     this, SLOT(slotUpdateName()));
     Q_ASSERT(check);
+
+    auto pTbMenu = new QToolButton(ui->toolBar);
+    pTbMenu->setFocusPolicy(Qt::NoFocus);
+    pTbMenu->setPopupMode(QToolButton::InstantPopup);
+    //m_pTbMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    pTbMenu->setText(ui->actionMain_menu_bar_M->text());
+    pTbMenu->setIcon(ui->actionMain_menu_bar_M->icon());
+    pTbMenu->setToolTip(ui->actionMain_menu_bar_M->toolTip());
+    pTbMenu->setStatusTip(ui->actionMain_menu_bar_M->statusTip());
+    QMenu *pMenu = new QMenu(pTbMenu);
+    pMenu->addActions(this->menuBar()->actions());
+    pTbMenu->setMenu(pMenu);
+    m_pToolBarMenuAction = ui->toolBar->insertWidget(ui->actionTabBar_B, pTbMenu);
+#if defined(Q_OS_ANDROID)
+    m_pToolBarMenuAction->setVisible(true);
+#else
+    m_pToolBarMenuAction->setVisible(false);
+#endif
 
     m_Manager.EnumPlugins(this);
     check = connect(&m_Parameter, SIGNAL(sigStartByTypeChanged()),
@@ -350,9 +369,16 @@ MainWindow::MainWindow(QWidget *parent)
         ui->actionMain_menu_bar_M->setChecked(m_Parameter.GetMenuBar());
         menuBar()->setVisible(m_Parameter.GetMenuBar());
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
-        if(!m_Parameter.GetMenuBar())
-            ui->toolBar->insertAction(ui->actionTabBar_B,
-                                      ui->actionMain_menu_bar_M);
+        // macOS: Hide 'Main menu bar' on macOS since it's always visible
+        #ifdef Q_OS_MACOS
+        // Hide 'Main menu bar' on View menu
+        ui->actionMain_menu_bar_M->setVisible(false);
+        #else
+        // Show 'Main menu bar' toolbar icon
+        if(!m_Parameter.GetMenuBar()) {
+            m_pToolBarMenuAction->setVisible(true);
+        }
+        #endif
     }
 
     slotEnableSystemTrayIcon();
@@ -503,13 +529,15 @@ void MainWindow::on_actionFull_screen_F_triggered()
         this->showNormal();
         this->activateWindow();
 
+        emit sigFullScreen(false);
         return;
     }
 
     qDebug(log) << "Entry full screen";
-    emit sigFullScreen();
+
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
+    emit sigFullScreen(true);
 
     ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-restore"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
@@ -824,7 +852,14 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     check = connect(pOperate, SIGNAL(sigUpdateParameters(COperate*)),
                     this, SLOT(slotUpdateParameters(COperate*)));
     Q_ASSERT(check);
-
+    check = connect(pOperate, &COperate::sigFullScreen,
+                    this, [this, pOperate](bool bFull) {
+        if(m_pView && m_pView->GetCurrentView() == pOperate->GetViewer()) {
+            if((bFull && !isFullScreen()) || (!bFull && isFullScreen()))
+                on_actionFull_screen_F_triggered();
+        }
+    });
+    Q_ASSERT(check);
     if(set)
     {
         int nRet = pOperate->OpenDialogSettings(this);
@@ -920,9 +955,10 @@ void MainWindow::slotRunning()
     SetSecureLevel(p);
 
     auto m = p->GetMenu();
-    m->addSeparator();
-    m->addAction(ui->actionClone);
-
+    if(m) {
+        m->addSeparator();
+        m->addAction(ui->actionClone);
+    }
     slotLoadOperateMenu();
 
     slotInformation(tr("Connected to ") + p->Name());
@@ -1040,7 +1076,7 @@ void MainWindow::slotSignalConnected()
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Connected"));
-    m_pSignalStatus->setIcon(QIcon::fromTheme("newwork-wired"));
+    m_pSignalStatus->setIcon(QIcon::fromTheme("network-wired"));
 }
 
 void MainWindow::slotSignalDisconnected()
@@ -1143,6 +1179,7 @@ void MainWindow::slotUpdateName(const QString& szName)
     foreach(auto a, ui->menuActivity->actions()) {
         if(a->data().value<COperate*>() == p) {
             a->setText(szName);
+            a->setIcon(p->Icon());
             break;
         }
     }
@@ -1302,23 +1339,24 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
                                             | QMessageBox::StandardButton::No))
         {
             ui->actionToolBar_T->setChecked(true);
+            if(m_pToolBarMenuAction)
+                m_pToolBarMenuAction->setVisible(true);
         } else {
             ui->actionMain_menu_bar_M->setChecked(true);
+#if !defined(Q_OS_ANDROID)
+            if(m_pToolBarMenuAction)
+                m_pToolBarMenuAction->setVisible(false);
+#endif
             return;
         }
     }
-    
+
     menuBar()->setVisible(checked);
     m_Parameter.SetMenuBar(checked);
-    if(checked)
-    {
-        ui->toolBar->removeAction(ui->actionMain_menu_bar_M);
-    }
-    else
-    {
-        ui->toolBar->insertAction(ui->actionTabBar_B,
-                                  ui->actionMain_menu_bar_M);
-    }
+#if !defined(Q_OS_ANDROID)
+    if(m_pToolBarMenuAction)
+        m_pToolBarMenuAction->setVisible(!checked);
+#endif
 }
 
 void MainWindow::on_actionToolBar_T_toggled(bool checked)
@@ -1364,21 +1402,10 @@ void MainWindow::slotShortCut()
     if(m_Parameter.GetReceiveShortCut())
     {
         setFocusPolicy(Qt::WheelFocus);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        ui->actionFull_screen_F->setShortcut(
-            QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
-                         QKeyCombination(Qt::Key_F)));
-        ui->actionScreenshot->setShortcut(
-            QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
-                         QKeyCombination(Qt::Key_S)));
-#else
-        ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
-        ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
-#endif
+        ui->actionFull_screen_F->setShortcuts(QKeySequence::FullScreen);
     } else {
         setFocusPolicy(Qt::NoFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence());
-        ui->actionScreenshot->setShortcut(QKeySequence());
     }
 }
 
@@ -1592,7 +1619,94 @@ void MainWindow::StartTimer()
         }
     }
     if(bStart)
-        m_Timer.start(1000);
+        m_Timer.start(nMinInterval * 1000);
     else
         m_Timer.stop();
+}
+
+void MainWindow::on_actionUser_manual_triggered()
+{
+    QString szUrl = "https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual";
+    if(RabbitCommon::CTools::GetLanguage() == "zh_CN"
+        || RabbitCommon::CTools::GetLanguage() == "zh_TW")
+        szUrl += "_zh_CN";    
+}
+
+void MainWindow::on_actionLayoutDefault_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(!m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(!m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::North);
+    if(!ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+    if(!ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+#if !defined(Q_OS_ANDROID)
+        m_pToolBarMenuAction->setVisible(false);
+#endif
+    }
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+    addToolBar(Qt::TopToolBarArea, ui->toolBar);
+    if(!ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
+}
+
+void MainWindow::on_actionLayoutSimple_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::East);
+    if(!ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+    if(!ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+#if !defined(Q_OS_ANDROID)
+        m_pToolBarMenuAction->setVisible(false);
+#endif
+    }
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+    if(!ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
+}
+
+void MainWindow::on_actionLayoutMinimalism_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(m_pDockActive->toggleViewAction()->isChecked())
+        m_pDockActive->toggleViewAction()->trigger();
+    if(m_pDockFavorite->toggleViewAction()->isChecked())
+        m_pDockFavorite->toggleViewAction()->trigger();
+    if(m_pDockListRecent->toggleViewAction()->isChecked())
+        m_pDockListRecent->toggleViewAction()->trigger();
+    m_Parameter.SetTabPosition(QTabWidget::East);
+    if(ui->actionTabBar_B->isChecked())
+        ui->actionTabBar_B->trigger();
+#if !defined(Q_OS_MACOS)
+    if(ui->actionMain_menu_bar_M->isChecked()) {
+        ui->actionMain_menu_bar_M->trigger();
+        m_pToolBarMenuAction->setVisible(true);
+    }
+#endif
+    if(!ui->actionToolBar_T->isChecked())
+        ui->actionToolBar_T->trigger();
+#if defined(Q_OS_LINUX)
+    addToolBar(Qt::RightToolBarArea, ui->toolBar);
+#else
+    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+#endif
+    if(ui->actionStatus_bar_S->isChecked())
+        ui->actionStatus_bar_S->trigger();
 }

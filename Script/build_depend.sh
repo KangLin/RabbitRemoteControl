@@ -16,7 +16,7 @@ BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.10.0
+    QT_VERSION=6.9.3
 fi
 FREERDP=0
 TIGERVNC=0
@@ -26,9 +26,11 @@ libdatachannel=0
 QtService=0
 QTERMWIDGET=0
 LIBSSH=0
+MACOS=0
+QTKEYCHAIN=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--macos=[0|1]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]] [--qtkeychain[=[0|1]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -41,8 +43,9 @@ usage_long() {
     echo "  --default: Install the default dependency libraries that comes with the system"
     echo "  --system_update: Update system"
     echo "  --package-tool: Package install tool, apk or dnf"
-    echo "  --package: Install package"
+    echo "  --package: Install packages. eg: \"package1 package2 ......\""
     echo "  --qt: Install QT"
+    echo "  --macos: Install macos tools and dependency libraries"
     echo "  --rabbitcommon: Install RabbitCommon"
     echo "  --freerdp: Install FreeRDP"
     echo "  --tigervnc: Install TigerVNC"
@@ -51,6 +54,7 @@ usage_long() {
     echo "  --libdatachannel: Install libdatachannel"
     echo "  --QtService: Install QtService"
     echo "  --qtermwidget: Install qtermwidget"
+    echo "  --qtkeychain: Install qtkeychain"
     exit
 }
 
@@ -64,7 +68,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -153,6 +157,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --macos)
+            case $2 in
+                "")
+                    MACOS=1;;
+                *)
+                    MACOS=$2;;
+            esac
+            shift 2
+            ;;  
         --freerdp)
             case $2 in
                 "")
@@ -225,6 +238,15 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
+        --qtkeychain)
+            case $2 in
+                "")
+                    QTKEYCHAIN=1;;
+                *)
+                    QTKEYCHAIN=$2;;
+            esac
+            shift 2
+            ;;
         --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
             shift
             break
@@ -285,7 +307,10 @@ if [ $SYSTEM_UPDATE -eq 1 ]; then
 fi
 
 if [ -n "$PACKAGE" ]; then
-    ${PACKAGE_TOOL} install -y -q $PACKAGE
+    for p in $PACKAGE
+    do
+        ${PACKAGE_TOOL} install -y -q $p
+    done
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
@@ -297,7 +322,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
         if [ -z "$RabbitRemoteControl_VERSION" ]; then
-            apt install -y -q xvfb xpra
+            apt install -y -q xvfb #xpra
         fi
         # X11 and xcb
         apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
@@ -329,6 +354,10 @@ if [ $BASE_LIBS -eq 1 ]; then
         apt install -y -q libfuse-dev libfuse3-dev
         # Other
         apt install -y -q libvncserver-dev
+        # File transfer
+        apt install -y -q libcurl4-openssl-dev
+        # Needed by qtkeychain
+        apt install -y -q libsecret-1-dev
     fi
 
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
@@ -356,18 +385,28 @@ fi
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo "Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
+        case "`lsb_release -s -r`" in
+            "25.04"|"25.10")
+                DEFAULT_LIBRARIES=
+            ;;
+            "24.04"|"24.10"|*)
+                DEFAULT_LIBRARIES=
+                ;;
+        esac
         # Qt6
         apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
             qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
             libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-            qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-websockets-dev
-        apt-get install -y -q freerdp2-dev
+            qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
+            qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
+        apt-get install -y -q qtkeychain-qt6-dev $DEFAULT_LIBRARIES
     fi
     
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
         dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
             qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
-            qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel
+            qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
+            qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
     fi
 fi
 
@@ -387,14 +426,19 @@ if [ $QT -eq 1 ]; then
 
         echo "PATH: $PATH"
         if [ "`uname -m`" == "x86_64" ]; then
-            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
          elif [ "`uname -m`" == "aarch64" ]; then
-            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
             mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
         fi
     fi
     popd
+fi
+
+if [ $MACOS -eq 1 ]; then
+    echo "Install macos tools and dependency libraries ......"
+    brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
@@ -414,7 +458,7 @@ if [ $FREERDP -eq 1 ]; then
     echo "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.15.0 https://github.com/FreeRDP/FreeRDP.git
+        git clone -b 3.18.0 https://github.com/FreeRDP/FreeRDP.git
         cd FreeRDP
         git submodule update --init --recursive
         cmake -E make_directory build
@@ -455,7 +499,7 @@ if [ $LIBSSH -eq 1 ]; then
     echo "Install libssh ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/libssh ]; then
-        git clone -b libssh-0.11.2 --depth=1 https://git.libssh.org/projects/libssh.git
+        git clone -b libssh-0.11.3 --depth=1 https://git.libssh.org/projects/libssh.git
         cd libssh
         cmake -E make_directory build
         cd build
@@ -473,7 +517,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     echo "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/pcapplusplus ]; then
-        git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+        git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         cd PcapPlusPlus
         cmake -E make_directory build
         cd build
@@ -556,6 +600,24 @@ if [ $QTERMWIDGET -eq 1 ]; then
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
+    fi
+    popd
+fi
+
+if [ $QTKEYCHAIN -eq 1 ]; then
+    echo "Install QtKeyChain ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/Qt6Keychain ]; then
+        git clone -b 0.15.0 https://github.com/frankosterfeld/qtkeychain.git
+        cd qtkeychain
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+            -DBUILD_WITH_QT6:BOOL=ON
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
     fi

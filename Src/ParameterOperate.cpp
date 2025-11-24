@@ -70,6 +70,14 @@ QByteArray CParameterOperate::PasswordSum(const std::string &password,
     return sum.result();
 }
 
+/*!
+ * \brief Restore password
+ * \details 
+ * if the encryption key is incorrect, Password is set to empty.
+ * it proceeds to the normal password entry.
+ * flow chart: \image html docs/Image/RestorePassword.svg
+ * \see https://github.com/KangLin/RabbitRemoteControl/issues/79
+ */
 int CParameterOperate::LoadPassword(const QString &szTitle,
                                     const QString &szKey,
                                     QString &password,
@@ -83,28 +91,41 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
 
     std::string key;
     if(GetGlobalParameters())
-        key = GetGlobalParameters()->GetEncryptKey().toStdString().c_str();
+        key = GetGlobalParameters()->GetEncryptKey().toStdString();
     if(!key.empty())
         e.SetPassword(key.c_str());
-
+    
     if(!e.Dencode(pwByte, password)
-            && PasswordSum(password.toStdString(), key) == sum)
-            return 0;
+        && PasswordSum(password.toStdString(), key) == sum)
+        return 0;
 
     qDebug(log) << "Password don't dencode or sum is error";
-    CDlgInputPassword d(GetGlobalParameters()->GetViewPassowrd(), szTitle);
-    if(QDialog::Accepted != d.exec())
-    {
-        return -1;
-    }
+    if(key.empty()) {
+        switch (GetGlobalParameters()->GetPromptType()) {
+        case CParameterPlugin::PromptType::First:
+        {
+            int nCount = GetGlobalParameters()->GetPromptCount();
+            if(nCount >= 1)
+                return -1;
+            GetGlobalParameters()->SetPromptCount(nCount + 1);
+            break;
+        }
+        case CParameterPlugin::PromptType::No:
+        default:
+            return -1;
+        }
 
-    CDlgInputPassword::InputType t;
-    int nRet = d.GetValue(t, password);
-    if(nRet) return nRet;
-    if(CDlgInputPassword::InputType::Password == t)
-        return 0;
-    GetGlobalParameters()->SetEncryptKey(password);
-    return LoadPassword(szTitle, szKey, password, set);
+        CDlgInputPassword d(GetGlobalParameters()->GetViewPassowrd(), false);
+        if(QDialog::Accepted != d.exec())
+            return -1;
+
+        key = d.GetPassword().toStdString();
+        if(key.empty()) return -1;
+        
+        GetGlobalParameters()->SetEncryptKey(key.c_str());
+        return LoadPassword(szTitle, szKey, password, set);
+    }
+    return -1;
 }
 
 int CParameterOperate::SavePassword(const QString &szKey,
@@ -130,22 +151,20 @@ int CParameterOperate::SavePassword(const QString &szKey,
             if(nCount >= 1)
                 break;
             GetGlobalParameters()->SetPromptCount(nCount + 1);
-        }
-        case CParameterPlugin::PromptType::Always:
-        {
             QString szKey;
-            CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
-            CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd());
-            if(QDialog::Accepted == dlg.exec())
-                dlg.GetValue(t, szKey);
-            if(CDlgInputPassword::InputType::Encrypt == t)
-                GetGlobalParameters()->SetEncryptKey(szKey);
+            CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd(), true);
+            if(QDialog::Accepted != dlg.exec())
+                break;
+            szKey = dlg.GetPassword();
+            GetGlobalParameters()->SetEncryptKey(szKey);
+            key = szKey.toStdString();
             break;
         }
         case CParameterPlugin::PromptType::No:
             break;
         }
-    } else
+    }
+    if(!key.empty())
         e.SetPassword(key.c_str());
     if(password.isEmpty())
         return 0;

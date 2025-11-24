@@ -9,7 +9,7 @@
 
 #### Qt Creator
 
-版本：v14.0.2 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v18.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -34,7 +34,7 @@
   运行 Qt 需要
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.8.2
+    当前使用版本：Qt 6.9.3
     - 则需要设置环境变量（或者 CMAKE 参数）： QT_ROOT、Qt6_DIR 或者 Qt6_DIR
       - 环境变量
 
@@ -52,7 +52,7 @@
             cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
     
   - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
-    当前使用版本：14.0.2
+    当前使用版本：18.0.0
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -89,7 +89,9 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
-- [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
+- [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) 多媒体功能需要
+- [可选] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
+- [可选] libcurl: [https://curl.se](https://curl.se)
 
 #### 玉兔公共库
 
@@ -240,6 +242,35 @@
 
       -Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
+- 安装时，需要复制资源到安装目录
+
+      IF EXIST "${{env.INSTALL_DIR}}\share\qtermwidget6" (
+          xcopy "${{env.INSTALL_DIR}}\share\qtermwidget6" install\share\qtermwidget6 /Y /S /I
+      )
+
+  参考： [msvc.yml](../../.github/workflows/msvc.yml)
+
+#### QtWebEngine
+  
+默认情况下，包括 Webm(开源),不包括 x264、x265(版权原因)
+- 检查支持
+  在你的 QtWebEngine 程序中访问 chrome://media-internals 或 chrome://gpu 可以看到当前支持的解码格式。
+- 在 QtWebEngine 程序中，访问:
+  - https://www.webmfiles.org/demo-files/ 上传或播放 H264/H265 视频文件，测试支持性
+  - https://html5test.com/
+  - https://webrtc.github.io/test-pages/ 
+  - https://browserleaks.com/webrtc
+- 重新编译QtWebEngine，包括相应解码器。
+  相关编译参数：
+  - -webengine-proprietary-codecs
+    启用专有编解码支持（H264、MP3、AAC 等）。
+  - -webengine-ffmpeg
+    指定使用自定义 ffmpeg。
+
+        ./configure -webengine-proprietary-codecs
+        make
+        make install
+          
 #### libssh
 
 - 使用 vcpkg
@@ -277,6 +308,14 @@
   
         git clone https://github.com/seladb/PcapPlusPlus.git
 
+  + 从 [npcap](https://npcap.com) 下载 `npcap SDK`
+  + 指定 CMake 参数：
+
+        -DPCAP_ROOT=[npcap SDK 目录] ^
+        -DPCAPPP_BUILD_TESTS=OFF ^
+        -DPCAPPP_BUILD_EXAMPLES=OFF
+
+  + 参见： https://pcapplusplus.github.io/docs/install#build-from-source
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
 
@@ -284,11 +323,13 @@
         cd vcpkg
         vcpkg install pcapplusplus
 
-**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 工作。
-所以从源码编译，依赖 npcap 库。
+**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 及以后的版本上工作。
+所以从源码编译，依赖 [npcap](https://npcap.com) 库。
 
 - 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
 
+      -DPCAP_ROOT=[npcap SDK 目录] ^
+      -DPacket_ROOT=[npcap SDK 目录] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
 
 ### 编译本项目

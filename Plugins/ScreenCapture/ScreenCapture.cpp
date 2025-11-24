@@ -268,3 +268,13 @@ int CScreenCapture::SetGlobalParameters(CParameterPlugin *pPara)
     m_Parameter.SetGlobalParameters(pPara);
     return 0;
 }
+
+int CScreenCapture::Load(QSettings &set)
+{
+    return 0;
+}
+
+int CScreenCapture::Save(QSettings &set)
+{
+    return 0;
+}

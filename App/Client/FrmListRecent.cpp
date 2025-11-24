@@ -26,7 +26,7 @@ CFrmListRecent::CFrmListRecent(
     m_pDockTitleBar(nullptr)
 {
     bool check = false;
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QVBoxLayout(this));
     setWindowTitle(tr("Recently list"));

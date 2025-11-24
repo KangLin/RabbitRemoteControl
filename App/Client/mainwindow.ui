@@ -28,14 +28,15 @@
    </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help(&amp;H)</string>
+     <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionUser_manual"/>
     <addaction name="actionUpdate"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View(&amp;V)</string>
+     <string>View</string>
     </property>
     <widget class="QMenu" name="menuType">
      <property name="title">
@@ -61,8 +62,29 @@
       <iconset theme="network-wired"/>
      </property>
     </widget>
+    <widget class="QMenu" name="menuLayout">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="toolTip">
+      <string>Layout</string>
+     </property>
+     <property name="statusTip">
+      <string>Layout</string>
+     </property>
+     <property name="title">
+      <string>Layout</string>
+     </property>
+     <property name="icon">
+      <iconset theme="layout"/>
+     </property>
+     <addaction name="actionLayoutDefault"/>
+     <addaction name="actionLayoutSimple"/>
+     <addaction name="actionLayoutMinimalism"/>
+    </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="menuType"/>
+    <addaction name="menuLayout"/>
     <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
@@ -73,11 +95,11 @@
    </widget>
    <widget class="QMenu" name="menuOperate">
     <property name="title">
-     <string>Operate(&amp;O)</string>
+     <string>Operate</string>
     </property>
     <widget class="QMenu" name="menuStart">
      <property name="title">
-      <string>Start(&amp;S)</string>
+      <string>Start</string>
      </property>
      <property name="icon">
       <iconset theme="media-playback-start"/>
@@ -95,7 +117,7 @@
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Tools(&amp;T)</string>
+     <string>Tools</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
@@ -135,7 +157,7 @@
     <iconset theme="help-about"/>
    </property>
    <property name="text">
-    <string>About(&amp;A)</string>
+    <string>About</string>
    </property>
    <property name="iconText">
     <string>About</string>
@@ -155,7 +177,7 @@
     <iconset theme="system-software-update"/>
    </property>
    <property name="text">
-    <string>Update(&amp;U)</string>
+    <string>Update</string>
    </property>
    <property name="iconText">
     <string>Update</string>
@@ -178,7 +200,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>ToolBar(&amp;T)</string>
+    <string>ToolBar</string>
    </property>
    <property name="iconText">
     <string>ToolBar</string>
@@ -198,7 +220,7 @@
     <iconset theme="view-fullscreen"/>
    </property>
    <property name="text">
-    <string>Full screen(&amp;F)</string>
+    <string>Full screen</string>
    </property>
    <property name="iconText">
     <string>Full screen</string>
@@ -221,7 +243,7 @@
     <iconset theme="window-close"/>
    </property>
    <property name="text">
-    <string>Exit(&amp;E)</string>
+    <string>Exit</string>
    </property>
    <property name="iconText">
     <string>Exit</string>
@@ -241,7 +263,7 @@
     <iconset theme="media-playback-stop"/>
    </property>
    <property name="text">
-    <string>Stop(&amp;P)</string>
+    <string>Stop</string>
    </property>
    <property name="iconText">
     <string>Stop</string>
@@ -261,7 +283,7 @@
     <iconset theme="document-open"/>
    </property>
    <property name="text">
-    <string>Open(&amp;O) rabbit remote control file</string>
+    <string>Open rabbit remote control file</string>
    </property>
    <property name="iconText">
     <string>Open</string>
@@ -287,7 +309,7 @@
     <iconset theme="tabbar"/>
    </property>
    <property name="text">
-    <string>TabBar(&amp;B)</string>
+    <string>TabBar</string>
    </property>
    <property name="iconText">
     <string>TabBar</string>
@@ -314,23 +336,6 @@
    </property>
    <property name="whatsThis">
     <string>Zoom window to remote desktop</string>
-   </property>
-  </action>
-  <action name="actionScreenshot">
-   <property name="icon">
-    <iconset theme="camera-photo"/>
-   </property>
-   <property name="text">
-    <string>Screenshot</string>
-   </property>
-   <property name="toolTip">
-    <string>Screenshot</string>
-   </property>
-   <property name="statusTip">
-    <string>Screenshot</string>
-   </property>
-   <property name="whatsThis">
-    <string>Screenshot</string>
    </property>
   </action>
   <action name="actionSettings">
@@ -386,19 +391,19 @@
     <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the list of recent</string>
    </property>
    <property name="iconText">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the list of recent</string>
    </property>
    <property name="toolTip">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the list of recent</string>
    </property>
    <property name="statusTip">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the list of recent</string>
    </property>
    <property name="whatsThis">
-    <string>Open the list of recent(&amp;R)</string>
+    <string>Open the list of recent</string>
    </property>
   </action>
   <action name="actionMain_menu_bar_M">
@@ -409,7 +414,7 @@
     <iconset theme="menu"/>
    </property>
    <property name="text">
-    <string>Main menu bar(&amp;M)</string>
+    <string>Main menu bar</string>
    </property>
    <property name="iconText">
     <string>Main menu bar</string>
@@ -429,7 +434,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Status bar(&amp;S)</string>
+    <string>Status bar</string>
    </property>
    <property name="iconText">
     <string>Status bar</string>
@@ -475,6 +480,47 @@
    </property>
    <property name="statusTip">
     <string>Split view</string>
+   </property>
+  </action>
+  <action name="actionUser_manual">
+   <property name="icon">
+    <iconset theme="user-manual"/>
+   </property>
+   <property name="text">
+    <string>User manual</string>
+   </property>
+  </action>
+  <action name="actionLayoutDefault">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+   <property name="statusTip">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionLayoutSimple">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Simple</string>
+   </property>
+   <property name="statusTip">
+    <string>Simple</string>
+   </property>
+  </action>
+  <action name="actionLayoutMinimalism">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Minimalism</string>
+   </property>
+   <property name="statusTip">
+    <string>Minimalism</string>
    </property>
   </action>
  </widget>

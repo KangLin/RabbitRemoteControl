@@ -461,8 +461,6 @@ char* CBackendLibVNCServer::cb_get_password(rfbClient *client)
         {
             szPassword = net->m_User.GetPassword();
         }
-        if(szPassword.isEmpty())
-            return nullptr;
     }
     return strdup(szPassword.toStdString().c_str());
 }

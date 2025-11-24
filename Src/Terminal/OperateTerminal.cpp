@@ -340,8 +340,8 @@ const qint16 COperateTerminal::Version() const
 const QString COperateTerminal::Details()
 {
     QString szDetails;
-    szDetails = "-  " + tr("QTermWidget:") + " "
-                + QString("%1.%2.%3").arg(QTERMWIDGET_VERSION_MAJOR)
+    szDetails = "- " + tr("QTermWidget") + "\n" +
+                "  - " + tr("Version:") + " " + QString("%1.%2.%3").arg(QTERMWIDGET_VERSION_MAJOR)
                       .arg(QTERMWIDGET_VERSION_MINOR)
                       .arg(QTERMWIDGET_VERSION_PATCH) + "\n";
     return szDetails;
@@ -353,7 +353,16 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
     if(GetParameter())
     {
         GetParameter()->SetGlobalParameters(pPara);
-        return COperate::SetGlobalParameters(pPara);
+        if(pPara)
+        {
+            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+                                 this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
+                            this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+        }
+        return 0;
     } else {
         QString szMsg = "There is not parameters! "
                         "please first create parameters, "

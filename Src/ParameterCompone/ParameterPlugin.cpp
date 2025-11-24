@@ -1,16 +1,20 @@
 // Author: Kang Lin <kl222@126.com>
+
+#include "RabbitCommonTools.h"
 #include "ParameterPlugin.h"
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
-    , m_bNativeWindowReceiveKeyboard(false)
+    , m_bCaptureAllKeyboard(true)
+    , m_bDesktopShortcutsScript(false)
     , m_bEnableLocalInputMethod(false)
-    , m_bPromptAdministratorPrivilege(true)
+    , m_bPromptAdministratorPrivilege(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege())
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
-    , m_PromptType(PromptType::No)
+    , m_PromptType(PromptType::First)
     , m_nPromptCount(0)
     , m_bViewPassowrd(false)
+    , m_bUseSystemCredential(true)
     , m_bShowProtocolPrefix(false)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
@@ -26,9 +30,16 @@ CParameterPlugin::~CParameterPlugin()
 int CParameterPlugin::OnLoad(QSettings &set)
 {
     set.beginGroup("Client");
-    SetNativeWindowReceiveKeyboard(
-        set.value("NativeWindowRecieveKeyboard",
-                  GetNativeWindowReceiveKeyboard()).toBool());
+    SetCaptureAllKeyboard(
+        set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
+    SetDesktopShortcutsScript(set.value("DesktopShortcutsScript/Enable",
+                                        GetDesktopShortcutsScript()).toBool());
+    SetDisableDesktopShortcutsScript(
+        set.value("DesktopShortcutsScript/Disable",
+                  GetDisableDesktopShortcutsScript()).toString());
+    SetRestoreDesktopShortcutsScript(
+        set.value("DesktopShortcutsScript/Restore",
+                  GetRestoreDesktopShortcutsScript()).toString());
     SetEnableLocalInputMethod(set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
@@ -42,6 +53,7 @@ int CParameterPlugin::OnLoad(QSettings &set)
                               ));
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
     SetViewPassowrd(set.value("Password/View", GetViewPassowrd()).toBool());
+    SetUseSystemCredential(set.value("Password/UseSystemCredential", GetUseSystemCredential()).toBool());
     SetShowProtocolPrefix(set.value("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
@@ -53,15 +65,17 @@ int CParameterPlugin::OnLoad(QSettings &set)
 int CParameterPlugin::OnSave(QSettings& set)
 {
     set.beginGroup("Client");
-    set.setValue("NativeWindowRecieveKeyboard",
-                 GetNativeWindowReceiveKeyboard());
+    set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
+    set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());
+    set.setValue("DesktopShortcutsScript/Disable", GetDisableDesktopShortcutsScript());
+    set.setValue("DesktopShortcutsScript/Restore", GetRestoreDesktopShortcutsScript());
     set.setValue("InputMethod", GetEnableLocalInputMethod());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
-    set.setValue("Password/Prompty/Type",
-                 static_cast<int>(GetPromptType()));
+    set.setValue("Password/Prompty/Type", static_cast<int>(GetPromptType()));
     set.setValue("Password/Save", GetSavePassword());
     set.setValue("Password/View", GetViewPassowrd());
+    set.setValue("Password/UseSystemCredential", GetUseSystemCredential());
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
@@ -69,18 +83,57 @@ int CParameterPlugin::OnSave(QSettings& set)
     return 0;
 }
 
-bool CParameterPlugin::GetNativeWindowReceiveKeyboard() const
+bool CParameterPlugin::GetCaptureAllKeyboard() const
 {
-    return m_bNativeWindowReceiveKeyboard;
+    return m_bCaptureAllKeyboard;
 }
 
-void CParameterPlugin::SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard)
+void CParameterPlugin::SetCaptureAllKeyboard(bool bCapture)
 {
-    if(m_bNativeWindowReceiveKeyboard == newNativeWindowRecieveKeyboard)
+    if(m_bCaptureAllKeyboard == bCapture)
         return;
-    m_bNativeWindowReceiveKeyboard = newNativeWindowRecieveKeyboard;
+    m_bCaptureAllKeyboard = bCapture;
     SetModified(true);
-    emit sigNativeWindowRecieveKeyboard();
+    emit sigCaptureAllKeyboard();
+}
+
+bool CParameterPlugin::GetDesktopShortcutsScript() const
+{
+    return m_bDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetDesktopShortcutsScript(bool newDesktopShortcutsScript)
+{
+    if(m_bDesktopShortcutsScript == newDesktopShortcutsScript)
+        return;
+    m_bDesktopShortcutsScript = newDesktopShortcutsScript;
+    SetModified(true);
+}
+
+QString CParameterPlugin::GetRestoreDesktopShortcutsScript() const
+{
+    return m_szRestoreDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetRestoreDesktopShortcutsScript(const QString &newRestoreDesktopShortcutsScript)
+{
+    if(m_szRestoreDesktopShortcutsScript == newRestoreDesktopShortcutsScript)
+        return;
+    m_szRestoreDesktopShortcutsScript = newRestoreDesktopShortcutsScript;
+    SetModified(true);
+}
+
+QString CParameterPlugin::GetDisableDesktopShortcutsScript() const
+{
+    return m_szDisableDesktopShortcutsScript;
+}
+
+void CParameterPlugin::SetDisableDesktopShortcutsScript(const QString &newDisableDesktopShortcutsScript)
+{
+    if(m_szDisableDesktopShortcutsScript == newDisableDesktopShortcutsScript)
+        return;
+    m_szDisableDesktopShortcutsScript = newDisableDesktopShortcutsScript;
+    SetModified(true);
 }
 
 bool CParameterPlugin::GetEnableLocalInputMethod() const
@@ -191,6 +244,19 @@ void CParameterPlugin::SetViewPassowrd(bool NewViewPassowrd)
     m_bViewPassowrd = NewViewPassowrd;
     SetModified(true);
     emit sigViewPassowrdChanged(m_bViewPassowrd);
+}
+
+bool CParameterPlugin::GetUseSystemCredential() const
+{
+    return m_bUseSystemCredential;
+}
+
+void CParameterPlugin::SetUseSystemCredential(bool newUseSystemCredential)
+{
+    if(m_bUseSystemCredential == newUseSystemCredential)
+        return;
+    m_bUseSystemCredential = newUseSystemCredential;
+    SetModified(true);
 }
 
 bool CParameterPlugin::GetShowProtocolPrefix() const

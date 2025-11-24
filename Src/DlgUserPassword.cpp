@@ -11,6 +11,7 @@ static int g_CDlgUserPassword = qRegisterMetaType<CDlgUserPassword>();
 CDlgUserPassword::CDlgUserPassword(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgUserPassword)
+    , m_pUser(nullptr)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Set user and password"));
@@ -23,31 +24,38 @@ CDlgUserPassword::~CDlgUserPassword()
 
 CDlgUserPassword::CDlgUserPassword(const CDlgUserPassword &other)
 {
-    m_pNet = other.m_pNet;
+    m_pUser = other.m_pUser;
 }
 
 void CDlgUserPassword::SetContext(void *pContext)
 {
-    m_pNet = (CParameterNet*)pContext;
-    if(!m_pNet) {
+    auto pNet = (CParameterNet*)pContext;
+    if(!pNet) {
         qCritical(log) << "The pContext is null";
         return;
     }
-    auto &user = m_pNet->m_User;
+    m_pUser = &pNet->m_User;
     ui->lbText->setText(windowTitle() + "\n" + tr("Server: ")
-                        + m_pNet->GetHost()
-                        + ":" + QString::number(m_pNet->GetPort()));
-    ui->wUser->SetParameter(&user);
+                        + pNet->GetHost()
+                        + ":" + QString::number(pNet->GetPort()));
+    ui->wUser->SetParameter(m_pUser);
+}
+
+int CDlgUserPassword::SetUser(const QString &szPrompt, CParameterUser* pUser)
+{
+    m_pUser = pUser;
+    ui->lbText->setText(szPrompt);
+    ui->wUser->SetParameter(m_pUser);
+    return 0;
 }
 
 void CDlgUserPassword::accept()
 {
-    if(!m_pNet) {
+    if(!m_pUser) {
         qCritical(log) << "The pContext is null";
         return;
     }
-
     ui->wUser->Accept();
-    emit m_pNet->sigChanged();
+    emit m_pUser->sigChanged();
     QDialog::accept();
 }

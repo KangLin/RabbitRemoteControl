@@ -6,46 +6,46 @@
     <message>
         <location filename="../../BackendLibVNCServer.cpp" line="81"/>
         <source>Protocol version error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de versão do protocolo</translation>
     </message>
     <message>
         <location filename="../../BackendLibVNCServer.cpp" line="82"/>
         <location filename="../../BackendLibVNCServer.cpp" line="162"/>
         <location filename="../../BackendLibVNCServer.cpp" line="177"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="958"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="993"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="956"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../../BackendLibVNCServer.cpp" line="160"/>
         <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
+        <translation>O servidor está vazio, insira-o</translation>
     </message>
     <message>
         <location filename="../../BackendLibVNCServer.cpp" line="174"/>
         <source>Fail: Connect to %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha: Conexão a %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="942"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="940"/>
         <source>Will connect to local socket server: %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectará ao servidor de soquete local: %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="951"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="949"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha: Conexão a %1:%2 &lt;- %3:%4 &lt;- %5:%6</translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="981"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="979"/>
         <source>Will connect to local socket server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Conectará ao servidor de soquete local: </translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="988"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="986"/>
         <source>Fail: Connect to %1:%2 with %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha: Conexão a %1:%2 com %3</translation>
     </message>
 </context>
 <context>
@@ -53,89 +53,90 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="14"/>
         <source>Setting LibVnc</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do LibVNC</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="58"/>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="66"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="73"/>
         <location filename="../../DlgSettingsLibVnc.ui" line="76"/>
         <location filename="../../DlgSettingsLibVnc.ui" line="79"/>
         <source>Connecter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="93"/>
         <source>Shared</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartilhado</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="100"/>
         <source>Only view</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas visualizar</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="111"/>
         <source>Use local cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar cursor local</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="118"/>
         <source>Enable clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar Ctrl+C/V</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
         <source>Show server name</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar nome do servidor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="148"/>
         <source>Compress</source>
-        <translation type="unfinished"></translation>
+        <translation>Compressão</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="154"/>
         <source>Compress level:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de compressão:</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="173"/>
         <source>0=fast, 9=best</source>
-        <translation type="unfinished"></translation>
+        <translation>0=rápido, 9=melhor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
         <source>Enable JPEG compress</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar compressão JPEG</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="198"/>
         <source>0=Worst, 9=best</source>
-        <translation type="unfinished"></translation>
+        <translation>0=pior,
+9=melhor</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.cpp" line="31"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="38"/>
         <source>Ok(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation>OK(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="45"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar(&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -143,22 +144,22 @@
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="34"/>
         <source>LibVNCServer</source>
-        <translation type="unfinished"></translation>
+        <translation>LibVNCServer</translation>
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="39"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC (Virtual Network Console): Acesse áreas de trabalho remotas, como Unix/Linux, Windows etc.</translation>
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="40"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC é um conjunto de programas que usam o protocolo RFB (Remote Frame Buffer).</translation>
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="41"/>
         <source>It uses LibVNCServer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ele usa LibVNCServer</translation>
     </message>
 </context>
 </TS>

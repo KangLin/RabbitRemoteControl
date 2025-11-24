@@ -42,7 +42,7 @@ See: [Script](#Script)
 
 #### Qt Creator
 
-Version: v15.0.0 
+Version: v18.0.0 
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -77,7 +77,8 @@ Prior versions don't have CMake support.
       ~$ sudo apt install debhelper
 
 #### Qt
-  - Qt (official release): https://download.qt.io/official_releases/qt/
+  - Qt (official release): https://download.qt.io/official_releases/qt/  
+    Current version: Qt 6.9.3
     - Set environment variable or cmake parameters:
       - QT_ROOT
       - Qt6: Qt6_ROOT or Qt6_DIR .
@@ -163,6 +164,24 @@ Prior versions don't have CMake support.
             QTTOOLDIR="/usr/lib/qt6/bin"
             QTLIBDIR="/usr/lib/aarch64-linux-gnu"
 
+  - QtWebEngine
+    By default, WebM (open source) is included, while x264 and x265 are not included due to copyright reasons.
+    - Check supportYou can access chrome://media-internals or chrome://gpu in your QtWebEngine application to see the currently supported decoding formats.
+    - In the QtWebEngine program, visit:
+      - https://www.webmfiles.org/demo-files/ to upload or play H264/H265 video files to test support
+      - https://html5test.com/
+      - https://webrtc.github.io/test-pages/
+      - https://browserleaks.com/webrtc
+    - Recompile QtWebEngine, including the appropriate decoders.  
+      Related compilation parameters:
+      - -webengine-proprietary-codecsEnable  
+        proprietary codec support (H264, MP3, AAC, etc.).
+      - -webengine-ffmpegSpecify  
+        using a custom ffmpeg.
+      
+            ./configure -webengine-proprietary-codecs
+            make -j$(nproc)make install
+
 #### [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
   Prior versions don't have CMake support.
 
@@ -203,6 +222,8 @@ Prior versions don't have CMake support.
   The WakeOnLan plugin required.
 - [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/).
   QtMultimedia required.
+- [OPTIONAL] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
+- [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
 
 #### RabbitCommon
 
@@ -373,6 +394,14 @@ Source-code location: https://github.com/KangLin/tigervnc
   the CMake parameter needs to be specified to compile this project:
   
       -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+
+- When install, Need to copy resources to install directory
+
+      if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+          cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
+      else
+          echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+      fi
 
 #### libssh
 
@@ -799,6 +828,8 @@ After install sdk and runtime, Run again:
     When creating a container, add the parameter: `--privileged`
 
         docker run --privileged -v /home/RabbitRemoteControl:/home/RabbitRemoteControl -it ubuntu
+
+  - QtWebEngine: https://github.com/flathub/io.qt.qtwebengine.BaseApp
 
 - Documents
   - [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)

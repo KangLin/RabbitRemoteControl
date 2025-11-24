@@ -39,7 +39,7 @@ public:
     virtual ~MainWindow() override;
 
 Q_SIGNALS:
-    void sigFullScreen();
+    void sigFullScreen(bool bFullScreen);
     void sigShowNormal();
     
 private Q_SLOTS:
@@ -164,7 +164,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     CView* m_pView;
-
+    QAction* m_pToolBarMenuAction;
     void EnableMenu(bool bEnable);
 
 private Q_SLOTS:
@@ -199,6 +199,12 @@ private Q_SLOTS:
     void on_actionViewSplit_triggered();
 private:
     void SetView(CView* pView);
+
+    ///////// Layout /////////
+private Q_SLOTS:
+    void on_actionLayoutDefault_triggered();
+    void on_actionLayoutSimple_triggered();
+    void on_actionLayoutMinimalism_triggered();
 
     ///////// Recent open /////////
 private:
@@ -237,7 +243,9 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotEnableSystemTrayIcon();
-
+    
+    void on_actionUser_manual_triggered();
+    
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

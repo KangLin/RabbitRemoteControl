@@ -204,12 +204,25 @@ Q_SIGNALS:
     /*!
      * \~chinese 视图获得焦点
      * \~english The view is focus
+     * \~
      * \param pView
      */
     void sigViewerFocusIn(QWidget* pView);
     /*!
-     * \~chinese \note 名称更新。此信号仅由本类触发
-     * \~english \note The name is changed. This signal is only triggered by this class
+     * \~chinese 全屏。由操作触发
+     * \param bFullScreen:
+     *          - true: 全屏
+     *          - false: 恢复正常
+     * \~english Full screen. emitted by operate
+     * \param bFullScreen:
+     *          - true: Full screen
+     *          - false: Normal
+     */
+    void sigFullScreen(bool bFullScreen);
+    /*!
+     * \~chinese \note 名称更新和图标。此信号仅由本类触发。其派生类如需使用，请用 slotUpdateName
+     * \~english \note The name or icon is changed. This signal is only triggered by this class.
+     *   If you need to use its derived class, please use slotUpdateName
      */
     void sigUpdateName(const QString& szName);
     /*!
@@ -274,11 +287,11 @@ protected:
     Q_INVOKABLE virtual int Clean();
     /*!
      * \~chinese 应用插件全局参数
-     * \note 如果不需要插件的全局参数，请在派生类中重载它，并忽略。
+     * \note 调用 CParameterOperate::SetGlobalParameters 设置操作参数的全局参数，并连接与全局参数相关的信号
      *
      * \~english Apply the global parameters of the plug-in
-     * \note If you don't need the global parameters of the plugin,
-     *       override it in the derived class and ignore.
+     * \note Call CParameterOperate::SetGlobalParameters to set the global parameters for the operation parameters,
+     *       and connect the signals related to the global parameters.
      * \see CManager::CreateOperate CParameterPlugin
      */
     Q_INVOKABLE virtual int SetGlobalParameters(CParameterPlugin* pPara) = 0;
@@ -288,7 +301,7 @@ protected:
      * \brief Get plugin
      * \see CManager::DeleteOperate 
      */
-    [[nodiscard]] Q_INVOKABLE CPlugin* GetPlugin() const;
+    Q_INVOKABLE CPlugin* GetPlugin() const;
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
 
@@ -329,12 +342,12 @@ protected:
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
      */
-    virtual int Load(QSettings &set);
+    virtual int Load(QSettings &set) = 0;
     /*!
      * \~chinese 保存参数
      * \~english Save parameters
      */
-    virtual int Save(QSettings &set);
+    virtual int Save(QSettings &set) = 0;
     /*!
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
@@ -353,9 +366,10 @@ protected:
     Q_INVOKABLE virtual int Save(QString szFile = QString());
     //!@}
 
-private Q_SLOTS:
+protected Q_SLOTS:
     void slotUpdateName();
 
+private Q_SLOTS:
     /*!
      * \~chinese
      * 阻塞后台线程，并在前台线程中显示窗口。

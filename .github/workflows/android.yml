@@ -14,30 +14,31 @@ jobs:
 
     strategy:
       matrix:
-        BUILD_TYPE: [Release]
-        qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.8.1]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
             ANDROID_ABI: arm64-v8a
+            qt_version: 6.9.3
+            BUILD_TYPE: Release
 
           - qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
+            qt_version: 6.9.3
+            BUILD_TYPE: Release
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       RabbitRemoteControl_VERSION: v0.0.36
-      VCPKGGITCOMMITID: 44a1e4eca5211434b5fefcc25a69bba246c3f861
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol;filetransfer"
       BUILD_DIR:     ${{github.workspace}}/build
       SOURCE_DIR:    ${{github.workspace}}/.cache/source
       TOOLS_DIR:     ${{github.workspace}}/.cache/tools
@@ -47,7 +48,7 @@ jobs:
       ANDROID_PLATFORM: android-34
       ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtwebsockets'
+      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel'
 
     # Map the job outputs to step outputs
     outputs:
@@ -96,7 +97,7 @@ jobs:
 
       - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v4
-        if: ${{ matrix.qt_version == '6.8.1' }}
+        if: ${{ matrix.qt_version == '6.9.3' }}
         with:
           dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
@@ -154,6 +155,7 @@ jobs:
             ${Qt6_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DANDROID_ABI=${{env.ANDROID_ABI}} \
@@ -172,7 +174,7 @@ jobs:
           fi
 
       - name: Build libvncserver
-        if: false
+        #if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
@@ -185,6 +187,7 @@ jobs:
             cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
@@ -204,34 +207,6 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
-#    - name: build FreeRDP
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-#            git clone -b 3.14.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
-#            cd FreeRDP
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
-#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-#                -DBUILD_SHARED_LIBS=OFF \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
-#                -DVCPKG_VERBOSE=ON \
-#                -DVCPKG_TRACE_FIND_PACKAGE=ON \
-#                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
-#                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-#                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/FreeRDP/vcpkg_installed \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}}
-#            cmake --build . --parallel $(nproc) --config ${{matrix.BUILD_TYPE}}
-#            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
-#        fi
-
       - name: build tigervnc
         if: true
         working-directory: ${{env.SOURCE_DIR}}
@@ -244,6 +219,7 @@ jobs:
               cmake .. \
                   -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
                   -DBUILD_SHARED_LIBS=OFF \
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
                   -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
@@ -279,7 +255,7 @@ jobs:
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+                -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
                 -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
@@ -330,7 +306,8 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+                  -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
                   -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                   -DVCPKG_VERBOSE=ON \
@@ -339,6 +316,26 @@ jobs:
                   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
+          fi
+
+      - name: build qtkeychain
+        if: false
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain ]; then
+            git clone -b 0.15.0 https://github.com/frankosterfeld/qtkeychain.git
+            cd qtkeychain
+            cmake -E make_directory build
+            cd build
+            ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+                -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+                -DBUILD_WITH_QT6:BOOL=ON
+            cmake --build . --config Release --parallel $(nproc)
+            cmake --build . --config Release --target install
           fi
 
       - name: git clone RabbitCommon
@@ -372,20 +369,24 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
-              -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+              -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+              -DWITH_WebEngineWidgets=ON \
               -DBUILD_LibVNCServer=OFF \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
+              -DBUILD_FREERDP=ON \
+              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
-              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
-              -DBUILD_FREERDP=ON \
-              -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6
+              -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 \
+              -DINSTALL_QTERMWIDGET=ON \
+              -DQt6Keychain_DIR=${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain \
+              -DINSTALL_QTKEYCHAIN=ON
           cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk

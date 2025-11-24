@@ -1,0 +1,96 @@
+# Author: Kang Lin <kl222@126.com>
+
+name: macos
+
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_macos.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build_macos:
+    strategy:
+      matrix:
+        include:
+          - VCPKG_TARGET_TRIPLET: x64-osx
+            os: macos-15-intel
+
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-14
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ${{matrix.os}}
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      BUILD_DIR:   ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      qt_modules: ${{matrix.qt_modules}}
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
+      VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      #VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      artifact_name: build_macos
+      RabbitRemoteControl_VERSION: v0.0.36
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+    
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v4
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+          key: install_${{matrix.os}}
+
+      - name: run-vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg          
+
+      - name: git clone RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: git clone https://github.com/KangLin/RabbitCommon.git
+      
+      - name: Run build_macos.sh
+        run: |
+          export RabbitCommon_ROOT=${{env.SOURCE_DIR}}/RabbitCommon
+          # See: https://formulae.brew.sh/
+          brew install autoconf automake libtool pkg-config freerdp libvncserver libssh zstd libpcap qt qtkeychain pcapplusplus
+          ./Script/build_macos.sh --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
+
+      - name: Update artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.WITH_MACOSX_BUNDLE}}
+          path: |
+            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip
+            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.dmg

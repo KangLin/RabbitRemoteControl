@@ -26,7 +26,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
     m_pModel(nullptr)
 {
     setWindowTitle(tr("Favorite"));
-    setFocusPolicy(Qt::NoFocus);
+    //setFocusPolicy(Qt::NoFocus);
     header()->hide();
     
     setAcceptDrops(true);

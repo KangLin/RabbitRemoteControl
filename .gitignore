@@ -9,7 +9,7 @@ debian/rabbitremotecontrol
 debian/.debhelper/
 *.snap
 .flatpak-builder/
-
+.qtcreator/
 # C++ objects and libs
 *.slo
 *.lo

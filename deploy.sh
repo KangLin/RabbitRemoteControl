@@ -69,9 +69,9 @@ sed -i "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${
 
 sed -i "s/version:.*'${VERSION_PATTERN}'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
 
-RPM_DEBIAN_VERSION=${DEBIAN_VERSION//-/\~}
+RPM_VERSION=${DEBIAN_VERSION//-/\~}
 RPM_VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\._~\^0-9A-Za-z]*"
-sed -i "s/Version:.*${RPM_VERSION_PATTERN}/Version:        ${RPM_DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
+sed -i "s/Version:.*${RPM_VERSION_PATTERN}/Version:        ${RPM_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
 CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
 CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog

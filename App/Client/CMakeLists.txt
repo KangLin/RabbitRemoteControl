@@ -73,14 +73,21 @@ else()
     message(FATAL_ERROR "Qt${QT_VERSION_MAJOR} don't found")
 endif()
 
+option(WITH_MACOSX_BUNDLE "Create BUNDLE directory" OFF)
+if(WITH_MACOSX_BUNDLE)
+    set(IS_MACOSX_BUNDLE "IS_MACOSX_BUNDLE")
+endif()
+set(APP_ID io.github.KangLin.RabbitRemoteControl)
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
+    ${IS_MACOSX_BUNDLE}
     VERSION ${RabbitRemoteControl_VERSION}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
-      RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS Plugin ${QT_LIBRARIES})
+        RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
+    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES} ${AppImage}
+    PRIVATE_LIBS Plugin ${QT_LIBRARIES}
+    )
 
 # Install other files
 set(OTHER_FILES
@@ -116,17 +123,34 @@ if(WIN32)
     install(FILES Resource/icons/rabbit-green/ico/app.ico
         DESTINATION .
             COMPONENT Application)
-endif()
-if(UNIX AND NOT ANDROID)
-    set(APP_ID io.github.KangLin.RabbitRemoteControl)
+elseif(APPLE)
+    if(WITH_MACOSX_BUNDLE)
+    # 设置 bundle 属性 (如果是 GUI 应用)
+    # See: https://developer.apple.com/documentation/bundleresources/information-property-list
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
+        MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
+        MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
+        )
+    else()
+        configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Resource/App.Info.plist
+            ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+                     @ONLY)
+        INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+            DESTINATION "." COMPONENT Application)
+    endif()
+    target_add_resources(${PROJECT_NAME} . "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.icns")
+elseif(UNIX AND NOT ANDROID)
     configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
         DESTINATION share/applications
             COMPONENT Application)
-    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
-            DESTINATION ${CMAKE_INSTALL_BINDIR}
-                COMPONENT Application)
+    # INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
+    #         DESTINATION ${CMAKE_INSTALL_BINDIR}
+    #             COMPONENT Application)
     # Icon path
     # The freedesktop.org standard specifies in which order and directories programs should look for icons:
     #
@@ -143,6 +167,7 @@ if(UNIX AND NOT ANDROID)
         DESTINATION share/icons/hicolor/scalable/apps
             COMPONENT Application
         RENAME ${APP_ID}.svg)
+    
     string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
     configure_file(${CMAKE_SOURCE_DIR}/share/metainfo/${APP_ID}.metainfo.xml.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml @ONLY)

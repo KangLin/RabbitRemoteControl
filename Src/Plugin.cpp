@@ -52,7 +52,7 @@ const QString CPlugin::TypeName(const TYPE t) const
     case TYPE::Tools:
         return tr("Tools");
     case TYPE::FileTransfers:
-        return tr("File transfers");
+        return tr("File Transfer");
     case TYPE::NetworkTools:
         return tr("Network Tools");
     case TYPE::Custom:

@@ -14,14 +14,14 @@ CStats::CStats(CParameterOperate *parent, const QString &szPrefix)
 QString CStats::Convertbytes(quint64 bytes)
 {
     QString szBytes;
-    if(1024 >= bytes)
+    if((1 << 10) >= bytes)
         szBytes = QString::number(bytes) + " " + tr("B");
-    else if(1024* 1024 >= bytes)
-        szBytes = QString::number(bytes / 1024.0, 'f', 2) + " " + tr("KB");
-    else if(1024 * 1024 * 1024 >= bytes)
-        szBytes = QString::number(bytes / (1024.0 * 1024.0), 'f', 2) + " " + tr("MB");
+    else if((1 << 20) >= bytes)
+        szBytes = QString::number((qreal)bytes / (1 << 10), 'f', 2) + " " + tr("KB");
+    else if((1 << 30) >= bytes)
+        szBytes = QString::number((qreal)bytes / (1 << 20), 'f', 2) + " " + tr("MB");
     else
-        szBytes = QString::number(bytes / (1024.0 * 1024.0 * 1024.0), 'f', 2) + " " + tr(" GB");
+        szBytes = QString::number((qreal)bytes / (1 << 30), 'f', 2) + " " + tr("GB");
     return szBytes;
 }
 
