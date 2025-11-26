@@ -50,7 +50,7 @@ jobs:
     runs-on: ${{matrix.os}}
 
     env:
-      BUILD_DIR:   ${{github.workspace}}/build
+      BUILD_DIR:   ${{github.workspace}}\build
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOLS_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
@@ -393,7 +393,6 @@ jobs:
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          cd ${{env.BUILD_DIR}}
           cmake ${{github.workspace}} ^
             -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
             -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup rabbit remote control shell script
+# Setup rabbit remote control appimage shell script
 # Author: Kang Lin <kl222@126.com>
 
 #set -v
@@ -98,6 +98,8 @@ fi
 if [ ! -f ~/.icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
     ln -s $INSTALL_DIR/io.github.KangLin.RabbitRemoteControl.svg ~/.icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg
 fi
+
+update-desktop-database ~/.local/share/applications
 
 echo "echo \"Uninstall rabbit remote control in $(dirname $(readlink -f ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop))\"" > $INSTALL_DIR/uninstall.sh
 echo "rm ~/.local/share/applications/io.github.KangLin.RabbitRemoteControl.AppImage.desktop" >> $INSTALL_DIR/uninstall.sh

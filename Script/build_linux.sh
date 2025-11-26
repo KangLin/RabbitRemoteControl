@@ -222,7 +222,7 @@ if [ $DOCKER -eq 1 ]; then
             mkdir -p /home/build/install
             pushd /home/build/install
             cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
-            chmod a+wrx RabbitRemoteControl_`uname -m`.AppImage
+            chmod a+rx RabbitRemoteControl_`uname -m`.AppImage
             cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
             cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
             cp ~/RabbitRemoteControl/Script/install.sh .
