@@ -45,7 +45,10 @@ set(SOURCE_UI_FILES
 if(WIN32)
     set(RCC_FILES Resource/App.rc)
 endif()
-LIST(APPEND RCC_FILES Resource/Resource.qrc)
+
+if(LINUX)
+    LIST(APPEND RCC_FILES Resource/Resource.qrc)
+endif()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.

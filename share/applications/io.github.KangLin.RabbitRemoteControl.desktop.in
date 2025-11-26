@@ -3,6 +3,8 @@
 # /usr/share/applications/
 # /usr/local/share/applications/
 # ~/.local/share/applications/
+# Use follow order to update desktop datebase
+# `sudo update-desktop-database`
 
 [Desktop Entry]
 Type=Application
@@ -18,7 +20,12 @@ Exec=RabbitRemoteControlApp
 Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
-StartupWMClass="@APP_ID@"
+
+# Find WM_CLASS:
+# Open terminal, run `xprop WM_CLASS` .
+# Your mouse cursor will change to a crosshair. Click on any window of RabbitRemoteControl.
+StartupWMClass=RabbitRemoteControl
+
 X-Flatpak=@APP_ID@
 
 # https://specifications.freedesktop.org/menu-spec/latest/apa.html

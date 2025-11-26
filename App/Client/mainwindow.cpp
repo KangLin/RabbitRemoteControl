@@ -75,6 +75,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->menubar->show();
 
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_MACOS)
+    // gnome icon isn't support svg
+    setWindowIcon(QIcon(":/images/app"));
+#endif
+
     m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
                                   QSizePolicy::Policy::Fixed);
     //m_StatusBarMessage.setWordWrap(true);
