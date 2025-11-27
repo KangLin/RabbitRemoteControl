@@ -171,128 +171,128 @@
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="177"/>
-        <location filename="../../FrmFileTransfer.cpp" line="292"/>
+        <location filename="../../FrmFileTransfer.cpp" line="180"/>
+        <location filename="../../FrmFileTransfer.cpp" line="300"/>
         <source>Upload</source>
         <translation>上傳</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="179"/>
-        <location filename="../../FrmFileTransfer.cpp" line="294"/>
-        <location filename="../../FrmFileTransfer.cpp" line="559"/>
+        <location filename="../../FrmFileTransfer.cpp" line="182"/>
+        <location filename="../../FrmFileTransfer.cpp" line="302"/>
+        <location filename="../../FrmFileTransfer.cpp" line="573"/>
         <source>Add to list</source>
         <translation>增加到例表</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="181"/>
-        <location filename="../../FrmFileTransfer.cpp" line="296"/>
+        <location filename="../../FrmFileTransfer.cpp" line="184"/>
+        <location filename="../../FrmFileTransfer.cpp" line="304"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="184"/>
-        <location filename="../../FrmFileTransfer.cpp" line="463"/>
-        <location filename="../../FrmFileTransfer.cpp" line="562"/>
+        <location filename="../../FrmFileTransfer.cpp" line="187"/>
+        <location filename="../../FrmFileTransfer.cpp" line="471"/>
+        <location filename="../../FrmFileTransfer.cpp" line="576"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="187"/>
-        <location filename="../../FrmFileTransfer.cpp" line="300"/>
-        <location filename="../../FrmFileTransfer.cpp" line="466"/>
-        <location filename="../../FrmFileTransfer.cpp" line="565"/>
-        <location filename="../../FrmFileTransfer.cpp" line="646"/>
+        <location filename="../../FrmFileTransfer.cpp" line="190"/>
+        <location filename="../../FrmFileTransfer.cpp" line="308"/>
+        <location filename="../../FrmFileTransfer.cpp" line="474"/>
+        <location filename="../../FrmFileTransfer.cpp" line="579"/>
+        <location filename="../../FrmFileTransfer.cpp" line="660"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="189"/>
-        <location filename="../../FrmFileTransfer.cpp" line="302"/>
-        <location filename="../../FrmFileTransfer.cpp" line="468"/>
-        <location filename="../../FrmFileTransfer.cpp" line="567"/>
+        <location filename="../../FrmFileTransfer.cpp" line="192"/>
+        <location filename="../../FrmFileTransfer.cpp" line="310"/>
+        <location filename="../../FrmFileTransfer.cpp" line="476"/>
+        <location filename="../../FrmFileTransfer.cpp" line="581"/>
         <source>Rename</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="191"/>
-        <location filename="../../FrmFileTransfer.cpp" line="304"/>
+        <location filename="../../FrmFileTransfer.cpp" line="194"/>
+        <location filename="../../FrmFileTransfer.cpp" line="312"/>
         <source>Copy path to clipboard</source>
         <translation>復製路徑到剪切板</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="207"/>
-        <location filename="../../FrmFileTransfer.cpp" line="506"/>
+        <location filename="../../FrmFileTransfer.cpp" line="212"/>
+        <location filename="../../FrmFileTransfer.cpp" line="520"/>
         <source>New folder</source>
         <translation>新建文件夾</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="207"/>
-        <location filename="../../FrmFileTransfer.cpp" line="506"/>
+        <location filename="../../FrmFileTransfer.cpp" line="212"/>
+        <location filename="../../FrmFileTransfer.cpp" line="520"/>
         <source>Folder name:</source>
         <translation>文件夾名：</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="240"/>
-        <location filename="../../FrmFileTransfer.cpp" line="266"/>
-        <location filename="../../FrmFileTransfer.cpp" line="335"/>
-        <location filename="../../FrmFileTransfer.cpp" line="347"/>
-        <location filename="../../FrmFileTransfer.cpp" line="493"/>
-        <location filename="../../FrmFileTransfer.cpp" line="583"/>
-        <location filename="../../FrmFileTransfer.cpp" line="664"/>
+        <location filename="../../FrmFileTransfer.cpp" line="246"/>
+        <location filename="../../FrmFileTransfer.cpp" line="273"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
+        <location filename="../../FrmFileTransfer.cpp" line="355"/>
+        <location filename="../../FrmFileTransfer.cpp" line="507"/>
+        <location filename="../../FrmFileTransfer.cpp" line="597"/>
+        <location filename="../../FrmFileTransfer.cpp" line="678"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="240"/>
-        <location filename="../../FrmFileTransfer.cpp" line="347"/>
+        <location filename="../../FrmFileTransfer.cpp" line="247"/>
+        <location filename="../../FrmFileTransfer.cpp" line="355"/>
         <source>The file is not exists:</source>
         <translation>此文件已存在：</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="266"/>
-        <location filename="../../FrmFileTransfer.cpp" line="335"/>
+        <location filename="../../FrmFileTransfer.cpp" line="273"/>
+        <location filename="../../FrmFileTransfer.cpp" line="343"/>
         <source>Please select remote directory</source>
         <translation>請選擇遠程目錄</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="298"/>
+        <location filename="../../FrmFileTransfer.cpp" line="306"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="470"/>
+        <location filename="../../FrmFileTransfer.cpp" line="478"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="493"/>
-        <location filename="../../FrmFileTransfer.cpp" line="583"/>
+        <location filename="../../FrmFileTransfer.cpp" line="507"/>
+        <location filename="../../FrmFileTransfer.cpp" line="597"/>
         <source>Please select local directory</source>
         <translation>請選擇本地目錄</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="557"/>
+        <location filename="../../FrmFileTransfer.cpp" line="571"/>
         <source>Download</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="641"/>
+        <location filename="../../FrmFileTransfer.cpp" line="655"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="644"/>
+        <location filename="../../FrmFileTransfer.cpp" line="658"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="664"/>
+        <location filename="../../FrmFileTransfer.cpp" line="678"/>
         <source>Please stop the file transfer first</source>
         <translation>請先停止文件傳輸</translation>
     </message>
     <message>
-        <location filename="../../FrmFileTransfer.cpp" line="472"/>
-        <location filename="../../FrmFileTransfer.cpp" line="569"/>
+        <location filename="../../FrmFileTransfer.cpp" line="480"/>
+        <location filename="../../FrmFileTransfer.cpp" line="583"/>
         <source>Copy url to clipboard</source>
         <translation>復製 url 到剪切板</translation>
     </message>
@@ -300,32 +300,32 @@
 <context>
     <name>COperateFileTransfer</name>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="164"/>
+        <location filename="../../OperateFileTransfer.cpp" line="165"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="167"/>
+        <location filename="../../OperateFileTransfer.cpp" line="168"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="170"/>
+        <location filename="../../OperateFileTransfer.cpp" line="171"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="180"/>
+        <location filename="../../OperateFileTransfer.cpp" line="181"/>
         <source>Server address: </source>
         <translation>服務器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="184"/>
+        <location filename="../../OperateFileTransfer.cpp" line="185"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../OperateFileTransfer.cpp" line="187"/>
+        <location filename="../../OperateFileTransfer.cpp" line="188"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

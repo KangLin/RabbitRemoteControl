@@ -4,158 +4,203 @@
 <context>
     <name>CChannelSSH</name>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="29"/>
         <source>libssh version:</source>
-        <translation type="vanished">libssh 版本：</translation>
+        <translation>libssh 版本：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="30"/>
         <source>libssh protocol version:</source>
-        <translation type="vanished">libssh 协议版本：</translation>
+        <translation>libssh 协议版本：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="31"/>
         <source>OpenSSH server:</source>
-        <translation type="vanished">OpenSSH 服务器：</translation>
+        <translation>OpenSSH 服务器：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="77"/>
         <source>SSH failed: ssh_new.</source>
-        <translation type="vanished">SSH 失败：ssh_new</translation>
+        <translation>SSH 失败：ssh_new</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="109"/>
         <source>SSH failed: the server is empty</source>
-        <translation type="vanished">SSH 失败：服务器为空</translation>
+        <translation>SSH 失败：服务器为空</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="117"/>
         <source>SSH failed: Set host fail. host:</source>
-        <translation type="vanished">SSH 失败：设置主机失败。主机：</translation>
+        <translation>SSH 失败：设置主机失败。主机：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="129"/>
         <source>SSH failed: Set port fail. port:</source>
-        <translation type="vanished">SSH 失败：设置端口失败。端口：</translation>
+        <translation>SSH 失败：设置端口失败。端口：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="152"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
-        <translation type="vanished">SSH 失败：ssh_pcap_file_new: </translation>
+        <translation>SSH 失败：ssh_pcap_file_new: </translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="160"/>
         <source>SSH failed: ssh connect </source>
-        <translation type="vanished">SSH 连接失败</translation>
+        <translation>SSH 连接失败</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="185"/>
         <source>User cancel</source>
-        <translation type="vanished">用户取消</translation>
+        <translation>用户取消</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="256"/>
         <source>SSH failed: Get server public key.</source>
-        <translation type="vanished">SSH 失败：得到服务器公钥失败</translation>
+        <translation>SSH 失败：得到服务器公钥失败</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="271"/>
         <source>SSH failed: Get public key hash value fail.</source>
-        <translation type="vanished">SSH 失败：得到公钥哈希值失败。</translation>
+        <translation>SSH 失败：得到公钥哈希值失败。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
         <source>the host key for server changed. it is now:</source>
-        <translation type="vanished">服务器主机密钥改变。它现在是：</translation>
+        <translation>服务器主机密钥改变。它现在是：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>For security reasons, connection will be stopped.</source>
-        <translation type="vanished">因为安全原因，连接将停止。</translation>
+        <translation>因为安全原因，连接将停止。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="292"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="303"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation type="vanished">请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
+        <translation>请查看 OpenSSL 文档，关于如何增加私有证书到存储。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
-        <translation type="vanished">服务端主机密钥未发现，但是另一个健已存在。</translation>
+        <translation>服务端主机密钥未发现，但是另一个健已存在。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
-        <translation type="vanished">攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
+        <translation>攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
         <source>is not find in known host file.</source>
-        <translation type="vanished">未能发现主机。</translation>
+        <translation>未能发现主机。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
-        <translation type="vanished">如果您在此处接受主机密钥，则将自动创建文件。</translation>
+        <translation>如果您在此处接受主机密钥，则将自动创建文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
         <source>Host key hash:</source>
-        <translation type="vanished">主机密钥哈希值：</translation>
+        <translation>主机密钥哈希值：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="316"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
         <source>Error</source>
-        <translation type="vanished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
         <source>Reject the host key</source>
-        <translation type="vanished">拒绝主机密钥</translation>
+        <translation>拒绝主机密钥</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
         <source>is unknown. Do you trust the host key?</source>
-        <translation type="vanished">服务器未知。您信任主机密钥吗？</translation>
+        <translation>服务器未知。您信任主机密钥吗？</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
         <source>Error:</source>
-        <translation type="vanished">错误：</translation>
+        <translation>错误：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="360"/>
         <source>the host key hash:</source>
-        <translation type="vanished">公钥哈希值：</translation>
+        <translation>公钥哈希值：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
         <source>Will be stopped.</source>
-        <translation type="vanished">将停止。</translation>
+        <translation>将停止。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="412"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
-        <translation type="vanished">SSH 失败：使用公钥进行身份验证失败：</translation>
+        <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="436"/>
         <source>Failed authenticating with password. User: </source>
-        <translation type="vanished">用户密码进行身份验证失败。用户：</translation>
+        <translation>用户密码进行身份验证失败。用户：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
         <source>SSH failed: There is not set public key file.</source>
-        <translation type="vanished">SSH失败：未设置公钥文件。</translation>
+        <translation>SSH失败：未设置公钥文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
         <source>SSH failed: Import public key fail.</source>
-        <translation type="vanished">SSH失败：导入公钥失败。</translation>
+        <translation>SSH失败：导入公钥失败。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
-        <translation type="vanished">文件不存在或权限被拒绝：</translation>
+        <translation>文件不存在或权限被拒绝：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="486"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
         <source>SSH failed: Authentication failed. User:</source>
-        <translation type="vanished">SSH 失败：身份验证失败。用户：</translation>
+        <translation>SSH 失败：身份验证失败。用户：</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
         <source>SSH failed: There is not set private key file.</source>
-        <translation type="vanished">SSH 失败：未设置私钥文件。</translation>
+        <translation>SSH 失败：未设置私钥文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
         <source>SSH failed: Import private key fail.</source>
-        <translation type="vanished">SSH 失败：导入私钥失败。</translation>
+        <translation>SSH 失败：导入私钥失败。</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="115"/>
         <source>SSH failed: open forward.</source>
-        <translation type="vanished">SSH 失败：打开转发。</translation>
+        <translation>SSH 失败：打开转发。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
         <source>The channel is eof</source>
-        <translation type="vanished">通道已结束</translation>
+        <translation>通道已结束</translation>
     </message>
 </context>
 <context>
     <name>CChannelSSHTunnelForward</name>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="440"/>
         <source>The channel is eof</source>
-        <translation type="vanished">通道已结束</translation>
+        <translation>通道已结束</translation>
     </message>
 </context>
 <context>
@@ -487,16 +532,19 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation type="vanished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation type="vanished">类型：</translation>
+        <translation>类型：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation type="vanished">协议：</translation>
+        <translation>协议：</translation>
     </message>
     <message>
         <source>Server address: </source>
@@ -515,48 +563,64 @@ Some features are limited.
         <translation type="vanished">Shell 参数：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation type="vanished">安全级别：</translation>
+        <translation>安全级别：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation type="vanished">描述：</translation>
+        <translation>描述：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">复制选择到剪切板</translation>
+        <translation>复制选择到剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
-        <translation type="vanished">粘贴剪切板</translation>
+        <translation>粘贴剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
-        <translation type="vanished">粘贴到选择</translation>
+        <translation>粘贴到选择</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
-        <translation type="vanished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
-        <translation type="vanished">缩小</translation>
+        <translation>缩小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
-        <translation type="vanished">重置缩放</translation>
+        <translation>重置缩放</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
-        <translation type="vanished">查找 ……</translation>
+        <translation>查找 ……</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
-        <translation type="vanished">清除</translation>
+        <translation>清除</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
         <source>Version:</source>
-        <translation type="vanished">版本：</translation>
+        <translation>版本：</translation>
     </message>
 </context>
 <context>
@@ -570,22 +634,22 @@ Some features are limited.
 <context>
     <name>CParameterNetUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="20"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="28"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="34"/>
         <source>Host:</source>
         <translation>主机：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="35"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="41"/>
         <source>Input host</source>
         <translation>输入主机</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="48"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
@@ -599,116 +663,147 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="12"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="15"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="27"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="249"/>
         <source>Enable use the system user as the user</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="141"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
         <source>Store password with system credential manager</source>
         <translation>使用系统凭据管理器存储密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="156"/>
+        <source>Desktop shortcuts script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="170"/>
+        <source>Disable script:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="201"/>
+        <source>Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
+        <source>Restore script:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="264"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="283"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="219"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="198"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="232"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Enable local input method</source>
         <translation>允话本地输入法</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="45"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密密钥用于加密保存的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="242"/>
         <source>Capture all keyboard</source>
         <translation>捕获所有按键</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="59"/>
         <source>Encrypt key:</source>
         <translation>加密密钥：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="90"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="98"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="103"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="116"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="34"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="130"/>
         <source>Enable save password</source>
         <translation>允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="132"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="88"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="98"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="92"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="102"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="95"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="105"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="98"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="108"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="148"/>
+        <source>Open disable desktop shortcuts script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
+        <source>Open restore desktop shortcuts script</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -978,27 +1073,27 @@ Some features are limited.
 <context>
     <name>CParameterSSHTunnelUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="20"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="25"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="31"/>
         <source>Source host:</source>
         <translation>源主机：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="39"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="45"/>
         <source>Source port:</source>
         <translation>源端口：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="63"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="69"/>
         <source>Packet capture file:</source>
         <translation>包捕获文件：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterSSHTunnelUI.ui" line="79"/>
         <source>Browse(&amp;B)</source>
         <translation>浏览(&amp;B)</translation>
     </message>
@@ -1016,100 +1111,131 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="vanished">通用</translation>
+        <translation>通用</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation type="vanished">字体：</translation>
+        <translation>字体：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation type="vanished">颜色方案：</translation>
+        <translation>颜色方案：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation type="vanished">光标形状：</translation>
+        <translation>光标形状：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation type="vanished">透明度：</translation>
+        <translation>透明度：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation type="vanished">背景图像：</translation>
+        <translation>背景图像：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation type="vanished">滚动条位置：</translation>
+        <translation>滚动条位置：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation type="vanished">浏览(&amp;B)</translation>
+        <translation>浏览(&amp;B)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation type="vanished">键盘绑定：</translation>
+        <translation>键盘绑定：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="vanished">窗口大小改变时显示其大小</translation>
+        <translation>窗口大小改变时显示其大小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation type="vanished">允许双向文本</translation>
+        <translation>允许双向文本</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation type="vanished">历史记录</translation>
+        <translation>历史记录</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation type="vanished">历史记录大小（行数）：</translation>
+        <translation>历史记录大小（行数）：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation type="vanished">无限制</translation>
+        <translation>无限制</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation type="vanished">流量控制</translation>
+        <translation>流量控制</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="vanished">示例：显示字体</translation>
+        <translation>示例：显示字体</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="vanished">背景图像</translation>
+        <translation>背景图像</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="vanished">方块光标</translation>
+        <translation>方块光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="vanished">下划线光标</translation>
+        <translation>下划线光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="vanished">I 形光标</translation>
+        <translation>I 形光标</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation type="vanished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="vanished">左</translation>
+        <translation>左</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="vanished">右</translation>
+        <translation>右</translation>
     </message>
 </context>
 <context>
@@ -1456,8 +1582,9 @@ Some features are limited.
 <context>
     <name>CSSHTunnelThread</name>
     <message>
+        <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
-        <translation type="vanished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>
