@@ -128,15 +128,15 @@ if(WIN32)
             COMPONENT Application)
 elseif(APPLE)
     if(WITH_MACOSX_BUNDLE)
-    # 设置 bundle 属性 (如果是 GUI 应用)
-    # See: https://developer.apple.com/documentation/bundleresources/information-property-list
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
-        MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
-        MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
-        MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
-        )
+        # 设置 bundle 属性 (如果是 GUI 应用)
+        # See: https://developer.apple.com/documentation/bundleresources/information-property-list
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_ID}"
+            MACOSX_BUNDLE_ICON_FILE "${APP_ID}.icns"
+            MACOSX_BUNDLE_BUNDLE_NAME "RabbitRemoteControl"
+            MACOSX_BUNDLE_BUNDLE_VERSION "${RabbitRemoteControl_VERSION}"
+            MACOSX_BUNDLE_SHORT_VERSION_STRING "${RabbitRemoteControl_VERSION}"
+            )
     else()
         configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Resource/App.Info.plist
             ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
@@ -149,25 +149,24 @@ elseif(UNIX AND NOT ANDROID)
     configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
-        DESTINATION share/applications
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
             COMPONENT Application)
     # INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
     #         DESTINATION ${CMAKE_INSTALL_BINDIR}
     #             COMPONENT Application)
-    # Icon path
+    # Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
     # The freedesktop.org standard specifies in which order and directories programs should look for icons:
     #
     #    $HOME/.icons (for backwards compatibility)
     #    $XDG_DATA_DIRS/icons
     #    /usr/share/pixmaps
     #INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-    #    DESTINATION share/pixmaps
+    #    DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps
     #        COMPONENT Application
     #    RENAME ${APP_ID}.svg)
-
     # Flatpak: https://docs.flatpak.org/en/latest/conventions.html#application-icons
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        DESTINATION share/icons/hicolor/scalable/apps
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
             COMPONENT Application
         RENAME ${APP_ID}.svg)
     

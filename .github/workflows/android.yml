@@ -224,6 +224,7 @@ jobs:
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
                   -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DCMAKE_MAKE_PROGRAM=ninja \
                   -DVCPKG_VERBOSE=ON \
                   -DVCPKG_TRACE_FIND_PACKAGE=ON \
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \

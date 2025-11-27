@@ -225,7 +225,7 @@ if [ $DOCKER -eq 1 ]; then
             chmod a+rx RabbitRemoteControl_`uname -m`.AppImage
             cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
             cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
-            cp ~/RabbitRemoteControl/Script/install.sh .
+            cp ~/RabbitRemoteControl/Script/install_appimage.sh install.sh
             chmod a+rx install.sh
             popd
             "

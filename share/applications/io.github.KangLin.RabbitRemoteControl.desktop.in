@@ -1,14 +1,15 @@
 # https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
 # The desktop directory:
+# ~/.local/share/applications/
 # /usr/share/applications/
 # /usr/local/share/applications/
-# ~/.local/share/applications/
+#
 # Use follow order to update desktop database
 # `sudo update-desktop-database`
 
 [Desktop Entry]
 Type=Application
-# Icon path
+# Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
 # The freedesktop.org standard specifies in which order and directories programs should look for icons:
 #
 #    $HOME/.icons (for backwards compatibility)
