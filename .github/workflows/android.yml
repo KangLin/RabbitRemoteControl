@@ -224,7 +224,7 @@ jobs:
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
                   -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                  -DCMAKE_MAKE_PROGRAM=ninja \
+                  -DCMAKE_MAKE_PROGRAM=make \
                   -DVCPKG_VERBOSE=ON \
                   -DVCPKG_TRACE_FIND_PACKAGE=ON \
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
@@ -361,6 +361,7 @@ jobs:
               -DWITH_CMARK_GFM=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
+              -DCMAKE_MAKE_PROGRAM=make \
               -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
