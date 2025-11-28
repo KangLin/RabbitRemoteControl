@@ -102,16 +102,44 @@ fi
 #BUILD_APPIMAGE_DIR=$(mktemp -d -p "$TEMP_BASE" rabbitremotecontrol-appimage-build-XXXXXX)
 ## make sure to clean up build dir, even if errors occur
 
+# 安全的 readlink 函数，兼容各种情况
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        # 如果是符号链接，使用 readlink
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            # 如果没有 readlink，使用 ls
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        # 如果不是符号链接但存在，返回绝对路径
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        # 文件不存在，返回原路径
+        echo "$path"
+    fi
+}
+
 # store repo root as variable
-REPO_ROOT=$(readlink -f $(dirname $(dirname $(readlink -f $0))))
-OLD_CWD=$(readlink -f .)
+REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
+OLD_CWD=$(safe_readlink .)
 
 pushd "$REPO_ROOT"
 
 if [ -z "$BUILD_APPIMAGE_DIR" ]; then
     BUILD_APPIMAGE_DIR=build_appimage
 fi
-BUILD_APPIMAGE_DIR=$(readlink -f ${BUILD_APPIMAGE_DIR})
+BUILD_APPIMAGE_DIR=$(safe_readlink ${BUILD_APPIMAGE_DIR})
 mkdir -p $BUILD_APPIMAGE_DIR
 pushd "$BUILD_APPIMAGE_DIR"
 
@@ -125,11 +153,11 @@ if [ -z "$INSTALL_DIR" ]; then
     INSTALL_DIR=Install
 fi
 
-TOOLS_DIR=$(readlink -f ${TOOLS_DIR})
+TOOLS_DIR=$(safe_readlink ${TOOLS_DIR})
 mkdir -p $TOOLS_DIR
-SOURCE_DIR=$(readlink -f ${SOURCE_DIR})
+SOURCE_DIR=$(safe_readlink ${SOURCE_DIR})
 mkdir -p $SOURCE_DIR
-INSTALL_DIR=$(readlink -f ${INSTALL_DIR})
+INSTALL_DIR=$(safe_readlink ${INSTALL_DIR})
 mkdir -p $INSTALL_DIR
 
 echo "Repo folder: $REPO_ROOT"
