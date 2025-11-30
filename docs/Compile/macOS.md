@@ -22,10 +22,36 @@ Prior versions don't have CMake support.
   - The Xcode development tools package already includes the installation of the following:
     - Compiler
       - GCC/g++
-      - automake、autoconf、make、fakeroot
+      - make
+      - git
 
-            ~$ brew install automake fakeroot
+#### brew: https://brew.sh
+  
+    # Install Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+#### getopt
+On macOS, the default getopt is the BSD version and does not support long options.
+GNU getopt needs to be installed.
+
+    # Install GNU getopt
+    brew install gnu-getopt
+    
+    # Use GNU getopt (current session) temporarily
+    export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+    
+    # Permanent use (add to shell configuration)
+    echo 'export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"' >> ~/.zshrc
+    echo 'alias getopt="/usr/local/opt/gnu-getopt/bin/getopt"' >> ~/.zshrc
+    source ~/.zshrc
+    
+    # Verify installation
+    getopt --version
+
+#### automake、autoconf、fakeroot
+
+    ~$ brew install automake fakeroot
+  
 #### Ninja: [https://ninja-build.org/](https://ninja-build.org/)
 
     ~$ brew install ninja
@@ -33,7 +59,7 @@ Prior versions don't have CMake support.
 #### Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
     ~$ brew install git
-        
+
 #### CMake: [https://cmake.org](https://cmake.org/)
 
   Version: Greater than 3.27.0

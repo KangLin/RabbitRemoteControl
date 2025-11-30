@@ -6,13 +6,14 @@ set -x
 set -e
 #set -v
 
+source $(dirname $(readlink -f $0))/common.sh
+
 # modify follow value
 Qt6_DIR=/opt/Qt/6.6.3/android_x86_64
 DEPENDENT_INSTALL_DIR=/data/tigervnc/build_android/install
 BUILD_TYPE=Debug
 VCPKG_TARGET_TRIPLET=x64-android
 VCPKG_ROOT=/data/vcpkg
-
 
 OLD_DIR=`pwd`
 mkdir -p build_android

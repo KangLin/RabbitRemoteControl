@@ -52,6 +52,11 @@ jobs:
     env:
       RabbitRemoteControl_VERSION: 0.0.36
       artifact_name: build_docker
+      BUILD_DIR:   ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_docker
+      BUILD_VERBOSE: ON
 
     # Map the job outputs to step outputs
     outputs:
@@ -63,6 +68,24 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v4
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+            ${{env.TOOLS_DIR}}/linuxdeploy-*
+            ${{env.TOOLS_DIR}}/qt_*
+          key: install_docker_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}${{matrix.variant.lable}}_${{matrix.os}}
+
       - name: run docker
         run: |
           ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}${{matrix.variant.lable}}" --${{matrix.variant.PACKAGE}}

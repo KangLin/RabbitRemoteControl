@@ -24,17 +24,23 @@ jobs:
             WITH_MACOSX_BUNDLE: false
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-15
+            qt_version: 6.9.3
+            qt_arch: clang_64
+            WITH_MACOSX_BUNDLE: false
+
+          - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-14
             qt_version: 6.9.3
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: true
-        
+
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-14
             qt_version: 6.9.3
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
-            
+
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/

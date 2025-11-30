@@ -2,14 +2,29 @@
 # Author: Kang Lin <kl222@126.com>
 
 #See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+
 #set -x
 set -e
 #set -v
 
+source $(dirname $(readlink -f $0))/common.sh
+
 if [ -z "$BUILD_VERBOSE" ]; then
-    BUILD_VERBOSE=OFF
+    BUILD_VERBOSE=ON
 fi
-PACKAGE_TOOL=apt
+
+detect_os_info
+
+if [ "$OS" = "macOS" ]; then
+    MACOS=1
+    setup_macos
+else
+    MACOS=0
+fi
+if [ -z "$PACKAGE_TOOL" ]; then
+    PACKAGE_TOOL=apt
+fi
+
 PACKAGE=
 SYSTEM_UPDATE=0
 BASE_LIBS=0
@@ -26,270 +41,421 @@ libdatachannel=0
 QtService=0
 QTERMWIDGET=0
 LIBSSH=0
-MACOS=0
 QTKEYCHAIN=0
 
+# Display detailed usage information
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=[0|1]]] [--default[=[0|1]]] [--qt[=[0|1|version]]] [--macos=[0|1]]] [--rabbitcommon[=[0|1]]] [--freerdp[=[0|1]]] [--tigervnc[=[0|1]]] [--libssh[=[0|1]]] [--pcapplusplus[=[0|1]]] [--libdatachannel=[0|1]] [--QtService[=[0|1]]] [--qtermwidget[=[0|1]]] [--qtkeychain[=[0|1]]"
-    echo "  -h|--help: show help"
-    echo "  -v|--verbose: Show verbose"
-    echo "Directory:"
-    echo "  --install: Set install directory"
-    echo "  --source: Set source directory"
-    echo "  --tools: Set tools directory"
-    echo "  --build: set build directory"
-    echo "Depend:"
-    echo "  --base: Install the base libraries"
-    echo "  --default: Install the default dependency libraries that comes with the system"
-    echo "  --system_update: Update system"
-    echo "  --package-tool: Package install tool, apk or dnf"
-    echo "  --package: Install packages. eg: \"package1 package2 ......\""
-    echo "  --qt: Install QT"
-    echo "  --macos: Install macos tools and dependency libraries"
-    echo "  --rabbitcommon: Install RabbitCommon"
-    echo "  --freerdp: Install FreeRDP"
-    echo "  --tigervnc: Install TigerVNC"
-    echo "  --libssh: Install libssh"
-    echo "  --pcapplusplus: Install PcapPlusPlus"
-    echo "  --libdatachannel: Install libdatachannel"
-    echo "  --QtService: Install QtService"
-    echo "  --qtermwidget: Install qtermwidget"
-    echo "  --qtkeychain: Install qtkeychain"
-    exit
+    cat << EOF
+$(basename $0) - Dependency build script
+
+Usage: $0 [OPTION]...
+
+Options:
+  -h, --help                        Show this help message
+  -v, --verbose[=LEVEL]             Set verbose mode (LEVEL: ON, OFF, default: ON)
+
+Directory options:
+  --install=DIR                     Set installation directory
+  --source=DIR                      Set source code directory  
+  --tools=DIR                       Set tools directory
+  --build=DIR                       Set build directory
+
+Package management options:
+  --package="PKG1 PKG2 ..."         Install specified system packages
+  --package-tool=TOOL               Set package manager tool (apt, dnf, brew, pacman, zypper, apk)
+  --system_update[=1|0]             Update system package manager
+
+Dependency options:
+  --base[=1|0]                      Install basic development libraries
+  --default[=1|0]                   Install system default dependency libraries
+  --qt[=1|0|VERSION]                Install Qt (can specify version)
+  --macos[=1|0]                     Install macOS specific tools and dependencies
+
+Component options:
+  --rabbitcommon[=1|0]              Install RabbitCommon
+  --freerdp[=1|0]                   Install FreeRDP
+  --tigervnc[=1|0]                  Install TigerVNC
+  --libssh[=1|0]                    Install libssh
+  --pcapplusplus[=1|0]              Install PcapPlusPlus
+  --libdatachannel[=1|0]            Install libdatachannel
+  --QtService[=1|0]                 Install QtService
+  --qtermwidget[=1|0]               Install qtermwidget
+  --qtkeychain[=1|0]                Install qtkeychain
+
+Examples:
+  $0 --base=1 --qt=1 --install=/opt/local
+  $0 --verbose --package="git cmake" --freerdp=1 --tigervnc=1
+  $0 --system_update --base --default --qt=6.5.0
+
+Environment variables:
+  BUILD_VERBOSE     Set verbose mode (ON/OFF)
+  QT_VERSION        Set Qt version (default: 6.9.3)
+EOF
+    exit 0
 }
 
+# Validate directory path
+validate_directory() {
+    local dir="$1"
+    local type="$2"
+    
+    if [ -n "$dir" ]; then
+        if [[ "$dir" =~ ^- ]]; then
+            echo "Error: $type directory parameter '$dir' cannot start with '-'" >&2
+            exit 1
+        fi
+    fi
+}
+
+# Parse arguments using getopt (more powerful)
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
 # [【Linux】Shell命令 getopts/getopt用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
-if command -V getopt >/dev/null; then
-    echo "getopt is exits"
-    #echo "original parameters=[$@]"
+# 
+# 注意：在 macOS 上，本地 getopt 不支持长格式参数，所以需要先在系统上安装 GNU getopt，并设置环境变量 PATH
+#  brew install gnu-getopt
+#  export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+parse_with_getopt() {
+    local OPTS ARGS
+    
+    echo "Using getopt to parse command line arguments..."
+    
+    # Define supported options
+    # Format: long_option_name: (colon indicates required argument)
+    # :: means optional argument, no colon means no argument
     # -o 或 --options 选项后面是可接受的短选项，如 ab:c:: ，表示可接受的短选项为 -a -b -c ，
     # 其中 -a 选项不接参数，-b 选项后必须接参数，-c 选项的参数为可选的
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
     OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
-    ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
+    
+    # Parse arguments using getopt
+    # -o: short options
+    # -l: long options  
+    # -n: script name for error messages
+    ARGS=$(getopt -o h,v:: -l "$OPTS" -n "$(basename "$0")" -- "$@")
     if [ $? != 0 ]; then
-        echo "exec getopt fail: $?"
-        exit 1
+        echo "Error: Command line argument parsing failed" >&2
+        usage_long
     fi
-    #echo "ARGS=[$ARGS]"
+    
+    # Set positional parameters to parsed arguments
     #将规范化后的命令行参数分配至位置参数（$1,$2,......)
-    eval set -- "${ARGS}"
+    eval set -- "$ARGS"
     #echo "formatted parameters=[$@]"
 
-    while [ $1 ]
-    do
-        #echo "\$1: $1"
-        #echo "\$2: $2"
-        case $1 in
+    # Process options
+    while true; do
+        case "$1" in
         --install)
-            INSTALL_DIR=$2
+            validate_directory "$2" "Installation"
+            INSTALL_DIR="$2"
             shift 2
             ;;
         --source)
-            SOURCE_DIR=$2
+            validate_directory "$2" "Source code"
+            SOURCE_DIR="$2"
             shift 2
             ;;
         --tools)
-            TOOLS_DIR=$2
+            validate_directory "$2" "Tools"
+            TOOLS_DIR="$2"
             shift 2
             ;;
         --build)
-            BUILD_DEPEND_DIR=$2
+            validate_directory "$2" "Build"
+            BUILD_DEPEND_DIR="$2"
             shift 2
             ;;
         --package)
-            PACKAGE=$2
+            PACKAGE="$2"
             shift 2
             ;;
         --package-tool)
-            PACKAGE_TOOL=$2
+            PACKAGE_TOOL="$2"
             shift 2
             ;;
-        -v | --verbose)
-            case $2 in
+        -v|--verbose)
+            case "$2" in
                 "")
-                    BUILD_VERBOSE=ON;;
+                    BUILD_VERBOSE="ON"
+                    ;;
                 *)
-                    BUILD_VERBOSE=$2;;
+                    BUILD_VERBOSE="$2"
+                    ;;
             esac
             shift 2
             ;;
         --system_update)
-            case $2 in
+            case "$2" in
                 "")
-                    SYSTEM_UPDATE=1;;
+                    SYSTEM_UPDATE=1
+                    ;;
                 *)
-                    SYSTEM_UPDATE=$2;;
+                    SYSTEM_UPDATE="$2"
+                    ;;
             esac
             shift 2
             ;;
         --base)
-            case $2 in
+            case "$2" in
                 "")
-                    BASE_LIBS=1;;
+                    BASE_LIBS=1
+                    ;;
                 *)
-                    BASE_LIBS=$2;;
+                    BASE_LIBS="$2"
+                    ;;
             esac
             shift 2
             ;;
         --default)
-            case $2 in
+            case "$2" in
                 "")
-                    DEFAULT_LIBS=1;;
+                    DEFAULT_LIBS=1
+                    ;;
                 *)
-                    DEFAULT_LIBS=$2;;
+                    DEFAULT_LIBS="$2"
+                    ;;
             esac
             shift 2
             ;;
         --qt)
-            case $2 in
+            case "$2" in
                 "")
-                    QT=1;;
-                1 | 0)
-                    QT=$2;;
+                    QT=1
+                    ;;
+                1|0)
+                    QT="$2"
+                    ;;
                 *)
-                    QT_VERSION=$2
+                    QT_VERSION="$2"
                     QT=1
                     ;;
             esac
             shift 2
             ;;
         --macos)
-            case $2 in
+            case "$2" in
                 "")
-                    MACOS=1;;
+                    MACOS=1
+                    ;;
                 *)
-                    MACOS=$2;;
+                    MACOS="$2"
+                    ;;
             esac
             shift 2
-            ;;  
+            ;;
         --freerdp)
-            case $2 in
+            case "$2" in
                 "")
-                    FREERDP=1;;
+                    FREERDP=1
+                    ;;
                 *)
-                    FREERDP=$2;;
+                    FREERDP="$2"
+                    ;;
             esac
             shift 2
             ;;
         --tigervnc)
-            case $2 in
+            case "$2" in
                 "")
-                    TIGERVNC=1;;
+                    TIGERVNC=1
+                    ;;
                 *)
-                    TIGERVNC=$2;;
+                    TIGERVNC="$2"
+                    ;;
             esac
             shift 2
             ;;
         --libssh)
-            case $2 in
+            case "$2" in
                 "")
-                    LIBSSH=1;;
+                    LIBSSH=1
+                    ;;
                 *)
-                    LIBSSH=$2;;
+                    LIBSSH="$2"
+                    ;;
             esac
             shift 2
             ;;
         --pcapplusplus)
-            case $2 in
+            case "$2" in
                 "")
-                    PCAPPLUSPLUS=1;;
+                    PCAPPLUSPLUS=1
+                    ;;
                 *)
-                    PCAPPLUSPLUS=$2;;
+                    PCAPPLUSPLUS="$2"
+                    ;;
             esac
             shift 2
             ;;
         --rabbitcommon)
-            case $2 in
+            case "$2" in
                 "")
-                    RabbitCommon=1;;
+                    RabbitCommon=1
+                    ;;
                 *)
-                    RabbitCommon=$2;;
+                    RabbitCommon="$2"
+                    ;;
             esac
             shift 2
             ;;
         --libdatachannel)
-            case $2 in
+            case "$2" in
                 "")
-                    libdatachannel=1;;
+                    libdatachannel=1
+                    ;;
                 *)
-                    libdatachannel=$2;;
+                    libdatachannel="$2"
+                    ;;
             esac
             shift 2
             ;;
         --QtService)
-            case $2 in
+            case "$2" in
                 "")
-                    QtService=1;;
+                    QtService=1
+                    ;;
                 *)
-                    QtService=$2;;
+                    QtService="$2"
+                    ;;
             esac
             shift 2
             ;;
         --qtermwidget)
-            case $2 in
+            case "$2" in
                 "")
-                    QTERMWIDGET=1;;
+                    QTERMWIDGET=1
+                    ;;
                 *)
-                    QTERMWIDGET=$2;;
+                    QTERMWIDGET="$2"
+                    ;;
             esac
             shift 2
             ;;
         --qtkeychain)
-            case $2 in
+            case "$2" in
                 "")
-                    QTKEYCHAIN=1;;
+                    QTKEYCHAIN=1
+                    ;;
                 *)
-                    QTKEYCHAIN=$2;;
+                    QTKEYCHAIN="$2"
+                    ;;
             esac
             shift 2
             ;;
-        --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
+        --) # End of options
             shift
             break
             ;;
-        -h | -help)
+        -h|--help)
             usage_long
-            shift
             ;;
         *)
+            echo "Error: Unknown option '$1'" >&2
             usage_long
-            break
             ;;
         esac
     done
-fi
-
-# 安全的 readlink 函数，兼容各种情况
-safe_readlink() {
-    local path="$1"
-    if [ -L "$path" ]; then
-        # 如果是符号链接，使用 readlink
-        if command -v readlink >/dev/null 2>&1; then
-            if readlink -f "$path" >/dev/null 2>&1; then
-                readlink -f "$path"
-            else
-                readlink "$path"
-            fi
-        else
-            # 如果没有 readlink，使用 ls
-            ls -l "$path" | awk '{print $NF}'
-        fi
-    elif [ -e "$path" ]; then
-        # 如果不是符号链接但存在，返回绝对路径
-        if command -v realpath >/dev/null 2>&1; then
-            realpath "$path"
-        else
-            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
-        fi
-    else
-        # 文件不存在，返回原路径
-        echo "$path"
+    
+    # Handle remaining non-option arguments (if any)
+    if [ $# -gt 0 ]; then
+        echo "Warning: Ignoring unknown arguments: $*" >&2
     fi
 }
+
+# Parse command line arguments
+parse_command_line() {
+    # Use getopt if available, otherwise fall back to getopts
+    if command -v getopt >/dev/null 2>&1; then
+        parse_with_getopt "$@"
+    else
+        echo "Install GNU getopt"
+    fi
+}
+
+# Display current configuration
+show_configuration() {
+    if [ "$BUILD_VERBOSE" = "ON" ]; then
+        echo "=== Current Configuration ==="
+        echo "Directory Configuration:"
+        echo "  Install Directory: ${INSTALL_DIR:-Not set (using default)}"
+        echo "  Source Directory: ${SOURCE_DIR:-Not set (using default)}"
+        echo "  Tools Directory: ${TOOLS_DIR:-Not set (using default)}"
+        echo "  Build Directory: ${BUILD_DEPEND_DIR:-Not set (using default)}"
+        echo ""
+        echo "Package Management:"
+        echo "  System Update: $SYSTEM_UPDATE"
+        echo "  Package Installation: ${PACKAGE:-None}"
+        echo "  Package Tool: ${PACKAGE_TOOL:-Auto-detected}"
+        echo ""
+        echo "Dependency Installation:"
+        echo "  Base Libraries: $BASE_LIBS"
+        echo "  Default Libraries: $DEFAULT_LIBS"
+        echo "  Qt: $QT (Version: $QT_VERSION)"
+        echo "  macOS Tools: $MACOS"
+        echo ""
+        echo "Component Installation:"
+        echo "  RabbitCommon: $RabbitCommon"
+        echo "  FreeRDP: $FREERDP"
+        echo "  TigerVNC: $TIGERVNC"
+        echo "  libssh: $LIBSSH"
+        echo "  PcapPlusPlus: $PCAPPLUSPLUS"
+        echo "  libdatachannel: $libdatachannel"
+        echo "  QtService: $QtService"
+        echo "  qtermwidget: $QTERMWIDGET"
+        echo "  qtkeychain: $QTKEYCHAIN"
+        echo ""
+        echo "Other Settings:"
+        echo "  Verbose Mode: $BUILD_VERBOSE"
+        echo "========================="
+        echo ""
+    fi
+
+    echo "Repo folder: $REPO_ROOT"
+    echo "Old folder: $OLD_CWD"
+    echo "Current folder: `pwd`"
+}
+
+# Validate parsed parameters
+validate_parameters() {
+    # Check if any action was requested
+    local actions=0
+    for action in $SYSTEM_UPDATE $BASE_LIBS $DEFAULT_LIBS $QT $FREERDP $TIGERVNC \
+                  $LIBSSH $PCAPPLUSPLUS $RabbitCommon $libdatachannel \
+                  $QtService $QTERMWIDGET $QTKEYCHAIN; do
+        if [ "$action" -eq 1 ]; then
+            actions=1
+            break
+        fi
+    done
+    
+    # If no actions and no packages specified, show error
+    if [ $actions -eq 0 ] && [ -z "$PACKAGE" ]; then
+        echo "Warning: No operation specified" >&2
+        #echo "Use '$0 --help' to see available options" >&2
+    fi
+    
+    # Validate boolean parameters
+    for var in SYSTEM_UPDATE BASE_LIBS DEFAULT_LIBS QT FREERDP TIGERVNC \
+               LIBSSH PCAPPLUSPLUS RabbitCommon libdatachannel \
+               QtService QTERMWIDGET QTKEYCHAIN; do
+        local value="${!var}"
+        if [ "$value" -ne 0 ] && [ "$value" -ne 1 ]; then
+            echo "Error: Parameter $var must be 0 or 1" >&2
+            exit 1
+        fi
+    done
+    
+    # Validate verbose mode
+    if [ "$BUILD_VERBOSE" != "ON" ] && [ "$BUILD_VERBOSE" != "OFF" ]; then
+        echo "Error: BUILD_VERBOSE must be ON or OFF" >&2
+        exit 1
+    fi
+}
+
+# Parse command line arguments (will override environment variables)
+parse_command_line "$@"
 
 # store repo root as variable
 REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
@@ -321,31 +487,39 @@ mkdir -p $SOURCE_DIR
 INSTALL_DIR=$(safe_readlink ${INSTALL_DIR})
 mkdir -p $INSTALL_DIR
 
-echo "Repo folder: $REPO_ROOT"
-echo "Old folder: $OLD_CWD"
-echo "Current folder: `pwd`"
-echo "BUILD_DEPEND_DIR: $BUILD_DEPEND_DIR"
-echo "TOOLS_DIR: $TOOLS_DIR"
-echo "SOURCE_DIR: $SOURCE_DIR"
-echo "INSTALL_DIR: $INSTALL_DIR"
+# Validate parameters
+validate_parameters
+
+# Display configuration
+show_configuration
 
 if [ $SYSTEM_UPDATE -eq 1 ]; then
     echo "System update ......"
-    $PACKAGE_TOOL update -y
+    if [ "$PACKAGE_TOOL" = "brew" ]; then
+        brew update -q
+    else
+        $PACKAGE_TOOL update -y
+    fi
 fi
 
 if [ -n "$PACKAGE" ]; then
+    echo "Install package: $PACKAGE"
     for p in $PACKAGE
     do
-        ${PACKAGE_TOOL} install -y -q $p
+        if [ "$PACKAGE_TOOL" = "brew" ]; then
+            brew install -q $p
+        else
+            ${PACKAGE_TOOL} install -y -q $p
+        fi
     done
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
+        # Build tools
         apt install -y -q build-essential packaging-dev equivs debhelper \
-            fakeroot graphviz gettext wget curl
+            fakeroot graphviz gettext wget curl git cmake
         # OpenGL
         apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
@@ -413,7 +587,7 @@ fi
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo "Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
-        case "`lsb_release -s -r`" in
+        case "$DISTRO_VERSION" in
             "25.04"|"25.10")
                 DEFAULT_LIBRARIES=
             ;;
@@ -422,19 +596,32 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
                 ;;
         esac
         # Qt6
-        apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
-            qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
-            libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-            qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
-            qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
-        apt-get install -y -q qtkeychain-qt6-dev $DEFAULT_LIBRARIES
-    fi
-    
+        if [ $QT -ne 1 ]; then
+            apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
+                qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
+                libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
+                qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
+                qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
+            apt-get install -y -q $DEFAULT_LIBRARIES
+        fi
+        if [ $QTKEYCHAIN -ne 1 ]; then
+            apt-get install -y -q qtkeychain-qt6-dev
+        fi
+        if [ $FREERDP -ne 1 ]; then
+            apt-get install -y freerdp2-dev
+        fi
+        if [ $LIBSSH -ne 1 ]; then
+            apt-get install -y libssh-dev
+        fi
+    fi # apt
+
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
-        dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
-            qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
-            qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
-            qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
+        if [ $QT -ne 1 ]; then
+            dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
+                qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
+                qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
+                qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
+        fi
     fi
 fi
 
@@ -466,7 +653,7 @@ fi
 
 if [ $MACOS -eq 1 ]; then
     echo "Install macos tools and dependency libraries ......"
-    brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
+    brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus qtkeychain curl
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
