@@ -14,6 +14,7 @@
 class PLUGIN_EXPORT CParameterUI : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit CParameterUI(QWidget *parent = nullptr);
     

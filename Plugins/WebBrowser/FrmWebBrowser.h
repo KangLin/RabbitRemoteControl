@@ -10,10 +10,12 @@
 #include <QLineEdit>
 #include <QProgressBar>
 #include <QTabWidget>
+#include <QTimer>
 
 #include "FrmWebView.h"
 #include "FrmDownloadManager.h"
 #include "ParameterWebBrowser.h"
+#include "MultimediaRecord.h"
 
 class CFrmWebBrowser : public QWidget
 {
@@ -22,6 +24,14 @@ class CFrmWebBrowser : public QWidget
 public:
     explicit CFrmWebBrowser(CParameterWebBrowser* pPara, bool bMenuBar = false, QWidget *parent = nullptr);
     virtual ~CFrmWebBrowser();
+
+    enum RV{
+        Success = 0,
+        Fail = -1,
+        FailCapturePage = -2,
+        FailCaptureFullPage = -3,
+    };
+    Q_ENUM(RV)
 
     int Load(QSettings &set);
     int Save(QSettings &set);
@@ -32,6 +42,7 @@ public:
 
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
+    void sigError(const int nError, const QString &szError);
     //! Title or icon changed
     void sigUpdateTitle();
     void sigFullScreen(bool bFull);
@@ -47,6 +58,11 @@ private Q_SLOTS:
     void slotPrintFinished(bool success);
     void slotPrintToPdf();
     void slotPdfPrintingFinished(const QString& szFile, bool success);
+
+    void slotCapturePage();
+    void slotCaptureFullPage();
+    void slotRecord();
+    void slotRecordTimeout();
 
 public Q_SLOTS:
     void slotFullScreen(bool bFullScreen);
@@ -68,9 +84,9 @@ private:
     [[nodiscard]] CFrmWebView* GetView(int index, ViewType type = ViewType::Web);
 
 private:
+    CParameterWebBrowser* m_pPara;
     QMenuBar* m_pMenuBar;
     QMenu m_Menu;
-    CParameterWebBrowser* m_pPara;
     QToolBar* m_pToolBar;
     QAction* m_pBack;
     QAction* m_pForward;
@@ -92,6 +108,9 @@ private:
     QAction* m_pPrintToPdf;
     QAction* m_pDownload;
     QAction* m_pInspector;
+    QAction* m_pCapturePage;
+    QAction* m_pCaptureFulPage;
+    QAction* m_pRecord;
     QAction* m_pUrl;
     QLineEdit* m_pUrlLineEdit;
     QProgressBar* m_pProgressBar;
@@ -102,4 +121,7 @@ private:
 
     QString m_szStyleSheet;
     friend CFrmWebView;
+
+    CMultimediaRecordThread m_MultimediaRecord;
+    QTimer m_tmRecord;
 };

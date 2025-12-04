@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QPainter>
 #include <QTabBar>
 #include <QMessageBox>
 #include <QMenu>
@@ -18,6 +19,7 @@
 #include <QStandardPaths>
 #include <QClipboard>
 #include <QApplication>
+#include <QDesktopServices>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
     #include <QWebEngineProfileBuilder>
 #endif
@@ -26,12 +28,13 @@
 #include "RabbitCommonTools.h"
 #include "FrmWebBrowser.h"
 #include "FrmPopup.h"
+#include "CaptureFullPage.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
     : QWidget{parent}
-    , m_pMenuBar(nullptr)
     , m_pPara(pPara)
+    , m_pMenuBar(nullptr)
     , m_pToolBar(nullptr)
     , m_pBack(nullptr)
     , m_pForward(nullptr)
@@ -58,6 +61,10 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pProgressBar(nullptr)
     , m_pTab(nullptr)
     , m_DownloadManager(pPara)
+    , m_pCapturePage(nullptr)
+    , m_pCaptureFulPage(nullptr)
+    , m_pRecord(nullptr)
+    , m_MultimediaRecord(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -217,6 +224,9 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
             pLayout->setMenuBar(m_pMenuBar);
         }
     }
+
+    check = connect(&m_tmRecord, &QTimer::timeout, this, &CFrmWebBrowser::slotRecordTimeout);
+    Q_ASSERT(check);
 }
 
 CFrmWebBrowser::~CFrmWebBrowser()
@@ -683,6 +693,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         check = connect(m_pInspector, &QAction::toggled,
                         this, &CFrmWebBrowser::slotInspector);
         Q_ASSERT(check);
+        m_pInspector->setStatusTip(tr("Inspector"));
         m_pInspector->setCheckable(true);
         m_pInspector->setEnabled(false);
         m_pInspector->setShortcuts({
@@ -690,6 +701,18 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             QKeySequence(Qt::Key_F12)
         });
     }
+
+    pMenu->addSeparator();
+    m_pCapturePage = pMenu->addAction(QIcon::fromTheme("screen-shot"), tr("Capture page"),
+                     this, &CFrmWebBrowser::slotCapturePage);
+    m_pCapturePage->setStatusTip(tr("Capture page"));
+    m_pCaptureFulPage = pMenu->addAction(QIcon::fromTheme("screen-shot"), tr("Capture full page"),
+                     this, &CFrmWebBrowser::slotCaptureFullPage);
+    m_pCaptureFulPage->setStatusTip(tr("Capture full page"));
+    m_pRecord = pMenu->addAction(QIcon::fromTheme("media-record"), tr("Record"),
+                     this, &CFrmWebBrowser::slotRecord);
+    m_pRecord->setCheckable(true);
+    m_pRecord->setStatusTip(tr("Record"));
 
     EnableAction(false);
     return 0;
@@ -792,6 +815,8 @@ void CFrmWebBrowser::EnableAction(bool enable)
         m_pZoomOut->setEnabled(enable);
     if(m_pInspector)
         m_pInspector->setEnabled(enable);
+    if(m_pRecord)
+        m_pRecord->setEnabled(enable);
 }
 
 void CFrmWebBrowser::slotTabCloseRequested(int index)
@@ -987,4 +1012,127 @@ void CFrmWebBrowser::slotFullScreen(bool bFullScreen)
             CurrentView()->page()->action(QWebEnginePage::ExitFullScreen)->toggle();
     }
     emit sigFullScreen(bFullScreen);
+}
+
+void CFrmWebBrowser::slotCapturePage()
+{
+    auto pWeb = CurrentView();
+    if(!pWeb) return;
+
+    QString szMsg;
+    QPixmap pixmap = pWeb->grab();
+    QImage image = pixmap.toImage();
+    QString szFile = m_pPara->m_Record.GetImageFile(true);
+    if(szFile.isEmpty() && image.isNull()) return;
+    if(!image.save(szFile, "PNG"))
+    {
+        QString szErr;
+        szErr = tr("Fail: Save capture page to the file: ") + szFile;
+        qCritical(log) << szErr;
+        emit sigError(RV::FailCapturePage, szErr);
+        return;
+    }
+    szMsg = tr("Save capture page to the file：") + szFile;
+    qInfo(log) << szMsg;
+    emit sigInformation(szMsg);
+    qDebug(log) << "End action:" << m_pPara->m_Record.GetEndAction();
+    switch(m_pPara->m_Record.GetEndAction())
+    {
+    case CParameterRecord::ENDACTION::OpenFile: {
+        bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+        if(!bRet)
+            qCritical(log) << "Fail: Open capture page the file:" << szFile;
+        break;
+    }
+    case CParameterRecord::ENDACTION::OpenFolder: {
+        QFileInfo fi(szFile);
+        QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void CFrmWebBrowser::slotCaptureFullPage()
+{
+    auto pWeb = CurrentView();
+    if(!pWeb) return;
+    qDebug(log) << "contents size:" << pWeb->page()->contentsSize();
+    QString szFile = m_pPara->m_Record.GetImageFile(true);
+    CCaptureFullPage *pCapture = new CCaptureFullPage();
+    if(szFile.isEmpty() || !pCapture)
+        return;
+    bool check = connect(pCapture, &CCaptureFullPage::sigFinished,
+            this, [this, pWeb, szFile, pCapture](){
+        pWeb->setEnabled(true);
+        qDebug(log) << "End action:" << m_pPara->m_Record.GetEndAction();
+        QFileInfo fi(szFile);
+        if(!fi.exists()) {
+            QString szErr = tr("Fail: capture full page");
+            qCritical(log) << szErr;
+            emit sigError(FailCaptureFullPage, szErr);
+        } else {
+            QString szMsg = tr("Capture full page to") + " " + szFile;
+            qInfo(log) << szMsg;
+            emit sigInformation(szMsg);
+            switch(m_pPara->m_Record.GetEndAction())
+            {
+            case CParameterRecord::ENDACTION::OpenFile: {
+                bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+                if(!bRet)
+                    qCritical(log) << "Fail: Open capture page the file:" << szFile;
+                break;
+            }
+            case CParameterRecord::ENDACTION::OpenFolder: {
+                QFileInfo fi(szFile);
+                QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                break;
+            }
+            default:
+                break;
+            }
+            pCapture->deleteLater();
+        }
+    });
+    Q_ASSERT(check);
+    pWeb->setEnabled(false);
+    pCapture->Start(pWeb, pWeb->url(), szFile);
+
+    emit sigInformation(tr("Start capture full page"));
+}
+
+void CFrmWebBrowser::slotRecord()
+{
+    if(m_pRecord->isChecked()) {
+        m_pRecord->setText(tr("Stop record"));
+        m_pRecord->setIcon(QIcon::fromTheme("media-stop"));
+        m_MultimediaRecord.start();
+        // modify interval
+        qreal rate = m_pPara->m_Record.GetVideoFrameRate();
+        if(rate <= 0)
+            rate = 24;
+        m_tmRecord.start(qreal(1000) / rate);
+        //slotRecordTimeout();
+    } else {
+        m_pRecord->setIcon(QIcon::fromTheme("media-record"));
+        m_pRecord->setText(tr("Record"));
+        m_tmRecord.stop();
+        m_MultimediaRecord.quit();
+    }
+    m_pRecord->setStatusTip(m_pRecord->text());
+}
+
+void CFrmWebBrowser::slotRecordTimeout()
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    auto pWeb = CurrentView();
+    if(!pWeb) return;
+    QPixmap pixmap = pWeb->grab();
+    QImage image = pixmap.toImage();
+    if(image.isNull()) return;
+    QMetaObject::invokeMethod(&m_MultimediaRecord,
+                              "slotUpdateVideoFrame",
+                              Qt::AutoConnection,
+                              Q_ARG(QImage, image));
 }

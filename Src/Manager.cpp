@@ -26,6 +26,8 @@
     #include "keychain.h"
 #endif
 
+#include "FrmMediaDevices.h"
+
 #include "Channel.h"
 #include "Manager.h"
 
@@ -462,6 +464,11 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
         lstWidget.push_back(pRecord);
     }
 
+    CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(parent);
+    if(pMediaDevices) {
+        pMediaDevices->SetParameter(&m_pParameter->m_MediaDevices.m_Para);
+        lstWidget.push_back(pMediaDevices);
+    }
     return lstWidget;
 }
 

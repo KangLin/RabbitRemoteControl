@@ -87,6 +87,9 @@ int COperateWebBrowser::Initial()
         bool check = connect(m_pWeb, &CFrmWebBrowser::sigInformation,
                              this, &COperateWebBrowser::sigInformation);
         Q_ASSERT(check);
+        check = connect(m_pWeb, &CFrmWebBrowser::sigError,
+                        this, &COperateWebBrowser::sigError);
+        Q_ASSERT(check);
         check = connect(m_pWeb, &CFrmWebBrowser::sigUpdateTitle,
                         this, &COperateWebBrowser::slotUpdateName);
         Q_ASSERT(check);

@@ -4,6 +4,7 @@
 
 #include "FrmViewer.h"
 #include "ParameterRecord.h"
+#include "ParameterMediaDevices.h"
 
 #if defined(HAVE_QTERMWIDGET)
 #include "ParameterTerminal.h"
@@ -179,6 +180,7 @@ private:
 
 public:
     CParameterRecord m_Record;
+    CParameterMediaDevices m_MediaDevices;
 #if defined(HAVE_QTERMWIDGET)
     CParameterTerminal m_Terminal;
 #endif

@@ -49,6 +49,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterProxyUI.h
     ParameterCompone/ParameterRecord.h
     ParameterCompone/ParameterRecordUI.h
+    ParameterCompone/ParameterMediaDevices.h
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
     ParameterCompone/Stats.h
@@ -90,6 +91,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterProxyUI.cpp
     ParameterCompone/ParameterRecord.cpp
     ParameterCompone/ParameterRecordUI.cpp
+    ParameterCompone/ParameterMediaDevices.cpp
     ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
     ParameterCompone/Stats.cpp

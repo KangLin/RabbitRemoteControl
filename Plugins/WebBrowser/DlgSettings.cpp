@@ -40,6 +40,14 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     QModelIndex indexModel;
     indexModel = m_pSearchModel->index(index, 0);
     ui->lstSearchEngine->setCurrentIndex(indexModel);
+
+    m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
+    m_pRecordUI->SetParameter(&m_pPara->m_Record);
+    ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), m_pRecordUI->windowTitle());
+
+    m_pMediaDevices = new CFrmMediaDevices(true, this);
+    m_pMediaDevices->SetParameter(&m_pPara->m_MediaDevices.m_Para);
+    ui->tabWidget->addTab(m_pMediaDevices, m_pMediaDevices->windowIcon(), m_pMediaDevices->windowTitle());
 }
 
 CDlgSettings::~CDlgSettings()
@@ -65,6 +73,16 @@ void CDlgSettings::accept()
         auto search = m_pSearchModel->item(index.row())->text();
         m_pPara->SetSearchEngine(search);
     }
+
+    if(!m_pRecordUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pRecordUI);
+        return;
+    }
+
+    int nRet = m_pRecordUI->Accept();
+    if(nRet)
+        return;
+
     QDialog::accept();
 }
 

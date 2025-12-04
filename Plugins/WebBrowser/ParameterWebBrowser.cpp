@@ -8,6 +8,8 @@
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
+    , m_Record(this)
+    , m_MediaDevices(this)
     , m_bOpenPrevious(false)
     , m_bShowDownloadManager(true)
     , m_bShowDownloadLocation(false)
@@ -70,6 +72,15 @@ int CParameterWebBrowser::OnSave(QSettings &set)
 
 void CParameterWebBrowser::slotSetGlobalParameters()
 {
+    CParameterPlugin* pPlugin = GetGlobalParameters();
+    if(!pPlugin) {
+        QString szErr = "The CParameterClient is null";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "CParameterWebBrowser", szErr.toStdString().c_str());
+        return;
+    }
+    m_Record = pPlugin->m_Record;
+    m_MediaDevices = pPlugin->m_MediaDevices;
 }
 
 QString CParameterWebBrowser::GetHomeUrl()

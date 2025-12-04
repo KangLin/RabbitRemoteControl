@@ -3,6 +3,8 @@
 #include <QDialog>
 #include <QStandardItemModel>
 #include "ParameterWebBrowser.h"
+#include "ParameterRecordUI.h"
+#include "FrmMediaDevices.h"
 
 namespace Ui {
 class CDlgSettings;
@@ -28,4 +30,6 @@ private:
     Ui::CDlgSettings *ui;
     CParameterWebBrowser* m_pPara;
     QStandardItemModel* m_pSearchModel;
+    CParameterRecordUI* m_pRecordUI;
+    CFrmMediaDevices* m_pMediaDevices;
 };

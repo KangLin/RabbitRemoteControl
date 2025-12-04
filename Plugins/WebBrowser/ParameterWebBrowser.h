@@ -1,7 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include <ParameterOperate.h>
+#include "ParameterOperate.h"
+#include "ParameterRecord.h"
+#include "ParameterMediaDevices.h"
 
 class CParameterWebBrowser : public CParameterOperate
 {
@@ -10,6 +12,10 @@ public:
     explicit CParameterWebBrowser(QObject *parent = nullptr,
                                   const QString& szPrefix = QString());
     virtual ~CParameterWebBrowser();
+
+    CParameterRecord m_Record;
+    CParameterMediaDevices m_MediaDevices;
+
 public:
     QString GetHomeUrl();
     int SetHomeUrl(const QString& url);

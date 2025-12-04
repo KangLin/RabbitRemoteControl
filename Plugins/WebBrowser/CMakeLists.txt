@@ -32,6 +32,8 @@ set(WebBrowser_SOURCE_FILES
     ParameterWebBrowser.cpp
     FrmPopup.cpp
     PasswordStore.cpp
+    CaptureFullPage.cpp
+    MultimediaRecord.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -44,6 +46,8 @@ set(WebBrowser_HEADER_FILES
     ParameterWebBrowser.h
     FrmPopup.h
     PasswordStore.h
+    CaptureFullPage.h
+    MultimediaRecord.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
