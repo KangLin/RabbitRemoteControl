@@ -263,6 +263,7 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
     switch (type) {
     case QWebEnginePage::WebBrowserTab: {
         auto pTab = CreateTab(&pView, offTheRecord);
+        if(!pTab || !m_pTab) break;
         int index = m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
         if(-1 < index)
             m_pTab->setCurrentIndex(index);
@@ -270,6 +271,7 @@ QWebEngineView* CFrmWebBrowser::CreateWindow(
     }
     case QWebEnginePage::WebBrowserBackgroundTab: {
         auto pTab = CreateTab(&pView, offTheRecord);
+        if(!pTab || !m_pTab) break;
         int index = m_pTab->currentIndex();
         m_pTab->addTab(pTab, pView->favIcon(), tr("New page"));
         if(-1 < index && index != m_pTab->currentIndex())
@@ -352,7 +354,8 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         int index = IndexOfTab(pWeb);
                         if(-1 < index) {
-                            m_pTab->setTabText(index, title);
+                            if(m_pTab)
+                                m_pTab->setTabText(index, title);
                             setWindowTitle(title);
                             emit sigUpdateTitle();
                         }
@@ -363,7 +366,8 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         int index = IndexOfTab(pWeb);
                         if(-1 < index) {
-                            m_pTab->setTabIcon(index, icon);
+                            if(m_pTab)
+                                m_pTab->setTabIcon(index, icon);
                             setWindowIcon(icon);
                             emit sigUpdateTitle();
                         }
@@ -489,6 +493,7 @@ QWidget* CFrmWebBrowser::CreateTab(CFrmWebView **view, bool offTheRecord)
 
 CFrmWebView *CFrmWebBrowser::CurrentView(ViewType type)
 {
+    if(!m_pTab) return nullptr;
     auto w = m_pTab->currentWidget();
     if(!w) return nullptr;
     QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
@@ -500,7 +505,7 @@ CFrmWebView *CFrmWebBrowser::CurrentView(ViewType type)
 
 CFrmWebView* CFrmWebBrowser::GetView(int index, ViewType type)
 {
-    if(0 > index || m_pTab->count() <= index) return nullptr;
+    if(0 > index || !m_pTab || m_pTab->count() <= index) return nullptr;
     auto w = m_pTab->widget(index);
     if(!w) return nullptr;
     QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
@@ -512,6 +517,7 @@ CFrmWebView* CFrmWebBrowser::GetView(int index, ViewType type)
 
 bool CFrmWebBrowser::IsCurrentView(CFrmWebView *pView)
 {
+    if(!m_pTab) return false;
     auto w = m_pTab->currentWidget();
     if(!w) return false;
     QSplitter *pSplitter = qobject_cast<QSplitter*>(w);
@@ -525,7 +531,8 @@ int CFrmWebBrowser::IndexOfTab(CFrmWebView *pView)
     if(!pView) return nRet;
     QWidget* p = qobject_cast<QWidget*>(pView->parent());
     if(!p) return nRet;
-    nRet = m_pTab->indexOf(p);
+    if(m_pTab)
+        nRet = m_pTab->indexOf(p);
     return nRet;
 }
 
@@ -721,7 +728,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 int CFrmWebBrowser::Start()
 {
     int nRet = 0;
-    if(m_pTab->count() == 0) {
+    if(m_pTab && m_pTab->count() == 0) {
         // Add new web view
         m_pAddPage->trigger();
     }
@@ -732,12 +739,15 @@ int CFrmWebBrowser::Stop()
 {
     int nRet = 0;
 
-    for(int i = 0; i < m_pTab->count(); i++) {
-        auto v = GetView(i);
-        if(!v) continue;
-        v->stop();
+    if(m_pRecord && m_pRecord->isChecked())
+        slotRecord();
+    if(m_pTab) {
+        for(int i = 0; i < m_pTab->count(); i++) {
+            auto v = GetView(i);
+            if(!v) continue;
+            v->stop();
+        }
     }
-
     return nRet;
 }
 
@@ -822,7 +832,7 @@ void CFrmWebBrowser::EnableAction(bool enable)
 void CFrmWebBrowser::slotTabCloseRequested(int index)
 {
     qDebug(log) << "slotTabCloseRequested:" << index;
-    if(-1 == index) return;
+    if(-1 == index || !m_pTab) return;
     auto pView = m_pTab->widget(index);
     if(pView)
         pView->deleteLater();
@@ -862,6 +872,7 @@ void CFrmWebBrowser::slotReturnPressed()
 void CFrmWebBrowser::slotInspector(bool checked)
 {
     CFrmWebView* pWeb = CurrentView();
+    if(!pWeb || !m_pTab) return;
     auto dev = CurrentView(ViewType::DevTools);
     if(pWeb && pWeb->page() && checked) {
         if(!dev) {
