@@ -64,7 +64,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pCapturePage(nullptr)
     , m_pCaptureFulPage(nullptr)
     , m_pRecord(nullptr)
-    , m_MultimediaRecord(pPara)
+    , m_pMultimediaRecord(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -710,16 +710,23 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     }
 
     pMenu->addSeparator();
-    m_pCapturePage = pMenu->addAction(QIcon::fromTheme("screen-shot"), tr("Capture page"),
-                     this, &CFrmWebBrowser::slotCapturePage);
+    m_pCapturePage = pMenu->addAction(
+        QIcon::fromTheme("screen-shot"), tr("Capture page"),
+        this, &CFrmWebBrowser::slotCapturePage);
     m_pCapturePage->setStatusTip(tr("Capture page"));
-    m_pCaptureFulPage = pMenu->addAction(QIcon::fromTheme("screen-shot"), tr("Capture full page"),
-                     this, &CFrmWebBrowser::slotCaptureFullPage);
+    m_pCaptureFulPage = pMenu->addAction(
+        QIcon::fromTheme("screen-shot"), tr("Capture full page"),
+        this, &CFrmWebBrowser::slotCaptureFullPage);
     m_pCaptureFulPage->setStatusTip(tr("Capture full page"));
     m_pRecord = pMenu->addAction(QIcon::fromTheme("media-record"), tr("Record"),
                      this, &CFrmWebBrowser::slotRecord);
     m_pRecord->setCheckable(true);
     m_pRecord->setStatusTip(tr("Record"));
+#ifdef HAVE_QT6_RECORD
+    m_pRecord->setEnabled(true);
+#else
+    m_pRecord->setEnabled(false);
+#endif
 
     EnableAction(false);
     return 0;
@@ -1118,18 +1125,40 @@ void CFrmWebBrowser::slotRecord()
     if(m_pRecord->isChecked()) {
         m_pRecord->setText(tr("Stop record"));
         m_pRecord->setIcon(QIcon::fromTheme("media-stop"));
-        m_MultimediaRecord.start();
+
+        Q_ASSERT(!m_pMultimediaRecord);
+        // Note: It automatically releases memory when exiting.
+        // See: CMultimediaRecordThread::CMultimediaRecordThread()
+        m_pMultimediaRecord = new CMultimediaRecordThread(m_pPara);
+        if(m_pMultimediaRecord) {
+            connect(m_pMultimediaRecord, &CMultimediaRecordThread::finished,
+                    this, [this]() {
+                        m_pMultimediaRecord = nullptr;
+                        if(m_pRecord->isChecked()) {
+                            m_pRecord->activate(QAction::Trigger);
+                            emit sigError(RV::FailRecordPage, tr("Fail record web page"));
+                        }
+                    });
+            m_pMultimediaRecord->start();
+        }
+
         // modify interval
         qreal rate = m_pPara->m_Record.GetVideoFrameRate();
         if(rate <= 0)
             rate = 24;
         m_tmRecord.start(qreal(1000) / rate);
-        //slotRecordTimeout();
+        emit sigInformation(tr("Start record web page"));
     } else {
         m_pRecord->setIcon(QIcon::fromTheme("media-record"));
         m_pRecord->setText(tr("Record"));
         m_tmRecord.stop();
-        m_MultimediaRecord.quit();
+        if(m_pMultimediaRecord) {
+            QMetaObject::invokeMethod(m_pMultimediaRecord,
+                                      "slotQuit",
+                                      Qt::AutoConnection);
+            m_pMultimediaRecord = nullptr;
+            emit sigInformation(tr("Record web page is stoped"));
+        }
     }
     m_pRecord->setStatusTip(m_pRecord->text());
 }
@@ -1137,12 +1166,13 @@ void CFrmWebBrowser::slotRecord()
 void CFrmWebBrowser::slotRecordTimeout()
 {
     //qDebug(log) << Q_FUNC_INFO;
+    if(!m_pMultimediaRecord) return;
     auto pWeb = CurrentView();
     if(!pWeb) return;
     QPixmap pixmap = pWeb->grab();
     QImage image = pixmap.toImage();
     if(image.isNull()) return;
-    QMetaObject::invokeMethod(&m_MultimediaRecord,
+    QMetaObject::invokeMethod(m_pMultimediaRecord,
                               "slotUpdateVideoFrame",
                               Qt::AutoConnection,
                               Q_ARG(QImage, image));

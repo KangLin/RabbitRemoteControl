@@ -1,14 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
 /*!
- *  \~english \defgroup VIEWER_APP Rabbit remote control programe
+ *  \~english
+ *  \defgroup VIEWER_APP Rabbit remote control programe
  *  \brief Rabbit remote control programe
- *  
- *  \~chinese \defgroup VIEWER_APP 玉兔远程控制程序
+ *
+ *  \~chinese
+ *  \defgroup VIEWER_APP 玉兔远程控制程序
  *  \brief 玉兔远程控制程序
+ *
  *  \~
  *  \ingroup APP
- *  
  */
 
 #include <QLoggingCategory>
@@ -19,6 +21,9 @@
 #include <QSharedPointer>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QRegularExpression>
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    #include <QRandomGenerator>
 #endif
 #if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include <QtAndroid>
@@ -44,7 +49,7 @@ int main(int argc, char *argv[])
 
     qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-    
+
     /* 移到　snapcraft.yaml 和　io.github.KangLin.RabbitRemoteControl.yml
     // 修复 qtwebengine 沙箱权限问题
     if(!qEnvironmentVariable("SNAP").isEmpty()) {

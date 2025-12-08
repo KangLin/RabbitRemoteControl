@@ -30,6 +30,7 @@ public:
         Fail = -1,
         FailCapturePage = -2,
         FailCaptureFullPage = -3,
+        FailRecordPage = -4
     };
     Q_ENUM(RV)
 
@@ -122,6 +123,6 @@ private:
     QString m_szStyleSheet;
     friend CFrmWebView;
 
-    CMultimediaRecordThread m_MultimediaRecord;
+    CMultimediaRecordThread* m_pMultimediaRecord;
     QTimer m_tmRecord;
 };
