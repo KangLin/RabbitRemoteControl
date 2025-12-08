@@ -1,32 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#ifdef HAVE_UPDATE
-#include "FrmUpdater.h"
-#endif
-#include "RabbitCommonDir.h"
-#include "RabbitCommonTools.h"
-
-#ifdef HAVE_ABOUT
-#include "DlgAbout.h"
-#endif
-#ifdef BUILD_QUIWidget
-#include "QUIWidget/QUIWidget.h"
-#endif
-
-#include "Operate.h"
-#include "FrmFullScreenToolBar.h"
-#include "ParameterDlgSettings.h"
-#include "FrmListRecent.h"
-
-#include "ViewTable.h"
-#include "ViewSplitter.h"
-
-#ifdef HAVE_ICE
-#include "Ice.h"
-#endif
-
 #include <QFontMetrics>
 #include <QGridLayout>
 #include <QMessageBox>
@@ -45,6 +18,32 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 #include <QThread>
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#ifdef HAVE_UPDATE
+    #include "FrmUpdater.h"
+#endif
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+
+#ifdef HAVE_ABOUT
+    #include "DlgAbout.h"
+#endif
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
+
+#include "Operate.h"
+#include "FrmFullScreenToolBar.h"
+#include "ParameterDlgSettings.h"
+
+#include "ViewTable.h"
+#include "ViewSplitter.h"
+
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
@@ -67,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pFullScreenToolBar(nullptr)
     , m_pRecentMenu(nullptr)
     , m_pDockFavorite(nullptr)
+    , m_pListRecent(nullptr)
     , m_pFavoriteView(nullptr)
     , m_StatusBarMessage(this)
 {
@@ -124,9 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(
-        tr("Recently"),
-        QIcon::fromTheme("document-open-recent"),
-        this);
+        tr("Recently"), QIcon::fromTheme("document-open-recent"), true, this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
@@ -200,7 +198,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_pToolBarMenuAction->setVisible(false);
 #endif
 
-    m_Manager.EnumPlugins(this);
     check = connect(&m_Parameter, SIGNAL(sigStartByTypeChanged()),
                     this, SLOT(slotStartByType()));
     Q_ASSERT(check);
@@ -238,23 +235,23 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListRecent = new QDockWidget(this);
     if(m_pDockListRecent)
     {
-        CFrmListRecent* pListRecent
+        m_pListRecent
             = new CFrmListRecent(this, &m_Manager, m_Parameter, true,
                                  m_pDockListRecent);
-        if(pListRecent) {
-            if(pListRecent->m_pDockTitleBar)
+        if(m_pListRecent) {
+            if(m_pListRecent->m_pDockTitleBar)
                 m_pDockListRecent->setTitleBarWidget(
-                    pListRecent->m_pDockTitleBar);
-            check = connect(pListRecent,
+                    m_pListRecent->m_pDockTitleBar);
+            check = connect(m_pListRecent,
                             SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
-            check = connect(pListRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
+            check = connect(m_pListRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
                             m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
             Q_ASSERT(check);
-            m_pDockListRecent->setWidget(pListRecent);
+            m_pDockListRecent->setWidget(m_pListRecent);
             m_pDockListRecent->setWindowTitle(
-                pListRecent->windowTitle());
+                m_pListRecent->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockListRecent->setObjectName("dockListRecent");
@@ -385,10 +382,6 @@ MainWindow::MainWindow(QWidget *parent)
         }
         #endif
     }
-
-    slotEnableSystemTrayIcon();
-
-    LoadOperateLasterClose();
 }
 
 MainWindow::~MainWindow()
@@ -396,6 +389,48 @@ MainWindow::~MainWindow()
     qDebug(log) << "MainWindow::~MainWindow()";
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
     delete ui;
+}
+
+//! For time-consuming operations
+void MainWindow::slotInitial()
+{
+    qDebug(log) << Q_FUNC_INFO;
+
+    setEnabled(false);
+
+    slotInformation(tr("Load plugins ......"));
+    qApp->processEvents();
+    m_Manager.Initial();
+    m_Manager.EnumPlugins(this);
+
+    if(m_pRecentMenu) {
+        slotInformation(tr("Load recent menu ......"));
+        qApp->processEvents();
+        m_pRecentMenu->slotRestoreState();
+    }
+
+    if(m_pFavoriteView) {
+        slotInformation(tr("Load favorite ......"));
+        qApp->processEvents();
+        m_pFavoriteView->Load();
+    }
+
+    if(m_pListRecent) {
+        slotInformation(tr("Load list recent dock ......"));
+        qApp->processEvents();
+        m_pListRecent->slotLoadFiles();
+    }
+    slotEnableSystemTrayIcon();
+
+    setEnabled(true);
+
+    slotInformation(tr("Load laster operate ......"));
+    qApp->processEvents();
+    LoadOperateLasterClose();
+
+    slotInformation(tr("Ready"));
+
+    return;
 }
 
 void MainWindow::SetView(CView* pView)

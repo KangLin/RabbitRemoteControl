@@ -168,7 +168,7 @@ CFrmListRecent::CFrmListRecent(
         m_pTableView->hideColumn(ColumnNo::File);
     }
     
-    slotLoadFiles();
+    //slotLoadFiles();
 
     //必须在 setModel 后,才能应用
     /*第二个参数可以为：

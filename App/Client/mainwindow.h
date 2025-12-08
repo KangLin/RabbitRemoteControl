@@ -17,6 +17,7 @@
 #include "Manager.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
+#include "FrmListRecent.h"
 #include "FavoriteView.h"
 #include "FrmActive.h"
 
@@ -37,6 +38,9 @@ class MainWindow : public QMainWindow, CManager::Handle
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow() override;
+public:
+    //! For time-consuming operations
+    void slotInitial();
 
 Q_SIGNALS:
     void sigFullScreen(bool bFullScreen);
@@ -213,6 +217,7 @@ private:
     ///////// List connects /////////
 private:
     QDockWidget* m_pDockListRecent;
+    CFrmListRecent* m_pListRecent;
 private Q_SLOTS:
     void on_actionOpenListRecent_triggered();
     

@@ -45,9 +45,30 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
     check = connect(this, SIGNAL(doubleClicked(const QModelIndex&)),
                     this, SLOT(slotFavortiedoubleClicked(const QModelIndex&)));
     Q_ASSERT(check);
-    
+
+    m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
+    // Create tools pushbutton in title bar
+    m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
+    check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
+    Q_ASSERT(check);
+    QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
+        QIcon::fromTheme("tools"), m_pDockTitleBar);
+    pTools->setToolTip(tr("Tools"));
+    pTools->setMenu(m_pMenu);
+    QList<QWidget*> lstWidget;
+    lstWidget << pTools;
+    m_pDockTitleBar->AddWidgets(lstWidget);
+}
+
+CFavoriteView::~CFavoriteView()
+{
+    Save();
+}
+
+int CFavoriteView::Load()
+{
     m_szSaveFile = RabbitCommon::CDir::Instance()->GetDirUserConfig()
-            + QDir::separator() + "Favorite.ini";
+        + QDir::separator() + "Favorite.ini";
     QSettings set(m_szSaveFile, QSettings::IniFormat);
     int nRootCount = 0;
     nRootCount = set.value("RootCount").toInt();
@@ -108,24 +129,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
             }
         }
     }
-    
-    m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
-    // Create tools pushbutton in title bar
-    m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
-    check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
-    Q_ASSERT(check);
-    QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
-        QIcon::fromTheme("tools"), m_pDockTitleBar);
-    pTools->setToolTip(tr("Tools"));
-    pTools->setMenu(m_pMenu);
-    QList<QWidget*> lstWidget;
-    lstWidget << pTools;
-    m_pDockTitleBar->AddWidgets(lstWidget);
-}
-
-CFavoriteView::~CFavoriteView()
-{
-    Save();
+    return 0;
 }
 
 int CFavoriteView::Save()

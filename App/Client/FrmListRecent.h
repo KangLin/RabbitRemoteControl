@@ -30,6 +30,9 @@ public:
     virtual int onProcess(const QString &id, CPlugin *pPlugin) override;
     
     RabbitCommon::CTitleBar* m_pDockTitleBar;
+    
+public Q_SLOTS:
+    void slotLoadFiles();
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings = false);
@@ -45,7 +48,6 @@ private slots:
     void slotStart();
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
-    void slotLoadFiles();
     void slotStartByType();
     void slotAddToFavorite();
 

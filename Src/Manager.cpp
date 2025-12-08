@@ -33,24 +33,57 @@
 
 static Q_LOGGING_CATEGORY(log, "Manager")
 
-CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
+CManager::CManager(QObject *parent) : QObject(parent)
     , m_FileVersion(1)  //TODO: update version it if update data
     , m_pHook(nullptr)
+{
+}
+
+CManager::~CManager()
+{
+    qDebug(log) << "CManager::~CManager()";
+
+    qApp->removeEventFilter(this);
+
+    if(m_pHook) {
+        m_pHook->UnRegisterKeyboard();
+        m_pHook->deleteLater();
+        m_pHook = nullptr;
+    }
+
+    if(m_pParameter) {
+        m_pParameter->deleteLater();
+        m_pParameter = nullptr;
+    }
+
+    if(m_Translator)
+        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
+
+    CChannel::RemoveTranslation();
+
+    //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+    //    Q_CLEANUP_RESOURCE(translations_Plugin);
+    //#endif
+}
+
+int CManager::Initial(QString szFile)
 {
     bool check = false;
     //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     //    Q_INIT_RESOURCE(translations_Plugin);
     //#endif
-
+    
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
         "Plugin", RabbitCommon::CTools::TranslationType::Library);
 
-    CChannel::InitTranslation();
     m_szSettingsFile = szFile;
+
+    CChannel::InitTranslation();
+
     m_pParameter = new CParameterPlugin();
     if(m_pParameter) {
         LoadSettings(m_szSettingsFile);
-
+        
         bool bReboot = true;
         QString szSnap;
         QString szFlatpak;
@@ -80,23 +113,23 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
 #endif
             szMsg += tr("Restart program by administrator?");
             QMessageBox msg(QMessageBox::Warning, tr("Warning"), szMsg,
-                QMessageBox::Yes | QMessageBox::No);
+                            QMessageBox::Yes | QMessageBox::No);
             msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
             msg.checkBox()->setCheckable(true);
             msg.checkBox()->setChecked(
                 m_pParameter->GetPromptAdministratorPrivilege());
             nRet = msg.exec();
-
+            
             m_pParameter->SetPromptAdministratorPrivilege(
                 msg.checkBox()->isChecked());
             SaveSettings(m_szSettingsFile);
-
+            
             if(QMessageBox::Yes == nRet) {
                 RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
-                return;
+                return 0;
             }
         }
-
+        
         check = connect(m_pParameter, SIGNAL(sigCaptureAllKeyboard()),
                         this, SLOT(slotCaptureAllKeyboard()));
         Q_ASSERT(check);
@@ -109,35 +142,9 @@ CManager::CManager(QObject *parent, QString szFile) : QObject(parent)
         qCritical(log) << "new CParameterPlugin() fail";
         Q_ASSERT(m_pParameter);
     }
-
+    
     LoadPlugins();
-}
-
-CManager::~CManager()
-{
-    qDebug(log) << "CManager::~CManager()";
-
-    qApp->removeEventFilter(this);
-
-    if(m_pHook) {
-        m_pHook->UnRegisterKeyboard();
-        m_pHook->deleteLater();
-        m_pHook = nullptr;
-    }
-
-    if(m_pParameter) {
-        m_pParameter->deleteLater();
-        m_pParameter = nullptr;
-    }
-
-    if(m_Translator)
-        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
-
-    CChannel::RemoveTranslation();
-
-    //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    //    Q_CLEANUP_RESOURCE(translations_Plugin);
-    //#endif
+    return 0;
 }
 
 int CManager::LoadPlugins()
