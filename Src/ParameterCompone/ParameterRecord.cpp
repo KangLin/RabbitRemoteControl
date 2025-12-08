@@ -18,10 +18,21 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
     , m_Quality(QMediaRecorder::NormalQuality)
     , m_EncodingMode(QMediaRecorder::ConstantQualityEncoding)
 #endif
+    , m_VideoBitRate(0)
     , m_VideoFrameRate(0)
+    , m_AudioBitRate(0)
     , m_AudioSampleRate(-1)
+    , m_AudioChannelCount(1)
     , m_EndAction(ENDACTION::OpenFile)
 {
+#if HAVE_QT6_MULTIMEDIA
+    QMediaRecorder recorder;
+    m_VideoResolution = recorder.videoResolution();
+    m_VideoBitRate = recorder.videoBitRate();
+    m_AudioBitRate = recorder.audioBitRate();
+    m_AudioChannelCount = recorder.audioChannelCount();
+#endif
+
     m_szVideoPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
     QDir d;
     if(m_szVideoPath.isEmpty() || !d.exists(m_szVideoPath))
@@ -60,9 +71,13 @@ CParameterRecord& CParameterRecord::operator =(const CParameterRecord& in)
     m_Quality = in.m_Quality;
     m_EncodingMode = in.m_EncodingMode;
 #endif
-
+    
+    m_VideoResolution = in.m_VideoResolution;
+    m_VideoBitRate = in.m_VideoBitRate;
     m_VideoFrameRate = in.m_VideoFrameRate;
+    m_AudioBitRate = in.m_AudioBitRate;
     m_AudioSampleRate = in.m_AudioSampleRate;
+    m_AudioChannelCount = in.m_AudioChannelCount;
 
     m_EndAction = in.m_EndAction;
 
@@ -306,6 +321,26 @@ void CParameterRecord::SetEncodingMode(const QMediaRecorder::EncodingMode &newEn
 }
 #endif
 
+QSize CParameterRecord::GetVideoResolution()
+{
+    return m_VideoResolution;
+}
+
+void CParameterRecord::SetVideoResolution(QSize size)
+{
+    m_VideoResolution = size;
+}
+
+int CParameterRecord::GetVideoBitRate() const
+{
+    return m_VideoBitRate;
+}
+
+void CParameterRecord::SetVideoBitRate(int bitRate)
+{
+    m_VideoBitRate = bitRate;
+}
+
 qreal CParameterRecord::GetVideoFrameRate() const
 {
     return m_VideoFrameRate;
@@ -318,6 +353,16 @@ void CParameterRecord::SetVideoFrameRate(qreal newVideoFrameRate)
     m_VideoFrameRate = newVideoFrameRate;
     SetModified(true);
     return;
+}
+
+int CParameterRecord::GetAudioBitRate()
+{
+    return m_AudioBitRate;
+}
+
+void CParameterRecord::SetAudioBitRate(int bitRate)
+{
+    m_AudioBitRate = bitRate;
 }
 
 int CParameterRecord::GetAudioSampleRate() const
@@ -334,11 +379,25 @@ void CParameterRecord::SetAudioSampleRate(int newAudioSampleRate)
     return;
 }
 
+int CParameterRecord::GetAudioChannelCount()
+{
+    return m_AudioChannelCount;
+}
+
+void CParameterRecord::SetAudioChannelCount(int count)
+{
+    m_AudioChannelCount = count;
+}
+
 CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder)
 {
 #if HAVE_QT6_MULTIMEDIA
+    para.SetVideoResolution(recorder.videoResolution());
+    para.SetVideoBitRate(recorder.videoBitRate());
     para.SetVideoFrameRate(recorder.videoFrameRate());
+    para.SetAudioBitRate(recorder.audioBitRate());
     para.SetAudioSampleRate(recorder.audioSampleRate());
+    para.SetAudioChannelCount(recorder.audioChannelCount());
     QMediaFormat format;
     format = recorder.mediaFormat();
     para.SetAudioCodec(format.audioCodec());
@@ -354,8 +413,12 @@ CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder)
 CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder)
 {
 #if HAVE_QT6_MULTIMEDIA
+    recorder.setVideoResolution(para.GetVideoResolution());
+    recorder.setVideoBitRate(para.GetVideoBitRate());
     recorder.setVideoFrameRate(para.GetVideoFrameRate());
+    recorder.setAudioBitRate(para.GetAudioBitRate());
     recorder.setAudioSampleRate(para.GetAudioSampleRate());
+    recorder.setAudioChannelCount(para.GetAudioChannelCount());
     QMediaFormat format;
     format.setAudioCodec(para.GetAudioCodec());
     format.setVideoCodec(para.GetVideoCodec());

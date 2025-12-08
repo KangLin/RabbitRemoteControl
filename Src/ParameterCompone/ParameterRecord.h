@@ -49,11 +49,19 @@ public:
     QMediaRecorder::EncodingMode GetEncodingMode() const;
     void SetEncodingMode(const QMediaRecorder::EncodingMode &newEncodingMode);
 #endif
-
+    
+    QSize GetVideoResolution();
+    void SetVideoResolution(QSize size);
+    int GetVideoBitRate() const;
+    void SetVideoBitRate(int bitRate);
     qreal GetVideoFrameRate() const;
     void SetVideoFrameRate(qreal newVideoFrameRate);
+    int GetAudioBitRate();
+    void SetAudioBitRate(int bitRate);
     int GetAudioSampleRate() const;
     void SetAudioSampleRate(int newAudioSampleRate);
+    int GetAudioChannelCount();
+    void SetAudioChannelCount(int count);
 
     virtual CParameterRecord& operator=(const CParameterRecord &in);
 
@@ -99,8 +107,12 @@ private:
     QMediaRecorder::EncodingMode m_EncodingMode;
 #endif
 
+    QSize m_VideoResolution;
+    int m_VideoBitRate;
     qreal m_VideoFrameRate;
+    int m_AudioBitRate;
     int m_AudioSampleRate;
+    int m_AudioChannelCount;
 
     ENDACTION m_EndAction;
 
@@ -112,4 +124,3 @@ protected:
 PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
 PLUGIN_EXPORT CParameterRecord& operator << (CParameterRecord& para, QMediaRecorder& recorder);
 PLUGIN_EXPORT CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder);
-
