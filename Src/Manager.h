@@ -45,8 +45,10 @@ class PLUGIN_EXPORT CManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit CManager(QObject *parent = nullptr, QString szFile = QString());
+    explicit CManager(QObject *parent = nullptr);
     virtual ~CManager();
+    
+    int Initial(QString szFile = QString());
 
     /*!
      * \~chinese

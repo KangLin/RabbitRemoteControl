@@ -12,9 +12,13 @@ public:
     explicit CFavoriteView(QWidget *parent = nullptr);
     virtual ~CFavoriteView();
     
+    int Load();
+    int Save();
+
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 public Q_SLOTS:
-    void slotAddToFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
+    void slotAddToFavorite(const QString& szName, const QString& szDescription,
+                           const QIcon& icon, const QString &szFile);
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings);
@@ -49,7 +53,6 @@ private:
     QMenu* m_pMenu;
 
     QStandardItem* NewItem(const QModelIndex &index);
-    int Save();
 };
 
 #endif // CFAVORITEVIEW_H

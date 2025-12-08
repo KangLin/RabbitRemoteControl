@@ -1157,7 +1157,7 @@ void CFrmWebBrowser::slotRecord()
                                       "slotQuit",
                                       Qt::AutoConnection);
             m_pMultimediaRecord = nullptr;
-            emit sigInformation(tr("Record web page is stoped"));
+            emit sigInformation(tr("Record web page is stopped"));
         }
     }
     m_pRecord->setStatusTip(m_pRecord->text());

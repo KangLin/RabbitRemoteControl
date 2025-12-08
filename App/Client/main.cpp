@@ -21,6 +21,7 @@
 #include <QSharedPointer>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QRegularExpression>
+    #include <QRandomGenerator>
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     #include <QRandomGenerator>
@@ -47,7 +48,6 @@ int main(int argc, char *argv[])
 {
     int nRet = 0;
 
-    qDebug(log) << "Version:" << RabbitRemoteControl_VERSION;
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     /* 移到　snapcraft.yaml 和　io.github.KangLin.RabbitRemoteControl.yml
@@ -138,17 +138,36 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    CStatsAppUsage* pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
-    if(pStats) {
-        bool check = QObject::connect(pStats, &CStatsAppUsage::sigFinished, pStats, &CStatsAppUsage::deleteLater);
-        Q_ASSERT(check);
-    }
+    CStatsAppUsage* pStats = nullptr;
+    int randomInt = 0;
+    int nMin = 10;
+    int nMax = 50;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    randomInt = QRandomGenerator::global()->bounded(nMin, nMax); 
+#else
+    qsrand(static_cast<uint>(QTime::currentTime().msec())); // 使用当前时间的毫秒数来设置种子
+    randomInt = nMin + qrand() % (nMax - nMin + 1); // 生成一个0到99之间的随机数
+#endif
+    QTimer::singleShot(randomInt, [&](){
+        pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
+        if(pStats) {
+            bool check = QObject::connect(pStats, &CStatsAppUsage::sigFinished, pStats, &CStatsAppUsage::deleteLater);
+            Q_ASSERT(check);
+        }
+
+        app.processEvents();
+    });
+
     MainWindow* w = new MainWindow();
+
     try {
         //w->setWindowIcon(QIcon::themeName("app"));
         //w->setWindowTitle(app.applicationDisplayName());
-
+        
         w->show();
+        app.processEvents();
+        // For time-consuming operations
+        w->slotInitial();
         nRet = app.exec();
     } catch (std::exception &e) {
         qCritical(log) << "exception:" << e.what();
