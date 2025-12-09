@@ -539,7 +539,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     {
         qDebug(log) << "Exit full screen";
         ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-fullscreen"));
-        ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
+        ui->actionFull_screen_F->setText(tr("Full screen"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
         ui->actionFull_screen_F->setStatusTip(tr("Full screen"));
         ui->actionFull_screen_F->setWhatsThis(tr("Full screen"));
@@ -580,7 +580,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     emit sigFullScreen(true);
 
     ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-restore"));
-    ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
+    ui->actionFull_screen_F->setText(tr("Exit full screen"));
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setStatusTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setWhatsThis(tr("Exit full screen"));
