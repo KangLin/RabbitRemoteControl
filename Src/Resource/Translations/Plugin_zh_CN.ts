@@ -271,7 +271,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="72"/>
+        <location filename="../../Manager.cpp" line="107"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -279,48 +279,48 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="75"/>
+        <location filename="../../Manager.cpp" line="110"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系统快捷键（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="77"/>
+        <location filename="../../Manager.cpp" line="112"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域网内唤醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="79"/>
+        <location filename="../../Manager.cpp" line="114"/>
         <source>Restart program by administrator?</source>
         <translation>用管理员权限重启程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="80"/>
+        <location filename="../../Manager.cpp" line="115"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="82"/>
+        <location filename="../../Manager.cpp" line="117"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="174"/>
+        <location filename="../../Manager.cpp" line="183"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="257"/>
-        <location filename="../../Manager.cpp" line="508"/>
+        <location filename="../../Manager.cpp" line="266"/>
+        <location filename="../../Manager.cpp" line="522"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="455"/>
+        <location filename="../../Manager.cpp" line="464"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="513"/>
+        <location filename="../../Manager.cpp" line="527"/>
         <source>Dependency libraries:</source>
         <translation>依赖库：</translation>
     </message>
@@ -532,19 +532,16 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation>名称：</translation>
+        <translation type="vanished">名称：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation type="vanished">类型：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation>协议：</translation>
+        <translation type="vanished">协议：</translation>
     </message>
     <message>
         <source>Server address: </source>
@@ -563,64 +560,48 @@ Some features are limited.
         <translation type="vanished">Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation>安全级别：</translation>
+        <translation type="vanished">安全级别：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation type="vanished">描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
-        <translation>复制选择到剪切板</translation>
+        <translation type="vanished">复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
-        <translation>粘贴剪切板</translation>
+        <translation type="vanished">粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
-        <translation>粘贴到选择</translation>
+        <translation type="vanished">粘贴到选择</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
-        <translation>放大</translation>
+        <translation type="vanished">放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
-        <translation>缩小</translation>
+        <translation type="vanished">缩小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
-        <translation>重置缩放</translation>
+        <translation type="vanished">重置缩放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
-        <translation>查找 ……</translation>
+        <translation type="vanished">查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
-        <translation>清除</translation>
+        <translation type="vanished">清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
-        <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
         <source>Version:</source>
-        <translation>版本：</translation>
+        <translation type="vanished">版本：</translation>
     </message>
 </context>
 <context>
@@ -680,23 +661,23 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="156"/>
         <source>Desktop shortcuts script</source>
-        <translation type="unfinished"></translation>
+        <translation>桌面快捷键脚本</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="170"/>
         <source>Disable script:</source>
-        <translation type="unfinished"></translation>
+        <translation>禁用脚本：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="201"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="191"/>
         <source>Restore script:</source>
-        <translation type="unfinished"></translation>
+        <translation>恢复脚本：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="264"/>
@@ -798,12 +779,12 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="148"/>
         <source>Open disable desktop shortcuts script</source>
-        <translation type="unfinished"></translation>
+        <translation>打开禁用桌面快捷键脚本</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
         <source>Open restore desktop shortcuts script</source>
-        <translation type="unfinished"></translation>
+        <translation>打开恢复桌面局势键脚本</translation>
     </message>
 </context>
 <context>
@@ -1111,131 +1092,100 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation>字体：</translation>
+        <translation type="vanished">字体：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation>颜色方案：</translation>
+        <translation type="vanished">颜色方案：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation>光标形状：</translation>
+        <translation type="vanished">光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation>透明度：</translation>
+        <translation type="vanished">透明度：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation>背景图像：</translation>
+        <translation type="vanished">背景图像：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation>滚动条位置：</translation>
+        <translation type="vanished">滚动条位置：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation>浏览(&amp;B)</translation>
+        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation>键盘绑定：</translation>
+        <translation type="vanished">键盘绑定：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation>窗口大小改变时显示其大小</translation>
+        <translation type="vanished">窗口大小改变时显示其大小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation>允许双向文本</translation>
+        <translation type="vanished">允许双向文本</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation>历史记录</translation>
+        <translation type="vanished">历史记录</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation>历史记录大小（行数）：</translation>
+        <translation type="vanished">历史记录大小（行数）：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation>无限制</translation>
+        <translation type="vanished">无限制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation>流量控制</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>示例：显示字体</translation>
+        <translation type="vanished">示例：显示字体</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation>背景图像</translation>
+        <translation type="vanished">背景图像</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation>方块光标</translation>
+        <translation type="vanished">方块光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation>下划线光标</translation>
+        <translation type="vanished">下划线光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation>I 形光标</translation>
+        <translation type="vanished">I 形光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation>左</translation>
+        <translation type="vanished">左</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation>右</translation>
+        <translation type="vanished">右</translation>
     </message>
 </context>
 <context>
