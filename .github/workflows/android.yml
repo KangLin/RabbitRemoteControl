@@ -122,7 +122,7 @@ jobs:
           cache-key-prefix: cached-qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
       - name: Install Qt of android
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           # Directory to install Qt
           dir: '${{env.TOOLS_DIR}}/qt' # optional
@@ -141,7 +141,7 @@ jobs:
 
       - name: chmod qt-cmake
         run: |
-          sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
+          sudo chmod 777 ${QT_ROOT_DIR}/bin/qt-cmake
 
       - name: build RabbitVNC
         if: false
@@ -152,14 +152,14 @@ jobs:
             cd ${{env.SOURCE_DIR}}/RabbitVNC
             cmake -E make_directory build
             cd build
-            ${Qt6_DIR}/bin/qt-cmake .. \
+            ${QT_ROOT_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DANDROID_ABI=${{env.ANDROID_ABI}} \
-                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                 -DVCPKG_VERBOSE=ON \
@@ -224,7 +224,7 @@ jobs:
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
                   -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                  -DCMAKE_MAKE_PROGRAM=make \
+                  -GNinja \
                   -DVCPKG_VERBOSE=ON \
                   -DVCPKG_TRACE_FIND_PACKAGE=ON \
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
@@ -242,22 +242,22 @@ jobs:
         if: false
         working-directory: ${{env.SOURCE_DIR}}
         env:
-          QT_ROOT: ${{env.Qt6_DIR}}
+          QT_ROOT: ${{env.QT_ROOT_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/qxmpp ]; then
             git clone -b v1.10.3 https://invent.kde.org/libraries/qxmpp.git
             cd qxmpp
             cmake -E make_directory build
             cd build
-            ${Qt6_DIR}/bin/qt-cmake .. \
+            ${QT_ROOT_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
-                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
-                -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                 -DVCPKG_VERBOSE=ON \
@@ -280,10 +280,10 @@ jobs:
               cd lxqt-build-tools
               cmake -E make_directory build
               cd build
-              ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
-                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR} \
+                  -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                  -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR} \
                   -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                   -DVCPKG_VERBOSE=ON \
@@ -303,12 +303,12 @@ jobs:
               cd qtermwidget
               cmake -E make_directory build
               cd build
-              ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
-                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
-                  -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                  -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                  -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                  -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
                   -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                   -DVCPKG_VERBOSE=ON \
@@ -328,11 +328,11 @@ jobs:
             cd qtkeychain
             cmake -E make_directory build
             cd build
-            ${Qt6_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+            ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-                -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
-                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
                 -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
                 -DBUILD_WITH_QT6:BOOL=ON
             cmake --build . --config Release --parallel $(nproc)
@@ -352,8 +352,9 @@ jobs:
           QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
           JAVA_HOME: ${{env.JAVA_HOME_17_X64}}
         run: |
-          sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
-          ${Qt6_DIR}/bin/qt-cmake .. \
+          sudo chmod 777 ${QT_ROOT_DIR}/bin/qt-cmake
+          ${QT_ROOT_DIR}/bin/qt-cmake .. \
+              -GNinja \
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
@@ -361,7 +362,6 @@ jobs:
               -DWITH_CMARK_GFM=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
-              -DCMAKE_MAKE_PROGRAM=make \
               -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
@@ -371,12 +371,12 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
-              -DCMAKE_PREFIX_PATH=${Qt6_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
-              -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+              -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+              -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
-              -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+              -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               -DWITH_WebEngineWidgets=ON \
               -DBUILD_LibVNCServer=OFF \
@@ -396,16 +396,17 @@ jobs:
       - name: Build RabbitRemoteControl with cmake preset
         working-directory: ${{github.workspace}}
         env:
+          # See: https://doc.qt.io/qt-6/cmake-variable-qt-android-sign-apk.html
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
           QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore
           QT_ANDROID_KEYSTORE_ALIAS: rabbitcommon
           QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
         run: |
-          export QT_ROOT=${{env.Qt6_DIR}}
+          export QT_ROOT=${{env.QT_ROOT_DIR}}
           cmake --preset "android-${{env.ANDROID_ABI}}-qt6" \
-            -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+            -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
             -DQT_ANDROID_SIGN_APK=ON \
-            -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+            -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
             -DBUILD_LibVNCServer=OFF \
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
