@@ -81,7 +81,7 @@ parts:
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
     stage:
       - -usr/include
     prime:
@@ -149,7 +149,7 @@ parts:
       - -DWITH_SAMPLE=OFF
       - -DWITH_CLIENT_SDL=OFF
       - -DWITH_PROXY_MODULES=OFF
-      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
     stage:
       - -usr/share
       - -usr/bin
@@ -343,7 +343,7 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
-      - -DCMAKE_VERBOSE_MAKEFILE=ON 
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
       # - -DQT_ROOT=$CRAFT_STAGE/qt
       # - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
       # - -DQt6_ROOT=$CRAFT_STAGE/qt

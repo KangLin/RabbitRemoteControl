@@ -7,20 +7,22 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
-    BUILD_VERBOSE=ON
+    BUILD_VERBOSE=OFF
 fi
+
+source $(dirname $(readlink -f $0))/common.sh
 
 detect_os_info
 
+install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
     MACOS=1
     setup_macos
 else
     MACOS=0
 fi
+
 if [ -z "$PACKAGE_TOOL" ]; then
     PACKAGE_TOOL=apt
 fi
@@ -52,7 +54,7 @@ Usage: $0 [OPTION]...
 
 Options:
   -h, --help                        Show this help message
-  -v, --verbose[=LEVEL]             Set verbose mode (LEVEL: ON, OFF, default: ON)
+  -v, --verbose[=LEVEL]             Set verbose mode (LEVEL: ON, OFF, default: $BUILD_VERBOSE)
 
 Directory options:
   --install=DIR                     Set installation directory
@@ -88,23 +90,10 @@ Examples:
   $0 --system_update --base --default --qt=6.5.0
 
 Environment variables:
-  BUILD_VERBOSE     Set verbose mode (ON/OFF)
-  QT_VERSION        Set Qt version (default: 6.9.3)
+  BUILD_VERBOSE     Set verbose mode (ON/OFF, default: $BUILD_VERBOSE)
+  QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
     exit 0
-}
-
-# Validate directory path
-validate_directory() {
-    local dir="$1"
-    local type="$2"
-    
-    if [ -n "$dir" ]; then
-        if [[ "$dir" =~ ^- ]]; then
-            echo "Error: $type directory parameter '$dir' cannot start with '-'" >&2
-            exit 1
-        fi
-    fi
 }
 
 # Parse arguments using getopt (more powerful)
@@ -164,7 +153,7 @@ parse_with_getopt() {
             ;;
         --build)
             validate_directory "$2" "Build"
-            BUILD_DEPEND_DIR="$2"
+            BUILD_DIR="$2"
             shift 2
             ;;
         --package)
@@ -382,7 +371,8 @@ show_configuration() {
         echo "  Install Directory: ${INSTALL_DIR:-Not set (using default)}"
         echo "  Source Directory: ${SOURCE_DIR:-Not set (using default)}"
         echo "  Tools Directory: ${TOOLS_DIR:-Not set (using default)}"
-        echo "  Build Directory: ${BUILD_DEPEND_DIR:-Not set (using default)}"
+        echo "  Build Directory: ${BUILD_DIR:-Not set (using default)}"
+        echo "  Build Depend Directory: ${BUILD_DEPEND_DIR:-Not set (using default)}"
         echo ""
         echo "Package Management:"
         echo "  System Update: $SYSTEM_UPDATE"
@@ -464,7 +454,11 @@ OLD_CWD=$(safe_readlink .)
 pushd "$REPO_ROOT"
 
 if [ -z "$BUILD_DEPEND_DIR" ]; then
-    BUILD_DEPEND_DIR=build_depend
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_DEPEND_DIR=build_depend
+    else
+        BUILD_DEPEND_DIR=$BUILD_DIR/build_depend
+    fi
 fi
 BUILD_DEPEND_DIR=$(safe_readlink ${BUILD_DEPEND_DIR})
 mkdir -p $BUILD_DEPEND_DIR
@@ -495,39 +489,42 @@ show_configuration
 
 if [ $SYSTEM_UPDATE -eq 1 ]; then
     echo "System update ......"
-    if [ "$PACKAGE_TOOL" = "brew" ]; then
-        brew update -q
-    else
-        $PACKAGE_TOOL update -y
-    fi
+    case "$PACKAGE_TOOL" in
+        brew)
+            brew update -q
+            ;;
+        apt)
+            if [ "$BUILD_VERBOSE" = "ON" ]; then
+                apt update -y
+            else
+                apt update -y -qq
+            fi
+            ;;
+        *)
+            "$PACKAGE_TOOL" update -y
+            ;;
+    esac
 fi
 
 if [ -n "$PACKAGE" ]; then
     echo "Install package: $PACKAGE"
-    for p in $PACKAGE
-    do
-        if [ "$PACKAGE_TOOL" = "brew" ]; then
-            brew install -q $p
-        else
-            ${PACKAGE_TOOL} install -y -q $p
-        fi
-    done
+    package_install $PACKAGE
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
-        apt install -y -q build-essential packaging-dev equivs debhelper \
+        package_install build-essential packaging-dev equivs debhelper \
             fakeroot graphviz gettext wget curl git cmake
         # OpenGL
-        apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
+        package_install libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
         if [ -z "$RabbitRemoteControl_VERSION" ]; then
-            apt install -y -q xvfb #xpra
+            package_install xvfb #xpra
         fi
         # X11 and xcb
-        apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+        package_install xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
             libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
             libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
             libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
@@ -535,39 +532,37 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
             libxkbcommon-dev
         # Base dependency
-        apt install -y -q liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
+        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
         # RabbitCommon dependency
-        apt install -y -q libcmark-dev cmark
+        package_install libcmark-dev cmark
         # VNC dependency
-        apt install -y -q libpixman-1-dev libjpeg-dev
+        package_install libpixman-1-dev libjpeg-dev
         # FreeRDP dependency
-        apt install -y -q libcjson-dev libusb-1.0-0-dev \
+        package_install libcjson-dev libusb-1.0-0-dev \
             libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
         # PcapPlusPlus dependency
-        apt install -y -q libpcap-dev
+        package_install libpcap-dev
         # FFmpeg needed by QtMultimedia and freerdp
-        apt install -y -q libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
-        apt install -y -q libx264-dev libx265-dev
+        package_install libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+        package_install libx264-dev libx265-dev
         # Needed by QtMultimedia
-        apt install -y -q pipewire
+        package_install pipewire
         # Needed by QtMultimedia
-        apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
+        package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
-        apt install -y -q libfuse-dev libfuse3-dev
+        package_install libfuse-dev libfuse3-dev fuse
         # Other
-        apt install -y -q libvncserver-dev
-        # File transfer
-        apt install -y -q libcurl4-openssl-dev
+        package_install libvncserver-dev
         # Needed by qtkeychain
-        apt install -y -q libsecret-1-dev
+        package_install libsecret-1-dev
     fi
 
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
-        dnf install -y make git rpm-build rpmdevtools gcc-c++ util-linux \
+        package_install make git rpm-build rpmdevtools gcc-c++ util-linux \
            automake autoconf libtool gettext gettext-autopoint \
            cmake desktop-file-utils appstream appstream-util curl wget
         # X11 and xcb
-        dnf install -y xorg-x11-server-source \
+        package_install xorg-x11-server-source \
             libXext-devel libX11-devel libXi-devel libXfixes-devel \
             libXdamage-devel libXrandr-devel libXt-devel libXdmcp-devel \
             libXinerama-devel mesa-libGL-devel libxshmfence-devel \
@@ -577,10 +572,14 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxkbfile-devel libXfont2-devel xcb-util-keysyms-devel
 
         # TigerVNC
-        dnf install -y zlib-devel openssl-devel libpng-devel \
+        package_install zlib-devel openssl-devel libpng-devel \
             libjpeg-turbo-devel ffmpeg-free-devel \
             pixman-devel gnutls-devel nettle-devel gmp-devel \
             libpciaccess-devel freetype-devel pam-devel
+    fi
+    
+    if [ $MACOS -eq 1 ]; then
+        package_install nasm autoconf automake libtool pkg-config doxygen zstd curl
     fi
 fi
 
@@ -597,31 +596,39 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
         esac
         # Qt6
         if [ $QT -ne 1 ]; then
-            apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
+            package_install qmake6 qt6-tools-dev qt6-tools-dev-tools \
                 qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
                 libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
                 qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
                 qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
-            apt-get install -y -q $DEFAULT_LIBRARIES
+            package_install $DEFAULT_LIBRARIES
         fi
         if [ $QTKEYCHAIN -ne 1 ]; then
-            apt-get install -y -q qtkeychain-qt6-dev
+            package_install qtkeychain-qt6-dev
         fi
         if [ $FREERDP -ne 1 ]; then
-            apt-get install -y freerdp2-dev
+            package_install freerdp2-dev
         fi
         if [ $LIBSSH -ne 1 ]; then
-            apt-get install -y libssh-dev
+            package_install libssh-dev
+            # File transfer
+            package_install libcurl4-openssl-dev
         fi
     fi # apt
 
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
         if [ $QT -ne 1 ]; then
-            dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
+            package_install qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
                 qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
                 qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
                 qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
         fi
+        
+        $PACKAGE_TOOL builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
+    fi
+    
+    if [ $MACOS -eq 1 ]; then
+        package_install qt freerdp libvncserver libssh pcapplusplus qtkeychain #libpcap
     fi
 fi
 
@@ -632,7 +639,7 @@ if [ $QT -eq 1 ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
         #      https://www.cnblogs.com/clark1990/p/17942952
         #if [ "$PACKAGE_TOOL" = "apt" ]; then
-        #    apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
+        #    package_install python3-pip python3-pip-whl python3-pipdeptree cpio
         #    pip install --upgrade typing-extensions
         #fi
 
@@ -651,61 +658,15 @@ if [ $QT -eq 1 ]; then
     popd
 fi
 
-if [ $MACOS -eq 1 ]; then
-    echo "Install macos tools and dependency libraries ......"
-    brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus qtkeychain curl
-fi
-
 if [ $RabbitCommon -eq 1 ]; then
     echo "Install RabbitCommon ......"
     pushd "$SOURCE_DIR"
     if [ ! -d RabbitCommon ]; then
         git clone https://github.com/KangLin/RabbitCommon.git
     else
-        cd RabbitCommon
+        pushd RabbitCommon
         git pull
-        cd ..
-    fi
-    popd
-fi
-
-if [ $FREERDP -eq 1 ]; then
-    echo "Install FreeRDP ......"
-    pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.18.0 https://github.com/FreeRDP/FreeRDP.git
-        cd FreeRDP
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
-          -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
-          -DWITH_SERVER=ON \
-          -DWITH_CLIENT_SDL=OFF \
-          -DWITH_KRB5=OFF \
-          -DWITH_MANPAGES=OFF
-        cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
-    fi
-    popd
-fi
-
-if [ $TIGERVNC -eq 1 ]; then
-    echo "Install tigervnc ......"
-    pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/tigervnc ]; then
-      git clone --depth=1 https://github.com/KangLin/tigervnc.git
-      cd tigervnc
-      cmake -E make_directory build
-      cd build
-      cmake .. -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
-          -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF
-      cmake --build . --config Release --parallel $(nproc)
-      cmake --build . --config Release --target install
+        popd
     fi
     popd
 fi
@@ -715,15 +676,56 @@ if [ $LIBSSH -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/libssh ]; then
         git clone -b libssh-0.11.3 --depth=1 https://git.libssh.org/projects/libssh.git
-        cd libssh
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release \
+        cmake -E make_directory $BUILD_DEPEND_DIR/libssh
+        pushd $BUILD_DEPEND_DIR/libssh
+        cmake -S $SOURCE_DIR/libssh -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DWITH_EXAMPLES=OFF
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
+        popd
+    fi
+    popd
+fi
+
+if [ $FREERDP -eq 1 ]; then
+    echo "Install FreeRDP ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
+        git clone -b 3.18.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+        cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
+        pushd $BUILD_DEPEND_DIR/FreeRDP
+        cmake -S $SOURCE_DIR/FreeRDP \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+          -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
+          -DWITH_SERVER=ON \
+          -DWITH_CLIENT_SDL=OFF \
+          -DWITH_KRB5=OFF \
+          -DWITH_MANPAGES=OFF
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
+        popd
+    fi
+    popd
+fi
+
+if [ $TIGERVNC -eq 1 ]; then
+    echo "Install tigervnc ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/tigervnc ]; then
+      git clone --depth=1 https://github.com/KangLin/tigervnc.git
+      cmake -E make_directory $BUILD_DEPEND_DIR/tigervnc
+      pushd $BUILD_DEPEND_DIR/tigervnc
+      cmake -S $SOURCE_DIR/tigervnc -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+          -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF \
+          -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      cmake --build . --config Release --parallel $(nproc)
+      cmake --build . --config Release --target install
+      popd
     fi
     popd
 fi
@@ -733,10 +735,9 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/pcapplusplus ]; then
         git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
-        cd PcapPlusPlus
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release \
+        cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
+        pushd $BUILD_DEPEND_DIR/PcapPlusPlus
+        cmake -S $SOURCE_DIR/PcapPlusPlus -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DPCAPPP_BUILD_EXAMPLES=OFF \
@@ -744,6 +745,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
             -DPCAPPP_BUILD_TUTORIALS=OFF
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
+        popd
     fi
     popd
 fi
@@ -755,13 +757,14 @@ if [ $libdatachannel -eq 1 ]; then
       git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
       cd libdatachannel
       git submodule update --init --recursive
-      cmake -E make_directory build
-      cd build
-      cmake .. -DCMAKE_BUILD_TYPE=Release \
+      cmake -E make_directory $BUILD_DEPEND_DIR/libdatachannel
+      pushd $BUILD_DEPEND_DIR/libdatachannel
+      cmake -S $SOURCE_DIR/libdatachannel -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
+      popd
     fi
     popd
 fi
@@ -773,13 +776,14 @@ if [ $QtService -eq 1 ]; then
       git clone --depth=1 https://github.com/KangLin/qt-solutions.git
       cd qt-solutions/qtservice
       git submodule update --init --recursive
-      cmake -E make_directory build
-      cd build
-      cmake .. -DCMAKE_BUILD_TYPE=Release \
+      cmake -E make_directory $BUILD_DEPEND_DIR/qtservice
+      pushd $BUILD_DEPEND_DIR/qtservice
+      cmake -S $SOURCE_DIR/qtservice -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
+      popd
     fi
     popd
 fi
@@ -792,31 +796,39 @@ if [ $QTERMWIDGET -eq 1 ]; then
     if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
         echo "Install lxqt-build-tools ......"
         if [ ! -d lxqt-build-tools ]; then
-            git clone --depth=1 -b 2.2.1 https://github.com/lxqt/lxqt-build-tools.git
+            git clone --branch 2.3.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
         fi
-        cd lxqt-build-tools
-        sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release \
+        pushd lxqt-build-tools
+        if [ $MACOS -eq 1 ]; then
+            sed -i '' "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
+        else
+            sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
+        fi
+        popd
+        cmake -E make_directory $BUILD_DEPEND_DIR/lxqt-build-tools
+        pushd $BUILD_DEPEND_DIR/lxqt-build-tools
+        cmake -S $SOURCE_DIR/lxqt-build-tools -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
+        popd
     fi
     if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
+        pushd "$SOURCE_DIR"
         if [ ! -d qtermwidget ]; then
             git clone --depth=1 https://github.com/KangLin/qtermwidget.git
         fi
-        cd qtermwidget
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release \
+        popd
+        cmake -E make_directory $BUILD_DEPEND_DIR/qtermwidget
+        pushd $BUILD_DEPEND_DIR/qtermwidget
+        cmake -S $SOURCE_DIR/qtermwidget -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
+        popd
     fi
     popd
 fi
@@ -825,16 +837,19 @@ if [ $QTKEYCHAIN -eq 1 ]; then
     echo "Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/Qt6Keychain ]; then
-        git clone -b 0.15.0 https://github.com/frankosterfeld/qtkeychain.git
-        cd qtkeychain
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release \
+        git clone -b 0.15.0 --depth=1 https://github.com/frankosterfeld/qtkeychain.git
+        cmake -E make_directory $BUILD_DEPEND_DIR/qtkeychain
+        pushd $BUILD_DEPEND_DIR/qtkeychain
+        cmake -S $SOURCE_DIR/qtkeychain -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DBUILD_WITH_QT6:BOOL=ON
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
+        popd
     fi
     popd
 fi
+
+popd
+popd

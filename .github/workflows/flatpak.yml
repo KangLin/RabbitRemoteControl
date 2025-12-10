@@ -26,6 +26,7 @@ jobs:
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
     runs-on: ${{ matrix.variant.os }}
+
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-44
       options: --privileged

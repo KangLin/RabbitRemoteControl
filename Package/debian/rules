@@ -18,6 +18,10 @@ ifdef INSTALL_DIR
     LIB_PARAS += ${INSTALL_DIR}/lib
 endif
 
+ifdef BUILD_VERBOSE
+	CMAKE_CONFIG_PARAS+="-DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}"
+endif
+
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 BUILD_DIR = "build_$(DEB_HOST_MULTIARCH)"
 PACKAGE_DIR = "debian/rabbitremotecontrol"

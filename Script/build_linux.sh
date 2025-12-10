@@ -3,14 +3,15 @@
 set -e
 #set -x
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
+source $(dirname $(readlink -f $0))/common.sh
+
 detect_os_info
 
+install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
     MACOS=1
     setup_macos
@@ -36,7 +37,7 @@ Usage: $0 [OPTION]...
 
 Options:
   -h, --help            Show this help message
-  -v, --verbose[=LEVEL] Set verbose mode (LEVEL: ON, OFF, default: ON)
+  -v, --verbose[=LEVEL] Set verbose mode (LEVEL: ON, OFF, default: $BUILD_VERBOSE)
 
 Directory options:
   --install=DIR         Set installation directory
@@ -62,7 +63,7 @@ Examples:
   $0 --verbose --docker --docker-image=$DISTRO:$DISTRO_VERSION --appimage --qt=$QT_VERSION
 
 Environment variables:
-  BUILD_VERBOSE     Set verbose mode (ON/OFF)
+  BUILD_VERBOSE     Set verbose mode (ON/OFF, default: $BUILD_VERBOSE)
   QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
     exit 0
@@ -78,7 +79,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image::,qt:,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image::,qt:,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -104,6 +105,10 @@ if command -V getopt >/dev/null; then
             ;;
         --tools)
             TOOLS_DIR=$2
+            shift 2
+            ;;
+        --build)
+            BUILD_DIR="$2"
             shift 2
             ;;
         -v|--verbose)
@@ -163,9 +168,11 @@ if command -V getopt >/dev/null; then
         --docker-image)
             case $2 in
                 "")
-                    DOCKERT_IMAGE=1;;
+                    DOCKER_IMAGE=1
+                    DOCKER=1;;
                 *)
-                    DOCKERT_IMAGE=$2;;
+                    DOCKER_IMAGE=$2
+                    DOCKER=1;;
             esac
             shift 2
             ;;
@@ -198,7 +205,11 @@ CURDIR=$(dirname $(safe_readlink $0))
 REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
 
 if [ -z "$BUILD_LINUX_DIR" ]; then
-    BUILD_LINUX_DIR=${REPO_ROOT}/build_linux
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_LINUX_DIR=${REPO_ROOT}/build_linux
+    else
+        BUILD_LINUX_DIR=${BUILD_DIR}/build_linux
+    fi
 fi
 if [ -z "$SOURCE_DIR" ]; then
     SOURCE_DIR=${BUILD_LINUX_DIR}/source
@@ -224,7 +235,7 @@ if [ "$BUILD_VERBOSE" = "ON" ]; then
 fi
 
 if [ $DOCKER -eq 1 ]; then
-    echo "Start docker ${DOCKERT_IMAGE} ......"
+    echo "Start docker ${DOCKER_IMAGE} ......"
 
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
@@ -239,33 +250,37 @@ if [ $DOCKER -eq 1 ]; then
     popd
 
     if [ $DEB -eq 1 ]; then
-        if [ -z "$DOCKERT_IMAGE" ]; then
-            DOCKERT_IMAGE=ubuntu
+        if [ -z "$DOCKER_IMAGE" ]; then
+            DOCKER_IMAGE=ubuntu
         fi
-       docker run --volume ${BUILD_LINUX_DIR}:/home/build \
+        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        fi
+        docker run --privileged ${DOCKER_PARA} \
+           --volume ${BUILD_LINUX_DIR}:/home/build \
            --volume ${INSTALL_DIR}:/home/install \
            --volume ${TOOLS_DIR}:/home/tools \
-           --privileged --interactive --rm ${DOCKERT_IMAGE} \
+           --interactive --rm ${DOCKER_IMAGE} \
            bash -e -x -c "
-           apt-get update -y
-           apt-get install lsb-release
            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
            ~/RabbitRemoteControl/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
            cp ~/rabbitremotecontrol*.deb /home/build/
            "
     fi
     if [ $APPIMAGE -eq 1 ]; then
-        if [ -z "$DOCKERT_IMAGE" ]; then
-            DOCKERT_IMAGE=ubuntu
+        if [ -z "$DOCKER_IMAGE" ]; then
+            DOCKER_IMAGE=$DISTRO
         fi
-        docker run --volume ${BUILD_LINUX_DIR}:/home/build \
+        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        fi
+        docker run --privileged ${DOCKER_PARA} \
+            --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
-            --privileged --interactive --rm ${DOCKERT_IMAGE} \
+            --interactive --rm ${DOCKER_IMAGE} \
             bash -e -x -c "
             tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
-            apt-get update -y
-            apt-get install lsb-release
             ~/RabbitRemoteControl/Script/build_linux.sh --appimage --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
             mkdir -p /home/build/install
             pushd /home/build/install
@@ -279,13 +294,13 @@ if [ $DOCKER -eq 1 ]; then
             "
     fi
     if [ $RPM -eq 1 ]; then
-        if [ -z "$DOCKERT_IMAGE" ]; then
-            DOCKERT_IMAGE=fedora
+        if [ -z "$DOCKER_IMAGE" ]; then
+            DOCKER_IMAGE=fedora
         fi
         docker run --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
-            --privileged --interactive --rm ${DOCKERT_IMAGE} \
+            --privileged --interactive --rm ${DOCKER_IMAGE} \
             bash -e -x -c "
             mkdir -p ~/rpmbuild/SOURCES/
             cp /home/build/RabbitRemoteControl.tar.gz ~/rpmbuild/SOURCES/
@@ -304,7 +319,7 @@ pushd $REPO_ROOT/Script
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
     ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus --libssh --qtermwidget \
+        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -312,27 +327,36 @@ if [ $DEB -eq 1 ]; then
 
     export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
-        --rabbitcommon=${SOURCE_DIR}/RabbitCommon
+        --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
+        --verbose=${BUILD_VERBOSE}
 fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
-    apt install -y -q fuse3
-    case "$DISTRO_VERSION" in
-        "25.04"|"25.10")
-            depend_para="--default"
-            ;;
-        "24.04"|"24.10")
-            depend_para="--qt=${QT_VERSION}"
-            export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-            export Qt6_DIR=$QT_ROOT
-            export QMAKE=$QT_ROOT/bin/qmake
-            export QT_PLUGIN_PATH=$QT_ROOT/plugins
-            export PATH=$QT_ROOT/libexec:$PATH
-            export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
-            export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
-            export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-            ;;
+    case "$DISTRO" in
+    ubuntu)
+        case "$DISTRO_VERSION" in
+            "25.04"|"25.10")
+                depend_para="--default"
+                ;;
+            "24.04"|"24.10")
+                depend_para="--qt=${QT_VERSION}"
+                export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
+                export Qt6_DIR=$QT_ROOT
+                export QMAKE=$QT_ROOT/bin/qmake
+                export QT_PLUGIN_PATH=$QT_ROOT/plugins
+                export PATH=$QT_ROOT/libexec:$PATH
+                export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
+                export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
+                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+                ;;
+        esac
+        depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain"
+        ;;
+    fedora)
+        depend_para="--default"
+        ;;
+    *)
     esac
 
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
@@ -342,21 +366,22 @@ if [ $APPIMAGE -eq 1 ]; then
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
     ./build_depend.sh --system_update --base --rabbitcommon \
-        --tigervnc --pcapplusplus --freerdp --libssh \
-        --qtermwidget --qtkeychain \
+        --tigervnc --pcapplusplus \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE} ${depend_para}
 
-    ./build_appimage.sh --install=${INSTALL_DIR} --verbose=${BUILD_VERBOSE}
+    ./build_appimage.sh --install=${INSTALL_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 fi
 
 if [ $RPM -eq 1 ]; then
     echo "build rpm package ......"
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
-        --rabbitcommon --tigervnc --pcapplusplus --libssh \
+        --rabbitcommon --tigervnc --pcapplusplus \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -371,12 +396,13 @@ fi
 
 if [ $MACOS -eq 1 ]; then
     echo "build macos bundle package ......"
-    ./build_depend.sh --macos \
-        --rabbitcommon --tigervnc \
+    ./build_depend.sh --system_update --base --default --macos \
+        --rabbitcommon --tigervnc --qtermwidget \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

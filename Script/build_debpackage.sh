@@ -6,11 +6,11 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
+
+source $(dirname $(readlink -f $0))/common.sh
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
@@ -85,6 +85,10 @@ REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
 OLD_CWD=$(safe_readlink .)
 
 pushd "$REPO_ROOT"
+
+if [ -n "$BUILD_VERBOSE" ]; then
+    export BUILD_VERBOSE=$BUILD_VERBOSE
+fi
 
 if [ -n "$RabbitCommon_ROOT" ]; then
     export RabbitCommon_ROOT=$RabbitCommon_ROOT

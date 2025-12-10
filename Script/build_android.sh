@@ -6,6 +6,10 @@ set -x
 set -e
 #set -v
 
+if [ -z "$BUILD_VERBOSE" ]; then
+    BUILD_VERBOSE=OFF
+fi
+
 source $(dirname $(readlink -f $0))/common.sh
 
 # modify follow value
