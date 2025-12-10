@@ -107,10 +107,11 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
+    QSharedPointer<CFrmUpdater> pUpdate;
     // Check update version
     if(qEnvironmentVariable("SNAP").isEmpty()
         && qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
-        QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
+        pUpdate = QSharedPointer<CFrmUpdater>(new CFrmUpdater());
         if(pUpdate) {
             QIcon icon = QIcon::fromTheme("app");
             if(!icon.isNull())
@@ -150,11 +151,6 @@ int main(int argc, char *argv[])
 #endif
     QTimer::singleShot(randomInt, [&](){
         pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
-        if(pStats) {
-            bool check = QObject::connect(pStats, &CStatsAppUsage::sigFinished, pStats, &CStatsAppUsage::deleteLater);
-            Q_ASSERT(check);
-        }
-
         app.processEvents();
     });
 
@@ -176,8 +172,10 @@ int main(int argc, char *argv[])
     }
 
     delete w;
-    if(pStats)
+    if(pStats) {
         pStats->Stop();
+        delete pStats;
+    }
 
     RabbitCommon::CTools::Instance()->Clean();
     if(tApp)
@@ -186,6 +184,6 @@ int main(int argc, char *argv[])
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
 
-    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + QObject::tr("End");
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + "End";
     return nRet;
 }

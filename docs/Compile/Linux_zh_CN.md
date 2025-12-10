@@ -1023,6 +1023,7 @@ PcapPlusPlus 依赖此库。
 
 - 构建脚本
   - [build_linux.sh](../../Script/build_linux.sh): 构建本项目。
+  - [common.sh](../../Script/common.sh): 公共函数。
   - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
   - [build_debpackage.sh](../../Script/build_debpackage.sh): 构建 deb 安装包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)

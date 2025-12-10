@@ -6,11 +6,11 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
+
+source $(dirname $(readlink -f $0))/common.sh
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>]"
@@ -20,6 +20,7 @@ usage_long() {
     echo "  --install: Set depend libraries install directory"
     echo "  --source: Set source directory"
     echo "  --tools: Set tools directory"
+    echo "  --build: Set build directory"
     exit
 }
 
@@ -33,7 +34,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,install:,source:,tools:
+    OPTS=help,verbose::,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -59,6 +60,10 @@ if command -V getopt >/dev/null; then
             ;;
         --tools)
             TOOLS_DIR=$2
+            shift 2
+            ;;
+        --build)
+            BUILD_RPM_DIR=$2
             shift 2
             ;;
         -v |--verbose)

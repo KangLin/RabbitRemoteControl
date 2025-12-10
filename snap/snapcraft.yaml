@@ -1,11 +1,14 @@
 # https://snapcraft.io/docs/the-snap-format
 # How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
-# Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
+# Snapcraft.yaml schema: https://documentation.ubuntu.com/snapcraft/stable/reference/project-file/snapcraft-yaml
 name: rabbitremotecontrol
+title: Rabbit Remote Control
 version: '0.0.36'
 type: app
 license: GPL-3.0+
 contact: kl222@126.com
+website: https://github.com/KangLin/RabbitRemoteControl
+source-code: https://github.com/KangLin/RabbitRemoteControl
 donation:
   - https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
 issues: https://github.com/KangLin/RabbitRemoteControl/issues
@@ -81,7 +84,7 @@ parts:
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
     stage:
       - -usr/include
     prime:
@@ -144,12 +147,12 @@ parts:
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
       - -DWITH_SHADOW=OFF
-      - -DWITH_LIBSYSTEMD=off
+      - -DWITH_LIBSYSTEMD=OFF
       - -DWITH_MANPAGES=OFF
       - -DWITH_SAMPLE=OFF
       - -DWITH_CLIENT_SDL=OFF
       - -DWITH_PROXY_MODULES=OFF
-      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
     stage:
       - -usr/share
       - -usr/bin
@@ -284,6 +287,7 @@ parts:
     source-depth: 1
     build-packages:
       - libsecret-1-dev
+      - libduktape207
     stage-packages:
       - libsecret-1-0
     cmake-parameters:
@@ -313,9 +317,26 @@ parts:
       # Xlib
       - libx11-dev
       - libxtst-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - libx11-xcb-dev
+      - libx11-dev
+      - libxfixes-dev
+      - libxcomposite-dev
+      - libxinerama-dev
       # xcb
       - libxcb1-dev
       - libxcb-xtest0-dev
+      - libxcb-keysyms1-dev
+      - libxcb-randr0-dev
+      - libxcb-shm0-dev
+      - libxcb-xinerama0-dev
+      - libxcb-composite0-dev
+      - libxcb1-dev
+      - libx11-xcb-dev
+      - libxcb-xfixes0-dev
+      - libxcb-cursor-dev
+      - libxcb-xkb-dev
       - libxcb-keysyms1-dev
       # opengl development headers and libraries
       - libglx-dev
@@ -343,7 +364,7 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
-      - -DCMAKE_VERBOSE_MAKEFILE=ON 
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
       # - -DQT_ROOT=$CRAFT_STAGE/qt
       # - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
       # - -DQt6_ROOT=$CRAFT_STAGE/qt

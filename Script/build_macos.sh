@@ -6,11 +6,11 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
+
+source $(dirname $(readlink -f $0))/common.sh
 
 detect_os_info
 
@@ -76,7 +76,7 @@ if command -V getopt >/dev/null; then
             shift 2
             ;;
         --build)
-            BUILD_APPIMAGE_DIR=$2
+            BUILD_DIR=$2
             shift 2
             ;;
         --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
@@ -100,7 +100,11 @@ REPO_ROOT=$(safe_readlink $(dirname $(dirname $(safe_readlink $0))))
 OLD_CWD=$(safe_readlink .)
 
 if [ -z "$BUILD_MACOS_DIR" ]; then
-    BUILD_MACOS_DIR=${REPO_ROOT}/build_macos
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_MACOS_DIR=${REPO_ROOT}/build_macos
+    else
+        BUILD_MACOS_DIR=${BUILD_DIR}/build_macos
+    fi
 fi
 if [ -z "$SOURCE_DIR" ]; then
     SOURCE_DIR=${BUILD_MACOS_DIR}/source
@@ -126,13 +130,6 @@ echo "BUILD_MACOS_DIR: $BUILD_MACOS_DIR"
 echo "TOOLS_DIR: $TOOLS_DIR"
 echo "SOURCE_DIR: $SOURCE_DIR"
 echo "INSTALL_DIR: $INSTALL_DIR"
-echo "VCPKG_ROOT: $VCPKG_ROOT"
-echo "VCPKG_TARGET_TRIPLET: $VCPKG_TARGET_TRIPLET"
-
-if [ -z "${VCPKG_TARGET_TRIPLET}" -o -z "${VCPKG_ROOT}" ]; then
-    echo "Do't install vcpkg. please install vcpkg."
-    exit -1
-fi
 
 pushd "$BUILD_MACOS_DIR"
 
@@ -140,7 +137,7 @@ pushd "$BUILD_MACOS_DIR"
 #brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
 
 cmake "$REPO_ROOT" \
-  -DCMAKE_INSTALL_PREFIX=install/RabbitRemoteControl.App/Contents \
+  -DCMAKE_INSTALL_PREFIX=RabbitRemoteControl.App/Contents \
   -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
@@ -151,12 +148,6 @@ cmake "$REPO_ROOT" \
   -DCMAKE_PREFIX_PATH=${INSTALL_DIR}/lib/cmake \
   -DRABBIT_WITH_MACDEPLOY=OFF \
   -DBUILD_FREERDP=ON \
-  -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
-  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-  -DVCPKG_VERBOSE=ON \
-  -DVCPKG_TARGET_TRIPLET=${VCPKG_TARGET_TRIPLET} \
-  -DRABBIT_WITH_MACDEPLOY=OFF \
-  -DBUILD_FREERDP=ON \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 cmake --build . --config Release --parallel $(nproc)
@@ -165,17 +156,29 @@ cmake --install . --config Release --strip --component Runtime
 cmake --install . --config Release --strip --component Plugin
 cmake --install . --config Release --strip --component Application
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
-    cp -r "${INSTALL_DIR}/share/qtermwidget6/." 
-    cp -r ${INSTALL_DIR}/share/qtermwidget6 install/RabbitRemoteControl.App/Contents/Resources/
+    echo "copy qtermwidget6 resources ......" 
+    cp -R ${INSTALL_DIR}/share/qtermwidget6 RabbitRemoteControl.App/Contents/Resources/
 else
     echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
 fi
 
-MACDEPLOYQT=`whereis macdeployqt`
+MACDEPLOYQT=macdeployqt
 if [ -d "${MACDEPLOYQT}" ]; then
-    ${MACDEPLOYQT} `pwd`/install/RabbitRemoteControl.App -dmg -verbose=3
+    echo "macdeployqt ......"
+    ${MACDEPLOYQT} `pwd`/RabbitRemoteControl.App -dmg -verbose=3
 else
-    echo "Don't found macdeployqt, please set QT_ROOT"
+    echo "Error: Don't found macdeployqt, please set QT_ROOT"
+fi
+
+7z a RabbitRemoteControl.zip ./RabbitRemoteControl.App
+
+if [ -f RabbitRemoteControl.zip ]; then
+    echo "--- Generated zip: $REPO_ROOT/RabbitRemoteControl.zip"
+    cp RabbitRemoteControl.zip $REPO_ROOT/
+fi
+if [ -f RabbitRemoteControl.dmg ]; then
+    echo "--- Generated dmg: $REPO_ROOT/RabbitRemoteControl.dmg"
+    cp RabbitRemoteControl.dmg $REPO_ROOT/
 fi
 
 popd

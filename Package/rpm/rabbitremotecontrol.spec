@@ -16,18 +16,18 @@ Vendor:         Kang Lin <kl222@126.com>
 BuildRequires: make git rpm-build rpmdevtools 
 BuildRequires: gcc-c++
 BuildRequires: automake autoconf libtool gettext gettext-autopoint
-BuildRequires: cmake desktop-file-utils appstream
-BuildRequires: curl wget libcurl-devel
-BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel
+BuildRequires: cmake desktop-file-utils appstream curl wget
+#BuildRequires: appstream
 
 # Qt6
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
-BuildRequires: qtermwidget-devel
 BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
-BuildRequires: qtkeychain-qt6-devel
+BuildRequires: qtkeychain-qt6-devel qtermwidget-devel
+
+BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel libcurl-devel
 BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
 BuildRequires: libvncserver-devel libpcap-devel
 BuildRequires: libwinpr-devel freerdp-devel freerdp fuse3-devel
@@ -43,14 +43,13 @@ BuildRequires: libXinerama-devel mesa-libGL-devel libxshmfence-devel
 BuildRequires: libdrm-devel mesa-libgbm-devel
 BuildRequires: libxkbfile-devel libXfont2-devel
 
-Requires: qtkeychain-qt6
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
-Requires: libvncserver libwinpr freerdp fuse3 libpcap
-Requires: zlib gnutls nettle gmp pam libcurl
+Requires: libvncserver libwinpr freerdp fuse3 libpcap libcurl
+Requires: zlib gnutls nettle gmp pam 
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
-Requires: qtermwidget
 Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
+Requires: qtkeychain-qt6 qtermwidget
 
 Requires: libXext libX11 libXi libXfixes libXtst
 Requires: libXdamage libXrandr libXt libXdmcp

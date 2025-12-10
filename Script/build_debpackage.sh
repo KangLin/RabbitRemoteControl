@@ -6,16 +6,19 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
+
+INSTALL_BUILD_DEPEND=0
+
+source $(dirname $(readlink -f $0))/common.sh
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
+    echo "  --install-build-depend: Install build depend"
     echo "  --install: Set depend libraries install directory"
     echo "  --rabbitcommon: Install RabbitCommon"
     exit
@@ -31,7 +34,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,install:,rabbitcommon:
+    OPTS=help,verbose::,install:,rabbitcommon::,install-build-depend::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -52,7 +55,25 @@ if command -V getopt >/dev/null; then
             shift 2
             ;;
         --rabbitcommon)
-            RabbitCommon_ROOT=$2
+            case "$2" in
+                "")
+                    RabbitCommon_ROOT=1
+                    ;;
+                *)
+                    RabbitCommon_ROOT="$2"
+                    ;;
+            esac
+            shift 2
+            ;;
+        --install-build-depend)
+            case "$2" in
+                "")
+                    INSTALL_BUILD_DEPEND=1
+                    ;;
+                *)
+                    INSTALL_BUILD_DEPEND="$2"
+                    ;;
+            esac
             shift 2
             ;;
         -v |--verbose)
@@ -86,6 +107,10 @@ OLD_CWD=$(safe_readlink .)
 
 pushd "$REPO_ROOT"
 
+if [ -n "$BUILD_VERBOSE" ]; then
+    export BUILD_VERBOSE=$BUILD_VERBOSE
+fi
+
 if [ -n "$RabbitCommon_ROOT" ]; then
     export RabbitCommon_ROOT=$RabbitCommon_ROOT
 fi
@@ -99,7 +124,7 @@ if [ -n "$INSTALL_DIR" ]; then
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 fi
 
-BUILD_DEPS=$(/usr/bin/which dpkg-checkbuilddeps)
+BUILD_DEPS=$(/usr/bin/which mk-build-deps)
 BUILD_PKG=$(/usr/bin/which dpkg-buildpackage)
 
 if [ -z "$BUILD_DEPS" ] || [ -z "$BUILD_PKG" ]; then
@@ -108,12 +133,13 @@ if [ -z "$BUILD_DEPS" ] || [ -z "$BUILD_PKG" ]; then
   exit 1
 fi
 
-if [ ! -d debian ]; then
-    ln -s $REPO_ROOT/Package/debian $REPO_ROOT/debian
-fi
+create_debian_folder $REPO_ROOT
 
 # Check all dependencies are installed
-$BUILD_DEPS "debian/control"
+if [ $INSTALL_BUILD_DEPEND -eq 1 ]; then
+    install_debian_depend $REPO_ROOT
+    #$BUILD_DEPS -i -t 'apt-get --no-install-recommends --no-install-suggests -y' "debian/control"
+fi
 
 # And finally build the package
 
@@ -144,8 +170,8 @@ $BUILD_DEPS "debian/control"
 # -b  Equivalent to --build=binary or --build=any,all.
 # -S  Equivalent to --build=source
 # -d, --no-check-builddeps    do not check build dependencies and conflicts.
-#      --ignore-builtin-builddeps
-#                              do not check builtin build dependencies.
+#     --ignore-builtin-builddeps
+#                             do not check builtin build dependencies.
 
 #The -us -uc tell it there is no need to GPG sign the package. the -b is build binary
 $BUILD_PKG -us -uc -b

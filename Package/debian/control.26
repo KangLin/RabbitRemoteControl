@@ -5,12 +5,12 @@ Section: main
 Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
 Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
- libssl-dev, libcrypt-dev, libcmark-dev,
- qt6-tools-dev, qt6-tools-dev-tools, qt6-base-dev, qt6-base-dev-tools,
+ ninja-build, qmake6, qt6-tools-dev, qt6-tools-dev-tools, qt6-base-dev, qt6-base-dev-tools,
  qt6-qpa-plugins, libqt6svg6-dev, qt6-l10n-tools, qt6-translations-l10n,
- qt6-scxml-dev, qt6-multimedia-dev,
+ qt6-scxml-dev, qt6-multimedia-dev, qt6-serialport-dev, qt6-websockets-dev,
  qt6-webengine-dev, qt6-webengine-dev-tools, qt6-positioning-dev, qt6-webchannel-dev,
- freerdp2-dev, libvncserver-dev, libpcap-dev,
+ libssl-dev, libcrypt-dev, libcmark-dev,
+ freerdp3-dev, libvncserver-dev, libpcap-dev,
  qtkeychain-qt6-dev, libcurl4-openssl-dev,
  libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev
 Standards-Version: 4.6.2
@@ -23,7 +23,7 @@ Package: rabbitremotecontrol
 Section: net
 Architecture: any
 #Pre-Depends: ${misc:Pre-Depends}
-Suggests: libqt6svg6
+#Suggests: libqt6svg6
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: rabbitcommon (>=2.3.2)
 Description: Rabbit Remote Control

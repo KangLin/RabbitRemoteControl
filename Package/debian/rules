@@ -18,6 +18,10 @@ ifdef INSTALL_DIR
     LIB_PARAS += ${INSTALL_DIR}/lib
 endif
 
+ifdef BUILD_VERBOSE
+	CMAKE_CONFIG_PARAS+="-DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}"
+endif
+
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 BUILD_DIR = "build_$(DEB_HOST_MULTIARCH)"
 PACKAGE_DIR = "debian/rabbitremotecontrol"
@@ -30,17 +34,18 @@ PACKAGE_DIR = "debian/rabbitremotecontrol"
 # See: man debhelper
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
-	dh_auto_configure -B$(BUILD_DIR) -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-            -DBUILD_FREERDP=ON \
-            -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
-            -DRabbitCommon_ROOT=${RabbitCommon_ROOT} \
-            -DCMARK_SHARED=OFF \
-            -DCMARK_TESTS=OFF \
-            -DCMARK_STATIC=ON \
-			-DWITH_CMARK=OFF \
-		    -DWITH_CMARK_GFM=ON \
-			-DWITH_WebEngineWidgets=ON \
-            ${CMAKE_CONFIG_PARAS}
+	cmake . -GNinja -DCMAKE_MAKE_PROGRAM=ninja -B$(BUILD_DIR) \
+		-DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+		-DBUILD_FREERDP=ON \
+		-DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
+		-DRabbitCommon_ROOT=${RabbitCommon_ROOT} \
+		-DCMARK_SHARED=OFF \
+		-DCMARK_TESTS=OFF \
+		-DCMARK_STATIC=ON \
+		-DWITH_CMARK=OFF \
+		-DWITH_CMARK_GFM=ON \
+		-DWITH_WebEngineWidgets=ON \
+		${CMAKE_CONFIG_PARAS}
 
 override_dh_auto_build:
 #	dh_auto_build --parallel $(nproc) -B$(BUILD_DIR)

@@ -1459,7 +1459,8 @@ void MainWindow::on_actionOpenListRecent_triggered()
     check = connect(p, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
                     m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
     Q_ASSERT(check);
-
+    
+    p->slotLoadFiles();
     QDialog d;
     d.resize(540, 400);
     d.setWindowIcon(windowIcon());

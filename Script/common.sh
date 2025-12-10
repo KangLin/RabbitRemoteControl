@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Validate directory path
+validate_directory() {
+    local dir="$1"
+    local type="$2"
+    
+    if [ -n "$dir" ]; then
+        if [[ "$dir" =~ ^- ]]; then
+            echo "Error: $type directory parameter '$dir' cannot start with '-'" >&2
+            exit 1
+        fi
+    fi
+}
+
 # 详细的 Linux 发行版检测函数
 get_linux_distro() {
     if [ -f /etc/os-release ]; then
@@ -86,6 +99,71 @@ get_package_tool() {
     esac
 }
 
+package_install() {
+    local PACKAGE=$@
+    if [ -n "$PACKAGE" ]; then
+        #if [ "$BUILD_VERBOSE" = "ON" ]; then
+        #    echo "Install package: $PACKAGE"
+        #fi
+        for p in $PACKAGE
+        do
+            case "$PACKAGE_TOOL" in
+                brew)
+                    brew install -q $p
+                    ;;
+                apt)
+                    if [ "$BUILD_VERBOSE" = "ON" ]; then
+                        ${PACKAGE_TOOL} install -y -q $p
+                    else
+                        ${PACKAGE_TOOL} install -y -qq $p
+                    fi
+                    ;;
+                dnf|yum)
+                    ${PACKAGE_TOOL} install -y $p
+                    ;;
+                *)
+                    ${PACKAGE_TOOL} install -y $p
+                    ;;
+            esac
+        done
+    fi
+}
+
+create_debian_folder() {
+    local repo_root=$1
+    if [ ! -d $repo_root/debian ]; then
+        echo "Create $repo_root/debian ......"
+        ln -s $repo_root/Package/debian $repo_root/debian
+    
+        if [ ! -f $repo_root/debian/control ]; then
+            case "$DISTRO:$DISTRO_VERSION" in
+                ubuntu:26.*|debian:13)
+                    ln -s $repo_root/Package/debian/control.26 $repo_root/debian/control
+                    ;;
+                *)
+                    ln -s $repo_root/Package/debian/control.default $repo_root/debian/control
+                    ;;
+            esac
+        fi
+        
+    fi
+}
+
+install_debian_depend() {
+    local repo_root=$1
+    create_debian_folder $repo_root
+    if [ -f "$repo_root/debian/control" ]; then
+        echo "Install deb depends ......"
+        mk-build-deps -i -t 'apt-get --no-install-recommends --no-install-suggests -y' "$repo_root/debian/control"
+#        grep-dctrl -s Build-Depends -n . $repo_root/debian/control | \
+#            sed 's/([^)]*)//g' | \
+#            sed 's/,/\n/g' | \
+#            awk '{print $1}' | \
+#            grep -v '^$' | \
+#            xargs sudo apt install -y
+    fi
+}
+
 # 完整的系统信息函数
 get_system_info() {
     local os
@@ -127,16 +205,39 @@ get_system_info() {
     echo "Architecture: $(uname -m)"
 }
 
+install_gnu_getopt() {
+    if command -v getopt > /dev/null 2>&1; then
+        return
+    fi
+    case "$DISTRO" in
+        fedora)
+            package_install util-linux
+            ;;
+        macOS)
+            # 检查　GNU setopt
+            # 在 macOS 上，本地 getopt 不支持长格式参数，所以需要先在系统上安装 GNU getopt，并设置环境变量 PATH
+            #if [ ! -f /usr/local/opt/gnu-getopt/bin/getopt ]; then
+            #    brew install gnu-getopt
+            #fi
+            #if [[ ! "$PATH" =~ /usr/local/opt/gnu-getopt/bin/getopt/bin ]]; then
+            #    export PATH=/usr/local/opt/gnu-getopt/bin/getopt/bin::$PATH
+            #fi
+            ;;
+            *)
+            ;;
+    esac
+}
+
 # macOS 设置函数
 setup_macos() {
     echo "Setting up macOS environment..."
-    
+
     # 检查是否安装了 Homebrew
     if ! command -v brew >/dev/null 2>&1; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
-    
+
     # 确保 Homebrew 在 PATH 中
     if [ -f "/opt/homebrew/bin/brew" ]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -144,12 +245,7 @@ setup_macos() {
         eval "$(/usr/local/bin/brew shellenv)"
     fi
     
-    # 检查　GNU setopt
-    # 在 macOS 上，本地 getopt 不支持长格式参数，所以需要先在系统上安装 GNU getopt，并设置环境变量 PATH
-    if [ ! -f /usr/local/opt/gnu-getopt/bin/getopt ]; then
-        brew install gnu-getopt
-    fi
-    export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+    install_gnu_getopt
 }
 
 # 安全的 readlink 函数，兼容各种系统
@@ -206,5 +302,6 @@ detect_os_info() {
         echo "Package tool: $PACKAGE_TOOL"
         echo "Architecture: $ARCHITECTURE"
         echo "======================================="
+        echo "PATH: $PATH"
     fi
 }

@@ -840,7 +840,8 @@ After install sdk and runtime, Run again:
 
 - Build script
   - [build_linux.sh](../../Script/build_linux.sh): Build the project.
-  - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries
+  - [common.sh](../../Script/common.sh): Common functions.
+  - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries.
   - [build_debpackage.sh](../../Script/build_debpackage.sh): Build deb package.
     Before executing, set environment variables.
     See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)

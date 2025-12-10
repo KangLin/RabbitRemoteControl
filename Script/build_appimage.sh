@@ -9,11 +9,12 @@
 set -e
 #set -v
 
-source $(dirname $(readlink -f $0))/common.sh
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
+
+source $(dirname $(readlink -f $0))/common.sh
+detect_os_info
 
 usage_long() {
     echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"
@@ -75,7 +76,7 @@ if command -V getopt >/dev/null; then
             shift 2
             ;;
         --build)
-            BUILD_APPIMAGE_DIR=$2
+            BUILD_DIR=$2
             shift 2
             ;;
         --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
@@ -111,7 +112,11 @@ OLD_CWD=$(safe_readlink .)
 pushd "$REPO_ROOT"
 
 if [ -z "$BUILD_APPIMAGE_DIR" ]; then
-    BUILD_APPIMAGE_DIR=build_appimage
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_APPIMAGE_DIR=build_appimage
+    else
+        BUILD_APPIMAGE_DIR=$BUILD_DIR/build_appimage
+    fi
 fi
 BUILD_APPIMAGE_DIR=$(safe_readlink ${BUILD_APPIMAGE_DIR})
 mkdir -p $BUILD_APPIMAGE_DIR
@@ -194,6 +199,7 @@ cmake --install . --config Release --strip --component Runtime --prefix ${INSTAL
 cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
+    echo "Copy qtermwidget6 resources ......."
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else
     echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
@@ -221,6 +227,14 @@ if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     $QMAKE --version
 fi
 
+if [ -n "$QMAKE" ]; then
+    if command -v qmake >/dev/null 2>&1; then
+        command -v qmake
+    else
+        echo "Please set 'QMAKE'"
+    fi
+fi
+
 # [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
@@ -230,7 +244,7 @@ ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
 cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage
-echo "Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
+echo "--- Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
 
 popd
 popd

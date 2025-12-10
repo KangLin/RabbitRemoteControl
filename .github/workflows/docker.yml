@@ -19,31 +19,56 @@ jobs:
         variant:
           - PACKAGE: deb
             image: ubuntu
-            lable: ":25.04"
+            lable: "25.04"
             os: ubuntu-24.04
           - PACKAGE: deb
             image: ubuntu
-            lable: ":25.04"
+            lable: "25.04"
+            os: ubuntu-24.04-arm
+          - PACKAGE: deb
+            image: ubuntu
+            lable: "26.04"
+            os: ubuntu-24.04
+          - PACKAGE: deb
+            image: ubuntu
+            lable: "26.04"
+            os: ubuntu-24.04-arm
+
+          - PACKAGE: deb
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04
+          - PACKAGE: deb
+            image: debian
+            lable: "12"
+            os: ubuntu-24.04-arm
+          - PACKAGE: deb
+            image: debian
+            lable: "13"
+            os: ubuntu-24.04
+          - PACKAGE: deb
+            image: debian
+            lable: "13"
             os: ubuntu-24.04-arm
 
           - PACKAGE: appimage
             image: ubuntu
-            lable: ":25.04"
+            lable: "25.04"
             os: ubuntu-24.04
-            BUILD_VERBOSE: ON
+            BUILD_VERBOSE: OFF
           - PACKAGE: appimage
             image: ubuntu
-            lable: ":25.04"
+            lable: "25.04"
             os: ubuntu-24.04-arm
-            BUILD_VERBOSE: ON
+            BUILD_VERBOSE: OFF
 
           - PACKAGE: rpm
             image: fedora
-            lable: ":41"
+            lable: "41"
             os: ubuntu-24.04
           - PACKAGE: rpm
             image: fedora
-            lable: ":41"
+            lable: "41"
             os: ubuntu-24.04-arm
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
@@ -90,7 +115,24 @@ jobs:
 
       - name: run docker
         run: |
-          ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}${{matrix.variant.lable}}" --${{matrix.variant.PACKAGE}}
+          if [ -n "${{matrix.variant.lable}}" ]; then
+            docker_image="${{matrix.variant.image}}:${{matrix.variant.lable}}"
+          else
+            docker_image="${{matrix.variant.image}}"
+          fi
+          ./Script/build_linux.sh --docker --docker-image="${docker_image}" --${{matrix.variant.PACKAGE}}
+
+      - name: Rename deb file
+        if: ${{ matrix.variant.PACKAGE == 'deb' }}
+        #continue-on-error: true
+        run: |
+          cd ${{env.BUILD_DIR}}/build_linux
+          if [ -n "${{matrix.variant.lable}}" ]; then
+            docker_image="${{matrix.variant.image}}${{matrix.variant.lable}}"
+          else
+            docker_image="${{matrix.variant.image}}"
+          fi
+          mv rabbitremotecontrol_*.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${docker_image}_`uname -m`.deb
 
       - name: AppIagme update configure file
         if: ${{ matrix.variant.PACKAGE == 'appimage' }}
@@ -104,10 +146,10 @@ jobs:
           sleep 1
           export DISPLAY=:91.0
           ARCH=`uname -m`
-          pushd ${{github.workspace}}/build_linux/install
+          pushd ${{env.BUILD_DIR}}/build_linux/install
           sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage
           popd
-          pushd ${{github.workspace}}/build_linux
+          pushd ${{env.BUILD_DIR}}/build_linux
           mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
 
@@ -129,9 +171,9 @@ jobs:
         #if: ${{matrix.variant.PACKAGE != 'deb'}}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.os}}
+          name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
           path: |
-            ${{github.workspace}}/build_linux/rabbitremotecontrol*.rpm
-            ${{github.workspace}}/build_linux/rabbitremotecontrol_*.deb
-            ${{github.workspace}}/build_linux/RabbitRemoteControl_*_Setup.zip
-            ${{github.workspace}}/build_linux/update_appimage_*.json
+            ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol*.rpm
+            ${{env.BUILD_DIR}}/build_linux/rabbitremotecontrol_*.deb
+            ${{env.BUILD_DIR}}/build_linux/RabbitRemoteControl_*_Setup.zip
+            ${{env.BUILD_DIR}}/build_linux/update_appimage_*.json
