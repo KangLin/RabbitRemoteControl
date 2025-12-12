@@ -66,6 +66,7 @@ Package management options:
   --package="PKG1 PKG2 ..."         Install specified system packages
   --package-tool=TOOL               Set package manager tool (apt, dnf, brew, pacman, zypper, apk)
   --system_update[=1|0]             Update system package manager
+  --system-update[=1|0]             Update system package manager
 
 Dependency options:
   --base[=1|0]                      Install basic development libraries
@@ -116,7 +117,7 @@ parse_with_getopt() {
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
     
     # Parse arguments using getopt
     # -o: short options
@@ -175,7 +176,7 @@ parse_with_getopt() {
             esac
             shift 2
             ;;
-        --system_update)
+        --system_update|--system-update)
             case "$2" in
                 "")
                     SYSTEM_UPDATE=1
@@ -516,9 +517,9 @@ if [ $BASE_LIBS -eq 1 ]; then
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential packaging-dev equivs debhelper \
-            fakeroot graphviz gettext wget curl git cmake
+            fakeroot graphviz gettext wget curl git cmake doxygen
         # OpenGL
-        package_install libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
+        #package_install libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
         if [ -z "$RabbitRemoteControl_VERSION" ]; then
             package_install xvfb #xpra
@@ -532,13 +533,13 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
             libxkbcommon-dev
         # Base dependency
-        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
+        #package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
         # RabbitCommon dependency
         package_install libcmark-dev cmark
         # VNC dependency
         package_install libpixman-1-dev libjpeg-dev
         # FreeRDP dependency
-        package_install libcjson-dev libusb-1.0-0-dev \
+        package_install libcjson-dev libusb-1.0-0-dev libpcsclite-dev \
             libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
         # PcapPlusPlus dependency
         package_install libpcap-dev
@@ -546,13 +547,13 @@ if [ $BASE_LIBS -eq 1 ]; then
         package_install libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
         package_install libx264-dev libx265-dev
         # Needed by QtMultimedia
-        package_install pipewire
+        #package_install pipewire
         # Needed by QtMultimedia
-        package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
+        #package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
         package_install libfuse-dev libfuse3-dev fuse
         # Other
-        package_install libvncserver-dev
+
         # Needed by qtkeychain
         package_install libsecret-1-dev
     fi
@@ -586,14 +587,15 @@ fi
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo "Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
-        case "$DISTRO_VERSION" in
-            "25.04"|"25.10")
-                DEFAULT_LIBRARIES=
-            ;;
-            "24.04"|"24.10"|*)
-                DEFAULT_LIBRARIES=
-                ;;
-        esac
+        package_install libvncserver-dev
+        if [ $FREERDP -ne 1 ]; then
+            package_install freerdp2-dev
+        fi
+        if [ $LIBSSH -ne 1 ]; then
+            package_install libssh-dev
+        fi
+        # File transfer
+        package_install libcurl4-openssl-dev
         # Qt6
         if [ $QT -ne 1 ]; then
             package_install qmake6 qt6-tools-dev qt6-tools-dev-tools \
@@ -601,18 +603,9 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
                 libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
                 qt6-scxml-dev qt6-multimedia-dev qt6-websockets-dev qt6-serialport-dev \
                 qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
-            package_install $DEFAULT_LIBRARIES
         fi
         if [ $QTKEYCHAIN -ne 1 ]; then
             package_install qtkeychain-qt6-dev
-        fi
-        if [ $FREERDP -ne 1 ]; then
-            package_install freerdp2-dev
-        fi
-        if [ $LIBSSH -ne 1 ]; then
-            package_install libssh-dev
-            # File transfer
-            package_install libcurl4-openssl-dev
         fi
     fi # apt
 
@@ -700,10 +693,13 @@ if [ $FREERDP -eq 1 ]; then
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
+          -DWITH_SAMPLE=OFF \
           -DWITH_SERVER=ON \
+          -DWITH_CLIENT=OFF \
           -DWITH_CLIENT_SDL=OFF \
           -DWITH_KRB5=OFF \
-          -DWITH_MANPAGES=OFF
+          -DWITH_MANPAGES=OFF \
+          -DWITH_WAYLAND=OFF
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
         popd

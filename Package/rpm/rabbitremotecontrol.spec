@@ -18,8 +18,6 @@ BuildRequires: gcc-c++
 BuildRequires: automake autoconf libtool gettext gettext-autopoint
 BuildRequires: cmake desktop-file-utils appstream curl wget
 
-BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel libcurl-devel
-
 # Qt6
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
@@ -27,6 +25,8 @@ BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
 BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
 BuildRequires: qtkeychain-qt6-devel qtermwidget-devel
+
+BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel libcurl-devel
 BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
 BuildRequires: libvncserver-devel libpcap-devel
 BuildRequires: libwinpr-devel freerdp-devel freerdp fuse3-devel

@@ -4,6 +4,7 @@
 *.AppImage
 update*.xml
 update*.json
+debian
 debian/files
 debian/rabbitremotecontrol
 debian/.debhelper/

@@ -329,7 +329,10 @@ show_configuration
 
 if [ $DOCKER -eq 1 ]; then
     echo "Start docker ${DOCKER_IMAGE} ......"
-
+    if [ -z "$DOCKER_IMAGE" ]; then
+        echo "DOCKER_IMAGE is empty. please set --docker-image"
+        exit 1
+    fi
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
     # Generated source archive
@@ -420,19 +423,19 @@ if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage(qt${QT_VERSION}) ......"
     case "$DISTRO" in
     ubuntu)
-        case "$DISTRO_VERSION" in
-            "24.04"|"24.10")
-                depend_para="--qt=${QT_VERSION}"
-                export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
-                export Qt6_DIR=$QT_ROOT
-                export QMAKE=$QT_ROOT/bin/qmake
-                export QT_PLUGIN_PATH=$QT_ROOT/plugins
-                export PATH=$QT_ROOT/libexec:$PATH
-                export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
-                export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
-                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-                ;;
-        esac
+#        case "$DISTRO_VERSION" in
+#            "24.04"|"24.10")
+#                depend_para="--qt=${QT_VERSION}"
+#                export QT_ROOT=${TOOLS_DIR}/qt_`uname -m`
+#                export Qt6_DIR=$QT_ROOT
+#                export QMAKE=$QT_ROOT/bin/qmake
+#                export QT_PLUGIN_PATH=$QT_ROOT/plugins
+#                export PATH=$QT_ROOT/libexec:$PATH
+#                export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
+#                export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
+#                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+#                ;;
+#        esac
         depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain"
         ;;
     fedora)

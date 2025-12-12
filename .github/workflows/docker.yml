@@ -46,6 +46,11 @@ jobs:
             lable: "41"
             os: ubuntu-24.04-arm
 
+          # - PACKAGE: appimage
+          #   image: fedora
+          #   lable: "42"
+          #   os: ubuntu-24.04
+
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
