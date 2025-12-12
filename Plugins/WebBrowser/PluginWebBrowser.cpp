@@ -34,12 +34,12 @@ const QString CPluginWebBrowser::Name() const
 
 const QString CPluginWebBrowser::DisplayName() const
 {
-    return tr("Web browser");
+    return tr("Web browser") + tr("(Experimental)");
 }
 
 const QString CPluginWebBrowser::Description() const
 {
-    return tr("Web browser: Browsing the web(Experiment)");
+    return tr("Web browser: Browsing the web")  + tr("(Experimental)");
 }
 
 const QString CPluginWebBrowser::Version() const

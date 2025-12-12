@@ -266,12 +266,18 @@
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="39"/>
+        <location filename="../../PluginTerminal.cpp" line="36"/>
+        <location filename="../../PluginTerminal.cpp" line="45"/>
+        <source>(Experimental)</source>
+        <translation>(實驗性的)</translation>
+    </message>
+    <message>
+        <location filename="../../PluginTerminal.cpp" line="43"/>
         <source>Terminal: Native(shell) terminal.</source>
         <translation>終端：本地(shell)終端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="40"/>
+        <location filename="../../PluginTerminal.cpp" line="48"/>
         <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
         <translation>它使用 QTermWidget: https://github.com/KangLin/qtermwidget</translation>
     </message>

@@ -136,7 +136,13 @@
         <translation>串口</translation>
     </message>
     <message>
-        <location filename="../../PluginSerialPort.cpp" line="30"/>
+        <location filename="../../PluginSerialPort.cpp" line="27"/>
+        <location filename="../../PluginSerialPort.cpp" line="36"/>
+        <source>(Experimental)</source>
+        <translation>(实验性的)</translation>
+    </message>
+    <message>
+        <location filename="../../PluginSerialPort.cpp" line="34"/>
         <source>Serial port terminal</source>
         <translation>串口终端</translation>
     </message>

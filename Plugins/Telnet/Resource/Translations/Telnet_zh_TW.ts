@@ -46,7 +46,7 @@
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="101"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="152"/>
@@ -142,7 +142,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="35"/>
+        <location filename="../../PluginTelnet.cpp" line="32"/>
+        <source>(Experimental)</source>
+        <translation>(實驗性的)</translation>
+    </message>
+    <message>
+        <location filename="../../PluginTelnet.cpp" line="39"/>
         <source>Telnet: It is not safe. Please use SSH in the production environment.</source>
         <translation>Telnet 是不安全的。請在生成環境中使用 SSH 代替。</translation>
     </message>

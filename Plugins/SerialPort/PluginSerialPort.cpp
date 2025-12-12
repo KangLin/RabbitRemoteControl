@@ -22,12 +22,20 @@ const QString CPluginSerialPort::Name() const
 
 const QString CPluginSerialPort::DisplayName() const
 {
-    return tr("Terminal") + " - " + tr("Serial port");
+    return tr("Terminal") + " - " + tr("Serial port")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QString CPluginSerialPort::Description() const
 {
-    return tr("Serial port terminal");
+    return tr("Serial port terminal")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QIcon CPluginSerialPort::Icon() const

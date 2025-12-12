@@ -796,12 +796,12 @@
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="143"/>
+        <location filename="../../main.cpp" line="132"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="190"/>
+        <location filename="../../main.cpp" line="189"/>
         <source>End</source>
         <translation>结束</translation>
     </message>
