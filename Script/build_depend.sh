@@ -414,7 +414,7 @@ validate_parameters() {
     for action in $SYSTEM_UPDATE $BASE_LIBS $DEFAULT_LIBS $QT $FREERDP $TIGERVNC \
                   $LIBSSH $PCAPPLUSPLUS $RabbitCommon $libdatachannel \
                   $QtService $QTERMWIDGET $QTKEYCHAIN; do
-        if [ "$action" -eq 1 ]; then
+        if [ "$action" = "1" ]; then
             actions=1
             break
         fi
@@ -431,7 +431,7 @@ validate_parameters() {
                LIBSSH PCAPPLUSPLUS RabbitCommon libdatachannel \
                QtService QTERMWIDGET QTKEYCHAIN; do
         local value="${!var}"
-        if [ "$value" -ne 0 ] && [ "$value" -ne 1 ]; then
+        if [ "$value" != "0" ] && [ "$value" != "1" ]; then
             echo "Error: Parameter $var must be 0 or 1" >&2
             exit 1
         fi
