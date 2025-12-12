@@ -32,7 +32,7 @@ const QString CPluginPlayer::Name() const
 
 const QString CPluginPlayer::DisplayName() const
 {
-    return tr("Player");
+    return tr("Player") + tr("(Experimental)");
 }
 
 const QString CPluginPlayer::Description() const
@@ -41,6 +41,7 @@ const QString CPluginPlayer::Description() const
     #ifdef HAVE_QT6_RECORD
     szText += tr(" Record camera or media stream.");
     #endif
+    szText += tr("(Experimental)");
     return szText;
 }
 

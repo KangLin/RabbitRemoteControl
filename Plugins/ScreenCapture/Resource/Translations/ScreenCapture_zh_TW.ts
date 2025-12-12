@@ -59,6 +59,11 @@
         <translation>捕獲屏幕</translation>
     </message>
     <message>
+        <location filename="../../PluginScreenCapture.cpp" line="36"/>
+        <source>(Example)</source>
+        <translation>(示例)</translation>
+    </message>
+    <message>
         <location filename="../../PluginScreenCapture.cpp" line="41"/>
         <source>Capture or record screen and window. This is a sample example.</source>
         <translation>捕獲或錄製屏幕和窗口。這是一個簡單的示例。</translation>

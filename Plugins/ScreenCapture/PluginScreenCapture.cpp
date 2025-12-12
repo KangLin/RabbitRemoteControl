@@ -33,7 +33,7 @@ const QString CPluginScreenCapture::Name() const
 
 const QString CPluginScreenCapture::DisplayName() const
 {
-    return tr("Capture screen");
+    return tr("Capture screen") + tr("(Example)");
 }
 
 const QString CPluginScreenCapture::Description() const

@@ -199,6 +199,12 @@
         <translation>播放器</translation>
     </message>
     <message>
+        <location filename="../../PluginPlayer.cpp" line="35"/>
+        <location filename="../../PluginPlayer.cpp" line="44"/>
+        <source>(Experimental)</source>
+        <translation>(实验性的)</translation>
+    </message>
+    <message>
         <location filename="../../PluginPlayer.cpp" line="40"/>
         <source>Player: play media files or camera.</source>
         <translation>播放器：播放多媒体或摄像头。</translation>
@@ -209,22 +215,22 @@
         <translation> 录制摄像头或多媒体流。</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="68"/>
+        <location filename="../../PluginPlayer.cpp" line="69"/>
         <source>Qt version:</source>
         <translation>Qt 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="69"/>
+        <location filename="../../PluginPlayer.cpp" line="70"/>
         <source>Compile version: </source>
         <translation>编译版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="70"/>
+        <location filename="../../PluginPlayer.cpp" line="71"/>
         <source>Runtime version: </source>
         <translation>运行版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="72"/>
+        <location filename="../../PluginPlayer.cpp" line="73"/>
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>

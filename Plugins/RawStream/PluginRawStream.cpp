@@ -22,12 +22,20 @@ const QString CPluginRawStream::Name() const
 
 const QString CPluginRawStream::DisplayName() const
 {
-    return tr("Terminal") + " - " + tr("Raw stream");
+    return tr("Terminal") + " - " + tr("Raw stream")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QString CPluginRawStream::Description() const
 {
-    return tr("Terminal") + " - " + tr("Raw stream");
+    return tr("Terminal") + " - " + tr("Raw stream")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QIcon CPluginRawStream::Icon() const

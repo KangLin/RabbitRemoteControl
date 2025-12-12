@@ -27,7 +27,11 @@ const QString CPluginTelnet::Name() const
 
 const QString CPluginTelnet::DisplayName() const
 {
-    return tr("Telnet");
+    return tr("Telnet")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QString CPluginTelnet::Description() const

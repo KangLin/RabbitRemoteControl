@@ -29,7 +29,11 @@ const QString CPluginLibSSH::Name() const
 
 const QString CPluginLibSSH::DisplayName() const
 {
-    return tr("Secure Shell(SSH)");
+    return tr("Secure Shell(SSH)")
+#if defined(Q_OS_WIN)
+           + tr("(Experimental)")
+#endif
+        ;
 }
 
 const QString CPluginLibSSH::Description() const

@@ -799,9 +799,15 @@ Do you want to reload the page ?</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
+        <location filename="../../PluginWebBrowser.cpp" line="37"/>
         <location filename="../../PluginWebBrowser.cpp" line="42"/>
-        <source>Web browser: Browsing the web(Experiment)</source>
-        <translation>網頁瀏覽器：瀏覽網頁（實驗性的）</translation>
+        <source>(Experimental)</source>
+        <translation>(實驗性的)</translation>
+    </message>
+    <message>
+        <location filename="../../PluginWebBrowser.cpp" line="42"/>
+        <source>Web browser: Browsing the web</source>
+        <translation>Web 瀏覽器：瀏覽網頁</translation>
     </message>
     <message>
         <location filename="../../PluginWebBrowser.cpp" line="67"/>
