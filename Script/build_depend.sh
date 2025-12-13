@@ -533,7 +533,7 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
             libxkbcommon-dev
         # Base dependency
-        #package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
+        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
         # RabbitCommon dependency
         package_install libcmark-dev cmark
         # VNC dependency
