@@ -279,8 +279,8 @@ parts:
     plugin: cmake
     source: https://github.com/frankosterfeld/qtkeychain.git
     source-type: git
-    #source-tag: 2.2.0
-    source-branch: main
+    source-tag: 0.15.0
+    #source-branch: main
     source-depth: 1
     build-packages:
       - libsecret-1-dev
