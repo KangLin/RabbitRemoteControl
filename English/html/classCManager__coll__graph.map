@@ -1,0 +1,23 @@
+<map id="CManager" name="CManager">
+<area shape="rect" id="Node000001" title="Manage plugins." alt="" coords="63,443,151,468"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="77,5,152,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,34,44,44,26,56,13,72,8,92,8,368,14,393,31,413,53,428,76,440,73,445,50,433,27,416,10,395,3,369,3,91,8,69,22,52,42,39,63,30"/>
+<area shape="rect" id="Node000003" href="$classCHook.html" title="The class is the HOOK abstract class." alt="" coords="74,355,139,380"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="88,41,68,64,61,77,59,92,59,280,62,302,72,322,96,353,92,356,67,325,57,304,53,281,53,91,56,75,63,61,84,37"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="329,80,428,105"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="167,31,338,77,336,83,165,36"/>
+<area shape="rect" id="Node000008" href="$classCDesktopShortcutManager.html" title=" " alt="" coords="77,129,273,155"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="129,42,171,128,167,130,124,44"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,394,109,442,104,442,104,394"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="255,267,393,292"/>
+<area shape="poly" id="edge13_Node000001_Node000004" title=" " alt="" coords="319,307,305,332,265,371,220,403,175,428,138,445,135,440,173,423,217,399,262,367,301,329,314,304"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="242,293,202,303,164,318,138,337,118,356,114,353,134,333,161,314,200,298,241,288"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="373,119,353,179,329,267,324,266,348,178,368,118"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="362,179,505,204"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="394,116,429,177,425,180,390,119"/>
+<area shape="rect" id="Node000007" href="$classCParameterMediaDevices.html" title=" " alt="" coords="529,179,719,204"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="421,108,596,176,594,181,419,113"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="409,215,341,269,337,264,406,211"/>
+<area shape="poly" id="edge9_Node000004_Node000007" title=" " alt="" coords="575,211,459,245,370,269,368,264,458,240,574,206"/>
+<area shape="poly" id="edge11_Node000003_Node000008" title=" " alt="" coords="162,168,146,196,132,229,116,300,110,355,105,354,110,299,127,227,141,194,157,165"/>
+</map>

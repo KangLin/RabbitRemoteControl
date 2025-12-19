@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: ConnectLayerSSHTunnel类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classConnectLayerSSHTunnel-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ConnectLayerSSHTunnel类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 ConnectLayerSSHTunnel 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classConnectLayerSSHTunnel__inherit__graph.png" border="0" usemap="#aConnectLayerSSHTunnel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aConnectLayerSSHTunnel_inherit__map" id="aConnectLayerSSHTunnel_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,184,177"/>
+<area shape="rect" href="classCConnectLayer.html" title="The connect layer class" alt="" coords="35,79,155,104"/>
+<area shape="poly" title=" " alt="" coords="97,118,97,152,92,152,92,118"/>
+<area shape="rect" title=" " alt="" coords="57,5,132,31"/>
+<area shape="poly" title=" " alt="" coords="97,44,97,79,92,79,92,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+ConnectLayerSSHTunnel 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classConnectLayerSSHTunnel__coll__graph.png" border="0" usemap="#aConnectLayerSSHTunnel_coll__map" alt="Collaboration graph"/></div>
+<map name="aConnectLayerSSHTunnel_coll__map" id="aConnectLayerSSHTunnel_coll__map">
+<area shape="rect" title=" " alt="" coords="3905,729,4084,754"/>
+<area shape="rect" href="classCConnectLayer.html" title="The connect layer class" alt="" coords="3677,595,3797,621"/>
+<area shape="poly" title=" " alt="" coords="3776,625,3970,726,3968,731,3774,630"/>
+<area shape="rect" title=" " alt="" coords="5,581,80,606"/>
+<area shape="poly" title=" " alt="" coords="68,613,89,631,116,648,146,662,178,667,1898,667,2059,670,2183,679,2308,690,2468,700,2595,707,2721,707,3002,687,3277,661,3676,613,3677,619,3278,666,3003,693,2721,712,2595,713,2468,705,2307,695,2183,684,2058,675,1898,672,177,672,144,667,113,653,86,635,64,618"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="1853,606,1940,631"/>
+<area shape="poly" title=" " alt="" coords="94,605,135,613,177,616,1679,616,1853,616,1853,621,1679,621,177,621,134,618,93,610"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="953,506,1035,531"/>
+<area shape="poly" title=" " alt="" coords="61,568,83,547,110,526,142,509,177,503,680,503,831,506,952,513,952,519,830,512,680,508,178,508,144,514,113,530,86,551,65,572"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="643,550,714,575"/>
+<area shape="poly" title=" " alt="" coords="94,588,643,562,643,567,94,594"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,173,228,198"/>
+<area shape="poly" title=" " alt="" coords="50,567,171,197,176,199,55,568"/>
+<area shape="rect" href="classCClipboardFreeRDP.html" title=" " alt="" coords="3663,333,3811,358"/>
+<area shape="poly" title=" " alt="" coords="42,567,47,431,54,339,65,243,82,152,105,76,120,46,136,23,155,8,177,3,3412,3,3446,6,3478,14,3509,28,3538,46,3589,91,3634,144,3670,200,3699,254,3733,331,3728,333,3694,256,3666,203,3629,147,3586,94,3535,50,3507,33,3477,19,3445,11,3412,8,178,8,158,13,140,27,124,49,110,78,87,153,70,244,59,339,52,431,47,567"/>
+<area shape="rect" href="classCCursorFreeRDP.html" title=" " alt="" coords="3673,698,3801,723"/>
+<area shape="poly" title=" " alt="" coords="59,617,78,649,104,681,138,707,157,715,178,717,1788,717,1880,721,1951,731,2022,743,2114,753,2328,771,2543,776,2953,776,3133,774,3274,767,3414,753,3593,732,3672,720,3673,725,3594,737,3414,758,3274,772,3133,779,2953,781,2543,781,2328,776,2113,759,2021,748,1950,736,1880,727,1788,723,177,723,156,720,135,712,101,685,73,652,54,620"/>
+<area shape="rect" href="classChannel_1_1CEvent.html" title=" " alt="" coords="252,758,381,783"/>
+<area shape="poly" title=" " alt="" coords="50,619,56,648,66,680,82,711,106,737,139,756,177,768,215,773,252,774,252,779,215,778,176,773,137,761,102,741,78,714,61,682,50,649,44,620"/>
+<area shape="rect" href="classCBackendFreeRDP.html" title=" " alt="" coords="3340,565,3481,590"/>
+<area shape="poly" title=" " alt="" coords="3495,583,3677,600,3676,605,3494,588"/>
+<area shape="rect" href="structCBackendFreeRDP_1_1ClientContext.html" title=" " alt="" coords="3617,446,3856,471"/>
+<area shape="poly" title=" " alt="" coords="3451,556,3479,534,3487,523,3490,512,3494,501,3504,490,3530,475,3558,464,3617,453,3618,458,3560,469,3532,480,3507,494,3498,503,3495,514,3491,525,3483,538,3454,560"/>
+<area shape="poly" title=" " alt="" coords="3456,556,3479,534,3489,513,3492,493,3486,452,3483,432,3483,412,3489,392,3503,373,3539,349,3579,335,3622,330,3662,331,3662,336,3622,336,3581,341,3541,353,3507,377,3493,395,3488,413,3488,432,3492,451,3497,493,3494,515,3483,538,3459,560"/>
+<area shape="poly" title=" " alt="" coords="3456,593,3705,695,3703,700,3454,598"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="2304,617,2444,642"/>
+<area shape="poly" title=" " alt="" coords="2458,626,2681,624,3105,624,3175,620,3244,611,3361,587,3362,593,3245,616,3175,626,3105,629,2681,629,2458,631"/>
+<area shape="poly" title=" " alt="" coords="1954,617,2304,625,2304,630,1954,623"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="2131,490,2262,515"/>
+<area shape="poly" title=" " alt="" coords="1953,616,2020,608,2055,600,2088,588,2117,572,2144,552,2183,513,2186,517,2147,556,2120,576,2090,593,2056,605,2020,614,1954,621"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="2141,718,2252,743"/>
+<area shape="poly" title=" " alt="" coords="1929,636,1984,667,2066,696,2142,717,2140,722,2064,701,1982,672,1926,641"/>
+<area shape="rect" href="classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="3035,514,3172,539"/>
+<area shape="poly" title=" " alt="" coords="3134,545,3167,564,3205,579,3239,585,3273,588,3340,585,3340,591,3273,593,3238,590,3203,584,3165,569,3132,550"/>
+<area shape="poly" title=" " alt="" coords="1049,507,1261,477,1586,438,1775,419,1973,404,2175,393,2373,389,2812,389,2844,392,2871,398,2913,420,2953,450,3004,484,3028,499,3060,511,3058,516,3025,504,3001,489,2950,455,2910,424,2869,403,2844,397,2812,395,2373,395,2175,399,1974,409,1775,425,1586,443,1261,482,1050,513"/>
+<area shape="poly" title=" " alt="" coords="1049,519,1163,525,1296,528,1788,528,1975,521,2131,507,2131,512,1975,526,1788,533,1296,533,1163,530,1049,525"/>
+<area shape="poly" title=" " alt="" coords="727,556,900,536,952,526,953,531,900,541,728,562"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="2745,230,2876,255"/>
+<area shape="poly" title=" " alt="" coords="2840,262,2901,307,2932,324,2958,334,2982,347,3005,372,3014,390,3018,407,3015,439,3014,469,3018,484,3029,500,3045,512,3041,516,3025,503,3014,486,3009,470,3010,439,3012,408,3009,392,3000,375,2978,351,2955,339,2929,328,2899,312,2837,266"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="3027,465,3180,490"/>
+<area shape="poly" title=" " alt="" coords="2890,244,2949,258,2978,271,3004,287,3026,307,3044,330,3073,381,3091,428,3102,464,3097,465,3086,430,3068,383,3040,333,3022,311,3001,291,2975,275,2947,263,2889,250"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1088,173,1239,198"/>
+<area shape="poly" title=" " alt="" coords="1209,165,1304,137,1361,127,1419,123,2545,123,2584,126,2622,135,2694,164,2753,198,2795,227,2792,232,2751,203,2691,168,2621,140,2583,131,2545,128,1419,128,1362,132,1305,143,1210,171"/>
+<area shape="poly" title=" " alt="" coords="1137,158,1145,149,1163,146,1179,148,1188,155,1191,164,1186,174,1182,171,1186,164,1184,158,1177,153,1163,151,1148,154,1141,161"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1617,265,1739,290"/>
+<area shape="poly" title=" " alt="" coords="1253,196,1412,221,1594,255,1627,262,1626,267,1593,260,1411,226,1252,201"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1356,265,1484,290"/>
+<area shape="poly" title=" " alt="" coords="1194,204,1227,225,1264,243,1310,257,1356,267,1355,272,1309,263,1262,248,1224,229,1191,208"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="2477,214,2611,239"/>
+<area shape="poly" title=" " alt="" coords="1252,178,1419,173,2198,173,2278,177,2358,187,2490,211,2489,217,2357,192,2278,182,2198,179,1419,179,1253,183"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1835,366,1959,391"/>
+<area shape="poly" title=" " alt="" coords="1187,206,1221,238,1264,268,1308,288,1357,299,1470,324,1558,340,1763,365,1835,372,1834,377,1762,371,1557,345,1469,330,1355,304,1307,293,1261,273,1218,242,1184,210"/>
+<area shape="poly" title=" " alt="" coords="205,162,251,136,293,122,327,115,405,107,571,82,644,79,738,85,848,102,955,125,1122,170,1120,175,954,131,847,108,737,91,644,84,571,87,406,112,327,121,294,127,253,141,208,167"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="761,173,900,198"/>
+<area shape="poly" title=" " alt="" coords="242,183,761,183,761,188,242,188"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="429,122,572,147"/>
+<area shape="poly" title=" " alt="" coords="238,167,252,164,344,149,429,139,429,144,345,154,252,169,239,172"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="405,223,596,249"/>
+<area shape="poly" title=" " alt="" coords="239,199,252,201,405,224,405,229,252,207,238,204"/>
+<area shape="poly" title=" " alt="" coords="914,183,1088,183,1088,188,914,188"/>
+<area shape="poly" title=" " alt="" coords="586,124,796,107,1092,86,1435,69,1785,61,2545,61,2590,67,2632,82,2671,103,2707,129,2766,185,2802,228,2798,232,2762,188,2704,134,2668,108,2630,87,2588,72,2545,67,1785,67,1436,74,1092,91,796,112,586,130"/>
+<area shape="poly" title=" " alt="" coords="586,145,738,168,761,172,761,177,737,173,585,150"/>
+<area shape="poly" title=" " alt="" coords="609,232,673,226,737,216,800,196,801,201,738,221,673,232,610,237"/>
+<area shape="poly" title=" " alt="" coords="1752,273,2620,248,2745,243,2745,248,2620,253,1753,278"/>
+<area shape="poly" title=" " alt="" coords="1742,259,1762,256,1966,236,2167,226,2345,222,2477,223,2477,228,2345,228,2168,231,1966,241,1763,261,1743,265"/>
+<area shape="poly" title=" " alt="" coords="1703,297,1731,321,1764,342,1799,356,1835,366,1834,371,1797,361,1761,346,1728,325,1700,301"/>
+<area shape="rect" href="classCChannelSSHTunnel.html" title="SSH 隧道" alt="" coords="2468,665,2620,690"/>
+<area shape="poly" title=" " alt="" coords="1753,290,1860,316,1994,355,2140,408,2212,440,2281,475,2359,524,2431,578,2531,662,2527,667,2428,582,2356,528,2279,480,2210,444,2138,413,1993,360,1859,321,1752,295"/>
+<area shape="poly" title=" " alt="" coords="1498,275,1617,275,1617,280,1498,280"/>
+<area shape="poly" title=" " alt="" coords="2626,229,2745,236,2745,241,2625,234"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="2113,327,2280,353"/>
+<area shape="poly" title=" " alt="" coords="2250,320,2443,257,2504,237,2506,242,2445,263,2252,325"/>
+<area shape="poly" title=" " alt="" coords="1972,362,1982,360,2113,345,2113,350,1983,365,1973,367"/>
+<area shape="poly" title=" " alt="" coords="1924,399,2001,474,2091,574,2150,654,2190,716,2185,719,2145,657,2087,578,1997,478,1920,403"/>
+<area shape="poly" title=" " alt="" coords="2276,499,2542,496,2876,499,2940,499,3003,504,3047,511,3046,517,3002,509,2939,505,2876,504,2542,502,2276,504"/>
+<area shape="rect" title=" " alt="" coords="1858,467,1935,493"/>
+<area shape="poly" title=" " alt="" coords="1949,481,2131,495,2131,500,1949,487"/>
+<area shape="rect" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="2760,563,2861,589"/>
+<area shape="poly" title=" " alt="" coords="2874,564,3002,544,3041,537,3042,542,3003,549,2875,570"/>
+<area shape="rect" title=" " alt="" coords="2505,563,2583,589"/>
+<area shape="poly" title=" " alt="" coords="2598,573,2760,573,2760,579,2598,579"/>
+<area shape="rect" href="classCFrmScroll.html" title="The scroll form class" alt="" coords="2765,514,2857,539"/>
+<area shape="poly" title=" " alt="" coords="2870,524,3035,524,3035,529,2870,529"/>
+<area shape="rect" title=" " alt="" coords="2495,514,2593,539"/>
+<area shape="poly" title=" " alt="" coords="2607,524,2764,524,2764,529,2607,529"/>
+<area shape="poly" title=" " alt="" coords="3689,479,3448,567,3446,562,3687,474"/>
+<area shape="poly" title=" " alt="" coords="3194,488,3379,518,3594,563,3698,593,3696,598,3593,568,3378,524,3193,493"/>
+<area shape="poly" title=" " alt="" coords="3174,494,3182,499,3190,509,3194,518,3198,526,3206,534,3228,544,3262,553,3340,566,3339,572,3261,558,3227,549,3202,538,3194,529,3189,520,3186,511,3178,503,3171,498"/>
+<area shape="poly" title=" " alt="" coords="3680,365,3579,400,3535,421,3507,442,3496,465,3495,487,3495,511,3484,538,3466,555,3446,567,3443,562,3463,550,3479,534,3489,510,3490,487,3491,463,3503,438,3533,417,3577,395,3678,360"/>
+<area shape="poly" title=" " alt="" coords="3669,728,3630,733,3588,733,3545,727,3504,712,3470,686,3444,652,3425,618,3414,591,3419,589,3430,616,3448,649,3474,682,3507,707,3546,721,3588,727,3630,727,3669,723"/>
+<area shape="poly" title=" " alt="" coords="2629,690,2804,717,3042,747,3177,759,3316,768,3456,773,3593,771,3759,761,3905,748,3906,753,3759,766,3593,776,3456,778,3315,774,3176,765,3042,752,2803,723,2628,695"/>
+<area shape="poly" title=" " alt="" coords="2265,718,2467,686,2468,692,2266,723"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="1855,809,1939,834"/>
+<area shape="poly" title=" " alt="" coords="1951,804,2089,764,2158,741,2160,746,2090,769,1953,809"/>
+<area shape="rect" title=" " alt="" coords="1633,809,1723,834"/>
+<area shape="poly" title=" " alt="" coords="1737,819,1854,819,1854,824,1737,824"/>
+<area shape="poly" title=" " alt="" coords="395,768,677,768,1788,768,1886,765,1982,757,2140,737,2141,742,1983,762,1886,770,1788,773,677,773,395,773"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:adaca452dd7093286f9ced4d200f81e10" id="r_adaca452dd7093286f9ced4d200f81e10"><td class="memItemLeft" align="right" valign="top"><a id="adaca452dd7093286f9ced4d200f81e10" name="adaca452dd7093286f9ced4d200f81e10"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ConnectLayerSSHTunnel</b> (<a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *connect)</td></tr>
+<tr class="separator:adaca452dd7093286f9ced4d200f81e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCConnectLayer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCConnectLayer')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCConnectLayer.html">CConnectLayer</a></td></tr>
+<tr class="memitem:a1e23f56379d74ee056abee55a92452e4 inherit pub_methods_classCConnectLayer" id="r_a1e23f56379d74ee056abee55a92452e4"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CConnectLayer</b> (<a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *pOperate)</td></tr>
+<tr class="separator:a1e23f56379d74ee056abee55a92452e4 inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96793ce31b6e81657147fd117eafe4a7 inherit pub_methods_classCConnectLayer" id="r_a96793ce31b6e81657147fd117eafe4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a96793ce31b6e81657147fd117eafe4a7">Initialize</a> (rdpContext *context)</td></tr>
+<tr class="separator:a96793ce31b6e81657147fd117eafe4a7 inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8431ac024afc2a5f083d14256e1ea72e inherit pub_methods_classCConnectLayer" id="r_a8431ac024afc2a5f083d14256e1ea72e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a8431ac024afc2a5f083d14256e1ea72e">Clean</a> ()</td></tr>
+<tr class="separator:a8431ac024afc2a5f083d14256e1ea72e inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a507cba0b4726063a812a35ce90053881" id="r_a507cba0b4726063a812a35ce90053881"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a507cba0b4726063a812a35ce90053881">OnInit</a> (rdpContext *context) override</td></tr>
+<tr class="separator:a507cba0b4726063a812a35ce90053881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed60d0995e8127ebe0e6a5ddecef878c" id="r_aed60d0995e8127ebe0e6a5ddecef878c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#aed60d0995e8127ebe0e6a5ddecef878c">OnClean</a> () override</td></tr>
+<tr class="separator:aed60d0995e8127ebe0e6a5ddecef878c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ac785e6c5aa8ec4e0a24151b02c3f5" id="r_a68ac785e6c5aa8ec4e0a24151b02c3f5"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a68ac785e6c5aa8ec4e0a24151b02c3f5">OnLayerRead</a> (void *data, int bytes) override</td></tr>
+<tr class="separator:a68ac785e6c5aa8ec4e0a24151b02c3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0262c14d712d5a6a54582e9cb3ed7e18" id="r_a0262c14d712d5a6a54582e9cb3ed7e18"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a0262c14d712d5a6a54582e9cb3ed7e18">OnLayerWrite</a> (const void *data, int bytes) override</td></tr>
+<tr class="separator:a0262c14d712d5a6a54582e9cb3ed7e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61e49c8e2c0421b370d219dd4b6eb111" id="r_a61e49c8e2c0421b370d219dd4b6eb111"><td class="memItemLeft" align="right" valign="top">virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a61e49c8e2c0421b370d219dd4b6eb111">OnLayerWait</a> (BOOL waitWrite, DWORD timeout) override</td></tr>
+<tr class="separator:a61e49c8e2c0421b370d219dd4b6eb111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eec497747745c8eb37d2a404e0249b4" id="r_a3eec497747745c8eb37d2a404e0249b4"><td class="memItemLeft" align="right" valign="top">virtual HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a3eec497747745c8eb37d2a404e0249b4">OnLayerGetEvent</a> () override</td></tr>
+<tr class="separator:a3eec497747745c8eb37d2a404e0249b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a16b5a776c6385ce170f50dc0aa695e77" id="r_a16b5a776c6385ce170f50dc0aa695e77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCChannelSSHTunnel.html">CChannelSSHTunnel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#a16b5a776c6385ce170f50dc0aa695e77">m_pChannelSSH</a></td></tr>
+<tr class="separator:a16b5a776c6385ce170f50dc0aa695e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c0f0006a55dc1cbafcb1e77cb1795a" id="r_aa8c0f0006a55dc1cbafcb1e77cb1795a"><td class="memItemLeft" align="right" valign="top">HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConnectLayerSSHTunnel.html#aa8c0f0006a55dc1cbafcb1e77cb1795a">m_hSshSocket</a></td></tr>
+<tr class="separator:aa8c0f0006a55dc1cbafcb1e77cb1795a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classCConnectLayer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCConnectLayer')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCConnectLayer.html">CConnectLayer</a></td></tr>
+<tr class="memitem:a727cfb2fabc5395d748acd0692211bff inherit pro_attribs_classCConnectLayer" id="r_a727cfb2fabc5395d748acd0692211bff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a727cfb2fabc5395d748acd0692211bff">m_pOperate</a></td></tr>
+<tr class="separator:a727cfb2fabc5395d748acd0692211bff inherit pro_attribs_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4dea98746059883e9576edd5bd7fcdc inherit pro_attribs_classCConnectLayer" id="r_af4dea98746059883e9576edd5bd7fcdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFreeRDP.html">CParameterFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#af4dea98746059883e9576edd5bd7fcdc">m_pParameter</a></td></tr>
+<tr class="separator:af4dea98746059883e9576edd5bd7fcdc inherit pro_attribs_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html">ConnectLayerSSHTunnel.h</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a20774cb8260c0e58ffcc388fa0f60d0b" name="a20774cb8260c0e58ffcc388fa0f60d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20774cb8260c0e58ffcc388fa0f60d0b">&#9670;&#160;</a></span>~ConnectLayerSSHTunnel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ConnectLayerSSHTunnel::~ConnectLayerSSHTunnel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aed60d0995e8127ebe0e6a5ddecef878c" name="aed60d0995e8127ebe0e6a5ddecef878c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed60d0995e8127ebe0e6a5ddecef878c">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConnectLayerSSHTunnel::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a507cba0b4726063a812a35ce90053881" name="a507cba0b4726063a812a35ce90053881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a507cba0b4726063a812a35ce90053881">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConnectLayerSSHTunnel::OnInit </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3eec497747745c8eb37d2a404e0249b4" name="a3eec497747745c8eb37d2a404e0249b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eec497747745c8eb37d2a404e0249b4">&#9670;&#160;</a></span>OnLayerGetEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HANDLE ConnectLayerSSHTunnel::OnLayerGetEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a68ac785e6c5aa8ec4e0a24151b02c3f5" name="a68ac785e6c5aa8ec4e0a24151b02c3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ac785e6c5aa8ec4e0a24151b02c3f5">&#9670;&#160;</a></span>OnLayerRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConnectLayerSSHTunnel::OnLayerRead </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a61e49c8e2c0421b370d219dd4b6eb111" name="a61e49c8e2c0421b370d219dd4b6eb111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61e49c8e2c0421b370d219dd4b6eb111">&#9670;&#160;</a></span>OnLayerWait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL ConnectLayerSSHTunnel::OnLayerWait </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>waitWrite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0262c14d712d5a6a54582e9cb3ed7e18" name="a0262c14d712d5a6a54582e9cb3ed7e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0262c14d712d5a6a54582e9cb3ed7e18">&#9670;&#160;</a></span>OnLayerWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConnectLayerSSHTunnel::OnLayerWrite </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa8c0f0006a55dc1cbafcb1e77cb1795a" name="aa8c0f0006a55dc1cbafcb1e77cb1795a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c0f0006a55dc1cbafcb1e77cb1795a">&#9670;&#160;</a></span>m_hSshSocket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HANDLE ConnectLayerSSHTunnel::m_hSshSocket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html">ConnectLayerSSHTunnel.h</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16b5a776c6385ce170f50dc0aa695e77" name="a16b5a776c6385ce170f50dc0aa695e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16b5a776c6385ce170f50dc0aa695e77">&#9670;&#160;</a></span>m_pChannelSSH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCChannelSSHTunnel.html">CChannelSSHTunnel</a>* ConnectLayerSSHTunnel::m_pChannelSSH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html">ConnectLayerSSHTunnel.h</a> 第 <a class="el" href="ConnectLayerSSHTunnel_8h_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ConnectLayerSSHTunnel_8h_source.html">ConnectLayerSSHTunnel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ConnectLayerSSHTunnel_8cpp_source.html">ConnectLayerSSHTunnel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<map id="CParameterPluginUI" name="CParameterPluginUI">
+<area shape="rect" id="Node000001" title=" " alt="" coords="61,331,213,356"/>
+<area shape="rect" id="Node000002" href="$classCParameterUI.html" title="The parameter UI interface." alt="" coords="7,243,119,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,277,128,328,124,332,80,280"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,84,180"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="53,193,63,242,58,243,47,194"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="153,243,291,268"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,280,150,332,147,328,199,276"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="182,80,281,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="193,114,169,132,150,156,146,168,147,180,160,204,181,224,204,240,201,245,178,228,156,207,142,181,141,167,145,153,165,128,190,110"/>
+<area shape="rect" id="Node000007" href="$classCParameterRecord.html" title=" " alt="" coords="160,155,303,180"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="234,120,234,154,229,154,229,120"/>
+<area shape="rect" id="Node000008" href="$classCParameterMediaDevices.html" title=" " alt="" coords="327,155,517,180"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="275,108,393,152,391,157,273,113"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="194,5,269,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="234,45,234,80,229,80,229,45"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="231,194,226,242,221,242,226,194"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="384,188,250,245,248,240,381,183"/>
+</map>

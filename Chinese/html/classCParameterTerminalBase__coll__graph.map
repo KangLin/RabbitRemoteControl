@@ -1,0 +1,22 @@
+<map id="CParameterTerminalBase" name="CParameterTerminalBase">
+<area shape="rect" id="Node000001" title="终端基本参数" alt="" coords="155,416,342,441"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="23,341,173,367"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,370,226,414,224,418,133,375"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="188,346,200,354,192,361,174,363,173,358,190,356,195,354,186,351"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="49,80,147,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="59,114,30,131,18,142,10,156,8,167,10,180,8,231,10,252,19,277,32,297,48,314,81,339,77,343,44,318,28,300,14,280,5,253,3,231,5,180,3,167,5,154,14,139,27,127,56,109"/>
+<area shape="rect" id="Node000005" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="29,253,167,279"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="61,114,41,127,24,143,15,160,17,179,29,202,46,221,82,251,79,255,43,225,25,205,12,181,10,159,20,139,38,123,58,109"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="27,155,169,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="101,120,101,154,95,154,95,120"/>
+<area shape="rect" id="Node000007" href="$classCParameterMediaDevices.html" title=" " alt="" coords="193,155,384,180"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="142,108,260,152,258,157,140,113"/>
+<area shape="rect" id="Node000008" href="$classCParameterTerminal.html" title=" " alt="" coords="338,204,493,229"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="161,97,296,116,357,132,381,141,399,153,408,164,413,178,418,203,413,204,408,179,403,167,395,157,379,146,356,137,295,121,161,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="61,5,135,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,45,101,80,95,80,95,45"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="101,293,101,341,95,341,95,293"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="101,194,101,253,95,253,95,194"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="248,188,210,206,174,232,126,256,124,251,171,227,207,202,246,183"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="400,242,260,417,256,414,396,239"/>
+</map>

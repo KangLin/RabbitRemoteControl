@@ -1,0 +1,261 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="556,5,687,31"/>
+<area shape="rect" id="Node000001" href="$classCBackendVnc.html" title=" " alt="" coords="826,165,937,191"/>
+<area shape="poly" id="edge86_Node000000_Node000001" title=" " alt="" coords="701,28,731,40,776,69,816,103,872,163,868,167,813,107,773,73,728,44,699,33"/>
+<area shape="rect" id="Node000126" href="$classCWakeOnLan.html" title=" " alt="" coords="51,5,158,31"/>
+<area shape="rect" id="Node000125" href="$classCWakeOnLanQt.html" title=" " alt="" coords="297,5,420,31"/>
+<area shape="poly" id="edge87_Node000126_Node000125" title=" " alt="" coords="172,15,297,15,297,21,172,21"/>
+<area shape="rect" id="Node000029" title=" " alt="" coords="13,55,196,80"/>
+<area shape="rect" id="Node000028" href="$classCFramePixelBuffer.html" title=" " alt="" coords="287,55,430,80"/>
+<area shape="poly" id="edge88_Node000029_Node000028" title=" " alt="" coords="210,65,287,65,287,70,210,70"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="5,2299,204,2324"/>
+<area shape="rect" id="Node000024" href="$classCDesktopShortcutsManager.html" title=" " alt="" coords="257,2275,460,2300"/>
+<area shape="poly" id="edge89_Node000025_Node000024" title=" " alt="" coords="218,2298,257,2294,257,2300,218,2303"/>
+<area shape="rect" id="Node000026" href="$classCNativeEventFilterUnix.html" title=" " alt="" coords="271,2324,446,2349"/>
+<area shape="poly" id="edge90_Node000025_Node000026" title=" " alt="" coords="218,2320,271,2325,271,2331,218,2325"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="67,868,142,893"/>
+<area shape="poly" id="edge210_Node000009_Node000125" title=" " alt="" coords="104,854,112,690,122,572,135,445,154,318,179,201,210,105,229,68,250,40,272,25,296,17,298,22,274,30,254,44,234,71,215,107,184,203,159,319,141,446,127,573,118,690,109,854"/>
+<area shape="poly" id="edge114_Node000009_Node000028" title=" " alt="" coords="104,854,114,698,138,468,157,349,182,240,212,151,230,116,250,89,267,77,286,69,288,74,269,82,254,93,235,119,217,153,187,242,162,350,144,469,120,699,110,854"/>
+<area shape="poly" id="edge112_Node000009_Node000024" title=" " alt="" coords="110,907,122,1182,150,1614,169,1836,193,2032,222,2182,237,2232,254,2262,267,2272,263,2276,250,2265,233,2234,217,2183,188,2033,164,1836,144,1615,117,1182,104,907"/>
+<area shape="rect" id="Node000010" href="$classCArp.html" title=" " alt="" coords="332,351,385,376"/>
+<area shape="poly" id="edge91_Node000009_Node000010" title=" " alt="" coords="103,854,106,764,112,704,124,638,142,569,168,502,204,440,250,385,269,373,291,365,332,360,332,365,292,370,271,377,254,389,208,443,173,504,147,571,129,639,117,704,111,764,108,854"/>
+<area shape="rect" id="Node000006" href="$classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="315,400,402,425"/>
+<area shape="poly" id="edge92_Node000009_Node000006" title=" " alt="" coords="104,854,110,772,117,718,130,659,149,598,174,538,207,483,250,435,281,417,314,410,315,415,283,422,254,439,212,486,179,541,154,600,135,660,123,719,115,773,109,854"/>
+<area shape="rect" id="Node000011" href="$classCCaptureFullPage.html" title=" " alt="" coords="291,449,427,475"/>
+<area shape="poly" id="edge100_Node000009_Node000011" title=" " alt="" coords="105,854,114,780,137,680,155,627,180,574,211,526,250,484,269,472,289,464,291,469,271,477,254,488,215,529,184,577,160,629,142,681,119,781,110,854"/>
+<area shape="rect" id="Node000012" href="$classCClipboardFreeRDP.html" title=" " alt="" coords="285,499,433,524"/>
+<area shape="poly" id="edge101_Node000009_Node000012" title=" " alt="" coords="106,854,118,789,143,702,162,656,186,611,215,569,250,533,283,516,286,521,254,537,219,573,190,613,167,658,148,703,123,790,112,855"/>
+<area shape="rect" id="Node000013" href="$classCConnectLayer.html" title="The connect layer class" alt="" coords="299,548,419,573"/>
+<area shape="poly" id="edge102_Node000009_Node000013" title=" " alt="" coords="108,854,123,797,150,723,169,684,192,647,219,612,250,583,273,570,298,562,299,567,275,574,254,587,223,616,196,650,174,687,155,725,128,798,114,855"/>
+<area shape="rect" id="Node000016" href="$classCConnection.html" title=" " alt="" coords="307,2225,411,2251"/>
+<area shape="poly" id="edge105_Node000009_Node000016" title=" " alt="" coords="110,907,123,1172,151,1589,171,1803,195,1992,223,2135,238,2183,254,2212,278,2229,307,2236,306,2241,276,2233,250,2216,233,2186,218,2137,190,1992,166,1803,146,1589,117,1172,104,907"/>
+<area shape="rect" id="Node000018" href="$classCCursorFreeRDP.html" title=" " alt="" coords="295,597,423,623"/>
+<area shape="poly" id="edge106_Node000009_Node000018" title=" " alt="" coords="111,854,129,806,157,746,198,684,222,656,250,632,271,620,293,613,295,618,273,625,254,636,226,660,202,687,162,748,134,808,116,856"/>
+<area shape="rect" id="Node000019" href="$classCDesktop.html" title=" " alt="" coords="316,647,401,672"/>
+<area shape="poly" id="edge107_Node000009_Node000019" title=" " alt="" coords="115,854,135,815,165,768,204,721,251,681,282,667,315,659,316,665,284,672,253,686,207,725,169,771,140,818,120,857"/>
+<area shape="rect" id="Node000023" href="$classCDesktopShortcutManager.html" title=" " alt="" coords="261,696,457,721"/>
+<area shape="poly" id="edge111_Node000009_Node000023" title=" " alt="" coords="120,855,173,792,210,759,251,730,277,719,279,724,253,735,213,763,177,796,124,859"/>
+<area shape="rect" id="Node000027" href="$classCFileTransfer.html" title=" " alt="" coords="305,745,412,771"/>
+<area shape="poly" id="edge113_Node000009_Node000027" title=" " alt="" coords="129,857,183,818,251,780,304,763,306,768,253,784,186,822,133,862"/>
+<area shape="rect" id="Node000030" href="$classCHook.html" title="The class is the HOOK abstract class." alt="" coords="326,795,391,820"/>
+<area shape="poly" id="edge115_Node000009_Node000030" title=" " alt="" coords="152,861,251,829,325,811,326,816,253,834,154,866"/>
+<area shape="rect" id="Node000033" href="$classCICE.html" title="提供管理、访问ICE的一个单例对象" alt="" coords="333,844,385,869"/>
+<area shape="poly" id="edge118_Node000009_Node000033" title=" " alt="" coords="155,873,332,856,333,862,156,879"/>
+<area shape="rect" id="Node000034" href="$classCIceSignal.html" title="ICE 信令接口类" alt="" coords="313,893,404,919"/>
+<area shape="poly" id="edge119_Node000009_Node000034" title=" " alt="" coords="156,883,313,899,313,904,155,888"/>
+<area shape="rect" id="Node000037" href="$classCLibDataChannelLogCallback.html" title=" " alt="" coords="252,943,465,968"/>
+<area shape="poly" id="edge122_Node000009_Node000037" title=" " alt="" coords="155,896,253,927,301,940,300,945,251,933,153,901"/>
+<area shape="rect" id="Node000038" href="$classCManageConnect.html" title="管理连接。此类仅用于 CPluginThread" alt="" coords="291,992,427,1017"/>
+<area shape="poly" id="edge123_Node000009_Node000038" title=" " alt="" coords="133,900,186,939,253,977,291,990,290,995,251,982,184,944,130,904"/>
+<area shape="rect" id="Node000039" href="$classCManagePlugins.html" title="管理插件" alt="" coords="293,1041,424,1067"/>
+<area shape="poly" id="edge124_Node000009_Node000039" title=" " alt="" coords="125,903,178,965,213,999,253,1026,294,1042,292,1047,251,1031,210,1003,174,969,121,906"/>
+<area shape="rect" id="Node000040" href="$classCManager.html" title="管理插件" alt="" coords="315,1091,403,1116"/>
+<area shape="poly" id="edge125_Node000009_Node000040" title=" " alt="" coords="120,905,140,943,170,990,208,1037,253,1076,284,1090,315,1097,314,1102,282,1095,251,1080,204,1040,165,993,135,946,115,907"/>
+<area shape="rect" id="Node000041" href="$classCMultimediaRecord.html" title=" " alt="" coords="283,1140,434,1165"/>
+<area shape="poly" id="edge126_Node000009_Node000041" title=" " alt="" coords="116,906,134,954,162,1014,202,1074,226,1102,253,1125,284,1140,282,1145,251,1130,223,1105,198,1078,158,1016,129,956,111,908"/>
+<area shape="rect" id="Node000042" href="$classCOperate.html" title="操作接口。" alt="" coords="317,1189,400,1215"/>
+<area shape="poly" id="edge127_Node000009_Node000042" title=" " alt="" coords="114,906,128,963,155,1036,174,1074,196,1111,223,1145,254,1174,284,1191,318,1198,317,1203,283,1196,250,1179,219,1149,192,1114,169,1077,150,1038,123,964,109,908"/>
+<area shape="rect" id="Node000058" href="$classCParameter.html" title="参数接口" alt="" coords="309,1313,408,1339"/>
+<area shape="poly" id="edge143_Node000009_Node000058" title=" " alt="" coords="115,906,134,966,163,1047,204,1138,254,1224,299,1275,342,1311,338,1315,295,1279,250,1228,199,1140,158,1049,129,967,110,907"/>
+<area shape="rect" id="Node000086" href="$classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。" alt="" coords="299,1363,418,1388"/>
+<area shape="poly" id="edge171_Node000009_Node000086" title=" " alt="" coords="108,907,113,992,120,1049,132,1112,151,1176,176,1239,210,1297,254,1348,275,1362,300,1370,298,1375,273,1367,250,1352,206,1300,171,1241,146,1178,127,1113,115,1050,108,993,103,907"/>
+<area shape="rect" id="Node000087" href="$classCParameterService.html" title=" " alt="" coords="285,1560,432,1585"/>
+<area shape="poly" id="edge172_Node000009_Node000087" title=" " alt="" coords="113,906,131,991,160,1114,201,1256,254,1398,278,1446,305,1492,350,1558,346,1561,301,1495,274,1449,250,1400,196,1258,155,1115,125,992,108,907"/>
+<area shape="rect" id="Node000092" href="$classCPasswordStore.html" title=" " alt="" coords="295,1609,422,1635"/>
+<area shape="poly" id="edge177_Node000009_Node000092" title=" " alt="" coords="110,907,122,1050,149,1258,168,1364,192,1462,220,1542,236,1572,254,1595,273,1608,296,1616,294,1621,271,1613,250,1599,232,1575,215,1544,186,1463,163,1365,143,1258,117,1051,105,908"/>
+<area shape="rect" id="Node000093" href="$classCPlugin.html" title="插件接口" alt="" coords="323,1979,394,2004"/>
+<area shape="poly" id="edge178_Node000009_Node000093" title=" " alt="" coords="113,906,163,1205,205,1423,255,1645,311,1844,355,1977,350,1979,306,1845,249,1647,199,1424,157,1206,107,907"/>
+<area shape="rect" id="Node000108" href="$classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="299,2028,418,2053"/>
+<area shape="poly" id="edge193_Node000009_Node000108" title=" " alt="" coords="108,907,108,1122,113,1281,123,1456,140,1631,166,1793,184,1864,204,1926,227,1977,254,2015,275,2030,300,2037,298,2042,272,2034,250,2019,223,1979,199,1928,178,1865,161,1794,135,1632,117,1456,107,1281,103,1122,103,907"/>
+<area shape="rect" id="Node000114" href="$classCRecordVideo.html" title="Record video to file" alt="" coords="302,2077,415,2103"/>
+<area shape="poly" id="edge199_Node000009_Node000114" title=" " alt="" coords="110,907,125,1146,156,1515,176,1704,199,1870,226,1997,240,2039,254,2064,276,2080,302,2087,301,2092,274,2084,250,2068,235,2041,220,1998,194,1871,171,1704,150,1516,120,1146,105,907"/>
+<area shape="rect" id="Node000115" href="$classCRemoteFileSystem.html" title=" " alt="" coords="281,2127,436,2152"/>
+<area shape="poly" id="edge200_Node000009_Node000115" title=" " alt="" coords="110,907,124,1155,154,1540,174,1737,198,1911,225,2043,239,2087,254,2114,267,2124,282,2131,280,2136,264,2129,250,2117,234,2089,219,2044,193,1912,169,1737,149,1540,119,1155,105,907"/>
+<area shape="rect" id="Node000116" href="$classCScreen.html" title="The CScreen class." alt="" coords="321,2176,396,2201"/>
+<area shape="poly" id="edge201_Node000009_Node000116" title=" " alt="" coords="110,907,124,1163,153,1565,173,1770,196,1951,224,2089,239,2135,254,2163,268,2174,285,2182,322,2188,321,2193,284,2187,265,2179,250,2166,234,2137,218,2090,191,1952,167,1770,147,1565,118,1164,105,907"/>
+<area shape="rect" id="Node000119" href="$classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="319,104,398,129"/>
+<area shape="poly" id="edge204_Node000009_Node000119" title=" " alt="" coords="105,854,116,707,141,492,161,381,185,279,214,196,231,163,250,139,265,127,283,119,319,113,320,118,284,125,268,132,254,143,236,166,219,198,190,280,166,382,147,492,121,707,110,854"/>
+<area shape="rect" id="Node000124" href="$classCStatsAppUsage.html" title=" " alt="" coords="293,153,424,179"/>
+<area shape="poly" id="edge209_Node000009_Node000124" title=" " alt="" coords="105,854,118,716,145,515,164,412,188,318,216,241,232,211,250,188,270,174,292,166,294,171,272,179,254,192,237,214,221,243,193,320,169,414,150,516,123,716,111,855"/>
+<area shape="rect" id="Node000127" href="$classChannel_1_1CEvent.html" title=" " alt="" coords="294,203,423,228"/>
+<area shape="poly" id="edge211_Node000009_Node000127" title=" " alt="" coords="106,854,120,724,148,538,167,443,191,357,218,286,234,258,250,237,270,224,293,216,295,221,272,228,254,241,238,261,223,288,196,358,173,445,153,539,125,724,111,854"/>
+<area shape="rect" id="Node000128" href="$classKeyInjector.html" title=" " alt="" coords="311,252,406,277"/>
+<area shape="poly" id="edge212_Node000009_Node000128" title=" " alt="" coords="106,854,122,733,151,562,171,475,194,396,220,331,235,306,250,287,279,269,311,262,312,267,281,274,254,291,239,309,225,333,199,398,176,477,156,563,127,733,112,854"/>
+<area shape="rect" id="Node000129" href="$classQTelnet.html" title=" " alt="" coords="323,301,394,327"/>
+<area shape="poly" id="edge213_Node000009_Node000129" title=" " alt="" coords="107,854,124,742,154,586,174,507,197,435,222,376,250,336,267,324,285,317,323,311,324,316,287,322,269,329,254,340,227,379,202,437,179,509,160,588,129,743,112,855"/>
+<area shape="rect" id="Node000002" href="$classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="551,424,691,449"/>
+<area shape="poly" id="edge93_Node000006_Node000002" title=" " alt="" coords="416,415,551,428,551,433,416,420"/>
+<area shape="rect" id="Node000007" href="$classCBackendFileTransfer.html" title=" " alt="" coords="541,325,702,351"/>
+<area shape="poly" id="edge98_Node000006_Node000007" title=" " alt="" coords="415,399,464,385,488,372,512,360,550,348,552,353,514,364,491,377,466,390,416,405"/>
+<area shape="rect" id="Node000008" href="$classCBackendSSH.html" title=" " alt="" coords="565,375,677,400"/>
+<area shape="poly" id="edge99_Node000006_Node000008" title=" " alt="" coords="416,405,565,390,565,395,416,410"/>
+<area shape="poly" id="edge97_Node000002_Node000001" title=" " alt="" coords="703,422,728,409,745,393,764,369,806,305,871,190,876,192,811,308,769,372,749,397,731,414,706,427"/>
+<area shape="rect" id="Node000003" href="$classCBackendFreeRDP.html" title=" " alt="" coords="811,375,952,400"/>
+<area shape="poly" id="edge94_Node000002_Node000003" title=" " alt="" coords="702,419,813,397,814,403,703,424"/>
+<area shape="rect" id="Node000004" href="$classCBackendLibVNCServer.html" title=" " alt="" coords="794,424,969,449"/>
+<area shape="poly" id="edge95_Node000002_Node000004" title=" " alt="" coords="705,434,794,434,794,439,705,439"/>
+<area shape="rect" id="Node000005" href="$classCBackendPlayer.html" title=" " alt="" coords="818,473,945,499"/>
+<area shape="poly" id="edge96_Node000002_Node000005" title=" " alt="" coords="703,449,818,471,817,477,702,455"/>
+<area shape="rect" id="Node000014" href="$classCConnectLayerQTcpSocket.html" title=" " alt="" coords="524,548,719,573"/>
+<area shape="poly" id="edge103_Node000013_Node000014" title=" " alt="" coords="432,558,524,558,524,563,432,563"/>
+<area shape="rect" id="Node000015" href="$classConnectLayerSSHTunnel.html" title=" " alt="" coords="532,499,711,524"/>
+<area shape="poly" id="edge104_Node000013_Node000015" title=" " alt="" coords="432,544,552,521,553,527,433,550"/>
+<area shape="rect" id="Node000020" href="$classCDesktopWindows.html" title=" " alt="" coords="549,696,693,721"/>
+<area shape="poly" id="edge108_Node000019_Node000020" title=" " alt="" coords="416,667,553,693,552,699,415,672"/>
+<area shape="rect" id="Node000021" href="$classCDesktopXLib.html" title=" " alt="" coords="565,597,678,623"/>
+<area shape="poly" id="edge109_Node000019_Node000021" title=" " alt="" coords="415,646,564,618,565,623,416,651"/>
+<area shape="rect" id="Node000022" href="$classCDisplayWindows.html" title=" " alt="" coords="552,647,691,672"/>
+<area shape="poly" id="edge110_Node000019_Node000022" title=" " alt="" coords="415,657,552,657,552,662,415,662"/>
+<area shape="rect" id="Node000031" href="$classCHookUnix.html" title=" " alt="" coords="574,795,669,820"/>
+<area shape="poly" id="edge116_Node000030_Node000031" title=" " alt="" coords="405,805,574,805,574,810,405,810"/>
+<area shape="rect" id="Node000032" href="$classCHookWindows.html" title=" " alt="" coords="559,745,683,771"/>
+<area shape="poly" id="edge117_Node000030_Node000032" title=" " alt="" coords="404,796,559,767,560,772,405,801"/>
+<area shape="rect" id="Node000035" href="$classCIceSignalQxmpp.html" title="QXMPP 实现 ICE 信令类" alt="" coords="553,893,690,919"/>
+<area shape="poly" id="edge120_Node000034_Node000035" title=" " alt="" coords="418,903,552,903,552,909,418,909"/>
+<area shape="rect" id="Node000036" href="$classCIceSignalWebSocket.html" title=" " alt="" coords="541,844,702,869"/>
+<area shape="poly" id="edge121_Node000034_Node000036" title=" " alt="" coords="417,892,553,867,554,872,418,898"/>
+<area shape="rect" id="Node000043" href="$classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="553,1189,690,1215"/>
+<area shape="poly" id="edge128_Node000042_Node000043" title=" " alt="" coords="414,1199,553,1199,553,1205,414,1205"/>
+<area shape="rect" id="Node000048" href="$classCOperateFileTransfer.html" title="File transfer operate interface" alt="" coords="542,943,701,968"/>
+<area shape="poly" id="edge133_Node000042_Node000048" title=" " alt="" coords="413,1198,440,1190,464,1175,481,1151,488,1127,489,1103,487,1078,484,1053,485,1027,493,1002,512,977,541,960,543,964,515,981,498,1005,490,1028,489,1053,492,1078,494,1103,493,1128,485,1154,467,1179,442,1195,414,1203"/>
+<area shape="rect" id="Node000049" href="$classCOperateTerminal.html" title="终端操作接口" alt="" coords="552,992,691,1017"/>
+<area shape="poly" id="edge134_Node000042_Node000049" title=" " alt="" coords="413,1197,440,1189,464,1175,478,1157,484,1140,487,1102,489,1064,496,1045,512,1027,530,1014,551,1007,553,1012,532,1019,515,1031,501,1048,494,1065,492,1103,490,1141,482,1160,467,1179,442,1194,415,1202"/>
+<area shape="rect" id="Node000055" href="$classCOperateWakeOnLan.html" title="局域网唤醒操作接口" alt="" coords="542,1041,701,1067"/>
+<area shape="poly" id="edge140_Node000042_Node000055" title=" " alt="" coords="413,1196,440,1188,464,1175,475,1163,481,1152,487,1127,493,1101,500,1088,512,1076,540,1061,543,1065,515,1080,504,1091,498,1103,492,1128,486,1154,479,1166,467,1179,442,1193,414,1201"/>
+<area shape="rect" id="Node000056" href="$classCOperateWebBrowser.html" title=" " alt="" coords="539,1091,703,1116"/>
+<area shape="poly" id="edge141_Node000042_Node000056" title=" " alt="" coords="413,1193,439,1185,464,1174,478,1163,487,1150,496,1137,512,1125,538,1114,541,1119,515,1130,500,1141,491,1153,482,1167,467,1179,441,1190,415,1198"/>
+<area shape="rect" id="Node000057" href="$classCScreenCapture.html" title=" " alt="" coords="558,1140,685,1165"/>
+<area shape="poly" id="edge142_Node000042_Node000057" title=" " alt="" coords="413,1189,557,1162,558,1167,414,1194"/>
+<area shape="rect" id="Node000044" href="$classCOperateFreeRDP.html" title=" " alt="" coords="812,1140,951,1165"/>
+<area shape="poly" id="edge129_Node000043_Node000044" title=" " alt="" coords="702,1184,813,1163,814,1168,703,1189"/>
+<area shape="rect" id="Node000045" href="$classCOperateLibVNCServer.html" title=" " alt="" coords="795,1189,967,1215"/>
+<area shape="poly" id="edge130_Node000043_Node000045" title=" " alt="" coords="704,1199,795,1199,795,1205,704,1205"/>
+<area shape="rect" id="Node000046" href="$classCOperatePlayer.html" title=" " alt="" coords="819,1041,943,1067"/>
+<area shape="poly" id="edge131_Node000043_Node000046" title=" " alt="" coords="702,1189,728,1175,739,1163,745,1152,751,1127,757,1101,764,1088,776,1076,796,1064,818,1057,820,1062,798,1069,779,1080,768,1091,762,1103,756,1128,750,1154,743,1167,731,1179,705,1193"/>
+<area shape="rect" id="Node000047" href="$classCOperateVnc.html" title=" " alt="" coords="828,1091,935,1116"/>
+<area shape="poly" id="edge132_Node000043_Node000047" title=" " alt="" coords="702,1186,728,1174,742,1163,751,1150,760,1137,776,1125,801,1114,827,1107,828,1112,803,1119,779,1130,764,1141,755,1154,746,1167,731,1179,705,1190"/>
+<area shape="rect" id="Node000050" href="$classCOperateRawStream.html" title=" " alt="" coords="802,893,961,919"/>
+<area shape="poly" id="edge135_Node000049_Node000050" title=" " alt="" coords="703,988,728,977,742,966,751,953,760,940,776,928,803,916,805,921,779,932,764,944,755,956,746,969,731,982,705,993"/>
+<area shape="rect" id="Node000051" href="$classCOperateSSH.html" title=" " alt="" coords="827,943,936,968"/>
+<area shape="poly" id="edge136_Node000049_Node000051" title=" " alt="" coords="702,987,826,963,827,968,703,992"/>
+<area shape="rect" id="Node000052" href="$classCOperateSerialPort.html" title=" " alt="" coords="808,992,955,1017"/>
+<area shape="poly" id="edge137_Node000049_Node000052" title=" " alt="" coords="704,1002,808,1002,808,1007,704,1007"/>
+<area shape="rect" id="Node000053" href="$classCOperateTelnet.html" title=" " alt="" coords="820,795,943,820"/>
+<area shape="poly" id="edge138_Node000049_Node000053" title=" " alt="" coords="703,993,728,977,742,960,749,942,751,905,753,867,760,848,776,829,796,816,819,808,820,813,798,821,779,833,765,851,758,868,756,905,754,944,746,963,731,981,705,997"/>
+<area shape="rect" id="Node000054" href="$classCTerminal.html" title=" " alt="" coords="838,844,925,869"/>
+<area shape="poly" id="edge139_Node000049_Node000054" title=" " alt="" coords="703,991,728,977,739,966,745,954,751,929,757,904,764,891,776,879,806,863,837,856,838,861,807,868,779,883,768,894,762,906,756,931,750,956,743,969,731,981,705,996"/>
+<area shape="rect" id="Node000059" href="$classCParameterApp.html" title=" " alt="" coords="560,1485,683,1511"/>
+<area shape="poly" id="edge144_Node000058_Node000059" title=" " alt="" coords="423,1327,446,1335,467,1348,481,1363,488,1379,492,1411,496,1442,503,1456,515,1471,536,1484,561,1491,559,1497,534,1489,512,1475,498,1459,491,1443,487,1412,483,1381,476,1366,464,1352,444,1340,421,1332"/>
+<area shape="rect" id="Node000060" href="$classCParameterMediaDevices.html" title=" " alt="" coords="526,1239,717,1264"/>
+<area shape="poly" id="edge145_Node000058_Node000060" title=" " alt="" coords="407,1306,513,1273,558,1261,559,1267,514,1278,409,1311"/>
+<area shape="rect" id="Node000061" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="546,1288,697,1313"/>
+<area shape="poly" id="edge146_Node000058_Node000061" title=" " alt="" coords="422,1317,546,1305,546,1311,422,1323"/>
+<area shape="rect" id="Node000083" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="552,1337,691,1363"/>
+<area shape="poly" id="edge168_Node000058_Node000083" title=" " alt="" coords="422,1329,552,1341,552,1346,421,1334"/>
+<area shape="rect" id="Node000084" href="$classCParameterRecord.html" title=" " alt="" coords="550,1387,693,1412"/>
+<area shape="poly" id="edge169_Node000058_Node000084" title=" " alt="" coords="422,1335,466,1348,491,1360,514,1372,556,1384,555,1389,512,1376,488,1364,464,1352,421,1340"/>
+<area shape="rect" id="Node000085" href="$classCParameterTerminal.html" title=" " alt="" coords="544,1436,699,1461"/>
+<area shape="poly" id="edge170_Node000058_Node000085" title=" " alt="" coords="422,1329,445,1336,467,1348,484,1366,492,1386,499,1404,515,1421,545,1436,542,1440,512,1425,495,1407,487,1388,480,1369,464,1352,443,1341,421,1334"/>
+<area shape="rect" id="Node000062" href="$classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="816,1485,947,1511"/>
+<area shape="poly" id="edge147_Node000061_Node000062" title=" " alt="" coords="711,1310,731,1323,746,1341,754,1360,756,1398,758,1436,765,1453,779,1471,797,1483,817,1490,815,1495,794,1487,776,1475,761,1456,753,1437,751,1399,749,1361,742,1344,728,1327,708,1314"/>
+<area shape="rect" id="Node000067" href="$classCParameterFileTransfer.html" title=" " alt="" coords="795,1535,968,1560"/>
+<area shape="poly" id="edge152_Node000061_Node000067" title=" " alt="" coords="711,1309,731,1323,750,1347,758,1373,759,1398,756,1423,754,1448,755,1473,762,1497,779,1520,796,1532,793,1537,775,1524,757,1499,749,1474,748,1448,751,1423,753,1398,752,1374,745,1350,727,1327,708,1313"/>
+<area shape="rect" id="Node000068" href="$classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="821,1584,942,1609"/>
+<area shape="poly" id="edge153_Node000061_Node000068" title=" " alt="" coords="711,1309,731,1323,753,1354,761,1385,761,1417,756,1448,751,1479,751,1510,759,1540,779,1569,798,1583,821,1591,819,1596,796,1588,775,1573,754,1542,746,1510,746,1479,751,1447,756,1416,756,1386,748,1356,727,1327,708,1313"/>
+<area shape="rect" id="Node000069" href="$classCParameterProxy.html" title="The proxy parameters." alt="" coords="814,1633,949,1659"/>
+<area shape="poly" id="edge154_Node000061_Node000069" title=" " alt="" coords="711,1308,731,1323,746,1341,756,1360,765,1398,763,1435,756,1473,749,1510,747,1546,756,1583,765,1601,779,1619,795,1631,815,1639,813,1644,793,1636,775,1623,761,1604,751,1585,742,1547,744,1509,751,1472,758,1435,760,1398,751,1362,742,1344,727,1327,708,1313"/>
+<area shape="rect" id="Node000070" href="$classCParameterSSH.html" title=" " alt="" coords="819,1683,943,1708"/>
+<area shape="poly" id="edge155_Node000061_Node000070" title=" " alt="" coords="711,1308,731,1323,748,1345,760,1367,766,1388,769,1410,766,1454,756,1498,747,1541,743,1583,746,1605,752,1626,763,1647,779,1668,798,1682,820,1690,818,1695,795,1687,775,1672,759,1650,747,1628,741,1606,738,1584,742,1540,751,1496,761,1453,764,1411,761,1390,755,1369,744,1348,727,1327,708,1313"/>
+<area shape="rect" id="Node000072" href="$classCParameterScreenCapture.html" title=" " alt="" coords="785,1732,978,1757"/>
+<area shape="poly" id="edge157_Node000061_Node000072" title=" " alt="" coords="711,1308,731,1323,750,1348,763,1373,770,1398,773,1423,768,1473,756,1522,745,1571,740,1620,742,1645,749,1669,761,1693,779,1717,795,1730,791,1734,775,1721,757,1696,744,1671,737,1646,734,1620,739,1570,751,1521,763,1472,768,1423,765,1399,758,1375,746,1351,727,1327,708,1312"/>
+<area shape="rect" id="Node000073" href="$classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="788,1239,975,1264"/>
+<area shape="poly" id="edge158_Node000061_Node000073" title=" " alt="" coords="702,1283,813,1261,814,1267,703,1288"/>
+<area shape="rect" id="Node000079" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="817,1288,945,1313"/>
+<area shape="poly" id="edge164_Node000061_Node000079" title=" " alt="" coords="710,1298,817,1298,817,1303,710,1303"/>
+<area shape="rect" id="Node000080" href="$classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="" coords="794,1337,969,1363"/>
+<area shape="poly" id="edge165_Node000061_Node000080" title=" " alt="" coords="703,1313,814,1335,813,1340,702,1319"/>
+<area shape="rect" id="Node000081" href="$classCParameterWebBrowser.html" title=" " alt="" coords="792,1387,971,1412"/>
+<area shape="poly" id="edge166_Node000061_Node000081" title=" " alt="" coords="711,1313,731,1322,746,1335,756,1348,764,1360,779,1372,808,1384,806,1389,776,1376,760,1364,751,1351,742,1338,728,1327,709,1318"/>
+<area shape="rect" id="Node000082" href="$classCStats.html" title=" " alt="" coords="849,1436,913,1461"/>
+<area shape="poly" id="edge167_Node000061_Node000082" title=" " alt="" coords="711,1311,731,1323,743,1335,750,1348,756,1373,762,1398,768,1410,779,1421,795,1431,813,1438,850,1445,849,1450,812,1444,793,1436,776,1425,764,1413,757,1400,751,1374,745,1350,739,1338,728,1327,709,1315"/>
+<area shape="rect" id="Node000063" href="$classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="1050,1461,1203,1487"/>
+<area shape="poly" id="edge148_Node000062_Node000063" title=" " alt="" coords="960,1488,1050,1479,1050,1484,961,1493"/>
+<area shape="rect" id="Node000064" href="$classCParameterLibVNCServer.html" title=" " alt="" coords="1033,1511,1220,1536"/>
+<area shape="poly" id="edge149_Node000062_Node000064" title=" " alt="" coords="961,1503,1034,1511,1033,1516,960,1509"/>
+<area shape="rect" id="Node000065" href="$classCParameterPlayer.html" title=" " alt="" coords="1057,1560,1196,1585"/>
+<area shape="poly" id="edge150_Node000062_Node000065" title=" " alt="" coords="961,1511,986,1520,1011,1532,1034,1545,1072,1557,1071,1563,1032,1550,1008,1537,984,1524,960,1516"/>
+<area shape="rect" id="Node000066" href="$classCParameterVnc.html" title=" " alt="" coords="1065,1412,1188,1437"/>
+<area shape="poly" id="edge151_Node000062_Node000066" title=" " alt="" coords="956,1479,984,1470,1032,1446,1068,1435,1070,1440,1034,1451,986,1475,958,1484"/>
+<area shape="rect" id="Node000071" href="$classCParameterSSHTunnel.html" title=" " alt="" coords="1043,1683,1210,1708"/>
+<area shape="poly" id="edge156_Node000070_Node000071" title=" " alt="" coords="957,1693,1043,1693,1043,1698,957,1698"/>
+<area shape="rect" id="Node000074" href="$classCParameterRawStream.html" title=" " alt="" coords="1040,1140,1213,1165"/>
+<area shape="poly" id="edge159_Node000073_Node000074" title=" " alt="" coords="968,1232,984,1224,998,1212,1007,1200,1016,1187,1032,1174,1058,1163,1060,1168,1035,1179,1020,1191,1012,1203,1002,1216,987,1228,970,1236"/>
+<area shape="rect" id="Node000075" href="$classCParameterSerialPort.html" title=" " alt="" coords="1046,1189,1207,1215"/>
+<area shape="poly" id="edge160_Node000073_Node000075" title=" " alt="" coords="958,1233,1062,1212,1063,1217,959,1239"/>
+<area shape="rect" id="Node000076" href="$classCParameterTelnet.html" title=" " alt="" coords="1058,1239,1195,1264"/>
+<area shape="poly" id="edge161_Node000073_Node000076" title=" " alt="" coords="988,1249,1058,1249,1058,1254,988,1254"/>
+<area shape="rect" id="Node000077" href="$classCParameterTerminalSSH.html" title=" " alt="" coords="1037,1288,1217,1313"/>
+<area shape="poly" id="edge162_Node000073_Node000077" title=" " alt="" coords="959,1264,1063,1285,1062,1291,958,1269"/>
+<area shape="rect" id="Node000078" href="$classCTerminalParameter.html" title=" " alt="" coords="1049,1337,1204,1363"/>
+<area shape="poly" id="edge163_Node000073_Node000078" title=" " alt="" coords="973,1266,987,1273,1002,1285,1012,1298,1020,1311,1035,1322,1063,1335,1061,1340,1032,1327,1017,1314,1007,1301,998,1289,984,1278,971,1271"/>
+<area shape="rect" id="Node000088" href="$classCParameterServiceFreeRDP.html" title=" " alt="" coords="521,1683,722,1708"/>
+<area shape="poly" id="edge173_Node000087_Node000088" title=" " alt="" coords="447,1584,467,1595,484,1613,492,1632,499,1651,515,1668,539,1680,536,1685,512,1672,495,1654,487,1634,480,1616,464,1599,444,1588"/>
+<area shape="rect" id="Node000089" href="$classCParameterServiceLibVNC.html" title=" " alt="" coords="525,1535,718,1560"/>
+<area shape="poly" id="edge174_Node000087_Node000089" title=" " alt="" coords="445,1562,524,1554,525,1559,446,1567"/>
+<area shape="rect" id="Node000090" href="$classCParameterServiceRabbitVNC.html" title=" " alt="" coords="513,1584,729,1609"/>
+<area shape="poly" id="edge175_Node000087_Node000090" title=" " alt="" coords="446,1578,513,1584,513,1589,446,1583"/>
+<area shape="rect" id="Node000091" href="$classCParameterServiceTigerVNC.html" title=" " alt="" coords="518,1633,725,1659"/>
+<area shape="poly" id="edge176_Node000087_Node000091" title=" " alt="" coords="441,1586,466,1594,491,1606,514,1618,556,1631,555,1636,512,1623,488,1611,464,1599,440,1591"/>
+<area shape="rect" id="Node000094" href="$classCPluginFileTransfer.html" title=" " alt="" coords="548,1979,695,2004"/>
+<area shape="poly" id="edge179_Node000093_Node000094" title=" " alt="" coords="408,1989,548,1989,548,1994,408,1994"/>
+<area shape="rect" id="Node000095" href="$classCPluginFreeRDP.html" title=" " alt="" coords="558,2028,685,2053"/>
+<area shape="poly" id="edge180_Node000093_Node000095" title=" " alt="" coords="409,1998,558,2026,557,2031,408,2003"/>
+<area shape="rect" id="Node000096" href="$classCPluginLibSSH.html" title=" " alt="" coords="563,2077,679,2103"/>
+<area shape="poly" id="edge181_Node000093_Node000096" title=" " alt="" coords="408,1994,438,2002,467,2014,482,2027,491,2040,500,2052,515,2064,538,2074,564,2081,562,2086,537,2079,512,2068,496,2056,487,2043,478,2030,464,2019,436,2007,407,1999"/>
+<area shape="rect" id="Node000097" href="$classCPluginLibVNCServer.html" title=" " alt="" coords="541,2127,701,2152"/>
+<area shape="poly" id="edge182_Node000093_Node000097" title=" " alt="" coords="408,1991,439,1999,467,2015,479,2027,486,2040,492,2066,498,2090,504,2102,515,2113,542,2128,540,2133,512,2117,500,2105,493,2092,487,2067,481,2042,475,2030,464,2019,437,2004,407,1997"/>
+<area shape="rect" id="Node000098" href="$classCPluginPlayer.html" title=" " alt="" coords="565,2176,677,2201"/>
+<area shape="poly" id="edge183_Node000093_Node000098" title=" " alt="" coords="408,1990,439,1998,467,2015,482,2033,490,2052,492,2091,494,2128,501,2146,515,2163,539,2177,566,2184,564,2190,537,2182,512,2167,496,2148,489,2129,487,2091,484,2054,478,2036,464,2019,437,2003,407,1995"/>
+<area shape="rect" id="Node000099" href="$classCPluginRabbitVNC.html" title=" " alt="" coords="551,2225,692,2251"/>
+<area shape="poly" id="edge184_Node000093_Node000099" title=" " alt="" coords="408,1990,440,1997,467,2015,485,2040,493,2065,494,2091,492,2116,489,2141,490,2165,498,2189,515,2212,532,2224,552,2231,550,2236,529,2229,511,2216,493,2191,485,2166,484,2140,487,2115,489,2090,488,2066,481,2042,464,2019,437,2002,407,1995"/>
+<area shape="rect" id="Node000100" href="$classCPluginRawStream.html" title=" " alt="" coords="548,2275,695,2300"/>
+<area shape="poly" id="edge185_Node000093_Node000100" title=" " alt="" coords="408,1989,440,1997,467,2015,489,2046,497,2078,497,2109,492,2141,487,2172,487,2202,495,2232,515,2261,530,2273,549,2280,547,2285,528,2278,511,2265,490,2234,481,2203,482,2171,486,2140,491,2109,492,2078,484,2048,463,2019,438,2002,407,1994"/>
+<area shape="rect" id="Node000101" href="$classCPluginScreenCapture.html" title=" " alt="" coords="538,2324,705,2349"/>
+<area shape="poly" id="edge186_Node000093_Node000101" title=" " alt="" coords="409,1989,440,1997,467,2015,482,2034,492,2053,501,2090,499,2128,492,2165,485,2202,483,2239,491,2275,501,2293,515,2311,539,2327,536,2331,512,2315,497,2296,486,2277,477,2239,479,2202,486,2164,494,2127,496,2091,487,2054,478,2036,464,2019,438,2002,407,1994"/>
+<area shape="rect" id="Node000102" href="$classCPluginSerialPort.html" title=" " alt="" coords="554,2373,689,2399"/>
+<area shape="poly" id="edge187_Node000093_Node000102" title=" " alt="" coords="409,1989,440,1997,467,2015,484,2037,495,2059,502,2081,505,2103,501,2147,492,2190,482,2233,479,2276,481,2297,488,2318,499,2339,515,2360,533,2373,555,2381,553,2386,531,2378,511,2364,494,2342,483,2320,476,2298,474,2276,477,2233,486,2189,496,2146,499,2103,497,2082,491,2061,480,2040,464,2019,438,2002,407,1994"/>
+<area shape="rect" id="Node000103" href="$classCPluginTelnet.html" title=" " alt="" coords="566,1732,677,1757"/>
+<area shape="poly" id="edge188_Node000093_Node000103" title=" " alt="" coords="368,1964,388,1921,419,1867,460,1812,485,1788,512,1766,538,1754,565,1746,567,1751,540,1759,515,1771,488,1792,464,1816,424,1870,393,1923,373,1967"/>
+<area shape="rect" id="Node000104" href="$classCPluginTerminal.html" title=" " alt="" coords="558,1781,685,1807"/>
+<area shape="poly" id="edge189_Node000093_Node000104" title=" " alt="" coords="372,1966,395,1932,427,1892,467,1851,512,1817,557,1800,559,1805,515,1822,470,1855,431,1895,400,1935,377,1969"/>
+<area shape="rect" id="Node000105" href="$classCPluginTigerVnc.html" title=" " alt="" coords="557,1831,685,1856"/>
+<area shape="poly" id="edge190_Node000093_Node000105" title=" " alt="" coords="380,1967,436,1916,473,1889,512,1866,556,1851,558,1856,514,1871,476,1893,440,1920,383,1971"/>
+<area shape="rect" id="Node000106" href="$classCPluginWakeOnLan.html" title=" " alt="" coords="548,1880,695,1905"/>
+<area shape="poly" id="edge191_Node000093_Node000106" title=" " alt="" coords="394,1970,449,1942,512,1915,556,1903,557,1908,514,1921,451,1947,396,1974"/>
+<area shape="rect" id="Node000107" href="$classCPluginWebBrowser.html" title=" " alt="" coords="545,1929,697,1955"/>
+<area shape="poly" id="edge192_Node000093_Node000107" title=" " alt="" coords="408,1980,553,1952,554,1957,409,1985"/>
+<area shape="rect" id="Node000109" href="$classCPluginServiceFreeRDP.html" title=" " alt="" coords="534,2472,709,2497"/>
+<area shape="poly" id="edge194_Node000108_Node000109" title=" " alt="" coords="433,2043,451,2051,467,2064,486,2089,499,2114,506,2140,508,2165,504,2215,492,2264,480,2313,475,2362,478,2386,485,2411,497,2435,515,2459,535,2473,532,2478,511,2463,492,2438,480,2412,472,2387,470,2362,474,2313,486,2263,498,2214,503,2165,501,2141,494,2116,482,2092,463,2068,448,2056,430,2048"/>
+<area shape="rect" id="Node000110" href="$classCPluginServiceThread.html" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="539,2423,703,2448"/>
+<area shape="poly" id="edge195_Node000108_Node000110" title=" " alt="" coords="432,2043,451,2051,467,2064,484,2086,495,2108,502,2130,505,2152,501,2196,492,2240,482,2283,479,2325,481,2346,488,2367,499,2388,515,2409,541,2426,538,2431,512,2413,494,2391,483,2369,476,2348,474,2325,477,2282,486,2238,496,2195,499,2152,497,2131,491,2110,480,2089,463,2068,448,2056,430,2048"/>
+<area shape="rect" id="Node000111" href="$classCPluginServiceLibVNCServer.html" title=" " alt="" coords="777,2373,985,2399"/>
+<area shape="poly" id="edge196_Node000110_Node000111" title=" " alt="" coords="702,2417,813,2396,814,2401,703,2423"/>
+<area shape="rect" id="Node000112" href="$classCPluginServiceRabbitVNC.html" title=" " alt="" coords="787,2423,976,2448"/>
+<area shape="poly" id="edge197_Node000110_Node000112" title=" " alt="" coords="717,2433,787,2433,787,2438,717,2438"/>
+<area shape="rect" id="Node000113" href="$classCPluginServiceTigerVNC.html" title=" " alt="" coords="791,2472,971,2497"/>
+<area shape="poly" id="edge198_Node000110_Node000113" title=" " alt="" coords="703,2448,814,2469,813,2475,702,2453"/>
+<area shape="rect" id="Node000117" href="$classCScreenWindows.html" title=" " alt="" coords="554,2571,689,2596"/>
+<area shape="poly" id="edge202_Node000116_Node000117" title=" " alt="" coords="411,2186,441,2194,467,2212,484,2234,495,2256,502,2278,505,2300,501,2344,492,2388,482,2431,479,2473,481,2494,488,2515,499,2536,515,2557,533,2571,555,2579,553,2584,531,2575,511,2561,494,2539,483,2517,476,2496,474,2473,477,2430,486,2386,496,2343,499,2300,497,2279,491,2258,480,2237,464,2216,439,2199,409,2192"/>
+<area shape="rect" id="Node000118" href="$classCScreenXLib.html" title=" " alt="" coords="570,2521,673,2547"/>
+<area shape="poly" id="edge203_Node000116_Node000118" title=" " alt="" coords="410,2187,441,2194,467,2212,482,2231,492,2250,501,2288,499,2325,492,2363,485,2400,483,2436,491,2472,501,2490,515,2508,540,2524,570,2532,569,2537,538,2529,512,2512,497,2493,486,2474,477,2437,479,2399,486,2362,494,2325,496,2288,487,2252,478,2234,464,2216,439,2199,409,2192"/>
+<area shape="rect" id="Node000120" href="$classCServiceFreeRDP.html" title=" " alt="" coords="554,203,689,228"/>
+<area shape="poly" id="edge205_Node000119_Node000120" title=" " alt="" coords="412,120,440,127,467,138,482,151,492,164,500,176,515,188,554,203,553,208,512,192,496,180,487,167,478,154,464,143,438,132,411,125"/>
+<area shape="rect" id="Node000121" href="$classCServiceLibVNCServer.html" title=" " alt="" coords="537,55,705,80"/>
+<area shape="poly" id="edge206_Node000119_Node000121" title=" " alt="" coords="411,104,553,77,554,83,412,110"/>
+<area shape="rect" id="Node000122" href="$classCServiceRabbitVNC.html" title=" " alt="" coords="547,104,696,129"/>
+<area shape="poly" id="edge207_Node000119_Node000122" title=" " alt="" coords="412,114,546,114,546,119,412,119"/>
+<area shape="rect" id="Node000123" href="$classCServiceTigerVNC.html" title=" " alt="" coords="551,153,691,179"/>
+<area shape="poly" id="edge208_Node000119_Node000123" title=" " alt="" coords="412,124,554,151,553,156,411,129"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="40,2225,169,2251"/>
+<area shape="poly" id="edge214_Node000017_Node000016" title=" " alt="" coords="183,2235,307,2235,307,2241,183,2241"/>
+</map>

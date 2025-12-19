@@ -1,0 +1,11 @@
+<map id="CParameterLibVNCServer" name="CParameterLibVNCServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,299,192,324"/>
+<area shape="rect" id="Node000002" href="$classCParameterBase.html" title="The interface of connecter parameters." alt="" coords="33,225,164,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,264,101,299,96,299,96,264"/>
+<area shape="rect" id="Node000003" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="23,152,174,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,191,101,225,96,225,96,191"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="49,79,148,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,118,101,152,96,152,96,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="61,5,136,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="101,44,101,79,96,79,96,44"/>
+</map>

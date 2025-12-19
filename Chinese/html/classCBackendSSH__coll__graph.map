@@ -1,0 +1,72 @@
+<map id="CBackendSSH" name="CBackendSSH">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2913,229,3025,254"/>
+<area shape="rect" id="Node000002" href="$classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="1157,31,1244,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1257,30,1371,12,1437,5,1504,3,2672,3,2725,10,2775,31,2820,61,2861,97,2896,135,2926,171,2963,227,2958,230,2921,175,2892,138,2857,101,2817,65,2772,36,2723,15,2671,8,1504,8,1438,11,1371,17,1258,35"/>
+<area shape="rect" id="Node000008" href="$classCBackendThread.html" title="The backend thread" alt="" coords="1440,155,1571,181"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="1242,60,1301,87,1470,153,1468,158,1299,92,1240,65"/>
+<area shape="rect" id="Node000023" href="$classCChannelSSH.html" title=" " alt="" coords="2295,367,2405,393"/>
+<area shape="poly" id="edge41_Node000023_Node000002" title=" " alt="" coords="1258,49,1599,97,1730,117,1812,128,1848,134,1893,147,1994,185,2069,222,2142,264,2237,316,2327,365,2325,370,2235,321,2140,269,2067,227,1992,190,1891,152,1847,139,1811,133,1729,123,1598,103,1257,54"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,174,80,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="54,160,74,130,101,97,136,72,156,64,177,61,869,61,1028,56,1157,46,1157,51,1029,61,869,67,178,67,157,69,139,77,105,101,78,133,59,163"/>
+<area shape="rect" id="Node000006" href="$classCOperate.html" title="操作接口。" alt="" coords="990,127,1073,153"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="74,164,121,143,149,135,177,132,699,132,990,136,990,142,699,137,177,137,150,140,123,148,76,169"/>
+<area shape="rect" id="Node000007" href="$classCPlugin.html" title="插件接口" alt="" coords="143,174,214,199"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="93,184,143,184,143,189,93,189"/>
+<area shape="rect" id="Node000012" href="$classCParameter.html" title="参数接口" alt="" coords="129,306,228,331"/>
+<area shape="poly" id="edge16_Node000012_Node000003" title=" " alt="" coords="69,208,166,304,163,308,65,211"/>
+<area shape="rect" id="Node000026" href="$classChannel_1_1CEvent.html" title=" " alt="" coords="252,478,381,503"/>
+<area shape="poly" id="edge44_Node000026_Node000003" title=" " alt="" coords="58,211,88,273,132,342,185,412,213,438,253,466,273,476,270,480,251,470,210,442,182,416,127,346,83,275,53,213"/>
+<area shape="rect" id="Node000004" href="$classCOperateSSH.html" title=" " alt="" coords="2615,202,2725,227"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="2738,218,2913,234,2913,239,2738,223"/>
+<area shape="rect" id="Node000005" href="$classCOperateTerminal.html" title="终端操作接口" alt="" coords="1753,162,1892,187"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1906,176,2615,209,2615,215,1905,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1086,129,1125,124,1212,115,1300,111,1421,108,1516,112,1610,124,1730,145,1784,159,1783,165,1729,151,1609,129,1516,117,1421,113,1300,116,1213,121,1126,129,1087,134"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="1087,141,1440,162,1440,167,1086,146"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="228,184,527,176,730,166,937,151,990,144,990,149,938,156,731,171,527,181,228,189"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="1584,166,1729,168,1753,169,1753,174,1729,173,1584,171"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1162,195,1239,221"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="1253,201,1388,187,1440,178,1441,183,1388,192,1253,207"/>
+<area shape="rect" id="Node000010" href="$classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="1412,258,1599,283"/>
+<area shape="poly" id="edge13_Node000005_Node000010" title=" " alt="" coords="1600,253,1664,238,1728,219,1766,202,1799,185,1801,190,1769,207,1730,224,1665,243,1601,258"/>
+<area shape="rect" id="Node000018" href="$classCParameterTerminalSSH.html" title=" " alt="" coords="2260,254,2440,279"/>
+<area shape="poly" id="edge29_Node000018_Node000010" title=" " alt="" coords="1613,267,2260,264,2260,270,1613,273"/>
+<area shape="rect" id="Node000011" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1125,346,1276,371"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="1261,340,1387,304,1463,281,1465,286,1389,309,1262,345"/>
+<area shape="poly" id="edge17_Node000011_Node000011" title=" " alt="" coords="1173,331,1181,323,1201,319,1217,322,1227,328,1230,338,1225,347,1220,345,1224,337,1223,331,1215,327,1201,325,1184,328,1176,335"/>
+<area shape="rect" id="Node000017" href="$classCStats.html" title=" " alt="" coords="1473,206,1537,231"/>
+<area shape="poly" id="edge27_Node000017_Node000011" title=" " alt="" coords="1233,337,1313,292,1411,244,1472,224,1474,229,1413,249,1315,296,1236,341"/>
+<area shape="rect" id="Node000019" href="$classCParameterSSH.html" title=" " alt="" coords="1988,349,2112,374"/>
+<area shape="poly" id="edge31_Node000019_Node000011" title=" " alt="" coords="1290,356,1987,358,1987,364,1290,362"/>
+<area shape="rect" id="Node000020" href="$classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1762,386,1883,411"/>
+<area shape="poly" id="edge33_Node000020_Node000011" title=" " alt="" coords="1275,371,1300,375,1429,386,1557,393,1762,396,1762,402,1557,398,1429,391,1300,380,1274,376"/>
+<area shape="rect" id="Node000021" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1441,437,1569,462"/>
+<area shape="poly" id="edge35_Node000021_Node000011" title=" " alt="" coords="1231,377,1264,397,1301,415,1373,434,1442,443,1441,448,1372,439,1299,420,1261,402,1229,382"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="204,339,227,359,253,376,294,396,326,408,406,421,512,432,620,434,727,430,831,421,1014,395,1145,369,1146,374,1015,400,831,426,728,435,620,439,511,437,405,427,325,413,291,401,251,381,223,363,200,343"/>
+<area shape="rect" id="Node000013" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="799,341,937,366"/>
+<area shape="poly" id="edge19_Node000013_Node000012" title=" " alt="" coords="242,315,252,315,381,315,579,313,665,316,775,328,824,338,823,343,774,333,665,322,579,319,381,320,252,320,242,320"/>
+<area shape="rect" id="Node000014" href="$classCParameterRecord.html" title=" " alt="" coords="429,337,572,362"/>
+<area shape="poly" id="edge21_Node000014_Node000012" title=" " alt="" coords="242,322,429,340,429,345,241,327"/>
+<area shape="rect" id="Node000015" href="$classCParameterMediaDevices.html" title=" " alt="" coords="405,386,596,411"/>
+<area shape="poly" id="edge23_Node000015_Node000012" title=" " alt="" coords="229,333,253,340,436,383,435,389,251,345,228,338"/>
+<area shape="rect" id="Node000016" href="$classCParameterTerminal.html" title=" " alt="" coords="620,241,775,266"/>
+<area shape="poly" id="edge25_Node000016_Node000012" title=" " alt="" coords="209,296,251,277,349,257,449,247,542,244,620,245,620,251,542,249,449,252,350,262,253,283,211,301"/>
+<area shape="poly" id="edge18_Node000011_Node000013" title=" " alt="" coords="951,352,1125,355,1125,360,951,357"/>
+<area shape="poly" id="edge20_Node000013_Node000014" title=" " alt="" coords="586,348,798,350,798,355,586,353"/>
+<area shape="poly" id="edge22_Node000013_Node000015" title=" " alt="" coords="610,388,774,369,808,363,809,369,775,375,610,393"/>
+<area shape="poly" id="edge24_Node000010_Node000016" title=" " alt="" coords="788,253,1411,266,1411,271,788,258"/>
+<area shape="poly" id="edge26_Node000005_Node000017" title=" " alt="" coords="1551,210,1729,185,1753,182,1753,187,1730,191,1552,215"/>
+<area shape="poly" id="edge36_Node000001_Node000018" title=" " alt="" coords="2454,262,2753,252,2913,243,2913,248,2753,257,2454,267"/>
+<area shape="poly" id="edge28_Node000004_Node000018" title=" " alt="" coords="2440,249,2464,245,2615,221,2616,226,2464,251,2441,254"/>
+<area shape="poly" id="edge30_Node000018_Node000019" title=" " alt="" coords="2104,342,2308,277,2310,282,2105,347"/>
+<area shape="poly" id="edge42_Node000023_Node000019" title=" " alt="" coords="2119,374,2136,376,2219,381,2294,380,2294,385,2219,386,2136,381,2118,379"/>
+<area shape="poly" id="edge32_Node000019_Node000020" title=" " alt="" coords="1897,388,1964,379,1998,371,1999,377,1964,384,1898,394"/>
+<area shape="poly" id="edge34_Node000020_Node000021" title=" " alt="" coords="1583,446,1654,441,1729,429,1786,409,1788,414,1730,435,1655,446,1584,451"/>
+<area shape="rect" id="Node000022" href="$classCChannelSSHTerminal.html" title=" " alt="" coords="2587,329,2753,354"/>
+<area shape="poly" id="edge37_Node000001_Node000022" title=" " alt="" coords="2767,330,2828,318,2888,298,2925,276,2953,252,2956,256,2928,280,2890,302,2829,323,2768,335"/>
+<area shape="poly" id="edge38_Node000022_Node000023" title=" " alt="" coords="2418,369,2586,349,2586,354,2419,374"/>
+<area shape="rect" id="Node000024" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="2008,427,2092,453"/>
+<area shape="poly" id="edge39_Node000023_Node000024" title=" " alt="" coords="2105,426,2294,388,2295,394,2106,432"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="1777,435,1868,461"/>
+<area shape="poly" id="edge40_Node000024_Node000025" title=" " alt="" coords="1882,443,2008,439,2008,444,1882,449"/>
+<area shape="poly" id="edge43_Node000023_Node000026" title=" " alt="" coords="395,491,696,497,2051,497,2094,494,2136,485,2216,456,2283,420,2329,391,2332,395,2286,425,2218,460,2137,490,2095,499,2051,503,696,503,395,496"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="CParameterScreenCapture" name="CParameterScreenCapture">
+<area shape="rect" id="Node000001" title=" " alt="" coords="133,405,326,431"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="53,331,203,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,362,214,403,211,407,154,366"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="218,336,230,343,221,350,204,353,203,347,220,345,225,343,215,341"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="Parameter interface." alt="" coords="155,80,253,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="267,94,302,100,337,110,370,128,397,153,422,193,433,231,432,251,427,270,418,289,403,309,390,319,371,327,320,338,261,344,203,346,203,340,261,338,319,333,369,322,387,314,399,305,413,286,422,268,427,250,427,232,417,195,393,156,367,132,335,115,300,105,266,99"/>
+<area shape="rect" id="Node000005" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="32,243,171,268"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="141,98,107,104,72,114,40,131,14,156,9,168,9,179,24,203,50,224,78,240,76,245,47,228,20,206,4,181,4,167,10,153,37,127,70,109,106,99,140,93"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="239,155,382,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="234,111,295,152,292,157,231,115"/>
+<area shape="rect" id="Node000007" href="$classCParameterMediaDevices.html" title=" " alt="" coords="25,155,215,180"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="182,117,135,156,132,152,178,113"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="167,5,241,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,45,207,80,201,80,201,45"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="111,280,127,329,122,331,106,282"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="319,193,324,227,326,269,322,314,308,357,297,373,283,387,254,407,251,403,280,383,293,370,303,355,317,313,321,269,319,227,314,194"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="278,189,213,221,143,245,141,240,211,216,275,184"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="103,192,97,205,96,224,100,242,94,243,90,224,92,203,98,190"/>
+</map>

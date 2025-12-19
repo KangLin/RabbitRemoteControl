@@ -1,0 +1,21 @@
+<map id="CHookUnix" name="CHookUnix">
+<area shape="rect" id="Node000001" title=" " alt="" coords="118,429,213,455"/>
+<area shape="rect" id="Node000002" href="$classCHook.html" title="The class is the HOOK abstract class." alt="" coords="133,355,198,380"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,394,168,429,163,429,163,394"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="128,5,203,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,24,78,30,44,42,18,62,11,75,8,92,8,280,11,299,21,315,35,328,53,339,94,353,133,360,132,366,92,358,50,343,32,332,17,318,6,301,3,281,3,91,6,74,14,59,41,38,77,25,114,19"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="116,80,215,105"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="168,45,168,80,163,80,163,45"/>
+<area shape="rect" id="Node000008" href="$classCDesktopShortcutManager.html" title=" " alt="" coords="345,129,541,155"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="205,34,418,127,415,132,203,39"/>
+<area shape="rect" id="Node000004" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="96,267,235,292"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="168,306,168,354,163,354,163,306"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="138,115,108,143,94,161,84,180,81,193,83,205,97,229,120,249,144,264,141,269,117,253,93,232,78,207,76,192,79,178,90,158,104,140,135,112"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="94,179,237,204"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="168,119,168,179,163,179,163,119"/>
+<area shape="rect" id="Node000007" href="$classCParameterMediaDevices.html" title=" " alt="" coords="261,179,451,204"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="201,109,335,176,332,181,199,114"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="168,218,168,266,163,266,163,218"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="319,212,192,269,190,264,317,207"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="462,165,469,185,467,205,437,254,404,285,364,308,312,333,253,354,199,365,198,360,252,349,310,328,361,303,401,280,433,250,461,203,463,185,457,167"/>
+</map>

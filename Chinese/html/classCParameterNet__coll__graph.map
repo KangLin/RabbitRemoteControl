@@ -1,0 +1,22 @@
+<map id="CParameterNet" name="CParameterNet">
+<area shape="rect" id="Node000001" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="25,493,147,519"/>
+<area shape="rect" id="Node000002" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="5,331,156,356"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,370,88,493,83,493,79,370"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="170,336,183,343,174,350,156,353,156,347,172,345,177,343,168,341"/>
+<area shape="rect" id="Node000008" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="102,405,230,431"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="106,363,154,403,150,407,103,367"/>
+<area shape="rect" id="Node000003" href="$classCParameter.html" title="参数接口" alt="" coords="95,80,194,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,119,131,130,101,246,85,331,80,330,95,245,126,129,131,117"/>
+<area shape="rect" id="Node000005" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="123,243,262,268"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="139,119,134,148,138,179,158,214,182,241,178,244,153,217,133,181,129,148,134,118"/>
+<area shape="rect" id="Node000006" href="$classCParameterRecord.html" title=" " alt="" coords="148,155,291,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="168,113,209,152,205,156,165,117"/>
+<area shape="rect" id="Node000007" href="$classCParameterMediaDevices.html" title=" " alt="" coords="315,155,505,180"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="201,106,369,152,367,157,199,112"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="107,5,182,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,45,147,80,142,80,142,45"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="168,279,98,333,94,328,165,275"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="214,194,199,243,194,241,209,192"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="370,187,284,221,223,245,221,240,282,216,368,183"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="148,443,99,495,95,491,144,439"/>
+</map>

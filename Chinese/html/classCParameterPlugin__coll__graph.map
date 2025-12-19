@@ -1,0 +1,13 @@
+<map id="CParameterPlugin" name="CParameterPlugin">
+<area shape="rect" id="Node000001" title="插件的全局参数。" alt="" coords="24,243,163,268"/>
+<area shape="rect" id="Node000002" href="$classCParameter.html" title="参数接口" alt="" coords="44,80,143,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,114,31,132,12,156,8,168,10,180,24,204,47,224,72,240,70,245,44,229,20,207,5,182,3,168,7,153,27,128,53,110"/>
+<area shape="rect" id="Node000004" href="$classCParameterRecord.html" title=" " alt="" coords="22,155,165,180"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="96,120,96,154,91,154,91,120"/>
+<area shape="rect" id="Node000005" href="$classCParameterMediaDevices.html" title=" " alt="" coords="189,155,380,180"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="137,108,255,152,253,157,135,113"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="56,5,131,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,45,96,80,91,80,91,45"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="96,194,96,242,91,242,91,194"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="247,188,121,245,118,240,245,183"/>
+</map>

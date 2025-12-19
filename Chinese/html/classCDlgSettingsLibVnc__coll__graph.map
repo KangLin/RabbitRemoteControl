@@ -1,0 +1,57 @@
+<map id="CDlgSettingsLibVnc" name="CDlgSettingsLibVnc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="282,1037,431,1063"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="165,949,239,975"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,979,337,1035,334,1039,233,984"/>
+<area shape="rect" id="Node000003" href="$classCParameterLibVNCServer.html" title=" " alt="" coords="263,949,450,975"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="359,989,359,1037,354,1037,354,989"/>
+<area shape="rect" id="Node000004" href="$classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="215,875,346,900"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="305,908,346,947,342,951,301,912"/>
+<area shape="rect" id="Node000005" href="$classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="209,331,360,356"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="232,364,215,373,200,385,190,400,186,417,186,786,193,814,211,838,235,858,258,872,255,877,231,862,207,842,188,816,181,786,181,416,185,397,196,381,212,369,230,359"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="374,336,387,343,378,350,360,353,360,347,376,345,381,343,372,341"/>
+<area shape="rect" id="Node000011" href="$classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="321,493,443,519"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="291,369,299,399,312,429,340,465,369,491,365,495,336,468,308,432,294,401,286,370"/>
+<area shape="rect" id="Node000012" href="$classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="322,405,450,431"/>
+<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="314,362,371,403,368,407,311,366"/>
+<area shape="rect" id="Node000013" href="$classCParameterProxy.html" title="The proxy parameters." alt="" coords="319,772,453,797"/>
+<area shape="poly" id="edge19_Node000013_Node000005" title=" " alt="" coords="262,367,244,390,239,403,237,417,237,698,239,712,244,724,263,744,289,759,319,770,318,775,287,764,259,749,239,727,233,713,231,698,231,416,234,401,240,387,258,364"/>
+<area shape="rect" id="Node000015" href="$classCParameterSSH.html" title=" " alt="" coords="544,581,668,607"/>
+<area shape="poly" id="edge23_Node000015_Node000005" title=" " alt="" coords="354,357,409,376,463,403,506,434,536,463,561,496,590,541,605,580,601,582,585,544,557,499,532,466,503,438,461,408,407,380,353,362"/>
+<area shape="rect" id="Node000006" href="$classCParameter.html" title="参数接口" alt="" coords="318,80,417,105"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="394,113,406,128,433,176,450,219,452,241,449,263,441,285,425,309,400,323,361,334,360,329,398,318,421,305,436,283,444,261,447,241,445,220,428,178,401,131,390,116"/>
+<area shape="rect" id="Node000008" href="$classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="199,243,338,268"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="382,117,390,140,396,167,395,195,384,220,364,238,339,249,337,244,361,234,380,217,390,194,390,168,385,142,377,119"/>
+<area shape="rect" id="Node000009" href="$classCParameterRecord.html" title=" " alt="" coords="5,155,148,180"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="309,111,123,157,122,152,308,106"/>
+<area shape="rect" id="Node000010" href="$classCParameterMediaDevices.html" title=" " alt="" coords="172,155,363,180"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="342,116,285,156,282,152,339,111"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="330,5,405,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="370,45,370,80,365,80,365,45"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="276,281,285,330,280,331,271,282"/>
+<area shape="poly" id="edge25_Node000004_Node000009" title=" " alt="" coords="79,194,79,254,79,786,83,807,92,824,106,839,125,851,169,869,216,878,214,883,167,874,122,856,103,843,88,828,78,809,74,786,74,254,74,194"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="116,183,244,240,241,245,114,188"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="268,194,267,219,270,242,264,243,262,219,262,194"/>
+<area shape="poly" id="edge14_Node000004_Node000011" title=" " alt="" coords="377,533,346,637,309,773,286,875,280,874,303,771,340,635,372,531"/>
+<area shape="poly" id="edge20_Node000013_Node000011" title=" " alt="" coords="384,532,385,660,388,772,383,772,379,660,379,532"/>
+<area shape="poly" id="edge24_Node000015_Node000011" title=" " alt="" coords="446,520,510,540,586,579,583,584,508,545,444,525"/>
+<area shape="rect" id="Node000019" href="$classCParameterNetUI.html" title="The net parameter UI" alt="" coords="477,772,612,797"/>
+<area shape="poly" id="edge31_Node000019_Node000011" title=" " alt="" coords="401,528,433,574,467,629,482,662,490,689,499,716,515,747,534,770,530,773,510,749,494,718,485,691,477,664,462,632,429,577,397,531"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="387,445,385,493,380,493,382,444"/>
+<area shape="poly" id="edge18_Node000004_Node000013" title=" " alt="" coords="366,809,294,877,291,873,362,805"/>
+<area shape="rect" id="Node000016" href="$classCParameterProxyUI.html" title="The proxy parameter UI" alt="" coords="470,875,619,900"/>
+<area shape="poly" id="edge35_Node000016_Node000013" title=" " alt="" coords="414,803,479,848,523,872,520,877,477,853,411,808"/>
+<area shape="rect" id="Node000014" href="$classCParameterSSHTunnel.html" title=" " alt="" coords="532,684,699,709"/>
+<area shape="poly" id="edge21_Node000013_Node000014" title=" " alt="" coords="573,717,418,774,416,769,571,712"/>
+<area shape="rect" id="Node000020" href="$classCParameterSSHTunnelUI.html" title=" " alt="" coords="636,772,816,797"/>
+<area shape="poly" id="edge34_Node000020_Node000014" title=" " alt="" coords="630,720,650,746,670,759,692,770,689,774,668,764,647,750,625,724"/>
+<area shape="poly" id="edge22_Node000014_Node000015" title=" " alt="" coords="611,620,617,684,612,684,606,621"/>
+<area shape="poly" id="edge26_Node000001_Node000016" title=" " alt="" coords="529,913,484,962,425,1015,384,1040,381,1035,422,1011,481,959,525,909"/>
+<area shape="rect" id="Node000017" href="$classCParameterUI.html" title="参数界面接口" alt="" coords="723,684,835,709"/>
+<area shape="poly" id="edge27_Node000016_Node000017" title=" " alt="" coords="805,718,819,735,830,755,836,777,831,798,816,821,800,834,755,853,687,874,620,884,619,879,686,869,753,848,797,829,812,817,826,796,830,777,825,757,814,738,801,721"/>
+<area shape="poly" id="edge30_Node000019_Node000017" title=" " alt="" coords="764,722,748,737,728,750,684,762,613,775,612,770,683,756,726,746,744,733,760,718"/>
+<area shape="poly" id="edge33_Node000020_Node000017" title=" " alt="" coords="775,723,763,749,742,773,738,770,758,747,770,721"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="740,581,819,607"/>
+<area shape="poly" id="edge28_Node000017_Node000018" title=" " alt="" coords="782,621,782,684,777,684,777,621"/>
+<area shape="poly" id="edge29_Node000016_Node000019" title=" " alt="" coords="547,811,547,875,542,875,542,811"/>
+<area shape="poly" id="edge32_Node000016_Node000020" title=" " alt="" coords="706,809,678,832,646,853,588,877,586,872,643,848,675,827,702,805"/>
+</map>

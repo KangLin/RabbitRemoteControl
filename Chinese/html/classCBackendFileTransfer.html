@@ -1,0 +1,795 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendFileTransfer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCBackendFileTransfer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendFileTransfer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CBackendFileTransfer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendFileTransfer__inherit__graph.png" border="0" usemap="#aCBackendFileTransfer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCBackendFileTransfer_inherit__map" id="aCBackendFileTransfer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,167,177"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="43,79,129,104"/>
+<area shape="poly" title=" " alt="" coords="89,118,89,152,83,152,83,118"/>
+<area shape="rect" title=" " alt="" coords="49,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,79,83,79,83,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackendFileTransfer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendFileTransfer__coll__graph.png" border="0" usemap="#aCBackendFileTransfer_coll__map" alt="Collaboration graph"/></div>
+<map name="aCBackendFileTransfer_coll__map" id="aCBackendFileTransfer_coll__map">
+<area shape="rect" title=" " alt="" coords="2600,335,2761,360"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="465,508,551,533"/>
+<area shape="poly" title=" " alt="" coords="566,526,701,540,864,547,2388,547,2437,541,2483,524,2527,499,2566,470,2630,407,2668,358,2673,362,2634,410,2569,474,2529,504,2486,529,2438,546,2389,553,864,553,701,545,565,531"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="800,452,931,477"/>
+<area shape="poly" title=" " alt="" coords="565,514,662,504,771,487,822,475,824,480,773,493,662,509,565,519"/>
+<area shape="rect" title=" " alt="" coords="5,363,80,388"/>
+<area shape="poly" title=" " alt="" coords="66,397,95,424,131,448,174,466,220,481,312,502,397,513,464,517,464,523,397,518,311,507,218,486,172,471,128,452,91,428,62,400"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="467,395,549,420"/>
+<area shape="poly" title=" " alt="" coords="94,375,387,393,466,400,466,406,386,398,93,380"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="174,413,245,439"/>
+<area shape="poly" title=" " alt="" coords="94,388,105,391,175,413,173,418,103,397,92,393"/>
+<area shape="rect" href="classCRemoteFileSystem.html" title=" " alt="" coords="132,93,287,119"/>
+<area shape="poly" title=" " alt="" coords="43,349,49,302,63,243,88,181,106,153,128,128,144,117,147,121,131,132,110,156,93,184,68,244,54,303,48,349"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="160,279,259,304"/>
+<area shape="poly" title=" " alt="" coords="80,354,182,302,184,307,82,359"/>
+<area shape="rect" href="classCOperateFileTransfer.html" title="File transfer operate interface" alt="" coords="2308,335,2467,360"/>
+<area shape="poly" title=" " alt="" coords="2481,345,2600,345,2600,350,2481,350"/>
+<area shape="poly" title=" " alt="" coords="563,401,700,394,864,390,2083,390,2151,387,2218,379,2333,357,2334,363,2219,384,2151,392,2083,395,864,395,700,399,563,406"/>
+<area shape="poly" title=" " alt="" coords="563,413,800,452,799,457,563,419"/>
+<area shape="poly" title=" " alt="" coords="258,420,466,407,466,413,259,426"/>
+<area shape="rect" href="classCFrmFileTransfer.html" title=" " alt="" coords="800,99,931,124"/>
+<area shape="poly" title=" " alt="" coords="945,115,1063,122,1197,126,2083,126,2120,129,2151,137,2176,150,2198,168,2238,213,2286,268,2298,288,2310,305,2331,321,2353,332,2351,337,2328,325,2306,309,2293,290,2282,272,2234,216,2194,172,2173,155,2149,142,2119,134,2083,131,1197,131,1063,128,944,120"/>
+<area shape="rect" title=" " alt="" coords="469,128,547,153"/>
+<area shape="poly" title=" " alt="" coords="561,134,799,114,800,119,561,139"/>
+<area shape="rect" href="classCRemoteFileSystemModel.html" title=" " alt="" coords="411,29,605,55"/>
+<area shape="poly" title=" " alt="" coords="620,50,695,61,773,77,833,96,831,101,771,82,694,66,619,55"/>
+<area shape="rect" title=" " alt="" coords="131,5,287,31"/>
+<area shape="poly" title=" " alt="" coords="301,23,411,32,410,37,301,28"/>
+<area shape="poly" title=" " alt="" coords="282,88,447,52,449,57,283,93"/>
+<area shape="poly" title=" " alt="" coords="188,78,195,70,209,67,222,69,230,76,231,85,228,94,223,92,226,84,225,78,220,74,209,72,198,75,192,82"/>
+<area shape="rect" href="classCListFileModel.html" title=" " alt="" coords="449,79,567,104"/>
+<area shape="poly" title=" " alt="" coords="580,93,800,105,799,110,580,98"/>
+<area shape="rect" title=" " alt="" coords="129,143,289,168"/>
+<area shape="poly" title=" " alt="" coords="282,137,448,101,450,106,283,142"/>
+<area shape="rect" href="classCParameterFileTransfer.html" title=" " alt="" coords="1995,241,2168,267"/>
+<area shape="poly" title=" " alt="" coords="2182,257,2284,267,2472,300,2625,332,2624,337,2471,305,2284,273,2182,262"/>
+<area shape="poly" title=" " alt="" coords="2138,268,2345,332,2344,337,2136,273"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1123,272,1273,297"/>
+<area shape="poly" title=" " alt="" coords="1222,261,1252,238,1292,214,1337,195,1385,187,1835,187,1897,193,1957,206,2052,239,2050,244,1955,211,1896,198,1835,193,1386,193,1338,200,1294,218,1255,242,1225,265"/>
+<area shape="poly" title=" " alt="" coords="1178,257,1184,249,1198,245,1210,248,1217,254,1219,264,1216,273,1211,271,1214,263,1213,257,1208,252,1198,251,1187,253,1182,260"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1554,292,1675,317"/>
+<area shape="poly" title=" " alt="" coords="1287,286,1554,299,1553,304,1287,292"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1323,329,1451,355"/>
+<area shape="poly" title=" " alt="" coords="1254,299,1345,327,1343,332,1253,304"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1772,241,1896,267"/>
+<area shape="poly" title=" " alt="" coords="1287,270,1297,269,1430,260,1562,255,1772,251,1772,257,1562,260,1430,265,1298,274,1287,275"/>
+<area shape="poly" title=" " alt="" coords="273,298,411,313,613,318,812,312,989,301,1122,290,1123,295,989,307,812,317,613,323,410,318,272,303"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="796,235,935,260"/>
+<area shape="poly" title=" " alt="" coords="272,276,313,270,447,257,580,249,796,244,796,250,580,255,447,262,314,275,273,282"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="437,279,579,304"/>
+<area shape="poly" title=" " alt="" coords="272,289,436,289,436,294,272,294"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="413,177,603,203"/>
+<area shape="poly" title=" " alt="" coords="234,267,270,242,312,220,362,204,412,195,413,200,363,209,314,224,273,246,238,272"/>
+<area shape="poly" title=" " alt="" coords="949,254,1123,274,1122,279,948,259"/>
+<area shape="poly" title=" " alt="" coords="593,288,679,283,772,271,826,258,827,263,772,277,680,288,593,293"/>
+<area shape="poly" title=" " alt="" coords="618,197,773,219,823,232,822,237,771,225,617,202"/>
+<area shape="poly" title=" " alt="" coords="1689,302,1788,299,1896,290,1966,278,2030,264,2031,269,1967,283,1896,295,1788,304,1689,307"/>
+<area shape="poly" title=" " alt="" coords="1684,286,1747,271,1778,264,1780,269,1749,277,1685,291"/>
+<area shape="poly" title=" " alt="" coords="1464,332,1529,322,1563,315,1564,320,1530,327,1465,337"/>
+<area shape="poly" title=" " alt="" coords="1910,251,1994,251,1994,257,1910,257"/>
+<area shape="poly" title=" " alt="" coords="944,457,1063,451,1197,449,2083,449,2140,447,2185,441,2229,429,2283,409,2330,384,2368,358,2371,362,2333,389,2285,414,2230,434,2186,447,2141,452,2083,454,1197,454,1063,457,945,462"/>
+<area shape="rect" title=" " alt="" coords="469,459,547,484"/>
+<area shape="poly" title=" " alt="" coords="561,468,799,463,799,469,561,473"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a2356d405ef313ecb10dbee8594b77d08" id="r_a2356d405ef313ecb10dbee8594b77d08"><td class="memItemLeft" align="right" valign="top"><a id="a2356d405ef313ecb10dbee8594b77d08" name="a2356d405ef313ecb10dbee8594b77d08"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigGetDir</b> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *pRemoteFileSystem, QVector&lt; QSharedPointer&lt; <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &gt; &gt; contents, bool bEnd)</td></tr>
+<tr class="separator:a2356d405ef313ecb10dbee8594b77d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba461da61c0f83f36a5274bb389f75c0" id="r_aba461da61c0f83f36a5274bb389f75c0"><td class="memItemLeft" align="right" valign="top"><a id="aba461da61c0f83f36a5274bb389f75c0" name="aba461da61c0f83f36a5274bb389f75c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigFileTransferUpdate</b> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+<tr class="separator:aba461da61c0f83f36a5274bb389f75c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('signals_classCBackend')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend" id="r_a995a76442b28b067ab34dbe0fdffbbb5"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRunning</b> ()</td></tr>
+<tr class="memdesc:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当插件开始成功后触发。仅由插件触发 <br /></td></tr>
+<tr class="separator:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend" id="r_a465330ec1de890111932a2458d37d0be"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 <br /></td></tr>
+<tr class="separator:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend" id="r_ab2055a97b4c856982eedd6ce37f70940"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab2055a97b4c856982eedd6ce37f70940">sigFinished</a> ()</td></tr>
+<tr class="memdesc:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止成功信号。仅由插件触发  <br /></td></tr>
+<tr class="separator:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend" id="r_a67bf8156353fc085dbe5b5afaf3425cc"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memdesc:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发 <br /></td></tr>
+<tr class="separator:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend" id="r_a003c4cf2cd63795187289df16b639e5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a003c4cf2cd63795187289df16b639e5a">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示信息，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend" id="r_a5e011ebbb8577c03f32fbbba33e759d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend" id="r_a780b35e940bdfae5765e5d3337df7a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a780b35e940bdfae5765e5d3337df7a02">sigBlockShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton &amp;nRet, bool &amp;checkBox, QString checkBoxContext=QString())</td></tr>
+<tr class="memdesc:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)  <br /></td></tr>
+<tr class="separator:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend" id="r_ae8fff211d62448cc622947a43cd0ce45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ae8fff211d62448cc622947a43cd0ce45">sigBlockInputDialog</a> (const QString &amp;szTitle, const QString &amp;szLable, const QString &amp;szMessage, QString &amp;szText)</td></tr>
+<tr class="memdesc:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)  <br /></td></tr>
+<tr class="separator:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend" id="r_ad3aecd97defce14b02d48102a843136e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ad3aecd97defce14b02d48102a843136e">sigBlockShowWidget</a> (const QString &amp;className, int &amp;nRet, void *pContext)</td></tr>
+<tr class="memdesc:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示窗口。  <br /></td></tr>
+<tr class="separator:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a2c6ecb8bd1504c88b5ed897d18d8440d" id="r_a2c6ecb8bd1504c88b5ed897d18d8440d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a2c6ecb8bd1504c88b5ed897d18d8440d">CBackendFileTransfer</a> (<a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a> *pOperate)</td></tr>
+<tr class="separator:a2c6ecb8bd1504c88b5ed897d18d8440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6901298cc6cf9a209f02f0df86f5b7" id="r_a2d6901298cc6cf9a209f02f0df86f5b7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a2d6901298cc6cf9a209f02f0df86f5b7">event</a> (QEvent *event) override</td></tr>
+<tr class="separator:a2d6901298cc6cf9a209f02f0df86f5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBackend')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:aea3688d817545b00558f37a6ba7995f3 inherit pub_methods_classCBackend" id="r_aea3688d817545b00558f37a6ba7995f3"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CBackend</b> (<a class="el" href="classCOperate.html">COperate</a> *pOperate=nullptr)</td></tr>
+<tr class="separator:aea3688d817545b00558f37a6ba7995f3 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend" id="r_a675c80c148c99b81cd5c22c718cccd26"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26">Start</a> ()</td></tr>
+<tr class="memdesc:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件  <br /></td></tr>
+<tr class="separator:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend" id="r_a179ed68b6d28f51dd75d900f48eb4a2e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e">Stop</a> ()</td></tr>
+<tr class="memdesc:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止  <br /></td></tr>
+<tr class="separator:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1869c058b1696dc9043bbf734dad9b76 inherit pub_methods_classCBackend" id="r_a1869c058b1696dc9043bbf734dad9b76"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a1869c058b1696dc9043bbf734dad9b76">WakeUp</a> ()</td></tr>
+<tr class="memdesc:a1869c058b1696dc9043bbf734dad9b76 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wake up.  <br /></td></tr>
+<tr class="separator:a1869c058b1696dc9043bbf734dad9b76 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a1998a42f44a2f25cda414a5f6e55f3de" id="r_a1998a42f44a2f25cda414a5f6e55f3de"><td class="memItemLeft" align="right" valign="top">virtual OnInitReturnValue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a1998a42f44a2f25cda414a5f6e55f3de">OnInit</a> () override</td></tr>
+<tr class="memdesc:a1998a42f44a2f25cda414a5f6e55f3de"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <br /></td></tr>
+<tr class="separator:a1998a42f44a2f25cda414a5f6e55f3de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930094f964412f65d2cf658754afa5ae" id="r_a930094f964412f65d2cf658754afa5ae"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a930094f964412f65d2cf658754afa5ae">OnClean</a> () override</td></tr>
+<tr class="memdesc:a930094f964412f65d2cf658754afa5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理  <br /></td></tr>
+<tr class="separator:a930094f964412f65d2cf658754afa5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e2e62ccfde4f300391eb57a7a7ba2a" id="r_ab5e2e62ccfde4f300391eb57a7a7ba2a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#ab5e2e62ccfde4f300391eb57a7a7ba2a">OnProcess</a> () override</td></tr>
+<tr class="memdesc:ab5e2e62ccfde4f300391eb57a7a7ba2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">具体操作处理  <br /></td></tr>
+<tr class="separator:ab5e2e62ccfde4f300391eb57a7a7ba2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:ad8699761a2b042bcf89a063606c754b6" id="r_ad8699761a2b042bcf89a063606c754b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#ad8699761a2b042bcf89a063606c754b6">slotMakeDir</a> (const QString &amp;szDir)</td></tr>
+<tr class="separator:ad8699761a2b042bcf89a063606c754b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e998627427ff7f5748a60e3e1ebdfc" id="r_aa8e998627427ff7f5748a60e3e1ebdfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#aa8e998627427ff7f5748a60e3e1ebdfc">slotRemoveDir</a> (const QString &amp;szDir)</td></tr>
+<tr class="separator:aa8e998627427ff7f5748a60e3e1ebdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd3f006cb841a922912f4f5aa2ea709" id="r_aecd3f006cb841a922912f4f5aa2ea709"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#aecd3f006cb841a922912f4f5aa2ea709">slotGetDir</a> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *pRemoteFileSystem)</td></tr>
+<tr class="separator:aecd3f006cb841a922912f4f5aa2ea709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7365d7daa26fa657f466aad3df83563e" id="r_a7365d7daa26fa657f466aad3df83563e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a7365d7daa26fa657f466aad3df83563e">slotRemoveFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a7365d7daa26fa657f466aad3df83563e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba0d17ac1a16d95f331403f66f36f91e" id="r_aba0d17ac1a16d95f331403f66f36f91e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#aba0d17ac1a16d95f331403f66f36f91e">slotRename</a> (const QString &amp;oldName, const QString &amp;newName)</td></tr>
+<tr class="separator:aba0d17ac1a16d95f331403f66f36f91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b05e25f48b0dda697ab74a1c909884a" id="r_a8b05e25f48b0dda697ab74a1c909884a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a8b05e25f48b0dda697ab74a1c909884a">slotStartFileTransfer</a> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+<tr class="separator:a8b05e25f48b0dda697ab74a1c909884a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67759d29214dffe15f5aff86c1b09b3a" id="r_a67759d29214dffe15f5aff86c1b09b3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a67759d29214dffe15f5aff86c1b09b3a">slotStopFileTransfer</a> (QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt; f)</td></tr>
+<tr class="separator:a67759d29214dffe15f5aff86c1b09b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ad219847ebe5051ac900d51eba987d3b5" id="r_ad219847ebe5051ac900d51eba987d3b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#ad219847ebe5051ac900d51eba987d3b5">SetConnect</a> (<a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a> *pOperate)</td></tr>
+<tr class="separator:ad219847ebe5051ac900d51eba987d3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade6f3e11b73a8c0b3bb2d926e06aa1ff" id="r_ade6f3e11b73a8c0b3bb2d926e06aa1ff"><td class="memItemLeft" align="right" valign="top">OnInitReturnValue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#ade6f3e11b73a8c0b3bb2d926e06aa1ff">InitSFTP</a> ()</td></tr>
+<tr class="separator:ade6f3e11b73a8c0b3bb2d926e06aa1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a183d991ba4e04d913d67d0c04e68fc81" id="r_a183d991ba4e04d913d67d0c04e68fc81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a183d991ba4e04d913d67d0c04e68fc81">m_pOperate</a></td></tr>
+<tr class="separator:a183d991ba4e04d913d67d0c04e68fc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42ff56ed62feff6d2d56330d4041791c" id="r_a42ff56ed62feff6d2d56330d4041791c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFileTransfer.html">CParameterFileTransfer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFileTransfer.html#a42ff56ed62feff6d2d56330d4041791c">m_pPara</a></td></tr>
+<tr class="separator:a42ff56ed62feff6d2d56330d4041791c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_types_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 类型 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend" id="r_ab255847aef6c0290768b431a7839674f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>OnInitReturnValue</b> { <b>Fail</b> = -1
+, <b>Success</b> = 0
+, <b>UseOnProcess</b> = Success
+, <b>NotUseOnProcess</b> = 1
+ }</td></tr>
+<tr class="separator:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend" id="r_ab74a6b0f25f34ff763dc0f7080f229f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6">slotTimeOut</a> ()</td></tr>
+<tr class="memdesc:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个非 Qt 事件处理，它调用 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> 返回值大于 0  <br /></td></tr>
+<tr class="separator:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8h_source.html">BackendFileTransfer.h</a> 第 <a class="el" href="BackendFileTransfer_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a2c6ecb8bd1504c88b5ed897d18d8440d" name="a2c6ecb8bd1504c88b5ed897d18d8440d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c6ecb8bd1504c88b5ed897d18d8440d">&#9670;&#160;</a></span>CBackendFileTransfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendFileTransfer::CBackendFileTransfer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a> *&#160;</td>
+          <td class="paramname"><em>pOperate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7cbeb47171a49de1c7f21fbb17920769" name="a7cbeb47171a49de1c7f21fbb17920769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cbeb47171a49de1c7f21fbb17920769">&#9670;&#160;</a></span>~CBackendFileTransfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendFileTransfer::~CBackendFileTransfer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2d6901298cc6cf9a209f02f0df86f5b7" name="a2d6901298cc6cf9a209f02f0df86f5b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d6901298cc6cf9a209f02f0df86f5b7">&#9670;&#160;</a></span>event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBackendFileTransfer::event </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ade6f3e11b73a8c0b3bb2d926e06aa1ff" name="ade6f3e11b73a8c0b3bb2d926e06aa1ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade6f3e11b73a8c0b3bb2d926e06aa1ff">&#9670;&#160;</a></span>InitSFTP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendFileTransfer::OnInitReturnValue CBackendFileTransfer::InitSFTP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00191">191</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a930094f964412f65d2cf658754afa5ae" name="a930094f964412f65d2cf658754afa5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930094f964412f65d2cf658754afa5ae">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFileTransfer::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a5421972b8e09d32b62f634360f0f8a31">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1998a42f44a2f25cda414a5f6e55f3de" name="a1998a42f44a2f25cda414a5f6e55f3de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1998a42f44a2f25cda414a5f6e55f3de">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackend::OnInitReturnValue CBackendFileTransfer::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 <a class="el" href="classCBackendFileTransfer.html#ab5e2e62ccfde4f300391eb57a7a7ba2a" title="具体操作处理">OnProcess()</a> (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 <a class="el" href="classCBackendFileTransfer.html#ab5e2e62ccfde4f300391eb57a7a7ba2a" title="具体操作处理">OnProcess()</a> (qt 事件循环)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab5e2e62ccfde4f300391eb57a7a7ba2a" name="ab5e2e62ccfde4f300391eb57a7a7ba2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e2e62ccfde4f300391eb57a7a7ba2a">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFileTransfer::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>具体操作处理 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: 继续。再次调用间隔时间，单位毫秒 </li>
+<li>= -1: 停止 </li>
+<li>&lt; -1: 错误</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> <a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6" title="一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 OnInit() 返回值大于 0">slotTimeOut()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba">CBackend</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad219847ebe5051ac900d51eba987d3b5" name="ad219847ebe5051ac900d51eba987d3b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad219847ebe5051ac900d51eba987d3b5">&#9670;&#160;</a></span>SetConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFileTransfer::SetConnect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a> *&#160;</td>
+          <td class="paramname"><em>pOperate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00154">154</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aecd3f006cb841a922912f4f5aa2ea709" name="aecd3f006cb841a922912f4f5aa2ea709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecd3f006cb841a922912f4f5aa2ea709">&#9670;&#160;</a></span>slotGetDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotGetDir </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td>
+          <td class="paramname"><em>pRemoteFileSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00248">248</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad8699761a2b042bcf89a063606c754b6" name="ad8699761a2b042bcf89a063606c754b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8699761a2b042bcf89a063606c754b6">&#9670;&#160;</a></span>slotMakeDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotMakeDir </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00212">212</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8e998627427ff7f5748a60e3e1ebdfc" name="aa8e998627427ff7f5748a60e3e1ebdfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e998627427ff7f5748a60e3e1ebdfc">&#9670;&#160;</a></span>slotRemoveDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotRemoveDir </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00221">221</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7365d7daa26fa657f466aad3df83563e" name="a7365d7daa26fa657f466aad3df83563e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7365d7daa26fa657f466aad3df83563e">&#9670;&#160;</a></span>slotRemoveFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotRemoveFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00230">230</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba0d17ac1a16d95f331403f66f36f91e" name="aba0d17ac1a16d95f331403f66f36f91e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba0d17ac1a16d95f331403f66f36f91e">&#9670;&#160;</a></span>slotRename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotRename </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>oldName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00239">239</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8b05e25f48b0dda697ab74a1c909884a" name="a8b05e25f48b0dda697ab74a1c909884a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b05e25f48b0dda697ab74a1c909884a">&#9670;&#160;</a></span>slotStartFileTransfer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotStartFileTransfer </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00260">260</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a67759d29214dffe15f5aff86c1b09b3a" name="a67759d29214dffe15f5aff86c1b09b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67759d29214dffe15f5aff86c1b09b3a">&#9670;&#160;</a></span>slotStopFileTransfer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFileTransfer::slotStopFileTransfer </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="classCFileTransfer.html">CFileTransfer</a> &gt;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a> 第 <a class="el" href="BackendFileTransfer_8cpp_source.html#l00270">270</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a183d991ba4e04d913d67d0c04e68fc81" name="a183d991ba4e04d913d67d0c04e68fc81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183d991ba4e04d913d67d0c04e68fc81">&#9670;&#160;</a></span>m_pOperate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperateFileTransfer.html">COperateFileTransfer</a>* CBackendFileTransfer::m_pOperate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8h_source.html">BackendFileTransfer.h</a> 第 <a class="el" href="BackendFileTransfer_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42ff56ed62feff6d2d56330d4041791c" name="a42ff56ed62feff6d2d56330d4041791c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42ff56ed62feff6d2d56330d4041791c">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFileTransfer.html">CParameterFileTransfer</a>* CBackendFileTransfer::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFileTransfer_8h_source.html">BackendFileTransfer.h</a> 第 <a class="el" href="BackendFileTransfer_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="BackendFileTransfer_8h_source.html">BackendFileTransfer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="BackendFileTransfer_8cpp_source.html">BackendFileTransfer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<map id="CRecordVideo" name="CRecordVideo">
+<area shape="rect" id="Node000001" title="Record video to file." alt="" coords="5,243,119,268"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="19,5,94,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,45,64,242,59,242,55,45"/>
+<area shape="rect" id="Node000004" href="$classCParameter.html" title="Parameter interface." alt="" coords="89,80,187,105"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="82,38,126,78,123,82,78,42"/>
+<area shape="rect" id="Node000003" href="$classCParameterRecord.html" title=" " alt="" coords="79,155,221,180"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,191,76,244,72,240,127,188"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="145,119,151,154,145,155,140,120"/>
+</map>
