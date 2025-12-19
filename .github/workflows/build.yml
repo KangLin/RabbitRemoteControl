@@ -185,6 +185,7 @@ jobs:
           echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...v${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
           BUILD_TIME=`date --rfc-3339=second`
           echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
+          echo "|Supported platforms: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html) [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)|支持平台: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html) [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)|" >> ${{github.workspace}}/Release.md
           #echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
           echo "|[Online development document](https://rabbitremotecontrol.sourceforge.io/${{ github.ref_name }}/English/html/index.html)|[在线开发文档](https://rabbitremotecontrol.sourceforge.io/${{ github.ref_name }}/Chinese/html/index.html)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
@@ -228,7 +229,7 @@ jobs:
           echo "|Debian 12|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian12_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian12_aarch64.deb)| |Because the system library version is too low, some functions are limited.|" >> ${{github.workspace}}/Release.md
           echo "|Debian 13|[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian13_x86_64.deb)| |[DEB](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_debian13_aarch64.deb)| | |" >> ${{github.workspace}}/Release.md
 
-          RPM_VERSION=${RabbitRemoteControl_VERSION//-/\~}
+          RPM_VERSION=${RabbitRemoteControl_VERSION//-/\_}
           echo "|Fedora 41|[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${RPM_VERSION}-1.fc41.x86_64.rpm)| |[RPM](https://github.com/KangLin/RabbitRemoteControl/releases/download/${BRANCH_NAME}/rabbitremotecontrol-${RPM_VERSION}-1.fc41.aarch64.rpm)| |sudo dnf install \"rpm file\" |" >> ${{github.workspace}}/Release.md
 
       - name: Add download in test
