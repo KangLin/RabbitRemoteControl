@@ -26,7 +26,7 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bDockListActiveShowToolBar(true),
     m_bDockListRecentShowToolBar(true),
     m_bKeepSplitViewWhenFullScreen(false),
-    m_bStartByType(false)
+    m_bStartByType(true)
 {
 }
 
