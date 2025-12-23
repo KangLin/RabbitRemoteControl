@@ -8,7 +8,7 @@
     "openssl",
     "cmark"
   ],
-
+  
   "default-features": [
     "freerdp",
     "vnc",
@@ -16,6 +16,41 @@
   ],
 
   "features": {
+    "qt": {
+      "description": "qt library",
+      "dependencies": [
+        "qttools",
+        "qtbase",
+        {
+          "name": "qt5compat",
+          "default-features": false,
+          "features": ["big-codecs","codecs","textcodec"]
+        },
+        {
+          "name": "qtmultimedia",
+          "default-features": false,
+          "features": ["ffmpeg", "widgets"]
+        },
+        {
+          "name": "qtscxml",
+          "default-features": false
+        },
+        "qtserialport",
+        {
+          "name": "qtwebchannel",
+          "default-features": false
+        },
+        "qtwebengine",
+        {
+          "name": "qtwebsockets",
+          "default-features": false
+        },
+        "qttranslations",
+        "qtsvg",
+        "qtimageformats"
+      ]
+    },
+
     "ffmpeg": {
       "description": "ffmpeg",
       "dependencies": [

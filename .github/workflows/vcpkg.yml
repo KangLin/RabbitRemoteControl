@@ -1,0 +1,119 @@
+# Author: Kang Lin<kl222@126.com>
+
+name: vcpkg
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  vcpkg:
+    strategy:
+      matrix:
+        include:
+          - CMAKE_GENERATOR_PLATFORM: x64
+            VCPKG_TARGET_TRIPLET: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v143
+            os: windows-2022
+
+    env:
+      VCPKGGITCOMMITID: 6bc1613f18f850c60d906575296f982c6dfcc9e0
+      CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
+      VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
+      VCPKG_INSTALLED_DIR: ${{github.workspace}}\.cache\install
+      VCPKG_DEFAULT_BUILDTREES_ROOT: D:/bt
+      VCPKG_DEFAULT_BINARY_CACHE: D:/bc
+      RabbitRemoteControl_VERSION: v0.0.36
+      BUILD_DIR:   ${{github.workspace}}\build
+      SOURCE_DIR:  ${{github.workspace}}\.cache\source
+      TOOLS_DIR:   ${{github.workspace}}\.cache\tools
+      INSTALL_DIR: ${{github.workspace}}\.cache\install
+      VCPKG_MANIFEST_FEATURES: "qt;freerdp;vnc;terminal;filetransfer"
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # 1. 通过注册表启用长路径支持
+      - name: Enable Long Paths
+        if: false
+        run: |
+          # 检查当前设置
+          $current = (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled').LongPathsEnabled
+          echo "Current LongPathsEnabled: $current"
+          
+          # 如果未启用，则启用
+          #if ($current -ne 1) {
+          #  Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
+          #  Restart-Computer -Force  # 需要重启，但在 CI 中不推荐
+          #}
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: run-vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: C:/vcpkg
+
+      - name: RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: git clone https://github.com/KangLin/RabbitCommon.git
+      
+      - name: Build RabbitRemoteControl
+        working-directory: ${{env.BUILD_DIR}}
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        run: |
+          # 或者使用替代方法：应用组策略（不需要重启）
+          # 但对于一次性运行环境，下面用环境变量方式更合适
+          # 2. 设置环境变量
+          #[Environment]::SetEnvironmentVariable("EnableLongPathBehavior", "1", "Process")
+          #[Environment]::SetEnvironmentVariable("COMPLUS_ForceENC", "1", "Process")
+                  
+          # 启用 git 的长路径支持
+          git config --global core.longpaths true
+          # Windows 上的 git 还需要设置
+          git config --global core.protectNTFS false
+          
+          cmake ${{github.workspace}} `
+            -A ${{env.CMAKE_GENERATOR_PLATFORM}} `
+            -T ${{env.VCPKG_PLATFORM_TOOLSET}} `
+            -DCMARK_SHARED=OFF `
+            -DCMARK_TESTS=OFF `
+            -DCMARK_STATIC=ON `
+            -DWITH_CMARK=OFF `
+            -DWITH_CMARK_GFM=ON `
+            -DWITH_WebEngineWidgets=ON `
+            -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON `
+            -DRABBIT_ENABLE_INSTALL_QT=ON `
+            -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_INSTALL_PREFIX=${{env.BUILD_DIR}}/install `
+            -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}} `
+            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake `
+            -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" `
+            -DVCPKG_VERBOSE=ON `
+            -DVCPKG_TARGET_TRIPLET="${{env.VCPKG_TARGET_TRIPLET}}" `
+            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON `
+            -DVCPKG_APPLOCAL_DEPS=ON `
+            -DVCPKG_TRACE_FIND_PACKAGE=ON `
+            -DVCPKG_MAX_PARALLELISM=2 `
+            -DBUILD_QUIWidget=OFF `
+            -DBUILD_APP=ON `
+            -DBUILD_FREERDP=ON `
+            -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap `
+            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap `
+            -DINSTALL_QTKEYCHAIN=ON
+          cmake --build . --config Release
