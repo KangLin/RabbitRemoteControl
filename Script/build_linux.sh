@@ -416,13 +416,13 @@ if [ $DEB -eq 1 ]; then
     install_debian_depend $REPO_ROOT
 
     ./build_depend.sh \
-        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget \
+        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON"
+    export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
         --verbose=${BUILD_VERBOSE}
@@ -445,7 +445,7 @@ if [ $APPIMAGE -eq 1 ]; then
 #                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 #                ;;
 #        esac
-        depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain"
+        depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain --qftpserver"
         ;;
     fedora)
         ;;
@@ -459,11 +459,11 @@ if [ $APPIMAGE -eq 1 ]; then
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
     ./build_depend.sh --system_update --base --default \
-        --rabbitcommon --tigervnc --pcapplusplus \
+        --rabbitcommon --tigervnc --pcapplusplus ${depend_para} \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
-        --verbose=${BUILD_VERBOSE} ${depend_para}
+        --verbose=${BUILD_VERBOSE}
 
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
@@ -474,7 +474,7 @@ if [ $RPM -eq 1 ]; then
     echo "build rpm package ......"
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
-        --rabbitcommon --tigervnc --pcapplusplus \
+        --rabbitcommon --tigervnc --pcapplusplus --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -490,7 +490,7 @@ fi
 if [ $MACOS -eq 1 ]; then
     echo "build macos bundle package ......"
     ./build_depend.sh --system_update --base --default --macos \
-        --rabbitcommon --tigervnc --qtermwidget \
+        --rabbitcommon --tigervnc --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

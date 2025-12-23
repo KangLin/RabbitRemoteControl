@@ -150,7 +150,7 @@ cmake "$REPO_ROOT" \
   -DBUILD_FREERDP=ON \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
-cmake --build . --config Release --parallel $(nproc)
+cmake --build . --config Release #--parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries
 cmake --install . --config Release --strip --component Runtime
 cmake --install . --config Release --strip --component Plugin

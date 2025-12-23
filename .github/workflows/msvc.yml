@@ -376,6 +376,25 @@ jobs:
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           )
 
+      - name: QFtpServer
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          IF NOT EXIST ${{env.INSTALL_DIR}}/QFtpServerLib/QFtpServerLib (
+              git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+              cd QFtpServer
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                  -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+                  -DVCPKG_VERBOSE=ON ^
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                  -DVCPKG_APPLOCAL_DEPS=ON ^
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON
+              cmake --build .  --config ${{matrix.BUILD_TYPE}}
+              cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
+          )
+
       - name: RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git

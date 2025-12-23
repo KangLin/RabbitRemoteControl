@@ -44,6 +44,7 @@ QtService=0
 QTERMWIDGET=0
 LIBSSH=0
 QTKEYCHAIN=0
+QFtpServer=0
 
 # Display detailed usage information
 usage_long() {
@@ -84,6 +85,7 @@ Component options:
   --QtService[=1|0]                 Install QtService
   --qtermwidget[=1|0]               Install qtermwidget
   --qtkeychain[=1|0]                Install qtkeychain
+  --qftpserver[=1|0]                Install QFtpServer
 
 Examples:
   $0 --base=1 --qt=1 --install=/opt/local
@@ -117,7 +119,7 @@ parse_with_getopt() {
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::,freerdp::,tigervnc::,libssh::,pcapplusplus::,libdatachannel::,QtService::,qtermwidget::,qtkeychain::,qftpserver::
     
     # Parse arguments using getopt
     # -o: short options
@@ -330,6 +332,17 @@ parse_with_getopt() {
                     ;;
                 *)
                     QTKEYCHAIN="$2"
+                    ;;
+            esac
+            shift 2
+            ;;
+        --qftpserver)
+            case "$2" in
+                "")
+                    QFtpServer=1
+                    ;;
+                *)
+                    QFtpServer="$2"
                     ;;
             esac
             shift 2
@@ -844,6 +857,23 @@ if [ $QTKEYCHAIN -eq 1 ]; then
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DBUILD_WITH_QT6:BOOL=ON
+        cmake --build . --config Release --parallel $(nproc)
+        cmake --build . --config Release --target install
+        popd
+    fi
+    popd
+fi
+
+if [ $QFtpServer -eq 1 ]; then
+    echo "Install QFtpServer ......"
+    pushd "$SOURCE_DIR"
+    if [ ! -d ${INSTALL_DIR}/lib/cmake/QFtpServerLib/QFtpServerLib ]; then
+        git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+        cmake -E make_directory $BUILD_DEPEND_DIR/QFtpServer
+        pushd $BUILD_DEPEND_DIR/QFtpServer
+        cmake -S $SOURCE_DIR/QFtpServer -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
         popd
