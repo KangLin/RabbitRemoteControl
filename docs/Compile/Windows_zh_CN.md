@@ -92,6 +92,7 @@
 - [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) 多媒体功能需要
 - [可选] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
 - [可选] libcurl: [https://curl.se](https://curl.se)
+- [可选] QFtpServer: https://github.com/KangLin/QFtpServer
 
 #### 玉兔公共库
 
@@ -331,6 +332,13 @@
       -DPCAP_ROOT=[npcap SDK 目录] ^
       -DPacket_ROOT=[npcap SDK 目录] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
+
+#### QFtpServer
+
+- 从源码编译
+  + 源码位置： https://github.com/KangLin/QFtpServer
+
+        ~$ git clone https://github.com/KangLin/QFtpServer
 
 ### 编译本项目
 

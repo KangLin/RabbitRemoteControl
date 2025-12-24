@@ -238,6 +238,7 @@
 - [可选] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/)。 Qt 多媒体功能需要
 - [可选] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
 - [可选] libcurl: [https://curl.se](https://curl.se)
+- [可选] QFtpServer: https://github.com/KangLin/QFtpServer
 
 #### 玉兔公共库
 
@@ -465,6 +466,13 @@ PcapPlusPlus 依赖此库。
       ~$ sudo apt install libpcap-dev
 
 - 源码位置：https://github.com/the-tcpdump-group/libpcap
+
+#### QFtpServer
+
+- 从源码编译
+  + 源码位置： https://github.com/KangLin/QFtpServer
+
+        ~$ git clone https://github.com/KangLin/QFtpServer
 
 ### 编译本项目
 

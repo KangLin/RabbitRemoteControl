@@ -276,8 +276,9 @@ Q_SIGNALS:
 protected:
     /*!
      * \brief Initial parameters and resource
+     * \note Call before Load()
      * \~
-     * \see CManager::CreateOperate
+     * \see CManager::CreateOperate Load
      */
     Q_INVOKABLE virtual int Initial();
     /*!
@@ -350,9 +351,11 @@ protected:
     virtual int Save(QSettings &set) = 0;
     /*!
      * \~chinese \brief 从文件中加载参数
+     * \note 在 Initial() 之后调用
      * \~english \brief Load parameters from file
+     * \note Call after Initial()
      * \~
-     * \see CManger::LoadOperate
+     * \see CManger::LoadOperate Initial()
      */
     Q_INVOKABLE virtual int Load(QString szFile = QString());
     /*!

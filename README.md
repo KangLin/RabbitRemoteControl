@@ -141,7 +141,7 @@ Legend:
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-- [ ] FTP(File Transfer Protocol): [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
+- [x] FTP(File Transfer Protocol): [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 - [x] SFTP(Secure Shell File Transfer Protocol): [https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02](https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02)
 
 #### Network protocols
@@ -167,8 +167,8 @@ Legend:
 |TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌  |  ❌       |   |      |       |
 |  SSH      |       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
 |Serial port|       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
-|  FTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
-| SFTP      |       |  ✓  | ❌      |         | ✓  |      |  ❌       |   |      |       |
+|  FTP      |……     |……   | ❌      |         |……  |      |  ❌       |   |      |       |
+| SFTP      |       |……   | ❌      |         |……  |      |  ❌       |   |      |       |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported

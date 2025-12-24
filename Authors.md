@@ -44,3 +44,4 @@ See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 - [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) Multimedia capabilities required
 - [OPTIONAL] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
 - [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
+- [OPTIONAL] QFtpServer: https://github.com/KangLin/QFtpServer

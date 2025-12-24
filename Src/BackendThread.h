@@ -15,7 +15,7 @@ class PLUGIN_EXPORT CBackendThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit CBackendThread(COperate *pOperate = nullptr);
+    explicit CBackendThread(COperate *pOperate = nullptr, bool bSignal = true);
     virtual ~CBackendThread() override;
     /*!
      * \brief Quit
@@ -26,4 +26,5 @@ protected:
     virtual void run() override;
     COperate* m_pOperate;
     CBackend* m_pBackend;
+    bool m_bSignal;
 };

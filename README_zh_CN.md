@@ -139,7 +139,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
   - [x] [libssh](https://api.libssh.org/stable/index.html)
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-- [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
+- [x] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 - [x] SFTP(安全 Shell 文件传输协议)：[https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02](https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02)
 
 #### 网络协议
@@ -165,8 +165,8 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
 |  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
 |  串口  |     | ✓   | ❌   |    |       | ❌     | ❌  |   |    |   |
-|  FTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
-| SFTP  |     | ✓   | ❌   |    | ✓     | ❌     | ❌  |   |   |    |
+|  FTP  | ……  | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
+| SFTP  |     | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持

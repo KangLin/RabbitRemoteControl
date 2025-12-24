@@ -7,7 +7,7 @@
 
 static Q_LOGGING_CATEGORY(log, "BackendThread")
 
-CBackendThread::CBackendThread(COperate *pOperate)
+CBackendThread::CBackendThread(COperate *pOperate, bool bSingle)
     // Note that the parent object pointer cannot be set here.
     // If set the parent, the object is also deleted
     // when the parent object (CConnecterThread) is destroyed.
@@ -15,6 +15,7 @@ CBackendThread::CBackendThread(COperate *pOperate)
     : QThread()
     , m_pOperate(pOperate)
     , m_pBackend(nullptr)
+    , m_bSignal(bSingle)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -78,8 +79,10 @@ void CBackendThread::run()
     if(!m_pBackend || !bRet)
     {
         qCritical(log) << "InstanceBackend fail";
-        emit m_pOperate->sigStop();
-        emit m_pOperate->sigFinished();
+        if(m_bSignal) {
+            emit m_pOperate->sigStop();
+            emit m_pOperate->sigFinished();
+        }
         return;
     }
 
@@ -90,8 +93,10 @@ void CBackendThread::run()
             m_pBackend->Stop();
             m_pBackend->deleteLater();
             m_pBackend = nullptr;
-            emit m_pOperate->sigStop();
-            emit m_pOperate->sigFinished();
+            if(m_bSignal) {
+                emit m_pOperate->sigStop();
+                emit m_pOperate->sigFinished();
+            }
             return;
         }
     }
@@ -103,7 +108,8 @@ void CBackendThread::run()
         m_pBackend->deleteLater();
     }
 
-    emit m_pOperate->sigFinished();
+    if(m_bSignal)
+        emit m_pOperate->sigFinished();
 
     qDebug(log) << Q_FUNC_INFO << "end";
 }

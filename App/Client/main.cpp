@@ -107,11 +107,11 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
-    QSharedPointer<CFrmUpdater> pUpdate;
+    CFrmUpdater* pUpdate;
     // Check update version
     if(qEnvironmentVariable("SNAP").isEmpty()
         && qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
-        pUpdate = QSharedPointer<CFrmUpdater>(new CFrmUpdater());
+        pUpdate = new CFrmUpdater();
         if(pUpdate) {
             QIcon icon = QIcon::fromTheme("app");
             if(!icon.isNull())

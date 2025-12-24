@@ -364,7 +364,7 @@ int COperateDesktop::Start()
     m_pThread = new CBackendThread(this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";
-        return -2;
+        return -1;
     }
     
     m_pThread->start();
@@ -379,7 +379,7 @@ int COperateDesktop::Stop()
     if(m_pThread)
     {
         m_pThread->quit();
-        //Don't delete m_pThread, See CConnectThread
+        //Don't delete m_pThread, See CBackendThread
         m_pThread = nullptr;
     }
     return nRet;

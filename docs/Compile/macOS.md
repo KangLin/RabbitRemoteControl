@@ -154,6 +154,7 @@ GNU getopt needs to be installed.
   QtMultimedia required.
 - [OPTIONAL] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
 - [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
+- [OPTIONAL] QFtpServer: https://github.com/KangLin/QFtpServer
 
 #### RabbitCommon
 

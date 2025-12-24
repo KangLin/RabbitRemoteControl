@@ -95,6 +95,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/) Multimedia capabilities required
 - [OPTIONAL] qtkeychain: [https://github.com/KangLin/qtkeychain](https://github.com/KangLin/qtkeychain)
 - [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
+- [OPTIONAL] QFtpServer: https://github.com/KangLin/QFtpServer
 
 #### RabbitCommon
 
@@ -328,6 +329,13 @@ So compile from source, relying on the npcap library.
       -DPCAP_ROOT=[npcap SDK directory] ^
       -DPacket_ROOT=[npcap SDK directory] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+#### QFtpServer
+
+- Compile from source code
+  + Source-code location: https://github.com/KangLin/QFtpServer
+
+        ~$ git clone https://github.com/KangLin/QFtpServer
 
 ### Compile this project
 

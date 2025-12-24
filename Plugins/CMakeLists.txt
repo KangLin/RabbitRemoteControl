@@ -96,6 +96,12 @@ if(WITH_QTERMWIDGET)
     endif()
 endif()
 
+## Server
+option(BUILD_FTP_SERVER "Build ftp server" ON)
+if(BUILD_FTP_SERVER)
+    add_subdirectory(FtpServer)
+endif()
+
 message(STATUS "BUILD_RABBITVNC: ${BUILD_RABBITVNC}")
 message(STATUS "BUILD_TigerVNC: ${BUILD_TigerVNC}")
 message(STATUS "BUILD_LibVNCServer: ${BUILD_LibVNCServer}")
@@ -108,3 +114,5 @@ message(STATUS "BUILD_TERMINAL_TELNET: ${BUILD_TERMINAL_TELNET}")
 message(STATUS "BUILD_TERMINAL_SSH: ${BUILD_TERMINAL_SSH}")
 message(STATUS "BUILD_FILE_TRANSFER: ${BUILD_FILE_TRANSFER}")
 message(STATUS "BUILD_WEB_BROWSER: ${BUILD_WEB_BROWSER}; Qt${QT_VERSION_MAJOR}WebEngineWidgets: ${Qt${QT_VERSION_MAJOR}WebEngineWidgets_FOUND}")
+
+message(STATUS "BUILD_FTP_SERVER: ${BUILD_FTP_SERVER}")

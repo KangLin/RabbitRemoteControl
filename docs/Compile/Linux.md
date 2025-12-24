@@ -224,6 +224,7 @@ Prior versions don't have CMake support.
   QtMultimedia required.
 - [OPTIONAL] qtkeychain: [https://github.com/frankosterfeld/qtkeychain](https://github.com/frankosterfeld/qtkeychain)
 - [OPTIONAL] libcurl: [https://curl.se](https://curl.se)
+- [OPTIONAL] QFtpServer: https://github.com/KangLin/QFtpServer
 
 #### RabbitCommon
 
@@ -471,6 +472,13 @@ It is depended by PcapPlusPlus
       ~$ sudo apt install libpcap-dev
 
 - Sourc-code location: https://github.com/the-tcpdump-group/libpcap
+
+#### QFtpServer
+
+- Compile from source code
+  + Source-code location: https://github.com/KangLin/QFtpServer
+
+        ~$ git clone https://github.com/KangLin/QFtpServer
 
 ### Compile this project
 
