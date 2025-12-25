@@ -75,7 +75,37 @@ int CBackendFtpServer::OnClean()
 
 bool CBackendFtpServer::onFilter(QSslSocket *socket)
 {
+    bool bFilte = false;
     if(!socket) return true;
+    QString szIP = socket->peerAddress().toString();
+    
+    QStringList white = m_Para->GetWhitelist();
+    QStringList black = m_Para->GetBlacklist();
+    bool bInWhite = false;
+    if(!white.isEmpty()) {
+        foreach(auto i, white) {
+            QHostAddress addr(szIP);
+            auto sub = QHostAddress::parseSubnet(i);
+            if(addr.isInSubnet(sub.first, sub.second)) {
+                bInWhite = true;
+                break;
+            }
+        }
+    }
+
+    if(!bInWhite && !black.isEmpty()) {
+        foreach(auto i, black) {
+            QHostAddress addr(szIP);
+            auto sub = QHostAddress::parseSubnet(i);
+            if(addr.isInSubnet(sub.first, sub.second)) {
+                qDebug(log) << "Filet" << szIP << "in blacklist";
+                return true;
+            }
+        }
+    }
+
+    if(bFilte) return true;
+
     if(m_Para->GetConnectCount() >= 0 && m_Para->GetConnectCount() <= m_Sockets.size()) {
         qDebug(log) << "Exceeded the allowed number of connections:" << m_Para->GetConnectCount();
         return true;
@@ -85,14 +115,14 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
     check = connect(socket, SIGNAL(disconnected()),
                     this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    QString ip = socket->peerAddress().toString();
+    
     quint16 port = socket->peerPort();
     m_Sockets.append(socket);
     m_nTotal++;
     emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
-    emit sigConnected(ip, port);
+    emit sigConnected(szIP, port);
     qDebug(log) << "Current connect count:" << m_Sockets.size()
-             << "; new connect from:" << ip + ":" + QString::number(port);
+             << "; new connect from:" << szIP + ":" + QString::number(port);
     return false;
 }
 

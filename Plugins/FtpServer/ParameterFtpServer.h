@@ -40,6 +40,12 @@ public:
     QStringList GetListen() const;
     void SetListen(const QStringList &newListen);
     
+    QStringList GetWhitelist() const;
+    void SetWhitelist(const QStringList &newWhitelist);
+    
+    QStringList GetBlacklist() const;
+    void SetBlacklist(const QStringList &newBlacklist);
+    
 private:
     uint16_t m_nPort;
     QString m_szUser;
@@ -50,6 +56,8 @@ private:
     int m_ConnectCount;
     bool m_bListenAll;
     QStringList m_Listen;
+    QStringList m_Whitelist;
+    QStringList m_Blacklist;
     
     // CParameter interface
 protected:

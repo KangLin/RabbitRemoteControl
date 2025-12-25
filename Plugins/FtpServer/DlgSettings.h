@@ -21,15 +21,16 @@ public:
 
 public slots:
     virtual void accept() override;
-private slots:
+private Q_SLOTS:
     void on_pbRoot_clicked();
-    
     void on_cbAnonmousLogin_checkStateChanged(const Qt::CheckState &arg1);
-    
     void on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1);
-    
+    void slotWhiteListContextMenuRequested(const QPoint& pos);
+    void slotBlackListContextMenuRequested(const QPoint& pos);
 private:
     Ui::CDlgSettings *ui;
     QSharedPointer<CParameterFtpServer> m_Para;
     QStandardItemModel m_ModelNetWorkInterface;
+    QStandardItemModel m_ModelBlack;
+    QStandardItemModel m_ModelWhite;
 };

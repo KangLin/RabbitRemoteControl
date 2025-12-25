@@ -102,6 +102,26 @@ void CParameterFtpServer::SetListen(const QStringList &newListen)
     m_Listen = newListen;
 }
 
+QStringList CParameterFtpServer::GetWhitelist() const
+{
+    return m_Whitelist;
+}
+
+void CParameterFtpServer::SetWhitelist(const QStringList &newWhitelist)
+{
+    m_Whitelist = newWhitelist;
+}
+
+QStringList CParameterFtpServer::GetBlacklist() const
+{
+    return m_Blacklist;
+}
+
+void CParameterFtpServer::SetBlacklist(const QStringList &newBlacklist)
+{
+    m_Blacklist = newBlacklist;
+}
+
 int CParameterFtpServer::OnLoad(QSettings &set)
 {
     SetPort(set.value("Port", GetPort()).toUInt());
@@ -113,6 +133,8 @@ int CParameterFtpServer::OnLoad(QSettings &set)
     SetConnectCount(set.value("ConnectCount", GetConnectCount()).toInt());
     SetListenAll(set.value("ListenAll", GetListenAll()).toBool());
     SetListen(set.value("Listen", GetListen()).toStringList());
+    SetWhitelist(set.value("List/White", GetWhitelist()).toStringList());
+    SetBlacklist(set.value("List/Black", GetBlacklist()).toStringList());
     return 0;
 }
 
@@ -127,5 +149,7 @@ int CParameterFtpServer::OnSave(QSettings &set)
     set.setValue("ConnectCount", GetConnectCount());
     set.setValue("ListenAll", GetListenAll());
     set.setValue("Listen", GetListen());
+    set.setValue("List/White", GetWhitelist());
+    set.setValue("List/Black", GetBlacklist());
     return 0;
 }
