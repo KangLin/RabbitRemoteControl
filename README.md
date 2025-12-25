@@ -107,8 +107,8 @@ If you want to donate the development devices to me, please contact: (email: kl2
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|FTP     |✓      |✓         |✓      |✓  |
-|SFTP    |✓      |✓         |✓      |✓  |
+|FTP     |…      |…         |…      |…  |
+|SFTP    |…      |…         |…      |…  |
 
 - Tool
 
@@ -167,7 +167,7 @@ Legend:
 |TELNET     |       |  ✓  | ❌      |✓        | ❌ | ❌  |  ❌       |   |      |       |
 |  SSH      |       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
 |Serial port|       |  ✓  | ❌      |✓        |    | ❌  | ❌        |   |      |       |
-|  FTP      |……     |……   | ❌      |         |……  |      |  ❌       |   |      |       |
+|  FTP      | ✓     |……   | ❌      |         |……  |      |  ❌       |   |      |       |
 | SFTP      |       |……   | ❌      |         |……  |      |  ❌       |   |      |       |
 
 Legend:  
@@ -199,6 +199,7 @@ Legend:
   - [TELNET](Plugins/Telnet)
   - [Serial Port](Plugins/SerialPort)
 - [File transfer](Plugins/FileTransfer)
+- [Ftp server](Plugins/FtpServer)
 - [Web browser](Plugins/WebBrowser)
 
 ## Status

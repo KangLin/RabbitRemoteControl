@@ -106,8 +106,8 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
-|FTP     |✓      |✓         |✓      |✓  |
-|SFTP    |✓      |✓         |✓      |✓  |
+|FTP     |……     |……        |……     |…… |
+|SFTP    |……     |……        |……     |…… |
 
 - 工具
 
@@ -165,7 +165,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |TELNET |     | ✓   | ❌   |✓   | ❌    | ❌    |  ❌  |   |   |    |
 |  SSH  |     | ✓   | ❌   |✓   |       | ❌     | ❌  |   |    |   |
 |  串口  |     | ✓   | ❌   |    |       | ❌     | ❌  |   |    |   |
-|  FTP  | ……  | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
+|  FTP  |  ✓  | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
 | SFTP  |     | ……   | ❌   |    | ……   | ❌     | ❌  |   |   |    |
 
 图例：  
@@ -197,6 +197,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
   - [TELNET](Plugins/Telnet)
   - [串口](Plugins/SerialPort)
 - [文件传输](Plugins/FileTransfer)
+- [Ftp 服务](Plugins/FtpServer)
 - [网页浏览器](Plugins/WebBrowser)
 
 ## 状态
