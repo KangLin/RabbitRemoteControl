@@ -302,6 +302,17 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_WITH_QT6=ON
 
+  - name: QFtpServer
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/KangLin/QFtpServer.git
+        branch: master
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+
   - name: RabbitCommon
     disabled: false
     sources:

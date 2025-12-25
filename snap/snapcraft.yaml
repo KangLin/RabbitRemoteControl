@@ -297,6 +297,20 @@ parts:
     prime:
       - -usr/local/include
 
+  qftpserver:
+    plugin: cmake
+    source: https://github.com/KangLin/QFtpServer.git
+    source-type: git
+    source-branch: master
+    source-depth: 1
+    build-packages:
+    stage-packages:
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
+    prime:
+      - -usr/local/include
+
   rabbitremotecontrol:
     # See 'snapcraft plugins'
     # see: https://snapcraft.io/docs/supported-plugins
