@@ -2,7 +2,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
+
 #include <QDialog>
+#include <QStandardItemModel>
 #include "ParameterFtpServer.h"
 
 namespace Ui {
@@ -24,7 +26,10 @@ private slots:
     
     void on_cbAnonmousLogin_checkStateChanged(const Qt::CheckState &arg1);
     
+    void on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1);
+    
 private:
     Ui::CDlgSettings *ui;
     QSharedPointer<CParameterFtpServer> m_Para;
+    QStandardItemModel m_ModelNetWorkInterface;
 };

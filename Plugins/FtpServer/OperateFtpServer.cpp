@@ -95,17 +95,24 @@ int COperateFtpServer::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
+    bool check = false;
 
     m_Para = QSharedPointer<CParameterFtpServer>(new CParameterFtpServer());
     if(!m_Para)
         return -1;
+
+    check = connect(m_Para.get(), &CParameter::sigChanged,
+                    this, [&](){
+                        emit this->sigUpdateParameters(this);
+                    });
+    Q_ASSERT(check);
 
     nRet = COperate::Initial();
     if(nRet)
         return nRet;
 
     m_pStart = m_Menu.addAction(QIcon::fromTheme("media-playback-start"), tr("Start server"));
-    bool check = connect(m_pStart, &QAction::toggled, this, &COperateFtpServer::slotStart);
+    check = connect(m_pStart, &QAction::toggled, this, &COperateFtpServer::slotStart);
     Q_ASSERT(check);
     m_pStart->setCheckable(true);
     m_pStart->setToolTip(m_pStart->text());

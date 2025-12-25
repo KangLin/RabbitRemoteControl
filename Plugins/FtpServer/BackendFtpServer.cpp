@@ -41,11 +41,20 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         szUser = m_Para->GetUser();
         szPassword = m_Para->GetPassword();
     }
-    m_pServer = new FtpServer(this, m_Para->GetRoot(), m_Para->GetPort(),
+    m_pServer = new CFtpServer(this, m_Para->GetRoot(), m_Para->GetPort(),
                               szUser, szPassword,
-                              m_Para->GetReadOnly(), false);
+                              m_Para->GetReadOnly());
     m_pServer->SetFilter(this);
-    if(m_pServer->isListening()) {
+    bool bListen = false;
+    if(m_Para->GetListenAll())
+        bListen = m_pServer->Listening();
+    else {
+        foreach (auto a, m_Para->GetListen()) {
+            QHostAddress addr(a);
+            bListen = m_pServer->Listening(addr);
+        }
+    }
+    if(bListen) {
         qInfo(log) << "The ftp server listen in" << m_Para->GetPort();
     } else {
         QString szErr = tr("The ftp server is not listening in %1").arg(m_Para->GetPort());

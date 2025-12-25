@@ -32,7 +32,7 @@ private Q_SLOTS:
     void slotDisconnected();
 
 private:
-    FtpServer* m_pServer;
+    CFtpServer* m_pServer;
     QSharedPointer<CParameterFtpServer> m_Para;
     QList<QSslSocket*> m_Sockets;
     int m_nTotal;

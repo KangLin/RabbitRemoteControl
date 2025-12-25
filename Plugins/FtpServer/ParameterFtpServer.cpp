@@ -9,6 +9,7 @@ CParameterFtpServer::CParameterFtpServer(QObject *parent, const QString &szPrefi
     , m_bAnonymousLogin(true)
     , m_bReadOnly(true)
     , m_ConnectCount(-1)
+    , m_bListenAll(true)
 {}
 
 uint16_t CParameterFtpServer::GetPort() const
@@ -81,6 +82,26 @@ void CParameterFtpServer::SetConnectCount(int newConnectCount)
     m_ConnectCount = newConnectCount;
 }
 
+bool CParameterFtpServer::GetListenAll() const
+{
+    return m_bListenAll;
+}
+
+void CParameterFtpServer::SetListenAll(bool newListenAll)
+{
+    m_bListenAll = newListenAll;
+}
+
+QStringList CParameterFtpServer::GetListen() const
+{
+    return m_Listen;
+}
+
+void CParameterFtpServer::SetListen(const QStringList &newListen)
+{
+    m_Listen = newListen;
+}
+
 int CParameterFtpServer::OnLoad(QSettings &set)
 {
     SetPort(set.value("Port", GetPort()).toUInt());
@@ -89,6 +110,9 @@ int CParameterFtpServer::OnLoad(QSettings &set)
     SetRoot(set.value("Root", GetRoot()).toString());
     SetAnonymousLogin(set.value("AnonemousLogin", GetAnonymousLogin()).toBool());
     SetReadOnly(set.value("ReadOnly", GetReadOnly()).toBool());
+    SetConnectCount(set.value("ConnectCount", GetConnectCount()).toInt());
+    SetListenAll(set.value("ListenAll", GetListenAll()).toBool());
+    SetListen(set.value("Listen", GetListen()).toStringList());
     return 0;
 }
 
@@ -100,5 +124,8 @@ int CParameterFtpServer::OnSave(QSettings &set)
     set.setValue("Root", GetRoot());
     set.setValue("AnonemousLogin", GetAnonymousLogin());
     set.setValue("ReadOnly", GetReadOnly());
+    set.setValue("ConnectCount", GetConnectCount());
+    set.setValue("ListenAll", GetListenAll());
+    set.setValue("Listen", GetListen());
     return 0;
 }

@@ -34,6 +34,12 @@ public:
     int GetConnectCount() const;
     void SetConnectCount(int newConnectCount);
     
+    bool GetListenAll() const;
+    void SetListenAll(bool newListenAll);
+    
+    QStringList GetListen() const;
+    void SetListen(const QStringList &newListen);
+    
 private:
     uint16_t m_nPort;
     QString m_szUser;
@@ -42,6 +48,8 @@ private:
     bool m_bAnonymousLogin;
     bool m_bReadOnly;
     int m_ConnectCount;
+    bool m_bListenAll;
+    QStringList m_Listen;
     
     // CParameter interface
 protected:
