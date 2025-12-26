@@ -6,7 +6,18 @@ project(FtpServer
 
 find_package(QFtpServerLib)
 if(NOT QFtpServerLib_FOUND)
-    return()
+    # Fetch QFtpServer from GitHub
+    include(FetchContent)
+    FetchContent_Declare(
+        QFtpServerLib
+        GIT_REPOSITORY https://github.com/KangLin/QFtpServer.git
+        GIT_TAG master  # or specify a specific version/tag
+    )
+    
+    # Configure QFtpServer build options before making it available
+    set(WITH_APP OFF CACHE BOOL "" FORCE)
+    set(WITH_TEST OFF CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(QFtpServerLib)
 endif()
 
 option(INSTALL_QFtpServer "Install QFtpServer libraries" OFF)
