@@ -18,6 +18,7 @@ jobs:
 
     env:
       VCPKGGITCOMMITID: 6bc1613f18f850c60d906575296f982c6dfcc9e0
+      CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
@@ -104,6 +105,9 @@ jobs:
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}} `
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake `
             -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" `
+            -DVCPKG_INSTALL_OPTIONS="--x-buildtrees-root=d:/b" `
+            -DVCPKG_BUILD_TYPE=Release `
+            -DVCPKG_NO_DEBUG=ON `
             -DVCPKG_VERBOSE=ON `
             -DVCPKG_TARGET_TRIPLET="${{env.VCPKG_TARGET_TRIPLET}}" `
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON `

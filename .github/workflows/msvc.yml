@@ -18,30 +18,33 @@ jobs:
           - CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
+            VCPKG_NO_DEBUG: ON
+            BUILD_TYPE: Release
             qt_version: 6.9.3
             qt_arch: win64_msvc2022_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
-            BUILD_TYPE: Release
             os: windows-2022
 
           - CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
+            VCPKG_NO_DEBUG: ON
+            BUILD_TYPE: Release
             qt_version: 6.9.3
             qt_arch: win64_msvc2022_arm64
             qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets
-            BUILD_TYPE: Release
             os: windows-11-arm
 
           - CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
+            VCPKG_NO_DEBUG: ON
+            BUILD_TYPE: Release
             #VCPKG_MANIFEST_FEATURES: "ffmpeg"
             qt_version: 5.15.2
             qt_arch: win32_msvc2019
             qt_modules: qtwebengine
-            BUILD_TYPE: Release
             os: windows-2022
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
@@ -61,6 +64,8 @@ jobs:
       VCPKG_OVERLAY_PORTS: "${{github.workspace}}/${{matrix.VCPKG_OVERLAY_PORTS}}"
       VCPKG_MANIFEST_FEATURES: "freerdp;vnc;terminal;filetransfer"
       VCPKG_INSTALLED_DIR: ${{github.workspace}}\.cache\install
+      VCPKG_NO_DEBUG: ${{matrix.VCPKG_NO_DEBUG}}
+      VCPKG_BUILD_TYPE: ${{matrix.BUILD_TYPE}}
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: "${{matrix.qt_modules}}"
