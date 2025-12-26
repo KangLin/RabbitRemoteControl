@@ -27,10 +27,16 @@ private Q_SLOTS:
     void on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1);
     void slotWhiteListContextMenuRequested(const QPoint& pos);
     void slotBlackListContextMenuRequested(const QPoint& pos);
+    void on_pbAddWhitelist_clicked();
+    void on_pbDeleteWhitelist_clicked();
+    void on_pbAddBlacklist_clicked();
+    void on_pbDeleteBlacklist_clicked();
+
 private:
     Ui::CDlgSettings *ui;
     QSharedPointer<CParameterFtpServer> m_Para;
     QStandardItemModel m_ModelNetWorkInterface;
     QStandardItemModel m_ModelBlack;
     QStandardItemModel m_ModelWhite;
+    QString m_szFilteListPrompt;
 };

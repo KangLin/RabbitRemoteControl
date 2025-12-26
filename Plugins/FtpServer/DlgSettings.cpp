@@ -57,6 +57,18 @@ CDlgSettings::CDlgSettings(QSharedPointer<CParameterFtpServer> para, QWidget *pa
         }
     }
 
+    m_szFilteListPrompt = tr("The IP address and the netmask must be separated by a slash (/).") + "\n\n"
+                          + tr("ag:") + "\n"
+                          + "- 123.123.123.123/n " + tr("where n is any value between 0 and 32") + "\n"
+                          + "- 123.123.123.123/255.255.255.255" + "\n"
+                          + "- <ipv6-address>/n " + tr("where n is any value between 0 and 128") + "\n\n"
+                          + tr("For IP version 4, accepts as well missing trailing components") + "\n"
+                          + tr("(i.e., less than 4 octets, like \"192.168.1\"), followed or not by a dot. ") + "\n"
+                          + tr("If the netmask is also missing in that case,") + "\n"
+                          + tr("it is set to the number of octets actually passed") + "\n"
+                          + tr("(in the example above, it would be 24, for 3 octets).") + "\n\n"
+                          + tr("Add IP address and the netmask:");
+
     ui->lvBlacklist->setModel(&m_ModelBlack);
     check = connect(ui->lvBlacklist, SIGNAL(customContextMenuRequested(const QPoint&)),
                     this, SLOT(slotBlackListContextMenuRequested(const QPoint&)));
@@ -137,17 +149,9 @@ void CDlgSettings::slotWhiteListContextMenuRequested(const QPoint& pos)
     QMenu m;
     QItemSelectionModel* pSelect = ui->lvWhtelist->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
-    m.addAction(tr("Add"), [this](){
-        QString szIp = QInputDialog::getText(this, tr("Add whilte list"), tr("Add ip address:"));
-        QStandardItem* item = new QStandardItem(szIp);
-        m_ModelWhite.appendRow(item);
-    });
+    m.addAction(tr("Add"), this, SLOT(on_pbAddWhitelist_clicked()));
     if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Remove"), [this, lstIndex]() {
-            foreach(auto idx, lstIndex) {
-                m_ModelWhite.removeRow(idx.row());
-            }
-        });
+        m.addAction(tr("Remove"), this, SLOT(on_pbDeleteWhitelist_clicked()));
     }
 
     QPoint p = ui->lvWhtelist->mapToGlobal(pos);
@@ -159,19 +163,44 @@ void CDlgSettings::slotBlackListContextMenuRequested(const QPoint& pos)
     QMenu m;
     QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
-    m.addAction(tr("Add"), [this](){
-        QString szIp = QInputDialog::getText(this, tr("Add black list"), tr("Add ip address:"));
-        QStandardItem* item = new QStandardItem(szIp);
-        m_ModelBlack.appendRow(item);
-    });
+    m.addAction(tr("Add"), this, SLOT(on_pbAddBlacklist_clicked()));
     if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Remove"), [this, lstIndex]() {
-            foreach(auto idx, lstIndex) {
-                m_ModelBlack.removeRow(idx.row());
-            }
-        });
+        m.addAction(tr("Remove"), this, SLOT(on_pbDeleteBlacklist_clicked()));
     }
 
     QPoint p = ui->lvBlacklist->mapToGlobal(pos);
     m.exec(p);
+}
+
+void CDlgSettings::on_pbAddWhitelist_clicked()
+{
+    QString szIp = QInputDialog::getText(this, tr("Add whilte list"), m_szFilteListPrompt);
+    QStandardItem* item = new QStandardItem(szIp);
+    m_ModelWhite.appendRow(item);
+}
+
+void CDlgSettings::on_pbDeleteWhitelist_clicked()
+{
+    QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
+    QModelIndexList lstIndex = pSelect->selectedRows();
+    foreach(auto idx, lstIndex) {
+        m_ModelWhite.removeRow(idx.row());
+    }
+}
+
+void CDlgSettings::on_pbAddBlacklist_clicked()
+{
+    QString szIp = QInputDialog::getText(this, tr("Add black list"), m_szFilteListPrompt);
+    QStandardItem* item = new QStandardItem(szIp);
+    m_ModelBlack.appendRow(item);
+}
+
+void CDlgSettings::on_pbDeleteBlacklist_clicked()
+{
+    QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
+    if(!pSelect) return;
+    QModelIndexList lstIndex = pSelect->selectedRows();
+    foreach(auto idx, lstIndex) {
+        m_ModelBlack.removeRow(idx.row());
+    }
 }
