@@ -141,6 +141,7 @@ QSharedPointer<CParameterFtpServer> COperateFtpServer::GetParameter()
 void COperateFtpServer::slotStart(bool checked)
 {
     qDebug(log) << Q_FUNC_INFO << m_pStart->isChecked();
+    bool check = false;
     if(!checked) {
         m_pStart->setText(tr("Start server"));
         m_pStart->setToolTip(m_pStart->text());
@@ -163,6 +164,10 @@ void COperateFtpServer::slotStart(bool checked)
         qCritical(log) << "new CBackendThread fail";
         return;
     }
-    
+    check = connect(this, &COperateFtpServer::sigError,
+                    this, [this](const int nError, const QString &szError){
+                        m_pStart->setChecked(false);
+                    });
+    Q_ASSERT(check);
     m_pThread->start();
 }

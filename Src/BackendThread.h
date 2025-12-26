@@ -14,17 +14,28 @@
 class PLUGIN_EXPORT CBackendThread : public QThread
 {
     Q_OBJECT
+    
 public:
-    explicit CBackendThread(COperate *pOperate = nullptr, bool bSignal = true);
+    /*!
+     * \brief CBackendThread
+     * \param pOperate
+     * \param bFinishedSignal
+     *          - true: When an error occurs, emit a `COperate::sigFinished()` signal
+     *          - false: not emit signal
+     */
+    explicit CBackendThread(COperate *pOperate = nullptr, bool bFinishedSignal = true);
     virtual ~CBackendThread() override;
     /*!
      * \brief Quit
      * \note Use this replace QThread::quit, QThread::exit, QThread::terminate
      */
     virtual void quit();
+
 protected:
     virtual void run() override;
     COperate* m_pOperate;
     CBackend* m_pBackend;
-    bool m_bSignal;
+    
+    //! When an error occurs, emit a `COperate::sigFinished()` signal
+    bool m_bFinishedSignal;
 };

@@ -42,7 +42,15 @@ class PLUGIN_EXPORT CBackend : public QObject
 {
     Q_OBJECT
 public:
-    explicit CBackend(COperate *pOperate = nullptr);
+    /*!
+     * \brief CBackend
+     * \param pOperate
+     * \param bStopSignal
+     *          - true: When an error occurs, emit a `COperate::sigStop()` signal
+     *          - false: not emit signal
+     * 
+     */
+    explicit CBackend(COperate *pOperate = nullptr, bool bStopSignal = true);
     virtual ~CBackend();
 
 public:
@@ -264,4 +272,7 @@ Q_SIGNALS:
 
 private:
     int SetConnect(COperate* pOperate);
+
+    //! When an error occurs, emit a `COperate::sigStop()` signal
+    bool m_bStopSignal;
 };

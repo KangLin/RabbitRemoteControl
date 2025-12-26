@@ -7,8 +7,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Operate")
 
-CBackend::CBackend(COperate *pOperate)
+CBackend::CBackend(COperate *pOperate, bool bStopSignal)
     : QObject() // Because it's in a different thread with pOperate
+    , m_bStopSignal(bStopSignal)
 {
     qDebug(log) << Q_FUNC_INFO;
     SetConnect(pOperate);
@@ -127,9 +128,11 @@ void CBackend::slotTimeOut()
         qCritical(log) << "Process fail";
         emit sigError(-3, "Process fail");
     }
-
-    // Error or stop, must notify user disconnect it
-    emit sigStop();
+    
+    if(m_bStopSignal) {
+        // Error or stop, must notify user disconnect it
+        emit sigStop();
+    }
 }
 
 int CBackend::OnProcess()

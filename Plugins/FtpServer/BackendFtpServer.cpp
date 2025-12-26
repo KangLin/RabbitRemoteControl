@@ -55,10 +55,13 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         }
     }
     if(bListen) {
-        qInfo(log) << "The ftp server listen in" << m_Para->GetPort();
+        QString szMsg = tr("Ftp server listen in %1").arg(m_Para->GetPort());
+        qInfo(log) << szMsg;
+        emit sigInformation(szMsg);
     } else {
-        QString szErr = tr("The ftp server is not listening in %1").arg(m_Para->GetPort());
+        QString szErr = tr("Ftp server is not listening in %1").arg(m_Para->GetPort());
         emit sigError(-1, szErr);
+        return OnInitReturnValue::Fail;
     }
     return OnInitReturnValue::NotUseOnProcess;
 }
