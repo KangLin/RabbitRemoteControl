@@ -196,8 +196,8 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
   - [SSH](Plugins/SSH)
   - [TELNET](Plugins/Telnet)
   - [串口](Plugins/SerialPort)
-- [文件传输](Plugins/FileTransfer)
-- [Ftp 服务](Plugins/FtpServer)
+- [文件传输](Plugins/FileTransfer/README_zh_CN.md)
+- [Ftp 服务](Plugins/FtpServer/README_zh_CN.md)
 - [网页浏览器](Plugins/WebBrowser)
 
 ## 状态

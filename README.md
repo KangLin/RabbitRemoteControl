@@ -198,8 +198,8 @@ Legend:
   - [SSH](Plugins/SSH)
   - [TELNET](Plugins/Telnet)
   - [Serial Port](Plugins/SerialPort)
-- [File transfer](Plugins/FileTransfer)
-- [Ftp server](Plugins/FtpServer)
+- [File transfer](Plugins/FileTransfer/README.md)
+- [Ftp server](Plugins/FtpServer/README.md)
 - [Web browser](Plugins/WebBrowser)
 
 ## Status
