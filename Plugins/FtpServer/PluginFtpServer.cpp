@@ -43,7 +43,7 @@ const QString CPluginFtpServer::DisplayName() const
 
 const QString CPluginFtpServer::Description() const
 {
-    return tr("FTP(File Transfer Protocol) Server: include ftp, ftp-es.") + "\n"
+    return tr("FTP(File Transfer Protocol) Server: include FTP, FTP-ES.") + "\n"
            + tr("It uses: ") + "QFtpServer: https://github.com/KangLin/QFtpServer";
 }
 

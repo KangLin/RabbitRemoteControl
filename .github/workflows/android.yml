@@ -388,7 +388,8 @@ jobs:
               -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 \
               -DINSTALL_QTERMWIDGET=ON \
               -DQt6Keychain_DIR=${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain \
-              -DINSTALL_QTKEYCHAIN=ON
+              -DINSTALL_QTKEYCHAIN=ON \
+              -DINSTALL_QFtpServer=ON
           cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
