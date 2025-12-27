@@ -244,18 +244,18 @@
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="326"/>
-        <location filename="../../FrmListRecent.cpp" line="419"/>
+        <location filename="../../FrmListRecent.cpp" line="327"/>
+        <location filename="../../FrmListRecent.cpp" line="420"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="327"/>
+        <location filename="../../FrmListRecent.cpp" line="328"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
         <translation>文件已存在。是否覆盖它?</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="420"/>
+        <location filename="../../FrmListRecent.cpp" line="421"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation>文件已存在。是否覆盖它?如果选择否，请改名称。</translation>
     </message>
@@ -796,14 +796,13 @@
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="132"/>
+        <location filename="../../main.cpp" line="133"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="189"/>
         <source>End</source>
-        <translation>结束</translation>
+        <translation type="vanished">结束</translation>
     </message>
 </context>
 </TS>

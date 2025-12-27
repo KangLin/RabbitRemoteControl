@@ -52,7 +52,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Connect count:</string>
+            <string>Max connect count:</string>
            </property>
           </widget>
          </item>

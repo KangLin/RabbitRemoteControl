@@ -151,7 +151,7 @@ void CDlgSettings::slotWhiteListContextMenuRequested(const QPoint& pos)
     QModelIndexList lstIndex = pSelect->selectedRows();
     m.addAction(tr("Add"), this, SLOT(on_pbAddWhitelist_clicked()));
     if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Remove"), this, SLOT(on_pbDeleteWhitelist_clicked()));
+        m.addAction(tr("Delete"), this, SLOT(on_pbDeleteWhitelist_clicked()));
     }
 
     QPoint p = ui->lvWhtelist->mapToGlobal(pos);
@@ -165,7 +165,7 @@ void CDlgSettings::slotBlackListContextMenuRequested(const QPoint& pos)
     QModelIndexList lstIndex = pSelect->selectedRows();
     m.addAction(tr("Add"), this, SLOT(on_pbAddBlacklist_clicked()));
     if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Remove"), this, SLOT(on_pbDeleteBlacklist_clicked()));
+        m.addAction(tr("Delete"), this, SLOT(on_pbDeleteBlacklist_clicked()));
     }
 
     QPoint p = ui->lvBlacklist->mapToGlobal(pos);

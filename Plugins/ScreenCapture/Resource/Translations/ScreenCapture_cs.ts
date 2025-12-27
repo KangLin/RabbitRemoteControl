@@ -59,6 +59,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../PluginScreenCapture.cpp" line="36"/>
+        <source>(Example)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../PluginScreenCapture.cpp" line="41"/>
         <source>Capture or record screen and window. This is a sample example.</source>
         <translation type="unfinished"></translation>

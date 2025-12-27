@@ -199,6 +199,12 @@
         <translation>Player</translation>
     </message>
     <message>
+        <location filename="../../PluginPlayer.cpp" line="35"/>
+        <location filename="../../PluginPlayer.cpp" line="44"/>
+        <source>(Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../PluginPlayer.cpp" line="40"/>
         <source>Player: play media files or camera.</source>
         <translation>Player: reproduz arquivos de mídia ou câmera.</translation>
@@ -209,22 +215,22 @@
         <translation> Grave a câmera ou o fluxo de mídia.</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="68"/>
+        <location filename="../../PluginPlayer.cpp" line="69"/>
         <source>Qt version:</source>
         <translation>Versão do Qt:</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="69"/>
+        <location filename="../../PluginPlayer.cpp" line="70"/>
         <source>Compile version: </source>
         <translation>Versão de compilação: </translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="70"/>
+        <location filename="../../PluginPlayer.cpp" line="71"/>
         <source>Runtime version: </source>
         <translation>Versão do runtime: </translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="72"/>
+        <location filename="../../PluginPlayer.cpp" line="73"/>
         <source>Use QVideoWidget</source>
         <translation>Usar QVideoWidget</translation>
     </message>

@@ -33,6 +33,8 @@
     - Add file transfer
       - SFTP
       - FTP
+    - Server
+      - FTP server
     - Player
       - Add display subtitle
     - Add web browser
