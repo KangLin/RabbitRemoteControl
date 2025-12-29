@@ -2,9 +2,9 @@
 
 name: vcpkg
 
-on:
-  push:
-  pull_request:
+#on:
+#  push:
+#  pull_request:
 
 jobs:
   vcpkg:

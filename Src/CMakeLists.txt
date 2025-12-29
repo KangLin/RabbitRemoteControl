@@ -349,3 +349,10 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl
     )
+
+if(ANDROID)
+    if(INSTALL_QTKEYCHAIN)
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            QT_ANDROID_EXTRA_LIBS $<TARGET_SONAME_FILE:Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain>)
+    endif()
+endif()

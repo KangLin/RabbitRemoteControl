@@ -20,11 +20,6 @@ if(NOT QFtpServerLib_FOUND)
     FetchContent_MakeAvailable(QFtpServerLib)
 endif()
 
-option(INSTALL_QFtpServer "Install QFtpServer libraries" OFF)
-if(INSTALL_QFtpServer)
-    INSTALL_TARGETS(TARGETS QFtpServerLib)
-endif()
-
 SET(FtpServer_PRIVATE_LIBS Plugin QFtpServerLib)
 SET(SOURCE_FILES
     PluginFtpServer.cpp
@@ -71,3 +66,13 @@ ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )
+
+option(INSTALL_QFtpServer "Install QFtpServer libraries" OFF)
+if(INSTALL_QFtpServer)
+    if(ANDROID)
+        set_target_properties(PluginService${PROJECT_NAME} PROPERTIES
+            QT_ANDROID_EXTRA_LIBS $<TARGET_SONAME_FILE:QFtpServerLib>)
+    else()
+        INSTALL_TARGETS(TARGETS QFtpServerLib)
+    endif()
+endif()
