@@ -308,6 +308,7 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
+      - -DWITH_APP=OFF
     prime:
       - -usr/local/include
 

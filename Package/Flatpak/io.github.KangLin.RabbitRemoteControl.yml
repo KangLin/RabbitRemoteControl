@@ -312,6 +312,7 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DWITH_APP=OFF
 
   - name: RabbitCommon
     disabled: false

@@ -2,9 +2,9 @@
 
 name: vcpkg
 
-#on:
-#  push:
-#  pull_request:
+on:
+ push:
+ pull_request:
 
 jobs:
   vcpkg:
@@ -104,6 +104,7 @@ jobs:
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}} `
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake `
             -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" `
+            -DVCPKG_INSTALL_OPTIONS="--x-buildtrees-root=d:/b" `
             -DVCPKG_VERBOSE=ON `
             -DVCPKG_TARGET_TRIPLET="${{env.VCPKG_TARGET_TRIPLET}}" `
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON `

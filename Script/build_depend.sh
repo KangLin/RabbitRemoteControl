@@ -873,7 +873,8 @@ if [ $QFtpServer -eq 1 ]; then
         pushd $BUILD_DEPEND_DIR/QFtpServer
         cmake -S $SOURCE_DIR/QFtpServer -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
+            -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+            -DWITH_APP=OFF
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
         popd
