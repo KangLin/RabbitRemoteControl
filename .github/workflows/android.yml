@@ -339,6 +339,25 @@ jobs:
             cmake --build . --config Release --target install
           fi
 
+      - name: Build QFtpServer
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QFtpServerLib/QFtpServerLib ]; then
+            git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+            cd QFtpServer
+            cmake -E make_directory build
+            cd build
+            ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+                -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
+                -DWITH_APP=OFF
+            cmake --build . --config Release --parallel $(nproc)
+            cmake --build . --config Release --target install
+          fi
+
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -371,7 +390,7 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
-              -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+              -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}} \
               -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
@@ -389,6 +408,7 @@ jobs:
               -DINSTALL_QTERMWIDGET=ON \
               -DQt6Keychain_DIR=${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain \
               -DINSTALL_QTKEYCHAIN=ON \
+              -DQFtpServerLib_DIR=${{env.INSTALL_DIR}}/lib/cmake/QFtpServerLib \
               -DINSTALL_QFtpServer=ON
           cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`

@@ -6,18 +6,20 @@ project(FtpServer
 
 find_package(QFtpServerLib)
 if(NOT QFtpServerLib_FOUND)
-    # Fetch QFtpServer from GitHub
-    include(FetchContent)
-    FetchContent_Declare(
-        QFtpServerLib
-        GIT_REPOSITORY https://github.com/KangLin/QFtpServer.git
-        GIT_TAG master  # or specify a specific version/tag
-    )
+    message("Please set QFtpServerLib_DIR to QFtpServerLib install root or download and build from `https://github.com/KangLin/QFtpServer.git`")
+    return()
+    # # Fetch QFtpServer from GitHub
+    # include(FetchContent)
+    # FetchContent_Declare(
+    #     QFtpServerLib
+    #     GIT_REPOSITORY https://github.com/KangLin/QFtpServer.git
+    #     GIT_TAG master  # or specify a specific version/tag
+    # )
     
-    # Configure QFtpServer build options before making it available
-    set(WITH_APP OFF CACHE BOOL "" FORCE)
-    set(WITH_TEST OFF CACHE BOOL "" FORCE)
-    FetchContent_MakeAvailable(QFtpServerLib)
+    # # Configure QFtpServer build options before making it available
+    # set(WITH_APP OFF CACHE BOOL "" FORCE)
+    # set(WITH_TEST OFF CACHE BOOL "" FORCE)
+    # FetchContent_MakeAvailable(QFtpServerLib)
 endif()
 
 SET(FtpServer_PRIVATE_LIBS Plugin QFtpServerLib)
@@ -67,9 +69,9 @@ ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     VERSION ${RabbitRemoteControl_VERSION}
     )
 
-add_dependencies(PluginService${PROJECT_NAME} QFtpServerLib)
+#add_dependencies(PluginService${PROJECT_NAME} QFtpServerLib)
 option(INSTALL_QFtpServer "Install QFtpServer libraries" OFF)
-if(INSTALL_QFtpServer)
+if(INSTALL_QFtpServer AND QFtpServerLib_FOUND)
     if(ANDROID)
         set_target_properties(PluginService${PROJECT_NAME} PROPERTIES
             QT_ANDROID_EXTRA_LIBS $<TARGET_SONAME_FILE:QFtpServerLib>)
