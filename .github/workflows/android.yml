@@ -379,7 +379,7 @@ jobs:
               -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               -DWITH_WebEngineWidgets=ON \
-              -DBUILD_LibVNCServer=OFF \
+              -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DBUILD_FREERDP=ON \
               -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \

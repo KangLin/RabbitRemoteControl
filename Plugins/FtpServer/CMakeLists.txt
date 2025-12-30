@@ -67,6 +67,7 @@ ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     VERSION ${RabbitRemoteControl_VERSION}
     )
 
+add_dependencies(PluginService${PROJECT_NAME} QFtpServerLib)
 option(INSTALL_QFtpServer "Install QFtpServer libraries" OFF)
 if(INSTALL_QFtpServer)
     if(ANDROID)
