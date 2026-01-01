@@ -5,7 +5,7 @@
 #include <QToolBar>
 #include <QToolButton>
 #include <QStandardItemModel>
-#include <QVector>
+#include <QSet>
 #include "Operate.h"
 #include "TitleBar.h"
 #include "RabbitRecentMenu.h"
@@ -15,7 +15,7 @@ class CFrmActive : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CFrmActive(QVector<COperate*> &operates,
+    explicit CFrmActive(QSet<COperate*> &operates,
                             CParameterApp &parameterApp,
                             QMenu* pOperate,
                             QAction* pStop,
@@ -35,7 +35,7 @@ private Q_SLOTS:
     void slotClicked(const QModelIndex& index);
     void slotAddToFavorite();
 private:
-    QVector<COperate*> &m_Operates;
+    QSet<COperate*> &m_Operates;
     CParameterApp &m_ParameterApp;
     QMenu* m_pOperate;
     QAction* m_pStop;

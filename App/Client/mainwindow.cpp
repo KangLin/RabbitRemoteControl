@@ -929,7 +929,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         slotInformation(tr("Starting: ") + pOperate->Name());
 
     //* Show view. \see: slotRunning()
-    if(-1 < m_Operates.indexOf(pOperate)) {
+    if(m_Operates.contains(pOperate)) {
         if(m_pView)
             m_pView->SetCurrentView(pOperate->GetViewer());
         return 0;
@@ -944,7 +944,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
                         this, SLOT(slotViewerFocusIn(QWidget*)));
         Q_ASSERT(check);
     }
-    m_Operates.push_back(pOperate);
+    m_Operates.insert(pOperate);
     StartTimer();
 
     m_pFrmActive->slotLoad();
@@ -1058,7 +1058,7 @@ void MainWindow::slotFinished()
         if(p == pOperate)
         {
             m_pView->RemoveView(p->GetViewer());
-            m_Operates.removeAll(p);
+            m_Operates.remove(p);
             m_Manager.DeleteOperate(p);
             m_pFrmActive->slotLoad();
             m_pFrmActive->slotViewChanged(m_pView->GetCurrentView());

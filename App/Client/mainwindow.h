@@ -69,7 +69,7 @@ private Q_SLOTS:
     void slotStartByType();
 private:
     CManager m_Manager;
-    QVector<COperate*> m_Operates;
+    QSet<COperate*> m_Operates;
     QMap<CPlugin::TYPE, QMenu*> m_MenuStartByType;
 
 private Q_SLOTS:

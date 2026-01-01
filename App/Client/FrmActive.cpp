@@ -7,12 +7,12 @@
 
 static Q_LOGGING_CATEGORY(log, "App.FrmActive")
 
-CFrmActive::CFrmActive(QVector<COperate*> &operates,
-                               CParameterApp &parameterApp,
-                               QMenu* pOperate,
-                               QAction* pStop,
-                               RabbitCommon::CRecentMenu *pRecentMenu,
-                               QWidget *parent)
+CFrmActive::CFrmActive(QSet<COperate *> &operates,
+                       CParameterApp &parameterApp,
+                       QMenu* pOperate,
+                       QAction* pStop,
+                       RabbitCommon::CRecentMenu *pRecentMenu,
+                       QWidget *parent)
     : QWidget(parent)
     , m_pDockTitleBar(nullptr)
     , m_pOperate(pOperate)
@@ -165,10 +165,12 @@ CFrmActive::~CFrmActive()
 void CFrmActive::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu;
-    int r = m_pTableView->currentIndex().row();
+    QModelIndex index = m_pTableView->currentIndex();
+    int r = index.row();
     if(-1 < r && r < m_Operates.size())
     {
-        auto c = m_Operates[r];
+        QVariant v = m_pModel->item(index.row(), m_nId)->data();
+        COperate* c = v.value<COperate*>();
         if(c) {
             auto m = c->GetMenu();
             //menu.addMenu(m);
