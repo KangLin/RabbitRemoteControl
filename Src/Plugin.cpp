@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QDir>
+#include <QMetaEnum>
 #include <QLoggingCategory>
 #include "RabbitCommonTools.h"
 
@@ -61,6 +62,8 @@ const QString CPlugin::TypeName(const TYPE t) const
         return tr("Custom");
     default:
         qCritical(log) << "Don't support type:" << (int)t;
+        QMetaEnum me = QMetaEnum::fromType<CPlugin::TYPE>();
+        return me.valueToKey((quint64)t);
     }
     return QString();
 }

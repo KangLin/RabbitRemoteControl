@@ -261,6 +261,77 @@
     </message>
 </context>
 <context>
+    <name>CFrmManagePlugins</name>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="19"/>
+        <source>Load Plugins</source>
+        <translation>加载插件</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="33"/>
+        <source>Whitelist</source>
+        <translation>白名单</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="34"/>
+        <source>Blacklist</source>
+        <translation>黑名单</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="35"/>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="36"/>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="37"/>
+        <source>Path</source>
+        <translation>路径</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="151"/>
+        <source>Plugin path</source>
+        <translation>插件路径</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="170"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="171"/>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+</context>
+<context>
+    <name>CFrmManagePluginsUI</name>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="26"/>
+        <source>Plugins path:</source>
+        <translation>插件路径：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="50"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="57"/>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+</context>
+<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
@@ -271,7 +342,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="107"/>
+        <location filename="../../Manager.cpp" line="109"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -279,48 +350,48 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="110"/>
+        <location filename="../../Manager.cpp" line="112"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系统快捷键（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="112"/>
+        <location filename="../../Manager.cpp" line="114"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域网内唤醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="114"/>
+        <location filename="../../Manager.cpp" line="116"/>
         <source>Restart program by administrator?</source>
         <translation>用管理员权限重启程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
+        <location filename="../../Manager.cpp" line="117"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="117"/>
+        <location filename="../../Manager.cpp" line="119"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="183"/>
+        <location filename="../../Manager.cpp" line="189"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="266"/>
-        <location filename="../../Manager.cpp" line="522"/>
+        <location filename="../../Manager.cpp" line="277"/>
+        <location filename="../../Manager.cpp" line="538"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="464"/>
+        <location filename="../../Manager.cpp" line="480"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="527"/>
+        <location filename="../../Manager.cpp" line="543"/>
         <source>Dependency libraries:</source>
         <translation>依赖库：</translation>
     </message>
@@ -1488,43 +1559,43 @@ Some features are limited.
 <context>
     <name>CPlugin</name>
     <message>
-        <location filename="../../Plugin.cpp" line="40"/>
-        <location filename="../../Plugin.cpp" line="61"/>
+        <location filename="../../Plugin.cpp" line="41"/>
+        <location filename="../../Plugin.cpp" line="62"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="45"/>
+        <location filename="../../Plugin.cpp" line="46"/>
         <source>Client</source>
         <translation>客户端</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="47"/>
+        <location filename="../../Plugin.cpp" line="48"/>
         <source>Service</source>
         <translation>服务</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="49"/>
+        <location filename="../../Plugin.cpp" line="50"/>
         <source>Remote Desktop</source>
         <translation>远程桌面</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="51"/>
+        <location filename="../../Plugin.cpp" line="52"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="53"/>
+        <location filename="../../Plugin.cpp" line="54"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="55"/>
+        <location filename="../../Plugin.cpp" line="56"/>
         <source>File Transfer</source>
         <translation>文件传输</translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="57"/>
+        <location filename="../../Plugin.cpp" line="58"/>
         <source>Network Tools</source>
         <translation>网络工具</translation>
     </message>

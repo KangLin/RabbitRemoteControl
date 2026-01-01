@@ -27,6 +27,8 @@
 #endif
 
 #include "FrmMediaDevices.h"
+#include "ParameterFilter.h"
+#include "FrmManagePlugins.h"
 
 #include "Channel.h"
 #include "Manager.h"
@@ -150,6 +152,7 @@ int CManager::Initial(QString szFile)
 int CManager::LoadPlugins()
 {
     int nRet = 0;
+    /*
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
         CPlugin* p = qobject_cast<CPlugin*>(plugin);
@@ -163,27 +166,30 @@ int CManager::LoadPlugins()
             else
                 qWarning(log) << "The plugin" << p->Name() << " is exist.";
         }
-    }
-    
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
+    }//*/
 
-    QStringList filters;
-    if(filters.isEmpty())
-    {
+    foreach (auto szPath, m_pParameter->GetPluginsPath()) {
+        //QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
+
+        QStringList filters;
+        if(filters.isEmpty())
+        {
 #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-        filters << "*Plugin*.dll";
+            filters << "*Plugin*.dll";
 #elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
-        filters << "*Plugin*.dylib";
+            filters << "*Plugin*.dylib";
 #else
-        filters << "*Plugin*.so";
+            filters << "*Plugin*.so";
 #endif
+        }
+        nRet = FindPlugins(szPath, filters);
     }
-    nRet = FindPlugins(szPath, filters);
+
     if(!m_szDetails.isEmpty())
         m_szDetails = "## " + tr("Plugins") + "\n" + m_szDetails;
 
     qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
-    return nRet;
+    return 0;
 }
 
 int CManager::FindPlugins(QDir dir, QStringList filters)
@@ -210,6 +216,11 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
+        if(m_pParameter && !m_pParameter->m_WhiteList.contains(szPlugins)
+            && m_pParameter->m_BlackList.contains(szPlugins)) {
+            qInfo(log) << "Filter:" << szPlugins << "in blacklist";
+            continue;
+        }
         QPluginLoader loader(szPlugins);
         QObject *plugin = loader.instance();
         if (plugin) {
@@ -456,6 +467,11 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
     if(pClient) {
         pClient->SetParameter(m_pParameter);
         lstWidget.push_back(pClient);
+    }
+    CFrmManagePlugins* pManagePlugins = new CFrmManagePlugins(parent);
+    if(pManagePlugins) {
+        pManagePlugins->SetParameter(m_pParameter);
+        lstWidget.push_back(pManagePlugins);
     }
 #if defined(HAVE_QTERMWIDGET)
     CParameterTerminalUI* pTermina = new CParameterTerminalUI(parent);

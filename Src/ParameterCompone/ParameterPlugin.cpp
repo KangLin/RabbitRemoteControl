@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "RabbitCommonTools.h"
+#include "RabbitCommonDir.h"
 #include "ParameterPlugin.h"
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
@@ -18,6 +19,9 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_bShowProtocolPrefix(false)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
+    , m_szPluginsPath(RabbitCommon::CDir::Instance()->GetDirPlugins())
+    , m_WhiteList(this, "Whilelist")
+    , m_BlackList(this, "BlackList")
     , m_Record(this)
     , m_MediaDevices(this)
 #if defined(HAVE_QTERMWIDGET)
@@ -59,6 +63,7 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
+    SetPluginsPath(set.value("PluginsPath", GetPluginsPath()).toStringList());
     set.endGroup();
     return 0;
 }
@@ -80,6 +85,7 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
+    set.setValue("PluginsPath", GetPluginsPath());
     set.endGroup();
     return 0;
 }
@@ -300,4 +306,14 @@ void CParameterPlugin::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
     m_AdaptWindows = aw;
     SetModified(true);
     emit sigAdaptWindowsChanged();
+}
+
+QStringList CParameterPlugin::GetPluginsPath() const
+{
+    return m_szPluginsPath;
+}
+
+void CParameterPlugin::SetPluginsPath(const QStringList &newPluginsPath)
+{
+    m_szPluginsPath = newPluginsPath;
 }

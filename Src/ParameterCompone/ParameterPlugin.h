@@ -10,6 +10,8 @@
 #include "ParameterTerminal.h"
 #endif
 
+#include "ParameterFilter.h"
+
 /*!
  * \~chinese 插件的全局参数。
  * \details
@@ -179,6 +181,14 @@ private:
     Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
 
 public:
+    QStringList GetPluginsPath() const;
+    void SetPluginsPath(const QStringList &newPluginsPath);
+private:
+    QStringList m_szPluginsPath;
+
+public:
+    CParameterFilter m_WhiteList;
+    CParameterFilter m_BlackList;
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
 #if defined(HAVE_QTERMWIDGET)

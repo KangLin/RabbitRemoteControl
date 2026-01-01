@@ -40,6 +40,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterUI.h
     ParameterOperate.h
     ParameterCompone/ParameterPlugin.h
+    ParameterCompone/ParameterFilter.h
     ParameterCompone/ParameterBase.h
     ParameterCompone/ParameterNet.h
     ParameterCompone/ParameterNetUI.h
@@ -57,6 +58,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
 
 list(APPEND PLUGIN_HEADER_FILES
     ${PLUGIN_INSTALL_HEADER_FILES}
+    FrmManagePlugins.h
     FrmViewer.h
     FrmScroll.h
     DlgInputPassword.h
@@ -68,6 +70,7 @@ list(APPEND PLUGIN_HEADER_FILES
 
 list(APPEND PLUGIN_SOURCE_FILES
     Manager.cpp
+    FrmManagePlugins.cpp
     Plugin.cpp
     Operate.cpp
     OperateDesktop.cpp
@@ -82,6 +85,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterOperate.cpp
     ParameterCompone/ParameterPlugin.cpp
     ParameterCompone/ParameterPluginUI.cpp
+    ParameterCompone/ParameterFilter.cpp
     ParameterCompone/ParameterBase.cpp
     ParameterCompone/ParameterNet.cpp
     ParameterCompone/ParameterNetUI.cpp
@@ -103,6 +107,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     )
 
 set(PLUGIN_UI_FILES
+    FrmManagePlugins.ui
     DlgInputPassword.ui
     DlgUserPassword.ui
     ParameterCompone/ParameterPluginUI.ui

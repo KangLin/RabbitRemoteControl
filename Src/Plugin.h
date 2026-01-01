@@ -28,6 +28,7 @@ public:
         Tools,
         Custom = 1000 //!\note please override `virtual const QString TypeName(const TYPE t) const`
     };
+    Q_ENUM(TYPE)
     [[nodiscard]] virtual const TYPE Type() const = 0;
     [[nodiscard]] virtual const QString TypeName(const TYPE t) const;
     /// \~chinese 标识。默认： Type() + ":" + Protocol() + ":" + Name()
