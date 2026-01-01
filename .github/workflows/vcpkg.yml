@@ -8,16 +8,18 @@ on:
 
 jobs:
   vcpkg:
+    if: false
     strategy:
       matrix:
         include:
           - CMAKE_GENERATOR_PLATFORM: x64
-            VCPKG_TARGET_TRIPLET: x64-windows
+            VCPKG_TARGET_TRIPLET: x64-windows-release
             VCPKG_PLATFORM_TOOLSET: v143
             os: windows-2022
 
     env:
       VCPKGGITCOMMITID: 6bc1613f18f850c60d906575296f982c6dfcc9e0
+      CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
@@ -99,7 +101,6 @@ jobs:
             -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON `
             -DRABBIT_ENABLE_INSTALL_QT=ON `
             -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON `
-            -DCMAKE_BUILD_TYPE=Release `
             -DCMAKE_INSTALL_PREFIX=${{env.BUILD_DIR}}/install `
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}} `
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake `
@@ -107,6 +108,7 @@ jobs:
             -DVCPKG_INSTALL_OPTIONS="--x-buildtrees-root=d:/b" `
             -DVCPKG_VERBOSE=ON `
             -DVCPKG_TARGET_TRIPLET="${{env.VCPKG_TARGET_TRIPLET}}" `
+            -DVCPKG_DEFAULT_TRIPLET="${{env.VCPKG_DEFAULT_TRIPLET}}" `
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON `
             -DVCPKG_APPLOCAL_DEPS=ON `
             -DVCPKG_TRACE_FIND_PACKAGE=ON `

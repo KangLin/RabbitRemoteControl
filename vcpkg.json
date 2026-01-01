@@ -21,30 +21,13 @@
       "dependencies": [
         "qttools",
         "qtbase",
-        {
-          "name": "qt5compat",
-          "default-features": false,
-          "features": ["big-codecs","codecs","textcodec"]
-        },
-        {
-          "name": "qtmultimedia",
-          "default-features": false,
-          "features": ["ffmpeg", "widgets"]
-        },
-        {
-          "name": "qtscxml",
-          "default-features": false
-        },
+        "qt5compat",
+        "qtmultimedia",
+        "qtscxml",
         "qtserialport",
-        {
-          "name": "qtwebchannel",
-          "default-features": false
-        },
+        "qtwebchannel",
         "qtwebengine",
-        {
-          "name": "qtwebsockets",
-          "default-features": false
-        },
+        "qtwebsockets",
         "qttranslations",
         "qtsvg",
         "qtimageformats"
