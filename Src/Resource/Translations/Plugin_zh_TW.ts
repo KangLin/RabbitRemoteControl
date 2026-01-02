@@ -263,47 +263,47 @@
 <context>
     <name>CFrmManagePlugins</name>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="19"/>
+        <location filename="../../FrmManagePlugins.cpp" line="20"/>
         <source>Load Plugins</source>
         <translation>加載插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="33"/>
+        <location filename="../../FrmManagePlugins.cpp" line="34"/>
         <source>Whitelist</source>
         <translation>白名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="34"/>
+        <location filename="../../FrmManagePlugins.cpp" line="35"/>
         <source>Blacklist</source>
         <translation>黑名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="35"/>
+        <location filename="../../FrmManagePlugins.cpp" line="36"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="36"/>
+        <location filename="../../FrmManagePlugins.cpp" line="37"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="37"/>
+        <location filename="../../FrmManagePlugins.cpp" line="38"/>
         <source>Path</source>
         <translation>路徑</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="151"/>
+        <location filename="../../FrmManagePlugins.cpp" line="152"/>
         <source>Plugin path</source>
         <translation>插件路徑</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="170"/>
+        <location filename="../../FrmManagePlugins.cpp" line="172"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="171"/>
+        <location filename="../../FrmManagePlugins.cpp" line="173"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -316,19 +316,24 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="26"/>
+        <location filename="../../FrmManagePlugins.ui" line="36"/>
         <source>Plugins path:</source>
         <translation>插件路徑：</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="50"/>
+        <location filename="../../FrmManagePlugins.ui" line="60"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="57"/>
+        <location filename="../../FrmManagePlugins.ui" line="67"/>
         <source>Remove</source>
         <translation>移除</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="79"/>
+        <source>The settings will take effect after the application is restarted.</source>
+        <translation>需要重啟應用後，設置才能生效。</translation>
     </message>
 </context>
 <context>
@@ -375,23 +380,23 @@ Some features are limited.
         <translation>總是顯示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="189"/>
+        <location filename="../../Manager.cpp" line="195"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="277"/>
-        <location filename="../../Manager.cpp" line="538"/>
+        <location filename="../../Manager.cpp" line="283"/>
+        <location filename="../../Manager.cpp" line="544"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="480"/>
+        <location filename="../../Manager.cpp" line="486"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="543"/>
+        <location filename="../../Manager.cpp" line="549"/>
         <source>Dependency libraries:</source>
         <translation>依賴庫：</translation>
     </message>

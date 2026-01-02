@@ -60,6 +60,7 @@ const QIcon CPluginFtpServer::Icon() const
 const QString CPluginFtpServer::Details() const
 {
     QString szDetails;
+    szDetails = "- " + tr("QFtpServerLib version") + ": " + QFtpServerLib_VERSION;
     return szDetails;
 }
 

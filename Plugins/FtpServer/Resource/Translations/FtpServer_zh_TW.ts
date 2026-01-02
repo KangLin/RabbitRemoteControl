@@ -246,5 +246,10 @@
         <source>It uses: </source>
         <translation>使用：</translation>
     </message>
+    <message>
+        <location filename="../../PluginFtpServer.cpp" line="63"/>
+        <source>QFtpServerLib version</source>
+        <translation>QFtpServerLib 版本號</translation>
+    </message>
 </context>
 </TS>

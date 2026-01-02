@@ -19,7 +19,10 @@ uint16_t CParameterFtpServer::GetPort() const
 
 void CParameterFtpServer::SetPort(uint16_t newPort)
 {
+    if(m_nPort == newPort)
+        return;
     m_nPort = newPort;
+    SetModified(true);
 }
 
 QString CParameterFtpServer::GetUser() const
@@ -29,7 +32,10 @@ QString CParameterFtpServer::GetUser() const
 
 void CParameterFtpServer::SetUser(const QString &newUser)
 {
+    if(m_szUser == newUser)
+        return;
     m_szUser = newUser;
+    SetModified(true);
 }
 
 QString CParameterFtpServer::GetPassword() const
@@ -39,7 +45,10 @@ QString CParameterFtpServer::GetPassword() const
 
 void CParameterFtpServer::SetPassword(const QString &newPassword)
 {
+    if(m_szPassword == newPassword)
+        return;
     m_szPassword = newPassword;
+    SetModified(true);
 }
 
 bool CParameterFtpServer::GetAnonymousLogin() const
@@ -49,7 +58,10 @@ bool CParameterFtpServer::GetAnonymousLogin() const
 
 void CParameterFtpServer::SetAnonymousLogin(bool newAnonymousLogin)
 {
+    if(m_bAnonymousLogin == newAnonymousLogin)
+        return;
     m_bAnonymousLogin = newAnonymousLogin;
+    SetModified(true);
 }
 
 bool CParameterFtpServer::GetReadOnly() const
@@ -59,7 +71,10 @@ bool CParameterFtpServer::GetReadOnly() const
 
 void CParameterFtpServer::SetReadOnly(bool newReadOnly)
 {
+    if(m_bReadOnly == newReadOnly)
+        return;
     m_bReadOnly = newReadOnly;
+    SetModified(true);
 }
 
 QString CParameterFtpServer::GetRoot() const
@@ -69,7 +84,10 @@ QString CParameterFtpServer::GetRoot() const
 
 void CParameterFtpServer::SetRoot(const QString &newRoot)
 {
+    if(m_szRoot == newRoot)
+        return;
     m_szRoot = newRoot;
+    SetModified(true);
 }
 
 int CParameterFtpServer::GetConnectCount() const
@@ -79,7 +97,10 @@ int CParameterFtpServer::GetConnectCount() const
 
 void CParameterFtpServer::SetConnectCount(int newConnectCount)
 {
+    if(m_ConnectCount == newConnectCount)
+        return;
     m_ConnectCount = newConnectCount;
+    SetModified(true);
 }
 
 bool CParameterFtpServer::GetListenAll() const
@@ -89,7 +110,10 @@ bool CParameterFtpServer::GetListenAll() const
 
 void CParameterFtpServer::SetListenAll(bool newListenAll)
 {
+    if(m_bListenAll == newListenAll)
+        return;
     m_bListenAll = newListenAll;
+    SetModified(true);
 }
 
 QStringList CParameterFtpServer::GetListen() const
@@ -99,7 +123,10 @@ QStringList CParameterFtpServer::GetListen() const
 
 void CParameterFtpServer::SetListen(const QStringList &newListen)
 {
+    if(m_Listen == newListen)
+        return;
     m_Listen = newListen;
+    SetModified(true);
 }
 
 QStringList CParameterFtpServer::GetWhitelist() const
@@ -109,7 +136,10 @@ QStringList CParameterFtpServer::GetWhitelist() const
 
 void CParameterFtpServer::SetWhitelist(const QStringList &newWhitelist)
 {
+    if(m_Whitelist == newWhitelist)
+        return;
     m_Whitelist = newWhitelist;
+    SetModified(true);
 }
 
 QStringList CParameterFtpServer::GetBlacklist() const
@@ -119,7 +149,10 @@ QStringList CParameterFtpServer::GetBlacklist() const
 
 void CParameterFtpServer::SetBlacklist(const QStringList &newBlacklist)
 {
+    if(m_Blacklist == newBlacklist)
+        return;
     m_Blacklist = newBlacklist;
+    SetModified(true);
 }
 
 int CParameterFtpServer::OnLoad(QSettings &set)

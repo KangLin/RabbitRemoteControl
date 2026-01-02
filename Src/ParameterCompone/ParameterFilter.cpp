@@ -13,7 +13,10 @@ bool CParameterFilter::contains(const QString &szKey)
 
 int CParameterFilter::AddKey(const QString& szKey)
 {
+    if(contains(szKey))
+        return 0;
     m_Key.insert(szKey);
+    SetModified(true);
     return 0;
 }
 

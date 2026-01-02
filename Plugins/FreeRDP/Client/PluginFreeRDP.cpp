@@ -111,8 +111,7 @@ const QString CPluginFreeRDP::Version() const
 const QString CPluginFreeRDP::Details() const
 {
     QString szDetails;
-    szDetails = "- " + tr("FreeRDP");
-    szDetails += "\n";
+    szDetails = "- " + tr("FreeRDP") + "\n";
     szDetails += "  - " + tr("version: ");
     szDetails += freerdp_get_version_string();
     szDetails += "\n";

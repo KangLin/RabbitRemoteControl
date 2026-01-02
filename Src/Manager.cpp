@@ -168,6 +168,8 @@ int CManager::LoadPlugins()
         }
     }//*/
 
+    if(m_pParameter->GetPluginsPath().isEmpty())
+        qWarning(log) << "The plugins path is empty. please set it from: `Menu` -> `Tools` -> `Settings` -> `Load Plugins`";
     foreach (auto szPath, m_pParameter->GetPluginsPath()) {
         //QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
 
@@ -183,6 +185,10 @@ int CManager::LoadPlugins()
 #endif
         }
         nRet = FindPlugins(szPath, filters);
+    }
+
+    if(m_Plugins.empty()) {
+        qWarning(log) << "The plugins is empty. please set it from: `Menu` -> `Tools` -> `Settings` -> `Load Plugins`";
     }
 
     if(!m_szDetails.isEmpty())
