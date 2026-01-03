@@ -180,3 +180,21 @@ endif()
 
 # Install QIcon theme
 INSTALL_ICON_THEME(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons)
+
+if(ANDROID)
+    find_package(QFtpServerLib)
+    if(QFtpServerLib_FOUND)
+        get_target_property(QFtpServerLib_Location QFtpServerLib IMPORTED_LOCATION)
+        list(APPEND android_extra_libs ${QFtpServerLib_Location})
+    endif()
+    find_package(Qt${QT_VERSION_MAJOR}Keychain)
+    if(Qt${QT_VERSION_MAJOR}Keychain_FOUND)
+        get_target_property(QtKeychain_Location Qt${QT_VERSION_MAJOR}Keychain::Qt${QT_VERSION_MAJOR}Keychain IMPORTED_LOCATION)
+        list(APPEND android_extra_libs ${QtKeychain_Location})
+    endif()
+    message("QT_ANDROID_EXTRA_LIBS: ${android_extra_libs}")
+    if(android_extra_libs)
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            QT_ANDROID_EXTRA_LIBS ${android_extra_libs})
+    endif()
+endif()
