@@ -154,22 +154,22 @@ elseif(UNIX AND NOT ANDROID)
     # INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
     #         DESTINATION ${CMAKE_INSTALL_BINDIR}
     #             COMPONENT Application)
-    # Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
+
+    # Icon path: https://www.freedesktop.org/wiki/Specifications/icon-theme-spec/
     # The freedesktop.org standard specifies in which order and directories programs should look for icons:
     #
     #    $HOME/.icons (for backwards compatibility)
     #    $XDG_DATA_DIRS/icons
     #    /usr/share/pixmaps
-    #INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-    #    DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps
-    #        COMPONENT Application
-    #    RENAME ${APP_ID}.svg)
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/${APP_ID}.png
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps
+            COMPONENT Application)
     # Flatpak: https://docs.flatpak.org/en/latest/conventions.html#application-icons
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/scalable/apps/${APP_ID}.svg
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps/
             COMPONENT Application
         RENAME ${APP_ID}.svg)
-    
+
     string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
     configure_file(${CMAKE_SOURCE_DIR}/share/metainfo/${APP_ID}.metainfo.xml.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml @ONLY)

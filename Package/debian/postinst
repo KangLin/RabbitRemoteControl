@@ -26,12 +26,12 @@ case "$1" in
                 ln -s $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
             fi
         fi
-        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-            if [ -f $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png ]; then
+            if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
                     mkdir -p /usr/share/pixmaps
                 fi
-                ln -s $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+                ln -s $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png
             fi
         fi
         
@@ -71,7 +71,7 @@ case "$1" in
     abort-upgrade|abort-remove|abort-deconfigure)
         #rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.png
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
         ldconfig

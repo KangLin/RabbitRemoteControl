@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file alias="app">Image/app.png</file>
+        <file alias="app">Image/io.github.KangLin.RabbitRemoteControl.png</file>
     </qresource>
 </RCC>

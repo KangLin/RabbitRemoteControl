@@ -16,7 +16,7 @@ Type=Application
 #    $XDG_DATA_DIRS/icons
 #    /usr/share/pixmaps
 Icon=@APP_ID@
-TryExec=RabbitRemoteControlApp
+#TryExec=RabbitRemoteControlApp
 Exec=RabbitRemoteControlApp
 Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
