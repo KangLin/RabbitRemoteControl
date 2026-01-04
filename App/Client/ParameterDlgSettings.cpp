@@ -35,8 +35,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     }
     bool bScroll = false;
     QScreen* pScreen = QApplication::primaryScreen();
-    QSize size = pScreen->availableGeometry().size();
-    if(nWidth > size.width() * 3 / 4 || nHeigth > size.height() * 3 / 4)
+    QSize size = this->size();
+    if(nWidth > size.width() || nHeigth > size.height())
         bScroll = true;
     // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)

@@ -54,6 +54,7 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
 int CFrmManagePlugins::SetParameter(CParameter *pParameter)
 {
     m_pPara = qobject_cast<CParameterPlugin*>(pParameter);
+    ui->gbPluginsPath->setChecked(m_pPara->GetEnableSetPluginsPath());
     foreach(auto szPath, m_pPara->GetPluginsPath()) {
         auto pPath = new QStandardItem(szPath);
         m_pModelPluginPath->appendRow(pPath);
@@ -77,6 +78,7 @@ int CFrmManagePlugins::SetParameter(CParameter *pParameter)
 int CFrmManagePlugins::Accept()
 {
     QStringList lstPath;
+    m_pPara->SetEnableSetPluginsPath(ui->gbPluginsPath->isChecked());
     for(int i = 0; i < m_pModelPluginPath->rowCount(); i++) {
         lstPath << m_pModelPluginPath->item(i)->text();
     }

@@ -168,9 +168,15 @@ int CManager::LoadPlugins()
         }
     }//*/
 
-    if(m_pParameter->GetPluginsPath().isEmpty())
+    QStringList lstPaths;
+    if(m_pParameter->GetEnableSetPluginsPath()) {
+        lstPaths = m_pParameter->GetPluginsPath();
+    }
+    else
+        lstPaths << RabbitCommon::CDir::Instance()->GetDirPlugins();
+    if(lstPaths.isEmpty())
         qWarning(log) << "The plugins path is empty. please set it from: `Menu` -> `Tools` -> `Settings` -> `Load Plugins`";
-    foreach (auto szPath, m_pParameter->GetPluginsPath()) {
+    foreach (auto szPath, lstPaths) {
         //QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
 
         QStringList filters;

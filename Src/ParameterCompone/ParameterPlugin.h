@@ -181,6 +181,12 @@ private:
     Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
 
 public:
+    bool GetEnableSetPluginsPath() const;
+    void SetEnableSetPluginsPath(bool newEnableSetPluginsPath);
+private:
+    bool m_bEnableSetPluginsPath;
+
+public:
     QStringList GetPluginsPath() const;
     void SetPluginsPath(const QStringList &newPluginsPath);
 private:
