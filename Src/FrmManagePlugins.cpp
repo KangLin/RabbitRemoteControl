@@ -15,6 +15,7 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
     , m_pPara(nullptr)
     , ui(new Ui::CFrmManagePluginsUI)
     , m_pModelFilter(nullptr)
+    , m_nColPath(4)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Load Plugins"));
@@ -54,24 +55,9 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
 int CFrmManagePlugins::SetParameter(CParameter *pParameter)
 {
     m_pPara = qobject_cast<CParameterPlugin*>(pParameter);
-    ui->gbPluginsPath->setChecked(m_pPara->GetEnableSetPluginsPath());
-    foreach(auto szPath, m_pPara->GetPluginsPath()) {
-        auto pPath = new QStandardItem(szPath);
-        m_pModelPluginPath->appendRow(pPath);
-
-        QStringList filters;
-        if(filters.isEmpty())
-        {
-#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-            filters << "*Plugin*.dll";
-#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
-            filters << "*Plugin*.dylib";
-#else
-            filters << "*Plugin*.so";
-#endif
-        }
-        FindPlugins(szPath, filters);
-    }
+    bool checked = m_pPara->GetEnableSetPluginsPath();
+    ui->gbPluginsPath->setChecked(checked);
+    on_gbPluginsPath_clicked(checked);
     return 0;
 }
 
@@ -98,18 +84,48 @@ int CFrmManagePlugins::Accept()
     return 0;
 }
 
-int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters)
+int CFrmManagePlugins::AddPath(const QString &szPath)
+{
+    auto pFind = m_pModelPluginPath->findItems(szPath);
+    if(!pFind.isEmpty()) return 0;
+
+    auto pPath = new QStandardItem(szPath);
+    m_pModelPluginPath->appendRow(pPath);
+
+    QStringList filters;
+    if(filters.isEmpty())
+    {
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
+        filters << "*Plugin*.dll";
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+        filters << "*Plugin*.dylib";
+#else
+        filters << "*Plugin*.so";
+#endif
+    }
+    FindPlugins(szPath, filters);
+    return 0;
+}
+
+int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters, bool bAdd)
 {
     QStringList files = dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot);
 
     foreach (auto fileName, files) {
-        QString szPlugins = dir.absoluteFilePath(fileName);
-        QPluginLoader loader(szPlugins);
+        QString szPath = dir.absoluteFilePath(fileName);
+        if(!bAdd) {
+            RemoveItem(szPath);
+            continue;
+        }
+        auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, m_nColPath);
+        if(!pFind.isEmpty()) continue;
+
+        QPluginLoader loader(szPath);
         QObject *plugin = loader.instance();
         if(plugin) {
             CPlugin* p = qobject_cast<CPlugin*>(plugin);
             if(p)
-                AddItem(p, szPlugins);
+                AddItem(p, szPath);
             loader.unload();
         }
     }
@@ -143,8 +159,19 @@ int CFrmManagePlugins::AddItem(CPlugin* plugin, const QString& szPath)
     auto pPath = new QStandardItem(szPath);
     lstItems << pPath;
     m_pModelFilter->appendRow(lstItems);
+
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     ui->tvFilter->resizeColumnsToContents(); //设置所有列宽度自适应内容
+    return 0;
+}
+
+int CFrmManagePlugins::RemoveItem(const QString &szPath)
+{
+    auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, m_nColPath);
+    if(pFind.isEmpty()) return 0;
+    foreach(auto item, pFind) {
+        m_pModelFilter->removeRow(item->index().row());
+    }
     return 0;
 }
 
@@ -154,10 +181,7 @@ void CFrmManagePlugins::on_pbAdd_clicked()
         this, tr("Plugin path"),
         RabbitCommon::CDir::Instance()->GetDirPlugins());
     if(szPath.isEmpty()) return;
-    auto pFind = m_pModelPluginPath->findItems(szPath);
-    if(!pFind.isEmpty()) return;
-    auto pItem = new QStandardItem(szPath);
-    m_pModelPluginPath->appendRow(pItem);
+    AddPath(szPath);
 }
 
 void CFrmManagePlugins::on_pbRemove_clicked()
@@ -165,6 +189,25 @@ void CFrmManagePlugins::on_pbRemove_clicked()
     QModelIndex index = ui->lvPluginsPath->currentIndex();
     if(!index.isValid())
         return;
+
+    auto item = m_pModelPluginPath->item(index.row());
+    if(item) {
+        QString szPath = item->text();
+        if(!szPath.isEmpty()) {
+            QStringList filters;
+            if(filters.isEmpty())
+            {
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
+                filters << "*Plugin*.dll";
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+                filters << "*Plugin*.dylib";
+#else
+                filters << "*Plugin*.so";
+#endif
+            }
+            FindPlugins(szPath, filters, false);
+        }
+    }
     m_pModelPluginPath->removeRow(index.row());
 }
 
@@ -174,4 +217,19 @@ void CFrmManagePlugins::slotCustomContextPluginsPath(const QPoint &pos)
     m.addAction(tr("Add"), this, SLOT(on_pbAdd_clicked()));
     m.addAction(tr("Remove"), this, SLOT(on_pbRemove_clicked()));
     m.exec(this->mapToGlobal(pos));
+}
+
+void CFrmManagePlugins::on_gbPluginsPath_clicked(bool checked)
+{
+    m_pModelPluginPath->clear();
+    m_pModelFilter->clear();
+
+    QStringList lstPaths;
+    if(checked)
+        lstPaths = m_pPara->GetPluginsPath();
+    else
+        lstPaths << RabbitCommon::CDir::Instance()->GetDirPlugins();
+    foreach(auto szPath, lstPaths) {
+        AddPath(szPath);
+    }
 }

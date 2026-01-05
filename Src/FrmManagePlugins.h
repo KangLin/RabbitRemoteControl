@@ -27,9 +27,13 @@ private slots:
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
     void slotCustomContextPluginsPath(const QPoint& pos);
+    void on_gbPluginsPath_clicked(bool checked);
+
 private:
-    int FindPlugins(QDir dir, QStringList filters);
+    int AddPath(const QString &szPath);
+    int FindPlugins(QDir dir, QStringList filters, bool bAdd = true);
     int AddItem(CPlugin* plugin, const QString& szPath);
+    int RemoveItem(const QString& szPath);
 private:
     Ui::CFrmManagePluginsUI* ui;
     enum ColumnNo {
@@ -42,5 +46,6 @@ private:
     CParameterPlugin* m_pPara;
     QStandardItemModel* m_pModelPluginPath;
     QStandardItemModel* m_pModelFilter;
+    int m_nColPath;
 };
 

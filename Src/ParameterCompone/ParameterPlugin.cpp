@@ -21,8 +21,8 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_bEnableSetPluginsPath(false)
     , m_szPluginsPath(RabbitCommon::CDir::Instance()->GetDirPlugins())
-    , m_WhiteList(this, "Whilelist")
-    , m_BlackList(this, "BlackList")
+    , m_WhiteList(this, "Plugin/Paths/Whilelist")
+    , m_BlackList(this, "Plugin/Paths/BlackList")
     , m_Record(this)
     , m_MediaDevices(this)
 #if defined(HAVE_QTERMWIDGET)
@@ -35,7 +35,7 @@ CParameterPlugin::~CParameterPlugin()
 
 int CParameterPlugin::OnLoad(QSettings &set)
 {
-    set.beginGroup("Client");
+    set.beginGroup("Plugin");
     SetCaptureAllKeyboard(
         set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
     SetDesktopShortcutsScript(set.value("DesktopShortcutsScript/Enable",
@@ -64,15 +64,15 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
-    SetPluginsPath(set.value("PluginsPath", GetPluginsPath()).toStringList());
-    SetEnableSetPluginsPath(set.value("PluginsPath/Enable", GetEnableSetPluginsPath()).toBool());
+    SetPluginsPath(set.value("Paths", GetPluginsPath()).toStringList());
+    SetEnableSetPluginsPath(set.value("Paths/Enable", GetEnableSetPluginsPath()).toBool());
     set.endGroup();
     return 0;
 }
 
 int CParameterPlugin::OnSave(QSettings& set)
 {
-    set.beginGroup("Client");
+    set.beginGroup("Plugin");
     set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
     set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());
     set.setValue("DesktopShortcutsScript/Disable", GetDisableDesktopShortcutsScript());
@@ -87,8 +87,8 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
-    set.setValue("PluginsPath", GetPluginsPath());
-    set.setValue("PluginsPath/Enable", GetEnableSetPluginsPath());
+    set.setValue("Paths", GetPluginsPath());
+    set.setValue("Paths/Enable", GetEnableSetPluginsPath());
     set.endGroup();
     return 0;
 }
