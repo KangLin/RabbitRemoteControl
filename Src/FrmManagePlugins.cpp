@@ -8,6 +8,7 @@
 #include "Plugin.h"
 #include "RabbitCommonDir.h"
 #include "FrmManagePlugins.h"
+#include "CheckBoxHeader.h"
 #include "ui_FrmManagePlugins.h"
 
 static Q_LOGGING_CATEGORY(log, "Manage")
@@ -31,6 +32,9 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
 
     m_pModelFilter = new QStandardItemModel(ui->tvFilter);
     ui->tvFilter->setModel(m_pModelFilter);
+    check = connect(m_pModelFilter, SIGNAL(itemChanged(QStandardItem*)),
+                    this, SLOT(slotFilterItemChanged(QStandardItem*)));
+    Q_ASSERT(check);
     SetFilterHeader();
 
     //必须在 setModel 后,才能应用
@@ -99,6 +103,8 @@ int CFrmManagePlugins::AddPath(const QString &szPath)
 #endif
     }
     FindPlugins(szPath, filters);
+    slotFilterItemChanged(m_pModelFilter->item(0, ColumnNo::Whitelist));
+    slotFilterItemChanged(m_pModelFilter->item(0, ColumnNo::Blacklist));
     return 0;
 }
 
@@ -204,6 +210,8 @@ void CFrmManagePlugins::on_pbRemove_clicked()
         }
     }
     m_pModelPluginPath->removeRow(index.row());
+    slotFilterItemChanged(m_pModelFilter->item(0, ColumnNo::Whitelist));
+    slotFilterItemChanged(m_pModelFilter->item(0, ColumnNo::Blacklist));
 }
 
 void CFrmManagePlugins::slotCustomContextPluginsPath(const QPoint &pos)
@@ -233,10 +241,73 @@ void CFrmManagePlugins::on_gbPluginsPath_clicked(bool checked)
 int CFrmManagePlugins::SetFilterHeader()
 {
     if(!m_pModelFilter) return -1;
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Whitelist, new QStandardItem(tr("Whitelist")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Blacklist, new QStandardItem(tr("Blacklist")));
+    auto pWhitelist = new QStandardItem(tr("Whitelist"));
+    pWhitelist->setToolTip(pWhitelist->text());
+    pWhitelist->setCheckable(true);
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Whitelist, pWhitelist);
+    auto pBlacklist = new QStandardItem(tr("Blacklist"));
+    pBlacklist->setToolTip(pBlacklist->text());
+    pBlacklist->setCheckable(true);
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Blacklist, pBlacklist);
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Name, new QStandardItem(tr("Name")));
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Type, new QStandardItem(tr("Type")));
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Path, new QStandardItem(tr("Path")));
+    
+    if(qobject_cast<CCheckBoxHeader*>(ui->tvFilter->horizontalHeader()))
+        return 0;
+
+    auto pHeader = new CCheckBoxHeader(Qt::Horizontal, ui->tvFilter);
+    if(pHeader) {
+        ui->tvFilter->setHorizontalHeader(pHeader);
+        bool check = false;
+        check = connect(pHeader, &CCheckBoxHeader::sigCheckStateChanged,
+                        this, [this](int index, Qt::CheckState state) {
+            qDebug(log) << "CCheckBoxHeader::sigCheckStateChanged";
+            for(int row = 0; row < m_pModelFilter->rowCount(); row++) {
+                auto item = m_pModelFilter->item(row, index);
+                switch(state)
+                {
+                case Qt::PartiallyChecked: {
+                    QString szPath = m_pModelFilter->item(row, ColumnNo::Path)->text();
+                    if(ColumnNo::Whitelist == index) {
+                        if(m_pPara->m_WhiteList.contains(szPath))
+                            item->setCheckState(Qt::Checked);
+                        else
+                            item->setCheckState(Qt::Unchecked);
+                    }
+                    if(ColumnNo::Blacklist == index) {
+                        if(m_pPara->m_BlackList.contains(szPath))
+                            item->setCheckState(Qt::Checked);
+                        else
+                            item->setCheckState(Qt::Unchecked);
+                    }
+                    break;
+                }
+                default:
+                    item->setCheckState(state);
+                    break;
+                }
+            }
+        });
+        Q_ASSERT(check);
+    }
+
     return 0;
+}
+
+void CFrmManagePlugins::slotFilterItemChanged(QStandardItem *item)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!m_pModelFilter) return;
+    if(!item) return;
+    if(!item->isCheckable()) return;
+    for(int i = 0; i < m_pModelFilter->rowCount(); i++) {
+        if(i == item->row()) continue;
+        auto state = m_pModelFilter->item(i, item->column())->checkState();
+        if(state != item->checkState()) {
+            m_pModelFilter->horizontalHeaderItem(item->column())->setCheckState(Qt::PartiallyChecked);
+            return;
+        }
+    }
+    m_pModelFilter->horizontalHeaderItem(item->column())->setCheckState(item->checkState());
 }

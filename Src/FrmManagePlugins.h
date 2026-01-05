@@ -28,6 +28,7 @@ private slots:
     void on_pbRemove_clicked();
     void slotCustomContextPluginsPath(const QPoint& pos);
     void on_gbPluginsPath_clicked(bool checked);
+    void slotFilterItemChanged(QStandardItem *item);
 
 private:
     int SetFilterHeader();

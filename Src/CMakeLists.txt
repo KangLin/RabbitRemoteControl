@@ -54,6 +54,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
     ParameterCompone/Stats.h
+    CheckBoxHeader.h
     )
 
 list(APPEND PLUGIN_HEADER_FILES
@@ -104,6 +105,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     Hook.cpp
     Unix/DesktopShortcuts.cpp
     StatsAppUsage.cpp
+    CheckBoxHeader.cpp
     )
 
 set(PLUGIN_UI_FILES
