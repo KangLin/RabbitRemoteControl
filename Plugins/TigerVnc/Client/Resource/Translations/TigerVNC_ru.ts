@@ -134,11 +134,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="209"/>
-        <source>Meduim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
         <translation type="unfinished"></translation>
@@ -196,6 +191,11 @@
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="183"/>
         <source>Compression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
+        <source>Medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

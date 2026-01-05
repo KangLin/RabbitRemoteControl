@@ -261,6 +261,82 @@
     </message>
 </context>
 <context>
+    <name>CFrmManagePlugins</name>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="21"/>
+        <source>Load Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="35"/>
+        <source>Whitelist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="36"/>
+        <source>Blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="37"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="38"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="39"/>
+        <source>Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="181"/>
+        <source>Plugin path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="217"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.cpp" line="218"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CFrmManagePluginsUI</name>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="36"/>
+        <source>Plugins path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="66"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="73"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="85"/>
+        <source>The settings will take effect after the application is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmViewer</name>
     <message>
         <location filename="../../FrmViewer.cpp" line="561"/>
@@ -271,55 +347,55 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="107"/>
+        <location filename="../../Manager.cpp" line="109"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="110"/>
+        <location filename="../../Manager.cpp" line="112"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="112"/>
+        <location filename="../../Manager.cpp" line="114"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="114"/>
+        <location filename="../../Manager.cpp" line="116"/>
         <source>Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
+        <location filename="../../Manager.cpp" line="117"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="117"/>
+        <location filename="../../Manager.cpp" line="119"/>
         <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="183"/>
+        <location filename="../../Manager.cpp" line="201"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="266"/>
-        <location filename="../../Manager.cpp" line="522"/>
+        <location filename="../../Manager.cpp" line="289"/>
+        <location filename="../../Manager.cpp" line="550"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="464"/>
+        <location filename="../../Manager.cpp" line="492"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="527"/>
+        <location filename="../../Manager.cpp" line="555"/>
         <source>Dependency libraries:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -525,6 +601,84 @@ Some features are limited.
     <message>
         <location filename="../../OperateDesktop.cpp" line="544"/>
         <source>Stop record</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>COperateTerminal</name>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
+        <source>Copy selection to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
+        <source>Paste clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
+        <source>Paste selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
+        <source>Zoom reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
+        <source>Find ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
+        <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -995,6 +1149,136 @@ Some features are limited.
     </message>
 </context>
 <context>
+    <name>CParameterTerminalUI</name>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
+        <source>Cursor shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
+        <source>Scroll bar position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
+        <source>Terminal Transparency:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
+        <source>Background Image:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
+        <source>Browse(&amp;B)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
+        <source>Key binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
+        <source>Show terminal size when windows resize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
+        <source>Enable bi-directional text support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
+        <source>History size(in lines):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
+        <source>Flow Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
+        <source>Backgroup image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
+        <source>BlockCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
+        <source>UnderlineCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
+        <source>IBeamCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterUser</name>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="27"/>
@@ -1219,43 +1503,43 @@ Some features are limited.
 <context>
     <name>CPlugin</name>
     <message>
-        <location filename="../../Plugin.cpp" line="40"/>
-        <location filename="../../Plugin.cpp" line="61"/>
+        <location filename="../../Plugin.cpp" line="41"/>
+        <location filename="../../Plugin.cpp" line="62"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="45"/>
+        <location filename="../../Plugin.cpp" line="46"/>
         <source>Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="47"/>
+        <location filename="../../Plugin.cpp" line="48"/>
         <source>Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="49"/>
+        <location filename="../../Plugin.cpp" line="50"/>
         <source>Remote Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="51"/>
+        <location filename="../../Plugin.cpp" line="52"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="53"/>
+        <location filename="../../Plugin.cpp" line="54"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="55"/>
+        <location filename="../../Plugin.cpp" line="56"/>
         <source>File Transfer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Plugin.cpp" line="57"/>
+        <location filename="../../Plugin.cpp" line="58"/>
         <source>Network Tools</source>
         <translation type="unfinished"></translation>
     </message>

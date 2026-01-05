@@ -258,9 +258,8 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation>O servidor está vazio, insira-o</translation>
+        <translation type="vanished">O servidor está vazio, insira-o</translation>
     </message>
 </context>
 <context>
@@ -727,17 +726,17 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation>FreeRDP</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="116"/>
+        <location filename="../../PluginFreeRDP.cpp" line="115"/>
         <source>version: </source>
         <translation>versão: </translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="119"/>
+        <location filename="../../PluginFreeRDP.cpp" line="118"/>
         <source>Build version: </source>
         <translation>Versão de compilação: </translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="125"/>
+        <location filename="../../PluginFreeRDP.cpp" line="124"/>
         <source>Build date: </source>
         <translation>Data de compilação: </translation>
     </message>
@@ -745,14 +744,12 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>O servidor está vazio, insira-o</translation>
+        <translation type="vanished">O servidor está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
 </context>
 <context>

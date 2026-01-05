@@ -141,7 +141,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="35"/>
+        <location filename="../../PluginTelnet.cpp" line="32"/>
+        <source>(Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginTelnet.cpp" line="39"/>
         <source>Telnet: It is not safe. Please use SSH in the production environment.</source>
         <translation type="unfinished"></translation>
     </message>

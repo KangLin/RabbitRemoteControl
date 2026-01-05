@@ -89,15 +89,21 @@
     <name>CPluginRawStream</name>
     <message>
         <location filename="../../PluginRawStream.cpp" line="25"/>
-        <location filename="../../PluginRawStream.cpp" line="30"/>
+        <location filename="../../PluginRawStream.cpp" line="34"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../../PluginRawStream.cpp" line="25"/>
-        <location filename="../../PluginRawStream.cpp" line="30"/>
+        <location filename="../../PluginRawStream.cpp" line="34"/>
         <source>Raw stream</source>
         <translation>Fluxo bruto</translation>
+    </message>
+    <message>
+        <location filename="../../PluginRawStream.cpp" line="27"/>
+        <location filename="../../PluginRawStream.cpp" line="36"/>
+        <source>(Experimental)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -253,14 +253,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
-    <name>CConnectLayerQTcpSocket</name>
-    <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CDlgDesktopSize</name>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="14"/>
@@ -722,31 +714,18 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="116"/>
+        <location filename="../../PluginFreeRDP.cpp" line="115"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="119"/>
+        <location filename="../../PluginFreeRDP.cpp" line="118"/>
         <source>Build version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="125"/>
+        <location filename="../../PluginFreeRDP.cpp" line="124"/>
         <source>Build date: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ConnectLayerSSHTunnel</name>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
-        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

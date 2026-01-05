@@ -257,9 +257,8 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation>服务器为空，请输入</translation>
+        <translation type="vanished">服务器为空，请输入</translation>
     </message>
 </context>
 <context>
@@ -726,17 +725,17 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="116"/>
+        <location filename="../../PluginFreeRDP.cpp" line="115"/>
         <source>version: </source>
         <translation>版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="119"/>
+        <location filename="../../PluginFreeRDP.cpp" line="118"/>
         <source>Build version: </source>
         <translation>编译版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="125"/>
+        <location filename="../../PluginFreeRDP.cpp" line="124"/>
         <source>Build date: </source>
         <translation>编译日期：</translation>
     </message>
@@ -744,14 +743,12 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>服务器为空，请输入</translation>
+        <translation type="vanished">服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>错误</translation>
+        <translation type="vanished">错误</translation>
     </message>
 </context>
 <context>

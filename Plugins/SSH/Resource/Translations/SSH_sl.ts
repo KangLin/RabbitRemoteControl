@@ -93,17 +93,22 @@
 <context>
     <name>CPluginLibSSH</name>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="31"/>
+        <location filename="../../PluginLibSSH.cpp" line="32"/>
         <source>Secure Shell(SSH)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="36"/>
+        <location filename="../../PluginLibSSH.cpp" line="34"/>
+        <source>(Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibSSH.cpp" line="41"/>
         <source>Secure Shell(SSH): is a secure protocol and the most common way of safely administering remote servers. Using a number of encryption technologies, SSH provides a mechanism for establishing a cryptographically secured connection between two parties, authenticating each side to the other, and passing commands and output back and forth.You can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="43"/>
+        <location filename="../../PluginLibSSH.cpp" line="48"/>
         <source>It uses libssh: https://www.libssh.org .</source>
         <translation type="unfinished"></translation>
     </message>

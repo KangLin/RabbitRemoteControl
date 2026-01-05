@@ -136,7 +136,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginSerialPort.cpp" line="30"/>
+        <location filename="../../PluginSerialPort.cpp" line="27"/>
+        <location filename="../../PluginSerialPort.cpp" line="36"/>
+        <source>(Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginSerialPort.cpp" line="34"/>
         <source>Serial port terminal</source>
         <translation type="unfinished"></translation>
     </message>
