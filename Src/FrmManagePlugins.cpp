@@ -15,7 +15,6 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
     , m_pPara(nullptr)
     , ui(new Ui::CFrmManagePluginsUI)
     , m_pModelFilter(nullptr)
-    , m_nColPath(4)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Load Plugins"));
@@ -32,11 +31,7 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
 
     m_pModelFilter = new QStandardItemModel(ui->tvFilter);
     ui->tvFilter->setModel(m_pModelFilter);
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Whitelist, new QStandardItem(tr("Whitelist")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Blacklist, new QStandardItem(tr("Blacklist")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Name, new QStandardItem(tr("Name")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Type, new QStandardItem(tr("Type")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Path, new QStandardItem(tr("Path")));
+    SetFilterHeader();
 
     //必须在 setModel 后,才能应用
     /*第二个参数可以为：
@@ -117,7 +112,7 @@ int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters, bool bAdd)
             RemoveItem(szPath);
             continue;
         }
-        auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, m_nColPath);
+        auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::Path);
         if(!pFind.isEmpty()) continue;
 
         QPluginLoader loader(szPath);
@@ -167,7 +162,7 @@ int CFrmManagePlugins::AddItem(CPlugin* plugin, const QString& szPath)
 
 int CFrmManagePlugins::RemoveItem(const QString &szPath)
 {
-    auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, m_nColPath);
+    auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::Path);
     if(pFind.isEmpty()) return 0;
     foreach(auto item, pFind) {
         m_pModelFilter->removeRow(item->index().row());
@@ -223,6 +218,7 @@ void CFrmManagePlugins::on_gbPluginsPath_clicked(bool checked)
 {
     m_pModelPluginPath->clear();
     m_pModelFilter->clear();
+    SetFilterHeader();
 
     QStringList lstPaths;
     if(checked)
@@ -232,4 +228,15 @@ void CFrmManagePlugins::on_gbPluginsPath_clicked(bool checked)
     foreach(auto szPath, lstPaths) {
         AddPath(szPath);
     }
+}
+
+int CFrmManagePlugins::SetFilterHeader()
+{
+    if(!m_pModelFilter) return -1;
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Whitelist, new QStandardItem(tr("Whitelist")));
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Blacklist, new QStandardItem(tr("Blacklist")));
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Name, new QStandardItem(tr("Name")));
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Type, new QStandardItem(tr("Type")));
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Path, new QStandardItem(tr("Path")));
+    return 0;
 }

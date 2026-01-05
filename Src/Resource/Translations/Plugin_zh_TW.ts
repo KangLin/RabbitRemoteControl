@@ -263,47 +263,47 @@
 <context>
     <name>CFrmManagePlugins</name>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="21"/>
+        <location filename="../../FrmManagePlugins.cpp" line="20"/>
         <source>Load Plugins</source>
         <translation>加載插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="35"/>
+        <location filename="../../FrmManagePlugins.cpp" line="236"/>
         <source>Whitelist</source>
         <translation>白名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="36"/>
+        <location filename="../../FrmManagePlugins.cpp" line="237"/>
         <source>Blacklist</source>
         <translation>黑名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="37"/>
+        <location filename="../../FrmManagePlugins.cpp" line="238"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="38"/>
+        <location filename="../../FrmManagePlugins.cpp" line="239"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="39"/>
+        <location filename="../../FrmManagePlugins.cpp" line="240"/>
         <source>Path</source>
         <translation>路徑</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="181"/>
+        <location filename="../../FrmManagePlugins.cpp" line="176"/>
         <source>Plugin path</source>
         <translation>插件路徑</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="217"/>
+        <location filename="../../FrmManagePlugins.cpp" line="212"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="218"/>
+        <location filename="../../FrmManagePlugins.cpp" line="213"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>

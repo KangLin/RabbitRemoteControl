@@ -30,6 +30,7 @@ private slots:
     void on_gbPluginsPath_clicked(bool checked);
 
 private:
+    int SetFilterHeader();
     int AddPath(const QString &szPath);
     int FindPlugins(QDir dir, QStringList filters, bool bAdd = true);
     int AddItem(CPlugin* plugin, const QString& szPath);
@@ -46,6 +47,5 @@ private:
     CParameterPlugin* m_pPara;
     QStandardItemModel* m_pModelPluginPath;
     QStandardItemModel* m_pModelFilter;
-    int m_nColPath;
 };
 
