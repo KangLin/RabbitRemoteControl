@@ -37,11 +37,15 @@ description: |
 base: core24 # the base snap is the execution environment for this snap
 platforms:
   amd64:
+    build-on: [amd64]
   arm64:
-#base: core22
+    build-on: [arm64]
 #architectures:
 #  - build-on: amd64
+#    run-on: amd64
 #  - build-on: arm64
+#    run-on: arm64
+#base: core22
 
 # - devel
 # - stable
@@ -303,8 +307,8 @@ parts:
     source-type: git
     source-branch: master
     source-depth: 1
-    build-packages:
-    stage-packages:
+    build-packages: []
+    stage-packages: []
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
@@ -323,8 +327,11 @@ parts:
       - freerdp
       - tigervnc
       - pcapplusplus
+#      - qt
       - qtermwidget
- #     - qt
+      - qtkeychain
+      - qftpserver
+ 
     build-packages:
       - libvncserver-dev
       - libtelnet-dev
