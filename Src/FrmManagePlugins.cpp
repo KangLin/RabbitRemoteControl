@@ -57,6 +57,7 @@ int CFrmManagePlugins::SetParameter(CParameter *pParameter)
     bool checked = m_pPara->GetEnableSetPluginsPath();
     ui->gbPluginsPath->setChecked(checked);
     on_gbPluginsPath_clicked(checked);
+    ui->cbOnlyLoadInWhitelist->setChecked(m_pPara->GetOnlyLoadInWhitelist());
     return 0;
 }
 
@@ -80,6 +81,7 @@ int CFrmManagePlugins::Accept()
         if(pBlacklist->checkState() == Qt::Checked)
             m_pPara->m_BlackList.AddKey(szPath);
     }
+    m_pPara->SetOnlyLoadInWhitelist(ui->cbOnlyLoadInWhitelist->isChecked());
     return 0;
 }
 

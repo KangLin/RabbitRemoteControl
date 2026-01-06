@@ -189,12 +189,15 @@ private:
 public:
     QStringList GetPluginsPath() const;
     void SetPluginsPath(const QStringList &newPluginsPath);
-private:
-    QStringList m_szPluginsPath;
-
-public:
+    bool GetOnlyLoadInWhitelist() const;
+    void SetOnlyLoadInWhitelist(bool newOnlyLoadInWhitelist);
     CParameterFilter m_WhiteList;
     CParameterFilter m_BlackList;
+private:
+    QStringList m_szPluginsPath;
+    bool m_bOnlyLoadInWhitelist;
+
+public:
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
 #if defined(HAVE_QTERMWIDGET)

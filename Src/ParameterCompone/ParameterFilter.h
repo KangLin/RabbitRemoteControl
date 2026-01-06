@@ -17,6 +17,9 @@ public:
     int AddKey(const QString& szKey);
     int RemoveKey(const QString& szKey);
     int Clear();
+    virtual bool isEmpty();
+    int OnProcess(std::function<int(const QString& key)> cb, bool bErrExit = false);
+
 private:
     QSet<QString> m_Key;
 

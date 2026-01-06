@@ -168,6 +168,13 @@ int CManager::LoadPlugins()
         }
     }//*/
 
+    if(m_pParameter->GetOnlyLoadInWhitelist()) {
+        m_pParameter->m_WhiteList.OnProcess([this](const QString& szPath) -> int{
+            return LoadPlugin(szPath);
+        });
+        return 0;
+    }
+
     QStringList lstPaths;
     if(m_pParameter->GetEnableSetPluginsPath()) {
         lstPaths = m_pParameter->GetPluginsPath();
@@ -233,28 +240,7 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
             qInfo(log) << "Filter:" << szPlugins << "in blacklist";
             continue;
         }
-        QPluginLoader loader(szPlugins);
-        QObject *plugin = loader.instance();
-        if (plugin) {
-            CPlugin* p = qobject_cast<CPlugin*>(plugin);
-            if(p)
-            {
-                if(m_Plugins.find(p->Id()) == m_Plugins.end())
-                {
-                    qInfo(log) << "Success: Load plugin"
-                               << p->Name() << "from" << szPlugins;
-                    AppendPlugin(p);
-                }
-                else
-                    qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
-            }
-        } else {
-            QString szMsg;
-            szMsg = "Error: Load plugin fail from " + szPlugins;
-            if(!loader.errorString().isEmpty())
-                szMsg += "; Error: " + loader.errorString();
-            qCritical(log) << szMsg.toStdString().c_str();
-        }
+        LoadPlugin(szPlugins);
     }
 
     foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -265,6 +251,34 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 
     QDir::setCurrent(szCurrentPath);
 
+    return 0;
+}
+
+int CManager::LoadPlugin(const QString &szPath)
+{
+    QPluginLoader loader(szPath);
+    QObject *plugin = loader.instance();
+    if (plugin) {
+        CPlugin* p = qobject_cast<CPlugin*>(plugin);
+        if(p)
+        {
+            if(m_Plugins.find(p->Id()) == m_Plugins.end())
+            {
+                qInfo(log) << "Success: Load plugin"
+                           << p->Name() << "from" << szPath;
+                AppendPlugin(p);
+            }
+            else
+                qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
+        } else
+            qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
+    } else {
+        QString szMsg;
+        szMsg = "Error: Load plugin fail from " + szPath;
+        if(!loader.errorString().isEmpty())
+            szMsg += "; Error: " + loader.errorString();
+        qCritical(log) << szMsg.toStdString().c_str();
+    }
     return 0;
 }
 

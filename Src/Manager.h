@@ -176,6 +176,7 @@ public:
 
 private:
     int LoadPlugins();
+    int LoadPlugin(const QString& szPath);
     int FindPlugins(QDir dir, QStringList filters);
     int AppendPlugin(CPlugin* plugin);
 

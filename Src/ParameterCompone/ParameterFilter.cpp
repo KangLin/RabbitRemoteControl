@@ -32,6 +32,22 @@ int CParameterFilter::Clear()
     return 0;
 }
 
+bool CParameterFilter::isEmpty()
+{
+    return m_Key.isEmpty();
+}
+
+int CParameterFilter::OnProcess(std::function<int (const QString &)> cb, bool bErrExit)
+{
+    if(!cb) return -1;
+    foreach(auto k, m_Key) {
+        int nRet = cb(k);
+        if(bErrExit && nRet)
+            return nRet;
+    }
+    return 0;
+}
+
 int CParameterFilter::OnLoad(QSettings &set)
 {
     QStringList s = set.value("Key").toStringList();

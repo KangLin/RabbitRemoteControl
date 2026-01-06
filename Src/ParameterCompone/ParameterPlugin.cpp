@@ -20,9 +20,10 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_bShowIpPortInName(false)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_bEnableSetPluginsPath(false)
-    , m_szPluginsPath(RabbitCommon::CDir::Instance()->GetDirPlugins())
     , m_WhiteList(this, "Plugin/Paths/Whilelist")
     , m_BlackList(this, "Plugin/Paths/BlackList")
+    , m_szPluginsPath(RabbitCommon::CDir::Instance()->GetDirPlugins())
+    , m_bOnlyLoadInWhitelist(false)
     , m_Record(this)
     , m_MediaDevices(this)
 #if defined(HAVE_QTERMWIDGET)
@@ -64,8 +65,11 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
+
     SetPluginsPath(set.value("Paths", GetPluginsPath()).toStringList());
     SetEnableSetPluginsPath(set.value("Paths/Enable", GetEnableSetPluginsPath()).toBool());
+    SetOnlyLoadInWhitelist(set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
+    
     set.endGroup();
     return 0;
 }
@@ -87,8 +91,11 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
+
     set.setValue("Paths", GetPluginsPath());
     set.setValue("Paths/Enable", GetEnableSetPluginsPath());
+    set.setValue("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist());
+    
     set.endGroup();
     return 0;
 }
@@ -332,4 +339,17 @@ QStringList CParameterPlugin::GetPluginsPath() const
 void CParameterPlugin::SetPluginsPath(const QStringList &newPluginsPath)
 {
     m_szPluginsPath = newPluginsPath;
+}
+
+bool CParameterPlugin::GetOnlyLoadInWhitelist() const
+{
+    return m_bOnlyLoadInWhitelist;
+}
+
+void CParameterPlugin::SetOnlyLoadInWhitelist(bool newOnlyLoadInWhitelist)
+{
+    if(m_bOnlyLoadInWhitelist = newOnlyLoadInWhitelist)
+        return;
+    m_bOnlyLoadInWhitelist = newOnlyLoadInWhitelist;
+    SetModified(true);
 }

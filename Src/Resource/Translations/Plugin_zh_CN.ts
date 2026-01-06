@@ -263,47 +263,47 @@
 <context>
     <name>CFrmManagePlugins</name>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="20"/>
+        <location filename="../../FrmManagePlugins.cpp" line="21"/>
         <source>Load Plugins</source>
         <translation>加载插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="236"/>
+        <location filename="../../FrmManagePlugins.cpp" line="246"/>
         <source>Whitelist</source>
         <translation>白名单</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="237"/>
+        <location filename="../../FrmManagePlugins.cpp" line="250"/>
         <source>Blacklist</source>
         <translation>黑名单</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="238"/>
+        <location filename="../../FrmManagePlugins.cpp" line="254"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="239"/>
+        <location filename="../../FrmManagePlugins.cpp" line="255"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="240"/>
+        <location filename="../../FrmManagePlugins.cpp" line="256"/>
         <source>Path</source>
         <translation>路径</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="176"/>
+        <location filename="../../FrmManagePlugins.cpp" line="184"/>
         <source>Plugin path</source>
         <translation>插件路径</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="212"/>
+        <location filename="../../FrmManagePlugins.cpp" line="222"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="213"/>
+        <location filename="../../FrmManagePlugins.cpp" line="223"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -316,22 +316,27 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="36"/>
+        <location filename="../../FrmManagePlugins.ui" line="43"/>
         <source>Plugins path:</source>
         <translation>插件路径：</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="66"/>
+        <location filename="../../FrmManagePlugins.ui" line="73"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="73"/>
+        <location filename="../../FrmManagePlugins.ui" line="80"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="85"/>
+        <location filename="../../FrmManagePlugins.ui" line="92"/>
+        <source>Only the plugins in the whitelist will be loaded.</source>
+        <translation>仅加载白名单中的插件</translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="20"/>
         <source>The settings will take effect after the application is restarted.</source>
         <translation>需要重启应用后，设置才能生效。</translation>
     </message>
@@ -380,23 +385,23 @@ Some features are limited.
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="201"/>
+        <location filename="../../Manager.cpp" line="208"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="289"/>
-        <location filename="../../Manager.cpp" line="550"/>
+        <location filename="../../Manager.cpp" line="303"/>
+        <location filename="../../Manager.cpp" line="564"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="492"/>
+        <location filename="../../Manager.cpp" line="506"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="555"/>
+        <location filename="../../Manager.cpp" line="569"/>
         <source>Dependency libraries:</source>
         <translation>依赖库：</translation>
     </message>
