@@ -1,5 +1,7 @@
-# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+# https://specifications.freedesktop.org/menu-spec/latest/index.html
 
+# https://specifications.freedesktop.org/desktop-entry-spec/latest/
+# https://specifications.freedesktop.org/desktop-entry-spec/latest/recognized-keys.html
 [Desktop Entry]
 Type=Application
 Icon=@APP_ID@

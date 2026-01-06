@@ -176,6 +176,11 @@ public:
 
 private:
     int LoadPlugins();
+    /*!
+     * \brief LoadPlugin
+     * \param szPath: must be absolute.
+     * \return 
+     */
     int LoadPlugin(const QString& szPath);
     int FindPlugins(QDir dir, QStringList filters);
     int AppendPlugin(CPlugin* plugin);

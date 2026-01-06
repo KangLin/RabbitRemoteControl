@@ -72,7 +72,7 @@ int CFrmManagePlugins::Accept()
     m_pPara->m_WhiteList.Clear();
     m_pPara->m_BlackList.Clear();
     for(int i = 0; i < m_pModelFilter->rowCount(); i++) {
-        QString szPath = m_pModelFilter->item(i, ColumnNo::Path)->text();
+        QString szPath = m_pModelFilter->item(i, ColumnNo::File)->text();
         if(szPath.isEmpty()) continue;
         auto pWhitelist = m_pModelFilter->item(i, ColumnNo::Whitelist);
         if(pWhitelist->checkState() == Qt::Checked)
@@ -117,10 +117,10 @@ int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters, bool bAdd)
     foreach (auto fileName, files) {
         QString szPath = dir.absoluteFilePath(fileName);
         if(!bAdd) {
-            RemoveItem(szPath);
+            RemoveItem(fileName);
             continue;
         }
-        auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::Path);
+        auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::File);
         if(!pFind.isEmpty()) continue;
 
         QPluginLoader loader(szPath);
@@ -128,7 +128,7 @@ int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters, bool bAdd)
         if(plugin) {
             CPlugin* p = qobject_cast<CPlugin*>(plugin);
             if(p)
-                AddItem(p, szPath);
+                AddItem(p, fileName);
             loader.unload();
         }
     }
@@ -170,7 +170,7 @@ int CFrmManagePlugins::AddItem(CPlugin* plugin, const QString& szPath)
 
 int CFrmManagePlugins::RemoveItem(const QString &szPath)
 {
-    auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::Path);
+    auto pFind = m_pModelFilter->findItems(szPath, Qt::MatchExactly, ColumnNo::File);
     if(pFind.isEmpty()) return 0;
     foreach(auto item, pFind) {
         m_pModelFilter->removeRow(item->index().row());
@@ -253,7 +253,7 @@ int CFrmManagePlugins::SetFilterHeader()
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Blacklist, pBlacklist);
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Name, new QStandardItem(tr("Name")));
     m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Type, new QStandardItem(tr("Type")));
-    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::Path, new QStandardItem(tr("Path")));
+    m_pModelFilter->setHorizontalHeaderItem(ColumnNo::File, new QStandardItem(tr("File")));
     
     if(qobject_cast<CCheckBoxHeader*>(ui->tvFilter->horizontalHeader()))
         return 0;
@@ -270,7 +270,7 @@ int CFrmManagePlugins::SetFilterHeader()
                 switch(state)
                 {
                 case Qt::PartiallyChecked: {
-                    QString szPath = m_pModelFilter->item(row, ColumnNo::Path)->text();
+                    QString szPath = m_pModelFilter->item(row, ColumnNo::File)->text();
                     if(ColumnNo::Whitelist == index) {
                         if(m_pPara->m_WhiteList.contains(szPath))
                             item->setCheckState(Qt::Checked);

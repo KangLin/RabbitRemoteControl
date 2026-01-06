@@ -28,6 +28,8 @@ StartupNotify=true
 StartupWMClass=RabbitRemoteControl
 
 X-Flatpak=@APP_ID@
+#X-Flatpak-Sandbox=true     # 标识应用在沙箱中运行
+#X-Flatpak-Permissions=--socket=wayland --share=network
 
 # https://specifications.freedesktop.org/menu-spec/latest/apa.html
 Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player

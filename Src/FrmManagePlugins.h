@@ -43,7 +43,7 @@ private:
         Blacklist,
         Name,
         Type,
-        Path
+        File
     };
     CParameterPlugin* m_pPara;
     QStandardItemModel* m_pModelPluginPath;

@@ -168,13 +168,6 @@ int CManager::LoadPlugins()
         }
     }//*/
 
-    if(m_pParameter->GetOnlyLoadInWhitelist()) {
-        m_pParameter->m_WhiteList.OnProcess([this](const QString& szPath) -> int{
-            return LoadPlugin(szPath);
-        });
-        return 0;
-    }
-
     QStringList lstPaths;
     if(m_pParameter->GetEnableSetPluginsPath()) {
         lstPaths = m_pParameter->GetPluginsPath();
@@ -183,6 +176,22 @@ int CManager::LoadPlugins()
         lstPaths << RabbitCommon::CDir::Instance()->GetDirPlugins();
     if(lstPaths.isEmpty())
         qWarning(log) << "The plugins path is empty. please set it from: `Menu` -> `Tools` -> `Settings` -> `Load Plugins`";
+
+    if(m_pParameter->GetOnlyLoadInWhitelist()) {
+        m_pParameter->m_WhiteList.OnProcess([this, lstPaths](const QString& szPath) -> int{
+            QFileInfo fi(szPath);
+            if(fi.isAbsolute())
+                return LoadPlugin(szPath);
+            foreach (auto d, lstPaths) {
+                if(d.isEmpty()) continue;
+                QString szFile = d + QDir::separator() + szPath;
+                return LoadPlugin(szFile);
+            }
+            return -1;
+        });
+        return 0;
+    }
+
     foreach (auto szPath, lstPaths) {
         //QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
 
@@ -235,8 +244,9 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
-        if(m_pParameter && !m_pParameter->m_WhiteList.contains(szPlugins)
-            && m_pParameter->m_BlackList.contains(szPlugins)) {
+        if(m_pParameter
+            && (!m_pParameter->m_WhiteList.contains(szPlugins) || !m_pParameter->m_WhiteList.contains(fileName))
+            && (m_pParameter->m_BlackList.contains(szPlugins) || m_pParameter->m_BlackList.contains(fileName))) {
             qInfo(log) << "Filter:" << szPlugins << "in blacklist";
             continue;
         }
@@ -256,6 +266,7 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 
 int CManager::LoadPlugin(const QString &szPath)
 {
+    int nRet = -1;
     QPluginLoader loader(szPath);
     QObject *plugin = loader.instance();
     if (plugin) {
@@ -270,6 +281,7 @@ int CManager::LoadPlugin(const QString &szPath)
             }
             else
                 qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
+            return 0;
         } else
             qCritical(log) << "The plugin is not \"CPlugin\":" << szPath;
     } else {
@@ -279,7 +291,7 @@ int CManager::LoadPlugin(const QString &szPath)
             szMsg += "; Error: " + loader.errorString();
         qCritical(log) << szMsg.toStdString().c_str();
     }
-    return 0;
+    return nRet;
 }
 
 int CManager::AppendPlugin(CPlugin *p)

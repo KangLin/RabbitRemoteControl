@@ -289,8 +289,8 @@
     </message>
     <message>
         <location filename="../../FrmManagePlugins.cpp" line="256"/>
-        <source>Path</source>
-        <translation>路径</translation>
+        <source>File</source>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../../FrmManagePlugins.cpp" line="184"/>
@@ -385,23 +385,23 @@ Some features are limited.
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="208"/>
+        <location filename="../../Manager.cpp" line="217"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="303"/>
-        <location filename="../../Manager.cpp" line="564"/>
+        <location filename="../../Manager.cpp" line="315"/>
+        <location filename="../../Manager.cpp" line="576"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="506"/>
+        <location filename="../../Manager.cpp" line="518"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="569"/>
+        <location filename="../../Manager.cpp" line="581"/>
         <source>Dependency libraries:</source>
         <translation>依赖库：</translation>
     </message>
@@ -754,7 +754,7 @@ Some features are limited.
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="280"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="286"/>
         <source>Store password with system credential manager</source>
         <translation>使用系统凭据管理器存储密码</translation>
     </message>
@@ -826,17 +826,17 @@ Some features are limited.
         <translation>加密密钥：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="230"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="237"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="256"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
@@ -846,12 +846,12 @@ Some features are limited.
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="264"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="270"/>
         <source>Enable save password</source>
         <translation>允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="271"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="277"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
