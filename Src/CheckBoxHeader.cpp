@@ -107,13 +107,8 @@ QRect CCheckBoxHeader::CheckboxRect(const QRect &sectionRect) const
     //qDebug(log) << "Size:" << size;
     int x = 0;
     int y = 0;
-    if(orientation() == Qt::Horizontal) {
-        x = sectionRect.left() + 4;
-        y = sectionRect.center().y() - size / 2;
-    } else {
-        x = sectionRect.center().x() - size / 2;
-        y = sectionRect.bottom() - 4;
-    }
+    x = sectionRect.left() + 4;
+    y = sectionRect.center().y() - size / 2;
     return QRect(x, y, size, size);
 }
 
@@ -217,11 +212,7 @@ void CCheckBoxHeader::mousePressEvent(QMouseEvent *event)
         int x = sectionViewportPosition(logical);
         int w = sectionSize(logical);
         QRect sectionRect;
-        if (orientation() == Qt::Horizontal) {
-            sectionRect = QRect(x, 0, w, height());
-        } else {
-            sectionRect = QRect(0, x, width(), w);
-        }
+        sectionRect = QRect(x, 0, w, height());
         if (CheckboxRect(sectionRect).contains(event->pos())) {
             Qt::CheckState state = GetCheckState(logical);
             switch (state) {
