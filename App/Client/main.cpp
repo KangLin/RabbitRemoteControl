@@ -107,23 +107,23 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
-    CFrmUpdater* pUpdate;
+    QSharedPointer<CFrmUpdater> pUpdate;
     // Check update version
     if(qEnvironmentVariable("SNAP").isEmpty()
         && qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
-        pUpdate = new CFrmUpdater();
+        pUpdate = QSharedPointer<CFrmUpdater>(new CFrmUpdater());
         if(pUpdate) {
+            pUpdate->setAttribute(Qt::WA_DeleteOnClose, false);
             QIcon icon = QIcon::fromTheme("app");
-            if(!icon.isNull())
-            {
+            if(!icon.isNull()) {
                 auto sizeList = icon.availableSizes();
-                if(!sizeList.isEmpty()){
+                if(!sizeList.isEmpty()) {
                     QPixmap p = icon.pixmap(*sizeList.begin());
                     pUpdate->SetTitle(p.toImage());
                 }
             }
             if(app.arguments().length() > 1) {
-                try{
+                try {
                     pUpdate->GenerateUpdateJson();
                     pUpdate->GenerateUpdateXml();
                 } catch(...) {
