@@ -12,4 +12,5 @@ if(tigervnc_FOUND)
 else()
     message("Don't find TigerVNC. Please set BUILD_TigerVNC=OFF "
         "or install TigerVNC from https://github.com/KangLin/TigerVNC")
+    set(BUILD_TigerVNC OFF PARENT_SCOPE)
 endif()

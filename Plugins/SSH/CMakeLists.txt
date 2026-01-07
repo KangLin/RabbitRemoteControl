@@ -3,6 +3,7 @@
 find_package(libssh)
 
 if(NOT libssh_FOUND)
+    set(BUILD_TERMINAL_SSH OFF PARENT_SCOPE)
     return()
 endif()
 

@@ -7,6 +7,7 @@ project(FtpServer
 find_package(QFtpServerLib)
 if(NOT QFtpServerLib_FOUND)
     message("Please set QFtpServerLib_DIR to QFtpServerLib install root or download and build from `https://github.com/KangLin/QFtpServer.git`")
+    set(BUILD_FTP_SERVER OFF PARENT_SCOPE)
     return()
     # # Fetch QFtpServer from GitHub
     # include(FetchContent)

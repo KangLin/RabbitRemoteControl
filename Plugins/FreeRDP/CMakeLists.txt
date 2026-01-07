@@ -16,12 +16,14 @@ if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
         "    -DFreeRDP-Client_DIR:PATH=INSTALL_ROOT/lib/cmake/FreeRDP-Client3\n"
         "    -DWinPR_DIR:PATH=INSTALL_ROOT/lib/cmake/WinPR3"
     )
+    set(BUILD_FREERDP OFF PARENT_SCOPE)
     return()
 endif()
 if(FreeRDP_VERSION VERSION_LESS FreeRDPVERSION)
     message("Find FreeRDP ${FreeRDP_VERSION} less request FreeRDP ${FreeRDPVERSION}."
         " Please set BUILD_FREERDP=OFF "
         "or install FreeRDP ${FreeRDPVERSION} from https://github.com/FreeRDP/FreeRDP")
+    set(BUILD_FREERDP OFF PARENT_SCOPE)
     return()
 endif()
 if(BUILD_CLIENT)
