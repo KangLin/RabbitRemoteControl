@@ -33,7 +33,7 @@ int CParameterPluginUI::Accept()
 {
     if(!m_pPara)
         return -1;
-    m_pPara->SetCaptureAllKeyboard(ui->cbCaptureAllKeyboard->isChecked());
+    m_pPara->SetCaptureAllKeyboard(ui->gbCaptureAllKeyboard->isChecked());
     m_pPara->SetDesktopShortcutsScript(ui->gpDesktopShortcutsSctipt->isChecked());
     m_pPara->SetDisableDesktopShortcutsScript(ui->leDesktopShortcutsDisableScript->text());
     m_pPara->SetRestoreDesktopShortcutsScript(ui->leDesktopShortcutsRestoreScript->text());
@@ -84,8 +84,8 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     m_pPara = qobject_cast<CParameterPlugin*>(pParameter);
     if(!m_pPara)
         return -1;
-    ui->cbCaptureAllKeyboard->setChecked(m_pPara->GetCaptureAllKeyboard());
-    ui->gpDesktopShortcutsSctipt->setEnabled(ui->cbCaptureAllKeyboard->isChecked());
+    ui->gbCaptureAllKeyboard->setChecked(m_pPara->GetCaptureAllKeyboard());
+    ui->gpDesktopShortcutsSctipt->setEnabled(ui->gbCaptureAllKeyboard->isChecked());
     ui->gpDesktopShortcutsSctipt->setChecked(m_pPara->GetDesktopShortcutsScript());
     ui->leDesktopShortcutsDisableScript->setText(m_pPara->GetDisableDesktopShortcutsScript());
     ui->leDesktopShortcutsRestoreScript->setText(m_pPara->GetRestoreDesktopShortcutsScript());
