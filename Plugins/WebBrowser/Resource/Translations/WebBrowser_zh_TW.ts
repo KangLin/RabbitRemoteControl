@@ -2,6 +2,29 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>CAddressCompleter</name>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="159"/>
+        <source>Enter a website URL or search content ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="331"/>
+        <source>Search &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="339"/>
+        <source>Use default search engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="362"/>
+        <source>Search in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgScreenCapture</name>
     <message>
         <location filename="../../DlgScreenCapture.ui" line="14"/>
@@ -445,232 +468,363 @@
     </message>
 </context>
 <context>
+    <name>CFrmHistory</name>
+    <message>
+        <location filename="../../History/FrmHistory.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="26"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="29"/>
+        <location filename="../../History/FrmHistory.cpp" line="196"/>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="35"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="94"/>
+        <source>Open the selected %1 urls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="101"/>
+        <source>Delete the selected %1 urls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="110"/>
+        <source>All selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="115"/>
+        <source>Cancel selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="127"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="135"/>
+        <source>Open in new tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="142"/>
+        <source>Copy url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="150"/>
+        <source>Copy title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="159"/>
+        <source>Delete</source>
+        <translation type="unfinished">刪除</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="166"/>
+        <source>Delete all urls %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="176"/>
+        <source>Delete all urls from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="186"/>
+        <location filename="../../History/FrmHistory.cpp" line="312"/>
+        <source>Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="203"/>
+        <source>Clear all urls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="246"/>
+        <location filename="../../History/FrmHistory.cpp" line="269"/>
+        <source>Delete the url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="247"/>
+        <source>Are you sure you want to delete the url &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="270"/>
+        <source>Are you sure you want to delete all url from &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="306"/>
+        <source>Url:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="308"/>
+        <source>Visit Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="333"/>
+        <source>Delete the urls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="334"/>
+        <source>Are you sure you want to delete the selected %1 urls?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="88"/>
+        <location filename="../../FrmWebBrowser.cpp" line="102"/>
         <source>Back</source>
         <translation>後退</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="98"/>
+        <location filename="../../FrmWebBrowser.cpp" line="112"/>
         <source>Forward</source>
         <translation>前進</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="108"/>
+        <location filename="../../FrmWebBrowser.cpp" line="122"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="128"/>
+        <location filename="../../FrmWebBrowser.cpp" line="136"/>
         <source>go</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="149"/>
+        <location filename="../../FrmWebBrowser.cpp" line="165"/>
         <source>Add tab page</source>
         <translation>增加標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="161"/>
+        <location filename="../../FrmWebBrowser.cpp" line="177"/>
         <source>Download Manager</source>
         <translation>下載管理器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="222"/>
+        <location filename="../../FrmWebBrowser.cpp" line="238"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="267"/>
-        <location filename="../../FrmWebBrowser.cpp" line="276"/>
+        <location filename="../../FrmWebBrowser.cpp" line="283"/>
+        <location filename="../../FrmWebBrowser.cpp" line="292"/>
         <source>New page</source>
         <translation>新頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="547"/>
+        <location filename="../../FrmWebBrowser.cpp" line="581"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="559"/>
+        <location filename="../../FrmWebBrowser.cpp" line="591"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmWebBrowser.cpp" line="616"/>
         <source>Add incognito tab</source>
         <translation>添加隱身標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="569"/>
+        <location filename="../../FrmWebBrowser.cpp" line="626"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="576"/>
+        <location filename="../../FrmWebBrowser.cpp" line="633"/>
         <source>Add Incognito Window</source>
         <translation>添加隱身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="585"/>
+        <location filename="../../FrmWebBrowser.cpp" line="642"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="598"/>
+        <location filename="../../FrmWebBrowser.cpp" line="655"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="599"/>
+        <location filename="../../FrmWebBrowser.cpp" line="656"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="607"/>
-        <location filename="../../FrmWebBrowser.cpp" line="615"/>
+        <location filename="../../FrmWebBrowser.cpp" line="664"/>
+        <location filename="../../FrmWebBrowser.cpp" line="672"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未發現</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="609"/>
+        <location filename="../../FrmWebBrowser.cpp" line="666"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 發現：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="625"/>
+        <location filename="../../FrmWebBrowser.cpp" line="682"/>
         <source>Find &amp;Next</source>
         <translation>查找下一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="636"/>
+        <location filename="../../FrmWebBrowser.cpp" line="693"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="648"/>
-        <location filename="../../FrmWebBrowser.cpp" line="650"/>
-        <location filename="../../FrmWebBrowser.cpp" line="651"/>
+        <location filename="../../FrmWebBrowser.cpp" line="705"/>
+        <location filename="../../FrmWebBrowser.cpp" line="707"/>
+        <location filename="../../FrmWebBrowser.cpp" line="708"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="659"/>
-        <location filename="../../FrmWebBrowser.cpp" line="661"/>
-        <location filename="../../FrmWebBrowser.cpp" line="662"/>
+        <location filename="../../FrmWebBrowser.cpp" line="716"/>
+        <location filename="../../FrmWebBrowser.cpp" line="718"/>
+        <location filename="../../FrmWebBrowser.cpp" line="719"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="672"/>
-        <location filename="../../FrmWebBrowser.cpp" line="674"/>
-        <location filename="../../FrmWebBrowser.cpp" line="675"/>
+        <location filename="../../FrmWebBrowser.cpp" line="729"/>
+        <location filename="../../FrmWebBrowser.cpp" line="731"/>
+        <location filename="../../FrmWebBrowser.cpp" line="732"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="688"/>
+        <location filename="../../FrmWebBrowser.cpp" line="745"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="693"/>
+        <location filename="../../FrmWebBrowser.cpp" line="750"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="699"/>
-        <location filename="../../FrmWebBrowser.cpp" line="703"/>
+        <location filename="../../FrmWebBrowser.cpp" line="756"/>
+        <location filename="../../FrmWebBrowser.cpp" line="760"/>
         <source>Inspector</source>
         <translation>檢查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="714"/>
-        <location filename="../../FrmWebBrowser.cpp" line="716"/>
+        <location filename="../../FrmWebBrowser.cpp" line="771"/>
+        <location filename="../../FrmWebBrowser.cpp" line="773"/>
         <source>Capture page</source>
         <translation>截取頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="718"/>
-        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="775"/>
+        <location filename="../../FrmWebBrowser.cpp" line="777"/>
         <source>Capture full page</source>
         <translation>截取整個頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="721"/>
-        <location filename="../../FrmWebBrowser.cpp" line="724"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1153"/>
+        <location filename="../../FrmWebBrowser.cpp" line="778"/>
+        <location filename="../../FrmWebBrowser.cpp" line="781"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1216"/>
         <source>Record</source>
         <translation>錄製</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="800"/>
+        <location filename="../../FrmWebBrowser.cpp" line="857"/>
         <source>Web browser</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="983"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1046"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="984"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1047"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1008"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1071"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1009"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1072"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1010"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1073"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1048"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1111"/>
         <source>Fail: Save capture page to the file: </source>
         <translation>失敗：保存截取頁面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1053"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1116"/>
         <source>Save capture page to the file：</source>
         <translation>保存截取頁面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1090"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1153"/>
         <source>Fail: capture full page</source>
         <translation>失敗：截取整個頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1094"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1157"/>
         <source>Capture full page to</source>
         <translation>截取整個頁面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1120"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1183"/>
         <source>Start capture full page</source>
         <translation>開始截取整個頁面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1126"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1189"/>
         <source>Stop record</source>
         <translation>停止錄製</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1139"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1202"/>
         <source>Fail record web page</source>
         <translation>錄製頁面失敗</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1150"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1213"/>
         <source>Start record web page</source>
         <translation>開始錄製頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1160"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1223"/>
         <source>Record web page is stopped</source>
         <translation>錄製頁面停止</translation>
     </message>
@@ -789,6 +943,46 @@ Do you want to reload the page ?</source>
         <location filename="../../FrmWebView.cpp" line="578"/>
         <source>Give %1 %2 access to %3?</source>
         <translation>給予 %1 %2 對 %3 的訪問權限嗎？</translation>
+    </message>
+</context>
+<context>
+    <name>CHistoryModel</name>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="29"/>
+        <source>Title</source>
+        <translation type="unfinished">標題</translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="30"/>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="31"/>
+        <source>Visit Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="32"/>
+        <source>Visit Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="33"/>
+        <source>Last Visit Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="69"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/HistoryModel.cpp" line="88"/>
+        <source>Title: %1
+Url: %2
+Visit Time: %3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

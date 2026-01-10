@@ -268,42 +268,42 @@
         <translation>加载插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="246"/>
+        <location filename="../../FrmManagePlugins.cpp" line="243"/>
         <source>Whitelist</source>
         <translation>白名单</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="250"/>
+        <location filename="../../FrmManagePlugins.cpp" line="247"/>
         <source>Blacklist</source>
         <translation>黑名单</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="254"/>
+        <location filename="../../FrmManagePlugins.cpp" line="251"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="255"/>
+        <location filename="../../FrmManagePlugins.cpp" line="252"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="256"/>
+        <location filename="../../FrmManagePlugins.cpp" line="253"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="184"/>
+        <location filename="../../FrmManagePlugins.cpp" line="181"/>
         <source>Plugin path</source>
         <translation>插件路径</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="222"/>
+        <location filename="../../FrmManagePlugins.cpp" line="219"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="223"/>
+        <location filename="../../FrmManagePlugins.cpp" line="220"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -316,17 +316,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="43"/>
+        <location filename="../../FrmManagePlugins.ui" line="26"/>
         <source>Plugins path:</source>
         <translation>插件路径：</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="73"/>
+        <location filename="../../FrmManagePlugins.ui" line="56"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="80"/>
+        <location filename="../../FrmManagePlugins.ui" line="63"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -336,7 +336,7 @@
         <translation>仅加载白名单中的插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="20"/>
+        <location filename="../../FrmManagePlugins.ui" line="75"/>
         <source>The settings will take effect after the application is restarted.</source>
         <translation>需要重启应用后，设置才能生效。</translation>
     </message>
@@ -613,19 +613,16 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
         <source>Name: </source>
-        <translation>名称：</translation>
+        <translation type="vanished">名称：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation type="vanished">类型：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
         <source>Protocol: </source>
-        <translation>协议：</translation>
+        <translation type="vanished">协议：</translation>
     </message>
     <message>
         <source>Server address: </source>
@@ -644,64 +641,48 @@ Some features are limited.
         <translation type="vanished">Shell 参数：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
         <source>Security level: </source>
-        <translation>安全级别：</translation>
+        <translation type="vanished">安全级别：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation type="vanished">描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
         <source>Copy selection to clipboard</source>
-        <translation>复制选择到剪切板</translation>
+        <translation type="vanished">复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
         <source>Paste clipboard</source>
-        <translation>粘贴剪切板</translation>
+        <translation type="vanished">粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
         <source>Paste selection</source>
-        <translation>粘贴到选择</translation>
+        <translation type="vanished">粘贴到选择</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
         <source>Zoom in</source>
-        <translation>放大</translation>
+        <translation type="vanished">放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
         <source>Zoom out</source>
-        <translation>缩小</translation>
+        <translation type="vanished">缩小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
         <source>Zoom reset</source>
-        <translation>重置缩放</translation>
+        <translation type="vanished">重置缩放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
         <source>Find ......</source>
-        <translation>查找 ……</translation>
+        <translation type="vanished">查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
         <source>Clear</source>
-        <translation>清除</translation>
+        <translation type="vanished">清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
-        <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
         <source>Version:</source>
-        <translation>版本：</translation>
+        <translation type="vanished">版本：</translation>
     </message>
 </context>
 <context>
@@ -715,22 +696,22 @@ Some features are limited.
 <context>
     <name>CParameterNetUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="34"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="28"/>
         <source>Host:</source>
         <translation>主机：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="41"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="35"/>
         <source>Input host</source>
         <translation>输入主机</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="48"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
@@ -743,115 +724,115 @@ Some features are limited.
 <context>
     <name>CParameterPluginUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="12"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="15"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="47"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="25"/>
         <source>Enable use the system user as the user</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="286"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
         <source>Store password with system credential manager</source>
         <translation>使用系统凭据管理器存储密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="190"/>
         <source>Desktop shortcuts script</source>
         <translation>桌面快捷键脚本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="204"/>
         <source>Disable script:</source>
         <translation>禁用脚本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="214"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="235"/>
         <source>Browser</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="132"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
         <source>Restore script:</source>
         <translation>恢复脚本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="67"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="143"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="80"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="150"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="90"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="18"/>
         <source>Enable local input method</source>
         <translation>允话本地输入法</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="179"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="56"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密密钥用于加密保存的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="181"/>
         <source>Capture all keyboard</source>
         <translation>捕获所有按键</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
         <source>Encrypt key:</source>
         <translation>加密密钥：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="230"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="95"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="102"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="256"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="109"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="167"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="32"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="270"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
         <source>Enable save password</source>
         <translation>允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="277"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="47"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
@@ -1192,131 +1173,100 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation>字体：</translation>
+        <translation type="vanished">字体：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation>颜色方案：</translation>
+        <translation type="vanished">颜色方案：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation>光标形状：</translation>
+        <translation type="vanished">光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation>透明度：</translation>
+        <translation type="vanished">透明度：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation>背景图像：</translation>
+        <translation type="vanished">背景图像：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation>滚动条位置：</translation>
+        <translation type="vanished">滚动条位置：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation>浏览(&amp;B)</translation>
+        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation>键盘绑定：</translation>
+        <translation type="vanished">键盘绑定：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation>窗口大小改变时显示其大小</translation>
+        <translation type="vanished">窗口大小改变时显示其大小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation>允许双向文本</translation>
+        <translation type="vanished">允许双向文本</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation>历史记录</translation>
+        <translation type="vanished">历史记录</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation>历史记录大小（行数）：</translation>
+        <translation type="vanished">历史记录大小（行数）：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation>无限制</translation>
+        <translation type="vanished">无限制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation>流量控制</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>示例：显示字体</translation>
+        <translation type="vanished">示例：显示字体</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation>背景图像</translation>
+        <translation type="vanished">背景图像</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation>方块光标</translation>
+        <translation type="vanished">方块光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation>下划线光标</translation>
+        <translation type="vanished">下划线光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation>I 形光标</translation>
+        <translation type="vanished">I 形光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation>左</translation>
+        <translation type="vanished">左</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation>右</translation>
+        <translation type="vanished">右</translation>
     </message>
 </context>
 <context>
@@ -1371,119 +1321,119 @@ Some features are limited.
 <context>
     <name>CParameterUserUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="14"/>
         <source>User</source>
         <translation>用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="55"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="49"/>
         <source>Authentication type:</source>
         <translation>身份认证类型：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="237"/>
         <source>Passphrase:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="247"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="266"/>
         <source>Input passphrase</source>
         <translation>输入密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="76"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="70"/>
         <source>User:</source>
         <translation>用户：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="77"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
         <source>Input user name</source>
         <translation>输入用户名：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="94"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="88"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="98"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="165"/>
         <source>Input password</source>
         <translation>输入密码</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="105"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="108"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="67"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="80"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation>菜单: 工具→设置→插件→密码→允许查看密码</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="130"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="133"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="276"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="279"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="76"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation>菜单：工具→设置→插件→密码→允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="203"/>
         <source>Private file:</source>
         <translation>私钥文件：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="308"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="302"/>
         <source>CA file:</source>
         <translation>验证证书文件：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="329"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="323"/>
         <source>CRL file:</source>
         <translation>证书吊销列表：</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="176"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="179"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="185"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="188"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="191"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="213"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="219"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
         <translation>公钥和私钥文件都为空，用系统公钥和私钥文件。</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="254"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="257"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
         <translation>菜单: 工具→设置→客户端→密码→允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="232"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="192"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="226"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="312"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="333"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="169"/>
         <source>Public file:</source>
         <translation>公钥文件：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="163"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="157"/>
         <source>Use system public and private file</source>
         <translation>用系统公钥和私钥文件。</translation>
     </message>

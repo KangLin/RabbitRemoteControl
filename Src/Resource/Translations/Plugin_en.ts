@@ -268,28 +268,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="35"/>
+        <location filename="../../FrmManagePlugins.cpp" line="243"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="36"/>
+        <location filename="../../FrmManagePlugins.cpp" line="247"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="37"/>
+        <location filename="../../FrmManagePlugins.cpp" line="251"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="38"/>
+        <location filename="../../FrmManagePlugins.cpp" line="252"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="39"/>
-        <source>Path</source>
+        <location filename="../../FrmManagePlugins.cpp" line="253"/>
+        <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -298,12 +298,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="217"/>
+        <location filename="../../FrmManagePlugins.cpp" line="219"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="218"/>
+        <location filename="../../FrmManagePlugins.cpp" line="220"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
@@ -316,23 +316,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="36"/>
+        <location filename="../../FrmManagePlugins.ui" line="26"/>
         <source>Plugins path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="66"/>
+        <location filename="../../FrmManagePlugins.ui" line="56"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="73"/>
+        <location filename="../../FrmManagePlugins.ui" line="63"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.ui" line="85"/>
+        <location filename="../../FrmManagePlugins.ui" line="75"/>
         <source>The settings will take effect after the application is restarted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmManagePlugins.ui" line="92"/>
+        <source>Only the plugins in the whitelist will be loaded.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -379,23 +384,23 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="201"/>
+        <location filename="../../Manager.cpp" line="217"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="289"/>
-        <location filename="../../Manager.cpp" line="550"/>
+        <location filename="../../Manager.cpp" line="315"/>
+        <location filename="../../Manager.cpp" line="576"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="492"/>
+        <location filename="../../Manager.cpp" line="518"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="555"/>
+        <location filename="../../Manager.cpp" line="581"/>
         <source>Dependency libraries:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -605,84 +610,6 @@ Some features are limited.
     </message>
 </context>
 <context>
-    <name>COperateTerminal</name>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
-        <source>Name: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
-        <source>Type: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
-        <source>Protocol: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
-        <source>Security level: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
-        <source>Description: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
-        <source>Copy selection to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
-        <source>Paste clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
-        <source>Paste selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
-        <source>Zoom out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
-        <source>Zoom reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
-        <source>Find ......</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
-        <source>Clear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
-        <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
-        <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CParameterNet</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
@@ -693,22 +620,22 @@ Some features are limited.
 <context>
     <name>CParameterNetUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="34"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="28"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="41"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="35"/>
         <source>Input host</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="48"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -721,115 +648,115 @@ Some features are limited.
 <context>
     <name>CParameterPluginUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="12"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="15"/>
         <source>Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="47"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="25"/>
         <source>Enable use the system user as the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="280"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
         <source>Store password with system credential manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
         <source>Viewer zoom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
         <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="143"/>
         <source>Show protocol prefix in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="54"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="181"/>
         <source>Capture all keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="80"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="150"/>
         <source>Only show ip:port in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="90"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="18"/>
         <source>Enable local input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="190"/>
         <source>Desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="204"/>
         <source>Disable script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="214"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="235"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="132"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
         <source>Restore script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="179"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="56"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="95"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="237"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="102"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="109"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="67"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="167"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="32"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="264"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
         <source>Enable save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="271"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="47"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
@@ -1149,136 +1076,6 @@ Some features are limited.
     </message>
 </context>
 <context>
-    <name>CParameterTerminalUI</name>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
-        <source>Font:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
-        <source>Cursor shape:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
-        <source>Scroll bar position:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
-        <source>Terminal Transparency:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
-        <source>Background Image:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
-        <source>Browse(&amp;B)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
-        <source>Key binding:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
-        <source>Show terminal size when windows resize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
-        <source>Enable bi-directional text support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
-        <source>History</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
-        <source>History size(in lines):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
-        <source>Unlimited</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
-        <source>Flow Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
-        <source>Example: Display font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
-        <source>Backgroup image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
-        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
-        <source>BlockCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
-        <source>UnderlineCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
-        <source>IBeamCursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
-        <source>Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
-        <source>Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CParameterUser</name>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="27"/>
@@ -1330,119 +1127,119 @@ Some features are limited.
 <context>
     <name>CParameterUserUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="14"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="55"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="49"/>
         <source>Authentication type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="76"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="70"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="77"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
         <source>Input user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="94"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="88"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="104"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="98"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="165"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="105"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="108"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="67"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="80"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="130"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="133"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="276"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="279"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="63"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="76"/>
         <source>Menu: Tools→Settings→Plugin→Password→Enable Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="254"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="257"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="163"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="157"/>
         <source>Use system public and private file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="169"/>
         <source>Public file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="176"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="179"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="185"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="188"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="191"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="213"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="219"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="232"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="192"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="226"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="312"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="333"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="203"/>
         <source>Private file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="237"/>
         <source>Passphrase:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="247"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="266"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="308"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="302"/>
         <source>CA file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="329"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="323"/>
         <source>CRL file:</source>
         <translation type="unfinished"></translation>
     </message>
