@@ -37,18 +37,15 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
     Q_ASSERT(check);
     SetFilterHeader();
 
-    //必须在 setModel 后,才能应用
-    /*第二个参数可以为：
+    /*必须在 setModel 后,才能应用
     QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
     QHeaderView::Fixed           ：2 用户不可更改列宽
     QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
     QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
     */
+    /*
     ui->tvFilter->horizontalHeader()->setSectionResizeMode(
-#if defined(DEBUG) && !defined(Q_OS_ANDROID)
-        0,
-#endif
-        QHeaderView::Interactive);
+        QHeaderView::Interactive);//*/
 }
 
 int CFrmManagePlugins::SetParameter(CParameter *pParameter)

@@ -8,7 +8,7 @@ CParameterFtpServer::CParameterFtpServer(QObject *parent, const QString &szPrefi
     , m_nPort(21)
     , m_bAnonymousLogin(true)
     , m_bReadOnly(true)
-    , m_ConnectCount(-1)
+    , m_ConnectCount(2)
     , m_bListenAll(true)
 {}
 

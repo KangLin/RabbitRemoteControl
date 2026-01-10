@@ -8,6 +8,7 @@
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
+    , m_History(this, "History")
     , m_Record(this)
     , m_MediaDevices(this)
     , m_bOpenPrevious(false)

@@ -16,6 +16,7 @@
 #include "FrmDownloadManager.h"
 #include "ParameterWebBrowser.h"
 #include "MultimediaRecord.h"
+#include "History/HistoryDatabase.h"
 
 class CFrmWebBrowser : public QWidget
 {
@@ -53,6 +54,7 @@ private Q_SLOTS:
     void slotTabCloseRequested(int index);
     void slotViewCloseRequested();
     void slotReturnPressed();
+    void slotUrlSelected(const QString& szUrl);
     void slotInspector(bool checked);
 
     void slotPrint();
@@ -125,4 +127,6 @@ private:
 
     CMultimediaRecordThread* m_pMultimediaRecord;
     QTimer m_tmRecord;
+
+    CHistoryDatabase* m_pHistoryDatabase;
 };

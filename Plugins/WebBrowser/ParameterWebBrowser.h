@@ -4,6 +4,7 @@
 #include "ParameterOperate.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
+#include "History/ParameterHistory.h"
 
 class CParameterWebBrowser : public CParameterOperate
 {
@@ -13,6 +14,7 @@ public:
                                   const QString& szPrefix = QString());
     virtual ~CParameterWebBrowser();
 
+    CParameterHistory m_History;
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
 

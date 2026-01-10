@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(WebBrowser_QT_COMPONENTS Core Gui Widgets WebEngineWidgets WebEngineCore)
+set(WebBrowser_QT_COMPONENTS Core Gui Widgets WebEngineWidgets WebEngineCore Sql)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${WebBrowser_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${WebBrowser_QT_COMPONENTS})
@@ -35,6 +35,11 @@ set(WebBrowser_SOURCE_FILES
     PasswordStore.cpp
     CaptureFullPage.cpp
     MultimediaRecord.cpp
+    History/FrmHistory.cpp
+    History/HistoryDatabase.cpp
+    History/HistoryModel.cpp
+    History/ParameterHistory.cpp
+    AddressCompleter.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -49,11 +54,17 @@ set(WebBrowser_HEADER_FILES
     PasswordStore.h
     CaptureFullPage.h
     MultimediaRecord.h
+    History/FrmHistory.h
+    History/HistoryDatabase.h
+    History/HistoryModel.h
+    History/ParameterHistory.h
+    AddressCompleter.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
     DlgSettings.ui
     DlgWebAuth.ui
+    History/FrmHistory.ui
     Resource/Resource.qrc
     )
 if(QT_VERSION GREATER_EQUAL "6.7.0")

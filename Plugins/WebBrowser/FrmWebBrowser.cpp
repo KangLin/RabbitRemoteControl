@@ -29,6 +29,8 @@
 #include "FrmWebBrowser.h"
 #include "FrmPopup.h"
 #include "CaptureFullPage.h"
+#include "History/FrmHistory.h"
+#include "AddressCompleter.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -65,9 +67,21 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pCaptureFulPage(nullptr)
     , m_pRecord(nullptr)
     , m_pMultimediaRecord(nullptr)
+    , m_pHistoryDatabase(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
+
+    m_pHistoryDatabase = new CHistoryDatabase(this);
+    if(m_pHistoryDatabase) {
+        QString szDb = GetProfile()->persistentStoragePath()
+        + QDir::separator() + "History.db";
+        bool bRet = m_pHistoryDatabase->openDatabase(szDb);
+        if(!bRet) {
+            delete m_pHistoryDatabase;
+            m_pHistoryDatabase = nullptr;
+        }
+    }
 
     setWindowIcon(QIcon::fromTheme("web-browser"));
 
@@ -119,12 +133,6 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     m_pUrlLineEdit->addAction(m_pFavAction, QLineEdit::LeadingPosition);
     m_pUrlLineEdit->setClearButtonEnabled(true);
     m_pUrl = m_pToolBar->addWidget(m_pUrlLineEdit);
-    check = connect(m_pUrlLineEdit, &QLineEdit::returnPressed,
-                         this, &CFrmWebBrowser::slotReturnPressed);
-    Q_ASSERT(check);
-    check = connect(m_pUrlLineEdit, &QLineEdit::editingFinished,
-                    this, &CFrmWebBrowser::slotReturnPressed);
-    Q_ASSERT(check);
     m_pGo = new QAction(QIcon::fromTheme("go-next"), tr("go"), m_pUrlLineEdit);
     m_pGo->setStatusTip(m_pGo->text());
     check = connect(m_pGo, &QAction::triggered, this, &CFrmWebBrowser::slotReturnPressed);
@@ -142,6 +150,28 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
                 if(!m_pGo->isVisible())
                     m_pGo->setVisible(true);
             }
+        }
+    });
+    Q_ASSERT(check);
+    // 创建地址栏自动完成器
+    auto pAddressCompleter = new CAddressCompleter(this);
+    pAddressCompleter->setHistoryDatabase(m_pHistoryDatabase);
+    pAddressCompleter->attachToLineEdit(m_pUrlLineEdit);
+    pAddressCompleter->setMaxVisibleItems(50);
+    check = connect(pAddressCompleter, &CAddressCompleter::urlSelected,
+                    this, &CFrmWebBrowser::slotUrlSelected);
+    Q_ASSERT(check);
+    check = connect(pAddressCompleter, &CAddressCompleter::searchRequested,
+                    this, [&](const QString& keyword) {
+        qDebug(log) << "CAddressCompleter::searchRequested keyword:" << keyword;
+        QString szSearch;
+        QString szUrl;
+        if(m_pPara) {
+            szSearch = m_pPara->GetSearchEngine();
+            szUrl = szSearch.replace(m_pPara->GetSearchRelaceString(),
+                                 QUrl::toPercentEncoding(keyword));
+            if(!szUrl.isEmpty())
+                slotUrlSelected(szUrl);
         }
     });
     Q_ASSERT(check);
@@ -343,10 +373,13 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
         }
     });
     check = connect(pWeb, &QWebEngineView::urlChanged,
-                    this, [&](const QUrl &url){
+                    this, [&](const QUrl &url) {
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         if(IsCurrentView(pWeb))
                             m_pUrlLineEdit->setText(url.toString());
+                        if(m_pHistoryDatabase) {
+                            m_pHistoryDatabase->addHistoryEntry(url.toString(), "");
+                        }
                     });
     Q_ASSERT(check);
     check = connect(pWeb, &CFrmWebView::titleChanged,
@@ -359,6 +392,9 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                             setWindowTitle(title);
                             emit sigUpdateTitle();
                         }
+                        if(m_pHistoryDatabase) {
+                            m_pHistoryDatabase->updateHistoryEntry(pWeb->url().toString(), title);
+                        }
                     });
     Q_ASSERT(check);
     check = connect(pWeb, &CFrmWebView::favIconChanged,
@@ -370,6 +406,9 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                                 m_pTab->setTabIcon(index, icon);
                             setWindowIcon(icon);
                             emit sigUpdateTitle();
+                        }
+                        if(m_pHistoryDatabase) {
+                            m_pHistoryDatabase->updateHistoryEntry(pWeb->url().toString(), QString(), icon);
                         }
                     });
     Q_ASSERT(check);
@@ -442,7 +481,16 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     bool check = connect(m_profile.get(), &QWebEngineProfile::downloadRequested,
                          &m_DownloadManager, &CFrmDownloadManager::slotDownloadRequested);
     Q_ASSERT(check);
+    //m_profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
+    //m_profile->setPersistentStoragePath(m_profile->cachePath() + QDir::separator() + "Persistent");
+    //m_profile->setHttpCacheMaximumSize(50);
     qDebug(log) << "User agent:" << m_profile->httpUserAgent()
+#if QT_VERSION > QT_VERSION_CHECK(6, 8, 0)
+                //<< "AllPermissions:" << m_profile->listAllPermissions()
+                << "persistentPermissionsPolicy:" << m_profile->persistentPermissionsPolicy()
+#endif
+                << "persistentCookiesPolicy:" << m_profile->persistentCookiesPolicy()
+                << "httpCacheMaximumSize:" << m_profile->httpCacheMaximumSize()
                 << "Persistent path:" << m_profile->persistentStoragePath()
                 << "Cache path:" << m_profile->cachePath()
                 << "Storage name:" << m_profile->storageName()
@@ -544,7 +592,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addAction(m_pForward);
     pMenu->addAction(m_pRefresh);
     m_pStop = pMenu->addAction(
-        QIcon::fromTheme("media-playback-stop"), tr("Stop"), this, [&](){
+        QIcon::fromTheme("media-playback-stop"), tr("Stop"), this, [&]() {
             CFrmWebView* pWeb = CurrentView();
             if(pWeb && pWeb->page())
                 pWeb->page()->action(QWebEnginePage::Stop)->trigger();
@@ -554,10 +602,33 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     m_pStop->setStatusTip(m_pStop->text());
 
     pMenu->addSeparator();
+    pMenu->addAction(tr("History"), this, [&]() {
+        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, &m_pPara->m_History);
+        if(!pHistory) return;
+        pHistory->setAttribute(Qt::WA_DeleteOnClose);
+        connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
+        connect(pHistory, &CFrmHistory::sigOpenUrl, this, [&](const QString& url) {
+            CFrmWebView* pWeb = CurrentView();
+            if(!pWeb) {
+                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+            }
+            if(pWeb)
+                pWeb->load(url);
+        });
+        connect(pHistory, &CFrmHistory::sigOpenUrlInNewTab,
+                this, [&](const QString& url) {
+            auto pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+            if(pWeb)
+                pWeb->load(url);
+        });
+        pHistory->show();
+    });
+
+    pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
     m_pAddPageIncognito = pMenu->addAction(
         QIcon::fromTheme("add"), tr("Add incognito tab"),
-        this, [&](){
+        this, [&]() {
             CreateWindow(QWebEnginePage::WebBrowserTab, true);
             if(!m_pPara->GetTabUrl().isEmpty()) {
                 m_pUrlLineEdit->setText(m_pPara->GetTabUrl());
@@ -567,14 +638,14 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     m_pAddPageIncognito->setStatusTip(m_pAddPageIncognito->text());
     m_pAddWindow = pMenu->addAction(
         QIcon::fromTheme("add"), tr("Add window"),
-        this, [&](){
+        this, [&]() {
             CreateWindow(QWebEnginePage::WebBrowserWindow);
         });
     m_pAddWindow->setVisible(false);
     m_pAddWindow->setStatusTip(m_pAddWindow->text());
     m_pAddWindowIncognito = pMenu->addAction(
         QIcon::fromTheme("add"), tr("Add Incognito Window"),
-        this, [&](){
+        this, [&]() {
             CreateWindow(QWebEnginePage::WebBrowserWindow, true);
         });
     m_pAddWindowIncognito->setVisible(false);
@@ -583,7 +654,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addSeparator();
     m_pFind = pMenu->addAction(
         QIcon::fromTheme("edit-find"), tr("&Find"), this,
-        [&](){
+        [&]() {
             CFrmWebView* pWeb = CurrentView();
             if(pWeb) {
                 bool ok = false;
@@ -856,22 +927,28 @@ void CFrmWebBrowser::slotViewCloseRequested()
 
 void CFrmWebBrowser::slotReturnPressed()
 {
-    QUrl u = QUrl::fromUserInput(m_pUrlLineEdit->text());
-    qDebug(log) << u << m_pUrlLineEdit->text();
-    if(u.isEmpty()) {
+    slotUrlSelected(m_pUrlLineEdit->text());
+}
+
+void CFrmWebBrowser::slotUrlSelected(const QString &szUrl)
+{
+    if(szUrl.isEmpty()) return;
+    QUrl url = QUrl::fromUserInput(szUrl);
+    qDebug(log) << url << szUrl << url.isValid();
+    if(szUrl.startsWith("@search:", Qt::CaseInsensitive)) {
         QString szSearch;
+        QString keyword = szUrl.mid(8);
         if(m_pPara) {
             szSearch = m_pPara->GetSearchEngine();
-            u = szSearch.replace(m_pPara->GetSearchRelaceString(),
-                                 QUrl::toPercentEncoding(m_pUrlLineEdit->text()));
+            url = szSearch.replace(m_pPara->GetSearchRelaceString(),
+                                 QUrl::toPercentEncoding(keyword));
         }
     }
-    qDebug(log) << u << m_pUrlLineEdit->text();
-    emit sigInformation(u.toString());
+    emit sigInformation(url.toString());
     CFrmWebView* pWeb = CurrentView();
     if(!pWeb)
         pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-    pWeb->load(u);
+    pWeb->load(url);
     if(m_pGo->isVisible())
         m_pGo->setVisible(false);
 }

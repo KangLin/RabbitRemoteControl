@@ -1,6 +1,6 @@
-#ifndef FRMDOWNLOADMANAGER_H
-#define FRMDOWNLOADMANAGER_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QWidget>
 #include <QVBoxLayout>
 #include "FrmDownload.h"
@@ -30,5 +30,3 @@ private:
     QVBoxLayout* m_pItems;
     CParameterWebBrowser* m_pPara;
 };
-
-#endif // FRMDOWNLOADMANAGER_H
