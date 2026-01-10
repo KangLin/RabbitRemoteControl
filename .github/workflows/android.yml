@@ -397,6 +397,7 @@ jobs:
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+              -DENABLE_UPDATE_TRANSLATIONS=ON \
               -DWITH_WebEngineWidgets=ON \
               -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
@@ -427,6 +428,7 @@ jobs:
           cmake --preset "android-${{env.ANDROID_ABI}}-qt6" \
             -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
             -DQT_ANDROID_SIGN_APK=ON \
+            -DENABLE_UPDATE_TRANSLATIONS=ON \
             -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
             -DBUILD_LibVNCServer=OFF \
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \

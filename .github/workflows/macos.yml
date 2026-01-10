@@ -375,7 +375,8 @@ jobs:
               -DRABBIT_WITH_MACDEPLOY=OFF \
               -DWITH_WebEngineWidgets=ON \
               -DBUILD_FREERDP=ON \
-              -DINSTALL_QTKEYCHAIN=ON
+              -DINSTALL_QTKEYCHAIN=ON \
+              -DENABLE_UPDATE_TRANSLATIONS=ON
           cmake --build . --config Release
           if [ "Release" == "Release" ]; then
             cmake --install . --config Release --component DependLibraries --strip

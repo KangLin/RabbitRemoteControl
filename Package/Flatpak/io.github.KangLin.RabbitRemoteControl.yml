@@ -351,6 +351,7 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DENABLE_UPDATE_TRANSLATIONS=ON
     cleanup:
       - -usr/bin/cmark
       - -usr/bin/cmark-gfm

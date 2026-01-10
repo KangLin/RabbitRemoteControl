@@ -434,6 +434,7 @@ jobs:
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
             -DVCPKG_APPLOCAL_DEPS=ON ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
+            -DENABLE_UPDATE_TRANSLATIONS=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_APP=ON ^
             -DBUILD_FREERDP=ON ^

@@ -39,6 +39,7 @@ override_dh_auto_configure:
 		-DBUILD_FREERDP=ON \
 		-DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
 		-DRabbitCommon_ROOT=${RabbitCommon_ROOT} \
+		-DENABLE_UPDATE_TRANSLATIONS=ON \
 		-DCMARK_SHARED=OFF \
 		-DCMARK_TESTS=OFF \
 		-DCMARK_STATIC=ON \

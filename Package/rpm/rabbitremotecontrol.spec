@@ -100,6 +100,7 @@ cmake . -B $RPM_BUILD_DIR  \
     -DCMARK_STATIC=ON \
     -DWITH_CMARK=OFF \
     -DWITH_CMARK_GFM=ON \
+    -DENABLE_UPDATE_TRANSLATIONS=ON \
     -DWITH_WebEngineWidgets=ON \
     -DBUILD_FREERDP=ON
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
