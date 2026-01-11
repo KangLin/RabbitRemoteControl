@@ -127,7 +127,7 @@ void CAddressCompleter::attachToLineEdit(QLineEdit *lineEdit)
     m_pLineEdit = lineEdit;
     if (m_pLineEdit) {
         m_pLineEdit->installEventFilter(this);
-        connect(m_pLineEdit, &QLineEdit::textChanged,
+        connect(m_pLineEdit, &QLineEdit::textEdited,
                 this, &CAddressCompleter::onTextChanged);
 
         // 设置提示文本
@@ -271,7 +271,7 @@ void CAddressCompleter::performSearch()
         CAddressCompleterItem *completerItem = new CAddressCompleterItem(
             title.isEmpty() ? url : title,
             url,
-            getIconForUrl(url)
+            i.icon
             );
 
         m_pListWidget->setItemWidget(item, completerItem);
@@ -523,7 +523,7 @@ QIcon CAddressCompleter::getIconForUrl(const QString &url)
     static QIcon defaultIcon;
     static QIcon httpIcon;
     static QIcon httpsIcon;
-    static QIcon searchIcon = QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch);
+    static QIcon searchIcon; // = QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch);
 
     if (url.startsWith("https://")) {
         return httpsIcon;

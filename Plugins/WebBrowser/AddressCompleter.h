@@ -55,10 +55,10 @@ protected:
     void showEvent(QShowEvent *event) override;
     void hideEvent(QHideEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void onTextChanged(const QString &text);
     void onItemClicked(QListWidgetItem *item);
-    void performSearch();
+    virtual void performSearch();
     void moveToNextItem();
     void moveToPreviousItem();
     void selectCurrentItem();
