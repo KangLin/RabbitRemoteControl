@@ -65,23 +65,23 @@ public:
 protected:
     /*!
      * \~chinese
-     * \brief 新建 COperate 实例。仅由 CClient 调用
-     * \snippet Client/Client.cpp CClient CreateOperate
+     * \brief 新建 COperate 实例。仅由 CManager 调用
+     * \snippet Src/Manager.cpp CManager CreateOperate
      * \return 返回 COperate 指针, 它的所有者是调用者。
      * \note 此函数新建一个对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
      * \param szId 连接 ID
      *
      * \~english
-     * \brief New COperate instance. Only is called by CClient
-     * \snippet Client/Client.cpp CClient CreateOperate
+     * \brief New COperate instance. Only is called by CManager
+     * \snippet Src/Manager.cpp CManager CreateOperate
      * \return Return COperate pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.
      * \param szId
      *
      * \~
-     * \see CClient::CreateOperate CClient::LoadOperate
+     * \see CManager::CreateOperate CManager::LoadOperate
      *
      */
     Q_INVOKABLE virtual COperate* CreateOperate(
@@ -91,19 +91,40 @@ protected:
      * Delete COperate
      */
     Q_INVOKABLE virtual int DeleteOperate(COperate* p);
+    /*!
+     * \~chinese 得到设置此插件全局参数的窗口
+     * \return 设置参数窗口。如果不需要，则返回 nullptr。此窗口的所有者为调用者。
+     * \note 此窗口必须从 CParameterUI 派生。
+     * 用法示例：
+     * \snippet Src/Manager.cpp  Get the widget to set global parameters for the plugin
+     *
+     * \~english Get the widget to set global parameters for the plugin
+     * \return Sets the parameters widget.
+     *         Returns nullptr if no parameters are needed.
+     *         This widget belongs to the caller.
+     * \note The widget must be a derivative of CParameterUI.
+     *         Eg: CParameterPluginUI
+     *
+     * \snippet Src/ParameterPluginUI.h Accept parameters
+     * Usage:
+     * \snippet Src/Manager.cpp  Get the widget to set global parameters for the plugin
+     * \~
+     * \see CManager::GetSettingsWidgets
+     */
+    Q_INVOKABLE virtual QWidget* GetSettingsWidget(QWidget *parent);
 
 private:
     QSharedPointer<QTranslator> m_Translator;
     /*!
-     * \~chinese 初始化翻译资源，仅由 CClient 调用。
+     * \~chinese 初始化翻译资源，仅由 CManager 调用。
      *   因为它调用了 Name() ，所以不能在此类的构造函数中直接调用。
      *
      * \~english Initialize the translation resource,
-     *   which is only called by CClient.
+     *   which is only called by CManager.
      *   Because it calls Name(),
      *   So it can't be called directly in the constructor of this class.
      *
-     * \see CClient::AppendPlugin
+     * \see CManager::AppendPlugin
      */
     Q_INVOKABLE int InitTranslator();
 };

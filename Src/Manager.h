@@ -97,28 +97,35 @@ public:
     /*!
      * \~chinese 得到设置参数窗口
      * \return 设置参数窗口。此窗口的所有者为调用者。
-     * \note 此窗口必须从 CParameterUI 派生。
+     * \note 此窗口一般从 CParameterUI 派生。
      *       例如: CParameterPluginUI
+     *       如果不是从 CParameterUI 派生，则需要实现接口：
+     *       - virtual int SetParameter(CParameter* pParameter);
+     *       - virtual int Accept();
+     *
      * 用法示例：
-     * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings plugin parameters
      * 
      * 在 CParameterDlgSettings 的构造函数中连接信号和槽
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 
      * \~english Get parameter settings widget
      * \return Parameter widget. The QWidget owner is caller.
-     * \note The widget must be a derivative of CParameterUI.
-     *         Eg: CParameterPluginUI
+     * \note This window is generally derived from CParameterUI.
+     *       For example: CParameterPluginUI
+     *       If it is not derived from CParameterUI, then you need to implement the following interfaces:
+     *       - virtual int SetParameter(CParameter* pParameter);
+     *       - virtual int Accept();
      *
      * \snippet Src/ParameterPluginUI.h Accept parameters
      * Usage:
-     * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings plugin parameters
      * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 
      * \~
      * \see CParameterPluginUI CParameterDlgSettings
-     */   
+     */
     virtual QList<QWidget*> GetSettingsWidgets(QWidget *parent);
     /*!
      * \~chinese
@@ -183,6 +190,11 @@ private:
      */
     int LoadPlugin(const QString& szPath);
     int FindPlugins(QDir dir, QStringList filters);
+    /*!
+     * \brief Append Plugin
+     * \param plugin
+     * \return
+     */
     int AppendPlugin(CPlugin* plugin);
 
 private Q_SLOTS:

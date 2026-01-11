@@ -63,7 +63,7 @@ endif()
 #    endif()
 #endif()
 
-set(APP_QT_COMPONENTS Core Gui Widgets Network Svg Xml Multimedia MultimediaWidgets)
+set(APP_QT_COMPONENTS Core Gui Widgets Network Svg Xml Multimedia MultimediaWidgets Sql)
 if(QT_VERSION_MAJOR VERSION_GREATER_EQUAL 6)
     list(APPEND APP_QT_COMPONENTS StateMachine)
 endif()

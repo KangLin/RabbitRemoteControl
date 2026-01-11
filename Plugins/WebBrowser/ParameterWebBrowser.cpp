@@ -19,14 +19,17 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_bPromptPrintFinished(true)
     , m_bAutoFillUserAndPassword(false)
 {
+    SetHomeUrl("https://github.com/KangLin");
+    SetTabUrl("https://github.com/KangLin/RabbitRemoteControl");
     //m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     SetDownloadFolder(QWebEngineProfile::defaultProfile()->downloadPath());
     qDebug(log) << "Download folder:" << GetDownloadFolder();
     SetSearchEngine("https://cn.bing.com/search?q=%s");
     SetSearchRelaceString("%s");
     QStringList searchEngines;
-    searchEngines << "https://cn.bing.com/search?q=%s";
-    searchEngines << "https://www.google.com/search?q=%s";
+    searchEngines << "https://www.bing.com/search?q=%s"
+                  << "https://www.google.com/search?q=%s"
+                  << "https://www.baidu.com/s?wd=%s";
     SetSearchEngineList(searchEngines);
 }
 

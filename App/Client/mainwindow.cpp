@@ -1425,17 +1425,22 @@ void MainWindow::on_actionStatus_bar_S_toggled(bool checked)
     m_Parameter.SetStatusBar(checked);
 }
 
-// [Get the widget that settings client parameters]
+// [Get the widget that settings plugin parameters]
 void MainWindow::on_actionSettings_triggered()
 {
-    CParameterDlgSettings set(&m_Parameter, m_Manager.GetSettingsWidgets(this), this);
+    CParameterDlgSettings set(&m_Parameter, this);
+    auto viewers = m_Manager.GetSettingsWidgets(&set);
+    set.SetViewers(viewers);
     if(CParameterDlgSettings::Accepted == RC_SHOW_WINDOW(&set))
     {
         m_Manager.SaveSettings();
         m_Parameter.Save();
     }
+    foreach(auto v, viewers) {
+        v->deleteLater();
+    }
 }
-// [Get the widget that settings client parameters]
+// [Get the widget that settings plugin parameters]
 
 void MainWindow::slotShortCut()
 {

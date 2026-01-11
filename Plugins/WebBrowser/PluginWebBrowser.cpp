@@ -76,3 +76,13 @@ const QString CPluginWebBrowser::Details() const
 #endif
     return szDetails;
 }
+
+QWidget* CPluginWebBrowser::GetSettingsWidget(QWidget* parent)
+{
+    //TODO: Add set global parameters
+    return nullptr;
+    QWidget* pSetting = new QWidget(parent);
+    if(pSetting)
+        pSetting->setWindowTitle(tr("Set Web Wrowser"));
+    return pSetting;
+}

@@ -8,8 +8,6 @@
 
 #include "ParameterDlgSettings.h"
 #include "ui_ParameterDlgSettings.h"
-#include "mainwindow.h"
-#include "RabbitCommonDir.h"
 
 #ifdef HAVE_ICE
 #include "Ice.h"
@@ -18,51 +16,12 @@
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.Parameter")
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
-                                             QList<QWidget *> wViewer,
                                              QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CParameterDlgSettings),
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-
-    int nWidth = 0;
-    int nHeigth = 0;
-    foreach(auto p, wViewer) {
-        if(!p) continue;
-        nWidth = qMax(nWidth, p->frameSize().width());
-        nHeigth = qMax(nHeigth, p->frameSize().height());
-    }
-    bool bScroll = false;
-    QScreen* pScreen = QApplication::primaryScreen();
-    QSize size = this->size();
-    if(nWidth > size.width() || nHeigth > size.height())
-        bScroll = true;
-    // [connect accepted to slotAccept of widget]
-    foreach(auto p, wViewer)
-    {
-        QString szMsg;
-        QWidget* pView = p;
-        if(bScroll)
-        {
-            QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
-            if(!pScroll) continue;
-            pScroll->setWidget(p);
-            pView = pScroll;
-        }
-        ui->tabWidget->addTab(pView, p->windowIcon(), p->windowTitle());
-        bool check = false;
-        check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
-        if(!check)
-        {
-            szMsg = "Class" + QString(p->metaObject()->className())
-                + "must has slot slotAccept(), please add it. "
-                + "Or the class derived from CParameterUI";
-            qCritical(log) << szMsg;
-        }
-        Q_ASSERT_X(check, "CParameterDlgSettings", szMsg.toStdString().c_str());
-    }
-    // [connect accepted to slotAccept of widget]
 
 #ifdef HAVE_ICE
     QWidget* pWidget = CICE::Instance()->GetParameterWidget(this);
@@ -133,6 +92,47 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
 CParameterDlgSettings::~CParameterDlgSettings()
 {
     delete ui;
+}
+
+void CParameterDlgSettings::SetViewers(const QList<QWidget *> &wViewer)
+{
+    int nWidth = 0;
+    int nHeigth = 0;
+    foreach(auto p, wViewer) {
+        if(!p) continue;
+        nWidth = qMax(nWidth, p->frameSize().width());
+        nHeigth = qMax(nHeigth, p->frameSize().height());
+    }
+    bool bScroll = false;
+    QScreen* pScreen = QApplication::primaryScreen();
+    QSize size = this->size();
+    if(nWidth > size.width() || nHeigth > size.height())
+        bScroll = true;
+    // [connect accepted to slotAccept of widget]
+    foreach(auto p, wViewer)
+    {
+        QString szMsg;
+        QWidget* pView = p;
+        if(bScroll)
+        {
+            QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
+            if(!pScroll) continue;
+            pScroll->setWidget(p);
+            pView = pScroll;
+        }
+        ui->tabWidget->addTab(pView, p->windowIcon(), p->windowTitle());
+        bool check = false;
+        check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
+        if(!check)
+        {
+            szMsg = "Class" + QString(p->metaObject()->className())
+            + "must has slot slotAccept(), please add it. "
+                + "Or the class derived from CParameterUI";
+            qCritical(log) << szMsg;
+        }
+        Q_ASSERT_X(check, "CParameterDlgSettings", szMsg.toStdString().c_str());
+    }
+    // [connect accepted to slotAccept of widget]
 }
 
 void CParameterDlgSettings::on_pbOk_clicked()

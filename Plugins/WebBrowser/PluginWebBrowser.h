@@ -30,6 +30,7 @@ public:
     
 protected:
     virtual COperate *OnCreateOperate(const QString &szId) override;
+    Q_INVOKABLE virtual QWidget* GetSettingsWidget(QWidget *parent) override;
 };
 
 

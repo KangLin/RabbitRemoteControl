@@ -147,3 +147,8 @@ int CPlugin::DeleteOperate(COperate *p)
     p->deleteLater();
     return 0;
 }
+
+QWidget* CPlugin::GetSettingsWidget(QWidget* parent)
+{
+    return nullptr;
+}

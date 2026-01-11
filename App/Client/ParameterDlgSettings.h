@@ -14,10 +14,9 @@ class CParameterDlgSettings : public QDialog
     
 public:
     explicit CParameterDlgSettings(CParameterApp* pPara,
-                                   QList<QWidget*> wViewer,
                                    QWidget *parent = nullptr);
     virtual ~CParameterDlgSettings();
-
+    void SetViewers(const QList<QWidget*> &wViewer);
 private slots:    
     void on_pbOk_clicked();
     void on_pbNo_clicked();

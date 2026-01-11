@@ -501,16 +501,18 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
 
-    CParameterPluginUI* pClient = new CParameterPluginUI(parent);
-    if(pClient) {
-        pClient->SetParameter(m_pParameter);
-        lstWidget.push_back(pClient);
-    }
     CFrmManagePlugins* pManagePlugins = new CFrmManagePlugins(parent);
     if(pManagePlugins) {
         pManagePlugins->SetParameter(m_pParameter);
         lstWidget.push_back(pManagePlugins);
     }
+
+    CParameterPluginUI* pClient = new CParameterPluginUI(parent);
+    if(pClient) {
+        pClient->SetParameter(m_pParameter);
+        lstWidget.push_back(pClient);
+    }
+
 #if defined(HAVE_QTERMWIDGET)
     CParameterTerminalUI* pTermina = new CParameterTerminalUI(parent);
     if(pTermina) {
@@ -530,6 +532,26 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
         pMediaDevices->SetParameter(&m_pParameter->m_MediaDevices.m_Para);
         lstWidget.push_back(pMediaDevices);
     }
+
+    //! [Get the widget to set global parameters for the plugin]
+    foreach(auto plugin, m_Plugins) {
+        if(!plugin) continue;
+        QWidget* pSettings = nullptr;
+        bool bRet = QMetaObject::invokeMethod(
+            plugin,
+            "GetSettingsWidget",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(QWidget*, pSettings),
+            Q_ARG(QWidget*, parent));
+        if(!bRet) {
+            qCritical(log) << "Call CPlugin::GetSettingsWidget() fail.";
+            continue;
+        }
+        if(!pSettings) continue;
+        lstWidget.push_back(pSettings);
+    }
+    //! [Get the widget to set global parameters for the plugin]
+
     return lstWidget;
 }
 
