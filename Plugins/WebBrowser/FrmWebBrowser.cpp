@@ -24,9 +24,9 @@
     #include <QWebEngineProfileBuilder>
 #endif
 #include <QLoggingCategory>
+#include "FrmWebBrowser.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
-#include "FrmWebBrowser.h"
 #include "FrmPopup.h"
 #include "CaptureFullPage.h"
 #include "History/FrmHistory.h"
@@ -1254,3 +1254,4 @@ void CFrmWebBrowser::slotRecordTimeout()
                               Qt::AutoConnection,
                               Q_ARG(QImage, image));
 }
+

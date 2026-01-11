@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QWebEngineView>
 #include <QLoggingCategory>
+#include "ui_DlgWebAuth.h"
 
 #include "DlgWebAuth.h"
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Dlg.Auth")

@@ -7,9 +7,11 @@
 #include <QButtonGroup>
 #include <QScrollArea>
 #include <QVBoxLayout>
-#include "ui_DlgWebAuth.h"
 #include <QWebEngineWebAuthUxRequest>
 
+namespace Ui {
+class CDlgWebAuth;
+}
 class CDlgWebAuth : public QDialog
 {
     Q_OBJECT
