@@ -380,8 +380,8 @@
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="116"/>
-        <source>%p% - %1 of %2 downloaded - %3/s</source>
-        <translation>%p% - 已下载： %1 / %2 - %3/秒</translation>
+        <source>%p% - %1 of %2 downloaded - %3/s - time left: %4</source>
+        <translation>%p% - 已下载： %1 / %2 - %3/秒 - 剩余时间： %4</translation>
     </message>
     <message>
         <location filename="../../FrmDownload.cpp" line="123"/>

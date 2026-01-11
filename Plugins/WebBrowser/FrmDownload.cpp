@@ -97,10 +97,18 @@ void CFrmDownload::slotUpdateWidget()
     qreal totalBytes = m_pDownload->totalBytes();
     qreal receivedBytes = m_pDownload->receivedBytes();
     qreal bytesPerSecond = 0;  // Initialized to 0 for a reasonable default value
-
+    int remaining = 0;
+    QString szRemaining;
     // Check for division by zero
     if (m_timeAdded.elapsed() != 0)
         bytesPerSecond = receivedBytes / m_timeAdded.elapsed() * 1000;
+
+    remaining = (totalBytes - receivedBytes) / bytesPerSecond + 1;
+    if(remaining >= 0) {
+        QTime tm(0, 0, 0);
+        szRemaining = tm.addSecs(remaining).toString(QLocale::system().timeFormat());
+        qDebug(log) << "Remaining:" << remaining << tm << szRemaining;
+    }
 
     auto state = m_pDownload->state();
     switch (state) {
@@ -113,9 +121,9 @@ void CFrmDownload::slotUpdateWidget()
             ui->progressBar->setValue(qRound(100 * receivedBytes / totalBytes));
             ui->progressBar->setDisabled(false);
             ui->progressBar->setFormat(
-                tr("%p% - %1 of %2 downloaded - %3/s")
+                tr("%p% - %1 of %2 downloaded - %3/s - time left: %4")
                     .arg(CStats::Convertbytes(receivedBytes), CStats::Convertbytes(totalBytes),
-                         CStats::Convertbytes(bytesPerSecond)));
+                         CStats::Convertbytes(bytesPerSecond), szRemaining));
         } else {
             ui->progressBar->setValue(0);
             ui->progressBar->setDisabled(false);
