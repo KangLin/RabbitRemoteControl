@@ -472,6 +472,7 @@ jobs:
           copy /Y %QT_ROOT_DIR%\bin\QtWebEngineProcess.exe install\bin
           xcopy /Y /S /I %QT_ROOT_DIR%\resources install\bin\resources
           xcopy /Y /S /I %QT_ROOT_DIR%\translations install\bin\translations
+          xcopy /Y /S /I %QT_ROOT_DIR%\plugins\sqldrivers install\bin\sqldrivers
           C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-1.80.exe
           copy npcap-1.80.exe install\bin
           ;7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip .\install\*
