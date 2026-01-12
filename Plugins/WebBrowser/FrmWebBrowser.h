@@ -17,6 +17,7 @@
 #include "ParameterWebBrowser.h"
 #include "MultimediaRecord.h"
 #include "History/HistoryDatabase.h"
+#include "Bookmark/BookmarkDatabase.h"
 
 class CFrmWebBrowser : public QWidget
 {
@@ -129,4 +130,5 @@ private:
     QTimer m_tmRecord;
 
     CHistoryDatabase* m_pHistoryDatabase;
+    CBookmarkDatabase* m_pBookmarkDatabase;
 };

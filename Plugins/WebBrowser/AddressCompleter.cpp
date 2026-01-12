@@ -86,7 +86,7 @@ CAddressCompleter::~CAddressCompleter()
 
 void CAddressCompleter::setupUI()
 {
-    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    setWindowFlags(Qt::Tool /*Qt::ToolTip*/ | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);

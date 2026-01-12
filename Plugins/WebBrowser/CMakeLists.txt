@@ -40,6 +40,8 @@ set(WebBrowser_SOURCE_FILES
     History/HistoryModel.cpp
     History/ParameterHistory.cpp
     AddressCompleter.cpp
+    Bookmark/BookmarkDatabase.cpp
+    Bookmark/FrmBookmark.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -59,12 +61,15 @@ set(WebBrowser_HEADER_FILES
     History/HistoryModel.h
     History/ParameterHistory.h
     AddressCompleter.h
+    Bookmark/BookmarkDatabase.h
+    Bookmark/FrmBookmark.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
     DlgSettings.ui
     DlgWebAuth.ui
     History/FrmHistory.ui
+    Bookmark/FrmBookmark.ui
     Resource/Resource.qrc
     )
 if(QT_VERSION GREATER_EQUAL "6.7.0")

@@ -30,6 +30,7 @@
 #include "FrmPopup.h"
 #include "CaptureFullPage.h"
 #include "History/FrmHistory.h"
+#include "Bookmark/FrmBookmark.h"
 #include "AddressCompleter.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
@@ -68,6 +69,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pRecord(nullptr)
     , m_pMultimediaRecord(nullptr)
     , m_pHistoryDatabase(nullptr)
+    , m_pBookmarkDatabase(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -75,11 +77,22 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     m_pHistoryDatabase = new CHistoryDatabase(this);
     if(m_pHistoryDatabase) {
         QString szDb = GetProfile()->persistentStoragePath()
-        + QDir::separator() + "History.db";
+            + QDir::separator() + "History.db";
         bool bRet = m_pHistoryDatabase->openDatabase(szDb);
         if(!bRet) {
             delete m_pHistoryDatabase;
             m_pHistoryDatabase = nullptr;
+        }
+    }
+
+    m_pBookmarkDatabase = new CBookmarkDatabase(this);
+    if(m_pBookmarkDatabase) {
+        QString szDb = GetProfile()->persistentStoragePath()
+            + QDir::separator() + "Bookmark.db";
+        bool bRet = m_pBookmarkDatabase->openDatabase(szDb);
+        if(!bRet) {
+            delete m_pBookmarkDatabase;
+            m_pBookmarkDatabase = nullptr;
         }
     }
 
@@ -404,6 +417,7 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                         if(-1 < index) {
                             if(m_pTab)
                                 m_pTab->setTabIcon(index, icon);
+                            m_pFavAction->setIcon(icon);
                             setWindowIcon(icon);
                             emit sigUpdateTitle();
                         }
@@ -602,6 +616,21 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     m_pStop->setStatusTip(m_pStop->text());
 
     pMenu->addSeparator();
+    pMenu->addAction(tr("Bookmark"), this, [&]{
+        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase);
+        if(!pBookmark) return;
+        pBookmark->setAttribute(Qt::WA_DeleteOnClose);
+        connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
+        connect(pBookmark, &CFrmBookmark::openUrlRequested, this, [&](const QString& url) {
+            CFrmWebView* pWeb = CurrentView();
+            if(!pWeb) {
+                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+            }
+            if(pWeb)
+                pWeb->load(url);
+        });
+        pBookmark->show();
+    });
     pMenu->addAction(tr("History"), this, [&]() {
         CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, &m_pPara->m_History);
         if(!pHistory) return;
