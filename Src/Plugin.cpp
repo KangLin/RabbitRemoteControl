@@ -68,7 +68,7 @@ const QString CPlugin::TypeName(const TYPE t) const
     return QString();
 }
 
-const QString CPlugin::Id()
+const QString CPlugin::Id() const
 {
     return QString::number((int)Type()) + ":" + Protocol() + ":" + Name();
 }

@@ -33,7 +33,7 @@ public:
     [[nodiscard]] virtual const QString TypeName(const TYPE t) const;
     /// \~chinese 标识。默认： Type() + ":" + Protocol() + ":" + Name()
     /// \~english ID. Default: Type() + ":" + Protocol() + ":" + Name()
-    [[nodiscard]] virtual const QString Id();
+    [[nodiscard]] virtual const QString Id() const;
     /// \~chinese 协议
     /// \~english Plugin Protocol
     [[nodiscard]] virtual const QString Protocol() const = 0;
