@@ -14,6 +14,7 @@
 class PLUGIN_EXPORT CPlugin : public QObject
 {
     Q_OBJECT
+
 public:
     explicit CPlugin(QObject *parent = nullptr);
     virtual ~CPlugin();
@@ -61,6 +62,23 @@ public:
      * \see CPluginFreeRDP::Details()
      */
     [[nodiscard]] virtual const QString Details() const;
+
+Q_SIGNALS:
+    /*!
+     * \~chinese 当在插件中新建操作时，触发此信号
+     * \param pOperate: 新建的操作
+     * \param bOpenSettingsDialog:
+     *           - true: 打开设置对话框
+     *           - false: 不打开设置对话框
+     *
+     * \~english
+     * \brief This signal is triggered when a new operate is created in the plugin.
+     * \param pOperate: a new operate is created.
+     * \param bOpenSettingsDialog:
+     *           - true: open the settings dialog
+     *           - false: don't open the settings dialog
+     */
+    void sigNewOperate(COperate* pOperate, bool bOpenSettingsDialog);
 
 protected:
     /*!

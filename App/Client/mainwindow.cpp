@@ -75,6 +75,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->menubar->show();
 
+    check = connect(&m_Manager, &CManager::sigNewOperate,
+                    this, [&](COperate* pOperate, bool bOpenSettingsDialog){
+        Start(pOperate, bOpenSettingsDialog);
+    });
+    Q_ASSERT(check);
+
 #if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_MACOS)
     // gnome icon isn't support svg
     setWindowIcon(QIcon(":/images/app"));

@@ -220,7 +220,8 @@ void CFrmWebView::CreateWebActionTrigger(QWebEnginePage *page, QWebEnginePage::W
 {
     QAction *action = page->action(webAction);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-    connect(action, &QAction::enabledChanged, [this, action, webAction](bool enabled){
+    connect(action, &QAction::enabledChanged,
+            [this, action, webAction](bool enabled) {
         qDebug(log) << "webAction:" << webAction << enabled;
         emit sigWebActionEnabledChanged(webAction, enabled);
     });

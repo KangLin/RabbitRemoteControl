@@ -317,6 +317,7 @@ int CManager::AppendPlugin(CPlugin *p)
     if(!p->Details().isEmpty())
         m_szDetails += p->Details() + "\n";
 
+    bRet = connect(p, &CPlugin::sigNewOperate, this, &CManager::sigNewOperate);
     return 0;
 }
 

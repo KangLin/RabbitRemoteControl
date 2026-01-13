@@ -435,7 +435,7 @@ jobs:
             -DVCPKG_APPLOCAL_DEPS=ON ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DENABLE_UPDATE_TRANSLATIONS=ON ^
-            -DBUILD_QUIWidget=OFF ^
+            -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
             -DBUILD_APP=ON ^
             -DBUILD_FREERDP=ON ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^

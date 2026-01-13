@@ -86,3 +86,8 @@ QWidget* CPluginWebBrowser::GetSettingsWidget(QWidget* parent)
         pSetting->setWindowTitle(tr("Set Web Wrowser"));
     return pSetting;
 }
+
+COperate* CPluginWebBrowser::CreateOperate(const QString &szId, CParameterPlugin *para)
+{
+    return CPlugin::CreateOperate(szId, para);
+}

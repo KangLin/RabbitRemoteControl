@@ -27,7 +27,9 @@ public:
     virtual const QString Version() const override;
     virtual const QIcon Icon() const override;
     virtual const QString Details() const override;
-    
+    Q_INVOKABLE virtual COperate* CreateOperate(
+        const QString& szId, CParameterPlugin* para);
+
 protected:
     virtual COperate *OnCreateOperate(const QString &szId) override;
     Q_INVOKABLE virtual QWidget* GetSettingsWidget(QWidget *parent) override;
