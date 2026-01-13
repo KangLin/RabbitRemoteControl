@@ -67,11 +67,11 @@ set(WebBrowser_HEADER_FILES
 set(WebBrowser_UI_FILES
     FrmDownload.ui
     DlgSettings.ui
-    DlgWebAuth.ui
     History/FrmHistory.ui
     Bookmark/FrmBookmark.ui
     Resource/Resource.qrc
     )
+
 if(QT_VERSION GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
         DlgWebAuth.cpp
@@ -86,6 +86,7 @@ if(QT_VERSION GREATER_EQUAL "6.7.0")
         DlgScreenCapture.ui
         )
 endif()
+
 option(WITH_QtKEYCHAIN "With qtkeychain" ON)
 if(WITH_QtKEYCHAIN)
     find_package(Qt${QT_VERSION_MAJOR}Keychain)

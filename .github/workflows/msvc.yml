@@ -380,7 +380,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/QFtpServerLib/QFtpServerLib (
-              git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+              git clone https://github.com/KangLin/QFtpServer.git
               cd QFtpServer
               cmake -E make_directory build
               cd build
