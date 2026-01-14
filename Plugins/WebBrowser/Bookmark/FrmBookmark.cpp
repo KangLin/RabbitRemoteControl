@@ -195,7 +195,7 @@ void CFrmBookmark::loadBookmarks()
             QStandardItem *pFolderItem = new QStandardItem(folder.getIcon(), folder.title);
             if(!pFolderItem) continue;
             pFolderItem->setData(folder.id, ID);
-            pFolderItem->setData(Folder, Type);
+            pFolderItem->setData(BookmarkType_Folder, Type);
             rootItem->appendRow(pFolderItem);
             m_folderItems[folder.id] = pFolderItem;
             continue;
@@ -209,7 +209,7 @@ void CFrmBookmark::loadBookmarks()
         QStandardItem *pFolderItem = new QStandardItem(folder.getIcon(), folder.title);
         if(!pFolderItem) continue;
         pFolderItem->setData(folder.id, ID);
-        pFolderItem->setData(Folder, Type);
+        pFolderItem->setData(BookmarkType_Folder, Type);
         (*it)->appendRow(pFolderItem);
         m_folderItems[folder.id] = pFolderItem;
     }
@@ -227,7 +227,7 @@ void CFrmBookmark::loadBookmarks()
 
         QStandardItem *bookmarkItem = new QStandardItem(bookmark.getIcon(), bookmark.title);
         bookmarkItem->setData(bookmark.id, ID);
-        bookmarkItem->setData(Bookmark, Type);
+        bookmarkItem->setData(BookmarkType_Bookmark, Type);
         bookmarkItem->setData(bookmark.url, Url);
 
         if (bookmark.isFavorite) {
@@ -264,7 +264,7 @@ void CFrmBookmark::onAddBookmark()
     QModelIndex currentIndex = m_pTreeView->currentIndex();
     if (currentIndex.isValid()) {
         int type = currentIndex.data(Type).toInt();
-        if (Folder == type) {
+        if (BookmarkType_Folder == type) {
             item.folderId = currentIndex.data(Qt::UserRole).toInt();
         }
     }
@@ -286,7 +286,7 @@ void CFrmBookmark::onAddFolder()
     QModelIndex currentIndex = m_pTreeView->currentIndex();
     if (currentIndex.isValid()) {
         int type = currentIndex.data(Type).toInt();
-        if (Folder == type) {
+        if (BookmarkType_Folder == type) {
             parentId = currentIndex.data(Qt::UserRole).toInt();
         }
     }
@@ -304,7 +304,7 @@ void CFrmBookmark::onEditBookmark()
     int type = index.data(Type).toInt();
     int id = index.data(Qt::UserRole).toInt();
 
-    if (Bookmark == type) {
+    if (BookmarkType_Bookmark == type) {
         BookmarkItem item = m_pDatabase->getBookmark(id);
         if (item.id == 0) return;
 
@@ -325,7 +325,7 @@ void CFrmBookmark::onEditBookmark()
         if (m_pDatabase->updateBookmark(item)) {
             refresh();
         }
-    } else if (Folder == type) {
+    } else if (BookmarkType_Folder == type) {
         QString oldName = index.data(Qt::DisplayRole).toString();
 
         bool ok;
@@ -348,15 +348,15 @@ void CFrmBookmark::onDeleteBookmark()
     int type = index.data(Type).toInt();
     QString name = index.data(Qt::DisplayRole).toString();
     int id = index.data(Qt::UserRole).toInt();
-    if(1 == id && Folder == type) {
+    if(1 == id && BookmarkType_Folder == type) {
         QMessageBox::warning(this, tr("Warning"), tr("The folder \"%1\" is not delete").arg(name));
         return;
     }
 
     QString message;
-    if (Bookmark == type) {
+    if (BookmarkType_Bookmark == type) {
         message = tr("Are you sure you want to delete the bookmark \"%1\"?").arg(name);
-    } else if (Folder == type) {
+    } else if (BookmarkType_Folder == type) {
         message = tr("Are you sure you want to delete the folder \"%1\"?\n"
                      "The bookmarks inside the folder will be moved to the root directory.").arg(name);
     } else {
@@ -370,9 +370,9 @@ void CFrmBookmark::onDeleteBookmark()
         );
 
     if (reply == QMessageBox::Yes) {
-        if (Bookmark == type) {
+        if (BookmarkType_Bookmark == type) {
             m_pDatabase->deleteBookmark(id);
-        } else if (Folder == type) {
+        } else if (BookmarkType_Folder == type) {
             m_pDatabase->deleteFolder(id);
         }
         refresh();
@@ -385,7 +385,7 @@ void CFrmBookmark::onSetFavorite()
     if (!index.isValid()) return;
 
     int type = index.data(Type).toInt();
-    if (type != Bookmark) return;
+    if (type != BookmarkType_Bookmark) return;
 
     int id = index.data(ID).toInt();
     BookmarkItem item = m_pDatabase->getBookmark(id);
@@ -446,7 +446,7 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
     for (const auto &bookmark : bookmarks) {
         QStandardItem *item = new QStandardItem(bookmark.getIcon(), bookmark.title);
         item->setData(bookmark.id, ID);
-        item->setData(Bookmark, Type);
+        item->setData(BookmarkType_Bookmark, Type);
         item->setData(bookmark.url, Url);
 
         // 显示路径
@@ -467,7 +467,7 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
 void CFrmBookmark::onTreeViewDoubleClicked(const QModelIndex &index)
 {
     int type = index.data(Type).toInt();
-    if (Bookmark == type) {
+    if (BookmarkType_Bookmark == type) {
         QString url = index.data(Url).toString();
         if (!url.isEmpty()) {
             emit openUrlRequested(url);
@@ -487,7 +487,7 @@ void CFrmBookmark::onCustomContextMenu(const QPoint &pos)
     int id = index.data(ID).toInt();
     int type = index.data(Type).toInt();
 
-    if (Bookmark == type) {
+    if (BookmarkType_Bookmark == type) {
         menu.addAction(QIcon::fromTheme("document-open"), tr("Open"), this, [this, index]() {
             QString url = index.data(Url).toString();
             if (!url.isEmpty()) {
@@ -502,7 +502,7 @@ void CFrmBookmark::onCustomContextMenu(const QPoint &pos)
         connect(favoriteAction, &QAction::triggered, this, &CFrmBookmark::onSetFavorite);
 
         menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this, &CFrmBookmark::onDeleteBookmark);
-    } else if (Folder == type) {
+    } else if (BookmarkType_Folder == type) {
         menu.addAction(QIcon::fromTheme("Add"), tr("Add bookmark"), this, &CFrmBookmark::onAddBookmark);
         menu.addAction(QIcon::fromTheme("folder-new"), tr("Add folder"), this, &CFrmBookmark::onAddFolder);
         menu.addSeparator();

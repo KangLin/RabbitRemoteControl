@@ -42,14 +42,10 @@ private:
     void setupTreeView();
     void loadBookmarks();
 
-    enum emRole {
+    enum Role {
         ID = Qt::UserRole,
         Type,
         Url
-    };
-    enum emType{
-        Bookmark,
-        Folder
     };
 
 private:

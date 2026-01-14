@@ -68,6 +68,8 @@ private Q_SLOTS:
     void slotRecord();
     void slotRecordTimeout();
 
+    void slotAddBookmark();
+
 public Q_SLOTS:
     void slotFullScreen(bool bFullScreen);
 
@@ -96,6 +98,7 @@ private:
     QAction* m_pForward;
     QAction* m_pRefresh;
     QAction* m_pStop;
+    QAction* m_pAddBookmark;
     QAction* m_pFind;
     QAction* m_pFindNext;
     QAction* m_pFindPrevious;

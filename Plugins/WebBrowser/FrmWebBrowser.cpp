@@ -43,6 +43,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pForward(nullptr)
     , m_pRefresh(nullptr)
     , m_pStop(nullptr)
+    , m_pAddBookmark(nullptr)
     , m_pFind(nullptr)
     , m_pFindNext(nullptr)
     , m_pFindPrevious(nullptr)
@@ -188,6 +189,10 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
         }
     });
     Q_ASSERT(check);
+
+    m_pAddBookmark = m_pToolBar->addAction(
+        QIcon::fromTheme("user-bookmarks"),
+        tr("Add bookmark"), this, SLOT(slotAddBookmark()));
 
     m_pAddPage = m_pToolBar->addAction(QIcon::fromTheme("add"), tr("Add tab page"),
                                    this, [&](){
@@ -616,44 +621,6 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     m_pStop->setStatusTip(m_pStop->text());
 
     pMenu->addSeparator();
-    pMenu->addAction(tr("Bookmark"), this, [&]{
-        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase);
-        if(!pBookmark) return;
-        pBookmark->setAttribute(Qt::WA_DeleteOnClose);
-        connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
-        connect(pBookmark, &CFrmBookmark::openUrlRequested, this, [&](const QString& url) {
-            CFrmWebView* pWeb = CurrentView();
-            if(!pWeb) {
-                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-            }
-            if(pWeb)
-                pWeb->load(url);
-        });
-        pBookmark->show();
-    });
-    pMenu->addAction(tr("History"), this, [&]() {
-        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, &m_pPara->m_History);
-        if(!pHistory) return;
-        pHistory->setAttribute(Qt::WA_DeleteOnClose);
-        connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
-        connect(pHistory, &CFrmHistory::sigOpenUrl, this, [&](const QString& url) {
-            CFrmWebView* pWeb = CurrentView();
-            if(!pWeb) {
-                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-            }
-            if(pWeb)
-                pWeb->load(url);
-        });
-        connect(pHistory, &CFrmHistory::sigOpenUrlInNewTab,
-                this, [&](const QString& url) {
-            auto pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-            if(pWeb)
-                pWeb->load(url);
-        });
-        pHistory->show();
-    });
-
-    pMenu->addSeparator();
     pMenu->addAction(m_pAddPage);
     m_pAddPageIncognito = pMenu->addAction(
         QIcon::fromTheme("add"), tr("Add incognito tab"),
@@ -808,6 +775,48 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             QKeySequence(Qt::Key_F12)
         });
     }
+
+    pMenu->addSeparator();
+    QMenu* pMenuBookmark = new QMenu(tr("Bookmark"), pMenu);
+    pMenuBookmark->setIcon(QIcon::fromTheme("user-bookmarks"));
+    pMenu->addMenu(pMenuBookmark);
+    pMenuBookmark->addAction(m_pAddBookmark);
+    pMenuBookmark->addAction(tr("Manage Bookmark "), this, [&]{
+        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase);
+        if(!pBookmark) return;
+        pBookmark->setAttribute(Qt::WA_DeleteOnClose);
+        connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
+        connect(pBookmark, &CFrmBookmark::openUrlRequested, this, [&](const QString& url) {
+            CFrmWebView* pWeb = CurrentView();
+            if(!pWeb) {
+                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+            }
+            if(pWeb)
+                pWeb->load(url);
+        });
+        pBookmark->show();
+    });
+    pMenu->addAction(tr("History"), this, [&]() {
+        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, &m_pPara->m_History);
+        if(!pHistory) return;
+        pHistory->setAttribute(Qt::WA_DeleteOnClose);
+        connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
+        connect(pHistory, &CFrmHistory::sigOpenUrl, this, [&](const QString& url) {
+            CFrmWebView* pWeb = CurrentView();
+            if(!pWeb) {
+                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+            }
+            if(pWeb)
+                pWeb->load(url);
+        });
+        connect(pHistory, &CFrmHistory::sigOpenUrlInNewTab,
+                this, [&](const QString& url) {
+                    auto pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+                    if(pWeb)
+                        pWeb->load(url);
+                });
+        pHistory->show();
+    });
 
     pMenu->addSeparator();
     m_pCapturePage = pMenu->addAction(
@@ -1284,3 +1293,7 @@ void CFrmWebBrowser::slotRecordTimeout()
                               Q_ARG(QImage, image));
 }
 
+void CFrmWebBrowser::slotAddBookmark()
+{
+
+}
