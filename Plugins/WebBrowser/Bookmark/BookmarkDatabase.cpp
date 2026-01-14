@@ -42,7 +42,8 @@ bool CBookmarkDatabase::openDatabase(const QString &dbPath)
     m_database.setDatabaseName(databasePath);
 
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open bookmarks database:" << m_database.lastError().text();
+        qCritical(log) << "Failed to open bookmarks database:"
+                       << m_database.lastError().text() << databasePath;
         return false;
     }
 

@@ -55,7 +55,6 @@ private:
 private:
     Ui::CFrmBookmark *ui;
     CBookmarkDatabase *m_pDatabase;
-    QAction *m_pDeleteAction;
     QTreeView *m_pTreeView;
     QLineEdit *m_pSearchEdit;
     QToolBar *m_pToolBar;

@@ -19,7 +19,6 @@ CFrmBookmark::CFrmBookmark(CBookmarkDatabase *db, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmBookmark)
     , m_pDatabase(db)
-    , m_pDeleteAction(nullptr)
     , m_pTreeView(nullptr)
     , m_pSearchEdit(nullptr)
     , m_pToolBar(nullptr)
@@ -86,57 +85,74 @@ void CFrmBookmark::setupToolBar()
 {
     bool check = false;
     m_pToolBar = new QToolBar(this);
+    if(!m_pToolBar) return;
 
     // 添加书签
     QAction *addAction = m_pToolBar->addAction(QIcon::fromTheme("add"), tr("Add bookmark"));
-    check = connect(addAction, &QAction::triggered, this, &CFrmBookmark::onAddBookmark);
-    Q_ASSERT(check);
+    if(addAction) {
+        check = connect(addAction, &QAction::triggered, this, &CFrmBookmark::onAddBookmark);
+        Q_ASSERT(check);
+    }
 
     // 添加文件夹
     QAction *addFolderAction = m_pToolBar->addAction(QIcon::fromTheme("folder-new"), tr("Add folder"));
-    check = connect(addFolderAction, &QAction::triggered, this, &CFrmBookmark::onAddFolder);
-    Q_ASSERT(check);
+    if(addFolderAction) {
+        check = connect(addFolderAction, &QAction::triggered, this, &CFrmBookmark::onAddFolder);
+        Q_ASSERT(check);
+    }
 
     m_pToolBar->addSeparator();
 
     // 编辑
     QAction *editAction = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
-    check = connect(editAction, &QAction::triggered, this, &CFrmBookmark::onEditBookmark);
-    Q_ASSERT(check);
+    if(editAction) {
+        check = connect(editAction, &QAction::triggered, this, &CFrmBookmark::onEditBookmark);
+        Q_ASSERT(check);
+    }
 
     // 删除
-    m_pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
-    check = connect(m_pDeleteAction, &QAction::triggered, this, &CFrmBookmark::onDeleteBookmark);
-    Q_ASSERT(check);
+    QAction *pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    if(pDeleteAction) {
+        check = connect(pDeleteAction, &QAction::triggered, this, &CFrmBookmark::onDeleteBookmark);
+        Q_ASSERT(check);
+    }
 
     // 设为最爱
     QAction *favoriteAction = m_pToolBar->addAction(QIcon::fromTheme("favorites"), tr("Favorite"));
-    check = connect(favoriteAction, &QAction::triggered, this, &CFrmBookmark::onSetFavorite);
-    Q_ASSERT(check);
+    if(favoriteAction) {
+        check = connect(favoriteAction, &QAction::triggered, this, &CFrmBookmark::onSetFavorite);
+        Q_ASSERT(check);
+    }
 
     m_pToolBar->addSeparator();
 
     // 导入
     QAction *importAction = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
-    check = connect(importAction, &QAction::triggered, this, &CFrmBookmark::onImportBookmarks);
-    Q_ASSERT(check);
+    if(importAction) {
+        check = connect(importAction, &QAction::triggered, this, &CFrmBookmark::onImportBookmarks);
+        Q_ASSERT(check);
+    }
 
     // 导出
     QAction *exportAction = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
-    check = connect(exportAction, &QAction::triggered, this, &CFrmBookmark::onExportBookmarks);
-    Q_ASSERT(check);
+    if(exportAction) {
+        check = connect(exportAction, &QAction::triggered, this, &CFrmBookmark::onExportBookmarks);
+        Q_ASSERT(check);
+    }
 
     // 刷新
     QAction *refreshAction = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"));
-    check = connect(refreshAction, &QAction::triggered, this, &CFrmBookmark::refresh);
-    Q_ASSERT(check);
+    if(refreshAction) {
+        check = connect(refreshAction, &QAction::triggered, this, &CFrmBookmark::refresh);
+        Q_ASSERT(check);
+    }
 }
 
 void CFrmBookmark::setupTreeView()
 {
     bool check = false;
     m_pTreeView = new QTreeView(this);
-    m_pTreeView->setModel(m_pModel);
+    if(!m_pTreeView) return;
     m_pTreeView->setHeaderHidden(true);
     m_pTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
     m_pTreeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -149,13 +165,18 @@ void CFrmBookmark::setupTreeView()
             this, &CFrmBookmark::onCustomContextMenu);
     Q_ASSERT(check);
 
-    // 设置列
-    m_pModel->setColumnCount(1);  // 图标、标题、数据
-    m_pTreeView->header()->setStretchLastSection(true);  // 最后一列自适应
+    if(m_pModel) {
+        m_pTreeView->setModel(m_pModel);
+        // 设置列
+        m_pModel->setColumnCount(1);
+    }
+    if(m_pTreeView->header())
+        m_pTreeView->header()->setStretchLastSection(true);  // 最后一列自适应
 }
 
 void CFrmBookmark::loadBookmarks()
 {
+    if(!m_pDatabase || !m_pModel) return;
     m_pModel->clear();
     m_folderItems.clear();
 
@@ -171,11 +192,12 @@ void CFrmBookmark::loadBookmarks()
     // 先添加顶级文件夹
     for (const auto &folder : folders) {
         if (folder.folderId == 0) {  // 顶级文件夹
-            QStandardItem *folderItem = new QStandardItem(folder.getIcon(), folder.title);
-            folderItem->setData(folder.id, ID);
-            folderItem->setData(Folder, Type);
-            rootItem->appendRow(folderItem);
-            m_folderItems[folder.id] = folderItem;
+            QStandardItem *pFolderItem = new QStandardItem(folder.getIcon(), folder.title);
+            if(!pFolderItem) continue;
+            pFolderItem->setData(folder.id, ID);
+            pFolderItem->setData(Folder, Type);
+            rootItem->appendRow(pFolderItem);
+            m_folderItems[folder.id] = pFolderItem;
             continue;
         }
 
@@ -184,22 +206,23 @@ void CFrmBookmark::loadBookmarks()
             qWarning(log) << "The parent of folder is not find:" << folder.folderId;
             continue;
         }
-        QStandardItem *folderItem = new QStandardItem(folder.getIcon(), folder.title);
-        folderItem->setData(folder.id, ID);
-        folderItem->setData(Folder, Type);
-        (*it)->appendRow(folderItem);
-        m_folderItems[folder.id] = folderItem;
+        QStandardItem *pFolderItem = new QStandardItem(folder.getIcon(), folder.title);
+        if(!pFolderItem) continue;
+        pFolderItem->setData(folder.id, ID);
+        pFolderItem->setData(Folder, Type);
+        (*it)->appendRow(pFolderItem);
+        m_folderItems[folder.id] = pFolderItem;
     }
 
     // 添加书签到对应的文件夹
     QList<BookmarkItem> bookmarks = m_pDatabase->getAllBookmarks(-1);
     for (const auto &bookmark : bookmarks) {
-        QStandardItem *parentItem = nullptr;
+        QStandardItem *pParentItem = nullptr;
 
         if (bookmark.folderId > 0 && m_folderItems.contains(bookmark.folderId)) {
-            parentItem = m_folderItems[bookmark.folderId];
+            pParentItem = m_folderItems[bookmark.folderId];
         } else {
-            parentItem = rootItem;
+            pParentItem = rootItem;
         }
 
         QStandardItem *bookmarkItem = new QStandardItem(bookmark.getIcon(), bookmark.title);
@@ -211,7 +234,8 @@ void CFrmBookmark::loadBookmarks()
             bookmarkItem->setIcon(QIcon::fromTheme("favorites"));
         }
 
-        parentItem->appendRow(bookmarkItem);
+        if(pParentItem)
+            pParentItem->appendRow(bookmarkItem);
     }
 
     // 展开所有节点
@@ -410,11 +434,14 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
         return;
     }
 
+    if(!m_pModel) return;
+
     m_pModel->clear();
     m_folderItems.clear();
 
     QList<BookmarkItem> bookmarks = m_pDatabase->searchBookmarks(text);
-    QStandardItem *rootItem = m_pModel->invisibleRootItem();
+    QStandardItem *pRootItem = m_pModel->invisibleRootItem();
+    if(!pRootItem) return;
 
     for (const auto &bookmark : bookmarks) {
         QStandardItem *item = new QStandardItem(bookmark.getIcon(), bookmark.title);
@@ -432,7 +459,8 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
         }
 
         item->setText(path);
-        rootItem->appendRow(item);
+
+        pRootItem->appendRow(item);
     }
 }
 
@@ -450,6 +478,7 @@ void CFrmBookmark::onTreeViewDoubleClicked(const QModelIndex &index)
 
 void CFrmBookmark::onCustomContextMenu(const QPoint &pos)
 {
+    if(!m_pTreeView) return;
     QModelIndex index = m_pTreeView->indexAt(pos);
     if (!index.isValid()) return;
 
