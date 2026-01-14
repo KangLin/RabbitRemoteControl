@@ -72,7 +72,7 @@ set(WebBrowser_UI_FILES
     Resource/Resource.qrc
     )
 
-if(QT_VERSION GREATER_EQUAL "6.7.0")
+if(QT_VERSION GREATER_EQUAL 6.7.0)
     list(APPEND WebBrowser_SOURCE_FILES
         DlgWebAuth.cpp
         DlgScreenCapture.cpp

@@ -524,7 +524,7 @@ void CFrmWebView::onStateChanged(QWebEngineWebAuthUxRequest::WebAuthUxState stat
         m_pDlgWebAuth->updateDisplay();
     }
 }
-#endif
+#endif // #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
 
 // Test example: https://www.webmfiles.org/demo-files/
 void CFrmWebView::slotFullScreenRequested(QWebEngineFullScreenRequest request)
