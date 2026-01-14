@@ -4,7 +4,6 @@
 #include "ParameterOperate.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
-#include "History/ParameterHistory.h"
 
 class CParameterWebBrowser : public CParameterOperate
 {
@@ -14,7 +13,6 @@ public:
                                   const QString& szPrefix = QString());
     virtual ~CParameterWebBrowser();
 
-    CParameterHistory m_History;
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
 
@@ -88,6 +86,30 @@ public:
     void SetAutoFillUserAndPassword(bool newAutoFillUserAndPassword);
 private:
     bool m_bAutoFillUserAndPassword;
+
+public:
+    int GetDatabaseViewLimit() const;
+    void SetDatabaseViewLimit(int newLimit);
+private:
+    int m_nDatabaseViewLimit;
+
+public:
+    QSize GetWindowSize() const;
+    void SetWindowSize(const QSize &newWindowSize);
+private:
+    QSize m_WindowSize;
+
+public:
+    int GetBookmarkCurrentFolder() const;
+    void SetBookmarkCurrentFolder(int newCurrentBookmarkFolder);
+private:
+    int m_nBookmarkCurrentFolder;
+
+public:
+    bool GetBookmarkShowEditor() const;
+    void SetBookmarkShowEditor(bool newBookmarkShowEditor);
+private:
+    bool m_bBookmarkShowEditor;
 
     // CParameter interface
 protected:

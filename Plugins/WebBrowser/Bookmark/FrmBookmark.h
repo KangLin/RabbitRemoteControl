@@ -2,10 +2,11 @@
 
 #pragma once
 #include <QWidget>
-#include "BookmarkDatabase.h"
 #include <QStandardItem>
 #include <QToolBar>
 #include <QTreeView>
+#include "BookmarkDatabase.h"
+#include "ParameterWebBrowser.h"
 
 namespace Ui {
 class CFrmBookmark;
@@ -16,7 +17,7 @@ class CFrmBookmark : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmBookmark(CBookmarkDatabase *db, QWidget *parent = nullptr);
+    explicit CFrmBookmark(CBookmarkDatabase *db, CParameterWebBrowser* pPara, QWidget *parent = nullptr);
     ~CFrmBookmark();
 
     void refresh();
@@ -51,6 +52,7 @@ private:
 private:
     Ui::CFrmBookmark *ui;
     CBookmarkDatabase *m_pDatabase;
+    CParameterWebBrowser* m_pPara;
     QTreeView *m_pTreeView;
     QLineEdit *m_pSearchEdit;
     QToolBar *m_pToolBar;

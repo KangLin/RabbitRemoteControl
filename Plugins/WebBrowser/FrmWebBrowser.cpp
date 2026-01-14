@@ -29,9 +29,10 @@
 #include "RabbitCommonTools.h"
 #include "FrmPopup.h"
 #include "CaptureFullPage.h"
-#include "History/FrmHistory.h"
-#include "Bookmark/FrmBookmark.h"
+#include "FrmHistory.h"
 #include "AddressCompleter.h"
+#include "FrmBookmark.h"
+#include "FrmAddBookmark.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -782,7 +783,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addMenu(pMenuBookmark);
     pMenuBookmark->addAction(m_pAddBookmark);
     pMenuBookmark->addAction(tr("Manage Bookmark "), this, [&]{
-        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase);
+        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase, m_pPara);
         if(!pBookmark) return;
         pBookmark->setAttribute(Qt::WA_DeleteOnClose);
         connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
@@ -794,10 +795,10 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
             if(pWeb)
                 pWeb->load(url);
         });
-        pBookmark->show();
+        RC_SHOW_WINDOW(pBookmark);
     });
     pMenu->addAction(tr("History"), this, [&]() {
-        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, &m_pPara->m_History);
+        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, m_pPara);
         if(!pHistory) return;
         pHistory->setAttribute(Qt::WA_DeleteOnClose);
         connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
@@ -815,7 +816,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
                     if(pWeb)
                         pWeb->load(url);
                 });
-        pHistory->show();
+        RC_SHOW_WINDOW(pHistory);
     });
 
     pMenu->addSeparator();
@@ -1295,5 +1296,13 @@ void CFrmWebBrowser::slotRecordTimeout()
 
 void CFrmWebBrowser::slotAddBookmark()
 {
+    auto pView = CurrentView();
+    if(!pView) return;
 
+    CFrmAddBookmark* pAdd = new CFrmAddBookmark(
+        pView->title(), pView->url(), pView->favIcon(),
+        m_pPara, m_pBookmarkDatabase);
+    bool check = connect(this, &CFrmWebBrowser::destroyed, pAdd, &CFrmAddBookmark::close);
+    Q_ASSERT(check);
+    RC_SHOW_WINDOW(pAdd);
 }

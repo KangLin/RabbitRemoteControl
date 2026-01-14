@@ -96,6 +96,7 @@ public:
     bool addBookmark(const BookmarkItem &item);
     bool updateBookmark(const BookmarkItem &item);
     bool deleteBookmark(int id);
+    bool deleteBookmark(const QList<BookmarkItem>& items);
     bool moveBookmark(int id, int newFolderId);
 
     // 文件夹操作
@@ -106,7 +107,7 @@ public:
 
     // 查询操作
     BookmarkItem getBookmark(int id);
-    BookmarkItem getBookmarkByUrl(const QString &url);
+    QList<BookmarkItem> getBookmarkByUrl(const QString &url);
     QList<BookmarkItem> getAllBookmarks(int folderId = 0);
     QList<BookmarkItem> getFavoriteBookmarks();
     QList<BookmarkItem> searchBookmarks(const QString &keyword);

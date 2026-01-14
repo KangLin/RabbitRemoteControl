@@ -15,10 +15,11 @@
 #include "ui_FrmBookmark.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark")
-CFrmBookmark::CFrmBookmark(CBookmarkDatabase *db, QWidget *parent)
+CFrmBookmark::CFrmBookmark(CBookmarkDatabase *db, CParameterWebBrowser *pPara, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmBookmark)
     , m_pDatabase(db)
+    , m_pPara(pPara)
     , m_pTreeView(nullptr)
     , m_pSearchEdit(nullptr)
     , m_pToolBar(nullptr)
@@ -29,6 +30,9 @@ CFrmBookmark::CFrmBookmark(CBookmarkDatabase *db, QWidget *parent)
 
     setupUI();
     loadBookmarks();
+
+    if(m_pPara)
+        resize(m_pPara->GetWindowSize());
 }
 
 CFrmBookmark::~CFrmBookmark()
@@ -170,13 +174,14 @@ void CFrmBookmark::setupTreeView()
         // 设置列
         m_pModel->setColumnCount(1);
     }
+    /*
     if(m_pTreeView->header())
-        m_pTreeView->header()->setStretchLastSection(true);  // 最后一列自适应
+        m_pTreeView->header()->setStretchLastSection(true);  // 最后一列自适应//*/
 }
 
 void CFrmBookmark::loadBookmarks()
 {
-    if(!m_pDatabase || !m_pModel) return;
+    if(!m_pDatabase || !m_pModel || !m_pTreeView) return;
     m_pModel->clear();
     m_folderItems.clear();
 
@@ -189,6 +194,9 @@ void CFrmBookmark::loadBookmarks()
     // 创建根节点
     QStandardItem *rootItem = m_pModel->invisibleRootItem();
 
+    int nCurrent = m_pPara->GetBookmarkCurrentFolder();
+    QStandardItem* pCurrentItem = nullptr;
+
     // 先添加顶级文件夹
     for (const auto &folder : folders) {
         if (folder.folderId == 0) {  // 顶级文件夹
@@ -198,6 +206,8 @@ void CFrmBookmark::loadBookmarks()
             pFolderItem->setData(BookmarkType_Folder, Type);
             rootItem->appendRow(pFolderItem);
             m_folderItems[folder.id] = pFolderItem;
+            if(folder.id == nCurrent)
+                pCurrentItem = pFolderItem;
             continue;
         }
 
@@ -212,6 +222,14 @@ void CFrmBookmark::loadBookmarks()
         pFolderItem->setData(BookmarkType_Folder, Type);
         (*it)->appendRow(pFolderItem);
         m_folderItems[folder.id] = pFolderItem;
+        if(folder.id == nCurrent)
+            pCurrentItem = pFolderItem;
+    }
+
+    // Set current index
+    if(pCurrentItem) {
+        auto index = m_pModel->indexFromItem(pCurrentItem);
+        m_pTreeView->setCurrentIndex(index);
     }
 
     // 添加书签到对应的文件夹

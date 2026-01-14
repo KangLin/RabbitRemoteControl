@@ -13,7 +13,7 @@
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.History")
 CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
-                         CParameterHistory* pPara,
+                         CParameterWebBrowser *pPara,
                          QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmHistory)

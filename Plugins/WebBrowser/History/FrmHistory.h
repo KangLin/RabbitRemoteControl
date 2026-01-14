@@ -15,7 +15,7 @@ class CFrmHistory : public QWidget
 
 public:
     explicit CFrmHistory(CHistoryDatabase* pDatabase,
-                         CParameterHistory* pPara,
+                         CParameterWebBrowser* pPara,
                          QWidget *parent = nullptr);
     ~CFrmHistory();
 
@@ -38,5 +38,5 @@ private:
 private:
     Ui::CFrmHistory *ui;
     CHistoryModel* m_pModelHistory;
-    CParameterHistory* m_pPara;
+    CParameterWebBrowser* m_pPara;
 };

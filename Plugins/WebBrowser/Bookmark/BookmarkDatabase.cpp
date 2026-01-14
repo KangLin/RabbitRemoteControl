@@ -238,6 +238,35 @@ bool CBookmarkDatabase::deleteBookmark(int id)
     return success;
 }
 
+bool CBookmarkDatabase::deleteBookmark(const QList<BookmarkItem> &items)
+{
+    if(items.isEmpty()) {
+        qWarning(log) << "The items is empty";
+        return false;
+    }
+
+    QSqlQuery query(m_database);
+
+    QString szSql("DELETE FROM bookmarks WHERE ");
+    int i = 0;
+    foreach(auto item, items) {
+        if(0 == i++) {
+            szSql += " id = " + QString::number(item.id);
+        } else {
+            szSql += " OR id = " + QString::number(item.id);
+        }
+    }
+    bool success = query.exec(szSql);
+
+    if (success) {
+        foreach(auto item, items)
+            emit bookmarkDeleted(item.id);
+        emit bookmarksChanged();
+    }
+
+    return success;
+}
+
 bool CBookmarkDatabase::moveBookmark(int id, int newFolderId)
 {
     QSqlQuery query(m_database);
@@ -379,8 +408,9 @@ BookmarkItem CBookmarkDatabase::getBookmark(int id)
     return item;
 }
 
-BookmarkItem CBookmarkDatabase::getBookmarkByUrl(const QString &url)
+QList<BookmarkItem> CBookmarkDatabase::getBookmarkByUrl(const QString &url)
 {
+    QList<BookmarkItem> lstItems;
     BookmarkItem item;
 
     QSqlQuery query(m_database);
@@ -392,11 +422,14 @@ BookmarkItem CBookmarkDatabase::getBookmarkByUrl(const QString &url)
         );
     query.bindValue(":url", url);
 
-    if (query.exec() && query.next()) {
-        item = bookmarkFromQuery(query);
+    if (query.exec()) {
+        while (query.next()) {
+            item = bookmarkFromQuery(query);
+            lstItems << item;
+        }
     }
 
-    return item;
+    return lstItems;
 }
 
 QList<BookmarkItem> CBookmarkDatabase::getAllBookmarks(int folderId)

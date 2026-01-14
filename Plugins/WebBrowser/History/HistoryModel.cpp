@@ -5,7 +5,7 @@
 #include "HistoryModel.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.History.Model")
-CHistoryModel::CHistoryModel(CHistoryDatabase *pDatabase, CParameterHistory *pPara, QObject *parent)
+CHistoryModel::CHistoryModel(CHistoryDatabase *pDatabase, CParameterWebBrowser *pPara, QObject *parent)
     : QAbstractTableModel(parent)
     , m_pDatabase(pDatabase)
     , m_pPara(pPara)
@@ -106,7 +106,7 @@ void CHistoryModel::refresh()
     beginResetModel();
     int nLimit = 100;
     if(m_pPara)
-        nLimit = m_pPara->GetLimit();
+        nLimit = m_pPara->GetDatabaseViewLimit();
     m_historyItems = m_pDatabase->getAllHistory(nLimit); // 最多500条
     endResetModel();
 }

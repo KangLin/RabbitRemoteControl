@@ -4,14 +4,14 @@
 
 #include <QAbstractTableModel>
 #include "HistoryDatabase.h"
-#include "ParameterHistory.h"
+#include "ParameterWebBrowser.h"
 
 class CHistoryModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
-    explicit CHistoryModel(CHistoryDatabase* pDatabase, CParameterHistory* pPara, QObject *parent = nullptr);
+    explicit CHistoryModel(CHistoryDatabase* pDatabase, CParameterWebBrowser* pPara, QObject *parent = nullptr);
     ~CHistoryModel();
 
     enum Column {
@@ -45,5 +45,5 @@ public:
 private:
     QList<HistoryItem> m_historyItems;
     CHistoryDatabase* m_pDatabase;
-    CParameterHistory* m_pPara;
+    CParameterWebBrowser* m_pPara;
 };

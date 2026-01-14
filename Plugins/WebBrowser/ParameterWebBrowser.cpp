@@ -8,7 +8,6 @@
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
-    , m_History(this, "History")
     , m_Record(this)
     , m_MediaDevices(this)
     , m_bOpenPrevious(false)
@@ -18,6 +17,10 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_ClearCookie(false)
     , m_bPromptPrintFinished(true)
     , m_bAutoFillUserAndPassword(false)
+    , m_nDatabaseViewLimit(100)
+    , m_WindowSize(600, 450)
+    , m_nBookmarkCurrentFolder(1)
+    , m_bBookmarkShowEditor(true)
 {
     SetHomeUrl("https://github.com/KangLin");
     SetTabUrl("https://github.com/KangLin/RabbitRemoteControl");
@@ -52,6 +55,10 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetSearchEngineList(set.value("SearchEngine/List", GetSearchEngineList()).toStringList());
     SetAutoFillUserAndPassword(set.value("AutoFillUserPassword", GetAutoFillUserAndPassword()).toBool());
     SetPromptPrintFinished(set.value("Print/Finished", GetPromptPrintFinished()).toBool());
+    SetDatabaseViewLimit(set.value("Database/View/Limit", GetDatabaseViewLimit()).toInt());
+    SetWindowSize(set.value("WindowSize", GetWindowSize()).toSize());
+    SetBookmarkShowEditor(set.value("Bookmark/ShowEditor", GetBookmarkShowEditor()).toBool());
+    SetBookmarkCurrentFolder(set.value("Bookmark/CurrentFolder", GetBookmarkCurrentFolder()).toInt());
     return nRet;
 }
 
@@ -71,6 +78,10 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("SearchEngine/List", GetSearchEngineList());
     set.setValue("AutoFillUserPassword", GetAutoFillUserAndPassword());
     set.setValue("Print/Finished", GetPromptPrintFinished());
+    set.setValue("Database/View/Limit", GetDatabaseViewLimit());
+    set.setValue("WindowSize", GetWindowSize());
+    set.setValue("Bookmark/ShowEditor", GetBookmarkShowEditor());
+    set.setValue("Bookmark/CurrentFolder", GetBookmarkCurrentFolder());
     return nRet;
 }
 
@@ -257,5 +268,57 @@ void CParameterWebBrowser::SetAutoFillUserAndPassword(bool newAutoFillUserAndPas
     if(m_bAutoFillUserAndPassword == newAutoFillUserAndPassword)
         return;
     m_bAutoFillUserAndPassword = newAutoFillUserAndPassword;
+    SetModified(true);
+}
+
+int CParameterWebBrowser::GetDatabaseViewLimit() const
+{
+    return m_nDatabaseViewLimit;
+}
+
+void CParameterWebBrowser::SetDatabaseViewLimit(int newLimit)
+{
+    if(m_nDatabaseViewLimit == newLimit)
+        return;
+    m_nDatabaseViewLimit = newLimit;
+    SetModified(true);
+}
+
+QSize CParameterWebBrowser::GetWindowSize() const
+{
+    return m_WindowSize;
+}
+
+void CParameterWebBrowser::SetWindowSize(const QSize &newWindowSize)
+{
+    if(m_WindowSize == newWindowSize)
+        return;
+    m_WindowSize = newWindowSize;
+    SetModified(true);
+}
+
+int CParameterWebBrowser::GetBookmarkCurrentFolder() const
+{
+    return m_nBookmarkCurrentFolder;
+}
+
+void CParameterWebBrowser::SetBookmarkCurrentFolder(int newCurrentBookmarkFolder)
+{
+    if(m_nBookmarkCurrentFolder == newCurrentBookmarkFolder)
+        return;
+    m_nBookmarkCurrentFolder = newCurrentBookmarkFolder;
+    SetModified(true);
+}
+
+bool CParameterWebBrowser::GetBookmarkShowEditor() const
+{
+    return m_bBookmarkShowEditor;
+}
+
+void CParameterWebBrowser::SetBookmarkShowEditor(bool newBookmarkShowEditor)
+{
+    if(m_bBookmarkShowEditor == newBookmarkShowEditor)
+        return;
+    m_bBookmarkShowEditor = newBookmarkShowEditor;
     SetModified(true);
 }

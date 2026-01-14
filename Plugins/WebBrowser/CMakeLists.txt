@@ -38,10 +38,11 @@ set(WebBrowser_SOURCE_FILES
     History/FrmHistory.cpp
     History/HistoryDatabase.cpp
     History/HistoryModel.cpp
-    History/ParameterHistory.cpp
+
     AddressCompleter.cpp
     Bookmark/BookmarkDatabase.cpp
     Bookmark/FrmBookmark.cpp
+    Bookmark/FrmAddBookmark.cpp
     )
 set(WebBrowser_HEADER_FILES
     PluginWebBrowser.h
@@ -59,20 +60,26 @@ set(WebBrowser_HEADER_FILES
     History/FrmHistory.h
     History/HistoryDatabase.h
     History/HistoryModel.h
-    History/ParameterHistory.h
+
     AddressCompleter.h
     Bookmark/BookmarkDatabase.h
     Bookmark/FrmBookmark.h
+    Bookmark/FrmAddBookmark.h
     )
 set(WebBrowser_UI_FILES
     FrmDownload.ui
     DlgSettings.ui
     History/FrmHistory.ui
     Bookmark/FrmBookmark.ui
+    Bookmark/FrmAddBookmark.ui
     Resource/Resource.qrc
     )
 
-if(QT_VERSION GREATER_EQUAL 6.7.0)
+list(APPEND WebBrowser_INCLUDE_DIR
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/History>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Bookmark>)
+
+if(QT_VERSION GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
         DlgWebAuth.cpp
         DlgScreenCapture.cpp
