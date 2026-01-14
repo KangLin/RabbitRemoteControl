@@ -60,6 +60,19 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     , m_maxVisibleItems(8)
     , m_isCompleterVisible(false)
 {
+    m_szEnter = tr("Enter a website URL or search content ......");
+    m_szLineEditToolTip = m_szEnter  + "\n\n"
+                          + tr("Enter key: Apply current url");
+
+    m_szListWidgetToolTip += tr("Enter key:       Apply current item") + "\n";
+    m_szListWidgetToolTip += tr("Tab key:         Apply current item") + "\n";
+    m_szListWidgetToolTip += tr("Esc Key:         Exit address completer") + "\n";
+    m_szListWidgetToolTip += tr("Upper arrow key: Select previous item") + "\n";
+    m_szListWidgetToolTip += tr("Down arrow key:  Select next item");
+
+    m_szLineEditToolTipShow = m_szEnter + "\n\n" + m_szListWidgetToolTip;
+    setToolTip(m_szListWidgetToolTip);
+
     setupUI();
 
     // 设置搜索延迟定时器（300ms防抖动）
@@ -122,16 +135,19 @@ void CAddressCompleter::attachToLineEdit(QLineEdit *lineEdit)
 {
     if (m_pLineEdit) {
         m_pLineEdit->removeEventFilter(this);
+        m_pLineEdit->setToolTip(m_szOldLineEditToolTip);
     }
 
     m_pLineEdit = lineEdit;
     if (m_pLineEdit) {
+        m_szOldLineEditToolTip = m_pLineEdit->toolTip();
+        m_pLineEdit->setToolTip(m_szLineEditToolTip);
         m_pLineEdit->installEventFilter(this);
         connect(m_pLineEdit, &QLineEdit::textEdited,
                 this, &CAddressCompleter::onTextChanged);
 
         // 设置提示文本
-        m_pLineEdit->setPlaceholderText(tr("Enter a website URL or search content ......"));
+        m_pLineEdit->setPlaceholderText(m_szEnter);
     }
 }
 
@@ -152,12 +168,14 @@ bool CAddressCompleter::eventFilter(QObject *watched, QEvent *event)
             //qDebug(log) << Q_FUNC_INFO << keyEvent;
             switch (keyEvent->key()) {
             case Qt::Key_Down:
+            case Qt::Key_PageDown:
                 if (m_isCompleterVisible) {
                     moveToNextItem();
                     return true;
                 }
                 break;
             case Qt::Key_Up:
+            case Qt::Key_PageUp:
                 if (m_isCompleterVisible) {
                     moveToPreviousItem();
                     return true;
@@ -273,8 +291,10 @@ void CAddressCompleter::performSearch()
             url,
             i.icon
             );
-
-        m_pListWidget->setItemWidget(item, completerItem);
+        if(completerItem) {
+            completerItem->setToolTip(title + "\n\n" + toolTip());
+            m_pListWidget->setItemWidget(item, completerItem);
+        }
         item->setData(Qt::UserRole, url);
 
         addedUrls.insert(url);
@@ -426,6 +446,7 @@ void CAddressCompleter::showCompleter()
         return;
     }
 
+    m_pLineEdit->setToolTip(m_szLineEditToolTipShow);
     updateCompleterPosition();
 
     // 动画显示
@@ -461,6 +482,8 @@ void CAddressCompleter::hideCompleter()
     }
 
     qDebug(log) << Q_FUNC_INFO << "end";
+
+    m_pLineEdit->setToolTip(m_szLineEditToolTip);
 
     // 动画隐藏
     QRect startRect = geometry();

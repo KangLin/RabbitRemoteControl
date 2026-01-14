@@ -73,6 +73,11 @@ private:
 
 private:
     QLineEdit *m_pLineEdit;
+    QString m_szEnter;
+    QString m_szOldLineEditToolTip;
+    QString m_szLineEditToolTip;
+    QString m_szLineEditToolTipShow;
+    QString m_szListWidgetToolTip;
     QListWidget *m_pListWidget;
     CHistoryDatabase *m_pHistoryDatabase;
     QTimer *m_pSearchTimer;
