@@ -58,7 +58,7 @@
     <name>CBookmarkDatabase</name>
     <message>
         <location filename="../../Bookmark/BookmarkDatabase.cpp" line="126"/>
-        <source>Bookmark</source>
+        <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <location filename="../../Bookmark/BookmarkDatabase.cpp" line="128"/>
-        <source>Favorite</source>
+        <source>Favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>

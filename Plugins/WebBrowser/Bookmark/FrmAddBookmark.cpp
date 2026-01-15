@@ -82,6 +82,9 @@ void CFrmAddBookmark::on_pbAdd_clicked()
             item.title = ui->leTitle->text();
             item.url = m_Url.toString();
             item.folderId = id;
+            item.createdTime = QDateTime::currentDateTime();
+            item.lastVisitTime = item.createdTime;
+            item.modifiedTime = item.createdTime;
             m_pDatabase->addBookmark(item);
         }
     }

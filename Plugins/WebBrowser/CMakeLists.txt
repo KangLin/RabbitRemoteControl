@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(WebBrowser_QT_COMPONENTS Core Gui Widgets WebEngineWidgets WebEngineCore Sql)
+set(WebBrowser_QT_COMPONENTS Core Gui Widgets WebEngineWidgets WebEngineCore Sql Xml)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${WebBrowser_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${WebBrowser_QT_COMPONENTS})

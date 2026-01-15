@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <QDomElement>
 #include <QString>
 #include <QByteArray>
 #include <QDateTime>
@@ -137,6 +138,28 @@ signals:
 private:
     bool initializeDatabase();
     BookmarkItem bookmarkFromQuery(const QSqlQuery &query);
+
+    void buildBookmarkDocument(QDomDocument &doc);
+    void buildBookmarkTree(
+        QDomDocument &doc, QDomElement &parentElement, int folderId);
+    QDomElement createBookmarkDomElement(
+        QDomDocument &doc, const BookmarkItem &bookmark);
+    int parseHtmlBookmarks(const QString &htmlContent);
+    int parseBookmarkList(const QDomElement &dlElement,
+                          const QString &currentPath,
+                          QMap<QString, int> &folderMap);
+    int parseDtElement(const QDomElement &dtElement,
+                       const QString &currentPath,
+                       QMap<QString, int> &folderMap);
+    int importBookmark(const QDomElement &aElement,
+                       const QString &folderPath, QMap<QString, int> &folderMap);
+    QString importFolder(const QDomElement &h3Element,
+                                        const QString &parentPath,
+                                        QMap<QString, int> &folderMap);
+    int getOrCreateFolder(const QString &folderPath, int parentFolderId);
+    int getOrCreateFolder(const QString &folderPath, QMap<QString, int> &folderMap);
+    QDateTime parseTimestamp(const QString &timestampStr);
+    QDomElement findFirstElement(const QDomElement &parent, const QString &tagName);
 
 private:
     QSqlDatabase m_database;

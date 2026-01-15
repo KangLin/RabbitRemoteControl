@@ -277,6 +277,8 @@ void CFrmBookmark::onAddBookmark()
     item.url = url;
     item.title = title.isEmpty() ? url : title;
     item.createdTime = QDateTime::currentDateTime();
+    item.lastVisitTime = item.createdTime;
+    item.modifiedTime = item.createdTime;
 
     // 获取选中的文件夹
     QModelIndex currentIndex = m_pTreeView->currentIndex();
@@ -483,10 +485,15 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
 
 void CFrmBookmark::onTreeViewDoubleClicked(const QModelIndex &index)
 {
+    if(!m_pDatabase) return;
     int type = index.data(Type).toInt();
     if (BookmarkType_Bookmark == type) {
         QString url = index.data(Url).toString();
+        int id = index.data(ID).toInt();
         if (!url.isEmpty()) {
+            BookmarkItem item = m_pDatabase->getBookmark(id);
+            item.lastVisitTime = QDateTime::currentDateTime();
+            m_pDatabase->updateBookmark(item);
             emit openUrlRequested(url);
             close();  // 关闭对话框
         }
@@ -506,10 +513,7 @@ void CFrmBookmark::onCustomContextMenu(const QPoint &pos)
 
     if (BookmarkType_Bookmark == type) {
         menu.addAction(QIcon::fromTheme("document-open"), tr("Open"), this, [this, index]() {
-            QString url = index.data(Url).toString();
-            if (!url.isEmpty()) {
-                emit openUrlRequested(url);
-            }
+            onTreeViewDoubleClicked(index);
         });
 
         menu.addAction(QIcon::fromTheme("edit"), tr("Edit"), this, &CFrmBookmark::onEditBookmark);

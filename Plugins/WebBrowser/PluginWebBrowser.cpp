@@ -1,9 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
+#include <QWebEngineProfile>
+#include <QLoggingCategory>
 
 #include "PluginWebBrowser.h"
 #include "OperateWebBrowser.h"
-#include <QWebEngineProfile>
-#include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Plugin")
 CPluginWebBrowser::CPluginWebBrowser(QObject *parent)

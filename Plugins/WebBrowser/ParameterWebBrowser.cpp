@@ -28,7 +28,10 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     //m_szDownloadFolder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     SetDownloadFolder(QWebEngineProfile::defaultProfile()->downloadPath());
     qDebug(log) << "Download folder:" << GetDownloadFolder();
-    SetSearchEngine("https://cn.bing.com/search?q=%s");
+    if(QLocale::system().language() == QLocale::Language::Chinese)
+        SetSearchEngine("https://www.bing.com/search?q=%s");
+    else
+        SetSearchEngine("https://www.google.com/search?q=%s");
     SetSearchRelaceString("%s");
     QStringList searchEngines;
     searchEngines << "https://www.bing.com/search?q=%s"
