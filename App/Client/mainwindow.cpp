@@ -1348,8 +1348,8 @@ int MainWindow::SaveOperateLasterClose()
 {
     QFile f(RabbitCommon::CDir::Instance()->GetDirUserConfig()
             + QDir::separator() + "LasterClose.dat");
-    f.open(QFile::WriteOnly);
-    if(m_Parameter.GetOpenLasterClose())
+    bool bRet = f.open(QFile::WriteOnly);
+    if(bRet && m_Parameter.GetOpenLasterClose())
     {
         QDataStream d(&f);
         foreach(auto it, m_Operates)
