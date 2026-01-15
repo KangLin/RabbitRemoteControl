@@ -18,6 +18,7 @@ CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPre
     , m_bPromptPrintFinished(true)
     , m_bAutoFillUserAndPassword(false)
     , m_nDatabaseViewLimit(100)
+    , m_nAddCompleterLines(10)
     , m_WindowSize(600, 450)
     , m_nBookmarkCurrentFolder(1)
     , m_bBookmarkShowEditor(true)
@@ -56,6 +57,7 @@ int CParameterWebBrowser::OnLoad(QSettings &set)
     SetAutoFillUserAndPassword(set.value("AutoFillUserPassword", GetAutoFillUserAndPassword()).toBool());
     SetPromptPrintFinished(set.value("Print/Finished", GetPromptPrintFinished()).toBool());
     SetDatabaseViewLimit(set.value("Database/View/Limit", GetDatabaseViewLimit()).toInt());
+    SetAddCompleterLines(set.value("AddCompleter/Lines", GetAddCompleterLines()).toInt());
     SetWindowSize(set.value("WindowSize", GetWindowSize()).toSize());
     SetBookmarkShowEditor(set.value("Bookmark/ShowEditor", GetBookmarkShowEditor()).toBool());
     SetBookmarkCurrentFolder(set.value("Bookmark/CurrentFolder", GetBookmarkCurrentFolder()).toInt());
@@ -79,6 +81,7 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     set.setValue("AutoFillUserPassword", GetAutoFillUserAndPassword());
     set.setValue("Print/Finished", GetPromptPrintFinished());
     set.setValue("Database/View/Limit", GetDatabaseViewLimit());
+    set.setValue("AddCompleter/Lines", GetAddCompleterLines());
     set.setValue("WindowSize", GetWindowSize());
     set.setValue("Bookmark/ShowEditor", GetBookmarkShowEditor());
     set.setValue("Bookmark/CurrentFolder", GetBookmarkCurrentFolder());
@@ -281,6 +284,19 @@ void CParameterWebBrowser::SetDatabaseViewLimit(int newLimit)
     if(m_nDatabaseViewLimit == newLimit)
         return;
     m_nDatabaseViewLimit = newLimit;
+    SetModified(true);
+}
+
+int CParameterWebBrowser::GetAddCompleterLines() const
+{
+    return m_nAddCompleterLines;
+}
+
+void CParameterWebBrowser::SetAddCompleterLines(int newAddCompleterLines)
+{
+    if(m_nAddCompleterLines == newAddCompleterLines)
+        return;
+    m_nAddCompleterLines = newAddCompleterLines;
     SetModified(true);
 }
 

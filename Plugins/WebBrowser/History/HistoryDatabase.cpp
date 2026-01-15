@@ -362,6 +362,39 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(const QDate &date)
     return historyList;
 }
 
+QList<HistoryItem> CHistoryDatabase::getHistoryByDate(
+    const QDate &start, const QDate &end, int limit)
+{
+    QList<HistoryItem> historyList;
+
+    QSqlQuery query(m_database);
+    query.prepare(
+        "SELECT id, url, title, visit_time, visit_count, last_visit_time "
+        "FROM history "
+        "WHERE date(visit_time) >= date(:start) AND date(visit_time) <= date(:end) "
+        "ORDER BY visit_time DESC "
+        "LIMIT :limit"
+        );
+    query.bindValue(":start", start.toString("yyyy-MM-dd"));
+    query.bindValue(":end", end.toString("yyyy-MM-dd"));
+    query.bindValue(":limit", limit);
+
+    if (query.exec()) {
+        while (query.next()) {
+            HistoryItem item;
+            item.id = query.value(0).toInt();
+            item.url = query.value(1).toString();
+            item.title = query.value(2).toString();
+            item.visitTime = query.value(3).toDateTime();
+            item.visitCount = query.value(4).toInt();
+            item.lastVisitTime = query.value(5).toDateTime();
+            historyList.append(item);
+        }
+    }
+
+    return historyList;
+}
+
 QList<HistoryItem> CHistoryDatabase::searchHistory(const QString &keyword)
 {
     QList<HistoryItem> historyList;

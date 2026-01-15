@@ -94,6 +94,12 @@ private:
     int m_nDatabaseViewLimit;
 
 public:
+    int GetAddCompleterLines() const;
+    void SetAddCompleterLines(int newAddCompleterLines);
+private:
+    int m_nAddCompleterLines;
+
+public:
     QSize GetWindowSize() const;
     void SetWindowSize(const QSize &newWindowSize);
 private:

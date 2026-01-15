@@ -11,10 +11,10 @@ CHistoryModel::CHistoryModel(CHistoryDatabase *pDatabase, CParameterWebBrowser *
     , m_pPara(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
-    // 初始化时立即加载数据
-    if (m_pDatabase && m_pDatabase->isOpen()) {
-        refresh();
-    }
+    // Call refresh() by user
+    // if (m_pDatabase && m_pDatabase->isOpen()) {
+    //     refresh();
+    // }
 }
 
 CHistoryModel::~CHistoryModel()
@@ -108,6 +108,20 @@ void CHistoryModel::refresh()
     if(m_pPara)
         nLimit = m_pPara->GetDatabaseViewLimit();
     m_historyItems = m_pDatabase->getAllHistory(nLimit); // 最多500条
+    endResetModel();
+}
+
+void CHistoryModel::refresh(const QDate &start, const QDate &end)
+{
+    if(!m_pDatabase) {
+        qCritical(log) << "The m_pDatabase is nullptr";
+        return;
+    }
+    beginResetModel();
+    int nLimit = 100;
+    if(m_pPara)
+        nLimit = m_pPara->GetDatabaseViewLimit();
+    m_historyItems = m_pDatabase->getHistoryByDate(start, end, nLimit); // 最多500条
     endResetModel();
 }
 

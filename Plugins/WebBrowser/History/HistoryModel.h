@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <QDate>
 #include <QAbstractTableModel>
 #include "HistoryDatabase.h"
 #include "ParameterWebBrowser.h"
@@ -37,7 +38,8 @@ public:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
     // 自定义方法
-    void refresh();    
+    void refresh();
+    void refresh(const QDate &start, const QDate &end);
     HistoryItem getItem(const QModelIndex &index) const;
     bool removeDomainItems(const QString& szDomain);
     bool removeItems(const QString& url);

@@ -172,7 +172,8 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     auto pAddressCompleter = new CAddressCompleter(this);
     pAddressCompleter->setHistoryDatabase(m_pHistoryDatabase);
     pAddressCompleter->attachToLineEdit(m_pUrlLineEdit);
-    pAddressCompleter->setMaxVisibleItems(50);
+    if(m_pPara)
+        pAddressCompleter->setMaxVisibleItems(m_pPara->GetAddCompleterLines());
     check = connect(pAddressCompleter, &CAddressCompleter::urlSelected,
                     this, &CFrmWebBrowser::slotUrlSelected);
     Q_ASSERT(check);

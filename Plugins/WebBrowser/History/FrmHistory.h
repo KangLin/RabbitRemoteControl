@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QDateEdit>
 #include "HistoryModel.h"
 
 namespace Ui {
@@ -26,7 +27,7 @@ Q_SIGNALS:
 private slots:
     void on_tableView_doubleClicked(const QModelIndex &index);
     void slotCustomContextMenuRequested(const QPoint& pos);
-
+    void slotRefresh();
 private:
     QString extractDomain(const QString &url);
     void onDeleteHistoryItem(const QModelIndex &index);
@@ -39,4 +40,6 @@ private:
     Ui::CFrmHistory *ui;
     CHistoryModel* m_pModelHistory;
     CParameterWebBrowser* m_pPara;
+    QDateEdit* m_pDateStart;
+    QDateEdit* m_pDateEnd;
 };

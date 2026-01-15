@@ -44,6 +44,7 @@ public:
     // 查询操作
     QList<HistoryItem> getAllHistory(int limit = 100, int offset = 0);
     QList<HistoryItem> getHistoryByDate(const QDate &date);
+    QList<HistoryItem> getHistoryByDate(const QDate &start, const QDate &end, int limit = 100);
     QList<HistoryItem> searchHistory(const QString &keyword);
     HistoryItem getHistoryByUrl(const QString &url);
 

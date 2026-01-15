@@ -8,6 +8,8 @@
 #include <QToolBar>
 #include <QLayout>
 #include <QVBoxLayout>
+#include <QComboBox>
+#include <QDateEdit>
 #include "FrmHistory.h"
 #include "ui_FrmHistory.h"
 
@@ -19,30 +21,70 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
     , ui(new Ui::CFrmHistory)
     , m_pModelHistory(nullptr)
     , m_pPara(pPara)
+    , m_pDateStart(nullptr)
+    , m_pDateEnd(nullptr)
 {
+    bool check = false;
     ui->setupUi(this);
     ui->treeView->hide();
 
     setWindowTitle(tr("History"));
 
     QToolBar* pToolBar = new QToolBar(this);
-    QAction* pRefresh = pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                        this, [&] {
-        if(m_pModelHistory)
-            m_pModelHistory->refresh();
+
+    QDate curDate = QDate::currentDate();
+    m_pDateStart = new QDateEdit(curDate.addDays(-1), pToolBar);
+    if(m_pDateStart)
+        m_pDateStart->setToolTip(tr("Start date"));
+    m_pDateEnd = new QDateEdit(curDate, pToolBar);
+    if(m_pDateEnd)
+        m_pDateEnd->setToolTip(tr("End date"));
+    QComboBox* pCB = new QComboBox(pToolBar);
+    pCB->addItem(tr("One day"), 1);
+    pCB->addItem(tr("Two days"), 2);
+    pCB->addItem(tr("One Week"), 7);
+    pCB->addItem(tr("One month"), curDate.daysInMonth());
+    connect(pCB, &QComboBox::currentIndexChanged, this, [&, pCB](int index) {
+        qDebug(log) << "Change days";
+        //QComboBox* pCB = qobject_cast<QComboBox*>(sender());
+        if(!pCB) return;
+        int d = pCB->itemData(index).toInt();
+        QDate curDate = QDate::currentDate();
+        if(m_pDateEnd) {
+            m_pDateEnd->setDate(curDate);
+        }
+        switch(d) {
+        case -1:
+            break;
+        default:
+            if(m_pDateStart)
+                m_pDateStart->setDate(curDate.addDays(-1 * d));
+            break;
+        }
+        slotRefresh();
     });
+
+    pToolBar->addWidget(pCB);
+    pToolBar->addWidget(m_pDateStart);
+    pToolBar->addWidget(m_pDateEnd);
+
+    QAction* pRefresh = pToolBar->addAction(
+        QIcon::fromTheme("view-refresh"), tr("Refresh"),
+        this, &CFrmHistory::slotRefresh);
     if(pRefresh) {
         pRefresh->setToolTip(pRefresh->text());
         pRefresh->setStatusTip(pRefresh->text());
     }
-    QAction* pSettings = pToolBar->addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
-                        this, [&]() {
-        //TODO: add settings ui
-    });
+    /*
+    QAction* pSettings = pToolBar->addAction(
+        QIcon::fromTheme("system-settings"), tr("Settings"),
+        this, [&]() {
+            //TODO: add settings ui
+        });
     if(pSettings) {
         pSettings->setToolTip(pSettings->text());
         pSettings->setStatusTip(pSettings->text());
-    }
+    }//*/
 
     QLayout* pLayout = nullptr;
     pLayout = new QVBoxLayout(this);
@@ -50,7 +92,6 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
     pLayout->addWidget(ui->splitter);
     setLayout(pLayout);
 
-    bool check = false;
     check = connect(ui->tableView, &QTableView::customContextMenuRequested,
                     this, &CFrmHistory::slotCustomContextMenuRequested);
     //ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -64,15 +105,23 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         }
     }
 
-    ui->tableView->resizeColumnsToContents();
-
     resize(m_pPara->GetWindowSize());
+
+    slotRefresh();
 }
 
 CFrmHistory::~CFrmHistory()
 {
     m_pPara->SetWindowSize(this->size());
     delete ui;
+}
+
+void CFrmHistory::slotRefresh()
+{
+    if(m_pModelHistory) {
+        m_pModelHistory->refresh(m_pDateStart->date(), m_pDateEnd->date());
+        ui->tableView->resizeColumnsToContents();
+    }
 }
 
 void CFrmHistory::on_tableView_doubleClicked(const QModelIndex &index)
@@ -336,7 +385,7 @@ void CFrmHistory::onOpenSelectedUrls(const QModelIndexList &indexes)
     if (indexes.isEmpty()) return;
     for (const QModelIndex &index : indexes) {
         QString url = ui->tableView->model()->data(
-                                                index.siblingAtColumn(CHistoryModel::ColumnUrl)).toString();
+           index.siblingAtColumn(CHistoryModel::ColumnUrl)).toString();
         if (!url.isEmpty()) {
             emit sigOpenUrlInNewTab(url);
         }
