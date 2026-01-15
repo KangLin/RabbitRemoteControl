@@ -391,17 +391,17 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="315"/>
-        <location filename="../../Manager.cpp" line="576"/>
+        <location filename="../../Manager.cpp" line="599"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="518"/>
+        <location filename="../../Manager.cpp" line="521"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="581"/>
+        <location filename="../../Manager.cpp" line="604"/>
         <source>Dependency libraries:</source>
         <translation>依賴庫：</translation>
     </message>

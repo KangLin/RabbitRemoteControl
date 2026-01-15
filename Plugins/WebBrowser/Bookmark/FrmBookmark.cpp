@@ -375,8 +375,7 @@ void CFrmBookmark::onDeleteBookmark()
     if (BookmarkType_Bookmark == type) {
         message = tr("Are you sure you want to delete the bookmark \"%1\"?").arg(name);
     } else if (BookmarkType_Folder == type) {
-        message = tr("Are you sure you want to delete the folder \"%1\"?\n"
-                     "The bookmarks inside the folder will be moved to the root directory.").arg(name);
+        message = tr("Are you sure you want to delete the folder \"%1\"?").arg(name);
     } else {
         return;
     }
