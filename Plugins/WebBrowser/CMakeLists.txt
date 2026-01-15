@@ -79,7 +79,7 @@ list(APPEND WebBrowser_INCLUDE_DIR
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/History>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Bookmark>)
 
-if(QT_VERSION GREATER_EQUAL "6.7.0")
+if(QT_VERSION VERSION_GREATER_EQUAL "6.7.0")
     list(APPEND WebBrowser_SOURCE_FILES
         DlgWebAuth.cpp
         DlgScreenCapture.cpp
