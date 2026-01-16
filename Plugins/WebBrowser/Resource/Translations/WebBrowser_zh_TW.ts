@@ -9,51 +9,47 @@
         <translation>輸入網址或搜索內容……</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="65"/>
-        <source>Enter key: Apply current url</source>
-        <translation>Enter 鍵：應用當前網址</translation>
-    </message>
-    <message>
-        <source>&quot;Enter ↲ key:       Apply current item</source>
-        <translation type="vanished">Enter ↲ 鍵：應用當前條目</translation>
-    </message>
-    <message>
-        <location filename="../../AddressCompleter.cpp" line="67"/>
-        <source>Enter ↲ key:       Apply current item</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../AddressCompleter.cpp" line="68"/>
-        <source>Tab ⇆ key:         Apply current item</source>
-        <translation>Tab ⇆ 鍵：應用當前條目</translation>
-    </message>
-    <message>
-        <location filename="../../AddressCompleter.cpp" line="69"/>
-        <source>Esc Key:         Exit address completer</source>
-        <translation>Esc 鍵：退出</translation>
-    </message>
-    <message>
-        <location filename="../../AddressCompleter.cpp" line="70"/>
+        <location filename="../../AddressCompleter.cpp" line="71"/>
         <source>↑ (Upper arrow) key: Select previous item</source>
         <translation>↑ (向上光標)鍵：選擇前一個條目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="71"/>
-        <source>↓ (Down arrow) key:  Select next item</source>
+        <location filename="../../AddressCompleter.cpp" line="65"/>
+        <source>Enter ↲ key: Apply current url</source>
+        <translation>Enter ↲ 鍵：應用當前網址</translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="68"/>
+        <source>Enter ↲ key: Apply current item</source>
+        <translation>Enter ↲ 鍵：應用當前條目</translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="69"/>
+        <source>Tab ⇆ key: Apply current item</source>
+        <translation>Tab ⇆ 鍵：應用當前條目</translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="70"/>
+        <source>Esc Key: Exit address completer</source>
+        <translation>Esc 鍵：退出</translation>
+    </message>
+    <message>
+        <location filename="../../AddressCompleter.cpp" line="72"/>
+        <source>↓ (Down arrow) key: Select next item</source>
         <translation>↓ (向下光標)鍵：選擇下一個條目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="337"/>
+        <location filename="../../AddressCompleter.cpp" line="338"/>
         <source>Search &quot;%1&quot;</source>
         <translation>搜索 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="346"/>
+        <location filename="../../AddressCompleter.cpp" line="347"/>
         <source>Use default search engine</source>
         <translation>使用默認搜索引擎</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="371"/>
+        <location filename="../../AddressCompleter.cpp" line="372"/>
         <source>Search in %1</source>
         <translation>在 %1 搜索</translation>
     </message>
@@ -711,73 +707,73 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>文件信息</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="125"/>
+        <location filename="../../FrmDownload.cpp" line="124"/>
         <source>%p% - %1 of %2 downloaded - %3/s - time left: %4</source>
         <translation>%p% - 已下載： %1 / %2 - %3/秒 - 剩余時間： %4</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="132"/>
+        <location filename="../../FrmDownload.cpp" line="131"/>
         <source>unknown size - %1 downloaded - %2/s</source>
         <translation>未知大小 - 已下載： %1 - %2/秒</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="140"/>
+        <location filename="../../FrmDownload.cpp" line="139"/>
         <source>completed - %1 downloaded - %2/s</source>
         <translation>完成 - 下載： %1 - %2/秒</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="147"/>
+        <location filename="../../FrmDownload.cpp" line="146"/>
         <source>cancelled - %1 downloaded - %2/s</source>
         <translation>取消 - 下載： %1 - %2/秒</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="154"/>
+        <location filename="../../FrmDownload.cpp" line="153"/>
         <source>interrupted: %1</source>
         <translation>中斷：%1</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="164"/>
+        <location filename="../../FrmDownload.cpp" line="163"/>
         <source>Stop downloading</source>
         <translation>停止下載</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="171"/>
+        <location filename="../../FrmDownload.cpp" line="170"/>
         <source>Resumes downloading</source>
         <translation>繼續下載</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="179"/>
-        <location filename="../../FrmDownload.cpp" line="219"/>
+        <location filename="../../FrmDownload.cpp" line="178"/>
+        <location filename="../../FrmDownload.cpp" line="218"/>
         <source>Show in folder</source>
         <translation>在文件夾中顯示</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="181"/>
+        <location filename="../../FrmDownload.cpp" line="180"/>
         <source>Completed</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="196"/>
+        <location filename="../../FrmDownload.cpp" line="195"/>
         <source>The file has been deleted.</source>
         <translation>文件已刪除。</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="225"/>
+        <location filename="../../FrmDownload.cpp" line="224"/>
         <source>Open the file with the associated program</source>
         <translation>用關聯的程序打開文件</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="231"/>
+        <location filename="../../FrmDownload.cpp" line="230"/>
         <source>Copy url to clipboard</source>
         <translation>復製鏈接到剪切板</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="237"/>
+        <location filename="../../FrmDownload.cpp" line="236"/>
         <source>Remove from list</source>
         <translation>從列表中移除</translation>
     </message>
     <message>
-        <location filename="../../FrmDownload.cpp" line="242"/>
+        <location filename="../../FrmDownload.cpp" line="241"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
@@ -809,7 +805,7 @@ Please select the HTML bookmark file exported from your browser.</source>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="76"/>
-        <location filename="../../History/FrmHistory.cpp" line="293"/>
+        <location filename="../../History/FrmHistory.cpp" line="295"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
@@ -829,151 +825,156 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="177"/>
+        <location filename="../../History/FrmHistory.cpp" line="116"/>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="179"/>
         <source>Open the selected %1 urls</source>
         <translation>打開選擇的 %1 個網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="186"/>
+        <location filename="../../History/FrmHistory.cpp" line="188"/>
         <source>Delete the selected %1 urls</source>
         <translation>刪除選擇的 %1 個網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="197"/>
+        <location filename="../../History/FrmHistory.cpp" line="199"/>
         <source>All selected</source>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="203"/>
+        <location filename="../../History/FrmHistory.cpp" line="205"/>
         <source>Cancel selected</source>
         <translation>取消選擇</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="216"/>
+        <location filename="../../History/FrmHistory.cpp" line="218"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="225"/>
+        <location filename="../../History/FrmHistory.cpp" line="227"/>
         <source>Open in new tab</source>
         <translation>在新標簽中打開</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="233"/>
+        <location filename="../../History/FrmHistory.cpp" line="235"/>
         <source>Copy url</source>
         <translation>復製網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="242"/>
+        <location filename="../../History/FrmHistory.cpp" line="244"/>
         <source>Copy title</source>
         <translation>復製標題</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="252"/>
+        <location filename="../../History/FrmHistory.cpp" line="254"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="260"/>
+        <location filename="../../History/FrmHistory.cpp" line="262"/>
         <source>Delete all urls %1</source>
         <translation>刪除所有網址 %1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="271"/>
+        <location filename="../../History/FrmHistory.cpp" line="273"/>
         <source>Delete all urls from %1</source>
         <translation>刪除所有 %1 網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="282"/>
-        <location filename="../../History/FrmHistory.cpp" line="407"/>
+        <location filename="../../History/FrmHistory.cpp" line="284"/>
+        <location filename="../../History/FrmHistory.cpp" line="409"/>
         <source>Properties</source>
         <translation>屬性</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="301"/>
+        <location filename="../../History/FrmHistory.cpp" line="303"/>
         <source>Clear all urls</source>
         <translation>清除所有網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="345"/>
-        <location filename="../../History/FrmHistory.cpp" line="368"/>
+        <location filename="../../History/FrmHistory.cpp" line="347"/>
+        <location filename="../../History/FrmHistory.cpp" line="370"/>
         <source>Delete the url</source>
         <translation>刪除網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="346"/>
+        <location filename="../../History/FrmHistory.cpp" line="348"/>
         <source>Are you sure you want to delete the url &quot;%1&quot;?</source>
         <translation>確定刪除網址 &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="369"/>
+        <location filename="../../History/FrmHistory.cpp" line="371"/>
         <source>Are you sure you want to delete all url from &quot;%1&quot;?</source>
         <translation>確定刪除所有網址 &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="397"/>
+        <location filename="../../History/FrmHistory.cpp" line="399"/>
         <source>Url:</source>
         <translation>網址：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="403"/>
+        <location filename="../../History/FrmHistory.cpp" line="405"/>
         <source>Visit Count:</source>
         <translation>訪問次數：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="456"/>
+        <location filename="../../History/FrmHistory.cpp" line="458"/>
         <source>Import histories</source>
         <translation>導入歷史記錄</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="458"/>
+        <location filename="../../History/FrmHistory.cpp" line="460"/>
         <source>CSV file (*.csv);; All files (*.*)</source>
         <translation>CSV 文件 (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="463"/>
-        <location filename="../../History/FrmHistory.cpp" line="479"/>
+        <location filename="../../History/FrmHistory.cpp" line="465"/>
+        <location filename="../../History/FrmHistory.cpp" line="481"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="463"/>
+        <location filename="../../History/FrmHistory.cpp" line="465"/>
         <source>Histories import from csv file successfully</source>
         <translation>從 CSV 文件導入歷史記錄成功</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="465"/>
-        <location filename="../../History/FrmHistory.cpp" line="481"/>
+        <location filename="../../History/FrmHistory.cpp" line="467"/>
+        <location filename="../../History/FrmHistory.cpp" line="483"/>
         <source>Failure</source>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="465"/>
+        <location filename="../../History/FrmHistory.cpp" line="467"/>
         <source>Failed to import histories from csv file</source>
         <translation>從 CSV 文件導入歷史失敗</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="473"/>
+        <location filename="../../History/FrmHistory.cpp" line="475"/>
         <source>Export histories</source>
         <translation>導出歷史</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="475"/>
+        <location filename="../../History/FrmHistory.cpp" line="477"/>
         <source>CSV (*.csv);; All files (*.*)</source>
         <translation>CSV (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="479"/>
+        <location filename="../../History/FrmHistory.cpp" line="481"/>
         <source>Histories exported to csv file successfully</source>
         <translation>導出歷史到 CSV 文件成功</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="481"/>
+        <location filename="../../History/FrmHistory.cpp" line="483"/>
         <source>Failed to export histories to csv file</source>
         <translation>導出歷史到 CSV 文件失敗</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="401"/>
+        <location filename="../../History/FrmHistory.cpp" line="403"/>
         <source>Visit Time:</source>
         <translation>訪問時間：</translation>
     </message>
@@ -1008,17 +1009,17 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>一月</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="399"/>
+        <location filename="../../History/FrmHistory.cpp" line="401"/>
         <source>Last Visit Time:</source>
         <translation>最後訪時間：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="428"/>
+        <location filename="../../History/FrmHistory.cpp" line="430"/>
         <source>Delete the urls</source>
         <translation>刪除所有網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="429"/>
+        <location filename="../../History/FrmHistory.cpp" line="431"/>
         <source>Are you sure you want to delete the selected %1 urls?</source>
         <translation>確定刪除所有選擇的 %1 網址？</translation>
     </message>

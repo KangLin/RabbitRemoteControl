@@ -98,9 +98,9 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         Q_ASSERT(check);
     }
 
-    QAction* pImport = pToolBar->addAction(
+    pToolBar->addAction(
         QIcon::fromTheme("import"), tr("Import"), this, SLOT(slotImport()));
-    QAction* pExport = pToolBar->addAction(
+    pToolBar->addAction(
         QIcon::fromTheme("export"), tr("Export"), this, SLOT(slotExport()));
     /*
     QAction* pSettings = pToolBar->addAction(
@@ -112,6 +112,8 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         pSettings->setToolTip(pSettings->text());
         pSettings->setStatusTip(pSettings->text());
     }//*/
+    
+    pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"), this, SLOT(close()));
 
     QLayout* pLayout = nullptr;
     pLayout = new QVBoxLayout(this);
