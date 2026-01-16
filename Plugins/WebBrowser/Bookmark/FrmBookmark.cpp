@@ -11,6 +11,7 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 
+#include "RabbitCommonDir.h"
 #include "FrmBookmark.h"
 #include "ui_FrmBookmark.h"
 
@@ -420,7 +421,9 @@ void CFrmBookmark::onSetFavorite()
 void CFrmBookmark::onImportBookmarks()
 {
     QString filename = QFileDialog::getOpenFileName(
-        this, tr("Import bookmarks"), QString(), tr("HTML(*.html);; All files (*.*)"));
+        this, tr("Import bookmarks"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("HTML(*.html);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
         if (m_pDatabase->importFromHtml(filename)) {
@@ -435,7 +438,9 @@ void CFrmBookmark::onImportBookmarks()
 void CFrmBookmark::onExportBookmarks()
 {
     QString filename = QFileDialog::getSaveFileName(
-        this, tr("Export bookmarks"), QString(), tr("HTML (*.html);; All files (*.*)"));
+        this, tr("Export bookmarks"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("HTML (*.html);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
         if (m_pDatabase->exportToHtml(filename)) {

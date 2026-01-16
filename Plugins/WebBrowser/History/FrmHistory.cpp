@@ -12,7 +12,9 @@
 #include <QComboBox>
 #include <QDateEdit>
 #include <QSpinBox>
+
 #include "FrmHistory.h"
+#include "RabbitCommonDir.h"
 #include "ui_FrmHistory.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.History")
@@ -451,10 +453,13 @@ void CFrmHistory::onDeleteSelectedItems(const QModelIndexList &indexes)
 void CFrmHistory::slotImport()
 {
     QString filename = QFileDialog::getOpenFileName(
-        this, tr("Import histories"), QString(), tr("CSV file (*.csv);; All files (*.*)"));
+        this, tr("Import histories"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("CSV file (*.csv);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
         if(m_pModelHistory->importFromCSV(filename)) {
+            slotRefresh();
             QMessageBox::information(this, tr("Success"), tr("Histories import from csv file successfully"));
         } else {
             QMessageBox::warning(this, tr("Failure"), tr("Failed to import histories from csv file"));
@@ -465,7 +470,9 @@ void CFrmHistory::slotImport()
 void CFrmHistory::slotExport()
 {
     QString filename = QFileDialog::getSaveFileName(
-        this, tr("Export histories"), QString(), tr("CSV (*.csv);; All files (*.*)"));
+        this, tr("Export histories"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("CSV (*.csv);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
         if (m_pModelHistory->exportToCSV(filename)) {

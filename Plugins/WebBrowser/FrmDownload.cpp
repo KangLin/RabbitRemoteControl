@@ -106,8 +106,7 @@ void CFrmDownload::slotUpdateWidget()
     remaining = (totalBytes - receivedBytes) / bytesPerSecond + 1;
     if(remaining >= 0) {
         QTime tm(0, 0, 0);
-        szRemaining = tm.addSecs(remaining).toString(
-            QLocale::system().timeFormat(QLocale::ShortFormat));
+        szRemaining = tm.addSecs(remaining).toString("hh:mm:ss");
         qDebug(log) << "Remaining:" << remaining << tm << szRemaining;
     }
 

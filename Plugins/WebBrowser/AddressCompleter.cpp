@@ -64,11 +64,11 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     m_szLineEditToolTip = m_szEnter  + "\n\n"
                           + tr("Enter key: Apply current url");
 
-    m_szListWidgetToolTip += tr("Enter key:       Apply current item") + "\n";
-    m_szListWidgetToolTip += tr("Tab key:         Apply current item") + "\n";
+    m_szListWidgetToolTip += tr("Enter ↲ key:       Apply current item") + "\n";
+    m_szListWidgetToolTip += tr("Tab ⇆ key:         Apply current item") + "\n";
     m_szListWidgetToolTip += tr("Esc Key:         Exit address completer") + "\n";
-    m_szListWidgetToolTip += tr("Upper arrow key: Select previous item") + "\n";
-    m_szListWidgetToolTip += tr("Down arrow key:  Select next item");
+    m_szListWidgetToolTip += tr("↑ (Upper arrow) key: Select previous item") + "\n";
+    m_szListWidgetToolTip += tr("↓ (Down arrow) key:  Select next item");
 
     m_szLineEditToolTipShow = m_szEnter + "\n\n" + m_szListWidgetToolTip;
     setToolTip(m_szListWidgetToolTip);
