@@ -44,7 +44,7 @@ jobs:
       TOOLS_DIR:     ${{github.workspace}}/.cache/tools
       INSTALL_DIR:   ${{github.workspace}}/.cache/install
       artifact_name: build_android
-      ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
+      #ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
       ANDROID_PLATFORM: android-34
       ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
