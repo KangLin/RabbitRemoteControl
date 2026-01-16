@@ -145,6 +145,8 @@ void CFrmBookmark::setupToolBar()
         Q_ASSERT(check);
     }
 
+    m_pToolBar->addSeparator();
+
     // 刷新
     QAction *refreshAction = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"));
     if(refreshAction) {

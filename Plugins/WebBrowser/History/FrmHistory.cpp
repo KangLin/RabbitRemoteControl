@@ -80,6 +80,7 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         pRefresh->setStatusTip(pRefresh->text());
     }
 
+    pToolBar->addSeparator();
     QSpinBox* pSBLimit = new QSpinBox(pToolBar);
     if(pSBLimit) {
         pToolBar->addWidget(pSBLimit);
@@ -98,10 +99,12 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         Q_ASSERT(check);
     }
 
+    pToolBar->addSeparator();
     pToolBar->addAction(
         QIcon::fromTheme("import"), tr("Import"), this, SLOT(slotImport()));
     pToolBar->addAction(
         QIcon::fromTheme("export"), tr("Export"), this, SLOT(slotExport()));
+    pToolBar->addSeparator();
     /*
     QAction* pSettings = pToolBar->addAction(
         QIcon::fromTheme("system-settings"), tr("Settings"),
