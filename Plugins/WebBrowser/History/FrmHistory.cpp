@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QFileDialog>
 #include <QApplication>
 #include <QClipboard>
 #include <QMessageBox>
@@ -10,6 +11,7 @@
 #include <QVBoxLayout>
 #include <QComboBox>
 #include <QDateEdit>
+#include <QSpinBox>
 #include "FrmHistory.h"
 #include "ui_FrmHistory.h"
 
@@ -75,6 +77,29 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
         pRefresh->setToolTip(pRefresh->text());
         pRefresh->setStatusTip(pRefresh->text());
     }
+
+    QSpinBox* pSBLimit = new QSpinBox(pToolBar);
+    if(pSBLimit) {
+        pToolBar->addWidget(pSBLimit);
+        pSBLimit->setToolTip(tr("Limit"));
+        int nMax = 1000;
+        if(m_pPara)
+            nMax = qMax(nMax, m_pPara->GetDatabaseViewLimit());
+        pSBLimit->setRange(-1, nMax);
+        if(m_pPara)
+            pSBLimit->setValue(m_pPara->GetDatabaseViewLimit());
+        check = connect(pSBLimit, &QSpinBox::valueChanged, this, [&](int v) {
+            if(m_pPara)
+                m_pPara->SetDatabaseViewLimit(v);
+            slotRefresh();
+        });
+        Q_ASSERT(check);
+    }
+
+    QAction* pImport = pToolBar->addAction(
+        QIcon::fromTheme("import"), tr("Import"), this, SLOT(slotImport()));
+    QAction* pExport = pToolBar->addAction(
+        QIcon::fromTheme("export"), tr("Export"), this, SLOT(slotExport()));
     /*
     QAction* pSettings = pToolBar->addAction(
         QIcon::fromTheme("system-settings"), tr("Settings"),
@@ -420,5 +445,33 @@ void CFrmHistory::onDeleteSelectedItems(const QModelIndexList &indexes)
         }
 
         qDebug(log) << "Deleted" << indexes.size() << "history items";
+    }
+}
+
+void CFrmHistory::slotImport()
+{
+    QString filename = QFileDialog::getOpenFileName(
+        this, tr("Import histories"), QString(), tr("CSV file (*.csv);; All files (*.*)"));
+
+    if (!filename.isEmpty()) {
+        if(m_pModelHistory->importFromCSV(filename)) {
+            QMessageBox::information(this, tr("Success"), tr("Histories import from csv file successfully"));
+        } else {
+            QMessageBox::warning(this, tr("Failure"), tr("Failed to import histories from csv file"));
+        }
+    }
+}
+
+void CFrmHistory::slotExport()
+{
+    QString filename = QFileDialog::getSaveFileName(
+        this, tr("Export histories"), QString(), tr("CSV (*.csv);; All files (*.*)"));
+
+    if (!filename.isEmpty()) {
+        if (m_pModelHistory->exportToCSV(filename)) {
+            QMessageBox::information(this, tr("Success"), tr("Histories exported to csv file successfully"));
+        } else {
+            QMessageBox::warning(this, tr("Failure"), tr("Failed to export histories to csv file"));
+        }
     }
 }

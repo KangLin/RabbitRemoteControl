@@ -44,6 +44,9 @@ public:
     bool removeDomainItems(const QString& szDomain);
     bool removeItems(const QString& url);
 
+    bool importFromCSV(const QString& filename);
+    bool exportToCSV(const QString &filename);
+
 private:
     QList<HistoryItem> m_historyItems;
     CHistoryDatabase* m_pDatabase;

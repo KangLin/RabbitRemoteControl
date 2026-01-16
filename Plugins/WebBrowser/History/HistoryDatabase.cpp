@@ -308,15 +308,22 @@ QList<HistoryItem> CHistoryDatabase::getAllHistory(int limit, int offset)
     QList<HistoryItem> historyList;
 
     QSqlQuery query(m_database);
-    query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time "
-        "FROM history "
-        "ORDER BY visit_time DESC "
-        "LIMIT :limit OFFSET :offset"
-        );
-    query.bindValue(":limit", limit);
-    query.bindValue(":offset", offset);
-
+    if(0 > limit) {
+        query.prepare(
+            "SELECT id, url, title, visit_time, visit_count, last_visit_time "
+            "FROM history "
+            "ORDER BY visit_time DESC "
+            );
+    } else {
+        query.prepare(
+            "SELECT id, url, title, visit_time, visit_count, last_visit_time "
+            "FROM history "
+            "ORDER BY visit_time DESC "
+            "LIMIT :limit OFFSET :offset"
+            );
+        query.bindValue(":limit", limit);
+        query.bindValue(":offset", offset);
+    }
     if (query.exec()) {
         while (query.next()) {
             HistoryItem item;
@@ -328,6 +335,8 @@ QList<HistoryItem> CHistoryDatabase::getAllHistory(int limit, int offset)
             item.lastVisitTime = query.value(5).toDateTime();
             historyList.append(item);
         }
+    } else {
+        qCritical(log) << "Failed to get all history:" << query.lastError().text();
     }
 
     return historyList;
@@ -448,6 +457,29 @@ HistoryItem CHistoryDatabase::getHistoryByUrl(const QString &url)
     return item;
 }
 
+HistoryItem CHistoryDatabase::getHistoryById(int id)
+{
+    HistoryItem item;
+
+    QSqlQuery query(m_database);
+    query.prepare(
+        "SELECT id, url, title, visit_time, visit_count, last_visit_time "
+        "FROM history WHERE id = :id"
+        );
+    query.bindValue(":id", id);
+
+    if (query.exec() && query.next()) {
+        item.id = query.value(0).toInt();
+        item.url = query.value(1).toString();
+        item.title = query.value(2).toString();
+        item.visitTime = query.value(3).toDateTime();
+        item.visitCount = query.value(4).toInt();
+        item.lastVisitTime = query.value(5).toDateTime();
+    }
+
+    return item;
+}
+
 int CHistoryDatabase::getHistoryCount()
 {
     QSqlQuery query(m_database);
@@ -472,6 +504,79 @@ QDateTime CHistoryDatabase::getLastVisitTime()
     return QDateTime();
 }
 
+bool CHistoryDatabase::importFromCSV(const QString &filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qCritical(log) << "Failed to open file" << filename;
+        return false;
+    }
+
+    QTextStream in(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    in.setEncoding(QStringConverter::Utf8);
+#else
+    in.setCodec("UTF-8");
+#endif
+    in.setGenerateByteOrderMark(true);  // 添加 UTF-8 BOM
+    int importedCount = 0;
+    int lineNumber = 0;
+
+    // 开始事务
+    m_database.transaction();
+
+    try {
+        while (!in.atEnd()) {
+            QString line = in.readLine().trimmed();
+            lineNumber++;
+
+            // 跳过空行和注释
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+
+            // 跳过表头（第一行）
+            if (lineNumber == 1) {
+                // 验证表头格式
+                if (!validateCsvHeader(line)) {
+                    throw QString("Invalid CSV header format");
+                }
+                continue;
+            }
+
+            // 解析 CSV 行
+            QStringList fields = parseCsvLine(line);
+
+            if (fields.size() >= 6) {
+                if (importCsvRecord(fields)) {
+                    importedCount++;
+                }
+            } else {
+                qWarning() << "Invalid CSV line" << lineNumber << ":" << line;
+            }
+        }
+
+        file.close();
+
+        if (importedCount == 0) {
+            throw QString("No valid records found in CSV file");
+        }
+
+        if (!m_database.commit()) {
+            throw QString("Failed to commit transaction: %1").arg(m_database.lastError().text());
+        }
+
+        qDebug(log) << "Successfully imported" << importedCount << "records from CSV file";
+        return true;
+    } catch (const QString &error) {
+        m_database.rollback();
+        file.close();
+        qCritical(log) << "CSV import failed at line" << lineNumber << ":" << error;
+        return false;
+    }
+    return false;
+}
+
 bool CHistoryDatabase::exportToCSV(const QString &filename)
 {
     QFile file(filename);
@@ -479,6 +584,11 @@ bool CHistoryDatabase::exportToCSV(const QString &filename)
         return false;
 
     QTextStream out(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    out.setEncoding(QStringConverter::Utf8);
+#else
+    out.setCodec("UTF-8");
+#endif
     out.setGenerateByteOrderMark(true);  // 添加 UTF-8 BOM
 
     // 写入表头
@@ -488,7 +598,7 @@ bool CHistoryDatabase::exportToCSV(const QString &filename)
     };
     out << headers.join(",") << "\n";
 
-    QList<HistoryItem> items = getAllHistory(0, 0);
+    QList<HistoryItem> items = getAllHistory();
     foreach (const auto &item, items) {
         QStringList row;
         row << QString::number(item.id);
@@ -529,4 +639,159 @@ QString CHistoryDatabase::escapeForCsv(const QString &text)
     escaped.replace("\"", "\"\"");
 
     return "\"" + escaped + "\"";
+}
+
+QString CHistoryDatabase::unescapeCsvField(const QString &field)
+{
+    if (field.isEmpty()) {
+        return QString();
+    }
+
+    QString unescaped = field;
+
+    // 去除包围的引号
+    if (unescaped.startsWith('"') && unescaped.endsWith('"')) {
+        unescaped = unescaped.mid(1, unescaped.length() - 2);
+    }
+
+    // 反转义双引号
+    unescaped.replace("\"\"", "\"");
+
+    return unescaped.trimmed();
+}
+
+QStringList CHistoryDatabase::parseCsvLine(const QString &line)
+{
+    QStringList fields;
+    QString field;
+    bool inQuotes = false;
+
+    for (int i = 0; i < line.length(); ++i) {
+        QChar ch = line[i];
+
+        if (ch == '"') {
+            // 处理转义的双引号
+            if (i + 1 < line.length() && line[i + 1] == '"') {
+                field += '"';
+                i++;  // 跳过下一个引号
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (ch == ',' && !inQuotes) {
+            fields.append(field.trimmed());
+            field.clear();
+        } else {
+            field += ch;
+        }
+    }
+
+    // 添加最后一个字段
+    if (!field.isEmpty()) {
+        fields.append(field.trimmed());
+    }
+
+    return fields;
+}
+
+bool CHistoryDatabase::validateCsvHeader(const QString &headerLine)
+{
+    QStringList headers = parseCsvLine(headerLine);
+
+    // 检查必需的表头
+    if (headers.size() < 6) {
+        return false;
+    }
+
+    // 检查关键字段
+    QStringList requiredHeaders = {"URL", "Title", "Visit Time"};
+    for (const QString &required : requiredHeaders) {
+        if (!headers.contains(required, Qt::CaseInsensitive)) {
+            qWarning(log) << "Missing required header:" << required;
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool CHistoryDatabase::importCsvRecord(const QStringList &fields)
+{
+    if (fields.size() < 6) {
+        return false;
+    }
+
+    HistoryItem item;
+
+    // 解析字段
+    // 字段顺序：ID, URL, Title, Visit Time, Visit Count, Last Visit Time, [Favicon URL]
+
+    // ID（可选）
+    if (!fields[0].isEmpty()) {
+        bool ok;
+        item.id = fields[0].toInt(&ok);
+        if (!ok) item.id = 0;
+    }
+
+    // URL（必需）
+    item.url = unescapeCsvField(fields[1]);
+    if (item.url.isEmpty()) {
+        return false;
+    }
+
+    // Title（必需）
+    item.title = unescapeCsvField(fields[2]);
+    if (item.title.isEmpty()) {
+        item.title = item.url;  // 使用URL作为标题
+    }
+
+    // Visit Time（必需）
+    item.visitTime = QDateTime::fromString(fields[3], Qt::ISODate);
+    if (!item.visitTime.isValid()) {
+        // 尝试其他格式
+        item.visitTime = QDateTime::fromString(fields[3], Qt::TextDate);
+        if (!item.visitTime.isValid()) {
+            item.visitTime = QDateTime::currentDateTime();
+        }
+    }
+
+    // Visit Count（可选）
+    if (fields.size() > 4 && !fields[4].isEmpty()) {
+        bool ok;
+        item.visitCount = fields[4].toInt(&ok);
+        if (!ok) item.visitCount = 1;
+    } else {
+        item.visitCount = 1;
+    }
+
+    // Last Visit Time（可选）
+    if (fields.size() > 5 && !fields[5].isEmpty()) {
+        item.lastVisitTime = QDateTime::fromString(fields[5], Qt::ISODate);
+        if (!item.lastVisitTime.isValid()) {
+            item.lastVisitTime = item.visitTime;
+        }
+    } else {
+        item.lastVisitTime = item.visitTime;
+    }
+
+    /*/ Favicon URL（可选）
+    if (fields.size() > 6) {
+        item.faviconUrl = unescapeCsvField(fields[6]);
+    }//*/
+
+    // 检查是否已存在
+    HistoryItem existing = getHistoryById(item.id);
+    if (existing.id > 0 && existing.url == item.url) {
+        // 更新现有记录
+        existing.title = item.title;
+        existing.visitCount += item.visitCount;
+        existing.lastVisitTime = item.visitTime > existing.lastVisitTime ?
+                                     item.visitTime : existing.lastVisitTime;
+        // existing.faviconUrl = item.faviconUrl.isEmpty() ?
+        //                           existing.faviconUrl : item.faviconUrl;
+
+        return updateHistoryEntry(item.id, item.title);
+    } else {
+        // 插入新记录
+        return addHistoryEntry(item.url, item.title);
+    }
 }

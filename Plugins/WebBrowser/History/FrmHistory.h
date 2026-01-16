@@ -28,6 +28,8 @@ private slots:
     void on_tableView_doubleClicked(const QModelIndex &index);
     void slotCustomContextMenuRequested(const QPoint& pos);
     void slotRefresh();
+    void slotImport();
+    void slotExport();
 private:
     QString extractDomain(const QString &url);
     void onDeleteHistoryItem(const QModelIndex &index);

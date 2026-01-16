@@ -42,18 +42,25 @@ public:
     void scheduleCleanup(int maxDays, int maxCount);
 
     // 查询操作
-    QList<HistoryItem> getAllHistory(int limit = 100, int offset = 0);
+    QList<HistoryItem> getAllHistory(int limit = -1, int offset = 0);
     QList<HistoryItem> getHistoryByDate(const QDate &date);
     QList<HistoryItem> getHistoryByDate(const QDate &start, const QDate &end, int limit = 100);
     QList<HistoryItem> searchHistory(const QString &keyword);
     HistoryItem getHistoryByUrl(const QString &url);
+    HistoryItem getHistoryById(int id);
 
     // 统计信息
     int getHistoryCount();
     QDateTime getLastVisitTime();
 
+    bool importFromCSV(const QString& filename);
     bool exportToCSV(const QString &filename);
+private:
     QString escapeForCsv(const QString &text);
+    QString unescapeCsvField(const QString &field);
+    bool validateCsvHeader(const QString &headerLine);
+    QStringList parseCsvLine(const QString &line);
+    bool importCsvRecord(const QStringList &fields);
 
 private:
     QSqlDatabase m_database;

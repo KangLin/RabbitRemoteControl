@@ -173,3 +173,15 @@ bool CHistoryModel::removeItems(const QString &url)
     }
     return false;
 }
+
+bool CHistoryModel::importFromCSV(const QString &filename)
+{
+    if(!m_pDatabase) return false;
+    return m_pDatabase->importFromCSV(filename);
+}
+
+bool CHistoryModel::exportToCSV(const QString &filename)
+{
+    if(!m_pDatabase) return false;
+    return m_pDatabase->exportToCSV(filename);
+}
