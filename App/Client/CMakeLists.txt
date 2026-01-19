@@ -17,7 +17,9 @@ set(SOURCE_FILES
     ParameterDlgSettings.cpp
     FavoriteView.cpp
     FavoriteMimeData.cpp
-    FrmListRecent.cpp
+    Recent/FrmRecent.cpp
+    Recent/RecentModel.cpp
+    Recent/RecentDatabase.cpp
     FrmActive.cpp
     )
 
@@ -32,7 +34,9 @@ set(HEADER_FILES
     ParameterDlgSettings.h
     FavoriteView.h
     FavoriteMimeData.h
-    FrmListRecent.h
+    Recent/FrmRecent.h
+    Recent/RecentModel.h
+    Recent/RecentDatabase.h
     FrmActive.h
     )
 
@@ -49,6 +53,9 @@ endif()
 if(LINUX)
     LIST(APPEND RCC_FILES Resource/Resource.qrc)
 endif()
+
+list(APPEND APP_INCLUDE_DIRS
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Recent>)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
@@ -86,6 +93,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     ISWINDOWS
     ${IS_MACOSX_BUNDLE}
     VERSION ${RabbitRemoteControl_VERSION}
+    INCLUDE_DIRS ${APP_INCLUDE_DIRS}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
         RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES} ${AppImage}

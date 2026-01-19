@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #pragma once
 
 #include <QWidget>
@@ -8,6 +10,7 @@
 #include "Manager.h"
 #include "TitleBar.h"
 #include "ParameterApp.h"
+#include "RecentModel.h"
 
 class MainWindow;
 
@@ -16,27 +19,31 @@ class MainWindow;
  *
  * \~english List the connect of be existed
  */
-class CFrmListRecent : public QWidget, CManager::Handle
+class CFrmRecent : public QWidget, CManager::Handle
 {
     Q_OBJECT
     
 public:
-    explicit CFrmListRecent(MainWindow* pMainWindow, CManager* pManager,
-                            CParameterApp &parameterApp, bool bDock = false,
-                            QWidget *parent = nullptr);
-    virtual ~CFrmListRecent();
+    explicit CFrmRecent(MainWindow* pMainWindow, CManager* pManager,
+                        CRecentDatabase* pDb, CParameterApp &parameterApp,
+                        bool bDock = false, QWidget *parent = nullptr);
+    virtual ~CFrmRecent();
 
 public:
     virtual int onProcess(const QString &id, CPlugin *pPlugin) override;
-    
+
     RabbitCommon::CTitleBar* m_pDockTitleBar;
-    
+
+    int Init();
+
 public Q_SLOTS:
-    void slotLoadFiles();
+    void slotRefresh();
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings = false);
-    void sigAddToFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
+    void sigAddToFavorite(const QString& szName,
+                          const QString& szDescription,
+                          const QIcon& icon, const QString &szFile);
 
 private slots:
     void slotEditConnect();
@@ -55,15 +62,6 @@ private:
     int InsertItem(COperate* c, QString &szFile);
     QList<QStandardItem*> GetItem(COperate* c, QString &szFile);
 
-    enum ColumnNo {
-        Name = 0,
-        Protocol,
-        Type,
-        Date,
-        ID,
-        File
-    };
-
 private:
     MainWindow* m_pMainWindow;
     QMap<CPlugin::TYPE, QMenu*> m_MenuStartByType;
@@ -81,7 +79,8 @@ private:
     QAction* m_pAddToFavorite;
 
     QTableView* m_pTableView;
-    QStandardItemModel* m_pModel;
+    CRecentDatabase* m_pDatabase;
+    CRecentModel* m_pModel;
     CManager* m_pManager;
     bool m_bDock;
 };

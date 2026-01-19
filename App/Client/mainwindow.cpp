@@ -56,7 +56,9 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pActionOperateMenu(nullptr)
     , m_pTBOperate(nullptr)
     , m_pActionTBOperate(nullptr)
-    , m_pDockListRecent(nullptr)
+    , m_pDockRecent(nullptr)
+    , m_pRecent(nullptr)
+    , m_pRecentDb(nullptr)
     , m_pDockActive(nullptr)
     , m_pFrmActive(nullptr)
     , m_pSecureLevel(nullptr)
@@ -66,7 +68,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pFullScreenToolBar(nullptr)
     , m_pRecentMenu(nullptr)
     , m_pDockFavorite(nullptr)
-    , m_pListRecent(nullptr)
     , m_pFavoriteView(nullptr)
     , m_StatusBarMessage(this)
 {
@@ -130,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(
-        tr("Recently"), QIcon::fromTheme("document-open-recent"), true, this);
+        tr("Recently"), QIcon::fromTheme("document-open-recent"), false, this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
@@ -238,35 +239,36 @@ MainWindow::MainWindow(QWidget *parent)
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
     }
 
-    m_pDockListRecent = new QDockWidget(this);
-    if(m_pDockListRecent)
+    m_pRecentDb = new CRecentDatabase(this);
+    m_pDockRecent = new QDockWidget(this);
+    if(m_pDockRecent)
     {
-        m_pListRecent
-            = new CFrmListRecent(this, &m_Manager, m_Parameter, true,
-                                 m_pDockListRecent);
-        if(m_pListRecent) {
-            if(m_pListRecent->m_pDockTitleBar)
-                m_pDockListRecent->setTitleBarWidget(
-                    m_pListRecent->m_pDockTitleBar);
-            check = connect(m_pListRecent,
+        m_pRecent
+            = new CFrmRecent(this, &m_Manager, m_pRecentDb, m_Parameter, true,
+                                 m_pDockRecent);
+        if(m_pRecent) {
+            if(m_pRecent->m_pDockTitleBar)
+                m_pDockRecent->setTitleBarWidget(
+                    m_pRecent->m_pDockTitleBar);
+            check = connect(m_pRecent,
                             SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
-            check = connect(m_pListRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
+            check = connect(m_pRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
                             m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
             Q_ASSERT(check);
-            m_pDockListRecent->setWidget(m_pListRecent);
-            m_pDockListRecent->setWindowTitle(
-                m_pListRecent->windowTitle());
+            m_pDockRecent->setWidget(m_pRecent);
+            m_pDockRecent->setWindowTitle(
+                m_pRecent->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
-        m_pDockListRecent->setObjectName("dockListRecent");
+        m_pDockRecent->setObjectName("dockRecent");
 #if defined(Q_OS_ANDROID)
         m_pDockListRecent->hide();
 #endif
-        ui->menuView->addAction(m_pDockListRecent->toggleViewAction());
-        m_pDockListRecent->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
-        tabifyDockWidget(m_pDockFavorite, m_pDockListRecent);
+        ui->menuView->addAction(m_pDockRecent->toggleViewAction());
+        m_pDockRecent->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
+        tabifyDockWidget(m_pDockFavorite, m_pDockRecent);
     }
 
     m_pDockActive = new QDockWidget(this);
@@ -409,10 +411,23 @@ void MainWindow::slotInitial()
     m_Manager.Initial();
     m_Manager.EnumPlugins(this);
 
+    if(m_pRecentDb)
+        m_pRecentDb->openDatabase();
+
     if(m_pRecentMenu) {
         slotInformation(tr("Load recent menu ......"));
         qApp->processEvents();
-        m_pRecentMenu->slotRestoreState();
+        auto recents = m_pRecentDb->getRecents(m_Parameter.GetRecentMenuMaxCount());
+        //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
+        foreach (auto r, recents) {
+            m_pRecentMenu->addRecentFile(r.szFile, r.szName);
+        }
+    }
+
+    if(m_pRecent) {
+        slotInformation(tr("Load list recent dock ......"));
+        qApp->processEvents();
+        m_pRecent->Init();
     }
 
     if(m_pFavoriteView) {
@@ -421,11 +436,6 @@ void MainWindow::slotInitial()
         m_pFavoriteView->Load();
     }
 
-    if(m_pListRecent) {
-        slotInformation(tr("Load list recent dock ......"));
-        qApp->processEvents();
-        m_pListRecent->slotLoadFiles();
-    }
     slotEnableSystemTrayIcon();
 
     setEnabled(true);
@@ -555,7 +565,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
         ui->menubar->setVisible(m_FullState.menubar);
 
         m_pDockActive->setVisible(m_FullState.dockListActive);
-        m_pDockListRecent->setVisible(m_FullState.dockListRecent);
+        m_pDockRecent->setVisible(m_FullState.dockListRecent);
         m_pDockFavorite->setVisible(m_FullState.dockFavorite);
         // TODO: This is hade code. it is in RabbitCommon
         QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
@@ -600,8 +610,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
     m_FullState.dockListActive = m_pDockActive->isVisible();
     m_pDockActive->setVisible(false);
-    m_FullState.dockListRecent = m_pDockListRecent->isVisible();
-    m_pDockListRecent->setVisible(false);
+    m_FullState.dockListRecent = m_pDockRecent->isVisible();
+    m_pDockRecent->setVisible(false);
     m_FullState.dockFavorite = m_pDockFavorite->isVisible();
     m_pDockFavorite->setVisible(false);
     // This is hade code. it is in RabbitCommon
@@ -928,8 +938,19 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     int nRet = 0;
     if(bSave)
         nRet = m_Manager.SaveOperate(pOperate);
-    if(0 == nRet)
+    if(0 == nRet) {
         m_pRecentMenu->addRecentFile(szFile, pOperate->Name());
+        CRecentDatabase::Item item;
+        item.szOperateId = pOperate->Id();
+        item.icon = pOperate->Icon();
+        item.szName = pOperate->Name();
+        item.szProtocol = pOperate->Protocol();
+        item.szType = pOperate->GetTypeName();
+        item.szDescription = pOperate->Description();
+        item.szFile = szFile;
+        item.time = QDateTime::currentDateTime();
+        m_pRecentDb->addRecent(item);
+    }
     
     if(!pOperate->Name().isEmpty())
         slotInformation(tr("Starting: ") + pOperate->Name());
@@ -1222,6 +1243,10 @@ void MainWindow::slotUpdateName(const QString& szName)
     if(!p) return;
     m_pView->SetWidowsTitle(p->GetViewer(), szName,
                             p->Icon(), p->Description());
+    if(m_pRecentDb) {
+        m_pRecentDb->updateRecent(
+            p->GetSettingsFile(), p->Name(), p->Description());
+    }
     foreach(auto a, ui->menuActivity->actions()) {
         if(a->data().value<COperate*>() == p) {
             a->setText(szName);
@@ -1462,7 +1487,7 @@ void MainWindow::slotShortCut()
 
 void MainWindow::on_actionOpenListRecent_triggered()
 {
-    CFrmListRecent* p = new CFrmListRecent(this, &m_Manager, m_Parameter, false);
+    CFrmRecent* p = new CFrmRecent(this, &m_Manager, m_pRecentDb, m_Parameter, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigStart(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));
@@ -1471,7 +1496,7 @@ void MainWindow::on_actionOpenListRecent_triggered()
                     m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
     Q_ASSERT(check);
     
-    p->slotLoadFiles();
+    p->Init();
     QDialog d;
     d.resize(540, 400);
     d.setWindowIcon(windowIcon());
@@ -1691,8 +1716,8 @@ void MainWindow::on_actionLayoutDefault_triggered()
         m_pDockActive->toggleViewAction()->trigger();
     if(!m_pDockFavorite->toggleViewAction()->isChecked())
         m_pDockFavorite->toggleViewAction()->trigger();
-    if(!m_pDockListRecent->toggleViewAction()->isChecked())
-        m_pDockListRecent->toggleViewAction()->trigger();
+    if(!m_pDockRecent->toggleViewAction()->isChecked())
+        m_pDockRecent->toggleViewAction()->trigger();
     m_Parameter.SetTabPosition(QTabWidget::North);
     if(!ui->actionTabBar_B->isChecked())
         ui->actionTabBar_B->trigger();
@@ -1716,8 +1741,8 @@ void MainWindow::on_actionLayoutSimple_triggered()
         m_pDockActive->toggleViewAction()->trigger();
     if(m_pDockFavorite->toggleViewAction()->isChecked())
         m_pDockFavorite->toggleViewAction()->trigger();
-    if(m_pDockListRecent->toggleViewAction()->isChecked())
-        m_pDockListRecent->toggleViewAction()->trigger();
+    if(m_pDockRecent->toggleViewAction()->isChecked())
+        m_pDockRecent->toggleViewAction()->trigger();
     m_Parameter.SetTabPosition(QTabWidget::East);
     if(!ui->actionTabBar_B->isChecked())
         ui->actionTabBar_B->trigger();
@@ -1741,8 +1766,8 @@ void MainWindow::on_actionLayoutMinimalism_triggered()
         m_pDockActive->toggleViewAction()->trigger();
     if(m_pDockFavorite->toggleViewAction()->isChecked())
         m_pDockFavorite->toggleViewAction()->trigger();
-    if(m_pDockListRecent->toggleViewAction()->isChecked())
-        m_pDockListRecent->toggleViewAction()->trigger();
+    if(m_pDockRecent->toggleViewAction()->isChecked())
+        m_pDockRecent->toggleViewAction()->trigger();
     m_Parameter.SetTabPosition(QTabWidget::East);
     if(ui->actionTabBar_B->isChecked())
         ui->actionTabBar_B->trigger();

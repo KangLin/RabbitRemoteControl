@@ -13,11 +13,12 @@
 #include <QSystemTrayIcon>
 #include <QLabel>
 
+#include "RecentDatabase.h"
 #include "View.h"
 #include "Manager.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
-#include "FrmListRecent.h"
+#include "FrmRecent.h"
 #include "FavoriteView.h"
 #include "FrmActive.h"
 
@@ -59,7 +60,7 @@ private Q_SLOTS:
     void slotStart();
     void slotRunning();
 private:
-    int Start(COperate* pOperate, bool set, QString szFile = QString());
+    Q_INVOKABLE int Start(COperate* pOperate, bool set, QString szFile = QString());
     int LoadOperateLasterClose();
     int SaveOperateLasterClose();
 public:
@@ -216,8 +217,9 @@ private:
 
     ///////// List connects /////////
 private:
-    QDockWidget* m_pDockListRecent;
-    CFrmListRecent* m_pListRecent;
+    QDockWidget* m_pDockRecent;
+    CFrmRecent* m_pRecent;
+    CRecentDatabase* m_pRecentDb;
 private Q_SLOTS:
     void on_actionOpenListRecent_triggered();
     
@@ -248,9 +250,9 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotEnableSystemTrayIcon();
-    
+
     void on_actionUser_manual_triggered();
-    
+
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

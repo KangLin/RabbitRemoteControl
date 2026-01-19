@@ -28,7 +28,7 @@ bool CBookmarkDatabase::openDatabase(const QString &dbPath)
     QString databasePath;
     if (dbPath.isEmpty()) {
         // 使用默认路径
-        QString dataDir = RabbitCommon::CDir::Instance()->GetDirDatabase();
+        QString dataDir = RabbitCommon::CDir::Instance()->GetDirUserDatabase();
         QDir dir(dataDir);
         if (!dir.exists()) {
             dir.mkpath(dataDir);

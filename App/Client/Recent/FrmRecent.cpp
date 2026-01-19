@@ -1,5 +1,5 @@
-#include "FrmListRecent.h"
-#include "RabbitCommonDir.h"
+// Author: Kang Lin <kl222@126.com>
+
 #include <QVBoxLayout>
 #include <QDateTime>
 #include <QStandardItem>
@@ -8,11 +8,13 @@
 #include <QMenu>
 #include <QLoggingCategory>
 #include "mainwindow.h"
+#include "FrmRecent.h"
+#include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "App.FrmListRecent")
 
-CFrmListRecent::CFrmListRecent(
-    MainWindow *pMainWindow, CManager *pManager,
+CFrmRecent::CFrmRecent(
+    MainWindow *pMainWindow, CManager *pManager, CRecentDatabase *pDb,
     CParameterApp &parameterApp, bool bDock, QWidget *parent) :
     QWidget(parent),
     m_pMainWindow(pMainWindow),
@@ -20,6 +22,7 @@ CFrmListRecent::CFrmListRecent(
     m_pToolBar(nullptr),
     m_ptbOperate(nullptr),
     m_pMenuNew(nullptr),
+    m_pDatabase(pDb),
     m_pModel(nullptr),
     m_pManager(pManager),
     m_bDock(bDock),
@@ -60,7 +63,7 @@ CFrmListRecent::CFrmListRecent(
     check = connect(&m_ParameterApp, SIGNAL(sigStartByTypeChanged()),
                     this, SLOT(slotStartByType()));
     Q_ASSERT(check);
-    m_pManager->EnumPlugins(this);
+
     m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                                     this, SLOT(slotEdit()));
     m_pEdit->setStatusTip(tr("Edit"));
@@ -82,8 +85,9 @@ CFrmListRecent::CFrmListRecent(
     m_pDetail->setToolTip(tr("Detail"));
     m_pDetail->setStatusTip(tr("Detail"));
     m_pToolBar->addSeparator();
-    m_pAddToFavorite = m_pToolBar->addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
-                          this, SLOT(slotAddToFavorite()));
+    m_pAddToFavorite = m_pToolBar->addAction(
+        QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
+        this, SLOT(slotAddToFavorite()));
     m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setEnabled(false);
@@ -91,7 +95,7 @@ CFrmListRecent::CFrmListRecent(
         m_pRefresh = m_pToolBar->addAction(
             QIcon::fromTheme("view-refresh"),
             tr("Refresh"),
-            this, SLOT(slotLoadFiles()));
+            this, SLOT(slotRefresh()));
         m_pRefresh->setToolTip(tr("Refresh"));
         m_pRefresh->setStatusTip(tr("Refresh"));
     } else {
@@ -151,23 +155,21 @@ CFrmListRecent::CFrmListRecent(
     Q_ASSERT(check);
     layout()->addWidget(m_pTableView);
 
-    m_pModel = new QStandardItemModel(m_pTableView);
+    m_pModel = new CRecentModel(&m_ParameterApp, m_pDatabase, m_pTableView);
     m_pTableView->setModel(m_pModel);
     m_pTableView->verticalHeader()->hide();
     m_pTableView->setSelectionMode(QAbstractItemView::SingleSelection);
     m_pTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_pTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_pModel->setHorizontalHeaderItem(ColumnNo::Name, new QStandardItem(tr("Name")));
-    m_pModel->setHorizontalHeaderItem(ColumnNo::Protocol, new QStandardItem(tr("Protocol")));
-    m_pModel->setHorizontalHeaderItem(ColumnNo::Type, new QStandardItem(tr("Type")));
-    m_pModel->setHorizontalHeaderItem(ColumnNo::Date, new QStandardItem(tr("Date")));
-    m_pModel->setHorizontalHeaderItem(ColumnNo::ID, new QStandardItem(tr("ID")));
-    m_pModel->setHorizontalHeaderItem(ColumnNo::File, new QStandardItem(tr("File")));
     if(!m_pDetail->isChecked()) {
-        m_pTableView->hideColumn(ColumnNo::ID);
-        m_pTableView->hideColumn(ColumnNo::File);
+        m_pTableView->hideColumn(CRecentModel::ColumnNo::ID);
+        m_pTableView->hideColumn(CRecentModel::ColumnNo::File);
     }
     
+    check = connect(m_pDatabase, &CRecentDatabase::sigChanged,
+                    this, &CFrmRecent::slotRefresh);
+    Q_ASSERT(check);
+
     // if(!bDock)
     //     slotLoadFiles();
 
@@ -189,6 +191,27 @@ CFrmListRecent::CFrmListRecent(
     //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
     //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
     //m_pTableView->resizeColumnToContents(3); //设置第1列宽度自适应内容
+}
+
+CFrmRecent::~CFrmRecent()
+{
+}
+
+int CFrmRecent::Init()
+{
+    m_pManager->EnumPlugins(this);
+    slotRefresh();
+    return 0;
+}
+
+void CFrmRecent::slotRefresh()
+{
+    if(!m_pModel) return;
+    m_pModel->refresh(m_ParameterApp.GetRecentMenuMaxCount() << 1);
+
+    //以下设置列宽函数必须要数据加载完成后使用,才能应用
+    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
+    m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
 
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex;
@@ -198,80 +221,24 @@ CFrmListRecent::CFrmListRecent(
     {
         m_pTableView->selectRow(0);
     }
-
-}
-
-CFrmListRecent::~CFrmListRecent()
-{
-}
-
-void CFrmListRecent::slotLoadFiles()
-{
-    m_pModel->removeRows(0, m_pModel->rowCount());
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
-    QDir dir(szPath);
-    QStringList files = dir.entryList(QStringList() << "*.rrc",
-                                      QDir::Files, QDir::Time);
-    foreach (auto fileName, files) {
-        QString szFile = dir.absoluteFilePath(fileName);
-        if(szFile.isEmpty()) continue;
-        COperate* pOperate = m_pManager->LoadOperate(szFile);
-        if(!pOperate) continue;
-
-        QList<QStandardItem*> lstItem;
-        lstItem = GetItem(pOperate, szFile);
-        m_pModel->appendRow(lstItem);
-
-        m_pManager->DeleteOperate(pOperate);
-    }
-
-    m_pStart->setEnabled(m_pModel->rowCount() > 0);
-    m_pEditOperate->setEnabled(m_pModel->rowCount() > 0);
-    m_pEdit->setEnabled(m_pModel->rowCount() > 0);
-    m_pCopy->setEnabled(m_pModel->rowCount() > 0);
-    m_pDelete->setEnabled(m_pModel->rowCount() > 0);
-    m_pAddToFavorite->setEnabled(m_pModel->rowCount() > 0);
-
-    //以下设置列宽函数必须要数据加载完成后使用,才能应用
-    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
-    //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
-    m_pTableView->resizeColumnToContents(ColumnNo::Name); //设置第0列宽度自适应内容
-    m_pTableView->resizeColumnToContents(ColumnNo::Protocol); //设置第1列宽度自适应内容
-    m_pTableView->resizeColumnToContents(ColumnNo::Type); //设置第1列宽度自适应内容
-    m_pTableView->resizeColumnToContents(ColumnNo::Date); //设置第1列宽度自适应内容
     return;
 }
 
-QList<QStandardItem*> CFrmListRecent::GetItem(COperate* c, QString &szFile)
+int CFrmRecent::InsertItem(COperate *c, QString& szFile)
 {
-    QList<QStandardItem*> lstItem;
-    QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
-    pName->setToolTip(c->Description());
-    lstItem << pName;
-    QStandardItem* pProtocol = new QStandardItem(c->Protocol());
-    lstItem << pProtocol;
-    QStandardItem* pType = new QStandardItem(c->GetTypeName());
-    lstItem << pType;
-    //Date
-    QFileInfo fi(szFile);
-    lstItem << new QStandardItem(fi.lastModified().toString());
-    QStandardItem* pId = new QStandardItem(c->Id());
-    lstItem << pId;
-    QStandardItem* pFile = new QStandardItem(szFile);
-    lstItem << pFile;
-    return lstItem;
-}
+    CRecentDatabase::Item item;
+    item.icon = c->Icon();
+    item.szName = c->Name();
+    item.szProtocol = c->Protocol();
+    item.szType = c->GetTypeName();
+    item.szFile = szFile;
+    m_pModel->addItem(item);
 
-int CFrmListRecent::InsertItem(COperate *c, QString& szFile)
-{
-    QList<QStandardItem*> lstItem;
-    lstItem = GetItem(c, szFile);
-    m_pModel->insertRow(0, lstItem);
     m_pTableView->selectRow(0);
     return 0;
 }
 
-void CFrmListRecent::slotStartByType()
+void CFrmRecent::slotStartByType()
 {
     qDebug(log) << Q_FUNC_INFO;
     auto m = m_pMenuNew->actions();
@@ -286,7 +253,7 @@ void CFrmListRecent::slotStartByType()
     m_pManager->EnumPlugins(this);
 }
 
-int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlugin)
+int CFrmRecent::onProcess(const QString &id, CPlugin *pPlugin)
 {
     // Connect menu and toolbar
     QMenu* m = m_pMenuNew;
@@ -306,9 +273,11 @@ int CFrmListRecent::onProcess(const QString &id, CPlugin *pPlugin)
     return 0;
 }
 
-void CFrmListRecent::slotNew()
+void CFrmRecent::slotNew()
 {
-    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
+    QAction* pAction = dynamic_cast<QAction*>(this->sender());
+    if(!pAction || pAction->data().toString().isEmpty())
+        return;
     COperate* pOperate = m_pManager->CreateOperate(pAction->data().toString());
     if(nullptr == pOperate) return;
 
@@ -322,38 +291,46 @@ void CFrmListRecent::slotNew()
         QString szFile = pOperate->GetSettingsFile();
         QDir d;
         if(d.exists(szFile)) {
-            QMessageBox::StandardButton r
+            QMessageBox::StandardButton ret
                 = QMessageBox::warning(
                     this, tr("Warning"),
-                    tr("The file is exists. whether to overwrite it? File: %1").arg(szFile),
+                    tr("The file is exists. whether to overwrite it?\nFile: %1").arg(szFile),
                     QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
                     QMessageBox::StandardButton::No);
-            if(QMessageBox::StandardButton::Ok == r)
+            if(QMessageBox::StandardButton::Ok != ret)
             {
-                d.remove(szFile);
-                m_pManager->SaveOperate(pOperate);
+                break;
             }
-            break;
         }
 
-        m_pManager->SaveOperate(pOperate);
-
-        InsertItem(pOperate, szFile);
-
-        break;
+        int nRet = 0;
+        bool bRet = QMetaObject::invokeMethod(
+            m_pMainWindow,
+            "Start",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(COperate*, pOperate),
+            Q_ARG(bool, false),
+            Q_ARG(QString, szFile)
+            );
+        if(!bRet)
+            qCritical(log) << "Failed to call MainWindow::Start()";
+        return;
     }
     }
 
     m_pManager->DeleteOperate(pOperate);
 }
 
-void CFrmListRecent::slotEdit()
+void CFrmRecent::slotEdit()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        auto item = m_pModel->getItem(index);
+        QString szFile = item.szFile;
+        if(szFile.isEmpty()) continue;
         COperate* pOperate = m_pManager->LoadOperate(szFile);
         int nRet = pOperate->OpenDialogSettings(this);
         switch(nRet)
@@ -368,13 +345,15 @@ void CFrmListRecent::slotEdit()
     }
 }
 
-void CFrmListRecent::slotEditConnect()
+void CFrmRecent::slotEditConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        auto item = m_pModel->getItem(index);
+        QString szFile = item.szFile;
+        if(szFile.isEmpty()) continue;
         COperate* c = m_pManager->LoadOperate(szFile);
         int nRet = c->OpenDialogSettings(this);
         switch(nRet)
@@ -392,18 +371,20 @@ void CFrmListRecent::slotEditConnect()
         close();
 }
 
-void CFrmListRecent::slotCopy()
+void CFrmRecent::slotCopy()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        auto item = m_pModel->getItem(index);
+        QString szFile = item.szFile;
+        if(szFile.isEmpty()) continue;
         COperate* pOperate = m_pManager->LoadOperate(szFile);
 
+        bool bExit = true;
         do {
-            bool bExit = true;
-            bool bInsert = true;
+            bExit = true;
             int nRet = pOperate->OpenDialogSettings(this);
             switch(nRet)
             {
@@ -411,7 +392,10 @@ void CFrmListRecent::slotCopy()
                 break;
             case QDialog::Accepted:
             {
-                szFile = pOperate->GetSettingsFile();
+                szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                    + QDir::separator()
+                    + pOperate->Id()
+                    + ".rrc";
                 QDir d(szFile);
                 if(d.exists(szFile)) {
                     QMessageBox::StandardButton r
@@ -431,60 +415,76 @@ void CFrmListRecent::slotCopy()
                     }
                     if(QMessageBox::StandardButton::Cancel == r)
                         break;
-                    bInsert = false;
                 }
-                m_pManager->SaveOperate(pOperate);
-                if(bInsert)
-                    InsertItem(pOperate, szFile);
-                break;
+
+                int nRet = 0;
+                bool bRet = QMetaObject::invokeMethod(
+                    m_pMainWindow,
+                    "Start",
+                    Qt::DirectConnection,
+                    Q_RETURN_ARG(int, nRet),
+                    Q_ARG(COperate*, pOperate),
+                    Q_ARG(bool, false),
+                    Q_ARG(QString, szFile)
+                    );
+                if(!bRet)
+                    qCritical(log) << "Failed to call MainWindow::Start()";
+                return;
             }
             }
 
-            if(bExit)
-                break;
-        } while(1);
+        } while(1 && !bExit);
 
         m_pManager->DeleteOperate(pOperate);
     }
 }
 
-void CFrmListRecent::slotDelete()
+void CFrmRecent::slotDelete()
 {
+    if(!m_pModel || !m_pTableView) return;
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        /*
+        auto item = m_pModel->getItem(index);
+        QString szFile = item.szFile;
+        if(szFile.isEmpty()) continue;
         QDir d(szFile);
-        if(d.remove(szFile))
+        if(d.remove(szFile)) //*/
             m_pModel->removeRow(index.row());
     }
+    slotRefresh();
 }
 
-void CFrmListRecent::slotStart()
+void CFrmRecent::slotStart()
 {
+    if(!m_pModel || !m_pTableView) return;
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        auto item = m_pModel->getItem(index);
+        QString szFile = item.szFile;
+        if(szFile.isEmpty()) continue;
         emit sigStart(szFile);
     }
     if(!m_bDock) close();
 }
 
-void CFrmListRecent::slotDetail()
+void CFrmRecent::slotDetail()
 {
+    if(!m_pDetail || !m_pTableView) return;
     if(m_pDetail->isChecked()) {
-        m_pTableView->showColumn(ColumnNo::ID);
-        m_pTableView->showColumn(ColumnNo::File);
+        m_pTableView->showColumn(CRecentModel::ColumnNo::ID);
+        m_pTableView->showColumn(CRecentModel::ColumnNo::File);
     } else {
-        m_pTableView->hideColumn(ColumnNo::ID);
-        m_pTableView->hideColumn(ColumnNo::File);
+        m_pTableView->hideColumn(CRecentModel::ColumnNo::ID);
+        m_pTableView->hideColumn(CRecentModel::ColumnNo::File);
     }
 }
 
-void CFrmListRecent::slotCustomContextMenu(const QPoint &pos)
+void CFrmRecent::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
@@ -503,27 +503,31 @@ void CFrmListRecent::slotCustomContextMenu(const QPoint &pos)
     menu.exec(mapToGlobal(pos));
 }
 
-void CFrmListRecent::slotDoubleClicked(const QModelIndex& index)
+void CFrmRecent::slotDoubleClicked(const QModelIndex& index)
 {
+    if(!m_pModel) return;
     if(!index.isValid()) return;
-    QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+    auto item = m_pModel->getItem(index);
+    QString szFile = item.szFile;
+    if(szFile.isEmpty()) return;
     emit sigStart(szFile);
     if(!m_bDock) close();
 }
 
-void CFrmListRecent::slotAddToFavorite()
+void CFrmRecent::slotAddToFavorite()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
     foreach(auto index, lstIndex)
     {
         if(!index.isValid()) continue;
-        auto item = m_pModel->item(index.row(), ColumnNo::Name);
-        if(!item) continue;
-        QString szName = item->text();
-        QIcon icon = item->icon();
-        QString szDescription = item->toolTip();
-        QString szFile = m_pModel->item(index.row(), ColumnNo::File)->text();
+        auto item = m_pModel->getItem(index);
+        QFileInfo fi(item.szFile);
+        if(0 == item.id || item.szFile.isEmpty() || !fi.exists()) continue;
+        QString szName = item.szName;
+        QIcon icon = item.icon;
+        QString szDescription = item.szDescription;
+        QString szFile = item.szFile;
         emit sigAddToFavorite(szName, szDescription, icon, szFile);
     }
 }
