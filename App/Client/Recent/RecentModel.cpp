@@ -137,9 +137,9 @@ void CRecentModel::refresh(int limit)
     endResetModel();
 }
 
-CRecentDatabase::Item CRecentModel::getItem(const QModelIndex &index)
+CRecentDatabase::RecentItem CRecentModel::getItem(const QModelIndex &index)
 {
-    CRecentDatabase::Item item;
+    CRecentDatabase::RecentItem item;
     if (!index.isValid())
         return item;
 
@@ -150,7 +150,7 @@ CRecentDatabase::Item CRecentModel::getItem(const QModelIndex &index)
     return item;
 }
 
-bool CRecentModel::addItem(const CRecentDatabase::Item &item)
+bool CRecentModel::addItem(const CRecentDatabase::RecentItem &item)
 {
     if(!m_pDatabase) return false;
     return m_pDatabase->addRecent(item);

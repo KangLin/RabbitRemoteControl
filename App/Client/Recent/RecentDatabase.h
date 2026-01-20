@@ -2,14 +2,10 @@
 
 #pragma once
 
-#include <QObject>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
-#include <QDateTime>
 #include <QIcon>
+#include "Database.h"
 
-class CRecentDatabase : public QObject
+class CRecentDatabase : public CDatabase
 {
     Q_OBJECT
 
@@ -17,7 +13,7 @@ public:
     explicit CRecentDatabase(QObject *parent = nullptr);
     ~CRecentDatabase();
 
-    struct Item {
+    struct RecentItem {
         int id;
         QString szOperateId;
         QIcon icon;
@@ -27,28 +23,18 @@ public:
         QString szFile;
         QDateTime time;
         QString szDescription;
-        Item() : id(0) {
+        RecentItem() : id(0) {
         }
     };
 
-    bool openDatabase(const QString &dbPath = QString());
-    bool isOpen();
-    void closeDatabase();
-
-    int addRecent(const Item &item);
+    int addRecent(const RecentItem &item);
     bool deleteRecent(int id);
     bool updateRecent(
         const QString &szFile, const QString& szName, const QString& szDescription);
-    QList<Item> getRecents(int limit = -1, int offset = 0);
-
-    int getIcon(const QIcon& icon);
-    QIcon getIcon(int id);
-
-Q_SIGNALS:
-    void sigChanged();
+    QList<RecentItem> getRecents(int limit = -1, int offset = 0);
 
 private:
-    QSqlDatabase m_database;
-    bool initializeDatabase();
+    bool onInitializeDatabase() override;
+    CDatabaseIcon m_IconDB;
 };
 

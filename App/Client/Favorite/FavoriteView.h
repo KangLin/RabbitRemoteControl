@@ -1,6 +1,6 @@
-#ifndef CFAVORITEVIEW_H
-#define CFAVORITEVIEW_H
+// Author: Kang Lin <kl222@126.com>
 
+#pragma once
 #include <QTreeView>
 #include <QStandardItem>
 #include "TitleBar.h"
@@ -54,5 +54,3 @@ private:
 
     QStandardItem* NewItem(const QModelIndex &index);
 };
-
-#endif // CFAVORITEVIEW_H

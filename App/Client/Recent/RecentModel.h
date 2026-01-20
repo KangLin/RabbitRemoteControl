@@ -24,8 +24,8 @@ public:
     virtual bool removeRows(int row, int count, const QModelIndex &parent) override;
 
     void refresh(int limit = -1);
-    bool addItem(const CRecentDatabase::Item &item);
-    CRecentDatabase::Item getItem(const QModelIndex &index);
+    bool addItem(const CRecentDatabase::RecentItem &item);
+    CRecentDatabase::RecentItem getItem(const QModelIndex &index);
 
     enum ColumnNo {
         Name = 0,
@@ -39,5 +39,5 @@ public:
 
 private:
     CRecentDatabase* m_pDatabase;
-    QVector<CRecentDatabase::Item> m_Items;
+    QVector<CRecentDatabase::RecentItem> m_Items;
 };

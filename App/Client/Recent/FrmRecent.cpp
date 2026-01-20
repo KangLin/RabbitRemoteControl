@@ -90,7 +90,6 @@ CFrmRecent::CFrmRecent(
         this, SLOT(slotAddToFavorite()));
     m_pAddToFavorite->setStatusTip(m_pAddToFavorite->text());
     m_pAddToFavorite->setToolTip(m_pAddToFavorite->text());
-    m_pAddToFavorite->setEnabled(false);
     if(m_bDock) {
         m_pRefresh = m_pToolBar->addAction(
             QIcon::fromTheme("view-refresh"),
@@ -226,7 +225,7 @@ void CFrmRecent::slotRefresh()
 
 int CFrmRecent::InsertItem(COperate *c, QString& szFile)
 {
-    CRecentDatabase::Item item;
+    CRecentDatabase::RecentItem item;
     item.icon = c->Icon();
     item.szName = c->Name();
     item.szProtocol = c->Protocol();

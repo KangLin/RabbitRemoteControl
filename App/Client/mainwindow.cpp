@@ -412,7 +412,7 @@ void MainWindow::slotInitial()
     m_Manager.EnumPlugins(this);
 
     if(m_pRecentDb)
-        m_pRecentDb->openDatabase();
+        m_pRecentDb->openDatabase("recent_connect");
 
     if(m_pRecentMenu) {
         slotInformation(tr("Load recent menu ......"));
@@ -940,7 +940,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         nRet = m_Manager.SaveOperate(pOperate);
     if(0 == nRet) {
         m_pRecentMenu->addRecentFile(szFile, pOperate->Name());
-        CRecentDatabase::Item item;
+        CRecentDatabase::RecentItem item;
         item.szOperateId = pOperate->Id();
         item.icon = pOperate->Icon();
         item.szName = pOperate->Name();

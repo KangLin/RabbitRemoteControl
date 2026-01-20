@@ -103,7 +103,7 @@ bool CBookmarkDatabase::initializeDatabase()
         );
 
     if (!success) {
-        qCritical(log) << "Failed to create folders table:" << query.lastError().text();
+        qCritical(log) << "Failed to create bookmark_folders table:" << query.lastError().text();
         return false;
     }
 
@@ -112,7 +112,7 @@ bool CBookmarkDatabase::initializeDatabase()
     query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_folder ON bookmarks(folder_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_favorite ON bookmarks(favorite)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_created ON bookmarks(created_time)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_folders_parent ON bookmark_folders(parent_id)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_folders_parent ON bookmark_folders(parent_id)");
 
     // 检查是否有默认文件夹
     query.exec("SELECT COUNT(*) FROM bookmark_folders");

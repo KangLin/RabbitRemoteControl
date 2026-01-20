@@ -15,8 +15,9 @@ set(SOURCE_FILES
     ViewSplitterContainer.cpp
     ParameterApp.cpp
     ParameterDlgSettings.cpp
-    FavoriteView.cpp
-    FavoriteMimeData.cpp
+    Favorite/FavoriteView.cpp
+    Favorite/FavoriteMimeData.cpp
+    Favorite/FavoriteDatabase.cpp
     Recent/FrmRecent.cpp
     Recent/RecentModel.cpp
     Recent/RecentDatabase.cpp
@@ -32,8 +33,9 @@ set(HEADER_FILES
     ViewSplitterContainer.h
     ParameterApp.h
     ParameterDlgSettings.h
-    FavoriteView.h
-    FavoriteMimeData.h
+    Favorite/FavoriteView.h
+    Favorite/FavoriteMimeData.h
+    Favorite/FavoriteDatabase.cpp
     Recent/FrmRecent.h
     Recent/RecentModel.h
     Recent/RecentDatabase.h
@@ -55,7 +57,8 @@ if(LINUX)
 endif()
 
 list(APPEND APP_INCLUDE_DIRS
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Recent>)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Recent>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Favorite>)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.

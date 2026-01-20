@@ -55,6 +55,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterSSHTunnelUI.h
     ParameterCompone/Stats.h
     CheckBoxHeader.h
+    Database.h
     )
 
 list(APPEND PLUGIN_HEADER_FILES
@@ -106,6 +107,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     Unix/DesktopShortcuts.cpp
     StatsAppUsage.cpp
     CheckBoxHeader.cpp
+    Database.cpp
     )
 
 set(PLUGIN_UI_FILES
@@ -316,7 +318,7 @@ if(WITH_QtKEYCHAIN)
     endif()
 endif()
 
-list(APPEND PLUGIN_QT_COMPONENTS Core Gui Widgets Network Multimedia MultimediaWidgets)
+list(APPEND PLUGIN_QT_COMPONENTS Core Gui Widgets Network Multimedia MultimediaWidgets Sql)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${PLUGIN_QT_COMPONENTS})
 message("QT_VERSION:${Qt${QT_VERSION_MAJOR}_VERSION}")
 if(Qt${QT_VERSION_MAJOR}_VERSION VERSION_LESS 5.10.0 AND ANDROID)
