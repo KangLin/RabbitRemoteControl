@@ -38,8 +38,10 @@ base: core24 # the base snap is the execution environment for this snap
 platforms:
   amd64:
     build-on: [amd64]
+    build-for: [amd64]
   arm64:
     build-on: [arm64]
+    build-for: [arm64]
 #architectures:
 #  - build-on: amd64
 #    run-on: amd64
@@ -102,7 +104,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.18.0
+    source-tag: 3.21.0
     source-depth: 1
     build-packages:
       - libssl-dev

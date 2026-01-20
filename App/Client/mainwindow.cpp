@@ -264,7 +264,7 @@ MainWindow::MainWindow(QWidget *parent)
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockRecent->setObjectName("dockRecent");
 #if defined(Q_OS_ANDROID)
-        m_pDockListRecent->hide();
+        m_pDockRecent->hide();
 #endif
         ui->menuView->addAction(m_pDockRecent->toggleViewAction());
         m_pDockRecent->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));

@@ -55,6 +55,7 @@ modules:
   # https://github.com/flathub/com.unity.UnityHub/pull/73#issuecomment-1407370899
   # https://forum.unity.com/threads/workaround-for-libssl-issue-on-ubuntu-22-04.1271405/#post-8098841
   - name: openssl-1.1
+    disabled: false
     buildsystem: simple
     build-commands:
       - ./config --prefix=/app
@@ -82,8 +83,8 @@ modules:
     disabled: false
     sources:
       - type: archive
-        url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.5.tar.bz2"
-        sha256: "9b92ed0316bf2486121d8bac88bd1878f16b43bd335f18009b1f941f1eca93a1"
+        url: "https://xorg.freedesktop.org/releases/individual/app/xprop-1.2.8.tar.xz"
+        sha256: "d689e2adb7ef7b439f6469b51cda8a7daefc83243854c2a3b8f84d0f029d67ee"
     cleanup:
       - /bin/xprop
       - /share/doc
@@ -113,8 +114,8 @@ modules:
     disabled: false
     sources:
       - type: archive
-        url: "https://kerberos.org/dist/krb5/1.21/krb5-1.21.3.tar.gz"
-        sha256: "b7a4cd5ead67fb08b980b21abd150ff7217e85ea320c9ed0c6dadd304840ad35"
+        url: "https://kerberos.org/dist/krb5/1.22/krb5-1.22.1.tar.gz"
+        sha256: "1a8832b8cad923ebbf1394f67e2efcf41e3a49f460285a66e35adec8fa0053af"
       - type: script
         commands:
           - autoreconf --install --symlink
@@ -202,6 +203,7 @@ modules:
       - -DWITH_EXAMPLES=OFF
       - -DWITH_TESTS=OFF
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /bin
       - /lib/libvncserver.so*
@@ -238,6 +240,7 @@ modules:
     config-opts:
       - -DBUILD_VIEWER=OFF
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /bin
       - /lib/*.so*
