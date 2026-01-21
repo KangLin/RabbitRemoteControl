@@ -4,22 +4,17 @@
 
 #include <QObject>
 #include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
 #include <QDateTime>
 #include <QUrl>
 #include <QIcon>
-#include "Database.h"
+#include "DatabaseUrl.h"
 
 struct HistoryItem {
     int id;
     QIcon icon;
-    int iconId;
     QString url;
     QString title;
     QDateTime visitTime;
-    int visitCount;
-    QDateTime lastVisitTime;
 };
 
 class CHistoryDatabase : public CDatabase
@@ -30,7 +25,8 @@ public:
     ~CHistoryDatabase();
 
     // 历史记录操作
-    bool addHistoryEntry(const QString &url, const QString &title, const QIcon& icon = QIcon(), bool bSingle = false);
+    bool addHistoryEntry(const QString &url);
+    bool addHistoryEntry(const QString &url, const QString& title, const QDateTime& time);
     bool updateHistoryEntry(const QString& url, const QString &title = QString(), const QIcon& icon = QIcon());
     bool updateHistoryEntry(int id, const QString &title = QString(), const QIcon& icon = QIcon());
     bool deleteHistoryEntry(int id);
@@ -61,9 +57,8 @@ private:
     bool importCsvRecord(const QStringList &fields);
 
 private:
-    QSqlDatabase m_database;
     bool OnInitializeDatabase() override;
-    CDatabaseIcon m_iconDB;
+    CDatabaseUrl m_UrlDB;
 };
 
 void enableSqlTrace(const QString& connectionName = QSqlDatabase::defaultConnection);

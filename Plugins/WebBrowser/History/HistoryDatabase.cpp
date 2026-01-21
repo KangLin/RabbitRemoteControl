@@ -1,5 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSqlQuery>
+#include <QSqlError>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
@@ -8,7 +10,7 @@
 #include "RabbitCommonDir.h"
 #include "HistoryDatabase.h"
 
-static Q_LOGGING_CATEGORY(log, "WebBrowser.History.Db")
+static Q_LOGGING_CATEGORY(log, "DB.History")
 
 #if HAVE_SQLITE
 #include <sqlite3.h>  // 需要链接 sqlite3 库
@@ -56,78 +58,77 @@ bool CHistoryDatabase::OnInitializeDatabase()
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS history ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    url TEXT NOT NULL,"
-        "    title TEXT NOT NULL,"
-        "    icon INTEGER DEFAULT 0,"
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    visit_count INTEGER DEFAULT 1,"
-        "    last_visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
+        "    url INTEGER NOT NULL,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
         ")"
         );
 
     if (!success) {
-        qWarning() << "Failed to create table:" << query.lastError().text();
+        qCritical(log) << "Failed to create table:" << query.lastError().text();
         return false;
     }
 
     // 创建索引
     query.exec("CREATE INDEX IF NOT EXISTS idx_history_url ON history(url)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_history_time ON history(visit_time)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_history_title ON history(title)");
 
-    m_iconDB.SetDatabase(GetDatabase());
-    m_iconDB.OnInitializeDatabase();
-    return true;
+    m_UrlDB.SetDatabase(GetDatabase());
+    m_UrlDB.OnInitializeDatabase();
+    return success;
 }
 
-bool CHistoryDatabase::addHistoryEntry(const QString &url, const QString &title, const QIcon &icon, bool bSingle)
+bool CHistoryDatabase::addHistoryEntry(const QString &url)
 {
     if (url.isEmpty()) return false;
 
-    QSqlQuery query(GetDatabase());
-
-    // 检查URL是否已存在
-    query.prepare("SELECT id, visit_count, icon FROM history WHERE url = :url");
-    query.bindValue(":url", url);
-
-    // 直接打印查询信息
-    qDebug(log) << "Executed query:" << query.executedQuery();
-    qDebug(log) << "Bound values:" << query.boundValues();
-
-    if (bSingle && query.exec() && query.next()) {
-        // 更新现有记录
-        int id = query.value(0).toInt();
-        int visitCount = query.value(1).toInt() + 1;
-        int iconID = query.value(2).toInt();
-        if(!icon.isNull())
-            iconID = m_iconDB.GetIcon(icon);
-
-        query.prepare(
-            "UPDATE history SET "
-            "title = :title, "
-            "visit_count = :visit_count, "
-            "last_visit_time = :last_visit_time "
-            "icon = :icon "
-            "WHERE id = :id"
-            );
-        query.bindValue(":title", title);
-        query.bindValue(":visit_count", visitCount);
-        query.bindValue(":last_visit_time", QDateTime::currentDateTime());
-        query.bindValue(":icon", iconID);
-        query.bindValue(":id", id);
-    } else {
-        // 插入新记录
-        query.prepare(
-            "INSERT INTO history (url, title, icon, visit_time, visit_count, last_visit_time) "
-            "VALUES (:url, :title, :icon, :visit_time, 1, :last_visit_time)"
-            );
-        query.bindValue(":url", url);
-        query.bindValue(":title", title);
-        query.bindValue(":icon", m_iconDB.GetIcon(icon));
-        QDateTime tm = QDateTime::currentDateTime();
-        query.bindValue(":visit_time", tm);
-        query.bindValue(":last_visit_time", tm);
+    int nUrlId = 0;
+    // 检查 URL 是否已存在。如果不存在，则增加
+    nUrlId = m_UrlDB.GetId(url);
+    if(0 == nUrlId) {
+        nUrlId = m_UrlDB.AddUrl(url);
+        if(0 == nUrlId)
+            return false;
     }
+
+    // 插入新记录
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "INSERT INTO history (url, visit_time) "
+        "VALUES (:url, :visit_time)"
+        );
+    query.bindValue(":url", nUrlId);
+    QDateTime tm = QDateTime::currentDateTime();
+    query.bindValue(":visit_time", tm);
+
+    bool success = query.exec();
+    if (!success) {
+        qCritical(log) << "Failed to add history:" << query.lastError().text();
+    }
+
+    return success;
+}
+
+bool CHistoryDatabase::addHistoryEntry(const QString &url, const QString& title, const QDateTime& time)
+{
+    if (url.isEmpty()) return false;
+
+    int nUrlId = 0;
+    // 检查 URL 是否已存在。如果不存在，则增加
+    nUrlId = m_UrlDB.GetId(url);
+    if(0 == nUrlId) {
+        nUrlId = m_UrlDB.AddUrl(url, title);
+        if(0 == nUrlId)
+            return false;
+    }
+
+    // 插入新记录
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "INSERT INTO history (url, visit_time) "
+        "VALUES (:url, :visit_time)"
+        );
+    query.bindValue(":url", nUrlId);
+    query.bindValue(":visit_time", time);
 
     bool success = query.exec();
     if (!success) {
@@ -139,50 +140,32 @@ bool CHistoryDatabase::addHistoryEntry(const QString &url, const QString &title,
 
 bool CHistoryDatabase::updateHistoryEntry(const QString& url, const QString &title, const QIcon &icon)
 {
-    QSqlQuery query(GetDatabase());
-    QStringList lstFields;
-    if(!title.isEmpty())
-        lstFields << "title = '" + title + "'";
-    int iconId = m_iconDB.GetIcon(icon);
-    if(!icon.isNull() && iconId > 0)
-        lstFields << "icon = " + QString::number(iconId);
-    if(lstFields.isEmpty())
-        return false;
+    if (url.isEmpty()) return false;
 
-    QString szSql;
-    szSql = "UPDATE history SET ";
-    szSql += lstFields.join(",");
-    szSql += " WHERE url = '" + url + "'";
-    qDebug(log) << szSql;
-    bool bRet = query.exec(szSql);
-    if (!bRet) {
-        qCritical(log) << "Failed to update history:" << query.lastError().text();
+    int nUrlId = 0;
+    nUrlId = m_UrlDB.GetId(url);
+    if(0 == nUrlId) {
+        nUrlId = m_UrlDB.AddUrl(url, title, icon);
+        return (0 < nUrlId);
     }
-    return bRet;
+    return m_UrlDB.UpdateUrl(url, title, icon);
 }
 
 bool CHistoryDatabase::updateHistoryEntry(int id, const QString &title, const QIcon &icon)
 {
     QSqlQuery query(GetDatabase());
-    QStringList lstFields;
-    if(!title.isEmpty())
-        lstFields << "title = '" + title + "'";
-    int iconId = m_iconDB.GetIcon(icon);
-    if(!icon.isNull() && iconId > 0)
-        lstFields << "icon = " + QString::number(iconId);
-    if(lstFields.isEmpty())
-        return false;
-
-    QString szSql;
-    szSql = "UPDATE history SET ";
-    szSql += lstFields.join(",");
-    szSql += " WHERE id = " + QString::number(id);
-    qDebug(log) << szSql;
-    bool bRet = query.exec(szSql);
-    if (!bRet) {
-        qCritical(log) << "Failed to update history:" << query.lastError().text();
+    query.prepare(
+        "SELECT url"
+        "FROM history "
+        "WHERE id=:id"
+        );
+    query.bindValue(":id", id);
+    if(query.exec() && query.next()) {
+        int urlId = query.value(0).toInt();
+        return m_UrlDB.UpdateUrl(urlId, title, icon);
     }
-    return bRet;
+
+    return false;
 }
 
 bool CHistoryDatabase::deleteHistoryEntry(int id)
@@ -196,31 +179,28 @@ bool CHistoryDatabase::deleteHistoryEntry(int id)
 
 bool CHistoryDatabase::deleteHistoryEntry(const QString &url)
 {
+    int urlId = m_UrlDB.GetId(url);
+    if(0 == urlId)
+        return false;
     QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM history WHERE url = :url");
-    query.bindValue(":url", url);
-
+    query.bindValue(":url", urlId);
     return query.exec();
 }
 
 bool CHistoryDatabase::deleteDomainEntries(const QString &szDomain)
 {
-    QSqlQuery query(GetDatabase());
-    query.prepare("DELETE FROM history WHERE url LIKE :url");
-    query.bindValue(":url", QString("%%://%%%1%%").arg(szDomain));
-
-    qDebug(log) << "Executed query:" << query.executedQuery();
-    qDebug(log) << "Bound values:" << query.boundValues();
-
-    bool bRet = query.exec();
-    if (bRet) {
-        int deletedCount = query.numRowsAffected();
-        qDebug(log) << "Deleted" << deletedCount << "records for domain" << szDomain;
-    } else {
-        qCritical(log) << "Failed to delete domain history:" << query.lastError().text();
+    if(szDomain.isEmpty()) return false;
+    auto domains = m_UrlDB.GetDomain(szDomain);
+    foreach(auto urlId, domains) {
+        QSqlQuery query(GetDatabase());
+        query.prepare("DELETE FROM history WHERE url = :url");
+        query.bindValue(":url", urlId);
+        if(!query.exec())
+            qCritical(log) << "Failed to delete domain:" << szDomain << "url id:" << urlId;
+        m_UrlDB.DeleteUrl(urlId);
     }
-
-    return bRet;
+    return true;
 }
 
 bool CHistoryDatabase::clearHistory(int days)
@@ -278,13 +258,13 @@ QList<HistoryItem> CHistoryDatabase::getAllHistory(int limit, int offset)
     QSqlQuery query(GetDatabase());
     if(0 > limit) {
         query.prepare(
-            "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+            "SELECT id, url, visit_time "
             "FROM history "
             "ORDER BY visit_time DESC "
             );
     } else {
         query.prepare(
-            "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+            "SELECT id, url, visit_time "
             "FROM history "
             "ORDER BY visit_time DESC "
             "LIMIT :limit OFFSET :offset"
@@ -296,13 +276,11 @@ QList<HistoryItem> CHistoryDatabase::getAllHistory(int limit, int offset)
         while (query.next()) {
             HistoryItem item;
             item.id = query.value(0).toInt();
-            item.url = query.value(1).toString();
-            item.title = query.value(2).toString();
-            item.visitTime = query.value(3).toDateTime();
-            item.visitCount = query.value(4).toInt();
-            item.lastVisitTime = query.value(5).toDateTime();
-            item.iconId = query.value(6).toInt();
-            item.icon = m_iconDB.GetIcon(item.iconId);
+            CDatabaseUrl::UrlItem urlItem = m_UrlDB.GetItem(query.value(1).toInt());
+            item.url = urlItem.szUrl;
+            item.title = urlItem.szTitle;
+            item.visitTime = query.value(2).toDateTime();
+            item.icon = urlItem.icon;
             historyList.append(item);
         }
     } else {
@@ -318,7 +296,7 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(const QDate &date)
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+        "SELECT id, url, visit_time "
         "FROM history "
         "WHERE date(visit_time) = date(:date) "
         "ORDER BY visit_time DESC"
@@ -329,13 +307,11 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(const QDate &date)
         while (query.next()) {
             HistoryItem item;
             item.id = query.value(0).toInt();
-            item.url = query.value(1).toString();
-            item.title = query.value(2).toString();
-            item.visitTime = query.value(3).toDateTime();
-            item.visitCount = query.value(4).toInt();
-            item.lastVisitTime = query.value(5).toDateTime();
-            item.iconId = query.value(6).toInt();
-            item.icon = m_iconDB.GetIcon(item.iconId);
+            CDatabaseUrl::UrlItem urlItem = m_UrlDB.GetItem(query.value(1).toInt());
+            item.url = urlItem.szUrl;
+            item.title = urlItem.szTitle;
+            item.visitTime = query.value(2).toDateTime();
+            item.icon = urlItem.icon;
             historyList.append(item);
         }
     }
@@ -350,7 +326,7 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+        "SELECT id, url, visit_time "
         "FROM history "
         "WHERE date(visit_time) >= date(:start) AND date(visit_time) <= date(:end) "
         "ORDER BY visit_time DESC "
@@ -364,13 +340,11 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(
         while (query.next()) {
             HistoryItem item;
             item.id = query.value(0).toInt();
-            item.url = query.value(1).toString();
-            item.title = query.value(2).toString();
-            item.visitTime = query.value(3).toDateTime();
-            item.visitCount = query.value(4).toInt();
-            item.lastVisitTime = query.value(5).toDateTime();
-            item.iconId = query.value(6).toInt();
-            item.icon = m_iconDB.GetIcon(item.iconId);
+            CDatabaseUrl::UrlItem urlItem = m_UrlDB.GetItem(query.value(1).toInt());
+            item.url = urlItem.szUrl;
+            item.title = urlItem.szTitle;
+            item.visitTime = query.value(2).toDateTime();
+            item.icon = urlItem.icon;
             historyList.append(item);
         }
     }
@@ -380,56 +354,40 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(
 
 QList<HistoryItem> CHistoryDatabase::searchHistory(const QString &keyword)
 {
-    QList<HistoryItem> historyList;
-
-    QSqlQuery query(GetDatabase());
-    QString searchPattern = "%" + keyword + "%";
-    query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
-        "FROM history "
-        "WHERE url LIKE :pattern OR title LIKE :pattern "
-        "ORDER BY visit_time DESC"
-        );
-    query.bindValue(":pattern", searchPattern);
-
-    if (query.exec()) {
-        while (query.next()) {
-            HistoryItem item;
-            item.id = query.value(0).toInt();
-            item.url = query.value(1).toString();
-            item.title = query.value(2).toString();
-            item.visitTime = query.value(3).toDateTime();
-            item.visitCount = query.value(4).toInt();
-            item.lastVisitTime = query.value(5).toDateTime();
-            item.iconId = query.value(6).toInt();
-            item.icon = m_iconDB.GetIcon(item.iconId);
-            historyList.append(item);
-        }
+    auto items = m_UrlDB.Search(keyword);
+    QList<HistoryItem> retItems;
+    foreach (auto i, items) {
+        HistoryItem item;
+        item.icon = i.icon;
+        item.title = i.szTitle;
+        item.url = i.szUrl;
+        retItems << item;
     }
-
-    return historyList;
+    return retItems;
 }
 
 HistoryItem CHistoryDatabase::getHistoryByUrl(const QString &url)
 {
     HistoryItem item;
 
+    if(url.isEmpty()) return item;
+    auto urlItem = m_UrlDB.GetItem(url);
+    if(0 >= urlItem.id)
+        return item;
+
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+        "SELECT id, visit_time "
         "FROM history WHERE url = :url"
         );
-    query.bindValue(":url", url);
+    query.bindValue(":url", urlItem.id);
 
     if (query.exec() && query.next()) {
         item.id = query.value(0).toInt();
-        item.url = query.value(1).toString();
-        item.title = query.value(2).toString();
-        item.visitTime = query.value(3).toDateTime();
-        item.visitCount = query.value(4).toInt();
-        item.lastVisitTime = query.value(5).toDateTime();
-        item.iconId = query.value(6).toInt();
-        item.icon = m_iconDB.GetIcon(item.iconId);
+        item.url = urlItem.szUrl;
+        item.title = urlItem.szTitle;
+        item.icon = urlItem.icon;
+        item.visitTime = query.value(1).toDateTime();
     }
 
     return item;
@@ -441,20 +399,19 @@ HistoryItem CHistoryDatabase::getHistoryById(int id)
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, url, title, visit_time, visit_count, last_visit_time, icon "
+        "SELECT id, url, visit_time "
         "FROM history WHERE id = :id"
         );
     query.bindValue(":id", id);
 
     if (query.exec() && query.next()) {
         item.id = query.value(0).toInt();
-        item.url = query.value(1).toString();
-        item.title = query.value(2).toString();
-        item.visitTime = query.value(3).toDateTime();
-        item.visitCount = query.value(4).toInt();
-        item.lastVisitTime = query.value(5).toDateTime();
-        item.iconId = query.value(6).toInt();
-        item.icon = m_iconDB.GetIcon(item.iconId);
+        int urlId = query.value(1).toInt();
+        auto urlItem = m_UrlDB.GetItem(urlId);
+        item.url = urlItem.szUrl;
+        item.title = urlItem.szTitle;
+        item.icon = urlItem.icon;
+        item.visitTime = query.value(2).toDateTime();
     }
 
     return item;
@@ -527,7 +484,7 @@ bool CHistoryDatabase::importFromCSV(const QString &filename)
             // 解析 CSV 行
             QStringList fields = parseCsvLine(line);
 
-            if (fields.size() >= 6) {
+            if (fields.size() >= 3) {
                 if (importCsvRecord(fields)) {
                     importedCount++;
                 }
@@ -573,23 +530,17 @@ bool CHistoryDatabase::exportToCSV(const QString &filename)
 
     // 写入表头
     const QStringList headers = {
-        "ID", "URL", "Title", "Icon", "Visit Time",
-        "Visit Count", "Last Visit Time"
+        "Title", "URL", "Visit Time"
     };
     out << headers.join(",") << "\n";
 
-    QList<HistoryItem> items = getAllHistory();
-    foreach (const auto &item, items) {
-        QStringList row;
-        row << QString::number(item.id);
-        row << escapeForCsv(item.url);
-        row << escapeForCsv(item.title);
-        row << QString::number(item.iconId);
-        row << item.visitTime.toString(Qt::ISODate);
-        row << QString::number(item.visitCount);
-        row << item.lastVisitTime.toString(Qt::ISODate);
-
-        out << row.join(",") << "\n";
+    auto items = getAllHistory();
+    foreach(auto it, items) {
+            QStringList row;
+            row << escapeForCsv(it.title);
+            row << escapeForCsv(it.url);
+            row << it.visitTime.toString();
+            out << row.join(",") << "\n";
     }
 
     file.close();
@@ -679,12 +630,12 @@ bool CHistoryDatabase::validateCsvHeader(const QString &headerLine)
     QStringList headers = parseCsvLine(headerLine);
 
     // 检查必需的表头
-    if (headers.size() < 6) {
+    if (headers.size() < 3) {
         return false;
     }
 
     // 检查关键字段
-    QStringList requiredHeaders = {"URL", "Title", "Visit Time"};
+    QStringList requiredHeaders = {"Title", "URL", "Visit Time"};
     for (const QString &required : requiredHeaders) {
         if (!headers.contains(required, Qt::CaseInsensitive)) {
             qWarning(log) << "Missing required header:" << required;
@@ -697,80 +648,29 @@ bool CHistoryDatabase::validateCsvHeader(const QString &headerLine)
 
 bool CHistoryDatabase::importCsvRecord(const QStringList &fields)
 {
-    if (fields.size() < 6) {
+    if (fields.size() < 3) {
         return false;
     }
 
     HistoryItem item;
 
     // 解析字段
-    // 字段顺序：ID, URL, Title, Icon, Visit Time, Visit Count, Last Visit Time
+    // 字段顺序：Title, URL, Visit Time
 
-    // ID（可选）
-    if (!fields[0].isEmpty()) {
-        bool ok;
-        item.id = fields[0].toInt(&ok);
-        if (!ok) item.id = 0;
-    }
-
+    // Title（可选）
+    item.title = fields[0];
     // URL（必需）
-    item.url = unescapeCsvField(fields[1]);
-    if (item.url.isEmpty()) {
-        return false;
-    }
-
-    // Title（必需）
-    item.title = unescapeCsvField(fields[2]);
-    if (item.title.isEmpty()) {
-        item.title = item.url;  // 使用URL作为标题
-    }
-
-    // Icon
-    item.iconId = fields[3].toInt();
+    item.url = fields[1];
 
     // Visit Time（必需）
-    item.visitTime = QDateTime::fromString(fields[4], Qt::ISODate);
+    item.visitTime = QDateTime::fromString(fields[2]);
     if (!item.visitTime.isValid()) {
         // 尝试其他格式
-        item.visitTime = QDateTime::fromString(fields[4], Qt::TextDate);
+        item.visitTime = QDateTime::fromString(fields[2]);
         if (!item.visitTime.isValid()) {
             item.visitTime = QDateTime::currentDateTime();
         }
     }
 
-    // Visit Count（可选）
-    if (fields.size() > 5 && !fields[5].isEmpty()) {
-        bool ok;
-        item.visitCount = fields[5].toInt(&ok);
-        if (!ok) item.visitCount = 1;
-    } else {
-        item.visitCount = 1;
-    }
-
-    // Last Visit Time（可选）
-    if (fields.size() > 6 && !fields[6].isEmpty()) {
-        item.lastVisitTime = QDateTime::fromString(fields[6], Qt::ISODate);
-        if (!item.lastVisitTime.isValid()) {
-            item.lastVisitTime = item.visitTime;
-        }
-    } else {
-        item.lastVisitTime = item.visitTime;
-    }
-
-    // 检查是否已存在
-    HistoryItem existing = getHistoryById(item.id);
-    if (existing.id > 0 && existing.url == item.url) {
-        // 更新现有记录
-        existing.title = item.title;
-        existing.visitCount += item.visitCount;
-        existing.lastVisitTime = item.visitTime > existing.lastVisitTime ?
-                                     item.visitTime : existing.lastVisitTime;
-        // existing.faviconUrl = item.faviconUrl.isEmpty() ?
-        //                           existing.faviconUrl : item.faviconUrl;
-
-        return updateHistoryEntry(item.id, item.title, m_iconDB.GetIcon(item.iconId));
-    } else {
-        // 插入新记录
-        return addHistoryEntry(item.url, item.title, m_iconDB.GetIcon(item.iconId));
-    }
+    return addHistoryEntry(item.url, item.title, item.visitTime);
 }

@@ -29,8 +29,8 @@ QVariant CHistoryModel::headerData(int section, Qt::Orientation orientation, int
         case ColumnTitle: return tr("Title");
         case ColumnUrl: return tr("Url");
         case ColumnVisitTime: return tr("Visit Time");
-        case ColumnVisitCount: return tr("Visit Count");
-        case ColumnLastVisitTime: return tr("Last Visit Time");
+        default:
+            break;
         }
     }
 
@@ -71,10 +71,6 @@ QVariant CHistoryModel::data(const QModelIndex &index, int role) const
             return item.url;
         case ColumnVisitTime:
             return item.visitTime.toString(QLocale::system().dateFormat());
-        case ColumnVisitCount:
-            return item.visitCount;
-        case ColumnLastVisitTime:
-            return item.lastVisitTime.toString(QLocale::system().dateFormat());
         }
         break;
 

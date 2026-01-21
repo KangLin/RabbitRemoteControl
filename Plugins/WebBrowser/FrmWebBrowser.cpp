@@ -398,7 +398,7 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                         if(IsCurrentView(pWeb))
                             m_pUrlLineEdit->setText(url.toString());
                         if(m_pHistoryDatabase) {
-                            m_pHistoryDatabase->addHistoryEntry(url.toString(), "");
+                            m_pHistoryDatabase->addHistoryEntry(url.toString());
                         }
                     });
     Q_ASSERT(check);

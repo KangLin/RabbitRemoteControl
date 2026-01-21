@@ -35,11 +35,11 @@ set(WebBrowser_SOURCE_FILES
     PasswordStore.cpp
     CaptureFullPage.cpp
     MultimediaRecord.cpp
+    AddressCompleter.cpp
+    DatabaseUrl.cpp
     History/FrmHistory.cpp
     History/HistoryDatabase.cpp
     History/HistoryModel.cpp
-
-    AddressCompleter.cpp
     Bookmark/BookmarkDatabase.cpp
     Bookmark/FrmBookmark.cpp
     Bookmark/FrmAddBookmark.cpp
@@ -57,11 +57,11 @@ set(WebBrowser_HEADER_FILES
     PasswordStore.h
     CaptureFullPage.h
     MultimediaRecord.h
+    AddressCompleter.h
+    DatabaseUrl.h
     History/FrmHistory.h
     History/HistoryDatabase.h
     History/HistoryModel.h
-
-    AddressCompleter.h
     Bookmark/BookmarkDatabase.h
     Bookmark/FrmBookmark.h
     Bookmark/FrmAddBookmark.h

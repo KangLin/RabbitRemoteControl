@@ -37,7 +37,7 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
     QToolBar* pToolBar = new QToolBar(this);
 
     QDate curDate = QDate::currentDate();
-    m_pDateStart = new QDateEdit(curDate.addDays(-1), pToolBar);
+    m_pDateStart = new QDateEdit(curDate.addDays(-7), pToolBar);
     if(m_pDateStart)
         m_pDateStart->setToolTip(tr("Start date"));
     m_pDateEnd = new QDateEdit(curDate, pToolBar);
@@ -48,6 +48,7 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
     pCB->addItem(tr("Two days"), 2);
     pCB->addItem(tr("One Week"), 7);
     pCB->addItem(tr("One month"), curDate.daysInMonth());
+    pCB->setCurrentIndex(2);
     connect(pCB, &QComboBox::currentIndexChanged, this, [&, pCB](int index) {
         qDebug(log) << "Change days";
         //QComboBox* pCB = qobject_cast<QComboBox*>(sender());
@@ -395,18 +396,12 @@ void CFrmHistory::onShowHistoryProperties(const QModelIndex &index)
                           "<table border='0' cellspacing='5'>"
                           "<tr><td><b>%2</b></td><td>%3</td></tr>"
                           "<tr><td><b>%4</b></td><td>%5</td></tr>"
-                          "<tr><td><b>%6</b></td><td>%7</td></tr>"
-                          "<tr><td><b>%8</b></td><td>%9</td></tr>"
                           "</table>")
                           .arg(item.title.toHtmlEscaped())
                           .arg(tr("Url:"))
                           .arg(item.url.toHtmlEscaped())
-                          .arg(tr("Last Visit Time:"))
-                          .arg(item.lastVisitTime.toString(QLocale::system().dateFormat()))
                           .arg(tr("Visit Time:"))
                           .arg(item.visitTime.toString(QLocale::system().dateFormat()))
-                          .arg(tr("Visit Count:"))
-                          .arg(item.visitCount)
                           ;
 
     QMessageBox::information(this, tr("Properties"), details);

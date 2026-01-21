@@ -40,6 +40,12 @@ class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
 public:
     explicit CDatabaseIcon(QObject *parent = nullptr);
 
+    /*!
+     * \brief Get icon id
+     * \param icon
+     * \return icon's id
+     * \note If the icon is not exist. then insert the icon to table
+     */
     int GetIcon(const QIcon& icon);
     QIcon GetIcon(int id);
 

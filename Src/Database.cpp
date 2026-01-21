@@ -95,7 +95,8 @@ bool CDatabaseIcon::OnInitializeDatabase()
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    name TEXT UNIQUE,"       // Icon name. see QIcon::name()
         "    hash TEXT,"              // Icon hash value
-        "    data BLOB"               // Icon binary data
+        "    data BLOB,"              // Icon binary data
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
         ")"
         );
     if (!success) {
@@ -163,6 +164,7 @@ int CDatabaseIcon::GetIcon(const QIcon &icon)
         return query.value(0).toInt();
     }
 
+    // Insert icon
     query.prepare("INSERT INTO icon (name) VALUES (:name)");
     query.bindValue(":name", szName);
     bRet = query.exec();

@@ -20,9 +20,6 @@ public:
         ColumnTitle,
         ColumnUrl,
         ColumnCount,
-
-        ColumnLastVisitTime,
-        ColumnVisitCount,
     };
     Q_ENUM(Column)
 
