@@ -111,7 +111,7 @@ bool CRecentModel::removeRows(int row, int count, const QModelIndex &parent)
     }
 
     for (int i = row + count - 1; i >= row; i--) {
-        m_pDatabase->deleteRecent(m_Items.at(i).id);
+        m_pDatabase->DeleteRecent(m_Items.at(i).id);
         m_Items.removeAt(i);
     }
 
@@ -122,15 +122,15 @@ void CRecentModel::refresh(int limit)
 {
     if(!m_pDatabase) {
         m_pDatabase = new CRecentDatabase(this);
-        if(!m_pDatabase->openDatabase())
+        if(!m_pDatabase->OpenDatabase())
             return;
     }
-    if(!m_pDatabase->isOpen())
+    if(!m_pDatabase->IsOpen())
         return;
 
     beginResetModel();
     m_Items.clear();
-    auto items = m_pDatabase->getRecents(limit, 0);
+    auto items = m_pDatabase->GetRecents(limit, 0);
     foreach(auto it, items) {
         m_Items.append(it);
     }
@@ -153,5 +153,5 @@ CRecentDatabase::RecentItem CRecentModel::getItem(const QModelIndex &index)
 bool CRecentModel::addItem(const CRecentDatabase::RecentItem &item)
 {
     if(!m_pDatabase) return false;
-    return m_pDatabase->addRecent(item);
+    return m_pDatabase->AddRecent(item);
 }

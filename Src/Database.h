@@ -14,22 +14,23 @@ public:
     explicit CDatabase(QObject *parent = nullptr);
     virtual ~CDatabase();
 
-    void setDatabase(QSqlDatabase db);
-    QSqlDatabase getDatabase() const;
+    void SetDatabase(QSqlDatabase db);
+    QSqlDatabase GetDatabase() const;
 
-    virtual bool openDatabase(const QString &connectionName = QString(),
+    virtual bool OpenDatabase(const QString &connectionName = QString(),
         const QString &dbPath = QString());
-    virtual bool isOpen() const;
-    virtual void closeDatabase();
+    virtual bool IsOpen() const;
+    virtual void CloseDatabase();
 
-    virtual bool onInitializeDatabase() = 0;
+    virtual bool OnInitializeDatabase() = 0;
 
 Q_SIGNALS:
     void sigChanged();
 
 protected:
-    QSqlDatabase m_database;
     QString m_szConnectName;
+private:
+    QSqlDatabase m_database;
 };
 
 class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
@@ -39,10 +40,10 @@ class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
 public:
     explicit CDatabaseIcon(QObject *parent = nullptr);
 
-    int getIcon(const QIcon& icon);
-    QIcon getIcon(int id);
+    int GetIcon(const QIcon& icon);
+    QIcon GetIcon(int id);
 
-    virtual bool onInitializeDatabase() override;
+    virtual bool OnInitializeDatabase() override;
 };
 
 class PLUGIN_EXPORT CDatabaseFolder : public CDatabase
@@ -60,16 +61,16 @@ public:
     };
 
     // 文件夹操作
-    bool addFolder(const QString &name, int parentId = 0);
-    bool renameFolder(int folderId, const QString &newName);
-    bool deleteFolder(int folderId);
-    bool moveFolder(int folderId, int newParentId);
+    bool AddFolder(const QString &name, int parentId = 0);
+    bool RenameFolder(int folderId, const QString &newName);
+    bool DeleteFolder(int folderId);
+    bool MoveFolder(int folderId, int newParentId);
     // 文件夹查询
-    QList<FolderItem> getAllFolders();
-    QList<FolderItem> getSubFolders(int parentId);
+    QList<FolderItem> GetAllFolders();
+    QList<FolderItem> GetSubFolders(int parentId);
 
-    virtual bool onInitializeDatabase() override;
+    virtual bool OnInitializeDatabase() override;
 
 protected:
-    virtual bool onDeleteItems() = 0;
+    virtual bool OnDeleteItems() = 0;
 };

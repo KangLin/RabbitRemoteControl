@@ -19,20 +19,20 @@ CDatabase::CDatabase(QObject *parent)
 CDatabase::~CDatabase()
 {
     qDebug(log) << Q_FUNC_INFO;
-    closeDatabase();
+    CloseDatabase();
 }
 
-void CDatabase::setDatabase(QSqlDatabase db)
+void CDatabase::SetDatabase(QSqlDatabase db)
 {
     m_database = db;
 }
 
-QSqlDatabase CDatabase::getDatabase() const
+QSqlDatabase CDatabase::GetDatabase() const
 {
     return m_database;
 }
 
-bool CDatabase::openDatabase(const QString &connectionName, const QString &dbPath)
+bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPath)
 {
     QString databasePath;
     if (dbPath.isEmpty()) {
@@ -47,8 +47,8 @@ bool CDatabase::openDatabase(const QString &connectionName, const QString &dbPat
         databasePath = dbPath;
     }
 
-    if(isOpen())
-        closeDatabase();
+    if(IsOpen())
+        CloseDatabase();
 
     if(!connectionName.isEmpty())
         m_szConnectName = connectionName;
@@ -64,15 +64,15 @@ bool CDatabase::openDatabase(const QString &connectionName, const QString &dbPat
     }
 
     qInfo(log) << "Open database connect:" << m_szConnectName << "File:" << databasePath;
-    return onInitializeDatabase();
+    return OnInitializeDatabase();
 }
 
-bool CDatabase::isOpen() const
+bool CDatabase::IsOpen() const
 {
     return m_database.isOpen();
 }
 
-void CDatabase::closeDatabase()
+void CDatabase::CloseDatabase()
 {
     if (m_database.isOpen()) {
         m_database.close();
@@ -85,9 +85,9 @@ CDatabaseIcon::CDatabaseIcon(QObject *parent) : CDatabase(parent)
     m_szConnectName = "icon_connect";
 }
 
-bool CDatabaseIcon::onInitializeDatabase()
+bool CDatabaseIcon::OnInitializeDatabase()
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // Create icon table
     bool success = query.exec(
@@ -107,10 +107,10 @@ bool CDatabaseIcon::onInitializeDatabase()
     return true;
 }
 
-int CDatabaseIcon::getIcon(const QIcon &icon)
+int CDatabaseIcon::GetIcon(const QIcon &icon)
 {
     bool bRet = false;
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     QString szName = icon.name();
     if(szName.isEmpty()) {
         // Check hash and data
@@ -170,10 +170,10 @@ int CDatabaseIcon::getIcon(const QIcon &icon)
     return query.lastInsertId().toInt();
 }
 
-QIcon CDatabaseIcon::getIcon(int id)
+QIcon CDatabaseIcon::GetIcon(int id)
 {
     QIcon icon;
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT name, data FROM icon "
         "WHERE id=:id "
@@ -202,9 +202,9 @@ CDatabaseFolder::CDatabaseFolder(QObject *parent) : CDatabase(parent)
     m_szConnectName = "folder_connect";
 }
 
-bool CDatabaseFolder::onInitializeDatabase()
+bool CDatabaseFolder::OnInitializeDatabase()
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // 启用外键约束
     query.exec("PRAGMA foreign_keys = ON");
@@ -232,9 +232,9 @@ bool CDatabaseFolder::onInitializeDatabase()
 }
 
 
-bool CDatabaseFolder::addFolder(const QString &name, int parentId)
+bool CDatabaseFolder::AddFolder(const QString &name, int parentId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // 获取最大排序值
     query.prepare("SELECT MAX(sort_order) FROM folders WHERE parent_id = :parent_id");
@@ -264,9 +264,9 @@ bool CDatabaseFolder::addFolder(const QString &name, int parentId)
     return success;
 }
 
-bool CDatabaseFolder::renameFolder(int folderId, const QString &newName)
+bool CDatabaseFolder::RenameFolder(int folderId, const QString &newName)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("UPDATE folders SET name = :name WHERE id = :id");
     query.bindValue(":id", folderId);
     query.bindValue(":name", newName);
@@ -281,19 +281,19 @@ bool CDatabaseFolder::renameFolder(int folderId, const QString &newName)
     return success;
 }
 
-bool CDatabaseFolder::deleteFolder(int folderId)
+bool CDatabaseFolder::DeleteFolder(int folderId)
 {
     // 删除子目录
-    auto folders = getSubFolders(folderId);
+    auto folders = GetSubFolders(folderId);
     foreach(auto f, folders) {
-        deleteFolder(f.id);
+        DeleteFolder(f.id);
     }
 
     // 删除其下面的所有条目
-    onDeleteItems();
+    OnDeleteItems();
 
     // 删除文件夹
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM folders WHERE id = :id");
     query.bindValue(":id", folderId);
 
@@ -307,9 +307,9 @@ bool CDatabaseFolder::deleteFolder(int folderId)
     return success;
 }
 
-bool CDatabaseFolder::moveFolder(int folderId, int newParentId)
+bool CDatabaseFolder::MoveFolder(int folderId, int newParentId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("UPDATE folders SET parent_id = :parent_id WHERE id = :id");
     query.bindValue(":id", folderId);
     query.bindValue(":parent_id", newParentId);
@@ -325,11 +325,11 @@ bool CDatabaseFolder::moveFolder(int folderId, int newParentId)
 }
 
 
-QList<CDatabaseFolder::FolderItem> CDatabaseFolder::getAllFolders()
+QList<CDatabaseFolder::FolderItem> CDatabaseFolder::GetAllFolders()
 {
     QList<CDatabaseFolder::FolderItem> folders;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
         "FROM folders "
@@ -352,11 +352,11 @@ QList<CDatabaseFolder::FolderItem> CDatabaseFolder::getAllFolders()
     return folders;
 }
 
-QList<CDatabaseFolder::FolderItem> CDatabaseFolder::getSubFolders(int parentId)
+QList<CDatabaseFolder::FolderItem> CDatabaseFolder::GetSubFolders(int parentId)
 {
     QList<CDatabaseFolder::FolderItem> folders;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
         "FROM folders "

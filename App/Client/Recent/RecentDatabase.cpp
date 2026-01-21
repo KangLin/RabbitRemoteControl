@@ -16,12 +16,12 @@ CRecentDatabase::CRecentDatabase(QObject *parent)
 CRecentDatabase::~CRecentDatabase()
 {
     qDebug(log) << Q_FUNC_INFO;
-    closeDatabase();
+    CloseDatabase();
 }
 
-bool CRecentDatabase::onInitializeDatabase()
+bool CRecentDatabase::OnInitializeDatabase()
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // Create recent table
     bool success = query.exec(
@@ -47,14 +47,14 @@ bool CRecentDatabase::onInitializeDatabase()
     query.exec("CREATE INDEX IF NOT EXISTS idx_recent_file ON recent(file)");
 
     // Create icon table
-    m_IconDB.setDatabase(m_database);
-    m_IconDB.onInitializeDatabase();
+    m_IconDB.SetDatabase(GetDatabase());
+    m_IconDB.OnInitializeDatabase();
     return true;
 }
 
-int CRecentDatabase::addRecent(const RecentItem &item)
+int CRecentDatabase::AddRecent(const RecentItem &item)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     if(item.szFile.isEmpty())
         return -1;
     query.prepare(
@@ -83,7 +83,7 @@ int CRecentDatabase::addRecent(const RecentItem &item)
             "VALUES (:operate_id, :icon, :name, :protocol, :type, :file, :time, :description)"
             );
         query.bindValue(":operate_id", item.szOperateId);
-        query.bindValue(":icon", m_IconDB.getIcon(item.icon));
+        query.bindValue(":icon", m_IconDB.GetIcon(item.icon));
         query.bindValue(":name", item.szName);
         query.bindValue(":protocol", item.szProtocol);
         query.bindValue(":type", item.szType);
@@ -102,10 +102,10 @@ int CRecentDatabase::addRecent(const RecentItem &item)
     return query.lastInsertId().toInt();
 }
 
-bool CRecentDatabase::updateRecent(
+bool CRecentDatabase::UpdateRecent(
     const QString &szFile, const QString& szName, const QString& szDescription)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     query.prepare(
         "UPDATE recent SET "
@@ -125,10 +125,10 @@ bool CRecentDatabase::updateRecent(
     return success;
 }
 
-bool CRecentDatabase::deleteRecent(int id)
+bool CRecentDatabase::DeleteRecent(int id)
 {
     if(0 >= id) return false;
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM recent WHERE id=:id");
     query.bindValue(":id", id);
     bool success = query.exec();
@@ -139,11 +139,11 @@ bool CRecentDatabase::deleteRecent(int id)
     return success;
 }
 
-QList<CRecentDatabase::RecentItem> CRecentDatabase::getRecents(int limit, int offset)
+QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int offset)
 {
     QList<RecentItem> items;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     if(0 > limit) {
         query.prepare(
             "SELECT id, operate_id, icon, name, protocol, type, file, time, description "
@@ -165,7 +165,7 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::getRecents(int limit, int of
             RecentItem item;
             item.id = query.value(0).toInt();
             item.szOperateId = query.value(1).toString();
-            item.icon = m_IconDB.getIcon(query.value(2).toInt());
+            item.icon = m_IconDB.GetIcon(query.value(2).toInt());
             item.szName = query.value(3).toString();
             item.szProtocol = query.value(4).toString();
             item.szType = query.value(5).toString();

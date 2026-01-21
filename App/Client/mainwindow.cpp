@@ -412,12 +412,12 @@ void MainWindow::slotInitial()
     m_Manager.EnumPlugins(this);
 
     if(m_pRecentDb)
-        m_pRecentDb->openDatabase("recent_connect");
+        m_pRecentDb->OpenDatabase("recent_connect");
 
     if(m_pRecentMenu) {
         slotInformation(tr("Load recent menu ......"));
         qApp->processEvents();
-        auto recents = m_pRecentDb->getRecents(m_Parameter.GetRecentMenuMaxCount());
+        auto recents = m_pRecentDb->GetRecents(m_Parameter.GetRecentMenuMaxCount());
         //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
         foreach (auto r, recents) {
             m_pRecentMenu->addRecentFile(r.szFile, r.szName);
@@ -949,7 +949,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         item.szDescription = pOperate->Description();
         item.szFile = szFile;
         item.time = QDateTime::currentDateTime();
-        m_pRecentDb->addRecent(item);
+        m_pRecentDb->AddRecent(item);
     }
     
     if(!pOperate->Name().isEmpty())
@@ -1244,7 +1244,7 @@ void MainWindow::slotUpdateName(const QString& szName)
     m_pView->SetWidowsTitle(p->GetViewer(), szName,
                             p->Icon(), p->Description());
     if(m_pRecentDb) {
-        m_pRecentDb->updateRecent(
+        m_pRecentDb->UpdateRecent(
             p->GetSettingsFile(), p->Name(), p->Description());
     }
     foreach(auto a, ui->menuActivity->actions()) {

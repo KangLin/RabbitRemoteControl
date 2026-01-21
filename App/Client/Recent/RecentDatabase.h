@@ -27,14 +27,14 @@ public:
         }
     };
 
-    int addRecent(const RecentItem &item);
-    bool deleteRecent(int id);
-    bool updateRecent(
+    int AddRecent(const RecentItem &item);
+    bool DeleteRecent(int id);
+    bool UpdateRecent(
         const QString &szFile, const QString& szName, const QString& szDescription);
-    QList<RecentItem> getRecents(int limit = -1, int offset = 0);
+    QList<RecentItem> GetRecents(int limit = -1, int offset = 0);
 
 private:
-    bool onInitializeDatabase() override;
+    bool OnInitializeDatabase() override;
     CDatabaseIcon m_IconDB;
 };
 
