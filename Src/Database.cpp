@@ -110,12 +110,16 @@ bool CDatabaseIcon::OnInitializeDatabase()
 int CDatabaseIcon::GetIcon(const QIcon &icon)
 {
     bool bRet = false;
+    if(icon.isNull()) return 0;
+
     QSqlQuery query(GetDatabase());
     QString szName = icon.name();
     if(szName.isEmpty()) {
         // Check hash and data
         QByteArray data = RabbitCommon::CIconUtils::iconToByteArray(icon);
         QString szHash = RabbitCommon::CIconUtils::hashIconData(data);
+        if(data.isEmpty() || szHash.isEmpty())
+            return 0;
         query.prepare("SELECT id, data FROM icon WHERE hash=:hash");
         query.bindValue(":hash", szHash);
         bRet = query.exec();

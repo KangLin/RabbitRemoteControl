@@ -80,7 +80,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     if(m_pHistoryDatabase) {
         QString szDb = GetProfile()->persistentStoragePath()
             + QDir::separator() + "History.db";
-        bool bRet = m_pHistoryDatabase->openDatabase(szDb);
+        bool bRet = m_pHistoryDatabase->OpenDatabase("history_connection", szDb);
         if(!bRet) {
             delete m_pHistoryDatabase;
             m_pHistoryDatabase = nullptr;

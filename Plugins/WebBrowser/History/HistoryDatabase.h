@@ -9,10 +9,12 @@
 #include <QDateTime>
 #include <QUrl>
 #include <QIcon>
+#include "Database.h"
 
 struct HistoryItem {
     int id;
     QIcon icon;
+    int iconId;
     QString url;
     QString title;
     QDateTime visitTime;
@@ -20,19 +22,15 @@ struct HistoryItem {
     QDateTime lastVisitTime;
 };
 
-class CHistoryDatabase : public QObject
+class CHistoryDatabase : public CDatabase
 {
     Q_OBJECT
 public:
     explicit CHistoryDatabase(QObject *parent = nullptr);
     ~CHistoryDatabase();
 
-    bool openDatabase(const QString &dbPath = QString());
-    bool isOpen();
-    void closeDatabase();
-
     // 历史记录操作
-    bool addHistoryEntry(const QString &url, const QString &title, bool bSingle = false);
+    bool addHistoryEntry(const QString &url, const QString &title, const QIcon& icon = QIcon(), bool bSingle = false);
     bool updateHistoryEntry(const QString& url, const QString &title = QString(), const QIcon& icon = QIcon());
     bool updateHistoryEntry(int id, const QString &title = QString(), const QIcon& icon = QIcon());
     bool deleteHistoryEntry(int id);
@@ -64,7 +62,8 @@ private:
 
 private:
     QSqlDatabase m_database;
-    bool initializeDatabase();
+    bool OnInitializeDatabase() override;
+    CDatabaseIcon m_iconDB;
 };
 
 void enableSqlTrace(const QString& connectionName = QSqlDatabase::defaultConnection);
