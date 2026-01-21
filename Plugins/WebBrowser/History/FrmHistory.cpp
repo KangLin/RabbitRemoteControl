@@ -455,14 +455,26 @@ void CFrmHistory::slotImport()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Import histories"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("CSV file (*.csv);; All files (*.*)"));
+        tr("JSON (*.json);; CSV file (*.csv);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
-        if(m_pModelHistory->importFromCSV(filename)) {
-            slotRefresh();
-            QMessageBox::information(this, tr("Success"), tr("Histories import from csv file successfully"));
-        } else {
-            QMessageBox::warning(this, tr("Failure"), tr("Failed to import histories from csv file"));
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pModelHistory->importFromJson(filename)) {
+                slotRefresh();
+                QMessageBox::information(this, tr("Success"), tr("Histories import from json file successfully"));
+            } else {
+                QMessageBox::warning(this, tr("Failure"), tr("Failed to import histories from json file"));
+            }
+            return;
+        }
+        if(0 == fi.suffix().compare("csv", Qt::CaseInsensitive)) {
+            if(m_pModelHistory->importFromCSV(filename)) {
+                slotRefresh();
+                QMessageBox::information(this, tr("Success"), tr("Histories import from csv file successfully"));
+            } else {
+                QMessageBox::warning(this, tr("Failure"), tr("Failed to import histories from csv file"));
+            }
         }
     }
 }
@@ -472,13 +484,24 @@ void CFrmHistory::slotExport()
     QString filename = QFileDialog::getSaveFileName(
         this, tr("Export histories"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("CSV (*.csv);; All files (*.*)"));
+        tr("JSON (*.json);; CSV (*.csv);; All files (*.*)"));
 
     if (!filename.isEmpty()) {
-        if (m_pModelHistory->exportToCSV(filename)) {
-            QMessageBox::information(this, tr("Success"), tr("Histories exported to csv file successfully"));
-        } else {
-            QMessageBox::warning(this, tr("Failure"), tr("Failed to export histories to csv file"));
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pModelHistory->exportToJson(filename)) {
+                QMessageBox::information(this, tr("Success"), tr("Histories exported to json file successfully"));
+            } else {
+                QMessageBox::warning(this, tr("Failure"), tr("Failed to export histories to json file"));
+            }
+            return;
+        }
+        if(0 == fi.suffix().compare("csv", Qt::CaseInsensitive)) {
+            if (m_pModelHistory->exportToCSV(filename)) {
+                QMessageBox::information(this, tr("Success"), tr("Histories exported to csv file successfully"));
+            } else {
+                QMessageBox::warning(this, tr("Failure"), tr("Failed to export histories to csv file"));
+            }
         }
     }
 }

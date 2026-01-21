@@ -7,7 +7,9 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QCoreApplication>
-#include "RabbitCommonDir.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "HistoryDatabase.h"
 
 static Q_LOGGING_CATEGORY(log, "DB.History")
@@ -439,6 +441,65 @@ QDateTime CHistoryDatabase::getLastVisitTime()
     }
 
     return QDateTime();
+}
+
+bool CHistoryDatabase::importFromJson(const QString &filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    do {
+        QJsonDocument doc;
+        doc = QJsonDocument::fromJson(file.readAll());
+        if(!doc.isArray())
+            break;
+        auto array = doc.array();
+        for(auto it = array.begin(); it != array.end(); it++) {
+            auto o = it->toObject();
+            QString url = o["url"].toString();
+            QString title = o["title"].toString();
+            QDateTime time = QDateTime::fromString(o["visit_time"].toString());
+            qDebug(log) << "title:" << title << "url:" << url << "visit_time:" << time;
+            bool ok = addHistoryEntry(url, title, time);
+            if(!ok)
+                qWarning(log) << "Failed to add history:" << o["title"].toString();
+        }
+    } while(0);
+
+    file.close();
+    return true;
+}
+
+bool CHistoryDatabase::exportToJson(const QString &filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QTextStream out(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    out.setEncoding(QStringConverter::Utf8);
+#else
+    out.setCodec("UTF-8");
+#endif
+    out.setGenerateByteOrderMark(true);  // 添加 UTF-8 BOM
+
+    QJsonDocument doc;
+    QJsonArray list;
+    auto items = getAllHistory();
+    foreach(auto it, items) {
+        QJsonObject title;
+        title.insert("title", it.title);
+        title.insert("url", it.url);
+        title.insert("visit_time", it.visitTime.toString());
+        list.append(title);
+    }
+    doc.setArray(list);
+    out << doc.toJson();
+
+    file.close();
+    return true;
 }
 
 bool CHistoryDatabase::importFromCSV(const QString &filename)

@@ -49,6 +49,8 @@ public:
 
     bool importFromCSV(const QString& filename);
     bool exportToCSV(const QString &filename);
+    bool importFromJson(const QString& filename);
+    bool exportToJson(const QString& filename);
 private:
     QString escapeForCsv(const QString &text);
     QString unescapeCsvField(const QString &field);

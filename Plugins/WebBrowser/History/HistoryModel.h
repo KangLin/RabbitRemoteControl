@@ -43,7 +43,8 @@ public:
 
     bool importFromCSV(const QString& filename);
     bool exportToCSV(const QString &filename);
-
+    bool importFromJson(const QString& filename);
+    bool exportToJson(const QString& filename);
 private:
     QList<HistoryItem> m_historyItems;
     CHistoryDatabase* m_pDatabase;

@@ -181,3 +181,15 @@ bool CHistoryModel::exportToCSV(const QString &filename)
     if(!m_pDatabase) return false;
     return m_pDatabase->exportToCSV(filename);
 }
+
+bool CHistoryModel::importFromJson(const QString &filename)
+{
+    if(!m_pDatabase) return false;
+    return m_pDatabase->importFromJson(filename);
+}
+
+bool CHistoryModel::exportToJson(const QString &filename)
+{
+    if(!m_pDatabase) return false;
+    return m_pDatabase->exportToJson(filename);
+}
