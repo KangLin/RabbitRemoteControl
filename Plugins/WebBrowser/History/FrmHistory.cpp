@@ -18,8 +18,7 @@
 #include "ui_FrmHistory.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.History")
-CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
-                         CParameterWebBrowser *pPara,
+CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
                          QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmHistory)
@@ -131,11 +130,9 @@ CFrmHistory::CFrmHistory(CHistoryDatabase *pDatabase,
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    if(pDatabase) {
-        m_pModelHistory = new CHistoryModel(pDatabase, m_pPara, this);
-        if(m_pModelHistory) {
-            ui->tableView->setModel(m_pModelHistory);
-        }
+    m_pModelHistory = new CHistoryModel(m_pPara, this);
+    if(m_pModelHistory) {
+        ui->tableView->setModel(m_pModelHistory);
     }
 
     resize(m_pPara->GetWindowSize());

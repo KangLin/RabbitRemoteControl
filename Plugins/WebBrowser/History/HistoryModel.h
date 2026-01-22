@@ -12,7 +12,7 @@ class CHistoryModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit CHistoryModel(CHistoryDatabase* pDatabase, CParameterWebBrowser* pPara, QObject *parent = nullptr);
+    explicit CHistoryModel(CParameterWebBrowser* pPara, QObject *parent = nullptr);
     ~CHistoryModel();
 
     enum Column {

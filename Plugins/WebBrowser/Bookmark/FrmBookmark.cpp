@@ -16,10 +16,10 @@
 #include "ui_FrmBookmark.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark")
-CFrmBookmark::CFrmBookmark(CBookmarkDatabase *db, CParameterWebBrowser *pPara, QWidget *parent)
+CFrmBookmark::CFrmBookmark(CParameterWebBrowser *pPara, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmBookmark)
-    , m_pDatabase(db)
+    , m_pDatabase(CBookmarkDatabase::Instance())
     , m_pPara(pPara)
     , m_pTreeView(nullptr)
     , m_pSearchEdit(nullptr)

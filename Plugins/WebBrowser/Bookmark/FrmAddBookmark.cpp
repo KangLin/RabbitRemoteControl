@@ -9,14 +9,14 @@
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark.Add")
 CFrmAddBookmark::CFrmAddBookmark(const QString &szTitle, const QUrl &url,
                                  const QIcon &icon, CParameterWebBrowser* pPara,
-                                 CBookmarkDatabase *db, QWidget *parent)
+                                 QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmAddBookmark)
     , m_szTitle(szTitle)
     , m_Url(url)
     , m_Icon(icon)
     , m_pPara(pPara)
-    , m_pDatabase(db)
+    , m_pDatabase(CBookmarkDatabase::Instance())
     , m_pModelTree(nullptr)
 {
     ui->setupUi(this);

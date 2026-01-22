@@ -17,7 +17,7 @@ class CFrmBookmark : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmBookmark(CBookmarkDatabase *db, CParameterWebBrowser* pPara, QWidget *parent = nullptr);
+    explicit CFrmBookmark(CParameterWebBrowser* pPara, QWidget *parent = nullptr);
     ~CFrmBookmark();
 
     void refresh();

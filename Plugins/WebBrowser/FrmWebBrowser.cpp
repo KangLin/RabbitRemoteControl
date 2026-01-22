@@ -76,27 +76,17 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
 
-    m_pHistoryDatabase = new CHistoryDatabase(this);
-    if(m_pHistoryDatabase) {
-        QString szDb = GetProfile()->persistentStoragePath()
-            + QDir::separator() + "History.db";
-        bool bRet = m_pHistoryDatabase->OpenDatabase("history_connection", szDb);
-        if(!bRet) {
-            delete m_pHistoryDatabase;
-            m_pHistoryDatabase = nullptr;
-        }
-    }
+    QString szDbHistory = GetProfile()->persistentStoragePath();
+    if(!(szDbHistory.right(1) == '/' || szDbHistory.right(1) == '\\'))
+        szDbHistory += QDir::separator();
+    szDbHistory += "History.db";
+    m_pHistoryDatabase = CHistoryDatabase::Instance(szDbHistory);
 
-    m_pBookmarkDatabase = new CBookmarkDatabase(this);
-    if(m_pBookmarkDatabase) {
-        QString szDb = GetProfile()->persistentStoragePath()
-            + QDir::separator() + "Bookmark.db";
-        bool bRet = m_pBookmarkDatabase->openDatabase(szDb);
-        if(!bRet) {
-            delete m_pBookmarkDatabase;
-            m_pBookmarkDatabase = nullptr;
-        }
-    }
+    QString szDbBookmarks = GetProfile()->persistentStoragePath();
+    if(!(szDbBookmarks.right(1) == '/' || szDbBookmarks.right(1) == '\\'))
+        szDbBookmarks += QDir::separator();
+    szDbBookmarks += "Bookmarks.db";
+    m_pBookmarkDatabase = CBookmarkDatabase::Instance(szDbBookmarks);
 
     setWindowIcon(QIcon::fromTheme("web-browser"));
 
@@ -170,7 +160,6 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     Q_ASSERT(check);
     // 创建地址栏自动完成器
     auto pAddressCompleter = new CAddressCompleter(this);
-    pAddressCompleter->setHistoryDatabase(m_pHistoryDatabase);
     pAddressCompleter->attachToLineEdit(m_pUrlLineEdit);
     if(m_pPara)
         pAddressCompleter->setMaxVisibleItems(m_pPara->GetAddCompleterLines());
@@ -784,7 +773,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenu->addMenu(pMenuBookmark);
     pMenuBookmark->addAction(m_pAddBookmark);
     pMenuBookmark->addAction(tr("Manage Bookmark "), this, [&]{
-        CFrmBookmark* pBookmark = new CFrmBookmark(m_pBookmarkDatabase, m_pPara);
+        CFrmBookmark* pBookmark = new CFrmBookmark(m_pPara);
         if(!pBookmark) return;
         pBookmark->setAttribute(Qt::WA_DeleteOnClose);
         connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
@@ -799,7 +788,7 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
         RC_SHOW_WINDOW(pBookmark);
     });
     pMenu->addAction(tr("History"), this, [&]() {
-        CFrmHistory* pHistory = new CFrmHistory(m_pHistoryDatabase, m_pPara);
+        CFrmHistory* pHistory = new CFrmHistory(m_pPara);
         if(!pHistory) return;
         pHistory->setAttribute(Qt::WA_DeleteOnClose);
         connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
@@ -1302,7 +1291,7 @@ void CFrmWebBrowser::slotAddBookmark()
 
     CFrmAddBookmark* pAdd = new CFrmAddBookmark(
         pView->title(), pView->url(), pView->favIcon(),
-        m_pPara, m_pBookmarkDatabase);
+        m_pPara);
     bool check = connect(this, &CFrmWebBrowser::destroyed, pAdd, &CFrmAddBookmark::close);
     Q_ASSERT(check);
     RC_SHOW_WINDOW(pAdd);

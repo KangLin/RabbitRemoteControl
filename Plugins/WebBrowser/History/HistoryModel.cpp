@@ -5,9 +5,8 @@
 #include "HistoryModel.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.History.Model")
-CHistoryModel::CHistoryModel(CHistoryDatabase *pDatabase, CParameterWebBrowser *pPara, QObject *parent)
+CHistoryModel::CHistoryModel(CParameterWebBrowser *pPara, QObject *parent)
     : QAbstractTableModel(parent)
-    , m_pDatabase(pDatabase)
     , m_pPara(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -15,6 +14,7 @@ CHistoryModel::CHistoryModel(CHistoryDatabase *pDatabase, CParameterWebBrowser *
     // if (m_pDatabase && m_pDatabase->isOpen()) {
     //     refresh();
     // }
+    m_pDatabase = CHistoryDatabase::Instance();
 }
 
 CHistoryModel::~CHistoryModel()

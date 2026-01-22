@@ -20,7 +20,7 @@ public:
     explicit CFrmAddBookmark(
         const QString &szTitle, const QUrl &url,
         const QIcon &icon, CParameterWebBrowser* pPara,
-        CBookmarkDatabase *db, QWidget *parent = nullptr);
+        QWidget *parent = nullptr);
     ~CFrmAddBookmark();
 
 private slots:

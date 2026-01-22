@@ -53,7 +53,6 @@ CAddressCompleterItem::CAddressCompleterItem(const QString &title,
 CAddressCompleter::CAddressCompleter(QWidget *parent)
     : QWidget(parent)
     , m_pLineEdit(nullptr)
-    , m_pHistoryDatabase(nullptr)
     , m_pShowAnimation(nullptr)
     , m_pHideAnimation(nullptr)
     , m_currentSelectedIndex(-1)
@@ -124,11 +123,6 @@ void CAddressCompleter::setupUI()
     int itemHeight = 40;
     int maxHeight = m_maxVisibleItems * itemHeight + 10; // 10是边框和内边距
     setMaximumHeight(maxHeight);
-}
-
-void CAddressCompleter::setHistoryDatabase(CHistoryDatabase *db)
-{
-    m_pHistoryDatabase = db;
 }
 
 void CAddressCompleter::attachToLineEdit(QLineEdit *lineEdit)
@@ -265,8 +259,8 @@ void CAddressCompleter::performSearch()
 
     // 搜索历史记录
     QList<HistoryItem> lstHistory;
-    if(m_pHistoryDatabase)
-        lstHistory = m_pHistoryDatabase->searchHistory(keyword);
+    if(CHistoryDatabase::Instance())
+        lstHistory = CHistoryDatabase::Instance()->searchHistory(keyword);
 
     // 添加搜索结果
     int count = 0;

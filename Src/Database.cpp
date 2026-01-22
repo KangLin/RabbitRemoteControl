@@ -58,12 +58,13 @@ bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPat
     m_database.setDatabaseName(databasePath);
 
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open database:" << m_szConnectName
-                       << m_database.lastError().text();
+        qCritical(log) << "Failed to open database:"
+                       << m_database.lastError().text()
+                       << m_database.connectionName() << databasePath;
         return false;
     }
 
-    qInfo(log) << "Open database connect:" << m_szConnectName << "File:" << databasePath;
+    qInfo(log) << "Open database connect:" << m_database.connectionName() << "File:" << databasePath;
     return OnInitializeDatabase();
 }
 

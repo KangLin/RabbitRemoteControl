@@ -8,10 +8,8 @@
 #include <QDateTime>
 #include <QIcon>
 #include <QList>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
 #include <QDateTime>
+#include "Database.h"
 
 enum BookmarkType {
     BookmarkType_Bookmark,
@@ -83,15 +81,11 @@ struct BookmarkItem {
     }
 };
 
-class CBookmarkDatabase : public QObject
+class CBookmarkDatabase : public CDatabase
 {
     Q_OBJECT
 public:
-    explicit CBookmarkDatabase(QObject *parent = nullptr);
-    ~CBookmarkDatabase();
-
-    bool openDatabase(const QString &dbPath = QString());
-    void closeDatabase();
+    static CBookmarkDatabase* Instance(const QString& szPath = QString());
 
     // 书签操作
     bool addBookmark(const BookmarkItem &item);
@@ -136,7 +130,9 @@ signals:
     void folderDeleted(int folderId);
 
 private:
-    bool initializeDatabase();
+    explicit CBookmarkDatabase(QObject *parent = nullptr);
+    ~CBookmarkDatabase();
+    bool OnInitializeDatabase() override;
     BookmarkItem bookmarkFromQuery(const QSqlQuery &query);
 
     void buildBookmarkDocument(QDomDocument &doc);
@@ -161,6 +157,4 @@ private:
     QDateTime parseTimestamp(const QString &timestampStr);
     QDomElement findFirstElement(const QDomElement &parent, const QString &tagName);
 
-private:
-    QSqlDatabase m_database;
 };

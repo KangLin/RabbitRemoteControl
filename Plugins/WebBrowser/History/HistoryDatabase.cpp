@@ -12,7 +12,7 @@
 #include <QJsonArray>
 #include "HistoryDatabase.h"
 
-static Q_LOGGING_CATEGORY(log, "DB.History")
+static Q_LOGGING_CATEGORY(log, "WebBrowser.History.DB")
 
 #if HAVE_SQLITE
 #include <sqlite3.h>  // 需要链接 sqlite3 库
@@ -40,6 +40,22 @@ void enableSqlTrace(const QString& connectionName)
 {
 }
 #endif // HAVE_SQLITE
+
+CHistoryDatabase* CHistoryDatabase::Instance(const QString &szPath)
+{
+    static CHistoryDatabase* p = nullptr;
+    if(!p) {
+        p = new CHistoryDatabase();
+        if(p) {
+            bool bRet = p->OpenDatabase("history_connection", szPath);
+            if(!bRet) {
+                delete p;
+                p = nullptr;
+            }
+        }
+    }
+    return p;
+}
 
 CHistoryDatabase::CHistoryDatabase(QObject *parent)
     : CDatabase(parent)

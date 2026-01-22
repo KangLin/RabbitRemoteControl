@@ -1,5 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 #include <QMessageBox>
 #include <QStandardPaths>
 #include <QDir>
@@ -11,8 +14,24 @@
 #include "BookmarkDatabase.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark.DB")
+CBookmarkDatabase* CBookmarkDatabase::Instance(const QString &szPath)
+{
+    static CBookmarkDatabase* p = nullptr;
+    if(!p) {
+        p = new CBookmarkDatabase();
+        if(p) {
+            bool bRet = p->OpenDatabase("bookmarks_connect", szPath);
+            if(!bRet) {
+                delete p;
+                p = nullptr;
+            }
+        }
+    }
+    return p;
+}
+
 CBookmarkDatabase::CBookmarkDatabase(QObject *parent)
-    : QObject(parent)
+    : CDatabase(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -20,48 +39,11 @@ CBookmarkDatabase::CBookmarkDatabase(QObject *parent)
 CBookmarkDatabase::~CBookmarkDatabase()
 {
     qDebug(log) << Q_FUNC_INFO;
-    closeDatabase();
 }
 
-bool CBookmarkDatabase::openDatabase(const QString &dbPath)
+bool CBookmarkDatabase::OnInitializeDatabase()
 {
-    QString databasePath;
-    if (dbPath.isEmpty()) {
-        // 使用默认路径
-        QString dataDir = RabbitCommon::CDir::Instance()->GetDirUserDatabase();
-        QDir dir(dataDir);
-        if (!dir.exists()) {
-            dir.mkpath(dataDir);
-        }
-        databasePath = dir.filePath("bookmarks.db");
-    } else {
-        databasePath = dbPath;
-    }
-
-    // 打开或创建数据库
-    m_database = QSqlDatabase::addDatabase("QSQLITE", "bookmarks_connection");
-    m_database.setDatabaseName(databasePath);
-
-    if (!m_database.open()) {
-        qCritical(log) << "Failed to open bookmarks database:"
-                       << m_database.lastError().text() << databasePath;
-        return false;
-    }
-
-    return initializeDatabase();
-}
-
-void CBookmarkDatabase::closeDatabase()
-{
-    if (m_database.isOpen()) {
-        m_database.close();
-    }
-    QSqlDatabase::removeDatabase("bookmarks_connection");
-}
-
-bool CBookmarkDatabase::initializeDatabase()
-{
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // 启用外键约束
     query.exec("PRAGMA foreign_keys = ON");
@@ -117,7 +99,7 @@ bool CBookmarkDatabase::initializeDatabase()
     // 检查是否有默认文件夹
     query.exec("SELECT COUNT(*) FROM bookmark_folders");
     if (query.next() && query.value(0).toInt() == 0) {
-        QSqlQuery queryInsert(m_database);
+        QSqlQuery queryInsert(GetDatabase());
         // 插入默认文件夹
         queryInsert.prepare("INSERT INTO bookmark_folders (id, name, parent_id, sort_order) VALUES "
                    "(1, :bookmark, 0, 1), "
@@ -139,7 +121,7 @@ bool CBookmarkDatabase::initializeDatabase()
 
 bool CBookmarkDatabase::addBookmark(const BookmarkItem &item)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     query.prepare(
         "INSERT INTO bookmarks (url, title, icon, icon_url, description, "
@@ -180,7 +162,7 @@ bool CBookmarkDatabase::addBookmark(const BookmarkItem &item)
 
 bool CBookmarkDatabase::updateBookmark(const BookmarkItem &item)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     query.prepare(
         "UPDATE bookmarks SET "
@@ -226,7 +208,7 @@ bool CBookmarkDatabase::updateBookmark(const BookmarkItem &item)
 
 bool CBookmarkDatabase::deleteBookmark(int id)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM bookmarks WHERE id = :id");
     query.bindValue(":id", id);
 
@@ -247,7 +229,7 @@ bool CBookmarkDatabase::deleteBookmark(const QList<BookmarkItem> &items)
         return false;
     }
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     QString szSql("DELETE FROM bookmarks WHERE ");
     int i = 0;
@@ -271,7 +253,7 @@ bool CBookmarkDatabase::deleteBookmark(const QList<BookmarkItem> &items)
 
 bool CBookmarkDatabase::moveBookmark(int id, int newFolderId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("UPDATE bookmarks SET folder_id = :folder_id WHERE id = :id");
     query.bindValue(":id", id);
     query.bindValue(":folder_id", newFolderId);
@@ -287,7 +269,7 @@ bool CBookmarkDatabase::moveBookmark(int id, int newFolderId)
 
 bool CBookmarkDatabase::addFolder(const QString &name, int parentId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     // 获取最大排序值
     query.prepare("SELECT MAX(sort_order) FROM bookmark_folders WHERE parent_id = :parent_id");
@@ -325,7 +307,7 @@ bool CBookmarkDatabase::addFolder(const QString &name, int parentId)
 
 bool CBookmarkDatabase::renameFolder(int folderId, const QString &newName)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("UPDATE bookmark_folders SET name = :name WHERE id = :id");
     query.bindValue(":id", folderId);
     query.bindValue(":name", newName);
@@ -352,7 +334,7 @@ bool CBookmarkDatabase::deleteFolder(int folderId)
         deleteFolder(f.id);
     }
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     // 将文件夹中的书签移动到默认书签
     //query.prepare("UPDATE bookmarks SET folder_id = 1 WHERE folder_id = :folder_id");
     // 删除其下面的所有书签
@@ -376,7 +358,7 @@ bool CBookmarkDatabase::deleteFolder(int folderId)
 
 bool CBookmarkDatabase::moveFolder(int folderId, int newParentId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("UPDATE bookmark_folders SET parent_id = :parent_id WHERE id = :id");
     query.bindValue(":id", folderId);
     query.bindValue(":parent_id", newParentId);
@@ -394,7 +376,7 @@ BookmarkItem CBookmarkDatabase::getBookmark(int id)
 {
     BookmarkItem item;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, url, title, icon, icon_url, description, "
         "created_time, modified_time, visit_count, last_visit_time, "
@@ -415,7 +397,7 @@ QList<BookmarkItem> CBookmarkDatabase::getBookmarkByUrl(const QString &url)
     QList<BookmarkItem> lstItems;
     BookmarkItem item;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, url, title, icon, icon_url, description, "
         "created_time, modified_time, visit_count, last_visit_time, "
@@ -438,7 +420,7 @@ QList<BookmarkItem> CBookmarkDatabase::getAllBookmarks(int folderId)
 {
     QList<BookmarkItem> bookmarks;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     QString sql = QString(
         "SELECT id, url, title, icon, icon_url, description, "
         "created_time, modified_time, visit_count, last_visit_time, "
@@ -470,7 +452,7 @@ QList<BookmarkItem> CBookmarkDatabase::getFavoriteBookmarks()
 {
     QList<BookmarkItem> bookmarks;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, url, title, icon, icon_url, description, "
         "created_time, modified_time, visit_count, last_visit_time, "
@@ -492,7 +474,7 @@ QList<BookmarkItem> CBookmarkDatabase::searchBookmarks(const QString &keyword)
 {
     QList<BookmarkItem> bookmarks;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, url, title, icon, icon_url, description, "
         "created_time, modified_time, visit_count, last_visit_time, "
@@ -518,7 +500,7 @@ QList<BookmarkItem> CBookmarkDatabase::getAllFolders()
 {
     QList<BookmarkItem> folders;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
         "FROM bookmark_folders "
@@ -545,7 +527,7 @@ QList<BookmarkItem> CBookmarkDatabase::getSubFolders(int parentId)
 {
     QList<BookmarkItem> folders;
 
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
         "FROM bookmark_folders "
@@ -572,7 +554,7 @@ QList<BookmarkItem> CBookmarkDatabase::getSubFolders(int parentId)
 
 int CBookmarkDatabase::getBookmarkCount(int folderId)
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
 
     if (folderId >= 0) {
         query.prepare("SELECT COUNT(*) FROM bookmarks WHERE folder_id = :folder_id");
@@ -590,7 +572,7 @@ int CBookmarkDatabase::getBookmarkCount(int folderId)
 
 int CBookmarkDatabase::getFolderCount()
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("SELECT COUNT(*) FROM bookmark_folders");
 
     if (query.exec() && query.next()) {
@@ -840,13 +822,13 @@ bool CBookmarkDatabase::importFromHtml(const QString &filename)
     }
 
     // 开始事务
-    m_database.transaction();
+    GetDatabase().transaction();
 
     try {
         int importedCount = parseHtmlBookmarks(content);
 
-        if (!m_database.commit()) {
-            throw QString("Failed to commit transaction: %1").arg(m_database.lastError().text());
+        if (!GetDatabase().commit()) {
+            throw QString("Failed to commit transaction: %1").arg(GetDatabase().lastError().text());
         }
 
         emit bookmarksChanged();
@@ -855,7 +837,7 @@ bool CBookmarkDatabase::importFromHtml(const QString &filename)
         return true;
 
     } catch (const QString &error) {
-        m_database.rollback();
+        GetDatabase().rollback();
         qWarning(log) << "Import failed:" << error;
         return false;
     }
@@ -1083,7 +1065,7 @@ int CBookmarkDatabase::getOrCreateFolder(const QString &folderPath, int parentFo
     QString folderName = pathParts.last();
 
     // 检查文件夹是否已存在
-    QSqlQuery query(m_database);
+    QSqlQuery query(GetDatabase());
     query.prepare("SELECT id FROM bookmark_folders WHERE name = :name AND parent_id = :parent_id");
     query.bindValue(":name", folderName);
     query.bindValue(":parent_id", parentFolderId);

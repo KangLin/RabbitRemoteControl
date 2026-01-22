@@ -42,7 +42,6 @@ public:
     explicit CAddressCompleter(QWidget *parent = nullptr);
     ~CAddressCompleter();
 
-    void setHistoryDatabase(CHistoryDatabase *db);
     void attachToLineEdit(QLineEdit *lineEdit);
     void setMaxVisibleItems(int count);
 
@@ -79,7 +78,6 @@ private:
     QString m_szLineEditToolTipShow;
     QString m_szListWidgetToolTip;
     QListWidget *m_pListWidget;
-    CHistoryDatabase *m_pHistoryDatabase;
     QTimer *m_pSearchTimer;
     QPropertyAnimation *m_pShowAnimation;
     QPropertyAnimation *m_pHideAnimation;

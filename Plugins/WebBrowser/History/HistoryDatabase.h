@@ -21,8 +21,7 @@ class CHistoryDatabase : public CDatabase
 {
     Q_OBJECT
 public:
-    explicit CHistoryDatabase(QObject *parent = nullptr);
-    ~CHistoryDatabase();
+    static CHistoryDatabase* Instance(const QString& szPath = QString());
 
     // 历史记录操作
     bool addHistoryEntry(const QString &url);
@@ -59,6 +58,8 @@ private:
     bool importCsvRecord(const QStringList &fields);
 
 private:
+    explicit CHistoryDatabase(QObject *parent = nullptr);
+    ~CHistoryDatabase();
     bool OnInitializeDatabase() override;
     CDatabaseUrl m_UrlDB;
 };

@@ -15,8 +15,7 @@ class CFrmHistory : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmHistory(CHistoryDatabase* pDatabase,
-                         CParameterWebBrowser* pPara,
+    explicit CFrmHistory(CParameterWebBrowser* pPara,
                          QWidget *parent = nullptr);
     ~CFrmHistory();
 
