@@ -56,6 +56,7 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/Stats.h
     CheckBoxHeader.h
     Database.h
+    DatabaseTree.h
     )
 
 list(APPEND PLUGIN_HEADER_FILES
@@ -108,6 +109,7 @@ list(APPEND PLUGIN_SOURCE_FILES
     StatsAppUsage.cpp
     CheckBoxHeader.cpp
     Database.cpp
+    DatabaseTree.cpp
     )
 
 set(PLUGIN_UI_FILES

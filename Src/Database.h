@@ -39,6 +39,7 @@ class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
 
 public:
     explicit CDatabaseIcon(QObject *parent = nullptr);
+    explicit CDatabaseIcon(const QString& szPrefix, QObject *parent = nullptr);
 
     /*!
      * \brief Get icon id
@@ -50,33 +51,7 @@ public:
     QIcon GetIcon(int id);
 
     virtual bool OnInitializeDatabase() override;
+private:
+    QString m_szTableName;
 };
 
-class PLUGIN_EXPORT CDatabaseFolder : public CDatabase
-{
-    Q_OBJECT
-public:
-    explicit CDatabaseFolder(QObject *parent = nullptr);
-
-    struct FolderItem {
-        int id;
-        QString szName;
-        int parentId;
-        int sortOrder;
-        QDateTime createTime;
-    };
-
-    // 文件夹操作
-    bool AddFolder(const QString &name, int parentId = 0);
-    bool RenameFolder(int folderId, const QString &newName);
-    bool DeleteFolder(int folderId);
-    bool MoveFolder(int folderId, int newParentId);
-    // 文件夹查询
-    QList<FolderItem> GetAllFolders();
-    QList<FolderItem> GetSubFolders(int parentId);
-
-    virtual bool OnInitializeDatabase() override;
-
-protected:
-    virtual bool OnDeleteItems() = 0;
-};
