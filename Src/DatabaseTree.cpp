@@ -410,7 +410,7 @@ bool CDatabaseTree::OnInitializeDatabase()
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    name TEXT NOT NULL,"
+        "    name TEXT,"
         "    key INTEGER DEFAULT 0,"
         "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
@@ -470,7 +470,7 @@ bool CDatabaseTree::Update(const TreeItem &item)
         "created_time = :created_time, "
         "modified_time = :modified_time, "
         "last_visit_time = :last_visit_time, "
-        "parent_id = :parent_id"
+        "parent_id = :parent_id "
         "WHERE id = :id"
         );
     query.bindValue(":name", item.GetName());
@@ -479,9 +479,10 @@ bool CDatabaseTree::Update(const TreeItem &item)
     query.bindValue(":modified_time", QDateTime::currentDateTime());
     query.bindValue(":last_visit_time", item.GetLastVisitTime());
     query.bindValue(":parent_id", item.GetParentId());
-
+    query.bindValue(":id", item.GetId());
+    qDebug(log) << "Sql:" << query.executedQuery();
+    qDebug(log) << "Bound value:" << query.boundValues();
     bool success = query.exec();
-
     if (!success) {
         qCritical(log) << "Failed to update tree item:" << m_szTableName << query.lastError().text();
     }
@@ -589,7 +590,7 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
     QSqlQuery query(GetDatabase());
     QString szSql;
     szSql = "SELECT id, name, key, "
-            "created_time, modified_time, last_visit_time "
+            "created_time, modified_time, last_visit_time, parent_id "
             "FROM " + m_szTableName;
     if(0 < nodeId)
         szSql += " WHERE parent_id = :parent_id";
@@ -610,7 +611,7 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
         item.SetCreateTime(query.value(3).toDateTime());
         item.SetModifyTime(query.value(4).toDateTime());
         item.SetLastVisitTime(query.value(5).toDateTime());
-        item.SetParentId(nodeId);
+        item.SetParentId(query.value(6).toInt());
 
         items.append(item);
     }
@@ -641,6 +642,47 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(int key)
         item.SetId(query.value(0).toInt());
         item.SetName(query.value(1).toString());
         item.SetKey(key);
+        item.SetCreateTime(query.value(2).toDateTime());
+        item.SetModifyTime(query.value(3).toDateTime());
+        item.SetLastVisitTime(query.value(4).toDateTime());
+        item.SetParentId(query.value(5).toInt());
+
+        items.append(item);
+    }
+    return items;
+}
+
+QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
+{
+    QList<TreeItem> items;
+    if(key.isEmpty()) return items;
+
+    QSqlQuery query(GetDatabase());
+    QString szSql;
+    szSql = "SELECT id, name, key, "
+            "created_time, modified_time, last_visit_time, parent_id "
+            "FROM " + m_szTableName +
+            " WHERE ";
+    int i = 0;
+    foreach(auto KeyId, key) {
+        if(0 == i++) {
+            szSql += " key = " + QString::number(KeyId);
+            continue;
+        }
+            szSql += " OR key = " + QString::number(KeyId);
+    }
+    bool success = query.exec(szSql);
+    if (!success) {
+        qCritical(log) << "Failed to get leaves:" << m_szTableName << query.lastError().text();
+        return items;
+    }
+
+    while(query.next()) {
+        TreeItem item;
+        item.SetType(TreeItem::Leaf);
+        item.SetId(query.value(0).toInt());
+        item.SetName(query.value(1).toString());
+        item.SetKey(query.value(2).toInt());
         item.SetCreateTime(query.value(3).toDateTime());
         item.SetModifyTime(query.value(4).toDateTime());
         item.SetLastVisitTime(query.value(5).toDateTime());

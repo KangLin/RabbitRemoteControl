@@ -85,7 +85,9 @@ void CFrmAddBookmark::on_pbAdd_clicked()
             item.createdTime = QDateTime::currentDateTime();
             item.lastVisitTime = item.createdTime;
             item.modifiedTime = item.createdTime;
-            m_pDatabase->addBookmark(item);
+            int id = m_pDatabase->addBookmark(item);
+            if(0 < id)
+                loadFolder(id);
         }
     }
 

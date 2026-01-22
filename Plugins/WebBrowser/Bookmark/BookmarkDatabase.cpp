@@ -10,28 +10,41 @@
 #include <QFile>
 #include <QTextStream>
 #include <QLoggingCategory>
-#include "RabbitCommonDir.h"
+
 #include "BookmarkDatabase.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark.DB")
-CBookmarkDatabase* CBookmarkDatabase::Instance(const QString &szPath)
+static CBookmarkDatabase* g_pDatabase = nullptr;
+CBookmarkDatabase* CBookmarkDatabase::Instance(const QSqlDatabase &database)
 {
-    static CBookmarkDatabase* p = nullptr;
-    if(!p) {
-        p = new CBookmarkDatabase();
-        if(p) {
-            bool bRet = p->OpenDatabase("bookmarks_connect", szPath);
+    if(!g_pDatabase) {
+        g_pDatabase = new CBookmarkDatabase();
+        if(g_pDatabase) {
+            g_pDatabase->SetDatabase(database);
+            g_pDatabase->OnInitializeDatabase();
+        }
+    }
+    return g_pDatabase;
+}
+
+CBookmarkDatabase* CBookmarkDatabase::Instance(const QString &szFile)
+{
+    if(!g_pDatabase) {
+        g_pDatabase = new CBookmarkDatabase();
+        if(g_pDatabase) {
+            bool bRet = g_pDatabase->OpenDatabase("bookmarks_connect", szFile);
             if(!bRet) {
-                delete p;
-                p = nullptr;
+                delete g_pDatabase;
+                g_pDatabase = nullptr;
             }
         }
     }
-    return p;
+    return g_pDatabase;
 }
 
 CBookmarkDatabase::CBookmarkDatabase(QObject *parent)
     : CDatabase(parent)
+    , m_TreeDB("bookmarks")
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -43,183 +56,46 @@ CBookmarkDatabase::~CBookmarkDatabase()
 
 bool CBookmarkDatabase::OnInitializeDatabase()
 {
-    QSqlQuery query(GetDatabase());
+    m_UrlDB.SetDatabase(GetDatabase());
+    m_UrlDB.OnInitializeDatabase();
+    m_TreeDB.SetDatabase(GetDatabase());
+    m_TreeDB.OnInitializeDatabase();
 
-    // 启用外键约束
-    query.exec("PRAGMA foreign_keys = ON");
-
-    // 创建书签表
-    bool success = query.exec(
-        "CREATE TABLE IF NOT EXISTS bookmarks ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    url TEXT NOT NULL,"
-        "    title TEXT NOT NULL,"
-        "    icon BLOB,"
-        "    icon_url TEXT,"
-        "    description TEXT,"
-        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    visit_count INTEGER DEFAULT 0,"
-        "    last_visit_time DATETIME,"
-        "    favorite BOOLEAN DEFAULT 0,"
-        "    tags TEXT,"
-        "    folder_id INTEGER DEFAULT 1,"
-        "    FOREIGN KEY (folder_id) REFERENCES bookmark_folders(id) ON DELETE SET NULL"
-        ")"
-        );
-
-    if (!success) {
-        qCritical(log) << "Failed to create bookmarks table:" << query.lastError().text();
-        return false;
+    if(m_TreeDB.GetNodeCount() == 0) {
+        m_TreeDB.AddNode(tr("Bookmarks"), 0);
+        m_TreeDB.AddNode(tr("Other"), 0);
+        m_TreeDB.AddNode(tr("Favorites"), 1);
+        m_TreeDB.AddNode(tr("Frequently Used Websites"), 1);
     }
-
-    // 创建文件夹表
-    success = query.exec(
-        "CREATE TABLE IF NOT EXISTS bookmark_folders ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    name TEXT NOT NULL,"
-        "    parent_id INTEGER DEFAULT 0,"
-        "    sort_order INTEGER DEFAULT 0,"
-        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-        );
-
-    if (!success) {
-        qCritical(log) << "Failed to create bookmark_folders table:" << query.lastError().text();
-        return false;
-    }
-
-    // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_url ON bookmarks(url)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_folder ON bookmarks(folder_id)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_favorite ON bookmarks(favorite)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_created ON bookmarks(created_time)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_bookmarks_folders_parent ON bookmark_folders(parent_id)");
-
-    // 检查是否有默认文件夹
-    query.exec("SELECT COUNT(*) FROM bookmark_folders");
-    if (query.next() && query.value(0).toInt() == 0) {
-        QSqlQuery queryInsert(GetDatabase());
-        // 插入默认文件夹
-        queryInsert.prepare("INSERT INTO bookmark_folders (id, name, parent_id, sort_order) VALUES "
-                   "(1, :bookmark, 0, 1), "
-                   "(2, :other, 0, 2), "
-                   "(3, :favorite, 1, 1), "
-                   "(4, :frequently, 1, 2)");
-        queryInsert.bindValue(":bookmark", tr("Bookmarks"));
-        queryInsert.bindValue(":other", tr("Other"));
-        queryInsert.bindValue(":favorite", tr("Favorites"));
-        queryInsert.bindValue(":frequently", tr("Frequently Used Websites"));
-        bool bRet = queryInsert.exec();
-        if(!bRet) {
-            qCritical(log) << "Failed to insert default folder:" << queryInsert.lastError().text();
-        }
-    }
-
     return true;
 }
 
-bool CBookmarkDatabase::addBookmark(const BookmarkItem &item)
+int CBookmarkDatabase::addBookmark(const BookmarkItem &item)
 {
-    QSqlQuery query(GetDatabase());
-
-    query.prepare(
-        "INSERT INTO bookmarks (url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id) "
-        "VALUES (:url, :title, :icon, :icon_url, :description, "
-        ":created_time, :modified_time, :visit_count, :last_visit_time, "
-        ":favorite, :tags, :folder_id)"
-        );
-
-    query.bindValue(":url", item.url);
-    query.bindValue(":title", item.title);
-    query.bindValue(":icon", item.iconData);
-    query.bindValue(":icon_url", item.iconUrl);
-    query.bindValue(":description", item.description);
-    query.bindValue(":created_time", item.createdTime);
-    query.bindValue(":modified_time", QDateTime::currentDateTime());
-    query.bindValue(":visit_count", item.visitCount);
-    query.bindValue(":last_visit_time", item.lastVisitTime);
-    query.bindValue(":favorite", item.isFavorite);
-    query.bindValue(":tags", item.tags.join(","));
-    query.bindValue(":folder_id", item.folderId);
-
-    bool success = query.exec();
-
-    if (success) {
-        int id = query.lastInsertId().toInt();
-        BookmarkItem newItem = item;
-        newItem.id = id;
-        emit bookmarkAdded(newItem);
-        emit bookmarksChanged();
-    } else {
-        qCritical(log) << "Failed to add bookmark:" << query.lastError().text();
-    }
-
-    return success;
+    int urlId = m_UrlDB.AddUrl(item.url, item.title, item.icon);
+    auto tree = BookmarkToTree(item);
+    tree.SetKey(urlId);
+    return m_TreeDB.Add(tree);
 }
 
 bool CBookmarkDatabase::updateBookmark(const BookmarkItem &item)
 {
-    QSqlQuery query(GetDatabase());
-
-    query.prepare(
-        "UPDATE bookmarks SET "
-        "url = :url, "
-        "title = :title, "
-        "icon = :icon, "
-        "icon_url = :icon_url, "
-        "description = :description, "
-        "modified_time = :modified_time, "
-        "visit_count = :visit_count, "
-        "last_visit_time = :last_visit_time, "
-        "favorite = :favorite, "
-        "tags = :tags, "
-        "folder_id = :folder_id "
-        "WHERE id = :id"
-        );
-
-    query.bindValue(":id", item.id);
-    query.bindValue(":url", item.url);
-    query.bindValue(":title", item.title);
-    query.bindValue(":icon", item.iconData);
-    query.bindValue(":icon_url", item.iconUrl);
-    query.bindValue(":description", item.description);
-    query.bindValue(":modified_time", QDateTime::currentDateTime());
-    query.bindValue(":visit_count", item.visitCount);
-    query.bindValue(":last_visit_time", item.lastVisitTime);
-    query.bindValue(":favorite", item.isFavorite);
-    query.bindValue(":tags", item.tags.join(","));
-    query.bindValue(":folder_id", item.folderId);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit bookmarkUpdated(item);
-        emit bookmarksChanged();
-    } else {
-        qCritical(log) << "Failed to update bookmark:" << query.lastError().text()
-                       << item.id << item.title << item.url << item.folderId;
+    bool success = m_UrlDB.UpdateUrl(item.url, item.title, item.icon);
+    if(!success) {
+        qCritical(log) << "Failed to update bookmark" << item.url;
+        return false;
     }
-
+    TreeItem tree = BookmarkToTree(item, true);
+    success = m_TreeDB.Update(tree);
+    if(!success) {
+        qCritical(log) << "Failed to update bookmark" << item.url;
+    }
     return success;
 }
 
 bool CBookmarkDatabase::deleteBookmark(int id)
 {
-    QSqlQuery query(GetDatabase());
-    query.prepare("DELETE FROM bookmarks WHERE id = :id");
-    query.bindValue(":id", id);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit bookmarkDeleted(id);
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.Delete(id);
 }
 
 bool CBookmarkDatabase::deleteBookmark(const QList<BookmarkItem> &items)
@@ -228,167 +104,45 @@ bool CBookmarkDatabase::deleteBookmark(const QList<BookmarkItem> &items)
         qWarning(log) << "The items is empty";
         return false;
     }
-
-    QSqlQuery query(GetDatabase());
-
-    QString szSql("DELETE FROM bookmarks WHERE ");
-    int i = 0;
+    QList<int> lstItems;
     foreach(auto item, items) {
-        if(0 == i++) {
-            szSql += " id = " + QString::number(item.id);
-        } else {
-            szSql += " OR id = " + QString::number(item.id);
-        }
+        lstItems.push_back(item.id);
     }
-    bool success = query.exec(szSql);
-
-    if (success) {
-        foreach(auto item, items)
-            emit bookmarkDeleted(item.id);
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.Delete(lstItems);
 }
 
 bool CBookmarkDatabase::moveBookmark(int id, int newFolderId)
 {
-    QSqlQuery query(GetDatabase());
-    query.prepare("UPDATE bookmarks SET folder_id = :folder_id WHERE id = :id");
-    query.bindValue(":id", id);
-    query.bindValue(":folder_id", newFolderId);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.Move(id, newFolderId);
 }
 
 bool CBookmarkDatabase::addFolder(const QString &name, int parentId)
 {
-    QSqlQuery query(GetDatabase());
-
-    // 获取最大排序值
-    query.prepare("SELECT MAX(sort_order) FROM bookmark_folders WHERE parent_id = :parent_id");
-    query.bindValue(":parent_id", parentId);
-    query.exec();
-
-    int maxOrder = 0;
-    if (query.next()) {
-        maxOrder = query.value(0).toInt() + 1;
-    }
-
-    query.prepare(
-        "INSERT INTO bookmark_folders (name, parent_id, sort_order) "
-        "VALUES (:name, :parent_id, :sort_order)"
-        );
-    query.bindValue(":name", name);
-    query.bindValue(":parent_id", parentId);
-    query.bindValue(":sort_order", maxOrder);
-
-    bool success = query.exec();
-
-    if (success) {
-        int id = query.lastInsertId().toInt();
-        BookmarkItem folder;
-        folder.id = id;
-        folder.title = name;
-        folder.folderId = parentId;
-        folder.type = BookmarkType_Folder;
-        emit folderAdded(folder);
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.AddNode(name, parentId);
 }
 
 bool CBookmarkDatabase::renameFolder(int folderId, const QString &newName)
 {
-    QSqlQuery query(GetDatabase());
-    query.prepare("UPDATE bookmark_folders SET name = :name WHERE id = :id");
-    query.bindValue(":id", folderId);
-    query.bindValue(":name", newName);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.RenameNode(folderId, newName);
 }
 
 bool CBookmarkDatabase::deleteFolder(int folderId)
 {
-    if(1 == folderId) {
-        qWarning(log) << "folderId == 1 is not delete";
-        return true;
-    }
-
-    // 删除子目录
-    auto folders = getSubFolders(folderId);
-    foreach(auto f, folders) {
-        deleteFolder(f.id);
-    }
-
-    QSqlQuery query(GetDatabase());
-    // 将文件夹中的书签移动到默认书签
-    //query.prepare("UPDATE bookmarks SET folder_id = 1 WHERE folder_id = :folder_id");
-    // 删除其下面的所有书签
-    query.prepare("DELETE FROM bookmarks WHERE folder_id = :folder_id");
-    query.bindValue(":folder_id", folderId);
-    query.exec();
-
-    // 删除文件夹
-    query.prepare("DELETE FROM bookmark_folders WHERE id = :id");
-    query.bindValue(":id", folderId);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit folderDeleted(folderId);
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.DeleteNode(folderId);
 }
 
 bool CBookmarkDatabase::moveFolder(int folderId, int newParentId)
 {
-    QSqlQuery query(GetDatabase());
-    query.prepare("UPDATE bookmark_folders SET parent_id = :parent_id WHERE id = :id");
-    query.bindValue(":id", folderId);
-    query.bindValue(":parent_id", newParentId);
-
-    bool success = query.exec();
-
-    if (success) {
-        emit bookmarksChanged();
-    }
-
-    return success;
+    return m_TreeDB.MoveNode(folderId, newParentId);
 }
 
 BookmarkItem CBookmarkDatabase::getBookmark(int id)
 {
     BookmarkItem item;
 
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id "
-        "FROM bookmarks WHERE id = :id"
-        );
-    query.bindValue(":id", id);
-
-    if (query.exec() && query.next()) {
-        item = bookmarkFromQuery(query);
-    }
-
+    auto leaf = m_TreeDB.GetLeaf(id);
+    if(leaf.GetId() == 0) return item;
+    item = TreeToBookmark(leaf);
     return item;
 }
 
@@ -397,22 +151,12 @@ QList<BookmarkItem> CBookmarkDatabase::getBookmarkByUrl(const QString &url)
     QList<BookmarkItem> lstItems;
     BookmarkItem item;
 
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id "
-        "FROM bookmarks WHERE url = :url"
-        );
-    query.bindValue(":url", url);
-
-    if (query.exec()) {
-        while (query.next()) {
-            item = bookmarkFromQuery(query);
-            lstItems << item;
-        }
+    auto urlItem = m_UrlDB.GetItem(url);
+    auto leaves = m_TreeDB.GetLeavesByKey(urlItem.id);
+    foreach(auto leaf, leaves) {
+        item = TreeToBookmark(leaf, urlItem);
+        lstItems.push_back(item);
     }
-
     return lstItems;
 }
 
@@ -420,53 +164,11 @@ QList<BookmarkItem> CBookmarkDatabase::getAllBookmarks(int folderId)
 {
     QList<BookmarkItem> bookmarks;
 
-    QSqlQuery query(GetDatabase());
-    QString sql = QString(
-        "SELECT id, url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id "
-        "FROM bookmarks "
-        );
-
-    if (folderId >= 0) {
-        sql += "WHERE folder_id = :folder_id ";
+    auto leaves = m_TreeDB.GetLeaves(folderId);
+    foreach(auto leaf, leaves) {
+        auto item = TreeToBookmark(leaf);
+        bookmarks << item;
     }
-
-    sql += "ORDER BY title ASC";
-
-    query.prepare(sql);
-    if (folderId >= 0) {
-        query.bindValue(":folder_id", folderId);
-    }
-
-    if (query.exec()) {
-        while (query.next()) {
-            bookmarks.append(bookmarkFromQuery(query));
-        }
-    }
-
-    return bookmarks;
-}
-
-QList<BookmarkItem> CBookmarkDatabase::getFavoriteBookmarks()
-{
-    QList<BookmarkItem> bookmarks;
-
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id "
-        "FROM bookmarks WHERE favorite = 1 "
-        "ORDER BY title ASC"
-        );
-
-    if (query.exec()) {
-        while (query.next()) {
-            bookmarks.append(bookmarkFromQuery(query));
-        }
-    }
-
     return bookmarks;
 }
 
@@ -474,22 +176,16 @@ QList<BookmarkItem> CBookmarkDatabase::searchBookmarks(const QString &keyword)
 {
     QList<BookmarkItem> bookmarks;
 
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, url, title, icon, icon_url, description, "
-        "created_time, modified_time, visit_count, last_visit_time, "
-        "favorite, tags, folder_id "
-        "FROM bookmarks "
-        "WHERE url LIKE :keyword OR title LIKE :keyword OR description LIKE :keyword "
-        "ORDER BY title ASC"
-        );
-
-    QString likePattern = QString("%%1%").arg(keyword);
-    query.bindValue(":keyword", likePattern);
-
-    if (query.exec()) {
-        while (query.next()) {
-            bookmarks.append(bookmarkFromQuery(query));
+    auto urlIds = m_UrlDB.Search(keyword);
+    foreach(auto urlItem, urlIds) {
+        if(0 == urlItem.id)
+            continue;
+        auto trees = m_TreeDB.GetLeavesByKey(urlItem.id);
+        foreach(auto t, trees) {
+            auto item = TreeToBookmark(t, urlItem);
+            if(0 == item.id)
+                continue;
+            bookmarks << item;
         }
     }
 
@@ -500,113 +196,24 @@ QList<BookmarkItem> CBookmarkDatabase::getAllFolders()
 {
     QList<BookmarkItem> folders;
 
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, name, parent_id, sort_order, created_time "
-        "FROM bookmark_folders "
-        "ORDER BY parent_id, sort_order, name"
-        );
-
-    if (query.exec()) {
-        while (query.next()) {
-            BookmarkItem folder;
-            folder.id = query.value(0).toInt();
-            folder.title = query.value(1).toString();
-            folder.folderId = query.value(2).toInt();
-            folder.type = BookmarkType_Folder;
-            folder.createdTime = query.value(4).toDateTime();
-
-            folders.append(folder);
-        }
+    auto items = m_TreeDB.GetAllNodes();
+    foreach(auto it, items) {
+        auto book = TreeToBookmark(it);
+        folders << book;
     }
-
     return folders;
 }
 
-QList<BookmarkItem> CBookmarkDatabase::getSubFolders(int parentId)
+QList<BookmarkItem> CBookmarkDatabase::getSubFolders(int folderId)
 {
     QList<BookmarkItem> folders;
 
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, name, parent_id, sort_order, created_time "
-        "FROM bookmark_folders "
-        "WHERE parent_id = :parent_id "
-        "ORDER BY sort_order, name"
-        );
-    query.bindValue(":parent_id", parentId);
-
-    if (query.exec()) {
-        while (query.next()) {
-            BookmarkItem folder;
-            folder.id = query.value(0).toInt();
-            folder.title = query.value(1).toString();
-            folder.folderId = query.value(2).toInt();
-            folder.type = BookmarkType_Folder;
-            folder.createdTime = query.value(4).toDateTime();
-
-            folders.append(folder);
-        }
+    auto items = m_TreeDB.GetSubNodes(folderId);
+    foreach(auto it, items) {
+        auto book = TreeToBookmark(it);
+        folders << book;
     }
-
     return folders;
-}
-
-int CBookmarkDatabase::getBookmarkCount(int folderId)
-{
-    QSqlQuery query(GetDatabase());
-
-    if (folderId >= 0) {
-        query.prepare("SELECT COUNT(*) FROM bookmarks WHERE folder_id = :folder_id");
-        query.bindValue(":folder_id", folderId);
-    } else {
-        query.prepare("SELECT COUNT(*) FROM bookmarks");
-    }
-
-    if (query.exec() && query.next()) {
-        return query.value(0).toInt();
-    }
-
-    return 0;
-}
-
-int CBookmarkDatabase::getFolderCount()
-{
-    QSqlQuery query(GetDatabase());
-    query.prepare("SELECT COUNT(*) FROM bookmark_folders");
-
-    if (query.exec() && query.next()) {
-        return query.value(0).toInt();
-    }
-
-    return 0;
-}
-
-BookmarkItem CBookmarkDatabase::bookmarkFromQuery(const QSqlQuery &query)
-{
-    BookmarkItem item;
-
-    item.id = query.value(0).toInt();
-    item.url = query.value(1).toString();
-    item.title = query.value(2).toString();
-    item.iconData = query.value(3).toByteArray();
-    item.iconUrl = query.value(4).toString();
-    item.description = query.value(5).toString();
-    item.createdTime = query.value(6).toDateTime();
-    item.modifiedTime = query.value(7).toDateTime();
-    item.visitCount = query.value(8).toInt();
-    item.lastVisitTime = query.value(9).toDateTime();
-    item.isFavorite = query.value(10).toBool();
-
-    QString tags = query.value(11).toString();
-    if (!tags.isEmpty()) {
-        item.tags = tags.split(",");
-    }
-
-    item.folderId = query.value(12).toInt();
-    item.type = BookmarkType_Bookmark;
-
-    return item;
 }
 
 bool CBookmarkDatabase::exportToHtml(const QString &filename)
@@ -768,19 +375,6 @@ QDomElement CBookmarkDatabase::createBookmarkDomElement(
     aElement.setAttribute("ADD_DATE", QString::number(addDate));
     aElement.setAttribute("LAST_VISIT_TIME", QString::number(lastVisit));
     aElement.setAttribute("MODIFIED_TIME", QString::number(lastModified));
-
-    // 可选属性
-    if (!bookmark.iconUrl.isEmpty()) {
-        aElement.setAttribute("ICON", bookmark.iconUrl);
-    }
-
-    if (!bookmark.description.isEmpty()) {
-        aElement.setAttribute("DESCRIPTION", bookmark.description);
-    }
-
-    if (!bookmark.tags.isEmpty()) {
-        aElement.setAttribute("TAGS", bookmark.tags.join(","));
-    }
 
     // 标题
     QString displayTitle = bookmark.title.isEmpty() ? bookmark.url : bookmark.title;
@@ -971,24 +565,6 @@ int CBookmarkDatabase::importBookmark(const QDomElement &aElement,
     item.lastVisitTime = lastVisit;
     item.modifiedTime = lastModified.isValid() ? lastModified : item.createdTime;
 
-    // 获取图标（如果有）
-    QString iconUrl = aElement.attribute("ICON");
-    if (!iconUrl.isEmpty()) {
-        item.iconUrl = iconUrl;
-
-        // 尝试获取ICON_URI属性
-        QString iconUri = aElement.attribute("ICON_URI");
-        if (!iconUri.isEmpty()) {
-            item.iconUrl = iconUri;
-        }
-    }
-
-    // 获取标签（如果有）
-    QString tags = aElement.attribute("TAGS");
-    if (!tags.isEmpty()) {
-        item.tags = tags.split(",");
-    }
-
     // 查找或创建文件夹
     int folderId = getOrCreateFolder(folderPath, folderMap);
     item.folderId = folderId;
@@ -1005,8 +581,6 @@ int CBookmarkDatabase::importBookmark(const QDomElement &aElement,
         foreach(auto exist, lstExisting) {
             // 更新现有书签
             exist.title = item.title;
-            exist.iconUrl = item.iconUrl;
-            exist.tags = item.tags;
             exist.folderId = item.folderId;
             exist.lastVisitTime = item.lastVisitTime;
             exist.modifiedTime = QDateTime::currentDateTime();
@@ -1152,4 +726,52 @@ QDomElement CBookmarkDatabase::findFirstElement(const QDomElement &parent, const
     }
 
     return QDomElement();
+}
+
+TreeItem CBookmarkDatabase::BookmarkToTree(const BookmarkItem& tree, bool setKey)
+{
+    TreeItem item;
+    TreeItem::TYPE type;
+    type = tree.type == BookmarkType_Folder ? TreeItem::Node: TreeItem::Leaf;
+    item.SetType(type);
+    item.SetId(tree.id);
+    item.SetParentId(tree.folderId);
+    item.SetCreateTime(tree.createdTime);
+    item.SetModifyTime(tree.modifiedTime);
+    item.SetLastVisitTime(tree.lastVisitTime);
+    if(setKey && BookmarkType_Bookmark == tree.type && !tree.url.isEmpty()) {
+        int id = m_UrlDB.GetId(tree.url);
+        item.SetKey(id);
+    }
+    return item;
+}
+
+BookmarkItem CBookmarkDatabase::TreeToBookmark(const TreeItem& tree)
+{
+    BookmarkItem item;
+    CDatabaseUrl::UrlItem url = m_UrlDB.GetItem(tree.GetKey());
+    item = TreeToBookmark(tree, url);
+    return item;
+}
+
+BookmarkItem CBookmarkDatabase::TreeToBookmark(
+    const TreeItem& tree, const CDatabaseUrl::UrlItem& url)
+{
+    BookmarkItem item;
+    item.id = tree.GetId();
+    item.folderId = tree.GetParentId();
+    item.createdTime = tree.GetCreateTime();
+    item.modifiedTime = tree.GetModifyTime();
+    item.lastVisitTime = tree.GetLastVisitTime();
+
+    if(tree.IsNode()) {
+        item.type = BookmarkType_Folder;
+        item.title = tree.GetName();
+    } else {
+        item.type = BookmarkType_Bookmark;
+        item.title = url.szTitle;
+        item.url = url.szUrl;
+        item.icon = url.icon;
+    }
+    return item;
 }

@@ -114,6 +114,7 @@ public:
      * \param value: Get the leaves of value
      */
     QList<TreeItem> GetLeavesByKey(int key);
+    QList<TreeItem> GetLeavesByKey(QList<int> key);
 
     // Node operate
     bool AddNode(const QString &name, int parentId = 0);

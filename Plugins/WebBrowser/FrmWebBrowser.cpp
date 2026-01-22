@@ -86,7 +86,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     if(!(szDbBookmarks.right(1) == '/' || szDbBookmarks.right(1) == '\\'))
         szDbBookmarks += QDir::separator();
     szDbBookmarks += "Bookmarks.db";
-    m_pBookmarkDatabase = CBookmarkDatabase::Instance(szDbBookmarks);
+    m_pBookmarkDatabase = CBookmarkDatabase::Instance(m_pHistoryDatabase->GetDatabase());
 
     setWindowIcon(QIcon::fromTheme("web-browser"));
 
@@ -1289,8 +1289,11 @@ void CFrmWebBrowser::slotAddBookmark()
     auto pView = CurrentView();
     if(!pView) return;
 
+    QUrl url = pView->url();
+    if(url.isEmpty())
+        url = m_pUrlLineEdit->text();
     CFrmAddBookmark* pAdd = new CFrmAddBookmark(
-        pView->title(), pView->url(), pView->favIcon(),
+        pView->title(), url, pView->favIcon(),
         m_pPara);
     bool check = connect(this, &CFrmWebBrowser::destroyed, pAdd, &CFrmAddBookmark::close);
     Q_ASSERT(check);

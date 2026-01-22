@@ -251,10 +251,6 @@ void CFrmBookmark::loadBookmarks()
         bookmarkItem->setData(BookmarkType_Bookmark, Type);
         bookmarkItem->setData(bookmark.url, Url);
 
-        if (bookmark.isFavorite) {
-            bookmarkItem->setIcon(QIcon::fromTheme("favorites"));
-        }
-
         if(pParentItem)
             pParentItem->appendRow(bookmarkItem);
     }
@@ -413,8 +409,6 @@ void CFrmBookmark::onSetFavorite()
     BookmarkItem item = m_pDatabase->getBookmark(id);
     if (item.id == 0) return;
 
-    item.isFavorite = !item.isFavorite;
-
     if (m_pDatabase->updateBookmark(item)) {
         refresh();
     }
@@ -469,22 +463,14 @@ void CFrmBookmark::onSearchTextChanged(const QString &text)
     QStandardItem *pRootItem = m_pModel->invisibleRootItem();
     if(!pRootItem) return;
 
-    for (const auto &bookmark : bookmarks) {
-        QStandardItem *item = new QStandardItem(bookmark.getIcon(), bookmark.title);
+    foreach (const auto &bookmark, bookmarks) {
+        QStandardItem *item = new QStandardItem(
+            bookmark.getIcon(), bookmark.title);
         item->setData(bookmark.id, ID);
         item->setData(BookmarkType_Bookmark, Type);
         item->setData(bookmark.url, Url);
 
-        // 显示路径
-        QString path = bookmark.title;
-        if (bookmark.folderId > 0) {
-            BookmarkItem folder = m_pDatabase->getBookmark(bookmark.folderId);
-            if (folder.id > 0) {
-                path = QString("%1 / %2").arg(folder.title).arg(bookmark.title);
-            }
-        }
-
-        item->setText(path);
+        item->setToolTip(bookmark.url);
 
         pRootItem->appendRow(item);
     }

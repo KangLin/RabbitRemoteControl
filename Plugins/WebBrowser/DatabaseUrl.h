@@ -16,10 +16,12 @@ public:
         QString szTitle;
         QIcon icon;
         QDateTime visit_time;
-        int iconId;
+
         UrlItem()
-            : iconId(0)
+            : id(0)
+            , iconId(0)
         {}
+        int iconId;
     };
 
     int AddUrl(const QString& url, const QString& title = QString(), const QIcon& icon = QIcon());

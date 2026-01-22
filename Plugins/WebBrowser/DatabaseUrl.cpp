@@ -64,8 +64,8 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
         query.prepare(
             "UPDATE url SET "
             "title = :title, "
-            "icon = :icon "
-            "visit_time = :visit_time"
+            "icon = :icon, "
+            "visit_time = :visit_time "
             "WHERE id = :id"
             );
         query.bindValue(":title", szTitle);
@@ -86,6 +86,8 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
         query.bindValue(":icon", m_iconDB.GetIcon(icon));
     }
 
+    qDebug(log) << "Sql:" << query.executedQuery();
+    qDebug(log) << "Bound values:" << query.boundValues();
     bool success = query.exec();
     if (!success) {
         nId = 0;
@@ -280,7 +282,7 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
     QSqlQuery query(GetDatabase());
     QString searchPattern = "%" + keyword + "%";
     query.prepare(
-        "SELECT id, url, title, visit_time "
+        "SELECT id, url, title, visit_time, icon "
         "FROM url "
         "WHERE url LIKE :pattern OR title LIKE :pattern "
         "ORDER BY visit_time DESC"
@@ -294,6 +296,7 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
             item.szUrl = query.value(1).toString();
             item.szTitle = query.value(2).toString();
             item.visit_time = query.value(3).toDateTime();
+            item.icon = m_iconDB.GetIcon(query.value(4).toInt());
             items.append(item);
         }
     }

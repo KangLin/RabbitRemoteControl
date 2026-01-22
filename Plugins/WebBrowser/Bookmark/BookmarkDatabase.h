@@ -9,7 +9,8 @@
 #include <QIcon>
 #include <QList>
 #include <QDateTime>
-#include "Database.h"
+#include "DatabaseTree.h"
+#include "DatabaseUrl.h"
 
 enum BookmarkType {
     BookmarkType_Bookmark,
@@ -21,26 +22,16 @@ struct BookmarkItem {
     int id;
     QString url;
     QString title;
-    QByteArray iconData;
-    QString iconUrl;
-    QString description;
+    QIcon icon;
     QDateTime createdTime;
     QDateTime modifiedTime;
     QDateTime lastVisitTime;
-    int visitCount;
-    bool isFavorite;
-    QStringList tags;
+
     int folderId;
     BookmarkType type;
 
-    // 运行时属性
-    mutable QIcon cachedIcon;
-    QList<BookmarkItem> children;
-
     BookmarkItem()
         : id(0)
-        , visitCount(0)
-        , isFavorite(false)
         , folderId(1) // 指向默认收藏夹
         , type(BookmarkType_Bookmark)
     {}
@@ -50,17 +41,8 @@ struct BookmarkItem {
     bool isBookmark() const { return type == BookmarkType_Bookmark; }
 
     QIcon getIcon() const {
-        if (!cachedIcon.isNull()) {
-            return cachedIcon;
-        }
-
-        if (!iconData.isEmpty()) {
-            QPixmap pixmap;
-            pixmap.loadFromData(iconData);
-            if (!pixmap.isNull()) {
-                cachedIcon = QIcon(pixmap);
-                return cachedIcon;
-            }
+        if (!icon.isNull()) {
+            return icon;
         }
 
         // 根据URL返回默认图标
@@ -75,20 +57,17 @@ struct BookmarkItem {
         return QIcon::fromTheme("user-bookmarks");
     }
 
-    void setIconFromData(const QByteArray &data) {
-        iconData = data;
-        cachedIcon = QIcon();  // 清除缓存
-    }
 };
 
 class CBookmarkDatabase : public CDatabase
 {
     Q_OBJECT
 public:
-    static CBookmarkDatabase* Instance(const QString& szPath = QString());
+    static CBookmarkDatabase* Instance(const QSqlDatabase& database);
+    static CBookmarkDatabase* Instance(const QString& szFile = QString());
 
     // 书签操作
-    bool addBookmark(const BookmarkItem &item);
+    int addBookmark(const BookmarkItem &item);
     bool updateBookmark(const BookmarkItem &item);
     bool deleteBookmark(int id);
     bool deleteBookmark(const QList<BookmarkItem>& items);
@@ -104,21 +83,20 @@ public:
     BookmarkItem getBookmark(int id);
     QList<BookmarkItem> getBookmarkByUrl(const QString &url);
     QList<BookmarkItem> getAllBookmarks(int folderId = 0);
-    QList<BookmarkItem> getFavoriteBookmarks();
     QList<BookmarkItem> searchBookmarks(const QString &keyword);
 
     // 文件夹查询
     QList<BookmarkItem> getAllFolders();
-    QList<BookmarkItem> getSubFolders(int parentId);
-
-    // 统计
-    int getBookmarkCount(int folderId = 0);
-    int getFolderCount();
+    QList<BookmarkItem> getSubFolders(int folderId);
 
     // 导入导出
     bool importFromHtml(const QString &filename);
     bool exportToHtml(const QString &filename);
     bool importFromBrowser(const QString &browserName);
+
+    TreeItem BookmarkToTree(const BookmarkItem& tree, bool setKey = false);
+    BookmarkItem TreeToBookmark(const TreeItem& tree);
+    BookmarkItem TreeToBookmark(const TreeItem& item, const CDatabaseUrl::UrlItem& url);
 
 signals:
     void bookmarksChanged();
@@ -133,7 +111,6 @@ private:
     explicit CBookmarkDatabase(QObject *parent = nullptr);
     ~CBookmarkDatabase();
     bool OnInitializeDatabase() override;
-    BookmarkItem bookmarkFromQuery(const QSqlQuery &query);
 
     void buildBookmarkDocument(QDomDocument &doc);
     void buildBookmarkTree(
@@ -150,11 +127,14 @@ private:
     int importBookmark(const QDomElement &aElement,
                        const QString &folderPath, QMap<QString, int> &folderMap);
     QString importFolder(const QDomElement &h3Element,
-                                        const QString &parentPath,
-                                        QMap<QString, int> &folderMap);
+                         const QString &parentPath,
+                         QMap<QString, int> &folderMap);
     int getOrCreateFolder(const QString &folderPath, int parentFolderId);
     int getOrCreateFolder(const QString &folderPath, QMap<QString, int> &folderMap);
     QDateTime parseTimestamp(const QString &timestampStr);
     QDomElement findFirstElement(const QDomElement &parent, const QString &tagName);
 
+    CDatabaseTree m_TreeDB;
+    CDatabaseUrl m_UrlDB;
 };
+
