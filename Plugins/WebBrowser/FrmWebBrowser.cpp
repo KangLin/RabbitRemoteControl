@@ -31,6 +31,7 @@
 #include "CaptureFullPage.h"
 #include "FrmHistory.h"
 #include "AddressCompleter.h"
+#include "AutoCompleteLineEdit.h"
 #include "FrmBookmark.h"
 #include "FrmAddBookmark.h"
 

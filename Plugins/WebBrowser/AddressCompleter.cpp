@@ -11,6 +11,7 @@
 #include <QLoggingCategory>
 
 #include "AddressCompleter.h"
+#include "AutoCompleteLineEdit.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Address")
 CAddressCompleterItem::CAddressCompleterItem(const QString &title,
@@ -66,6 +67,7 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     m_szListWidgetToolTip += tr("Enter ↲ key: Apply current item") + "\n";
     m_szListWidgetToolTip += tr("Tab ⇆ key: Apply current item") + "\n";
     m_szListWidgetToolTip += tr("Esc Key: Exit address completer") + "\n";
+    m_szListWidgetToolTip += tr("Space Key: Exit address completer") + "\n";
     m_szListWidgetToolTip += tr("↑ (Upper arrow) key: Select previous item") + "\n";
     m_szListWidgetToolTip += tr("↓ (Down arrow) key: Select next item");
 
@@ -188,6 +190,11 @@ bool CAddressCompleter::eventFilter(QObject *watched, QEvent *event)
             case Qt::Key_Escape:
                 hideCompleter();
                 break;
+            case Qt::Key_Space:
+                if(m_pLineEdit->text().startsWith('@'))
+                    break;
+                hideCompleter();
+                return true;
             case Qt::Key_Tab:
                 if (m_isCompleterVisible && m_currentSelectedIndex >= 0) {
                     selectCurrentItem();
@@ -257,6 +264,20 @@ void CAddressCompleter::performSearch()
     m_pListWidget->clear();
     m_currentSelectedIndex = -1;
 
+    // TODO: 增加 “@” 命令
+    if(keyword.startsWith('@')) {
+        QListWidgetItem *item = new QListWidgetItem(m_pListWidget);
+        item->setSizeHint(QSize(0, 40));
+        item->setData(Qt::UserRole, "@search:");
+        CAddressCompleterItem *pCompleterItem = new CAddressCompleterItem(
+            tr("Use default search engine"),
+            "@search:",
+            QIcon(":/icons/search.png")
+            );
+        if(pCompleterItem)
+            m_pListWidget->setItemWidget(item, pCompleterItem);
+    }
+
     // 搜索历史记录
     QList<HistoryItem> lstHistory;
     if(CHistoryDatabase::Instance())
@@ -264,7 +285,7 @@ void CAddressCompleter::performSearch()
 
     // 添加搜索结果
     int count = 0;
-    QSet<QString> addedUrls;  // 用于去重
+    QStringList addedUrls;  // 用于去重
 
     foreach(auto i, lstHistory) {
         QString url = i.url;
@@ -286,23 +307,23 @@ void CAddressCompleter::performSearch()
             i.icon
             );
         if(completerItem) {
-            completerItem->setToolTip(title + "\n\n" + toolTip());
+            completerItem->setToolTip(title + "\n" + url + "\n\n" + toolTip());
             m_pListWidget->setItemWidget(item, completerItem);
         }
         item->setData(Qt::UserRole, url);
 
-        addedUrls.insert(url);
+        addedUrls << url;
 
         count++;
     }
 
+    CAutoCompleteLineEdit* pEdit = qobject_cast<CAutoCompleteLineEdit*>(m_pLineEdit);
+    if(pEdit)
+        pEdit->setCompletions(addedUrls);
+
     // 如果没有找到历史记录，显示搜索建议
-    if (0 == count) {
+    if (m_pListWidget->count() == 0) {
         addSearchSuggestions(keyword);
-    } else if (1 == count) {
-        // 防止重复显示
-        if(*addedUrls.begin() == m_pLineEdit->text())
-            return;
     }
 
     // 如果有结果，显示下拉列表

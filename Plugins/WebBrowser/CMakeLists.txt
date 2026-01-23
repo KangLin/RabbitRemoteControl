@@ -36,6 +36,7 @@ set(WebBrowser_SOURCE_FILES
     CaptureFullPage.cpp
     MultimediaRecord.cpp
     AddressCompleter.cpp
+    AutoCompleteLineEdit.cpp
     DatabaseUrl.cpp
     History/FrmHistory.cpp
     History/HistoryDatabase.cpp
@@ -58,6 +59,7 @@ set(WebBrowser_HEADER_FILES
     CaptureFullPage.h
     MultimediaRecord.h
     AddressCompleter.h
+    AutoCompleteLineEdit.h
     DatabaseUrl.h
     History/FrmHistory.h
     History/HistoryDatabase.h
