@@ -8,8 +8,8 @@
 #include <QVBoxLayout>
 #include <QTimer>
 #include <QSqlDatabase>
+#include <QIcon>
 #include <QPropertyAnimation>
-#include "History/HistoryDatabase.h"
 
 /*!
  * \~chinese 浏览器的地址栏自动完成功能
@@ -48,6 +48,7 @@ public:
 signals:
     void urlSelected(const QString &url);
     void searchRequested(const QString &keyword);
+    void sigCommand(const QString& szCmd);
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
@@ -69,6 +70,13 @@ private:
     void updateCompleterPosition();
     QIcon getIconForUrl(const QString &url);
     void addSearchSuggestions(const QString &keyword);
+
+    struct Command
+    {
+        QString title;
+        QString cmd;
+        QIcon icon;
+    };
 
 private:
     QLineEdit *m_pLineEdit;

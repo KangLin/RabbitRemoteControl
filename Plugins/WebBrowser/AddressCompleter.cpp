@@ -9,9 +9,10 @@
 #include <QSqlError>
 #include <QScrollBar>
 #include <QLoggingCategory>
-
+#include <algorithm>
 #include "AddressCompleter.h"
 #include "AutoCompleteLineEdit.h"
+#include "HistoryDatabase.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Address")
 CAddressCompleterItem::CAddressCompleterItem(const QString &title,
@@ -60,7 +61,8 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     , m_maxVisibleItems(8)
     , m_isCompleterVisible(false)
 {
-    m_szEnter = tr("Enter a website URL or search content ......");
+    m_szEnter = tr("Enter a website URL or search content ......") + "\n" +
+                tr("Enter '@' show commands");
     m_szLineEditToolTip = m_szEnter  + "\n\n"
                           + tr("Enter ↲ key: Apply current url");
 
@@ -264,18 +266,40 @@ void CAddressCompleter::performSearch()
     m_pListWidget->clear();
     m_currentSelectedIndex = -1;
 
-    // TODO: 增加 “@” 命令
+    // 增加 “@” 命令
     if(keyword.startsWith('@')) {
-        QListWidgetItem *item = new QListWidgetItem(m_pListWidget);
-        item->setSizeHint(QSize(0, 40));
-        item->setData(Qt::UserRole, "@search:");
-        CAddressCompleterItem *pCompleterItem = new CAddressCompleterItem(
-            tr("Use default search engine"),
-            "@search:",
-            QIcon(":/icons/search.png")
-            );
-        if(pCompleterItem)
-            m_pListWidget->setItemWidget(item, pCompleterItem);
+        QList<Command> lstCommonds;
+        lstCommonds << Command{tr("Search"), "@search:", QIcon::fromTheme("system-search")};
+        lstCommonds << Command{tr("Setting"), "@setting", QIcon::fromTheme("system-settings")};
+        lstCommonds << Command{tr("History"), "@history", QIcon()};
+        lstCommonds << Command{tr("Bookmarks"), "@bookmarks", QIcon::fromTheme("user-bookmarks")};
+
+        // 根据 keyword 进行排序
+        std::sort(lstCommonds.begin(), lstCommonds.end(), [keyword](Command a, Command b){
+            // 1. 完全匹配的排在最前面
+            if (a.cmd.startsWith(keyword) && !b.cmd.startsWith(keyword))
+                return true;
+            if (!a.cmd.startsWith(keyword) && b.cmd.startsWith(keyword))
+                return false;
+
+            // 2. 包含关键字的排在前面
+            bool aContains = a.cmd.contains(keyword, Qt::CaseInsensitive);
+            bool bContains = b.cmd.contains(keyword, Qt::CaseInsensitive);
+            if (aContains && !bContains) return true;
+            if (!aContains && bContains) return false;
+
+            // 3. 否则按字母顺序排序
+            return a.cmd < b.cmd;
+        });
+        foreach(auto cmd, lstCommonds) {
+            QListWidgetItem *item = new QListWidgetItem(m_pListWidget);
+            item->setSizeHint(QSize(0, 40));
+            item->setData(Qt::UserRole, cmd.cmd);
+            CAddressCompleterItem *pCompleterItem = new CAddressCompleterItem(
+                cmd.title, cmd.cmd, cmd.icon);
+            if(pCompleterItem)
+                m_pListWidget->setItemWidget(item, pCompleterItem);
+        }
     }
 
     // 搜索历史记录
@@ -402,10 +426,12 @@ void CAddressCompleter::onItemClicked(QListWidgetItem *item)
     // 处理搜索请求
     if (url.startsWith("@search:", Qt::CaseInsensitive)) {
         QString keyword = url.mid(8);
-        qDebug(log) << "emit searchRequested:" << keyword;
+        //qDebug(log) << "emit searchRequested:" << keyword;
         emit searchRequested(keyword);
-    } else {
-        qDebug(log) << "emit urlSelected:" << url;
+    } if(url.startsWith("@")) {
+        emit sigCommand(url);
+    }else {
+        //qDebug(log) << "emit urlSelected:" << url;
         emit urlSelected(url);
     }
 
@@ -561,7 +587,7 @@ QIcon CAddressCompleter::getIconForUrl(const QString &url)
     static QIcon defaultIcon;
     static QIcon httpIcon;
     static QIcon httpsIcon;
-    static QIcon searchIcon; // = QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch);
+    static QIcon searchIcon = QIcon::fromTheme("system-search");
 
     if (url.startsWith("https://")) {
         return httpsIcon;

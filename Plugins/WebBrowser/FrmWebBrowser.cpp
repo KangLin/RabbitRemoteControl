@@ -24,7 +24,7 @@
     #include <QWebEngineProfileBuilder>
 #endif
 #include <QLoggingCategory>
-#include "FrmWebBrowser.h"
+
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "FrmPopup.h"
@@ -34,6 +34,8 @@
 #include "AutoCompleteLineEdit.h"
 #include "FrmBookmark.h"
 #include "FrmAddBookmark.h"
+#include "DlgSettings.h"
+#include "FrmWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -178,6 +180,18 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
                                  QUrl::toPercentEncoding(keyword));
             if(!szUrl.isEmpty())
                 slotUrlSelected(szUrl);
+        }
+    });
+    Q_ASSERT(check);
+    check = connect(pAddressCompleter, &CAddressCompleter::sigCommand,
+                    this, [&](const QString& cmd) {
+        if(cmd.startsWith("@setting")) {
+            CDlgSettings dlg(m_pPara);
+            RC_SHOW_WINDOW(&dlg);
+        } else if(cmd.startsWith("@history")) {
+            slotHistory();
+        } else if(cmd.startsWith("@bookmark")) {
+            slotBookmark();
         }
     });
     Q_ASSERT(check);
@@ -773,42 +787,8 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
     pMenuBookmark->setIcon(QIcon::fromTheme("user-bookmarks"));
     pMenu->addMenu(pMenuBookmark);
     pMenuBookmark->addAction(m_pAddBookmark);
-    pMenuBookmark->addAction(tr("Manage Bookmark "), this, [&]{
-        CFrmBookmark* pBookmark = new CFrmBookmark(m_pPara);
-        if(!pBookmark) return;
-        pBookmark->setAttribute(Qt::WA_DeleteOnClose);
-        connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
-        connect(pBookmark, &CFrmBookmark::openUrlRequested, this, [&](const QString& url) {
-            CFrmWebView* pWeb = CurrentView();
-            if(!pWeb) {
-                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-            }
-            if(pWeb)
-                pWeb->load(url);
-        });
-        RC_SHOW_WINDOW(pBookmark);
-    });
-    pMenu->addAction(tr("History"), this, [&]() {
-        CFrmHistory* pHistory = new CFrmHistory(m_pPara);
-        if(!pHistory) return;
-        pHistory->setAttribute(Qt::WA_DeleteOnClose);
-        connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
-        connect(pHistory, &CFrmHistory::sigOpenUrl, this, [&](const QString& url) {
-            CFrmWebView* pWeb = CurrentView();
-            if(!pWeb) {
-                pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-            }
-            if(pWeb)
-                pWeb->load(url);
-        });
-        connect(pHistory, &CFrmHistory::sigOpenUrlInNewTab,
-                this, [&](const QString& url) {
-                    auto pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
-                    if(pWeb)
-                        pWeb->load(url);
-                });
-        RC_SHOW_WINDOW(pHistory);
-    });
+    pMenuBookmark->addAction(tr("Manage Bookmark "), this, &CFrmWebBrowser::slotBookmark);
+    pMenu->addAction(tr("History"), this, &CFrmWebBrowser::slotHistory);
 
     pMenu->addSeparator();
     m_pCapturePage = pMenu->addAction(
@@ -1299,4 +1279,44 @@ void CFrmWebBrowser::slotAddBookmark()
     bool check = connect(this, &CFrmWebBrowser::destroyed, pAdd, &CFrmAddBookmark::close);
     Q_ASSERT(check);
     RC_SHOW_WINDOW(pAdd);
+}
+
+void CFrmWebBrowser::slotBookmark()
+{
+    CFrmBookmark* pBookmark = new CFrmBookmark(m_pPara);
+    if(!pBookmark) return;
+    pBookmark->setAttribute(Qt::WA_DeleteOnClose);
+    connect(this, &CFrmWebBrowser::destroyed, pBookmark, &CFrmBookmark::close);
+    connect(pBookmark, &CFrmBookmark::openUrlRequested, this, [&](const QString& url) {
+        CFrmWebView* pWeb = CurrentView();
+        if(!pWeb) {
+            pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+        }
+        if(pWeb)
+            pWeb->load(url);
+    });
+    RC_SHOW_WINDOW(pBookmark);
+}
+
+void CFrmWebBrowser::slotHistory()
+{
+    CFrmHistory* pHistory = new CFrmHistory(m_pPara);
+    if(!pHistory) return;
+    pHistory->setAttribute(Qt::WA_DeleteOnClose);
+    connect(this, &CFrmWebBrowser::destroyed, pHistory, &CFrmHistory::close);
+    connect(pHistory, &CFrmHistory::sigOpenUrl, this, [&](const QString& url) {
+        CFrmWebView* pWeb = CurrentView();
+        if(!pWeb) {
+            pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+        }
+        if(pWeb)
+            pWeb->load(url);
+    });
+    connect(pHistory, &CFrmHistory::sigOpenUrlInNewTab,
+            this, [&](const QString& url) {
+                auto pWeb = qobject_cast<CFrmWebView*>(CreateWindow(QWebEnginePage::WebBrowserTab));
+                if(pWeb)
+                    pWeb->load(url);
+            });
+    RC_SHOW_WINDOW(pHistory);
 }

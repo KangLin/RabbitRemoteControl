@@ -69,6 +69,8 @@ private Q_SLOTS:
     void slotRecordTimeout();
 
     void slotAddBookmark();
+    void slotBookmark();
+    void slotHistory();
 
 public Q_SLOTS:
     void slotFullScreen(bool bFullScreen);
