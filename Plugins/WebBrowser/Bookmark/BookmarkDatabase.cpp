@@ -116,7 +116,7 @@ bool CBookmarkDatabase::moveBookmark(int id, int newFolderId)
     return m_TreeDB.Move(id, newFolderId);
 }
 
-bool CBookmarkDatabase::addFolder(const QString &name, int parentId)
+int CBookmarkDatabase::addFolder(const QString &name, int parentId)
 {
     return m_TreeDB.AddNode(name, parentId);
 }

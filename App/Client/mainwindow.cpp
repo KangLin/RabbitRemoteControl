@@ -419,8 +419,8 @@ void MainWindow::slotInitial()
         qApp->processEvents();
         auto recents = m_pRecentDb->GetRecents(m_Parameter.GetRecentMenuMaxCount());
         //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
-        foreach (auto r, recents) {
-            m_pRecentMenu->addRecentFile(r.szFile, r.szName);
+        for(auto it = recents.rbegin(); it != recents.rend(); it++) {
+            m_pRecentMenu->addRecentFile(it->szFile, it->szName);
         }
     }
 
@@ -433,7 +433,6 @@ void MainWindow::slotInitial()
     if(m_pFavoriteView) {
         slotInformation(tr("Load favorite ......"));
         qApp->processEvents();
-        m_pFavoriteView->Load();
     }
 
     slotEnableSystemTrayIcon();

@@ -28,6 +28,7 @@ CFrmBookmark::CFrmBookmark(CParameterWebBrowser *pPara, QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Bookmark"));
+    setAcceptDrops(true);
 
     setupUI();
     loadBookmarks();

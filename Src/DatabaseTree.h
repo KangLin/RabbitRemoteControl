@@ -57,19 +57,28 @@ public:
     explicit CDatabaseFolder(const QString& szPrefix, QObject *parent = nullptr);
 
     // 文件夹操作
-    bool AddFolder(const QString &name, int parentId = 0);
+    int AddFolder(const QString &name, int parentId = 0);
     bool RenameFolder(int id, const QString &newName);
     bool DeleteFolder(int id, std::function<int(int parentId)> cbDeleteLeaf = nullptr);
     bool MoveFolder(int id, int newParentId);
     // 文件夹查询
+    TreeItem GetFolder(int id);
     QList<TreeItem> GetAllFolders();
     QList<TreeItem> GetSubFolders(int parentId);
-    int GetCount();
+    /*!
+     * \brief Get count
+     * \param parentId: 0 : Get all count
+     * \return
+     */
+    int GetCount(int parentId = 0);
 
     virtual bool OnInitializeDatabase() override;
 
     QString GetTableName() const;
     void SetTableName(const QString &newSzTableName);
+
+Q_SIGNALS:
+    void sigAddFolder(int id, int parentId);
 
 protected:
     virtual bool OnDeleteLeafs(int id);
@@ -94,19 +103,19 @@ public:
      * \return > 0 , id of added item.
      *         = 0 , failed
      */
-    int Add(const TreeItem& item);
-    bool Update(const TreeItem& item);
-    bool Delete(int id);
-    bool Delete(QList<int> items);
-    bool DeleteChild(int parentId);
-    bool Move(int id, int newParent);
+    virtual int Add(const TreeItem& item);
+    virtual bool Update(const TreeItem& item);
+    virtual bool Delete(int id, bool delKey = false);
+    virtual bool Delete(QList<int> items, bool delKey = false);
+    virtual bool DeleteChild(int parentId, bool delKey = false);
+    virtual bool Move(int id, int newParent);
 
     TreeItem GetLeaf(int id);
     /*!
      * \brief Get the leaves under nodeId
      * \param nodeId:
-     *          - = 0: Get all leaves
-     *          - > 0: Get the leaves under the node
+     *          - < 0: Get all leaves
+     *          - >= 0: Get the leaves under the node
      */
     QList<TreeItem> GetLeaves(int nodeId);
     /*!
@@ -115,19 +124,44 @@ public:
      */
     QList<TreeItem> GetLeavesByKey(int key);
     QList<TreeItem> GetLeavesByKey(QList<int> key);
+    int GetLeafCount(int parentId = 0);
 
     // Node operate
-    bool AddNode(const QString &name, int parentId = 0);
-    bool RenameNode(int id, const QString &newName);
-    bool DeleteNode(int id);
-    bool MoveNode(int id, int newParentId);
-
+    virtual int AddNode(const QString &name, int parentId = 0);
+    virtual bool RenameNode(int id, const QString &newName);
+    virtual bool DeleteNode(int id, bool delKey = false);
+    virtual bool MoveNode(int id, int newParentId);
+    TreeItem GetNode(int id);
     QList<TreeItem> GetAllNodes();
     QList<TreeItem> GetSubNodes(int parentId);
-    int GetNodeCount();
+    int GetNodeCount(int nParentId = 0);
+
+    /*!
+     * \~chinese
+     * \brief 得到指定id节点下的所有节点和叶子数。不递归。
+     * \param parentId: 0, 得到树中所有节点和叶子。
+     * \~english
+     * \brief Get the count of parentId. include nodes and leaves
+     * \param parentId: 0, Get all count
+     * \return
+     */
+    int GetCount(int parentId = 0);
 
     virtual bool OnInitializeDatabase() override;
 
+Q_SIGNALS:
+    void sigAddFolder(int id, int parentId);
+    void sigAdd(int id, int parentId);
+
+protected:
+    /*!
+     * \~chinese
+     * \brief 从 key 相关的表中删除 key
+     * \param key
+     * \return treu: 成功
+     *         false: 失败。删除停止。
+     */
+    virtual bool OnDeleteKey(int key);
 private:
     QString m_szTableName;
     CDatabaseFolder m_FolderDB;

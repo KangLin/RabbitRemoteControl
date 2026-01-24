@@ -3,72 +3,53 @@
 #pragma once
 
 #include <QObject>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
 #include <QDateTime>
 #include <QIcon>
+#include "DatabaseTree.h"
 
-class CFavoriteDatabase : public QObject
+class CFavoriteDatabase : public CDatabaseTree
 {
     Q_OBJECT
 
 public:
     explicit CFavoriteDatabase(QObject *parent = nullptr);
-    ~CFavoriteDatabase();
-    bool openDatabase(const QString &dbPath = QString());
-    bool isOpen();
-    void closeDatabase();
-
-    enum Type {
-        Type_Favorite,
-        Type_Folder,
-        Type_Separator
-    };
 
     struct Item {
-        int id;
+        int id;          // is the id of tree table
         QString szName;
         QIcon icon;
         QString szFile;
-        QDateTime time;
         QString szDescription;
-        Type type;
-        int parentId;
-
-        // 运行时属性
-        mutable QIcon cachedIcon;
-        QList<Item> children;
+        TreeItem::TYPE type;
 
         Item()
             : id(0)
-            , parentId(0) // 指向默认收藏夹
-            , type(Type_Favorite)
+            , type(TreeItem::Leaf)
         {}
-
-        bool isFolder() const { return type == Type_Folder; }
-        bool isSeparator() const { return type == Type_Separator; }
-        bool isFavorite() const { return type == Type_Favorite; }
+        QIcon GetIcon() {
+            if(!icon.isNull())
+                return icon;
+            if(isGroup())
+                return QIcon::fromTheme("folder");
+            return QIcon::fromTheme("file");
+        }
+        bool isGroup() const { return type == TreeItem::Node; }
+        bool isFavorite() const { return type == TreeItem::Leaf; }
     };
 
-    bool AddFavorite(const Item &item);
-    bool deleteFavorite(int id);
-    bool moveFavorite(int id, int newParentId);
-
-    // 文件夹操作
-    bool addFolder(const QString &name, int parentId = 0);
-    bool renameFolder(int folderId, const QString &newName);
-    bool deleteFolder(int folderId);
-    bool moveFolder(int folderId, int newParentId);
-
-    // 文件夹查询
-    QList<Item> getAllFolders();
-    QList<Item> getSubFolders(int parentId);
-
-Q_SIGNALS:
-    void sigChanged();
+    int AddFavorite(const QIcon &icon, const QString& szName,
+                     const QString &szFile, const QString szDescription,
+                     int parentId = 0);
+    bool UpdateFavorite(const QString& szName, int id);
+    Item GetFavorite(int id);
+    Item GetGroup(int id);
+    QList<Item> GetChildren(int parentId);
 
 private:
-    QSqlDatabase m_database;
-    bool initializeDatabase();
+    bool OnInitializeDatabase() override;
+    CDatabaseIcon m_IconDB;
+
+    // CDatabaseTree interface
+protected:
+    virtual bool OnDeleteKey(int key) override;
 };

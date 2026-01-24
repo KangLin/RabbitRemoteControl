@@ -201,7 +201,7 @@ bool CDatabaseFolder::OnInitializeDatabase()
 }
 
 
-bool CDatabaseFolder::AddFolder(const QString &name, int parentId)
+int CDatabaseFolder::AddFolder(const QString &name, int parentId)
 {
     QSqlQuery query(GetDatabase());
 
@@ -223,14 +223,18 @@ bool CDatabaseFolder::AddFolder(const QString &name, int parentId)
     query.bindValue(":parent_id", parentId);
     query.bindValue(":sort_order", maxOrder);
 
+    int id = 0;
     bool success = query.exec();
-
-    if (success)
-        emit sigChanged();
-    else
+    if (success) {
+        id = query.lastInsertId().toInt();
+        if(id > 0) {
+            emit sigAddFolder(id, parentId);
+            emit sigChanged();
+        }
+    } else
         qCritical(log) << "Failed to add folders:" << query.lastError().text();
 
-    return success;
+    return id;
 }
 
 bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
@@ -311,6 +315,32 @@ bool CDatabaseFolder::MoveFolder(int id, int newParentId)
     return success;
 }
 
+TreeItem CDatabaseFolder::GetFolder(int id)
+{
+    TreeItem folder;
+    if(0 >= id) return folder;
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, name, parent_id, sort_order, created_time "
+        "FROM " + m_szTableName + " "
+        "WHERE id=:id"
+        );
+    query.bindValue(":id", id);
+    if (query.exec()) {
+        if(query.next()) {
+            folder.SetType(TreeItem::Node);
+            folder.SetId(query.value(0).toInt());
+            folder.SetName(query.value(1).toString());
+            folder.SetParentId(query.value(2).toInt());
+            folder.SetSortOrder(query.value(3).toInt());
+            folder.SetCreateTime(query.value(4).toDateTime());
+        }
+    } else
+        qCritical(log) << "Failed to get folder:" << id << query.lastError().text();
+
+    return folder;
+}
+
 QList<TreeItem> CDatabaseFolder::GetAllFolders()
 {
     QList<TreeItem> folders;
@@ -369,11 +399,16 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
     return folders;
 }
 
-int CDatabaseFolder::GetCount()
+int CDatabaseFolder::GetCount(int parentId)
 {
     QSqlQuery query(GetDatabase());
-    query.exec("SELECT COUNT(*) FROM " + m_szTableName);
-    if (query.next())
+    if(0 == parentId) {
+        query.prepare("SELECT COUNT(*) FROM " + m_szTableName);
+    } else {
+        query.prepare("SELECT COUNT(*) FROM " + m_szTableName + " WHERE parent_id=:id");
+        query.bindValue(":id", parentId);
+    }
+    if (query.exec() && query.next())
         return query.value(0).toInt();
     return 0;
 }
@@ -400,6 +435,9 @@ bool CDatabaseTree::OnInitializeDatabase()
     m_FolderDB.SetDatabase(GetDatabase());
     bRet = m_FolderDB.OnInitializeDatabase();
     if(!bRet) return false;
+    bRet = connect(&m_FolderDB, &CDatabaseFolder::sigAddFolder,
+                   this, &CDatabaseTree::sigAddFolder);
+    Q_ASSERT(bRet);
 
     QSqlQuery query(GetDatabase());
 
@@ -415,8 +453,7 @@ bool CDatabaseTree::OnInitializeDatabase()
         "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    last_visit_time DATETIME,"
-        "    parent_id INTEGER DEFAULT 0,"
-        "    FOREIGN KEY (parent_id) REFERENCES " + m_FolderDB.GetTableName() + "(id) ON DELETE SET NULL"
+        "    parent_id INTEGER DEFAULT 0"
         ")"
         );
 
@@ -445,9 +482,10 @@ int CDatabaseTree::Add(const TreeItem &item)
 
     query.bindValue(":name", item.GetName());
     query.bindValue(":key", item.GetKey());
-    query.bindValue(":created_time", item.GetCreateTime());
-    query.bindValue(":modified_time", QDateTime::currentDateTime());
-    query.bindValue(":last_visit_time", item.GetLastVisitTime());
+    QDateTime time = QDateTime::currentDateTime();
+    query.bindValue(":created_time", time);
+    query.bindValue(":modified_time", time);
+    query.bindValue(":last_visit_time", time);
     query.bindValue(":parent_id", item.GetParentId());
 
     bool success = query.exec();
@@ -457,7 +495,10 @@ int CDatabaseTree::Add(const TreeItem &item)
         return 0;
     }
 
-    return query.lastInsertId().toInt();
+    int id = query.lastInsertId().toInt();
+    if(0 < id)
+        emit sigAdd(id, item.GetParentId());
+    return id;
 }
 
 bool CDatabaseTree::Update(const TreeItem &item)
@@ -489,8 +530,20 @@ bool CDatabaseTree::Update(const TreeItem &item)
     return success;
 }
 
-bool CDatabaseTree::Delete(int id)
+bool CDatabaseTree::Delete(int id, bool delKey)
 {
+    // 如果是最后的一个，则从 key 相关表中删除 key
+    if(delKey) {
+        auto leaf = GetLeaf(id);
+        if(leaf.GetKey() > 0) {
+            auto leaves = GetLeavesByKey(leaf.GetKey());
+            if(leaves.count() == 1) {
+                bool ok = OnDeleteKey(leaf.GetKey());
+                if(!ok)
+                    return ok;
+            }
+        }
+    }
     QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM " + m_szTableName + " WHERE id = :id");
     query.bindValue(":id", id);
@@ -503,9 +556,25 @@ bool CDatabaseTree::Delete(int id)
     return success;
 }
 
-bool CDatabaseTree::Delete(QList<int> items)
+bool CDatabaseTree::Delete(QList<int> items, bool delKey)
 {
     if(items.isEmpty()) return false;
+
+    if(delKey) {
+        foreach(auto id, items) {
+            // 如果是最后的一个，则从 key 相关表中删除 key
+            auto leaf = GetLeaf(id);
+            if(leaf.GetKey() > 0) {
+                auto leaves = GetLeavesByKey(leaf.GetKey());
+                if(leaves.count() == 1) {
+                    bool ok = OnDeleteKey(leaf.GetKey());
+                    if(!ok)
+                        return ok;
+                }
+            }
+        }
+    }
+
     QSqlQuery query(GetDatabase());
     QString szSql = "DELETE FROM " + m_szTableName + " WHERE ";
     int i = 0;
@@ -525,8 +594,17 @@ bool CDatabaseTree::Delete(QList<int> items)
     return success;
 }
 
-bool CDatabaseTree::DeleteChild(int parentId)
+bool CDatabaseTree::DeleteChild(int parentId, bool delKey)
 {
+    if(delKey) {
+        auto leaves = GetLeaves(parentId);
+        foreach(auto leaf, leaves) {
+            if(!Delete(leaf.GetId(), delKey))
+                return false;
+        }
+        return true;
+    }
+
     QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM " + m_szTableName + " WHERE parent_id = :parent_id");
     query.bindValue(":parent_id", parentId);
@@ -559,6 +637,8 @@ bool CDatabaseTree::Move(int id, int newParent)
 TreeItem CDatabaseTree::GetLeaf(int id)
 {
     TreeItem item;
+    item.SetType(TreeItem::Leaf);
+
     QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT name, key,  "
@@ -572,15 +652,15 @@ TreeItem CDatabaseTree::GetLeaf(int id)
         return item;
     }
 
-    item.SetType(TreeItem::Leaf);
-    item.SetId(id);
-    item.SetName(query.value(0).toString());
-    item.SetKey(query.value(1).toInt());
-    item.SetCreateTime(query.value(2).toDateTime());
-    item.SetModifyTime(query.value(3).toDateTime());
-    item.SetLastVisitTime(query.value(4).toDateTime());
-    item.SetParentId(query.value(5).toInt());
-
+    if(query.next()) {
+        item.SetId(id);
+        item.SetName(query.value(0).toString());
+        item.SetKey(query.value(1).toInt());
+        item.SetCreateTime(query.value(2).toDateTime());
+        item.SetModifyTime(query.value(3).toDateTime());
+        item.SetLastVisitTime(query.value(4).toDateTime());
+        item.SetParentId(query.value(5).toInt());
+    }
     return item;
 }
 
@@ -592,7 +672,7 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
     szSql = "SELECT id, name, key, "
             "created_time, modified_time, last_visit_time, parent_id "
             "FROM " + m_szTableName;
-    if(0 < nodeId)
+    if(0 <= nodeId)
         szSql += " WHERE parent_id = :parent_id";
     query.prepare(szSql);
     query.bindValue(":parent_id", nodeId);
@@ -693,7 +773,21 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
     return items;
 }
 
-bool CDatabaseTree::AddNode(const QString &name, int parentId)
+int CDatabaseTree::GetLeafCount(int parentId)
+{
+    QSqlQuery query(GetDatabase());
+    if(0 == parentId) {
+        query.prepare("SELECT COUNT(*) FROM " + m_szTableName);
+    } else {
+        query.prepare("SELECT COUNT(*) FROM " + m_szTableName + " WHERE parent_id=:id");
+        query.bindValue(":id", parentId);
+    }
+    if (query.exec() && query.next())
+        return query.value(0).toInt();
+    return 0;
+}
+
+int CDatabaseTree::AddNode(const QString &name, int parentId)
 {
     return m_FolderDB.AddFolder(name, parentId);
 }
@@ -703,16 +797,21 @@ bool CDatabaseTree::RenameNode(int id, const QString &newName)
     return m_FolderDB.RenameFolder(id, newName);
 }
 
-bool CDatabaseTree::DeleteNode(int id)
+bool CDatabaseTree::DeleteNode(int id, bool delKey)
 {
-    return m_FolderDB.DeleteFolder(id, [&](int parentId)->int{
-        return DeleteChild(parentId);
+    return m_FolderDB.DeleteFolder(id, [&, delKey](int parentId)->int {
+        return DeleteChild(parentId, delKey);
     });
 }
 
 bool CDatabaseTree::MoveNode(int id, int newParentId)
 {
     return m_FolderDB.MoveFolder(id, newParentId);
+}
+
+TreeItem CDatabaseTree::GetNode(int id)
+{
+    return m_FolderDB.GetFolder(id);
 }
 
 QList<TreeItem> CDatabaseTree::GetAllNodes()
@@ -725,7 +824,17 @@ QList<TreeItem> CDatabaseTree::GetSubNodes(int parentId)
     return m_FolderDB.GetSubFolders(parentId);
 }
 
-int CDatabaseTree::GetNodeCount()
+int CDatabaseTree::GetNodeCount(int nParentId)
 {
-    return m_FolderDB.GetCount();
+    return m_FolderDB.GetCount(nParentId);
+}
+
+int CDatabaseTree::GetCount(int parentId)
+{
+    return GetNodeCount(parentId) + GetLeafCount(parentId);
+}
+
+bool CDatabaseTree::OnDeleteKey(int key)
+{
+    return 0;
 }

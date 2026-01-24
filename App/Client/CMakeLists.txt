@@ -18,6 +18,7 @@ set(SOURCE_FILES
     Favorite/FavoriteView.cpp
     Favorite/FavoriteMimeData.cpp
     Favorite/FavoriteDatabase.cpp
+    Favorite/FavoriteModel.cpp
     Recent/FrmRecent.cpp
     Recent/RecentModel.cpp
     Recent/RecentDatabase.cpp
@@ -35,7 +36,8 @@ set(HEADER_FILES
     ParameterDlgSettings.h
     Favorite/FavoriteView.h
     Favorite/FavoriteMimeData.h
-    Favorite/FavoriteDatabase.cpp
+    Favorite/FavoriteDatabase.h
+    Favorite/FavoriteModel.h
     Recent/FrmRecent.h
     Recent/RecentModel.h
     Recent/RecentDatabase.h

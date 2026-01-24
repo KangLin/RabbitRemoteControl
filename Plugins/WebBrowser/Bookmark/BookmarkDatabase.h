@@ -74,7 +74,7 @@ public:
     bool moveBookmark(int id, int newFolderId);
 
     // 文件夹操作
-    bool addFolder(const QString &name, int parentId = 0);
+    int addFolder(const QString &name, int parentId = 0);
     bool renameFolder(int folderId, const QString &newName);
     bool deleteFolder(int folderId);
     bool moveFolder(int folderId, int newParentId);

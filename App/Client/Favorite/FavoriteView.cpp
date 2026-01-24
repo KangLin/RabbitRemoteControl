@@ -17,38 +17,32 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QLoggingCategory>
+#include <QVBoxLayout>
 
 #include "FavoriteMimeData.h"
-#include "RabbitCommonDir.h"
+#include "TitleBar.h"
 
-static Q_LOGGING_CATEGORY(log, "App.MainWindow.Favorite")
+static Q_LOGGING_CATEGORY(log, "Favorite")
 
-CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
-    m_pDockTitleBar(nullptr),
-    m_pModel(nullptr)
+CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
+    , m_pDockTitleBar(nullptr)
+    , m_pTreeView(nullptr)
+    , m_pModel(nullptr)
+    , m_pDatabase(nullptr)
+    , m_pToolBar(nullptr)
 {
-    setWindowTitle(tr("Favorite"));
+    bool check = false;
     //setFocusPolicy(Qt::NoFocus);
-    header()->hide();
-    
-    setAcceptDrops(true);
-    
-    m_pModel = new QStandardItemModel(this);
-    setModel(m_pModel);
 
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    bool check = connect(this,
-                         SIGNAL(customContextMenuRequested(const QPoint &)),
-                         this, SLOT(slotCustomContextMenu(const QPoint &)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(clicked(const QModelIndex&)),
-                    this, SLOT(slotFavrtieClicked(const QModelIndex&)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(doubleClicked(const QModelIndex&)),
-                    this, SLOT(slotFavortiedoubleClicked(const QModelIndex&)));
-    Q_ASSERT(check);
+    setWindowTitle(tr("Favorite"));
 
-    m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
+    m_pDatabase = new CFavoriteDatabase(this);
+    if(m_pDatabase)
+        m_pDatabase->OpenDatabase("favorite");
+
+    setupUI();
+
+    m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
     // Create tools pushbutton in title bar
     m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
     check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
@@ -64,193 +58,155 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
 
 CFavoriteView::~CFavoriteView()
 {
-    Save();
+    if(m_pDatabase) {
+        delete m_pDatabase;
+        m_pDatabase = nullptr;
+    }
 }
 
-int CFavoriteView::Load()
+void CFavoriteView::setupUI()
 {
-    m_szSaveFile = RabbitCommon::CDir::Instance()->GetDirUserConfig()
-        + QDir::separator() + "Favorite.ini";
-    QSettings set(m_szSaveFile, QSettings::IniFormat);
-    int nRootCount = 0;
-    nRootCount = set.value("RootCount").toInt();
-    for(int i = 0; i < nRootCount; i++)
-    {
-        QString name = set.value("Name_" + QString::number(i)).toString();
-        QString file = set.value("File_" + QString::number(i)).toString();
-        if(name.isEmpty()) {
-            qCritical(log) << "Current node is empty!";
-            continue;
-        }
-        QStandardItem* item = new QStandardItem(name);
-        item->setIcon(QIcon::fromTheme("network-wired"));
-        if(item)
-        {
-            QIcon icon = set.value("Icon_" + QString::number(i)).value<QIcon>();
-            if(!icon.isNull())
-                item->setIcon(icon);
-            QString szDescript = set.value("Descripte_" + QString::number(i)).toString();
-            if(!szDescript.isEmpty())
-                item->setToolTip(szDescript);
-            item->setData(file);
-            m_pModel->appendRow(item);
-        }
-    }
-    int nGroupCount = set.value("GroupCount").toInt();
-    for(int g = 0; g < nGroupCount; g++)
-    {
-        QString szGroup = set.value("Group_" + QString::number(g)).toString();
-        QStandardItem* pGroup = new QStandardItem(szGroup);
-        pGroup->setIcon(QIcon::fromTheme("network-workgroup"));
-        m_pModel->appendRow(pGroup);
-        int n = set.value(szGroup + "/" + "count").toInt();
-        for(int i = 0; i < n; i++)
-        {
-            QString name = set.value(szGroup + "/Name_" + QString::number(i)).toString();
-            if(name.isEmpty())
-            {
-                qCritical(log) << "Current node is empty!";
-                continue;
-            }
-            QStandardItem* item = new QStandardItem(name);
-            if(item)
-            {
-                QIcon icon = set.value(szGroup + "/Icon_" + QString::number(i)).value<QIcon>();
-                if(!icon.isNull())
-                    item->setIcon(icon);
-                QString szDescript = set.value(szGroup + "/Descripte_" + QString::number(i)).toString();
-                if(!szDescript.isEmpty())
-                    item->setToolTip(szDescript);
-                QString file = set.value(szGroup + "/File_" + QString::number(i)).toString();
-                if(file.isEmpty())
-                {
-                    qCritical(log) << "File is empty";
-                } else
-                    item->setData(file);
-                pGroup->appendRow(item);
-            }
-        }
-    }
-    return 0;
+    bool check = false;
+    QVBoxLayout *pMainLayout = new QVBoxLayout(this);
+    if(!pMainLayout) return;
+
+    // 工具栏
+    setupToolBar();
+    if(m_pToolBar)
+        pMainLayout->addWidget(m_pToolBar);
+
+    setupTreeView();
+    if(m_pTreeView)
+        pMainLayout->addWidget(m_pTreeView);
 }
 
-int CFavoriteView::Save()
+void CFavoriteView::setupToolBar()
 {
-    int nRet = 0;
-    if(!m_pModel)
-        return -1;
-    QSettings set(m_szSaveFile, QSettings::IniFormat);
-    int nRootCount = 0;
-    int nGroup = 0;
-    for(int rootIndex = 0; rootIndex < m_pModel->rowCount(); rootIndex++)
-    {
-        auto rootItem = m_pModel->item(rootIndex);
-        if(!rootItem) continue;
-        QString text = rootItem->text();
-        QVariant data = rootItem->data();
-        if(rootItem->hasChildren() || rootItem->data().isNull())
-        {
-            int nCount = 0;
-            QString szGroup = rootItem->text();
-            set.setValue("Group_" + QString::number(nGroup++), szGroup);
-            for(int childIndex = 0; childIndex < rootItem->rowCount(); childIndex++)
-            {
-                auto childItem = rootItem->child(childIndex);
-                if(!childItem) continue;
+    if(m_pToolBar) return;
+    bool check = false;
+    m_pToolBar = new QToolBar(this);
 
-                set.setValue(szGroup + "/Name_" + QString::number(nCount), childItem->text());
-                set.setValue(szGroup + "/Descripte_" + QString::number(nCount), childItem->toolTip());
-                set.setValue(szGroup + "/Icon_" + QString::number(nCount), childItem->icon());
-                set.setValue(szGroup + "/File_" + QString::number(nCount), childItem->data());
-
-                nCount++;
-            }
-            set.setValue(szGroup + "/" + "count", nCount);
-        } else {
-            set.setValue("Name_" + QString::number(nRootCount), rootItem->text());
-            set.setValue("Descripte_" + QString::number(nRootCount), rootItem->toolTip());
-            set.setValue("Icon_" + QString::number(nRootCount), rootItem->icon());
-            set.setValue("File_" + QString::number(nRootCount), rootItem->data());
-            nRootCount++;
-        }
+    QAction *startAction = m_pToolBar->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"));
+    if(startAction) {
+        startAction->setToolTip(startAction->text());
+        startAction->setStatusTip(startAction->text());
+        check = connect(startAction, &QAction::triggered, this, &CFavoriteView::slotStart);
+        Q_ASSERT(check);
     }
-    set.setValue("RootCount", nRootCount);
-    set.setValue("GroupCount", nGroup);
-    return nRet;
+
+    QAction *eidtStartAction = m_pToolBar->addAction(QIcon::fromTheme("system-settings"), tr("Open settings and Start"));
+    if(startAction) {
+        eidtStartAction->setToolTip(eidtStartAction->text());
+        eidtStartAction->setStatusTip(eidtStartAction->text());
+        check = connect(eidtStartAction, &QAction::triggered, this, &CFavoriteView::slotOpenStart);
+        Q_ASSERT(check);
+    }
+
+    m_pToolBar->addSeparator();
+
+    QAction *addFolderAction = m_pToolBar->addAction(QIcon::fromTheme("folder-new"), tr("New group"));
+    if(addFolderAction) {
+        addFolderAction->setToolTip(addFolderAction->text());
+        addFolderAction->setStatusTip(addFolderAction->text());
+        check = connect(addFolderAction, &QAction::triggered, this, &CFavoriteView::slotNewGroup);
+        Q_ASSERT(check);
+    }
+
+    QAction *editAction = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
+    if(editAction) {
+        editAction->setToolTip(editAction->text());
+        editAction->setStatusTip(editAction->text());
+        check = connect(editAction, &QAction::triggered, this, &CFavoriteView::slotEdit);
+        Q_ASSERT(check);
+    }
+
+    QAction *pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    if(pDeleteAction) {
+        pDeleteAction->setToolTip(pDeleteAction->text());
+        pDeleteAction->setStatusTip(pDeleteAction->text());
+        check = connect(pDeleteAction, &QAction::triggered, this, &CFavoriteView::slotDelete);
+        Q_ASSERT(check);
+    }
+
+    m_pToolBar->addSeparator();
+
+    QAction *importAction = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
+    if(importAction) {
+        importAction->setToolTip(importAction->text());
+        importAction->setStatusTip(importAction->text());
+        check = connect(importAction, &QAction::triggered, this, &CFavoriteView::slotImport);
+        Q_ASSERT(check);
+    }
+
+    QAction *exportAction = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
+    if(exportAction) {
+        exportAction->setToolTip(exportAction->text());
+        exportAction->setStatusTip(exportAction->text());
+        check = connect(exportAction, &QAction::triggered, this, &CFavoriteView::slotExport);
+        Q_ASSERT(check);
+    }
+}
+
+void CFavoriteView::setupTreeView()
+{
+    if(m_pTreeView) return;
+    m_pTreeView = new QTreeView(this);
+    if(!m_pTreeView)
+        return;
+
+    m_pTreeView->setAcceptDrops(true);
+    m_pTreeView->setUniformRowHeights(true);
+    m_pTreeView->setHeaderHidden(true); // 如果没有表头
+    m_pModel = new CFavoriteModel(m_pDatabase, this);
+    m_pTreeView->setModel(m_pModel);
+    // 设置展开行为
+    m_pTreeView->setExpandsOnDoubleClick(true);
+
+    // 如果需要自动展开第一层
+    //m_pTreeView->expandAll(); // 或者根据需要展开特定节点
+    //m_pTreeView->expandToDepth(1);
+
+    m_pTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
+    bool check = connect(m_pTreeView,
+                         SIGNAL(customContextMenuRequested(const QPoint &)),
+                         this, SLOT(slotCustomContextMenu(const QPoint &)));
+    Q_ASSERT(check);
+    check = connect(m_pTreeView, SIGNAL(clicked(const QModelIndex&)),
+                    this, SLOT(slotFavrtieClicked(const QModelIndex&)));
+    Q_ASSERT(check);
+    check = connect(m_pTreeView, SIGNAL(doubleClicked(const QModelIndex&)),
+                    this, SLOT(slotFavortiedoubleClicked(const QModelIndex&)));
+    Q_ASSERT(check);
+
+    //m_pTreeView->installEventFilter(this);
 }
 
 void CFavoriteView::slotAddToFavorite(const QString &szName,
-                               const QString &szDescription,
-                                     const QIcon &icon,
-                               const QString &szFile)
+                                      const QString &szDescription,
+                                      const QIcon &icon,
+                                      const QString &szFile)
 {
-    if(!m_pModel) return;
+    if(!m_pModel || !m_pTreeView) return;
     QStandardItem* pItem = nullptr;
+    int parentId = 0;
     QString szGroup;
-    auto indexes = selectionModel()->selectedIndexes();
-    if(indexes.isEmpty())
+    auto indexes = m_pTreeView->selectionModel()->selectedIndexes();
+    if(!indexes.isEmpty())
     {
-        auto it = m_pModel->findItems(szName, Qt::MatchFixedString);
-        if(it.isEmpty())
-        {
-            pItem = new QStandardItem(szName);
-            pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
-            pItem->setToolTip(szDescription);
-            m_pModel->appendRow(pItem);
-        } else {
-            QList<QStandardItem*>::iterator i;
-            for(i = it.begin(); i != it.end(); i++)
-            {
-                if((*i)->data() == szFile)
-                    break;
+        QModelIndex idx = indexes.at(0);
+        while (idx.isValid()) {
+            CFavoriteDatabase::Item item =
+                m_pModel->data(idx, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+            if(item.isGroup()) {
+                parentId = item.id;
+                break;
             }
-            if(it.end() != i)
-                return;
-            pItem = new QStandardItem(szName);
-            pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
-            pItem->setToolTip(szDescription);
-            m_pModel->appendRow(pItem);
-        }
-    } else {
-        auto itemGroup = m_pModel->itemFromIndex(indexes[0]);
-        if(itemGroup->data().isValid())
-        {
-            auto it = m_pModel->findItems(szName, Qt::MatchFixedString);
-            if(it.isEmpty())
-            {
-                pItem = new QStandardItem(szName);
-                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
-                pItem->setToolTip(szDescription);
-                m_pModel->appendRow(pItem);
-            }
-        } else {
-            szGroup = itemGroup->text();
-            auto lstGroup = m_pModel->findItems(szGroup, Qt::MatchFixedString);
-            if(lstGroup.isEmpty())
-            {
-                QStandardItem* pGroup = new QStandardItem(szGroup);
-                m_pModel->appendRow(pGroup);
-                pItem = new QStandardItem(szName);
-                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
-                pItem->setToolTip(szDescription);
-                pGroup->appendRow(pItem);
-            } else {
-                if(lstGroup[0]->data().isValid()) return;
-                for(int i = 0; i < lstGroup[0]->rowCount(); i++)
-                {
-                    auto item = lstGroup[0]->child(i);
-                    if(item->text() == szName)
-                        return;
-                }
-                pItem = new QStandardItem(szName);
-                pItem->setIcon(icon); //QIcon::fromTheme("network-wired"));
-                pItem->setToolTip(szDescription);
-                lstGroup[0]->appendRow(pItem);
-            }
+            idx = idx.parent();
         }
     }
-    if(pItem)
-        pItem->setData(szFile);
+    bool ok = m_pModel->AddFavorite(icon, szName, szFile, szDescription, parentId);
+    if(ok)
+        m_pTreeView->viewport()->update();
     return;
 }
 
@@ -260,11 +216,10 @@ void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)
 
 void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
 {
-    auto item = m_pModel->itemFromIndex(index);
-    if(!item) return;
-    if(editTriggers() != QTreeView::NoEditTriggers)
+    if(!index.isValid()) return;
+    if(m_pTreeView->editTriggers() != QTreeView::NoEditTriggers)
         return;
-    QString szFile = item->data().toString();
+    QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
     if(!szFile.isEmpty())
         emit sigStart(szFile, false);
 }
@@ -272,48 +227,65 @@ void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
 void CFavoriteView::slotDoubleEditNode(bool bEdit)
 {
     if(bEdit)
-        setEditTriggers(QTreeView::DoubleClicked);
+        m_pTreeView->setEditTriggers(QTreeView::DoubleClicked);
     else
-        setEditTriggers(QTreeView::NoEditTriggers);
+        m_pTreeView->setEditTriggers(QTreeView::NoEditTriggers);
 }
 
 void CFavoriteView::slotMenu()
 {
-    auto index = this->currentIndex();
-    auto item = m_pModel->itemFromIndex(index);
+    if(!m_pTreeView)
+        return;
+
+    auto index = m_pTreeView->currentIndex();
+    CFavoriteDatabase::Item item =
+        m_pModel->data(index, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
     m_pMenu->clear();
-    if(item)
-    {
-        if(item->data().isValid()) {
-            m_pMenu->addAction(tr("Start"), this, SLOT(slotStart()));
-            m_pMenu->addAction(tr("Open settings and Start"), this, SLOT(slotOpenStart()));
-            m_pMenu->addAction(tr("Delete operate"), this, SLOT(slotDelete()));
+    if(index.isValid()) {
+        if(0 < item.id && item.isFavorite()) {
+            m_pMenu->addAction(QIcon::fromTheme("media-playback-start"),
+                               tr("Start"), this, SLOT(slotStart()));
+            m_pMenu->addAction(QIcon::fromTheme("system-settings"),
+                               tr("Open settings and Start"), this, SLOT(slotOpenStart()));
+            m_pMenu->addAction(QIcon::fromTheme("edit-delete"),
+                               tr("Delete operate"), this, SLOT(slotDelete()));
         }
         m_pMenu->addSeparator();
-        m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
-        if(!item->data().isValid())
-            m_pMenu->addAction(tr("Delete group"), this, SLOT(slotDelete()));
+        m_pMenu->addAction(QIcon::fromTheme("folder-new"), tr("New group"),
+                           this, SLOT(slotNewGroup()));
+        if(0 < item.id && item.isFavorite())
+            m_pMenu->addAction(QIcon::fromTheme("edit-delete"),
+                               tr("Delete group"), this, SLOT(slotDelete()));
     } else
-        m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
+        m_pMenu->addAction(QIcon::fromTheme("folder-new"),
+                           tr("New group"), this, SLOT(slotNewGroup()));
 
     // m_pMenu->addSeparator();
     // m_pMenu->addAction(tr("Add current operate to favorite"), this, SIGNAL(sigFavorite()));
 }
 
+void CFavoriteView::slotImport()
+{
+
+}
+
+void CFavoriteView::slotExport()
+{
+
+}
+
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
 {
     slotMenu();
-    m_pMenu->exec(mapToGlobal(pos));
+    m_pMenu->exec(m_pTreeView->mapToGlobal(pos));
 }
 
 void CFavoriteView::slotStart()
 {
-    auto lstIndex = selectionModel()->selectedIndexes();
+    auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
     {
-        auto item = m_pModel->itemFromIndex(index);
-        if(!item) return;
-        QString szFile = item->data().toString();
+        QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
         if(!szFile.isEmpty())
             emit sigStart(szFile, false);
     }
@@ -321,37 +293,44 @@ void CFavoriteView::slotStart()
 
 void CFavoriteView::slotOpenStart()
 {
-    auto lstIndex = selectionModel()->selectedIndexes();
+    auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
     {
-        auto item = m_pModel->itemFromIndex(index);
-        QString szFile = item->data().toString();
+        QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
         if(!szFile.isEmpty())
             emit sigStart(szFile, true);
     }
 }
 
+void CFavoriteView::slotEdit()
+{}
+
 void CFavoriteView::slotDelete()
 {
-    auto lstIndex = selectionModel()->selectedIndexes();
+    auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
         m_pModel->removeRow(index.row(), index.parent());
 }
 
 void CFavoriteView::slotNewGroup()
 {
-    QString szGroup = QInputDialog::getText(this, tr("Input"), tr("Input group name"));
+    if(!m_pModel) return;
+    QString szGroup = QInputDialog::getText(this, tr("New group"), tr("Input group name"));
     if(szGroup.isEmpty()) return;
-    auto lstItem = m_pModel->findItems(szGroup);
-    if(!lstItem.isEmpty())
+
+    int parentId = 0;
+    auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
+    if(!lstIndex.isEmpty())
     {
-        QMessageBox::critical(this, tr("Error"), tr("The group [%1] is existed").arg(szGroup));
-        return;
+        CFavoriteDatabase::Item item =
+            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+        if(0 < item.id && item.isFavorite())
+            parentId = item.id;
     }
 
     QStandardItem* pGroup = new QStandardItem(szGroup);
     pGroup->setIcon(QIcon::fromTheme("network-workgroup"));
-    m_pModel->appendRow(pGroup);
+    m_pModel->AddNode(szGroup, parentId);
 }
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
@@ -374,6 +353,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
     qDebug(log) << "dropEvent";
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if(!pData) return;
+    /*
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
     if(!pModel) return;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -405,10 +385,10 @@ void CFavoriteView::dropEvent(QDropEvent *event)
                 pModel->removeRow(i.row(), i.parent());
         }
     }
-
+//*/
     event->accept();
 }
-
+/*
 QStandardItem* CFavoriteView::NewItem(const QModelIndex &index)
 {
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
@@ -449,4 +429,10 @@ void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
     } while (false);
     
     QTreeView::mouseMoveEvent(event);
+}
+//*/
+bool CFavoriteView::eventFilter(QObject *watched, QEvent *event)
+{
+
+    return QWidget::eventFilter(watched, event);
 }
