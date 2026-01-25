@@ -86,65 +86,95 @@ void CFavoriteView::setupToolBar()
     bool check = false;
     m_pToolBar = new QToolBar(this);
 
-    QAction *startAction = m_pToolBar->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"));
-    if(startAction) {
-        startAction->setToolTip(startAction->text());
-        startAction->setStatusTip(startAction->text());
-        check = connect(startAction, &QAction::triggered, this, &CFavoriteView::slotStart);
+    m_pStartAction = m_pToolBar->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"));
+    if(m_pStartAction) {
+        m_pStartAction->setToolTip(m_pStartAction->text());
+        m_pStartAction->setStatusTip(m_pStartAction->text());
+        check = connect(m_pStartAction, &QAction::triggered, this, &CFavoriteView::slotStart);
         Q_ASSERT(check);
     }
 
-    QAction *eidtStartAction = m_pToolBar->addAction(QIcon::fromTheme("system-settings"), tr("Open settings and Start"));
-    if(startAction) {
-        eidtStartAction->setToolTip(eidtStartAction->text());
-        eidtStartAction->setStatusTip(eidtStartAction->text());
-        check = connect(eidtStartAction, &QAction::triggered, this, &CFavoriteView::slotOpenStart);
-        Q_ASSERT(check);
-    }
-
-    m_pToolBar->addSeparator();
-
-    QAction *addFolderAction = m_pToolBar->addAction(QIcon::fromTheme("folder-new"), tr("New group"));
-    if(addFolderAction) {
-        addFolderAction->setToolTip(addFolderAction->text());
-        addFolderAction->setStatusTip(addFolderAction->text());
-        check = connect(addFolderAction, &QAction::triggered, this, &CFavoriteView::slotNewGroup);
-        Q_ASSERT(check);
-    }
-
-    QAction *editAction = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
-    if(editAction) {
-        editAction->setToolTip(editAction->text());
-        editAction->setStatusTip(editAction->text());
-        check = connect(editAction, &QAction::triggered, this, &CFavoriteView::slotEdit);
-        Q_ASSERT(check);
-    }
-
-    QAction *pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
-    if(pDeleteAction) {
-        pDeleteAction->setToolTip(pDeleteAction->text());
-        pDeleteAction->setStatusTip(pDeleteAction->text());
-        check = connect(pDeleteAction, &QAction::triggered, this, &CFavoriteView::slotDelete);
+    m_pEidtStartAction = m_pToolBar->addAction(QIcon::fromTheme("system-settings"), tr("Open settings and Start"));
+    if(m_pEidtStartAction) {
+        m_pEidtStartAction->setToolTip(m_pEidtStartAction->text());
+        m_pEidtStartAction->setStatusTip(m_pEidtStartAction->text());
+        check = connect(m_pEidtStartAction, &QAction::triggered, this, &CFavoriteView::slotOpenStart);
         Q_ASSERT(check);
     }
 
     m_pToolBar->addSeparator();
 
-    QAction *importAction = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
-    if(importAction) {
-        importAction->setToolTip(importAction->text());
-        importAction->setStatusTip(importAction->text());
-        check = connect(importAction, &QAction::triggered, this, &CFavoriteView::slotImport);
+    m_pAddFolderAction = m_pToolBar->addAction(QIcon::fromTheme("folder-new"), tr("New group"));
+    if(m_pAddFolderAction) {
+        m_pAddFolderAction->setToolTip(m_pAddFolderAction->text());
+        m_pAddFolderAction->setStatusTip(m_pAddFolderAction->text());
+        check = connect(m_pAddFolderAction, &QAction::triggered, this, &CFavoriteView::slotNewGroup);
         Q_ASSERT(check);
     }
 
-    QAction *exportAction = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
-    if(exportAction) {
-        exportAction->setToolTip(exportAction->text());
-        exportAction->setStatusTip(exportAction->text());
-        check = connect(exportAction, &QAction::triggered, this, &CFavoriteView::slotExport);
+    m_pEditAction = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
+    if(m_pEditAction) {
+        m_pEditAction->setToolTip(m_pEditAction->text());
+        m_pEditAction->setStatusTip(m_pEditAction->text());
+        check = connect(m_pEditAction, &QAction::triggered, this, &CFavoriteView::slotEdit);
         Q_ASSERT(check);
     }
+
+    m_pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    if(m_pDeleteAction) {
+        m_pDeleteAction->setToolTip(m_pDeleteAction->text());
+        m_pDeleteAction->setStatusTip(m_pDeleteAction->text());
+        check = connect(m_pDeleteAction, &QAction::triggered, this, &CFavoriteView::slotDelete);
+        Q_ASSERT(check);
+    }
+
+    m_pToolBar->addSeparator();
+
+    m_pImportAction = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
+    if(m_pImportAction) {
+        m_pImportAction->setToolTip(m_pImportAction->text());
+        m_pImportAction->setStatusTip(m_pImportAction->text());
+        check = connect(m_pImportAction, &QAction::triggered, this, &CFavoriteView::slotImport);
+        Q_ASSERT(check);
+    }
+
+    m_pExportAction = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
+    if(m_pExportAction) {
+        m_pExportAction->setToolTip(m_pExportAction->text());
+        m_pExportAction->setStatusTip(m_pExportAction->text());
+        check = connect(m_pExportAction, &QAction::triggered, this, &CFavoriteView::slotExport);
+        Q_ASSERT(check);
+    }
+
+    EnableAction();
+}
+
+void CFavoriteView::EnableAction(const QModelIndex &index)
+{
+    bool enable = false;
+    bool favEnable = false;
+    if(index.isValid()) {
+
+        CFavoriteDatabase::Item item = m_pModel->data(index, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+        if(item.isFavorite()) {
+            m_pStartAction->setEnabled(true);
+            m_pEidtStartAction->setEnabled(true);
+        } else {
+            m_pStartAction->setEnabled(false);
+            m_pEidtStartAction->setEnabled(false);
+        }
+        m_pEditAction->setEnabled(true);
+        m_pDeleteAction->setEnabled(true);
+        m_pImportAction->setEnabled(true);
+        m_pExportAction->setEnabled(true);
+        return;
+    }
+    m_pStartAction->setEnabled(false);
+    m_pEidtStartAction->setEnabled(false);
+    m_pEditAction->setEnabled(false);
+    m_pDeleteAction->setEnabled(false);
+    m_pImportAction->setEnabled(false);
+    m_pExportAction->setEnabled(false);
 }
 
 void CFavoriteView::setupTreeView()
@@ -212,6 +242,7 @@ void CFavoriteView::slotAddToFavorite(const QString &szName,
 
 void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)
 {
+    EnableAction(index);
 }
 
 void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
@@ -237,28 +268,14 @@ void CFavoriteView::slotMenu()
     if(!m_pTreeView)
         return;
 
-    auto index = m_pTreeView->currentIndex();
-    CFavoriteDatabase::Item item =
-        m_pModel->data(index, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
     m_pMenu->clear();
-    if(index.isValid()) {
-        if(0 < item.id && item.isFavorite()) {
-            m_pMenu->addAction(QIcon::fromTheme("media-playback-start"),
-                               tr("Start"), this, SLOT(slotStart()));
-            m_pMenu->addAction(QIcon::fromTheme("system-settings"),
-                               tr("Open settings and Start"), this, SLOT(slotOpenStart()));
-            m_pMenu->addAction(QIcon::fromTheme("edit-delete"),
-                               tr("Delete operate"), this, SLOT(slotDelete()));
-        }
-        m_pMenu->addSeparator();
-        m_pMenu->addAction(QIcon::fromTheme("folder-new"), tr("New group"),
-                           this, SLOT(slotNewGroup()));
-        if(0 < item.id && item.isFavorite())
-            m_pMenu->addAction(QIcon::fromTheme("edit-delete"),
-                               tr("Delete group"), this, SLOT(slotDelete()));
-    } else
-        m_pMenu->addAction(QIcon::fromTheme("folder-new"),
-                           tr("New group"), this, SLOT(slotNewGroup()));
+    m_pMenu->addAction(m_pStartAction);
+    m_pMenu->addAction(m_pEidtStartAction);
+
+    m_pMenu->addSeparator();
+    m_pMenu->addAction(m_pAddFolderAction);
+    m_pMenu->addAction(m_pEditAction);
+    m_pMenu->addAction(m_pDeleteAction);
 
     // m_pMenu->addSeparator();
     // m_pMenu->addAction(tr("Add current operate to favorite"), this, SIGNAL(sigFavorite()));

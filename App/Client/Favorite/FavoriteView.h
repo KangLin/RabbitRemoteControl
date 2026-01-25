@@ -52,12 +52,20 @@ private:
     void setupUI();
     void setupToolBar();
     void setupTreeView();
+    void EnableAction(const QModelIndex& index = QModelIndex());
 
 private:
     QTreeView* m_pTreeView;
     CFavoriteModel* m_pModel;
     CFavoriteDatabase* m_pDatabase;
     QToolBar* m_pToolBar;
+    QAction *m_pStartAction;
+    QAction *m_pEidtStartAction;
+    QAction *m_pAddFolderAction;
+    QAction *m_pEditAction;
+    QAction *m_pDeleteAction;
+    QAction *m_pImportAction;
+    QAction *m_pExportAction;
 
     QPoint m_DragStartPosition;
 
