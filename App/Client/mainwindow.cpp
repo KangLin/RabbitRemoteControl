@@ -421,7 +421,7 @@ void MainWindow::slotInitial()
         auto recents = m_pRecentDb->GetRecents(m_Parameter.GetRecentMenuMaxCount());
         //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
         for(auto it = recents.rbegin(); it != recents.rend(); it++) {
-            m_pRecentMenu->addRecentFile(it->szFile, it->szName);
+            m_pRecentMenu->addRecentFile(it->szFile, it->szName, it->icon);
         }
     }
 
@@ -939,7 +939,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     if(bSave)
         nRet = m_Manager.SaveOperate(pOperate);
     if(0 == nRet) {
-        m_pRecentMenu->addRecentFile(szFile, pOperate->Name());
+        m_pRecentMenu->addRecentFile(szFile, pOperate->Name(), pOperate->Icon());
         CRecentDatabase::RecentItem item;
         item.szOperateId = pOperate->Id();
         item.icon = pOperate->Icon();
@@ -1241,12 +1241,21 @@ void MainWindow::slotUpdateName(const QString& szName)
 {
     COperate* p = qobject_cast<COperate*>(sender());
     if(!p) return;
+    // Update view
     m_pView->SetWidowsTitle(p->GetViewer(), szName,
                             p->Icon(), p->Description());
+
+    // Update recent menu
+    if(m_pRecentMenu)
+        m_pRecentMenu->updateRecentFile(p->GetSettingsFile(), szName, p->Icon());
+
+    // Update recent list view dock widget
     if(m_pRecentDb) {
         m_pRecentDb->UpdateRecent(
             p->GetSettingsFile(), p->Name(), p->Description());
     }
+
+    // Update activity menu
     foreach(auto a, ui->menuActivity->actions()) {
         if(a->data().value<COperate*>() == p) {
             a->setText(szName);
@@ -1254,6 +1263,9 @@ void MainWindow::slotUpdateName(const QString& szName)
             break;
         }
     }
+
+    //Update activity list view dock widget
+    m_pFrmActive->slotLoad();
 }
 
 QAction* MainWindow::GetStartAction(QMenu* pMenu, CPlugin *pPlug)

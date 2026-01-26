@@ -24,6 +24,9 @@ CDatabase::~CDatabase()
 
 void CDatabase::SetDatabase(QSqlDatabase db)
 {
+    QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
+    qCritical(log) << szErr;
+    Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
     m_database = db;
 }
 
@@ -47,8 +50,9 @@ bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPat
         databasePath = dbPath;
     }
 
-    if(IsOpen())
-        CloseDatabase();
+    QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
+    qCritical(log) << szErr;
+    Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
 
     if(!connectionName.isEmpty())
         m_szConnectName = connectionName;

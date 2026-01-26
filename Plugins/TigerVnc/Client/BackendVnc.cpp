@@ -588,7 +588,7 @@ void CBackendVnc::slotChannelError(int nErr, const QString& szErr)
 void CBackendVnc::initDone()
 {
     Q_ASSERT(m_pPara);
-    qDebug(log, "initDone:\n%s", ConnectInformation().toStdString().c_str());
+    qDebug(log, "initDone: %s", ConnectInformation().toStdString().c_str());
 
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());

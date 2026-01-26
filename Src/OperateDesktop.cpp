@@ -634,16 +634,17 @@ QString COperateDesktop::ServerName()
 
 void COperateDesktop::slotSetServerName(const QString& szName)
 {
-    if(m_szServerName == szName)
-        return;
-    
-    m_szServerName = szName;
-    if(GetParameter())
-    {
-        if(GetParameter()->GetServerName() == szName)
-            return;
-        GetParameter()->SetServerName(szName);
-    }
+    do{
+        if(m_szServerName == szName)
+            break;;
 
+        m_szServerName = szName;
+        if(GetParameter())
+        {
+            if(GetParameter()->GetServerName() == szName)
+                break;
+            GetParameter()->SetServerName(szName);
+        }
+    } while(0);
     slotUpdateName();
 }
