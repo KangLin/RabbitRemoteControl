@@ -1,15 +1,11 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FavoriteView.h"
-
 #include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
 #include <QApplication>
 #include <QHeaderView>
 #include <QSettings>
-#include <QStandardItemModel>
-#include <QStandardItem>
 #include <QSettings>
 #include <QMenu>
 #include <QAction>
@@ -21,6 +17,7 @@
 
 #include "FavoriteMimeData.h"
 #include "TitleBar.h"
+#include "FavoriteView.h"
 
 static Q_LOGGING_CATEGORY(log, "Favorite")
 
@@ -211,15 +208,16 @@ void CFavoriteView::setupTreeView()
     //m_pTreeView->installEventFilter(this);
 }
 
-void CFavoriteView::slotAddToFavorite(const QString &szName,
+void CFavoriteView::slotAddToFavorite(const QString &szFile,
+                                      const QString &szName,
                                       const QString &szDescription,
-                                      const QIcon &icon,
-                                      const QString &szFile)
+                                      const QIcon &icon
+                                      )
 {
     if(!m_pModel || !m_pTreeView) return;
-    QStandardItem* pItem = nullptr;
+
     int parentId = 0;
-    QString szGroup;
+    QString szGroup = tr("Root");
     auto indexes = m_pTreeView->selectionModel()->selectedIndexes();
     if(!indexes.isEmpty())
     {
@@ -227,17 +225,36 @@ void CFavoriteView::slotAddToFavorite(const QString &szName,
         while (idx.isValid()) {
             CFavoriteDatabase::Item item =
                 m_pModel->data(idx, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
-            if(item.isGroup()) {
+            if(item.isFolder() && item.id > 0) {
                 parentId = item.id;
+                szGroup = item.szName;
                 break;
             }
             idx = idx.parent();
         }
     }
-    bool ok = m_pModel->AddFavorite(icon, szName, szFile, szDescription, parentId);
-    if(ok)
-        m_pTreeView->viewport()->update();
+    // Check if it already exists
+    auto item = m_pModel->GetFavorite(szFile);
+    if(item.id > 0) {
+        int ret = QMessageBox::warning(
+            nullptr, tr("Add favorite"),
+            tr("The operation already exists, do you want to move it to \"%1\"?").arg(szGroup),
+            QMessageBox::Ok | QMessageBox::No);
+        if(QMessageBox::Ok != ret)
+            return;
+    }
+
+    m_pModel->AddFavorite(szFile, szName, icon, szDescription, parentId);
+
     return;
+}
+
+void CFavoriteView::slotUpdateFavorite(
+    const QString &szFile, const QString &szName,
+    const QString &szDescription, const QIcon &icon)
+{
+    if(!m_pModel || !m_pTreeView || szFile.isEmpty()) return;
+    m_pModel->UpdateFavorite(szFile, szName, szDescription, icon);
 }
 
 void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)
@@ -325,6 +342,17 @@ void CFavoriteView::slotEdit()
 void CFavoriteView::slotDelete()
 {
     auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
+    if(1 == lstIndex.size()) {
+        CFavoriteDatabase::Item item =
+            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+        if(0 < item.id) {
+            int ret = QMessageBox::warning(
+                nullptr, tr("Delete"), tr("Will be delete \"%1\"").arg(item.szName),
+                QMessageBox::Ok|QMessageBox::No);
+            if(QMessageBox::Ok != ret)
+                return;
+        }
+    }
     foreach(auto index, lstIndex)
         m_pModel->removeRow(index.row(), index.parent());
 }
@@ -341,12 +369,10 @@ void CFavoriteView::slotNewGroup()
     {
         CFavoriteDatabase::Item item =
             m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
-        if(0 < item.id && item.isFavorite())
+        if(0 < item.id && item.isFolder())
             parentId = item.id;
     }
 
-    QStandardItem* pGroup = new QStandardItem(szGroup);
-    pGroup->setIcon(QIcon::fromTheme("network-workgroup"));
     m_pModel->AddNode(szGroup, parentId);
 }
 

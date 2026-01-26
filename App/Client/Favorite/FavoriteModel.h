@@ -15,9 +15,15 @@ public:
     ~CFavoriteModel();
 
     bool AddNode(const QString& szName, int parentId);
-    bool AddFavorite(const QIcon &icon, const QString& szName,
-                     const QString &szFile, const QString szDescription,
+    bool AddFavorite(const QString &szFile,
+                     const QString& szName,
+                     const QIcon &icon,
+                     const QString szDescription,
                      int parentId = 0);
+    bool UpdateFavorite(
+        const QString &szFile, const QString &szName = QString(),
+        const QString &szDescription = QString(), const QIcon &icon = QIcon());
+    CFavoriteDatabase::Item GetFavorite(const QString& szFile);
 
     enum RoleType {
         RoleFile = Qt::UserRole,
@@ -50,12 +56,39 @@ private:
     CFavoriteDatabase* m_pDatabase;
 
     struct tree {
-        tree* parent = nullptr;
         CFavoriteDatabase::Item item;
-        int row = 0; // the row of item in the it's parent
+        tree* parent = nullptr;
         QVector<tree*> children;
+
+        ~tree();
+
+        int GetRow() const;
+        void SetRow(int r);
+        bool IsFolder() const;
+        bool IsFavorite() const;
+        int ChildCount() const;
+        tree* ChildAt(int index) const;
+        int GetInserIndex(tree* child);
+        bool AddChild(tree* child);
+        bool InsertChild(int index, tree* child);
+        bool RemoveChild(tree* child);
+        tree* FindChild(int id) const;
+        tree* FindRecursive(int id) const;
+
+    private:
+        int m_row = 0; // the row of item in the it's parent
     };
+
     tree* m_pRoot;
+
     QMap<int, tree*> m_Folders;
-    void clearTree(tree* node);
+    tree* GetTree(int id) const;
+
+    tree* GetTree(QModelIndex index) const;
+    QModelIndex CreateIndex(tree* t) const;
+
+    void ClearTree(tree* node);
+    bool AddTree(const CFavoriteDatabase::Item& item, int parentId);
+    bool UpdateTree(const QString &szFile);
+    bool MoveTree(int id, int newParentId);
 };

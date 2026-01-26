@@ -254,6 +254,6 @@ void CFrmActive::slotAddToFavorite()
         QIcon icon = c->Icon();
         QString szDescription = c->Description();
         QString szFile = c->GetSettingsFile();
-        emit sigAddToFavorite(szName, szDescription, icon, szFile);
+        emit sigAddToFavorite(szFile, szName, szDescription, icon);
     }
 }

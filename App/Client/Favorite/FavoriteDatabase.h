@@ -16,32 +16,39 @@ public:
 
     struct Item {
         int id;          // is the id of tree table
+        int parentId;
         QString szName;
         QIcon icon;
         QString szFile;
         QString szDescription;
         TreeItem::TYPE type;
-
         Item()
             : id(0)
+            , parentId(0)
             , type(TreeItem::Leaf)
         {}
         QIcon GetIcon() {
             if(!icon.isNull())
                 return icon;
-            if(isGroup())
+            if(isFolder())
                 return QIcon::fromTheme("folder");
             return QIcon::fromTheme("file");
         }
-        bool isGroup() const { return type == TreeItem::Node; }
+        bool isFolder() const { return type == TreeItem::Node; }
         bool isFavorite() const { return type == TreeItem::Leaf; }
     };
 
-    int AddFavorite(const QIcon &icon, const QString& szName,
-                     const QString &szFile, const QString szDescription,
+    int AddFavorite(const QString &szFile, const QString& szName,
+                     const QIcon &icon, const QString szDescription,
                      int parentId = 0);
-    bool UpdateFavorite(const QString& szName, int id);
+    bool UpdateFavorite(int id, const QString& szName = QString(),
+                        const QIcon &icon = QIcon(),
+                        const QString szDescription = QString());
+    bool UpdateFavorite(const QString& szFile, const QString& szName = QString(),
+                        const QIcon &icon = QIcon(),
+                        const QString szDescription = QString());
     Item GetFavorite(int id);
+    QList<Item> GetFavorite(const QString &szFile);
     Item GetGroup(int id);
     QList<Item> GetChildren(int parentId);
 
