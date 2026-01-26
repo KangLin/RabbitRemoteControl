@@ -527,6 +527,6 @@ void CFrmRecent::slotAddToFavorite()
         QIcon icon = item.icon;
         QString szDescription = item.szDescription;
         QString szFile = item.szFile;
-        emit sigAddToFavorite(szName, szDescription, icon, szFile);
+        emit sigAddToFavorite(szFile, szName, szDescription, icon);
     }
 }

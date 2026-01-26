@@ -28,7 +28,10 @@ public Q_SLOTS:
     void slotViewChanged(const QWidget* pView);
 Q_SIGNALS:
     void sigChanged(COperate* c);
-    void sigAddToFavorite(const QString& szName, const QString& szDescription, const QIcon& icon, const QString &szFile);
+    void sigAddToFavorite(const QString &szFile,
+                          const QString& szName,
+                          const QString& szDescription,
+                          const QIcon& icon);
 
 private Q_SLOTS:
     void slotCustomContextMenu(const QPoint &pos);

@@ -48,7 +48,8 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
     pCB->addItem(tr("One Week"), 7);
     pCB->addItem(tr("One month"), curDate.daysInMonth());
     pCB->setCurrentIndex(2);
-    connect(pCB, &QComboBox::currentIndexChanged, this, [&, pCB](int index) {
+    check = connect(pCB, &QComboBox::currentIndexChanged,
+                    this, [&, pCB](int index) {
         qDebug(log) << "Change days";
         //QComboBox* pCB = qobject_cast<QComboBox*>(sender());
         if(!pCB) return;
@@ -67,6 +68,7 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
         }
         slotRefresh();
     });
+    Q_ASSERT(check);
 
     pToolBar->addWidget(pCB);
     pToolBar->addWidget(m_pDateStart);

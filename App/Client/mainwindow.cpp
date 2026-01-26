@@ -255,8 +255,8 @@ MainWindow::MainWindow(QWidget *parent)
                             SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
-            check = connect(m_pRecent, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
-                            m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
+            check = connect(m_pRecent, &CFrmRecent::sigAddToFavorite,
+                            m_pFavoriteView, &CFavoriteView::slotAddToFavorite);
             Q_ASSERT(check);
             m_pDockRecent->setWidget(m_pRecent);
             m_pDockRecent->setWindowTitle(
@@ -288,8 +288,8 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(m_pFrmActive, SIGNAL(sigChanged(COperate*)),
                             this, SLOT(slotOperateChanged(COperate*)));
             Q_ASSERT(check);
-            check = connect(m_pFrmActive, SIGNAL(sigAddToFavorite(QString,QString,QIcon,QString)),
-                            m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QIcon,QString)));
+            check = connect(m_pFrmActive, &CFrmActive::sigAddToFavorite,
+                            m_pFavoriteView, &CFavoriteView::slotAddToFavorite);
             Q_ASSERT(check);
         }
         m_pDockActive->setObjectName("dockListActive");
@@ -1264,6 +1264,10 @@ void MainWindow::slotUpdateName(const QString& szName)
         }
     }
 
+    // Update favorite
+    m_pFavoriteView->slotUpdateFavorite(
+        p->GetSettingsFile(), szName, p->Description(), p->Icon());
+
     //Update activity list view dock widget
     m_pFrmActive->slotLoad();
 }
@@ -1530,8 +1534,8 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
     {
         if(c->GetViewer() == p)
         {
-            m_pFavoriteView->slotAddToFavorite(c->Name(), c->Description(),
-                                         c->Icon(), c->GetSettingsFile());
+            m_pFavoriteView->slotAddToFavorite(
+                c->GetSettingsFile(), c->Name(), c->Description(), c->Icon());
         }
     }
 }

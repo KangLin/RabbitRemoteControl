@@ -17,8 +17,14 @@ public:
 
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 public Q_SLOTS:
-    void slotAddToFavorite(const QString& szName, const QString& szDescription,
-                           const QIcon& icon, const QString &szFile);
+    void slotAddToFavorite(const QString &szFile,
+                           const QString& szName,
+                           const QString& szDescription,
+                           const QIcon& icon);
+    void slotUpdateFavorite(const QString &szFile,
+                            const QString& szName = QString(),
+                            const QString& szDescription = QString(),
+                            const QIcon& icon = QIcon());
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 Q_SIGNALS:

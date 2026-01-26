@@ -41,9 +41,10 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings = false);
-    void sigAddToFavorite(const QString& szName,
+    void sigAddToFavorite(const QString &szFile,
+                          const QString& szName,
                           const QString& szDescription,
-                          const QIcon& icon, const QString &szFile);
+                          const QIcon& icon);
 
 private slots:
     void slotEditConnect();

@@ -39,9 +39,9 @@ bool CFavoriteDatabase::OnInitializeDatabase()
     return CDatabaseTree::OnInitializeDatabase();
 }
 
-int CFavoriteDatabase::AddFavorite(
-    const QIcon &icon, const QString &szName,
-    const QString &szFile, const QString szDescription, int parentId)
+int CFavoriteDatabase::AddFavorite(const QString &szFile,
+    const QString &szName, const QIcon &icon,
+    const QString szDescription, int parentId)
 {
     int ret = 0;
     if (szName.trimmed().isEmpty()) {
@@ -137,19 +137,56 @@ int CFavoriteDatabase::AddFavorite(
     return ret;
 }
 
-bool CFavoriteDatabase::UpdateFavorite(const QString& szName, int id)
+bool CFavoriteDatabase::UpdateFavorite(
+    int id, const QString& szName,
+    const QIcon &icon, const QString szDescription)
 {
     QSqlQuery query(GetDatabase());
-    query.prepare(
-        "UPDATE favorite SET "
-        "name = :name "
-        "WHERE id = :id"
-        );
-    query.bindValue(":name", szName);
-    query.bindValue(":id", id);
-    bool ok = query.exec();
+    QString szSql;
+    if(!szName.isEmpty())
+        szSql += "name = " + szName;
+    if(!icon.isNull()) {
+        if(!szSql.isEmpty())
+            szSql += ", ";
+        szSql += "icon=" + m_IconDB.GetIcon(icon);
+    }
+    if(!szDescription.isEmpty()) {
+        if(!szSql.isEmpty())
+            szSql += ", ";
+        szSql += "description=" + szDescription;
+    }
+
+    szSql = "UPDATE favorite SET " + szSql + " WHERE id=" + QString::number(id);
+    qDebug(log) << "Sql:" << szSql;
+    bool ok = query.exec(szSql);
     if(!ok)
-        qCritical(log) << "Failed to update favorite:" << id;
+        qCritical(log) << "Failed to update favorite:" << id << query.lastError().text();
+    return ok;
+}
+
+bool CFavoriteDatabase::UpdateFavorite(
+    const QString &szFile, const QString &szName, const QIcon &icon, const QString szDescription)
+{
+    QSqlQuery query(GetDatabase());
+    QString szSql;
+    if(!szName.isEmpty())
+        szSql += "name = " + szName;
+    if(!icon.isNull()) {
+        if(!szSql.isEmpty())
+            szSql += ", ";
+        szSql += "icon=" + m_IconDB.GetIcon(icon);
+    }
+    if(!szDescription.isEmpty()) {
+        if(!szSql.isEmpty())
+            szSql += ", ";
+        szSql += "description=" + szDescription;
+    }
+
+    szSql = "UPDATE favorite SET " + szSql + " WHERE file=" + szFile;
+    qDebug(log) << "Sql:" << szSql;
+    bool ok = query.exec(szSql);
+    if(!ok)
+        qCritical(log) << "Failed to update favorite:" << szFile << query.lastError().text();
     return ok;
 }
 
@@ -171,12 +208,13 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
     qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
-        qCritical(log) << "Failed to update favorite:"
+        qCritical(log) << "Failed to get favorite:"
                        << id << query.lastError().text();
         return item;
     }
     if(query.next()) {
         item.id = leaf.GetId();
+        item.parentId = leaf.GetParentId();
         item.szName = query.value(1).toString();
         item.icon = m_IconDB.GetIcon(query.value(2).toInt());
         item.szFile = query.value(3).toString();
@@ -186,11 +224,49 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
     return item;
 }
 
+QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetFavorite(const QString &szFile)
+{
+    QList<CFavoriteDatabase::Item> lstItems;
+    Item item;
+    item.type = TreeItem::Leaf;
+
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, name, icon, file, description FROM favorite "
+        "WHERE file = :file"
+        );
+    query.bindValue(":file", szFile);
+    qDebug(log) << "SQL:" << query.executedQuery();
+    qDebug(log) << "Bound value:" << query.boundValues();
+    bool ok = query.exec();
+    if(!ok) {
+        qCritical(log) << "Failed to get favorite:"
+                       << szFile << query.lastError().text();
+        return lstItems;
+    }
+    if(query.next()) {
+        item.szName = query.value(1).toString();
+        item.icon = m_IconDB.GetIcon(query.value(2).toInt());
+        item.szFile = query.value(3).toString();
+        item.szDescription = query.value(4).toString();
+        item.type = TreeItem::Leaf;
+
+        auto leaf = GetLeavesByKey(query.value(0).toInt());
+        foreach(auto l, leaf) {
+            item.id = l.GetId();
+            item.parentId = l.GetParentId();
+            lstItems << item;
+        }
+    }
+    return lstItems;
+}
+
 CFavoriteDatabase::Item CFavoriteDatabase::GetGroup(int id)
 {
     auto f = GetNode(id);
     Item item;
     item.id = f.GetId();
+    item.parentId = f.GetParentId();
     item.szName = f.GetName();
     item.type = f.GetType();
     return item;
@@ -203,6 +279,7 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
     foreach(auto f, folders) {
         Item item;
         item.id = f.GetId();
+        item.parentId = f.GetParentId();
         item.szName = f.GetName();
         item.type = f.GetType();
         childs << item;
