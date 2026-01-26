@@ -215,7 +215,8 @@ MainWindow::MainWindow(QWidget *parent)
         m_pFavoriteView = new CFavoriteView(m_pDockFavorite);
         if(m_pFavoriteView)
         {
-            m_pDockFavorite->setTitleBarWidget(m_pFavoriteView->m_pDockTitleBar);
+            if(m_pFavoriteView->m_pDockTitleBar)
+                m_pDockFavorite->setTitleBarWidget(m_pFavoriteView->m_pDockTitleBar);
             check = connect(m_pFavoriteView, SIGNAL(sigStart(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);

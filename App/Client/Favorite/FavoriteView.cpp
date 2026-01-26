@@ -42,7 +42,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
 
     setupUI();
 
-    m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
+    m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
     // Create tools pushbutton in title bar
     m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
     check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
