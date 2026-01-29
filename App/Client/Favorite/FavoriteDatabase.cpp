@@ -274,7 +274,7 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetGroup(int id)
 
 QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
 {
-    QList<Item> childs;
+    QList<Item> children;
     auto folders = GetSubNodes(parentId);
     foreach(auto f, folders) {
         Item item;
@@ -282,14 +282,14 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
         item.parentId = f.GetParentId();
         item.szName = f.GetName();
         item.type = f.GetType();
-        childs << item;
+        children << item;
     }
     auto leaves = GetLeaves(parentId);
     foreach(auto l, leaves) {
         Item item = GetFavorite(l.GetId());
-        childs << item;
+        children << item;
     }
-    return childs;
+    return children;
 }
 
 
