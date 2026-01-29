@@ -92,7 +92,7 @@ bool CFavoriteModel::canFetchMore(const QModelIndex &parent) const
     int parentId = 0;
     if (parent.isValid()) {
         if(0 != parent.column()) return false;
-        tree* parentItem = (tree*)parent.internalPointer();
+        tree* parentItem = static_cast<tree*>(parent.internalPointer());
         if(!parentItem)
             return false;
         if(parentItem->item.isFavorite())
@@ -149,7 +149,7 @@ QVariant CFavoriteModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
     if(0 != index.column()) return QVariant();
-    tree* ip = (tree*)index.internalPointer();
+    tree* ip = static_cast<tree*>(index.internalPointer());
     if(!ip) return QVariant();
     auto item = ip->item;
     switch(role) {
