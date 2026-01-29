@@ -19,7 +19,7 @@ jobs:
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: win64_msvc2022_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
             os: windows-2022
@@ -28,7 +28,7 @@ jobs:
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: win64_msvc2022_arm64
             qt_modules: qt5compat qtimageformats qtmultimedia qtpositioning qtscxml qtserialport qtwebchannel qtwebsockets
             os: windows-11-arm
@@ -401,7 +401,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' && startsWith(github.ref, 'refs/heads/master')}}
+        if: false #${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.2' && startsWith(github.ref, 'refs/heads/master')}}
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -502,7 +502,7 @@ jobs:
             #${{env.BUILD_DIR}}\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Portable.zip
 
       - name: Update artifact update_windows.xml
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.9.3' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.10.2' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_xml
