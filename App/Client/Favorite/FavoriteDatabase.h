@@ -60,3 +60,5 @@ private:
 protected:
     virtual bool OnDeleteKey(int key) override;
 };
+
+Q_DECLARE_METATYPE(CFavoriteDatabase::Item)

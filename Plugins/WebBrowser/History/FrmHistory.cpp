@@ -48,26 +48,8 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
     pCB->addItem(tr("One Week"), 7);
     pCB->addItem(tr("One month"), curDate.daysInMonth());
     pCB->setCurrentIndex(2);
-    check = connect(pCB, &QComboBox::currentIndexChanged,
-                    this, [&, pCB](int index) {
-        qDebug(log) << "Change days";
-        //QComboBox* pCB = qobject_cast<QComboBox*>(sender());
-        if(!pCB) return;
-        int d = pCB->itemData(index).toInt();
-        QDate curDate = QDate::currentDate();
-        if(m_pDateEnd) {
-            m_pDateEnd->setDate(curDate);
-        }
-        switch(d) {
-        case -1:
-            break;
-        default:
-            if(m_pDateStart)
-                m_pDateStart->setDate(curDate.addDays(-1 * d));
-            break;
-        }
-        slotRefresh();
-    });
+    check = connect(pCB, SIGNAL(currentIndexChanged(int)),
+                    this, SLOT(slotComboxIndexChanged(int)));
     Q_ASSERT(check);
 
     pToolBar->addWidget(pCB);
@@ -93,11 +75,7 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
         pSBLimit->setRange(-1, nMax);
         if(m_pPara)
             pSBLimit->setValue(m_pPara->GetDatabaseViewLimit());
-        check = connect(pSBLimit, &QSpinBox::valueChanged, this, [&](int v) {
-            if(m_pPara)
-                m_pPara->SetDatabaseViewLimit(v);
-            slotRefresh();
-        });
+        check = connect(pSBLimit, SIGNAL(valueChanged(int)), this, SLOT(slotLimit(int)));
         Q_ASSERT(check);
     }
 
@@ -503,4 +481,32 @@ void CFrmHistory::slotExport()
             }
         }
     }
+}
+
+void CFrmHistory::slotComboxIndexChanged(int index)
+{
+    qDebug(log) << "Change days";
+    QComboBox* pCB = qobject_cast<QComboBox*>(sender());
+    if(!pCB) return;
+    int d = pCB->itemData(index).toInt();
+    QDate curDate = QDate::currentDate();
+    if(m_pDateEnd) {
+        m_pDateEnd->setDate(curDate);
+    }
+    switch(d) {
+    case -1:
+        break;
+    default:
+        if(m_pDateStart)
+            m_pDateStart->setDate(curDate.addDays(-1 * d));
+        break;
+    }
+    slotRefresh();
+}
+
+void CFrmHistory::slotLimit(int v)
+{
+    if(m_pPara)
+        m_pPara->SetDatabaseViewLimit(v);
+    slotRefresh();
 }

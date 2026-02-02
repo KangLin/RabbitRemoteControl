@@ -29,6 +29,8 @@ private slots:
     void slotRefresh();
     void slotImport();
     void slotExport();
+    void slotComboxIndexChanged(int index);
+    void slotLimit(int v);
 private:
     QString extractDomain(const QString &url);
     void onDeleteHistoryItem(const QModelIndex &index);
