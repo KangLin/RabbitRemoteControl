@@ -1,9 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
+
 #include <QTreeView>
 #include <QStandardItem>
-#include <QToolBar>
+
 #include "TitleBar.h"
 #include "FavoriteDatabase.h"
 #include "FavoriteModel.h"
@@ -11,10 +12,12 @@
 class CFavoriteView : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit CFavoriteView(QWidget *parent = nullptr);
     virtual ~CFavoriteView();
 
+    void Initial();
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 public Q_SLOTS:
     void slotAddToFavorite(const QString &szFile,
@@ -30,7 +33,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings);
     void sigFavorite();
-    
+
     // QWidget interface
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
@@ -56,15 +59,14 @@ private slots:
 
 private:
     void setupUI();
-    void setupToolBar();
-    void setupTreeView();
+    void setupToolBar(QLayout* layout);
+    void setupTreeView(QLayout* layout);
     void EnableAction(const QModelIndex& index = QModelIndex());
 
 private:
     QTreeView* m_pTreeView;
     CFavoriteModel* m_pModel;
     CFavoriteDatabase* m_pDatabase;
-    QToolBar* m_pToolBar;
     QAction *m_pStartAction;
     QAction *m_pEidtStartAction;
     QAction *m_pAddFolderAction;

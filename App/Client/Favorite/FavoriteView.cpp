@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QToolBar>
 #include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
@@ -26,18 +27,18 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
     , m_pTreeView(nullptr)
     , m_pModel(nullptr)
     , m_pDatabase(nullptr)
-    , m_pToolBar(nullptr)
+    , m_pStartAction(nullptr)
+    , m_pEidtStartAction(nullptr)
+    , m_pAddFolderAction(nullptr)
+    , m_pEditAction(nullptr)
+    , m_pDeleteAction(nullptr)
+    , m_pImportAction(nullptr)
+    , m_pExportAction(nullptr)
+    , m_pMenu(nullptr)
 {
     bool check = false;
-    //setFocusPolicy(Qt::NoFocus);
 
     setWindowTitle(tr("Favorite"));
-
-    m_pDatabase = new CFavoriteDatabase(this);
-    if(m_pDatabase)
-        m_pDatabase->OpenDatabase("favorite");
-
-    setupUI();
 
     m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
     // Create tools pushbutton in title bar
@@ -51,6 +52,8 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
     QList<QWidget*> lstWidget;
     lstWidget << pTools;
     m_pDockTitleBar->AddWidgets(lstWidget);
+
+    setupUI();
 }
 
 CFavoriteView::~CFavoriteView()
@@ -63,61 +66,64 @@ CFavoriteView::~CFavoriteView()
 
 void CFavoriteView::setupUI()
 {
-    bool check = false;
     QVBoxLayout *pMainLayout = new QVBoxLayout(this);
     if(!pMainLayout) return;
 
-    // 工具栏
-    setupToolBar();
-    if(m_pToolBar)
-        pMainLayout->addWidget(m_pToolBar);
+    setupToolBar(pMainLayout);
 
-    setupTreeView();
-    if(m_pTreeView)
-        pMainLayout->addWidget(m_pTreeView);
+    setupTreeView(pMainLayout);
 }
 
-void CFavoriteView::setupToolBar()
+void CFavoriteView::setupToolBar(QLayout *layout)
 {
-    if(m_pToolBar) return;
+    if(!layout) return;
     bool check = false;
-    m_pToolBar = new QToolBar(this);
+    QToolBar* pToolBar = new QToolBar(this);
+    if(!pToolBar) return;
+    layout->addWidget(pToolBar);
 
-    m_pStartAction = m_pToolBar->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"));
+    m_pStartAction = pToolBar->addAction(
+        QIcon::fromTheme("media-playback-start"), tr("Start"));
     if(m_pStartAction) {
         m_pStartAction->setToolTip(m_pStartAction->text());
         m_pStartAction->setStatusTip(m_pStartAction->text());
-        check = connect(m_pStartAction, &QAction::triggered, this, &CFavoriteView::slotStart);
+        check = connect(m_pStartAction, &QAction::triggered,
+                        this, &CFavoriteView::slotStart);
         Q_ASSERT(check);
     }
 
-    m_pEidtStartAction = m_pToolBar->addAction(QIcon::fromTheme("system-settings"), tr("Open settings and Start"));
+    m_pEidtStartAction = pToolBar->addAction(
+        QIcon::fromTheme("system-settings"), tr("Open settings and Start"));
     if(m_pEidtStartAction) {
         m_pEidtStartAction->setToolTip(m_pEidtStartAction->text());
         m_pEidtStartAction->setStatusTip(m_pEidtStartAction->text());
-        check = connect(m_pEidtStartAction, &QAction::triggered, this, &CFavoriteView::slotOpenStart);
+        check = connect(m_pEidtStartAction, &QAction::triggered,
+                        this, &CFavoriteView::slotOpenStart);
         Q_ASSERT(check);
     }
 
-    m_pToolBar->addSeparator();
+    pToolBar->addSeparator();
 
-    m_pAddFolderAction = m_pToolBar->addAction(QIcon::fromTheme("folder-new"), tr("New group"));
+    m_pAddFolderAction = pToolBar->addAction(
+        QIcon::fromTheme("folder-new"), tr("New group"));
     if(m_pAddFolderAction) {
         m_pAddFolderAction->setToolTip(m_pAddFolderAction->text());
         m_pAddFolderAction->setStatusTip(m_pAddFolderAction->text());
-        check = connect(m_pAddFolderAction, &QAction::triggered, this, &CFavoriteView::slotNewGroup);
+        check = connect(m_pAddFolderAction, &QAction::triggered,
+                        this, &CFavoriteView::slotNewGroup);
         Q_ASSERT(check);
     }
 
-    m_pEditAction = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
+    m_pEditAction = pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"));
     if(m_pEditAction) {
         m_pEditAction->setToolTip(m_pEditAction->text());
         m_pEditAction->setStatusTip(m_pEditAction->text());
-        check = connect(m_pEditAction, &QAction::triggered, this, &CFavoriteView::slotEdit);
+        check = connect(m_pEditAction, &QAction::triggered,
+                        this, &CFavoriteView::slotEdit);
         Q_ASSERT(check);
     }
 
-    m_pDeleteAction = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    m_pDeleteAction = pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
     if(m_pDeleteAction) {
         m_pDeleteAction->setToolTip(m_pDeleteAction->text());
         m_pDeleteAction->setStatusTip(m_pDeleteAction->text());
@@ -125,9 +131,9 @@ void CFavoriteView::setupToolBar()
         Q_ASSERT(check);
     }
 
-    m_pToolBar->addSeparator();
+    pToolBar->addSeparator();
 
-    m_pImportAction = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
+    m_pImportAction = pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"));
     if(m_pImportAction) {
         m_pImportAction->setToolTip(m_pImportAction->text());
         m_pImportAction->setStatusTip(m_pImportAction->text());
@@ -135,60 +141,28 @@ void CFavoriteView::setupToolBar()
         Q_ASSERT(check);
     }
 
-    m_pExportAction = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
+    m_pExportAction = pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"));
     if(m_pExportAction) {
         m_pExportAction->setToolTip(m_pExportAction->text());
         m_pExportAction->setStatusTip(m_pExportAction->text());
         check = connect(m_pExportAction, &QAction::triggered, this, &CFavoriteView::slotExport);
         Q_ASSERT(check);
     }
-
-    EnableAction();
 }
 
-void CFavoriteView::EnableAction(const QModelIndex &index)
+void CFavoriteView::setupTreeView(QLayout *layout)
 {
-    bool enable = false;
-    bool favEnable = false;
-    if(index.isValid()) {
-
-        CFavoriteDatabase::Item item = m_pModel->data(index, CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
-        if(item.isFavorite()) {
-            m_pStartAction->setEnabled(true);
-            m_pEidtStartAction->setEnabled(true);
-        } else {
-            m_pStartAction->setEnabled(false);
-            m_pEidtStartAction->setEnabled(false);
-        }
-        m_pEditAction->setEnabled(true);
-        m_pDeleteAction->setEnabled(true);
-        m_pImportAction->setEnabled(true);
-        m_pExportAction->setEnabled(true);
-        return;
-    }
-    m_pStartAction->setEnabled(false);
-    m_pEidtStartAction->setEnabled(false);
-    m_pEditAction->setEnabled(false);
-    m_pDeleteAction->setEnabled(false);
-    m_pImportAction->setEnabled(false);
-    m_pExportAction->setEnabled(false);
-}
-
-void CFavoriteView::setupTreeView()
-{
-    if(m_pTreeView) return;
+    if(!layout) return;
     m_pTreeView = new QTreeView(this);
     if(!m_pTreeView)
         return;
+    layout->addWidget(m_pTreeView);
 
     m_pTreeView->setAcceptDrops(true);
     m_pTreeView->setUniformRowHeights(true);
-    m_pTreeView->setHeaderHidden(true); // 如果没有表头
-    m_pModel = new CFavoriteModel(m_pDatabase, this);
-    m_pTreeView->setModel(m_pModel);
-    // 设置展开行为
-    m_pTreeView->setExpandsOnDoubleClick(true);
+    m_pTreeView->setHeaderHidden(true);
 
+    //m_pTreeView->setExpandsOnDoubleClick(true);
     // 如果需要自动展开第一层
     //m_pTreeView->expandAll(); // 或者根据需要展开特定节点
     //m_pTreeView->expandToDepth(1);
@@ -206,6 +180,51 @@ void CFavoriteView::setupTreeView()
     Q_ASSERT(check);
 
     //m_pTreeView->installEventFilter(this);
+}
+
+void CFavoriteView::Initial()
+{
+    m_pDatabase = new CFavoriteDatabase(this);
+    if(m_pDatabase)
+        m_pDatabase->OpenDatabase("favorite_connect");
+    if(m_pDatabase) {
+        m_pModel = new CFavoriteModel(m_pDatabase, this);
+        m_pTreeView->setModel(m_pModel);
+    }
+
+    EnableAction();
+}
+
+void CFavoriteView::EnableAction(const QModelIndex &index)
+{
+    if(!m_pModel) return;
+    if(index.isValid()) {
+        CFavoriteDatabase::Item item =
+            m_pModel->data(index, CFavoriteModel::RoleItem)
+                                           .value<CFavoriteDatabase::Item>();
+        if(item.isFavorite()) {
+            m_pStartAction->setEnabled(true);
+            m_pEidtStartAction->setEnabled(true);
+        } else {
+            m_pStartAction->setEnabled(false);
+            m_pEidtStartAction->setEnabled(false);
+        }
+        m_pEditAction->setEnabled(true);
+        m_pDeleteAction->setEnabled(true);
+        m_pExportAction->setEnabled(true);
+        return;
+    }
+
+    if(m_pStartAction)
+        m_pStartAction->setEnabled(false);
+    if(m_pEidtStartAction)
+        m_pEidtStartAction->setEnabled(false);
+    if(m_pEditAction)
+        m_pEditAction->setEnabled(false);
+    if(m_pDeleteAction)
+        m_pDeleteAction->setEnabled(false);
+    if(m_pExportAction)
+        m_pExportAction->setEnabled(false);
 }
 
 void CFavoriteView::slotAddToFavorite(const QString &szFile,
@@ -294,18 +313,9 @@ void CFavoriteView::slotMenu()
     m_pMenu->addAction(m_pEditAction);
     m_pMenu->addAction(m_pDeleteAction);
 
-    // m_pMenu->addSeparator();
-    // m_pMenu->addAction(tr("Add current operate to favorite"), this, SIGNAL(sigFavorite()));
-}
-
-void CFavoriteView::slotImport()
-{
-
-}
-
-void CFavoriteView::slotExport()
-{
-
+    m_pMenu->addSeparator();
+    m_pMenu->addAction(m_pImportAction);
+    m_pMenu->addAction(m_pExportAction);
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
@@ -337,7 +347,8 @@ void CFavoriteView::slotOpenStart()
 }
 
 void CFavoriteView::slotEdit()
-{}
+{
+}
 
 void CFavoriteView::slotDelete()
 {
@@ -374,6 +385,16 @@ void CFavoriteView::slotNewGroup()
     }
 
     m_pModel->AddNode(szGroup, parentId);
+}
+
+void CFavoriteView::slotImport()
+{
+
+}
+
+void CFavoriteView::slotExport()
+{
+
 }
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)

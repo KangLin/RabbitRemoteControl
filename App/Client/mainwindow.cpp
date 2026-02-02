@@ -434,6 +434,7 @@ void MainWindow::slotInitial()
     if(m_pFavoriteView) {
         slotInformation(tr("Load favorite ......"));
         qApp->processEvents();
+        m_pFavoriteView->Initial();
     }
 
     slotEnableSystemTrayIcon();
