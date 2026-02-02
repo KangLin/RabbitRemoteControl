@@ -177,13 +177,14 @@ bool CFavoriteModel::setData(const QModelIndex &index, const QVariant &value, in
     if(!index.isValid()) return false;
     if(0 != index.column()) return false;
     if (data(index, role) != value) {
-        if(Qt::DisplayRole == role) {
+        if(Qt::EditRole == role) {
             tree* ip = (tree*)index.internalPointer();
-            if(!ip || Qt::DisplayRole != role) return false;
+            if(!ip) return false;
             if(ip->item.isFavorite())
                 m_pDatabase->UpdateFavorite(ip->item.id, value.toString());
             else
                 m_pDatabase->RenameNode(ip->item.id, value.toString());
+            ip->item.szName = value.toString();
         }
         emit dataChanged(index, index, {role});
         return true;

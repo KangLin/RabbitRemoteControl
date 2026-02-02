@@ -356,6 +356,16 @@ void CFavoriteView::slotOpenStart()
 
 void CFavoriteView::slotEdit()
 {
+    auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
+    foreach(auto index, lstIndex)
+    {
+        QString szName = m_pModel->data(index).toString();
+        szName = QInputDialog::getText(
+            this, tr("Edit"), tr("Enter the modified name"), QLineEdit::Normal, szName);
+        if(szName.isEmpty())
+            return;
+        m_pModel->setData(index, szName);
+    }
 }
 
 void CFavoriteView::slotDelete()

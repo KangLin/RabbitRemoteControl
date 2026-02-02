@@ -144,7 +144,7 @@ bool CFavoriteDatabase::UpdateFavorite(
     QSqlQuery query(GetDatabase());
     QString szSql;
     if(!szName.isEmpty())
-        szSql += "name = " + szName;
+        szSql += "name = \"" + szName + "\"";
     if(!icon.isNull()) {
         if(!szSql.isEmpty())
             szSql += ", ";
@@ -153,7 +153,7 @@ bool CFavoriteDatabase::UpdateFavorite(
     if(!szDescription.isEmpty()) {
         if(!szSql.isEmpty())
             szSql += ", ";
-        szSql += "description=" + szDescription;
+        szSql += "description=\"" + szDescription + "\"";
     }
 
     szSql = "UPDATE favorite SET " + szSql + " WHERE id=" + QString::number(id);
@@ -165,12 +165,13 @@ bool CFavoriteDatabase::UpdateFavorite(
 }
 
 bool CFavoriteDatabase::UpdateFavorite(
-    const QString &szFile, const QString &szName, const QIcon &icon, const QString szDescription)
+    const QString &szFile, const QString &szName,
+    const QIcon &icon, const QString szDescription)
 {
     QSqlQuery query(GetDatabase());
     QString szSql;
     if(!szName.isEmpty())
-        szSql += "name = " + szName;
+        szSql += "name = \"" + szName + "\"";
     if(!icon.isNull()) {
         if(!szSql.isEmpty())
             szSql += ", ";
@@ -179,7 +180,7 @@ bool CFavoriteDatabase::UpdateFavorite(
     if(!szDescription.isEmpty()) {
         if(!szSql.isEmpty())
             szSql += ", ";
-        szSql += "description=" + szDescription;
+        szSql += "description=\"" + szDescription + "\"";
     }
 
     szSql = "UPDATE favorite SET " + szSql + " WHERE file=" + szFile;
