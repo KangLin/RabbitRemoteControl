@@ -75,8 +75,8 @@ private:
     QAction *m_pDeleteAction;
     QAction *m_pImportAction;
     QAction *m_pExportAction;
-
-    QPoint m_DragStartPosition;
+    QAction* m_pRefresh;
 
     QMenu* m_pMenu;
+    QPoint m_DragStartPosition;
 };

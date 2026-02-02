@@ -57,6 +57,9 @@ private:
     CFavoriteDatabase* m_pDatabase;
 
     struct tree {
+        tree(){}
+        tree(CFavoriteDatabase::Item i) : item(i){}
+
         CFavoriteDatabase::Item item;
         tree* parent = nullptr;
         QVector<tree*> children;

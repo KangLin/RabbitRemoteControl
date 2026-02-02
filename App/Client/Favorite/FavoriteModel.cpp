@@ -64,14 +64,14 @@ QModelIndex CFavoriteModel::parent(const QModelIndex &index) const
 int CFavoriteModel::rowCount(const QModelIndex &parent) const
 {
     if(!m_pDatabase) return 0;
-    if (!parent.isValid()) {
-        if(!m_pRoot)
-            return 0;
-        else
-            return m_pRoot->children.size();
+    tree* item = nullptr;
+    if (parent.isValid()) {
+        if(parent.column() != 0) return 0;
+        item = (tree*)parent.internalPointer();
+    } else {
+        item = m_pRoot;
     }
-    if(parent.column() != 0) return 0;
-    tree* item = (tree*)parent.internalPointer();
+
     if(!item)
         return 0;
     if(item->item.isFavorite()) return 0;
@@ -236,16 +236,16 @@ bool CFavoriteModel::AddFavorite(
     auto items = m_pDatabase->GetFavorite(szFile);
     if(items.isEmpty()) {
         // Add
+        id = m_pDatabase->AddFavorite(szFile, szName, icon, szDescription, parentId);
+        if(id <= 0 ) return false;
+
         item.id = id;
         item.parentId = parentId;
         item.szName = szName;
         item.szFile = szFile;
         item.icon = icon;
         item.szDescription = szDescription;
-
         AddTree(item, parentId);
-        id = m_pDatabase->AddFavorite(szFile, szName, icon, szDescription, parentId);
-        if(id <= 0 ) return false;
     } else {
         // Update
         auto it = items.at(0);
@@ -366,14 +366,11 @@ bool CFavoriteModel::AddTree(const CFavoriteDatabase::Item &item, int parentId)
         return false;
     }
 
-    auto t = new tree();
+    auto t = new tree(item);
     if (!t) {
         qCritical(log) << "Failed to allocate memory for tree node";
         return false;
     }
-
-    t->item = item;
-    t->parent = parent;
 
     int pos = parent->GetInserIndex(t);
 
@@ -487,11 +484,12 @@ CFavoriteModel::tree* CFavoriteModel::tree::ChildAt(int index) const
 int CFavoriteModel::tree::GetInserIndex(tree *child)
 {
     int index = 0;
+    if(!child) return 0;
     if(child->IsFavorite()) {
         index = children.size();
     } else {
         foreach (const auto &c, children) {
-            if (c->item.isFolder()) {
+            if (c && c->item.isFolder()) {
                 index++;
             }
         }
@@ -508,7 +506,7 @@ bool CFavoriteModel::tree::AddChild(tree *child)
 
 bool CFavoriteModel::tree::InsertChild(int index, tree *child)
 {
-    if(0 > index || ChildCount() < index)
+    if(0 > index || ChildCount() < index || !child)
         return false;
     children.insert(index, child);
     child->parent = this;

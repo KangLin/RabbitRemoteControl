@@ -36,6 +36,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
     , m_pDeleteAction(nullptr)
     , m_pImportAction(nullptr)
     , m_pExportAction(nullptr)
+    , m_pRefresh(nullptr)
     , m_pMenu(nullptr)
 {
     bool check = false;
@@ -150,6 +151,12 @@ void CFavoriteView::setupToolBar(QLayout *layout)
         check = connect(m_pExportAction, &QAction::triggered, this, &CFavoriteView::slotExport);
         Q_ASSERT(check);
     }
+
+    pToolBar->addSeparator();
+    m_pRefresh = pToolBar->addAction(QIcon::fromTheme("refresh"), tr("Refresh"), this, [&](){
+        if(m_pModel)
+            m_pModel->Refresh();
+    });
 }
 
 void CFavoriteView::setupTreeView(QLayout *layout)
@@ -256,13 +263,13 @@ void CFavoriteView::slotAddToFavorite(const QString &szFile,
     }
     // Check if it already exists
     auto item = m_pModel->GetFavorite(szFile);
-    if(item.parentId == parentId) {
-        QMessageBox::information(
-            nullptr, tr("Add favorite"),
-            tr("The operation already exists in \"%1\"").arg(szGroup));
-        return;
-    }
     if(item.id > 0) {
+        if(item.parentId == parentId) {
+            QMessageBox::information(
+                nullptr, tr("Add favorite"),
+                tr("The operation already exists in \"%1\"").arg(szGroup));
+            return;
+        }
         int ret = QMessageBox::warning(
             nullptr, tr("Add favorite"),
             tr("The operation already exists, do you want to move it to \"%1\"?").arg(szGroup),
@@ -324,6 +331,9 @@ void CFavoriteView::slotMenu()
     m_pMenu->addSeparator();
     m_pMenu->addAction(m_pImportAction);
     m_pMenu->addAction(m_pExportAction);
+
+    m_pMenu->addSeparator();
+    m_pMenu->addAction(m_pRefresh);
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
