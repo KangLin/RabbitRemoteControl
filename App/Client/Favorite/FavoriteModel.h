@@ -24,6 +24,7 @@ public:
         const QString &szFile, const QString &szName = QString(),
         const QString &szDescription = QString(), const QIcon &icon = QIcon());
     CFavoriteDatabase::Item GetFavorite(const QString& szFile);
+    void Refresh();
 
     enum RoleType {
         RoleFile = Qt::UserRole,

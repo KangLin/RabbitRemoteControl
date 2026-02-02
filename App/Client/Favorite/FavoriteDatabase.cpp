@@ -311,3 +311,13 @@ bool CFavoriteDatabase::OnDeleteKey(int key)
     }
     return ok;
 }
+
+bool CFavoriteDatabase::Import(const QString &szFile)
+{
+    return true;
+}
+
+bool CFavoriteDatabase::Export(const QString &szFile)
+{
+    return true;
+}

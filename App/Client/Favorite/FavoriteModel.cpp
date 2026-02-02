@@ -278,6 +278,15 @@ CFavoriteDatabase::Item CFavoriteModel::GetFavorite(const QString &szFile)
     return item;
 }
 
+void CFavoriteModel::Refresh()
+{
+    beginResetModel();
+    ClearTree(m_pRoot);
+    m_Folders.clear();
+    m_Folders[0] = m_pRoot;
+    endResetModel();
+}
+
 bool CFavoriteModel::AddNode(const QString& szName, int parentId)
 {
     if(!m_pDatabase || !m_Folders.contains(parentId)) return false;

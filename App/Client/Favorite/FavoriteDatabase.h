@@ -52,6 +52,8 @@ public:
     Item GetGroup(int id);
     QList<Item> GetChildren(int parentId);
 
+    bool Import(const QString& szFile);
+    bool Export(const QString& szFile);
 private:
     bool OnInitializeDatabase() override;
     CDatabaseIcon m_IconDB;

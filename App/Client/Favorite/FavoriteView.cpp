@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QFileDialog>
 #include <QToolBar>
 #include <QMouseEvent>
 #include <QDrag>
@@ -16,6 +17,7 @@
 #include <QLoggingCategory>
 #include <QVBoxLayout>
 
+#include "RabbitCommonDir.h"
 #include "FavoriteMimeData.h"
 #include "TitleBar.h"
 #include "FavoriteView.h"
@@ -254,6 +256,12 @@ void CFavoriteView::slotAddToFavorite(const QString &szFile,
     }
     // Check if it already exists
     auto item = m_pModel->GetFavorite(szFile);
+    if(item.parentId == parentId) {
+        QMessageBox::information(
+            nullptr, tr("Add favorite"),
+            tr("The operation already exists in \"%1\"").arg(szGroup));
+        return;
+    }
     if(item.id > 0) {
         int ret = QMessageBox::warning(
             nullptr, tr("Add favorite"),
@@ -355,7 +363,8 @@ void CFavoriteView::slotDelete()
     auto lstIndex = m_pTreeView->selectionModel()->selectedIndexes();
     if(1 == lstIndex.size()) {
         CFavoriteDatabase::Item item =
-            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem)
+                                           .value<CFavoriteDatabase::Item>();
         if(0 < item.id) {
             int ret = QMessageBox::warning(
                 nullptr, tr("Delete"), tr("Will be delete \"%1\"").arg(item.szName),
@@ -371,7 +380,8 @@ void CFavoriteView::slotDelete()
 void CFavoriteView::slotNewGroup()
 {
     if(!m_pModel) return;
-    QString szGroup = QInputDialog::getText(this, tr("New group"), tr("Input group name"));
+    QString szGroup = QInputDialog::getText(
+        this, tr("New group"), tr("Input group name"));
     if(szGroup.isEmpty()) return;
 
     int parentId = 0;
@@ -379,7 +389,8 @@ void CFavoriteView::slotNewGroup()
     if(!lstIndex.isEmpty())
     {
         CFavoriteDatabase::Item item =
-            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem).value<CFavoriteDatabase::Item>();
+            m_pModel->data(lstIndex.at(0), CFavoriteModel::RoleItem)
+                                           .value<CFavoriteDatabase::Item>();
         if(0 < item.id && item.isFolder())
             parentId = item.id;
     }
@@ -387,20 +398,66 @@ void CFavoriteView::slotNewGroup()
     m_pModel->AddNode(szGroup, parentId);
 }
 
+void CFavoriteView::slotRefresh()
+{
+    if(m_pModel)
+        m_pModel->Refresh();
+}
+
 void CFavoriteView::slotImport()
 {
+    QString filename = QFileDialog::getOpenFileName(
+        this, tr("Import favorite"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("JSON (*.json)"));
 
+    if (!filename.isEmpty()) {
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pDatabase->Import(filename)) {
+                slotRefresh();
+                QMessageBox::information(
+                    this, tr("Success"),
+                    tr("Favorite import from json file successfully"));
+            } else {
+                QMessageBox::warning(
+                    this, tr("Failure"),
+                    tr("Failed to import favorite from json file"));
+            }
+            return;
+        }
+    }
 }
 
 void CFavoriteView::slotExport()
 {
+    QString filename = QFileDialog::getSaveFileName(
+        this, tr("Export favorite"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("JSON (*.json)"));
 
+    if (!filename.isEmpty()) {
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pDatabase->Export(filename)) {
+                QMessageBox::information(
+                    this, tr("Success"),
+                    tr("Favorite exported to json file successfully"));
+            } else {
+                QMessageBox::warning(
+                    this, tr("Failure"),
+                    tr("Failed to export favorite to json file"));
+            }
+            return;
+        }
+    }
 }
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
     qDebug(log) << "dragEnterEvent";
-    const CFavoriteMimeData* pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
+    const CFavoriteMimeData* pData =
+        qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
     {
         qDebug(log) << "dragEnterEvent acceptProposedAction";
@@ -497,6 +554,5 @@ void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 //*/
 bool CFavoriteView::eventFilter(QObject *watched, QEvent *event)
 {
-
     return QWidget::eventFilter(watched, event);
 }

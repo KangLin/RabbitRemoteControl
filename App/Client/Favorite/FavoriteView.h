@@ -56,6 +56,7 @@ private slots:
     void slotMenu();
     void slotImport();
     void slotExport();
+    void slotRefresh();
 
 private:
     void setupUI();
