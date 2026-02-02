@@ -259,13 +259,13 @@ bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbD
     // 删除子目录
     auto folders = GetSubFolders(id);
     foreach(auto f, folders) {
-        DeleteFolder(f.GetId());
+        DeleteFolder(f.GetId(), cbDeleteLeaf);
     }
 
+    // 删除其下面的所有条目
     if(cbDeleteLeaf)
         cbDeleteLeaf(id);
 
-    // 删除其下面的所有条目
     OnDeleteLeafs(id);
 
     // 删除文件夹

@@ -23,7 +23,6 @@ CFavoriteModel::~CFavoriteModel()
 {
     if(m_pRoot) {
         ClearTree(m_pRoot);
-        delete m_pRoot;
         m_pRoot = nullptr;
     }
 }
@@ -203,24 +202,24 @@ Qt::ItemFlags CFavoriteModel::flags(const QModelIndex &index) const
 bool CFavoriteModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     tree* pItem = GetTree(parent);
-    if(!pItem || row < 0 || row + count > pItem->ChildCount())
+    if(!pItem || 0 > row || row + count > pItem->ChildCount())
         return false;
 
+    beginRemoveRows(parent, row, row + count - 1);
     for(int i = row; i < row + count; i++) {
         auto t = pItem->children[i];
+        if(!t) continue;
         if(t->item.isFolder()) {
             m_pDatabase->DeleteNode(t->item.id, true);
             m_Folders.remove(t->item.id);
         } else {
             m_pDatabase->Delete(t->item.id, true);
         }
+        pItem->RemoveChild(t);
         ClearTree(t);
-        delete t;
     }
-
-    beginRemoveRows(parent, row, row + count - 1);
-    pItem->children.remove(row, count);
     endRemoveRows();
+    emit dataChanged(parent, parent);
     return true;
 }
 
@@ -283,8 +282,7 @@ void CFavoriteModel::Refresh()
 {
     beginResetModel();
     ClearTree(m_pRoot);
-    m_Folders.clear();
-    m_Folders[0] = m_pRoot;
+    m_pRoot = nullptr;
     endResetModel();
 }
 
@@ -316,10 +314,13 @@ bool CFavoriteModel::AddNode(const QString& szName, int parentId)
 void CFavoriteModel::ClearTree(tree* node)
 {
     if(!node) return;
-    foreach(auto child, node->children) {
-        ClearTree(child);
+    if(node->item.isFolder()) {
+        foreach(auto child, node->children) {
+            ClearTree(child);
+        }
+        m_Folders.remove(node->item.id);
     }
-    node->children.clear();
+    delete node;
 }
 
 CFavoriteModel::tree* CFavoriteModel::GetTree(int id) const
@@ -443,9 +444,15 @@ bool CFavoriteModel::MoveTree(int id, int newParentId)
     return true;
 }
 
+CFavoriteModel::tree::tree()
+{}
+
+CFavoriteModel::tree::tree(CFavoriteDatabase::Item i)
+    : item(i)
+{}
+
 CFavoriteModel::tree::~tree()
 {
-    qDeleteAll(children);
 }
 
 int CFavoriteModel::tree::GetRow() const

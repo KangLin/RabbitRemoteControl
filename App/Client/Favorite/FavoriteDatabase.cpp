@@ -171,11 +171,11 @@ bool CFavoriteDatabase::UpdateFavorite(
     QSqlQuery query(GetDatabase());
     QString szSql;
     if(!szName.isEmpty())
-        szSql += "name = \"" + szName + "\"";
+        szSql += "name=\"" + szName + "\"";
     if(!icon.isNull()) {
         if(!szSql.isEmpty())
             szSql += ", ";
-        szSql += "icon=" + m_IconDB.GetIcon(icon);
+        szSql += "icon=" + QString::number(m_IconDB.GetIcon(icon));
     }
     if(!szDescription.isEmpty()) {
         if(!szSql.isEmpty())
@@ -183,7 +183,7 @@ bool CFavoriteDatabase::UpdateFavorite(
         szSql += "description=\"" + szDescription + "\"";
     }
 
-    szSql = "UPDATE favorite SET " + szSql + " WHERE file=" + szFile;
+    szSql = "UPDATE favorite SET " + szSql + " WHERE file=\"" + szFile + "\"";
     qDebug(log) << "Sql:" << szSql;
     bool ok = query.exec(szSql);
     if(!ok)
