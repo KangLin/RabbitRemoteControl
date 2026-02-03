@@ -336,7 +336,7 @@ if [ $DOCKER -eq 1 ]; then
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
     # Generated source archive
-    git archive  --format=tar.gz -o RabbitRemoteControl.tar.gz --prefix RabbitRemoteControl/ HEAD
+    git archive --format=tar.gz -o RabbitRemoteControl.tar.gz --prefix RabbitRemoteControl/ HEAD
     if [ -d ${BUILD_LINUX_DIR} ]; then
         rm -fr ${BUILD_LINUX_DIR}
     fi

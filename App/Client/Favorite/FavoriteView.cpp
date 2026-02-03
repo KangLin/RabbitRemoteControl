@@ -153,7 +153,7 @@ void CFavoriteView::setupToolBar(QLayout *layout)
     }
 
     pToolBar->addSeparator();
-    m_pRefresh = pToolBar->addAction(QIcon::fromTheme("refresh"), tr("Refresh"), this, [&](){
+    m_pRefresh = pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"), this, [&](){
         if(m_pModel)
             m_pModel->Refresh();
     });

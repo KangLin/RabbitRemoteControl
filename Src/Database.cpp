@@ -134,6 +134,9 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
         doc = QJsonDocument::fromJson(file.readAll());
         if(!doc.isObject())
             break;
+        auto root = doc.object();
+        if(root["Title"] != "Rabbit Remote Control")
+            break;
 
         bRet = ImportFromJson(doc.object());
     } while(0);

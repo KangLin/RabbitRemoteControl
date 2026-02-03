@@ -350,5 +350,12 @@ bool CFavoriteDatabase::ExportToJson(QJsonObject &obj)
 
 bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
 {
+    QJsonArray favorites = obj["favorite"].toArray();
+    if(favorites.isEmpty()) {
+        qCritical(log) << "Json without favorite";
+        return false;
+    }
+    // 检查文件是否已存在
+    // 如果存在，则需要修改ID
     return true;
 }
