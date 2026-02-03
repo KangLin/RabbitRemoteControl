@@ -110,7 +110,7 @@ bool CFavoriteModel::canFetchMore(const QModelIndex &parent) const
 
 void CFavoriteModel::fetchMore(const QModelIndex &parent)
 {
-    qDebug(log) << "fetchMore:" << parent;
+    //qDebug(log) << "fetchMore:" << parent;
     if(!m_pDatabase) return;
     tree* parentItem = nullptr;
     if(parent.isValid())
@@ -147,7 +147,7 @@ void CFavoriteModel::fetchMore(const QModelIndex &parent)
 
 QVariant CFavoriteModel::data(const QModelIndex &index, int role) const
 {
-    qDebug(log) << "date:" << index;
+    //qDebug(log) << "date:" << index;
     if (!index.isValid())
         return QVariant();
     if(0 != index.column()) return QVariant();

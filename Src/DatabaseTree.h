@@ -73,6 +73,8 @@ public:
     int GetCount(int parentId = 0);
 
     virtual bool OnInitializeDatabase() override;
+    virtual bool ExportToJson(QJsonObject& obj) override;
+    virtual bool ImportFromJson(const QJsonObject& obj) override;
 
     QString GetTableName() const;
     void SetTableName(const QString &newSzTableName);
@@ -148,6 +150,8 @@ public:
     int GetCount(int parentId = 0);
 
     virtual bool OnInitializeDatabase() override;
+    virtual bool ExportToJson(QJsonObject& obj) override;
+    virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 Q_SIGNALS:
     void sigAddFolder(int id, int parentId);
@@ -162,6 +166,7 @@ protected:
      *         false: 失败。删除停止。
      */
     virtual bool OnDeleteKey(int key);
+
 private:
     QString m_szTableName;
     CDatabaseFolder m_FolderDB;

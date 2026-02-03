@@ -303,3 +303,13 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
 
     return items;
 }
+
+bool CDatabaseUrl::ExportToJson(QJsonObject &obj)
+{
+    return true;
+}
+
+bool CDatabaseUrl::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}

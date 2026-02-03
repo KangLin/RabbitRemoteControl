@@ -3,6 +3,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QLoggingCategory>
 
 #include "DatabaseTree.h"
@@ -190,7 +192,8 @@ bool CDatabaseFolder::OnInitializeDatabase()
 
     if (!success) {
         qCritical(log) << "Failed to create folders table:"
-                       << m_szTableName << query.lastError().text();
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return false;
     }
 
@@ -232,7 +235,8 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
             emit sigChanged();
         }
     } else
-        qCritical(log) << "Failed to add folders:" << query.lastError().text();
+        qCritical(log) << "Failed to add folders:" << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
 
     return id;
 }
@@ -413,6 +417,40 @@ int CDatabaseFolder::GetCount(int parentId)
     return 0;
 }
 
+bool CDatabaseFolder::ExportToJson(QJsonObject& obj)
+{
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, name, parent_id, sort_order, created_time "
+        "FROM " + m_szTableName + " "
+        );
+    bool success = query.exec();
+    if (!success) {
+        qCritical(log) << "Failed to export folder to json:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+    QJsonArray folder;
+    while(query.next()) {
+        QJsonObject f;
+        f.insert("id", query.value(0).toInt());
+        f.insert("name", query.value(1).toString());
+        f.insert("parent_id", query.value(2).toInt());
+        f.insert("sort_order", query.value(3).toInt());
+        f.insert("created_time", query.value(4).toDateTime().toString());
+        folder.append(f);
+    }
+    if(!folder.isEmpty())
+        obj.insert("folder", folder);
+    return true;
+}
+
+bool CDatabaseFolder::ImportFromJson(const QJsonObject& obj)
+{
+    return true;
+}
+
 CDatabaseTree::CDatabaseTree(QObject *parent)
     : CDatabase(parent)
 {
@@ -448,12 +486,12 @@ bool CDatabaseTree::OnInitializeDatabase()
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    parent_id INTEGER DEFAULT 0,"
         "    name TEXT,"
         "    key INTEGER DEFAULT 0,"
         "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    last_visit_time DATETIME,"
-        "    parent_id INTEGER DEFAULT 0"
+        "    last_visit_time DATETIME"
         ")"
         );
 
@@ -837,4 +875,46 @@ int CDatabaseTree::GetCount(int parentId)
 bool CDatabaseTree::OnDeleteKey(int key)
 {
     return 0;
+}
+
+bool CDatabaseTree::ExportToJson(QJsonObject& obj)
+{
+    bool bRet = true;
+
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, parent_id, name, key, "
+        "created_time, modified_time, last_visit_time FROM " + m_szTableName);
+    bool success = query.exec();
+    if (!success) {
+        qCritical(log) << "Failed to export tree to json:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    QJsonArray tree;
+    while(query.next()) {
+        QJsonObject t;
+        t.insert("id", query.value(0).toInt());
+        t.insert("parent_id", query.value(1).toInt());
+        t.insert("name", query.value(2).toString());
+        t.insert("key", query.value(3).toInt());
+        t.insert("created_time", query.value(4).toDateTime().toString());
+        t.insert("modified_time", query.value(5).toDateTime().toString());
+        t.insert("last_visit_time", query.value(6).toDateTime().toString());
+        tree.append(t);
+    }
+    if(!tree.isEmpty())
+        obj.insert("tree", tree);
+
+    bRet = m_FolderDB.ExportToJson(obj);
+    return bRet;
+}
+
+bool CDatabaseTree::ImportFromJson(const QJsonObject& obj)
+{
+    bool bRet = true;
+    bRet = m_FolderDB.ImportFromJson(obj);
+    return bRet;
 }

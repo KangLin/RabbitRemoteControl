@@ -36,6 +36,8 @@ public:
     QList<UrlItem> Search(const QString& keyword);
 
     virtual bool OnInitializeDatabase() override;
+    virtual bool ExportToJson(QJsonObject& obj) override;
+    virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 private:
     CDatabaseIcon m_iconDB;

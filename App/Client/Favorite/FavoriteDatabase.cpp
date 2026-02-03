@@ -1,5 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QLoggingCategory>
@@ -144,11 +148,11 @@ bool CFavoriteDatabase::UpdateFavorite(
     QSqlQuery query(GetDatabase());
     QString szSql;
     if(!szName.isEmpty())
-        szSql += "name = \"" + szName + "\"";
+        szSql += "name=\"" + szName + "\"";
     if(!icon.isNull()) {
         if(!szSql.isEmpty())
             szSql += ", ";
-        szSql += "icon=" + m_IconDB.GetIcon(icon);
+        szSql += "icon=" + QString::number(m_IconDB.GetIcon(icon));
     }
     if(!szDescription.isEmpty()) {
         if(!szSql.isEmpty())
@@ -293,7 +297,6 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
     return children;
 }
 
-
 bool CFavoriteDatabase::OnDeleteKey(int key)
 {
     QSqlQuery query(GetDatabase());
@@ -313,12 +316,39 @@ bool CFavoriteDatabase::OnDeleteKey(int key)
     return ok;
 }
 
-bool CFavoriteDatabase::Import(const QString &szFile)
+bool CFavoriteDatabase::ExportToJson(QJsonObject &obj)
 {
-    return true;
+    bool bRet = true;
+
+    QJsonArray favorites;
+
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, name, icon, file, description FROM favorite "
+        );
+    bool ok = query.exec();
+    if(!ok) {
+        qCritical(log) << "Failed to export favorite to json:"
+                       << query.lastError().text();
+        return false;
+    }
+    while(query.next()) {
+        QJsonObject fav;
+        fav.insert("id", query.value(0).toInt());
+        fav.insert("name", query.value(1).toString());
+        fav.insert("icon", query.value(2).toInt());
+        fav.insert("file", query.value(3).toString());
+        fav.insert("description", query.value(4).toString());
+        favorites.append(fav);
+    }
+    obj.insert("favorite", favorites);
+    bRet = CDatabaseTree::ExportToJson(obj);
+    if(!bRet) return false;
+    bRet = m_IconDB.ExportToJson(obj);
+    return bRet;
 }
 
-bool CFavoriteDatabase::Export(const QString &szFile)
+bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
 {
     return true;
 }

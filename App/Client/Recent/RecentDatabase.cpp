@@ -180,3 +180,14 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int of
 
     return items;
 }
+
+
+bool CRecentDatabase::ExportToJson(QJsonObject &obj)
+{
+    return true;
+}
+
+bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}

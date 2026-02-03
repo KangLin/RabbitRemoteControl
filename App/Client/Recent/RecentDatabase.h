@@ -35,6 +35,9 @@ public:
 
 private:
     bool OnInitializeDatabase() override;
+    virtual bool ExportToJson(QJsonObject &obj) override;
+    virtual bool ImportFromJson(const QJsonObject &obj) override;
+
     CDatabaseIcon m_IconDB;
 };
 

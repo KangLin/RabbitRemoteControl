@@ -62,6 +62,9 @@ private:
     ~CHistoryDatabase();
     bool OnInitializeDatabase() override;
     CDatabaseUrl m_UrlDB;
+
+    virtual bool ExportToJson(QJsonObject &obj) override;
+    virtual bool ImportFromJson(const QJsonObject &obj) override;
 };
 
 void enableSqlTrace(const QString& connectionName = QSqlDatabase::defaultConnection);

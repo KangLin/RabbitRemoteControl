@@ -4,6 +4,9 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QLoggingCategory>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 #include "RabbitCommonDir.h"
 #include "IconUtils.h"
 #include "Database.h"
@@ -85,6 +88,60 @@ void CDatabase::CloseDatabase()
     QSqlDatabase::removeDatabase(m_szConnectName);
 }
 
+bool CDatabase::ExportToJsonFile(const QString &szFile)
+{
+    QFile file(szFile);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qCritical(log) << "Failed to open file:" << szFile << file.errorString();
+        return false;
+    }
+
+    QTextStream out(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    out.setEncoding(QStringConverter::Utf8);
+#else
+    out.setCodec("UTF-8");
+#endif
+    out.setGenerateByteOrderMark(true);  // 添加 UTF-8 BOM
+
+    QJsonDocument doc;
+    QJsonObject root;
+    root.insert("Title", "Rabbit Remote Control");
+    root.insert("Author", "Kang Lin");
+
+    bool bRet = true;
+    bRet = ExportToJson(root);
+    if(bRet) {
+        doc.setObject(root);
+        out << doc.toJson();
+    }
+
+    file.close();
+    return true;
+}
+
+bool CDatabase::ImportFromJsonFile(const QString &szFile)
+{
+    bool bRet = false;
+    QFile file(szFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qCritical(log) << "Failed to open file:" << szFile << file.errorString();
+        return false;
+    }
+
+    do {
+        QJsonDocument doc;
+        doc = QJsonDocument::fromJson(file.readAll());
+        if(!doc.isObject())
+            break;
+
+        bRet = ImportFromJson(doc.object());
+    } while(0);
+
+    file.close();
+    return bRet;
+}
+
 CDatabaseIcon::CDatabaseIcon(QObject *parent)
     : CDatabase(parent)
 {
@@ -109,8 +166,7 @@ bool CDatabaseIcon::OnInitializeDatabase()
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    name TEXT UNIQUE,"       // Icon name. see QIcon::name()
         "    hash TEXT,"              // Icon hash value
-        "    data BLOB,"              // Icon binary data
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
+        "    data BLOB"              // Icon binary data
         ")"
         ;
     bool success = query.exec(szSql);
@@ -207,7 +263,7 @@ QIcon CDatabaseIcon::GetIcon(int id)
     query.bindValue(":id", id);
     bool bRet = query.exec();
     if(!bRet) {
-        qCritical(log) << "Failed to delete icon id:"
+        qCritical(log) << "Failed to get icon id:"
                        << id << query.lastError().text();
         return icon;
     }
@@ -221,4 +277,38 @@ QIcon CDatabaseIcon::GetIcon(int id)
         return RabbitCommon::CIconUtils::byteArrayToIcon(ba);
     }
     return icon;
+}
+
+bool CDatabaseIcon::ExportToJson(QJsonObject &obj)
+{
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT id, name, hash, data FROM " + m_szTableName
+        );
+    //qDebug(log) << "Sql:" << query.executedQuery();
+    bool bRet = query.exec();
+    if(!bRet) {
+        qCritical(log) << "Failed to export icon to json:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    QJsonArray icon;
+    while (query.next()) {
+        QJsonObject i;
+        i.insert("id", query.value(0).toInt());
+        i.insert("name", query.value(1).toString());
+        i.insert("hash", query.value(2).toString());
+        i.insert("data", query.value(3).toByteArray().toBase64().toStdString().c_str());
+        icon.append(i);
+    }
+    if(!icon.isEmpty())
+        obj.insert("icon", icon);
+    return true;
+}
+
+bool CDatabaseIcon::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
 }

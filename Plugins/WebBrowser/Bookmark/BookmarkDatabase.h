@@ -136,5 +136,8 @@ private:
 
     CDatabaseTree m_TreeDB;
     CDatabaseUrl m_UrlDB;
+
+    virtual bool ExportToJson(QJsonObject &obj) override;
+    virtual bool ImportFromJson(const QJsonObject &obj) override;
 };
 

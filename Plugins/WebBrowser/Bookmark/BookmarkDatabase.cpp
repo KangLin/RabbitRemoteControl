@@ -775,3 +775,14 @@ BookmarkItem CBookmarkDatabase::TreeToBookmark(
     }
     return item;
 }
+
+
+bool CBookmarkDatabase::ExportToJson(QJsonObject &obj)
+{
+    return true;
+}
+
+bool CBookmarkDatabase::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}

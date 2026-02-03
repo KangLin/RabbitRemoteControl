@@ -220,7 +220,6 @@ void CFavoriteView::EnableAction(const QModelIndex &index)
         }
         m_pEditAction->setEnabled(true);
         m_pDeleteAction->setEnabled(true);
-        m_pExportAction->setEnabled(true);
         return;
     }
 
@@ -232,8 +231,6 @@ void CFavoriteView::EnableAction(const QModelIndex &index)
         m_pEditAction->setEnabled(false);
     if(m_pDeleteAction)
         m_pDeleteAction->setEnabled(false);
-    if(m_pExportAction)
-        m_pExportAction->setEnabled(false);
 }
 
 void CFavoriteView::slotAddToFavorite(const QString &szFile,
@@ -434,7 +431,7 @@ void CFavoriteView::slotImport()
     if (!filename.isEmpty()) {
         QFileInfo fi(filename);
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
-            if (m_pDatabase->Import(filename)) {
+            if (m_pDatabase->ImportFromJsonFile(filename)) {
                 slotRefresh();
                 QMessageBox::information(
                     this, tr("Success"),
@@ -459,7 +456,7 @@ void CFavoriteView::slotExport()
     if (!filename.isEmpty()) {
         QFileInfo fi(filename);
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
-            if (m_pDatabase->Export(filename)) {
+            if (m_pDatabase->ExportToJsonFile(filename)) {
                 QMessageBox::information(
                     this, tr("Success"),
                     tr("Favorite exported to json file successfully"));

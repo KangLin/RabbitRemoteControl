@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QDateTime>
+#include <QJsonObject>
 #include "plugin_export.h"
 
 class PLUGIN_EXPORT CDatabase : public QObject
@@ -24,11 +25,17 @@ public:
 
     virtual bool OnInitializeDatabase() = 0;
 
+    virtual bool ExportToJsonFile(const QString& szFile);
+    virtual bool ImportFromJsonFile(const QString& szFile);
+    virtual bool ExportToJson(QJsonObject& obj) = 0;
+    virtual bool ImportFromJson(const QJsonObject& obj) = 0;
+
 Q_SIGNALS:
     void sigChanged();
 
 protected:
     QString m_szConnectName;
+
 private:
     QSqlDatabase m_database;
 };
@@ -51,6 +58,9 @@ public:
     QIcon GetIcon(int id);
 
     virtual bool OnInitializeDatabase() override;
+    virtual bool ExportToJson(QJsonObject& obj) override;
+    virtual bool ImportFromJson(const QJsonObject& obj) override;
+
 private:
     QString m_szTableName;
 };

@@ -52,8 +52,6 @@ public:
     Item GetGroup(int id);
     QList<Item> GetChildren(int parentId);
 
-    bool Import(const QString& szFile);
-    bool Export(const QString& szFile);
 private:
     bool OnInitializeDatabase() override;
     CDatabaseIcon m_IconDB;
@@ -61,6 +59,8 @@ private:
     // CDatabaseTree interface
 protected:
     virtual bool OnDeleteKey(int key) override;
+    virtual bool ExportToJson(QJsonObject &obj) override;
+    virtual bool ImportFromJson(const QJsonObject &obj) override;
 };
 
 Q_DECLARE_METATYPE(CFavoriteDatabase::Item)

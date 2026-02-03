@@ -751,3 +751,13 @@ bool CHistoryDatabase::importCsvRecord(const QStringList &fields)
 
     return addHistoryEntry(item.url, item.title, item.visitTime);
 }
+
+bool CHistoryDatabase::ExportToJson(QJsonObject &obj)
+{
+    return true;
+}
+
+bool CHistoryDatabase::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}
