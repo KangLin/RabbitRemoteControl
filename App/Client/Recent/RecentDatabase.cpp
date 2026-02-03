@@ -27,7 +27,7 @@ bool CRecentDatabase::OnInitializeDatabase()
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS recent ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    operate_id TEXT NO NULL,"
+        "    operate_id TEXT NOT NULL,"
         "    icon INTEGER DEFAULT 0,"
         "    name TEXT NOT NULL,"
         "    protocol TEXT,"
@@ -44,7 +44,35 @@ bool CRecentDatabase::OnInitializeDatabase()
     }
 
     // Create index
-    query.exec("CREATE INDEX IF NOT EXISTS idx_recent_file ON recent(file)");
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_recent_file ON recent(file)");
+    if(!success)  {
+        qWarning(log) << "Failed to drop index idx_recent_file:" << query.lastError().text();
+    }
+
+    if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_recent")) {
+        qDebug(log) << "Failed to drop trigger delete_icon_after_recent:" << query.lastError().text();
+    }
+
+    QString szSql = R"(
+        CREATE TRIGGER delete_icon_after_recent
+        AFTER DELETE ON recent
+        FOR EACH ROW
+        BEGIN
+            DELETE FROM icon
+            WHERE id = OLD.icon
+              AND OLD.icon != 0
+              AND NOT EXISTS (
+                  SELECT 1 FROM favorite WHERE icon = OLD.icon
+              )
+              AND NOT EXISTS (
+                  SELECT 1 FROM recent WHERE icon = OLD.icon
+              );
+        END;
+    )";
+    success = query.exec(szSql);
+    if (!success) {
+        qWarning(log) << "Failed to create trigger delete_icon_after_recent." << query.lastError().text();
+    }
 
     // Create icon table
     m_IconDB.SetDatabase(GetDatabase());

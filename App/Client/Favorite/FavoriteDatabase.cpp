@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
+#include <QFileInfo>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QLoggingCategory>
@@ -35,8 +36,36 @@ bool CFavoriteDatabase::OnInitializeDatabase()
         qCritical(log) << "Failed to create favorite table:" << query.lastError().text();
         return false;
     }
-    // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_favorite_file ON favorite(file)");
+
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_favorite_file ON favorite(file)");
+    if (!success) {
+        qWarning(log) << "Failed to create idx_favorite_file." << query.lastError().text();
+    }
+
+    if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_favorite")) {
+        qDebug(log) << "Failed to drop trigger delete_icon_after_favorite:" << query.lastError().text();
+    }
+
+    QString szSql = R"(
+        CREATE TRIGGER delete_icon_after_favorite
+        AFTER DELETE ON favorite
+        FOR EACH ROW
+        BEGIN
+            DELETE FROM icon
+            WHERE id = OLD.icon
+              AND OLD.icon != 0
+              AND NOT EXISTS (
+                  SELECT 1 FROM favorite WHERE icon = OLD.icon
+              )
+              AND NOT EXISTS (
+                  SELECT 1 FROM recent WHERE icon = OLD.icon
+              );
+        END;
+    )";
+    success = query.exec(szSql);
+    if (!success) {
+        qWarning(log) << "Failed to create trigger delete_icon_after_favorite." << query.lastError().text();
+    }
 
     m_IconDB.SetDatabase(GetDatabase());
     m_IconDB.OnInitializeDatabase();
@@ -337,7 +366,19 @@ bool CFavoriteDatabase::ExportToJson(QJsonObject &obj)
         fav.insert("id", query.value(0).toInt());
         fav.insert("name", query.value(1).toString());
         fav.insert("icon", query.value(2).toInt());
-        fav.insert("file", query.value(3).toString());
+
+        QString szFile = query.value(3).toString();
+        QFileInfo fi(szFile);
+        if(!fi.exists()) continue;
+        fav.insert("file_name", fi.fileName());
+        QFile f(szFile);
+        if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) continue;
+        QString szContent;
+        szContent = f.readAll();
+        f.close();
+        if(szContent.isEmpty()) continue;
+        fav.insert("file_content", szContent);
+
         fav.insert("description", query.value(4).toString());
         favorites.append(fav);
     }
