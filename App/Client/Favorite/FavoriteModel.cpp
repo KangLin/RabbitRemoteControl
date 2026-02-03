@@ -40,8 +40,10 @@ QModelIndex CFavoriteModel::index(int row, int column, const QModelIndex &parent
         parentItem = m_pRoot;
     if(!parentItem)
         return QModelIndex();
-    if(row < parentItem->children.size())
-        return createIndex(row, column, parentItem->children[row]);
+    if(row < parentItem->children.size()) {
+        return CreateIndex(parentItem->children[row]);
+        //return createIndex(row, column, parentItem->children[row]);
+    }
 
     return QModelIndex();
 }
@@ -49,15 +51,16 @@ QModelIndex CFavoriteModel::index(int row, int column, const QModelIndex &parent
 QModelIndex CFavoriteModel::parent(const QModelIndex &index) const
 {
     //qDebug(log) << "parent:" << index;
-    QModelIndex parentIndex;
     if(!index.isValid()) return QModelIndex();
     if(0 != index.column()) return QModelIndex();
     tree* item = (tree*)index.internalPointer();
     if(!item) return QModelIndex();
+    return CreateIndex(item->parent);
+    /*
     tree* parentItem = item->parent;
     if(!parentItem || parentItem == m_pRoot)
         return QModelIndex();
-    return createIndex(item->GetRow(), index.column(), parentItem);
+    return createIndex(item->GetRow(), index.column(), parentItem);//*/
 }
 
 int CFavoriteModel::rowCount(const QModelIndex &parent) const
