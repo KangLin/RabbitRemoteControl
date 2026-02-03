@@ -33,7 +33,7 @@ BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.9.3
+    QT_VERSION=6.10.2
 fi
 FREERDP=0
 TIGERVNC=0
@@ -703,7 +703,7 @@ if [ $FREERDP -eq 1 ]; then
     echo "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.18.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+        git clone -b 3.22.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
         cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
         pushd $BUILD_DEPEND_DIR/FreeRDP
         cmake -S $SOURCE_DIR/FreeRDP \

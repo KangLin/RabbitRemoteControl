@@ -25,7 +25,7 @@ RPM=0
 APPIMAGE=0
 
 if [ -z "$QT_VERSION" ]; then
-    QT_VERSION=6.9.3
+    QT_VERSION=6.10.2
 fi
 
 # Display detailed usage information
