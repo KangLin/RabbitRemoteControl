@@ -42,6 +42,7 @@
 - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)
 - 应用程序
   - [应用程序：从最近列表和活动的列表添加到收藏](https://github.com/KangLin/RabbitRemoteControl/issues/49)
+  - 最近列表和收藏使用数据库保存
   - 增加视图布局
   - 增加菜单到工具条中
 - 增加 macOS 编译脚本。生成　App 捆绑包
