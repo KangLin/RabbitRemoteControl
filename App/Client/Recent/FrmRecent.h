@@ -58,6 +58,8 @@ private slots:
     void slotDoubleClicked(const QModelIndex& index);
     void slotStartByType();
     void slotAddToFavorite();
+    void slotExport();
+    void slotImport();
 
 private:
     int InsertItem(COperate* c, QString &szFile);
@@ -78,6 +80,8 @@ private:
     QAction* m_pDetail;
     QAction* m_pRefresh;
     QAction* m_pAddToFavorite;
+    QAction* m_pExport;
+    QAction* m_pImport;
 
     QTableView* m_pTableView;
     CRecentDatabase* m_pDatabase;

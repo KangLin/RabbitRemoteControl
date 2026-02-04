@@ -6,6 +6,8 @@
 #include <QDir>
 #include <QHeaderView>
 #include <QMenu>
+#include <QFile>
+#include <QMessageBox>
 #include <QLoggingCategory>
 #include "mainwindow.h"
 #include "FrmRecent.h"
@@ -15,18 +17,20 @@ static Q_LOGGING_CATEGORY(log, "App.FrmListRecent")
 
 CFrmRecent::CFrmRecent(
     MainWindow *pMainWindow, CManager *pManager, CRecentDatabase *pDb,
-    CParameterApp &parameterApp, bool bDock, QWidget *parent) :
-    QWidget(parent),
-    m_pMainWindow(pMainWindow),
-    m_ParameterApp(parameterApp),
-    m_pToolBar(nullptr),
-    m_ptbOperate(nullptr),
-    m_pMenuNew(nullptr),
-    m_pDatabase(pDb),
-    m_pModel(nullptr),
-    m_pManager(pManager),
-    m_bDock(bDock),
-    m_pDockTitleBar(nullptr)
+    CParameterApp &parameterApp, bool bDock, QWidget *parent)
+    : QWidget(parent)
+    , m_pMainWindow(pMainWindow)
+    , m_ParameterApp(parameterApp)
+    , m_pToolBar(nullptr)
+    , m_ptbOperate(nullptr)
+    , m_pMenuNew(nullptr)
+    , m_pDatabase(pDb)
+    , m_pModel(nullptr)
+    , m_pManager(pManager)
+    , m_bDock(bDock)
+    , m_pDockTitleBar(nullptr)
+    , m_pExport(nullptr)
+    , m_pImport(nullptr)
 {
     bool check = false;
     //setFocusPolicy(Qt::NoFocus);
@@ -104,6 +108,11 @@ CFrmRecent::CFrmRecent(
         pClose->setStatusTip(tr("Close"));
         pClose->setToolTip(tr("Close"));
     }
+    m_pToolBar->addSeparator();
+    m_pImport = m_pToolBar->addAction(QIcon::fromTheme("import"), tr("Import"),
+                                      this, &CFrmRecent::slotImport);
+    m_pExport = m_pToolBar->addAction(QIcon::fromTheme("export"), tr("Export"),
+                                      this, &CFrmRecent::slotExport);
 
     layout()->addWidget(m_pToolBar);
 
@@ -126,8 +135,12 @@ CFrmRecent::CFrmRecent(
         pMenu->addAction(m_pCopy);
         pMenu->addAction(m_pDelete);
         pMenu->addAction(m_pDetail);
+        pMenu->addSeparator();
         pMenu->addAction(m_pAddToFavorite);
         pMenu->addAction(m_pRefresh);
+        pMenu->addSeparator();
+        pMenu->addAction(m_pImport);
+        pMenu->addAction(m_pExport);
         pMenu->addSeparator();
         auto pShowToolBar = pMenu->addAction(tr("Show tool bar"), this, [&](){
             QAction* a = (QAction*)sender();
@@ -496,6 +509,9 @@ void CFrmRecent::slotCustomContextMenu(const QPoint &pos)
     menu.addAction(m_pDelete);
     menu.addSeparator();
     menu.addAction(m_pAddToFavorite);
+    menu.addSeparator();
+    menu.addAction(m_pImport);
+    menu.addAction(m_pExport);
     if(m_bDock)
         menu.addAction(m_pRefresh);
 
@@ -528,5 +544,54 @@ void CFrmRecent::slotAddToFavorite()
         QString szDescription = item.szDescription;
         QString szFile = item.szFile;
         emit sigAddToFavorite(szFile, szName, szDescription, icon);
+    }
+}
+
+void CFrmRecent::slotImport()
+{
+    QString filename = QFileDialog::getOpenFileName(
+        this, tr("Import recent"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("JSON (*.json)"));
+
+    if (!filename.isEmpty()) {
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pDatabase->ImportFromJsonFile(filename)) {
+                slotRefresh();
+                QMessageBox::information(
+                    this, tr("Success"),
+                    tr("Successfully imported recent from json file"));
+            } else {
+                QMessageBox::warning(
+                    this, tr("Failure"),
+                    tr("Failed to import recent from json file"));
+            }
+            return;
+        }
+    }
+}
+
+void CFrmRecent::slotExport()
+{
+    QString filename = QFileDialog::getSaveFileName(
+        this, tr("Export recent"),
+        RabbitCommon::CDir::Instance()->GetDirUserDocument(),
+        tr("JSON (*.json)"));
+
+    if (!filename.isEmpty()) {
+        QFileInfo fi(filename);
+        if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+            if (m_pDatabase->ExportToJsonFile(filename)) {
+                QMessageBox::information(
+                    this, tr("Success"),
+                    tr("Successfully exported recent to json file"));
+            } else {
+                QMessageBox::warning(
+                    this, tr("Failure"),
+                    tr("Failed to export recent to json file"));
+            }
+            return;
+        }
     }
 }

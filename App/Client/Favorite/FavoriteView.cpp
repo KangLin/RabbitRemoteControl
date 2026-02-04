@@ -435,7 +435,7 @@ void CFavoriteView::slotImport()
                 slotRefresh();
                 QMessageBox::information(
                     this, tr("Success"),
-                    tr("Favorite import from json file successfully"));
+                    tr("Successfully imported favorite from json file"));
             } else {
                 QMessageBox::warning(
                     this, tr("Failure"),
@@ -459,7 +459,7 @@ void CFavoriteView::slotExport()
             if (m_pDatabase->ExportToJsonFile(filename)) {
                 QMessageBox::information(
                     this, tr("Success"),
-                    tr("Favorite exported to json file successfully"));
+                    tr("Successfully export favorite to json file"));
             } else {
                 QMessageBox::warning(
                     this, tr("Failure"),

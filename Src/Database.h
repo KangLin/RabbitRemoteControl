@@ -35,6 +35,7 @@ Q_SIGNALS:
 
 protected:
     QString m_szConnectName;
+    QString m_MinVersion;
 
 private:
     QSqlDatabase m_database;

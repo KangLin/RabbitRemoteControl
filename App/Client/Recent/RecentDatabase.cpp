@@ -1,10 +1,18 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSettings>
+#include <QFile>
+#include <QFileInfo>
 #include <QIcon>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QDateTime>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QLoggingCategory>
 #include "RecentDatabase.h"
+#include "IconUtils.h"
+#include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "App.Recent.Db")
 CRecentDatabase::CRecentDatabase(QObject *parent)
@@ -209,13 +217,111 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int of
     return items;
 }
 
-
 bool CRecentDatabase::ExportToJson(QJsonObject &obj)
 {
+    QJsonArray recents;
+    auto items = GetRecents();
+    foreach(auto it, items) {
+        QJsonObject itemObj;
+
+        QFileInfo fi(it.szFile);
+        if(!fi.exists())
+            continue;
+        QFile f(it.szFile);
+        if(!f.open(QFile::ReadOnly | QFile::Text)) continue;
+        QString szFileContent = f.readAll();
+        f.close();
+        if(szFileContent.isEmpty()) continue;
+        itemObj.insert("FileName", fi.fileName());
+        itemObj.insert("FileContent", szFileContent);
+
+        itemObj.insert("OperateId", it.szOperateId);
+
+        QString szIconName = it.icon.name();
+        if(szIconName.isEmpty()) {
+            QByteArray icon = RabbitCommon::CIconUtils::iconToByteArray(it.icon);
+            itemObj.insert("IconData", icon.toBase64().toStdString().c_str());
+        } else {
+            itemObj.insert("IconName", szIconName);
+        }
+
+        itemObj.insert("Name", it.szName);
+        itemObj.insert("Protocol", it.szProtocol);
+        itemObj.insert("Type", it.szType);
+        itemObj.insert("Time", it.time.toString());
+        itemObj.insert("Description", it.szDescription);
+
+        recents.append(itemObj);
+    }
+    if(recents.isEmpty())
+        return false;
+    obj.insert("Recent", recents);
     return true;
 }
 
 bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
 {
+    QJsonArray recents = obj["Recent"].toArray();
+    if(recents.isEmpty()){
+        qCritical(log) << "Don't find recents";
+        return false;
+    }
+
+    for(auto it = recents.begin(); it != recents.end(); it++) {
+        QJsonObject itemObj = it->toObject();
+        RecentItem item;
+
+        QString szFileContent = itemObj["FileContent"].toString();
+        if(szFileContent.isEmpty()) continue;
+        QString szFile = itemObj["FileName"].toString();
+        if(szFile.isEmpty()) continue;
+        item.szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                      + QDir::separator() + szFile;
+        QFileInfo fi(item.szFile);
+        if(!fi.exists()) {
+            QFile f(item.szFile);
+            if(!f.open(QFile::WriteOnly | QFile::Text)) {
+                qCritical(log) << "Failed to open file:" << item.szFile
+                               << f.errorString();
+                continue;
+            }
+            f.write(szFileContent.toStdString().c_str(), szFileContent.size());
+            f.close();
+        }
+
+        // Check if is exist in recent
+        QSqlQuery query(GetDatabase());
+        query.prepare(
+            "SELECT id FROM recent "
+            "WHERE file=:file"
+            );
+        query.bindValue(":file", item.szFile);
+        if (query.exec() && query.next()) {
+            continue;
+        }
+
+        QString szIconName = itemObj["IconName"].toString();
+        if(szIconName.isEmpty()) {
+            QByteArray icon(itemObj["IconData"].toString().toStdString().c_str());
+            if(!icon.isEmpty()) {
+                icon = QByteArray::fromBase64(icon);
+                item.icon = RabbitCommon::CIconUtils::byteArrayToIcon(icon);
+            }
+        } else {
+            item.icon = QIcon::fromTheme(szIconName);
+        }
+
+        item.szOperateId = itemObj["OperateId"].toString();
+        item.szName = itemObj["Name"].toString();
+        item.szProtocol = itemObj["Protocol"].toString();
+        item.szType = itemObj["Type"].toString();
+
+        item.time = QDateTime::fromString(itemObj["Time"].toString());
+        if(!item.time.isValid())
+            item.time = QDateTime::currentDateTime();
+
+        item.szDescription = itemObj["Description"].toString();
+        AddRecent(item);
+    }
     return true;
 }

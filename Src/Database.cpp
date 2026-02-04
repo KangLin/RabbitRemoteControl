@@ -8,12 +8,14 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 #include "IconUtils.h"
 #include "Database.h"
 
 static Q_LOGGING_CATEGORY(log, "DB")
 CDatabase::CDatabase(QObject *parent)
     : QObject{parent}
+    , m_MinVersion("0.1.0")
 {
     qDebug(log) << Q_FUNC_INFO;
     m_szConnectName = "connect";
@@ -108,6 +110,7 @@ bool CDatabase::ExportToJsonFile(const QString &szFile)
     QJsonObject root;
     root.insert("Title", "Rabbit Remote Control");
     root.insert("Author", "Kang Lin");
+    root.insert("Version", "0.1.0");
 
     bool bRet = true;
     bRet = ExportToJson(root);
@@ -135,9 +138,16 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
         if(!doc.isObject())
             break;
         auto root = doc.object();
-        if(root["Title"] != "Rabbit Remote Control")
+        if(root["Title"] != "Rabbit Remote Control") {
+            qCritical(log) << "The file format is error";
             break;
-
+        }
+        QString szVersion = root["Version"].toString();
+        if(RabbitCommon::CTools::VersionCompare(szVersion, m_MinVersion) < 0) {
+            qCritical(log) << "The version is not support:"
+                           << szVersion << "<" << m_MinVersion;
+            break;
+        }
         bRet = ImportFromJson(doc.object());
     } while(0);
 
