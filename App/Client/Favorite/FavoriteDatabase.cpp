@@ -21,7 +21,7 @@ bool CFavoriteDatabase::OnInitializeDatabase()
 {
     QSqlQuery query(GetDatabase());
 
-    // 创建书签表
+    // Create favorite table
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS favorite ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT," // the id is the key of tree table
@@ -37,15 +37,17 @@ bool CFavoriteDatabase::OnInitializeDatabase()
         return false;
     }
 
+    // Create index
     success = query.exec("CREATE INDEX IF NOT EXISTS idx_favorite_file ON favorite(file)");
     if (!success) {
         qWarning(log) << "Failed to create idx_favorite_file." << query.lastError().text();
     }
 
+    // Drop trigger if exists
     if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_favorite")) {
         qDebug(log) << "Failed to drop trigger delete_icon_after_favorite:" << query.lastError().text();
     }
-
+    // Create trigger
     QString szSql = R"(
         CREATE TRIGGER delete_icon_after_favorite
         AFTER DELETE ON favorite
@@ -83,7 +85,7 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
     }
 
     if (szFile.trimmed().isEmpty()) {
-        qWarning(log) << "Favorite file cannot be empty";
+        qCritical(log) << "Favorite file cannot be empty";
         return ret;
     }
 
@@ -190,10 +192,12 @@ bool CFavoriteDatabase::UpdateFavorite(
     }
 
     szSql = "UPDATE favorite SET " + szSql + " WHERE id=" + QString::number(id);
-    qDebug(log) << "Sql:" << szSql;
+    //qDebug(log) << "Sql:" << szSql;
     bool ok = query.exec(szSql);
     if(!ok)
-        qCritical(log) << "Failed to update favorite:" << id << query.lastError().text();
+        qCritical(log) << "Failed to update favorite:"
+                       << id << query.lastError().text()
+                       << "Sql:" << szSql;
     return ok;
 }
 
@@ -217,10 +221,12 @@ bool CFavoriteDatabase::UpdateFavorite(
     }
 
     szSql = "UPDATE favorite SET " + szSql + " WHERE file=\"" + szFile + "\"";
-    qDebug(log) << "Sql:" << szSql;
+    //qDebug(log) << "Sql:" << szSql;
     bool ok = query.exec(szSql);
     if(!ok)
-        qCritical(log) << "Failed to update favorite:" << szFile << query.lastError().text();
+        qCritical(log) << "Failed to update favorite:"
+                       << szFile << query.lastError().text()
+                       << "Sql:" << szSql;
     return ok;
 }
 
@@ -238,12 +244,13 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
         "WHERE id = :id"
         );
     query.bindValue(":id", leaf.GetKey());
-    qDebug(log) << "SQL:" << query.executedQuery();
-    qDebug(log) << "Bound value:" << query.boundValues();
+    //qDebug(log) << "SQL:" << query.executedQuery();
+    //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
         qCritical(log) << "Failed to get favorite:"
-                       << id << query.lastError().text();
+                       << id << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return item;
     }
     if(query.next()) {
@@ -270,12 +277,13 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetFavorite(const QString &szF
         "WHERE file = :file"
         );
     query.bindValue(":file", szFile);
-    qDebug(log) << "SQL:" << query.executedQuery();
-    qDebug(log) << "Bound value:" << query.boundValues();
+    //qDebug(log) << "SQL:" << query.executedQuery();
+    //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
         qCritical(log) << "Failed to get favorite:"
-                       << szFile << query.lastError().text();
+                       << szFile << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return lstItems;
     }
     if(query.next()) {
@@ -309,6 +317,7 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetGroup(int id)
 QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
 {
     QList<Item> children;
+    // Get nodes
     auto folders = GetSubNodes(parentId);
     foreach(auto f, folders) {
         Item item;
@@ -318,6 +327,7 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
         item.type = f.GetType();
         children << item;
     }
+    // Get leaves
     auto leaves = GetLeaves(parentId);
     foreach(auto l, leaves) {
         Item item = GetFavorite(l.GetId());
@@ -334,12 +344,13 @@ bool CFavoriteDatabase::OnDeleteKey(int key)
         "WHERE id = :id"
         );
     query.bindValue(":id", key);
-    qDebug(log) << "SQL:" << query.executedQuery();
-    qDebug(log) << "Bound value:" << query.boundValues();
+    //qDebug(log) << "SQL:" << query.executedQuery();
+    //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
         qCritical(log) << "Failed to delete favorite:"
-                       << key << query.lastError().text();
+                       << key << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return false;
     }
     return ok;
@@ -358,7 +369,8 @@ bool CFavoriteDatabase::ExportToJson(QJsonObject &obj)
     bool ok = query.exec();
     if(!ok) {
         qCritical(log) << "Failed to export favorite to json:"
-                       << query.lastError().text();
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return false;
     }
     while(query.next()) {
