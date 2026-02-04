@@ -61,8 +61,8 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     , m_maxVisibleItems(8)
     , m_isCompleterVisible(false)
 {
-    m_szEnter = tr("Enter a website URL or search content ......") + "\n" +
-                tr("Enter '@' show commands");
+    m_szEnter = tr("Enter '@' show commands") + "; "
+                + tr("Enter a website URL or search content ......");
     m_szLineEditToolTip = m_szEnter  + "\n\n"
                           + tr("Enter ↲ key: Apply current url");
 
