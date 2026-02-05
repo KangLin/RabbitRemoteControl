@@ -224,12 +224,12 @@ bool CRecentDatabase::ExportToJson(QJsonObject &obj)
     foreach(auto it, items) {
         QJsonObject itemObj;
 
-        bool bRet = CDatabase::ExportToJson(it.szFile, itemObj);
+        bool bRet = CDatabase::ExportFileToJson(it.szFile, itemObj);
         if(!bRet) continue;
 
         itemObj.insert("OperateId", it.szOperateId);
 
-        bRet = CDatabaseIcon::ExportToJson(it.icon, itemObj);
+        bRet = CDatabaseIcon::ExportIconToJson(it.icon, itemObj);
         if(!bRet) continue;
 
         itemObj.insert("Name", it.szName);
@@ -250,7 +250,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray recents = obj["Recent"].toArray();
     if(recents.isEmpty()){
-        qCritical(log) << "Don't find recents";
+        qCritical(log) << "The file format is error. Don't find recents";
         return false;
     }
 
@@ -258,7 +258,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
         QJsonObject itemObj = it->toObject();
         RecentItem item;
 
-        bool bRet = CDatabase::ImportFromJson(itemObj, item.szFile);
+        bool bRet = CDatabase::ImportFileFromJson(itemObj, item.szFile);
         if(!bRet) continue;
 
         // Check if is exist in recent
@@ -272,7 +272,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
             continue;
         }
 
-        bRet = CDatabaseIcon::ImportFromJson(itemObj, item.icon);
+        bRet = CDatabaseIcon::ImportIconFromJson(itemObj, item.icon);
         if(!bRet) continue;
 
         item.szOperateId = itemObj["OperateId"].toString();

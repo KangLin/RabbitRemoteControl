@@ -371,7 +371,7 @@ bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray favorites = obj["favorite"].toArray();
     if(favorites.isEmpty()) {
-        qCritical(log) << "Json without favorite";
+        qCritical(log) << "The file format is error. Json without favorite";
         return false;
     }
 
@@ -393,10 +393,10 @@ bool CFavoriteDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
         }
 
         QString szFile;
-        bool bRet = CDatabase::ImportFromJson(itemObj, szFile);
+        bool bRet = CDatabase::ImportFileFromJson(itemObj, szFile);
         if(!bRet) continue;
         QIcon icon;
-        bRet = CDatabaseIcon::ImportFromJson(itemObj, icon);
+        bRet = CDatabaseIcon::ImportIconFromJson(itemObj, icon);
         if(!bRet) continue;
 
         AddFavorite(szFile, itemObj["name"].toString(), icon, itemObj["description"].toString(), parentId);
@@ -424,11 +424,11 @@ bool CFavoriteDatabase::ExportToJson(int parentId, QJsonArray &obj)
             oItem.insert("name", item.szName);
 
             // File
-            bool bRet = CDatabase::ExportToJson(item.szFile, oItem);
+            bool bRet = CDatabase::ExportFileToJson(item.szFile, oItem);
             if(!bRet) continue;
 
             // Icon
-            bRet = CDatabaseIcon::ExportToJson(item.GetIcon(), oItem);
+            bRet = CDatabaseIcon::ExportIconToJson(item.GetIcon(), oItem);
             if(!bRet) continue;
 
             oItem.insert("description", item.szDescription);

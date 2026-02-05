@@ -326,7 +326,7 @@ bool CDatabaseIcon::ImportFromJson(const QJsonObject &obj)
     return true;
 }
 
-bool CDatabaseIcon::ExportToJson(const QIcon &icon, QJsonObject &obj)
+bool CDatabaseIcon::ExportIconToJson(const QIcon &icon, QJsonObject &obj)
 {
     QString szIconName = icon.name();
     if(szIconName.isEmpty()) {
@@ -338,7 +338,7 @@ bool CDatabaseIcon::ExportToJson(const QIcon &icon, QJsonObject &obj)
     return true;
 }
 
-bool CDatabaseIcon::ImportFromJson(const QJsonObject &itemObj, QIcon &icon)
+bool CDatabaseIcon::ImportIconFromJson(const QJsonObject &itemObj, QIcon &icon)
 {
     QString szIconName = itemObj["IconName"].toString();
     if(szIconName.isEmpty()) {
@@ -353,7 +353,7 @@ bool CDatabaseIcon::ImportFromJson(const QJsonObject &itemObj, QIcon &icon)
     return true;
 }
 
-bool CDatabase::ExportToJson(const QString &szFile, QJsonObject &obj)
+bool CDatabase::ExportFileToJson(const QString &szFile, QJsonObject &obj)
 {
     QFileInfo fi(szFile);
     if(!fi.exists()) {
@@ -376,7 +376,7 @@ bool CDatabase::ExportToJson(const QString &szFile, QJsonObject &obj)
     return true;
 }
 
-bool CDatabase::ImportFromJson(const QJsonObject &obj, QString &szFile)
+bool CDatabase::ImportFileFromJson(const QJsonObject &obj, QString &szFile)
 {
     QString szFileContent = obj["FileContent"].toString();
     if(szFileContent.isEmpty()) {
