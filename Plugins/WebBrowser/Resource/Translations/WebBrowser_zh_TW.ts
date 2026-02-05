@@ -4,7 +4,7 @@
 <context>
     <name>CAddressCompleter</name>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="64"/>
+        <location filename="../../AddressCompleter.cpp" line="65"/>
         <source>Enter a website URL or search content ......</source>
         <translation>輸入網址或搜索內容……</translation>
     </message>
@@ -19,7 +19,7 @@
         <translation>Enter ↲ 鍵：應用當前網址</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="65"/>
+        <location filename="../../AddressCompleter.cpp" line="64"/>
         <source>Enter &apos;@&apos; show commands</source>
         <translation>輸入 &apos;@&apos; 顯示命令</translation>
     </message>

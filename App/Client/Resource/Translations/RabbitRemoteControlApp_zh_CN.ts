@@ -70,13 +70,23 @@
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="267"/>
-        <source>The operation already exists in &quot;%1&quot;</source>
-        <translation>操作已存在于 &quot;%1&quot; 之中</translation>
+        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
+        <translation>&quot;%1&quot; 已收藏于 &quot;%2&quot; 之中</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="272"/>
-        <source>The operation already exists, do you want to move it to &quot;%1&quot;?</source>
-        <translation>操作已存在，是否想移到 &quot;%1&quot;</translation>
+        <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
+        <translation>&quot;%1&quot; 已收藏，确定想移到 &quot;%2&quot;?</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="438"/>
+        <source>Successfully imported favorite from json file</source>
+        <translation>成功从 JSON 文件导入收藏</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="462"/>
+        <source>Successfully export favorite to json file</source>
+        <translation>成功导出收藏到 JSON 文件</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="371"/>
@@ -106,11 +116,6 @@
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="438"/>
-        <source>Favorite import from json file successfully</source>
-        <translation>从 json 文件导入收藏成功</translation>
-    </message>
-    <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="441"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="465"/>
         <source>Failure</source>
@@ -125,11 +130,6 @@
         <location filename="../../Favorite/FavoriteView.cpp" line="452"/>
         <source>Export favorite</source>
         <translation>导出收藏</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="462"/>
-        <source>Favorite exported to json file successfully</source>
-        <translation>导出收藏到 json 文件成功</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="466"/>
@@ -210,107 +210,165 @@
 <context>
     <name>CFrmRecent</name>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="35"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="39"/>
         <source>Recently list</source>
         <translation>最近的列表</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="40"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="42"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="43"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="44"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="46"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="47"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="45"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="47"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="48"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="49"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="51"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="52"/>
         <source>Edit and Start</source>
         <translation>编辑并开始</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="55"/>
         <location filename="../../Recent/FrmRecent.cpp" line="59"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="60"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="61"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="63"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="64"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="65"/>
         <source>New</source>
         <translation>新建</translation>
-    </message>
-    <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="67"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="69"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="70"/>
-        <source>Edit</source>
-        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../../Recent/FrmRecent.cpp" line="71"/>
         <location filename="../../Recent/FrmRecent.cpp" line="73"/>
         <location filename="../../Recent/FrmRecent.cpp" line="74"/>
+        <source>Edit</source>
+        <translation>编辑</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="75"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="77"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="78"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="76"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="78"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="79"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="80"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="82"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="83"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="81"/>
         <location filename="../../Recent/FrmRecent.cpp" line="85"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="86"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="89"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="90"/>
         <source>Detail</source>
         <translation>细节</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="89"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="93"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="96"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="98"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="99"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="100"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="102"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="103"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="102"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="104"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="105"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="106"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="108"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="109"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="113"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="116"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="112"/>
+        <source>Import</source>
+        <translation>导入</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="114"/>
+        <source>Export</source>
+        <translation>导出</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="122"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="125"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="132"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="145"/>
         <source>Show tool bar</source>
         <translation>显示工具条</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="295"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="403"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="308"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="416"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="296"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="309"/>
         <source>The file is exists. whether to overwrite it?
 File: %1</source>
         <translation>文件已存在。是否覆盖它?
 文件： %1</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="404"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="417"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation>文件已存在。是否覆盖它?如果选择否，请改名称。</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="553"/>
+        <source>Import recent</source>
+        <translation>导入</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="555"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="580"/>
+        <source>JSON (*.json)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="563"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="587"/>
+        <source>Success</source>
+        <translation>成功</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="564"/>
+        <source>Successfully imported recent from json file</source>
+        <translation>成功从 JSON 文件导入</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="567"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="591"/>
+        <source>Failure</source>
+        <translation>失败</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="568"/>
+        <source>Failed to import recent from json file</source>
+        <translation>从 JSON 文件导入失败</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="578"/>
+        <source>Export recent</source>
+        <translation>导出</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="588"/>
+        <source>Successfully exported recent to json file</source>
+        <translation>成功导出到 JSON 文件</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="592"/>
+        <source>Failed to export recent to json file</source>
+        <translation>导出到 JSON 文件失败</translation>
     </message>
 </context>
 <context>
@@ -885,10 +943,6 @@ File: %1</source>
         <location filename="../../main.cpp" line="133"/>
         <source>Generate update json file End</source>
         <translation>产生更新文件结束</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation>结束</translation>
     </message>
 </context>
 </TS>
