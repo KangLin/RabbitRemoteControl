@@ -97,5 +97,5 @@ BEGIN
     WHERE id = OLD.icon
       AND OLD.icon != 0
       AND (SELECT COUNT(*) FROM favorite WHERE icon = OLD.icon) = 0
-      AND (SELECT COUNT(*) FROM recent WHERE icon = OLD.icon) = 0;
+      AND (SELECT COUNT(*) FROM recent WHERE icon = OLD.icon) = 0
 END;

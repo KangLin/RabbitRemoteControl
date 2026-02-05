@@ -38,6 +38,7 @@ public:
     };
 
 private:
+    CParameterApp* m_pParameterApp;
     CRecentDatabase* m_pDatabase;
     QVector<CRecentDatabase::RecentItem> m_Items;
 };

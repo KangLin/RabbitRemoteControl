@@ -212,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockFavorite = new QDockWidget(this);
     if(m_pDockFavorite)
     {
-        m_pFavoriteView = new CFavoriteView(m_pDockFavorite);
+        m_pFavoriteView = new CFavoriteView(&m_Parameter, m_pDockFavorite);
         if(m_pFavoriteView)
         {
             if(m_pFavoriteView->m_pDockTitleBar)
@@ -413,7 +413,7 @@ void MainWindow::slotInitial()
     m_Manager.EnumPlugins(this);
 
     if(m_pRecentDb)
-        m_pRecentDb->OpenDatabase("recent_connect");
+        m_pRecentDb->OpenDatabase(&m_Parameter.m_Database);
 
     if(m_pRecentMenu) {
         slotInformation(tr("Load recent menu ......"));
@@ -1478,7 +1478,7 @@ void MainWindow::on_actionSettings_triggered()
 {
     CParameterDlgSettings set(&m_Parameter, this);
     auto viewers = m_Manager.GetSettingsWidgets(&set);
-    set.SetViewers(viewers);
+    set.AddViewers(viewers);
     if(CParameterDlgSettings::Accepted == RC_SHOW_WINDOW(&set))
     {
         m_Manager.SaveSettings();

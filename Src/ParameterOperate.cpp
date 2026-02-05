@@ -100,7 +100,7 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
         return 0;
 
     qDebug(log) << "Password don't dencode or sum is error";
-    if(key.empty()) {
+    if(key.empty() && GetGlobalParameters()) {
         switch (GetGlobalParameters()->GetPromptType()) {
         case CParameterPlugin::PromptType::First:
         {
@@ -138,30 +138,33 @@ int CParameterOperate::SavePassword(const QString &szKey,
         set.remove(szKey + "_sum");
         return 0;
     }
-
+    
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
-    std::string key = GetGlobalParameters()->GetEncryptKey().toStdString();
-    if(key.empty())
-    {
-        switch (GetGlobalParameters()->GetPromptType()) {
-        case CParameterPlugin::PromptType::First:
+    std::string key;
+    if(GetGlobalParameters()) {
+        key = GetGlobalParameters()->GetEncryptKey().toStdString();
+        if(key.empty())
         {
-            int nCount = GetGlobalParameters()->GetPromptCount();
-            if(nCount >= 1)
+            switch (GetGlobalParameters()->GetPromptType()) {
+            case CParameterPlugin::PromptType::First:
+            {
+                int nCount = GetGlobalParameters()->GetPromptCount();
+                if(nCount >= 1)
+                    break;
+                GetGlobalParameters()->SetPromptCount(nCount + 1);
+                QString szKey;
+                CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd(), true);
+                if(QDialog::Accepted != dlg.exec())
+                    break;
+                szKey = dlg.GetPassword();
+                GetGlobalParameters()->SetEncryptKey(szKey);
+                key = szKey.toStdString();
                 break;
-            GetGlobalParameters()->SetPromptCount(nCount + 1);
-            QString szKey;
-            CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd(), true);
-            if(QDialog::Accepted != dlg.exec())
+            }
+            case CParameterPlugin::PromptType::No:
                 break;
-            szKey = dlg.GetPassword();
-            GetGlobalParameters()->SetEncryptKey(szKey);
-            key = szKey.toStdString();
-            break;
-        }
-        case CParameterPlugin::PromptType::No:
-            break;
+            }
         }
     }
     if(!key.empty())

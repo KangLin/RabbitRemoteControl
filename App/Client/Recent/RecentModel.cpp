@@ -8,6 +8,7 @@
 static Q_LOGGING_CATEGORY(log, "App.Recent.Model")
 CRecentModel::CRecentModel(CParameterApp *pPara, CRecentDatabase *pDb, QObject *parent)
     : QAbstractTableModel(parent)
+    , m_pParameterApp(pPara)
     , m_pDatabase(pDb)
 {
 }
@@ -122,7 +123,7 @@ void CRecentModel::refresh(int limit)
 {
     if(!m_pDatabase) {
         m_pDatabase = new CRecentDatabase(this);
-        if(!m_pDatabase->OpenDatabase())
+        if(!m_pDatabase->OpenDatabase(&m_pParameterApp->m_Database))
             return;
     }
     if(!m_pDatabase->IsOpen())

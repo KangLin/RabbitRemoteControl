@@ -8,13 +8,14 @@
 #include "TitleBar.h"
 #include "FavoriteDatabase.h"
 #include "FavoriteModel.h"
+#include "ParameterApp.h"
 
 class CFavoriteView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CFavoriteView(QWidget *parent = nullptr);
+    explicit CFavoriteView(CParameterApp* pPara, QWidget *parent = nullptr);
     virtual ~CFavoriteView();
 
     void Initial();
@@ -65,6 +66,7 @@ private:
     void EnableAction(const QModelIndex& index = QModelIndex());
 
 private:
+    CParameterApp* m_pParaApp;
     QTreeView* m_pTreeView;
     CFavoriteModel* m_pModel;
     CFavoriteDatabase* m_pDatabase;

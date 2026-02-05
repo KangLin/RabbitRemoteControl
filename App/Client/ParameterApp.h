@@ -3,6 +3,7 @@
 
 #include <QTabWidget>
 #include "Parameter.h"
+#include "ParameterDatabase.h"
 
 class CParameterApp : public CParameter
 {
@@ -11,6 +12,8 @@ class CParameterApp : public CParameter
 public:
     explicit CParameterApp(QObject *parent = nullptr);
     virtual ~CParameterApp();
+
+    CParameterDatabase m_Database;
 
 protected:
     virtual int OnLoad(QSettings &set);

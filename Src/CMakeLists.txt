@@ -54,6 +54,8 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
     ParameterCompone/Stats.h
+    ParameterCompone/ParameterDatabase.h
+    ParameterCompone/ParameterDatabaseUI.h
     CheckBoxHeader.h
     Database.h
     DatabaseTree.h
@@ -102,6 +104,8 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
     ParameterCompone/Stats.cpp
+    ParameterCompone/ParameterDatabase.cpp
+    ParameterCompone/ParameterDatabaseUI.cpp
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp
@@ -121,6 +125,7 @@ set(PLUGIN_UI_FILES
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
     ParameterCompone/ParameterSSHTunnelUI.ui
+    ParameterCompone/ParameterDatabaseUI.ui
     )
 
 if(WIN32)

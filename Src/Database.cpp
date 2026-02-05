@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSqlDriver>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -40,7 +41,41 @@ QSqlDatabase CDatabase::GetDatabase() const
     return m_database;
 }
 
-bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPath)
+bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
+{
+    bool bRet = false;
+    if(!pPara) return false;
+
+    QString szErr = "Only one of OpenDatabase or SetDatabase can be called, and it can only be called once";
+    Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
+
+    if(pPara->GetType() == "QSQLITE")
+        bRet = OpenSQLiteDatabase(QString(), pPara->GetDatabaseName());
+    else if(pPara->GetType() == "QMYSQL")
+        bRet = OpenMySqlDatabase(pPara);
+
+    QSqlDriver *driver = GetDatabase().driver();
+    if (driver) {
+        qDebug(log) << "=== Features for" << pPara->GetType() << "===";
+        qDebug(log) << "Transactions:" << driver->hasFeature(QSqlDriver::Transactions);
+        qDebug(log) << "Query size:" << driver->hasFeature(QSqlDriver::QuerySize);
+        qDebug(log) << "BLOB:" << driver->hasFeature(QSqlDriver::BLOB);
+        qDebug(log) << "Unicode:" << driver->hasFeature(QSqlDriver::Unicode);
+        qDebug(log) << "Prepared queries:" << driver->hasFeature(QSqlDriver::PreparedQueries);
+        qDebug(log) << "Named placeholders:" << driver->hasFeature(QSqlDriver::NamedPlaceholders);
+        qDebug(log) << "Positional placeholders:" << driver->hasFeature(QSqlDriver::PositionalPlaceholders);
+        qDebug(log) << "Last insert ID:" << driver->hasFeature(QSqlDriver::LastInsertId);
+        qDebug(log) << "Batch operations:" << driver->hasFeature(QSqlDriver::BatchOperations);
+        qDebug(log) << "Event notifications:" << driver->hasFeature(QSqlDriver::EventNotifications);
+        qDebug(log) << "Finish query:" << driver->hasFeature(QSqlDriver::FinishQuery);
+        qDebug(log) << "Multiple result sets:" << driver->hasFeature(QSqlDriver::MultipleResultSets);
+        qDebug(log) << "Cancel query:" << driver->hasFeature(QSqlDriver::CancelQuery);
+    }
+    return bRet;
+}
+
+bool CDatabase::OpenSQLiteDatabase(
+    const QString &connectionName, const QString &dbPath)
 {
     QString databasePath;
     if (dbPath.isEmpty()) {
@@ -55,10 +90,6 @@ bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPat
         databasePath = dbPath;
     }
 
-    QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
-    qCritical(log) << szErr;
-    Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
-
     if(!connectionName.isEmpty())
         m_szConnectName = connectionName;
 
@@ -69,11 +100,44 @@ bool CDatabase::OpenDatabase(const QString &connectionName, const QString &dbPat
     if (!m_database.open()) {
         qCritical(log) << "Failed to open database:"
                        << m_database.lastError().text()
-                       << m_database.connectionName() << databasePath;
+                       << "connect name:" << m_database.connectionName()
+                       << "database name:" << m_database.databaseName();
         return false;
     }
 
-    qInfo(log) << "Open database connect:" << m_database.connectionName() << "File:" << databasePath;
+    qInfo(log) << "Open sqlite database connect:"
+               << m_database.connectionName()
+               << "database name:" << m_database.databaseName();
+    return OnInitializeDatabase();
+}
+
+bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
+{
+    if(!pPara) return false;
+    // 打开或创建数据库
+    m_database = QSqlDatabase::addDatabase("QMYSQL", m_szConnectName);
+    QString szDbName = pPara->GetDatabaseName();
+    if(szDbName.isEmpty())
+        szDbName = "remote_control";
+    m_database.setDatabaseName(szDbName);
+    auto &net = pPara->m_Net;
+    m_database.setHostName(net.GetHost());
+    m_database.setPort(net.GetPort());
+    auto &user = net.m_User;
+    m_database.setUserName(user.GetName());
+    m_database.setPassword(user.GetPassword());
+
+    if (!m_database.open()) {
+        qCritical(log) << "Failed to open database:"
+                       << m_database.lastError().text()
+                       << "connect name:" << m_database.connectionName()
+                       << "database name:" << m_database.databaseName();
+        return false;
+    }
+
+    qInfo(log) << "Open mysql database connect:"
+               << m_database.connectionName()
+               << "database name:" << m_database.databaseName();
     return OnInitializeDatabase();
 }
 

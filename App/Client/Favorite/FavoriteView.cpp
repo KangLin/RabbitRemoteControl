@@ -24,7 +24,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Favorite")
 
-CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
+CFavoriteView::CFavoriteView(CParameterApp *pPara, QWidget *parent)
+    : QWidget(parent)
+    , m_pParaApp(pPara)
     , m_pDockTitleBar(nullptr)
     , m_pTreeView(nullptr)
     , m_pModel(nullptr)
@@ -209,7 +211,7 @@ void CFavoriteView::Initial()
 {
     m_pDatabase = new CFavoriteDatabase(this);
     if(m_pDatabase)
-        m_pDatabase->OpenDatabase("favorite_connect");
+        m_pDatabase->OpenDatabase(&m_pParaApp->m_Database);
     if(m_pDatabase) {
         m_pModel = new CFavoriteModel(m_pDatabase, this);
         m_pTreeView->setModel(m_pModel);

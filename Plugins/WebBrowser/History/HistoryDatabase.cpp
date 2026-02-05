@@ -47,7 +47,7 @@ CHistoryDatabase* CHistoryDatabase::Instance(const QString &szPath)
     if(!p) {
         p = new CHistoryDatabase();
         if(p) {
-            bool bRet = p->OpenDatabase("history_connection", szPath);
+            bool bRet = p->OpenSQLiteDatabase("history_connection", szPath);
             if(!bRet) {
                 delete p;
                 p = nullptr;

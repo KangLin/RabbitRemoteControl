@@ -34,6 +34,13 @@
       ]
     },
 
+    "database": {
+      "description": "database",
+      "dependencies": [
+        "libmysql"
+      ]
+    },
+
     "ffmpeg": {
       "description": "ffmpeg",
       "dependencies": [

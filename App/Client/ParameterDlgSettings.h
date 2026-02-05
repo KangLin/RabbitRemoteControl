@@ -16,7 +16,7 @@ public:
     explicit CParameterDlgSettings(CParameterApp* pPara,
                                    QWidget *parent = nullptr);
     virtual ~CParameterDlgSettings();
-    void SetViewers(const QList<QWidget*> &wViewer);
+    void AddViewers(const QList<QWidget*> &wViewer);
 private slots:    
     void on_pbOk_clicked();
     void on_pbNo_clicked();

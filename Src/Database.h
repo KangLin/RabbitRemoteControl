@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QJsonObject>
 #include "plugin_export.h"
+#include "ParameterDatabase.h"
 
 class PLUGIN_EXPORT CDatabase : public QObject
 {
@@ -18,8 +19,10 @@ public:
     void SetDatabase(QSqlDatabase db);
     QSqlDatabase GetDatabase() const;
 
-    virtual bool OpenDatabase(const QString &connectionName = QString(),
-        const QString &dbPath = QString());
+    virtual bool OpenDatabase(CParameterDatabase* pPara);
+    virtual bool OpenMySqlDatabase(CParameterDatabase* pPara);
+    virtual bool OpenSQLiteDatabase(const QString &connectionName = QString(),
+                                    const QString &dbPath = QString());
     virtual bool IsOpen() const;
     virtual void CloseDatabase();
 
