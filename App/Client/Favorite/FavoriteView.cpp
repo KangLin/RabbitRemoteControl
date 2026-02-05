@@ -264,12 +264,12 @@ void CFavoriteView::slotAddToFavorite(const QString &szFile,
         if(item.parentId == parentId) {
             QMessageBox::information(
                 nullptr, tr("Add favorite"),
-                tr("The operation already exists in \"%1\"").arg(szGroup));
+                tr("\"%1\" already exists in \"%2\"").arg(szName, szGroup));
             return;
         }
         int ret = QMessageBox::warning(
             nullptr, tr("Add favorite"),
-            tr("The operation already exists, do you want to move it to \"%1\"?").arg(szGroup),
+            tr("\"%1\" already exists, do you want to move it to \"%2\"?").arg(szName, szGroup),
             QMessageBox::Ok | QMessageBox::No);
         if(QMessageBox::Ok != ret)
             return;
