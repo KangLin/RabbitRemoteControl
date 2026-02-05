@@ -9,6 +9,7 @@
 #include <QSqlError>
 #include <QLoggingCategory>
 #include "FavoriteDatabase.h"
+#include "IconUtils.h"
 
 static Q_LOGGING_CATEGORY(log, "App.Favorite.Db")
 CFavoriteDatabase::CFavoriteDatabase(QObject *parent)
@@ -359,45 +360,10 @@ bool CFavoriteDatabase::OnDeleteKey(int key)
 bool CFavoriteDatabase::ExportToJson(QJsonObject &obj)
 {
     bool bRet = true;
-
-    QJsonArray favorites;
-
-    QSqlQuery query(GetDatabase());
-    query.prepare(
-        "SELECT id, name, icon, file, description FROM favorite "
-        );
-    bool ok = query.exec();
-    if(!ok) {
-        qCritical(log) << "Failed to export favorite to json:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
-        return false;
-    }
-    while(query.next()) {
-        QJsonObject fav;
-        fav.insert("id", query.value(0).toInt());
-        fav.insert("name", query.value(1).toString());
-        fav.insert("icon", query.value(2).toInt());
-
-        QString szFile = query.value(3).toString();
-        QFileInfo fi(szFile);
-        if(!fi.exists()) continue;
-        fav.insert("file_name", fi.fileName());
-        QFile f(szFile);
-        if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) continue;
-        QString szContent;
-        szContent = f.readAll();
-        f.close();
-        if(szContent.isEmpty()) continue;
-        fav.insert("file_content", szContent);
-
-        fav.insert("description", query.value(4).toString());
-        favorites.append(fav);
-    }
-    obj.insert("favorite", favorites);
-    bRet = CDatabaseTree::ExportToJson(obj);
-    if(!bRet) return false;
-    bRet = m_IconDB.ExportToJson(obj);
+    QJsonArray root;
+    bRet = ExportToJson(0, root);
+    if(bRet)
+        obj.insert("favorite", root);
     return bRet;
 }
 
@@ -408,7 +374,68 @@ bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
         qCritical(log) << "Json without favorite";
         return false;
     }
-    // 检查文件是否已存在
-    // 如果存在，则需要修改ID
+
+    return ImportFromJson(0, favorites);
+}
+
+bool CFavoriteDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
+{
+    for(auto it = obj.begin(); it != obj.end(); it++) {
+        QJsonObject itemObj = it->toObject();
+        if(itemObj.isEmpty()) continue;
+        if(TreeItem::Node == itemObj["type"].toInt()) {
+            QString szName = itemObj["name"].toString();
+            int id = AddNode(szName, parentId);
+            QJsonArray items = itemObj[szName].toArray();
+            if(items.isEmpty()) continue;
+            ImportFromJson(id, items);
+            continue;
+        }
+
+        QString szFile;
+        bool bRet = CDatabase::ImportFromJson(itemObj, szFile);
+        if(!bRet) continue;
+        QIcon icon;
+        bRet = CDatabaseIcon::ImportFromJson(itemObj, icon);
+        if(!bRet) continue;
+
+        AddFavorite(szFile, itemObj["name"].toString(), icon, itemObj["description"].toString(), parentId);
+    }
+
+    return true;
+}
+
+bool CFavoriteDatabase::ExportToJson(int parentId, QJsonArray &obj)
+{
+    auto items = GetChildren(parentId);
+    foreach(auto item, items) {
+        QJsonObject oItem;
+        if(item.isFolder()) {
+            QJsonArray aItem;
+            bool bRet = ExportToJson(item.id, aItem);
+            if(!bRet) continue;
+
+            oItem.insert("type", TreeItem::Node);
+            oItem.insert("name", item.szName);
+            oItem.insert(item.szName, aItem);
+
+        } else {
+            oItem.insert("type", item.type);
+            oItem.insert("name", item.szName);
+
+            // File
+            bool bRet = CDatabase::ExportToJson(item.szFile, oItem);
+            if(!bRet) continue;
+
+            // Icon
+            bRet = CDatabaseIcon::ExportToJson(item.GetIcon(), oItem);
+            if(!bRet) continue;
+
+            oItem.insert("description", item.szDescription);
+        }
+
+        obj.append(oItem);
+
+    }
     return true;
 }

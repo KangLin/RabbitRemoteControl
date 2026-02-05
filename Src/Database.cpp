@@ -325,3 +325,81 @@ bool CDatabaseIcon::ImportFromJson(const QJsonObject &obj)
 {
     return true;
 }
+
+bool CDatabaseIcon::ExportToJson(const QIcon &icon, QJsonObject &obj)
+{
+    QString szIconName = icon.name();
+    if(szIconName.isEmpty()) {
+        QByteArray baIcon = RabbitCommon::CIconUtils::iconToByteArray(icon);
+        obj.insert("IconData", baIcon.toBase64().toStdString().c_str());
+    } else {
+        obj.insert("IconName", szIconName);
+    }
+    return true;
+}
+
+bool CDatabaseIcon::ImportFromJson(const QJsonObject &itemObj, QIcon &icon)
+{
+    QString szIconName = itemObj["IconName"].toString();
+    if(szIconName.isEmpty()) {
+        QByteArray baIcon(itemObj["IconData"].toString().toStdString().c_str());
+        if(!baIcon.isEmpty()) {
+            baIcon = QByteArray::fromBase64(baIcon);
+            icon = RabbitCommon::CIconUtils::byteArrayToIcon(baIcon);
+        }
+    } else {
+        icon = QIcon::fromTheme(szIconName);
+    }
+    return true;
+}
+
+bool CDatabase::ExportToJson(const QString &szFile, QJsonObject &obj)
+{
+    QFileInfo fi(szFile);
+    if(!fi.exists()) {
+        qCritical(log) << "File is not exist:" << szFile;
+        return false;
+    }
+    QFile f(szFile);
+    if(!f.open(QFile::ReadOnly | QFile::Text)) {
+        qCritical(log) << "Failed to open file:" << szFile << f.errorString();
+        return false;
+    }
+    QString szFileContent = f.readAll();
+    f.close();
+    if(szFileContent.isEmpty()) {
+        qCritical(log) << "The file is emtpy:" << szFile;
+        return false;
+    };
+    obj.insert("FileName", fi.fileName());
+    obj.insert("FileContent", szFileContent);
+    return true;
+}
+
+bool CDatabase::ImportFromJson(const QJsonObject &obj, QString &szFile)
+{
+    QString szFileContent = obj["FileContent"].toString();
+    if(szFileContent.isEmpty()) {
+        qCritical(log) << "The file is empty";
+        return false;
+    }
+    szFile = obj["FileName"].toString();
+    if(szFile.isEmpty()) {
+        qCritical(log) << "The file name is empty";
+        return false;
+    }
+    szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+             + QDir::separator() + szFile;
+    QFileInfo fi(szFile);
+    if(!fi.exists()) {
+        QFile f(szFile);
+        if(!f.open(QFile::WriteOnly | QFile::Text)) {
+            qCritical(log) << "Failed to open file:" << szFile
+                           << f.errorString();
+            return false;
+        }
+        f.write(szFileContent.toStdString().c_str(), szFileContent.size());
+        f.close();
+    }
+    return true;
+}

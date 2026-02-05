@@ -61,6 +61,9 @@ protected:
     virtual bool OnDeleteKey(int key) override;
     virtual bool ExportToJson(QJsonObject &obj) override;
     virtual bool ImportFromJson(const QJsonObject &obj) override;
+private:
+    bool ExportToJson(int parentId, QJsonArray& obj);
+    bool ImportFromJson(int parentId, const QJsonArray& obj);
 };
 
 Q_DECLARE_METATYPE(CFavoriteDatabase::Item)

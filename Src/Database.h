@@ -30,6 +30,9 @@ public:
     virtual bool ExportToJson(QJsonObject& obj) = 0;
     virtual bool ImportFromJson(const QJsonObject& obj) = 0;
 
+    static bool ExportToJson(const QString &szFile, QJsonObject &obj);
+    static bool ImportFromJson(const QJsonObject &obj, QString &szFile);
+
 Q_SIGNALS:
     void sigChanged();
 
@@ -61,6 +64,9 @@ public:
     virtual bool OnInitializeDatabase() override;
     virtual bool ExportToJson(QJsonObject& obj) override;
     virtual bool ImportFromJson(const QJsonObject& obj) override;
+
+    static bool ExportToJson(/*in*/const QIcon& icon, /*out*/QJsonObject& obj);
+    static bool ImportFromJson(/*in*/const QJsonObject &obj, /*out*/QIcon& icon);
 
 private:
     QString m_szTableName;

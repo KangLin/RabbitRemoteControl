@@ -224,26 +224,13 @@ bool CRecentDatabase::ExportToJson(QJsonObject &obj)
     foreach(auto it, items) {
         QJsonObject itemObj;
 
-        QFileInfo fi(it.szFile);
-        if(!fi.exists())
-            continue;
-        QFile f(it.szFile);
-        if(!f.open(QFile::ReadOnly | QFile::Text)) continue;
-        QString szFileContent = f.readAll();
-        f.close();
-        if(szFileContent.isEmpty()) continue;
-        itemObj.insert("FileName", fi.fileName());
-        itemObj.insert("FileContent", szFileContent);
+        bool bRet = CDatabase::ExportToJson(it.szFile, itemObj);
+        if(!bRet) continue;
 
         itemObj.insert("OperateId", it.szOperateId);
 
-        QString szIconName = it.icon.name();
-        if(szIconName.isEmpty()) {
-            QByteArray icon = RabbitCommon::CIconUtils::iconToByteArray(it.icon);
-            itemObj.insert("IconData", icon.toBase64().toStdString().c_str());
-        } else {
-            itemObj.insert("IconName", szIconName);
-        }
+        bRet = CDatabaseIcon::ExportToJson(it.icon, itemObj);
+        if(!bRet) continue;
 
         itemObj.insert("Name", it.szName);
         itemObj.insert("Protocol", it.szProtocol);
@@ -271,23 +258,8 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
         QJsonObject itemObj = it->toObject();
         RecentItem item;
 
-        QString szFileContent = itemObj["FileContent"].toString();
-        if(szFileContent.isEmpty()) continue;
-        QString szFile = itemObj["FileName"].toString();
-        if(szFile.isEmpty()) continue;
-        item.szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                      + QDir::separator() + szFile;
-        QFileInfo fi(item.szFile);
-        if(!fi.exists()) {
-            QFile f(item.szFile);
-            if(!f.open(QFile::WriteOnly | QFile::Text)) {
-                qCritical(log) << "Failed to open file:" << item.szFile
-                               << f.errorString();
-                continue;
-            }
-            f.write(szFileContent.toStdString().c_str(), szFileContent.size());
-            f.close();
-        }
+        bool bRet = CDatabase::ImportFromJson(itemObj, item.szFile);
+        if(!bRet) continue;
 
         // Check if is exist in recent
         QSqlQuery query(GetDatabase());
@@ -300,16 +272,8 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
             continue;
         }
 
-        QString szIconName = itemObj["IconName"].toString();
-        if(szIconName.isEmpty()) {
-            QByteArray icon(itemObj["IconData"].toString().toStdString().c_str());
-            if(!icon.isEmpty()) {
-                icon = QByteArray::fromBase64(icon);
-                item.icon = RabbitCommon::CIconUtils::byteArrayToIcon(icon);
-            }
-        } else {
-            item.icon = QIcon::fromTheme(szIconName);
-        }
+        bRet = CDatabaseIcon::ImportFromJson(itemObj, item.icon);
+        if(!bRet) continue;
 
         item.szOperateId = itemObj["OperateId"].toString();
         item.szName = itemObj["Name"].toString();
