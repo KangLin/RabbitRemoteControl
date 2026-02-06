@@ -516,7 +516,7 @@ bool CDatabaseTree::OnInitializeDatabase()
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    parent_id INTEGER DEFAULT 0,"
         "    name TEXT,"
-        "    key INTEGER DEFAULT 0,"
+        "    value INTEGER DEFAULT 0,"
         "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    last_visit_time DATETIME"
@@ -531,7 +531,7 @@ bool CDatabaseTree::OnInitializeDatabase()
     }
 
     // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_key ON " + m_szTableName + "(key)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_value ON " + m_szTableName + "(value)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_parent_id ON " + m_szTableName + "(parent_id)");
 
     return true;
@@ -545,7 +545,7 @@ int CDatabaseTree::Add(const TreeItem &item)
     // Check if it already exists
     query.prepare(
         "SELECT id FROM " + m_szTableName +
-        " WHERE key=:key AND parent_id=:parent_id"
+        " WHERE value=:key AND parent_id=:parent_id"
         );
     query.bindValue(":key", item.GetKey());
     query.bindValue(":parent_id", item.GetParentId());
@@ -561,7 +561,7 @@ int CDatabaseTree::Add(const TreeItem &item)
 
     // Insert
     query.prepare(
-        "INSERT INTO " + m_szTableName + " (name, key, "
+        "INSERT INTO " + m_szTableName + " (name, value, "
         "created_time, modified_time, last_visit_time, parent_id) "
         "VALUES (:name, :key, "
         ":created_time, :modified_time, :last_visit_time, :parent_id)"
@@ -596,7 +596,7 @@ bool CDatabaseTree::Update(const TreeItem &item)
     query.prepare(
         "UPDATE " + m_szTableName + " SET "
         "name = :name, "
-        "key = :key, "
+        "value = :key, "
         "created_time = :created_time, "
         "modified_time = :modified_time, "
         "last_visit_time = :last_visit_time, "
@@ -740,7 +740,7 @@ TreeItem CDatabaseTree::GetLeaf(int id)
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT name, key,  "
+        "SELECT name, value,  "
         "created_time, modified_time, last_visit_time, parent_id FROM " + m_szTableName +
         " WHERE id = :id");
     query.bindValue(":id", id);
@@ -770,7 +770,7 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
     QList<TreeItem> items;
     QSqlQuery query(GetDatabase());
     QString szSql;
-    szSql = "SELECT id, name, key, "
+    szSql = "SELECT id, name, value, "
             "created_time, modified_time, last_visit_time, parent_id "
             "FROM " + m_szTableName;
     if(0 <= nodeId)
@@ -810,7 +810,7 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(int key)
     szSql = "SELECT id, name, "
             "created_time, modified_time, last_visit_time, parent_id "
             "FROM " + m_szTableName +
-            " WHERE key = :key";
+            " WHERE value = :key";
     query.prepare(szSql);
     query.bindValue(":key", key);
     bool success = query.exec();
@@ -844,17 +844,17 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
 
     QSqlQuery query(GetDatabase());
     QString szSql;
-    szSql = "SELECT id, name, key, "
+    szSql = "SELECT id, name, value, "
             "created_time, modified_time, last_visit_time, parent_id "
             "FROM " + m_szTableName +
             " WHERE ";
     int i = 0;
     foreach(auto KeyId, key) {
         if(0 == i++) {
-            szSql += " key = " + QString::number(KeyId);
+            szSql += " value = " + QString::number(KeyId);
             continue;
         }
-            szSql += " OR key = " + QString::number(KeyId);
+            szSql += " OR value = " + QString::number(KeyId);
     }
     bool success = query.exec(szSql);
     if (!success) {
@@ -952,7 +952,7 @@ bool CDatabaseTree::ExportToJson(QJsonObject& obj)
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, parent_id, name, key, "
+        "SELECT id, parent_id, name, value, "
         "created_time, modified_time, last_visit_time FROM " + m_szTableName);
     bool success = query.exec();
     if (!success) {

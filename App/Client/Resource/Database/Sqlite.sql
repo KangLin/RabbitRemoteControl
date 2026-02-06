@@ -14,7 +14,7 @@ CREATE INDEX idx_favorite_folders_parent ON favorite_folders(parent_id);
 CREATE TABLE favorite_tree (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    key INTEGER DEFAULT 0,
+    value INTEGER DEFAULT 0,
     created_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_visit_time DATETIME,
@@ -22,7 +22,7 @@ CREATE TABLE favorite_tree (
 );
 
 -- 创建索引
-CREATE INDEX idx_favorite_tree_key ON favorite_tree(key);
+CREATE INDEX idx_favorite_tree_value ON favorite_tree(value);
 CREATE INDEX idx_favorite_tree_parent_id ON favorite_tree(parent_id);
 
 -- 创建表
@@ -44,7 +44,7 @@ CREATE TABLE recent (
     icon INTEGER DEFAULT 0,
     name TEXT NOT NULL,
     protocol TEXT,
-    type TEXT,
+    operate_type TEXT,
     file TEXT UNIQUE NOT NULL,
     time DATETIME DEFAULT CURRENT_TIMESTAMP,
     description TEXT

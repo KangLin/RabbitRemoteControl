@@ -39,7 +39,7 @@ bool CRecentDatabase::OnInitializeDatabase()
         "    icon INTEGER DEFAULT 0,"
         "    name TEXT NOT NULL,"
         "    protocol TEXT,"
-        "    type TEXT,"
+        "    operate_type TEXT,"
         "    file TEXT UNIQUE NOT NULL,"
         "    time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    description TEXT"
@@ -115,7 +115,7 @@ int CRecentDatabase::AddRecent(const RecentItem &item)
         query.bindValue(":id", id);
     } else {
         query.prepare(
-            "INSERT INTO recent (operate_id, icon, name, protocol, type, file, time, description)"
+            "INSERT INTO recent (operate_id, icon, name, protocol, operate_type, file, time, description)"
             "VALUES (:operate_id, :icon, :name, :protocol, :type, :file, :time, :description)"
             );
         query.bindValue(":operate_id", item.szOperateId);
@@ -182,13 +182,13 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int of
     QSqlQuery query(GetDatabase());
     if(0 > limit) {
         query.prepare(
-            "SELECT id, operate_id, icon, name, protocol, type, file, time, description "
+            "SELECT id, operate_id, icon, name, protocol, operate_type, file, time, description "
             "FROM recent "
             "ORDER BY time DESC "
             );
     } else {
         query.prepare(
-            "SELECT id, operate_id, icon, name, protocol, type, file, time, description "
+            "SELECT id, operate_id, icon, name, protocol, operate_type, file, time, description "
             "FROM recent "
             "ORDER BY time DESC "
             "LIMIT :limit OFFSET :offset"

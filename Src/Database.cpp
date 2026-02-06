@@ -85,7 +85,7 @@ bool CDatabase::OpenSQLiteDatabase(
         if (!dir.exists()) {
             dir.mkpath(dataDir);
         }
-        databasePath = dir.filePath("database.db");
+        databasePath = dir.filePath("remote_control.db");
     } else {
         databasePath = dbPath;
     }
