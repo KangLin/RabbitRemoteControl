@@ -19,6 +19,8 @@ public:
     virtual int SetParameter(CParameter *pParameter) override;
     virtual int Accept() override;
 
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+
 private slots:
     void slotTypeCurrentTextChanged(const QString &text);
     void on_pbBrowser_clicked();

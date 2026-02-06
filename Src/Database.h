@@ -16,17 +16,18 @@ public:
     explicit CDatabase(QObject *parent = nullptr);
     virtual ~CDatabase();
 
-    void SetDatabase(QSqlDatabase db);
+    void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara = nullptr);
     QSqlDatabase GetDatabase() const;
 
     virtual bool OpenDatabase(CParameterDatabase* pPara);
     virtual bool OpenMySqlDatabase(CParameterDatabase* pPara);
+    virtual bool OpenODBCDatabase(CParameterDatabase* pPara);
     virtual bool OpenSQLiteDatabase(const QString &connectionName = QString(),
                                     const QString &dbPath = QString());
     virtual bool IsOpen() const;
     virtual void CloseDatabase();
 
-    virtual bool OnInitializeDatabase() = 0;
+    virtual bool OnInitializeDatabase();
 
     virtual bool ExportToJsonFile(const QString& szFile);
     virtual bool ImportFromJsonFile(const QString& szFile);
@@ -40,8 +41,13 @@ Q_SIGNALS:
     void sigChanged();
 
 protected:
+    virtual bool OnInitializeSqliteDatabase();
+    virtual bool OnInitializeMySqlDatabase();
+
+protected:
     QString m_szConnectName;
     QString m_MinVersion;
+    CParameterDatabase* m_pPara;
 
 private:
     QSqlDatabase m_database;
@@ -64,12 +70,15 @@ public:
     int GetIcon(const QIcon& icon);
     QIcon GetIcon(int id);
 
-    virtual bool OnInitializeDatabase() override;
     virtual bool ExportToJson(QJsonObject& obj) override;
     virtual bool ImportFromJson(const QJsonObject& obj) override;
 
     static bool ExportIconToJson(/*in*/const QIcon& icon, /*out*/QJsonObject& obj);
     static bool ImportIconFromJson(/*in*/const QJsonObject &obj, /*out*/QIcon& icon);
+
+protected:
+    bool OnInitializeSqliteDatabase() override;
+    bool OnInitializeMySqlDatabase() override;
 
 private:
     QString m_szTableName;

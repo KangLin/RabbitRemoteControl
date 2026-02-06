@@ -18,7 +18,7 @@ CFavoriteDatabase::CFavoriteDatabase(QObject *parent)
     qDebug(log) << Q_FUNC_INFO;
 }
 
-bool CFavoriteDatabase::OnInitializeDatabase()
+bool CFavoriteDatabase::OnInitializeSqliteDatabase()
 {
     QSqlQuery query(GetDatabase());
 
@@ -69,10 +69,85 @@ bool CFavoriteDatabase::OnInitializeDatabase()
     if (!success) {
         qWarning(log) << "Failed to create trigger delete_icon_after_favorite." << query.lastError().text();
     }
+    success = CDatabaseTree::OnInitializeSqliteDatabase();
+    return success;
+}
 
-    m_IconDB.SetDatabase(GetDatabase());
-    m_IconDB.OnInitializeDatabase();
-    return CDatabaseTree::OnInitializeDatabase();
+bool CFavoriteDatabase::OnInitializeMySqlDatabase()
+{
+    bool success = false;
+    QSqlQuery query(GetDatabase());
+
+    // Create favorite table
+    success = query.exec(
+        "CREATE TABLE IF NOT EXISTS favorite ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT," // the id is the key of tree table
+        "    name TEXT NOT NULL,"
+        "    icon INTEGER DEFAULT 0,"
+        "    file TEXT NOT NULL,"
+        "    description TEXT,"
+        "    UNIQUE KEY idx_favorite_file (file(255))"
+        ")"
+        );
+    if (!success) {
+        qCritical(log) << "Failed to create favorite table:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    // Drop trigger if exists
+    if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_favorite")) {
+        qDebug(log) << "Failed to drop trigger delete_icon_after_favorite:"
+                    << query.lastError().text()
+                    << "Sql:" << query.executedQuery();
+    }
+    // Create trigger
+    QString szSql = R"(
+        CREATE TRIGGER delete_icon_after_favorite
+        AFTER DELETE ON favorite
+        FOR EACH ROW
+        BEGIN
+            DECLARE favorite_count INT DEFAULT 0;
+            DECLARE recent_count INT DEFAULT 0;
+            
+            IF OLD.icon != 0 THEN
+                -- 统计favorite表中引用该icon的数量
+                SELECT COUNT(*) INTO favorite_count 
+                FROM favorite 
+                WHERE icon = OLD.icon;
+                
+                -- 统计recent表中引用该icon的数量
+                SELECT COUNT(*) INTO recent_count 
+                FROM recent 
+                WHERE icon = OLD.icon;
+                
+                -- 如果都没有引用，则删除icon
+                IF favorite_count = 0 AND recent_count = 0 THEN
+                    DELETE FROM icon WHERE id = OLD.icon;
+                END IF;
+            END IF;
+        END
+    )";
+    success = query.exec(szSql);
+    if (!success) {
+        qWarning(log) << "Failed to create trigger delete_icon_after_favorite."
+                      << query.lastError().text()
+                      << "Sql:" << query.executedQuery();
+    }
+    
+    return CDatabaseTree::OnInitializeMySqlDatabase();
+}
+
+bool CFavoriteDatabase::OnInitializeDatabase()
+{
+    bool bRet = false;
+    bRet = CDatabaseTree::OnInitializeDatabase();
+    if(!bRet) return false;
+
+    m_IconDB.SetDatabase(GetDatabase(), m_pPara);
+    bRet = m_IconDB.OnInitializeDatabase();
+    return bRet;
 }
 
 int CFavoriteDatabase::AddFavorite(const QString &szFile,

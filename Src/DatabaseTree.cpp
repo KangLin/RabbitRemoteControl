@@ -170,7 +170,7 @@ CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
         m_szTableName = szPrefix + "_" + m_szTableName;
 }
 
-bool CDatabaseFolder::OnInitializeDatabase()
+bool CDatabaseFolder::OnInitializeSqliteDatabase()
 {
     QSqlQuery query(GetDatabase());
 
@@ -191,7 +191,7 @@ bool CDatabaseFolder::OnInitializeDatabase()
         );
 
     if (!success) {
-        qCritical(log) << "Failed to create folders table:"
+        qCritical(log) << "Failed to create folders sqlite table:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
         return false;
@@ -203,6 +203,36 @@ bool CDatabaseFolder::OnInitializeDatabase()
     return true;
 }
 
+bool CDatabaseFolder::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+
+    // 启用外键约束
+    query.exec("PRAGMA foreign_keys = ON");
+
+    // 创建文件夹表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS "
+        + m_szTableName +
+        " ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    name TEXT NOT NULL,"
+        "    parent_id INTEGER DEFAULT 0,"
+        "    sort_order INTEGER DEFAULT 0,"
+        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    INDEX idx_parent (parent_id),"
+        "    INDEX idx_parent_sort (parent_id, sort_order)"
+        ")"
+        );
+    if (!success) {
+        qCritical(log) << "Failed to create folders mysql table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    return true;
+}
 
 int CDatabaseFolder::AddFolder(const QString &name, int parentId)
 {
@@ -497,14 +527,21 @@ CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
 bool CDatabaseTree::OnInitializeDatabase()
 {
     bool bRet = false;
+    bRet = CDatabase::OnInitializeDatabase();
 
-    m_FolderDB.SetDatabase(GetDatabase());
+    if(!bRet) return false;
+    m_FolderDB.SetDatabase(GetDatabase(), m_pPara);
     bRet = m_FolderDB.OnInitializeDatabase();
     if(!bRet) return false;
     bRet = connect(&m_FolderDB, &CDatabaseFolder::sigAddFolder,
                    this, &CDatabaseTree::sigAddFolder);
     Q_ASSERT(bRet);
 
+    return bRet;
+}
+
+bool CDatabaseTree::OnInitializeSqliteDatabase()
+{
     QSqlQuery query(GetDatabase());
 
     // 启用外键约束
@@ -534,6 +571,38 @@ bool CDatabaseTree::OnInitializeDatabase()
     query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_value ON " + m_szTableName + "(value)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_parent_id ON " + m_szTableName + "(parent_id)");
 
+    return true;
+}
+
+bool CDatabaseTree::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 启用外键约束
+    query.exec("PRAGMA foreign_keys = ON");
+    
+    // 创建书签表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    parent_id INTEGER DEFAULT 0,"
+        "    name TEXT,"
+        "    value INTEGER DEFAULT 0,"
+        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    last_visit_time DATETIME,"
+        "    INDEX idx_value (value),"
+        "    INDEX idx_parent_id (parent_id)"
+        ")"
+        );
+    
+    if (!success) {
+        qCritical(log) << "Failed to create tree table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+    
     return true;
 }
 
@@ -815,7 +884,7 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(int key)
     query.bindValue(":key", key);
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to get leaves:"
+        qCritical(log) << "Failed to get leaves by key:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
         return items;
@@ -858,7 +927,7 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
     }
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to get leaves:"
+        qCritical(log) << "Failed to get leaves by key:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
         return items;

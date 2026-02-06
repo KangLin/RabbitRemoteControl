@@ -4,6 +4,8 @@
 #include <QLoggingCategory>
 #include <QSet>
 #include <QFileDialog>
+#include <QWhatsThisClickedEvent>
+#include <QDesktopServices>
 
 #include "RabbitCommonDir.h"
 #include "ParameterNet.h"
@@ -22,6 +24,7 @@ CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
 
     setWindowTitle(tr("Database"));
 
+    ui->leDatabaseName->installEventFilter(this);
     ui->pbBrowser->setVisible(false);
 
     QStringList drivers = QSqlDatabase::drivers();
@@ -71,23 +74,30 @@ int CParameterDatabaseUI::Accept()
 void CParameterDatabaseUI::slotTypeCurrentTextChanged(const QString &text)
 {
     QString szMsg;
+    QString szHelp;
     szMsg = tr("Set the database name");
-    ui->wNet->setVisible(true);
 
     bool bBrowser = false;
+    bool bNet = true;
     if("QSQLITE" == text) {
         szMsg = tr("Set the sqlite database file");
         bBrowser = true;
-        ui->wNet->setVisible(false);
+        bNet = false;
     } else if("QODBC" == text) {
         szMsg = tr("The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.");
+        szHelp = szMsg + " <a href=https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual_zh_CN#%E5%9C%A8-windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-odbc-%E8%AE%BF%E9%97%AE-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93>" + tr("Configure database") + "</a>";
+        bNet = false;
     } else if("QMYSQL" == text) {
-        ;
+        bNet = true;
     }
 
+    if(szHelp.isEmpty())
+        szHelp = szMsg + " <a href=https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual_zh_CN#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93>" + tr("Configure database") + "</a>";
+    ui->leDatabaseName->setWhatsThis(szHelp);
     ui->leDatabaseName->setPlaceholderText(szMsg);
     ui->leDatabaseName->setToolTip(szMsg);
     ui->pbBrowser->setVisible(bBrowser);
+    ui->wNet->setVisible(bNet);
 }
 
 void CParameterDatabaseUI::on_pbBrowser_clicked()
@@ -104,3 +114,16 @@ void CParameterDatabaseUI::on_pbBrowser_clicked()
     ui->leDatabaseName->setText(szFile);
 }
 
+bool CParameterDatabaseUI::eventFilter(QObject *watched, QEvent *event)
+{
+    if(ui->leDatabaseName == watched) {
+        if(event->type() == QEvent::WhatsThisClicked) {
+            QWhatsThisClickedEvent* e = (QWhatsThisClickedEvent*)event;
+            if(e) {
+                qDebug(log) << e->href();
+                return QDesktopServices::openUrl(e->href());
+            }
+        }
+    }
+    return QWidget::eventFilter(watched, event);
+}

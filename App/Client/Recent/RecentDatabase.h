@@ -35,6 +35,8 @@ public:
 
 private:
     bool OnInitializeDatabase() override;
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
     virtual bool ExportToJson(QJsonObject &obj) override;
     virtual bool ImportFromJson(const QJsonObject &obj) override;
 

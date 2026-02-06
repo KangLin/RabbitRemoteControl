@@ -29,6 +29,18 @@ CRecentDatabase::~CRecentDatabase()
 
 bool CRecentDatabase::OnInitializeDatabase()
 {
+    bool bRet = false;
+    bRet = CDatabase::OnInitializeDatabase();
+    if(!bRet) return false;
+
+    // Create icon table
+    m_IconDB.SetDatabase(GetDatabase(), m_pPara);
+    bRet = m_IconDB.OnInitializeDatabase();
+    return bRet;
+}
+
+bool CRecentDatabase::OnInitializeSqliteDatabase()
+{
     QSqlQuery query(GetDatabase());
 
     // Create recent table
@@ -54,11 +66,15 @@ bool CRecentDatabase::OnInitializeDatabase()
     // Create index
     success = query.exec("CREATE INDEX IF NOT EXISTS idx_recent_file ON recent(file)");
     if(!success)  {
-        qWarning(log) << "Failed to drop index idx_recent_file:" << query.lastError().text();
+        qWarning(log) << "Failed to drop index idx_recent_file:"
+                      << query.lastError().text()
+                      << "Sql:" << query.executedQuery();
     }
 
     if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_recent")) {
-        qDebug(log) << "Failed to drop trigger delete_icon_after_recent:" << query.lastError().text();
+        qDebug(log) << "Failed to drop trigger delete_icon_after_recent:"
+                    << query.lastError().text()
+                    << "Sql:" << query.executedQuery();
     }
 
     QString szSql = R"(
@@ -79,12 +95,81 @@ bool CRecentDatabase::OnInitializeDatabase()
     )";
     success = query.exec(szSql);
     if (!success) {
-        qWarning(log) << "Failed to create trigger delete_icon_after_recent." << query.lastError().text();
+        qWarning(log) << "Failed to create trigger delete_icon_after_recent."
+                      << query.lastError().text()
+                      << "Sql:" << query.executedQuery();
     }
 
-    // Create icon table
-    m_IconDB.SetDatabase(GetDatabase());
-    m_IconDB.OnInitializeDatabase();
+    return true;
+}
+
+bool CRecentDatabase::OnInitializeMySqlDatabase()
+{
+    bool success = false;
+    QSqlQuery query(GetDatabase());
+
+    // Create recent table
+    success = query.exec(
+        "CREATE TABLE IF NOT EXISTS recent ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    operate_id TEXT NOT NULL,"
+        "    icon INTEGER DEFAULT 0,"
+        "    name TEXT NOT NULL,"
+        "    protocol TEXT,"
+        "    operate_type TEXT,"
+        "    file TEXT NOT NULL,"
+        "    time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    description TEXT,"
+        "    UNIQUE KEY uk_recent_file (file(255))"
+        ")"
+        );
+    if (!success) {
+        qCritical(log) << "Failed to create recent table:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    // Create trigger
+    if (!query.exec("DROP TRIGGER IF EXISTS delete_icon_after_recent")) {
+        qDebug(log) << "Failed to drop trigger delete_icon_after_recent:"
+                    << query.lastError().text()
+                    << "Sql:" << query.executedQuery();
+    }
+
+    QString szSql = R"(
+        CREATE TRIGGER delete_icon_after_recent
+        AFTER DELETE ON recent
+        FOR EACH ROW
+        BEGIN
+            DECLARE favorite_count INT DEFAULT 0;
+            DECLARE recent_count INT DEFAULT 0;
+            
+            IF OLD.icon != 0 THEN
+                -- 统计favorite表中引用该icon的数量
+                SELECT COUNT(*) INTO favorite_count 
+                FROM favorite 
+                WHERE icon = OLD.icon;
+                
+                -- 统计recent表中引用该icon的数量
+                SELECT COUNT(*) INTO recent_count 
+                FROM recent 
+                WHERE icon = OLD.icon;
+                
+                -- 如果都没有引用，则删除icon
+                IF favorite_count = 0 AND recent_count = 0 THEN
+                    DELETE FROM icon WHERE id = OLD.icon;
+                END IF;
+            END IF;
+        END
+    )";
+    success = query.exec(szSql);
+    if (!success) {
+        qWarning(log) << "Failed to create trigger delete_icon_after_recent."
+                      << query.lastError().text()
+                      << "Sql:" << query.executedQuery();
+    }
+
     return true;
 }
 

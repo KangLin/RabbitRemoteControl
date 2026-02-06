@@ -17,6 +17,7 @@ static Q_LOGGING_CATEGORY(log, "DB")
 CDatabase::CDatabase(QObject *parent)
     : QObject{parent}
     , m_MinVersion("0.1.0")
+    , m_pPara(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     m_szConnectName = "connect";
@@ -28,12 +29,12 @@ CDatabase::~CDatabase()
     CloseDatabase();
 }
 
-void CDatabase::SetDatabase(QSqlDatabase db)
+void CDatabase::SetDatabase(QSqlDatabase db, CParameterDatabase *pPara)
 {
     QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
-    qCritical(log) << szErr;
     Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
     m_database = db;
+    m_pPara = pPara;
 }
 
 QSqlDatabase CDatabase::GetDatabase() const
@@ -46,6 +47,7 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
     bool bRet = false;
     if(!pPara) return false;
 
+    m_pPara = pPara;
     QString szErr = "Only one of OpenDatabase or SetDatabase can be called, and it can only be called once";
     Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
 
@@ -53,6 +55,8 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
         bRet = OpenSQLiteDatabase(QString(), pPara->GetDatabaseName());
     else if(pPara->GetType() == "QMYSQL")
         bRet = OpenMySqlDatabase(pPara);
+    else if(pPara->GetType() == "QODBC")
+        bRet = OpenODBCDatabase(pPara);
 
     QSqlDriver *driver = GetDatabase().driver();
     if (driver) {
@@ -71,7 +75,10 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
         qDebug(log) << "Multiple result sets:" << driver->hasFeature(QSqlDriver::MultipleResultSets);
         qDebug(log) << "Cancel query:" << driver->hasFeature(QSqlDriver::CancelQuery);
     }
-    return bRet;
+
+    if(!bRet) return false;
+
+    return OnInitializeDatabase();
 }
 
 bool CDatabase::OpenSQLiteDatabase(
@@ -98,7 +105,7 @@ bool CDatabase::OpenSQLiteDatabase(
     m_database.setDatabaseName(databasePath);
 
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open database:"
+        qCritical(log) << "Failed to open sqlite database:"
                        << m_database.lastError().text()
                        << "connect name:" << m_database.connectionName()
                        << "database name:" << m_database.databaseName();
@@ -108,7 +115,7 @@ bool CDatabase::OpenSQLiteDatabase(
     qInfo(log) << "Open sqlite database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    return OnInitializeDatabase();
+    return true;
 }
 
 bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
@@ -128,17 +135,97 @@ bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
     m_database.setPassword(user.GetPassword());
 
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open database:"
+        qCritical(log) << "Failed to open mysql database:"
                        << m_database.lastError().text()
                        << "connect name:" << m_database.connectionName()
                        << "database name:" << m_database.databaseName();
         return false;
     }
 
+    QSqlQuery query(GetDatabase());
+    bool success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
+    if (!success) {
+        qCritical(log) << "Failed to create" << szDbName << "database:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    success = query.exec("use remote_control");
+    if (!success) {
+        qCritical(log) << "Failed to use" << szDbName << "database:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
     qInfo(log) << "Open mysql database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    return OnInitializeDatabase();
+    return true;
+}
+
+bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara)
+{
+    if(!pPara) return false;
+    // 打开或创建数据库
+    m_database = QSqlDatabase::addDatabase("QODBC", m_szConnectName);
+    QString szDbName = pPara->GetDatabaseName();
+    if(szDbName.isEmpty())
+        szDbName = "remote_control";
+    m_database.setDatabaseName(szDbName);
+
+    if (!m_database.open()) {
+        qCritical(log) << "Failed to open odbc database:"
+                       << m_database.lastError().text()
+                       << "connect name:" << m_database.connectionName()
+                       << "database name:" << m_database.databaseName();
+        return false;
+    }
+
+    QSqlQuery query(GetDatabase());
+    bool success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
+    if (!success) {
+        qCritical(log) << "Failed to create" << szDbName << "database:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    success = query.exec("use remote_control");
+    if (!success) {
+        qCritical(log) << "Failed to use" << szDbName << "database:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    qInfo(log) << "Open odbc database connect:"
+               << m_database.connectionName()
+               << "database name:" << m_database.databaseName();
+    return true;
+}
+
+bool CDatabase::OnInitializeDatabase()
+{
+    bool bRet = false;
+    if(!m_pPara) return false;
+    if(m_pPara->GetType() == "QSQLITE")
+        bRet = OnInitializeSqliteDatabase();
+    else if(m_pPara->GetType() == "QMYSQL" || m_pPara->GetType() == "QODBC") {
+        bRet = OnInitializeMySqlDatabase();
+    }
+    return bRet;
+}
+
+bool CDatabase::OnInitializeSqliteDatabase()
+{
+    return true;
+}
+
+bool CDatabase::OnInitializeMySqlDatabase()
+{
+    return true;
 }
 
 bool CDatabase::IsOpen() const
@@ -233,7 +320,7 @@ CDatabaseIcon::CDatabaseIcon(const QString &szPrefix, QObject *parent)
         m_szTableName = szPrefix + "_" + m_szTableName;
 }
 
-bool CDatabaseIcon::OnInitializeDatabase()
+bool CDatabaseIcon::OnInitializeSqliteDatabase()
 {
     QSqlQuery query(GetDatabase());
 
@@ -248,11 +335,49 @@ bool CDatabaseIcon::OnInitializeDatabase()
         ;
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create icon table:" << m_szTableName << query.lastError().text();
+        qCritical(log) << "Failed to create icon sqlite table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return false;
     }
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_name ON " + m_szTableName + "(name)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_hash ON " + m_szTableName + "(hash)");
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_name ON " + m_szTableName + "(name)");
+    if (!success) {
+        qWarning(log) << "Failed to create icon name index:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+    }
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_hash ON " + m_szTableName + "(hash)");
+    if (!success) {
+        qWarning(log) << "Failed to create icon hash index:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+    }
+    return true;
+}
+
+bool CDatabaseIcon::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // Create icon table
+    QString szSql =
+        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    name TEXT,"              // Icon name. see QIcon::name()
+        "    hash TEXT,"              // Icon hash value
+        "    data LONGBLOB,"          // Icon binary data
+        "    UNIQUE KEY idx_icon_name (name(255)),"
+        "    UNIQUE KEY idx_icon_hash (hash(255))"
+        ")"
+        ;
+    bool success = query.exec(szSql);
+    if (!success) {
+        qCritical(log) << "Failed to create icon mysql table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
     return true;
 }
 
@@ -432,7 +557,7 @@ bool CDatabase::ExportFileToJson(const QString &szFile, QJsonObject &obj)
     QString szFileContent = f.readAll();
     f.close();
     if(szFileContent.isEmpty()) {
-        qCritical(log) << "The file is emtpy:" << szFile;
+        qCritical(log) << "The file is empty:" << szFile;
         return false;
     };
     obj.insert("FileName", fi.fileName());

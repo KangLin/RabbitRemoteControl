@@ -72,7 +72,6 @@ public:
      */
     int GetCount(int parentId = 0);
 
-    virtual bool OnInitializeDatabase() override;
     virtual bool ExportToJson(QJsonObject& obj) override;
     virtual bool ImportFromJson(const QJsonObject& obj) override;
 
@@ -84,7 +83,9 @@ Q_SIGNALS:
 
 protected:
     virtual bool OnDeleteLeafs(int id);
-
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
+    
 private:
     QString m_szTableName;
 };
@@ -166,6 +167,8 @@ protected:
      *         false: 失败。删除停止。
      */
     virtual bool OnDeleteKey(int key);
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
 
 private:
     QString m_szTableName;
