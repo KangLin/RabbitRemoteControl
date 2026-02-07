@@ -37,6 +37,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QWidget(parent)
     , m_pImportAction(nullptr)
     , m_pExportAction(nullptr)
     , m_pRefresh(nullptr)
+    , m_pShowToolbar(nullptr)
     , m_pMenu(nullptr)
 {
     bool check = false;
@@ -84,6 +85,19 @@ void CFavoriteView::setupToolBar(QLayout *layout)
     QToolBar* pToolBar = new QToolBar(this);
     if(!pToolBar) return;
     layout->addWidget(pToolBar);
+
+    m_pShowToolbar = new QAction(tr("Show tool bar"), this);
+    m_pShowToolbar->setCheckable(true);
+    m_pShowToolbar->setChecked(m_pParaApp->GetDockListFavoriteShowToolBar());
+    pToolBar->setVisible(m_pShowToolbar->isChecked());
+    check = connect(m_pShowToolbar, &QAction::triggered, this, [&, pToolBar]() {
+        if(m_pShowToolbar && m_pParaApp) {
+            pToolBar->setVisible(m_pShowToolbar->isChecked());
+            m_pParaApp->SetDockListFovoriteShowToolBar(m_pShowToolbar->isChecked());
+            m_pParaApp->Save();
+        }
+    });
+    Q_ASSERT(check);
 
     m_pStartAction = pToolBar->addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
@@ -331,6 +345,9 @@ void CFavoriteView::slotMenu()
 
     m_pMenu->addSeparator();
     m_pMenu->addAction(m_pRefresh);
+
+    m_pMenu->addSeparator();
+    m_pMenu->addAction(m_pShowToolbar);
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)

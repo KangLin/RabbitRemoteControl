@@ -76,6 +76,7 @@ private:
     QAction *m_pImportAction;
     QAction *m_pExportAction;
     QAction* m_pRefresh;
+    QAction* m_pShowToolbar;
 
     QMenu* m_pMenu;
     QPoint m_DragStartPosition;

@@ -25,6 +25,7 @@ CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow")
     m_bMessageBoxDisplayInfomation(true),
     m_bDockListActiveShowToolBar(true),
     m_bDockListRecentShowToolBar(true),
+    m_bDockListFavoriteShowToolBar(true),
     m_bKeepSplitViewWhenFullScreen(false),
     m_bStartByType(true)
 {
@@ -95,6 +96,10 @@ int CParameterApp::OnLoad(QSettings &set)
         set.value("Recent/ToolBar/Show",
                   GetDockListRecentShowToolBar()).toBool());
 
+    SetDockListFovoriteShowToolBar(
+        set.value("Favorite/ToolBar/Show",
+                  GetDockListFavoriteShowToolBar()).toBool());
+
     SetKeepSplitViewWhenFullScreen(
         set.value("KeepSplitViewWhenFullScreen",
                   GetKeepSplitViewWhenFullScreen()).toBool());
@@ -150,6 +155,8 @@ int CParameterApp::OnSave(QSettings &set)
                  GetDockListActiveShowToolBar());
     set.setValue("Recent/ToolBar/Show",
                  GetDockListRecentShowToolBar());
+    set.setValue("Favorite/ToolBar/Show",
+              GetDockListFavoriteShowToolBar());
 
     set.setValue("KeepSplitViewWhenFullScreen",
                  GetKeepSplitViewWhenFullScreen());
@@ -409,6 +416,19 @@ void CParameterApp::SetDockListRecentShowToolBar(bool bEnable)
     if(m_bDockListRecentShowToolBar == bEnable)
         return;
     m_bDockListRecentShowToolBar = bEnable;
+    SetModified(true);
+}
+
+const bool CParameterApp::GetDockListFavoriteShowToolBar() const
+{
+    return m_bDockListFavoriteShowToolBar;
+}
+
+void CParameterApp::SetDockListFovoriteShowToolBar(bool bEnable)
+{
+    if(m_bDockListFavoriteShowToolBar == bEnable)
+        return;
+    m_bDockListFavoriteShowToolBar = bEnable;
     SetModified(true);
 }
 

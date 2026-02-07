@@ -175,6 +175,12 @@ private:
     bool m_bDockListRecentShowToolBar;
 
 public:
+    const bool GetDockListFavoriteShowToolBar() const;
+    void SetDockListFovoriteShowToolBar(bool bEnable);
+private:
+    bool m_bDockListFavoriteShowToolBar;
+
+public:
     bool GetKeepSplitViewWhenFullScreen() const;
     void SetKeepSplitViewWhenFullScreen(bool newKeepSplitViewWhenFullScreen);
     
