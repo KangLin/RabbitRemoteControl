@@ -3,12 +3,12 @@ id: "io.github.KangLin.RabbitRemoteControl"
 # See: [available runtimes](https://docs.flatpak.org/en/latest/available-runtimes.html)
 # See: [flatpak kde runtime](https://invent.kde.org/packaging/flatpak-kde-runtime)
 runtime: "org.kde.Platform"
-runtime-version: "6.9"
+runtime-version: "6.10"
 sdk: "org.kde.Sdk"
 command: RabbitRemoteControlApp
 
 base: io.qt.qtwebengine.BaseApp
-base-version: '6.9'
+base-version: '6.10'
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
 
@@ -48,14 +48,11 @@ finish-args:
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
 
 modules:
-  - shared-modules/libusb/libusb.json
-  - shared-modules/libsecret/libsecret.json
-
   # Unity 2021 and older require OpenSSL 1.0 or 1.1. Bundle a copy of OpenSSL 1.1.
   # https://github.com/flathub/com.unity.UnityHub/pull/73#issuecomment-1407370899
   # https://forum.unity.com/threads/workaround-for-libssl-issue-on-ubuntu-22-04.1271405/#post-8098841
   - name: openssl-1.1
-    disabled: false
+    disabled: true
     buildsystem: simple
     build-commands:
       - ./config --prefix=/app
@@ -153,7 +150,7 @@ modules:
       - -Dutils=false
 
   - name: curl
-    disabled: false
+    disabled: true
     sources:
       - type: archive
         url: https://github.com/curl/curl/releases/download/curl-8_16_0/curl-8.16.0.tar.xz
@@ -167,7 +164,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/FreeRDP/FreeRDP.git
-        tag: 3.18.0
+        tag: 3.22.0
     buildsystem: cmake-ninja
     builddir: true
     config-opts:

@@ -19,25 +19,25 @@ jobs:
         include:
           - VCPKG_TARGET_TRIPLET: x64-osx
             os: macos-15-intel
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-15
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-14
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: true
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-14
-            qt_version: 6.9.3
+            qt_version: 6.10.2
             qt_arch: clang_64
             WITH_MACOSX_BUNDLE: false
 
