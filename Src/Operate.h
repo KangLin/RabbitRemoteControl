@@ -343,12 +343,12 @@ protected:
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
      */
-    virtual int Load(QSettings &set) = 0;
+    Q_INVOKABLE virtual int Load(QSettings &set) = 0;
     /*!
      * \~chinese 保存参数
      * \~english Save parameters
      */
-    virtual int Save(QSettings &set) = 0;
+    Q_INVOKABLE virtual int Save(QSettings &set) = 0;
     /*!
      * \~chinese \brief 从文件中加载参数
      * \note 在 Initial() 之后调用

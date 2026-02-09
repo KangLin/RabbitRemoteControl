@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QtPlugin>
 #include <QFile>
+#include <QTemporaryFile>
 #include <QApplication>
 #include <QSettings>
 #include <QLoggingCategory>
@@ -38,6 +39,7 @@ static Q_LOGGING_CATEGORY(log, "Manager")
 CManager::CManager(QObject *parent) : QObject(parent)
     , m_FileVersion(1)  //TODO: update version it if update data
     , m_pHook(nullptr)
+    , m_pDatabaseFile(nullptr)
 {
 }
 
@@ -146,6 +148,12 @@ int CManager::Initial(QString szFile)
     }
     
     LoadPlugins();
+    
+    // TODO: 增加数据库参数
+    m_pDatabaseFile = new CDatabaseFile(this);
+    if(m_pDatabaseFile)
+        m_pDatabaseFile->OpenDatabase();
+
     return 0;
 }
 
@@ -388,6 +396,17 @@ COperate* CManager::LoadOperate(const QString &szFile)
     COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
     qDebug(log) << "Load operate configure file:"<< szFile;
+    if(m_pParameter->GetSaveSettingsType()
+        == CParameterPlugin::SaveSettingsType::Database) {
+        QByteArray content = m_pDatabaseFile->Load(szFile);
+        if(!content.isEmpty()) {
+            QFile f(szFile);
+            if(!f.open(QFile::WriteOnly | QFile::Text)) return nullptr;
+            f.write(content.data(), content.length());
+            f.close();
+        }
+    }
+
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
@@ -433,40 +452,47 @@ int CManager::SaveOperate(COperate *pOperate)
                  + pOperate->Id()
                  + ".rrc";
     
-    QSettings set(szFile, QSettings::IniFormat);
-    
-    CPlugin* pPlugin = nullptr; //pOperate->GetPlugin;
-    bool bRet = QMetaObject::invokeMethod(
-        pOperate,
-        "GetPlugin",
-        Qt::DirectConnection,
-        Q_RETURN_ARG(CPlugin*, pPlugin));
-    if(!bRet || !pPlugin)
     {
-        qCritical(log) << "Get plugin client fail";
+        QSettings set(szFile, QSettings::IniFormat);
+        CPlugin* pPlugin = nullptr; //pOperate->GetPlugin;
+        bool bRet = QMetaObject::invokeMethod(
+            pOperate,
+            "GetPlugin",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(CPlugin*, pPlugin));
+        if(!bRet || !pPlugin)
+        {
+            qCritical(log) << "Get plugin client fail";
+        }
+        Q_ASSERT(pPlugin);
+        
+        set.setValue("Manage/FileVersion", m_FileVersion);
+        set.setValue("Plugin/ID", pPlugin->Id());
+        set.setValue("Plugin/Protocol", pPlugin->Protocol());
+        set.setValue("Plugin/Name", pPlugin->Name());
+        int nRet = 0;
+        //nRet = pOperate->Save(szFile);
+        bRet = QMetaObject::invokeMethod(
+            pOperate,
+            "Save",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(QString, szFile));
+        if(!bRet) {
+            qCritical(log) << "Call pOperate->Save(szFile) fail.";
+            return -1;
+        }
+        if(nRet) {
+            qCritical(log) << "Save parameter fail" << nRet;
+            return -2;
+        }
     }
-    Q_ASSERT(pPlugin);
 
-    set.setValue("Manage/FileVersion", m_FileVersion);
-    set.setValue("Plugin/ID", pPlugin->Id());
-    set.setValue("Plugin/Protocol", pPlugin->Protocol());
-    set.setValue("Plugin/Name", pPlugin->Name());
-    int nRet = 0;
-    //nRet = pOperate->Save(szFile);
-    bRet = QMetaObject::invokeMethod(
-        pOperate,
-        "Save",
-        Qt::DirectConnection,
-        Q_RETURN_ARG(int, nRet),
-        Q_ARG(QString, szFile));
-    if(!bRet) {
-        qCritical(log) << "Call pOperate->Save(szFile) fail.";
-        return -1;
+    if(m_pParameter->GetSaveSettingsType()
+        == CParameterPlugin::SaveSettingsType::Database) {
+        return m_pDatabaseFile->Save(szFile) ? 0 : -1;
     }
-    if(nRet) {
-        qCritical(log) << "Save parameter fail" << nRet;
-        return -2;
-    }
+
     return 0;
 }
 

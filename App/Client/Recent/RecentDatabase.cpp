@@ -309,7 +309,7 @@ bool CRecentDatabase::ExportToJson(QJsonObject &obj)
     foreach(auto it, items) {
         QJsonObject itemObj;
 
-        bool bRet = CDatabase::ExportFileToJson(it.szFile, itemObj);
+        bool bRet = CDatabaseFile::ExportFileToJson(it.szFile, itemObj);
         if(!bRet) continue;
 
         itemObj.insert("OperateId", it.szOperateId);
@@ -343,7 +343,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
         QJsonObject itemObj = it->toObject();
         RecentItem item;
 
-        bool bRet = CDatabase::ImportFileFromJson(itemObj, item.szFile);
+        bool bRet = CDatabaseFile::ImportFileFromJson(itemObj, item.szFile);
         if(!bRet) continue;
 
         // Check if is exist in recent

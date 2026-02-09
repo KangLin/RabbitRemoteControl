@@ -80,7 +80,7 @@ void CParameterDatabaseUI::slotTypeCurrentTextChanged(const QString &text)
     bool bBrowser = false;
     bool bNet = true;
     if("QSQLITE" == text) {
-        szMsg = tr("Set the sqlite database file");
+        szMsg = tr("Set the sqlite database file. If is empty, then use default database file.");
         bBrowser = true;
         bNet = false;
     } else if("QODBC" == text) {

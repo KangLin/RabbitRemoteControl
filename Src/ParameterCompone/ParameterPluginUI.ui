@@ -2,30 +2,18 @@
 <ui version="4.0">
  <class>CParameterPluginUI</class>
  <widget class="QWidget" name="CParameterPluginUI">
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>550</width>
+    <height>720</height>
+   </rect>
   </property>
   <property name="windowTitle">
    <string>Plugin</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QCheckBox" name="cbEnableLocalInputMethod">
-     <property name="text">
-      <string>Enable local input method</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QCheckBox" name="cbEnableUserName">
-     <property name="text">
-      <string>Enable use the system user as the user</string>
-     </property>
-    </widget>
-   </item>
    <item row="5" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
@@ -125,55 +113,12 @@
      </layout>
     </widget>
    </item>
-   <item row="7" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="cbEnableLocalInputMethod">
+     <property name="text">
+      <string>Enable local input method</string>
      </property>
-     <property name="title">
-      <string>Name</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
-        <property name="text">
-         <string>Show protocol prefix in name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
-        <property name="text">
-         <string>Only show ip:port in name</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
-   </item>
-   <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Viewer zoom:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cbViewZoom">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
    <item row="0" column="0">
     <widget class="QGroupBox" name="gbCaptureAllKeyboard">
@@ -244,11 +189,85 @@
      </layout>
     </widget>
    </item>
+   <item row="7" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Name</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cbShowPrefix">
+        <property name="text">
+         <string>Show protocol prefix in name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbShowIPPort">
+        <property name="text">
+         <string>Only show ip:port in name</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="2" column="0">
     <widget class="QCheckBox" name="cbPromptAdminPrivilege">
      <property name="text">
       <string>Prompt administrator privilege</string>
      </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Viewer zoom:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbViewZoom">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="cbEnableUserName">
+     <property name="text">
+      <string>Enable use the system user as the user</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Save settings to:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="rbSaveSettingsToFile">
+        <property name="text">
+         <string>File</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QRadioButton" name="rbSaveSettingsToDatabase">
+        <property name="text">
+         <string>Database</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

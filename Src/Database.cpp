@@ -45,7 +45,11 @@ QSqlDatabase CDatabase::GetDatabase() const
 bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
 {
     bool bRet = false;
-    if(!pPara) return false;
+    if(!pPara) {
+        bRet = OpenSQLiteDatabase();
+        if(!bRet) return false;
+        return OnInitializeDatabase();
+    }
 
     m_pPara = pPara;
     QString szErr = "Only one of OpenDatabase or SetDatabase can be called, and it can only be called once";
@@ -209,7 +213,10 @@ bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara)
 bool CDatabase::OnInitializeDatabase()
 {
     bool bRet = false;
-    if(!m_pPara) return false;
+    if(!m_pPara) {
+        bRet = OnInitializeSqliteDatabase();
+        return bRet;
+    }
     if(m_pPara->GetType() == "QSQLITE")
         bRet = OnInitializeSqliteDatabase();
     else if(m_pPara->GetType() == "QMYSQL" || m_pPara->GetType() == "QODBC") {
@@ -316,6 +323,7 @@ CDatabaseIcon::CDatabaseIcon(QObject *parent)
 CDatabaseIcon::CDatabaseIcon(const QString &szPrefix, QObject *parent)
     : CDatabaseIcon(parent)
 {
+    m_szConnectName = "icon_connect";
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
 }
@@ -542,7 +550,7 @@ bool CDatabaseIcon::ImportIconFromJson(const QJsonObject &itemObj, QIcon &icon)
     return true;
 }
 
-bool CDatabase::ExportFileToJson(const QString &szFile, QJsonObject &obj)
+bool CDatabaseFile::ExportFileToJson(const QString &szFile, QJsonObject &obj)
 {
     QFileInfo fi(szFile);
     if(!fi.exists()) {
@@ -565,7 +573,7 @@ bool CDatabase::ExportFileToJson(const QString &szFile, QJsonObject &obj)
     return true;
 }
 
-bool CDatabase::ImportFileFromJson(const QJsonObject &obj, QString &szFile)
+bool CDatabaseFile::ImportFileFromJson(const QJsonObject &obj, QString &szFile)
 {
     QString szFileContent = obj["FileContent"].toString();
     if(szFileContent.isEmpty()) {
@@ -591,4 +599,125 @@ bool CDatabase::ImportFileFromJson(const QJsonObject &obj, QString &szFile)
         f.close();
     }
     return true;
+}
+
+CDatabaseFile::CDatabaseFile(QObject* parent) : CDatabase(parent)
+{
+    m_szConnectName = "file_connect";
+    m_szTableName = "file";
+}
+
+CDatabaseFile::CDatabaseFile(const QString &szPrefix, QObject *parent)
+    : CDatabase(parent)
+{
+    m_szConnectName = "file_connect";
+    if(!szPrefix.isEmpty())
+        m_szTableName = szPrefix + "_" + m_szTableName;
+}
+
+bool CDatabaseFile::ExportToJson(QJsonObject &obj)
+{
+    return true;
+}
+
+bool CDatabaseFile::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}
+
+QByteArray CDatabaseFile::Load(const QString &szFile)
+{
+    QByteArray content;
+    if(szFile.isEmpty()) return content;
+    QFileInfo fi(szFile);
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT content FROM " + m_szTableName + " "
+        " WHERE file=:file");
+    query.bindValue(":file", fi.fileName());
+    bool ok = query.exec();
+    if(ok) {
+        if(query.next()) {
+            content = query.value(0).toByteArray();
+        }
+    } else {
+        qCritical(log) << "Failed to Load:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+    }    
+    return content;
+}
+
+bool CDatabaseFile::Save(const QString &szFile)
+{
+    bool bRet = true;
+    if(szFile.isEmpty()) return false;
+    QFile f(szFile);
+    if(!f.open(QFile::ReadOnly | QFile::Text)) {
+        qCritical(log) << "Failed to open file:"
+                       << szFile << f.errorString() << ":" << f.error();
+        return false;
+    }
+    QByteArray content = f.readAll();
+    f.close();
+    QFileInfo fi(szFile);
+    QSqlQuery query(GetDatabase());
+    query.prepare(
+        "SELECT content FROM " + m_szTableName + " "
+        " WHERE file=:file");
+    query.bindValue(":file", fi.fileName());
+    bool success = query.exec();
+    if(success && query.next()) {
+        query.prepare(
+            "UPDATE " + m_szTableName + " "
+            "SET content = :content "
+            "WHERE file = :file"
+            );
+        query.bindValue(":file", fi.fileName());
+        query.bindValue(":content", content);
+    } else {
+        query.prepare(
+            "INSERT INTO " + m_szTableName + " "
+            "(file, content) "
+            "VALUES (:file, :content)"
+            );
+        query.bindValue(":file", fi.fileName());
+        query.bindValue(":content", content);
+    }
+    success = query.exec();
+    if (!success) {
+        qCritical(log) << "Failed to save file:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+    
+    return bRet;
+}
+
+bool CDatabaseFile::OnInitializeSqliteDatabase()
+{
+    QSqlQuery query(GetDatabase());
+
+    // Create file table
+    QString szSql =
+        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
+        "    file TEXT KEY NOT NULL UNIQUE,"
+        "    content LONGBLOB"
+        ")"
+        ;
+    bool success = query.exec(szSql);
+    if (!success) {
+        qCritical(log) << "Failed to create file table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    return true;
+}
+
+bool CDatabaseFile::OnInitializeMySqlDatabase()
+{
+    return OnInitializeSqliteDatabase();
 }

@@ -511,7 +511,7 @@ int COperateDesktop::Load(QSettings &set)
                  + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. ";
         qWarning(log) << szMsg.toStdString().c_str();
-        Q_ASSERT(false);//TODO: delete it
+        Q_ASSERT_X(false, "COperateDesktop", szMsg.toStdString().c_str());
     }
     
     LoadAdaptWindows();

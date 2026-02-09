@@ -1,4 +1,10 @@
--- 创建表
+-- 创建 file 表
+CREATE TABLE file (
+    file TEXT KEY NOT NULL UNIQUE,
+    content LONGBLOB
+    );
+
+-- 创建 favorite_folders 表
 CREATE TABLE favorite_folders (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -10,7 +16,7 @@ CREATE TABLE favorite_folders (
 -- 创建索引
 CREATE INDEX idx_favorite_folders_parent ON favorite_folders(parent_id);
 
--- 创建表
+-- 创建 favorite_tree 表
 CREATE TABLE favorite_tree (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
@@ -25,7 +31,7 @@ CREATE TABLE favorite_tree (
 CREATE INDEX idx_favorite_tree_value ON favorite_tree(value);
 CREATE INDEX idx_favorite_tree_parent_id ON favorite_tree(parent_id);
 
--- 创建表
+-- 创建 icon 表
 CREATE TABLE icon (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE,
@@ -37,7 +43,7 @@ CREATE TABLE icon (
 CREATE INDEX idx_icon_hash ON icon(hash);
 CREATE INDEX idx_icon_name ON icon(name);
 
--- 创建表
+-- 创建 recent 表
 CREATE TABLE recent (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     operate_id TEXT NOT NULL,
@@ -53,7 +59,7 @@ CREATE TABLE recent (
 -- 创建索引
 CREATE INDEX idx_recent_file ON recent(file);
 
--- 创建表
+-- 创建 favorite 表
 CREATE TABLE favorite (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,

@@ -18,8 +18,13 @@ public:
 
     void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara = nullptr);
     QSqlDatabase GetDatabase() const;
-
-    virtual bool OpenDatabase(CParameterDatabase* pPara);
+    
+    /*!
+     * \brief OpenDatabase
+     * \param pPara: nullptr: use sqlite database
+     * \return 
+     */
+    virtual bool OpenDatabase(CParameterDatabase* pPara = nullptr);
     virtual bool OpenMySqlDatabase(CParameterDatabase* pPara);
     virtual bool OpenODBCDatabase(CParameterDatabase* pPara);
     virtual bool OpenSQLiteDatabase(const QString &connectionName = QString(),
@@ -33,9 +38,6 @@ public:
     virtual bool ImportFromJsonFile(const QString& szFile);
     virtual bool ExportToJson(QJsonObject& obj) = 0;
     virtual bool ImportFromJson(const QJsonObject& obj) = 0;
-
-    static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
-    static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
 
 Q_SIGNALS:
     void sigChanged();
@@ -84,3 +86,27 @@ private:
     QString m_szTableName;
 };
 
+class PLUGIN_EXPORT CDatabaseFile : public CDatabase
+{
+    Q_OBJECT
+    
+public:
+    explicit CDatabaseFile(QObject* parent = nullptr);
+    explicit CDatabaseFile(const QString& szPrefix, QObject *parent = nullptr);
+    
+    QByteArray Load(const QString &szFile);
+    bool Save(const QString& szFile);
+
+    virtual bool ExportToJson(QJsonObject &obj) override;
+    virtual bool ImportFromJson(const QJsonObject &obj) override;
+    
+    static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
+    static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
+    
+protected:
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
+
+private:
+    QString m_szTableName;
+};

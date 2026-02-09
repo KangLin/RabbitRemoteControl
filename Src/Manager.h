@@ -9,6 +9,7 @@
 #include <QTranslator>
 #include <QSharedPointer>
 
+#include "Database.h"
 #include "Plugin.h"
 #include "Hook.h"
 #include "ParameterPlugin.h"
@@ -226,4 +227,5 @@ private:
     CHook* m_pHook;
     CParameterPlugin* m_pParameter;
     QString m_szDetails;
+    CDatabaseFile* m_pDatabaseFile;
 };

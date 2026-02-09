@@ -145,12 +145,12 @@ protected:
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
      */
-    virtual int Load(QSettings &set) override;
+    Q_INVOKABLE virtual int Load(QSettings &set) override;
     /*!
      * \~chinese 保存参数
      * \~english Save parameters
      */
-    virtual int Save(QSettings &set) override;
+    Q_INVOKABLE virtual int Save(QSettings &set) override;
 
     virtual int InitialMenu();
 

@@ -468,7 +468,7 @@ bool CFavoriteDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
         }
 
         QString szFile;
-        bool bRet = CDatabase::ImportFileFromJson(itemObj, szFile);
+        bool bRet = CDatabaseFile::ImportFileFromJson(itemObj, szFile);
         if(!bRet) continue;
         QIcon icon;
         bRet = CDatabaseIcon::ImportIconFromJson(itemObj, icon);
@@ -499,7 +499,7 @@ bool CFavoriteDatabase::ExportToJson(int parentId, QJsonArray &obj)
             oItem.insert("name", item.szName);
 
             // File
-            bool bRet = CDatabase::ExportFileToJson(item.szFile, oItem);
+            bool bRet = CDatabaseFile::ExportFileToJson(item.szFile, oItem);
             if(!bRet) continue;
 
             // Icon

@@ -172,6 +172,16 @@ private:
     Q_PROPERTY(bool ShowIpPortInName READ GetShowIpPortInName WRITE SetShowIpPortInName NOTIFY sigSHowIpPortInNameChanged)
 
 public:
+    enum SaveSettingsType{
+        File,
+        Database
+    };
+    SaveSettingsType GetSaveSettingsType() const;
+    void SetSaveSettingsType(const SaveSettingsType& type);
+private:
+    SaveSettingsType m_SaveSettingsType;
+
+public:
     CFrmViewer::ADAPT_WINDOWS GetAdaptWindows();
     void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw);
 Q_SIGNALS:
