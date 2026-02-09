@@ -152,6 +152,8 @@ if [ ! -f $DESKTOP_FILE ]; then
     # ICON 使用绝对路径
     sed -i "s#^Icon=.*#Icon=$INSTALL_DIR/$APP_ID.svg#" $INSTALL_DIR/$APP_ID.desktop
 fi
+# 修改执行权限
+chmod a+xr $INSTALL_DIR/$APP_ID.desktop
 
 echo "echo \"Uninstall \\\"Rabbit Remote Control\\\" AppImage from \\\"$(dirname $(readlink -f $DESKTOP_FILE))\\\"\"" > $INSTALL_DIR/uninstall.sh
 if [ -n $CREATE_DESKTOP_FILE ]; then

@@ -163,7 +163,8 @@ elseif(UNIX AND NOT ANDROID)
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
         DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
-            COMPONENT Application)
+            COMPONENT Application
+        PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
     # INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
     #         DESTINATION ${CMAKE_INSTALL_BINDIR}
     #             COMPONENT Application)

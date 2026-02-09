@@ -135,6 +135,7 @@ INSTALL_PREFIX=/opt/RabbitRemoteControl
 if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
     if [ -f $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
         ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        chmod a+rx /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
     fi
 fi
 if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
