@@ -3,6 +3,7 @@
 #include <QCheckBox>
 #include <QLoggingCategory>
 #include <QApplication>
+#include <QRegularExpression>
 
 #include "Operate.h"
 #include "Plugin.h"
@@ -35,6 +36,8 @@ const QString COperate::Id()
     Q_ASSERT(GetPlugin());
     QString szId = GetPlugin()->Name() + "_" + Protocol()
                    + "_" + QString::number((int)GetPlugin()->Type());
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
+    szId = szId.replace(exp, "_");
     return szId;
 }
 
@@ -179,6 +182,8 @@ QString COperate::GetSettingsFile()
             + QDir::separator()
             + Id()
             + ".rrc";
+        static QRegularExpression exp("[-@:#%!^&* .]");
+        m_szSettings = m_szSettings.replace(exp, "_");
     }
     return m_szSettings;
 }
