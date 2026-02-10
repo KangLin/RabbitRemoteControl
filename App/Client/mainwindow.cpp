@@ -405,9 +405,14 @@ void MainWindow::slotInitial()
 {
     qDebug(log) << Q_FUNC_INFO;
 
+    QMessageBox box(QMessageBox::Information, tr("Load"), "", QMessageBox::NoButton, this);
+    box.showNormal();
     setEnabled(false);
 
-    slotInformation(tr("Load plugins ......"));
+    QString szMsg;
+    szMsg = tr("Load plugins ......");
+    box.setText(szMsg);
+    slotInformation(szMsg);
     qApp->processEvents();
     m_Manager.Initial();
     m_Manager.EnumPlugins(this);
@@ -416,7 +421,9 @@ void MainWindow::slotInitial()
         m_pRecentDb->OpenDatabase(&m_Parameter.m_Database);
 
     if(m_pRecentMenu) {
-        slotInformation(tr("Load recent menu ......"));
+        szMsg = tr("Load recent menu ......");
+        box.setText(szMsg);
+        slotInformation(szMsg);
         qApp->processEvents();
         auto recents = m_pRecentDb->GetRecents(m_Parameter.GetRecentMenuMaxCount());
         //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
@@ -426,13 +433,17 @@ void MainWindow::slotInitial()
     }
 
     if(m_pRecent) {
-        slotInformation(tr("Load list recent dock ......"));
+        szMsg = tr("Load list recent dock ......");
+        box.setText(szMsg);
+        slotInformation(szMsg);
         qApp->processEvents();
         m_pRecent->Init();
     }
 
     if(m_pFavoriteView) {
-        slotInformation(tr("Load favorite ......"));
+        szMsg = tr("Load favorite ......");
+        box.setText(szMsg);
+        slotInformation(szMsg);
         qApp->processEvents();
         m_pFavoriteView->Initial();
     }
@@ -441,7 +452,9 @@ void MainWindow::slotInitial()
 
     setEnabled(true);
 
-    slotInformation(tr("Load laster operate ......"));
+    szMsg = tr("Load laster operate ......");
+    box.setText(szMsg);
+    slotInformation(szMsg);
     qApp->processEvents();
     LoadOperateLasterClose();
 
