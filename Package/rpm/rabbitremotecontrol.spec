@@ -42,6 +42,7 @@ BuildRequires: libXdamage-devel libXrandr-devel libXt-devel libXdmcp-devel
 BuildRequires: libXinerama-devel mesa-libGL-devel libxshmfence-devel
 BuildRequires: libdrm-devel mesa-libgbm-devel
 BuildRequires: libxkbfile-devel libXfont2-devel
+BuildRequires: mysql-devel
 
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
 Requires: libvncserver libwinpr freerdp fuse3 libpcap libcurl
@@ -50,6 +51,7 @@ Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
 Requires: qt6-qtserialport qt6-qtsvg
 Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
 Requires: qtkeychain-qt6 qtermwidget
+Requires: mysql-libs
 
 Requires: libXext libX11 libXi libXfixes libXtst
 Requires: libXdamage libXrandr libXt libXdmcp

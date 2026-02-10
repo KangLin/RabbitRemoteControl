@@ -569,7 +569,8 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by AppImage and FreeRDP
         package_install libfuse-dev libfuse3-dev fuse
         # Other
-
+        # libmysqlclient
+        package_install libmariadb-dev libmariadb-dev-compat
         # Needed by qtkeychain
         package_install libsecret-1-dev
     fi

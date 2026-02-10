@@ -12,6 +12,7 @@ Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
  libssl-dev, libcrypt-dev, libcmark-dev,
  freerdp3-dev, libvncserver-dev, libpcap-dev,
  qtkeychain-qt6-dev, libcurl4-openssl-dev,
+ libmariadb-dev, libmariadb-dev-compat,
  libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev
 Standards-Version: 4.6.2
 Homepage: https://github.com/KangLin/RabbitRemoteControl
