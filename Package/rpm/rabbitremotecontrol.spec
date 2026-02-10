@@ -104,7 +104,9 @@ cmake . -B $RPM_BUILD_DIR  \
     -DWITH_CMARK_GFM=ON \
     -DENABLE_UPDATE_TRANSLATIONS=ON \
     -DWITH_WebEngineWidgets=ON \
-    -DBUILD_FREERDP=ON
+    -DBUILD_FREERDP=ON \
+    -DRABBIT_ENABLE_INSTALL_TARGETS=ON \
+    -DINSTALL_QFtpServer=ON
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
 %install
