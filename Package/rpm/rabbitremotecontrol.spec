@@ -48,7 +48,7 @@ Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu
 Requires: libvncserver libwinpr freerdp fuse3 libpcap libcurl
 Requires: zlib gnutls nettle gmp pam 
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
-Requires: qt6-qtserialport qt6-qtsvg
+Requires: qt6-qtserialport qt6-qtsvg qt6-qtbase-mysql
 Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
 Requires: qtkeychain-qt6 qtermwidget
 Requires: mysql-libs

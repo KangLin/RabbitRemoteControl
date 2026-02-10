@@ -213,7 +213,7 @@ echo "Build AppImage ......"
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
 export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
-export EXTRA_QT_MODULES="svg"
+export EXTRA_QT_MODULES="svg;sqlite;mysql"
 export PATH=$PATH:${TOOLS_DIR}
 
 if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
