@@ -86,7 +86,7 @@ bool CFavoriteDatabase::OnInitializeMySqlDatabase()
         "    icon INTEGER DEFAULT 0,"
         "    file TEXT NOT NULL,"
         "    description TEXT,"
-        "    UNIQUE KEY idx_favorite_file (file(255))"
+        "    UNIQUE KEY uk_favorite_file (file(255))"
         ")"
         );
     if (!success) {

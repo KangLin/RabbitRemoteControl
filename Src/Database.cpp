@@ -375,7 +375,7 @@ bool CDatabaseIcon::OnInitializeMySqlDatabase()
         "    hash TEXT,"              // Icon hash value
         "    data LONGBLOB,"          // Icon binary data
         "    UNIQUE KEY idx_icon_name (name(255)),"
-        "    UNIQUE KEY idx_icon_hash (hash(255))"
+        "    INDEX idx_icon_hash (hash(255))"
         ")"
         ;
     bool success = query.exec(szSql);
@@ -719,5 +719,19 @@ bool CDatabaseFile::OnInitializeSqliteDatabase()
 
 bool CDatabaseFile::OnInitializeMySqlDatabase()
 {
-    return OnInitializeSqliteDatabase();
+    QSqlQuery query(GetDatabase());
+    QString szSql = "CREATE TABLE NOT EXISTS `" + m_szTableName + "` ( "
+        "`file` TEXT NOT NULL , "
+        "`content` LONGBLOB, "
+        "UNIQUE KEY `uk_file` (`file`(255))"
+        ")";
+    bool success = query.exec(szSql);
+    if (!success) {
+        qCritical(log) << "Failed to create file table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+
+    return true;
 }

@@ -4,6 +4,12 @@ CREATE DATABASE IF NOT EXISTS `remote_control`;
 -- 使用数据库
 use `remote_control`;
 
+CREATE TABLE NOT EXISTS `file` (
+    `file` TEXT NOT NULL ,
+    `content` LONGBLOB,
+    UNIQUE KEY `uk_file` (`file`(255))
+    );
+
 -- 创建表
 CREATE TABLE IF NOT EXISTS `favorite_folders` (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -17,46 +23,46 @@ CREATE TABLE IF NOT EXISTS `favorite_folders` (
 );
 
 -- 创建表
-CREATE TABLE IF NOT EXISTS favorite_tree (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name TEXT,
-    value INTEGER DEFAULT 0,
-    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    last_visit_time DATETIME,
-    parent_id INTEGER DEFAULT 0
+CREATE TABLE IF NOT EXISTS `favorite_tree` (
+    `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `name` TEXT,
+    `value` INTEGER DEFAULT 0,
+    `created_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `modified_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `last_visit_time` DATETIME,
+    `parent_id` INTEGER DEFAULT 0
 );
 
 -- 创建索引
-CREATE INDEX idx_favorite_tree_value ON favorite_tree(value);
-CREATE INDEX idx_favorite_tree_parent_id ON favorite_tree(parent_id);
+CREATE INDEX `idx_favorite_tree_value` ON `favorite_tree`(`value`);
+CREATE INDEX `idx_favorite_tree_parent_id` ON `favorite_tree`(`parent_id`);
 
 -- 创建表
-CREATE TABLE IF NOT EXISTS icon (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name TEXT,
-    hash TEXT,
-    data LONGBLOB,
+CREATE TABLE IF NOT EXISTS `icon` (
+    `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `name` TEXT,
+    `hash` TEXT,
+    `data` LONGBLOB,
 
     -- 创建索引
-    UNIQUE KEY idx_icon_name (name(255)),
-    UNIQUE KEY idx_icon_name (hash(255))
+    UNIQUE KEY `uk_icon_name` (`name`(255)),
+    INDEX `idx_icon_name` (`hash`(255))
 );
 
 -- 创建表
-CREATE TABLE IF NOT EXISTS recent (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    operate_id TEXT NOT NULL,
-    icon INTEGER DEFAULT 0,
-    name TEXT NOT NULL,
-    protocol TEXT,
-    operate_type TEXT,
-    file TEXT NOT NULL,
-    time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    description TEXT,
+CREATE TABLE IF NOT EXISTS `recent` (
+    `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `operate_id` TEXT NOT NULL,
+    `icon` INTEGER DEFAULT 0,
+    `name` TEXT NOT NULL,
+    `protocol` TEXT,
+    `operate_type` TEXT,
+    `file` TEXT NOT NULL,
+    `time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `description` TEXT,
 
     -- 创建索引
-    UNIQUE KEY idx_recent_file (file(255))
+    UNIQUE KEY `uk_recent_file` (`file`(255))
 );
 
 -- 创建表
@@ -68,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `favorite` (
     `description` TEXT,
 
     -- 创建索引
-    UNIQUE KEY `idx_favorite_file` (`file`(255))
+    UNIQUE KEY `uk_favorite_file` (`file`(255))
 );
 
 -- 首先设置分隔符
