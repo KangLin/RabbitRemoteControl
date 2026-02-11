@@ -42,9 +42,9 @@ int CParameterPluginUI::Accept()
         ui->cbPromptAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
     if(ui->rbSaveSettingsToFile->isChecked())
-        m_pPara->SetSaveSettingsType(CParameterPlugin::SaveSettingsType::File);
+        m_pPara->GetGlobalParameters()->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::File);
     else if(ui->rbSaveSettingsToDatabase->isChecked())
-        m_pPara->SetSaveSettingsType(CParameterPlugin::SaveSettingsType::Database);
+        m_pPara->GetGlobalParameters()->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Database);
     m_pPara->SetAdaptWindows(
         (CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
 
@@ -97,11 +97,11 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     ui->cbPromptAdminPrivilege->setChecked(
         m_pPara->GetPromptAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
-    switch(m_pPara->GetSaveSettingsType()) {
-    case CParameterPlugin::SaveSettingsType::File:
+    switch(m_pPara->GetGlobalParameters()->GetSaveSettingsType()) {
+    case CParameterGlobal::SaveSettingsType::File:
         ui->rbSaveSettingsToFile->setChecked(true);
         break;
-    case CParameterPlugin::SaveSettingsType::Database:
+    case CParameterGlobal::SaveSettingsType::Database:
         ui->rbSaveSettingsToDatabase->setChecked(true);
         break;
     }

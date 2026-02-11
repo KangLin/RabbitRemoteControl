@@ -3,6 +3,7 @@
 #pragma once
 
 #include "FrmViewer.h"
+#include "ParameterGlobal.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
 
@@ -26,7 +27,7 @@
  * - The plugin can be accessed via CParameterOperate::GetGlobalParameters().
  *
  * \~
- * \see COperate::SetGlobalParameters
+ * \see COperate::SetGlobalParameters CParameterGlobal
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class PLUGIN_EXPORT CParameterPlugin : public CParameter
@@ -36,7 +37,12 @@ class PLUGIN_EXPORT CParameterPlugin : public CParameter
 public:
     explicit CParameterPlugin(QObject *parent = nullptr);
     virtual ~CParameterPlugin();
-    
+
+public:
+    CParameterGlobal *GetGlobalParameters();
+private:
+    CParameterGlobal m_GlobalParameter;
+
 protected:
     /*!
      * \see CClient::LoadSettings
@@ -170,16 +176,6 @@ Q_SIGNALS:
 private:
     bool m_bShowIpPortInName;
     Q_PROPERTY(bool ShowIpPortInName READ GetShowIpPortInName WRITE SetShowIpPortInName NOTIFY sigSHowIpPortInNameChanged)
-
-public:
-    enum SaveSettingsType{
-        File,
-        Database
-    };
-    SaveSettingsType GetSaveSettingsType() const;
-    void SetSaveSettingsType(const SaveSettingsType& type);
-private:
-    SaveSettingsType m_SaveSettingsType;
 
 public:
     CFrmViewer::ADAPT_WINDOWS GetAdaptWindows();

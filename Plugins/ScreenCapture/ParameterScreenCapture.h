@@ -6,6 +6,7 @@
 #include <QCapturableWindow>
 
 #include "ParameterOperate.h"
+#include "ParameterRecord.h"
 
 class CParameterScreenCapture : public CParameterOperate
 {

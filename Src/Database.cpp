@@ -720,7 +720,7 @@ bool CDatabaseFile::OnInitializeSqliteDatabase()
 bool CDatabaseFile::OnInitializeMySqlDatabase()
 {
     QSqlQuery query(GetDatabase());
-    QString szSql = "CREATE TABLE NOT EXISTS `" + m_szTableName + "` ( "
+    QString szSql = "CREATE TABLE IF NOT EXISTS `" + m_szTableName + "` ( "
         "`file` TEXT NOT NULL , "
         "`content` LONGBLOB, "
         "UNIQUE KEY `uk_file` (`file`(255))"

@@ -12,7 +12,7 @@
 #include "Database.h"
 #include "Plugin.h"
 #include "Hook.h"
-#include "ParameterPlugin.h"
+#include "ParameterGlobal.h"
 
 #if defined(__clang__) || defined(__GNUC__)
 #define CPP_STANDARD __cplusplus
@@ -35,6 +35,8 @@
 #if HAS_CPP_11
 #include <functional>
 #endif
+
+class CParameterPlugin;
 
 /*!
  * \~chinese 管理插件
@@ -145,7 +147,12 @@ public:
      * \param szFile: file name
      */
     virtual int SaveSettings(const QString szFile = QString());
-    
+
+    /*!
+     * \brief Get Global Parameters
+     */
+    CParameterGlobal *GetGlobalParameters();
+
     /**
      * \~chinese
      * \brief 处理连接者。用于客户端得到连接者信号
@@ -225,7 +232,7 @@ private:
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;
     CHook* m_pHook;
-    CParameterPlugin* m_pParameter;
+    CParameterPlugin* m_pParameterPlugin;
     QString m_szDetails;
     CDatabaseFile* m_pDatabaseFile;
 };

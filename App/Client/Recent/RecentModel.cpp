@@ -123,7 +123,7 @@ void CRecentModel::refresh(int limit)
 {
     if(!m_pDatabase) {
         m_pDatabase = new CRecentDatabase(this);
-        if(!m_pDatabase->OpenDatabase(&m_pParameterApp->m_Database))
+        if(!m_pDatabase->OpenDatabase(m_pParameterApp->m_pDatabase))
             return;
     }
     if(!m_pDatabase->IsOpen())

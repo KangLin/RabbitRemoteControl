@@ -211,7 +211,7 @@ void CFavoriteView::Initial()
 {
     m_pDatabase = new CFavoriteDatabase(this);
     if(m_pDatabase)
-        m_pDatabase->OpenDatabase(&m_pParaApp->m_Database);
+        m_pDatabase->OpenDatabase(m_pParaApp->m_pDatabase);
     if(m_pDatabase) {
         m_pModel = new CFavoriteModel(m_pDatabase, this);
         m_pTreeView->setModel(m_pModel);

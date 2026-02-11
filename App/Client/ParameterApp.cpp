@@ -7,7 +7,7 @@
 #endif
 
 CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow"),
-    m_Database(this),
+    m_pDatabase(nullptr),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_ViewType(ViewType::Tab),

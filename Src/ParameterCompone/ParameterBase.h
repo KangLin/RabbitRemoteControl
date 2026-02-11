@@ -4,6 +4,7 @@
 #include "ParameterNet.h"
 #include "ParameterProxy.h"
 #include "ParameterRecord.h"
+#include "FrmViewer.h"
 
 /*!
  * \~chinese

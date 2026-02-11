@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS `remote_control`;
 -- 使用数据库
 use `remote_control`;
 
-CREATE TABLE NOT EXISTS `file` (
+CREATE TABLE IF NOT EXISTS `file` (
     `file` TEXT NOT NULL ,
     `content` LONGBLOB,
     UNIQUE KEY `uk_file` (`file`(255))

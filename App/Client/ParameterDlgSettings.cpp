@@ -6,7 +6,6 @@
 #include <QScreen>
 #include <QApplication>
 
-#include "ParameterDatabaseUI.h"
 #include "ParameterDlgSettings.h"
 #include "ui_ParameterDlgSettings.h"
 
@@ -88,10 +87,6 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     ui->cbFavoriteDoubleEdit->setChecked(m_pParameters->GetFavoriteEdit());
     ui->cbMessageBoxDisplayInfo->setChecked(m_pParameters->GetMessageBoxDisplayInformation());
     ui->cbKeepSplitView->setChecked(m_pParameters->GetKeepSplitViewWhenFullScreen());
-
-    auto pDatabase = new CParameterDatabaseUI(ui->tabWidget);
-    pDatabase->SetParameter(&m_pParameters->m_Database);
-    AddViewers(QList<QWidget*>() << pDatabase);
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()

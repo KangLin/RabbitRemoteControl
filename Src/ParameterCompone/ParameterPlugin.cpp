@@ -6,6 +6,7 @@
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
+    , m_GlobalParameter(this, "Global")
     , m_bCaptureAllKeyboard(true)
     , m_bDesktopShortcutsScript(false)
     , m_bEnableLocalInputMethod(false)
@@ -18,7 +19,6 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_bUseSystemCredential(true)
     , m_bShowProtocolPrefix(false)
     , m_bShowIpPortInName(false)
-    , m_SaveSettingsType(SaveSettingsType::File)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_bEnableSetPluginsPath(false)
     , m_WhiteList(this, "Plugin/Paths/Whilelist")
@@ -35,8 +35,17 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
 CParameterPlugin::~CParameterPlugin()
 {}
 
+CParameterGlobal* CParameterPlugin::GetGlobalParameters()
+{
+    return &m_GlobalParameter;
+}
+
 int CParameterPlugin::OnLoad(QSettings &set)
 {
+    int nRet = 0;
+    nRet = m_GlobalParameter.Load(set);
+    if(nRet) return nRet;
+
     set.beginGroup("Plugin");
     SetCaptureAllKeyboard(
         set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
@@ -64,7 +73,6 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetUseSystemCredential(set.value("Password/UseSystemCredential", GetUseSystemCredential()).toBool());
     SetShowProtocolPrefix(set.value("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
     SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
-    SetSaveSettingsType((SaveSettingsType)set.value("SaveSettingsType", GetSaveSettingsType()).toInt());
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
 
@@ -78,6 +86,10 @@ int CParameterPlugin::OnLoad(QSettings &set)
 
 int CParameterPlugin::OnSave(QSettings& set)
 {
+    int nRet = 0;
+    nRet = m_GlobalParameter.Save(set);
+    if(nRet) return nRet;
+
     set.beginGroup("Plugin");
     set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
     set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());
@@ -92,7 +104,6 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("Password/UseSystemCredential", GetUseSystemCredential());
     set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
-    set.setValue("SaveSettingsType", GetSaveSettingsType());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
 
     set.setValue("Paths", GetPluginsPath());
@@ -305,19 +316,6 @@ void CParameterPlugin::SetShowIpPortInName(bool bShowIpPortInName)
     m_bShowIpPortInName = bShowIpPortInName;
     SetModified(true);
     emit sigSHowIpPortInNameChanged();
-}
-
-CParameterPlugin::SaveSettingsType CParameterPlugin::GetSaveSettingsType() const
-{
-    return m_SaveSettingsType;
-}
-
-void CParameterPlugin::SetSaveSettingsType(const SaveSettingsType &type)
-{
-    if(m_SaveSettingsType == type)
-        return;
-    m_SaveSettingsType = type;
-    SetModified(true);
 }
 
 CFrmViewer::ADAPT_WINDOWS CParameterPlugin::GetAdaptWindows()

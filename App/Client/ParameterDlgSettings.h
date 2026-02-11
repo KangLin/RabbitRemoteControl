@@ -11,7 +11,7 @@ class CParameterDlgSettings;
 class CParameterDlgSettings : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit CParameterDlgSettings(CParameterApp* pPara,
                                    QWidget *parent = nullptr);
@@ -22,10 +22,10 @@ private slots:
     void on_pbNo_clicked();
 
     void on_cbShowSystemTrayIcon_toggled(bool checked);
-   
+
 private:
     Ui::CParameterDlgSettings *ui;
-    
+
     CParameterApp* m_pParameters;
 };
 

@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ParameterBase.h"
+#include "ParameterPlugin.h"
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Base")

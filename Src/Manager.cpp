@@ -31,6 +31,9 @@
 #include "ParameterFilter.h"
 #include "FrmManagePlugins.h"
 
+#include "ParameterDatabaseUI.h"
+#include "ParameterPlugin.h"
+
 #include "Channel.h"
 #include "Manager.h"
 
@@ -39,6 +42,7 @@ static Q_LOGGING_CATEGORY(log, "Manager")
 CManager::CManager(QObject *parent) : QObject(parent)
     , m_FileVersion(1)  //TODO: update version it if update data
     , m_pHook(nullptr)
+    , m_pParameterPlugin(nullptr)
     , m_pDatabaseFile(nullptr)
 {
 }
@@ -55,9 +59,9 @@ CManager::~CManager()
         m_pHook = nullptr;
     }
 
-    if(m_pParameter) {
-        m_pParameter->deleteLater();
-        m_pParameter = nullptr;
+    if(m_pParameterPlugin) {
+        m_pParameterPlugin->deleteLater();
+        m_pParameterPlugin = nullptr;
     }
 
     if(m_Translator)
@@ -84,8 +88,8 @@ int CManager::Initial(QString szFile)
 
     CChannel::InitTranslation();
 
-    m_pParameter = new CParameterPlugin();
-    if(m_pParameter) {
+    m_pParameterPlugin = new CParameterPlugin();
+    if(m_pParameterPlugin) {
         LoadSettings(m_szSettingsFile);
         
         bool bReboot = true;
@@ -104,7 +108,7 @@ int CManager::Initial(QString szFile)
         if(!szSnap.isEmpty() || !szFlatpak.isEmpty())
             bReboot = false;
         if(bReboot && !RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
-            && m_pParameter->GetPromptAdministratorPrivilege())
+            && m_pParameterPlugin->GetPromptAdministratorPrivilege())
         {
             int nRet = 0;
             QString szMsg;
@@ -121,10 +125,10 @@ int CManager::Initial(QString szFile)
             msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
             msg.checkBox()->setCheckable(true);
             msg.checkBox()->setChecked(
-                m_pParameter->GetPromptAdministratorPrivilege());
+                m_pParameterPlugin->GetPromptAdministratorPrivilege());
             nRet = msg.exec();
             
-            m_pParameter->SetPromptAdministratorPrivilege(
+            m_pParameterPlugin->SetPromptAdministratorPrivilege(
                 msg.checkBox()->isChecked());
             SaveSettings(m_szSettingsFile);
             
@@ -134,25 +138,28 @@ int CManager::Initial(QString szFile)
             }
         }
         
-        check = connect(m_pParameter, SIGNAL(sigCaptureAllKeyboard()),
+        check = connect(m_pParameterPlugin, SIGNAL(sigCaptureAllKeyboard()),
                         this, SLOT(slotCaptureAllKeyboard()));
         Q_ASSERT(check);
-        if(m_pParameter->GetCaptureAllKeyboard()) {
-            m_pHook = CHook::GetHook(m_pParameter, this);
+        if(m_pParameterPlugin->GetCaptureAllKeyboard()) {
+            m_pHook = CHook::GetHook(m_pParameterPlugin, this);
             if(m_pHook)
                 m_pHook->RegisterKeyboard();
         }
     } else {
         qCritical(log) << "new CParameterPlugin() fail";
-        Q_ASSERT(m_pParameter);
+        Q_ASSERT(m_pParameterPlugin);
     }
     
     LoadPlugins();
-    
-    // TODO: 增加数据库参数
+
     m_pDatabaseFile = new CDatabaseFile(this);
-    if(m_pDatabaseFile)
-        m_pDatabaseFile->OpenDatabase();
+    if(m_pDatabaseFile) {
+        CParameterDatabase* pDB = nullptr;
+        if(GetGlobalParameters())
+            pDB = GetGlobalParameters()->m_pDatabase;
+        m_pDatabaseFile->OpenDatabase(pDB);
+    }
 
     return 0;
 }
@@ -177,16 +184,16 @@ int CManager::LoadPlugins()
     }//*/
 
     QStringList lstPaths;
-    if(m_pParameter->GetEnableSetPluginsPath()) {
-        lstPaths = m_pParameter->GetPluginsPath();
+    if(m_pParameterPlugin->GetEnableSetPluginsPath()) {
+        lstPaths = m_pParameterPlugin->GetPluginsPath();
     }
     else
         lstPaths << RabbitCommon::CDir::Instance()->GetDirPlugins();
     if(lstPaths.isEmpty())
         qWarning(log) << "The plugins path is empty. please set it from: `Menu` -> `Tools` -> `Settings` -> `Load Plugins`";
 
-    if(m_pParameter->GetOnlyLoadInWhitelist()) {
-        m_pParameter->m_WhiteList.OnProcess([this, lstPaths](const QString& szPath) -> int{
+    if(m_pParameterPlugin->GetOnlyLoadInWhitelist()) {
+        m_pParameterPlugin->m_WhiteList.OnProcess([this, lstPaths](const QString& szPath) -> int{
             QFileInfo fi(szPath);
             if(fi.isAbsolute())
                 return LoadPlugin(szPath);
@@ -252,9 +259,9 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
 
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
-        if(m_pParameter
-            && (!m_pParameter->m_WhiteList.contains(szPlugins) || !m_pParameter->m_WhiteList.contains(fileName))
-            && (m_pParameter->m_BlackList.contains(szPlugins) || m_pParameter->m_BlackList.contains(fileName))) {
+        if(m_pParameterPlugin
+            && (!m_pParameterPlugin->m_WhiteList.contains(szPlugins) || !m_pParameterPlugin->m_WhiteList.contains(fileName))
+            && (m_pParameterPlugin->m_BlackList.contains(szPlugins) || m_pParameterPlugin->m_BlackList.contains(fileName))) {
             qInfo(log) << "Filter:" << szPlugins << "in blacklist";
             continue;
         }
@@ -347,7 +354,7 @@ COperate* CManager::CreateOperate(const QString& id)
                 Qt::DirectConnection,
                 Q_RETURN_ARG(COperate*, pOperate),
                 Q_ARG(QString, id),
-                Q_ARG(CParameterPlugin*, m_pParameter));
+                Q_ARG(CParameterPlugin*, m_pParameterPlugin));
             if(!bRet) {
                 qCritical(log) << "Create COperate fail.";
                 return nullptr;
@@ -396,8 +403,8 @@ COperate* CManager::LoadOperate(const QString &szFile)
     COperate* pOperate = nullptr;
     if(szFile.isEmpty()) return nullptr;
     qDebug(log) << "Load operate configure file:"<< szFile;
-    if(m_pParameter->GetSaveSettingsType()
-        == CParameterPlugin::SaveSettingsType::Database) {
+    if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
+        == CParameterGlobal::SaveSettingsType::Database) {
         QByteArray content = m_pDatabaseFile->Load(szFile);
         if(!content.isEmpty()) {
             QFile f(szFile);
@@ -451,45 +458,43 @@ int CManager::SaveOperate(COperate *pOperate)
                  + QDir::separator()
                  + pOperate->Id()
                  + ".rrc";
-    
+
+    QSettings set(szFile, QSettings::IniFormat);
+    CPlugin* pPlugin = nullptr; //pOperate->GetPlugin;
+    bool bRet = QMetaObject::invokeMethod(
+        pOperate,
+        "GetPlugin",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(CPlugin*, pPlugin));
+    if(!bRet || !pPlugin)
     {
-        QSettings set(szFile, QSettings::IniFormat);
-        CPlugin* pPlugin = nullptr; //pOperate->GetPlugin;
-        bool bRet = QMetaObject::invokeMethod(
-            pOperate,
-            "GetPlugin",
-            Qt::DirectConnection,
-            Q_RETURN_ARG(CPlugin*, pPlugin));
-        if(!bRet || !pPlugin)
-        {
-            qCritical(log) << "Get plugin client fail";
-        }
-        Q_ASSERT(pPlugin);
-        
-        set.setValue("Manage/FileVersion", m_FileVersion);
-        set.setValue("Plugin/ID", pPlugin->Id());
-        set.setValue("Plugin/Protocol", pPlugin->Protocol());
-        set.setValue("Plugin/Name", pPlugin->Name());
-        int nRet = 0;
-        //nRet = pOperate->Save(szFile);
-        bRet = QMetaObject::invokeMethod(
-            pOperate,
-            "Save",
-            Qt::DirectConnection,
-            Q_RETURN_ARG(int, nRet),
-            Q_ARG(QString, szFile));
-        if(!bRet) {
-            qCritical(log) << "Call pOperate->Save(szFile) fail.";
-            return -1;
-        }
-        if(nRet) {
-            qCritical(log) << "Save parameter fail" << nRet;
-            return -2;
-        }
+        qCritical(log) << "Get plugin client fail";
+    }
+    Q_ASSERT(pPlugin);
+
+    set.setValue("Manage/FileVersion", m_FileVersion);
+    set.setValue("Plugin/ID", pPlugin->Id());
+    set.setValue("Plugin/Protocol", pPlugin->Protocol());
+    set.setValue("Plugin/Name", pPlugin->Name());
+    int nRet = 0;
+    //nRet = pOperate->Save(szFile);
+    bRet = QMetaObject::invokeMethod(
+        pOperate,
+        "Save",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(int, nRet),
+        Q_ARG(QString, szFile));
+    if(!bRet) {
+        qCritical(log) << "Call pOperate->Save(szFile) fail.";
+        return -1;
+    }
+    if(nRet) {
+        qCritical(log) << "Save parameter fail" << nRet;
+        return -2;
     }
 
-    if(m_pParameter->GetSaveSettingsType()
-        == CParameterPlugin::SaveSettingsType::Database) {
+    if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
+        == CParameterGlobal::SaveSettingsType::Database) {
         return m_pDatabaseFile->Save(szFile) ? 0 : -1;
     }
 
@@ -498,30 +503,37 @@ int CManager::SaveOperate(COperate *pOperate)
 
 int CManager::LoadSettings(const QString szFile)
 {
-    if(!m_pParameter) {
+    if(!m_pParameterPlugin) {
         qCritical(log) << "The m_pParameter is nullptr";
-        Q_ASSERT_X(m_pParameter, "CManager", "The m_pParameter is nullptr");
+        Q_ASSERT_X(m_pParameterPlugin, "CManager", "The m_pParameter is nullptr");
         return -1;
     }
 
     QString s = szFile;
     if(s.isEmpty())
         s = m_szSettingsFile;
-    return m_pParameter->Load(s);
+    return m_pParameterPlugin->Load(s);
 }
 
 int CManager::SaveSettings(const QString szFile)
 {
-    if(!m_pParameter) {
+    if(!m_pParameterPlugin) {
         qCritical(log) << "The m_pParameter is nullptr";
-        Q_ASSERT_X(m_pParameter, "CManager", "The m_pParameter is nullptr");
+        Q_ASSERT_X(m_pParameterPlugin, "CManager", "The m_pParameter is nullptr");
         return -1;
     }
 
     QString s = szFile;
     if(s.isEmpty())
         s = m_szSettingsFile;
-    return m_pParameter->Save(s);
+    return m_pParameterPlugin->Save(s);
+}
+
+CParameterGlobal* CManager::GetGlobalParameters()
+{
+    if(m_pParameterPlugin)
+        return m_pParameterPlugin->GetGlobalParameters();
+    return nullptr;
 }
 
 QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
@@ -530,33 +542,40 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 
     CFrmManagePlugins* pManagePlugins = new CFrmManagePlugins(parent);
     if(pManagePlugins) {
-        pManagePlugins->SetParameter(m_pParameter);
+        pManagePlugins->SetParameter(m_pParameterPlugin);
         lstWidget.push_back(pManagePlugins);
     }
 
     CParameterPluginUI* pClient = new CParameterPluginUI(parent);
     if(pClient) {
-        pClient->SetParameter(m_pParameter);
+        pClient->SetParameter(m_pParameterPlugin);
         lstWidget.push_back(pClient);
+    }
+
+    auto pDatabase = new CParameterDatabaseUI(parent);
+    if(pDatabase) {
+        if(GetGlobalParameters())
+            pDatabase->SetParameter(GetGlobalParameters()->m_pDatabase);
+        lstWidget.push_back(pDatabase);
     }
 
 #if defined(HAVE_QTERMWIDGET)
     CParameterTerminalUI* pTermina = new CParameterTerminalUI(parent);
     if(pTermina) {
-        pTermina->SetParameter(&m_pParameter->m_Terminal);
+        pTermina->SetParameter(&m_pParameterPlugin->m_Terminal);
         pTermina->setWindowTitle(tr("Terminal"));
         lstWidget.push_back(pTermina);
     }
 #endif
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
-        pRecord->SetParameter(&m_pParameter->m_Record);
+        pRecord->SetParameter(&m_pParameterPlugin->m_Record);
         lstWidget.push_back(pRecord);
     }
 
     CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(parent);
     if(pMediaDevices) {
-        pMediaDevices->SetParameter(&m_pParameter->m_MediaDevices.m_Para);
+        pMediaDevices->SetParameter(&m_pParameterPlugin->m_MediaDevices.m_Para);
         lstWidget.push_back(pMediaDevices);
     }
 
@@ -635,10 +654,10 @@ const QString CManager::Details() const
 
 void CManager::slotCaptureAllKeyboard()
 {
-    Q_ASSERT(m_pParameter);
-    if(m_pParameter->GetCaptureAllKeyboard()) {
+    Q_ASSERT(m_pParameterPlugin);
+    if(m_pParameterPlugin->GetCaptureAllKeyboard()) {
         if(m_pHook) return;
-        m_pHook = CHook::GetHook(m_pParameter, this);
+        m_pHook = CHook::GetHook(m_pParameterPlugin, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
     } else {

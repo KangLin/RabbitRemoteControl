@@ -417,8 +417,11 @@ void MainWindow::slotInitial()
     m_Manager.Initial();
     m_Manager.EnumPlugins(this);
 
+    if(m_Manager.GetGlobalParameters())
+        m_Parameter.m_pDatabase = m_Manager.GetGlobalParameters()->m_pDatabase;
+
     if(m_pRecentDb)
-        m_pRecentDb->OpenDatabase(&m_Parameter.m_Database);
+        m_pRecentDb->OpenDatabase(m_Parameter.m_pDatabase);
 
     if(m_pRecentMenu) {
         szMsg = tr("Load recent menu ......");
