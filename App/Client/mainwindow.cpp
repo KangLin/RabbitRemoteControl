@@ -405,7 +405,7 @@ void MainWindow::slotInitial()
 {
     qDebug(log) << Q_FUNC_INFO;
 
-    QMessageBox box(QMessageBox::Information, tr("Load"), "", QMessageBox::NoButton, this);
+    QMessageBox box(QMessageBox::Information, tr("Load"), "");
     box.showNormal();
     setEnabled(false);
 

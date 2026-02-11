@@ -569,8 +569,14 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by AppImage and FreeRDP
         package_install libfuse-dev libfuse3-dev fuse
         # Other
-        # libmysqlclient
-        package_install libmariadb-dev libmariadb-dev-compat
+
+        if [ "$OS" = "ubuntu" ]; then
+            package_install libmysqlclient-dev
+        fi
+        if [ "$OS" = "debian" ]; then
+            # libmysqlclient
+            package_install libmariadb-dev libmariadb-dev-compat
+        fi
         # Needed by qtkeychain
         package_install libsecret-1-dev
     fi
@@ -620,7 +626,8 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
                 qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
                 libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
                 qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev \
-                qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev
+                qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev \
+                libqt6sql6-mysql libqt6sql6-sqlite libqt6sql6-odbc
         fi
         if [ $QTKEYCHAIN -ne 1 ]; then
             package_install qtkeychain-qt6-dev

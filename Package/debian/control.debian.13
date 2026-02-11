@@ -11,9 +11,9 @@ Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
  qt6-scxml-dev, qt6-multimedia-dev, qt6-serialport-dev, qt6-websockets-dev,
  qt6-webengine-dev, qt6-webengine-dev-tools, qt6-positioning-dev, qt6-webchannel-dev,
  libssl-dev, libcrypt-dev, libcmark-dev,
- freerdp2-dev, libvncserver-dev, libpcap-dev,
+ freerdp3-dev, libvncserver-dev, libpcap-dev,
  qtkeychain-qt6-dev, libcurl4-openssl-dev,
- libmysqlclient-dev,
+ libmariadb-dev, libmariadb-dev-compat,
  libxtst-dev, libxcb1-dev, libxcb-xtest0-dev, libxcb-keysyms1-dev
 Standards-Version: 4.6.2
 Homepage: https://github.com/KangLin/RabbitRemoteControl
@@ -26,7 +26,7 @@ Section: net
 Architecture: any
 #Pre-Depends: ${misc:Pre-Depends}
 #Suggests: libqt6svg6
-Depends: libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc, libmysqlclient21,
+Depends: libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc, libmariadb3,
   ${shlibs:Depends}, ${misc:Depends}
 Replaces: rabbitcommon (>=2.3.2)
 Description: Rabbit Remote Control

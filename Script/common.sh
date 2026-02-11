@@ -131,21 +131,32 @@ package_install() {
 
 create_debian_folder() {
     local repo_root=$1
-    if [ ! -d $repo_root/debian ]; then
+    if [ ! -d "$repo_root/debian" ]; then
         echo "Create $repo_root/debian ......"
         ln -s $repo_root/Package/debian $repo_root/debian
-    
-        if [ ! -f $repo_root/debian/control ]; then
-            case "$DISTRO:$DISTRO_VERSION" in
-                ubuntu:26.*|debian:13)
-                    ln -s $repo_root/Package/debian/control.26 $repo_root/debian/control
+
+        if [ ! -f "$repo_root/debian/control" ]; then
+            case "${DISTRO}:${DISTRO_VERSION}" in
+                ubuntu:26.*|ubuntu:25.*)
+                    control_source="$repo_root/Package/debian/control.ubuntu.26"
+                    ;;
+                debian:12)
+                    control_source="$repo_root/Package/debian/control.debian.12"
+                    ;;
+                debian:13)
+                    control_source="$repo_root/Package/debian/control.debian.13"
                     ;;
                 *)
-                    ln -s $repo_root/Package/debian/control.default $repo_root/debian/control
+                    control_source="$repo_root/Package/debian/control.default"
                     ;;
             esac
+            if [ -f "$control_source" ]; then
+                ln -s $control_source $repo_root/debian/control
+            else
+                echo "Error: $control_source is not exist"
+            fi
         fi
-        
+
     fi
 }
 
@@ -154,13 +165,20 @@ install_debian_depend() {
     create_debian_folder $repo_root
     if [ -f "$repo_root/debian/control" ]; then
         echo "Install deb depends ......"
-        mk-build-deps -i -t 'apt-get --no-install-recommends --no-install-suggests -y' "$repo_root/debian/control"
+        pushd $repo_root
+        # 安装编译依赖到系统中
+        apt-get build-dep -y .
+        popd
+        # 创建虚拟包来管理依赖， -r : 在编译完成后再删除
+        #mk-build-deps -i -r --tool 'apt-get -y' "$repo_root/debian/control"
 #        grep-dctrl -s Build-Depends -n . $repo_root/debian/control | \
 #            sed 's/([^)]*)//g' | \
 #            sed 's/,/\n/g' | \
 #            awk '{print $1}' | \
 #            grep -v '^$' | \
 #            xargs sudo apt install -y
+    else
+        echo "Error: $repo_root/debian/control is not exist"
     fi
 }
 
