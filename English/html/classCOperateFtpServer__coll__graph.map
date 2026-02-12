@@ -1,0 +1,22 @@
+<map id="COperateFtpServer" name="COperateFtpServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,355,248,380"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="Operate interface." alt="" coords="5,179,88,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,217,57,242,79,277,106,308,159,352,156,356,103,312,75,280,52,244,45,219"/>
+<area shape="rect" id="Node000005" href="$classCBackendThread.html" title="The backend thread." alt="" coords="109,267,240,292"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="56,216,73,241,93,254,116,264,114,269,90,259,69,245,52,219"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="83,5,157,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,42,74,81,57,135,50,179,45,178,52,133,70,79,97,39"/>
+<area shape="rect" id="Node000004" href="$classCPlugin.html" title="Plugin interface." alt="" coords="85,80,155,105"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="123,45,123,80,117,80,117,45"/>
+<area shape="rect" id="Node000007" href="$classCBackend.html" title="Backend interface." alt="" coords="187,129,274,155"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="142,39,222,127,218,131,138,43"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="105,118,57,180,53,177,101,115"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="177,306,177,354,172,354,172,306"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="112,179,189,204"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="160,217,174,265,169,267,155,218"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="223,168,182,268,177,266,218,166"/>
+<area shape="rect" id="Node000008" href="$classCFrmMain.html" title=" " alt="" coords="319,267,407,292"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="328,300,258,333,203,357,201,352,256,328,326,296"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="350,179,429,204"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="384,218,369,267,364,265,379,216"/>
+</map>

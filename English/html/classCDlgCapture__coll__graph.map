@@ -1,0 +1,46 @@
+<map id="CDlgCapture" name="CDlgCapture">
+<area shape="rect" id="Node000001" title=" " alt="" coords="452,352,556,377"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="625,253,700,279"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="652,292,637,312,618,330,588,346,557,356,555,351,586,341,614,326,633,309,648,289"/>
+<area shape="rect" id="Node000003" href="$classCParameterScreenCapture.html" title=" " alt="" coords="407,253,601,279"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="507,292,507,352,501,352,501,292"/>
+<area shape="rect" id="Node000004" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="775,155,926,180"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="797,186,546,256,544,251,796,181"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="940,160,953,167,944,174,926,177,926,171,942,169,947,167,938,165"/>
+<area shape="rect" id="Node000009" href="$classCParameterDatabase.html" title=" " alt="" coords="879,455,1039,480"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="917,182,945,193,973,208,998,227,1018,252,1031,276,1039,299,1042,321,1041,342,1028,384,1004,432,993,446,980,456,977,452,989,442,999,429,1023,382,1035,341,1037,321,1034,300,1026,279,1014,255,994,231,970,212,943,198,915,187"/>
+<area shape="rect" id="Node000010" href="$classCParameterNet.html" title="Basic network parameters." alt="" coords="873,352,994,377"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="852,194,855,234,866,278,893,319,922,350,918,354,889,322,862,280,850,235,847,194"/>
+<area shape="rect" id="Node000011" href="$classCParameterUser.html" title="It contains user and password It only valid in plugin." alt="" coords="876,253,1004,279"/>
+<area shape="poly" id="edge16_Node000011_Node000004" title=" " alt="" coords="872,188,931,251,927,255,868,192"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="744,80,843,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="813,115,843,153,839,156,809,118"/>
+<area shape="rect" id="Node000007" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="772,631,911,656"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="856,95,974,103,1109,116,1219,137,1253,149,1263,157,1267,165,1267,557,1264,570,1256,583,1227,602,1185,617,1133,628,1017,641,911,645,911,639,1017,635,1132,623,1183,612,1225,597,1252,579,1259,568,1261,556,1261,167,1259,160,1250,154,1218,142,1108,122,974,108,856,100"/>
+<area shape="rect" id="Node000008" href="$classCParameterGlobal.html" title=" " alt="" coords="826,543,966,568"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="768,116,748,139,742,152,740,166,740,468,742,483,747,496,767,516,795,531,827,541,825,546,793,536,764,521,743,499,737,485,735,469,735,166,737,150,744,136,764,113"/>
+<area shape="rect" id="Node000012" href="$classCParameterFilter.html" title=" " alt="" coords="5,204,136,229"/>
+<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="730,103,553,124,336,157,121,206,120,201,336,152,552,119,730,98"/>
+<area shape="rect" id="Node000013" href="$classCParameterRecord.html" title=" " alt="" coords="349,155,491,180"/>
+<area shape="poly" id="edge20_Node000013_Node000005" title=" " alt="" coords="731,109,480,157,479,152,730,104"/>
+<area shape="rect" id="Node000014" href="$classCParameterMediaDevices.html" title=" " alt="" coords="1053,303,1243,328"/>
+<area shape="poly" id="edge22_Node000014_Node000005" title=" " alt="" coords="857,96,942,114,988,130,1030,152,1071,188,1104,231,1129,271,1145,301,1140,303,1125,274,1100,234,1067,192,1026,157,985,135,941,119,856,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="756,5,831,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="796,45,796,80,791,80,791,45"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="816,622,795,593,788,575,785,557,785,264,791,238,803,214,835,178,839,182,808,217,796,240,791,265,791,556,793,574,800,590,820,619"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="884,581,851,632,847,629,879,578"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="944,493,907,544,903,541,940,489"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="942,390,958,454,953,455,937,391"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="941,293,937,352,931,352,936,292"/>
+<area shape="poly" id="edge17_Node000007_Node000012" title=" " alt="" coords="74,243,75,314,75,556,77,571,83,581,92,588,104,593,170,604,222,614,290,622,457,633,772,639,772,645,457,638,290,628,221,619,169,609,102,598,89,593,79,585,72,573,69,557,69,314,69,243"/>
+<area shape="poly" id="edge23_Node000003_Node000013" title=" " alt="" coords="441,189,496,252,492,255,437,192"/>
+<area shape="poly" id="edge19_Node000007_Node000013" title=" " alt="" coords="344,186,292,203,242,230,221,246,205,266,194,288,191,314,191,556,195,565,207,574,256,591,329,605,417,616,609,630,772,637,771,643,609,636,416,621,328,610,255,596,205,579,191,569,185,557,185,314,189,287,201,263,217,243,239,225,290,198,343,181"/>
+<area shape="rect" id="Node000015" href="$classCParameterRecordUI.html" title=" " alt="" coords="225,253,383,279"/>
+<area shape="poly" id="edge27_Node000015_Node000013" title=" " alt="" coords="372,188,343,206,324,230,311,254,306,252,319,227,340,202,369,183"/>
+<area shape="poly" id="edge21_Node000007_Node000014" title=" " alt="" coords="1131,341,1111,375,1104,394,1101,415,1101,557,1096,572,1082,586,1034,608,973,624,911,635,910,630,972,619,1032,603,1079,581,1091,569,1096,556,1096,414,1099,393,1106,372,1127,338"/>
+<area shape="poly" id="edge24_Node000001_Node000015" title=" " alt="" coords="334,284,408,326,469,349,467,354,406,330,331,289"/>
+<area shape="rect" id="Node000016" href="$classCParameterUI.html" title="The parameter UI interface." alt="" coords="100,155,212,180"/>
+<area shape="poly" id="edge25_Node000015_Node000016" title=" " alt="" coords="186,185,288,251,285,256,184,190"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="117,80,195,105"/>
+<area shape="poly" id="edge26_Node000016_Node000017" title=" " alt="" coords="159,120,159,154,153,154,153,120"/>
+</map>

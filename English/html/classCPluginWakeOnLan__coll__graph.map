@@ -1,0 +1,11 @@
+<map id="CPluginWakeOnLan" name="CPluginWakeOnLan">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,256,152,281"/>
+<area shape="rect" id="Node000002" href="$classCPlugin.html" title="Plugin interface." alt="" coords="66,80,137,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,119,85,168,81,217,81,256,76,256,76,216,80,168,91,118"/>
+<area shape="rect" id="Node000004" href="$classCOperate.html" title="Operate interface." alt="" coords="95,168,177,193"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="101,119,105,143,123,166,119,170,100,145,96,120"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="111,5,185,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,44,111,81,107,78,131,41"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="164,42,174,64,182,90,185,118,178,145,169,159,157,170,153,166,165,156,174,143,179,118,177,91,169,66,159,44"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="123,206,89,257,84,254,118,203"/>
+</map>

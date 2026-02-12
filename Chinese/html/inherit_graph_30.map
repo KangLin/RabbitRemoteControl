@@ -1,0 +1,17 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,96,56"/>
+<area shape="rect" id="Node000001" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="144,31,228,56"/>
+<area shape="poly" id="edge74_Node000000_Node000001" title=" " alt="" coords="110,41,144,41,144,46,110,46"/>
+<area shape="rect" id="Node000002" href="$classCChannelIce.html" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="280,5,383,31"/>
+<area shape="poly" id="edge75_Node000001_Node000002" title=" " alt="" coords="241,31,280,24,280,30,242,36"/>
+<area shape="rect" id="Node000003" href="$classCChannelSSH.html" title=" " alt="" coords="276,55,387,80"/>
+<area shape="poly" id="edge76_Node000001_Node000003" title=" " alt="" coords="242,50,276,56,275,61,241,55"/>
+<area shape="rect" id="Node000004" href="$classCChannelSFTP.html" title=" " alt="" coords="461,5,575,31"/>
+<area shape="poly" id="edge77_Node000003_Node000004" title=" " alt="" coords="392,49,468,28,469,33,394,54"/>
+<area shape="rect" id="Node000005" href="$classCChannelSSHTerminal.html" title=" " alt="" coords="435,55,601,80"/>
+<area shape="poly" id="edge78_Node000003_Node000005" title=" " alt="" coords="401,65,435,65,435,70,401,70"/>
+<area shape="rect" id="Node000006" href="$classCChannelSSHTunnel.html" title="SSH 隧道" alt="" coords="442,104,594,129"/>
+<area shape="poly" id="edge79_Node000003_Node000006" title=" " alt="" coords="394,81,469,101,468,106,392,86"/>
+<area shape="rect" id="Node000007" href="$classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="649,104,853,129"/>
+<area shape="poly" id="edge80_Node000006_Node000007" title=" " alt="" coords="608,114,649,114,649,119,608,119"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,129,83,155"/>
+<area shape="rect" id="Node000001" href="$classCBackendThread.html" title="The backend thread." alt="" coords="163,5,293,31"/>
+<area shape="poly" id="edge87_Node000000_Node000001" title=" " alt="" coords="58,116,87,77,107,57,129,40,161,26,164,31,132,44,111,61,91,80,62,119"/>
+<area shape="rect" id="Node000002" href="$classCMultimediaRecordThread.html" title="The CMultimediaRecordThread class." alt="" coords="131,55,325,80"/>
+<area shape="poly" id="edge88_Node000000_Node000002" title=" " alt="" coords="73,119,130,89,164,78,165,83,132,94,76,124"/>
+<area shape="rect" id="Node000003" href="$classCPluginThread.html" title="One thread handles multiple CConnecterConnect." alt="" coords="170,104,286,129"/>
+<area shape="poly" id="edge89_Node000000_Node000003" title=" " alt="" coords="96,132,169,122,170,127,97,137"/>
+<area shape="rect" id="Node000004" href="$classCRecordVideoThread.html" title="Record video thread." alt="" coords="149,153,307,179"/>
+<area shape="poly" id="edge90_Node000000_Node000004" title=" " alt="" coords="97,146,149,153,148,158,96,151"/>
+<area shape="rect" id="Node000005" href="$classCSSHTunnelThread.html" title="Data is forwarded over a local socket and SSH tunnel." alt="" coords="156,203,300,228"/>
+<area shape="poly" id="edge91_Node000000_Node000005" title=" " alt="" coords="78,160,132,188,169,200,168,205,130,192,75,164"/>
+<area shape="rect" id="Node000006" href="$classCServiceThread.html" title=" " alt="" coords="166,252,290,277"/>
+<area shape="poly" id="edge92_Node000000_Node000006" title=" " alt="" coords="62,164,92,202,111,221,132,237,167,252,164,257,129,242,107,225,88,206,58,168"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,80,165,105"/>
+<area shape="rect" id="Node000001" href="$classCHistoryModel.html" title=" " alt="" coords="227,5,346,31"/>
+<area shape="poly" id="edge46_Node000000_Node000001" title=" " alt="" coords="129,72,212,39,245,28,246,33,214,45,131,77"/>
+<area shape="rect" id="Node000002" href="$classCListFileModel.html" title=" " alt="" coords="228,55,345,80"/>
+<area shape="poly" id="edge47_Node000000_Node000002" title=" " alt="" coords="179,78,228,72,228,77,179,84"/>
+<area shape="rect" id="Node000003" href="$classCRecentModel.html" title=" " alt="" coords="229,104,345,129"/>
+<area shape="poly" id="edge48_Node000000_Node000003" title=" " alt="" coords="179,101,229,107,228,112,179,106"/>
+<area shape="rect" id="Node000004" href="$classCWakeOnLanModel.html" title=" " alt="" coords="213,153,360,179"/>
+<area shape="poly" id="edge49_Node000000_Node000004" title=" " alt="" coords="134,108,214,138,250,151,248,156,212,143,132,113"/>
+</map>
