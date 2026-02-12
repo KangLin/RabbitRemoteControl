@@ -95,23 +95,23 @@ void CClipboardFreeRDP::slotClipBoardChanged()
     const QMimeData* pMimeType = QApplication::clipboard()->mimeData();
     if(!pMimeType) return;
 
-    qint32 data = 0;
-    QVariant d = pMimeType->data(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP);
-    if(d.isValid()) {
-        data = d.toInt();
-        if(!m_lstClipboardMimeDataId.isEmpty()
-            && m_lstClipboardMimeDataId.contains(data))
-        {//*
-            qDebug(log)
-                << "CClipboardFreeRdp::slotClipBoardChanged: clipboard is this owner"
-                << data << m_lstClipboardMimeDataId;//*/
-            return;
+    if(pMimeType->hasFormat(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP)) {
+        qint32 data = 0;
+        QByteArray d = pMimeType->data(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP);
+        if(!d.isNull()) {
+            bool ok = false;
+            data = d.toInt(&ok);
+            if(!m_lstClipboardMimeDataId.isEmpty() && ok
+                && m_lstClipboardMimeDataId.contains(data))
+            {//*
+                qDebug(log)
+                    << "CClipboardFreeRdp::slotClipBoardChanged: clipboard is this owner"
+                    << data << m_lstClipboardMimeDataId;//*/
+                return;
+            }
         }
     }
 
-    //*
-    qDebug(log) << "CClipboardFreeRdp::slotClipBoardChanged:"
-                << data << m_lstClipboardMimeDataId;//*/
     m_lstClipboardMimeDataId.clear();
     SendClientFormatList(m_pCliprdrClientContext);
 }
