@@ -41,5 +41,6 @@ private:
     virtual bool ImportFromJson(const QJsonObject &obj) override;
 
     CDatabaseIcon m_IconDB;
+    CDatabaseFile m_FileDB;
 };
 

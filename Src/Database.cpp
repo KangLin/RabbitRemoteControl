@@ -601,6 +601,14 @@ bool CDatabaseFile::ImportFileFromJson(const QJsonObject &obj, QString &szFile)
     return true;
 }
 
+bool CDatabaseFile::ImportFileToDatabaseFromJson(const QJsonObject &obj, QString &szFile)
+{
+    bool bRet = ImportFileFromJson(obj, szFile);
+    if(!bRet) return bRet;
+    bRet = Save(szFile);
+    return bRet;
+}
+
 CDatabaseFile::CDatabaseFile(QObject* parent) : CDatabase(parent)
 {
     m_szConnectName = "file_connect";

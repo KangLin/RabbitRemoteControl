@@ -147,6 +147,9 @@ bool CFavoriteDatabase::OnInitializeDatabase()
 
     m_IconDB.SetDatabase(GetDatabase(), m_pPara);
     bRet = m_IconDB.OnInitializeDatabase();
+    if(!bRet) return false;
+    m_FileDB.SetDatabase(GetDatabase(), m_pPara);
+    bRet = m_FileDB.OnInitializeDatabase();
     return bRet;
 }
 
@@ -468,7 +471,7 @@ bool CFavoriteDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
         }
 
         QString szFile;
-        bool bRet = CDatabaseFile::ImportFileFromJson(itemObj, szFile);
+        bool bRet = m_FileDB.ImportFileToDatabaseFromJson(itemObj, szFile);
         if(!bRet) continue;
         QIcon icon;
         bRet = CDatabaseIcon::ImportIconFromJson(itemObj, icon);

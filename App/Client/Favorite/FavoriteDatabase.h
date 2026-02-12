@@ -57,6 +57,7 @@ private:
     bool OnInitializeSqliteDatabase() override;
     bool OnInitializeMySqlDatabase() override;
     CDatabaseIcon m_IconDB;
+    CDatabaseFile m_FileDB;
 
     // CDatabaseTree interface
 protected:

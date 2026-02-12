@@ -36,6 +36,9 @@ bool CRecentDatabase::OnInitializeDatabase()
     // Create icon table
     m_IconDB.SetDatabase(GetDatabase(), m_pPara);
     bRet = m_IconDB.OnInitializeDatabase();
+    if(!bRet) return bRet;
+    m_FileDB.SetDatabase(GetDatabase(), m_pPara);
+    bRet = m_FileDB.OnInitializeDatabase();
     return bRet;
 }
 
@@ -343,7 +346,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
         QJsonObject itemObj = it->toObject();
         RecentItem item;
 
-        bool bRet = CDatabaseFile::ImportFileFromJson(itemObj, item.szFile);
+        bool bRet = m_FileDB.ImportFileToDatabaseFromJson(itemObj, item.szFile);
         if(!bRet) continue;
 
         // Check if is exist in recent

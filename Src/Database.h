@@ -86,6 +86,10 @@ private:
     QString m_szTableName;
 };
 
+/*!
+ * \brief The CDatabaseFile class
+ * \note The file field is filename, don't include path.
+ */
 class PLUGIN_EXPORT CDatabaseFile : public CDatabase
 {
     Q_OBJECT
@@ -94,7 +98,17 @@ public:
     explicit CDatabaseFile(QObject* parent = nullptr);
     explicit CDatabaseFile(const QString& szPrefix, QObject *parent = nullptr);
     
+    /*!
+     * \brief Load
+     * \param szFile: the file path
+     * \note The file field in database is filename, don't include path.
+     */
     QByteArray Load(const QString &szFile);
+    /*!
+     * \brief Save
+     * \param szFile: the file path
+     * \note The file field in database is filename, don't include path.
+     */
     bool Save(const QString& szFile);
 
     virtual bool ExportToJson(QJsonObject &obj) override;
@@ -102,7 +116,8 @@ public:
     
     static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
     static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
-    
+    bool ImportFileToDatabaseFromJson(const QJsonObject &obj, QString &szFile);
+
 protected:
     virtual bool OnInitializeSqliteDatabase() override;
     virtual bool OnInitializeMySqlDatabase() override;
