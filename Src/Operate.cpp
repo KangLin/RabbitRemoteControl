@@ -178,12 +178,13 @@ QString COperate::GetSettingsFile()
 {
     if(m_szSettings.isEmpty())
     {
+        QString szId = Id();
+        static QRegularExpression exp("[-@:#%!^&* .]");
+        szId = szId.replace(exp, "_");
         m_szSettings = RabbitCommon::CDir::Instance()->GetDirUserData()
             + QDir::separator()
-            + Id()
+            + szId
             + ".rrc";
-        static QRegularExpression exp("[-@:#%!^&* .]");
-        m_szSettings = m_szSettings.replace(exp, "_");
     }
     return m_szSettings;
 }
