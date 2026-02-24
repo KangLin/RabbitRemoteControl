@@ -321,7 +321,7 @@ void CFrmWebView::slotCertificateError(QWebEngineCertificateError error)
     }
 
     error.defer();
-    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserData()
+    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserConfig()
                       + QDir::separator() + "WebBrowser.ini",
                   QSettings::IniFormat);
     if(set.value("Certificate/Error/Accept" + error.url().toString(), false).toBool()) {

@@ -41,5 +41,10 @@ public:
 
 private:
     CDatabaseIcon m_iconDB;
+    
+    // CDatabase interface
+protected:
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
 };
 

@@ -65,6 +65,11 @@ private:
 
     virtual bool ExportToJson(QJsonObject &obj) override;
     virtual bool ImportFromJson(const QJsonObject &obj) override;
+    
+    // CDatabase interface
+protected:
+    virtual bool OnInitializeSqliteDatabase() override;
+    virtual bool OnInitializeMySqlDatabase() override;
 };
 
 void enableSqlTrace(const QString& connectionName = QSqlDatabase::defaultConnection);

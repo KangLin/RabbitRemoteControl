@@ -47,8 +47,7 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
     bool bRet = false;
     if(!pPara) {
         bRet = OpenSQLiteDatabase();
-        if(!bRet) return false;
-        return OnInitializeDatabase();
+        return bRet;
     }
 
     m_pPara = pPara;
@@ -79,10 +78,8 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
         qDebug(log) << "Multiple result sets:" << driver->hasFeature(QSqlDriver::MultipleResultSets);
         qDebug(log) << "Cancel query:" << driver->hasFeature(QSqlDriver::CancelQuery);
     }
-
-    if(!bRet) return false;
-
-    return OnInitializeDatabase();
+    
+    return bRet;
 }
 
 bool CDatabase::OpenSQLiteDatabase(
@@ -119,7 +116,8 @@ bool CDatabase::OpenSQLiteDatabase(
     qInfo(log) << "Open sqlite database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    return true;
+    
+    return OnInitializeDatabase();
 }
 
 bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
@@ -166,7 +164,8 @@ bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
     qInfo(log) << "Open mysql database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    return true;
+
+    return OnInitializeDatabase();
 }
 
 bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara)
@@ -207,7 +206,8 @@ bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara)
     qInfo(log) << "Open odbc database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    return true;
+
+    return OnInitializeDatabase();
 }
 
 bool CDatabase::OnInitializeDatabase()
