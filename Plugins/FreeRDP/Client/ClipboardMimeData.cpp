@@ -278,6 +278,14 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     qDebug(log) << "CClipboardMimeData::retrieveData: format id:" << value.id
          << "name:" << value.name << "mimeData:" << mimeType; //*/
 
+    if(m_Variant.isValid() && !m_Variant.isNull()) {
+        if(isUrls(mimeType))
+        {
+            QByteArray data = m_Variant.toByteArray();
+            emit sigRequestFileFromServer(mimeType, value.name, data.data(), data.size());
+        }
+        return m_Variant;
+    }
     if(!m_pContext) return QVariant();
 
     emit sigSendDataRequest(m_pContext, value.id);
