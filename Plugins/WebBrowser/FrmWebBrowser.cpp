@@ -468,12 +468,12 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     if(m_profile)
         return m_profile.get();
 
-    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserData()
+    QSettings set(RabbitCommon::CDir::Instance()->GetDirUserConfig()
                       + QDir::separator() + "WebBrowser.ini",
                   QSettings::IniFormat);
     QString name = "io.github.KangLin.RabbitRemoteControl";
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
-    name += QLatin1StringView(qWebEngineChromiumVersion());
+    name += "_" + QLatin1StringView(qWebEngineChromiumVersion());
     name = set.value("Profile/Name", name).toString();
     QWebEngineProfileBuilder profileBuilder;
     m_profile.reset(profileBuilder.createProfile(name));

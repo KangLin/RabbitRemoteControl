@@ -14,27 +14,9 @@ CDatabaseUrl::CDatabaseUrl(QObject *parent)
 
 bool CDatabaseUrl::OnInitializeDatabase()
 {
-    QSqlQuery query(GetDatabase());
-
-    // 创建历史记录表
-    bool success = query.exec(
-        "CREATE TABLE IF NOT EXISTS url ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    url TEXT UNIQUE NOT NULL,"
-        "    title TEXT,"
-        "    icon INTEGER DEFAULT 0,"
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-        );
-
-    if (!success) {
-        qCritical(log) << "Failed to create url table:" << query.lastError().text();
-        return false;
-    }
-
-    // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_url_url ON url(url)");
-
+    bool success = false;
+    success = CDatabase::OnInitializeDatabase();
+    if(!success) return success;
     m_iconDB.SetDatabase(GetDatabase());
     success = m_iconDB.OnInitializeDatabase();
     return success;
@@ -269,7 +251,9 @@ QList<int> CDatabaseUrl::GetDomain(const QString &szDomain)
             ret << query.value(0).toInt();
         }
     } else {
-        qCritical(log) << "Failed to get domain:" << query.lastError().text();
+        qCritical(log) << "Failed to get domain:"
+                       << query.lastError().text()
+                       << query.executedQuery();
     }
 
     return ret;
@@ -299,6 +283,10 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
             item.icon = m_iconDB.GetIcon(query.value(4).toInt());
             items.append(item);
         }
+    } else {
+        qCritical(log) << "Failed to search:"
+                       << query.lastError().text()
+                       << query.executedQuery();
     }
 
     return items;
@@ -312,4 +300,63 @@ bool CDatabaseUrl::ExportToJson(QJsonObject &obj)
 bool CDatabaseUrl::ImportFromJson(const QJsonObject &obj)
 {
     return true;
+}
+
+bool CDatabaseUrl::OnInitializeSqliteDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 创建历史记录表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS url ("
+        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    url TEXT UNIQUE NOT NULL,"
+        "    title TEXT,"
+        "    icon INTEGER DEFAULT 0,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
+        ")"
+        );
+    
+    if (!success) {
+        qCritical(log) << "Failed to create url table:"
+                       << query.lastError().text()
+                       << query.executedQuery();
+        return false;
+    }
+    
+    // 创建索引
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_url_url ON url(url)");
+    if (!success) {
+        qWarning(log) << "Failed to create index idx_url_url:"
+                       << query.lastError().text()
+                       << query.executedQuery();
+    }
+
+    return true;
+}
+
+bool CDatabaseUrl::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 创建历史记录表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS url ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    url TEXT NOT NULL,"
+        "    title TEXT,"
+        "    icon INTEGER DEFAULT 0,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    INDEX idx_url_url (url)"
+        ")"
+        );
+    
+    if (!success) {
+        qCritical(log) << "Failed to create url table:"
+                       << query.lastError().text()
+                       << query.executedQuery();
+        return false;
+    }
+
+    return success;
 }

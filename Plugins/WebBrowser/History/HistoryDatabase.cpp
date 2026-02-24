@@ -70,26 +70,9 @@ CHistoryDatabase::~CHistoryDatabase()
 
 bool CHistoryDatabase::OnInitializeDatabase()
 {
-    QSqlQuery query(GetDatabase());
-
-    // 创建历史记录表
-    bool success = query.exec(
-        "CREATE TABLE IF NOT EXISTS history ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    url INTEGER NOT NULL,"
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-        );
-
-    if (!success) {
-        qCritical(log) << "Failed to create table:" << query.lastError().text();
-        return false;
-    }
-
-    // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_history_url ON history(url)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_history_time ON history(visit_time)");
-
+    bool success = false;
+    success = CDatabase::OnInitializeDatabase();
+    if(!success) return false;
     m_UrlDB.SetDatabase(GetDatabase());
     m_UrlDB.OnInitializeDatabase();
     return success;
@@ -759,5 +742,63 @@ bool CHistoryDatabase::ExportToJson(QJsonObject &obj)
 
 bool CHistoryDatabase::ImportFromJson(const QJsonObject &obj)
 {
+    return true;
+}
+
+bool CHistoryDatabase::OnInitializeSqliteDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 创建历史记录表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS history ("
+        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    url INTEGER NOT NULL,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
+        ")"
+        );
+    
+    if (!success) {
+        qCritical(log) << "Failed to create table:" << query.lastError().text();
+        return false;
+    }
+    
+    // 创建索引
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_history_url ON history(url)");
+    if (!success) {
+        qWarning(log) << "Failed to create index idx_history_url:"
+                       << query.lastError().text()
+                       << query.executedQuery();
+    }
+    success = query.exec("CREATE INDEX IF NOT EXISTS idx_history_time ON history(visit_time)");
+    if (!success) {
+        qWarning(log) << "Failed to create index idx_history_time:"
+                      << query.lastError().text()
+                      << query.executedQuery();
+    }
+    
+    return true;
+}
+
+bool CHistoryDatabase::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 创建历史记录表
+    bool success = query.exec(
+        "CREATE TABLE IF NOT EXISTS history ("
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    url INTEGER NOT NULL,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    INDEX idx_history_url (url),"
+        "    INDEX idx_history_time (visit_time)"
+        ")"
+        );
+    
+    if (!success) {
+        qCritical(log) << "Failed to create table:" << query.lastError().text();
+        return false;
+    }
+
     return true;
 }
