@@ -350,14 +350,21 @@ if [ $DOCKER -eq 1 ]; then
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         docker run --privileged ${DOCKER_PARA} \
-           --volume ${BUILD_LINUX_DIR}:/home/build \
-           --volume ${INSTALL_DIR}:/home/install \
-           --volume ${TOOLS_DIR}:/home/tools \
-           --interactive --rm ${DOCKER_IMAGE} \
+            -e CI=${CI} \
+            --volume ${REPO_ROOT}:/home/RabbitRemoteControl \
+            --volume ${BUILD_LINUX_DIR}:/home/build \
+            --volume ${INSTALL_DIR}:/home/install \
+            --volume ${TOOLS_DIR}:/home/tools \
+            --interactive --rm ${DOCKER_IMAGE} \
            bash -e -x -c "
-           tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
-           ~/RabbitRemoteControl/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
-           cp ~/rabbitremotecontrol*.deb /home/build/
+           if [ ! \$CI ]; then
+               tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+               export SOURCE_CODE_DIR=~
+           else
+               export SOURCE_CODE_DIR=/home
+           fi
+           \${SOURCE_CODE_DIR}/RabbitRemoteControl/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
+           cp \${SOURCE_CODE_DIR}/rabbitremotecontrol*.deb /home/build/
            "
     fi
     if [ $APPIMAGE -eq 1 ]; then
@@ -365,21 +372,28 @@ if [ $DOCKER -eq 1 ]; then
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         docker run --privileged ${DOCKER_PARA} \
+            -e CI=${CI} \
+            --volume ${REPO_ROOT}:/home/RabbitRemoteControl \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
             --interactive --rm ${DOCKER_IMAGE} \
             bash -e -x -c "
-            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
-            ~/RabbitRemoteControl/Script/build_linux.sh --appimage --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
+            if [ ! \$CI ]; then
+                tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+                export SOURCE_CODE_DIR=~
+            else
+                export SOURCE_CODE_DIR=/home
+            fi
+            \${SOURCE_CODE_DIR}/RabbitRemoteControl/Script/build_linux.sh --appimage --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
             # Create install script
             mkdir -p /home/build/install
             pushd /home/build/install
-            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
             chmod a+rx RabbitRemoteControl_`uname -m`.AppImage
-            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
-            cp ~/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
-            cp ~/RabbitRemoteControl/Script/install_appimage.sh install.sh
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop .
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg .
+            cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/Script/install_appimage.sh install.sh
             chmod a+rx install.sh
             popd
             "
