@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CView类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCView-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CView类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__APP.html">程序</a> &raquo; <a class="el" href="group__VIEWER__APP.html">玉兔远程控制程序</a> &raquo; <a class="el" href="group__ViewApi.html">视图应用接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classCView.html" title="The CView class">CView</a> class  
+ <a href="classCView.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="View_8h_source.html">View.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CView 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCView__inherit__graph.png" border="0" usemap="#aCView_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCView_inherit__map" id="aCView_inherit__map">
+<area shape="rect" title="The CView class" alt="" coords="93,79,156,104"/>
+<area shape="rect" href="classCViewSplitter.html" title="The split view class" alt="" coords="5,152,116,177"/>
+<area shape="poly" title=" " alt="" coords="107,116,73,154,69,150,103,113"/>
+<area shape="rect" href="classCViewTable.html" title="The CViewTable class" alt="" coords="140,152,237,177"/>
+<area shape="poly" title=" " alt="" coords="146,113,180,150,176,154,142,116"/>
+<area shape="rect" title=" " alt="" coords="85,5,164,31"/>
+<area shape="poly" title=" " alt="" coords="127,44,127,79,122,79,122,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CView 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCView__coll__graph.png" border="0" usemap="#aCView_coll__map" alt="Collaboration graph"/></div>
+<map name="aCView_coll__map" id="aCView_coll__map">
+<area shape="rect" title="The CView class" alt="" coords="89,631,151,656"/>
+<area shape="rect" title=" " alt="" coords="153,543,231,568"/>
+<area shape="poly" title=" " alt="" coords="188,583,175,608,161,622,145,633,142,628,158,618,171,605,184,580"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="5,543,128,568"/>
+<area shape="poly" title=" " alt="" coords="52,581,48,594,50,605,67,622,90,632,87,637,64,626,46,608,42,593,47,579"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="529,80,628,105"/>
+<area shape="poly" title=" " alt="" coords="516,99,388,106,240,119,173,128,118,140,82,153,72,160,69,167,69,469,69,542,64,542,64,469,64,165,68,156,79,148,117,134,172,123,240,114,388,101,516,94"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="105,155,255,180"/>
+<area shape="poly" title=" " alt="" coords="516,106,364,132,235,157,234,152,364,127,515,101"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="549,631,688,656"/>
+<area shape="poly" title=" " alt="" coords="583,119,620,630,615,631,578,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="255,543,395,568"/>
+<area shape="poly" title=" " alt="" coords="516,107,472,118,429,131,397,148,388,157,385,166,385,469,381,496,366,520,343,544,339,541,362,517,376,494,380,468,380,166,384,154,394,144,427,126,470,113,515,102"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="599,204,729,229"/>
+<area shape="poly" title=" " alt="" coords="597,115,658,202,654,205,592,118"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="678,303,821,328"/>
+<area shape="poly" title=" " alt="" coords="619,109,679,146,709,172,733,203,745,229,751,257,753,302,747,303,745,257,740,230,728,205,705,176,676,150,617,114"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="769,403,959,429"/>
+<area shape="poly" title=" " alt="" coords="642,95,710,103,779,116,809,125,833,136,850,149,856,166,856,317,859,365,865,403,859,404,854,365,851,317,851,166,845,152,830,140,807,130,777,121,709,108,642,101"/>
+<area shape="rect" title=" " alt="" coords="541,5,616,31"/>
+<area shape="poly" title=" " alt="" coords="581,45,581,80,576,80,576,45"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="115,455,275,480"/>
+<area shape="poly" title=" " alt="" coords="165,489,137,506,83,545,80,540,135,502,162,485"/>
+<area shape="poly" title=" " alt="" coords="225,486,271,516,308,540,305,545,268,521,222,490"/>
+<area shape="poly" title=" " alt="" coords="174,194,165,230,156,276,152,326,157,377,172,420,190,453,185,456,167,422,152,378,147,326,151,275,160,229,169,192"/>
+<area shape="poly" title=" " alt="" coords="270,160,282,167,274,174,256,177,255,171,272,169,277,167,267,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="167,352,289,377"/>
+<area shape="poly" title=" " alt="" coords="188,193,208,278,227,351,222,353,203,279,183,194"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="217,253,345,279"/>
+<area shape="poly" title=" " alt="" coords="204,187,271,251,267,255,200,191"/>
+<area shape="poly" title=" " alt="" coords="535,638,498,628,464,613,440,590,433,574,431,557,431,265,426,252,413,239,366,215,306,197,245,183,246,177,307,191,368,210,416,234,431,249,436,264,436,556,438,573,445,587,467,608,500,623,536,633"/>
+<area shape="poly" title=" " alt="" coords="295,578,282,592,280,599,283,605,295,611,318,617,387,626,549,637,549,642,386,632,317,622,293,616,279,609,275,599,277,590,291,574"/>
+<area shape="poly" title=" " alt="" coords="659,243,651,277,647,314,647,557,640,598,627,631,622,629,635,597,641,556,641,314,645,276,653,242"/>
+<area shape="poly" title=" " alt="" coords="751,342,751,415,751,557,743,585,723,606,697,622,669,633,667,628,695,617,720,602,738,582,745,556,745,415,746,342"/>
+<area shape="poly" title=" " alt="" coords="861,443,850,480,831,525,805,570,768,609,730,630,689,640,687,635,728,625,765,605,800,567,827,522,845,478,856,441"/>
+<area shape="poly" title=" " alt="" coords="222,392,201,456,196,454,217,390"/>
+<area shape="poly" title=" " alt="" coords="271,292,237,353,232,351,266,289"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a4d0f07d80eef2ab2dc1dffc229609876" id="r_a4d0f07d80eef2ab2dc1dffc229609876"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a4d0f07d80eef2ab2dc1dffc229609876">sigCloseView</a> (const QWidget *pView)</td></tr>
+<tr class="separator:a4d0f07d80eef2ab2dc1dffc229609876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9a72cfe48924ee0c390baa7db7924d" id="r_a2e9a72cfe48924ee0c390baa7db7924d"><td class="memItemLeft" align="right" valign="top"><a id="a2e9a72cfe48924ee0c390baa7db7924d" name="a2e9a72cfe48924ee0c390baa7db7924d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigCurrentChanged</b> (const QWidget *pView)</td></tr>
+<tr class="separator:a2e9a72cfe48924ee0c390baa7db7924d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a25f2ff1a5fe5eaaaa77c21a41e776526" id="r_a25f2ff1a5fe5eaaaa77c21a41e776526"><td class="memItemLeft" align="right" valign="top"><a id="a25f2ff1a5fe5eaaaa77c21a41e776526" name="a25f2ff1a5fe5eaaaa77c21a41e776526"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CView</b> (<a class="el" href="classCParameterApp.html">CParameterApp</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a25f2ff1a5fe5eaaaa77c21a41e776526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e651d3bc8b112c7a0a65c9b336e6390" id="r_a7e651d3bc8b112c7a0a65c9b336e6390"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a7e651d3bc8b112c7a0a65c9b336e6390">AddView</a> (QWidget *pView)=0</td></tr>
+<tr class="separator:a7e651d3bc8b112c7a0a65c9b336e6390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad730d6191dc8256f41a9eb2442f1fac8" id="r_ad730d6191dc8256f41a9eb2442f1fac8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#ad730d6191dc8256f41a9eb2442f1fac8">RemoveView</a> (QWidget *pView)=0</td></tr>
+<tr class="separator:ad730d6191dc8256f41a9eb2442f1fac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83c27ae1c59e01887396630801a3c622" id="r_a83c27ae1c59e01887396630801a3c622"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a83c27ae1c59e01887396630801a3c622">GetCurrentView</a> ()=0</td></tr>
+<tr class="separator:a83c27ae1c59e01887396630801a3c622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dfbd5d4b880e864d1733c78b9aad5be" id="r_a2dfbd5d4b880e864d1733c78b9aad5be"><td class="memItemLeft" align="right" valign="top"><a id="a2dfbd5d4b880e864d1733c78b9aad5be" name="a2dfbd5d4b880e864d1733c78b9aad5be"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>SetCurrentView</b> (QWidget *pView)=0</td></tr>
+<tr class="separator:a2dfbd5d4b880e864d1733c78b9aad5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e72677fa6ac431f38aefbe4652d3881" id="r_a0e72677fa6ac431f38aefbe4652d3881"><td class="memItemLeft" align="right" valign="top"><a id="a0e72677fa6ac431f38aefbe4652d3881" name="a0e72677fa6ac431f38aefbe4652d3881"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetWidowsTitle</b> (QWidget *pView, const QString &amp;szTitle, const QIcon &amp;icon, const QString &amp;szToolTip)=0</td></tr>
+<tr class="separator:a0e72677fa6ac431f38aefbe4652d3881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3c98da620a1ea04f56c0516d7ba412" id="r_a8c3c98da620a1ea04f56c0516d7ba412"><td class="memItemLeft" align="right" valign="top"><a id="a8c3c98da620a1ea04f56c0516d7ba412" name="a8c3c98da620a1ea04f56c0516d7ba412"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>SetFullScreen</b> (bool bFull)=0</td></tr>
+<tr class="separator:a8c3c98da620a1ea04f56c0516d7ba412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3fa03bfaf6321deef90c69df81e5bcf" id="r_af3fa03bfaf6321deef90c69df81e5bcf"><td class="memItemLeft" align="right" valign="top"><a id="af3fa03bfaf6321deef90c69df81e5bcf" name="af3fa03bfaf6321deef90c69df81e5bcf"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>SetVisibleTab</b> (bool bVisible)=0</td></tr>
+<tr class="separator:af3fa03bfaf6321deef90c69df81e5bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a1c1c61f76bac86e4b11269dc16dffbab" id="r_a1c1c61f76bac86e4b11269dc16dffbab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterApp.html">CParameterApp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a1c1c61f76bac86e4b11269dc16dffbab">m_pParameterApp</a></td></tr>
+<tr class="separator:a1c1c61f76bac86e4b11269dc16dffbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The <a class="el" href="classCView.html" title="The CView class">CView</a> class </p>
+<dl class="section note"><dt>注解</dt><dd>The parameters and return QWidget* is same as CConnecter::GetViewer() </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="View_8h_source.html">View.h</a> 第 <a class="el" href="View_8h_source.html#l00024">24</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae19fe3222e5af44ef83e320493ad6858" name="ae19fe3222e5af44ef83e320493ad6858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19fe3222e5af44ef83e320493ad6858">&#9670;&#160;</a></span>~CView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CView::~CView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="View_8cpp_source.html">View.cpp</a> 第 <a class="el" href="View_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a7e651d3bc8b112c7a0a65c9b336e6390" name="a7e651d3bc8b112c7a0a65c9b336e6390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e651d3bc8b112c7a0a65c9b336e6390">&#9670;&#160;</a></span>AddView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CView::AddView </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>QWidget* pView must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>在 <a class="el" href="classCViewSplitter.html#ae58c231817373c83216041d6c21ec2f0">CViewSplitter</a> , 以及 <a class="el" href="classCViewTable.html#ad7cf528bedb73684fb665d46a6e19191">CViewTable</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a83c27ae1c59e01887396630801a3c622" name="a83c27ae1c59e01887396630801a3c622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c27ae1c59e01887396630801a3c622">&#9670;&#160;</a></span>GetCurrentView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual QWidget * CView::GetCurrentView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>The return QWidget* must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>在 <a class="el" href="classCViewSplitter.html#a7ca3e5da43cb9578ba2ed27f9bd00ba0">CViewSplitter</a> , 以及 <a class="el" href="classCViewTable.html#aad6552bf55343e52e416177116f4c908">CViewTable</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ad730d6191dc8256f41a9eb2442f1fac8" name="ad730d6191dc8256f41a9eb2442f1fac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad730d6191dc8256f41a9eb2442f1fac8">&#9670;&#160;</a></span>RemoveView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CView::RemoveView </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>QWidget* pView must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>在 <a class="el" href="classCViewSplitter.html#a53f6ed56c31f9d08613596f858dcfb4d">CViewSplitter</a> , 以及 <a class="el" href="classCViewTable.html#a1695db5668618d87e604affccafe539a">CViewTable</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a4d0f07d80eef2ab2dc1dffc229609876" name="a4d0f07d80eef2ab2dc1dffc229609876"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0f07d80eef2ab2dc1dffc229609876">&#9670;&#160;</a></span>sigCloseView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CView::sigCloseView </td>
+          <td>(</td>
+          <td class="paramtype">const QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>The QWidget* pView must is same as CConnecter::GetViewer() </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a1c1c61f76bac86e4b11269dc16dffbab" name="a1c1c61f76bac86e4b11269dc16dffbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c1c61f76bac86e4b11269dc16dffbab">&#9670;&#160;</a></span>m_pParameterApp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterApp.html">CParameterApp</a>* CView::m_pParameterApp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="View_8h_source.html">View.h</a> 第 <a class="el" href="View_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="View_8h_source.html">View.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="View_8cpp_source.html">View.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

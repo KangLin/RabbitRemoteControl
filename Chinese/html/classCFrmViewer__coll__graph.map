@@ -1,0 +1,5 @@
+<map id="CFrmViewer" name="CFrmViewer">
+<area shape="rect" id="Node000001" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="5,79,107,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="17,5,95,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,44,59,79,53,79,53,44"/>
+</map>

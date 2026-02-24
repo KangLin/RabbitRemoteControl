@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: 线程模型</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a>  </div>
+  <div class="headertitle"><div class="title">线程模型<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>线程模型  
+<a href="#details">更多...</a></p>
+<div class="dynheader">
+线程模型 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__LIBAPI__THREAD.png" border="0" usemap="#agroup____LIBAPI____THREAD" alt=""/></div>
+<map name="agroup____LIBAPI____THREAD" id="agroup____LIBAPI____THREAD">
+<area shape="rect" href="group__LIBAPI__PLUGIN.html" title="插件库" alt="" coords="5,5,79,31"/>
+<area shape="rect" title="线程模型" alt="" coords="127,5,217,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html">CManageConnect</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">管理连接。此类仅用于 <a class="el" href="classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。">CPluginThread</a>  <a href="classCManageConnect.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginThread.html">CPluginThread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> 由插件使用。  <a href="classCPluginThread.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>线程模型 </p>
+<ul>
+<li>线程分类<ul>
+<li>主线程（UI线程）。以下类在主线程中：<ul>
+<li><a class="el" href="classCOperate.html" title="操作接口。">COperate</a></li>
+<li>CFrmView</li>
+<li><a class="el" href="classCParameter.html" title="参数接口">CParameter</a></li>
+</ul>
+</li>
+<li>工作线程。以下类在工作线程中：<ul>
+<li>CConnect</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>工作线程模型<ul>
+<li>阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。 每个连接者启动一个后台线程。 <dl class="section see"><dt>参见</dt><dd>CPluginClient COperateThread</dd></dl>
+</li>
+<li>非阻塞：例如Qt事件。一个线程可以处理多个连接。 插件启动一个线程，连接者重用此线程，它不再启动线程。 <dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> <a class="el" href="classCOperateDesktop.html" title="远程桌面操作接口">COperateDesktop</a></dd></dl>
+</li>
+</ul>
+</li>
+<li>类关系： <div class="image">
+<object type="image/svg+xml" data="PluginAPI.svg" style="pointer-events: none;"></object>
+</div>
+ </li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<map id="CServiceFreeRDP" name="CServiceFreeRDP">
+<area shape="rect" id="Node000001" title=" " alt="" coords="28,243,162,268"/>
+<area shape="rect" id="Node000002" href="$classCService.html" title="The service interface." alt="" coords="56,168,134,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,208,98,242,92,242,92,208"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="58,5,132,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,40,31,57,12,81,8,94,10,106,24,129,48,150,73,166,71,170,45,154,20,133,5,108,3,93,7,79,28,53,53,35"/>
+<area shape="rect" id="Node000004" href="$classCParameterService.html" title=" " alt="" coords="22,80,168,105"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="98,45,98,80,92,80,92,45"/>
+<area shape="rect" id="Node000005" href="$classCPluginService.html" title="The service plugin interface." alt="" coords="193,80,312,105"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="133,34,229,78,226,82,131,39"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="98,119,98,167,92,167,92,119"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="221,114,163,146,118,170,115,166,160,142,219,110"/>
+</map>

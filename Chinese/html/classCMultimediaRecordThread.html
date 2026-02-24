@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CMultimediaRecordThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCMultimediaRecordThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CMultimediaRecordThread类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classCMultimediaRecordThread.html" title="The CMultimediaRecordThread class">CMultimediaRecordThread</a> class  
+ <a href="classCMultimediaRecordThread.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MultimediaRecord_8h_source.html">MultimediaRecord.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CMultimediaRecordThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMultimediaRecordThread__inherit__graph.png" border="0" usemap="#aCMultimediaRecordThread_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCMultimediaRecordThread_inherit__map" id="aCMultimediaRecordThread_inherit__map">
+<area shape="rect" title="The CMultimediaRecordThread class" alt="" coords="5,79,200,104"/>
+<area shape="rect" title=" " alt="" coords="64,5,141,31"/>
+<area shape="poly" title=" " alt="" coords="105,44,105,79,100,79,100,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CMultimediaRecordThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMultimediaRecordThread__coll__graph.png" border="0" usemap="#aCMultimediaRecordThread_coll__map" alt="Collaboration graph"/></div>
+<map name="aCMultimediaRecordThread_coll__map" id="aCMultimediaRecordThread_coll__map">
+<area shape="rect" title="The CMultimediaRecordThread class" alt="" coords="189,341,384,367"/>
+<area shape="rect" title=" " alt="" coords="109,253,187,279"/>
+<area shape="poly" title=" " alt="" coords="180,284,269,339,266,343,177,288"/>
+<area shape="rect" href="classCParameterWebBrowser.html" title=" " alt="" coords="393,253,572,279"/>
+<area shape="poly" title=" " alt="" coords="445,287,370,320,315,344,312,339,368,315,443,282"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="667,155,818,180"/>
+<area shape="poly" title=" " alt="" coords="710,189,613,232,533,256,531,251,611,227,708,184"/>
+<area shape="poly" title=" " alt="" coords="832,160,845,167,836,174,818,177,818,171,834,169,839,167,830,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="785,444,945,469"/>
+<area shape="poly" title=" " alt="" coords="752,193,764,228,793,298,825,366,862,443,857,445,820,368,788,300,759,230,747,194"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="834,341,955,367"/>
+<area shape="poly" title=" " alt="" coords="759,191,786,232,821,277,854,312,883,339,880,343,850,316,817,280,782,235,755,193"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="831,253,959,279"/>
+<area shape="poly" title=" " alt="" coords="781,184,813,202,882,251,879,255,811,206,778,188"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="693,80,792,105"/>
+<area shape="poly" title=" " alt="" coords="745,120,745,154,740,154,740,120"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="716,620,855,645"/>
+<area shape="poly" title=" " alt="" coords="806,94,881,100,960,112,995,121,1023,133,1042,148,1049,165,1049,546,1044,562,1029,576,981,598,918,614,855,625,854,620,917,609,979,593,1026,571,1039,559,1044,546,1044,167,1038,151,1020,137,993,126,959,117,881,105,806,99"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="795,532,935,557"/>
+<area shape="poly" title=" " alt="" coords="806,97,867,105,930,118,978,138,993,151,999,166,999,458,991,486,971,508,945,524,916,534,915,530,942,519,968,504,986,484,993,458,993,166,989,154,975,142,928,123,867,110,805,102"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1067,204,1197,229"/>
+<area shape="poly" title=" " alt="" coords="806,92,950,101,1019,112,1067,127,1088,143,1106,164,1129,202,1124,205,1102,167,1085,147,1064,132,1017,117,949,107,806,98"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="113,155,255,180"/>
+<area shape="poly" title=" " alt="" coords="680,105,256,159,255,154,679,99"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="422,155,613,180"/>
+<area shape="poly" title=" " alt="" coords="695,112,554,157,552,152,693,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="94,22,693,84,693,89,93,27"/>
+<area shape="rect" href="classCMultimediaRecord.html" title=" " alt="" coords="211,253,362,279"/>
+<area shape="poly" title=" " alt="" coords="44,44,44,85,51,135,68,185,81,208,97,227,139,240,211,252,211,257,138,245,95,232,76,211,63,187,46,136,39,85,38,45"/>
+<area shape="poly" title=" " alt="" coords="744,616,725,603,707,588,694,569,689,546,689,264,694,239,704,215,730,179,734,182,709,217,699,240,695,265,695,546,699,566,711,584,728,599,747,611"/>
+<area shape="poly" title=" " alt="" coords="847,569,798,621,795,618,843,566"/>
+<area shape="poly" title=" " alt="" coords="868,483,868,531,863,531,863,483"/>
+<area shape="poly" title=" " alt="" coords="890,381,871,445,866,443,885,379"/>
+<area shape="poly" title=" " alt="" coords="897,293,897,341,892,341,892,293"/>
+<area shape="poly" title=" " alt="" coords="1127,243,1121,275,1117,309,1117,546,1113,566,1102,580,1066,598,1028,610,974,619,855,630,855,625,973,614,1027,605,1064,594,1099,575,1108,564,1112,546,1112,309,1115,274,1122,242"/>
+<area shape="poly" title=" " alt="" coords="202,189,222,210,246,227,302,239,394,251,393,257,301,244,244,232,219,214,199,193"/>
+<area shape="poly" title=" " alt="" coords="129,187,98,206,71,232,65,246,63,265,63,545,67,556,82,566,138,584,220,598,320,609,537,622,716,628,716,633,537,628,320,614,219,603,136,589,80,571,63,559,57,547,57,265,60,244,67,229,94,202,126,183"/>
+<area shape="poly" title=" " alt="" coords="126,188,108,205,103,217,107,228,119,233,144,240,212,252,211,257,143,245,117,238,103,231,98,217,103,203,122,184"/>
+<area shape="poly" title=" " alt="" coords="499,192,492,205,486,230,485,253,479,253,481,229,487,203,495,189"/>
+<area shape="poly" title=" " alt="" coords="589,184,609,202,621,233,618,260,605,285,586,310,566,334,550,360,543,387,548,419,575,479,607,520,647,555,701,594,725,607,749,618,747,622,722,612,699,598,644,559,603,524,571,481,543,421,538,387,546,357,562,331,582,306,600,283,613,259,616,234,604,206,586,188"/>
+<area shape="poly" title=" " alt="" coords="411,186,355,206,322,230,298,255,294,251,319,226,352,202,409,181"/>
+<area shape="poly" title=" " alt="" coords="289,293,289,341,284,341,284,293"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a968050299c06c021f9f8d8871768f16b" id="r_a968050299c06c021f9f8d8871768f16b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#a968050299c06c021f9f8d8871768f16b">slotUpdateVideoFrame</a> (const QImage image)</td></tr>
+<tr class="separator:a968050299c06c021f9f8d8871768f16b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27cc47e1157f4b4591dfab39ead766cd" id="r_a27cc47e1157f4b4591dfab39ead766cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#a27cc47e1157f4b4591dfab39ead766cd">slotQuit</a> ()</td></tr>
+<tr class="separator:a27cc47e1157f4b4591dfab39ead766cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a78d9312c1790432ef266cc57792ac360" id="r_a78d9312c1790432ef266cc57792ac360"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#a78d9312c1790432ef266cc57792ac360">CMultimediaRecordThread</a> (<a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="separator:a78d9312c1790432ef266cc57792ac360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae965b0ee7a5113b8818c876d91f62328" id="r_ae965b0ee7a5113b8818c876d91f62328"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#ae965b0ee7a5113b8818c876d91f62328">run</a> () override</td></tr>
+<tr class="separator:ae965b0ee7a5113b8818c876d91f62328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a2170900d203d160c80c70788bc401a51" id="r_a2170900d203d160c80c70788bc401a51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#a2170900d203d160c80c70788bc401a51">m_pPara</a></td></tr>
+<tr class="separator:a2170900d203d160c80c70788bc401a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f91760136348143ed0efa0be466161" id="r_a60f91760136348143ed0efa0be466161"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMultimediaRecord.html">CMultimediaRecord</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMultimediaRecordThread.html#a60f91760136348143ed0efa0be466161">m_pRecord</a></td></tr>
+<tr class="separator:a60f91760136348143ed0efa0be466161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The <a class="el" href="classCMultimediaRecordThread.html" title="The CMultimediaRecordThread class">CMultimediaRecordThread</a> class </p>
+<p>Must use pointer. eg:</p><ul>
+<li>New object: <div class="fragment"><div class="line"><a class="code hl_class" href="classCMultimediaRecordThread.html">CMultimediaRecordThread</a>* pThread = <span class="keyword">new</span> <a class="code hl_class" href="classCMultimediaRecordThread.html">CMultimediaRecordThread</a>(m_pPara);</div>
+<div class="ttc" id="aclassCMultimediaRecordThread_html"><div class="ttname"><a href="classCMultimediaRecordThread.html">CMultimediaRecordThread</a></div><div class="ttdoc">The CMultimediaRecordThread class</div><div class="ttdef"><b>Definition</b> <a href="MultimediaRecord_8h_source.html#l00086">MultimediaRecord.h:87</a></div></div>
+</div><!-- fragment --></li>
+<li>Start thread: <div class="fragment"><div class="line"><span class="keywordflow">if</span>(pThread)</div>
+<div class="line">    pThread-&gt;start();</div>
+</div><!-- fragment --></li>
+<li>Stop thread. <div class="fragment"><div class="line">pThread-&gt;slotQuit();</div>
+</div><!-- fragment --></li>
+</ul>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>It automatically releases memory when exiting.</li>
+<li>To stop a thread, you must use slotQuit(), and cannot use quit(). </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8h_source.html">MultimediaRecord.h</a> 第 <a class="el" href="MultimediaRecord_8h_source.html#l00086">86</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a78d9312c1790432ef266cc57792ac360" name="a78d9312c1790432ef266cc57792ac360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d9312c1790432ef266cc57792ac360">&#9670;&#160;</a></span>CMultimediaRecordThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMultimediaRecordThread::CMultimediaRecordThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *&#160;</td>
+          <td class="paramname"><em>pPara</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a> 第 <a class="el" href="MultimediaRecord_8cpp_source.html#l00140">140</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8422969faa1390124baead2bc4b6727d" name="a8422969faa1390124baead2bc4b6727d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8422969faa1390124baead2bc4b6727d">&#9670;&#160;</a></span>~CMultimediaRecordThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMultimediaRecordThread::~CMultimediaRecordThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a> 第 <a class="el" href="MultimediaRecord_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ae965b0ee7a5113b8818c876d91f62328" name="ae965b0ee7a5113b8818c876d91f62328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae965b0ee7a5113b8818c876d91f62328">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMultimediaRecordThread::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a> 第 <a class="el" href="MultimediaRecord_8cpp_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a27cc47e1157f4b4591dfab39ead766cd" name="a27cc47e1157f4b4591dfab39ead766cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27cc47e1157f4b4591dfab39ead766cd">&#9670;&#160;</a></span>slotQuit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMultimediaRecordThread::slotQuit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a> 第 <a class="el" href="MultimediaRecord_8cpp_source.html#l00173">173</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a968050299c06c021f9f8d8871768f16b" name="a968050299c06c021f9f8d8871768f16b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968050299c06c021f9f8d8871768f16b">&#9670;&#160;</a></span>slotUpdateVideoFrame</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMultimediaRecordThread::slotUpdateVideoFrame </td>
+          <td>(</td>
+          <td class="paramtype">const QImage&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a> 第 <a class="el" href="MultimediaRecord_8cpp_source.html#l00167">167</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2170900d203d160c80c70788bc401a51" name="a2170900d203d160c80c70788bc401a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2170900d203d160c80c70788bc401a51">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a>* CMultimediaRecordThread::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8h_source.html">MultimediaRecord.h</a> 第 <a class="el" href="MultimediaRecord_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a60f91760136348143ed0efa0be466161" name="a60f91760136348143ed0efa0be466161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f91760136348143ed0efa0be466161">&#9670;&#160;</a></span>m_pRecord</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCMultimediaRecord.html">CMultimediaRecord</a>* CMultimediaRecordThread::m_pRecord</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MultimediaRecord_8h_source.html">MultimediaRecord.h</a> 第 <a class="el" href="MultimediaRecord_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="MultimediaRecord_8h_source.html">MultimediaRecord.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="MultimediaRecord_8cpp_source.html">MultimediaRecord.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

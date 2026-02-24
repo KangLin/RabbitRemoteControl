@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmParameterICE类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmParameterICE-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmParameterICE类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CHANNEL.html">通道</a> &raquo; <a class="el" href="group__LIBAPI__ICE.html">ICE</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>设置参数对话框  
+ <a href="classCFrmParameterICE.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="FrmParameterICE_8h_source.html">FrmParameterICE.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CFrmParameterICE 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmParameterICE__inherit__graph.png" border="0" usemap="#aCFrmParameterICE_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmParameterICE_inherit__map" id="aCFrmParameterICE_inherit__map">
+<area shape="rect" title="设置参数对话框" alt="" coords="5,79,149,104"/>
+<area shape="rect" title=" " alt="" coords="38,5,117,31"/>
+<area shape="poly" title=" " alt="" coords="80,44,80,79,75,79,75,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmParameterICE 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmParameterICE__coll__graph.png" border="0" usemap="#aCFrmParameterICE_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmParameterICE_coll__map" id="aCFrmParameterICE_coll__map">
+<area shape="rect" title="设置参数对话框" alt="" coords="14,168,158,193"/>
+<area shape="rect" title=" " alt="" coords="5,80,84,105"/>
+<area shape="poly" title=" " alt="" coords="59,117,83,166,78,169,54,119"/>
+<area shape="rect" href="classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。" alt="" coords="108,80,227,105"/>
+<area shape="poly" title=" " alt="" coords="149,117,99,169,95,166,145,114"/>
+<area shape="rect" title=" " alt="" coords="130,5,205,31"/>
+<area shape="poly" title=" " alt="" coords="170,45,170,80,165,80,165,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:ae456184c418569cf3e7c1773060a0af2" id="r_ae456184c418569cf3e7c1773060a0af2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#ae456184c418569cf3e7c1773060a0af2">slotAccept</a> ()</td></tr>
+<tr class="memdesc:ae456184c418569cf3e7c1773060a0af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Accept parameters]  <br /></td></tr>
+<tr class="separator:ae456184c418569cf3e7c1773060a0af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac55c5b68fa1dd5a55ada50867971ee5c" id="r_ac55c5b68fa1dd5a55ada50867971ee5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#ac55c5b68fa1dd5a55ada50867971ee5c">CFrmParameterICE</a> (<a class="el" href="classCParameterICE.html">CParameterICE</a> *para=nullptr, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ac55c5b68fa1dd5a55ada50867971ee5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a8ba7d4da4e2806454250cc3071afa0b7" id="r_a8ba7d4da4e2806454250cc3071afa0b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a8ba7d4da4e2806454250cc3071afa0b7">slotConnected</a> ()</td></tr>
+<tr class="memdesc:a8ba7d4da4e2806454250cc3071afa0b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Accept parameters]  <br /></td></tr>
+<tr class="separator:a8ba7d4da4e2806454250cc3071afa0b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940f74c4f8ac65ad940960028e2671e3" id="r_a940f74c4f8ac65ad940960028e2671e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a940f74c4f8ac65ad940960028e2671e3">slotDisconnected</a> ()</td></tr>
+<tr class="separator:a940f74c4f8ac65ad940960028e2671e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2ffa831a83e449cb143ddcb701a5ac" id="r_a2e2ffa831a83e449cb143ddcb701a5ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a2e2ffa831a83e449cb143ddcb701a5ac">slotError</a> (int nError, const QString &amp;szError)</td></tr>
+<tr class="separator:a2e2ffa831a83e449cb143ddcb701a5ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2693facdc3a712538d1014dbe7b27fb3" id="r_a2693facdc3a712538d1014dbe7b27fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a2693facdc3a712538d1014dbe7b27fb3">on_cbEnableICE_stateChanged</a> (int arg1)</td></tr>
+<tr class="separator:a2693facdc3a712538d1014dbe7b27fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f99738b9396306a6d0159c6dd24f83" id="r_ae3f99738b9396306a6d0159c6dd24f83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#ae3f99738b9396306a6d0159c6dd24f83">on_pbConnect_clicked</a> (bool checked)</td></tr>
+<tr class="separator:ae3f99738b9396306a6d0159c6dd24f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1249d6ac5985db7ef8930acafba13c0" id="r_ac1249d6ac5985db7ef8930acafba13c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#ac1249d6ac5985db7ef8930acafba13c0">on_leSignalName_editingFinished</a> ()</td></tr>
+<tr class="separator:ac1249d6ac5985db7ef8930acafba13c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aaa5d77ab2b216ef103fdf9889e9e4d9a" id="r_aaa5d77ab2b216ef103fdf9889e9e4d9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#aaa5d77ab2b216ef103fdf9889e9e4d9a">Init</a> ()</td></tr>
+<tr class="separator:aaa5d77ab2b216ef103fdf9889e9e4d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dba0d3b2a7889bbb75856feea67332a" id="r_a4dba0d3b2a7889bbb75856feea67332a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a4dba0d3b2a7889bbb75856feea67332a">EnableCompone</a> (bool bEnable)</td></tr>
+<tr class="separator:a4dba0d3b2a7889bbb75856feea67332a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88bc9b8cfd1cb6652bf4b50fc85c5d65" id="r_a88bc9b8cfd1cb6652bf4b50fc85c5d65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a88bc9b8cfd1cb6652bf4b50fc85c5d65">SetConnectButton</a> (bool bConnected)</td></tr>
+<tr class="separator:a88bc9b8cfd1cb6652bf4b50fc85c5d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a51b8d1bf68da5eb10f7ed27becd2d06e" id="r_a51b8d1bf68da5eb10f7ed27becd2d06e"><td class="memItemLeft" align="right" valign="top">Ui::CFrmParameterICE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#a51b8d1bf68da5eb10f7ed27becd2d06e">ui</a></td></tr>
+<tr class="separator:a51b8d1bf68da5eb10f7ed27becd2d06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f065d40206a63464d6ce8f0876b4a2" id="r_ae4f065d40206a63464d6ce8f0876b4a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterICE.html">CParameterICE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmParameterICE.html#ae4f065d40206a63464d6ce8f0876b4a2">m_pParameters</a></td></tr>
+<tr class="separator:ae4f065d40206a63464d6ce8f0876b4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>设置参数对话框 </p>
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8h_source.html">FrmParameterICE.h</a> 第 <a class="el" href="FrmParameterICE_8h_source.html#l00023">23</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ac55c5b68fa1dd5a55ada50867971ee5c" name="ac55c5b68fa1dd5a55ada50867971ee5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac55c5b68fa1dd5a55ada50867971ee5c">&#9670;&#160;</a></span>CFrmParameterICE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmParameterICE::CFrmParameterICE </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterICE.html">CParameterICE</a> *&#160;</td>
+          <td class="paramname"><em>para</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section author"><dt>作者</dt><dd>Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aea90b63f463be3bcd30a0ba5d6e6c10a" name="aea90b63f463be3bcd30a0ba5d6e6c10a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea90b63f463be3bcd30a0ba5d6e6c10a">&#9670;&#160;</a></span>~CFrmParameterICE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmParameterICE::~CFrmParameterICE </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a4dba0d3b2a7889bbb75856feea67332a" name="a4dba0d3b2a7889bbb75856feea67332a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dba0d3b2a7889bbb75856feea67332a">&#9670;&#160;</a></span>EnableCompone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::EnableCompone </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa5d77ab2b216ef103fdf9889e9e4d9a" name="aaa5d77ab2b216ef103fdf9889e9e4d9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5d77ab2b216ef103fdf9889e9e4d9a">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2693facdc3a712538d1014dbe7b27fb3" name="a2693facdc3a712538d1014dbe7b27fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2693facdc3a712538d1014dbe7b27fb3">&#9670;&#160;</a></span>on_cbEnableICE_stateChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::on_cbEnableICE_stateChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac1249d6ac5985db7ef8930acafba13c0" name="ac1249d6ac5985db7ef8930acafba13c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1249d6ac5985db7ef8930acafba13c0">&#9670;&#160;</a></span>on_leSignalName_editingFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::on_leSignalName_editingFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae3f99738b9396306a6d0159c6dd24f83" name="ae3f99738b9396306a6d0159c6dd24f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f99738b9396306a6d0159c6dd24f83">&#9670;&#160;</a></span>on_pbConnect_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::on_pbConnect_clicked </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checked</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a88bc9b8cfd1cb6652bf4b50fc85c5d65" name="a88bc9b8cfd1cb6652bf4b50fc85c5d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88bc9b8cfd1cb6652bf4b50fc85c5d65">&#9670;&#160;</a></span>SetConnectButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::SetConnectButton </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bConnected</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae456184c418569cf3e7c1773060a0af2" name="ae456184c418569cf3e7c1773060a0af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae456184c418569cf3e7c1773060a0af2">&#9670;&#160;</a></span>slotAccept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::slotAccept </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[Accept parameters] </p>
+<p>Accept parameter </p>
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8ba7d4da4e2806454250cc3071afa0b7" name="a8ba7d4da4e2806454250cc3071afa0b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba7d4da4e2806454250cc3071afa0b7">&#9670;&#160;</a></span>slotConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::slotConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[Accept parameters] </p>
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a940f74c4f8ac65ad940960028e2671e3" name="a940f74c4f8ac65ad940960028e2671e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940f74c4f8ac65ad940960028e2671e3">&#9670;&#160;</a></span>slotDisconnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::slotDisconnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2e2ffa831a83e449cb143ddcb701a5ac" name="a2e2ffa831a83e449cb143ddcb701a5ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e2ffa831a83e449cb143ddcb701a5ac">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmParameterICE::slotError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nError</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szError</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a> 第 <a class="el" href="FrmParameterICE_8cpp_source.html#l00142">142</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae4f065d40206a63464d6ce8f0876b4a2" name="ae4f065d40206a63464d6ce8f0876b4a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f065d40206a63464d6ce8f0876b4a2">&#9670;&#160;</a></span>m_pParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterICE.html">CParameterICE</a>* CFrmParameterICE::m_pParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8h_source.html">FrmParameterICE.h</a> 第 <a class="el" href="FrmParameterICE_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a51b8d1bf68da5eb10f7ed27becd2d06e" name="a51b8d1bf68da5eb10f7ed27becd2d06e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51b8d1bf68da5eb10f7ed27becd2d06e">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CFrmParameterICE* CFrmParameterICE::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmParameterICE_8h_source.html">FrmParameterICE.h</a> 第 <a class="el" href="FrmParameterICE_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="FrmParameterICE_8h_source.html">FrmParameterICE.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="FrmParameterICE_8cpp_source.html">FrmParameterICE.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

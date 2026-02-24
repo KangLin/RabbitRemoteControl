@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginServiceTigerVNC类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="classCPluginServiceTigerVNC-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginServiceTigerVNC类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CPluginServiceTigerVNC 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceTigerVNC__inherit__graph.png" border="0" usemap="#aCPluginServiceTigerVNC_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginServiceTigerVNC_inherit__map" id="aCPluginServiceTigerVNC_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,185,251"/>
+<area shape="rect" href="classCPluginServiceThread.html" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="13,152,177,177"/>
+<area shape="poly" title=" " alt="" coords="98,191,98,225,93,225,93,191"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="36,79,155,104"/>
+<area shape="poly" title=" " alt="" coords="98,118,98,152,93,152,93,118"/>
+<area shape="rect" title=" " alt="" coords="58,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="98,44,98,79,93,79,93,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginServiceTigerVNC 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceTigerVNC__coll__graph.png" border="0" usemap="#aCPluginServiceTigerVNC_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginServiceTigerVNC_coll__map" id="aCPluginServiceTigerVNC_coll__map">
+<area shape="rect" title=" " alt="" coords="5,225,185,251"/>
+<area shape="rect" href="classCPluginServiceThread.html" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="13,152,177,177"/>
+<area shape="poly" title=" " alt="" coords="98,191,98,225,93,225,93,191"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="36,79,155,104"/>
+<area shape="poly" title=" " alt="" coords="98,118,98,152,93,152,93,118"/>
+<area shape="rect" title=" " alt="" coords="58,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="98,44,98,79,93,79,93,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a218b32d897fe10cda7ad32339172c2c8" id="r_a218b32d897fe10cda7ad32339172c2c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#a218b32d897fe10cda7ad32339172c2c8">CPluginServiceTigerVNC</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a218b32d897fe10cda7ad32339172c2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57f780ba7dcbbff5df05f96735664ec6" id="r_a57f780ba7dcbbff5df05f96735664ec6"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#a57f780ba7dcbbff5df05f96735664ec6">Protocol</a> () const override</td></tr>
+<tr class="memdesc:a57f780ba7dcbbff5df05f96735664ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plugin Protocol  <br /></td></tr>
+<tr class="separator:a57f780ba7dcbbff5df05f96735664ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b4593138ca8616fdb5d2ebfd14fdba" id="r_ae9b4593138ca8616fdb5d2ebfd14fdba"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#ae9b4593138ca8616fdb5d2ebfd14fdba">Name</a> () const override</td></tr>
+<tr class="memdesc:ae9b4593138ca8616fdb5d2ebfd14fdba"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:ae9b4593138ca8616fdb5d2ebfd14fdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76de71fd7cf90df021c9660adeb89448" id="r_a76de71fd7cf90df021c9660adeb89448"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#a76de71fd7cf90df021c9660adeb89448">DisplayName</a> () const override</td></tr>
+<tr class="memdesc:a76de71fd7cf90df021c9660adeb89448"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plugin display name  <br /></td></tr>
+<tr class="separator:a76de71fd7cf90df021c9660adeb89448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92a45109ff6c4f61db46139993265705" id="r_a92a45109ff6c4f61db46139993265705"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#a92a45109ff6c4f61db46139993265705">Description</a> () const override</td></tr>
+<tr class="memdesc:a92a45109ff6c4f61db46139993265705"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件描述  <br /></td></tr>
+<tr class="separator:a92a45109ff6c4f61db46139993265705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPluginServiceThread"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPluginServiceThread')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPluginServiceThread.html">CPluginServiceThread</a></td></tr>
+<tr class="memitem:abf6d40840e953021179dfe1dfbdb8497 inherit pub_methods_classCPluginServiceThread" id="r_abf6d40840e953021179dfe1dfbdb8497"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#abf6d40840e953021179dfe1dfbdb8497">CPluginServiceThread</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:abf6d40840e953021179dfe1dfbdb8497 inherit pub_methods_classCPluginServiceThread"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac605ef968e72655e809471ff202bd8c4 inherit pub_methods_classCPluginServiceThread" id="r_ac605ef968e72655e809471ff202bd8c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#ac605ef968e72655e809471ff202bd8c4">Start</a> () override</td></tr>
+<tr class="memdesc:ac605ef968e72655e809471ff202bd8c4 inherit pub_methods_classCPluginServiceThread"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default start a new thread to process Service  <br /></td></tr>
+<tr class="separator:ac605ef968e72655e809471ff202bd8c4 inherit pub_methods_classCPluginServiceThread"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ba09edc67fac1f076903d3e8ce9225 inherit pub_methods_classCPluginServiceThread" id="r_a92ba09edc67fac1f076903d3e8ce9225"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#a92ba09edc67fac1f076903d3e8ce9225">Stop</a> () override</td></tr>
+<tr class="separator:a92ba09edc67fac1f076903d3e8ce9225 inherit pub_methods_classCPluginServiceThread"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPluginService"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPluginService')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPluginService.html">CPluginService</a></td></tr>
+<tr class="memitem:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService" id="r_a912b68519ed00245b48775b5ca99a2fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a912b68519ed00245b48775b5ca99a2fe">CPluginService</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService" id="r_abff4f9416da5a148c27538ca5bdeccf6"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abff4f9416da5a148c27538ca5bdeccf6">Id</a> () const</td></tr>
+<tr class="memdesc:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID. Default: <a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78" title="Plugin Protocol">Protocol()</a> + "_" + <a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService" id="r_abe81ba8c83db377878dac18301770056"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abe81ba8c83db377878dac18301770056">Icon</a> () const</td></tr>
+<tr class="separator:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService" id="r_ac2ef0e1d3a6a158a4f039e277ba7f819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#ac2ef0e1d3a6a158a4f039e277ba7f819">InitTranslator</a> ()</td></tr>
+<tr class="separator:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae639edf7b90e4f97e8fecc907683b68b" id="r_ae639edf7b90e4f97e8fecc907683b68b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCService.html">CService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceTigerVNC.html#ae639edf7b90e4f97e8fecc907683b68b">NewService</a> () override</td></tr>
+<tr class="memdesc:ae639edf7b90e4f97e8fecc907683b68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">New service  <br /></td></tr>
+<tr class="separator:ae639edf7b90e4f97e8fecc907683b68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8h_source.html">PluginServiceTigerVNC.h</a> 第 <a class="el" href="PluginServiceTigerVNC_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a218b32d897fe10cda7ad32339172c2c8" name="a218b32d897fe10cda7ad32339172c2c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a218b32d897fe10cda7ad32339172c2c8">&#9670;&#160;</a></span>CPluginServiceTigerVNC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceTigerVNC::CPluginServiceTigerVNC </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af9edc95dbce4a7ae7d9c9636681442f2" name="af9edc95dbce4a7ae7d9c9636681442f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9edc95dbce4a7ae7d9c9636681442f2">&#9670;&#160;</a></span>~CPluginServiceTigerVNC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceTigerVNC::~CPluginServiceTigerVNC </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a92a45109ff6c4f61db46139993265705" name="a92a45109ff6c4f61db46139993265705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92a45109ff6c4f61db46139993265705">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceTigerVNC::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件描述 </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#a73e3800f08ef049c378485390782d0ad">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a76de71fd7cf90df021c9660adeb89448" name="a76de71fd7cf90df021c9660adeb89448"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76de71fd7cf90df021c9660adeb89448">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceTigerVNC::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The plugin display name </p>
+
+<p>重载 <a class="el" href="classCPluginService.html#a2326bc76c7a40f24ecb401f5aaa57d72">CPluginService</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae9b4593138ca8616fdb5d2ebfd14fdba" name="ae9b4593138ca8616fdb5d2ebfd14fdba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9b4593138ca8616fdb5d2ebfd14fdba">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceTigerVNC::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。 </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae639edf7b90e4f97e8fecc907683b68b" name="ae639edf7b90e4f97e8fecc907683b68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae639edf7b90e4f97e8fecc907683b68b">&#9670;&#160;</a></span>NewService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCService.html">CService</a> * CPluginServiceTigerVNC::NewService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>New service </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#a509f9f6f0a05639f6c387bc12c4f959d">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a57f780ba7dcbbff5df05f96735664ec6" name="a57f780ba7dcbbff5df05f96735664ec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57f780ba7dcbbff5df05f96735664ec6">&#9670;&#160;</a></span>Protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceTigerVNC::Protocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Plugin Protocol </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a> 第 <a class="el" href="PluginServiceTigerVNC_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Service/<a class="el" href="PluginServiceTigerVNC_8h_source.html">PluginServiceTigerVNC.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Service/<a class="el" href="PluginServiceTigerVNC_8cpp_source.html">PluginServiceTigerVNC.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

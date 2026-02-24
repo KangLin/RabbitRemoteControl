@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CInputDeviceXLib类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCInputDeviceXLib-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CInputDeviceXLib类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CInputDeviceXLib 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCInputDeviceXLib__inherit__graph.png" border="0" usemap="#aCInputDeviceXLib_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCInputDeviceXLib_inherit__map" id="aCInputDeviceXLib_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,143,104"/>
+<area shape="rect" href="classCInputDevice.html" title=" " alt="" coords="19,5,129,31"/>
+<area shape="poly" title=" " alt="" coords="77,44,77,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CInputDeviceXLib 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCInputDeviceXLib__coll__graph.png" border="0" usemap="#aCInputDeviceXLib_coll__map" alt="Collaboration graph"/></div>
+<map name="aCInputDeviceXLib_coll__map" id="aCInputDeviceXLib_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,143,104"/>
+<area shape="rect" href="classCInputDevice.html" title=" " alt="" coords="19,5,129,31"/>
+<area shape="poly" title=" " alt="" coords="77,44,77,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a36cbf10492b331e7256f7a4fb9ef691a" id="r_a36cbf10492b331e7256f7a4fb9ef691a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#a36cbf10492b331e7256f7a4fb9ef691a">KeyEvent</a> (quint32 keysym, quint32 keycode, bool down=true)</td></tr>
+<tr class="separator:a36cbf10492b331e7256f7a4fb9ef691a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3d5a1228f36ad661a666295b2f29f9a" id="r_ac3d5a1228f36ad661a666295b2f29f9a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#ac3d5a1228f36ad661a666295b2f29f9a">MouseEvent</a> (MouseButtons buttons, QPoint pos)</td></tr>
+<tr class="separator:ac3d5a1228f36ad661a666295b2f29f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ae70a223a4f92d2099093ad189a780" id="r_a00ae70a223a4f92d2099093ad189a780"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#a00ae70a223a4f92d2099093ad189a780">MouseEvent</a> (MouseButtons buttons, int x, int y)</td></tr>
+<tr class="separator:a00ae70a223a4f92d2099093ad189a780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a37e9ad617661595c8cf1722366b984da" id="r_a37e9ad617661595c8cf1722366b984da"><td class="memItemLeft" align="right" valign="top"><a id="a37e9ad617661595c8cf1722366b984da" name="a37e9ad617661595c8cf1722366b984da"></a>
+KeyCode&#160;</td><td class="memItemRight" valign="bottom"><b>XkbKeysymToKeycode</b> (Display *dpy, KeySym keysym)</td></tr>
+<tr class="separator:a37e9ad617661595c8cf1722366b984da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ac21d3d6462048aa535fa0dcbc1da91ca" id="r_ac21d3d6462048aa535fa0dcbc1da91ca"><td class="memItemLeft" align="right" valign="top">const unsigned short *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#ac21d3d6462048aa535fa0dcbc1da91ca">codeMap</a></td></tr>
+<tr class="separator:ac21d3d6462048aa535fa0dcbc1da91ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d01fda037cd65a1ab526ef8614d74b4" id="r_a0d01fda037cd65a1ab526ef8614d74b4"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#a0d01fda037cd65a1ab526ef8614d74b4">codeMapLen</a></td></tr>
+<tr class="separator:a0d01fda037cd65a1ab526ef8614d74b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a692e0a367e3d1e7bef9093ba4b6cff" id="r_a9a692e0a367e3d1e7bef9093ba4b6cff"><td class="memItemLeft" align="right" valign="top">std::map&lt; KeySym, KeyCode &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#a9a692e0a367e3d1e7bef9093ba4b6cff">pressedKeys</a></td></tr>
+<tr class="separator:a9a692e0a367e3d1e7bef9093ba4b6cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63f70739df0f2062b3ada77747a61625" id="r_a63f70739df0f2062b3ada77747a61625"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDeviceXLib.html#a63f70739df0f2062b3ada77747a61625">rawKeyboard</a></td></tr>
+<tr class="separator:a63f70739df0f2062b3ada77747a61625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_classCInputDevice"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classCInputDevice')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="classCInputDevice.html">CInputDevice</a></td></tr>
+<tr class="memitem:aa5fb91ea038e96c8720cf6b12b3f1a6b inherit pub_types_classCInputDevice" id="r_aa5fb91ea038e96c8720cf6b12b3f1a6b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>MouseButton</b> { <br />
+&#160;&#160;<b>LeftButton</b> = 0x01
+, <b>RightButton</b> = 0x02
+, <b>MiddleButton</b> = 0x04
+, <b>LWheelButton</b> = 0x08
+, <br />
+&#160;&#160;<b>RWheelButton</b> = 0x10
+, <b>UWheelButton</b> = 0x20
+, <b>DWheelButton</b> = 0x40
+<br />
+ }</td></tr>
+<tr class="separator:aa5fb91ea038e96c8720cf6b12b3f1a6b inherit pub_types_classCInputDevice"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classCInputDevice"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classCInputDevice')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="classCInputDevice.html">CInputDevice</a></td></tr>
+<tr class="memitem:a08b3d91b73c1f3e8ec1ca9178f9299d5 inherit pub_static_methods_classCInputDevice" id="r_a08b3d91b73c1f3e8ec1ca9178f9299d5"><td class="memItemLeft" align="right" valign="top">static QSharedPointer&lt; <a class="el" href="classCInputDevice.html">CInputDevice</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDevice.html#a08b3d91b73c1f3e8ec1ca9178f9299d5">GenerateObject</a> ()</td></tr>
+<tr class="separator:a08b3d91b73c1f3e8ec1ca9178f9299d5 inherit pub_static_methods_classCInputDevice"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCInputDevice"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCInputDevice')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCInputDevice.html">CInputDevice</a></td></tr>
+<tr class="memitem:a722b4a221e7056590962fd571f7242c9 inherit pro_attribs_classCInputDevice" id="r_a722b4a221e7056590962fd571f7242c9"><td class="memItemLeft" align="right" valign="top">MouseButtons&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDevice.html#a722b4a221e7056590962fd571f7242c9">m_LastButtons</a></td></tr>
+<tr class="separator:a722b4a221e7056590962fd571f7242c9 inherit pro_attribs_classCInputDevice"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993a4386c568d5a47151dba604a16612 inherit pro_attribs_classCInputDevice" id="r_a993a4386c568d5a47151dba604a16612"><td class="memItemLeft" align="right" valign="top">QPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInputDevice.html#a993a4386c568d5a47151dba604a16612">m_LastPostion</a></td></tr>
+<tr class="separator:a993a4386c568d5a47151dba604a16612 inherit pro_attribs_classCInputDevice"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a> 第 <a class="el" href="InputDeviceXLib_8h_source.html#l00010">10</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="afb1be1fc6c9933fe3f25305139a386fb" name="afb1be1fc6c9933fe3f25305139a386fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1be1fc6c9933fe3f25305139a386fb">&#9670;&#160;</a></span>CInputDeviceXLib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CInputDeviceXLib::CInputDeviceXLib </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a> 第 <a class="el" href="InputDeviceXLib_8cpp_source.html#l00021">21</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11bac0d4d4f26bb6c3d8edc9b33ad69f" name="a11bac0d4d4f26bb6c3d8edc9b33ad69f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11bac0d4d4f26bb6c3d8edc9b33ad69f">&#9670;&#160;</a></span>~CInputDeviceXLib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CInputDeviceXLib::~CInputDeviceXLib </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a> 第 <a class="el" href="InputDeviceXLib_8cpp_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a36cbf10492b331e7256f7a4fb9ef691a" name="a36cbf10492b331e7256f7a4fb9ef691a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36cbf10492b331e7256f7a4fb9ef691a">&#9670;&#160;</a></span>KeyEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CInputDeviceXLib::KeyEvent </td>
+          <td>(</td>
+          <td class="paramtype">quint32&#160;</td>
+          <td class="paramname"><em>keysym</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">quint32&#160;</td>
+          <td class="paramname"><em>keycode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>down</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCInputDevice.html">CInputDevice</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a> 第 <a class="el" href="InputDeviceXLib_8cpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00ae70a223a4f92d2099093ad189a780" name="a00ae70a223a4f92d2099093ad189a780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ae70a223a4f92d2099093ad189a780">&#9670;&#160;</a></span>MouseEvent() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CInputDeviceXLib::MouseEvent </td>
+          <td>(</td>
+          <td class="paramtype">MouseButtons&#160;</td>
+          <td class="paramname"><em>buttons</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCInputDevice.html">CInputDevice</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a> 第 <a class="el" href="InputDeviceXLib_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac3d5a1228f36ad661a666295b2f29f9a" name="ac3d5a1228f36ad661a666295b2f29f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3d5a1228f36ad661a666295b2f29f9a">&#9670;&#160;</a></span>MouseEvent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CInputDeviceXLib::MouseEvent </td>
+          <td>(</td>
+          <td class="paramtype">MouseButtons&#160;</td>
+          <td class="paramname"><em>buttons</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPoint&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCInputDevice.html">CInputDevice</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a> 第 <a class="el" href="InputDeviceXLib_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ac21d3d6462048aa535fa0dcbc1da91ca" name="ac21d3d6462048aa535fa0dcbc1da91ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21d3d6462048aa535fa0dcbc1da91ca">&#9670;&#160;</a></span>codeMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned short* CInputDeviceXLib::codeMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a> 第 <a class="el" href="InputDeviceXLib_8h_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0d01fda037cd65a1ab526ef8614d74b4" name="a0d01fda037cd65a1ab526ef8614d74b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d01fda037cd65a1ab526ef8614d74b4">&#9670;&#160;</a></span>codeMapLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned CInputDeviceXLib::codeMapLen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a> 第 <a class="el" href="InputDeviceXLib_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a692e0a367e3d1e7bef9093ba4b6cff" name="a9a692e0a367e3d1e7bef9093ba4b6cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a692e0a367e3d1e7bef9093ba4b6cff">&#9670;&#160;</a></span>pressedKeys</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;KeySym, KeyCode&gt; CInputDeviceXLib::pressedKeys</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a> 第 <a class="el" href="InputDeviceXLib_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a63f70739df0f2062b3ada77747a61625" name="a63f70739df0f2062b3ada77747a61625"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63f70739df0f2062b3ada77747a61625">&#9670;&#160;</a></span>rawKeyboard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CInputDeviceXLib::rawKeyboard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a> 第 <a class="el" href="InputDeviceXLib_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="InputDeviceXLib_8h_source.html">InputDeviceXLib.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="InputDeviceXLib_8cpp_source.html">InputDeviceXLib.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

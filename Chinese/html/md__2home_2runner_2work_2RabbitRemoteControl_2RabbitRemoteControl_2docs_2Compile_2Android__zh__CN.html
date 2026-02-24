@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: 为 Android 编译</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">为 Android 编译</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md84"></a> 作者：康林 <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
+<h2><a class="anchor" id="autotoc_md85"></a>
+环境</h2>
+<h3><a class="anchor" id="autotoc_md86"></a>
+操作系统</h3>
+<ul>
+<li>Windows 10 版本 20H2 (19045.2604)</li>
+<li>Ubuntu 22.04.4 LTS</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md87"></a>
+Qt Creator</h3>
+<p>当前版本：v18.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。</p>
+<h2><a class="anchor" id="autotoc_md88"></a>
+工具</h2>
+<ul>
+<li>编译器<ul>
+<li><a href="https://developer.android.google.cn/studio?hl=zh-cn">Android SDK</a><ul>
+<li>当前版本: 9.0</li>
+</ul>
+</li>
+<li><a href="https://developer.android.google.cn/ndk/downloads?hl=en">Android NDK</a><ul>
+<li>当前版本：20.0.5594570</li>
+</ul>
+</li>
+<li><a href="https://www.java.com/zh-CN/">Java</a></li>
+</ul>
+</li>
+<li>Qt<ul>
+<li>Qt 官方发行版本：https://download.qt.io/official_releases/qt/ <br  />
+ 当前使用版本：Qt 6.9.3 详见： <a href="https://doc.qt.io/qt-6/android.html">https://doc.qt.io/qt-6/android.html</a></li>
+<li>IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。 当前使用版本：18.0.0</li>
+</ul>
+</li>
+<li>Git: <a href="https://www.git-scm.com/">https://www.git-scm.com/</a> <br  />
+ <a href="http://blog.csdn.net/kl222/article/details/32903495">Git 设置</a></li>
+<li>CMake: <a href="https://cmake.org/">https://www.cmake.org/</a> 版本: 3.27.0</li>
+<li>Doxygen: <a href="http://www.doxygen.nl/">http://www.doxygen.nl/</a></li>
+<li><a href="https://ninja-build.org/">ninja</a></li>
+<li>vcpkg: <a href="https://github.com/microsoft/vcpkg">https://github.com/microsoft/vcpkg</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md89"></a>
+编译</h2>
+<p>参见：<a href="../../.github/workflows/android.yml">编译集成</a></p>
+<h3><a class="anchor" id="autotoc_md90"></a>
+依赖库</h3>
+<ul>
+<li>[必选] 玉兔公共库: <a href="https://github.com/KangLin/RabbitCommon">https://github.com/KangLin/RabbitCommon</a></li>
+<li>[必选] <a href="https://github.com/KDAB/android_openssl">Openssl for Qt:</a> 运行 Qt 需要</li>
+<li>[可选] RFB<ul>
+<li>[可选] RabbitVNC: <a href="https://github.com/KangLin/RabbitVNC">https://github.com/KangLin/RabbitVNC</a></li>
+<li>[可选] LibVNCServer: <a href="https://github.com/LibVNC/libvncserver">https://github.com/LibVNC/libvncserver</a></li>
+<li>[可选] TigerVNC: <a href="https://github.com/KangLin/tigervnc">https://github.com/KangLin/tigervnc</a></li>
+</ul>
+</li>
+<li>[可选] FreeRDP: <a href="https://github.com/FreeRDP/FreeRDP">https://github.com/FreeRDP/FreeRDP</a></li>
+<li>[可选] SSH<ul>
+<li>libssh: libssh: <a href="https://www.libssh.org">https://www.libssh.org</a></li>
+<li>libssh2:<ul>
+<li><a href="libssh2: https://www.libssh2.org/">https://www.libssh2.org</a></li>
+<li><a href="https://github.com/libssh2/libssh2/">https://github.com/libssh2/libssh2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[可选] QTermWidget: <a href="https://github.com/lxqt/qtermwidget">https://github.com/lxqt/qtermwidget</a></li>
+<li>[可选] libtelnet: <a href="https://github.com/seanmiddleditch/libtelnet">https://github.com/seanmiddleditch/libtelnet</a></li>
+<li>[可选] libdatachannel: <a href="https://github.com/paullouisageneau/libdatachannel">https://github.com/paullouisageneau/libdatachannel</a></li>
+<li>[可选] QXmpp: <a href="https://github.com/qxmpp-project/qxmpp">https://github.com/qxmpp-project/qxmpp</a></li>
+<li>[可选] QtService: <a href="https://github.com/KangLin/qt-solutions">https://github.com/KangLin/qt-solutions</a></li>
+<li>[可选] PcapPlusPlus: <a href="https://github.com/seladb/PcapPlusPlus">https://github.com/seladb/PcapPlusPlus</a></li>
+<li>[可选] <a href="https://ffmpeg.org/">FFMPEG:</a> 多媒体功能需要</li>
+<li>[可选] qtkeychain: <a href="https://github.com/KangLin/qtkeychain">https://github.com/KangLin/qtkeychain</a></li>
+<li>[可选] libcurl: <a href="https://curl.se">https://curl.se</a></li>
+<li>[可选] QFtpServer: <a href="https://github.com/KangLin/QFtpServer">https://github.com/KangLin/QFtpServer</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md91"></a>
+设置全局变量</h4>
+<ul>
+<li>windows <pre class="fragment">set INSTALL_DIR=`pwd`/install
+set VCPKG_ROOT=/data/vcpkg
+set VCPKG_TARGET_TRIPLET=x64-android
+set ANDROID_ABI=x86_64
+set ANDROID_PLATFORM=android-23
+set ANDROID_NATIVE_API_LEVEL=23
+set ANDROID_NDK_HOME=
+set BUILD_TYPE=Release
+</pre> 引用变量使用 %% 。例如： BUILD_TYPE%</li>
+<li>ubuntu <pre class="fragment">export INSTALL_DIR=`pwd`/install
+export VCPKG_ROOT=/data/vcpkg
+export VCPKG_TARGET_TRIPLET=x64-android
+export ANDROID_ABI=x86_64
+export ANDROID_PLATFORM=android-23
+export ANDROID_NATIVE_API_LEVEL=23
+export ANDROID_NDK_HOME=
+export BUILD_TYPE=Release
+</pre> 引用变量使用 ${} 。例如： ${BUILD_TYPE}</li>
+<li>CMAKE android 参数说明：https://developer.android.google.cn/ndk/guides/cmake<ul>
+<li>ANDROID_ABI: 可取下列值： 目标 ABI。如果未指定目标 ABI，则 CMake 默认使用 armeabi-v7a。 <br  />
+ 有效的目标名称为：<ul>
+<li>armeabi：带软件浮点运算并基于 ARMv5TE 的 CPU。</li>
+<li>armeabi-v7a：带硬件 FPU 指令 (VFPv3_D16) 并基于 ARMv7 的设备。</li>
+<li>armeabi-v7a with NEON：与 armeabi-v7a 相同，但启用 NEON 浮点指令。这相当于设置 -DANDROID_ABI=armeabi-v7a 和 -DANDROID_ARM_NEON=ON。</li>
+<li>arm64-v8a：ARMv8 AArch64 指令集。</li>
+<li>x86：IA-32 指令集。</li>
+<li>x86_64 - 用于 x86-64 架构的指令集。</li>
+</ul>
+</li>
+<li>ANDROID_NDK &lt;path&gt; 主机上安装的 NDK 根目录的绝对路径</li>
+<li>ANDROID_PLATFORM: 如需平台名称和对应 Android 系统映像的完整列表，请参阅 <a href="https://developer.android.google.cn/ndk/guides/stable_apis.html">Android NDK 原生 API</a></li>
+<li>ANDROID_ARM_MODE</li>
+<li>ANDROID_ARM_NEON</li>
+<li>ANDROID_STL: 指定 CMake 应使用的 STL<ul>
+<li>c++_shared: 使用 libc++ 动态库</li>
+<li>c++_static: 使用 libc++ 静态库</li>
+<li>none: 没有 C++ 库支持</li>
+<li>system: 用系统的 STL</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a class="anchor" id="autotoc_md92"></a>
+编译 TigerVNC</h4>
+<ul>
+<li>下载源码： <code>git clone <a href="https://github.com/KangLin/tigervnc">https://github.com/KangLin/tigervnc</a></code></li>
+<li>cmake 配置 <pre class="fragment">cmake .. \
+   -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+   -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+   -DBUILD_SHARED_LIBS=OFF \
+   -DCMAKE_VERBOSE_MAKEFILE=ON \
+   -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+   -DVCPKG_VERBOSE=ON \
+   -DVCPKG_TRACE_FIND_PACKAGE=ON \
+   -DVCPKG_TARGET_TRIPLET=${VCPKG_TARGET_TRIPLET} \
+   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+   -DVCPKG_INSTALLED_DIR=${INSTALL_DIR}/tigervnc/vcpkg_installed \
+   -DANDROID_ABI=${ANDROID_ABI} \
+   -DANDROID_PLATFORM=${ANDROID_PLATFORM} \
+   -DBUILD_TESTS=OFF \
+   -DBUILD_VIEWER=OFF
+</pre></li>
+<li>编译 <pre class="fragment">cmake --build .
+</pre></li>
+<li>安装 <pre class="fragment">cmake --install .
+</pre> </li>
+</ul>
+<h3><a class="anchor" id="autotoc_md93"></a>
+玉兔公共库</h3>
+<ul>
+<li>此库默认放在与本项目同级目录下 <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+~$ git clone https://github.com/KangLin/RabbitCommon.git
+</pre></li>
+<li>如果没有在同级目录下，则必须指定 CMake 参数或者环境变量: <pre class="fragment">~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+# 设置环境变量
+~$ export RabbitCommon_ROOT=[RabbitCommon 安装目录]
+~$ cd RabbitRemoteControl
+# 或者设置 CMake 参数
+~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon 安装目录] ......
+</pre> </li>
+</ul>
+<h3><a class="anchor" id="autotoc_md94"></a>
+编译本项目</h3>
+<ul>
+<li>项目位置：<a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>
+<li>下载源码 <pre class="fragment">git clone https://github.com/KangLin/RabbitRemoteControl.git
+</pre></li>
+<li>CMake 参数<ul>
+<li>QT_ROOT: Qt 安装位置</li>
+<li>Qt6_DIR: 与 QT_ROOT 相同</li>
+<li>RabbitCommon_ROOT：RabbitCommon 源码位置</li>
+<li>BUILD_CLIENT: 编译客户端。默认为 ON</li>
+<li>BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService</li>
+<li>BUILD_PLUGINS: 编译插件。默认为 ON</li>
+<li>BUILD_APP: 编译应用程序。默认为 ON</li>
+<li>BUILD_DOCS: 编译文档。默认为 OFF</li>
+<li>BUILD_SHARED_LIBS: 编译动态库。默认为 ON</li>
+<li>BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF</li>
+<li>WinPR_DIR: [FreeRDP 安装目录]/lib/cmake/WinPR3</li>
+<li>FreeRDP_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP3</li>
+<li>FreeRDP-Client_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP-Client3</li>
+<li>BUILD_RABBITVNC: 编译 RabbitVNC 插件。默认为 ON</li>
+<li>RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC</li>
+<li>BUILD_TigerVNC: 编译 TigerVNC。默认为 ON</li>
+<li>tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc</li>
+<li>BUILD_LibVNCServer: 编译 LibVNCServer。默认为 ON</li>
+<li>LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer</li>
+<li>libdatachannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel</li>
+<li>QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp</li>
+<li>qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5</li>
+<li>libssh_DIR: [libssh 安装目录]/lib/cmake/libssh</li>
+<li>QtService_DIR: [QtService 安装目录]/lib/cmake/QtService</li>
+</ul>
+</li>
+<li>如果使用 vcpkg，增加下面参数<ul>
+<li>因为使用了 vcpkg 清单模式，所以依赖库在 <code>vcpkg.json</code> 中。</li>
+<li>CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake</li>
+<li>X_VCPKG_APPLOCAL_DEPS_INSTALL: ON #安装时，把把依赖库的复制到安装目录中</li>
+<li>VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。 如果它要放到CMakeLists.txt文件中，则必须入在最顶端 project 之前才能生效。 所以本项目中从环境变量或 CMake 参数传入。 参见： <a href="https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference">https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference</a></li>
+</ul>
+</li>
+<li>编译<ul>
+<li>命令行编译<ul>
+<li>设置环境变量<ul>
+<li>ubuntu <pre class="fragment">export JAVA_HOME=
+export QT_ROOT=
+export Qt6_DIR=
+export ANDROID_SDK_ROOT=
+export ANDROID_NDK_ROOT=
+export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+export CMAKE_ROOT=
+export NINJA_ROOT=
+export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+export VCPKG_ROOT=
+export VCPKG_TARGET_TRIPLET=x64-android
+export BUILD_TYPE=Release
+</pre></li>
+<li>windows <pre class="fragment">set JAVA_HOME=
+set QT_ROOT=
+set Qt6_DIR=
+set ANDROID_SDK_ROOT=
+set ANDROID_NDK_ROOT=
+set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+set CMAKE_ROOT=
+set NINJA_ROOT=
+set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+set VCPKG_ROOT=
+set VCPKG_TARGET_TRIPLET=x64-android
+set BUILD_TYPE=Release
+</pre></li>
+</ul>
+</li>
+<li>编译 <pre class="fragment">mkdir build
+${Qt6_DIR}/bin/qt-cmake .. \
+    -DCMARK_SHARED=OFF \
+    -DCMARK_TESTS=OFF \
+    -DCMARK_STATIC=ON \
+    -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+    -DCMAKE_AUTOGEN_VERBOSE=ON \
+    -DQT_CHAINLOAD_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+    -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+    -DVCPKG_TARGET_TRIPLET=${VCPKG_TARGET_TRIPLET} \
+    -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+    -DVCPKG_TRACE_FIND_PACKAGE=ON \
+    -DVCPKG_VERBOSE=ON \
+    -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
+    -DRABBIT_ENABLE_INSTALL_QT=ON \
+    -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
+    -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+    -DQT_ANDROID_SIGN_APK=ON \
+    -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
+    -DVCPKG_TRACE_FIND_PACKAGE=ON \
+    -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+    -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+    [Depend libraries ......]
+cmake --build . --verbose --config Release --target all
+</pre></li>
+<li>参见：<ul>
+<li><a href="../../.github/workflows/android.yml">编译集成 android.yml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用 CMakePreset<ul>
+<li>设置环境变量<ul>
+<li>windows <pre class="fragment">set JAVA_HOME=
+set ANDROID_SDK_ROOT=
+set ANDROID_NDK_ROOT=
+set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+set CMAKE_ROOT=
+set NINJA_ROOT=
+set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+set VCPKG_ROOT=
+set QT_ROOT=
+set Qt6_DIR=
+</pre></li>
+<li>ubuntu <pre class="fragment">export JAVA_HOME=
+export ANDROID_SDK_ROOT=
+export ANDROID_NDK_ROOT=
+export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+export CMAKE_ROOT=
+export NINJA_ROOT=
+export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+export VCPKG_ROOT=
+export QT_ROOT=
+export Qt6_DIR=
+</pre></li>
+</ul>
+</li>
+<li>编译 <pre class="fragment">cd RabbitRemoteControl
+cmake --list-presets                             ;查看 presets
+cmake --preset "android-x86_64-qt6" \
+    -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+    -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+    [Depend libraries ......]
+cmake --build --preset "android-x86_64-qt6"
+</pre></li>
+<li>参见：<ul>
+<li><a href="../../CMakePreset.json">CMakePreset.json</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="startli">使用 QtCreator 编译</p>
+<p class="startli">因为 QtCreator 14 中对 VCPKG ，在 Android 上支持不完善， 所以需要通过设置 QT_CREATOR_SKIP_VCPKG_SETUP=ON，来关闭 VCPKG。 当然，也可以关闭 CMake 包管理器： Qt Creator’s Options -&gt; Build &amp; Run -&gt; CMake and then uncheck “Package manager auto-setup”.</p><ul>
+<li>参见：<a href="https://www.qt.io/blog/qt-creator-cmake-package-manager-auto-setup">Qt Creator: CMake package-manager auto-setup</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

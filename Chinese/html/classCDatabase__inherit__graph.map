@@ -1,0 +1,23 @@
+<map id="CDatabase" name="CDatabase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,179,221,204"/>
+<area shape="rect" id="Node000003" href="$classCBookmarkDatabase.html" title=" " alt="" coords="269,5,429,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,165,214,102,238,69,268,40,288,29,290,33,271,44,242,72,219,105,188,167"/>
+<area shape="rect" id="Node000004" href="$classCDatabaseFile.html" title="The CDatabaseFile class" alt="" coords="291,55,407,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="191,166,224,127,268,90,294,78,297,83,271,95,228,131,195,169"/>
+<area shape="rect" id="Node000005" href="$classCDatabaseFolder.html" title=" " alt="" coords="283,104,416,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="208,169,268,140,303,127,305,132,270,144,211,174"/>
+<area shape="rect" id="Node000006" href="$classCDatabaseIcon.html" title=" " alt="" coords="289,153,409,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="235,180,289,172,290,177,236,185"/>
+<area shape="rect" id="Node000007" href="$classCDatabaseTree.html" title=" " alt="" coords="289,203,409,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="236,197,290,204,289,210,235,202"/>
+<area shape="rect" id="Node000009" href="$classCDatabaseUrl.html" title=" " alt="" coords="293,252,405,277"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="210,208,270,238,302,249,300,254,268,243,208,213"/>
+<area shape="rect" id="Node000010" href="$classCHistoryDatabase.html" title=" " alt="" coords="279,301,419,327"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="195,214,228,252,271,288,294,299,292,304,268,292,224,256,191,217"/>
+<area shape="rect" id="Node000011" href="$classCRecentDatabase.html" title=" " alt="" coords="280,351,419,376"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="188,216,219,277,242,309,271,337,291,348,288,353,268,341,238,313,214,280,183,218"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,179,80,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,189,128,189,128,194,93,194"/>
+<area shape="rect" id="Node000008" href="$classCFavoriteDatabase.html" title=" " alt="" coords="477,203,623,228"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="423,213,477,213,477,218,423,218"/>
+</map>

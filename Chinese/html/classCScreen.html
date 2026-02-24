@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CScreen类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCScreen-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CScreen类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classCScreen.html" title="The CScreen class.">CScreen</a> class.  
+ <a href="classCScreen.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Screen_8h_source.html">Screen.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CScreen 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCScreen__inherit__graph.png" border="0" usemap="#aCScreen_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCScreen_inherit__map" id="aCScreen_inherit__map">
+<area shape="rect" title="The CScreen class." alt="" coords="106,79,181,104"/>
+<area shape="rect" href="classCScreenWindows.html" title=" " alt="" coords="5,152,140,177"/>
+<area shape="poly" title=" " alt="" coords="124,116,86,154,82,150,120,112"/>
+<area shape="rect" href="classCScreenXLib.html" title=" " alt="" coords="164,152,267,177"/>
+<area shape="poly" title=" " alt="" coords="167,112,206,150,202,154,163,116"/>
+<area shape="rect" title=" " alt="" coords="106,5,181,31"/>
+<area shape="poly" title=" " alt="" coords="146,44,146,79,141,79,141,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CScreen 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCScreen__coll__graph.png" border="0" usemap="#aCScreen_coll__map" alt="Collaboration graph"/></div>
+<map name="aCScreen_coll__map" id="aCScreen_coll__map">
+<area shape="rect" title="The CScreen class." alt="" coords="5,79,80,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="45,44,45,79,40,79,40,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a19cec3b6cc08368ca8b48dd8f95a1d0d" id="r_a19cec3b6cc08368ca8b48dd8f95a1d0d"><td class="memItemLeft" align="right" valign="top"><a id="a19cec3b6cc08368ca8b48dd8f95a1d0d" name="a19cec3b6cc08368ca8b48dd8f95a1d0d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdate</b> (QImage screen)</td></tr>
+<tr class="separator:a19cec3b6cc08368ca8b48dd8f95a1d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ab9f2929c0db7dccb249221a4e85dba67" id="r_ab9f2929c0db7dccb249221a4e85dba67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#ab9f2929c0db7dccb249221a4e85dba67">CScreen</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:ab9f2929c0db7dccb249221a4e85dba67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b67193fb973d3f5bb74cf63c37f61a7" id="r_a0b67193fb973d3f5bb74cf63c37f61a7"><td class="memItemLeft" align="right" valign="top"><a id="a0b67193fb973d3f5bb74cf63c37f61a7" name="a0b67193fb973d3f5bb74cf63c37f61a7"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b> ()=0</td></tr>
+<tr class="separator:a0b67193fb973d3f5bb74cf63c37f61a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae084f4dab2e20ccf530d05e1dbbb3657" id="r_ae084f4dab2e20ccf530d05e1dbbb3657"><td class="memItemLeft" align="right" valign="top"><a id="ae084f4dab2e20ccf530d05e1dbbb3657" name="ae084f4dab2e20ccf530d05e1dbbb3657"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Height</b> ()=0</td></tr>
+<tr class="separator:ae084f4dab2e20ccf530d05e1dbbb3657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08ad826089d9577cbc0b69b7204b4a8" id="r_af08ad826089d9577cbc0b69b7204b4a8"><td class="memItemLeft" align="right" valign="top"><a id="af08ad826089d9577cbc0b69b7204b4a8" name="af08ad826089d9577cbc0b69b7204b4a8"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>VirtualTop</b> ()=0</td></tr>
+<tr class="separator:af08ad826089d9577cbc0b69b7204b4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a427a4e81955d2b7a17c55e9be4cc4691" id="r_a427a4e81955d2b7a17c55e9be4cc4691"><td class="memItemLeft" align="right" valign="top"><a id="a427a4e81955d2b7a17c55e9be4cc4691" name="a427a4e81955d2b7a17c55e9be4cc4691"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>VirtualLeft</b> ()=0</td></tr>
+<tr class="separator:a427a4e81955d2b7a17c55e9be4cc4691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24b78e347d40c8b94574929a3ce7fae" id="r_ac24b78e347d40c8b94574929a3ce7fae"><td class="memItemLeft" align="right" valign="top"><a id="ac24b78e347d40c8b94574929a3ce7fae" name="ac24b78e347d40c8b94574929a3ce7fae"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>VirtualWidth</b> ()=0</td></tr>
+<tr class="separator:ac24b78e347d40c8b94574929a3ce7fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204d9659bbbd0da4b050dddf8ae43a4f" id="r_a204d9659bbbd0da4b050dddf8ae43a4f"><td class="memItemLeft" align="right" valign="top"><a id="a204d9659bbbd0da4b050dddf8ae43a4f" name="a204d9659bbbd0da4b050dddf8ae43a4f"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>VirtualHeight</b> ()=0</td></tr>
+<tr class="separator:a204d9659bbbd0da4b050dddf8ae43a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e08e597172a4523567667823dd6451" id="r_a63e08e597172a4523567667823dd6451"><td class="memItemLeft" align="right" valign="top"><a id="a63e08e597172a4523567667823dd6451" name="a63e08e597172a4523567667823dd6451"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleMonitorCount</b> ()=0</td></tr>
+<tr class="separator:a63e08e597172a4523567667823dd6451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0fc0e410ba068334db88b9489905ca" id="r_a5f0fc0e410ba068334db88b9489905ca"><td class="memItemLeft" align="right" valign="top"><a id="a5f0fc0e410ba068334db88b9489905ca" name="a5f0fc0e410ba068334db88b9489905ca"></a>
+virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><b>GetScreen</b> (int index=0)=0</td></tr>
+<tr class="separator:a5f0fc0e410ba068334db88b9489905ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2708bc082fe710a87f0f324bffc2d8cd" id="r_a2708bc082fe710a87f0f324bffc2d8cd"><td class="memItemLeft" align="right" valign="top">virtual QImage::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#a2708bc082fe710a87f0f324bffc2d8cd">GetFormat</a> (int index=0)</td></tr>
+<tr class="separator:a2708bc082fe710a87f0f324bffc2d8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d0bf85031c661ed9f0080d407982428" id="r_a7d0bf85031c661ed9f0080d407982428"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#a7d0bf85031c661ed9f0080d407982428">SetFormat</a> (QImage::Format f=QImage::Format_ARGB32)</td></tr>
+<tr class="separator:a7d0bf85031c661ed9f0080d407982428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5cf234c9ac03bbc527c0771d4b582ad" id="r_ac5cf234c9ac03bbc527c0771d4b582ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#ac5cf234c9ac03bbc527c0771d4b582ad">HasCursor</a> ()</td></tr>
+<tr class="separator:ac5cf234c9ac03bbc527c0771d4b582ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae678785d77e78a0578528036443b05" id="r_acae678785d77e78a0578528036443b05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#acae678785d77e78a0578528036443b05">SetHasCursor</a> (bool bHas)</td></tr>
+<tr class="separator:acae678785d77e78a0578528036443b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:acaa91434fcd4c4a207457448deae7478" id="r_acaa91434fcd4c4a207457448deae7478"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCScreen.html">CScreen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#acaa91434fcd4c4a207457448deae7478">Instance</a> ()</td></tr>
+<tr class="separator:acaa91434fcd4c4a207457448deae7478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a04032058b638fbcaeb83f643878c7e50" id="r_a04032058b638fbcaeb83f643878c7e50"><td class="memItemLeft" align="right" valign="top">QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#a04032058b638fbcaeb83f643878c7e50">m_Screen</a></td></tr>
+<tr class="separator:a04032058b638fbcaeb83f643878c7e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ccd3c428e74cfc8875ba40ea9bdb68a" id="r_a1ccd3c428e74cfc8875ba40ea9bdb68a"><td class="memItemLeft" align="right" valign="top">QImage::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#a1ccd3c428e74cfc8875ba40ea9bdb68a">m_Format</a></td></tr>
+<tr class="separator:a1ccd3c428e74cfc8875ba40ea9bdb68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a446f4f61f2e8328cf866896b1990df4b" id="r_a446f4f61f2e8328cf866896b1990df4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#a446f4f61f2e8328cf866896b1990df4b">m_bCursor</a></td></tr>
+<tr class="separator:a446f4f61f2e8328cf866896b1990df4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc6088475682b4a67eb7cc25ff15587b" id="r_abc6088475682b4a67eb7cc25ff15587b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCScreen.html#abc6088475682b4a67eb7cc25ff15587b">m_nNumber</a></td></tr>
+<tr class="separator:abc6088475682b4a67eb7cc25ff15587b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The <a class="el" href="classCScreen.html" title="The CScreen class.">CScreen</a> class. </p>
+<p>The descript a screen. </p>
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab9f2929c0db7dccb249221a4e85dba67" name="ab9f2929c0db7dccb249221a4e85dba67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f2929c0db7dccb249221a4e85dba67">&#9670;&#160;</a></span>CScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CScreen::CScreen </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2708bc082fe710a87f0f324bffc2d8cd" name="a2708bc082fe710a87f0f324bffc2d8cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2708bc082fe710a87f0f324bffc2d8cd">&#9670;&#160;</a></span>GetFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual QImage::Format CScreen::GetFormat </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac5cf234c9ac03bbc527c0771d4b582ad" name="ac5cf234c9ac03bbc527c0771d4b582ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5cf234c9ac03bbc527c0771d4b582ad">&#9670;&#160;</a></span>HasCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CScreen::HasCursor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acaa91434fcd4c4a207457448deae7478" name="acaa91434fcd4c4a207457448deae7478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa91434fcd4c4a207457448deae7478">&#9670;&#160;</a></span>Instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCScreen.html">CScreen</a> * CScreen::Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ScreenWindows_8cpp_source.html">ScreenWindows.cpp</a> 第 <a class="el" href="ScreenWindows_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d0bf85031c661ed9f0080d407982428" name="a7d0bf85031c661ed9f0080d407982428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0bf85031c661ed9f0080d407982428">&#9670;&#160;</a></span>SetFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CScreen::SetFormat </td>
+          <td>(</td>
+          <td class="paramtype">QImage::Format&#160;</td>
+          <td class="paramname"><em>f</em> = <code>QImage::Format_ARGB32</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acae678785d77e78a0578528036443b05" name="acae678785d77e78a0578528036443b05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae678785d77e78a0578528036443b05">&#9670;&#160;</a></span>SetHasCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CScreen::SetHasCursor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bHas</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a446f4f61f2e8328cf866896b1990df4b" name="a446f4f61f2e8328cf866896b1990df4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a446f4f61f2e8328cf866896b1990df4b">&#9670;&#160;</a></span>m_bCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CScreen::m_bCursor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1ccd3c428e74cfc8875ba40ea9bdb68a" name="a1ccd3c428e74cfc8875ba40ea9bdb68a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ccd3c428e74cfc8875ba40ea9bdb68a">&#9670;&#160;</a></span>m_Format</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage::Format CScreen::m_Format</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abc6088475682b4a67eb7cc25ff15587b" name="abc6088475682b4a67eb7cc25ff15587b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc6088475682b4a67eb7cc25ff15587b">&#9670;&#160;</a></span>m_nNumber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CScreen::m_nNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a04032058b638fbcaeb83f643878c7e50" name="a04032058b638fbcaeb83f643878c7e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04032058b638fbcaeb83f643878c7e50">&#9670;&#160;</a></span>m_Screen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage CScreen::m_Screen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Screen_8h_source.html">Screen.h</a> 第 <a class="el" href="Screen_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="Screen_8h_source.html">Screen.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ScreenWindows_8cpp_source.html">ScreenWindows.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ScreenXLib_8cpp_source.html">ScreenXLib.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

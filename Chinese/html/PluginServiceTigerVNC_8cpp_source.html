@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Service/PluginServiceTigerVNC.cpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_2a7e6a9d069690e271f4b231dd0c3d78.html">TigerVnc</a></li><li class="navelem"><a class="el" href="dir_c8c7020b6e03b4a12245fa5bbb15cf3f.html">Service</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">PluginServiceTigerVNC.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;PluginServiceTigerVNC.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;RabbitCommonDir.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QDebug&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QApplication&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;rfb/LogWriter.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;rfb/Logger_stdio.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;ServiceTigerVNC.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QLoggingCategory&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>Q_LOGGING_CATEGORY(TigerVNC, <span class="stringliteral">&quot;TigerVNC&quot;</span>)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><a class="code hl_class" href="classCPluginServiceTigerVNC.html">CPluginServiceTigerVNC</a>::<a class="code hl_class" href="classCPluginServiceTigerVNC.html">CPluginServiceTigerVNC</a>(QObject *parent)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    : <a class="code hl_class" href="classCPluginServiceThread.html">CPluginServiceThread</a>(parent)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">//rfb::SecurityClient::setDefaults();</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    rfb::initStdIOLoggers();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    rfb::initFileLogger(<span class="stringliteral">&quot;C:\\temp\\vncviewer.log&quot;</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    rfb::initFileLogger(<span class="stringliteral">&quot;/tmp/vncviewer.log&quot;</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    rfb::LogWriter::setLogParams(<span class="stringliteral">&quot;*:stderr:100&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>CPluginServiceTigerVNC::~CPluginServiceTigerVNC()</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>   qDebug(TigerVNC) &lt;&lt; <span class="stringliteral">&quot;CManageConnectTigerVnc::~CManageConnectTigerVnc()&quot;</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classCPluginServiceTigerVNC.html#a57f780ba7dcbbff5df05f96735664ec6">   34</a></span><span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceTigerVNC.html#a57f780ba7dcbbff5df05f96735664ec6">CPluginServiceTigerVNC::Protocol</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;RFB&quot;</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classCPluginServiceTigerVNC.html#ae9b4593138ca8616fdb5d2ebfd14fdba">   39</a></span><span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceTigerVNC.html#ae9b4593138ca8616fdb5d2ebfd14fdba">CPluginServiceTigerVNC::Name</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;TigerVNC&quot;</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classCPluginServiceTigerVNC.html#a76de71fd7cf90df021c9660adeb89448">   44</a></span><span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceTigerVNC.html#a76de71fd7cf90df021c9660adeb89448">CPluginServiceTigerVNC::DisplayName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> tr(<span class="stringliteral">&quot;TigerVNC&quot;</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classCPluginServiceTigerVNC.html#a92a45109ff6c4f61db46139993265705">   49</a></span><span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceTigerVNC.html#a92a45109ff6c4f61db46139993265705">CPluginServiceTigerVNC::Description</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">return</span> tr(<span class="stringliteral">&quot;VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.&quot;</span>) + <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            + tr(<span class="stringliteral">&quot;VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classCPluginServiceTigerVNC.html#ae639edf7b90e4f97e8fecc907683b68b">   55</a></span><a class="code hl_class" href="classCService.html">CService</a> *<a class="code hl_function" href="classCPluginServiceTigerVNC.html#ae639edf7b90e4f97e8fecc907683b68b">CPluginServiceTigerVNC::NewService</a>()</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="classCServiceTigerVNC.html">CServiceTigerVNC</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+</div>
+<div class="ttc" id="aclassCPluginServiceThread_html"><div class="ttname"><a href="classCPluginServiceThread.html">CPluginServiceThread</a></div><div class="ttdoc">服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceThread_8h_source.html#l00017">PluginServiceThread.h:18</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html"><div class="ttname"><a href="classCPluginServiceTigerVNC.html">CPluginServiceTigerVNC</a></div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8h_source.html#l00009">PluginServiceTigerVNC.h:10</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html_a57f780ba7dcbbff5df05f96735664ec6"><div class="ttname"><a href="classCPluginServiceTigerVNC.html#a57f780ba7dcbbff5df05f96735664ec6">CPluginServiceTigerVNC::Protocol</a></div><div class="ttdeci">virtual const QString Protocol() const override</div><div class="ttdoc">Plugin Protocol</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8cpp_source.html#l00034">PluginServiceTigerVNC.cpp:34</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html_a76de71fd7cf90df021c9660adeb89448"><div class="ttname"><a href="classCPluginServiceTigerVNC.html#a76de71fd7cf90df021c9660adeb89448">CPluginServiceTigerVNC::DisplayName</a></div><div class="ttdeci">virtual const QString DisplayName() const override</div><div class="ttdoc">The plugin display name</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8cpp_source.html#l00044">PluginServiceTigerVNC.cpp:44</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html_a92a45109ff6c4f61db46139993265705"><div class="ttname"><a href="classCPluginServiceTigerVNC.html#a92a45109ff6c4f61db46139993265705">CPluginServiceTigerVNC::Description</a></div><div class="ttdeci">virtual const QString Description() const override</div><div class="ttdoc">插件描述</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8cpp_source.html#l00049">PluginServiceTigerVNC.cpp:49</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html_ae639edf7b90e4f97e8fecc907683b68b"><div class="ttname"><a href="classCPluginServiceTigerVNC.html#ae639edf7b90e4f97e8fecc907683b68b">CPluginServiceTigerVNC::NewService</a></div><div class="ttdeci">virtual CService * NewService() override</div><div class="ttdoc">New service</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8cpp_source.html#l00055">PluginServiceTigerVNC.cpp:55</a></div></div>
+<div class="ttc" id="aclassCPluginServiceTigerVNC_html_ae9b4593138ca8616fdb5d2ebfd14fdba"><div class="ttname"><a href="classCPluginServiceTigerVNC.html#ae9b4593138ca8616fdb5d2ebfd14fdba">CPluginServiceTigerVNC::Name</a></div><div class="ttdeci">virtual const QString Name() const override</div><div class="ttdoc">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceTigerVNC_8cpp_source.html#l00039">PluginServiceTigerVNC.cpp:39</a></div></div>
+<div class="ttc" id="aclassCServiceTigerVNC_html"><div class="ttname"><a href="classCServiceTigerVNC.html">CServiceTigerVNC</a></div><div class="ttdef"><b>Definition</b> <a href="ServiceTigerVNC_8h_source.html#l00017">ServiceTigerVNC.h:18</a></div></div>
+<div class="ttc" id="aclassCService_html"><div class="ttname"><a href="classCService.html">CService</a></div><div class="ttdoc">服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0</div><div class="ttdef"><b>Definition</b> <a href="Service_8h_source.html#l00037">Service.h:38</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

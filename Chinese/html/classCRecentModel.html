@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CRecentModel类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCRecentModel-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CRecentModel类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CRecentModel 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecentModel__inherit__graph.png" border="0" usemap="#aCRecentModel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCRecentModel_inherit__map" id="aCRecentModel_inherit__map">
+<area shape="rect" title=" " alt="" coords="27,79,143,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="88,44,88,79,83,79,83,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CRecentModel 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecentModel__coll__graph.png" border="0" usemap="#aCRecentModel_coll__map" alt="Collaboration graph"/></div>
+<map name="aCRecentModel_coll__map" id="aCRecentModel_coll__map">
+<area shape="rect" title=" " alt="" coords="704,807,820,832"/>
+<area shape="rect" title=" " alt="" coords="565,719,725,744"/>
+<area shape="poly" title=" " alt="" coords="673,750,748,804,744,809,670,754"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="701,543,823,568"/>
+<area shape="poly" title=" " alt="" coords="765,582,765,807,759,807,759,582"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="375,80,474,105"/>
+<area shape="poly" title=" " alt="" coords="488,93,622,100,778,113,850,122,909,133,949,147,960,156,965,165,965,469,962,498,956,509,945,521,924,531,894,540,824,551,823,546,893,535,922,526,942,517,952,506,957,496,959,469,959,167,956,159,946,152,907,138,849,127,778,118,622,105,488,99"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="633,155,784,180"/>
+<area shape="poly" title=" " alt="" coords="483,106,665,152,663,157,482,111"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="235,631,374,656"/>
+<area shape="poly" title=" " alt="" coords="362,107,317,118,274,131,242,148,233,157,230,166,230,556,235,579,249,599,267,616,285,628,282,633,263,620,245,603,230,581,225,557,225,166,228,154,239,144,272,126,316,112,361,102"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="316,543,456,568"/>
+<area shape="poly" title=" " alt="" coords="414,119,405,141,401,166,401,469,397,510,391,543,386,542,392,509,395,469,395,166,399,140,409,117"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="247,204,378,229"/>
+<area shape="poly" title=" " alt="" coords="399,116,381,131,347,171,323,205,318,202,343,167,377,127,395,112"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="419,303,561,328"/>
+<area shape="poly" title=" " alt="" coords="435,118,489,302,484,303,429,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="5,403,196,429"/>
+<area shape="poly" title=" " alt="" coords="362,100,292,107,219,120,188,128,164,139,148,152,142,166,142,317,139,342,131,367,111,404,106,402,126,365,134,341,137,316,137,166,143,149,161,135,187,123,218,114,291,102,361,95"/>
+<area shape="rect" title=" " alt="" coords="715,5,790,31"/>
+<area shape="poly" title=" " alt="" coords="702,33,475,83,474,78,701,28"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="958,543,1051,568"/>
+<area shape="poly" title=" " alt="" coords="804,20,869,28,937,41,968,50,992,61,1009,75,1015,91,1015,469,1009,543,1004,542,1010,469,1010,92,1005,78,989,66,966,55,936,46,868,33,804,26"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="675,455,835,480"/>
+<area shape="poly" title=" " alt="" coords="758,494,759,518,763,542,757,543,754,519,753,494"/>
+<area shape="poly" title=" " alt="" coords="693,486,436,545,435,540,692,480"/>
+<area shape="poly" title=" " alt="" coords="803,482,972,540,970,545,801,487"/>
+<area shape="poly" title=" " alt="" coords="713,193,722,275,737,377,755,454,750,455,731,378,717,276,708,194"/>
+<area shape="poly" title=" " alt="" coords="798,160,811,167,802,174,784,177,784,171,800,169,805,167,796,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="747,352,868,377"/>
+<area shape="poly" title=" " alt="" coords="724,191,730,203,804,350,799,353,725,205,719,193"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="797,253,925,279"/>
+<area shape="poly" title=" " alt="" coords="747,184,779,202,848,251,845,255,777,206,744,188"/>
+<area shape="poly" title=" " alt="" coords="387,630,453,620,517,604,565,582,579,570,583,556,583,264,586,248,592,233,614,209,642,190,671,178,673,182,644,195,617,213,597,236,591,250,589,265,589,557,583,573,568,587,519,609,454,625,388,636"/>
+<area shape="poly" title=" " alt="" coords="361,579,344,594,314,632,310,629,340,590,357,575"/>
+<area shape="poly" title=" " alt="" coords="302,242,287,276,281,314,281,556,288,597,301,629,296,631,283,598,275,557,275,314,282,274,297,240"/>
+<area shape="poly" title=" " alt="" coords="493,342,492,492,488,566,483,593,477,608,461,620,436,628,375,639,374,634,435,623,459,615,473,605,478,592,482,566,487,492,488,341"/>
+<area shape="poly" title=" " alt="" coords="94,442,87,479,88,499,94,518,107,539,125,559,167,590,214,613,257,628,255,633,211,618,164,595,121,563,103,543,89,520,83,500,82,479,89,441"/>
+<area shape="poly" title=" " alt="" coords="797,391,764,456,759,453,793,388"/>
+<area shape="poly" title=" " alt="" coords="850,292,816,353,811,351,845,289"/>
+<area shape="rect" href="classCRecentDatabase.html" title=" " alt="" coords="891,719,1030,744"/>
+<area shape="poly" title=" " alt="" coords="922,752,790,809,788,804,920,747"/>
+<area shape="poly" title=" " alt="" coords="1008,582,1003,635,998,666,988,696,973,720,969,717,984,694,993,665,998,635,1002,582"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="1042,631,1162,656"/>
+<area shape="poly" title=" " alt="" coords="1030,575,1090,628,1087,632,1026,579"/>
+<area shape="rect" href="classCDatabaseFile.html" title="The CDatabaseFile class" alt="" coords="851,631,967,656"/>
+<area shape="poly" title=" " alt="" coords="983,579,924,632,920,628,980,575"/>
+<area shape="poly" title=" " alt="" coords="1075,666,1025,697,983,721,980,716,1022,692,1072,661"/>
+<area shape="poly" title=" " alt="" coords="913,669,922,693,944,717,941,720,917,696,908,671"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a6b844040dad4be481988c6a7ffbdee26" id="r_a6b844040dad4be481988c6a7ffbdee26"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ColumnNo</b> { <br />
+&#160;&#160;<b>Name</b> = 0
+, <b>Protocol</b>
+, <b>Type</b>
+, <b>Time</b>
+, <br />
+&#160;&#160;<b>ID</b>
+, <b>File</b>
+, <b>ColumnCount</b>
+<br />
+ }</td></tr>
+<tr class="separator:a6b844040dad4be481988c6a7ffbdee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aedf616ecf7d4b3acdb2af65a22234aeb" id="r_aedf616ecf7d4b3acdb2af65a22234aeb"><td class="memItemLeft" align="right" valign="top"><a id="aedf616ecf7d4b3acdb2af65a22234aeb" name="aedf616ecf7d4b3acdb2af65a22234aeb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CRecentModel</b> (<a class="el" href="classCParameterApp.html">CParameterApp</a> *pPara, <a class="el" href="classCRecentDatabase.html">CRecentDatabase</a> *pDb, QObject *parent=nullptr)</td></tr>
+<tr class="separator:aedf616ecf7d4b3acdb2af65a22234aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a552d37c2c6d1c0554ee602298f3af859" id="r_a552d37c2c6d1c0554ee602298f3af859"><td class="memItemLeft" align="right" valign="top">virtual Qt::ItemFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a552d37c2c6d1c0554ee602298f3af859">flags</a> (const QModelIndex &amp;index) const override</td></tr>
+<tr class="separator:a552d37c2c6d1c0554ee602298f3af859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e1635a6059e6a61c5e51f0814dbe7da" id="r_a7e1635a6059e6a61c5e51f0814dbe7da"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a7e1635a6059e6a61c5e51f0814dbe7da">headerData</a> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const override</td></tr>
+<tr class="separator:a7e1635a6059e6a61c5e51f0814dbe7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9adba884c06ca9c613ff87c018d503d8" id="r_a9adba884c06ca9c613ff87c018d503d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a9adba884c06ca9c613ff87c018d503d8">rowCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
+<tr class="separator:a9adba884c06ca9c613ff87c018d503d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaad6afff9ee6db63a7b1ee7d55f2c978" id="r_aaad6afff9ee6db63a7b1ee7d55f2c978"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#aaad6afff9ee6db63a7b1ee7d55f2c978">columnCount</a> (const QModelIndex &amp;parent) const override</td></tr>
+<tr class="separator:aaad6afff9ee6db63a7b1ee7d55f2c978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab73a664e0fc990621d3e8fce3dfc80aa" id="r_ab73a664e0fc990621d3e8fce3dfc80aa"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#ab73a664e0fc990621d3e8fce3dfc80aa">data</a> (const QModelIndex &amp;index, int role=Qt::DisplayRole) const override</td></tr>
+<tr class="separator:ab73a664e0fc990621d3e8fce3dfc80aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8234ae726af4538ff2aef7061ca61eaa" id="r_a8234ae726af4538ff2aef7061ca61eaa"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a8234ae726af4538ff2aef7061ca61eaa">removeRows</a> (int row, int count, const QModelIndex &amp;parent) override</td></tr>
+<tr class="separator:a8234ae726af4538ff2aef7061ca61eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac33439c1d96fc293bdbabfea80229688" id="r_ac33439c1d96fc293bdbabfea80229688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#ac33439c1d96fc293bdbabfea80229688">refresh</a> (int limit=-1)</td></tr>
+<tr class="separator:ac33439c1d96fc293bdbabfea80229688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8fa1d019b51396ca583b54e1feaebbb" id="r_af8fa1d019b51396ca583b54e1feaebbb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#af8fa1d019b51396ca583b54e1feaebbb">addItem</a> (const <a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a> &amp;item)</td></tr>
+<tr class="separator:af8fa1d019b51396ca583b54e1feaebbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cae78f9a752b742f876f46099b1ee43" id="r_a2cae78f9a752b742f876f46099b1ee43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a2cae78f9a752b742f876f46099b1ee43">getItem</a> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:a2cae78f9a752b742f876f46099b1ee43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a6b30bfd8737901ed5092620353cea14a" id="r_a6b30bfd8737901ed5092620353cea14a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterApp.html">CParameterApp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a6b30bfd8737901ed5092620353cea14a">m_pParameterApp</a></td></tr>
+<tr class="separator:a6b30bfd8737901ed5092620353cea14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae0b7b800607e8013661fbdb9fb78e1" id="r_acae0b7b800607e8013661fbdb9fb78e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRecentDatabase.html">CRecentDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#acae0b7b800607e8013661fbdb9fb78e1">m_pDatabase</a></td></tr>
+<tr class="separator:acae0b7b800607e8013661fbdb9fb78e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a93bf1cb32d8b363629878081564827" id="r_a4a93bf1cb32d8b363629878081564827"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentModel.html#a4a93bf1cb32d8b363629878081564827">m_Items</a></td></tr>
+<tr class="separator:a4a93bf1cb32d8b363629878081564827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="RecentModel_8h_source.html">RecentModel.h</a> 第 <a class="el" href="RecentModel_8h_source.html#l00010">10</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a6b844040dad4be481988c6a7ffbdee26" name="a6b844040dad4be481988c6a7ffbdee26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b844040dad4be481988c6a7ffbdee26">&#9670;&#160;</a></span>ColumnNo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CRecentModel::ColumnNo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8h_source.html">RecentModel.h</a> 第 <a class="el" href="RecentModel_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="af8fa1d019b51396ca583b54e1feaebbb" name="af8fa1d019b51396ca583b54e1feaebbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8fa1d019b51396ca583b54e1feaebbb">&#9670;&#160;</a></span>addItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentModel::addItem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a> &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00154">154</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaad6afff9ee6db63a7b1ee7d55f2c978" name="aaad6afff9ee6db63a7b1ee7d55f2c978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaad6afff9ee6db63a7b1ee7d55f2c978">&#9670;&#160;</a></span>columnCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRecentModel::columnCount </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab73a664e0fc990621d3e8fce3dfc80aa" name="ab73a664e0fc990621d3e8fce3dfc80aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73a664e0fc990621d3e8fce3dfc80aa">&#9670;&#160;</a></span>data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CRecentModel::data </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>role</em> = <code>Qt::DisplayRole</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a552d37c2c6d1c0554ee602298f3af859" name="a552d37c2c6d1c0554ee602298f3af859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552d37c2c6d1c0554ee602298f3af859">&#9670;&#160;</a></span>flags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Qt::ItemFlags CRecentModel::flags </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00016">16</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2cae78f9a752b742f876f46099b1ee43" name="a2cae78f9a752b742f876f46099b1ee43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cae78f9a752b742f876f46099b1ee43">&#9670;&#160;</a></span>getItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a> CRecentModel::getItem </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00141">141</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e1635a6059e6a61c5e51f0814dbe7da" name="a7e1635a6059e6a61c5e51f0814dbe7da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e1635a6059e6a61c5e51f0814dbe7da">&#9670;&#160;</a></span>headerData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CRecentModel::headerData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>section</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Qt::Orientation&#160;</td>
+          <td class="paramname"><em>orientation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>role</em> = <code>Qt::DisplayRole</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac33439c1d96fc293bdbabfea80229688" name="ac33439c1d96fc293bdbabfea80229688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac33439c1d96fc293bdbabfea80229688">&#9670;&#160;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRecentModel::refresh </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>limit</em> = <code>-1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8234ae726af4538ff2aef7061ca61eaa" name="a8234ae726af4538ff2aef7061ca61eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8234ae726af4538ff2aef7061ca61eaa">&#9670;&#160;</a></span>removeRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentModel::removeRows </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9adba884c06ca9c613ff87c018d503d8" name="a9adba884c06ca9c613ff87c018d503d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9adba884c06ca9c613ff87c018d503d8">&#9670;&#160;</a></span>rowCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRecentModel::rowCount </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>QModelIndex()</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a> 第 <a class="el" href="RecentModel_8cpp_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4a93bf1cb32d8b363629878081564827" name="a4a93bf1cb32d8b363629878081564827"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a93bf1cb32d8b363629878081564827">&#9670;&#160;</a></span>m_Items</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;<a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a>&gt; CRecentModel::m_Items</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8h_source.html">RecentModel.h</a> 第 <a class="el" href="RecentModel_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acae0b7b800607e8013661fbdb9fb78e1" name="acae0b7b800607e8013661fbdb9fb78e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae0b7b800607e8013661fbdb9fb78e1">&#9670;&#160;</a></span>m_pDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCRecentDatabase.html">CRecentDatabase</a>* CRecentModel::m_pDatabase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8h_source.html">RecentModel.h</a> 第 <a class="el" href="RecentModel_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b30bfd8737901ed5092620353cea14a" name="a6b30bfd8737901ed5092620353cea14a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b30bfd8737901ed5092620353cea14a">&#9670;&#160;</a></span>m_pParameterApp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterApp.html">CParameterApp</a>* CRecentModel::m_pParameterApp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentModel_8h_source.html">RecentModel.h</a> 第 <a class="el" href="RecentModel_8h_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Recent/<a class="el" href="RecentModel_8h_source.html">RecentModel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Recent/<a class="el" href="RecentModel_8cpp_source.html">RecentModel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

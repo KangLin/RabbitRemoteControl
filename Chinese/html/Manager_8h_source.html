@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Manager.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Manager.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QDir&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QMap&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QIcon&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QTranslator&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QSharedPointer&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Database.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;Plugin.h&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;Hook.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;ParameterGlobal.h&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#if defined(__clang__) || defined(__GNUC__)</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define CPP_STANDARD __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#elif defined(_MSC_VER)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define CPP_STANDARD _MSVC_LANG</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#if CPP_STANDARD &gt;= 199711L</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HAS_CPP_03 1</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#if CPP_STANDARD &gt;= 201103L</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define HAS_CPP_11 1</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#if CPP_STANDARD &gt;= 201402L</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define HAS_CPP_14 1</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#if CPP_STANDARD &gt;= 201703L</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define HAS_CPP_17 1</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#if HAS_CPP_11</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classCManager.html">   47</a></span><span class="keyword">class </span>PLUGIN_EXPORT <a class="code hl_class" href="classCManager.html">CManager</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Q_OBJECT</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCManager.html">CManager</a>(QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCManager.html">~CManager</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">int</span> Initial(QString szFile = QString());</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCOperate.html">COperate</a>* CreateOperate(<span class="keyword">const</span> QString &amp;<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> DeleteOperate(<a class="code hl_class" href="classCOperate.html">COperate</a>* p);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCOperate.html">COperate</a>* LoadOperate(<span class="keyword">const</span> QString&amp; szFile);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> SaveOperate(<a class="code hl_class" href="classCOperate.html">COperate</a>* pOperate);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">virtual</span> QList&lt;QWidget*&gt; GetSettingsWidgets(QWidget *parent);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> LoadSettings(<span class="keyword">const</span> QString szFile = QString());</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> SaveSettings(<span class="keyword">const</span> QString szFile = QString());</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_class" href="classCParameterGlobal.html">CParameterGlobal</a> *GetGlobalParameters();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="foldopen" id="foldopen00163" data-start="{" data-end="};">
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classCManager_1_1Handle.html">  163</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classCManager_1_1Handle.html">Handle</a>{</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <a class="code hl_class" href="classCManager_1_1Handle.html">Handle</a>(){}</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classCManager_1_1Handle.html#ac43cf0d2501e1c407c88f884b102eaa6">  171</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCManager_1_1Handle.html#ac43cf0d2501e1c407c88f884b102eaa6">onProcess</a>(<span class="keyword">const</span> QString&amp; <span class="keywordtype">id</span>, <a class="code hl_class" href="classCPlugin.html">CPlugin</a>* pPlugin) = 0;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    };</div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> EnumPlugins(<a class="code hl_class" href="classCManager_1_1Handle.html">Handle</a>* handle);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#if HAS_CPP_11</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classCManager.html#af9414af0469106c31195b3b25d8ba8d1">  182</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCManager.html#af9414af0469106c31195b3b25d8ba8d1">EnumPlugins</a>(</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        std::function&lt;<span class="keywordtype">int</span>(<span class="keyword">const</span> QString&amp; <span class="keywordtype">id</span>, <a class="code hl_class" href="classCPlugin.html">CPlugin</a>* pPlugin)&gt; cb);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">const</span> QString Details() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>Q_SIGNALS:</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classCManager.html#add4b7cff1a05a60cb0b2a800b92114af">  208</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="classCManager.html#add4b7cff1a05a60cb0b2a800b92114af">sigNewOperate</a>(<a class="code hl_class" href="classCOperate.html">COperate</a>* pOperate, <span class="keywordtype">bool</span> bOpenSettingsDialog);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">int</span> LoadPlugins();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">int</span> LoadPlugin(<span class="keyword">const</span> QString&amp; szPath);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">int</span> FindPlugins(QDir dir, QStringList filters);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordtype">int</span> AppendPlugin(<a class="code hl_class" href="classCPlugin.html">CPlugin</a>* plugin);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keyword">private</span> Q_SLOTS:</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">void</span> slotCaptureAllKeyboard();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    QString m_szSettingsFile;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    QMap&lt;QString, CPlugin*&gt; m_Plugins;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    qint8 m_FileVersion;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    QSharedPointer&lt;QTranslator&gt; m_Translator;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <a class="code hl_class" href="classCHook.html">CHook</a>* m_pHook;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a>* m_pParameterPlugin;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    QString m_szDetails;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <a class="code hl_class" href="classCDatabaseFile.html">CDatabaseFile</a>* m_pDatabaseFile;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>};</div>
+</div>
+<div class="ttc" id="aclassCDatabaseFile_html"><div class="ttname"><a href="classCDatabaseFile.html">CDatabaseFile</a></div><div class="ttdoc">The CDatabaseFile class</div><div class="ttdef"><b>Definition</b> <a href="Database_8h_source.html#l00093">Database.h:94</a></div></div>
+<div class="ttc" id="aclassCHook_html"><div class="ttname"><a href="classCHook.html">CHook</a></div><div class="ttdoc">The class is the HOOK abstract class.</div><div class="ttdef"><b>Definition</b> <a href="Hook_8h_source.html#l00014">Hook.h:15</a></div></div>
+<div class="ttc" id="aclassCManager_1_1Handle_html"><div class="ttname"><a href="classCManager_1_1Handle.html">CManager::Handle</a></div><div class="ttdoc">处理连接者。用于客户端得到连接者信号</div><div class="ttdef"><b>Definition</b> <a href="Manager_8h_source.html#l00163">Manager.h:163</a></div></div>
+<div class="ttc" id="aclassCManager_1_1Handle_html_ac43cf0d2501e1c407c88f884b102eaa6"><div class="ttname"><a href="classCManager_1_1Handle.html#ac43cf0d2501e1c407c88f884b102eaa6">CManager::Handle::onProcess</a></div><div class="ttdeci">virtual int onProcess(const QString &amp;id, CPlugin *pPlugin)=0</div><div class="ttdoc">Process plugins</div></div>
+<div class="ttc" id="aclassCManager_html"><div class="ttname"><a href="classCManager.html">CManager</a></div><div class="ttdoc">管理插件</div><div class="ttdef"><b>Definition</b> <a href="Manager_8h_source.html#l00047">Manager.h:48</a></div></div>
+<div class="ttc" id="aclassCManager_html_add4b7cff1a05a60cb0b2a800b92114af"><div class="ttname"><a href="classCManager.html#add4b7cff1a05a60cb0b2a800b92114af">CManager::sigNewOperate</a></div><div class="ttdeci">void sigNewOperate(COperate *pOperate, bool bOpenSettingsDialog)</div><div class="ttdoc">当在插件中新建操作时，触发此信号</div></div>
+<div class="ttc" id="aclassCManager_html_af9414af0469106c31195b3b25d8ba8d1"><div class="ttname"><a href="classCManager.html#af9414af0469106c31195b3b25d8ba8d1">CManager::EnumPlugins</a></div><div class="ttdeci">virtual int EnumPlugins(std::function&lt; int(const QString &amp;id, CPlugin *pPlugin)&gt; cb)</div><div class="ttdoc">Enum plugins</div></div>
+<div class="ttc" id="aclassCOperate_html"><div class="ttname"><a href="classCOperate.html">COperate</a></div><div class="ttdoc">操作接口。</div><div class="ttdef"><b>Definition</b> <a href="Operate_8h_source.html#l00050">Operate.h:51</a></div></div>
+<div class="ttc" id="aclassCParameterGlobal_html"><div class="ttname"><a href="classCParameterGlobal.html">CParameterGlobal</a></div><div class="ttdoc">全局参数</div><div class="ttdef"><b>Definition</b> <a href="ParameterGlobal_8h_source.html#l00022">ParameterGlobal.h:23</a></div></div>
+<div class="ttc" id="aclassCParameterPlugin_html"><div class="ttname"><a href="classCParameterPlugin.html">CParameterPlugin</a></div><div class="ttdoc">插件的全局参数。</div><div class="ttdef"><b>Definition</b> <a href="ParameterPlugin_8h_source.html#l00033">ParameterPlugin.h:34</a></div></div>
+<div class="ttc" id="aclassCPlugin_html"><div class="ttname"><a href="classCPlugin.html">CPlugin</a></div><div class="ttdoc">插件接口</div><div class="ttdef"><b>Definition</b> <a href="Plugin_8h_source.html#l00014">Plugin.h:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

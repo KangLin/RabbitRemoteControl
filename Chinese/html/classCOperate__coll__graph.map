@@ -1,0 +1,8 @@
+<map id="COperate" name="COperate">
+<area shape="rect" id="Node000001" title="操作接口。" alt="" coords="7,168,89,193"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,44,50,168,45,168,41,45"/>
+<area shape="rect" id="Node000003" href="$classCPlugin.html" title="插件接口" alt="" coords="65,80,135,105"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="63,40,93,78,89,81,58,43"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="88,119,58,169,53,166,84,116"/>
+</map>

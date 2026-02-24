@@ -1,0 +1,888 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmBookmark类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmBookmark-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmBookmark类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFrmBookmark 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmBookmark__inherit__graph.png" border="0" usemap="#aCFrmBookmark_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmBookmark_inherit__map" id="aCFrmBookmark_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,128,104"/>
+<area shape="rect" title=" " alt="" coords="27,5,106,31"/>
+<area shape="poly" title=" " alt="" coords="69,44,69,79,64,79,64,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmBookmark 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmBookmark__coll__graph.png" border="0" usemap="#aCFrmBookmark_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmBookmark_coll__map" id="aCFrmBookmark_coll__map">
+<area shape="rect" title=" " alt="" coords="2673,100,2796,126"/>
+<area shape="rect" title=" " alt="" coords="2411,51,2490,76"/>
+<area shape="poly" title=" " alt="" coords="2504,67,2650,90,2683,97,2682,103,2649,95,2503,73"/>
+<area shape="rect" href="classCBookmarkDatabase.html" title=" " alt="" coords="2371,100,2531,126"/>
+<area shape="poly" title=" " alt="" coords="2544,110,2673,110,2673,116,2544,116"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="1563,76,1657,102"/>
+<area shape="poly" title=" " alt="" coords="1643,67,1703,40,1781,19,1861,10,1999,3,2056,5,2108,11,2214,34,2348,74,2372,85,2408,98,2406,103,2370,90,2346,79,2213,39,2107,16,2055,10,1999,8,1862,16,1782,24,1705,45,1645,72"/>
+<area shape="rect" href="classCDatabaseTree.html" title=" " alt="" coords="2132,127,2252,152"/>
+<area shape="poly" title=" " alt="" coords="1647,106,1705,130,1785,154,1850,165,1916,167,2000,162,2131,147,2132,152,2000,168,1916,172,1849,170,1784,159,1703,135,1645,110"/>
+<area shape="rect" href="classCDatabaseFolder.html" title=" " alt="" coords="1864,127,1997,152"/>
+<area shape="poly" title=" " alt="" coords="1671,99,1704,105,1864,129,1863,134,1704,110,1670,104"/>
+<area shape="rect" href="classCDatabaseUrl.html" title=" " alt="" coords="2136,76,2248,102"/>
+<area shape="poly" title=" " alt="" coords="1670,86,2136,86,2136,92,1670,92"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="1871,26,1991,51"/>
+<area shape="poly" title=" " alt="" coords="1670,74,1704,68,1870,43,1871,48,1704,73,1671,79"/>
+<area shape="rect" title=" " alt="" coords="5,155,80,180"/>
+<area shape="poly" title=" " alt="" coords="51,140,68,102,95,61,112,42,131,27,153,17,177,13,1319,13,1394,19,1467,35,1531,55,1580,74,1578,79,1529,60,1465,41,1393,25,1319,18,178,18,154,22,134,31,115,46,99,64,73,105,56,143"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,307,228,332"/>
+<area shape="poly" title=" " alt="" coords="66,189,168,305,164,308,62,193"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1237,128,1397,154"/>
+<area shape="poly" title=" " alt="" coords="1402,123,1563,94,1564,100,1403,128"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1540,206,1680,231"/>
+<area shape="poly" title=" " alt="" coords="1380,155,1561,203,1560,208,1379,160"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="297,172,448,198"/>
+<area shape="poly" title=" " alt="" coords="462,178,1237,142,1237,147,462,183"/>
+<area shape="poly" title=" " alt="" coords="349,157,356,149,373,146,387,148,396,154,398,164,394,173,389,171,392,163,391,157,385,153,373,151,359,154,353,161"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="928,104,1049,130"/>
+<area shape="poly" title=" " alt="" coords="420,165,491,146,612,129,733,119,928,114,928,119,733,125,613,134,493,151,421,170"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="672,54,800,79"/>
+<area shape="poly" title=" " alt="" coords="395,161,437,126,463,109,491,96,537,81,584,71,671,63,672,69,585,77,538,86,493,101,466,114,440,131,398,165"/>
+<area shape="rect" href="classCParameterWebBrowser.html" title=" " alt="" coords="647,470,825,495"/>
+<area shape="poly" title=" " alt="" coords="405,203,504,274,624,370,682,423,725,467,721,471,678,427,621,374,501,279,402,207"/>
+<area shape="poly" title=" " alt="" coords="199,295,250,248,298,218,342,195,344,200,300,223,254,252,203,299"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="1861,332,2000,358"/>
+<area shape="poly" title=" " alt="" coords="242,317,371,317,1611,317,1745,322,1861,334,1861,339,1744,328,1611,322,371,322,242,322"/>
+<area shape="poly" title=" " alt="" coords="221,299,290,277,331,269,371,266,878,266,1066,262,1252,250,1540,224,1540,229,1252,256,1066,267,878,272,371,272,331,275,292,282,223,304"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="492,374,623,399"/>
+<area shape="poly" title=" " alt="" coords="240,333,253,336,380,359,492,375,491,381,379,364,251,341,239,338"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="301,488,444,514"/>
+<area shape="poly" title=" " alt="" coords="197,342,232,392,279,444,312,468,344,486,342,490,309,472,276,448,227,396,192,345"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="277,408,468,434"/>
+<area shape="poly" title=" " alt="" coords="200,341,224,365,253,387,301,406,299,411,251,391,221,369,196,344"/>
+<area shape="poly" title=" " alt="" coords="1895,328,1867,314,1837,303,1711,278,1544,257,1349,238,1140,223,737,201,448,190,448,185,737,196,1140,218,1349,233,1545,251,1712,273,1838,298,1869,309,1897,323"/>
+<area shape="poly" title=" " alt="" coords="1694,223,1777,235,1813,243,1839,252,1865,269,1889,291,1922,330,1918,334,1885,294,1862,273,1836,257,1811,248,1776,240,1693,229"/>
+<area shape="poly" title=" " alt="" coords="636,377,749,371,875,368,1611,368,1744,362,1861,351,1861,356,1745,367,1611,373,875,373,749,376,637,383"/>
+<area shape="poly" title=" " alt="" coords="452,513,584,533,660,539,735,542,1145,542,1345,540,1426,535,1501,525,1574,510,1652,487,1737,455,1836,413,1881,385,1915,356,1919,360,1884,389,1839,418,1739,460,1653,492,1576,515,1502,531,1426,540,1345,545,1145,548,735,548,659,545,584,538,452,519"/>
+<area shape="poly" title=" " alt="" coords="458,501,538,501,622,497,663,492,663,498,623,502,538,506,458,506"/>
+<area shape="poly" title=" " alt="" coords="482,418,735,418,1611,418,1693,411,1773,395,1844,374,1897,355,1899,360,1845,379,1774,400,1694,417,1611,424,735,424,482,424"/>
+<area shape="poly" title=" " alt="" coords="426,435,493,452,571,464,647,473,646,478,571,470,491,457,425,440"/>
+<area shape="poly" title=" " alt="" coords="1063,120,1237,132,1237,138,1063,125"/>
+<area shape="poly" title=" " alt="" coords="814,78,905,96,932,102,931,107,903,101,813,83"/>
+<area shape="poly" title=" " alt="" coords="2265,129,2370,118,2371,124,2266,135"/>
+<area shape="poly" title=" " alt="" coords="2011,137,2132,137,2132,142,2011,142"/>
+<area shape="poly" title=" " alt="" coords="2262,93,2370,103,2370,108,2261,98"/>
+<area shape="poly" title=" " alt="" coords="2005,48,2109,68,2137,74,2135,79,2107,73,2004,53"/>
+<area shape="poly" title=" " alt="" coords="839,486,1246,507,1506,516,1769,520,2452,520,2487,516,2519,506,2549,489,2575,468,2600,442,2622,413,2659,349,2687,281,2708,216,2729,125,2734,126,2713,217,2692,282,2663,351,2626,416,2604,446,2579,472,2552,494,2521,510,2488,521,2452,525,1769,525,1506,521,1246,512,839,491"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a4c48c708b9d437af78e1b5c1907f9534" id="r_a4c48c708b9d437af78e1b5c1907f9534"><td class="memItemLeft" align="right" valign="top"><a id="a4c48c708b9d437af78e1b5c1907f9534" name="a4c48c708b9d437af78e1b5c1907f9534"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>openUrlRequested</b> (const QString &amp;url)</td></tr>
+<tr class="separator:a4c48c708b9d437af78e1b5c1907f9534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a40b504976dde0ab80c92be0d13a7ed66" id="r_a40b504976dde0ab80c92be0d13a7ed66"><td class="memItemLeft" align="right" valign="top"><a id="a40b504976dde0ab80c92be0d13a7ed66" name="a40b504976dde0ab80c92be0d13a7ed66"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CFrmBookmark</b> (<a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a40b504976dde0ab80c92be0d13a7ed66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a536d8939f5e304b71e63368441ab2c" id="r_a9a536d8939f5e304b71e63368441ab2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a9a536d8939f5e304b71e63368441ab2c">refresh</a> ()</td></tr>
+<tr class="separator:a9a536d8939f5e304b71e63368441ab2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:a76c948903988621d19d05be2212318f5" id="r_a76c948903988621d19d05be2212318f5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Role</b> { <b>ID</b> = Qt::UserRole
+, <b>Type</b>
+, <b>Url</b>
+ }</td></tr>
+<tr class="separator:a76c948903988621d19d05be2212318f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a5a702f1665cc893b16129539210300a0" id="r_a5a702f1665cc893b16129539210300a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a5a702f1665cc893b16129539210300a0">onAddBookmark</a> ()</td></tr>
+<tr class="separator:a5a702f1665cc893b16129539210300a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2359e670ab467d2c58aff91e038b0d" id="r_a9e2359e670ab467d2c58aff91e038b0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a9e2359e670ab467d2c58aff91e038b0d">onAddFolder</a> ()</td></tr>
+<tr class="separator:a9e2359e670ab467d2c58aff91e038b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6041babe4f02ad971546ae19f55bc5" id="r_acc6041babe4f02ad971546ae19f55bc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#acc6041babe4f02ad971546ae19f55bc5">onEditBookmark</a> ()</td></tr>
+<tr class="separator:acc6041babe4f02ad971546ae19f55bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e79b6e76d3cfd8917e8aa8583603533" id="r_a7e79b6e76d3cfd8917e8aa8583603533"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a7e79b6e76d3cfd8917e8aa8583603533">onDeleteBookmark</a> ()</td></tr>
+<tr class="separator:a7e79b6e76d3cfd8917e8aa8583603533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa51f796357e7290a32ec8f9f99daf70" id="r_aaa51f796357e7290a32ec8f9f99daf70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#aaa51f796357e7290a32ec8f9f99daf70">onSetFavorite</a> ()</td></tr>
+<tr class="separator:aaa51f796357e7290a32ec8f9f99daf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2664502a1e8e00b21bc2e215dd12c5f9" id="r_a2664502a1e8e00b21bc2e215dd12c5f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a2664502a1e8e00b21bc2e215dd12c5f9">onImportBookmarks</a> ()</td></tr>
+<tr class="separator:a2664502a1e8e00b21bc2e215dd12c5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8d1dfc13d33610029223158bb19ce8" id="r_a2c8d1dfc13d33610029223158bb19ce8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a2c8d1dfc13d33610029223158bb19ce8">onExportBookmarks</a> ()</td></tr>
+<tr class="separator:a2c8d1dfc13d33610029223158bb19ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e1362664879bc361f952096eaee0f4" id="r_af5e1362664879bc361f952096eaee0f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#af5e1362664879bc361f952096eaee0f4">onSearchTextChanged</a> (const QString &amp;text)</td></tr>
+<tr class="separator:af5e1362664879bc361f952096eaee0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b1c2362c28967c1a65e8fa47ad485b" id="r_ab1b1c2362c28967c1a65e8fa47ad485b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#ab1b1c2362c28967c1a65e8fa47ad485b">onTreeViewDoubleClicked</a> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:ab1b1c2362c28967c1a65e8fa47ad485b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cef0d27761c9aed4e325d9c7c49f9ec" id="r_a2cef0d27761c9aed4e325d9c7c49f9ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a2cef0d27761c9aed4e325d9c7c49f9ec">onCustomContextMenu</a> (const QPoint &amp;pos)</td></tr>
+<tr class="separator:a2cef0d27761c9aed4e325d9c7c49f9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a9c4f6508c847d98798ad5da7555fae81" id="r_a9c4f6508c847d98798ad5da7555fae81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a9c4f6508c847d98798ad5da7555fae81">setupUI</a> ()</td></tr>
+<tr class="separator:a9c4f6508c847d98798ad5da7555fae81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6d953081fa6a0b11f7e53ef6ff5bc8a" id="r_af6d953081fa6a0b11f7e53ef6ff5bc8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#af6d953081fa6a0b11f7e53ef6ff5bc8a">setupToolBar</a> ()</td></tr>
+<tr class="separator:af6d953081fa6a0b11f7e53ef6ff5bc8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2310e28a70dbaa5ee568524a6a82c25" id="r_ae2310e28a70dbaa5ee568524a6a82c25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#ae2310e28a70dbaa5ee568524a6a82c25">setupTreeView</a> ()</td></tr>
+<tr class="separator:ae2310e28a70dbaa5ee568524a6a82c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51365781abd201b9067f7e9dabe921aa" id="r_a51365781abd201b9067f7e9dabe921aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a51365781abd201b9067f7e9dabe921aa">loadBookmarks</a> ()</td></tr>
+<tr class="separator:a51365781abd201b9067f7e9dabe921aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ac74e72b36e8c731b5c82f9be30f7b0f2" id="r_ac74e72b36e8c731b5c82f9be30f7b0f2"><td class="memItemLeft" align="right" valign="top">Ui::CFrmBookmark *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#ac74e72b36e8c731b5c82f9be30f7b0f2">ui</a></td></tr>
+<tr class="separator:ac74e72b36e8c731b5c82f9be30f7b0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492d58610bb1d4affc8816b3707a3df9" id="r_a492d58610bb1d4affc8816b3707a3df9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBookmarkDatabase.html">CBookmarkDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a492d58610bb1d4affc8816b3707a3df9">m_pDatabase</a></td></tr>
+<tr class="separator:a492d58610bb1d4affc8816b3707a3df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4cb347debdf94b4d36abb4c1714f96" id="r_a0f4cb347debdf94b4d36abb4c1714f96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a0f4cb347debdf94b4d36abb4c1714f96">m_pPara</a></td></tr>
+<tr class="separator:a0f4cb347debdf94b4d36abb4c1714f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9a74ab035c46abc4c5bc156ad95586" id="r_adf9a74ab035c46abc4c5bc156ad95586"><td class="memItemLeft" align="right" valign="top">QTreeView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#adf9a74ab035c46abc4c5bc156ad95586">m_pTreeView</a></td></tr>
+<tr class="separator:adf9a74ab035c46abc4c5bc156ad95586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b1a86513d360c59dc4146030f429b1" id="r_ad0b1a86513d360c59dc4146030f429b1"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#ad0b1a86513d360c59dc4146030f429b1">m_pSearchEdit</a></td></tr>
+<tr class="separator:ad0b1a86513d360c59dc4146030f429b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af79871dfa3c93f3c2e1022628b705b81" id="r_af79871dfa3c93f3c2e1022628b705b81"><td class="memItemLeft" align="right" valign="top">QToolBar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#af79871dfa3c93f3c2e1022628b705b81">m_pToolBar</a></td></tr>
+<tr class="separator:af79871dfa3c93f3c2e1022628b705b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295e9f33cebe7bb98eb56299007ae493" id="r_a295e9f33cebe7bb98eb56299007ae493"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#a295e9f33cebe7bb98eb56299007ae493">m_pModel</a></td></tr>
+<tr class="separator:a295e9f33cebe7bb98eb56299007ae493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9956e31d77916bdbdaf490a2f462522" id="r_af9956e31d77916bdbdaf490a2f462522"><td class="memItemLeft" align="right" valign="top">QMap&lt; int, QStandardItem * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmBookmark.html#af9956e31d77916bdbdaf490a2f462522">m_folderItems</a></td></tr>
+<tr class="separator:af9956e31d77916bdbdaf490a2f462522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00015">15</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a76c948903988621d19d05be2212318f5" name="a76c948903988621d19d05be2212318f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76c948903988621d19d05be2212318f5">&#9670;&#160;</a></span>Role</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CFrmBookmark::Role</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a00e3f6e2ad5d87e6f981a34552437493" name="a00e3f6e2ad5d87e6f981a34552437493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e3f6e2ad5d87e6f981a34552437493">&#9670;&#160;</a></span>~CFrmBookmark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmBookmark::~CFrmBookmark </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a51365781abd201b9067f7e9dabe921aa" name="a51365781abd201b9067f7e9dabe921aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51365781abd201b9067f7e9dabe921aa">&#9670;&#160;</a></span>loadBookmarks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::loadBookmarks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00186">186</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a702f1665cc893b16129539210300a0" name="a5a702f1665cc893b16129539210300a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a702f1665cc893b16129539210300a0">&#9670;&#160;</a></span>onAddBookmark</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onAddBookmark </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00263">263</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9e2359e670ab467d2c58aff91e038b0d" name="a9e2359e670ab467d2c58aff91e038b0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2359e670ab467d2c58aff91e038b0d">&#9670;&#160;</a></span>onAddFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onAddFolder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00297">297</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2cef0d27761c9aed4e325d9c7c49f9ec" name="a2cef0d27761c9aed4e325d9c7c49f9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cef0d27761c9aed4e325d9c7c49f9ec">&#9670;&#160;</a></span>onCustomContextMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onCustomContextMenu </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00497">497</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e79b6e76d3cfd8917e8aa8583603533" name="a7e79b6e76d3cfd8917e8aa8583603533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e79b6e76d3cfd8917e8aa8583603533">&#9670;&#160;</a></span>onDeleteBookmark</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onDeleteBookmark </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00363">363</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc6041babe4f02ad971546ae19f55bc5" name="acc6041babe4f02ad971546ae19f55bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6041babe4f02ad971546ae19f55bc5">&#9670;&#160;</a></span>onEditBookmark</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onEditBookmark </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00319">319</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2c8d1dfc13d33610029223158bb19ce8" name="a2c8d1dfc13d33610029223158bb19ce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8d1dfc13d33610029223158bb19ce8">&#9670;&#160;</a></span>onExportBookmarks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onExportBookmarks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00435">435</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2664502a1e8e00b21bc2e215dd12c5f9" name="a2664502a1e8e00b21bc2e215dd12c5f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2664502a1e8e00b21bc2e215dd12c5f9">&#9670;&#160;</a></span>onImportBookmarks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onImportBookmarks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00418">418</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5e1362664879bc361f952096eaee0f4" name="af5e1362664879bc361f952096eaee0f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e1362664879bc361f952096eaee0f4">&#9670;&#160;</a></span>onSearchTextChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onSearchTextChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00451">451</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa51f796357e7290a32ec8f9f99daf70" name="aaa51f796357e7290a32ec8f9f99daf70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa51f796357e7290a32ec8f9f99daf70">&#9670;&#160;</a></span>onSetFavorite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onSetFavorite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00401">401</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab1b1c2362c28967c1a65e8fa47ad485b" name="ab1b1c2362c28967c1a65e8fa47ad485b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b1c2362c28967c1a65e8fa47ad485b">&#9670;&#160;</a></span>onTreeViewDoubleClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::onTreeViewDoubleClicked </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00480">480</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a536d8939f5e304b71e63368441ab2c" name="a9a536d8939f5e304b71e63368441ab2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a536d8939f5e304b71e63368441ab2c">&#9670;&#160;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::refresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00532">532</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6d953081fa6a0b11f7e53ef6ff5bc8a" name="af6d953081fa6a0b11f7e53ef6ff5bc8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6d953081fa6a0b11f7e53ef6ff5bc8a">&#9670;&#160;</a></span>setupToolBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::setupToolBar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae2310e28a70dbaa5ee568524a6a82c25" name="ae2310e28a70dbaa5ee568524a6a82c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2310e28a70dbaa5ee568524a6a82c25">&#9670;&#160;</a></span>setupTreeView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::setupTreeView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00159">159</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9c4f6508c847d98798ad5da7555fae81" name="a9c4f6508c847d98798ad5da7555fae81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c4f6508c847d98798ad5da7555fae81">&#9670;&#160;</a></span>setupUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmBookmark::setupUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a> 第 <a class="el" href="FrmBookmark_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="af9956e31d77916bdbdaf490a2f462522" name="af9956e31d77916bdbdaf490a2f462522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9956e31d77916bdbdaf490a2f462522">&#9670;&#160;</a></span>m_folderItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;int, QStandardItem*&gt; CFrmBookmark::m_folderItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a492d58610bb1d4affc8816b3707a3df9" name="a492d58610bb1d4affc8816b3707a3df9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492d58610bb1d4affc8816b3707a3df9">&#9670;&#160;</a></span>m_pDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBookmarkDatabase.html">CBookmarkDatabase</a>* CFrmBookmark::m_pDatabase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a295e9f33cebe7bb98eb56299007ae493" name="a295e9f33cebe7bb98eb56299007ae493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295e9f33cebe7bb98eb56299007ae493">&#9670;&#160;</a></span>m_pModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel* CFrmBookmark::m_pModel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0f4cb347debdf94b4d36abb4c1714f96" name="a0f4cb347debdf94b4d36abb4c1714f96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4cb347debdf94b4d36abb4c1714f96">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a>* CFrmBookmark::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad0b1a86513d360c59dc4146030f429b1" name="ad0b1a86513d360c59dc4146030f429b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b1a86513d360c59dc4146030f429b1">&#9670;&#160;</a></span>m_pSearchEdit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLineEdit* CFrmBookmark::m_pSearchEdit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af79871dfa3c93f3c2e1022628b705b81" name="af79871dfa3c93f3c2e1022628b705b81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af79871dfa3c93f3c2e1022628b705b81">&#9670;&#160;</a></span>m_pToolBar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QToolBar* CFrmBookmark::m_pToolBar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf9a74ab035c46abc4c5bc156ad95586" name="adf9a74ab035c46abc4c5bc156ad95586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf9a74ab035c46abc4c5bc156ad95586">&#9670;&#160;</a></span>m_pTreeView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTreeView* CFrmBookmark::m_pTreeView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac74e72b36e8c731b5c82f9be30f7b0f2" name="ac74e72b36e8c731b5c82f9be30f7b0f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74e72b36e8c731b5c82f9be30f7b0f2">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CFrmBookmark* CFrmBookmark::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a> 第 <a class="el" href="FrmBookmark_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Bookmark/<a class="el" href="FrmBookmark_8h_source.html">FrmBookmark.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Bookmark/<a class="el" href="FrmBookmark_8cpp_source.html">FrmBookmark.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

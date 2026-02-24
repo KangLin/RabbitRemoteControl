@@ -1,0 +1,2567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendFreeRDP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="classCBackendFreeRDP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendFreeRDP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CBackendFreeRDP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendFreeRDP__inherit__graph.png" border="0" usemap="#aCBackendFreeRDP_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCBackendFreeRDP_inherit__map" id="aCBackendFreeRDP_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,147,251"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="6,152,146,177"/>
+<area shape="poly" title=" " alt="" coords="79,191,79,225,73,225,73,191"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="33,79,119,104"/>
+<area shape="poly" title=" " alt="" coords="79,118,79,152,73,152,73,118"/>
+<area shape="rect" title=" " alt="" coords="39,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackendFreeRDP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendFreeRDP__coll__graph.png" border="0" usemap="#aCBackendFreeRDP_coll__map" alt="Collaboration graph"/></div>
+<map name="aCBackendFreeRDP_coll__map" id="aCBackendFreeRDP_coll__map">
+<area shape="rect" title=" " alt="" coords="2839,747,2980,773"/>
+<area shape="rect" href="structCBackendFreeRDP_1_1ClientContext.html" title=" " alt="" coords="3116,725,3355,750"/>
+<area shape="poly" title=" " alt="" coords="2994,759,3004,759,3048,760,3092,759,3172,747,3173,753,3092,764,3048,765,3004,764,2994,764"/>
+<area shape="rect" href="classCClipboardFreeRDP.html" title=" " alt="" coords="3161,838,3309,863"/>
+<area shape="poly" title=" " alt="" coords="2970,774,3189,835,3188,840,2968,779"/>
+<area shape="rect" href="classCCursorFreeRDP.html" title=" " alt="" coords="3171,611,3299,637"/>
+<area shape="poly" title=" " alt="" coords="2950,739,3003,716,3201,634,3203,639,3005,721,2952,744"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="1193,822,1333,847"/>
+<area shape="poly" title=" " alt="" coords="1347,832,1587,832,2615,832,2690,825,2764,809,2828,789,2877,770,2879,775,2830,794,2765,814,2691,831,2615,837,1587,837,1347,837"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="381,802,468,827"/>
+<area shape="poly" title=" " alt="" coords="482,813,1193,830,1193,836,481,819"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="679,745,809,770"/>
+<area shape="poly" title=" " alt="" coords="481,806,563,796,654,780,702,767,704,773,655,785,564,801,482,812"/>
+<area shape="rect" title=" " alt="" coords="5,698,80,723"/>
+<area shape="poly" title=" " alt="" coords="71,730,98,750,130,767,197,788,265,801,381,811,381,817,265,806,196,793,128,772,96,755,68,735"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="383,691,466,717"/>
+<area shape="poly" title=" " alt="" coords="93,707,383,702,383,707,93,712"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="143,731,214,757"/>
+<area shape="poly" title=" " alt="" coords="94,720,144,733,142,738,93,726"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,207,228,233"/>
+<area shape="poly" title=" " alt="" coords="49,684,171,232,176,234,54,685"/>
+<area shape="poly" title=" " alt="" coords="53,736,67,782,92,834,109,857,128,875,151,887,178,892,2911,892,2982,889,3054,881,3175,861,3176,866,3055,887,2983,894,2911,897,177,897,149,893,125,879,105,860,88,836,62,784,48,738"/>
+<area shape="poly" title=" " alt="" coords="43,684,59,524,87,297,105,186,126,93,150,28,163,10,177,3,2911,3,2962,9,3007,25,3047,52,3082,86,3113,126,3139,172,3161,222,3180,274,3207,380,3224,479,3236,611,3231,611,3219,479,3202,381,3174,276,3156,224,3134,175,3108,129,3078,89,3044,56,3005,30,2960,14,2911,8,178,8,166,14,154,30,131,94,110,187,92,297,64,525,49,685"/>
+<area shape="rect" href="classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="2545,641,2683,666"/>
+<area shape="poly" title=" " alt="" coords="2664,668,2874,745,2872,750,2662,673"/>
+<area shape="poly" title=" " alt="" coords="480,700,927,695,2323,695,2387,692,2451,684,2560,663,2561,669,2452,689,2387,697,2323,700,927,700,480,705"/>
+<area shape="poly" title=" " alt="" coords="480,710,679,744,678,749,479,716"/>
+<area shape="poly" title=" " alt="" coords="228,737,325,724,382,712,384,717,326,729,228,742"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="2256,579,2387,605"/>
+<area shape="poly" title=" " alt="" coords="2397,605,2553,638,2552,643,2395,610"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="2537,766,2691,791"/>
+<area shape="poly" title=" " alt="" coords="2355,610,2594,764,2592,768,2353,614"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="349,441,500,466"/>
+<area shape="poly" title=" " alt="" coords="514,440,524,439,822,421,1055,416,1587,420,2079,420,2119,425,2158,439,2194,460,2227,484,2280,536,2313,578,2309,581,2276,540,2223,488,2191,464,2156,444,2118,430,2078,425,1587,425,1055,422,823,426,524,444,514,445"/>
+<area shape="poly" title=" " alt="" coords="398,426,406,417,425,414,441,416,450,423,453,432,448,442,443,439,447,432,446,426,439,421,425,419,409,422,402,429"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1357,359,1517,385"/>
+<area shape="poly" title=" " alt="" coords="439,428,473,386,497,366,523,351,573,342,657,337,891,340,1150,352,1357,364,1357,369,1150,357,891,346,657,343,573,347,525,356,500,370,477,390,443,431"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1048,535,1169,561"/>
+<area shape="poly" title=" " alt="" coords="459,471,490,487,525,500,596,517,669,530,815,545,947,549,1048,548,1048,554,947,555,815,550,669,535,595,522,523,505,488,492,456,476"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="680,573,808,598"/>
+<area shape="poly" title=" " alt="" coords="444,475,478,516,501,535,525,551,563,566,603,576,680,584,679,589,602,581,562,571,523,556,497,539,475,519,440,479"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="2010,535,2145,561"/>
+<area shape="poly" title=" " alt="" coords="439,477,473,534,497,564,526,589,580,621,627,637,678,643,743,644,1265,644,1581,608,2009,554,2010,559,1581,613,1265,649,743,649,678,649,626,643,578,626,522,593,493,567,468,537,435,480"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1375,471,1499,497"/>
+<area shape="poly" title=" " alt="" coords="514,453,1375,479,1375,485,514,459"/>
+<area shape="poly" title=" " alt="" coords="205,240,254,287,412,439,408,443,250,291,201,244"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2008,207,2147,233"/>
+<area shape="poly" title=" " alt="" coords="242,217,423,217,930,217,1182,212,1378,202,1574,193,1827,192,1906,192,1984,197,2026,205,2025,210,1984,203,1905,197,1827,197,1575,198,1378,207,1182,218,930,223,423,223,242,223"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1673,207,1813,233"/>
+<area shape="poly" title=" " alt="" coords="230,201,319,178,371,170,423,167,930,167,1143,171,1353,183,1673,210,1673,215,1352,188,1143,177,930,172,423,172,372,175,320,183,231,206"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="524,258,655,283"/>
+<area shape="poly" title=" " alt="" coords="238,233,252,236,398,255,524,265,524,270,397,260,252,241,237,238"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1672,45,1815,70"/>
+<area shape="poly" title=" " alt="" coords="190,194,215,155,250,118,293,87,330,67,371,56,423,53,1439,53,1672,54,1672,60,1439,59,423,59,372,62,332,72,296,91,254,122,219,158,195,197"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="833,101,1024,126"/>
+<area shape="poly" title=" " alt="" coords="195,194,219,169,251,148,329,120,411,101,494,89,576,84,655,83,729,86,849,98,848,103,728,92,655,88,576,89,495,95,412,106,331,125,253,153,223,173,199,198"/>
+<area shape="poly" title=" " alt="" coords="2046,242,2017,258,1985,272,1889,299,1813,311,1636,327,1467,341,1322,344,1074,338,956,338,830,346,689,368,525,407,482,423,447,443,444,438,480,418,523,401,688,362,830,341,956,333,1075,333,1322,339,1466,336,1636,321,1812,306,1888,294,1983,267,2015,253,2044,238"/>
+<area shape="poly" title=" " alt="" coords="1827,217,2008,217,2008,223,1827,223"/>
+<area shape="poly" title=" " alt="" coords="1475,351,1715,230,1718,235,1477,356"/>
+<area shape="poly" title=" " alt="" coords="1183,550,1193,551,1812,575,2256,588,2256,593,1812,580,1193,556,1183,555"/>
+<area shape="poly" title=" " alt="" coords="1140,526,1192,495,1313,431,1409,382,1411,387,1315,435,1195,500,1143,530"/>
+<area shape="poly" title=" " alt="" coords="1183,545,2010,545,2010,551,1183,551"/>
+<area shape="poly" title=" " alt="" coords="1183,539,1256,529,1333,515,1401,494,1403,499,1334,520,1257,534,1184,544"/>
+<area shape="poly" title=" " alt="" coords="821,581,918,577,1024,565,1060,558,1061,563,1024,571,919,582,822,587"/>
+<area shape="poly" title=" " alt="" coords="669,268,927,268,1745,268,1821,264,1898,255,2024,230,2025,235,1898,260,1822,270,1745,273,927,273,669,273"/>
+<area shape="poly" title=" " alt="" coords="1822,41,1863,39,1906,42,1948,53,1986,74,1998,91,2000,109,2001,126,2010,142,2027,155,2043,163,2077,167,2112,172,2130,179,2149,193,2178,251,2229,367,2317,578,2312,580,2224,369,2173,253,2145,196,2128,184,2111,177,2076,173,2042,168,2024,160,2006,146,1996,127,1994,109,1993,93,1982,78,1946,58,1905,47,1863,44,1822,46"/>
+<area shape="poly" title=" " alt="" coords="1796,72,1851,88,1890,94,1922,94,1953,99,1986,119,1997,136,2000,153,2001,169,2010,185,2039,205,2036,209,2006,188,1996,170,1994,153,1992,138,1982,123,1951,104,1922,100,1890,99,1850,93,1795,77"/>
+<area shape="poly" title=" " alt="" coords="1038,109,1281,107,1576,111,1717,116,1839,124,1932,136,1964,143,1986,152,1996,164,1999,176,2002,187,2010,198,2021,205,2018,210,2006,202,1997,190,1994,177,1991,166,1982,157,1962,149,1931,141,1838,129,1716,121,1576,116,1281,113,1038,114"/>
+<area shape="poly" title=" " alt="" coords="2159,560,2256,578,2255,583,2158,565"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="1660,470,1827,495"/>
+<area shape="poly" title=" " alt="" coords="1841,488,1912,498,1985,512,2047,533,2045,538,1983,517,1911,503,1840,493"/>
+<area shape="poly" title=" " alt="" coords="1513,481,1660,480,1660,486,1513,486"/>
+<area shape="poly" title=" " alt="" coords="823,752,1107,747,2323,747,2377,746,2420,742,2461,732,2512,714,2559,690,2595,664,2598,668,2561,694,2514,718,2463,737,2421,747,2378,751,2323,752,1107,752,823,757"/>
+<area shape="rect" title=" " alt="" coords="386,753,463,778"/>
+<area shape="poly" title=" " alt="" coords="477,761,678,756,678,762,477,767"/>
+<area shape="rect" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="2271,398,2372,423"/>
+<area shape="poly" title=" " alt="" coords="2350,430,2599,638,2596,643,2346,434"/>
+<area shape="rect" title=" " alt="" coords="2038,93,2117,118"/>
+<area shape="poly" title=" " alt="" coords="2131,101,2184,110,2210,121,2234,137,2254,179,2279,255,2319,397,2314,399,2274,257,2249,181,2230,140,2208,125,2183,115,2130,107"/>
+<area shape="rect" href="classCFrmScroll.html" title="The scroll form class" alt="" coords="2275,145,2367,170"/>
+<area shape="poly" title=" " alt="" coords="2341,180,2417,303,2516,468,2608,639,2604,642,2511,471,2413,306,2336,183"/>
+<area shape="rect" title=" " alt="" coords="2028,43,2127,69"/>
+<area shape="poly" title=" " alt="" coords="2141,59,2187,68,2233,84,2277,113,2309,142,2306,146,2274,117,2231,89,2185,73,2140,64"/>
+<area shape="poly" title=" " alt="" coords="3102,741,3004,747,2978,750,2977,745,3004,741,3102,735"/>
+<area shape="poly" title=" " alt="" coords="2704,770,2838,762,2839,767,2705,776"/>
+<area shape="poly" title=" " alt="" coords="3150,867,3077,868,3039,863,3003,852,2975,836,2951,815,2917,775,2921,771,2954,811,2978,832,3005,847,3041,858,3078,863,3150,862"/>
+<area shape="poly" title=" " alt="" coords="3158,623,3081,630,3042,640,3005,656,2977,676,2952,702,2920,749,2915,746,2948,698,2973,672,3003,651,3040,635,3081,625,3158,618"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html">ClientContext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:ad71a653e2c88b6a8c4d38271738e0498" id="r_ad71a653e2c88b6a8c4d38271738e0498"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ad71a653e2c88b6a8c4d38271738e0498">slotClipBoardChanged</a> () override</td></tr>
+<tr class="separator:ad71a653e2c88b6a8c4d38271738e0498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_slots_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop" id="r_a87dd09d8943dac85c9f3c67726a4eef1"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>slotClipBoardChanged</b> ()=0</td></tr>
+<tr class="memdesc:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">当剪切板发生改变时调用 <br /></td></tr>
+<tr class="separator:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be96b59b49af2eb82a65cd9956c0fc3 inherit pub_slots_classCBackendDesktop" id="r_a0be96b59b49af2eb82a65cd9956c0fc3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a0be96b59b49af2eb82a65cd9956c0fc3">slotMousePressEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:a0be96b59b49af2eb82a65cd9956c0fc3 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62eca6ab89383d0dd7c0d15c59cbe1c inherit pub_slots_classCBackendDesktop" id="r_ab62eca6ab89383d0dd7c0d15c59cbe1c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#ab62eca6ab89383d0dd7c0d15c59cbe1c">slotMouseReleaseEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:ab62eca6ab89383d0dd7c0d15c59cbe1c inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0580cf9aa973ddaa41131b0d5df5e46 inherit pub_slots_classCBackendDesktop" id="r_ab0580cf9aa973ddaa41131b0d5df5e46"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#ab0580cf9aa973ddaa41131b0d5df5e46">slotMouseMoveEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:ab0580cf9aa973ddaa41131b0d5df5e46 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf9f5d03ca3b5320b82869a40f0356d inherit pub_slots_classCBackendDesktop" id="r_abcf9f5d03ca3b5320b82869a40f0356d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#abcf9f5d03ca3b5320b82869a40f0356d">slotWheelEvent</a> (QWheelEvent *event, QPoint pos)</td></tr>
+<tr class="separator:abcf9f5d03ca3b5320b82869a40f0356d inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919c5f5fe2bab741ee7b89824f8a2a4c inherit pub_slots_classCBackendDesktop" id="r_a919c5f5fe2bab741ee7b89824f8a2a4c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a919c5f5fe2bab741ee7b89824f8a2a4c">slotKeyPressEvent</a> (QKeyEvent *event)</td></tr>
+<tr class="separator:a919c5f5fe2bab741ee7b89824f8a2a4c inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457acf253f94fd0089649e5e5355ddc0 inherit pub_slots_classCBackendDesktop" id="r_a457acf253f94fd0089649e5e5355ddc0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a457acf253f94fd0089649e5e5355ddc0">slotKeyReleaseEvent</a> (QKeyEvent *event)</td></tr>
+<tr class="separator:a457acf253f94fd0089649e5e5355ddc0 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f7bd1d92d650a09c618520bc715c3d inherit pub_slots_classCBackendDesktop" id="r_a16f7bd1d92d650a09c618520bc715c3d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a16f7bd1d92d650a09c618520bc715c3d">slotInputMethodEvent</a> (QInputMethodEvent *event)</td></tr>
+<tr class="separator:a16f7bd1d92d650a09c618520bc715c3d inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a1b319a4e5b07ede2e2068d9d6c5f4820" id="r_a1b319a4e5b07ede2e2068d9d6c5f4820"><td class="memItemLeft" align="right" valign="top"><a id="a1b319a4e5b07ede2e2068d9d6c5f4820" name="a1b319a4e5b07ede2e2068d9d6c5f4820"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CBackendFreeRDP</b> (<a class="el" href="classCOperateFreeRDP.html">COperateFreeRDP</a> *pOperate)</td></tr>
+<tr class="separator:a1b319a4e5b07ede2e2068d9d6c5f4820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:a191e6ec7ca6e084f4b5721a43ff9fe84 inherit pub_methods_classCBackendDesktop" id="r_a191e6ec7ca6e084f4b5721a43ff9fe84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a191e6ec7ca6e084f4b5721a43ff9fe84">CBackendDesktop</a> (<a class="el" href="classCOperateDesktop.html">COperateDesktop</a> *pOperate=nullptr)</td></tr>
+<tr class="separator:a191e6ec7ca6e084f4b5721a43ff9fe84 inherit pub_methods_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e215bbfd13f4fcfca36ddc3be7f906 inherit pub_methods_classCBackendDesktop" id="r_a63e215bbfd13f4fcfca36ddc3be7f906"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a63e215bbfd13f4fcfca36ddc3be7f906">event</a> (QEvent *event) override</td></tr>
+<tr class="separator:a63e215bbfd13f4fcfca36ddc3be7f906 inherit pub_methods_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBackend')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend" id="r_afd174412c610e7b2d451801254d99433"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#afd174412c610e7b2d451801254d99433">CBackend</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate=nullptr, bool bStopSignal=true)</td></tr>
+<tr class="memdesc:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a>  <br /></td></tr>
+<tr class="separator:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend" id="r_a675c80c148c99b81cd5c22c718cccd26"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26">Start</a> ()</td></tr>
+<tr class="memdesc:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件  <br /></td></tr>
+<tr class="separator:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend" id="r_a179ed68b6d28f51dd75d900f48eb4a2e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e">Stop</a> ()</td></tr>
+<tr class="memdesc:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止  <br /></td></tr>
+<tr class="separator:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a7eb12d58becadd77bd9552603ec47198" id="r_a7eb12d58becadd77bd9552603ec47198"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a7eb12d58becadd77bd9552603ec47198">cbGlobalInit</a> ()</td></tr>
+<tr class="separator:a7eb12d58becadd77bd9552603ec47198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf66d5c91a43a3aabf9df77515efa356" id="r_aaf66d5c91a43a3aabf9df77515efa356"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#aaf66d5c91a43a3aabf9df77515efa356">cbGlobalUninit</a> ()</td></tr>
+<tr class="separator:aaf66d5c91a43a3aabf9df77515efa356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af786675b414892e737f88184e5eef481" id="r_af786675b414892e737f88184e5eef481"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#af786675b414892e737f88184e5eef481">cbClientNew</a> (freerdp *instance, rdpContext *context)</td></tr>
+<tr class="separator:af786675b414892e737f88184e5eef481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade437c4a8be88a402cd282493500fa5" id="r_aade437c4a8be88a402cd282493500fa5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#aade437c4a8be88a402cd282493500fa5">cbClientFree</a> (freerdp *instance, rdpContext *context)</td></tr>
+<tr class="separator:aade437c4a8be88a402cd282493500fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a769968e2f5c3595ae45a9d09b09e190e" id="r_a769968e2f5c3595ae45a9d09b09e190e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a769968e2f5c3595ae45a9d09b09e190e">cbClientStart</a> (rdpContext *context)</td></tr>
+<tr class="separator:a769968e2f5c3595ae45a9d09b09e190e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82613a3ed170b1315488efa53470f260" id="r_a82613a3ed170b1315488efa53470f260"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a82613a3ed170b1315488efa53470f260">cbClientStop</a> (rdpContext *context)</td></tr>
+<tr class="separator:a82613a3ed170b1315488efa53470f260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43803903b09b2c90d6c5f524b3d3a6b0" id="r_a43803903b09b2c90d6c5f524b3d3a6b0"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a43803903b09b2c90d6c5f524b3d3a6b0">cb_pre_connect</a> (freerdp *instance)</td></tr>
+<tr class="memdesc:a43803903b09b2c90d6c5f524b3d3a6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback given to freerdp_connect() to process the pre-connect operations.  <br /></td></tr>
+<tr class="separator:a43803903b09b2c90d6c5f524b3d3a6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadca916625ea415fd41a43a8afea525" id="r_aeadca916625ea415fd41a43a8afea525"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#aeadca916625ea415fd41a43a8afea525">cb_post_connect</a> (freerdp *instance)</td></tr>
+<tr class="memdesc:aeadca916625ea415fd41a43a8afea525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback given to freerdp_connect() to perform post-connection operations.  <br /></td></tr>
+<tr class="separator:aeadca916625ea415fd41a43a8afea525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a389f5be77df019f411b18e4211b87d" id="r_a7a389f5be77df019f411b18e4211b87d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a7a389f5be77df019f411b18e4211b87d">cb_post_disconnect</a> (freerdp *instance)</td></tr>
+<tr class="separator:a7a389f5be77df019f411b18e4211b87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c0df317c51e249ba345ee954b1e98ce" id="r_a3c0df317c51e249ba345ee954b1e98ce"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a3c0df317c51e249ba345ee954b1e98ce">cb_logon_error_info</a> (freerdp *instance, UINT32 data, UINT32 type)</td></tr>
+<tr class="separator:a3c0df317c51e249ba345ee954b1e98ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5ef715712b9962e363f6cd6f532327a" id="r_ab5ef715712b9962e363f6cd6f532327a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab5ef715712b9962e363f6cd6f532327a">OnChannelConnectedEventHandler</a> (void *context, ChannelConnectedEventArgs *e)</td></tr>
+<tr class="separator:ab5ef715712b9962e363f6cd6f532327a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cdbba9b26df6bdb6596c7c54c4a934" id="r_a50cdbba9b26df6bdb6596c7c54c4a934"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a50cdbba9b26df6bdb6596c7c54c4a934">OnChannelDisconnectedEventHandler</a> (void *context, ChannelDisconnectedEventArgs *e)</td></tr>
+<tr class="separator:a50cdbba9b26df6bdb6596c7c54c4a934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682bd0164e310a26c439ceb54154dfd6" id="r_a682bd0164e310a26c439ceb54154dfd6"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a682bd0164e310a26c439ceb54154dfd6">cb_authenticate</a> (freerdp *instance, char **username, char **password, char **domain)</td></tr>
+<tr class="separator:a682bd0164e310a26c439ceb54154dfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4720ded425d26d77d9024ddcfd67fe73" id="r_a4720ded425d26d77d9024ddcfd67fe73"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a4720ded425d26d77d9024ddcfd67fe73">cb_GatewayAuthenticate</a> (freerdp *instance, char **username, char **password, char **domain)</td></tr>
+<tr class="separator:a4720ded425d26d77d9024ddcfd67fe73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a823c71599d563dc965c0b1e26b681a57" id="r_a823c71599d563dc965c0b1e26b681a57"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a823c71599d563dc965c0b1e26b681a57">cb_verify_x509_certificate</a> (freerdp *instance, const BYTE *data, size_t length, const char *hostname, UINT16 port, DWORD flags)</td></tr>
+<tr class="memdesc:a823c71599d563dc965c0b1e26b681a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback used if user interaction is required to accept a certificate.  <br /></td></tr>
+<tr class="separator:a823c71599d563dc965c0b1e26b681a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306af3031941a6f02e602d7a5c7d66c5" id="r_a306af3031941a6f02e602d7a5c7d66c5"><td class="memItemLeft" align="right" valign="top">static DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a306af3031941a6f02e602d7a5c7d66c5">cb_verify_certificate_ex</a> (freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *fingerprint, DWORD flags)</td></tr>
+<tr class="memdesc:a306af3031941a6f02e602d7a5c7d66c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback set in the rdp_freerdp structure, and used to make a certificate validation when the connection requires it.  <br /></td></tr>
+<tr class="separator:a306af3031941a6f02e602d7a5c7d66c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12cea42be0c208dfec240bbe03fc481" id="r_af12cea42be0c208dfec240bbe03fc481"><td class="memItemLeft" align="right" valign="top">static DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#af12cea42be0c208dfec240bbe03fc481">cb_verify_changed_certificate_ex</a> (freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *fingerprint, const char *old_subject, const char *old_issuer, const char *old_fingerprint, DWORD flags)</td></tr>
+<tr class="memdesc:af12cea42be0c208dfec240bbe03fc481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback set in the rdp_freerdp structure, and used to make a certificate validation when a stored certificate does not match the remote counterpart.  <br /></td></tr>
+<tr class="separator:af12cea42be0c208dfec240bbe03fc481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a025e283a9312cfc3c083ae41c910e" id="r_a37a025e283a9312cfc3c083ae41c910e"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a37a025e283a9312cfc3c083ae41c910e">cb_present_gateway_message</a> (freerdp *instance, UINT32 type, BOOL isDisplayMandatory, BOOL isConsentMandatory, size_t length, const WCHAR *message)</td></tr>
+<tr class="separator:a37a025e283a9312cfc3c083ae41c910e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a468785f2dae4d09420c349aa44476" id="r_af3a468785f2dae4d09420c349aa44476"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#af3a468785f2dae4d09420c349aa44476">cb_begin_paint</a> (rdpContext *context)</td></tr>
+<tr class="separator:af3a468785f2dae4d09420c349aa44476"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab83d972d1b20e8045988d1e44f346b50" id="r_ab83d972d1b20e8045988d1e44f346b50"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab83d972d1b20e8045988d1e44f346b50">cb_end_paint</a> (rdpContext *context)</td></tr>
+<tr class="separator:ab83d972d1b20e8045988d1e44f346b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab97a631bd9b7060135f19bbe2e78714e" id="r_ab97a631bd9b7060135f19bbe2e78714e"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab97a631bd9b7060135f19bbe2e78714e">cb_desktop_resize</a> (rdpContext *context)</td></tr>
+<tr class="separator:ab97a631bd9b7060135f19bbe2e78714e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ebf41c0536b094ae6e5fa4f4c4fd98" id="r_a64ebf41c0536b094ae6e5fa4f4c4fd98"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a64ebf41c0536b094ae6e5fa4f4c4fd98">cb_play_bell_sound</a> (rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)</td></tr>
+<tr class="separator:a64ebf41c0536b094ae6e5fa4f4c4fd98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae98be2e40848821344a8ec463e7cb170" id="r_ae98be2e40848821344a8ec463e7cb170"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ae98be2e40848821344a8ec463e7cb170">cb_keyboard_set_indicators</a> (rdpContext *context, UINT16 led_flags)</td></tr>
+<tr class="separator:ae98be2e40848821344a8ec463e7cb170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a25d10654fbf31041f3083415250f82" id="r_a9a25d10654fbf31041f3083415250f82"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a9a25d10654fbf31041f3083415250f82">cb_keyboard_set_ime_status</a> (rdpContext *context, UINT16 imeId, UINT32 imeState, UINT32 imeConvMode)</td></tr>
+<tr class="separator:a9a25d10654fbf31041f3083415250f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79b47baaf6a300735df1ca5d1a799c3a" id="r_a79b47baaf6a300735df1ca5d1a799c3a"><td class="memItemLeft" align="right" valign="top">static UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a79b47baaf6a300735df1ca5d1a799c3a">GetImageFormat</a> (QImage::Format format)</td></tr>
+<tr class="separator:a79b47baaf6a300735df1ca5d1a799c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f1dfc6bbe2b4d57ec14fba29564439" id="r_a81f1dfc6bbe2b4d57ec14fba29564439"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a81f1dfc6bbe2b4d57ec14fba29564439">GetTitle</a> (freerdp *instance)</td></tr>
+<tr class="separator:a81f1dfc6bbe2b4d57ec14fba29564439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a8530355f8508aa57737f51b61fa266ab" id="r_a8530355f8508aa57737f51b61fa266ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a8530355f8508aa57737f51b61fa266ab">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a8530355f8508aa57737f51b61fa266ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c8b64b786c37995885da5ca435c679" id="r_ac1c8b64b786c37995885da5ca435c679"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ac1c8b64b786c37995885da5ca435c679">mouseReleaseEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:ac1c8b64b786c37995885da5ca435c679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6794ee9d2cf36f8cdf601221d3d9e10" id="r_ab6794ee9d2cf36f8cdf601221d3d9e10"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab6794ee9d2cf36f8cdf601221d3d9e10">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:ab6794ee9d2cf36f8cdf601221d3d9e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1260e307eba2b458270ec2b215ca1556" id="r_a1260e307eba2b458270ec2b215ca1556"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a1260e307eba2b458270ec2b215ca1556">wheelEvent</a> (QWheelEvent *event) override</td></tr>
+<tr class="separator:a1260e307eba2b458270ec2b215ca1556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab782fd97ae85466922e35de0a6b986fa" id="r_ab782fd97ae85466922e35de0a6b986fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab782fd97ae85466922e35de0a6b986fa">keyPressEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:ab782fd97ae85466922e35de0a6b986fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896432632a091ba5918dc0b25ba72278" id="r_a896432632a091ba5918dc0b25ba72278"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a896432632a091ba5918dc0b25ba72278">keyReleaseEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:a896432632a091ba5918dc0b25ba72278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16aad1df04dd34cd7f119a398159c764" id="r_a16aad1df04dd34cd7f119a398159c764"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a16aad1df04dd34cd7f119a398159c764">InputMethodEvent</a> (QInputMethodEvent *event) override</td></tr>
+<tr class="separator:a16aad1df04dd34cd7f119a398159c764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa754f1e7f79731d329eddd13e01c628" id="r_afa754f1e7f79731d329eddd13e01c628"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#afa754f1e7f79731d329eddd13e01c628">WakeUp</a> () override</td></tr>
+<tr class="memdesc:afa754f1e7f79731d329eddd13e01c628"><td class="mdescLeft">&#160;</td><td class="mdescRight">唤醒后台线程  <br /></td></tr>
+<tr class="separator:afa754f1e7f79731d329eddd13e01c628"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a9de49a2f46a540a22ca1b7d2cd5e6ceb" id="r_a9de49a2f46a540a22ca1b7d2cd5e6ceb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a9de49a2f46a540a22ca1b7d2cd5e6ceb">slotConnectProxyServer</a> (QString szHost, quint16 nPort)</td></tr>
+<tr class="separator:a9de49a2f46a540a22ca1b7d2cd5e6ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a0eccf650b6040ab3ca0d3c87dfcf95ff" id="r_a0eccf650b6040ab3ca0d3c87dfcf95ff"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a0eccf650b6040ab3ca0d3c87dfcf95ff">GetImageFormat</a> ()</td></tr>
+<tr class="separator:a0eccf650b6040ab3ca0d3c87dfcf95ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a7c5d099adfe655564a76a9d27653c" id="r_a30a7c5d099adfe655564a76a9d27653c"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a30a7c5d099adfe655564a76a9d27653c">CreateImage</a> (rdpContext *context)</td></tr>
+<tr class="separator:a30a7c5d099adfe655564a76a9d27653c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb939b6583c2a8e285ae2685e3a82051" id="r_acb939b6583c2a8e285ae2685e3a82051"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#acb939b6583c2a8e285ae2685e3a82051">UpdateBuffer</a> (INT32 x, INT32 y, INT32 w, INT32 h)</td></tr>
+<tr class="separator:acb939b6583c2a8e285ae2685e3a82051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d6a339c0be539a905620a0d0f10072" id="r_ab1d6a339c0be539a905620a0d0f10072"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ab1d6a339c0be539a905620a0d0f10072">RedirectionSound</a> ()</td></tr>
+<tr class="separator:ab1d6a339c0be539a905620a0d0f10072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15b45782bb69ed1c4791aa84bb4f3f60" id="r_a15b45782bb69ed1c4791aa84bb4f3f60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a15b45782bb69ed1c4791aa84bb4f3f60">RedirectionMicrophone</a> ()</td></tr>
+<tr class="separator:a15b45782bb69ed1c4791aa84bb4f3f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91d8f36733a5eb77ef268584d432239c" id="r_a91d8f36733a5eb77ef268584d432239c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a91d8f36733a5eb77ef268584d432239c">RedirectionDriver</a> ()</td></tr>
+<tr class="separator:a91d8f36733a5eb77ef268584d432239c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba43f356e67ace17610068b659f4505" id="r_acba43f356e67ace17610068b659f4505"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#acba43f356e67ace17610068b659f4505">RedirectionPrinter</a> ()</td></tr>
+<tr class="separator:acba43f356e67ace17610068b659f4505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3701e865d2d47f8e24da30a735138bdb" id="r_a3701e865d2d47f8e24da30a735138bdb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a3701e865d2d47f8e24da30a735138bdb">RedirectionSerial</a> ()</td></tr>
+<tr class="separator:a3701e865d2d47f8e24da30a735138bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9410fbd8e3ddeaecb435c16b9f91cb23" id="r_a9410fbd8e3ddeaecb435c16b9f91cb23"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a9410fbd8e3ddeaecb435c16b9f91cb23">SendMouseEvent</a> (UINT16 flags, QPoint pos, bool isExtended)</td></tr>
+<tr class="separator:a9410fbd8e3ddeaecb435c16b9f91cb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4bf3a1cd9ba327a82d4ff9a5a349a34" id="r_ae4bf3a1cd9ba327a82d4ff9a5a349a34"><td class="memItemLeft" align="right" valign="top">virtual OnInitReturnValue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ae4bf3a1cd9ba327a82d4ff9a5a349a34">OnInit</a> () override</td></tr>
+<tr class="memdesc:ae4bf3a1cd9ba327a82d4ff9a5a349a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <br /></td></tr>
+<tr class="separator:ae4bf3a1cd9ba327a82d4ff9a5a349a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd1edf38859eef1030140104844a803" id="r_aecd1edf38859eef1030140104844a803"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#aecd1edf38859eef1030140104844a803">OnClean</a> () override</td></tr>
+<tr class="memdesc:aecd1edf38859eef1030140104844a803"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理  <br /></td></tr>
+<tr class="separator:aecd1edf38859eef1030140104844a803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0dcb18abc3d8b6f15c74e9a1cdd560b" id="r_af0dcb18abc3d8b6f15c74e9a1cdd560b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#af0dcb18abc3d8b6f15c74e9a1cdd560b">OnProcess</a> () override</td></tr>
+<tr class="memdesc:af0dcb18abc3d8b6f15c74e9a1cdd560b"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。  <br /></td></tr>
+<tr class="separator:af0dcb18abc3d8b6f15c74e9a1cdd560b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ce8a849af223f9fb464344fd535c99" id="r_a96ce8a849af223f9fb464344fd535c99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a96ce8a849af223f9fb464344fd535c99">OnProcess</a> (int nTimeout)</td></tr>
+<tr class="memdesc:a96ce8a849af223f9fb464344fd535c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。  <br /></td></tr>
+<tr class="separator:a96ce8a849af223f9fb464344fd535c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aeb7d49fa9d08ea66dc3fdb3875ebb58e" id="r_aeb7d49fa9d08ea66dc3fdb3875ebb58e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCOperateDesktop.html">COperateDesktop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#aeb7d49fa9d08ea66dc3fdb3875ebb58e">m_pOperate</a></td></tr>
+<tr class="separator:aeb7d49fa9d08ea66dc3fdb3875ebb58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a165f232c0de6ac1ccd3e0421eaab072f" id="r_a165f232c0de6ac1ccd3e0421eaab072f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html">ClientContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a165f232c0de6ac1ccd3e0421eaab072f">m_pContext</a></td></tr>
+<tr class="separator:a165f232c0de6ac1ccd3e0421eaab072f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99429a4ec4a910f73710bbdc7b887b0f" id="r_a99429a4ec4a910f73710bbdc7b887b0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFreeRDP.html">CParameterFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a99429a4ec4a910f73710bbdc7b887b0f">m_pParameter</a></td></tr>
+<tr class="separator:a99429a4ec4a910f73710bbdc7b887b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97272f65ce55fb40955b6d30b76bb124" id="r_a97272f65ce55fb40955b6d30b76bb124"><td class="memItemLeft" align="right" valign="top">RDP_CLIENT_ENTRY_POINTS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a97272f65ce55fb40955b6d30b76bb124">m_ClientEntryPoints</a></td></tr>
+<tr class="separator:a97272f65ce55fb40955b6d30b76bb124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70c92f98012ab7a7266b1c0b45908115" id="r_a70c92f98012ab7a7266b1c0b45908115"><td class="memItemLeft" align="right" valign="top">QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a70c92f98012ab7a7266b1c0b45908115">m_Image</a></td></tr>
+<tr class="separator:a70c92f98012ab7a7266b1c0b45908115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00d1e19c524a532a74f7233dee1ca361" id="r_a00d1e19c524a532a74f7233dee1ca361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a00d1e19c524a532a74f7233dee1ca361">m_ClipBoard</a></td></tr>
+<tr class="separator:a00d1e19c524a532a74f7233dee1ca361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5e563e95ed62464b10c62e9b18dd0b" id="r_a1f5e563e95ed62464b10c62e9b18dd0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCCursorFreeRDP.html">CCursorFreeRDP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#a1f5e563e95ed62464b10c62e9b18dd0b">m_Cursor</a></td></tr>
+<tr class="separator:a1f5e563e95ed62464b10c62e9b18dd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade6e518a695c3ccfd9cec0aada787925" id="r_ade6e518a695c3ccfd9cec0aada787925"><td class="memItemLeft" align="right" valign="top">HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ade6e518a695c3ccfd9cec0aada787925">m_writeEvent</a></td></tr>
+<tr class="separator:ade6e518a695c3ccfd9cec0aada787925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:ac141beb80064639ee7fc472b46f2e454" id="r_ac141beb80064639ee7fc472b46f2e454"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendFreeRDP.html#ac141beb80064639ee7fc472b46f2e454">CCursorFreeRDP</a></td></tr>
+<tr class="separator:ac141beb80064639ee7fc472b46f2e454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('signals_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:ad2b7af05a5d5a5bb6fa48fb8404ca999 inherit signals_classCBackendDesktop" id="r_ad2b7af05a5d5a5bb6fa48fb8404ca999"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSetDesktopSize</b> (int width, int height)</td></tr>
+<tr class="separator:ad2b7af05a5d5a5bb6fa48fb8404ca999 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a128a6eac59cc545e47c85d0c4261f9fd inherit signals_classCBackendDesktop" id="r_a128a6eac59cc545e47c85d0c4261f9fd"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigServerName</b> (const QString &amp;szName)</td></tr>
+<tr class="separator:a128a6eac59cc545e47c85d0c4261f9fd inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop" id="r_a271b7cff1612d61bd8fc79d4e3415d7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a271b7cff1612d61bd8fc79d4e3415d7d">sigUpdateRect</a> (const QRect &amp;r, const QImage &amp;image)</td></tr>
+<tr class="memdesc:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知视图，图像更新  <br /></td></tr>
+<tr class="separator:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop" id="r_a537d13cf37b356e8274f679e97f51dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a537d13cf37b356e8274f679e97f51dfd">sigUpdateRect</a> (const QImage &amp;image)</td></tr>
+<tr class="memdesc:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify the CFrmView update image  <br /></td></tr>
+<tr class="separator:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1251b470c16bea68a2b52399ba474c inherit signals_classCBackendDesktop" id="r_a1e1251b470c16bea68a2b52399ba474c"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateCursor</b> (const QCursor &amp;cursor)</td></tr>
+<tr class="separator:a1e1251b470c16bea68a2b52399ba474c inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92fc842c68afebe88bc5ca2569cad52 inherit signals_classCBackendDesktop" id="r_af92fc842c68afebe88bc5ca2569cad52"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateCursorPosition</b> (const QPoint &amp;pos)</td></tr>
+<tr class="separator:af92fc842c68afebe88bc5ca2569cad52 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145e32d1378de7a6f404ddd172a7cb14 inherit signals_classCBackendDesktop" id="r_a145e32d1378de7a6f404ddd172a7cb14"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateLedState</b> (unsigned int state)</td></tr>
+<tr class="separator:a145e32d1378de7a6f404ddd172a7cb14 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe362cfca2de92b910f77b003b451b93 inherit signals_classCBackendDesktop" id="r_afe362cfca2de92b910f77b003b451b93"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSetClipboard</b> (QMimeData *data)</td></tr>
+<tr class="separator:afe362cfca2de92b910f77b003b451b93 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('signals_classCBackend')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend" id="r_a995a76442b28b067ab34dbe0fdffbbb5"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRunning</b> ()</td></tr>
+<tr class="memdesc:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当插件开始成功后触发。仅由插件触发 <br /></td></tr>
+<tr class="separator:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend" id="r_a465330ec1de890111932a2458d37d0be"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 <br /></td></tr>
+<tr class="separator:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend" id="r_ab2055a97b4c856982eedd6ce37f70940"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab2055a97b4c856982eedd6ce37f70940">sigFinished</a> ()</td></tr>
+<tr class="memdesc:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止成功信号。仅由插件触发  <br /></td></tr>
+<tr class="separator:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend" id="r_a67bf8156353fc085dbe5b5afaf3425cc"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memdesc:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发 <br /></td></tr>
+<tr class="separator:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend" id="r_a003c4cf2cd63795187289df16b639e5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a003c4cf2cd63795187289df16b639e5a">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示信息，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend" id="r_a5e011ebbb8577c03f32fbbba33e759d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend" id="r_a780b35e940bdfae5765e5d3337df7a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a780b35e940bdfae5765e5d3337df7a02">sigBlockShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton &amp;nRet, bool &amp;checkBox, QString checkBoxContext=QString())</td></tr>
+<tr class="memdesc:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)  <br /></td></tr>
+<tr class="separator:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend" id="r_ae8fff211d62448cc622947a43cd0ce45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ae8fff211d62448cc622947a43cd0ce45">sigBlockInputDialog</a> (const QString &amp;szTitle, const QString &amp;szLable, const QString &amp;szMessage, QString &amp;szText)</td></tr>
+<tr class="memdesc:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)  <br /></td></tr>
+<tr class="separator:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend" id="r_ad3aecd97defce14b02d48102a843136e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ad3aecd97defce14b02d48102a843136e">sigBlockShowWidget</a> (const QString &amp;className, int &amp;nRet, void *pContext)</td></tr>
+<tr class="memdesc:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示窗口。  <br /></td></tr>
+<tr class="separator:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_types_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 类型 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend" id="r_ab255847aef6c0290768b431a7839674f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>OnInitReturnValue</b> { <b>Fail</b> = -1
+, <b>Success</b> = 0
+, <b>UseOnProcess</b> = Success
+, <b>NotUseOnProcess</b> = 1
+ }</td></tr>
+<tr class="separator:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend" id="r_ab74a6b0f25f34ff763dc0f7080f229f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6">slotTimeOut</a> ()</td></tr>
+<tr class="memdesc:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个非 Qt 事件处理，它调用 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> 返回值大于 0  <br /></td></tr>
+<tr class="separator:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00025">25</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a6e3e0d90188fe630dad61d905f8e0c74" name="a6e3e0d90188fe630dad61d905f8e0c74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e3e0d90188fe630dad61d905f8e0c74">&#9670;&#160;</a></span>~CBackendFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendFreeRDP::~CBackendFreeRDP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a682bd0164e310a26c439ceb54154dfd6" name="a682bd0164e310a26c439ceb54154dfd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a682bd0164e310a26c439ceb54154dfd6">&#9670;&#160;</a></span>cb_authenticate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_authenticate </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>domain</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01523">1523</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af3a468785f2dae4d09420c349aa44476" name="af3a468785f2dae4d09420c349aa44476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3a468785f2dae4d09420c349aa44476">&#9670;&#160;</a></span>cb_begin_paint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_begin_paint </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01894">1894</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab97a631bd9b7060135f19bbe2e78714e" name="ab97a631bd9b7060135f19bbe2e78714e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab97a631bd9b7060135f19bbe2e78714e">&#9670;&#160;</a></span>cb_desktop_resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_desktop_resize </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01993">1993</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab83d972d1b20e8045988d1e44f346b50" name="ab83d972d1b20e8045988d1e44f346b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab83d972d1b20e8045988d1e44f346b50">&#9670;&#160;</a></span>cb_end_paint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_end_paint </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01929">1929</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4720ded425d26d77d9024ddcfd67fe73" name="a4720ded425d26d77d9024ddcfd67fe73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4720ded425d26d77d9024ddcfd67fe73">&#9670;&#160;</a></span>cb_GatewayAuthenticate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_GatewayAuthenticate </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>domain</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01554">1554</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a25d10654fbf31041f3083415250f82" name="a9a25d10654fbf31041f3083415250f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a25d10654fbf31041f3083415250f82">&#9670;&#160;</a></span>cb_keyboard_set_ime_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_keyboard_set_ime_status </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>imeId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>imeState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>imeConvMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02059">2059</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae98be2e40848821344a8ec463e7cb170" name="ae98be2e40848821344a8ec463e7cb170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae98be2e40848821344a8ec463e7cb170">&#9670;&#160;</a></span>cb_keyboard_set_indicators()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_keyboard_set_indicators </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>led_flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02038">2038</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c0df317c51e249ba345ee954b1e98ce" name="a3c0df317c51e249ba345ee954b1e98ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c0df317c51e249ba345ee954b1e98ce">&#9670;&#160;</a></span>cb_logon_error_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::cb_logon_error_info </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00995">995</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64ebf41c0536b094ae6e5fa4f4c4fd98" name="a64ebf41c0536b094ae6e5fa4f4c4fd98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64ebf41c0536b094ae6e5fa4f4c4fd98">&#9670;&#160;</a></span>cb_play_bell_sound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_play_bell_sound </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const PLAY_SOUND_UPDATE *&#160;</td>
+          <td class="paramname"><em>play_sound</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02015">2015</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeadca916625ea415fd41a43a8afea525" name="aeadca916625ea415fd41a43a8afea525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeadca916625ea415fd41a43a8afea525">&#9670;&#160;</a></span>cb_post_connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_post_connect </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback given to freerdp_connect() to perform post-connection operations. </p>
+<p>It will be called only if the connection was initialized properly, and will continue the initialization based on the newly created connection. </p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00922">922</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7a389f5be77df019f411b18e4211b87d" name="a7a389f5be77df019f411b18e4211b87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a389f5be77df019f411b18e4211b87d">&#9670;&#160;</a></span>cb_post_disconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::cb_post_disconnect </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00978">978</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a43803903b09b2c90d6c5f524b3d3a6b0" name="a43803903b09b2c90d6c5f524b3d3a6b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43803903b09b2c90d6c5f524b3d3a6b0">&#9670;&#160;</a></span>cb_pre_connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_pre_connect </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback given to freerdp_connect() to process the pre-connect operations. </p>
+<p>连接之前调用。用于加载通道，检查和设置所有参数</p>
+<p>It will fill the rdp_freerdp structure (instance) with the appropriate options to use for the connection.</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>- pointer to the rdp_freerdp structure that contains the connection's parameters, and will be filled with the appropriate information.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>TRUE if successful. FALSE otherwise. Can exit with error code XF_EXIT_PARSE_ARGUMENTS if there is an error in the parameters. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00689">689</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a37a025e283a9312cfc3c083ae41c910e" name="a37a025e283a9312cfc3c083ae41c910e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a025e283a9312cfc3c083ae41c910e">&#9670;&#160;</a></span>cb_present_gateway_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cb_present_gateway_message </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>isDisplayMandatory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>isConsentMandatory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const WCHAR *&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01844">1844</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a306af3031941a6f02e602d7a5c7d66c5" name="a306af3031941a6f02e602d7a5c7d66c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306af3031941a6f02e602d7a5c7d66c5">&#9670;&#160;</a></span>cb_verify_certificate_ex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD CBackendFreeRDP::cb_verify_certificate_ex </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>common_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>issuer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fingerprint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback set in the rdp_freerdp structure, and used to make a certificate validation when the connection requires it. </p>
+<p>This function will actually be called by tls_verify_certificate(). </p><dl class="section see"><dt>参见</dt><dd>rdp_client_connect() and tls_connect() </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>pointer to the rdp_freerdp structure that contains the connection settings </td></tr>
+    <tr><td class="paramname">host</td><td>The host currently connecting to </td></tr>
+    <tr><td class="paramname">port</td><td>The port currently connecting to </td></tr>
+    <tr><td class="paramname">common_name</td><td>The common name of the certificate, should match host or an alias of it </td></tr>
+    <tr><td class="paramname">subject</td><td>The subject of the certificate </td></tr>
+    <tr><td class="paramname">issuer</td><td>The certificate issuer name </td></tr>
+    <tr><td class="paramname">fingerprint</td><td>The fingerprint of the certificate </td></tr>
+    <tr><td class="paramname">flags</td><td>See VERIFY_CERT_FLAG_* for possible values.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>1 if the certificate is trusted, 2 if temporary trusted, 0 otherwise. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01661">1661</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af12cea42be0c208dfec240bbe03fc481" name="af12cea42be0c208dfec240bbe03fc481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12cea42be0c208dfec240bbe03fc481">&#9670;&#160;</a></span>cb_verify_changed_certificate_ex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD CBackendFreeRDP::cb_verify_changed_certificate_ex </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>common_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>issuer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fingerprint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>old_subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>old_issuer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>old_fingerprint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback set in the rdp_freerdp structure, and used to make a certificate validation when a stored certificate does not match the remote counterpart. </p>
+<p>This function will actually be called by tls_verify_certificate(). </p><dl class="section see"><dt>参见</dt><dd>rdp_client_connect() and tls_connect() </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>pointer to the rdp_freerdp structure that contains the connection settings </td></tr>
+    <tr><td class="paramname">host</td><td>The host currently connecting to </td></tr>
+    <tr><td class="paramname">port</td><td>The port currently connecting to </td></tr>
+    <tr><td class="paramname">common_name</td><td>The common name of the certificate, should match host or an alias of it </td></tr>
+    <tr><td class="paramname">subject</td><td>The subject of the certificate </td></tr>
+    <tr><td class="paramname">issuer</td><td>The certificate issuer name </td></tr>
+    <tr><td class="paramname">fingerprint</td><td>The fingerprint of the certificate </td></tr>
+    <tr><td class="paramname">old_subject</td><td>The subject of the previous certificate </td></tr>
+    <tr><td class="paramname">old_issuer</td><td>The previous certificate issuer name </td></tr>
+    <tr><td class="paramname">old_fingerprint</td><td>The fingerprint of the previous certificate </td></tr>
+    <tr><td class="paramname">flags</td><td>See VERIFY_CERT_FLAG_* for possible values.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>1 if the certificate is trusted, 2 if temporary trusted, 0 otherwise. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01770">1770</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a823c71599d563dc965c0b1e26b681a57" name="a823c71599d563dc965c0b1e26b681a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a823c71599d563dc965c0b1e26b681a57">&#9670;&#160;</a></span>cb_verify_x509_certificate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::cb_verify_x509_certificate </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const BYTE *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>hostname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback used if user interaction is required to accept a certificate. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Pointer to the freerdp instance. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to certificate data (full chain) in PEM format. </td></tr>
+    <tr><td class="paramname">length</td><td>The length of the certificate data. </td></tr>
+    <tr><td class="paramname">hostname</td><td>The hostname connecting to. </td></tr>
+    <tr><td class="paramname">port</td><td>The port connecting to. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flags of type VERIFY_CERT_FLAG*</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>1 to accept and store a certificate, 2 to accept a certificate only for this session, 0 otherwise. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01585">1585</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aade437c4a8be88a402cd282493500fa5" name="aade437c4a8be88a402cd282493500fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade437c4a8be88a402cd282493500fa5">&#9670;&#160;</a></span>cbClientFree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::cbClientFree </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00526">526</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af786675b414892e737f88184e5eef481" name="af786675b414892e737f88184e5eef481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af786675b414892e737f88184e5eef481">&#9670;&#160;</a></span>cbClientNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cbClientNew </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00501">501</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a769968e2f5c3595ae45a9d09b09e190e" name="a769968e2f5c3595ae45a9d09b09e190e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769968e2f5c3595ae45a9d09b09e190e">&#9670;&#160;</a></span>cbClientStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::cbClientStart </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00531">531</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a82613a3ed170b1315488efa53470f260" name="a82613a3ed170b1315488efa53470f260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82613a3ed170b1315488efa53470f260">&#9670;&#160;</a></span>cbClientStop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::cbClientStop </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00655">655</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7eb12d58becadd77bd9552603ec47198" name="a7eb12d58becadd77bd9552603ec47198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb12d58becadd77bd9552603ec47198">&#9670;&#160;</a></span>cbGlobalInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::cbGlobalInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00490">490</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaf66d5c91a43a3aabf9df77515efa356" name="aaf66d5c91a43a3aabf9df77515efa356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf66d5c91a43a3aabf9df77515efa356">&#9670;&#160;</a></span>cbGlobalUninit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::cbGlobalUninit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00496">496</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a30a7c5d099adfe655564a76a9d27653c" name="a30a7c5d099adfe655564a76a9d27653c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a7c5d099adfe655564a76a9d27653c">&#9670;&#160;</a></span>CreateImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::CreateImage </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01108">1108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0eccf650b6040ab3ca0d3c87dfcf95ff" name="a0eccf650b6040ab3ca0d3c87dfcf95ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eccf650b6040ab3ca0d3c87dfcf95ff">&#9670;&#160;</a></span>GetImageFormat() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CBackendFreeRDP::GetImageFormat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01103">1103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a79b47baaf6a300735df1ca5d1a799c3a" name="a79b47baaf6a300735df1ca5d1a799c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79b47baaf6a300735df1ca5d1a799c3a">&#9670;&#160;</a></span>GetImageFormat() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CBackendFreeRDP::GetImageFormat </td>
+          <td>(</td>
+          <td class="paramtype">QImage::Format&#160;</td>
+          <td class="paramname"><em>format</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01082">1082</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a81f1dfc6bbe2b4d57ec14fba29564439" name="a81f1dfc6bbe2b4d57ec14fba29564439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81f1dfc6bbe2b4d57ec14fba29564439">&#9670;&#160;</a></span>GetTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * CBackendFreeRDP::GetTitle </td>
+          <td>(</td>
+          <td class="paramtype">freerdp *&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00880">880</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16aad1df04dd34cd7f119a398159c764" name="a16aad1df04dd34cd7f119a398159c764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16aad1df04dd34cd7f119a398159c764">&#9670;&#160;</a></span>InputMethodEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::InputMethodEvent </td>
+          <td>(</td>
+          <td class="paramtype">QInputMethodEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02260">2260</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab782fd97ae85466922e35de0a6b986fa" name="ab782fd97ae85466922e35de0a6b986fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab782fd97ae85466922e35de0a6b986fa">&#9670;&#160;</a></span>keyPressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::keyPressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02227">2227</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a896432632a091ba5918dc0b25ba72278" name="a896432632a091ba5918dc0b25ba72278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a896432632a091ba5918dc0b25ba72278">&#9670;&#160;</a></span>keyReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::keyReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02244">2244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab6794ee9d2cf36f8cdf601221d3d9e10" name="ab6794ee9d2cf36f8cdf601221d3d9e10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6794ee9d2cf36f8cdf601221d3d9e10">&#9670;&#160;</a></span>mouseMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::mouseMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02144">2144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8530355f8508aa57737f51b61fa266ab" name="a8530355f8508aa57737f51b61fa266ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8530355f8508aa57737f51b61fa266ab">&#9670;&#160;</a></span>mousePressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::mousePressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02153">2153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac1c8b64b786c37995885da5ca435c679" name="ac1c8b64b786c37995885da5ca435c679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c8b64b786c37995885da5ca435c679">&#9670;&#160;</a></span>mouseReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::mouseReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02190">2190</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab5ef715712b9962e363f6cd6f532327a" name="ab5ef715712b9962e363f6cd6f532327a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5ef715712b9962e363f6cd6f532327a">&#9670;&#160;</a></span>OnChannelConnectedEventHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::OnChannelConnectedEventHandler </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ChannelConnectedEventArgs *&#160;</td>
+          <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01010">1010</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a50cdbba9b26df6bdb6596c7c54c4a934" name="a50cdbba9b26df6bdb6596c7c54c4a934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50cdbba9b26df6bdb6596c7c54c4a934">&#9670;&#160;</a></span>OnChannelDisconnectedEventHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::OnChannelDisconnectedEventHandler </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ChannelDisconnectedEventArgs *&#160;</td>
+          <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01049">1049</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aecd1edf38859eef1030140104844a803" name="aecd1edf38859eef1030140104844a803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecd1edf38859eef1030140104844a803">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a5421972b8e09d32b62f634360f0f8a31">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00315">315</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae4bf3a1cd9ba327a82d4ff9a5a349a34" name="ae4bf3a1cd9ba327a82d4ff9a5a349a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4bf3a1cd9ba327a82d4ff9a5a349a34">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 <a class="el" href="classCBackendFreeRDP.html#af0dcb18abc3d8b6f15c74e9a1cdd560b" title="插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。">OnProcess()</a> (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 <a class="el" href="classCBackendFreeRDP.html#af0dcb18abc3d8b6f15c74e9a1cdd560b" title="插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。">OnProcess()</a> (qt 事件循环)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af0dcb18abc3d8b6f15c74e9a1cdd560b" name="af0dcb18abc3d8b6f15c74e9a1cdd560b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0dcb18abc3d8b6f15c74e9a1cdd560b">&#9670;&#160;</a></span>OnProcess() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: continue, Interval call time (msec) </li>
+<li>= -1: stop </li>
+<li>&lt; -1: error </li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd>CConnect::Connect() CConnect::slotTimeOut() </dd></dl>
+
+<p>重载 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba">CBackend</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00365">365</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a96ce8a849af223f9fb464344fd535c99" name="a96ce8a849af223f9fb464344fd535c99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96ce8a849af223f9fb464344fd535c99">&#9670;&#160;</a></span>OnProcess() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::OnProcess </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nTimeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: continue, Interval call time (msec) </li>
+<li>= -1: stop </li>
+<li>&lt; -1: error </li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd>CConnect::Connect() CConnect::slotTimeOut() </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00383">383</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a91d8f36733a5eb77ef268584d432239c" name="a91d8f36733a5eb77ef268584d432239c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91d8f36733a5eb77ef268584d432239c">&#9670;&#160;</a></span>RedirectionDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::RedirectionDriver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02390">2390</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a15b45782bb69ed1c4791aa84bb4f3f60" name="a15b45782bb69ed1c4791aa84bb4f3f60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15b45782bb69ed1c4791aa84bb4f3f60">&#9670;&#160;</a></span>RedirectionMicrophone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::RedirectionMicrophone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02345">2345</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acba43f356e67ace17610068b659f4505" name="acba43f356e67ace17610068b659f4505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba43f356e67ace17610068b659f4505">&#9670;&#160;</a></span>RedirectionPrinter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::RedirectionPrinter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02422">2422</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3701e865d2d47f8e24da30a735138bdb" name="a3701e865d2d47f8e24da30a735138bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3701e865d2d47f8e24da30a735138bdb">&#9670;&#160;</a></span>RedirectionSerial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::RedirectionSerial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02456">2456</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab1d6a339c0be539a905620a0d0f10072" name="ab1d6a339c0be539a905620a0d0f10072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d6a339c0be539a905620a0d0f10072">&#9670;&#160;</a></span>RedirectionSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::RedirectionSound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02278">2278</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9410fbd8e3ddeaecb435c16b9f91cb23" name="a9410fbd8e3ddeaecb435c16b9f91cb23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9410fbd8e3ddeaecb435c16b9f91cb23">&#9670;&#160;</a></span>SendMouseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBackendFreeRDP::SendMouseEvent </td>
+          <td>(</td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPoint&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isExtended</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02081">2081</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad71a653e2c88b6a8c4d38271738e0498" name="ad71a653e2c88b6a8c4d38271738e0498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad71a653e2c88b6a8c4d38271738e0498">&#9670;&#160;</a></span>slotClipBoardChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::slotClipBoardChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l00482">482</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9de49a2f46a540a22ca1b7d2cd5e6ceb" name="a9de49a2f46a540a22ca1b7d2cd5e6ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de49a2f46a540a22ca1b7d2cd5e6ceb">&#9670;&#160;</a></span>slotConnectProxyServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::slotConnectProxyServer </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szHost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">quint16&#160;</td>
+          <td class="paramname"><em>nPort</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02496">2496</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acb939b6583c2a8e285ae2685e3a82051" name="acb939b6583c2a8e285ae2685e3a82051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb939b6583c2a8e285ae2685e3a82051">&#9670;&#160;</a></span>UpdateBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CBackendFreeRDP::UpdateBuffer </td>
+          <td>(</td>
+          <td class="paramtype">INT32&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INT32&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INT32&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INT32&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l01912">1912</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afa754f1e7f79731d329eddd13e01c628" name="afa754f1e7f79731d329eddd13e01c628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa754f1e7f79731d329eddd13e01c628">&#9670;&#160;</a></span>WakeUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendFreeRDP::WakeUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>唤醒后台线程 </p>
+
+<p>重载 <a class="el" href="classCBackendDesktop.html#ada865c1ad4a76f9a92513cde4a80f44f">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02072">2072</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1260e307eba2b458270ec2b215ca1556" name="a1260e307eba2b458270ec2b215ca1556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1260e307eba2b458270ec2b215ca1556">&#9670;&#160;</a></span>wheelEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendFreeRDP::wheelEvent </td>
+          <td>(</td>
+          <td class="paramtype">QWheelEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a> 第 <a class="el" href="BackendFreeRDP_8cpp_source.html#l02101">2101</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关函数文档</h2>
+<a id="ac141beb80064639ee7fc472b46f2e454" name="ac141beb80064639ee7fc472b46f2e454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac141beb80064639ee7fc472b46f2e454">&#9670;&#160;</a></span>CCursorFreeRDP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classCCursorFreeRDP.html">CCursorFreeRDP</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00180">180</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a97272f65ce55fb40955b6d30b76bb124" name="a97272f65ce55fb40955b6d30b76bb124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97272f65ce55fb40955b6d30b76bb124">&#9670;&#160;</a></span>m_ClientEntryPoints</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RDP_CLIENT_ENTRY_POINTS CBackendFreeRDP::m_ClientEntryPoints</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00174">174</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00d1e19c524a532a74f7233dee1ca361" name="a00d1e19c524a532a74f7233dee1ca361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00d1e19c524a532a74f7233dee1ca361">&#9670;&#160;</a></span>m_ClipBoard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCClipboardFreeRDP.html">CClipboardFreeRDP</a> CBackendFreeRDP::m_ClipBoard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00178">178</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f5e563e95ed62464b10c62e9b18dd0b" name="a1f5e563e95ed62464b10c62e9b18dd0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f5e563e95ed62464b10c62e9b18dd0b">&#9670;&#160;</a></span>m_Cursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCCursorFreeRDP.html">CCursorFreeRDP</a> CBackendFreeRDP::m_Cursor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a70c92f98012ab7a7266b1c0b45908115" name="a70c92f98012ab7a7266b1c0b45908115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c92f98012ab7a7266b1c0b45908115">&#9670;&#160;</a></span>m_Image</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage CBackendFreeRDP::m_Image</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00176">176</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a165f232c0de6ac1ccd3e0421eaab072f" name="a165f232c0de6ac1ccd3e0421eaab072f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a165f232c0de6ac1ccd3e0421eaab072f">&#9670;&#160;</a></span>m_pContext</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html">ClientContext</a>* CBackendFreeRDP::m_pContext</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00171">171</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeb7d49fa9d08ea66dc3fdb3875ebb58e" name="aeb7d49fa9d08ea66dc3fdb3875ebb58e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb7d49fa9d08ea66dc3fdb3875ebb58e">&#9670;&#160;</a></span>m_pOperate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperateDesktop.html">COperateDesktop</a>* CBackendFreeRDP::m_pOperate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a99429a4ec4a910f73710bbdc7b887b0f" name="a99429a4ec4a910f73710bbdc7b887b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99429a4ec4a910f73710bbdc7b887b0f">&#9670;&#160;</a></span>m_pParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFreeRDP.html">CParameterFreeRDP</a>* CBackendFreeRDP::m_pParameter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00172">172</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ade6e518a695c3ccfd9cec0aada787925" name="ade6e518a695c3ccfd9cec0aada787925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade6e518a695c3ccfd9cec0aada787925">&#9670;&#160;</a></span>m_writeEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HANDLE CBackendFreeRDP::m_writeEvent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00182">182</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="BackendFreeRDP_8cpp_source.html">BackendFreeRDP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

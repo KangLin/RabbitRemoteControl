@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgSettingsTerminal类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgSettingsTerminal-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgSettingsTerminal类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgSettingsTerminal 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTerminal__inherit__graph.png" border="0" usemap="#aCDlgSettingsTerminal_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDlgSettingsTerminal_inherit__map" id="aCDlgSettingsTerminal_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,168,104"/>
+<area shape="rect" title=" " alt="" coords="49,5,124,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgSettingsTerminal 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTerminal__coll__graph.png" border="0" usemap="#aCDlgSettingsTerminal_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDlgSettingsTerminal_coll__map" id="aCDlgSettingsTerminal_coll__map">
+<area shape="rect" title=" " alt="" coords="151,455,313,480"/>
+<area shape="rect" title=" " alt="" coords="195,352,269,377"/>
+<area shape="poly" title=" " alt="" coords="235,391,235,455,229,455,229,391"/>
+<area shape="rect" href="classCTerminalParameter.html" title=" " alt="" coords="293,352,448,377"/>
+<area shape="poly" title=" " alt="" coords="345,388,249,457,246,452,342,383"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="269,253,456,279"/>
+<area shape="poly" title=" " alt="" coords="367,292,372,352,367,352,362,293"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="595,155,746,180"/>
+<area shape="poly" title=" " alt="" coords="582,180,531,190,480,206,461,218,443,232,392,256,390,251,440,227,458,214,478,202,529,185,581,175"/>
+<area shape="poly" title=" " alt="" coords="760,160,773,167,764,174,746,177,746,171,762,169,767,167,758,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="515,455,675,480"/>
+<area shape="poly" title=" " alt="" coords="614,187,562,213,539,232,521,255,513,268,506,288,509,321,525,376,537,399,552,420,583,453,579,456,548,424,532,402,520,378,503,322,501,287,508,266,516,252,535,228,559,208,612,182"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="534,352,655,377"/>
+<area shape="poly" title=" " alt="" coords="678,193,682,223,682,259,674,296,657,330,642,344,625,354,622,349,639,339,653,326,669,295,676,259,676,224,673,194"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="531,253,659,279"/>
+<area shape="poly" title=" " alt="" coords="655,193,606,255,602,252,651,189"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="973,80,1072,105"/>
+<area shape="poly" title=" " alt="" coords="960,109,727,157,726,152,959,104"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="1000,631,1139,656"/>
+<area shape="poly" title=" " alt="" coords="1038,116,1044,128,1089,234,1121,320,1130,362,1134,408,1132,459,1123,519,1102,584,1078,632,1073,629,1097,582,1117,518,1126,459,1129,408,1125,363,1116,321,1084,236,1039,130,1033,118"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="525,543,665,568"/>
+<area shape="poly" title=" " alt="" coords="962,111,942,120,925,132,914,148,909,166,909,469,902,488,883,503,855,516,821,527,742,542,665,552,664,546,741,537,820,522,853,511,880,499,898,485,904,468,904,166,909,145,921,129,939,116,959,106"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1143,204,1273,229"/>
+<area shape="poly" title=" " alt="" coords="1086,102,1115,112,1143,127,1163,145,1181,165,1204,202,1200,205,1176,168,1160,148,1140,132,1113,117,1085,107"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1222,303,1365,328"/>
+<area shape="poly" title=" " alt="" coords="1086,99,1136,111,1188,131,1238,161,1259,180,1277,203,1289,229,1295,257,1297,303,1292,303,1290,257,1284,230,1272,205,1255,184,1234,165,1186,136,1134,116,1085,105"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="927,403,1118,429"/>
+<area shape="poly" title=" " alt="" coords="1025,119,1025,166,1025,317,1025,403,1020,403,1020,317,1020,166,1020,119"/>
+<area shape="rect" href="classCParameterTerminal.html" title=" " alt="" coords="281,155,436,180"/>
+<area shape="poly" title=" " alt="" coords="960,103,437,160,436,155,960,98"/>
+<area shape="rect" title=" " alt="" coords="985,5,1060,31"/>
+<area shape="poly" title=" " alt="" coords="1025,45,1025,80,1020,80,1020,45"/>
+<area shape="poly" title=" " alt="" coords="986,639,908,630,830,614,796,604,769,591,751,575,744,557,744,265,738,239,724,216,705,197,687,182,690,178,709,193,728,213,743,237,749,264,749,556,755,572,772,587,798,599,831,609,909,625,986,634"/>
+<area shape="poly" title=" " alt="" coords="591,581,591,594,597,605,616,614,652,622,761,632,1000,639,1000,645,760,638,651,627,614,619,593,609,586,596,586,581"/>
+<area shape="poly" title=" " alt="" coords="597,494,597,542,592,542,592,494"/>
+<area shape="poly" title=" " alt="" coords="597,391,597,455,592,455,592,391"/>
+<area shape="poly" title=" " alt="" coords="597,292,597,352,592,352,592,292"/>
+<area shape="poly" title=" " alt="" coords="1203,243,1196,277,1192,314,1192,557,1184,584,1165,606,1140,622,1113,633,1111,628,1138,617,1162,602,1180,582,1187,556,1187,314,1190,276,1198,242"/>
+<area shape="poly" title=" " alt="" coords="1296,342,1296,415,1296,557,1291,571,1279,583,1239,604,1187,621,1134,633,1132,628,1185,616,1237,599,1276,579,1287,568,1291,556,1291,415,1291,342"/>
+<area shape="poly" title=" " alt="" coords="1014,443,1004,479,1003,499,1005,518,1017,551,1032,582,1063,629,1058,632,1028,585,1012,553,1000,519,998,499,999,478,1009,441"/>
+<area shape="poly" title=" " alt="" coords="362,194,363,229,364,253,359,253,357,229,356,194"/>
+<area shape="rect" href="classCParameterTerminalUI.html" title=" " alt="" coords="5,253,173,279"/>
+<area shape="poly" title=" " alt="" coords="315,187,122,256,120,251,313,182"/>
+<area shape="poly" title=" " alt="" coords="66,290,47,309,32,331,24,354,25,365,30,376,56,404,88,426,123,441,159,452,157,457,121,446,85,431,52,408,26,379,20,366,19,354,27,329,43,306,62,286"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="33,155,145,180"/>
+<area shape="poly" title=" " alt="" coords="92,194,92,253,87,253,87,194"/>
+<area shape="rect" title=" " alt="" coords="50,80,129,105"/>
+<area shape="poly" title=" " alt="" coords="92,120,92,154,87,154,87,120"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7faf1932ba851df928af186f192f193a" id="r_a7faf1932ba851df928af186f192f193a"><td class="memItemLeft" align="right" valign="top"><a id="a7faf1932ba851df928af186f192f193a" name="a7faf1932ba851df928af186f192f193a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CDlgSettingsTerminal</b> (<a class="el" href="classCTerminalParameter.html">CTerminalParameter</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a7faf1932ba851df928af186f192f193a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:af02aba56f39f588fc5f62aeee3520ab2" id="r_af02aba56f39f588fc5f62aeee3520ab2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#af02aba56f39f588fc5f62aeee3520ab2">on_pbOk_clicked</a> ()</td></tr>
+<tr class="separator:af02aba56f39f588fc5f62aeee3520ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac124cd393ed33012fe6f79ff86c23bb4" id="r_ac124cd393ed33012fe6f79ff86c23bb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#ac124cd393ed33012fe6f79ff86c23bb4">on_pbCancel_clicked</a> ()</td></tr>
+<tr class="separator:ac124cd393ed33012fe6f79ff86c23bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c10019f3b2fb585e7f5b977a9483e9c" id="r_a8c10019f3b2fb585e7f5b977a9483e9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a8c10019f3b2fb585e7f5b977a9483e9c">on_pbShellBrowse_clicked</a> ()</td></tr>
+<tr class="separator:a8c10019f3b2fb585e7f5b977a9483e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d0edcff3df7b27784194ce8880db69" id="r_ae0d0edcff3df7b27784194ce8880db69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#ae0d0edcff3df7b27784194ce8880db69">on_cbShellName_currentIndexChanged</a> (int index)</td></tr>
+<tr class="separator:ae0d0edcff3df7b27784194ce8880db69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c9039418a7805996a6bef995d65891d" id="r_a6c9039418a7805996a6bef995d65891d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a6c9039418a7805996a6bef995d65891d">on_pbAddCommand_clicked</a> ()</td></tr>
+<tr class="separator:a6c9039418a7805996a6bef995d65891d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae25c32fee3616a61c4cc11b3ba160608" id="r_ae25c32fee3616a61c4cc11b3ba160608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#ae25c32fee3616a61c4cc11b3ba160608">on_leCommand_editingFinished</a> ()</td></tr>
+<tr class="separator:ae25c32fee3616a61c4cc11b3ba160608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b22c0b29ea692c07ed55589b9339c4" id="r_a24b22c0b29ea692c07ed55589b9339c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a24b22c0b29ea692c07ed55589b9339c4">on_pbDeleteCommands_clicked</a> ()</td></tr>
+<tr class="separator:a24b22c0b29ea692c07ed55589b9339c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7456e1120d6f9534d908a2979a7b6abd" id="r_a7456e1120d6f9534d908a2979a7b6abd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a7456e1120d6f9534d908a2979a7b6abd">on_pbHelp_clicked</a> ()</td></tr>
+<tr class="separator:a7456e1120d6f9534d908a2979a7b6abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a6898c365ee4c5d1728e1b566042e0697" id="r_a6898c365ee4c5d1728e1b566042e0697"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a6898c365ee4c5d1728e1b566042e0697">AddShell</a> (QString szShell, const QString &amp;name=QString())</td></tr>
+<tr class="separator:a6898c365ee4c5d1728e1b566042e0697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a72c25416fef112731d21cfec518a8b85" id="r_a72c25416fef112731d21cfec518a8b85"><td class="memItemLeft" align="right" valign="top">Ui::CDlgSettingsTerminal *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a72c25416fef112731d21cfec518a8b85">ui</a></td></tr>
+<tr class="separator:a72c25416fef112731d21cfec518a8b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a328db1126195d5094b33fe59cf1089b9" id="r_a328db1126195d5094b33fe59cf1089b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCTerminalParameter.html">CTerminalParameter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a328db1126195d5094b33fe59cf1089b9">m_pPara</a></td></tr>
+<tr class="separator:a328db1126195d5094b33fe59cf1089b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90657686c5f21db03ab1de4da0173687" id="r_a90657686c5f21db03ab1de4da0173687"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTerminal.html#a90657686c5f21db03ab1de4da0173687">m_pFrmParaAppearnce</a></td></tr>
+<tr class="separator:a90657686c5f21db03ab1de4da0173687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8h_source.html">DlgSettingsTerminal.h</a> 第 <a class="el" href="DlgSettingsTerminal_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a2a524827e48fa5a36e49fffb8f123970" name="a2a524827e48fa5a36e49fffb8f123970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a524827e48fa5a36e49fffb8f123970">&#9670;&#160;</a></span>~CDlgSettingsTerminal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsTerminal::~CDlgSettingsTerminal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a6898c365ee4c5d1728e1b566042e0697" name="a6898c365ee4c5d1728e1b566042e0697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6898c365ee4c5d1728e1b566042e0697">&#9670;&#160;</a></span>AddShell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDlgSettingsTerminal::AddShell </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szShell</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em> = <code>QString()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae0d0edcff3df7b27784194ce8880db69" name="ae0d0edcff3df7b27784194ce8880db69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0d0edcff3df7b27784194ce8880db69">&#9670;&#160;</a></span>on_cbShellName_currentIndexChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_cbShellName_currentIndexChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00199">199</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae25c32fee3616a61c4cc11b3ba160608" name="ae25c32fee3616a61c4cc11b3ba160608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae25c32fee3616a61c4cc11b3ba160608">&#9670;&#160;</a></span>on_leCommand_editingFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_leCommand_editingFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00240">240</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6c9039418a7805996a6bef995d65891d" name="a6c9039418a7805996a6bef995d65891d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c9039418a7805996a6bef995d65891d">&#9670;&#160;</a></span>on_pbAddCommand_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbAddCommand_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00230">230</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac124cd393ed33012fe6f79ff86c23bb4" name="ac124cd393ed33012fe6f79ff86c23bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac124cd393ed33012fe6f79ff86c23bb4">&#9670;&#160;</a></span>on_pbCancel_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbCancel_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a24b22c0b29ea692c07ed55589b9339c4" name="a24b22c0b29ea692c07ed55589b9339c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24b22c0b29ea692c07ed55589b9339c4">&#9670;&#160;</a></span>on_pbDeleteCommands_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbDeleteCommands_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00245">245</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7456e1120d6f9534d908a2979a7b6abd" name="a7456e1120d6f9534d908a2979a7b6abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7456e1120d6f9534d908a2979a7b6abd">&#9670;&#160;</a></span>on_pbHelp_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbHelp_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00251">251</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af02aba56f39f588fc5f62aeee3520ab2" name="af02aba56f39f588fc5f62aeee3520ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02aba56f39f588fc5f62aeee3520ab2">&#9670;&#160;</a></span>on_pbOk_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbOk_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8c10019f3b2fb585e7f5b977a9483e9c" name="a8c10019f3b2fb585e7f5b977a9483e9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c10019f3b2fb585e7f5b977a9483e9c">&#9670;&#160;</a></span>on_pbShellBrowse_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTerminal::on_pbShellBrowse_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a> 第 <a class="el" href="DlgSettingsTerminal_8cpp_source.html#l00189">189</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a90657686c5f21db03ab1de4da0173687" name="a90657686c5f21db03ab1de4da0173687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90657686c5f21db03ab1de4da0173687">&#9670;&#160;</a></span>m_pFrmParaAppearnce</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a>* CDlgSettingsTerminal::m_pFrmParaAppearnce</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8h_source.html">DlgSettingsTerminal.h</a> 第 <a class="el" href="DlgSettingsTerminal_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a328db1126195d5094b33fe59cf1089b9" name="a328db1126195d5094b33fe59cf1089b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a328db1126195d5094b33fe59cf1089b9">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCTerminalParameter.html">CTerminalParameter</a>* CDlgSettingsTerminal::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8h_source.html">DlgSettingsTerminal.h</a> 第 <a class="el" href="DlgSettingsTerminal_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a72c25416fef112731d21cfec518a8b85" name="a72c25416fef112731d21cfec518a8b85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72c25416fef112731d21cfec518a8b85">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgSettingsTerminal* CDlgSettingsTerminal::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTerminal_8h_source.html">DlgSettingsTerminal.h</a> 第 <a class="el" href="DlgSettingsTerminal_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Terminal/<a class="el" href="DlgSettingsTerminal_8h_source.html">DlgSettingsTerminal.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Terminal/<a class="el" href="DlgSettingsTerminal_8cpp_source.html">DlgSettingsTerminal.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

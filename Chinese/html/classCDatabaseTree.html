@@ -1,0 +1,1179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDatabaseTree类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDatabaseTree-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDatabaseTree类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDatabaseTree 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDatabaseTree__inherit__graph.png" border="0" usemap="#aCDatabaseTree_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDatabaseTree_inherit__map" id="aCDatabaseTree_inherit__map">
+<area shape="rect" title=" " alt="" coords="18,152,138,177"/>
+<area shape="rect" href="classCFavoriteDatabase.html" title=" " alt="" coords="5,225,151,251"/>
+<area shape="poly" title=" " alt="" coords="81,191,81,225,75,225,75,191"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="31,79,125,104"/>
+<area shape="poly" title=" " alt="" coords="81,118,81,152,75,152,75,118"/>
+<area shape="rect" title=" " alt="" coords="41,5,115,31"/>
+<area shape="poly" title=" " alt="" coords="81,44,81,79,75,79,75,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDatabaseTree 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDatabaseTree__coll__graph.png" border="0" usemap="#aCDatabaseTree_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDatabaseTree_coll__map" id="aCDatabaseTree_coll__map">
+<area shape="rect" title=" " alt="" coords="791,719,911,744"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="819,543,913,568"/>
+<area shape="poly" title=" " alt="" coords="864,582,858,631,854,718,849,718,853,630,859,581"/>
+<area shape="rect" href="classCDatabaseFolder.html" title=" " alt="" coords="867,631,1001,656"/>
+<area shape="poly" title=" " alt="" coords="886,577,927,628,922,632,882,581"/>
+<area shape="rect" title=" " alt="" coords="607,5,682,31"/>
+<area shape="poly" title=" " alt="" coords="696,22,755,30,816,44,864,63,879,76,885,91,885,469,880,510,872,543,867,542,875,509,879,469,879,92,875,79,861,68,814,49,754,36,695,27"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="349,80,447,105"/>
+<area shape="poly" title=" " alt="" coords="595,37,438,82,436,77,593,32"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="555,455,715,480"/>
+<area shape="poly" title=" " alt="" coords="680,482,836,540,834,545,678,487"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="316,543,456,568"/>
+<area shape="poly" title=" " alt="" coords="589,487,420,545,419,540,588,482"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="436,155,587,180"/>
+<area shape="poly" title=" " alt="" coords="578,182,606,193,634,208,659,227,679,252,689,270,700,305,702,329,700,358,691,392,676,432,667,446,655,456,652,453,663,442,672,429,686,391,694,357,697,329,695,306,685,272,674,255,655,231,631,212,604,198,576,187"/>
+<area shape="poly" title=" " alt="" coords="601,160,613,167,605,174,587,177,586,171,603,169,608,167,599,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="539,352,660,377"/>
+<area shape="poly" title=" " alt="" coords="513,194,515,234,527,278,540,300,555,319,587,350,583,354,551,323,535,302,522,280,510,235,508,194"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="537,253,665,279"/>
+<area shape="poly" title=" " alt="" coords="533,188,592,251,588,255,529,192"/>
+<area shape="poly" title=" " alt="" coords="429,111,495,152,492,157,426,115"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="231,631,370,656"/>
+<area shape="poly" title=" " alt="" coords="336,99,299,105,264,117,239,137,233,150,230,166,230,556,235,579,248,599,283,629,279,633,244,602,230,581,225,557,225,166,227,148,235,134,262,112,297,100,335,93"/>
+<area shape="poly" title=" " alt="" coords="401,119,401,166,401,469,397,510,391,543,386,542,392,509,395,469,395,166,395,119"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="247,204,378,229"/>
+<area shape="poly" title=" " alt="" coords="384,118,323,205,319,202,380,115"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="719,303,861,328"/>
+<area shape="poly" title=" " alt="" coords="462,91,514,95,574,105,634,123,690,152,728,188,757,230,777,271,789,302,784,303,772,273,752,233,724,191,687,157,632,128,572,110,514,100,461,96"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="5,403,196,429"/>
+<area shape="poly" title=" " alt="" coords="335,102,272,110,209,123,160,142,147,153,142,166,142,317,139,342,131,367,111,404,106,402,126,365,134,341,137,316,137,166,142,150,158,137,208,118,272,104,334,96"/>
+<area shape="poly" title=" " alt="" coords="383,633,439,622,460,614,473,605,487,584,493,564,492,545,488,526,474,483,468,459,465,431,465,401,485,271,506,180,511,181,490,272,470,402,470,431,473,458,479,482,493,525,498,545,498,565,492,586,477,609,463,619,440,627,384,638"/>
+<area shape="poly" title=" " alt="" coords="361,579,344,594,311,632,307,629,340,590,358,575"/>
+<area shape="poly" title=" " alt="" coords="302,242,287,276,281,314,281,556,287,597,298,630,293,632,282,598,275,557,275,314,282,274,297,240"/>
+<area shape="poly" title=" " alt="" coords="785,342,778,377,774,415,774,557,770,566,761,573,728,587,620,610,488,628,370,639,370,634,488,622,619,605,726,582,758,569,766,562,769,556,769,415,772,376,780,341"/>
+<area shape="poly" title=" " alt="" coords="94,442,87,479,88,499,94,518,107,539,125,559,167,590,213,613,255,628,253,633,210,618,164,595,121,563,103,543,89,520,83,500,82,479,89,441"/>
+<area shape="poly" title=" " alt="" coords="611,389,634,454,629,456,606,391"/>
+<area shape="poly" title=" " alt="" coords="603,292,602,352,597,352,598,292"/>
+<area shape="poly" title=" " alt="" coords="915,668,865,720,861,716,911,664"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a3769c5f99e90c4fb4c86b02faec72bfd" id="r_a3769c5f99e90c4fb4c86b02faec72bfd"><td class="memItemLeft" align="right" valign="top"><a id="a3769c5f99e90c4fb4c86b02faec72bfd" name="a3769c5f99e90c4fb4c86b02faec72bfd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigAddFolder</b> (int id, int parentId)</td></tr>
+<tr class="separator:a3769c5f99e90c4fb4c86b02faec72bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac691e06344a2e3771c9b8ab4dcad57f9" id="r_ac691e06344a2e3771c9b8ab4dcad57f9"><td class="memItemLeft" align="right" valign="top"><a id="ac691e06344a2e3771c9b8ab4dcad57f9" name="ac691e06344a2e3771c9b8ab4dcad57f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigAdd</b> (int id, int parentId)</td></tr>
+<tr class="separator:ac691e06344a2e3771c9b8ab4dcad57f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('signals_classCDatabase')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a9702e53141a678e8f5b4a63df6129966 inherit signals_classCDatabase" id="r_a9702e53141a678e8f5b4a63df6129966"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="separator:a9702e53141a678e8f5b4a63df6129966 inherit signals_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa4589e04a2286bdc8e13def458372989" id="r_aa4589e04a2286bdc8e13def458372989"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#aa4589e04a2286bdc8e13def458372989">CDatabaseTree</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:aa4589e04a2286bdc8e13def458372989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8582aff5959f60b6b8cec78f575fc4b" id="r_ad8582aff5959f60b6b8cec78f575fc4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ad8582aff5959f60b6b8cec78f575fc4b">CDatabaseTree</a> (const QString &amp;szPrefix, QObject *parent=nullptr)</td></tr>
+<tr class="separator:ad8582aff5959f60b6b8cec78f575fc4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86bdbdd20f3b8fcea212a8d30ef5b457" id="r_a86bdbdd20f3b8fcea212a8d30ef5b457"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a86bdbdd20f3b8fcea212a8d30ef5b457">Add</a> (const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;item)</td></tr>
+<tr class="memdesc:a86bdbdd20f3b8fcea212a8d30ef5b457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add item  <br /></td></tr>
+<tr class="separator:a86bdbdd20f3b8fcea212a8d30ef5b457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ee78c2655a405890e00fb0bcf32a7b" id="r_af2ee78c2655a405890e00fb0bcf32a7b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#af2ee78c2655a405890e00fb0bcf32a7b">Update</a> (const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;item)</td></tr>
+<tr class="separator:af2ee78c2655a405890e00fb0bcf32a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2b218c23417c247b3aa8f921ecd1db" id="r_a6b2b218c23417c247b3aa8f921ecd1db"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a6b2b218c23417c247b3aa8f921ecd1db">Delete</a> (int id, bool delKey=false)</td></tr>
+<tr class="separator:a6b2b218c23417c247b3aa8f921ecd1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3e1257648b80d67a41af6017ff7cfa" id="r_a7e3e1257648b80d67a41af6017ff7cfa"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a7e3e1257648b80d67a41af6017ff7cfa">Delete</a> (QList&lt; int &gt; items, bool delKey=false)</td></tr>
+<tr class="separator:a7e3e1257648b80d67a41af6017ff7cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d38230396029c1a31f48f32fa1dc1f" id="r_a79d38230396029c1a31f48f32fa1dc1f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a79d38230396029c1a31f48f32fa1dc1f">DeleteChild</a> (int parentId, bool delKey=false)</td></tr>
+<tr class="separator:a79d38230396029c1a31f48f32fa1dc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14ec37790a63140aca7017a2b6807f3" id="r_ac14ec37790a63140aca7017a2b6807f3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ac14ec37790a63140aca7017a2b6807f3">Move</a> (int id, int newParent)</td></tr>
+<tr class="separator:ac14ec37790a63140aca7017a2b6807f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f52b3957aad4917fe9d5a61930e655" id="r_ad5f52b3957aad4917fe9d5a61930e655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTreeItem.html">TreeItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ad5f52b3957aad4917fe9d5a61930e655">GetLeaf</a> (int id)</td></tr>
+<tr class="separator:ad5f52b3957aad4917fe9d5a61930e655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebb1790b4a4c2b178baa19fbd6a644d1" id="r_aebb1790b4a4c2b178baa19fbd6a644d1"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#aebb1790b4a4c2b178baa19fbd6a644d1">GetLeaves</a> (int nodeId)</td></tr>
+<tr class="memdesc:aebb1790b4a4c2b178baa19fbd6a644d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the leaves under nodeId  <br /></td></tr>
+<tr class="separator:aebb1790b4a4c2b178baa19fbd6a644d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c25df8c2e97c769ab3f5e5005f425b5" id="r_a8c25df8c2e97c769ab3f5e5005f425b5"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a8c25df8c2e97c769ab3f5e5005f425b5">GetLeavesByKey</a> (int key)</td></tr>
+<tr class="memdesc:a8c25df8c2e97c769ab3f5e5005f425b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get leaves  <br /></td></tr>
+<tr class="separator:a8c25df8c2e97c769ab3f5e5005f425b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e6d24ef5e04a2b3c081432adf27f41" id="r_ac7e6d24ef5e04a2b3c081432adf27f41"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ac7e6d24ef5e04a2b3c081432adf27f41">GetLeavesByKey</a> (QList&lt; int &gt; key)</td></tr>
+<tr class="separator:ac7e6d24ef5e04a2b3c081432adf27f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ebbe7daeb39c3ed422d2a137efef81" id="r_a87ebbe7daeb39c3ed422d2a137efef81"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a87ebbe7daeb39c3ed422d2a137efef81">GetLeafCount</a> (int parentId=0)</td></tr>
+<tr class="separator:a87ebbe7daeb39c3ed422d2a137efef81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3264a5eb39ee04f6eee7c98e638330ad" id="r_a3264a5eb39ee04f6eee7c98e638330ad"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a3264a5eb39ee04f6eee7c98e638330ad">AddNode</a> (const QString &amp;name, int parentId=0)</td></tr>
+<tr class="separator:a3264a5eb39ee04f6eee7c98e638330ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa98548479e50325b6357e436f18261" id="r_a3aa98548479e50325b6357e436f18261"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a3aa98548479e50325b6357e436f18261">RenameNode</a> (int id, const QString &amp;newName)</td></tr>
+<tr class="separator:a3aa98548479e50325b6357e436f18261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac373c8af095c1acc5dcc1f9771316207" id="r_ac373c8af095c1acc5dcc1f9771316207"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ac373c8af095c1acc5dcc1f9771316207">DeleteNode</a> (int id, bool delKey=false)</td></tr>
+<tr class="separator:ac373c8af095c1acc5dcc1f9771316207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9d4ab9f433a6780615883ca5948c06" id="r_a8f9d4ab9f433a6780615883ca5948c06"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a8f9d4ab9f433a6780615883ca5948c06">MoveNode</a> (int id, int newParentId)</td></tr>
+<tr class="separator:a8f9d4ab9f433a6780615883ca5948c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda126d84788d7ba42aeeb136a208e62" id="r_afda126d84788d7ba42aeeb136a208e62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTreeItem.html">TreeItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#afda126d84788d7ba42aeeb136a208e62">GetNode</a> (int id)</td></tr>
+<tr class="separator:afda126d84788d7ba42aeeb136a208e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23791f6280ac5490b526afd69d77d6c" id="r_af23791f6280ac5490b526afd69d77d6c"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#af23791f6280ac5490b526afd69d77d6c">GetAllNodes</a> ()</td></tr>
+<tr class="separator:af23791f6280ac5490b526afd69d77d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb7286fbb7fc5f7123ab9cecf31e7da7" id="r_abb7286fbb7fc5f7123ab9cecf31e7da7"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#abb7286fbb7fc5f7123ab9cecf31e7da7">GetSubNodes</a> (int parentId)</td></tr>
+<tr class="separator:abb7286fbb7fc5f7123ab9cecf31e7da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6b2ad90eef2dc283ca0baa5b4059fe" id="r_a8d6b2ad90eef2dc283ca0baa5b4059fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a8d6b2ad90eef2dc283ca0baa5b4059fe">GetNodeCount</a> (int nParentId=0)</td></tr>
+<tr class="separator:a8d6b2ad90eef2dc283ca0baa5b4059fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae437993dd8dc7c5edfe521ae9924814e" id="r_ae437993dd8dc7c5edfe521ae9924814e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ae437993dd8dc7c5edfe521ae9924814e">GetCount</a> (int parentId=0)</td></tr>
+<tr class="memdesc:ae437993dd8dc7c5edfe521ae9924814e"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到指定id节点下的所有节点和叶子数。不递归。  <br /></td></tr>
+<tr class="separator:ae437993dd8dc7c5edfe521ae9924814e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7a3c834502c8d26a4242f550a2ec98" id="r_aed7a3c834502c8d26a4242f550a2ec98"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#aed7a3c834502c8d26a4242f550a2ec98">OnInitializeDatabase</a> () override</td></tr>
+<tr class="separator:aed7a3c834502c8d26a4242f550a2ec98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6774fa220c4b916dbd28cf7e1151d0db" id="r_a6774fa220c4b916dbd28cf7e1151d0db"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a6774fa220c4b916dbd28cf7e1151d0db">ExportToJson</a> (QJsonObject &amp;obj) override</td></tr>
+<tr class="separator:a6774fa220c4b916dbd28cf7e1151d0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7784d6053f2789d5376a43e241578578" id="r_a7784d6053f2789d5376a43e241578578"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a7784d6053f2789d5376a43e241578578">ImportFromJson</a> (const QJsonObject &amp;obj) override</td></tr>
+<tr class="separator:a7784d6053f2789d5376a43e241578578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCDatabase')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a5ab471a3d6124b928ebe5cac24cd6ea0 inherit pub_methods_classCDatabase" id="r_a5ab471a3d6124b928ebe5cac24cd6ea0"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CDatabase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a5ab471a3d6124b928ebe5cac24cd6ea0 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5343cb86caa6e70c5ce522153fcc686c inherit pub_methods_classCDatabase" id="r_a5343cb86caa6e70c5ce522153fcc686c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a5343cb86caa6e70c5ce522153fcc686c">SetDatabase</a> (QSqlDatabase db, <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara=nullptr)</td></tr>
+<tr class="separator:a5343cb86caa6e70c5ce522153fcc686c inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b8d009f020c71770c433e7ce66333a inherit pub_methods_classCDatabase" id="r_ae3b8d009f020c71770c433e7ce66333a"><td class="memItemLeft" align="right" valign="top">QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ae3b8d009f020c71770c433e7ce66333a">GetDatabase</a> () const</td></tr>
+<tr class="separator:ae3b8d009f020c71770c433e7ce66333a inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase" id="r_a46fd19db9acf07581bbdba37c849a5a5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a46fd19db9acf07581bbdba37c849a5a5">OpenDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara=nullptr)</td></tr>
+<tr class="memdesc:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenDatabase  <br /></td></tr>
+<tr class="separator:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239fe256c39ed751e6eb8100b28dc2db inherit pub_methods_classCDatabase" id="r_a239fe256c39ed751e6eb8100b28dc2db"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a239fe256c39ed751e6eb8100b28dc2db">OpenMySqlDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara)</td></tr>
+<tr class="separator:a239fe256c39ed751e6eb8100b28dc2db inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a704093ffdc65b11a9b3014768a722 inherit pub_methods_classCDatabase" id="r_a55a704093ffdc65b11a9b3014768a722"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a55a704093ffdc65b11a9b3014768a722">OpenODBCDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara)</td></tr>
+<tr class="separator:a55a704093ffdc65b11a9b3014768a722 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546297d4f84fd15466b9a59bcb11a099 inherit pub_methods_classCDatabase" id="r_a546297d4f84fd15466b9a59bcb11a099"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a546297d4f84fd15466b9a59bcb11a099">OpenSQLiteDatabase</a> (const QString &amp;connectionName=QString(), const QString &amp;dbPath=QString())</td></tr>
+<tr class="separator:a546297d4f84fd15466b9a59bcb11a099 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4682557c6cebdc2269412de3604f8ca inherit pub_methods_classCDatabase" id="r_ab4682557c6cebdc2269412de3604f8ca"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ab4682557c6cebdc2269412de3604f8ca">IsOpen</a> () const</td></tr>
+<tr class="separator:ab4682557c6cebdc2269412de3604f8ca inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2498713b7439cd59fac98decbf9d2359 inherit pub_methods_classCDatabase" id="r_a2498713b7439cd59fac98decbf9d2359"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a2498713b7439cd59fac98decbf9d2359">CloseDatabase</a> ()</td></tr>
+<tr class="separator:a2498713b7439cd59fac98decbf9d2359 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be75e0f7f8524444ea0cf8158460985 inherit pub_methods_classCDatabase" id="r_a4be75e0f7f8524444ea0cf8158460985"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a4be75e0f7f8524444ea0cf8158460985">ExportToJsonFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a4be75e0f7f8524444ea0cf8158460985 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5037079b0a05846d10194e89aa4cfa56 inherit pub_methods_classCDatabase" id="r_a5037079b0a05846d10194e89aa4cfa56"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a5037079b0a05846d10194e89aa4cfa56">ImportFromJsonFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a5037079b0a05846d10194e89aa4cfa56 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae1b699b1b8e69c8e3467d884b8fa0a7c" id="r_ae1b699b1b8e69c8e3467d884b8fa0a7c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#ae1b699b1b8e69c8e3467d884b8fa0a7c">OnDeleteKey</a> (int key)</td></tr>
+<tr class="memdesc:ae1b699b1b8e69c8e3467d884b8fa0a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">从 key 相关的表中删除 key  <br /></td></tr>
+<tr class="separator:ae1b699b1b8e69c8e3467d884b8fa0a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68181c5a79f73b448078f5d474b8463" id="r_af68181c5a79f73b448078f5d474b8463"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#af68181c5a79f73b448078f5d474b8463">OnInitializeSqliteDatabase</a> () override</td></tr>
+<tr class="separator:af68181c5a79f73b448078f5d474b8463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fed170172626f1b20a41fa84e4607c" id="r_a52fed170172626f1b20a41fa84e4607c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a52fed170172626f1b20a41fa84e4607c">OnInitializeMySqlDatabase</a> () override</td></tr>
+<tr class="separator:a52fed170172626f1b20a41fa84e4607c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:acab4619a09504cb8af7bbf8a903e7728" id="r_acab4619a09504cb8af7bbf8a903e7728"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#acab4619a09504cb8af7bbf8a903e7728">m_szTableName</a></td></tr>
+<tr class="separator:acab4619a09504cb8af7bbf8a903e7728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3e304d5a176738b867e8b3da5b60ea" id="r_a4d3e304d5a176738b867e8b3da5b60ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCDatabaseFolder.html">CDatabaseFolder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabaseTree.html#a4d3e304d5a176738b867e8b3da5b60ea">m_FolderDB</a></td></tr>
+<tr class="separator:a4d3e304d5a176738b867e8b3da5b60ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCDatabase')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:ab637869da6fd315eb574b7ab13e60f51 inherit pro_attribs_classCDatabase" id="r_ab637869da6fd315eb574b7ab13e60f51"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ab637869da6fd315eb574b7ab13e60f51">m_szConnectName</a></td></tr>
+<tr class="separator:ab637869da6fd315eb574b7ab13e60f51 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38cbbe64d454d584ac375e3ecfdcfc44 inherit pro_attribs_classCDatabase" id="r_a38cbbe64d454d584ac375e3ecfdcfc44"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a38cbbe64d454d584ac375e3ecfdcfc44">m_MinVersion</a></td></tr>
+<tr class="separator:a38cbbe64d454d584ac375e3ecfdcfc44 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ef66a49ea7db366c943f473b60e9b1 inherit pro_attribs_classCDatabase" id="r_ad6ef66a49ea7db366c943f473b60e9b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ad6ef66a49ea7db366c943f473b60e9b1">m_pPara</a></td></tr>
+<tr class="separator:ad6ef66a49ea7db366c943f473b60e9b1 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8h_source.html">DatabaseTree.h</a> 第 <a class="el" href="DatabaseTree_8h_source.html#l00093">93</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aa4589e04a2286bdc8e13def458372989" name="aa4589e04a2286bdc8e13def458372989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4589e04a2286bdc8e13def458372989">&#9670;&#160;</a></span>CDatabaseTree() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDatabaseTree::CDatabaseTree </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00512">512</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad8582aff5959f60b6b8cec78f575fc4b" name="ad8582aff5959f60b6b8cec78f575fc4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8582aff5959f60b6b8cec78f575fc4b">&#9670;&#160;</a></span>CDatabaseTree() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDatabaseTree::CDatabaseTree </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00519">519</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a86bdbdd20f3b8fcea212a8d30ef5b457" name="a86bdbdd20f3b8fcea212a8d30ef5b457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86bdbdd20f3b8fcea212a8d30ef5b457">&#9670;&#160;</a></span>Add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDatabaseTree::Add </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add item </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>&gt; 0 , id of added item. = 0 , failed </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00609">609</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3264a5eb39ee04f6eee7c98e638330ad" name="a3264a5eb39ee04f6eee7c98e638330ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3264a5eb39ee04f6eee7c98e638330ad">&#9670;&#160;</a></span>AddNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDatabaseTree::AddNode </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parentId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00966">966</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b2b218c23417c247b3aa8f921ecd1db" name="a6b2b218c23417c247b3aa8f921ecd1db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b2b218c23417c247b3aa8f921ecd1db">&#9670;&#160;</a></span>Delete() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::Delete </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>delKey</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00693">693</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e3e1257648b80d67a41af6017ff7cfa" name="a7e3e1257648b80d67a41af6017ff7cfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3e1257648b80d67a41af6017ff7cfa">&#9670;&#160;</a></span>Delete() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::Delete </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>delKey</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00721">721</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a79d38230396029c1a31f48f32fa1dc1f" name="a79d38230396029c1a31f48f32fa1dc1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d38230396029c1a31f48f32fa1dc1f">&#9670;&#160;</a></span>DeleteChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::DeleteChild </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parentId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>delKey</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00761">761</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac373c8af095c1acc5dcc1f9771316207" name="ac373c8af095c1acc5dcc1f9771316207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac373c8af095c1acc5dcc1f9771316207">&#9670;&#160;</a></span>DeleteNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::DeleteNode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>delKey</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00976">976</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6774fa220c4b916dbd28cf7e1151d0db" name="a6774fa220c4b916dbd28cf7e1151d0db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6774fa220c4b916dbd28cf7e1151d0db">&#9670;&#160;</a></span>ExportToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::ExportToJson </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCDatabase.html">CDatabase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l01018">1018</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af23791f6280ac5490b526afd69d77d6c" name="af23791f6280ac5490b526afd69d77d6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23791f6280ac5490b526afd69d77d6c">&#9670;&#160;</a></span>GetAllNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt; CDatabaseTree::GetAllNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00993">993</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae437993dd8dc7c5edfe521ae9924814e" name="ae437993dd8dc7c5edfe521ae9924814e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae437993dd8dc7c5edfe521ae9924814e">&#9670;&#160;</a></span>GetCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDatabaseTree::GetCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parentId</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>得到指定id节点下的所有节点和叶子数。不递归。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentId</td><td>0, 得到树中所有节点和叶子。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l01008">1008</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad5f52b3957aad4917fe9d5a61930e655" name="ad5f52b3957aad4917fe9d5a61930e655"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f52b3957aad4917fe9d5a61930e655">&#9670;&#160;</a></span>GetLeaf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTreeItem.html">TreeItem</a> CDatabaseTree::GetLeaf </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00805">805</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a87ebbe7daeb39c3ed422d2a137efef81" name="a87ebbe7daeb39c3ed422d2a137efef81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ebbe7daeb39c3ed422d2a137efef81">&#9670;&#160;</a></span>GetLeafCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDatabaseTree::GetLeafCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parentId</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00952">952</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aebb1790b4a4c2b178baa19fbd6a644d1" name="aebb1790b4a4c2b178baa19fbd6a644d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebb1790b4a4c2b178baa19fbd6a644d1">&#9670;&#160;</a></span>GetLeaves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt; CDatabaseTree::GetLeaves </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nodeId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the leaves under nodeId </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeId</td><td><ul>
+<li>&lt; 0: Get all leaves</li>
+<li>&gt;= 0: Get the leaves under the node </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00837">837</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8c25df8c2e97c769ab3f5e5005f425b5" name="a8c25df8c2e97c769ab3f5e5005f425b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c25df8c2e97c769ab3f5e5005f425b5">&#9670;&#160;</a></span>GetLeavesByKey() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt; CDatabaseTree::GetLeavesByKey </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get leaves </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Get the leaves of value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00873">873</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac7e6d24ef5e04a2b3c081432adf27f41" name="ac7e6d24ef5e04a2b3c081432adf27f41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e6d24ef5e04a2b3c081432adf27f41">&#9670;&#160;</a></span>GetLeavesByKey() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt; CDatabaseTree::GetLeavesByKey </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00909">909</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afda126d84788d7ba42aeeb136a208e62" name="afda126d84788d7ba42aeeb136a208e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afda126d84788d7ba42aeeb136a208e62">&#9670;&#160;</a></span>GetNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTreeItem.html">TreeItem</a> CDatabaseTree::GetNode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00988">988</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8d6b2ad90eef2dc283ca0baa5b4059fe" name="a8d6b2ad90eef2dc283ca0baa5b4059fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6b2ad90eef2dc283ca0baa5b4059fe">&#9670;&#160;</a></span>GetNodeCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDatabaseTree::GetNodeCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nParentId</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l01003">1003</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abb7286fbb7fc5f7123ab9cecf31e7da7" name="abb7286fbb7fc5f7123ab9cecf31e7da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb7286fbb7fc5f7123ab9cecf31e7da7">&#9670;&#160;</a></span>GetSubNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classTreeItem.html">TreeItem</a> &gt; CDatabaseTree::GetSubNodes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parentId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00998">998</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7784d6053f2789d5376a43e241578578" name="a7784d6053f2789d5376a43e241578578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7784d6053f2789d5376a43e241578578">&#9670;&#160;</a></span>ImportFromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::ImportFromJson </td>
+          <td>(</td>
+          <td class="paramtype">const QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCDatabase.html">CDatabase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l01053">1053</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac14ec37790a63140aca7017a2b6807f3" name="ac14ec37790a63140aca7017a2b6807f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14ec37790a63140aca7017a2b6807f3">&#9670;&#160;</a></span>Move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::Move </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newParent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00786">786</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8f9d4ab9f433a6780615883ca5948c06" name="a8f9d4ab9f433a6780615883ca5948c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f9d4ab9f433a6780615883ca5948c06">&#9670;&#160;</a></span>MoveNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::MoveNode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newParentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00983">983</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae1b699b1b8e69c8e3467d884b8fa0a7c" name="ae1b699b1b8e69c8e3467d884b8fa0a7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1b699b1b8e69c8e3467d884b8fa0a7c">&#9670;&#160;</a></span>OnDeleteKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::OnDeleteKey </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从 key 相关的表中删除 key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>treu: 成功 false: 失败。删除停止。 </dd></dl>
+
+<p>被 <a class="el" href="classCFavoriteDatabase.html#a5b283dc0f5b54651a84f083e351ee8bf">CFavoriteDatabase</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l01013">1013</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aed7a3c834502c8d26a4242f550a2ec98" name="aed7a3c834502c8d26a4242f550a2ec98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed7a3c834502c8d26a4242f550a2ec98">&#9670;&#160;</a></span>OnInitializeDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::OnInitializeDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00527">527</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52fed170172626f1b20a41fa84e4607c" name="a52fed170172626f1b20a41fa84e4607c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52fed170172626f1b20a41fa84e4607c">&#9670;&#160;</a></span>OnInitializeMySqlDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::OnInitializeMySqlDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00577">577</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af68181c5a79f73b448078f5d474b8463" name="af68181c5a79f73b448078f5d474b8463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68181c5a79f73b448078f5d474b8463">&#9670;&#160;</a></span>OnInitializeSqliteDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::OnInitializeSqliteDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00543">543</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3aa98548479e50325b6357e436f18261" name="a3aa98548479e50325b6357e436f18261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aa98548479e50325b6357e436f18261">&#9670;&#160;</a></span>RenameNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::RenameNode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00971">971</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af2ee78c2655a405890e00fb0bcf32a7b" name="af2ee78c2655a405890e00fb0bcf32a7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2ee78c2655a405890e00fb0bcf32a7b">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDatabaseTree::Update </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTreeItem.html">TreeItem</a> &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a> 第 <a class="el" href="DatabaseTree_8cpp_source.html#l00662">662</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4d3e304d5a176738b867e8b3da5b60ea" name="a4d3e304d5a176738b867e8b3da5b60ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3e304d5a176738b867e8b3da5b60ea">&#9670;&#160;</a></span>m_FolderDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDatabaseFolder.html">CDatabaseFolder</a> CDatabaseTree::m_FolderDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8h_source.html">DatabaseTree.h</a> 第 <a class="el" href="DatabaseTree_8h_source.html#l00175">175</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acab4619a09504cb8af7bbf8a903e7728" name="acab4619a09504cb8af7bbf8a903e7728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab4619a09504cb8af7bbf8a903e7728">&#9670;&#160;</a></span>m_szTableName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDatabaseTree::m_szTableName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DatabaseTree_8h_source.html">DatabaseTree.h</a> 第 <a class="el" href="DatabaseTree_8h_source.html#l00174">174</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="DatabaseTree_8h_source.html">DatabaseTree.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="DatabaseTree_8cpp_source.html">DatabaseTree.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

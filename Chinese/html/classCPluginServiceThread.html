@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginServiceThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCPluginServiceThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginServiceThread类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__SERVICE.html">服务端库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。  
+ <a href="classCPluginServiceThread.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PluginServiceThread_8h_source.html">PluginServiceThread.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CPluginServiceThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceThread__inherit__graph.png" border="0" usemap="#aCPluginServiceThread_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginServiceThread_inherit__map" id="aCPluginServiceThread_inherit__map">
+<area shape="rect" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="250,152,414,177"/>
+<area shape="rect" href="classCPluginServiceLibVNCServer.html" title=" " alt="" coords="5,225,213,251"/>
+<area shape="poly" title=" " alt="" coords="284,184,146,228,145,223,283,179"/>
+<area shape="rect" href="classCPluginServiceRabbitVNC.html" title=" " alt="" coords="237,225,427,251"/>
+<area shape="poly" title=" " alt="" coords="335,191,335,225,329,225,329,191"/>
+<area shape="rect" href="classCPluginServiceTigerVNC.html" title=" " alt="" coords="451,225,631,251"/>
+<area shape="poly" title=" " alt="" coords="380,179,508,223,507,228,378,184"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="273,79,391,104"/>
+<area shape="poly" title=" " alt="" coords="335,118,335,152,329,152,329,118"/>
+<area shape="rect" title=" " alt="" coords="295,5,369,31"/>
+<area shape="poly" title=" " alt="" coords="335,44,335,79,329,79,329,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginServiceThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceThread__coll__graph.png" border="0" usemap="#aCPluginServiceThread_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginServiceThread_coll__map" id="aCPluginServiceThread_coll__map">
+<area shape="rect" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。" alt="" coords="5,152,169,177"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="28,79,147,104"/>
+<area shape="poly" title=" " alt="" coords="90,118,90,152,85,152,85,118"/>
+<area shape="rect" title=" " alt="" coords="50,5,125,31"/>
+<area shape="poly" title=" " alt="" coords="90,44,90,79,85,79,85,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:abf6d40840e953021179dfe1dfbdb8497" id="r_abf6d40840e953021179dfe1dfbdb8497"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#abf6d40840e953021179dfe1dfbdb8497">CPluginServiceThread</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:abf6d40840e953021179dfe1dfbdb8497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac605ef968e72655e809471ff202bd8c4" id="r_ac605ef968e72655e809471ff202bd8c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#ac605ef968e72655e809471ff202bd8c4">Start</a> () override</td></tr>
+<tr class="memdesc:ac605ef968e72655e809471ff202bd8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default start a new thread to process Service  <br /></td></tr>
+<tr class="separator:ac605ef968e72655e809471ff202bd8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ba09edc67fac1f076903d3e8ce9225" id="r_a92ba09edc67fac1f076903d3e8ce9225"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#a92ba09edc67fac1f076903d3e8ce9225">Stop</a> () override</td></tr>
+<tr class="separator:a92ba09edc67fac1f076903d3e8ce9225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPluginService"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPluginService')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPluginService.html">CPluginService</a></td></tr>
+<tr class="memitem:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService" id="r_a912b68519ed00245b48775b5ca99a2fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a912b68519ed00245b48775b5ca99a2fe">CPluginService</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService" id="r_abff4f9416da5a148c27538ca5bdeccf6"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abff4f9416da5a148c27538ca5bdeccf6">Id</a> () const</td></tr>
+<tr class="memdesc:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID. Default: <a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78" title="Plugin Protocol">Protocol()</a> + "_" + <a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d99a4e203d767ecaab641d50c2ad78 inherit pub_methods_classCPluginService" id="r_ae0d99a4e203d767ecaab641d50c2ad78"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78">Protocol</a> () const =0</td></tr>
+<tr class="memdesc:ae0d99a4e203d767ecaab641d50c2ad78 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plugin Protocol  <br /></td></tr>
+<tr class="separator:ae0d99a4e203d767ecaab641d50c2ad78 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac796e2be55150d55289024344d5b46f7 inherit pub_methods_classCPluginService" id="r_ac796e2be55150d55289024344d5b46f7"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7">Name</a> () const =0</td></tr>
+<tr class="memdesc:ac796e2be55150d55289024344d5b46f7 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:ac796e2be55150d55289024344d5b46f7 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2326bc76c7a40f24ecb401f5aaa57d72 inherit pub_methods_classCPluginService" id="r_a2326bc76c7a40f24ecb401f5aaa57d72"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a2326bc76c7a40f24ecb401f5aaa57d72">DisplayName</a> () const</td></tr>
+<tr class="memdesc:a2326bc76c7a40f24ecb401f5aaa57d72 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plugin display name  <br /></td></tr>
+<tr class="separator:a2326bc76c7a40f24ecb401f5aaa57d72 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e3800f08ef049c378485390782d0ad inherit pub_methods_classCPluginService" id="r_a73e3800f08ef049c378485390782d0ad"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a73e3800f08ef049c378485390782d0ad">Description</a> () const =0</td></tr>
+<tr class="memdesc:a73e3800f08ef049c378485390782d0ad inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件描述  <br /></td></tr>
+<tr class="separator:a73e3800f08ef049c378485390782d0ad inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService" id="r_abe81ba8c83db377878dac18301770056"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abe81ba8c83db377878dac18301770056">Icon</a> () const</td></tr>
+<tr class="separator:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a509f9f6f0a05639f6c387bc12c4f959d inherit pub_methods_classCPluginService" id="r_a509f9f6f0a05639f6c387bc12c4f959d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCService.html">CService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a509f9f6f0a05639f6c387bc12c4f959d">NewService</a> ()=0</td></tr>
+<tr class="memdesc:a509f9f6f0a05639f6c387bc12c4f959d inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">New service  <br /></td></tr>
+<tr class="separator:a509f9f6f0a05639f6c387bc12c4f959d inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService" id="r_ac2ef0e1d3a6a158a4f039e277ba7f819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#ac2ef0e1d3a6a158a4f039e277ba7f819">InitTranslator</a> ()</td></tr>
+<tr class="separator:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aa8867822816b5e30ecf3c098f9d8fe06" id="r_aa8867822816b5e30ecf3c098f9d8fe06"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; <a class="el" href="classCServiceThread.html">CServiceThread</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceThread.html#aa8867822816b5e30ecf3c098f9d8fe06">m_Thread</a></td></tr>
+<tr class="separator:aa8867822816b5e30ecf3c098f9d8fe06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0">CService</a> <a class="el" href="classCServiceThread.html">CServiceThread</a> <a class="el" href="classCServiceManager.html" title="管理服务">CServiceManager</a> <a class="el" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。">CPluginService</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8h_source.html">PluginServiceThread.h</a> 第 <a class="el" href="PluginServiceThread_8h_source.html#l00017">17</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="abf6d40840e953021179dfe1dfbdb8497" name="abf6d40840e953021179dfe1dfbdb8497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6d40840e953021179dfe1dfbdb8497">&#9670;&#160;</a></span>CPluginServiceThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceThread::CPluginServiceThread </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8cpp_source.html">PluginServiceThread.cpp</a> 第 <a class="el" href="PluginServiceThread_8cpp_source.html#l00004">4</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7801cebeedfbb718ebb2a59f1d861ed0" name="a7801cebeedfbb718ebb2a59f1d861ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7801cebeedfbb718ebb2a59f1d861ed0">&#9670;&#160;</a></span>~CPluginServiceThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceThread::~CPluginServiceThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8cpp_source.html">PluginServiceThread.cpp</a> 第 <a class="el" href="PluginServiceThread_8cpp_source.html#l00008">8</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ac605ef968e72655e809471ff202bd8c4" name="ac605ef968e72655e809471ff202bd8c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac605ef968e72655e809471ff202bd8c4">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPluginServiceThread::Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default start a new thread to process Service </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0">CService</a> <a class="el" href="classCServiceThread.html">CServiceThread</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCPluginService.html#a874a953f1df950231d28cdfbbf4a7a74">CPluginService</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8cpp_source.html">PluginServiceThread.cpp</a> 第 <a class="el" href="PluginServiceThread_8cpp_source.html#l00011">11</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a92ba09edc67fac1f076903d3e8ce9225" name="a92ba09edc67fac1f076903d3e8ce9225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ba09edc67fac1f076903d3e8ce9225">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPluginServiceThread::Stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCPluginService.html">CPluginService</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8cpp_source.html">PluginServiceThread.cpp</a> 第 <a class="el" href="PluginServiceThread_8cpp_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa8867822816b5e30ecf3c098f9d8fe06" name="aa8867822816b5e30ecf3c098f9d8fe06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8867822816b5e30ecf3c098f9d8fe06">&#9670;&#160;</a></span>m_Thread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;<a class="el" href="classCServiceThread.html">CServiceThread</a>&gt; CPluginServiceThread::m_Thread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceThread_8h_source.html">PluginServiceThread.h</a> 第 <a class="el" href="PluginServiceThread_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="PluginServiceThread_8h_source.html">PluginServiceThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="PluginServiceThread_8cpp_source.html">PluginServiceThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

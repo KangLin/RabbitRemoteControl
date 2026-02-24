@@ -1,0 +1,1101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterFtpServer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterFtpServer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterFtpServer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CParameterFtpServer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterFtpServer__inherit__graph.png" border="0" usemap="#aCParameterFtpServer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterFtpServer_inherit__map" id="aCParameterFtpServer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,167,251"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="11,152,161,177"/>
+<area shape="poly" title=" " alt="" coords="89,191,89,225,83,225,83,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="37,79,135,104"/>
+<area shape="poly" title=" " alt="" coords="89,118,89,152,83,152,83,118"/>
+<area shape="rect" title=" " alt="" coords="49,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,79,83,79,83,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterFtpServer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterFtpServer__coll__graph.png" border="0" usemap="#aCParameterFtpServer_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterFtpServer_coll__map" id="aCParameterFtpServer_coll__map">
+<area shape="rect" title=" " alt="" coords="5,253,167,279"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="267,155,417,180"/>
+<area shape="poly" title=" " alt="" coords="257,185,187,206,140,231,103,255,100,251,137,226,185,202,255,180"/>
+<area shape="poly" title=" " alt="" coords="432,160,444,167,436,174,418,177,417,171,434,169,439,167,429,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="355,455,515,480"/>
+<area shape="poly" title=" " alt="" coords="342,194,340,231,341,278,348,328,364,376,394,420,424,452,420,456,389,423,360,379,343,329,336,278,334,231,336,194"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="375,352,496,377"/>
+<area shape="poly" title=" " alt="" coords="401,182,453,208,477,228,496,252,500,268,499,291,492,329,480,344,465,354,462,350,476,340,488,327,494,291,494,268,492,254,474,232,450,213,398,187"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="354,253,482,279"/>
+<area shape="poly" title=" " alt="" coords="362,189,411,252,407,255,358,193"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="605,80,703,105"/>
+<area shape="poly" title=" " alt="" coords="592,111,392,157,391,152,591,106"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="577,631,715,656"/>
+<area shape="poly" title=" " alt="" coords="640,118,628,141,623,166,623,556,630,597,643,629,638,631,625,598,618,557,618,166,623,139,635,115"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="397,543,537,568"/>
+<area shape="poly" title=" " alt="" coords="613,114,585,136,576,150,573,166,573,469,569,497,553,520,535,535,514,545,512,540,532,530,549,517,564,495,567,469,567,166,571,148,581,132,610,110"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="641,204,771,229"/>
+<area shape="poly" title=" " alt="" coords="667,117,704,203,699,205,662,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="709,303,852,328"/>
+<area shape="poly" title=" " alt="" coords="687,111,734,149,757,174,775,203,784,230,787,258,785,302,780,302,782,258,779,231,770,205,753,177,731,153,683,115"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="796,403,987,429"/>
+<area shape="poly" title=" " alt="" coords="718,99,773,108,827,121,870,140,882,152,887,166,887,317,893,403,887,403,882,317,882,166,878,155,867,145,826,127,772,113,717,104"/>
+<area shape="rect" title=" " alt="" coords="617,5,691,31"/>
+<area shape="poly" title=" " alt="" coords="657,45,657,80,651,80,651,45"/>
+<area shape="poly" title=" " alt="" coords="563,645,453,641,335,629,284,618,241,603,213,583,205,571,202,557,202,264,204,248,211,232,234,208,264,190,296,178,298,182,267,195,237,212,216,235,210,249,207,265,207,556,210,568,217,579,244,598,285,613,336,624,453,636,563,640"/>
+<area shape="poly" title=" " alt="" coords="465,581,466,594,471,605,486,615,512,624,577,634,576,640,511,629,484,620,467,608,460,596,459,582"/>
+<area shape="poly" title=" " alt="" coords="447,492,465,541,460,543,442,494"/>
+<area shape="poly" title=" " alt="" coords="438,391,438,455,433,455,433,391"/>
+<area shape="poly" title=" " alt="" coords="425,291,436,351,431,352,420,292"/>
+<area shape="poly" title=" " alt="" coords="695,242,681,276,674,314,674,557,667,598,654,631,649,629,662,597,669,556,669,314,676,274,690,240"/>
+<area shape="poly" title=" " alt="" coords="781,342,778,415,778,557,770,585,751,606,724,622,696,633,694,628,722,617,747,602,766,582,773,556,773,415,776,342"/>
+<area shape="poly" title=" " alt="" coords="888,443,877,480,859,525,832,570,796,609,757,630,716,640,715,635,755,625,792,605,828,567,854,522,872,478,883,441"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a43c48e6828b0eff166ada7bb20b34cb9" id="r_a43c48e6828b0eff166ada7bb20b34cb9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a43c48e6828b0eff166ada7bb20b34cb9">CParameterFtpServer</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a43c48e6828b0eff166ada7bb20b34cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d3b4e6cc61ab7d8c2aa1de4f8c1059" id="r_ad5d3b4e6cc61ab7d8c2aa1de4f8c1059"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ad5d3b4e6cc61ab7d8c2aa1de4f8c1059">GetPort</a> () const</td></tr>
+<tr class="separator:ad5d3b4e6cc61ab7d8c2aa1de4f8c1059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51cf9e06eb5cf1e35b68eaafc56b8c8e" id="r_a51cf9e06eb5cf1e35b68eaafc56b8c8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a51cf9e06eb5cf1e35b68eaafc56b8c8e">SetPort</a> (uint16_t newPort)</td></tr>
+<tr class="separator:a51cf9e06eb5cf1e35b68eaafc56b8c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc81f37eec21eeff8648c3373ed14a7" id="r_a3fc81f37eec21eeff8648c3373ed14a7"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a3fc81f37eec21eeff8648c3373ed14a7">GetUser</a> () const</td></tr>
+<tr class="separator:a3fc81f37eec21eeff8648c3373ed14a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe8daac4c5698e74e3370b937477ffe" id="r_a9fe8daac4c5698e74e3370b937477ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a9fe8daac4c5698e74e3370b937477ffe">SetUser</a> (const QString &amp;newUser)</td></tr>
+<tr class="separator:a9fe8daac4c5698e74e3370b937477ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc852809cb8d89cf6c2d5b7e724daa2" id="r_aebc852809cb8d89cf6c2d5b7e724daa2"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#aebc852809cb8d89cf6c2d5b7e724daa2">GetPassword</a> () const</td></tr>
+<tr class="separator:aebc852809cb8d89cf6c2d5b7e724daa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29378616b0d30094ef711283c7fb51ae" id="r_a29378616b0d30094ef711283c7fb51ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a29378616b0d30094ef711283c7fb51ae">SetPassword</a> (const QString &amp;newPassword)</td></tr>
+<tr class="separator:a29378616b0d30094ef711283c7fb51ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e48180d3aba18c9058289a10ab3c46" id="r_ad2e48180d3aba18c9058289a10ab3c46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ad2e48180d3aba18c9058289a10ab3c46">GetAnonymousLogin</a> () const</td></tr>
+<tr class="separator:ad2e48180d3aba18c9058289a10ab3c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ca44d885ec4dd306ba95d394fd89a8" id="r_ae6ca44d885ec4dd306ba95d394fd89a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ae6ca44d885ec4dd306ba95d394fd89a8">SetAnonymousLogin</a> (bool newAnonymousLogin)</td></tr>
+<tr class="separator:ae6ca44d885ec4dd306ba95d394fd89a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5602fecf8cf68447197647b9d727545" id="r_ab5602fecf8cf68447197647b9d727545"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ab5602fecf8cf68447197647b9d727545">GetReadOnly</a> () const</td></tr>
+<tr class="separator:ab5602fecf8cf68447197647b9d727545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5137dc847764d815d1fbbc0ee8bc5d0e" id="r_a5137dc847764d815d1fbbc0ee8bc5d0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a5137dc847764d815d1fbbc0ee8bc5d0e">SetReadOnly</a> (bool newReadOnly)</td></tr>
+<tr class="separator:a5137dc847764d815d1fbbc0ee8bc5d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca974f0241a96a59ff86ff62fdbcdfc1" id="r_aca974f0241a96a59ff86ff62fdbcdfc1"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#aca974f0241a96a59ff86ff62fdbcdfc1">GetRoot</a> () const</td></tr>
+<tr class="separator:aca974f0241a96a59ff86ff62fdbcdfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ebc84d072bf9e0f33627e64f6413fb" id="r_aa9ebc84d072bf9e0f33627e64f6413fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#aa9ebc84d072bf9e0f33627e64f6413fb">SetRoot</a> (const QString &amp;newRoot)</td></tr>
+<tr class="separator:aa9ebc84d072bf9e0f33627e64f6413fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada78ff69114c2cd5fb94a91d8941aa3" id="r_aada78ff69114c2cd5fb94a91d8941aa3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#aada78ff69114c2cd5fb94a91d8941aa3">GetConnectCount</a> () const</td></tr>
+<tr class="memdesc:aada78ff69114c2cd5fb94a91d8941aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect count.  <br /></td></tr>
+<tr class="separator:aada78ff69114c2cd5fb94a91d8941aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e082ae87337217699c38fc021d67a26" id="r_a7e082ae87337217699c38fc021d67a26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a7e082ae87337217699c38fc021d67a26">SetConnectCount</a> (int newConnectCount)</td></tr>
+<tr class="separator:a7e082ae87337217699c38fc021d67a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67d050d959d3be8efd2bef43b5833e5" id="r_ad67d050d959d3be8efd2bef43b5833e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ad67d050d959d3be8efd2bef43b5833e5">GetListenAll</a> () const</td></tr>
+<tr class="separator:ad67d050d959d3be8efd2bef43b5833e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bf77552a16ba31475f2fe7851025ee" id="r_ad8bf77552a16ba31475f2fe7851025ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#ad8bf77552a16ba31475f2fe7851025ee">SetListenAll</a> (bool newListenAll)</td></tr>
+<tr class="separator:ad8bf77552a16ba31475f2fe7851025ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4113428c093b59454d69cb34cf152114" id="r_a4113428c093b59454d69cb34cf152114"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a4113428c093b59454d69cb34cf152114">GetListen</a> () const</td></tr>
+<tr class="separator:a4113428c093b59454d69cb34cf152114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94fd8ad7e2683ca045358bf5457a6e82" id="r_a94fd8ad7e2683ca045358bf5457a6e82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a94fd8ad7e2683ca045358bf5457a6e82">SetListen</a> (const QStringList &amp;newListen)</td></tr>
+<tr class="separator:a94fd8ad7e2683ca045358bf5457a6e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8e4a7288d4c0dcbba1c57fb4a59654" id="r_a1c8e4a7288d4c0dcbba1c57fb4a59654"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a1c8e4a7288d4c0dcbba1c57fb4a59654">GetWhitelist</a> () const</td></tr>
+<tr class="separator:a1c8e4a7288d4c0dcbba1c57fb4a59654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8582f462cff0d11d0d3c002871c9c1fc" id="r_a8582f462cff0d11d0d3c002871c9c1fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a8582f462cff0d11d0d3c002871c9c1fc">SetWhitelist</a> (const QStringList &amp;newWhitelist)</td></tr>
+<tr class="separator:a8582f462cff0d11d0d3c002871c9c1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a478916b29ce42666d415fb8700c3e7e1" id="r_a478916b29ce42666d415fb8700c3e7e1"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a478916b29ce42666d415fb8700c3e7e1">GetBlacklist</a> () const</td></tr>
+<tr class="separator:a478916b29ce42666d415fb8700c3e7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e2d0479c6e1e1fa10b755608c1a36e" id="r_a71e2d0479c6e1e1fa10b755608c1a36e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a71e2d0479c6e1e1fa10b755608c1a36e">SetBlacklist</a> (const QStringList &amp;newBlacklist)</td></tr>
+<tr class="separator:a71e2d0479c6e1e1fa10b755608c1a36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate" id="r_a5056c786cd1aec8c584b6f9b633b35fc"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterOperate</b> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate" id="r_abed288f5e0d87a08f113126f31227a80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">GetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="separator:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate" id="r_a407cc6e826c0af916eb8ca5085d293e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a407cc6e826c0af916eb8ca5085d293e8">SetGlobalParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="separator:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="separator:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="separator:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="separator:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a1e4aacf57226b65acb563925a4a159fb" id="r_a1e4aacf57226b65acb563925a4a159fb"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a1e4aacf57226b65acb563925a4a159fb">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a1e4aacf57226b65acb563925a4a159fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc123b7f67f0a20297c44d6e076061cf" id="r_afc123b7f67f0a20297c44d6e076061cf"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#afc123b7f67f0a20297c44d6e076061cf">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:afc123b7f67f0a20297c44d6e076061cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="separator:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a1b2e9144426a49508f38d517a73b83f2" id="r_a1b2e9144426a49508f38d517a73b83f2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a1b2e9144426a49508f38d517a73b83f2">m_nPort</a></td></tr>
+<tr class="separator:a1b2e9144426a49508f38d517a73b83f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a594a60be8fff90ca778068e83ac273b9" id="r_a594a60be8fff90ca778068e83ac273b9"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a594a60be8fff90ca778068e83ac273b9">m_szUser</a></td></tr>
+<tr class="separator:a594a60be8fff90ca778068e83ac273b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751386bd342c25a531a4810b376c38da" id="r_a751386bd342c25a531a4810b376c38da"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a751386bd342c25a531a4810b376c38da">m_szPassword</a></td></tr>
+<tr class="separator:a751386bd342c25a531a4810b376c38da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550782671c754b970495ab789dadb7a5" id="r_a550782671c754b970495ab789dadb7a5"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a550782671c754b970495ab789dadb7a5">m_szRoot</a></td></tr>
+<tr class="separator:a550782671c754b970495ab789dadb7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e69c7037099e41e59c3be1dc14cae0" id="r_aa1e69c7037099e41e59c3be1dc14cae0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#aa1e69c7037099e41e59c3be1dc14cae0">m_bAnonymousLogin</a></td></tr>
+<tr class="separator:aa1e69c7037099e41e59c3be1dc14cae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b8d69d361ed1613c4e0caa4237973b6" id="r_a9b8d69d361ed1613c4e0caa4237973b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a9b8d69d361ed1613c4e0caa4237973b6">m_bReadOnly</a></td></tr>
+<tr class="separator:a9b8d69d361ed1613c4e0caa4237973b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71cc6fc5e3e2796f1aecea1a77f93ceb" id="r_a71cc6fc5e3e2796f1aecea1a77f93ceb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a71cc6fc5e3e2796f1aecea1a77f93ceb">m_ConnectCount</a></td></tr>
+<tr class="separator:a71cc6fc5e3e2796f1aecea1a77f93ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41181e28375939cbfe7a00871af8583c" id="r_a41181e28375939cbfe7a00871af8583c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a41181e28375939cbfe7a00871af8583c">m_bListenAll</a></td></tr>
+<tr class="separator:a41181e28375939cbfe7a00871af8583c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf5deb96898442d4e022226e6de4410b" id="r_abf5deb96898442d4e022226e6de4410b"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#abf5deb96898442d4e022226e6de4410b">m_Listen</a></td></tr>
+<tr class="separator:abf5deb96898442d4e022226e6de4410b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4924576a0ec8d1fe473944e1088e050c" id="r_a4924576a0ec8d1fe473944e1088e050c"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#a4924576a0ec8d1fe473944e1088e050c">m_Whitelist</a></td></tr>
+<tr class="separator:a4924576a0ec8d1fe473944e1088e050c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2d8a5c70084307abae0519aa6c9822" id="r_abc2d8a5c70084307abae0519aa6c9822"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFtpServer.html#abc2d8a5c70084307abae0519aa6c9822">m_Blacklist</a></td></tr>
+<tr class="separator:abc2d8a5c70084307abae0519aa6c9822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate" id="r_a3612d682561300f4d22c58dab8c3bb52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a3612d682561300f4d22c58dab8c3bb52">sigSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="separator:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="separator:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate" id="r_a4e92e0588bf8de1fa7181cd2d29ab059"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a4e92e0588bf8de1fa7181cd2d29ab059">slotSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="separator:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00007">7</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a43c48e6828b0eff166ada7bb20b34cb9" name="a43c48e6828b0eff166ada7bb20b34cb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c48e6828b0eff166ada7bb20b34cb9">&#9670;&#160;</a></span>CParameterFtpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterFtpServer::CParameterFtpServer </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em> = <code>QString()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad2e48180d3aba18c9058289a10ab3c46" name="ad2e48180d3aba18c9058289a10ab3c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e48180d3aba18c9058289a10ab3c46">&#9670;&#160;</a></span>GetAnonymousLogin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::GetAnonymousLogin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a478916b29ce42666d415fb8700c3e7e1" name="a478916b29ce42666d415fb8700c3e7e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a478916b29ce42666d415fb8700c3e7e1">&#9670;&#160;</a></span>GetBlacklist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::GetBlacklist </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aada78ff69114c2cd5fb94a91d8941aa3" name="aada78ff69114c2cd5fb94a91d8941aa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada78ff69114c2cd5fb94a91d8941aa3">&#9670;&#160;</a></span>GetConnectCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFtpServer::GetConnectCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Connect count. </p>
+<dl class="section return"><dt>返回</dt><dd>Connect count. -1: enable all connect </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00093">93</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4113428c093b59454d69cb34cf152114" name="a4113428c093b59454d69cb34cf152114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4113428c093b59454d69cb34cf152114">&#9670;&#160;</a></span>GetListen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::GetListen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad67d050d959d3be8efd2bef43b5833e5" name="ad67d050d959d3be8efd2bef43b5833e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67d050d959d3be8efd2bef43b5833e5">&#9670;&#160;</a></span>GetListenAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::GetListenAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aebc852809cb8d89cf6c2d5b7e724daa2" name="aebc852809cb8d89cf6c2d5b7e724daa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc852809cb8d89cf6c2d5b7e724daa2">&#9670;&#160;</a></span>GetPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::GetPassword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad5d3b4e6cc61ab7d8c2aa1de4f8c1059" name="ad5d3b4e6cc61ab7d8c2aa1de4f8c1059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d3b4e6cc61ab7d8c2aa1de4f8c1059">&#9670;&#160;</a></span>GetPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t CParameterFtpServer::GetPort </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab5602fecf8cf68447197647b9d727545" name="ab5602fecf8cf68447197647b9d727545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5602fecf8cf68447197647b9d727545">&#9670;&#160;</a></span>GetReadOnly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::GetReadOnly </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aca974f0241a96a59ff86ff62fdbcdfc1" name="aca974f0241a96a59ff86ff62fdbcdfc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca974f0241a96a59ff86ff62fdbcdfc1">&#9670;&#160;</a></span>GetRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::GetRoot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3fc81f37eec21eeff8648c3373ed14a7" name="a3fc81f37eec21eeff8648c3373ed14a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fc81f37eec21eeff8648c3373ed14a7">&#9670;&#160;</a></span>GetUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::GetUser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c8e4a7288d4c0dcbba1c57fb4a59654" name="a1c8e4a7288d4c0dcbba1c57fb4a59654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c8e4a7288d4c0dcbba1c57fb4a59654">&#9670;&#160;</a></span>GetWhitelist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::GetWhitelist </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00132">132</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e4aacf57226b65acb563925a4a159fb" name="a1e4aacf57226b65acb563925a4a159fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e4aacf57226b65acb563925a4a159fb">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFtpServer::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc123b7f67f0a20297c44d6e076061cf" name="afc123b7f67f0a20297c44d6e076061cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc123b7f67f0a20297c44d6e076061cf">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFtpServer::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00174">174</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae6ca44d885ec4dd306ba95d394fd89a8" name="ae6ca44d885ec4dd306ba95d394fd89a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ca44d885ec4dd306ba95d394fd89a8">&#9670;&#160;</a></span>SetAnonymousLogin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetAnonymousLogin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newAnonymousLogin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a71e2d0479c6e1e1fa10b755608c1a36e" name="a71e2d0479c6e1e1fa10b755608c1a36e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71e2d0479c6e1e1fa10b755608c1a36e">&#9670;&#160;</a></span>SetBlacklist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetBlacklist </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newBlacklist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e082ae87337217699c38fc021d67a26" name="a7e082ae87337217699c38fc021d67a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e082ae87337217699c38fc021d67a26">&#9670;&#160;</a></span>SetConnectCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetConnectCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newConnectCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a94fd8ad7e2683ca045358bf5457a6e82" name="a94fd8ad7e2683ca045358bf5457a6e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94fd8ad7e2683ca045358bf5457a6e82">&#9670;&#160;</a></span>SetListen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetListen </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newListen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad8bf77552a16ba31475f2fe7851025ee" name="ad8bf77552a16ba31475f2fe7851025ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8bf77552a16ba31475f2fe7851025ee">&#9670;&#160;</a></span>SetListenAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetListenAll </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newListenAll</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a29378616b0d30094ef711283c7fb51ae" name="a29378616b0d30094ef711283c7fb51ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29378616b0d30094ef711283c7fb51ae">&#9670;&#160;</a></span>SetPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetPassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newPassword</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a51cf9e06eb5cf1e35b68eaafc56b8c8e" name="a51cf9e06eb5cf1e35b68eaafc56b8c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51cf9e06eb5cf1e35b68eaafc56b8c8e">&#9670;&#160;</a></span>SetPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetPort </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>newPort</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5137dc847764d815d1fbbc0ee8bc5d0e" name="a5137dc847764d815d1fbbc0ee8bc5d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5137dc847764d815d1fbbc0ee8bc5d0e">&#9670;&#160;</a></span>SetReadOnly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetReadOnly </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newReadOnly</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00072">72</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa9ebc84d072bf9e0f33627e64f6413fb" name="aa9ebc84d072bf9e0f33627e64f6413fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ebc84d072bf9e0f33627e64f6413fb">&#9670;&#160;</a></span>SetRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetRoot </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9fe8daac4c5698e74e3370b937477ffe" name="a9fe8daac4c5698e74e3370b937477ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe8daac4c5698e74e3370b937477ffe">&#9670;&#160;</a></span>SetUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetUser </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newUser</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8582f462cff0d11d0d3c002871c9c1fc" name="a8582f462cff0d11d0d3c002871c9c1fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8582f462cff0d11d0d3c002871c9c1fc">&#9670;&#160;</a></span>SetWhitelist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFtpServer::SetWhitelist </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newWhitelist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a> 第 <a class="el" href="ParameterFtpServer_8cpp_source.html#l00137">137</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa1e69c7037099e41e59c3be1dc14cae0" name="aa1e69c7037099e41e59c3be1dc14cae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e69c7037099e41e59c3be1dc14cae0">&#9670;&#160;</a></span>m_bAnonymousLogin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::m_bAnonymousLogin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abc2d8a5c70084307abae0519aa6c9822" name="abc2d8a5c70084307abae0519aa6c9822"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2d8a5c70084307abae0519aa6c9822">&#9670;&#160;</a></span>m_Blacklist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::m_Blacklist</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41181e28375939cbfe7a00871af8583c" name="a41181e28375939cbfe7a00871af8583c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41181e28375939cbfe7a00871af8583c">&#9670;&#160;</a></span>m_bListenAll</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::m_bListenAll</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9b8d69d361ed1613c4e0caa4237973b6" name="a9b8d69d361ed1613c4e0caa4237973b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8d69d361ed1613c4e0caa4237973b6">&#9670;&#160;</a></span>m_bReadOnly</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFtpServer::m_bReadOnly</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a71cc6fc5e3e2796f1aecea1a77f93ceb" name="a71cc6fc5e3e2796f1aecea1a77f93ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71cc6fc5e3e2796f1aecea1a77f93ceb">&#9670;&#160;</a></span>m_ConnectCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFtpServer::m_ConnectCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abf5deb96898442d4e022226e6de4410b" name="abf5deb96898442d4e022226e6de4410b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5deb96898442d4e022226e6de4410b">&#9670;&#160;</a></span>m_Listen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::m_Listen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b2e9144426a49508f38d517a73b83f2" name="a1b2e9144426a49508f38d517a73b83f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b2e9144426a49508f38d517a73b83f2">&#9670;&#160;</a></span>m_nPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t CParameterFtpServer::m_nPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a751386bd342c25a531a4810b376c38da" name="a751386bd342c25a531a4810b376c38da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751386bd342c25a531a4810b376c38da">&#9670;&#160;</a></span>m_szPassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::m_szPassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a550782671c754b970495ab789dadb7a5" name="a550782671c754b970495ab789dadb7a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550782671c754b970495ab789dadb7a5">&#9670;&#160;</a></span>m_szRoot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::m_szRoot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a594a60be8fff90ca778068e83ac273b9" name="a594a60be8fff90ca778068e83ac273b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a594a60be8fff90ca778068e83ac273b9">&#9670;&#160;</a></span>m_szUser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFtpServer::m_szUser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4924576a0ec8d1fe473944e1088e050c" name="a4924576a0ec8d1fe473944e1088e050c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4924576a0ec8d1fe473944e1088e050c">&#9670;&#160;</a></span>m_Whitelist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFtpServer::m_Whitelist</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a> 第 <a class="el" href="ParameterFtpServer_8h_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FtpServer/<a class="el" href="ParameterFtpServer_8h_source.html">ParameterFtpServer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FtpServer/<a class="el" href="ParameterFtpServer_8cpp_source.html">ParameterFtpServer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

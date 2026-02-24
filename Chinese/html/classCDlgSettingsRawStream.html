@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgSettingsRawStream类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgSettingsRawStream-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgSettingsRawStream类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgSettingsRawStream 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsRawStream__inherit__graph.png" border="0" usemap="#aCDlgSettingsRawStream_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDlgSettingsRawStream_inherit__map" id="aCDlgSettingsRawStream_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,187,104"/>
+<area shape="rect" title=" " alt="" coords="59,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="99,44,99,79,93,79,93,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgSettingsRawStream 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsRawStream__coll__graph.png" border="0" usemap="#aCDlgSettingsRawStream_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDlgSettingsRawStream_coll__map" id="aCDlgSettingsRawStream_coll__map">
+<area shape="rect" title=" " alt="" coords="455,623,636,648"/>
+<area shape="rect" title=" " alt="" coords="360,535,435,560"/>
+<area shape="poly" title=" " alt="" coords="430,565,527,620,524,625,428,569"/>
+<area shape="rect" href="classCParameterTerminalUI.html" title=" " alt="" coords="676,460,844,485"/>
+<area shape="poly" title=" " alt="" coords="740,497,684,547,613,601,571,625,569,620,611,596,681,542,736,493"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="976,372,1088,397"/>
+<area shape="poly" title=" " alt="" coords="983,404,797,462,796,457,982,399"/>
+<area shape="rect" title=" " alt="" coords="1107,284,1186,309"/>
+<area shape="poly" title=" " alt="" coords="1126,321,1090,350,1053,374,1050,370,1086,346,1122,317"/>
+<area shape="rect" href="classCParameterTerminal.html" title=" " alt="" coords="683,372,837,397"/>
+<area shape="poly" title=" " alt="" coords="763,411,763,459,757,459,757,411"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="452,460,639,485"/>
+<area shape="poly" title=" " alt="" coords="719,405,575,462,573,457,717,400"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="681,93,780,119"/>
+<area shape="poly" title=" " alt="" coords="794,110,864,119,939,133,1005,153,1030,165,1046,180,1057,198,1061,216,1060,233,1053,249,1028,279,991,305,945,328,897,347,808,374,807,369,895,342,943,323,988,301,1025,275,1049,247,1055,232,1056,216,1052,200,1042,183,1027,170,1003,158,938,138,863,124,793,115"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="189,372,339,397"/>
+<area shape="poly" title=" " alt="" coords="668,111,569,115,456,127,402,136,355,149,318,164,294,183,280,206,270,232,260,286,261,336,265,371,259,372,255,336,255,286,265,230,275,204,290,180,315,159,354,143,401,131,455,122,569,110,667,105"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="565,284,704,309"/>
+<area shape="poly" title=" " alt="" coords="775,122,811,145,828,161,841,180,846,221,844,245,838,262,816,275,783,285,705,295,704,290,782,279,814,270,834,258,839,244,841,221,836,182,824,165,808,150,772,127"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="471,181,611,207"/>
+<area shape="poly" title=" " alt="" coords="694,127,568,183,566,179,692,122"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="901,181,1032,207"/>
+<area shape="poly" title=" " alt="" coords="794,115,839,125,884,140,921,159,952,179,949,183,919,164,882,145,837,130,793,120"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="305,181,447,207"/>
+<area shape="poly" title=" " alt="" coords="673,125,529,160,426,184,425,179,527,155,671,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="635,181,826,207"/>
+<area shape="poly" title=" " alt="" coords="733,133,733,181,728,181,728,133"/>
+<area shape="rect" title=" " alt="" coords="693,5,768,31"/>
+<area shape="poly" title=" " alt="" coords="733,45,733,93,728,93,728,45"/>
+<area shape="rect" href="classCParameterRawStream.html" title=" " alt="" coords="459,535,632,560"/>
+<area shape="poly" title=" " alt="" coords="548,574,548,622,543,622,543,574"/>
+<area shape="poly" title=" " alt="" coords="548,500,548,534,543,534,543,500"/>
+<area shape="poly" title=" " alt="" coords="316,399,508,457,507,462,314,404"/>
+<area shape="poly" title=" " alt="" coords="354,376,366,384,358,392,340,395,339,390,356,387,361,385,351,381"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="203,93,363,119"/>
+<area shape="poly" title=" " alt="" coords="249,361,245,349,232,291,225,244,228,197,246,142,254,128,265,117,269,121,258,131,250,144,233,198,230,243,238,290,251,347,254,359"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="67,5,189,31"/>
+<area shape="poly" title=" " alt="" coords="220,368,200,356,181,340,168,321,163,298,163,105,160,84,153,64,134,32,139,29,158,62,165,83,168,104,168,298,173,319,185,337,203,352,222,364"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="55,460,183,485"/>
+<area shape="poly" title=" " alt="" coords="234,407,140,462,137,457,231,402"/>
+<area shape="poly" title=" " alt="" coords="573,315,314,375,313,369,571,310"/>
+<area shape="poly" title=" " alt="" coords="546,219,551,240,561,258,576,272,595,282,592,286,573,276,557,262,546,242,540,221"/>
+<area shape="poly" title=" " alt="" coords="331,121,507,179,506,184,330,126"/>
+<area shape="poly" title=" " alt="" coords="72,38,48,49,28,64,13,82,8,105,8,473,11,481,18,482,43,483,459,533,458,539,42,488,17,487,7,485,3,475,3,104,9,80,24,60,46,44,70,33"/>
+<area shape="poly" title=" " alt="" coords="162,35,263,91,260,95,159,40"/>
+<area shape="poly" title=" " alt="" coords="104,448,93,419,88,386,88,104,91,83,98,62,117,29,122,32,103,64,96,84,93,105,93,386,98,418,109,446"/>
+<area shape="poly" title=" " alt="" coords="947,219,919,242,884,262,839,278,792,288,704,297,704,292,791,283,837,273,882,258,916,238,944,214"/>
+<area shape="poly" title=" " alt="" coords="401,213,434,237,472,258,518,273,566,284,564,289,517,279,470,262,431,241,398,218"/>
+<area shape="poly" title=" " alt="" coords="722,221,710,242,694,262,660,286,657,282,690,258,706,239,718,218"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:afb930f9129ba2a122b2571d97552bb24" id="r_afb930f9129ba2a122b2571d97552bb24"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#afb930f9129ba2a122b2571d97552bb24">accept</a> () override</td></tr>
+<tr class="separator:afb930f9129ba2a122b2571d97552bb24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa60c5fbcbff76aa1ef6ee0f8309f54c1" id="r_aa60c5fbcbff76aa1ef6ee0f8309f54c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#aa60c5fbcbff76aa1ef6ee0f8309f54c1">CDlgSettingsRawStream</a> (<a class="el" href="classCParameterRawStream.html">CParameterRawStream</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:aa60c5fbcbff76aa1ef6ee0f8309f54c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a3c1164cec9aea6fae9a9c36ac32c0152" id="r_a3c1164cec9aea6fae9a9c36ac32c0152"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#a3c1164cec9aea6fae9a9c36ac32c0152">on_cbType_currentIndexChanged</a> (int index)</td></tr>
+<tr class="separator:a3c1164cec9aea6fae9a9c36ac32c0152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a2a66b6494e5eb89a9266f7df82181565" id="r_a2a66b6494e5eb89a9266f7df82181565"><td class="memItemLeft" align="right" valign="top">Ui::CDlgSettingsRawStream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#a2a66b6494e5eb89a9266f7df82181565">ui</a></td></tr>
+<tr class="separator:a2a66b6494e5eb89a9266f7df82181565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d7609504a1ba2cde40c6ab5c50637a" id="r_ab1d7609504a1ba2cde40c6ab5c50637a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#ab1d7609504a1ba2cde40c6ab5c50637a">m_pFrmParaAppearnce</a></td></tr>
+<tr class="separator:ab1d7609504a1ba2cde40c6ab5c50637a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83eeed18b26417a40333a5bc5065206" id="r_ae83eeed18b26417a40333a5bc5065206"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterRawStream.html">CParameterRawStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsRawStream.html#ae83eeed18b26417a40333a5bc5065206">m_pPara</a></td></tr>
+<tr class="separator:ae83eeed18b26417a40333a5bc5065206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8h_source.html">DlgSettingsRawStream.h</a> 第 <a class="el" href="DlgSettingsRawStream_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aa60c5fbcbff76aa1ef6ee0f8309f54c1" name="aa60c5fbcbff76aa1ef6ee0f8309f54c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa60c5fbcbff76aa1ef6ee0f8309f54c1">&#9670;&#160;</a></span>CDlgSettingsRawStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsRawStream::CDlgSettingsRawStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterRawStream.html">CParameterRawStream</a> *&#160;</td>
+          <td class="paramname"><em>pPara</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8cpp_source.html">DlgSettingsRawStream.cpp</a> 第 <a class="el" href="DlgSettingsRawStream_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0a7873b593f0bf5a26b8d579cce1ac6" name="ac0a7873b593f0bf5a26b8d579cce1ac6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0a7873b593f0bf5a26b8d579cce1ac6">&#9670;&#160;</a></span>~CDlgSettingsRawStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsRawStream::~CDlgSettingsRawStream </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8cpp_source.html">DlgSettingsRawStream.cpp</a> 第 <a class="el" href="DlgSettingsRawStream_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="afb930f9129ba2a122b2571d97552bb24" name="afb930f9129ba2a122b2571d97552bb24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb930f9129ba2a122b2571d97552bb24">&#9670;&#160;</a></span>accept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsRawStream::accept </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8cpp_source.html">DlgSettingsRawStream.cpp</a> 第 <a class="el" href="DlgSettingsRawStream_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c1164cec9aea6fae9a9c36ac32c0152" name="a3c1164cec9aea6fae9a9c36ac32c0152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c1164cec9aea6fae9a9c36ac32c0152">&#9670;&#160;</a></span>on_cbType_currentIndexChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsRawStream::on_cbType_currentIndexChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8cpp_source.html">DlgSettingsRawStream.cpp</a> 第 <a class="el" href="DlgSettingsRawStream_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ab1d7609504a1ba2cde40c6ab5c50637a" name="ab1d7609504a1ba2cde40c6ab5c50637a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d7609504a1ba2cde40c6ab5c50637a">&#9670;&#160;</a></span>m_pFrmParaAppearnce</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a>* CDlgSettingsRawStream::m_pFrmParaAppearnce</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8h_source.html">DlgSettingsRawStream.h</a> 第 <a class="el" href="DlgSettingsRawStream_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae83eeed18b26417a40333a5bc5065206" name="ae83eeed18b26417a40333a5bc5065206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae83eeed18b26417a40333a5bc5065206">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRawStream.html">CParameterRawStream</a>* CDlgSettingsRawStream::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8h_source.html">DlgSettingsRawStream.h</a> 第 <a class="el" href="DlgSettingsRawStream_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2a66b6494e5eb89a9266f7df82181565" name="a2a66b6494e5eb89a9266f7df82181565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a66b6494e5eb89a9266f7df82181565">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgSettingsRawStream* CDlgSettingsRawStream::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsRawStream_8h_source.html">DlgSettingsRawStream.h</a> 第 <a class="el" href="DlgSettingsRawStream_8h_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/RawStream/<a class="el" href="DlgSettingsRawStream_8h_source.html">DlgSettingsRawStream.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/RawStream/<a class="el" href="DlgSettingsRawStream_8cpp_source.html">DlgSettingsRawStream.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

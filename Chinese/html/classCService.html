@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CService类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-slots">Protected 槽</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCService-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CService类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__SERVICE.html">服务端库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： <a class="el" href="classCService.html#a532ed3df41589aeb2e8c1b9f8ed6342c" title="加载参数，支持非Qt事件循环">Init()</a> 、 <a class="el" href="classCService.html#a6c84f82b6557bdbd9229d1862cb17c4a" title="支持非Qt事件循环">slotProcess()</a> 如果不启用非Qt事件循环。则 <a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431" title="初始化服务">OnInit()</a> 返回 &gt; 0  
+ <a href="classCService.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Service_8h_source.html">Service.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CService 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCService__inherit__graph.png" border="0" usemap="#aCService_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCService_inherit__map" id="aCService_inherit__map">
+<area shape="rect" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="300,79,379,104"/>
+<area shape="rect" href="classCServiceFreeRDP.html" title=" " alt="" coords="5,152,140,177"/>
+<area shape="poly" title=" " alt="" coords="287,109,116,155,115,149,286,104"/>
+<area shape="rect" href="classCServiceLibVNCServer.html" title=" " alt="" coords="165,152,333,177"/>
+<area shape="poly" title=" " alt="" coords="315,115,265,154,262,150,312,110"/>
+<area shape="rect" href="classCServiceRabbitVNC.html" title=" " alt="" coords="357,152,506,177"/>
+<area shape="poly" title=" " alt="" coords="366,110,418,150,415,154,363,114"/>
+<area shape="rect" href="classCServiceTigerVNC.html" title=" " alt="" coords="531,152,671,177"/>
+<area shape="poly" title=" " alt="" coords="393,104,559,149,558,154,391,110"/>
+<area shape="rect" title=" " alt="" coords="302,5,377,31"/>
+<area shape="poly" title=" " alt="" coords="342,44,342,79,337,79,337,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CService 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCService__coll__graph.png" border="0" usemap="#aCService_coll__map" alt="Collaboration graph"/></div>
+<map name="aCService_coll__map" id="aCService_coll__map">
+<area shape="rect" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="56,168,134,193"/>
+<area shape="rect" title=" " alt="" coords="58,5,132,31"/>
+<area shape="poly" title=" " alt="" coords="56,40,31,57,12,81,8,94,10,106,24,129,48,150,73,166,71,170,45,154,20,133,5,108,3,93,7,79,28,53,53,35"/>
+<area shape="rect" href="classCParameterService.html" title=" " alt="" coords="22,80,168,105"/>
+<area shape="poly" title=" " alt="" coords="98,45,98,80,92,80,92,45"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="193,80,312,105"/>
+<area shape="poly" title=" " alt="" coords="133,34,229,78,226,82,131,39"/>
+<area shape="poly" title=" " alt="" coords="98,119,98,167,92,167,92,119"/>
+<area shape="poly" title=" " alt="" coords="221,114,163,146,118,170,115,166,160,142,219,110"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ab0cef52619d8452317fec5be47a57b3e" id="r_ab0cef52619d8452317fec5be47a57b3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ab0cef52619d8452317fec5be47a57b3e">CService</a> (<a class="el" href="classCPluginService.html">CPluginService</a> *plugin)</td></tr>
+<tr class="separator:ab0cef52619d8452317fec5be47a57b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532ed3df41589aeb2e8c1b9f8ed6342c" id="r_a532ed3df41589aeb2e8c1b9f8ed6342c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a532ed3df41589aeb2e8c1b9f8ed6342c">Init</a> ()</td></tr>
+<tr class="memdesc:a532ed3df41589aeb2e8c1b9f8ed6342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数，支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a532ed3df41589aeb2e8c1b9f8ed6342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1fc653675b09ae0f763a950f58b1f4" id="r_a0a1fc653675b09ae0f763a950f58b1f4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a0a1fc653675b09ae0f763a950f58b1f4">Clean</a> ()</td></tr>
+<tr class="separator:a0a1fc653675b09ae0f763a950f58b1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c13d79eb6eeaadcbf27e7edc7bac66b" id="r_a1c13d79eb6eeaadcbf27e7edc7bac66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a1c13d79eb6eeaadcbf27e7edc7bac66b">GetParameters</a> ()</td></tr>
+<tr class="separator:a1c13d79eb6eeaadcbf27e7edc7bac66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c854daa531516f09b7e90c1689c6ff" id="r_a31c854daa531516f09b7e90c1689c6ff"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a31c854daa531516f09b7e90c1689c6ff">LoadConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a31c854daa531516f09b7e90c1689c6ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03bd15deebaae36c0e384c779bedba4b" id="r_a03bd15deebaae36c0e384c779bedba4b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a03bd15deebaae36c0e384c779bedba4b">SaveConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a03bd15deebaae36c0e384c779bedba4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-slots" name="pro-slots"></a>
+Protected 槽</h2></td></tr>
+<tr class="memitem:a6c84f82b6557bdbd9229d1862cb17c4a" id="r_a6c84f82b6557bdbd9229d1862cb17c4a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a6c84f82b6557bdbd9229d1862cb17c4a">slotProcess</a> ()</td></tr>
+<tr class="memdesc:a6c84f82b6557bdbd9229d1862cb17c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a6c84f82b6557bdbd9229d1862cb17c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a311f3d18846b5d8a96a93c5eb8994431" id="r_a311f3d18846b5d8a96a93c5eb8994431"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431">OnInit</a> ()=0</td></tr>
+<tr class="memdesc:a311f3d18846b5d8a96a93c5eb8994431"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化服务  <br /></td></tr>
+<tr class="separator:a311f3d18846b5d8a96a93c5eb8994431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb01e01c31bfcb8cf9ec56981b773c9" id="r_a9eb01e01c31bfcb8cf9ec56981b773c9"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a9eb01e01c31bfcb8cf9ec56981b773c9">OnClean</a> ()=0</td></tr>
+<tr class="memdesc:a9eb01e01c31bfcb8cf9ec56981b773c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理服务  <br /></td></tr>
+<tr class="separator:a9eb01e01c31bfcb8cf9ec56981b773c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3019e7c87e2a2c40d75ada9f01d239e" id="r_ad3019e7c87e2a2c40d75ada9f01d239e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ad3019e7c87e2a2c40d75ada9f01d239e">OnProcess</a> ()</td></tr>
+<tr class="memdesc:ad3019e7c87e2a2c40d75ada9f01d239e"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理服务  <br /></td></tr>
+<tr class="separator:ad3019e7c87e2a2c40d75ada9f01d239e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:abdb383c141fa3aa8427b9abdbc00e2f0" id="r_abdb383c141fa3aa8427b9abdbc00e2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abdb383c141fa3aa8427b9abdbc00e2f0">m_pPara</a></td></tr>
+<tr class="separator:abdb383c141fa3aa8427b9abdbc00e2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb73fabe91597a840f96242f7d1f3f6" id="r_abcb73fabe91597a840f96242f7d1f3f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abcb73fabe91597a840f96242f7d1f3f6">m_pPlugin</a></td></tr>
+<tr class="separator:abcb73fabe91597a840f96242f7d1f3f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： <a class="el" href="classCService.html#a532ed3df41589aeb2e8c1b9f8ed6342c" title="加载参数，支持非Qt事件循环">Init()</a> 、 <a class="el" href="classCService.html#a6c84f82b6557bdbd9229d1862cb17c4a" title="支持非Qt事件循环">slotProcess()</a> 如果不启用非Qt事件循环。则 <a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431" title="初始化服务">OnInit()</a> 返回 &gt; 0 </p>
+<p>实现接口：</p><ul>
+<li><a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431" title="初始化服务">OnInit()</a></li>
+<li><a class="el" href="classCService.html#ad3019e7c87e2a2c40d75ada9f01d239e" title="处理服务">OnProcess()</a></li>
+<li><a class="el" href="classCService.html#a9eb01e01c31bfcb8cf9ec56981b773c9" title="清理服务">OnClean()</a></li>
+</ul>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginServiceThread.html" title="服务插件接口。默认为每个插件启动一个线程进行处理。此接口仅由插件实现。">CPluginServiceThread</a> <a class="el" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。">CPluginService</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Service_8h_source.html">Service.h</a> 第 <a class="el" href="Service_8h_source.html#l00037">37</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab0cef52619d8452317fec5be47a57b3e" name="ab0cef52619d8452317fec5be47a57b3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0cef52619d8452317fec5be47a57b3e">&#9670;&#160;</a></span>CService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CService::CService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td>
+          <td class="paramname"><em>plugin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00013">13</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad4a81cbbe1abd2dbd37c21f74c5ab239" name="ad4a81cbbe1abd2dbd37c21f74c5ab239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4a81cbbe1abd2dbd37c21f74c5ab239">&#9670;&#160;</a></span>~CService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CService::~CService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0a1fc653675b09ae0f763a950f58b1f4" name="a0a1fc653675b09ae0f763a950f58b1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a1fc653675b09ae0f763a950f58b1f4">&#9670;&#160;</a></span>Clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CService::Clean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c13d79eb6eeaadcbf27e7edc7bac66b" name="a1c13d79eb6eeaadcbf27e7edc7bac66b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c13d79eb6eeaadcbf27e7edc7bac66b">&#9670;&#160;</a></span>GetParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterService.html">CParameterService</a> * CService::GetParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a532ed3df41589aeb2e8c1b9f8ed6342c" name="a532ed3df41589aeb2e8c1b9f8ed6342c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a532ed3df41589aeb2e8c1b9f8ed6342c">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CService::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>加载参数，支持非Qt事件循环 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431" title="初始化服务">OnInit()</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a31c854daa531516f09b7e90c1689c6ff" name="a31c854daa531516f09b7e90c1689c6ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c854daa531516f09b7e90c1689c6ff">&#9670;&#160;</a></span>LoadConfigure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CService::LoadConfigure </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDir</em> = <code>QString()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9eb01e01c31bfcb8cf9ec56981b773c9" name="a9eb01e01c31bfcb8cf9ec56981b773c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb01e01c31bfcb8cf9ec56981b773c9">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CService::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理服务 </p>
+
+<p>在 <a class="el" href="classCServiceFreeRDP.html#a54ba0194af0604af5123233443ae1d83">CServiceFreeRDP</a>, <a class="el" href="classCServiceLibVNCServer.html#ac909a282c844c93f1b4f5bb96f343df4">CServiceLibVNCServer</a>, <a class="el" href="classCServiceRabbitVNC.html#aa7d998542cb6fd2530a1969a22966f17">CServiceRabbitVNC</a> , 以及 <a class="el" href="classCServiceTigerVNC.html#a22aaf1263f553fa0de1389d86224717c">CServiceTigerVNC</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a311f3d18846b5d8a96a93c5eb8994431" name="a311f3d18846b5d8a96a93c5eb8994431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a311f3d18846b5d8a96a93c5eb8994431">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CService::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化服务 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 OnProcess (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 OnProcess (Qt 事件循环) </li>
+</ul>
+</dd></dl>
+
+<p>在 <a class="el" href="classCServiceFreeRDP.html#a94aa42cadd03c4767f03ae86d4085005">CServiceFreeRDP</a>, <a class="el" href="classCServiceLibVNCServer.html#a7202254e3de3202eed7083e5f51388fe">CServiceLibVNCServer</a>, <a class="el" href="classCServiceRabbitVNC.html#a572832ccbd7e17b97852a1e2c0063c6a">CServiceRabbitVNC</a> , 以及 <a class="el" href="classCServiceTigerVNC.html#a0664ce4fd4fe32558c9e1c198f1395af">CServiceTigerVNC</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ad3019e7c87e2a2c40d75ada9f01d239e" name="ad3019e7c87e2a2c40d75ada9f01d239e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3019e7c87e2a2c40d75ada9f01d239e">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CService::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>处理服务 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误或停止 </li>
+<li>&gt;= 0: 调用间隔。单位：毫秒 </li>
+</ul>
+</dd></dl>
+
+<p>被 <a class="el" href="classCServiceLibVNCServer.html#a71ec12c217fdaefb45f7f674a281beba">CServiceLibVNCServer</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03bd15deebaae36c0e384c779bedba4b" name="a03bd15deebaae36c0e384c779bedba4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03bd15deebaae36c0e384c779bedba4b">&#9670;&#160;</a></span>SaveConfigure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CService::SaveConfigure </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDir</em> = <code>QString()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6c84f82b6557bdbd9229d1862cb17c4a" name="a6c84f82b6557bdbd9229d1862cb17c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c84f82b6557bdbd9229d1862cb17c4a">&#9670;&#160;</a></span>slotProcess</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CService::slotProcess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>支持非Qt事件循环 </p>
+
+<p class="definition">在文件 <a class="el" href="Service_8cpp_source.html">Service.cpp</a> 第 <a class="el" href="Service_8cpp_source.html#l00061">61</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="abdb383c141fa3aa8427b9abdbc00e2f0" name="abdb383c141fa3aa8427b9abdbc00e2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdb383c141fa3aa8427b9abdbc00e2f0">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterService.html">CParameterService</a>* CService::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8h_source.html">Service.h</a> 第 <a class="el" href="Service_8h_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abcb73fabe91597a840f96242f7d1f3f6" name="abcb73fabe91597a840f96242f7d1f3f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb73fabe91597a840f96242f7d1f3f6">&#9670;&#160;</a></span>m_pPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCPluginService.html">CPluginService</a>* CService::m_pPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Service_8h_source.html">Service.h</a> 第 <a class="el" href="Service_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="Service_8h_source.html">Service.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="Service_8cpp_source.html">Service.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

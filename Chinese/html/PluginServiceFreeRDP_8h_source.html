@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Service/PluginServiceFreeRDP.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_9e474741c0e5160a04653a7df8fd0179.html">FreeRDP</a></li><li class="navelem"><a class="el" href="dir_ca0b6a8c77357439e6a7573fe5d68a3e.html">Service</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">PluginServiceFreeRDP.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef CPLUGINSERVICEFREERDP_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define CPLUGINSERVICEFREERDP_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;PluginService.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classCPluginServiceFreeRDP.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classCPluginServiceFreeRDP.html">CPluginServiceFreeRDP</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCPluginService.html">CPluginService</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    Q_OBJECT</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    Q_INTERFACES(<a class="code hl_class" href="classCPluginService.html">CPluginService</a>)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#if (QT_VERSION &gt;= QT_VERSION_CHECK(5, 0, 0))</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Q_PLUGIN_METADATA(IID CPluginService_iid)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCPluginServiceFreeRDP.html">CPluginServiceFreeRDP</a>(QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCPluginServiceFreeRDP.html">~CPluginServiceFreeRDP</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// CPluginService interface</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceFreeRDP.html#a762ec5777179bfacd374a5fa137c5858">Protocol</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceFreeRDP.html#a75607c95464e70c14f3ded967139c0e8">Name</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceFreeRDP.html#a66a2f3a0ceec9ced1f0c5b00ba7e6682">DisplayName</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCPluginServiceFreeRDP.html#aa45f75d5c833be671bf2e790c855b041">Description</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCService.html">CService</a> *<a class="code hl_function" href="classCPluginServiceFreeRDP.html#a15ed5759dbd68d3ce75395c1b481d639">NewService</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">// CPLUGINSERVICEFREERDP_H</span></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html"><div class="ttname"><a href="classCPluginServiceFreeRDP.html">CPluginServiceFreeRDP</a></div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8h_source.html#l00008">PluginServiceFreeRDP.h:9</a></div></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html_a15ed5759dbd68d3ce75395c1b481d639"><div class="ttname"><a href="classCPluginServiceFreeRDP.html#a15ed5759dbd68d3ce75395c1b481d639">CPluginServiceFreeRDP::NewService</a></div><div class="ttdeci">virtual CService * NewService() override</div><div class="ttdoc">New service</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8cpp_source.html#l00033">PluginServiceFreeRDP.cpp:33</a></div></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html_a66a2f3a0ceec9ced1f0c5b00ba7e6682"><div class="ttname"><a href="classCPluginServiceFreeRDP.html#a66a2f3a0ceec9ced1f0c5b00ba7e6682">CPluginServiceFreeRDP::DisplayName</a></div><div class="ttdeci">virtual const QString DisplayName() const override</div><div class="ttdoc">The plugin display name</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8cpp_source.html#l00023">PluginServiceFreeRDP.cpp:23</a></div></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html_a75607c95464e70c14f3ded967139c0e8"><div class="ttname"><a href="classCPluginServiceFreeRDP.html#a75607c95464e70c14f3ded967139c0e8">CPluginServiceFreeRDP::Name</a></div><div class="ttdeci">virtual const QString Name() const override</div><div class="ttdoc">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8cpp_source.html#l00018">PluginServiceFreeRDP.cpp:18</a></div></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html_a762ec5777179bfacd374a5fa137c5858"><div class="ttname"><a href="classCPluginServiceFreeRDP.html#a762ec5777179bfacd374a5fa137c5858">CPluginServiceFreeRDP::Protocol</a></div><div class="ttdeci">virtual const QString Protocol() const override</div><div class="ttdoc">Plugin Protocol</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8cpp_source.html#l00013">PluginServiceFreeRDP.cpp:13</a></div></div>
+<div class="ttc" id="aclassCPluginServiceFreeRDP_html_aa45f75d5c833be671bf2e790c855b041"><div class="ttname"><a href="classCPluginServiceFreeRDP.html#aa45f75d5c833be671bf2e790c855b041">CPluginServiceFreeRDP::Description</a></div><div class="ttdeci">virtual const QString Description() const override</div><div class="ttdoc">插件描述</div><div class="ttdef"><b>Definition</b> <a href="PluginServiceFreeRDP_8cpp_source.html#l00028">PluginServiceFreeRDP.cpp:28</a></div></div>
+<div class="ttc" id="aclassCPluginService_html"><div class="ttname"><a href="classCPluginService.html">CPluginService</a></div><div class="ttdoc">服务插件接口。此接口仅由插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginService_8h_source.html#l00026">PluginService.h:27</a></div></div>
+<div class="ttc" id="aclassCService_html"><div class="ttname"><a href="classCService.html">CService</a></div><div class="ttdoc">服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0</div><div class="ttdef"><b>Definition</b> <a href="Service_8h_source.html#l00037">Service.h:38</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

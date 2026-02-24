@@ -1,0 +1,15 @@
+<map id="COperateDesktop" name="COperateDesktop">
+<area shape="rect" id="Node000001" title="Remote desktop operate interface." alt="" coords="271,152,409,177"/>
+<area shape="rect" id="Node000004" href="$classCOperateFreeRDP.html" title=" " alt="" coords="5,225,144,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="285,183,118,228,117,223,283,178"/>
+<area shape="rect" id="Node000005" href="$classCOperateLibVNCServer.html" title=" " alt="" coords="169,225,341,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="318,188,270,227,267,223,314,184"/>
+<area shape="rect" id="Node000006" href="$classCOperatePlayer.html" title=" " alt="" coords="365,225,489,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="366,184,414,223,411,227,363,188"/>
+<area shape="rect" id="Node000007" href="$classCOperateVnc.html" title=" " alt="" coords="513,225,620,251"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="390,179,531,223,529,228,389,184"/>
+<area shape="rect" id="Node000002" href="$classCOperate.html" title="Operate interface." alt="" coords="299,79,381,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="343,118,343,152,337,152,337,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="303,5,377,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,44,343,79,337,79,337,44"/>
+</map>

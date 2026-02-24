@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: README</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">README</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Vorbisgain comes in two version;</p><ul>
+<li>The main source: <a href="https://sjeng.org/ftp/vorbis/">https://sjeng.org/ftp/vorbis/</a></li>
+<li>The Debian version: <a href="http://deb.debian.org/debian/pool/main/v/vorbisgain/">http://deb.debian.org/debian/pool/main/v/vorbisgain/</a></li>
+</ul>
+<p>The catch is... Debian has 10 patches:</p><ul>
+<li>0001-temp_files.patch</li>
+<li>0002-errno.patch</li>
+<li>0003-manpage.patch</li>
+<li>0004-vorbisgain_mtime.patch</li>
+<li>0005-double_fclose.patch</li>
+<li>0006-manpage_hyphens.patch</li>
+<li>0007-recursively_spelling.patch</li>
+<li>0008-manpage_recursion_mistake.patch</li>
+<li>0009-hardening.patch</li>
+<li>0010-fclose.patch</li>
+</ul>
+<p>Of particular concern are 0005, 0009 and 0010 which might have implications for memory-leaks and string inputs.</p>
+<h2><a class="anchor" id="autotoc_md282"></a>
+Other points of concern</h2>
+<p><a href="https://pkgs.org/download/vorbisgain">https://pkgs.org/download/vorbisgain</a></p>
+<p>Lots of distributions don't include these patches as well, but I prefer to stick with the tried and tested package from Debian. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

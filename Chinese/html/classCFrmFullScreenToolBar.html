@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmFullScreenToolBar类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmFullScreenToolBar-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmFullScreenToolBar类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFrmFullScreenToolBar 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmFullScreenToolBar__inherit__graph.png" border="0" usemap="#aCFrmFullScreenToolBar_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmFullScreenToolBar_inherit__map" id="aCFrmFullScreenToolBar_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,176,104"/>
+<area shape="rect" title=" " alt="" coords="51,5,130,31"/>
+<area shape="poly" title=" " alt="" coords="93,44,93,79,88,79,88,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmFullScreenToolBar 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmFullScreenToolBar__coll__graph.png" border="0" usemap="#aCFrmFullScreenToolBar_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmFullScreenToolBar_coll__map" id="aCFrmFullScreenToolBar_coll__map">
+<area shape="rect" title=" " alt="" coords="3758,203,3929,229"/>
+<area shape="rect" href="classMainWindow.html" title="The MainWindow class" alt="" coords="4128,303,4235,329"/>
+<area shape="poly" title=" " alt="" coords="3943,218,4036,227,4076,234,4105,243,4126,255,4145,271,4172,301,4168,305,4141,275,4123,260,4103,248,4075,239,4035,232,3943,223"/>
+<area shape="rect" title=" " alt="" coords="3462,187,3541,213"/>
+<area shape="poly" title=" " alt="" coords="3554,200,3758,209,3758,215,3554,205"/>
+<area shape="rect" href="classCView.html" title="The CView class" alt="" coords="3812,317,3875,342"/>
+<area shape="poly" title=" " alt="" coords="3554,215,3638,245,3732,283,3756,295,3813,317,3811,322,3754,300,3730,288,3636,250,3552,220"/>
+<area shape="rect" href="classCFrmRecent.html" title="列出存在的连接配置" alt="" coords="4400,429,4501,454"/>
+<area shape="poly" title=" " alt="" coords="3522,175,3562,139,3617,96,3682,56,3717,40,3754,28,3851,8,3929,3,4007,12,4105,33,4197,60,4233,75,4265,94,4294,118,4322,146,4378,224,4408,280,4429,338,4450,427,4445,429,4423,340,4403,282,4374,227,4318,150,4291,122,4262,99,4231,80,4195,65,4103,38,4006,18,3929,9,3852,13,3755,33,3719,45,3684,60,3620,100,3565,143,3526,179"/>
+<area shape="rect" href="classCFrmActive.html" title=" " alt="" coords="3795,105,3892,130"/>
+<area shape="poly" title=" " alt="" coords="3528,177,3563,154,3604,135,3654,122,3705,115,3794,112,3795,118,3706,121,3655,128,3606,140,3566,158,3531,181"/>
+<area shape="rect" href="classCFavoriteView.html" title=" " alt="" coords="3786,366,3901,391"/>
+<area shape="poly" title=" " alt="" coords="3538,218,3562,237,3584,260,3592,277,3594,292,3597,306,3607,319,3637,335,3683,349,3786,368,3785,374,3682,354,3635,340,3604,323,3592,308,3589,293,3587,278,3579,263,3558,241,3535,222"/>
+<area shape="poly" title=" " alt="" coords="4131,301,4103,293,4062,284,4029,280,3996,274,3955,262,3931,250,3881,231,3883,226,3933,245,3957,257,3997,269,4030,274,4063,279,4105,288,4132,296"/>
+<area shape="poly" title=" " alt="" coords="4238,330,4305,355,4377,388,4435,426,4432,431,4375,393,4303,360,4236,335"/>
+<area shape="rect" title=" " alt="" coords="3785,154,3901,179"/>
+<area shape="poly" title=" " alt="" coords="3915,168,3960,171,4010,177,4059,191,4105,212,4130,232,4149,257,4174,302,4170,304,4145,260,4126,236,4103,217,4058,196,4009,183,3960,176,3915,174"/>
+<area shape="poly" title=" " alt="" coords="3902,150,3949,148,4002,153,4055,165,4105,188,4134,214,4156,245,4171,277,4180,302,4175,304,4166,279,4151,248,4130,217,4103,193,4054,170,4001,158,3949,154,3902,155"/>
+<area shape="rect" href="classCManager_1_1Handle.html" title="处理连接者。用于客户端得到连接者信号" alt="" coords="3772,43,3915,69"/>
+<area shape="poly" title=" " alt="" coords="3929,59,4032,74,4076,85,4106,100,4127,123,4144,150,4167,208,4179,263,4182,303,4177,303,4173,264,4162,209,4140,152,4123,127,4102,105,4074,90,4031,79,3928,65"/>
+<area shape="poly" title=" " alt="" coords="3928,42,3970,40,4015,42,4061,49,4105,63,4171,98,4232,144,4286,197,4333,252,4373,307,4406,357,4445,427,4441,430,4401,360,4369,310,4329,256,4282,201,4228,148,4168,103,4103,68,4060,54,4015,47,3970,45,3928,47"/>
+<area shape="rect" href="classCManager.html" title="管理插件" alt="" coords="3112,717,3200,742"/>
+<area shape="poly" title=" " alt="" coords="3214,729,3288,728,3381,723,3482,709,3580,684,3592,677,3604,669,3652,653,3694,643,3767,635,3840,628,3882,621,3931,609,3984,597,4026,589,4063,574,4102,542,4122,516,4139,487,4161,426,4172,369,4177,328,4182,329,4178,370,4166,427,4143,490,4127,519,4106,546,4066,579,4027,594,3985,603,3933,614,3883,627,3841,634,3767,640,3695,649,3654,658,3606,674,3595,682,3582,689,3483,714,3382,728,3288,734,3214,734"/>
+<area shape="poly" title=" " alt="" coords="3201,745,3259,766,3333,788,3416,805,3500,812,4183,812,4219,809,4248,802,4273,790,4294,773,4332,728,4374,669,4406,611,4427,549,4439,493,4445,454,4451,455,4445,494,4432,550,4410,613,4378,672,4337,731,4298,777,4276,794,4250,807,4220,815,4183,817,3500,817,3415,810,3332,793,3258,771,3199,750"/>
+<area shape="rect" title=" " alt="" coords="5,699,80,725"/>
+<area shape="poly" title=" " alt="" coords="62,734,83,759,110,784,142,803,159,809,177,811,2822,811,2909,803,2994,784,3069,760,3124,739,3126,744,3071,766,2996,789,2910,808,2822,816,177,816,158,814,140,808,107,788,79,762,58,738"/>
+<area shape="rect" href="classCHook.html" title="The class is the HOOK abstract class." alt="" coords="1277,715,1343,741"/>
+<area shape="poly" title=" " alt="" coords="94,709,177,709,979,709,1147,714,1277,723,1277,728,1147,720,979,715,177,715,94,715"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,469,228,494"/>
+<area shape="poly" title=" " alt="" coords="56,686,168,493,172,496,61,688"/>
+<area shape="rect" href="classCDesktopShortcutManager.html" title=" " alt="" coords="252,750,448,775"/>
+<area shape="poly" title=" " alt="" coords="94,725,105,728,179,742,252,751,251,756,178,747,103,733,93,731"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="2287,570,2381,595"/>
+<area shape="poly" title=" " alt="" coords="75,690,122,669,149,661,177,659,2043,659,2118,651,2191,634,2256,613,2304,593,2306,598,2257,618,2193,639,2119,657,2043,664,177,664,150,667,124,674,77,695"/>
+<area shape="poly" title=" " alt="" coords="1357,732,1423,739,1497,743,2822,743,2982,738,3111,730,3112,735,2982,743,2822,748,1497,748,1423,744,1356,737"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="908,538,1047,563"/>
+<area shape="poly" title=" " alt="" coords="1061,562,1222,584,1316,593,1409,596,1806,596,1887,600,1956,611,2015,626,2070,644,2125,662,2184,677,2252,688,2333,692,2659,692,2789,695,2916,703,3112,722,3111,727,2916,708,2789,700,2659,697,2333,697,2251,693,2183,682,2123,667,2069,649,2014,631,1955,616,1887,605,1806,601,1409,601,1315,598,1221,590,1060,568"/>
+<area shape="poly" title=" " alt="" coords="1007,570,1072,614,1184,671,1278,713,1276,718,1182,676,1069,618,1004,574"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="1235,434,1385,459"/>
+<area shape="poly" title=" " alt="" coords="1031,531,1268,457,1269,462,1033,536"/>
+<area shape="poly" title=" " alt="" coords="242,481,573,496,753,508,884,523,937,535,936,540,884,528,752,513,572,501,242,486"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="2264,459,2404,485"/>
+<area shape="poly" title=" " alt="" coords="201,457,224,438,251,422,334,382,403,358,474,346,566,343,2043,343,2085,346,2128,356,2168,370,2207,387,2273,425,2318,457,2315,461,2270,430,2204,392,2166,375,2126,361,2085,351,2043,348,566,348,475,351,404,363,336,387,253,426,227,442,204,461"/>
+<area shape="poly" title=" " alt="" coords="218,461,251,449,312,437,361,432,472,428,689,423,904,425,1234,439,1234,444,904,430,689,428,472,433,361,437,313,442,253,454,219,466"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="502,545,633,570"/>
+<area shape="poly" title=" " alt="" coords="208,499,253,523,318,540,384,550,502,556,502,562,383,555,316,545,251,528,206,504"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="496,594,639,619"/>
+<area shape="poly" title=" " alt="" coords="197,504,221,534,253,560,314,585,378,599,440,606,496,608,496,613,440,611,377,605,312,590,251,565,217,538,192,507"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="472,443,663,469"/>
+<area shape="poly" title=" " alt="" coords="241,475,472,459,472,465,242,480"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="3440,274,3563,299"/>
+<area shape="poly" title=" " alt="" coords="189,455,213,411,230,388,250,367,327,301,360,275,393,255,429,239,468,227,513,221,566,219,3157,219,3243,224,3327,238,3461,271,3459,276,3326,243,3242,229,3157,224,566,224,513,226,469,233,430,244,396,259,363,280,330,305,254,371,234,391,218,414,193,458"/>
+<area shape="poly" title=" " alt="" coords="2293,492,2243,511,2181,530,2113,545,2043,551,1309,551,1047,552,1047,547,1309,545,2043,545,2112,539,2180,525,2241,506,2291,487"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1961,459,2121,485"/>
+<area shape="poly" title=" " alt="" coords="2135,469,2264,469,2264,475,2135,475"/>
+<area shape="poly" title=" " alt="" coords="2089,487,2300,567,2298,572,2088,492"/>
+<area shape="poly" title=" " alt="" coords="2058,446,2101,396,2164,338,2202,311,2243,289,2287,275,2333,269,3157,269,3310,273,3440,280,3440,285,3310,278,3157,275,2333,275,2288,280,2245,294,2205,316,2167,342,2105,400,2062,450"/>
+<area shape="poly" title=" " alt="" coords="1379,459,1435,468,1580,477,1725,480,1961,474,1961,479,1725,485,1580,483,1434,473,1378,465"/>
+<area shape="poly" title=" " alt="" coords="1290,419,1296,411,1310,407,1322,410,1329,416,1331,425,1328,435,1323,433,1326,425,1325,419,1320,414,1310,413,1299,415,1294,422"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1744,434,1865,459"/>
+<area shape="poly" title=" " alt="" coords="1374,428,1434,419,1515,412,1578,410,1640,414,1720,424,1758,431,1757,436,1720,429,1640,419,1577,415,1515,417,1435,424,1375,434"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="1435,434,1563,459"/>
+<area shape="poly" title=" " alt="" coords="1399,444,1434,444,1434,449,1399,449"/>
+<area shape="poly" title=" " alt="" coords="1879,452,1961,461,1961,466,1879,457"/>
+<area shape="poly" title=" " alt="" coords="1576,444,1744,444,1744,449,1576,449"/>
+<area shape="poly" title=" " alt="" coords="646,555,884,552,908,551,908,556,884,557,646,560"/>
+<area shape="poly" title=" " alt="" coords="653,600,763,590,883,573,935,561,936,566,885,578,764,596,653,605"/>
+<area shape="poly" title=" " alt="" coords="676,451,779,460,833,470,885,485,929,509,963,535,960,539,926,513,883,490,832,475,778,465,676,456"/>
+<area shape="poly" title=" " alt="" coords="461,757,884,743,1277,727,1277,732,884,748,462,762"/>
+<area shape="rect" href="classCDatabaseFile.html" title="The CDatabaseFile class" alt="" coords="2763,570,2879,595"/>
+<area shape="poly" title=" " alt="" coords="2864,598,3127,714,3124,719,2862,603"/>
+<area shape="rect" href="classCRecentDatabase.html" title=" " alt="" coords="3259,571,3397,597"/>
+<area shape="poly" title=" " alt="" coords="2893,580,3258,581,3258,586,2893,585"/>
+<area shape="rect" href="classCFavoriteDatabase.html" title=" " alt="" coords="3083,447,3229,473"/>
+<area shape="poly" title=" " alt="" coords="2890,567,2910,555,2918,546,2921,536,2925,525,2934,514,2964,497,2991,492,3019,491,3053,485,3109,470,3111,475,3054,490,3019,496,2992,498,2966,502,2938,518,2930,527,2926,537,2923,548,2914,559,2893,571"/>
+<area shape="poly" title=" " alt="" coords="2395,580,2762,580,2762,585,2395,585"/>
+<area shape="poly" title=" " alt="" coords="2377,598,2443,620,2481,628,2519,631,2996,631,3072,627,3148,618,3274,594,3275,599,3148,623,3072,632,2996,636,2519,636,2480,633,2441,625,2375,603"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="2761,519,2881,545"/>
+<area shape="poly" title=" " alt="" coords="2394,567,2428,561,2609,542,2760,532,2760,537,2609,547,2428,567,2395,572"/>
+<area shape="rect" href="classCDatabaseTree.html" title=" " alt="" coords="2761,418,2881,443"/>
+<area shape="poly" title=" " alt="" coords="2376,562,2452,532,2625,479,2767,441,2769,446,2626,484,2454,537,2378,567"/>
+<area shape="rect" href="classCDatabaseFolder.html" title=" " alt="" coords="2453,418,2587,443"/>
+<area shape="poly" title=" " alt="" coords="2353,557,2402,496,2412,477,2426,460,2464,441,2466,446,2430,465,2417,480,2406,499,2357,561"/>
+<area shape="poly" title=" " alt="" coords="3889,333,3988,341,4046,341,4104,336,4144,326,4146,331,4104,341,4046,346,3987,346,3888,338"/>
+<area shape="poly" title=" " alt="" coords="3576,279,3605,277,3754,277,3901,285,4128,307,4128,312,3901,290,3754,283,3605,283,3577,284"/>
+<area shape="poly" title=" " alt="" coords="3577,293,3606,297,3812,323,3811,328,3605,303,3576,299"/>
+<area shape="poly" title=" " alt="" coords="3526,308,3554,343,3584,385,3594,413,3598,425,3607,437,3637,457,3665,465,3696,471,3732,486,3744,495,3756,503,3801,517,3849,526,3946,536,4043,534,4137,523,4225,506,4303,487,4415,451,4417,456,4304,492,4226,512,4138,528,4043,539,3946,541,3848,532,3800,522,3754,508,3741,499,3729,490,3694,476,3664,470,3635,462,3604,440,3593,427,3589,415,3579,388,3550,347,3521,311"/>
+<area shape="rect" href="classCRecentModel.html" title=" " alt="" coords="3785,701,3901,726"/>
+<area shape="poly" title=" " alt="" coords="3529,307,3559,342,3584,386,3590,415,3591,453,3588,542,3588,628,3594,661,3607,685,3619,693,3635,699,3681,707,3785,712,3785,717,3680,713,3634,704,3616,697,3603,688,3589,663,3583,628,3582,542,3586,453,3585,416,3579,387,3554,345,3525,311"/>
+<area shape="poly" title=" " alt="" coords="3529,263,3604,212,3667,182,3729,154,3754,139,3794,125,3795,130,3756,144,3732,158,3669,187,3607,217,3531,268"/>
+<area shape="poly" title=" " alt="" coords="3522,308,3558,346,3581,363,3606,376,3652,388,3699,392,3745,391,3786,387,3786,392,3745,397,3699,398,3651,393,3604,381,3578,368,3555,350,3518,312"/>
+<area shape="rect" href="structMainWindow_1_1__FullState.html" title=" " alt="" coords="3755,467,3932,493"/>
+<area shape="poly" title=" " alt="" coords="3926,491,3970,493,4016,490,4061,480,4103,460,4119,447,4133,431,4154,394,4168,357,4175,328,4180,330,4173,359,4159,396,4137,434,4123,451,4105,465,4063,485,4016,496,3970,499,3926,497"/>
+<area shape="poly" title=" " alt="" coords="4386,442,4322,432,4289,422,4257,407,4234,390,4214,369,4187,330,4192,327,4218,366,4238,386,4260,403,4291,417,4323,427,4387,437"/>
+<area shape="poly" title=" " alt="" coords="3411,566,3608,528,3691,510,3729,499,3737,489,3740,477,3743,465,3753,453,3799,425,3843,413,3884,410,3925,413,3966,416,4008,417,4053,409,4103,390,4123,376,4142,359,4169,327,4173,331,4145,363,4127,380,4105,394,4055,414,4008,422,3965,422,3924,418,3884,415,3844,418,3801,430,3756,457,3748,467,3745,478,3742,491,3732,503,3692,515,3609,533,3412,571"/>
+<area shape="poly" title=" " alt="" coords="3411,581,3565,578,3770,570,4001,554,4234,528,4307,522,4338,517,4375,503,4410,479,4436,452,4440,456,4414,483,4377,508,4339,522,4308,528,4235,533,4001,559,3770,575,3565,583,3411,586"/>
+<area shape="poly" title=" " alt="" coords="3362,602,3467,660,3535,689,3606,711,3652,718,3700,721,3785,717,3785,723,3700,726,3652,723,3605,716,3533,694,3465,665,3359,606"/>
+<area shape="poly" title=" " alt="" coords="2895,532,3051,541,3235,561,3275,569,3274,574,3234,567,3051,547,2894,537"/>
+<area shape="poly" title=" " alt="" coords="2850,509,2889,486,2935,468,3011,455,3083,453,3083,458,3011,460,2937,473,2891,491,2852,514"/>
+<area shape="poly" title=" " alt="" coords="3915,715,4015,713,4074,708,4136,699,4200,684,4262,663,4321,635,4374,599,4405,565,4425,523,4438,484,4445,453,4450,454,4443,485,4430,525,4409,567,4378,603,4323,640,4264,668,4201,689,4137,704,4075,713,4015,719,3915,720"/>
+<area shape="rect" title=" " alt="" coords="3421,751,3581,777"/>
+<area shape="poly" title=" " alt="" coords="3595,759,3662,753,3730,744,3806,723,3807,729,3731,749,3663,759,3596,764"/>
+<area shape="poly" title=" " alt="" coords="3906,116,4019,125,4070,135,4105,150,4124,166,4139,186,4161,229,4174,271,4181,302,4176,304,4169,272,4156,231,4134,188,4120,170,4103,154,4069,140,4018,131,3905,121"/>
+<area shape="poly" title=" " alt="" coords="3914,382,4006,381,4055,374,4103,363,4137,346,4164,326,4167,331,4140,351,4105,368,4056,380,4006,386,3914,387"/>
+<area shape="rect" href="classCFavoriteModel.html" title=" " alt="" coords="3440,399,3563,425"/>
+<area shape="poly" title=" " alt="" coords="3575,424,3651,430,3691,428,3730,421,3742,416,3753,408,3802,389,3804,394,3756,413,3744,420,3731,426,3692,433,3651,435,3575,429"/>
+<area shape="rect" title=" " alt="" coords="3078,398,3234,423"/>
+<area shape="poly" title=" " alt="" coords="3248,408,3440,409,3440,414,3248,414"/>
+<area shape="poly" title=" " alt="" coords="3227,472,3330,487,3393,492,3459,493,3528,490,3598,480,3666,462,3729,436,3737,431,3741,424,3753,408,3792,389,3795,394,3756,413,3745,427,3741,434,3732,441,3667,468,3599,485,3529,495,3459,499,3392,497,3330,493,3226,478"/>
+<area shape="poly" title=" " alt="" coords="3242,449,3397,429,3439,422,3440,427,3398,435,3243,454"/>
+<area shape="poly" title=" " alt="" coords="2895,424,2936,423,2995,418,3021,418,3054,423,3078,432,3115,445,3114,450,3076,437,3053,428,3021,424,2995,424,2936,428,2895,429"/>
+<area shape="poly" title=" " alt="" coords="2601,428,2761,428,2761,433,2601,433"/>
+<area shape="rect" href="structCFavoriteModel_1_1tree.html" title=" " alt="" coords="3077,349,3235,374"/>
+<area shape="poly" title=" " alt="" coords="3249,370,3398,391,3440,398,3439,403,3397,396,3248,375"/>
+<area shape="poly" title=" " alt="" coords="3125,334,3134,325,3156,322,3174,324,3186,330,3189,340,3183,350,3178,347,3183,340,3181,334,3173,329,3156,327,3136,330,3128,338"/>
+<area shape="rect" href="structCFavoriteDatabase_1_1Item.html" title=" " alt="" coords="2729,349,2912,374"/>
+<area shape="poly" title=" " alt="" coords="2926,359,3077,359,3077,364,2926,364"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ab453677696127697f837ddb61cbe1126" id="r_ab453677696127697f837ddb61cbe1126"><td class="memItemLeft" align="right" valign="top"><a id="ab453677696127697f837ddb61cbe1126" name="ab453677696127697f837ddb61cbe1126"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigExitFullScreen</b> ()</td></tr>
+<tr class="separator:ab453677696127697f837ddb61cbe1126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba435fd15e72449db56d9cd56c0580c6" id="r_aba435fd15e72449db56d9cd56c0580c6"><td class="memItemLeft" align="right" valign="top"><a id="aba435fd15e72449db56d9cd56c0580c6" name="aba435fd15e72449db56d9cd56c0580c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigExit</b> ()</td></tr>
+<tr class="separator:aba435fd15e72449db56d9cd56c0580c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a96e81de9105de89a2dcc7402d5831791" id="r_a96e81de9105de89a2dcc7402d5831791"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a96e81de9105de89a2dcc7402d5831791">CFrmFullScreenToolBar</a> (<a class="el" href="classMainWindow.html">MainWindow</a> *pMain, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a96e81de9105de89a2dcc7402d5831791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a59b4319467035738c3190bad982a4d91" id="r_a59b4319467035738c3190bad982a4d91"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a59b4319467035738c3190bad982a4d91">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a59b4319467035738c3190bad982a4d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c10b3761033a09a63f7de804becd54" id="r_a81c10b3761033a09a63f7de804becd54"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a81c10b3761033a09a63f7de804becd54">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a81c10b3761033a09a63f7de804becd54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a426952c27d84930805ca6f2974318657" id="r_a426952c27d84930805ca6f2974318657"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a426952c27d84930805ca6f2974318657">enterEvent</a> (QEnterEvent *event) override</td></tr>
+<tr class="separator:a426952c27d84930805ca6f2974318657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84a3393ebeb11dc92bf2fae115dde89d" id="r_a84a3393ebeb11dc92bf2fae115dde89d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a84a3393ebeb11dc92bf2fae115dde89d">leaveEvent</a> (QEvent *event) override</td></tr>
+<tr class="separator:a84a3393ebeb11dc92bf2fae115dde89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a074422c06514bdd9eba2e8c99ff9a039" id="r_a074422c06514bdd9eba2e8c99ff9a039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a074422c06514bdd9eba2e8c99ff9a039">slotTimeOut</a> ()</td></tr>
+<tr class="separator:a074422c06514bdd9eba2e8c99ff9a039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af06591eb2f30a32cfaaf69085051a1de" id="r_af06591eb2f30a32cfaaf69085051a1de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#af06591eb2f30a32cfaaf69085051a1de">slotNail</a> ()</td></tr>
+<tr class="separator:af06591eb2f30a32cfaaf69085051a1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e76f7a62b60d61c5db8f1369774d99" id="r_a53e76f7a62b60d61c5db8f1369774d99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a53e76f7a62b60d61c5db8f1369774d99">slotOperateMenuChanged</a> (QAction *pAction)</td></tr>
+<tr class="separator:a53e76f7a62b60d61c5db8f1369774d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a242b9bb73fdd4de02e676c4d503ed194" id="r_a242b9bb73fdd4de02e676c4d503ed194"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a242b9bb73fdd4de02e676c4d503ed194">ReToolBarSize</a> ()</td></tr>
+<tr class="separator:a242b9bb73fdd4de02e676c4d503ed194"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a871050acbe88985cee98b439fa4b8527" id="r_a871050acbe88985cee98b439fa4b8527"><td class="memItemLeft" align="right" valign="top">Ui::CFrmFullScreenToolBar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a871050acbe88985cee98b439fa4b8527">ui</a></td></tr>
+<tr class="separator:a871050acbe88985cee98b439fa4b8527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b27e01333cfa6d870dfdf32de2b789" id="r_a87b27e01333cfa6d870dfdf32de2b789"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a87b27e01333cfa6d870dfdf32de2b789">m_Pos</a></td></tr>
+<tr class="separator:a87b27e01333cfa6d870dfdf32de2b789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bbd7561f442fcd3fb82f368c7f6dcd" id="r_aa1bbd7561f442fcd3fb82f368c7f6dcd"><td class="memItemLeft" align="right" valign="top">QToolBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#aa1bbd7561f442fcd3fb82f368c7f6dcd">m_ToolBar</a></td></tr>
+<tr class="separator:aa1bbd7561f442fcd3fb82f368c7f6dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab4cdeae30c1f8766e94e2167b7a7563" id="r_aab4cdeae30c1f8766e94e2167b7a7563"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#aab4cdeae30c1f8766e94e2167b7a7563">m_pOperateMenu</a></td></tr>
+<tr class="separator:aab4cdeae30c1f8766e94e2167b7a7563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160170de0e84b29ea726516ded9e8b82" id="r_a160170de0e84b29ea726516ded9e8b82"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a160170de0e84b29ea726516ded9e8b82">m_pNail</a></td></tr>
+<tr class="separator:a160170de0e84b29ea726516ded9e8b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c68d77bb75fac53a68569db1b0e6ba" id="r_a88c68d77bb75fac53a68569db1b0e6ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMainWindow.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a88c68d77bb75fac53a68569db1b0e6ba">m_pMain</a></td></tr>
+<tr class="separator:a88c68d77bb75fac53a68569db1b0e6ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996a215ce14167d213062799612c55f2" id="r_a996a215ce14167d213062799612c55f2"><td class="memItemLeft" align="right" valign="top">QTimer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a996a215ce14167d213062799612c55f2">m_Timer</a></td></tr>
+<tr class="separator:a996a215ce14167d213062799612c55f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d55542ba21a160457a828d1647e745" id="r_ab8d55542ba21a160457a828d1647e745"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#ab8d55542ba21a160457a828d1647e745">m_TimeOut</a></td></tr>
+<tr class="separator:ab8d55542ba21a160457a828d1647e745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b464061a69a0ea2a39ee24705f0c317" id="r_a2b464061a69a0ea2a39ee24705f0c317"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmFullScreenToolBar.html#a2b464061a69a0ea2a39ee24705f0c317">m_isHide</a></td></tr>
+<tr class="separator:a2b464061a69a0ea2a39ee24705f0c317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00018">18</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a96e81de9105de89a2dcc7402d5831791" name="a96e81de9105de89a2dcc7402d5831791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96e81de9105de89a2dcc7402d5831791">&#9670;&#160;</a></span>CFrmFullScreenToolBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static App <a class="el" href="classMainWindow.html">MainWindow</a> FullScreen Record CFrmFullScreenToolBar::CFrmFullScreenToolBar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMainWindow.html">MainWindow</a> *&#160;</td>
+          <td class="paramname"><em>pMain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa12e1b6ddf9f00da68b4ef27fb19d54c" name="aa12e1b6ddf9f00da68b4ef27fb19d54c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa12e1b6ddf9f00da68b4ef27fb19d54c">&#9670;&#160;</a></span>~CFrmFullScreenToolBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmFullScreenToolBar::~CFrmFullScreenToolBar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a426952c27d84930805ca6f2974318657" name="a426952c27d84930805ca6f2974318657"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a426952c27d84930805ca6f2974318657">&#9670;&#160;</a></span>enterEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::enterEvent </td>
+          <td>(</td>
+          <td class="paramtype">QEnterEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a84a3393ebeb11dc92bf2fae115dde89d" name="a84a3393ebeb11dc92bf2fae115dde89d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84a3393ebeb11dc92bf2fae115dde89d">&#9670;&#160;</a></span>leaveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::leaveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a59b4319467035738c3190bad982a4d91" name="a59b4319467035738c3190bad982a4d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59b4319467035738c3190bad982a4d91">&#9670;&#160;</a></span>mouseMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::mouseMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a81c10b3761033a09a63f7de804becd54" name="a81c10b3761033a09a63f7de804becd54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81c10b3761033a09a63f7de804becd54">&#9670;&#160;</a></span>mousePressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::mousePressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a242b9bb73fdd4de02e676c4d503ed194" name="a242b9bb73fdd4de02e676c4d503ed194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a242b9bb73fdd4de02e676c4d503ed194">&#9670;&#160;</a></span>ReToolBarSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmFullScreenToolBar::ReToolBarSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af06591eb2f30a32cfaaf69085051a1de" name="af06591eb2f30a32cfaaf69085051a1de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af06591eb2f30a32cfaaf69085051a1de">&#9670;&#160;</a></span>slotNail</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::slotNail </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00157">157</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a53e76f7a62b60d61c5db8f1369774d99" name="a53e76f7a62b60d61c5db8f1369774d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e76f7a62b60d61c5db8f1369774d99">&#9670;&#160;</a></span>slotOperateMenuChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::slotOperateMenuChanged </td>
+          <td>(</td>
+          <td class="paramtype">QAction *&#160;</td>
+          <td class="paramname"><em>pAction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a074422c06514bdd9eba2e8c99ff9a039" name="a074422c06514bdd9eba2e8c99ff9a039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a074422c06514bdd9eba2e8c99ff9a039">&#9670;&#160;</a></span>slotTimeOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmFullScreenToolBar::slotTimeOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a> 第 <a class="el" href="FrmFullScreenToolBar_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2b464061a69a0ea2a39ee24705f0c317" name="a2b464061a69a0ea2a39ee24705f0c317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b464061a69a0ea2a39ee24705f0c317">&#9670;&#160;</a></span>m_isHide</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CFrmFullScreenToolBar::m_isHide</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a88c68d77bb75fac53a68569db1b0e6ba" name="a88c68d77bb75fac53a68569db1b0e6ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c68d77bb75fac53a68569db1b0e6ba">&#9670;&#160;</a></span>m_pMain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMainWindow.html">MainWindow</a>* CFrmFullScreenToolBar::m_pMain</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a160170de0e84b29ea726516ded9e8b82" name="a160170de0e84b29ea726516ded9e8b82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a160170de0e84b29ea726516ded9e8b82">&#9670;&#160;</a></span>m_pNail</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmFullScreenToolBar::m_pNail</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aab4cdeae30c1f8766e94e2167b7a7563" name="aab4cdeae30c1f8766e94e2167b7a7563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab4cdeae30c1f8766e94e2167b7a7563">&#9670;&#160;</a></span>m_pOperateMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmFullScreenToolBar::m_pOperateMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a87b27e01333cfa6d870dfdf32de2b789" name="a87b27e01333cfa6d870dfdf32de2b789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b27e01333cfa6d870dfdf32de2b789">&#9670;&#160;</a></span>m_Pos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPointF CFrmFullScreenToolBar::m_Pos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab8d55542ba21a160457a828d1647e745" name="ab8d55542ba21a160457a828d1647e745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d55542ba21a160457a828d1647e745">&#9670;&#160;</a></span>m_TimeOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmFullScreenToolBar::m_TimeOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a996a215ce14167d213062799612c55f2" name="a996a215ce14167d213062799612c55f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a996a215ce14167d213062799612c55f2">&#9670;&#160;</a></span>m_Timer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTimer CFrmFullScreenToolBar::m_Timer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1bbd7561f442fcd3fb82f368c7f6dcd" name="aa1bbd7561f442fcd3fb82f368c7f6dcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1bbd7561f442fcd3fb82f368c7f6dcd">&#9670;&#160;</a></span>m_ToolBar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QToolBar CFrmFullScreenToolBar::m_ToolBar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a871050acbe88985cee98b439fa4b8527" name="a871050acbe88985cee98b439fa4b8527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871050acbe88985cee98b439fa4b8527">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CFrmFullScreenToolBar* CFrmFullScreenToolBar::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a> 第 <a class="el" href="FrmFullScreenToolBar_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="FrmFullScreenToolBar_8h_source.html">FrmFullScreenToolBar.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="FrmFullScreenToolBar_8cpp_source.html">FrmFullScreenToolBar.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

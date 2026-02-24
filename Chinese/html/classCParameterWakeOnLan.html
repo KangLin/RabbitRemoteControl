@@ -1,0 +1,1259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterWakeOnLan类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-slots">Protected 槽</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterWakeOnLan-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterWakeOnLan类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The wake on lan parameters.  
+ <a href="classCParameterWakeOnLan.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterWakeOnLan 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterWakeOnLan__inherit__graph.png" border="0" usemap="#aCParameterWakeOnLan_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterWakeOnLan_inherit__map" id="aCParameterWakeOnLan_inherit__map">
+<area shape="rect" title="The wake on lan parameters." alt="" coords="5,225,180,251"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="17,152,168,177"/>
+<area shape="poly" title=" " alt="" coords="95,191,95,225,90,225,90,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="43,79,142,104"/>
+<area shape="poly" title=" " alt="" coords="95,118,95,152,90,152,90,118"/>
+<area shape="rect" title=" " alt="" coords="55,5,130,31"/>
+<area shape="poly" title=" " alt="" coords="95,44,95,79,90,79,90,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterWakeOnLan 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterWakeOnLan__coll__graph.png" border="0" usemap="#aCParameterWakeOnLan_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterWakeOnLan_coll__map" id="aCParameterWakeOnLan_coll__map">
+<area shape="rect" title="The wake on lan parameters." alt="" coords="78,455,253,480"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="195,155,346,180"/>
+<area shape="poly" title=" " alt="" coords="246,191,217,219,193,255,175,310,167,368,165,419,167,454,162,454,160,419,161,367,170,309,188,252,213,216,242,187"/>
+<area shape="poly" title=" " alt="" coords="360,160,373,167,364,174,346,177,346,171,362,169,367,167,358,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="277,455,437,480"/>
+<area shape="poly" title=" " alt="" coords="317,184,341,202,356,225,364,253,391,342,394,382,384,432,370,456,365,453,379,430,388,382,386,343,359,254,351,228,337,206,314,188"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="222,352,343,377"/>
+<area shape="poly" title=" " alt="" coords="298,188,324,216,345,253,347,271,345,296,338,329,326,344,311,354,308,350,322,340,334,327,339,296,342,271,340,254,320,219,294,191"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="203,253,331,279"/>
+<area shape="poly" title=" " alt="" coords="272,194,270,253,264,253,267,194"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="501,80,600,105"/>
+<area shape="poly" title=" " alt="" coords="494,111,315,157,314,152,492,106"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="481,631,620,656"/>
+<area shape="poly" title=" " alt="" coords="540,119,532,141,528,166,528,556,535,597,547,629,542,631,530,598,523,557,523,166,527,140,535,117"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="302,543,442,568"/>
+<area shape="poly" title=" " alt="" coords="515,114,489,137,480,150,477,166,477,469,474,497,458,520,439,535,419,545,416,540,437,530,454,517,469,495,472,469,472,166,476,148,485,133,511,110"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="545,204,676,229"/>
+<area shape="poly" title=" " alt="" coords="565,117,607,203,603,205,560,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="614,303,757,328"/>
+<area shape="poly" title=" " alt="" coords="586,110,636,148,660,173,680,203,689,230,692,258,690,303,685,303,687,258,684,231,675,205,656,177,633,152,582,115"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="701,403,891,429"/>
+<area shape="poly" title=" " alt="" coords="614,98,672,107,729,120,773,139,787,152,792,166,792,317,797,403,792,403,787,317,787,166,782,155,770,144,727,125,671,112,613,103"/>
+<area shape="rect" title=" " alt="" coords="513,5,588,31"/>
+<area shape="poly" title=" " alt="" coords="553,45,553,80,548,80,548,45"/>
+<area shape="poly" title=" " alt="" coords="467,640,331,630,179,613,111,603,55,590,18,575,7,567,3,557,3,264,8,248,23,234,72,210,135,191,199,177,200,183,137,196,74,215,26,238,13,251,8,265,8,556,11,563,20,571,57,585,112,597,180,608,331,625,468,635"/>
+<area shape="poly" title=" " alt="" coords="369,581,370,594,375,605,391,615,417,624,482,634,481,640,416,629,389,620,371,608,365,596,364,582"/>
+<area shape="poly" title=" " alt="" coords="361,494,364,518,370,542,365,543,359,519,356,494"/>
+<area shape="poly" title=" " alt="" coords="260,389,180,457,177,453,257,385"/>
+<area shape="poly" title=" " alt="" coords="301,387,351,453,347,456,297,390"/>
+<area shape="poly" title=" " alt="" coords="273,291,283,352,278,352,268,292"/>
+<area shape="poly" title=" " alt="" coords="600,242,585,276,579,314,579,557,572,598,559,631,554,629,567,597,573,556,573,314,580,274,595,240"/>
+<area shape="poly" title=" " alt="" coords="686,342,683,415,683,557,675,585,655,606,629,622,601,633,599,628,627,617,652,602,670,582,677,556,677,415,681,342"/>
+<area shape="poly" title=" " alt="" coords="793,443,782,480,763,525,737,570,700,609,662,630,621,640,619,635,660,625,697,605,732,567,759,522,777,478,788,441"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a724cf3f08a2564cf46cee21846736da4" id="r_a724cf3f08a2564cf46cee21846736da4"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>HostState</b> { <b>Online</b>
+, <b>GetMac</b>
+, <b>WakeOnLan</b>
+, <b>Offline</b>
+ }</td></tr>
+<tr class="separator:a724cf3f08a2564cf46cee21846736da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a8661283cbbed9f5c72defb7c5948ea6e" id="r_a8661283cbbed9f5c72defb7c5948ea6e"><td class="memItemLeft" align="right" valign="top"><a id="a8661283cbbed9f5c72defb7c5948ea6e" name="a8661283cbbed9f5c72defb7c5948ea6e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigHostStateChanged</b> ()</td></tr>
+<tr class="separator:a8661283cbbed9f5c72defb7c5948ea6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate" id="r_a3612d682561300f4d22c58dab8c3bb52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a3612d682561300f4d22c58dab8c3bb52">sigSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="separator:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="separator:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a6df16693535bedeef9450a7d969a4596" id="r_a6df16693535bedeef9450a7d969a4596"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a6df16693535bedeef9450a7d969a4596">CParameterWakeOnLan</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a6df16693535bedeef9450a7d969a4596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab07ee8b0f542d5d825b9f77875a7335f" id="r_ab07ee8b0f542d5d825b9f77875a7335f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ab07ee8b0f542d5d825b9f77875a7335f">GetEnable</a> () const</td></tr>
+<tr class="separator:ab07ee8b0f542d5d825b9f77875a7335f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb59b89db50eed683adc6377cc01a437" id="r_abb59b89db50eed683adc6377cc01a437"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#abb59b89db50eed683adc6377cc01a437">SetEnable</a> (bool bEnable)</td></tr>
+<tr class="separator:abb59b89db50eed683adc6377cc01a437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a627e54dffff99ce27d7d590187b6bb04" id="r_a627e54dffff99ce27d7d590187b6bb04"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a627e54dffff99ce27d7d590187b6bb04">GetMac</a> () const</td></tr>
+<tr class="separator:a627e54dffff99ce27d7d590187b6bb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a979bf345c6e067ccc0dead6d27d4f620" id="r_a979bf345c6e067ccc0dead6d27d4f620"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a979bf345c6e067ccc0dead6d27d4f620">SetMac</a> (const QString &amp;szMac)</td></tr>
+<tr class="separator:a979bf345c6e067ccc0dead6d27d4f620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3bd868c0dfda1c2f5a4b8d7e239742" id="r_aba3bd868c0dfda1c2f5a4b8d7e239742"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aba3bd868c0dfda1c2f5a4b8d7e239742">GetBroadcastAddress</a> () const</td></tr>
+<tr class="separator:aba3bd868c0dfda1c2f5a4b8d7e239742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21247be1428747a94210fa67b32fd694" id="r_a21247be1428747a94210fa67b32fd694"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a21247be1428747a94210fa67b32fd694">SetBroadcastAddress</a> (const QString &amp;szBroadcastAddress)</td></tr>
+<tr class="separator:a21247be1428747a94210fa67b32fd694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6343a2465ba2e273092a3f7316f0f2be" id="r_a6343a2465ba2e273092a3f7316f0f2be"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a6343a2465ba2e273092a3f7316f0f2be">GetNetworkInterface</a> () const</td></tr>
+<tr class="memdesc:a6343a2465ba2e273092a3f7316f0f2be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get network interface.  <br /></td></tr>
+<tr class="separator:a6343a2465ba2e273092a3f7316f0f2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6b666ba64c1f7e8084aedefcc3e921" id="r_a7b6b666ba64c1f7e8084aedefcc3e921"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a7b6b666ba64c1f7e8084aedefcc3e921">SetNetworkInterface</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:a7b6b666ba64c1f7e8084aedefcc3e921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb33f6e9ad584555d382d2f0367efc0e" id="r_abb33f6e9ad584555d382d2f0367efc0e"><td class="memItemLeft" align="right" valign="top">const quint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#abb33f6e9ad584555d382d2f0367efc0e">GetPort</a> () const</td></tr>
+<tr class="separator:abb33f6e9ad584555d382d2f0367efc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff51237c182b72a50db053a4a1455793" id="r_aff51237c182b72a50db053a4a1455793"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aff51237c182b72a50db053a4a1455793">SetPort</a> (quint16 port)</td></tr>
+<tr class="separator:aff51237c182b72a50db053a4a1455793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbce5e29285031400cc62732152cc26" id="r_a9dbce5e29285031400cc62732152cc26"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a9dbce5e29285031400cc62732152cc26">GetPassword</a> () const</td></tr>
+<tr class="separator:a9dbce5e29285031400cc62732152cc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16618da5d6d036c450b31792b885bd2" id="r_ac16618da5d6d036c450b31792b885bd2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ac16618da5d6d036c450b31792b885bd2">SetPassword</a> (const QString &amp;szPassword)</td></tr>
+<tr class="separator:ac16618da5d6d036c450b31792b885bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e8c998b687dfcb77d081460cb5cb24" id="r_ac5e8c998b687dfcb77d081460cb5cb24"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ac5e8c998b687dfcb77d081460cb5cb24">GetSavePassword</a> () const</td></tr>
+<tr class="separator:ac5e8c998b687dfcb77d081460cb5cb24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447d76b74b102ca3f79b8d5048321a91" id="r_a447d76b74b102ca3f79b8d5048321a91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a447d76b74b102ca3f79b8d5048321a91">SetSavePassword</a> (bool save)</td></tr>
+<tr class="memdesc:a447d76b74b102ca3f79b8d5048321a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set save password  <br /></td></tr>
+<tr class="separator:a447d76b74b102ca3f79b8d5048321a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac0e7ab437ab36d8389192ed73b338f6" id="r_aac0e7ab437ab36d8389192ed73b338f6"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aac0e7ab437ab36d8389192ed73b338f6">GetRepeat</a> () const</td></tr>
+<tr class="separator:aac0e7ab437ab36d8389192ed73b338f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc5ec4af0de04050265c9e017a312085" id="r_abc5ec4af0de04050265c9e017a312085"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#abc5ec4af0de04050265c9e017a312085">SetRepeat</a> (int nRepeat)</td></tr>
+<tr class="separator:abc5ec4af0de04050265c9e017a312085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd4cdaaf88ec6c4200e92419514631aa" id="r_afd4cdaaf88ec6c4200e92419514631aa"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#afd4cdaaf88ec6c4200e92419514631aa">GetInterval</a> () const</td></tr>
+<tr class="memdesc:afd4cdaaf88ec6c4200e92419514631aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:afd4cdaaf88ec6c4200e92419514631aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a9da9e97d577d6ee02739cccd5540ee" id="r_a4a9da9e97d577d6ee02739cccd5540ee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a4a9da9e97d577d6ee02739cccd5540ee">SetInterval</a> (int nInterval)</td></tr>
+<tr class="memdesc:a4a9da9e97d577d6ee02739cccd5540ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:a4a9da9e97d577d6ee02739cccd5540ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf401fce46ae5b756daa6fe9b44e3efa" id="r_adf401fce46ae5b756daa6fe9b44e3efa"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#adf401fce46ae5b756daa6fe9b44e3efa">GetTimeOut</a> () const</td></tr>
+<tr class="memdesc:adf401fce46ae5b756daa6fe9b44e3efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:adf401fce46ae5b756daa6fe9b44e3efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06a6d89d88e7912b9c8a9a821d744a38" id="r_a06a6d89d88e7912b9c8a9a821d744a38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a06a6d89d88e7912b9c8a9a821d744a38">SetTimeOut</a> (int nTimeout)</td></tr>
+<tr class="memdesc:a06a6d89d88e7912b9c8a9a821d744a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:a06a6d89d88e7912b9c8a9a821d744a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcdff802b666d9a6349ae07d4340aff3" id="r_adcdff802b666d9a6349ae07d4340aff3"><td class="memItemLeft" align="right" valign="top">HostState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#adcdff802b666d9a6349ae07d4340aff3">GetHostState</a> () const</td></tr>
+<tr class="separator:adcdff802b666d9a6349ae07d4340aff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44124d5cd4bf86c8d6f3d04b66df9e8" id="r_aa44124d5cd4bf86c8d6f3d04b66df9e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aa44124d5cd4bf86c8d6f3d04b66df9e8">SetHostState</a> (HostState newHostState)</td></tr>
+<tr class="separator:aa44124d5cd4bf86c8d6f3d04b66df9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate" id="r_a5056c786cd1aec8c584b6f9b633b35fc"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterOperate</b> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate" id="r_abed288f5e0d87a08f113126f31227a80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">GetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="separator:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate" id="r_a407cc6e826c0af916eb8ca5085d293e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a407cc6e826c0af916eb8ca5085d293e8">SetGlobalParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="separator:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="separator:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="separator:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="separator:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a541323337d2c44dca1d058b0679ec4af" id="r_a541323337d2c44dca1d058b0679ec4af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a541323337d2c44dca1d058b0679ec4af">m_Net</a></td></tr>
+<tr class="separator:a541323337d2c44dca1d058b0679ec4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-slots" name="pro-slots"></a>
+Protected 槽</h2></td></tr>
+<tr class="memitem:a4dac272bfd327f7eedd3364326c056f3" id="r_a4dac272bfd327f7eedd3364326c056f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a4dac272bfd327f7eedd3364326c056f3">slotSetGlobalParameters</a> () override</td></tr>
+<tr class="separator:a4dac272bfd327f7eedd3364326c056f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate" id="r_a4e92e0588bf8de1fa7181cd2d29ab059"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a4e92e0588bf8de1fa7181cd2d29ab059">slotSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="separator:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a03acf1a34ac8c10cc9c8dc3a90af9a52" id="r_a03acf1a34ac8c10cc9c8dc3a90af9a52"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="memdesc:a03acf1a34ac8c10cc9c8dc3a90af9a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:a03acf1a34ac8c10cc9c8dc3a90af9a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73c577e5cdcfaf8680754af1940dd019" id="r_a73c577e5cdcfaf8680754af1940dd019"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a73c577e5cdcfaf8680754af1940dd019">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a73c577e5cdcfaf8680754af1940dd019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fc66765d4d40aad47898c8cd1f750d" id="r_ab2fc66765d4d40aad47898c8cd1f750d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ab2fc66765d4d40aad47898c8cd1f750d">OnCheckValidity</a> () override</td></tr>
+<tr class="memdesc:ab2fc66765d4d40aad47898c8cd1f750d"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:ab2fc66765d4d40aad47898c8cd1f750d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="separator:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aeae51febaae8c558828a395a73569a37" id="r_aeae51febaae8c558828a395a73569a37"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aeae51febaae8c558828a395a73569a37">m_bEnable</a></td></tr>
+<tr class="separator:aeae51febaae8c558828a395a73569a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f29f2add9f52949e8f18514188345c4" id="r_a7f29f2add9f52949e8f18514188345c4"><td class="memItemLeft" align="right" valign="top">HostState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a7f29f2add9f52949e8f18514188345c4">m_HostState</a></td></tr>
+<tr class="separator:a7f29f2add9f52949e8f18514188345c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee4e17866433ce5114d927a9ad02d7f" id="r_aaee4e17866433ce5114d927a9ad02d7f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aaee4e17866433ce5114d927a9ad02d7f">m_szMac</a></td></tr>
+<tr class="separator:aaee4e17866433ce5114d927a9ad02d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac05d31fbcbca7ab6b9002ac2de16beb4" id="r_ac05d31fbcbca7ab6b9002ac2de16beb4"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ac05d31fbcbca7ab6b9002ac2de16beb4">m_szBoardcastAddress</a></td></tr>
+<tr class="separator:ac05d31fbcbca7ab6b9002ac2de16beb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b37c4835e35b9a48cbb8920965ef7e" id="r_aa1b37c4835e35b9a48cbb8920965ef7e"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aa1b37c4835e35b9a48cbb8920965ef7e">m_szNetworkInteface</a></td></tr>
+<tr class="separator:aa1b37c4835e35b9a48cbb8920965ef7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03b8d4fa3dc0d80a98083aca9d6f6ee" id="r_ad03b8d4fa3dc0d80a98083aca9d6f6ee"><td class="memItemLeft" align="right" valign="top">quint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ad03b8d4fa3dc0d80a98083aca9d6f6ee">m_nPort</a></td></tr>
+<tr class="separator:ad03b8d4fa3dc0d80a98083aca9d6f6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f42d4c348cc1bde06a92205f4151c5" id="r_a10f42d4c348cc1bde06a92205f4151c5"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a10f42d4c348cc1bde06a92205f4151c5">m_szPassword</a></td></tr>
+<tr class="separator:a10f42d4c348cc1bde06a92205f4151c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa952d640e6824ff2ba76dfd3f0670e2b" id="r_aa952d640e6824ff2ba76dfd3f0670e2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#aa952d640e6824ff2ba76dfd3f0670e2b">m_bSavePassword</a></td></tr>
+<tr class="separator:aa952d640e6824ff2ba76dfd3f0670e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada2a3aed52d863caa0d069a0b6ba8447" id="r_ada2a3aed52d863caa0d069a0b6ba8447"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ada2a3aed52d863caa0d069a0b6ba8447">m_nRepeat</a></td></tr>
+<tr class="separator:ada2a3aed52d863caa0d069a0b6ba8447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0854230ee7fe4b97590954b16d3dcd3e" id="r_a0854230ee7fe4b97590954b16d3dcd3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#a0854230ee7fe4b97590954b16d3dcd3e">m_nInterval</a></td></tr>
+<tr class="separator:a0854230ee7fe4b97590954b16d3dcd3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7152b206e576d95639f98a4714250dd" id="r_ab7152b206e576d95639f98a4714250dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWakeOnLan.html#ab7152b206e576d95639f98a4714250dd">m_nTimeOut</a></td></tr>
+<tr class="memdesc:ab7152b206e576d95639f98a4714250dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit: ms  <br /></td></tr>
+<tr class="separator:ab7152b206e576d95639f98a4714250dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The wake on lan parameters. </p>
+<p>it's UI is <a class="el" href="classCParameterWakeOnLanUI.html" title="The wake on lan parameters UI">CParameterWakeOnLanUI</a> </p><dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameterWakeOnLanUI.html" title="The wake on lan parameters UI">CParameterWakeOnLanUI</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a724cf3f08a2564cf46cee21846736da4" name="a724cf3f08a2564cf46cee21846736da4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a724cf3f08a2564cf46cee21846736da4">&#9670;&#160;</a></span>HostState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CParameterWakeOnLan::HostState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a6df16693535bedeef9450a7d969a4596" name="a6df16693535bedeef9450a7d969a4596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df16693535bedeef9450a7d969a4596">&#9670;&#160;</a></span>CParameterWakeOnLan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterWakeOnLan::CParameterWakeOnLan </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aba3bd868c0dfda1c2f5a4b8d7e239742" name="aba3bd868c0dfda1c2f5a4b8d7e239742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba3bd868c0dfda1c2f5a4b8d7e239742">&#9670;&#160;</a></span>GetBroadcastAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterWakeOnLan::GetBroadcastAddress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00132">132</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab07ee8b0f542d5d825b9f77875a7335f" name="ab07ee8b0f542d5d825b9f77875a7335f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab07ee8b0f542d5d825b9f77875a7335f">&#9670;&#160;</a></span>GetEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterWakeOnLan::GetEnable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adcdff802b666d9a6349ae07d4340aff3" name="adcdff802b666d9a6349ae07d4340aff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdff802b666d9a6349ae07d4340aff3">&#9670;&#160;</a></span>GetHostState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterWakeOnLan::HostState CParameterWakeOnLan::GetHostState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afd4cdaaf88ec6c4200e92419514631aa" name="afd4cdaaf88ec6c4200e92419514631aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd4cdaaf88ec6c4200e92419514631aa">&#9670;&#160;</a></span>GetInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int CParameterWakeOnLan::GetInterval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a627e54dffff99ce27d7d590187b6bb04" name="a627e54dffff99ce27d7d590187b6bb04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a627e54dffff99ce27d7d590187b6bb04">&#9670;&#160;</a></span>GetMac()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterWakeOnLan::GetMac </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6343a2465ba2e273092a3f7316f0f2be" name="a6343a2465ba2e273092a3f7316f0f2be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6343a2465ba2e273092a3f7316f0f2be">&#9670;&#160;</a></span>GetNetworkInterface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterWakeOnLan::GetNetworkInterface </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get network interface. </p>
+<dl class="section return"><dt>返回</dt><dd>Source IP </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9dbce5e29285031400cc62732152cc26" name="a9dbce5e29285031400cc62732152cc26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dbce5e29285031400cc62732152cc26">&#9670;&#160;</a></span>GetPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterWakeOnLan::GetPassword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00174">174</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abb33f6e9ad584555d382d2f0367efc0e" name="abb33f6e9ad584555d382d2f0367efc0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb33f6e9ad584555d382d2f0367efc0e">&#9670;&#160;</a></span>GetPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const quint16 CParameterWakeOnLan::GetPort </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac0e7ab437ab36d8389192ed73b338f6" name="aac0e7ab437ab36d8389192ed73b338f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac0e7ab437ab36d8389192ed73b338f6">&#9670;&#160;</a></span>GetRepeat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int CParameterWakeOnLan::GetRepeat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00202">202</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac5e8c998b687dfcb77d081460cb5cb24" name="ac5e8c998b687dfcb77d081460cb5cb24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e8c998b687dfcb77d081460cb5cb24">&#9670;&#160;</a></span>GetSavePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CParameterWakeOnLan::GetSavePassword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf401fce46ae5b756daa6fe9b44e3efa" name="adf401fce46ae5b756daa6fe9b44e3efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf401fce46ae5b756daa6fe9b44e3efa">&#9670;&#160;</a></span>GetTimeOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int CParameterWakeOnLan::GetTimeOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00230">230</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2fc66765d4d40aad47898c8cd1f750d" name="ab2fc66765d4d40aad47898c8cd1f750d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2fc66765d4d40aad47898c8cd1f750d">&#9670;&#160;</a></span>OnCheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWakeOnLan::OnCheckValidity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查参数是否有效 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>true: 有效</li>
+<li>false: 无效 </li>
+</ul>
+</dd></dl>
+
+<p>重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">CParameter</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03acf1a34ac8c10cc9c8dc3a90af9a52" name="a03acf1a34ac8c10cc9c8dc3a90af9a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03acf1a34ac8c10cc9c8dc3a90af9a52">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a73c577e5cdcfaf8680754af1940dd019" name="a73c577e5cdcfaf8680754af1940dd019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c577e5cdcfaf8680754af1940dd019">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a21247be1428747a94210fa67b32fd694" name="a21247be1428747a94210fa67b32fd694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21247be1428747a94210fa67b32fd694">&#9670;&#160;</a></span>SetBroadcastAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetBroadcastAddress </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szBroadcastAddress</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00137">137</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abb59b89db50eed683adc6377cc01a437" name="abb59b89db50eed683adc6377cc01a437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb59b89db50eed683adc6377cc01a437">&#9670;&#160;</a></span>SetEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetEnable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa44124d5cd4bf86c8d6f3d04b66df9e8" name="aa44124d5cd4bf86c8d6f3d04b66df9e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa44124d5cd4bf86c8d6f3d04b66df9e8">&#9670;&#160;</a></span>SetHostState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWakeOnLan::SetHostState </td>
+          <td>(</td>
+          <td class="paramtype">HostState&#160;</td>
+          <td class="paramname"><em>newHostState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4a9da9e97d577d6ee02739cccd5540ee" name="a4a9da9e97d577d6ee02739cccd5540ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a9da9e97d577d6ee02739cccd5540ee">&#9670;&#160;</a></span>SetInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetInterval </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nInterval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00221">221</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a979bf345c6e067ccc0dead6d27d4f620" name="a979bf345c6e067ccc0dead6d27d4f620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a979bf345c6e067ccc0dead6d27d4f620">&#9670;&#160;</a></span>SetMac()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetMac </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szMac</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7b6b666ba64c1f7e8084aedefcc3e921" name="a7b6b666ba64c1f7e8084aedefcc3e921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b6b666ba64c1f7e8084aedefcc3e921">&#9670;&#160;</a></span>SetNetworkInterface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetNetworkInterface </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac16618da5d6d036c450b31792b885bd2" name="ac16618da5d6d036c450b31792b885bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac16618da5d6d036c450b31792b885bd2">&#9670;&#160;</a></span>SetPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetPassword </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPassword</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff51237c182b72a50db053a4a1455793" name="aff51237c182b72a50db053a4a1455793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff51237c182b72a50db053a4a1455793">&#9670;&#160;</a></span>SetPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetPort </td>
+          <td>(</td>
+          <td class="paramtype">quint16&#160;</td>
+          <td class="paramname"><em>port</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abc5ec4af0de04050265c9e017a312085" name="abc5ec4af0de04050265c9e017a312085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc5ec4af0de04050265c9e017a312085">&#9670;&#160;</a></span>SetRepeat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetRepeat </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nRepeat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a447d76b74b102ca3f79b8d5048321a91" name="a447d76b74b102ca3f79b8d5048321a91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447d76b74b102ca3f79b8d5048321a91">&#9670;&#160;</a></span>SetSavePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetSavePassword </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>save</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set save password </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">save</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00193">193</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a06a6d89d88e7912b9c8a9a821d744a38" name="a06a6d89d88e7912b9c8a9a821d744a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06a6d89d88e7912b9c8a9a821d744a38">&#9670;&#160;</a></span>SetTimeOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::SetTimeOut </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nTimeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4dac272bfd327f7eedd3364326c056f3" name="a4dac272bfd327f7eedd3364326c056f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dac272bfd327f7eedd3364326c056f3">&#9670;&#160;</a></span>slotSetGlobalParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWakeOnLan::slotSetGlobalParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a> 第 <a class="el" href="ParameterWakeOnLan_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aeae51febaae8c558828a395a73569a37" name="aeae51febaae8c558828a395a73569a37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeae51febaae8c558828a395a73569a37">&#9670;&#160;</a></span>m_bEnable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWakeOnLan::m_bEnable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa952d640e6824ff2ba76dfd3f0670e2b" name="aa952d640e6824ff2ba76dfd3f0670e2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa952d640e6824ff2ba76dfd3f0670e2b">&#9670;&#160;</a></span>m_bSavePassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWakeOnLan::m_bSavePassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7f29f2add9f52949e8f18514188345c4" name="a7f29f2add9f52949e8f18514188345c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f29f2add9f52949e8f18514188345c4">&#9670;&#160;</a></span>m_HostState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HostState CParameterWakeOnLan::m_HostState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a541323337d2c44dca1d058b0679ec4af" name="a541323337d2c44dca1d058b0679ec4af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541323337d2c44dca1d058b0679ec4af">&#9670;&#160;</a></span>m_Net</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNet.html">CParameterNet</a> CParameterWakeOnLan::m_Net</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0854230ee7fe4b97590954b16d3dcd3e" name="a0854230ee7fe4b97590954b16d3dcd3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0854230ee7fe4b97590954b16d3dcd3e">&#9670;&#160;</a></span>m_nInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::m_nInterval</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad03b8d4fa3dc0d80a98083aca9d6f6ee" name="ad03b8d4fa3dc0d80a98083aca9d6f6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03b8d4fa3dc0d80a98083aca9d6f6ee">&#9670;&#160;</a></span>m_nPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 CParameterWakeOnLan::m_nPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada2a3aed52d863caa0d069a0b6ba8447" name="ada2a3aed52d863caa0d069a0b6ba8447"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada2a3aed52d863caa0d069a0b6ba8447">&#9670;&#160;</a></span>m_nRepeat</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::m_nRepeat</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab7152b206e576d95639f98a4714250dd" name="ab7152b206e576d95639f98a4714250dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7152b206e576d95639f98a4714250dd">&#9670;&#160;</a></span>m_nTimeOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWakeOnLan::m_nTimeOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unit: ms </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac05d31fbcbca7ab6b9002ac2de16beb4" name="ac05d31fbcbca7ab6b9002ac2de16beb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05d31fbcbca7ab6b9002ac2de16beb4">&#9670;&#160;</a></span>m_szBoardcastAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWakeOnLan::m_szBoardcastAddress</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaee4e17866433ce5114d927a9ad02d7f" name="aaee4e17866433ce5114d927a9ad02d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaee4e17866433ce5114d927a9ad02d7f">&#9670;&#160;</a></span>m_szMac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWakeOnLan::m_szMac</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1b37c4835e35b9a48cbb8920965ef7e" name="aa1b37c4835e35b9a48cbb8920965ef7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b37c4835e35b9a48cbb8920965ef7e">&#9670;&#160;</a></span>m_szNetworkInteface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWakeOnLan::m_szNetworkInteface</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a10f42d4c348cc1bde06a92205f4151c5" name="a10f42d4c348cc1bde06a92205f4151c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f42d4c348cc1bde06a92205f4151c5">&#9670;&#160;</a></span>m_szPassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWakeOnLan::m_szPassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a> 第 <a class="el" href="ParameterWakeOnLan_8h_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WakeOnLan/<a class="el" href="ParameterWakeOnLan_8h_source.html">ParameterWakeOnLan.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WakeOnLan/<a class="el" href="ParameterWakeOnLan_8cpp_source.html">ParameterWakeOnLan.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

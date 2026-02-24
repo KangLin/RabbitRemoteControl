@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CServiceThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCServiceThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CServiceThread类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CServiceThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceThread__inherit__graph.png" border="0" usemap="#aCServiceThread_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCServiceThread_inherit__map" id="aCServiceThread_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,129,104"/>
+<area shape="rect" title=" " alt="" coords="29,5,106,31"/>
+<area shape="poly" title=" " alt="" coords="70,44,70,79,65,79,65,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CServiceThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceThread__coll__graph.png" border="0" usemap="#aCServiceThread_coll__map" alt="Collaboration graph"/></div>
+<map name="aCServiceThread_coll__map" id="aCServiceThread_coll__map">
+<area shape="rect" title=" " alt="" coords="5,168,129,193"/>
+<area shape="rect" title=" " alt="" coords="7,80,85,105"/>
+<area shape="poly" title=" " alt="" coords="55,118,67,167,62,168,50,119"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="109,80,228,105"/>
+<area shape="poly" title=" " alt="" coords="146,116,83,169,80,165,143,112"/>
+<area shape="rect" title=" " alt="" coords="131,5,206,31"/>
+<area shape="poly" title=" " alt="" coords="171,45,171,80,166,80,166,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae50a03ddd6c30048219879494634bd2d" id="r_ae50a03ddd6c30048219879494634bd2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceThread.html#ae50a03ddd6c30048219879494634bd2d">CServiceThread</a> (<a class="el" href="classCPluginService.html">CPluginService</a> *pPlugin, QObject *parent=nullptr)</td></tr>
+<tr class="separator:ae50a03ddd6c30048219879494634bd2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a29805a9552f74c9ee93ae0ffb435320b" id="r_a29805a9552f74c9ee93ae0ffb435320b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceThread.html#a29805a9552f74c9ee93ae0ffb435320b">run</a> () override</td></tr>
+<tr class="separator:a29805a9552f74c9ee93ae0ffb435320b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a8903ce2da393194a708f615be67abf78" id="r_a8903ce2da393194a708f615be67abf78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceThread.html#a8903ce2da393194a708f615be67abf78">m_pPlugin</a></td></tr>
+<tr class="separator:a8903ce2da393194a708f615be67abf78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ServiceThread_8h_source.html">ServiceThread.h</a> 第 <a class="el" href="ServiceThread_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae50a03ddd6c30048219879494634bd2d" name="ae50a03ddd6c30048219879494634bd2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50a03ddd6c30048219879494634bd2d">&#9670;&#160;</a></span>CServiceThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceThread::CServiceThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td>
+          <td class="paramname"><em>pPlugin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceThread_8cpp_source.html">ServiceThread.cpp</a> 第 <a class="el" href="ServiceThread_8cpp_source.html#l00008">8</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af8260faaf0a773c6efc6ae5e11a72920" name="af8260faaf0a773c6efc6ae5e11a72920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8260faaf0a773c6efc6ae5e11a72920">&#9670;&#160;</a></span>~CServiceThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceThread::~CServiceThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceThread_8cpp_source.html">ServiceThread.cpp</a> 第 <a class="el" href="ServiceThread_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a29805a9552f74c9ee93ae0ffb435320b" name="a29805a9552f74c9ee93ae0ffb435320b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29805a9552f74c9ee93ae0ffb435320b">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceThread::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceThread_8cpp_source.html">ServiceThread.cpp</a> 第 <a class="el" href="ServiceThread_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8903ce2da393194a708f615be67abf78" name="a8903ce2da393194a708f615be67abf78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8903ce2da393194a708f615be67abf78">&#9670;&#160;</a></span>m_pPlugin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCPluginService.html">CPluginService</a>* CServiceThread::m_pPlugin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceThread_8h_source.html">ServiceThread.h</a> 第 <a class="el" href="ServiceThread_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ServiceThread_8h_source.html">ServiceThread.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ServiceThread_8cpp_source.html">ServiceThread.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

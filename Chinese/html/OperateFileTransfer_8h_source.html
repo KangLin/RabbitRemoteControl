@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/OperateFileTransfer.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_73ddc01320f182272c634e56c95569c4.html">FileTransfer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">OperateFileTransfer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright Copyright (c) Kang Lin studio, All Rights Reserved</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Operate.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;BackendThread.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;FrmFileTransfer.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;ParameterFileTransfer.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classCOperateFileTransfer.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classCOperateFileTransfer.html">COperateFileTransfer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCOperate.html">COperate</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Q_OBJECT</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCOperateFileTransfer.html">COperateFileTransfer</a>(<a class="code hl_class" href="classCPlugin.html">CPlugin</a> *plugin);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCOperateFileTransfer.html">~COperateFileTransfer</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    Q_INVOKABLE <span class="keyword">virtual</span> <a class="code hl_class" href="classCBackend.html">CBackend</a>* <a class="code hl_function" href="classCOperateFileTransfer.html#aaecafb6f122627fdad59df5ed1d0ff99">InstanceBackend</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateFileTransfer.html#a6189c5bf24571ab21c28a24e255699b6">Id</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateFileTransfer.html#a63b4c1a037763ab322b7be6917b1a86d">Name</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateFileTransfer.html#a6387f2cc1dc8ceb64c89ca4f960c5257">Description</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> QString <a class="code hl_function" href="classCOperateFileTransfer.html#a01e8f00ded18800a01de40e6751828cf">Protocol</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> qint16 <a class="code hl_function" href="classCOperateFileTransfer.html#ab282354d2235d2bdb3c2fff1539dd3cf">Version</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> QWidget *<a class="code hl_function" href="classCOperateFileTransfer.html#a6498912f15df51c8139ed0b229cf2e53">GetViewer</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a8664429e5db13e3d4579b74259971944">Start</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a1ffaddecf5dd0a858e8e4f2d8d181f31">Stop</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classCParameterFileTransfer.html">CParameterFileTransfer</a>* GetParameter();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a967f9dc37a8947b5946fe96b5a180001">SetGlobalParameters</a>(<a class="code hl_class" href="classCParameterPlugin.html">CParameterPlugin</a> *pPara) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">virtual</span> QDialog *<a class="code hl_function" href="classCOperateFileTransfer.html#aa6ad3e6c05f9733e5b8e926c1c5f5ae3">OnOpenDialogSettings</a>(QWidget *parent) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">private</span> Q_SLOTS:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> slotCopyUrlToClipboard(<span class="keyword">const</span> QString&amp; szPath);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="classCFrmFileTransfer.html">CFrmFileTransfer</a>* m_frmFileTransfer;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classCParameterFileTransfer.html">CParameterFileTransfer</a> m_Parameter;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classCBackendThread.html">CBackendThread</a>* m_pThread;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a63f79820cc046fd121b6f947ba0293ac">Load</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a63640a512a7cf11dfca47c20f7bf81f3">Save</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a2742282a618c6335c2daf91a76242ce1">Initial</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCOperateFileTransfer.html#a6ce0ad393a2e521b222dbcbd40625450">Clean</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+</div>
+<div class="ttc" id="aclassCBackendThread_html"><div class="ttname"><a href="classCBackendThread.html">CBackendThread</a></div><div class="ttdoc">The backend thread</div><div class="ttdef"><b>Definition</b> <a href="BackendThread_8h_source.html#l00014">BackendThread.h:15</a></div></div>
+<div class="ttc" id="aclassCBackend_html"><div class="ttname"><a href="classCBackend.html">CBackend</a></div><div class="ttdoc">后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...</div><div class="ttdef"><b>Definition</b> <a href="Backend_8h_source.html#l00041">Backend.h:42</a></div></div>
+<div class="ttc" id="aclassCFrmFileTransfer_html"><div class="ttname"><a href="classCFrmFileTransfer.html">CFrmFileTransfer</a></div><div class="ttdef"><b>Definition</b> <a href="FrmFileTransfer_8h_source.html#l00016">FrmFileTransfer.h:17</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html"><div class="ttname"><a href="classCOperateFileTransfer.html">COperateFileTransfer</a></div><div class="ttdoc">File transfer operate interface</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8h_source.html#l00013">OperateFileTransfer.h:14</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a01e8f00ded18800a01de40e6751828cf"><div class="ttname"><a href="classCOperateFileTransfer.html#a01e8f00ded18800a01de40e6751828cf">COperateFileTransfer::Protocol</a></div><div class="ttdeci">virtual const QString Protocol() const override</div><div class="ttdoc">Protocol</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00193">OperateFileTransfer.cpp:193</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a1ffaddecf5dd0a858e8e4f2d8d181f31"><div class="ttname"><a href="classCOperateFileTransfer.html#a1ffaddecf5dd0a858e8e4f2d8d181f31">COperateFileTransfer::Stop</a></div><div class="ttdeci">virtual int Stop() override</div><div class="ttdoc">关闭</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00101">OperateFileTransfer.cpp:101</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a2742282a618c6335c2daf91a76242ce1"><div class="ttname"><a href="classCOperateFileTransfer.html#a2742282a618c6335c2daf91a76242ce1">COperateFileTransfer::Initial</a></div><div class="ttdeci">virtual int Initial() override</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00055">OperateFileTransfer.cpp:55</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a6189c5bf24571ab21c28a24e255699b6"><div class="ttname"><a href="classCOperateFileTransfer.html#a6189c5bf24571ab21c28a24e255699b6">COperateFileTransfer::Id</a></div><div class="ttdeci">virtual const QString Id() override</div><div class="ttdoc">Identity</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00204">OperateFileTransfer.cpp:204</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a63640a512a7cf11dfca47c20f7bf81f3"><div class="ttname"><a href="classCOperateFileTransfer.html#a63640a512a7cf11dfca47c20f7bf81f3">COperateFileTransfer::Save</a></div><div class="ttdeci">virtual int Save(QSettings &amp;set) override</div><div class="ttdoc">保存参数</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00130">OperateFileTransfer.cpp:130</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a6387f2cc1dc8ceb64c89ca4f960c5257"><div class="ttname"><a href="classCOperateFileTransfer.html#a6387f2cc1dc8ceb64c89ca4f960c5257">COperateFileTransfer::Description</a></div><div class="ttdeci">virtual const QString Description() override</div><div class="ttdoc">Description</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00161">OperateFileTransfer.cpp:161</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a63b4c1a037763ab322b7be6917b1a86d"><div class="ttname"><a href="classCOperateFileTransfer.html#a63b4c1a037763ab322b7be6917b1a86d">COperateFileTransfer::Name</a></div><div class="ttdeci">virtual const QString Name() override</div><div class="ttdoc">Name</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00137">OperateFileTransfer.cpp:137</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a63f79820cc046fd121b6f947ba0293ac"><div class="ttname"><a href="classCOperateFileTransfer.html#a63f79820cc046fd121b6f947ba0293ac">COperateFileTransfer::Load</a></div><div class="ttdeci">virtual int Load(QSettings &amp;set) override</div><div class="ttdoc">加载参数</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00123">OperateFileTransfer.cpp:123</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a6498912f15df51c8139ed0b229cf2e53"><div class="ttname"><a href="classCOperateFileTransfer.html#a6498912f15df51c8139ed0b229cf2e53">COperateFileTransfer::GetViewer</a></div><div class="ttdeci">virtual QWidget * GetViewer() override</div><div class="ttdoc">得到显示视图</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00050">OperateFileTransfer.cpp:50</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a6ce0ad393a2e521b222dbcbd40625450"><div class="ttname"><a href="classCOperateFileTransfer.html#a6ce0ad393a2e521b222dbcbd40625450">COperateFileTransfer::Clean</a></div><div class="ttdeci">virtual int Clean() override</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00078">OperateFileTransfer.cpp:78</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a8664429e5db13e3d4579b74259971944"><div class="ttname"><a href="classCOperateFileTransfer.html#a8664429e5db13e3d4579b74259971944">COperateFileTransfer::Start</a></div><div class="ttdeci">virtual int Start() override</div><div class="ttdoc">开始</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00089">OperateFileTransfer.cpp:89</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_a967f9dc37a8947b5946fe96b5a180001"><div class="ttname"><a href="classCOperateFileTransfer.html#a967f9dc37a8947b5946fe96b5a180001">COperateFileTransfer::SetGlobalParameters</a></div><div class="ttdeci">virtual int SetGlobalParameters(CParameterPlugin *pPara) override</div><div class="ttdoc">应用插件全局参数</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00113">OperateFileTransfer.cpp:113</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_aa6ad3e6c05f9733e5b8e926c1c5f5ae3"><div class="ttname"><a href="classCOperateFileTransfer.html#aa6ad3e6c05f9733e5b8e926c1c5f5ae3">COperateFileTransfer::OnOpenDialogSettings</a></div><div class="ttdeci">virtual QDialog * OnOpenDialogSettings(QWidget *parent) override</div><div class="ttdoc">得到设置对话框</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00118">OperateFileTransfer.cpp:118</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_aaecafb6f122627fdad59df5ed1d0ff99"><div class="ttname"><a href="classCOperateFileTransfer.html#aaecafb6f122627fdad59df5ed1d0ff99">COperateFileTransfer::InstanceBackend</a></div><div class="ttdeci">virtual Q_INVOKABLE CBackend * InstanceBackend()</div><div class="ttdoc">新建后端实例。它的所有者是调用者， 如果调用者不再使用它，调用者必须负责释放它。</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00035">OperateFileTransfer.cpp:35</a></div></div>
+<div class="ttc" id="aclassCOperateFileTransfer_html_ab282354d2235d2bdb3c2fff1539dd3cf"><div class="ttname"><a href="classCOperateFileTransfer.html#ab282354d2235d2bdb3c2fff1539dd3cf">COperateFileTransfer::Version</a></div><div class="ttdeci">virtual const qint16 Version() const override</div><div class="ttdoc">Version</div><div class="ttdef"><b>Definition</b> <a href="OperateFileTransfer_8cpp_source.html#l00045">OperateFileTransfer.cpp:45</a></div></div>
+<div class="ttc" id="aclassCOperate_html"><div class="ttname"><a href="classCOperate.html">COperate</a></div><div class="ttdoc">操作接口。</div><div class="ttdef"><b>Definition</b> <a href="Operate_8h_source.html#l00050">Operate.h:51</a></div></div>
+<div class="ttc" id="aclassCParameterFileTransfer_html"><div class="ttname"><a href="classCParameterFileTransfer.html">CParameterFileTransfer</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterFileTransfer_8h_source.html#l00008">ParameterFileTransfer.h:9</a></div></div>
+<div class="ttc" id="aclassCParameterPlugin_html"><div class="ttname"><a href="classCParameterPlugin.html">CParameterPlugin</a></div><div class="ttdoc">插件的全局参数。</div><div class="ttdef"><b>Definition</b> <a href="ParameterPlugin_8h_source.html#l00033">ParameterPlugin.h:34</a></div></div>
+<div class="ttc" id="aclassCPlugin_html"><div class="ttname"><a href="classCPlugin.html">CPlugin</a></div><div class="ttdoc">插件接口</div><div class="ttdef"><b>Definition</b> <a href="Plugin_8h_source.html#l00014">Plugin.h:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

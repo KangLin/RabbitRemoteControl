@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CICE类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCICE-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CICE类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CHANNEL.html">通道</a> &raquo; <a class="el" href="group__LIBAPI__ICE.html">ICE</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>提供管理、访问ICE的一个单例对象  
+ <a href="classCICE.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Ice_8h_source.html">Ice.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CICE 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCICE__inherit__graph.png" border="0" usemap="#aCICE_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCICE_inherit__map" id="aCICE_inherit__map">
+<area shape="rect" title="提供管理、访问ICE的一个单例对象" alt="" coords="17,79,69,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="45,44,45,79,40,79,40,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CICE 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCICE__coll__graph.png" border="0" usemap="#aCICE_coll__map" alt="Collaboration graph"/></div>
+<map name="aCICE_coll__map" id="aCICE_coll__map">
+<area shape="rect" title="提供管理、访问ICE的一个单例对象" alt="" coords="22,168,74,193"/>
+<area shape="rect" title=" " alt="" coords="5,5,80,31"/>
+<area shape="poly" title=" " alt="" coords="46,44,50,168,45,168,41,45"/>
+<area shape="rect" href="classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。" alt="" coords="65,80,183,105"/>
+<area shape="poly" title=" " alt="" coords="68,38,112,78,109,82,64,42"/>
+<area shape="poly" title=" " alt="" coords="107,118,61,169,57,166,103,114"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:acabbd47ae6dba6e4821d5484a9898042" id="r_acabbd47ae6dba6e4821d5484a9898042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#acabbd47ae6dba6e4821d5484a9898042">slotStart</a> ()</td></tr>
+<tr class="separator:acabbd47ae6dba6e4821d5484a9898042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86fe77a8c2814ad095da6bcf41c8ddaa" id="r_a86fe77a8c2814ad095da6bcf41c8ddaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a86fe77a8c2814ad095da6bcf41c8ddaa">slotStop</a> ()</td></tr>
+<tr class="separator:a86fe77a8c2814ad095da6bcf41c8ddaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26192ae80b602688ee423612b311f002" id="r_a26192ae80b602688ee423612b311f002"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a26192ae80b602688ee423612b311f002">slotIceChanged</a> ()</td></tr>
+<tr class="separator:a26192ae80b602688ee423612b311f002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68bda4c35f4f41db3f2f957579a4424" id="r_af68bda4c35f4f41db3f2f957579a4424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#af68bda4c35f4f41db3f2f957579a4424">slotConnected</a> ()</td></tr>
+<tr class="separator:af68bda4c35f4f41db3f2f957579a4424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77967ff3157834cf49cf36cbb29a4697" id="r_a77967ff3157834cf49cf36cbb29a4697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a77967ff3157834cf49cf36cbb29a4697">slotDisconnected</a> ()</td></tr>
+<tr class="separator:a77967ff3157834cf49cf36cbb29a4697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2198fa96e19312a506eff028b16a6d60" id="r_a2198fa96e19312a506eff028b16a6d60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a2198fa96e19312a506eff028b16a6d60">slotError</a> (int nError, const QString &amp;szError)</td></tr>
+<tr class="separator:a2198fa96e19312a506eff028b16a6d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8431f62fd24b65defaef75cd21e30b9a" id="r_a8431f62fd24b65defaef75cd21e30b9a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a8431f62fd24b65defaef75cd21e30b9a">CICE</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a8431f62fd24b65defaef75cd21e30b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a595bda677252b3a2a438f0939f9c15ca" id="r_a595bda677252b3a2a438f0939f9c15ca"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; <a class="el" href="classCIceSignal.html">CIceSignal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a595bda677252b3a2a438f0939f9c15ca">GetSignal</a> ()</td></tr>
+<tr class="separator:a595bda677252b3a2a438f0939f9c15ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9a7deb2c7e29b882150a1001d8f678" id="r_a6d9a7deb2c7e29b882150a1001d8f678"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterICE.html">CParameterICE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a6d9a7deb2c7e29b882150a1001d8f678">GetParameter</a> ()</td></tr>
+<tr class="separator:a6d9a7deb2c7e29b882150a1001d8f678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab528b3725110194c23866e2f96099c19" id="r_ab528b3725110194c23866e2f96099c19"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#ab528b3725110194c23866e2f96099c19">GetParameterWidget</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ab528b3725110194c23866e2f96099c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a62733c8de10f5d8e8170d6e2d5d62493" id="r_a62733c8de10f5d8e8170d6e2d5d62493"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCICE.html">CICE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a62733c8de10f5d8e8170d6e2d5d62493">Instance</a> ()</td></tr>
+<tr class="memdesc:a62733c8de10f5d8e8170d6e2d5d62493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single instance  <br /></td></tr>
+<tr class="separator:a62733c8de10f5d8e8170d6e2d5d62493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a546f5d4e429c425bb451a825b1563961" id="r_a546f5d4e429c425bb451a825b1563961"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; <a class="el" href="classCIceSignal.html">CIceSignal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a546f5d4e429c425bb451a825b1563961">m_Signal</a></td></tr>
+<tr class="separator:a546f5d4e429c425bb451a825b1563961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc4f24305df6bbd0405f27bdd56bbf5b" id="r_abc4f24305df6bbd0405f27bdd56bbf5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterICE.html">CParameterICE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#abc4f24305df6bbd0405f27bdd56bbf5b">m_Parameter</a></td></tr>
+<tr class="separator:abc4f24305df6bbd0405f27bdd56bbf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df6f59b0a489a36e8e620189bd5926b" id="r_a6df6f59b0a489a36e8e620189bd5926b"><td class="memItemLeft" align="right" valign="top">QTranslator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a6df6f59b0a489a36e8e620189bd5926b">m_Translator</a></td></tr>
+<tr class="separator:a6df6f59b0a489a36e8e620189bd5926b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6d2432030d4888e1686aaa67335fe7" id="r_a0c6d2432030d4888e1686aaa67335fe7"><td class="memItemLeft" align="right" valign="top">QLoggingCategory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCICE.html#a0c6d2432030d4888e1686aaa67335fe7">m_Log</a></td></tr>
+<tr class="separator:a0c6d2432030d4888e1686aaa67335fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>提供管理、访问ICE的一个单例对象 </p>
+<dl class="section author"><dt>作者</dt><dd>Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCIceSignal.html" title="ICE 信令接口类">CIceSignal</a> <a class="el" href="classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。">CParameterICE</a> <a class="el" href="classCFrmParameterICE.html" title="设置参数对话框">CFrmParameterICE</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Ice_8h_source.html">Ice.h</a> 第 <a class="el" href="Ice_8h_source.html#l00025">25</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a8431f62fd24b65defaef75cd21e30b9a" name="a8431f62fd24b65defaef75cd21e30b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8431f62fd24b65defaef75cd21e30b9a">&#9670;&#160;</a></span>CICE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CICE::CICE </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section author"><dt>作者</dt><dd>Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a47f8881783b17c15bbed9ca7a3f48193" name="a47f8881783b17c15bbed9ca7a3f48193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f8881783b17c15bbed9ca7a3f48193">&#9670;&#160;</a></span>~CICE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CICE::~CICE </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a6d9a7deb2c7e29b882150a1001d8f678" name="a6d9a7deb2c7e29b882150a1001d8f678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9a7deb2c7e29b882150a1001d8f678">&#9670;&#160;</a></span>GetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterICE.html">CParameterICE</a> * CICE::GetParameter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab528b3725110194c23866e2f96099c19" name="ab528b3725110194c23866e2f96099c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab528b3725110194c23866e2f96099c19">&#9670;&#160;</a></span>GetParameterWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget * CICE::GetParameterWidget </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00072">72</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a595bda677252b3a2a438f0939f9c15ca" name="a595bda677252b3a2a438f0939f9c15ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a595bda677252b3a2a438f0939f9c15ca">&#9670;&#160;</a></span>GetSignal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt; <a class="el" href="classCIceSignal.html">CIceSignal</a> &gt; CICE::GetSignal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a62733c8de10f5d8e8170d6e2d5d62493" name="a62733c8de10f5d8e8170d6e2d5d62493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62733c8de10f5d8e8170d6e2d5d62493">&#9670;&#160;</a></span>Instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCICE.html">CICE</a> * CICE::Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Single instance </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af68bda4c35f4f41db3f2f957579a4424" name="af68bda4c35f4f41db3f2f957579a4424"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68bda4c35f4f41db3f2f957579a4424">&#9670;&#160;</a></span>slotConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a77967ff3157834cf49cf36cbb29a4697" name="a77967ff3157834cf49cf36cbb29a4697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77967ff3157834cf49cf36cbb29a4697">&#9670;&#160;</a></span>slotDisconnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotDisconnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2198fa96e19312a506eff028b16a6d60" name="a2198fa96e19312a506eff028b16a6d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2198fa96e19312a506eff028b16a6d60">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nError</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szError</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a26192ae80b602688ee423612b311f002" name="a26192ae80b602688ee423612b311f002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26192ae80b602688ee423612b311f002">&#9670;&#160;</a></span>slotIceChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotIceChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acabbd47ae6dba6e4821d5484a9898042" name="acabbd47ae6dba6e4821d5484a9898042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acabbd47ae6dba6e4821d5484a9898042">&#9670;&#160;</a></span>slotStart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a86fe77a8c2814ad095da6bcf41c8ddaa" name="a86fe77a8c2814ad095da6bcf41c8ddaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86fe77a8c2814ad095da6bcf41c8ddaa">&#9670;&#160;</a></span>slotStop</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CICE::slotStop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8cpp_source.html">Ice.cpp</a> 第 <a class="el" href="Ice_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a0c6d2432030d4888e1686aaa67335fe7" name="a0c6d2432030d4888e1686aaa67335fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6d2432030d4888e1686aaa67335fe7">&#9670;&#160;</a></span>m_Log</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLoggingCategory CICE::m_Log</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8h_source.html">Ice.h</a> 第 <a class="el" href="Ice_8h_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abc4f24305df6bbd0405f27bdd56bbf5b" name="abc4f24305df6bbd0405f27bdd56bbf5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc4f24305df6bbd0405f27bdd56bbf5b">&#9670;&#160;</a></span>m_Parameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterICE.html">CParameterICE</a> CICE::m_Parameter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8h_source.html">Ice.h</a> 第 <a class="el" href="Ice_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a546f5d4e429c425bb451a825b1563961" name="a546f5d4e429c425bb451a825b1563961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a546f5d4e429c425bb451a825b1563961">&#9670;&#160;</a></span>m_Signal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;<a class="el" href="classCIceSignal.html">CIceSignal</a>&gt; CICE::m_Signal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8h_source.html">Ice.h</a> 第 <a class="el" href="Ice_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6df6f59b0a489a36e8e620189bd5926b" name="a6df6f59b0a489a36e8e620189bd5926b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df6f59b0a489a36e8e620189bd5926b">&#9670;&#160;</a></span>m_Translator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTranslator CICE::m_Translator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Ice_8h_source.html">Ice.h</a> 第 <a class="el" href="Ice_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="Ice_8h_source.html">Ice.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/ICE/<a class="el" href="Ice_8cpp_source.html">Ice.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

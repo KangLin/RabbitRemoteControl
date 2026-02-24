@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CServiceManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classCServiceManager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CServiceManager类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__SERVICE.html">服务端库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>管理服务  
+ <a href="classCServiceManager.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ServiceManager_8h_source.html">ServiceManager.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CServiceManager 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceManager__inherit__graph.png" border="0" usemap="#aCServiceManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCServiceManager_inherit__map" id="aCServiceManager_inherit__map">
+<area shape="rect" title="管理服务" alt="" coords="51,79,187,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,233,31"/>
+<area shape="poly" title=" " alt="" coords="122,44,122,79,117,79,117,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CServiceManager 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceManager__coll__graph.png" border="0" usemap="#aCServiceManager_coll__map" alt="Collaboration graph"/></div>
+<map name="aCServiceManager_coll__map" id="aCServiceManager_coll__map">
+<area shape="rect" title="管理服务" alt="" coords="51,79,187,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,233,31"/>
+<area shape="poly" title=" " alt="" coords="122,44,122,79,117,79,117,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a85f8b0f3a1297b9869cc221e297a7a4d" id="r_a85f8b0f3a1297b9869cc221e297a7a4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceManager.html#a85f8b0f3a1297b9869cc221e297a7a4d">CServiceManager</a> (int argc, char **argv, const QString &amp;appName, const QString &amp;name=&quot;Rabbit Remote control service&quot;)</td></tr>
+<tr class="memdesc:a85f8b0f3a1297b9869cc221e297a7a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">命令行参数：  <br /></td></tr>
+<tr class="separator:a85f8b0f3a1297b9869cc221e297a7a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a2f3dabaa5673af10f589724af0d2935c" id="r_a2f3dabaa5673af10f589724af0d2935c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceManager.html#a2f3dabaa5673af10f589724af0d2935c">start</a> () override</td></tr>
+<tr class="separator:a2f3dabaa5673af10f589724af0d2935c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b55afd8f1c4cfbb360f685a1ef1c2c" id="r_a41b55afd8f1c4cfbb360f685a1ef1c2c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceManager.html#a41b55afd8f1c4cfbb360f685a1ef1c2c">stop</a> () override</td></tr>
+<tr class="separator:a41b55afd8f1c4cfbb360f685a1ef1c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a3bc0db05d6bb79d116095b526d6e7092" id="r_a3bc0db05d6bb79d116095b526d6e7092"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; <a class="el" href="classCManagePlugins.html">CManagePlugins</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceManager.html#a3bc0db05d6bb79d116095b526d6e7092">m_Plugins</a></td></tr>
+<tr class="separator:a3bc0db05d6bb79d116095b526d6e7092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>管理服务 </p>
+<p>管理系统服务</p>
+<p>使用：</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classCServiceManager.html">CServiceManager</a> s(argc, argv, <span class="stringliteral">&quot;RabbitRemoteControlService&quot;</span>);</div>
+<div class="line">s.exec();</div>
+<div class="ttc" id="aclassCServiceManager_html"><div class="ttname"><a href="classCServiceManager.html">CServiceManager</a></div><div class="ttdoc">管理服务</div><div class="ttdef"><b>Definition</b> <a href="ServiceManager_8h_source.html#l00039">ServiceManager.h:40</a></div></div>
+</div><!-- fragment --><dl class="section see"><dt>参见</dt><dd>CManagerPlugins <a class="el" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。">CPluginService</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8h_source.html">ServiceManager.h</a> 第 <a class="el" href="ServiceManager_8h_source.html#l00039">39</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a85f8b0f3a1297b9869cc221e297a7a4d" name="a85f8b0f3a1297b9869cc221e297a7a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f8b0f3a1297b9869cc221e297a7a4d">&#9670;&#160;</a></span>CServiceManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceManager::CServiceManager </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>appName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em> = <code>&quot;Rabbit&#160;Remote&#160;control&#160;service&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>命令行参数： </p>
+<table class="doxtable">
+<tr>
+<th>短参数 </th><th>长参数 </th><th>解释  </th></tr>
+<tr>
+<td>-i </td><td>-install </td><td>安装服务  </td></tr>
+<tr>
+<td>-u </td><td>-uninstall </td><td>卸载服务  </td></tr>
+<tr>
+<td>-e </td><td>-exec  </td><td>做为一个标准应用程序执行（通常用于调试目的）。 这是一个阻塞调用，服务象标准程序一样执行。在此模式下，你不能用控制器（controller)与服务通信。   </td></tr>
+<tr>
+<td>-t </td><td>-terminate </td><td>停止服务  </td></tr>
+<tr>
+<td>-p </td><td>-pause </td><td>暂停服务  </td></tr>
+<tr>
+<td>-r </td><td>-resume </td><td>继续暂停的服务  </td></tr>
+<tr>
+<td>-c <em></em>{cmd} </td><td>-command <em></em>{cmd} </td><td>发送用户定义的命令代码到服务程序  </td></tr>
+<tr>
+<td>-s </td><td>-save </td><td>产生默认配置文件到 [目录] 中 </td></tr>
+<tr>
+<td>-v </td><td>-version </td><td>显示版本和状态信息  </td></tr>
+<tr>
+<td colspan="2">无参数</td><td>开始服务  </td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8cpp_source.html">ServiceManager.cpp</a> 第 <a class="el" href="ServiceManager_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1a308c81f09118119da0a2b11fbca741" name="a1a308c81f09118119da0a2b11fbca741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a308c81f09118119da0a2b11fbca741">&#9670;&#160;</a></span>~CServiceManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceManager::~CServiceManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8cpp_source.html">ServiceManager.cpp</a> 第 <a class="el" href="ServiceManager_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2f3dabaa5673af10f589724af0d2935c" name="a2f3dabaa5673af10f589724af0d2935c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3dabaa5673af10f589724af0d2935c">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceManager::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8cpp_source.html">ServiceManager.cpp</a> 第 <a class="el" href="ServiceManager_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41b55afd8f1c4cfbb360f685a1ef1c2c" name="a41b55afd8f1c4cfbb360f685a1ef1c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41b55afd8f1c4cfbb360f685a1ef1c2c">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceManager::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8cpp_source.html">ServiceManager.cpp</a> 第 <a class="el" href="ServiceManager_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a3bc0db05d6bb79d116095b526d6e7092" name="a3bc0db05d6bb79d116095b526d6e7092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bc0db05d6bb79d116095b526d6e7092">&#9670;&#160;</a></span>m_Plugins</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;<a class="el" href="classCManagePlugins.html">CManagePlugins</a>&gt; CServiceManager::m_Plugins</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceManager_8h_source.html">ServiceManager.h</a> 第 <a class="el" href="ServiceManager_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ServiceManager_8h_source.html">ServiceManager.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="ServiceManager_8cpp_source.html">ServiceManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

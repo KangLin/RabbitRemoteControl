@@ -1,0 +1,1427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmViewerOpenGL类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmViewerOpenGL-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmViewerOpenGL类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFrmViewerOpenGL 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmViewerOpenGL__inherit__graph.png" border="0" usemap="#aCFrmViewerOpenGL_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmViewerOpenGL_inherit__map" id="aCFrmViewerOpenGL_inherit__map">
+<area shape="rect" title=" " alt="" coords="73,79,225,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="94,38,138,76,134,80,90,42"/>
+<area shape="rect" title=" " alt="" coords="158,5,303,31"/>
+<area shape="poly" title=" " alt="" coords="209,42,164,80,161,76,206,38"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmViewerOpenGL 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmViewerOpenGL__coll__graph.png" border="0" usemap="#aCFrmViewerOpenGL_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmViewerOpenGL_coll__map" id="aCFrmViewerOpenGL_coll__map">
+<area shape="rect" title=" " alt="" coords="73,79,225,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="94,38,138,76,134,80,90,42"/>
+<area shape="rect" title=" " alt="" coords="158,5,303,31"/>
+<area shape="poly" title=" " alt="" coords="209,42,164,80,161,76,206,38"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a0ecb2cb006826685dff530d7ca13b418" id="r_a0ecb2cb006826685dff530d7ca13b418"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a> { <br />
+&#160;&#160;<a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418acf4a44a6e286833529e8ae888a96a629">Disable</a> = 0
+, <b>Auto</b> = 1
+, <a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418ab2b5a4662c49d01366f645130126b433">Original</a> = 2
+, <a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418a54d9f033f5a3c338c01ce18f6d84cbea">OriginalCenter</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418a38effa31d8c705670bc138e27a875d08">Zoom</a> = 4
+, <a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418ade9259fa952ba5ab57c65dd4fb18d85d">ZoomToWindow</a> = 5
+, <a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418a7223e9ba3a5893a601b0eba867fdca4b">KeepAspectRationToWindow</a> = 6
+<br />
+ }</td></tr>
+<tr class="memdesc:a0ecb2cb006826685dff530d7ca13b418"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口适配枚举常量  <a href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">更多...</a><br /></td></tr>
+<tr class="separator:a0ecb2cb006826685dff530d7ca13b418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a9e58e1c99e544d7441ed604ce3c01cb2" id="r_a9e58e1c99e544d7441ed604ce3c01cb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a9e58e1c99e544d7441ed604ce3c01cb2">slotSetDesktopSize</a> (int width, int height)</td></tr>
+<tr class="memdesc:a9e58e1c99e544d7441ed604ce3c01cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update desktop size  <br /></td></tr>
+<tr class="separator:a9e58e1c99e544d7441ed604ce3c01cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a577898b2e0618eb74d3be5022a602" id="r_ab0a577898b2e0618eb74d3be5022a602"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ab0a577898b2e0618eb74d3be5022a602">slotSetName</a> (const QString &amp;szName)</td></tr>
+<tr class="memdesc:ab0a577898b2e0618eb74d3be5022a602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update desktop name  <br /></td></tr>
+<tr class="separator:ab0a577898b2e0618eb74d3be5022a602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d2efa8ce5955a4759d955370db3ff8" id="r_ab1d2efa8ce5955a4759d955370db3ff8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ab1d2efa8ce5955a4759d955370db3ff8">slotUpdateRect</a> (const QRect &amp;r, const QImage &amp;image)</td></tr>
+<tr class="memdesc:ab1d2efa8ce5955a4759d955370db3ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update image  <br /></td></tr>
+<tr class="separator:ab1d2efa8ce5955a4759d955370db3ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e07e0e8ec1288763c147d10801ff0a6" id="r_a3e07e0e8ec1288763c147d10801ff0a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a3e07e0e8ec1288763c147d10801ff0a6">slotUpdateRect</a> (QSharedPointer&lt; CImage &gt; image)</td></tr>
+<tr class="separator:a3e07e0e8ec1288763c147d10801ff0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d09f1194ccde7442ab051765f468ab" id="r_a03d09f1194ccde7442ab051765f468ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a03d09f1194ccde7442ab051765f468ab">slotUpdateCursor</a> (const QCursor &amp;cursor)</td></tr>
+<tr class="memdesc:a03d09f1194ccde7442ab051765f468ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update cursor  <br /></td></tr>
+<tr class="separator:a03d09f1194ccde7442ab051765f468ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60c7f5fa927028630a987f2ee11c192" id="r_ab60c7f5fa927028630a987f2ee11c192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ab60c7f5fa927028630a987f2ee11c192">slotUpdateCursorPosition</a> (const QPoint &amp;pos)</td></tr>
+<tr class="memdesc:ab60c7f5fa927028630a987f2ee11c192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update cursor position  <br /></td></tr>
+<tr class="separator:ab60c7f5fa927028630a987f2ee11c192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7356ff74a9fffc1ad3b04d9326156333" id="r_a7356ff74a9fffc1ad3b04d9326156333"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a7356ff74a9fffc1ad3b04d9326156333">slotSystemCombination</a> ()</td></tr>
+<tr class="separator:a7356ff74a9fffc1ad3b04d9326156333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ae39154416a7cfc7903d648c546b38e21" id="r_ae39154416a7cfc7903d648c546b38e21"><td class="memItemLeft" align="right" valign="top"><a id="ae39154416a7cfc7903d648c546b38e21" name="ae39154416a7cfc7903d648c546b38e21"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigMousePressEvent</b> (Qt::MouseButtons, QPoint)</td></tr>
+<tr class="separator:ae39154416a7cfc7903d648c546b38e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc38a175335f60b4ccdb214f841c410c" id="r_adc38a175335f60b4ccdb214f841c410c"><td class="memItemLeft" align="right" valign="top"><a id="adc38a175335f60b4ccdb214f841c410c" name="adc38a175335f60b4ccdb214f841c410c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigMouseReleaseEvent</b> (Qt::MouseButton, QPoint)</td></tr>
+<tr class="separator:adc38a175335f60b4ccdb214f841c410c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06aafead54e5709cd4d69fe8b81c6d51" id="r_a06aafead54e5709cd4d69fe8b81c6d51"><td class="memItemLeft" align="right" valign="top"><a id="a06aafead54e5709cd4d69fe8b81c6d51" name="a06aafead54e5709cd4d69fe8b81c6d51"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigMouseMoveEvent</b> (Qt::MouseButtons buttons, QPoint pos)</td></tr>
+<tr class="separator:a06aafead54e5709cd4d69fe8b81c6d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb6cd3a85bc5a2d779deb49753318aa0" id="r_acb6cd3a85bc5a2d779deb49753318aa0"><td class="memItemLeft" align="right" valign="top"><a id="acb6cd3a85bc5a2d779deb49753318aa0" name="acb6cd3a85bc5a2d779deb49753318aa0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigMouseMoveEvent</b> (QMouseEvent *event)</td></tr>
+<tr class="separator:acb6cd3a85bc5a2d779deb49753318aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9075de399a982b4bfc868372985415f4" id="r_a9075de399a982b4bfc868372985415f4"><td class="memItemLeft" align="right" valign="top"><a id="a9075de399a982b4bfc868372985415f4" name="a9075de399a982b4bfc868372985415f4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigWheelEvent</b> (Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)</td></tr>
+<tr class="separator:a9075de399a982b4bfc868372985415f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf214a363d4e1f59dcc778723d2aa4de" id="r_abf214a363d4e1f59dcc778723d2aa4de"><td class="memItemLeft" align="right" valign="top"><a id="abf214a363d4e1f59dcc778723d2aa4de" name="abf214a363d4e1f59dcc778723d2aa4de"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigKeyPressEvent</b> (int key, Qt::KeyboardModifiers modify)</td></tr>
+<tr class="separator:abf214a363d4e1f59dcc778723d2aa4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf70a1f38593cb49dcdcff6421d12f8c" id="r_abf70a1f38593cb49dcdcff6421d12f8c"><td class="memItemLeft" align="right" valign="top"><a id="abf70a1f38593cb49dcdcff6421d12f8c" name="abf70a1f38593cb49dcdcff6421d12f8c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigKeyReleaseEvent</b> (int key, Qt::KeyboardModifiers modify)</td></tr>
+<tr class="separator:abf70a1f38593cb49dcdcff6421d12f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a76e7e6b0749448a0a9a45ae9230ccca6" id="r_a76e7e6b0749448a0a9a45ae9230ccca6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a76e7e6b0749448a0a9a45ae9230ccca6">CFrmViewerOpenGL</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a76e7e6b0749448a0a9a45ae9230ccca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f398fdb85c630ab211e9b66978ab955" id="r_a4f398fdb85c630ab211e9b66978ab955"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a4f398fdb85c630ab211e9b66978ab955">SetAdaptWindows</a> (<a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a> aw=<a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418ab2b5a4662c49d01366f645130126b433">Original</a>)</td></tr>
+<tr class="separator:a4f398fdb85c630ab211e9b66978ab955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b845367d33b437288bbd81e416e091b" id="r_a0b845367d33b437288bbd81e416e091b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a0b845367d33b437288bbd81e416e091b">GetAdaptWindows</a> ()</td></tr>
+<tr class="separator:a0b845367d33b437288bbd81e416e091b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b835528fcf4bd0fdc45a79523eb7aef" id="r_a1b835528fcf4bd0fdc45a79523eb7aef"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a1b835528fcf4bd0fdc45a79523eb7aef">GetZoomFactor</a> () const</td></tr>
+<tr class="memdesc:a1b835528fcf4bd0fdc45a79523eb7aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">调整缩放系数。 调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。  <br /></td></tr>
+<tr class="separator:a1b835528fcf4bd0fdc45a79523eb7aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9bb11a3ca0c96a50a81bd982ddca020" id="r_ab9bb11a3ca0c96a50a81bd982ddca020"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ab9bb11a3ca0c96a50a81bd982ddca020">SetZoomFactor</a> (double newZoomFactor)</td></tr>
+<tr class="separator:ab9bb11a3ca0c96a50a81bd982ddca020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a281e8a5350e2915705a33ab58ecc4940" id="r_a281e8a5350e2915705a33ab58ecc4940"><td class="memItemLeft" align="right" valign="top">QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a281e8a5350e2915705a33ab58ecc4940">GetDesktopSize</a> ()</td></tr>
+<tr class="separator:a281e8a5350e2915705a33ab58ecc4940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef5d11ca13f295ac80b5cb93d1c731e" id="r_aeef5d11ca13f295ac80b5cb93d1c731e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#aeef5d11ca13f295ac80b5cb93d1c731e">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="separator:aeef5d11ca13f295ac80b5cb93d1c731e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5e596acfafb9ad8b64ef4e0855b2e5" id="r_a6d5e596acfafb9ad8b64ef4e0855b2e5"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a6d5e596acfafb9ad8b64ef4e0855b2e5">Save</a> (QSettings &amp;set)</td></tr>
+<tr class="separator:a6d5e596acfafb9ad8b64ef4e0855b2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ca38729034561e20f8fe611fd9168c" id="r_aa4ca38729034561e20f8fe611fd9168c"><td class="memItemLeft" align="right" valign="top">virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#aa4ca38729034561e20f8fe611fd9168c">GrabImage</a> (int x=0, int y=0, int w=-1, int h=-1)</td></tr>
+<tr class="separator:aa4ca38729034561e20f8fe611fd9168c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a6bac6ec0040120781c2e9a5c61c62ebe" id="r_a6bac6ec0040120781c2e9a5c61c62ebe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a6bac6ec0040120781c2e9a5c61c62ebe">initializeGL</a> () override</td></tr>
+<tr class="separator:a6bac6ec0040120781c2e9a5c61c62ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd459aec5e9646e59eeeaf3782c95e1" id="r_a9cd459aec5e9646e59eeeaf3782c95e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a9cd459aec5e9646e59eeeaf3782c95e1">resizeGL</a> (int w, int height) override</td></tr>
+<tr class="separator:a9cd459aec5e9646e59eeeaf3782c95e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1eaa113ebe134c382f367913039f0d0" id="r_af1eaa113ebe134c382f367913039f0d0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#af1eaa113ebe134c382f367913039f0d0">paintGL</a> () override</td></tr>
+<tr class="separator:af1eaa113ebe134c382f367913039f0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ebc3a673ba8ecaf1da9a91131e62e7" id="r_a85ebc3a673ba8ecaf1da9a91131e62e7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a85ebc3a673ba8ecaf1da9a91131e62e7">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a85ebc3a673ba8ecaf1da9a91131e62e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a802048189f637bd86c22de545037f4e5" id="r_a802048189f637bd86c22de545037f4e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a802048189f637bd86c22de545037f4e5">mouseReleaseEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a802048189f637bd86c22de545037f4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28a2c2bd5f5988001f64c38b7e8cc6dc" id="r_a28a2c2bd5f5988001f64c38b7e8cc6dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a28a2c2bd5f5988001f64c38b7e8cc6dc">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a28a2c2bd5f5988001f64c38b7e8cc6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3bc7011e1a3b3b7be1fd9775580559a" id="r_ac3bc7011e1a3b3b7be1fd9775580559a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ac3bc7011e1a3b3b7be1fd9775580559a">wheelEvent</a> (QWheelEvent *event) override</td></tr>
+<tr class="separator:ac3bc7011e1a3b3b7be1fd9775580559a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00838d3d13dde4a4897376969b9d0adf" id="r_a00838d3d13dde4a4897376969b9d0adf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a00838d3d13dde4a4897376969b9d0adf">keyPressEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:a00838d3d13dde4a4897376969b9d0adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09c7e93339840a2a49a6dc5c02f40f3" id="r_aa09c7e93339840a2a49a6dc5c02f40f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#aa09c7e93339840a2a49a6dc5c02f40f3">keyReleaseEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:aa09c7e93339840a2a49a6dc5c02f40f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dc5de4c518b4eb4b42e46c4ab9c2818" id="r_a3dc5de4c518b4eb4b42e46c4ab9c2818"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a3dc5de4c518b4eb4b42e46c4ab9c2818">InitVertor</a> ()</td></tr>
+<tr class="separator:a3dc5de4c518b4eb4b42e46c4ab9c2818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a9cfaef633293565354ed4ac477e6d85d" id="r_a9cfaef633293565354ed4ac477e6d85d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a9cfaef633293565354ed4ac477e6d85d">ZoomFactor</a></td></tr>
+<tr class="separator:a9cfaef633293565354ed4ac477e6d85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a56326c4b1656fce272e57c9df6ff4233" id="r_a56326c4b1656fce272e57c9df6ff4233"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a56326c4b1656fce272e57c9df6ff4233">ReSize</a> (int width, int height)</td></tr>
+<tr class="separator:a56326c4b1656fce272e57c9df6ff4233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1635ba846be9fa0b77469ee53842c76c" id="r_a1635ba846be9fa0b77469ee53842c76c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a1635ba846be9fa0b77469ee53842c76c">TranslationMousePoint</a> (QPointF inPos, QPointF &amp;outPos)</td></tr>
+<tr class="separator:a1635ba846be9fa0b77469ee53842c76c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a73f9114076458cb8b1705be25ac39" id="r_aa8a73f9114076458cb8b1705be25ac39"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#aa8a73f9114076458cb8b1705be25ac39">GetAspectRationRect</a> ()</td></tr>
+<tr class="separator:aa8a73f9114076458cb8b1705be25ac39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a1471259d593808e476ae577a5ad663e6" id="r_a1471259d593808e476ae577a5ad663e6"><td class="memItemLeft" align="right" valign="top">QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a1471259d593808e476ae577a5ad663e6">m_Desktop</a></td></tr>
+<tr class="separator:a1471259d593808e476ae577a5ad663e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ecbf9cddd9975d9ec781e985026891e" id="r_a2ecbf9cddd9975d9ec781e985026891e"><td class="memItemLeft" align="right" valign="top">QOpenGLVertexArrayObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a2ecbf9cddd9975d9ec781e985026891e">m_VaoQuad</a></td></tr>
+<tr class="separator:a2ecbf9cddd9975d9ec781e985026891e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d4081c1f377ea779b0d1cb66b98fa8b" id="r_a9d4081c1f377ea779b0d1cb66b98fa8b"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a9d4081c1f377ea779b0d1cb66b98fa8b">m_VboQuad</a></td></tr>
+<tr class="separator:a9d4081c1f377ea779b0d1cb66b98fa8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592cf9fab917df701cf3a76b9ea9c8cb" id="r_a592cf9fab917df701cf3a76b9ea9c8cb"><td class="memItemLeft" align="right" valign="top">QOpenGLShaderProgram&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a592cf9fab917df701cf3a76b9ea9c8cb">m_ShaderProgram</a></td></tr>
+<tr class="separator:a592cf9fab917df701cf3a76b9ea9c8cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27515c481ca983e6585ac0388050aaf" id="r_ad27515c481ca983e6585ac0388050aaf"><td class="memItemLeft" align="right" valign="top">QVector&lt; GLfloat &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#ad27515c481ca983e6585ac0388050aaf">m_VertexData</a></td></tr>
+<tr class="separator:ad27515c481ca983e6585ac0388050aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40ccb20576cd9e71295803a11623bee0" id="r_a40ccb20576cd9e71295803a11623bee0"><td class="memItemLeft" align="right" valign="top">QOpenGLTexture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#a40ccb20576cd9e71295803a11623bee0">m_pTexture</a></td></tr>
+<tr class="separator:a40ccb20576cd9e71295803a11623bee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afee3bc37ca16599ce2d21af0a62e25d7" id="r_afee3bc37ca16599ce2d21af0a62e25d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#afee3bc37ca16599ce2d21af0a62e25d7">m_AdaptWindows</a></td></tr>
+<tr class="separator:afee3bc37ca16599ce2d21af0a62e25d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf8e0d294958ea237ed579885819e52" id="r_aebf8e0d294958ea237ed579885819e52"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmViewerOpenGL.html#aebf8e0d294958ea237ed579885819e52">m_dbZoomFactor</a></td></tr>
+<tr class="separator:aebf8e0d294958ea237ed579885819e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00016">16</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a0ecb2cb006826685dff530d7ca13b418" name="a0ecb2cb006826685dff530d7ca13b418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ecb2cb006826685dff530d7ca13b418">&#9670;&#160;</a></span>ADAPT_WINDOWS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">CFrmViewerOpenGL::ADAPT_WINDOWS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口适配枚举常量 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418acf4a44a6e286833529e8ae888a96a629" name="a0ecb2cb006826685dff530d7ca13b418acf4a44a6e286833529e8ae888a96a629"></a>Disable&#160;</td><td class="fielddoc"><p>禁用适配窗口 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418ab2b5a4662c49d01366f645130126b433" name="a0ecb2cb006826685dff530d7ca13b418ab2b5a4662c49d01366f645130126b433"></a>Original&#160;</td><td class="fielddoc"><p>原始桌面大小，桌面的左上点与窗口的左上点对齐 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418a54d9f033f5a3c338c01ce18f6d84cbea" name="a0ecb2cb006826685dff530d7ca13b418a54d9f033f5a3c338c01ce18f6d84cbea"></a>OriginalCenter&#160;</td><td class="fielddoc"><p>原始桌面大小，桌面中心点与窗口中心点对齐 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418a38effa31d8c705670bc138e27a875d08" name="a0ecb2cb006826685dff530d7ca13b418a38effa31d8c705670bc138e27a875d08"></a>Zoom&#160;</td><td class="fielddoc"><p>缩放窗口大小等于桌面大小 * 系数 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418ade9259fa952ba5ab57c65dd4fb18d85d" name="a0ecb2cb006826685dff530d7ca13b418ade9259fa952ba5ab57c65dd4fb18d85d"></a>ZoomToWindow&#160;</td><td class="fielddoc"><p>桌面缩放到窗口大小，窗口是固定的 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0ecb2cb006826685dff530d7ca13b418a7223e9ba3a5893a601b0eba867fdca4b" name="a0ecb2cb006826685dff530d7ca13b418a7223e9ba3a5893a601b0eba867fdca4b"></a>KeepAspectRationToWindow&#160;</td><td class="fielddoc"><p>保持长宽比缩放到窗口大小,窗口是固定的 </p>
+</td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a76e7e6b0749448a0a9a45ae9230ccca6" name="a76e7e6b0749448a0a9a45ae9230ccca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e7e6b0749448a0a9a45ae9230ccca6">&#9670;&#160;</a></span>CFrmViewerOpenGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmViewerOpenGL::CFrmViewerOpenGL </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a621e9ef0baf13ba65cc7b3b7e626bc6a" name="a621e9ef0baf13ba65cc7b3b7e626bc6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621e9ef0baf13ba65cc7b3b7e626bc6a">&#9670;&#160;</a></span>~CFrmViewerOpenGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmViewerOpenGL::~CFrmViewerOpenGL </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0b845367d33b437288bbd81e416e091b" name="a0b845367d33b437288bbd81e416e091b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b845367d33b437288bbd81e416e091b">&#9670;&#160;</a></span>GetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">CFrmViewerOpenGL::ADAPT_WINDOWS</a> CFrmViewerOpenGL::GetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00232">232</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8a73f9114076458cb8b1705be25ac39" name="aa8a73f9114076458cb8b1705be25ac39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a73f9114076458cb8b1705be25ac39">&#9670;&#160;</a></span>GetAspectRationRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QRectF CFrmViewerOpenGL::GetAspectRationRect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00317">317</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a281e8a5350e2915705a33ab58ecc4940" name="a281e8a5350e2915705a33ab58ecc4940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a281e8a5350e2915705a33ab58ecc4940">&#9670;&#160;</a></span>GetDesktopSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize CFrmViewerOpenGL::GetDesktopSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b835528fcf4bd0fdc45a79523eb7aef" name="a1b835528fcf4bd0fdc45a79523eb7aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b835528fcf4bd0fdc45a79523eb7aef">&#9670;&#160;</a></span>GetZoomFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CFrmViewerOpenGL::GetZoomFactor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>调整缩放系数。 调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。 </p>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00161">161</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa4ca38729034561e20f8fe611fd9168c" name="aa4ca38729034561e20f8fe611fd9168c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ca38729034561e20f8fe611fd9168c">&#9670;&#160;</a></span>GrabImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage CFrmViewerOpenGL::GrabImage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00251">251</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6bac6ec0040120781c2e9a5c61c62ebe" name="a6bac6ec0040120781c2e9a5c61c62ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bac6ec0040120781c2e9a5c61c62ebe">&#9670;&#160;</a></span>initializeGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::initializeGL </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3dc5de4c518b4eb4b42e46c4ab9c2818" name="a3dc5de4c518b4eb4b42e46c4ab9c2818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dc5de4c518b4eb4b42e46c4ab9c2818">&#9670;&#160;</a></span>InitVertor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::InitVertor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00838d3d13dde4a4897376969b9d0adf" name="a00838d3d13dde4a4897376969b9d0adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00838d3d13dde4a4897376969b9d0adf">&#9670;&#160;</a></span>keyPressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::keyPressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00422">422</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa09c7e93339840a2a49a6dc5c02f40f3" name="aa09c7e93339840a2a49a6dc5c02f40f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa09c7e93339840a2a49a6dc5c02f40f3">&#9670;&#160;</a></span>keyReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::keyReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00429">429</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeef5d11ca13f295ac80b5cb93d1c731e" name="aeef5d11ca13f295ac80b5cb93d1c731e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeef5d11ca13f295ac80b5cb93d1c731e">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmViewerOpenGL::Load </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00237">237</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a28a2c2bd5f5988001f64c38b7e8cc6dc" name="a28a2c2bd5f5988001f64c38b7e8cc6dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28a2c2bd5f5988001f64c38b7e8cc6dc">&#9670;&#160;</a></span>mouseMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::mouseMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00400">400</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85ebc3a673ba8ecaf1da9a91131e62e7" name="a85ebc3a673ba8ecaf1da9a91131e62e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ebc3a673ba8ecaf1da9a91131e62e7">&#9670;&#160;</a></span>mousePressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::mousePressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00382">382</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a802048189f637bd86c22de545037f4e5" name="a802048189f637bd86c22de545037f4e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a802048189f637bd86c22de545037f4e5">&#9670;&#160;</a></span>mouseReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::mouseReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00391">391</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af1eaa113ebe134c382f367913039f0d0" name="af1eaa113ebe134c382f367913039f0d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1eaa113ebe134c382f367913039f0d0">&#9670;&#160;</a></span>paintGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::paintGL </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00139">139</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a56326c4b1656fce272e57c9df6ff4233" name="a56326c4b1656fce272e57c9df6ff4233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56326c4b1656fce272e57c9df6ff4233">&#9670;&#160;</a></span>ReSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmViewerOpenGL::ReSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00180">180</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9cd459aec5e9646e59eeeaf3782c95e1" name="a9cd459aec5e9646e59eeeaf3782c95e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd459aec5e9646e59eeeaf3782c95e1">&#9670;&#160;</a></span>resizeGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::resizeGL </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6d5e596acfafb9ad8b64ef4e0855b2e5" name="a6d5e596acfafb9ad8b64ef4e0855b2e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5e596acfafb9ad8b64ef4e0855b2e5">&#9670;&#160;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmViewerOpenGL::Save </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4f398fdb85c630ab211e9b66978ab955" name="a4f398fdb85c630ab211e9b66978ab955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f398fdb85c630ab211e9b66978ab955">&#9670;&#160;</a></span>SetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::SetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a>&#160;</td>
+          <td class="paramname"><em>aw</em> = <code><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418ab2b5a4662c49d01366f645130126b433">Original</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab9bb11a3ca0c96a50a81bd982ddca020" name="ab9bb11a3ca0c96a50a81bd982ddca020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9bb11a3ca0c96a50a81bd982ddca020">&#9670;&#160;</a></span>SetZoomFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmViewerOpenGL::SetZoomFactor </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>newZoomFactor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00166">166</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9e58e1c99e544d7441ed604ce3c01cb2" name="a9e58e1c99e544d7441ed604ce3c01cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e58e1c99e544d7441ed604ce3c01cb2">&#9670;&#160;</a></span>slotSetDesktopSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotSetDesktopSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update desktop size </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00261">261</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab0a577898b2e0618eb74d3be5022a602" name="ab0a577898b2e0618eb74d3be5022a602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0a577898b2e0618eb74d3be5022a602">&#9670;&#160;</a></span>slotSetName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotSetName </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update desktop name </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">szName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00273">273</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7356ff74a9fffc1ad3b04d9326156333" name="a7356ff74a9fffc1ad3b04d9326156333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7356ff74a9fffc1ad3b04d9326156333">&#9670;&#160;</a></span>slotSystemCombination</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotSystemCombination </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00306">306</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03d09f1194ccde7442ab051765f468ab" name="a03d09f1194ccde7442ab051765f468ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d09f1194ccde7442ab051765f468ab">&#9670;&#160;</a></span>slotUpdateCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotUpdateCursor </td>
+          <td>(</td>
+          <td class="paramtype">const QCursor &amp;&#160;</td>
+          <td class="paramname"><em>cursor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update cursor </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cursor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00296">296</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab60c7f5fa927028630a987f2ee11c192" name="ab60c7f5fa927028630a987f2ee11c192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60c7f5fa927028630a987f2ee11c192">&#9670;&#160;</a></span>slotUpdateCursorPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotUpdateCursorPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update cursor position </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00301">301</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab1d2efa8ce5955a4759d955370db3ff8" name="ab1d2efa8ce5955a4759d955370db3ff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d2efa8ce5955a4759d955370db3ff8">&#9670;&#160;</a></span>slotUpdateRect <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotUpdateRect </td>
+          <td>(</td>
+          <td class="paramtype">const QRect &amp;&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QImage &amp;&#160;</td>
+          <td class="paramname"><em>image</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update image </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>image rect </td></tr>
+    <tr><td class="paramname">image</td><td>image </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00278">278</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3e07e0e8ec1288763c147d10801ff0a6" name="a3e07e0e8ec1288763c147d10801ff0a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e07e0e8ec1288763c147d10801ff0a6">&#9670;&#160;</a></span>slotUpdateRect <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::slotUpdateRect </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; CImage &gt;&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00293">293</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1635ba846be9fa0b77469ee53842c76c" name="a1635ba846be9fa0b77469ee53842c76c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1635ba846be9fa0b77469ee53842c76c">&#9670;&#160;</a></span>TranslationMousePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmViewerOpenGL::TranslationMousePoint </td>
+          <td>(</td>
+          <td class="paramtype">QPointF&#160;</td>
+          <td class="paramname"><em>inPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPointF &amp;&#160;</td>
+          <td class="paramname"><em>outPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00345">345</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac3bc7011e1a3b3b7be1fd9775580559a" name="ac3bc7011e1a3b3b7be1fd9775580559a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3bc7011e1a3b3b7be1fd9775580559a">&#9670;&#160;</a></span>wheelEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmViewerOpenGL::wheelEvent </td>
+          <td>(</td>
+          <td class="paramtype">QWheelEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a> 第 <a class="el" href="FrmViewerOpenGL_8cpp_source.html#l00409">409</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="afee3bc37ca16599ce2d21af0a62e25d7" name="afee3bc37ca16599ce2d21af0a62e25d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afee3bc37ca16599ce2d21af0a62e25d7">&#9670;&#160;</a></span>m_AdaptWindows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewerOpenGL.html#a0ecb2cb006826685dff530d7ca13b418">ADAPT_WINDOWS</a> CFrmViewerOpenGL::m_AdaptWindows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aebf8e0d294958ea237ed579885819e52" name="aebf8e0d294958ea237ed579885819e52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf8e0d294958ea237ed579885819e52">&#9670;&#160;</a></span>m_dbZoomFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CFrmViewerOpenGL::m_dbZoomFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00130">130</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1471259d593808e476ae577a5ad663e6" name="a1471259d593808e476ae577a5ad663e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1471259d593808e476ae577a5ad663e6">&#9670;&#160;</a></span>m_Desktop</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage CFrmViewerOpenGL::m_Desktop</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a40ccb20576cd9e71295803a11623bee0" name="a40ccb20576cd9e71295803a11623bee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ccb20576cd9e71295803a11623bee0">&#9670;&#160;</a></span>m_pTexture</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLTexture* CFrmViewerOpenGL::m_pTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00127">127</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a592cf9fab917df701cf3a76b9ea9c8cb" name="a592cf9fab917df701cf3a76b9ea9c8cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a592cf9fab917df701cf3a76b9ea9c8cb">&#9670;&#160;</a></span>m_ShaderProgram</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLShaderProgram CFrmViewerOpenGL::m_ShaderProgram</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2ecbf9cddd9975d9ec781e985026891e" name="a2ecbf9cddd9975d9ec781e985026891e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ecbf9cddd9975d9ec781e985026891e">&#9670;&#160;</a></span>m_VaoQuad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLVertexArrayObject CFrmViewerOpenGL::m_VaoQuad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9d4081c1f377ea779b0d1cb66b98fa8b" name="a9d4081c1f377ea779b0d1cb66b98fa8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d4081c1f377ea779b0d1cb66b98fa8b">&#9670;&#160;</a></span>m_VboQuad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer CFrmViewerOpenGL::m_VboQuad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad27515c481ca983e6585ac0388050aaf" name="ad27515c481ca983e6585ac0388050aaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27515c481ca983e6585ac0388050aaf">&#9670;&#160;</a></span>m_VertexData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;GLfloat&gt; CFrmViewerOpenGL::m_VertexData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a9cfaef633293565354ed4ac477e6d85d" name="a9cfaef633293565354ed4ac477e6d85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cfaef633293565354ed4ac477e6d85d">&#9670;&#160;</a></span>ZoomFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CFrmViewerOpenGL::ZoomFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a> 第 <a class="el" href="FrmViewerOpenGL_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="FrmViewerOpenGL_8h_source.html">FrmViewerOpenGL.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="FrmViewerOpenGL_8cpp_source.html">FrmViewerOpenGL.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

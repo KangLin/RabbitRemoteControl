@@ -1,0 +1,1268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterRecord类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterRecord-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterRecord类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CParameterRecord 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterRecord__inherit__graph.png" border="0" usemap="#aCParameterRecord_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterRecord_inherit__map" id="aCParameterRecord_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,148,177"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="27,79,126,104"/>
+<area shape="poly" title=" " alt="" coords="79,118,79,152,74,152,74,118"/>
+<area shape="rect" title=" " alt="" coords="39,5,114,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,74,79,74,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterRecord 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterRecord__coll__graph.png" border="0" usemap="#aCParameterRecord_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterRecord_coll__map" id="aCParameterRecord_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,148,177"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="27,79,126,104"/>
+<area shape="poly" title=" " alt="" coords="79,118,79,152,74,152,74,118"/>
+<area shape="rect" title=" " alt="" coords="39,5,114,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,74,79,74,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a9809cff22d7795fc9888c194c4e3e105" id="r_a9809cff22d7795fc9888c194c4e3e105"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ENDACTION</b> { <b>No</b>
+, <b>OpenFile</b>
+, <b>OpenFolder</b>
+ }</td></tr>
+<tr class="separator:a9809cff22d7795fc9888c194c4e3e105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a1bf591a583f1141cd24e695bce446d9e" id="r_a1bf591a583f1141cd24e695bce446d9e"><td class="memItemLeft" align="right" valign="top"><a id="a1bf591a583f1141cd24e695bce446d9e" name="a1bf591a583f1141cd24e695bce446d9e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigQualityChanged</b> ()</td></tr>
+<tr class="separator:a1bf591a583f1141cd24e695bce446d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d576dd50688f0f0ba11eaeb432b6b10" id="r_a7d576dd50688f0f0ba11eaeb432b6b10"><td class="memItemLeft" align="right" valign="top"><a id="a7d576dd50688f0f0ba11eaeb432b6b10" name="a7d576dd50688f0f0ba11eaeb432b6b10"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEncodingModeChanged</b> ()</td></tr>
+<tr class="separator:a7d576dd50688f0f0ba11eaeb432b6b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2a49d62a9a1f63e2bf57ea89ebd3592" id="r_ac2a49d62a9a1f63e2bf57ea89ebd3592"><td class="memItemLeft" align="right" valign="top"><a id="ac2a49d62a9a1f63e2bf57ea89ebd3592" name="ac2a49d62a9a1f63e2bf57ea89ebd3592"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigImageFileChanged</b> ()</td></tr>
+<tr class="separator:ac2a49d62a9a1f63e2bf57ea89ebd3592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45dfc79274b96e78a6c67a55d1565c3c" id="r_a45dfc79274b96e78a6c67a55d1565c3c"><td class="memItemLeft" align="right" valign="top"><a id="a45dfc79274b96e78a6c67a55d1565c3c" name="a45dfc79274b96e78a6c67a55d1565c3c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEnableVideoChanged</b> ()</td></tr>
+<tr class="separator:a45dfc79274b96e78a6c67a55d1565c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0c01c822908955a3689b1d4a5d065f3" id="r_ad0c01c822908955a3689b1d4a5d065f3"><td class="memItemLeft" align="right" valign="top"><a id="ad0c01c822908955a3689b1d4a5d065f3" name="ad0c01c822908955a3689b1d4a5d065f3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEnableAudioChanged</b> ()</td></tr>
+<tr class="separator:ad0c01c822908955a3689b1d4a5d065f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a802813a473841de8f58b728e62675" id="r_a21a802813a473841de8f58b728e62675"><td class="memItemLeft" align="right" valign="top"><a id="a21a802813a473841de8f58b728e62675" name="a21a802813a473841de8f58b728e62675"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEndActionChanged</b> ()</td></tr>
+<tr class="separator:a21a802813a473841de8f58b728e62675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe6b2144879c047f36c405e89dbdf19" id="r_acbe6b2144879c047f36c405e89dbdf19"><td class="memItemLeft" align="right" valign="top"><a id="acbe6b2144879c047f36c405e89dbdf19" name="acbe6b2144879c047f36c405e89dbdf19"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ImagePathChanged</b> ()</td></tr>
+<tr class="separator:acbe6b2144879c047f36c405e89dbdf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa504d296672a0d771b66b300a8dd884a" id="r_aa504d296672a0d771b66b300a8dd884a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aa504d296672a0d771b66b300a8dd884a">CParameterRecord</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:aa504d296672a0d771b66b300a8dd884a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a662231da644c0466945a17c41c35631a" id="r_a662231da644c0466945a17c41c35631a"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a662231da644c0466945a17c41c35631a">GetVideoPath</a> () const</td></tr>
+<tr class="separator:a662231da644c0466945a17c41c35631a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200fd8f67273b1babccd0b643305dd60" id="r_a200fd8f67273b1babccd0b643305dd60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a200fd8f67273b1babccd0b643305dd60">SetVideoPath</a> (const QString &amp;szPath)</td></tr>
+<tr class="separator:a200fd8f67273b1babccd0b643305dd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27ac3b6ae2480330aedbbb887c299f1" id="r_ad27ac3b6ae2480330aedbbb887c299f1"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ad27ac3b6ae2480330aedbbb887c299f1">GetVideoFile</a> (bool bAuto=false)</td></tr>
+<tr class="separator:ad27ac3b6ae2480330aedbbb887c299f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11abcb9a7d831ed66a2bfdd3039cdb22" id="r_a11abcb9a7d831ed66a2bfdd3039cdb22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a11abcb9a7d831ed66a2bfdd3039cdb22">SetVideoFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a11abcb9a7d831ed66a2bfdd3039cdb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a214488e3c1212f44e9f22640c8d76ac4" id="r_a214488e3c1212f44e9f22640c8d76ac4"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a214488e3c1212f44e9f22640c8d76ac4">GetImageFile</a> (bool bAuto=false)</td></tr>
+<tr class="separator:a214488e3c1212f44e9f22640c8d76ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d5f22d78fb21f0e4acd59f732ec992" id="r_ab2d5f22d78fb21f0e4acd59f732ec992"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ab2d5f22d78fb21f0e4acd59f732ec992">SetImageFile</a> (const QString &amp;newImageFile)</td></tr>
+<tr class="separator:ab2d5f22d78fb21f0e4acd59f732ec992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad3942cbec0f6401500d33cbd3ee3b8" id="r_abad3942cbec0f6401500d33cbd3ee3b8"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#abad3942cbec0f6401500d33cbd3ee3b8">GetImagePath</a> () const</td></tr>
+<tr class="separator:abad3942cbec0f6401500d33cbd3ee3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752d8ad585cdc42e407a53e519b52a28" id="r_a752d8ad585cdc42e407a53e519b52a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a752d8ad585cdc42e407a53e519b52a28">SetImagePath</a> (const QString &amp;newImagePath)</td></tr>
+<tr class="separator:a752d8ad585cdc42e407a53e519b52a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893c6fed146e6516dc2e3353acff1944" id="r_a893c6fed146e6516dc2e3353acff1944"><td class="memItemLeft" align="right" valign="top">QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a893c6fed146e6516dc2e3353acff1944">GetVideoResolution</a> ()</td></tr>
+<tr class="separator:a893c6fed146e6516dc2e3353acff1944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08de06bcbdc61a9939171552f8b89dd6" id="r_a08de06bcbdc61a9939171552f8b89dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a08de06bcbdc61a9939171552f8b89dd6">SetVideoResolution</a> (QSize size)</td></tr>
+<tr class="separator:a08de06bcbdc61a9939171552f8b89dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b70e9be4eac9aa1668d3162d718ac0" id="r_a91b70e9be4eac9aa1668d3162d718ac0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a91b70e9be4eac9aa1668d3162d718ac0">GetVideoBitRate</a> () const</td></tr>
+<tr class="separator:a91b70e9be4eac9aa1668d3162d718ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff3479be153a7eb0177de1a7fdd05167" id="r_aff3479be153a7eb0177de1a7fdd05167"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aff3479be153a7eb0177de1a7fdd05167">SetVideoBitRate</a> (int bitRate)</td></tr>
+<tr class="separator:aff3479be153a7eb0177de1a7fdd05167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5124de2877b0dfa5e27e53a877035a3" id="r_ac5124de2877b0dfa5e27e53a877035a3"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ac5124de2877b0dfa5e27e53a877035a3">GetVideoFrameRate</a> () const</td></tr>
+<tr class="separator:ac5124de2877b0dfa5e27e53a877035a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3572d1040405d264cbf1072789ef8e34" id="r_a3572d1040405d264cbf1072789ef8e34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a3572d1040405d264cbf1072789ef8e34">SetVideoFrameRate</a> (qreal newVideoFrameRate)</td></tr>
+<tr class="separator:a3572d1040405d264cbf1072789ef8e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add09c2504eeb267e4742b33076739260" id="r_add09c2504eeb267e4742b33076739260"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#add09c2504eeb267e4742b33076739260">GetAudioBitRate</a> ()</td></tr>
+<tr class="separator:add09c2504eeb267e4742b33076739260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae299106c425ea897a5391d3ba925129c" id="r_ae299106c425ea897a5391d3ba925129c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ae299106c425ea897a5391d3ba925129c">SetAudioBitRate</a> (int bitRate)</td></tr>
+<tr class="separator:ae299106c425ea897a5391d3ba925129c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415a79477e01dbff9302e1e6090cd61f" id="r_a415a79477e01dbff9302e1e6090cd61f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a415a79477e01dbff9302e1e6090cd61f">GetAudioSampleRate</a> () const</td></tr>
+<tr class="separator:a415a79477e01dbff9302e1e6090cd61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bbd99f48fc77ddecf3bb1e59aaffcec" id="r_a9bbd99f48fc77ddecf3bb1e59aaffcec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a9bbd99f48fc77ddecf3bb1e59aaffcec">SetAudioSampleRate</a> (int newAudioSampleRate)</td></tr>
+<tr class="separator:a9bbd99f48fc77ddecf3bb1e59aaffcec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3477c4c7ffd9e0d972ab92352454287" id="r_ac3477c4c7ffd9e0d972ab92352454287"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ac3477c4c7ffd9e0d972ab92352454287">GetAudioChannelCount</a> ()</td></tr>
+<tr class="separator:ac3477c4c7ffd9e0d972ab92352454287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c32fb98bdb8ec34c7ef32a4021c517" id="r_a52c32fb98bdb8ec34c7ef32a4021c517"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a52c32fb98bdb8ec34c7ef32a4021c517">SetAudioChannelCount</a> (int count)</td></tr>
+<tr class="separator:a52c32fb98bdb8ec34c7ef32a4021c517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd61463d3682a1c9d9e59dc438bca52a" id="r_acd61463d3682a1c9d9e59dc438bca52a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCParameterRecord.html">CParameterRecord</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#acd61463d3682a1c9d9e59dc438bca52a">operator=</a> (const <a class="el" href="classCParameterRecord.html">CParameterRecord</a> &amp;in)</td></tr>
+<tr class="separator:acd61463d3682a1c9d9e59dc438bca52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a870056d31323c379932a053b479d9d82" id="r_a870056d31323c379932a053b479d9d82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a870056d31323c379932a053b479d9d82">GetEnableVideo</a> () const</td></tr>
+<tr class="separator:a870056d31323c379932a053b479d9d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c615fc861498fe1b2e3d4faa835564" id="r_ae0c615fc861498fe1b2e3d4faa835564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ae0c615fc861498fe1b2e3d4faa835564">SetEnableVideo</a> (bool newEnableVideo)</td></tr>
+<tr class="separator:ae0c615fc861498fe1b2e3d4faa835564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153fd255cbae58a694b00521ddedde02" id="r_a153fd255cbae58a694b00521ddedde02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a153fd255cbae58a694b00521ddedde02">GetEnableAudio</a> () const</td></tr>
+<tr class="separator:a153fd255cbae58a694b00521ddedde02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a794d454a80f96ab66999fd712aa9d432" id="r_a794d454a80f96ab66999fd712aa9d432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a794d454a80f96ab66999fd712aa9d432">SetEnableAudio</a> (bool newEnableAudio)</td></tr>
+<tr class="separator:a794d454a80f96ab66999fd712aa9d432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab32a3e47866df277b34420e57be6ce50" id="r_ab32a3e47866df277b34420e57be6ce50"><td class="memItemLeft" align="right" valign="top">CParameterRecord::ENDACTION&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ab32a3e47866df277b34420e57be6ce50">GetEndAction</a> () const</td></tr>
+<tr class="separator:ab32a3e47866df277b34420e57be6ce50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c628f67dee07672e06ea738e96462a" id="r_a16c628f67dee07672e06ea738e96462a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a16c628f67dee07672e06ea738e96462a">SetEndAction</a> (ENDACTION newEndAction)</td></tr>
+<tr class="separator:a16c628f67dee07672e06ea738e96462a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:aad37a49afcc6affa9817a964d1bc4e64" id="r_aad37a49afcc6affa9817a964d1bc4e64"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aad37a49afcc6affa9817a964d1bc4e64">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:aad37a49afcc6affa9817a964d1bc4e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace4d3411dbcd2162935f24353d1dbfa3" id="r_ace4d3411dbcd2162935f24353d1dbfa3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ace4d3411dbcd2162935f24353d1dbfa3">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:ace4d3411dbcd2162935f24353d1dbfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a609932b5eef97d8ed25ffef7469cf5fd" id="r_a609932b5eef97d8ed25ffef7469cf5fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a609932b5eef97d8ed25ffef7469cf5fd">m_bEnableVideo</a></td></tr>
+<tr class="separator:a609932b5eef97d8ed25ffef7469cf5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa27a50c583015b5e72b50f8bc4fd33b9" id="r_aa27a50c583015b5e72b50f8bc4fd33b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aa27a50c583015b5e72b50f8bc4fd33b9">m_bEnableAudio</a></td></tr>
+<tr class="separator:aa27a50c583015b5e72b50f8bc4fd33b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81ed92663b3551b3d681ea91e56cf61c" id="r_a81ed92663b3551b3d681ea91e56cf61c"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a81ed92663b3551b3d681ea91e56cf61c">m_szVideoFile</a></td></tr>
+<tr class="separator:a81ed92663b3551b3d681ea91e56cf61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78df45ab25770a6b9d58a27f93e05ec3" id="r_a78df45ab25770a6b9d58a27f93e05ec3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a78df45ab25770a6b9d58a27f93e05ec3">m_szVideoPath</a></td></tr>
+<tr class="separator:a78df45ab25770a6b9d58a27f93e05ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa61d5ef3ba3140d85b6e0390f8c42d" id="r_a2aa61d5ef3ba3140d85b6e0390f8c42d"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a2aa61d5ef3ba3140d85b6e0390f8c42d">m_szImageFile</a></td></tr>
+<tr class="separator:a2aa61d5ef3ba3140d85b6e0390f8c42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b3d9b628048d5e180bec8844e4b3a3" id="r_ac0b3d9b628048d5e180bec8844e4b3a3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ac0b3d9b628048d5e180bec8844e4b3a3">m_szImagePath</a></td></tr>
+<tr class="separator:ac0b3d9b628048d5e180bec8844e4b3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5b9df98ba467e3fa2029a1d6485b71" id="r_aae5b9df98ba467e3fa2029a1d6485b71"><td class="memItemLeft" align="right" valign="top">QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aae5b9df98ba467e3fa2029a1d6485b71">m_VideoResolution</a></td></tr>
+<tr class="separator:aae5b9df98ba467e3fa2029a1d6485b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1407174f4dbd1c620d80b3b372e9b8c" id="r_af1407174f4dbd1c620d80b3b372e9b8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#af1407174f4dbd1c620d80b3b372e9b8c">m_VideoBitRate</a></td></tr>
+<tr class="separator:af1407174f4dbd1c620d80b3b372e9b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a727a697f12b2c4cb1b4e60e8d6f3992c" id="r_a727a697f12b2c4cb1b4e60e8d6f3992c"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a727a697f12b2c4cb1b4e60e8d6f3992c">m_VideoFrameRate</a></td></tr>
+<tr class="separator:a727a697f12b2c4cb1b4e60e8d6f3992c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82be2a6d800dd4ec9b5ef259d233c213" id="r_a82be2a6d800dd4ec9b5ef259d233c213"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#a82be2a6d800dd4ec9b5ef259d233c213">m_AudioBitRate</a></td></tr>
+<tr class="separator:a82be2a6d800dd4ec9b5ef259d233c213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa88300a07b091f36b4267b33c1692219" id="r_aa88300a07b091f36b4267b33c1692219"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aa88300a07b091f36b4267b33c1692219">m_AudioSampleRate</a></td></tr>
+<tr class="separator:aa88300a07b091f36b4267b33c1692219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad01fca282d923427cc2666fa4d2f5cc1" id="r_ad01fca282d923427cc2666fa4d2f5cc1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#ad01fca282d923427cc2666fa4d2f5cc1">m_AudioChannelCount</a></td></tr>
+<tr class="separator:ad01fca282d923427cc2666fa4d2f5cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d0ab99d940b9a64cad27aca6314ca9" id="r_aa0d0ab99d940b9a64cad27aca6314ca9"><td class="memItemLeft" align="right" valign="top">ENDACTION&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterRecord.html#aa0d0ab99d940b9a64cad27aca6314ca9">m_EndAction</a></td></tr>
+<tr class="separator:aa0d0ab99d940b9a64cad27aca6314ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00012">12</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a9809cff22d7795fc9888c194c4e3e105" name="a9809cff22d7795fc9888c194c4e3e105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9809cff22d7795fc9888c194c4e3e105">&#9670;&#160;</a></span>ENDACTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CParameterRecord::ENDACTION</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aa504d296672a0d771b66b300a8dd884a" name="aa504d296672a0d771b66b300a8dd884a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa504d296672a0d771b66b300a8dd884a">&#9670;&#160;</a></span>CParameterRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterRecord::CParameterRecord </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em> = <code>QString()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00010">10</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="add09c2504eeb267e4742b33076739260" name="add09c2504eeb267e4742b33076739260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add09c2504eeb267e4742b33076739260">&#9670;&#160;</a></span>GetAudioBitRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::GetAudioBitRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00358">358</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac3477c4c7ffd9e0d972ab92352454287" name="ac3477c4c7ffd9e0d972ab92352454287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3477c4c7ffd9e0d972ab92352454287">&#9670;&#160;</a></span>GetAudioChannelCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::GetAudioChannelCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00382">382</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a415a79477e01dbff9302e1e6090cd61f" name="a415a79477e01dbff9302e1e6090cd61f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a415a79477e01dbff9302e1e6090cd61f">&#9670;&#160;</a></span>GetAudioSampleRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::GetAudioSampleRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00368">368</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a153fd255cbae58a694b00521ddedde02" name="a153fd255cbae58a694b00521ddedde02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a153fd255cbae58a694b00521ddedde02">&#9670;&#160;</a></span>GetEnableAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterRecord::GetEnableAudio </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a870056d31323c379932a053b479d9d82" name="a870056d31323c379932a053b479d9d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a870056d31323c379932a053b479d9d82">&#9670;&#160;</a></span>GetEnableVideo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterRecord::GetEnableVideo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab32a3e47866df277b34420e57be6ce50" name="ab32a3e47866df277b34420e57be6ce50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab32a3e47866df277b34420e57be6ce50">&#9670;&#160;</a></span>GetEndAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterRecord::ENDACTION CParameterRecord::GetEndAction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a214488e3c1212f44e9f22640c8d76ac4" name="a214488e3c1212f44e9f22640c8d76ac4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a214488e3c1212f44e9f22640c8d76ac4">&#9670;&#160;</a></span>GetImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::GetImageFile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bAuto</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00214">214</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abad3942cbec0f6401500d33cbd3ee3b8" name="abad3942cbec0f6401500d33cbd3ee3b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad3942cbec0f6401500d33cbd3ee3b8">&#9670;&#160;</a></span>GetImagePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::GetImagePath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a91b70e9be4eac9aa1668d3162d718ac0" name="a91b70e9be4eac9aa1668d3162d718ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b70e9be4eac9aa1668d3162d718ac0">&#9670;&#160;</a></span>GetVideoBitRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::GetVideoBitRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00334">334</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad27ac3b6ae2480330aedbbb887c299f1" name="ad27ac3b6ae2480330aedbbb887c299f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27ac3b6ae2480330aedbbb887c299f1">&#9670;&#160;</a></span>GetVideoFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterRecord::GetVideoFile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bAuto</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bAuto</td><td><ul>
+<li>true: Automatically generated</li>
+<li>false: use the value of SetFile() </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">ext</td><td>filename extension </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00195">195</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac5124de2877b0dfa5e27e53a877035a3" name="ac5124de2877b0dfa5e27e53a877035a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5124de2877b0dfa5e27e53a877035a3">&#9670;&#160;</a></span>GetVideoFrameRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal CParameterRecord::GetVideoFrameRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00344">344</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a662231da644c0466945a17c41c35631a" name="a662231da644c0466945a17c41c35631a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a662231da644c0466945a17c41c35631a">&#9670;&#160;</a></span>GetVideoPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterRecord::GetVideoPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a893c6fed146e6516dc2e3353acff1944" name="a893c6fed146e6516dc2e3353acff1944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893c6fed146e6516dc2e3353acff1944">&#9670;&#160;</a></span>GetVideoResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize CParameterRecord::GetVideoResolution </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00324">324</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aad37a49afcc6affa9817a964d1bc4e64" name="aad37a49afcc6affa9817a964d1bc4e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad37a49afcc6affa9817a964d1bc4e64">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ace4d3411dbcd2162935f24353d1dbfa3" name="ace4d3411dbcd2162935f24353d1dbfa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace4d3411dbcd2162935f24353d1dbfa3">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00173">173</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acd61463d3682a1c9d9e59dc438bca52a" name="acd61463d3682a1c9d9e59dc438bca52a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd61463d3682a1c9d9e59dc438bca52a">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRecord.html">CParameterRecord</a> &amp; CParameterRecord::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCParameterRecord.html">CParameterRecord</a> &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae299106c425ea897a5391d3ba925129c" name="ae299106c425ea897a5391d3ba925129c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae299106c425ea897a5391d3ba925129c">&#9670;&#160;</a></span>SetAudioBitRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetAudioBitRate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bitRate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00363">363</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52c32fb98bdb8ec34c7ef32a4021c517" name="a52c32fb98bdb8ec34c7ef32a4021c517"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52c32fb98bdb8ec34c7ef32a4021c517">&#9670;&#160;</a></span>SetAudioChannelCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetAudioChannelCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00387">387</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9bbd99f48fc77ddecf3bb1e59aaffcec" name="a9bbd99f48fc77ddecf3bb1e59aaffcec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bbd99f48fc77ddecf3bb1e59aaffcec">&#9670;&#160;</a></span>SetAudioSampleRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetAudioSampleRate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newAudioSampleRate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00373">373</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a794d454a80f96ab66999fd712aa9d432" name="a794d454a80f96ab66999fd712aa9d432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a794d454a80f96ab66999fd712aa9d432">&#9670;&#160;</a></span>SetEnableAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetEnableAudio </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newEnableAudio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae0c615fc861498fe1b2e3d4faa835564" name="ae0c615fc861498fe1b2e3d4faa835564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c615fc861498fe1b2e3d4faa835564">&#9670;&#160;</a></span>SetEnableVideo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetEnableVideo </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newEnableVideo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16c628f67dee07672e06ea738e96462a" name="a16c628f67dee07672e06ea738e96462a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c628f67dee07672e06ea738e96462a">&#9670;&#160;</a></span>SetEndAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetEndAction </td>
+          <td>(</td>
+          <td class="paramtype">ENDACTION&#160;</td>
+          <td class="paramname"><em>newEndAction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2d5f22d78fb21f0e4acd59f732ec992" name="ab2d5f22d78fb21f0e4acd59f732ec992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2d5f22d78fb21f0e4acd59f732ec992">&#9670;&#160;</a></span>SetImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetImageFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newImageFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a752d8ad585cdc42e407a53e519b52a28" name="a752d8ad585cdc42e407a53e519b52a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752d8ad585cdc42e407a53e519b52a28">&#9670;&#160;</a></span>SetImagePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetImagePath </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newImagePath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff3479be153a7eb0177de1a7fdd05167" name="aff3479be153a7eb0177de1a7fdd05167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff3479be153a7eb0177de1a7fdd05167">&#9670;&#160;</a></span>SetVideoBitRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetVideoBitRate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bitRate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00339">339</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11abcb9a7d831ed66a2bfdd3039cdb22" name="a11abcb9a7d831ed66a2bfdd3039cdb22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11abcb9a7d831ed66a2bfdd3039cdb22">&#9670;&#160;</a></span>SetVideoFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::SetVideoFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00205">205</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3572d1040405d264cbf1072789ef8e34" name="a3572d1040405d264cbf1072789ef8e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3572d1040405d264cbf1072789ef8e34">&#9670;&#160;</a></span>SetVideoFrameRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetVideoFrameRate </td>
+          <td>(</td>
+          <td class="paramtype">qreal&#160;</td>
+          <td class="paramname"><em>newVideoFrameRate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00349">349</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a200fd8f67273b1babccd0b643305dd60" name="a200fd8f67273b1babccd0b643305dd60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200fd8f67273b1babccd0b643305dd60">&#9670;&#160;</a></span>SetVideoPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::SetVideoPath </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00240">240</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a08de06bcbdc61a9939171552f8b89dd6" name="a08de06bcbdc61a9939171552f8b89dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08de06bcbdc61a9939171552f8b89dd6">&#9670;&#160;</a></span>SetVideoResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterRecord::SetVideoResolution </td>
+          <td>(</td>
+          <td class="paramtype">QSize&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a> 第 <a class="el" href="ParameterRecord_8cpp_source.html#l00329">329</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a82be2a6d800dd4ec9b5ef259d233c213" name="a82be2a6d800dd4ec9b5ef259d233c213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82be2a6d800dd4ec9b5ef259d233c213">&#9670;&#160;</a></span>m_AudioBitRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::m_AudioBitRate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad01fca282d923427cc2666fa4d2f5cc1" name="ad01fca282d923427cc2666fa4d2f5cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad01fca282d923427cc2666fa4d2f5cc1">&#9670;&#160;</a></span>m_AudioChannelCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::m_AudioChannelCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa88300a07b091f36b4267b33c1692219" name="aa88300a07b091f36b4267b33c1692219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa88300a07b091f36b4267b33c1692219">&#9670;&#160;</a></span>m_AudioSampleRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::m_AudioSampleRate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa27a50c583015b5e72b50f8bc4fd33b9" name="aa27a50c583015b5e72b50f8bc4fd33b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa27a50c583015b5e72b50f8bc4fd33b9">&#9670;&#160;</a></span>m_bEnableAudio</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterRecord::m_bEnableAudio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a609932b5eef97d8ed25ffef7469cf5fd" name="a609932b5eef97d8ed25ffef7469cf5fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a609932b5eef97d8ed25ffef7469cf5fd">&#9670;&#160;</a></span>m_bEnableVideo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterRecord::m_bEnableVideo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa0d0ab99d940b9a64cad27aca6314ca9" name="aa0d0ab99d940b9a64cad27aca6314ca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d0ab99d940b9a64cad27aca6314ca9">&#9670;&#160;</a></span>m_EndAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ENDACTION CParameterRecord::m_EndAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2aa61d5ef3ba3140d85b6e0390f8c42d" name="a2aa61d5ef3ba3140d85b6e0390f8c42d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa61d5ef3ba3140d85b6e0390f8c42d">&#9670;&#160;</a></span>m_szImageFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::m_szImageFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0b3d9b628048d5e180bec8844e4b3a3" name="ac0b3d9b628048d5e180bec8844e4b3a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b3d9b628048d5e180bec8844e4b3a3">&#9670;&#160;</a></span>m_szImagePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::m_szImagePath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a81ed92663b3551b3d681ea91e56cf61c" name="a81ed92663b3551b3d681ea91e56cf61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ed92663b3551b3d681ea91e56cf61c">&#9670;&#160;</a></span>m_szVideoFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::m_szVideoFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a78df45ab25770a6b9d58a27f93e05ec3" name="a78df45ab25770a6b9d58a27f93e05ec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78df45ab25770a6b9d58a27f93e05ec3">&#9670;&#160;</a></span>m_szVideoPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterRecord::m_szVideoPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af1407174f4dbd1c620d80b3b372e9b8c" name="af1407174f4dbd1c620d80b3b372e9b8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1407174f4dbd1c620d80b3b372e9b8c">&#9670;&#160;</a></span>m_VideoBitRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterRecord::m_VideoBitRate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a727a697f12b2c4cb1b4e60e8d6f3992c" name="a727a697f12b2c4cb1b4e60e8d6f3992c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a727a697f12b2c4cb1b4e60e8d6f3992c">&#9670;&#160;</a></span>m_VideoFrameRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal CParameterRecord::m_VideoFrameRate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00112">112</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aae5b9df98ba467e3fa2029a1d6485b71" name="aae5b9df98ba467e3fa2029a1d6485b71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5b9df98ba467e3fa2029a1d6485b71">&#9670;&#160;</a></span>m_VideoResolution</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize CParameterRecord::m_VideoResolution</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a> 第 <a class="el" href="ParameterRecord_8h_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterRecord_8h_source.html">ParameterRecord.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterRecord_8cpp_source.html">ParameterRecord.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

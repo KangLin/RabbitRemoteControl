@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterUI类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classCParameterUI-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterUI类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>参数界面接口  
+ <a href="classCParameterUI.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterUI_8h_source.html">ParameterUI.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterUI 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterUI__inherit__graph.png" border="0" usemap="#aCParameterUI_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterUI_inherit__map" id="aCParameterUI_inherit__map">
+<area shape="rect" title="参数界面接口" alt="" coords="132,203,244,228"/>
+<area shape="rect" href="classCFrmManagePlugins.html" title=" " alt="" coords="305,5,459,31"/>
+<area shape="poly" title=" " alt="" coords="195,189,208,155,228,115,256,74,290,40,310,28,313,33,294,44,260,78,233,117,213,157,200,191"/>
+<area shape="rect" href="classCParameterDatabaseUI.html" title=" " alt="" coords="295,55,469,80"/>
+<area shape="poly" title=" " alt="" coords="201,189,237,138,262,112,291,89,314,78,316,82,293,94,266,116,241,142,205,193"/>
+<area shape="rect" href="classCParameterNetUI.html" title="The net parameter UI" alt="" coords="315,104,449,129"/>
+<area shape="poly" title=" " alt="" coords="212,191,248,164,291,138,321,127,323,132,293,143,251,168,216,195"/>
+<area shape="rect" href="classCParameterPluginUI.html" title=" " alt="" coords="306,153,458,179"/>
+<area shape="poly" title=" " alt="" coords="251,197,330,176,332,181,252,202"/>
+<area shape="rect" href="classCParameterProxyUI.html" title="The proxy parameter UI" alt="" coords="307,203,457,228"/>
+<area shape="poly" title=" " alt="" coords="258,213,307,213,307,218,258,218"/>
+<area shape="rect" href="classCParameterRecordUI.html" title=" " alt="" coords="303,252,461,277"/>
+<area shape="poly" title=" " alt="" coords="252,229,332,249,330,254,251,234"/>
+<area shape="rect" href="classCParameterSSHTunnelUI.html" title=" " alt="" coords="292,301,472,327"/>
+<area shape="poly" title=" " alt="" coords="216,235,251,262,293,288,323,299,321,304,291,292,248,267,212,239"/>
+<area shape="rect" href="classCParameterTerminalUI.html" title=" " alt="" coords="298,351,466,376"/>
+<area shape="poly" title=" " alt="" coords="205,238,241,289,266,315,293,337,316,348,314,353,291,342,262,319,237,292,201,241"/>
+<area shape="rect" href="classCParameterUserUI.html" title="The user parameters UI" alt="" coords="311,400,453,425"/>
+<area shape="poly" title=" " alt="" coords="200,240,213,274,233,313,260,353,294,387,313,398,310,402,290,391,256,356,228,316,208,276,195,242"/>
+<area shape="rect" title=" " alt="" coords="5,203,84,228"/>
+<area shape="poly" title=" " alt="" coords="98,213,132,213,132,218,98,218"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterUI 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterUI__coll__graph.png" border="0" usemap="#aCParameterUI_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterUI_coll__map" id="aCParameterUI_coll__map">
+<area shape="rect" title="参数界面接口" alt="" coords="5,79,117,104"/>
+<area shape="rect" title=" " alt="" coords="22,5,101,31"/>
+<area shape="poly" title=" " alt="" coords="64,44,64,79,59,79,59,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:acb901ac45af7e1780f327b954c7aacfa" id="r_acb901ac45af7e1780f327b954c7aacfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#acb901ac45af7e1780f327b954c7aacfa">slotSetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)</td></tr>
+<tr class="memdesc:acb901ac45af7e1780f327b954c7aacfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
+<tr class="separator:acb901ac45af7e1780f327b954c7aacfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fde885a63c974d7822bc415fb64e033" id="r_a5fde885a63c974d7822bc415fb64e033"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a5fde885a63c974d7822bc415fb64e033">slotAccept</a> ()</td></tr>
+<tr class="separator:a5fde885a63c974d7822bc415fb64e033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7a13e1862a436da63b143ea6f3a38dfb" id="r_a7a13e1862a436da63b143ea6f3a38dfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a7a13e1862a436da63b143ea6f3a38dfb">CParameterUI</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a7a13e1862a436da63b143ea6f3a38dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42db4e7c45f4b24fd0a3bd17ef1bac2e" id="r_a42db4e7c45f4b24fd0a3bd17ef1bac2e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a42db4e7c45f4b24fd0a3bd17ef1bac2e">SetParameter</a> (<a class="el" href="classCParameter.html">CParameter</a> *pParameter)=0</td></tr>
+<tr class="memdesc:a42db4e7c45f4b24fd0a3bd17ef1bac2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[override functions]  <br /></td></tr>
+<tr class="separator:a42db4e7c45f4b24fd0a3bd17ef1bac2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a065a08e831af33efb0f85b0b368965ba" id="r_a065a08e831af33efb0f85b0b368965ba"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a065a08e831af33efb0f85b0b368965ba">CheckValidity</a> (bool validity=false)</td></tr>
+<tr class="memdesc:a065a08e831af33efb0f85b0b368965ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数的有效性  <br /></td></tr>
+<tr class="separator:a065a08e831af33efb0f85b0b368965ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3382d09d69fa0add98377c94d8621fc3" id="r_a3382d09d69fa0add98377c94d8621fc3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterUI.html#a3382d09d69fa0add98377c94d8621fc3">Accept</a> ()=0</td></tr>
+<tr class="memdesc:a3382d09d69fa0add98377c94d8621fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受参数  <br /></td></tr>
+<tr class="separator:a3382d09d69fa0add98377c94d8621fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>参数界面接口 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameter.html" title="参数接口">CParameter</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterUI_8h_source.html">ParameterUI.h</a> 第 <a class="el" href="ParameterUI_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a7a13e1862a436da63b143ea6f3a38dfb" name="a7a13e1862a436da63b143ea6f3a38dfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a13e1862a436da63b143ea6f3a38dfb">&#9670;&#160;</a></span>CParameterUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterUI::CParameterUI </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterUI_8cpp_source.html">ParameterUI.cpp</a> 第 <a class="el" href="ParameterUI_8cpp_source.html#l00005">5</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a3382d09d69fa0add98377c94d8621fc3" name="a3382d09d69fa0add98377c94d8621fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3382d09d69fa0add98377c94d8621fc3">&#9670;&#160;</a></span>Accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CParameterUI::Accept </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受参数 </p>
+<dl class="section return"><dt>返回</dt><dd>成功返回 0 。其它值为失败。 </dd></dl>
+
+<p>在 <a class="el" href="classCParameterNetUI.html#a08078f99a7571dbb634ebc0d0780a82f">CParameterNetUI</a>, <a class="el" href="classCParameterProxyUI.html#aa2ba15dba9e4ab5d71b9e8f64d6ac9c6">CParameterProxyUI</a>, <a class="el" href="classCFrmManagePlugins.html#ac289f499abffa15a21118b356bb60db6">CFrmManagePlugins</a>, <a class="el" href="classCParameterDatabaseUI.html#af18da027baaeea82d99344be891eb8a7">CParameterDatabaseUI</a>, <a class="el" href="classCParameterPluginUI.html#a9383fae5dee009e17412cfdc72795590">CParameterPluginUI</a>, <a class="el" href="classCParameterSSHTunnelUI.html#aade028e0af5e18a30e22c060b662b36b">CParameterSSHTunnelUI</a>, <a class="el" href="classCParameterUserUI.html#a71a49226a404f9cbb59ffb5d0734fbe6">CParameterUserUI</a> , 以及 <a class="el" href="classCParameterTerminalUI.html#afd9cf59ce92abf6c2491c4299515b706">CParameterTerminalUI</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a065a08e831af33efb0f85b0b368965ba" name="a065a08e831af33efb0f85b0b368965ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a065a08e831af33efb0f85b0b368965ba">&#9670;&#160;</a></span>CheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterUI::CheckValidity </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>validity</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查参数的有效性 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">validity</td><td>标志是否检查参数<ul>
+<li>true: 检查参数</li>
+<li>false: 不检查参数 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>被 <a class="el" href="classCParameterNetUI.html#a2e3de7d23619855cdcc4746d31a503c9">CParameterNetUI</a>, <a class="el" href="classCParameterProxyUI.html#a7a24c358ced79bdf2a93d90901b66803">CParameterProxyUI</a> , 以及 <a class="el" href="classCParameterSSHTunnelUI.html#a33669dd1c4cceb879f433826f25e875e">CParameterSSHTunnelUI</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterUI_8cpp_source.html">ParameterUI.cpp</a> 第 <a class="el" href="ParameterUI_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42db4e7c45f4b24fd0a3bd17ef1bac2e" name="a42db4e7c45f4b24fd0a3bd17ef1bac2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42db4e7c45f4b24fd0a3bd17ef1bac2e">&#9670;&#160;</a></span>SetParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CParameterUI::SetParameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameter.html">CParameter</a> *&#160;</td>
+          <td class="paramname"><em>pParameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[override functions] </p>
+<p>设置参数，并初始化界面 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pParameter</td><td>相关的参数。在重载函数中转换成相应的类型。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="classCParameterNetUI.html#ae68e9183edd2615604baed16e2839b8e">CParameterNetUI</a>, <a class="el" href="classCParameterProxyUI.html#a437c4b2cb84b71417565891631b9efb3">CParameterProxyUI</a>, <a class="el" href="classCFrmManagePlugins.html#a8e0a6b337d48448f329873041021f5e3">CFrmManagePlugins</a>, <a class="el" href="classCParameterDatabaseUI.html#aa152e993a2974d192dcf41f45015b063">CParameterDatabaseUI</a>, <a class="el" href="classCParameterPluginUI.html#a797241dd19e1b4e4f696efb4e86ea115">CParameterPluginUI</a>, <a class="el" href="classCParameterSSHTunnelUI.html#afb1af63f6975735fa1fb5487d7a95a6b">CParameterSSHTunnelUI</a>, <a class="el" href="classCParameterUserUI.html#aecc3de8cce858235d8116e85bff18b88">CParameterUserUI</a> , 以及 <a class="el" href="classCParameterTerminalUI.html#a860d869514f060a0756f25d72a179593">CParameterTerminalUI</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a5fde885a63c974d7822bc415fb64e033" name="a5fde885a63c974d7822bc415fb64e033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fde885a63c974d7822bc415fb64e033">&#9670;&#160;</a></span>slotAccept</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterUI::slotAccept </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterUI_8cpp_source.html">ParameterUI.cpp</a> 第 <a class="el" href="ParameterUI_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acb901ac45af7e1780f327b954c7aacfa" name="acb901ac45af7e1780f327b954c7aacfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb901ac45af7e1780f327b954c7aacfa">&#9670;&#160;</a></span>slotSetParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterUI::slotSetParameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameter.html">CParameter</a> *&#160;</td>
+          <td class="paramname"><em>pParameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[override functions] </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterUI_8cpp_source.html">ParameterUI.cpp</a> 第 <a class="el" href="ParameterUI_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ParameterUI_8h_source.html">ParameterUI.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ParameterUI_8cpp_source.html">ParameterUI.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CHistoryModel类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCHistoryModel-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CHistoryModel类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CHistoryModel 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHistoryModel__inherit__graph.png" border="0" usemap="#aCHistoryModel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCHistoryModel_inherit__map" id="aCHistoryModel_inherit__map">
+<area shape="rect" title=" " alt="" coords="26,79,145,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="88,44,88,79,83,79,83,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CHistoryModel 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCHistoryModel__coll__graph.png" border="0" usemap="#aCHistoryModel_coll__map" alt="Collaboration graph"/></div>
+<map name="aCHistoryModel_coll__map" id="aCHistoryModel_coll__map">
+<area shape="rect" title=" " alt="" coords="201,884,319,909"/>
+<area shape="rect" title=" " alt="" coords="5,796,165,821"/>
+<area shape="poly" title=" " alt="" coords="122,825,237,881,235,886,120,830"/>
+<area shape="rect" href="classCHistoryDatabase.html" title=" " alt="" coords="190,796,330,821"/>
+<area shape="poly" title=" " alt="" coords="263,835,263,883,257,883,257,835"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="132,532,225,557"/>
+<area shape="poly" title=" " alt="" coords="178,571,176,646,182,690,194,732,218,768,246,794,243,798,214,771,190,734,176,691,171,646,173,571"/>
+<area shape="rect" href="classCDatabaseUrl.html" title=" " alt="" coords="204,708,316,733"/>
+<area shape="poly" title=" " alt="" coords="192,568,257,707,252,709,187,571"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="241,620,361,645"/>
+<area shape="poly" title=" " alt="" coords="208,563,286,618,283,622,205,568"/>
+<area shape="rect" title=" " alt="" coords="60,5,135,31"/>
+<area shape="poly" title=" " alt="" coords="92,44,84,92,84,458,90,482,106,502,128,518,150,530,148,534,125,522,103,506,85,484,79,458,79,91,87,43"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="579,80,677,105"/>
+<area shape="poly" title=" " alt="" coords="149,24,579,82,578,87,148,29"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="172,444,332,469"/>
+<area shape="poly" title=" " alt="" coords="200,478,182,495,177,513,178,531,173,532,172,512,178,492,196,474"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="423,532,563,557"/>
+<area shape="poly" title=" " alt="" coords="298,471,462,529,460,534,296,477"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="261,155,411,180"/>
+<area shape="poly" title=" " alt="" coords="341,194,343,239,340,298,327,362,316,393,301,421,289,435,275,446,272,442,285,431,296,419,311,390,322,360,334,297,338,239,336,194"/>
+<area shape="poly" title=" " alt="" coords="426,160,438,167,430,174,412,177,411,171,428,169,433,167,423,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="175,341,297,367"/>
+<area shape="poly" title=" " alt="" coords="325,193,318,205,295,263,284,288,268,319,249,342,245,339,263,316,280,286,290,261,314,203,320,191"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="119,253,247,279"/>
+<area shape="poly" title=" " alt="" coords="300,188,267,206,198,255,195,251,264,202,297,184"/>
+<area shape="rect" href="classCParameterWebBrowser.html" title=" " alt="" coords="849,253,1028,279"/>
+<area shape="poly" title=" " alt="" coords="426,171,553,182,695,201,808,226,901,251,899,256,806,231,694,207,553,188,425,176"/>
+<area shape="poly" title=" " alt="" coords="569,111,383,157,381,152,568,106"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="625,620,764,645"/>
+<area shape="poly" title=" " alt="" coords="656,112,686,139,716,175,740,217,747,240,749,265,749,546,745,569,735,590,709,622,705,618,730,587,740,567,744,546,744,265,742,242,735,219,711,178,682,143,653,116"/>
+<area shape="poly" title=" " alt="" coords="613,118,587,157,564,205,547,263,542,311,539,359,529,421,499,533,494,531,524,419,533,359,536,310,542,262,559,203,582,155,609,115"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="563,204,693,229"/>
+<area shape="poly" title=" " alt="" coords="631,119,631,204,625,204,625,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="961,155,1103,180"/>
+<area shape="poly" title=" " alt="" coords="691,103,969,152,968,157,691,108"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="746,155,937,180"/>
+<area shape="poly" title=" " alt="" coords="676,107,809,152,807,157,674,112"/>
+<area shape="poly" title=" " alt="" coords="611,627,537,618,463,602,432,592,406,579,389,564,383,546,383,265,379,240,369,217,344,182,349,179,374,215,384,239,388,264,388,546,393,561,409,575,434,587,465,597,538,612,612,622"/>
+<area shape="poly" title=" " alt="" coords="488,571,488,584,493,594,513,607,545,616,625,626,625,631,544,621,510,612,489,598,483,585,483,571"/>
+<area shape="poly" title=" " alt="" coords="637,243,643,274,645,309,645,546,649,567,659,587,684,618,680,622,654,590,644,569,640,546,640,309,637,275,632,243"/>
+<area shape="poly" title=" " alt="" coords="1054,190,1062,203,1077,232,1081,264,1081,407,1079,433,1072,457,1061,480,1047,500,1010,536,964,564,913,587,861,604,765,625,764,620,859,599,911,582,962,559,1007,531,1043,497,1057,477,1067,456,1074,432,1076,407,1076,265,1072,234,1058,205,1049,192"/>
+<area shape="poly" title=" " alt="" coords="1009,191,993,206,950,255,946,251,989,202,1005,187"/>
+<area shape="poly" title=" " alt="" coords="826,193,809,226,802,245,800,265,800,546,793,573,775,594,752,611,728,622,726,618,749,606,772,590,788,570,795,546,795,265,797,244,804,224,822,190"/>
+<area shape="poly" title=" " alt="" coords="840,194,841,212,848,228,862,241,880,251,877,256,859,246,843,231,836,213,834,194"/>
+<area shape="poly" title=" " alt="" coords="243,380,253,444,248,444,237,380"/>
+<area shape="poly" title=" " alt="" coords="198,290,213,316,229,340,225,343,208,319,193,292"/>
+<area shape="poly" title=" " alt="" coords="263,747,263,795,257,795,257,747"/>
+<area shape="poly" title=" " alt="" coords="292,659,268,709,263,706,287,657"/>
+<area shape="poly" title=" " alt="" coords="979,283,997,296,1014,312,1026,331,1031,352,1031,811,1024,824,1006,836,943,856,852,870,742,881,507,894,320,898,320,892,506,888,741,876,851,865,942,850,1004,832,1020,821,1025,809,1025,353,1021,333,1010,315,994,300,976,288"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a8bf86b32dd41e342bb7c49a774777871" id="r_a8bf86b32dd41e342bb7c49a774777871"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Column</b> { <b>ColumnVisitTime</b> = 0
+, <b>ColumnTitle</b>
+, <b>ColumnUrl</b>
+, <b>ColumnCount</b>
+ }</td></tr>
+<tr class="separator:a8bf86b32dd41e342bb7c49a774777871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a587eaca0fb641989c07fc45bf8361727" id="r_a587eaca0fb641989c07fc45bf8361727"><td class="memItemLeft" align="right" valign="top"><a id="a587eaca0fb641989c07fc45bf8361727" name="a587eaca0fb641989c07fc45bf8361727"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CHistoryModel</b> (<a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *pPara, QObject *parent=nullptr)</td></tr>
+<tr class="separator:a587eaca0fb641989c07fc45bf8361727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f73a0e64ec7189b2b01628f2e657c3" id="r_ad2f73a0e64ec7189b2b01628f2e657c3"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#ad2f73a0e64ec7189b2b01628f2e657c3">headerData</a> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const override</td></tr>
+<tr class="separator:ad2f73a0e64ec7189b2b01628f2e657c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7691b2cd90e8843d0bc791c6afe6b9f8" id="r_a7691b2cd90e8843d0bc791c6afe6b9f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a7691b2cd90e8843d0bc791c6afe6b9f8">rowCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
+<tr class="separator:a7691b2cd90e8843d0bc791c6afe6b9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77072efd6d35dae747cc893b9862ef0" id="r_af77072efd6d35dae747cc893b9862ef0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#af77072efd6d35dae747cc893b9862ef0">columnCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
+<tr class="separator:af77072efd6d35dae747cc893b9862ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72dad38520bf8b2614a41adfe7883b2c" id="r_a72dad38520bf8b2614a41adfe7883b2c"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a72dad38520bf8b2614a41adfe7883b2c">data</a> (const QModelIndex &amp;index, int role=Qt::DisplayRole) const override</td></tr>
+<tr class="separator:a72dad38520bf8b2614a41adfe7883b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0c3f552e60daccc6969fd69632d741" id="r_aec0c3f552e60daccc6969fd69632d741"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#aec0c3f552e60daccc6969fd69632d741">removeRows</a> (int row, int count, const QModelIndex &amp;parent=QModelIndex()) override</td></tr>
+<tr class="separator:aec0c3f552e60daccc6969fd69632d741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ed49c2191c5eae56d08d2a39277b35" id="r_a03ed49c2191c5eae56d08d2a39277b35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a03ed49c2191c5eae56d08d2a39277b35">refresh</a> ()</td></tr>
+<tr class="separator:a03ed49c2191c5eae56d08d2a39277b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92bfeacc7b9c6f513a1ebfd9c2a1e755" id="r_a92bfeacc7b9c6f513a1ebfd9c2a1e755"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a92bfeacc7b9c6f513a1ebfd9c2a1e755">refresh</a> (const QDate &amp;start, const QDate &amp;end)</td></tr>
+<tr class="separator:a92bfeacc7b9c6f513a1ebfd9c2a1e755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada44ecef640e54fe08adb5ab56e1c6bb" id="r_ada44ecef640e54fe08adb5ab56e1c6bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structHistoryItem.html">HistoryItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#ada44ecef640e54fe08adb5ab56e1c6bb">getItem</a> (const QModelIndex &amp;index) const</td></tr>
+<tr class="separator:ada44ecef640e54fe08adb5ab56e1c6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64496bab661df560d77532b717ebcb4a" id="r_a64496bab661df560d77532b717ebcb4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a64496bab661df560d77532b717ebcb4a">removeDomainItems</a> (const QString &amp;szDomain)</td></tr>
+<tr class="separator:a64496bab661df560d77532b717ebcb4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f4adf94c3d3dbd25dee7cdfd9d2287" id="r_ab0f4adf94c3d3dbd25dee7cdfd9d2287"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#ab0f4adf94c3d3dbd25dee7cdfd9d2287">removeItems</a> (const QString &amp;url)</td></tr>
+<tr class="separator:ab0f4adf94c3d3dbd25dee7cdfd9d2287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bbce461bfb844aae31e81256f64e36" id="r_aa3bbce461bfb844aae31e81256f64e36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#aa3bbce461bfb844aae31e81256f64e36">importFromCSV</a> (const QString &amp;filename)</td></tr>
+<tr class="separator:aa3bbce461bfb844aae31e81256f64e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbfc0d2dc85402939ce1873c2d882c29" id="r_abbfc0d2dc85402939ce1873c2d882c29"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#abbfc0d2dc85402939ce1873c2d882c29">exportToCSV</a> (const QString &amp;filename)</td></tr>
+<tr class="separator:abbfc0d2dc85402939ce1873c2d882c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51728d7d06dfe6f11cefa4bfbc3bf29e" id="r_a51728d7d06dfe6f11cefa4bfbc3bf29e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a51728d7d06dfe6f11cefa4bfbc3bf29e">importFromJson</a> (const QString &amp;filename)</td></tr>
+<tr class="separator:a51728d7d06dfe6f11cefa4bfbc3bf29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeafbe36ab2237c581a00c8309a144bb8" id="r_aeafbe36ab2237c581a00c8309a144bb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#aeafbe36ab2237c581a00c8309a144bb8">exportToJson</a> (const QString &amp;filename)</td></tr>
+<tr class="separator:aeafbe36ab2237c581a00c8309a144bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:afef7fc16c1bfea09e408464260d42fa4" id="r_afef7fc16c1bfea09e408464260d42fa4"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structHistoryItem.html">HistoryItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#afef7fc16c1bfea09e408464260d42fa4">m_historyItems</a></td></tr>
+<tr class="separator:afef7fc16c1bfea09e408464260d42fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1113d182d4b7d84117ed847cf1db82b2" id="r_a1113d182d4b7d84117ed847cf1db82b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCHistoryDatabase.html">CHistoryDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a1113d182d4b7d84117ed847cf1db82b2">m_pDatabase</a></td></tr>
+<tr class="separator:a1113d182d4b7d84117ed847cf1db82b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fcea4997ada841587026b03ef72c0a" id="r_a85fcea4997ada841587026b03ef72c0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCHistoryModel.html#a85fcea4997ada841587026b03ef72c0a">m_pPara</a></td></tr>
+<tr class="separator:a85fcea4997ada841587026b03ef72c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a> 第 <a class="el" href="HistoryModel_8h_source.html#l00010">10</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a8bf86b32dd41e342bb7c49a774777871" name="a8bf86b32dd41e342bb7c49a774777871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf86b32dd41e342bb7c49a774777871">&#9670;&#160;</a></span>Column</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CHistoryModel::Column</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a> 第 <a class="el" href="HistoryModel_8h_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a61ebb18d15e3418904546676f37ce119" name="a61ebb18d15e3418904546676f37ce119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61ebb18d15e3418904546676f37ce119">&#9670;&#160;</a></span>~CHistoryModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CHistoryModel::~CHistoryModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="af77072efd6d35dae747cc893b9862ef0" name="af77072efd6d35dae747cc893b9862ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af77072efd6d35dae747cc893b9862ef0">&#9670;&#160;</a></span>columnCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHistoryModel::columnCount </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>QModelIndex()</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a72dad38520bf8b2614a41adfe7883b2c" name="a72dad38520bf8b2614a41adfe7883b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72dad38520bf8b2614a41adfe7883b2c">&#9670;&#160;</a></span>data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CHistoryModel::data </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>role</em> = <code>Qt::DisplayRole</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbfc0d2dc85402939ce1873c2d882c29" name="abbfc0d2dc85402939ce1873c2d882c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbfc0d2dc85402939ce1873c2d882c29">&#9670;&#160;</a></span>exportToCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::exportToCSV </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeafbe36ab2237c581a00c8309a144bb8" name="aeafbe36ab2237c581a00c8309a144bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeafbe36ab2237c581a00c8309a144bb8">&#9670;&#160;</a></span>exportToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::exportToJson </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00191">191</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada44ecef640e54fe08adb5ab56e1c6bb" name="ada44ecef640e54fe08adb5ab56e1c6bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada44ecef640e54fe08adb5ab56e1c6bb">&#9670;&#160;</a></span>getItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structHistoryItem.html">HistoryItem</a> CHistoryModel::getItem </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2f73a0e64ec7189b2b01628f2e657c3" name="ad2f73a0e64ec7189b2b01628f2e657c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f73a0e64ec7189b2b01628f2e657c3">&#9670;&#160;</a></span>headerData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CHistoryModel::headerData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>section</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Qt::Orientation&#160;</td>
+          <td class="paramname"><em>orientation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>role</em> = <code>Qt::DisplayRole</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa3bbce461bfb844aae31e81256f64e36" name="aa3bbce461bfb844aae31e81256f64e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3bbce461bfb844aae31e81256f64e36">&#9670;&#160;</a></span>importFromCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::importFromCSV </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00173">173</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a51728d7d06dfe6f11cefa4bfbc3bf29e" name="a51728d7d06dfe6f11cefa4bfbc3bf29e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51728d7d06dfe6f11cefa4bfbc3bf29e">&#9670;&#160;</a></span>importFromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::importFromJson </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00185">185</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03ed49c2191c5eae56d08d2a39277b35" name="a03ed49c2191c5eae56d08d2a39277b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03ed49c2191c5eae56d08d2a39277b35">&#9670;&#160;</a></span>refresh() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CHistoryModel::refresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a92bfeacc7b9c6f513a1ebfd9c2a1e755" name="a92bfeacc7b9c6f513a1ebfd9c2a1e755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92bfeacc7b9c6f513a1ebfd9c2a1e755">&#9670;&#160;</a></span>refresh() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CHistoryModel::refresh </td>
+          <td>(</td>
+          <td class="paramtype">const QDate &amp;&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QDate &amp;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64496bab661df560d77532b717ebcb4a" name="a64496bab661df560d77532b717ebcb4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64496bab661df560d77532b717ebcb4a">&#9670;&#160;</a></span>removeDomainItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::removeDomainItems </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDomain</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab0f4adf94c3d3dbd25dee7cdfd9d2287" name="ab0f4adf94c3d3dbd25dee7cdfd9d2287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0f4adf94c3d3dbd25dee7cdfd9d2287">&#9670;&#160;</a></span>removeItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::removeItems </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aec0c3f552e60daccc6969fd69632d741" name="aec0c3f552e60daccc6969fd69632d741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0c3f552e60daccc6969fd69632d741">&#9670;&#160;</a></span>removeRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CHistoryModel::removeRows </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>QModelIndex()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7691b2cd90e8843d0bc791c6afe6b9f8" name="a7691b2cd90e8843d0bc791c6afe6b9f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7691b2cd90e8843d0bc791c6afe6b9f8">&#9670;&#160;</a></span>rowCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CHistoryModel::rowCount </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>QModelIndex()</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a> 第 <a class="el" href="HistoryModel_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="afef7fc16c1bfea09e408464260d42fa4" name="afef7fc16c1bfea09e408464260d42fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef7fc16c1bfea09e408464260d42fa4">&#9670;&#160;</a></span>m_historyItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="structHistoryItem.html">HistoryItem</a>&gt; CHistoryModel::m_historyItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a> 第 <a class="el" href="HistoryModel_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1113d182d4b7d84117ed847cf1db82b2" name="a1113d182d4b7d84117ed847cf1db82b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1113d182d4b7d84117ed847cf1db82b2">&#9670;&#160;</a></span>m_pDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCHistoryDatabase.html">CHistoryDatabase</a>* CHistoryModel::m_pDatabase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a> 第 <a class="el" href="HistoryModel_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85fcea4997ada841587026b03ef72c0a" name="a85fcea4997ada841587026b03ef72c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fcea4997ada841587026b03ef72c0a">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterWebBrowser.html">CParameterWebBrowser</a>* CHistoryModel::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a> 第 <a class="el" href="HistoryModel_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/History/<a class="el" href="HistoryModel_8h_source.html">HistoryModel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/History/<a class="el" href="HistoryModel_8cpp_source.html">HistoryModel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

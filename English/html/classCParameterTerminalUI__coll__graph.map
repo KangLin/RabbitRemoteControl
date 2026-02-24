@@ -1,0 +1,13 @@
+<map id="CParameterTerminalUI" name="CParameterTerminalUI">
+<area shape="rect" id="Node000001" title=" " alt="" coords="55,243,223,268"/>
+<area shape="rect" id="Node000002" href="$classCParameterUI.html" title="The parameter UI interface." alt="" coords="5,155,117,180"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,189,130,240,126,244,79,192"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,80,101,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="64,120,64,154,59,154,59,120"/>
+<area shape="rect" id="Node000004" href="$classCParameterTerminal.html" title=" " alt="" coords="141,155,296,180"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="201,192,152,244,148,240,197,188"/>
+<area shape="rect" id="Node000005" href="$classCParameter.html" title="Parameter interface." alt="" coords="169,80,268,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="221,120,221,154,216,154,216,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="181,5,256,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="221,45,221,80,216,80,216,45"/>
+</map>

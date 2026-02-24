@@ -1,0 +1,498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginLibSSH类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="classCPluginLibSSH-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginLibSSH类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CPluginLibSSH 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginLibSSH__inherit__graph.png" border="0" usemap="#aCPluginLibSSH_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginLibSSH_inherit__map" id="aCPluginLibSSH_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,121,177"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="28,79,99,104"/>
+<area shape="poly" title=" " alt="" coords="66,118,66,152,61,152,61,118"/>
+<area shape="rect" title=" " alt="" coords="26,5,101,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginLibSSH 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginLibSSH__coll__graph.png" border="0" usemap="#aCPluginLibSSH_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginLibSSH_coll__map" id="aCPluginLibSSH_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,121,177"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="28,79,99,104"/>
+<area shape="poly" title=" " alt="" coords="66,118,66,152,61,152,61,118"/>
+<area shape="rect" title=" " alt="" coords="26,5,101,31"/>
+<area shape="poly" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acabde831a6e6a9e2024b7c6260bbb2c8" id="r_acabde831a6e6a9e2024b7c6260bbb2c8"><td class="memItemLeft" align="right" valign="top"><a id="acabde831a6e6a9e2024b7c6260bbb2c8" name="acabde831a6e6a9e2024b7c6260bbb2c8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPluginLibSSH</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:acabde831a6e6a9e2024b7c6260bbb2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ceb9ead8dcec858982a8ad87ed8b21" id="r_a25ceb9ead8dcec858982a8ad87ed8b21"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a25ceb9ead8dcec858982a8ad87ed8b21">Protocol</a> () const override</td></tr>
+<tr class="memdesc:a25ceb9ead8dcec858982a8ad87ed8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="separator:a25ceb9ead8dcec858982a8ad87ed8b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa86ffed5e243a292eae4fc8bd1a3143" id="r_afa86ffed5e243a292eae4fc8bd1a3143"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#afa86ffed5e243a292eae4fc8bd1a3143">Name</a> () const override</td></tr>
+<tr class="memdesc:afa86ffed5e243a292eae4fc8bd1a3143"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:afa86ffed5e243a292eae4fc8bd1a3143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a466922098fd0bc66cb55ff14e8753e84" id="r_a466922098fd0bc66cb55ff14e8753e84"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a466922098fd0bc66cb55ff14e8753e84">DisplayName</a> () const override</td></tr>
+<tr class="memdesc:a466922098fd0bc66cb55ff14e8753e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">在界面上显示的名称  <br /></td></tr>
+<tr class="separator:a466922098fd0bc66cb55ff14e8753e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad311c8909a3813656d90357546b0856b" id="r_ad311c8909a3813656d90357546b0856b"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ad311c8909a3813656d90357546b0856b">Description</a> () const override</td></tr>
+<tr class="memdesc:ad311c8909a3813656d90357546b0856b"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="separator:ad311c8909a3813656d90357546b0856b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a69b468d7ccb5d42036df939f7dbf3" id="r_a97a69b468d7ccb5d42036df939f7dbf3"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a97a69b468d7ccb5d42036df939f7dbf3">Icon</a> () const override</td></tr>
+<tr class="separator:a97a69b468d7ccb5d42036df939f7dbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa987d320d6bf8b40bd9b33e40b66405c" id="r_aa987d320d6bf8b40bd9b33e40b66405c"><td class="memItemLeft" align="right" valign="top">virtual const TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#aa987d320d6bf8b40bd9b33e40b66405c">Type</a> () const override</td></tr>
+<tr class="separator:aa987d320d6bf8b40bd9b33e40b66405c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae55addf7d8b8edba69ed92085f1e5781" id="r_ae55addf7d8b8edba69ed92085f1e5781"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ae55addf7d8b8edba69ed92085f1e5781">Version</a> () const override</td></tr>
+<tr class="memdesc:ae55addf7d8b8edba69ed92085f1e5781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version  <br /></td></tr>
+<tr class="separator:ae55addf7d8b8edba69ed92085f1e5781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89cd2b79dcca84a74c75486245c4018" id="r_ad89cd2b79dcca84a74c75486245c4018"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#ad89cd2b79dcca84a74c75486245c4018">Details</a> () const override</td></tr>
+<tr class="memdesc:ad89cd2b79dcca84a74c75486245c4018"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述  <br /></td></tr>
+<tr class="separator:ad89cd2b79dcca84a74c75486245c4018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin" id="r_a17ff51c3ec0301ef927f8b5b8ef0c49e"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPlugin</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin" id="r_af62099c6e9224ddf7c94208b8fcc78c9"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#af62099c6e9224ddf7c94208b8fcc78c9">TypeName</a> (const TYPE t) const</td></tr>
+<tr class="separator:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin" id="r_ac4747ec15816ab9bec2bc31ce438286e"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#ac4747ec15816ab9bec2bc31ce438286e">Id</a> () const</td></tr>
+<tr class="memdesc:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识。默认： Type() + ":" + <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="协议">Protocol()</a> + ":" + <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a41f69906d9a363ee3f85ceb5f2177e36" id="r_a41f69906d9a363ee3f85ceb5f2177e36"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginLibSSH.html#a41f69906d9a363ee3f85ceb5f2177e36">OnCreateOperate</a> (const QString &amp;szId) override</td></tr>
+<tr class="separator:a41f69906d9a363ee3f85ceb5f2177e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin" id="r_ac8cec990249ce5b34f0d43148925079e"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e">CreateOperate</a> (const QString &amp;szId, <a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *para)</td></tr>
+<tr class="memdesc:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 实例。仅由 <a class="el" href="classCManager.html" title="管理插件">CManager</a> 调用  <br /></td></tr>
+<tr class="separator:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin" id="r_a63a012a7bf038de8006c30ef924e2c34"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *p)</td></tr>
+<tr class="memdesc:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCOperate.html" title="操作接口。">COperate</a>  <br /></td></tr>
+<tr class="separator:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin" id="r_a3c03eec5e85a8d3cfcf553bcd0abc1b4"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a3c03eec5e85a8d3cfcf553bcd0abc1b4">GetSettingsWidget</a> (QWidget *parent)</td></tr>
+<tr class="memdesc:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到设置此插件全局参数的窗口  <br /></td></tr>
+<tr class="separator:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin" id="r_a5d659d10d26bdd085103b2315fc174b7"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TYPE</b> { <br />
+&#160;&#160;<b>RemoteDesktop</b>
+, <b>Terminal</b>
+, <b>Client</b>
+, <b>Service</b>
+, <br />
+&#160;&#160;<b>FileTransfers</b>
+, <b>NetworkTools</b>
+, <b>Tools</b>
+, <b>Custom</b> = 1000
+<br />
+ }</td></tr>
+<tr class="separator:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('signals_classCPlugin')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin" id="r_a4cd4e7a7124da85468cb1b3ca15944e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a4cd4e7a7124da85468cb1b3ca15944e7">sigNewOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate, bool bOpenSettingsDialog)</td></tr>
+<tr class="memdesc:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">当在插件中新建操作时，触发此信号  <br /></td></tr>
+<tr class="separator:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a> 第 <a class="el" href="PluginLibSSH_8h_source.html#l00007">7</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aaac409825b0a135ac64980693d197c4b" name="aaac409825b0a135ac64980693d197c4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac409825b0a135ac64980693d197c4b">&#9670;&#160;</a></span>~CPluginLibSSH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginLibSSH::~CPluginLibSSH </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad311c8909a3813656d90357546b0856b" name="ad311c8909a3813656d90357546b0856b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad311c8909a3813656d90357546b0856b">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描述 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad89cd2b79dcca84a74c75486245c4018" name="ad89cd2b79dcca84a74c75486245c4018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89cd2b79dcca84a74c75486245c4018">&#9670;&#160;</a></span>Details()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Details </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginFreeRDP.html#ad380980f75232976c82aa1013e768986" title="Show the plugin depends on the freerdp version">CPluginFreeRDP::Details()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCPlugin.html#a4e83c9d4e9ebc627208e8ff09ec1ee8c">CPlugin</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00066">66</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a466922098fd0bc66cb55ff14e8753e84" name="a466922098fd0bc66cb55ff14e8753e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a466922098fd0bc66cb55ff14e8753e84">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在界面上显示的名称 </p>
+
+<p>重载 <a class="el" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">CPlugin</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a97a69b468d7ccb5d42036df939f7dbf3" name="a97a69b468d7ccb5d42036df939f7dbf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97a69b468d7ccb5d42036df939f7dbf3">&#9670;&#160;</a></span>Icon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QIcon CPluginLibSSH::Icon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afa86ffed5e243a292eae4fc8bd1a3143" name="afa86ffed5e243a292eae4fc8bd1a3143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa86ffed5e243a292eae4fc8bd1a3143">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41f69906d9a363ee3f85ceb5f2177e36" name="a41f69906d9a363ee3f85ceb5f2177e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f69906d9a363ee3f85ceb5f2177e36">&#9670;&#160;</a></span>OnCreateOperate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperate.html">COperate</a> * CPluginLibSSH::OnCreateOperate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a25ceb9ead8dcec858982a8ad87ed8b21" name="a25ceb9ead8dcec858982a8ad87ed8b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ceb9ead8dcec858982a8ad87ed8b21">&#9670;&#160;</a></span>Protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Protocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>协议 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa987d320d6bf8b40bd9b33e40b66405c" name="aa987d320d6bf8b40bd9b33e40b66405c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa987d320d6bf8b40bd9b33e40b66405c">&#9670;&#160;</a></span>Type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CPlugin::TYPE CPluginLibSSH::Type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae55addf7d8b8edba69ed92085f1e5781" name="ae55addf7d8b8edba69ed92085f1e5781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae55addf7d8b8edba69ed92085f1e5781">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginLibSSH::Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Version </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#a3b1052c480954aec5d80e6f91bb93092">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a> 第 <a class="el" href="PluginLibSSH_8cpp_source.html#l00061">61</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="PluginLibSSH_8h_source.html">PluginLibSSH.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="PluginLibSSH_8cpp_source.html">PluginLibSSH.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<map id="CChannelSSHTunnel" name="CChannelSSHTunnel">
+<area shape="rect" id="Node000001" title="SSH 隧道" alt="" coords="31,225,183,251"/>
+<area shape="rect" id="Node000005" href="$classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="5,299,209,324"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="110,264,110,299,105,299,105,264"/>
+<area shape="rect" id="Node000002" href="$classCChannelSSH.html" title=" " alt="" coords="52,152,163,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,191,110,225,105,225,105,191"/>
+<area shape="rect" id="Node000003" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="65,79,149,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="110,118,110,152,105,152,105,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="62,5,153,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="110,44,110,79,105,79,105,44"/>
+</map>

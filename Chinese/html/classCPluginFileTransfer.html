@@ -1,0 +1,498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginFileTransfer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="classCPluginFileTransfer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginFileTransfer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CPluginFileTransfer 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginFileTransfer__inherit__graph.png" border="0" usemap="#aCPluginFileTransfer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginFileTransfer_inherit__map" id="aCPluginFileTransfer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,152,177"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="43,79,114,104"/>
+<area shape="poly" title=" " alt="" coords="81,118,81,152,76,152,76,118"/>
+<area shape="rect" title=" " alt="" coords="41,5,116,31"/>
+<area shape="poly" title=" " alt="" coords="81,44,81,79,76,79,76,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginFileTransfer 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginFileTransfer__coll__graph.png" border="0" usemap="#aCPluginFileTransfer_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginFileTransfer_coll__map" id="aCPluginFileTransfer_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,152,177"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="43,79,114,104"/>
+<area shape="poly" title=" " alt="" coords="81,118,81,152,76,152,76,118"/>
+<area shape="rect" title=" " alt="" coords="41,5,116,31"/>
+<area shape="poly" title=" " alt="" coords="81,44,81,79,76,79,76,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4f1fedc87fc98130e9685e2910d809e7" id="r_a4f1fedc87fc98130e9685e2910d809e7"><td class="memItemLeft" align="right" valign="top"><a id="a4f1fedc87fc98130e9685e2910d809e7" name="a4f1fedc87fc98130e9685e2910d809e7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPluginFileTransfer</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a4f1fedc87fc98130e9685e2910d809e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a3139d9007a8467b97c06d9d0a0dc87" id="r_a2a3139d9007a8467b97c06d9d0a0dc87"><td class="memItemLeft" align="right" valign="top">virtual const TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#a2a3139d9007a8467b97c06d9d0a0dc87">Type</a> () const override</td></tr>
+<tr class="separator:a2a3139d9007a8467b97c06d9d0a0dc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b13bdfa8f50b078d0287f3b29736c6c" id="r_a6b13bdfa8f50b078d0287f3b29736c6c"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#a6b13bdfa8f50b078d0287f3b29736c6c">Protocol</a> () const override</td></tr>
+<tr class="memdesc:a6b13bdfa8f50b078d0287f3b29736c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="separator:a6b13bdfa8f50b078d0287f3b29736c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3e01811e60dd1a87759f8ed0847a825" id="r_ab3e01811e60dd1a87759f8ed0847a825"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#ab3e01811e60dd1a87759f8ed0847a825">Name</a> () const override</td></tr>
+<tr class="memdesc:ab3e01811e60dd1a87759f8ed0847a825"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:ab3e01811e60dd1a87759f8ed0847a825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1018e2e79b97f7b5834b60ca601615a" id="r_af1018e2e79b97f7b5834b60ca601615a"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#af1018e2e79b97f7b5834b60ca601615a">DisplayName</a> () const override</td></tr>
+<tr class="memdesc:af1018e2e79b97f7b5834b60ca601615a"><td class="mdescLeft">&#160;</td><td class="mdescRight">在界面上显示的名称  <br /></td></tr>
+<tr class="separator:af1018e2e79b97f7b5834b60ca601615a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a86b68d536e321488d8b7142111df61" id="r_a3a86b68d536e321488d8b7142111df61"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#a3a86b68d536e321488d8b7142111df61">Description</a> () const override</td></tr>
+<tr class="memdesc:a3a86b68d536e321488d8b7142111df61"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="separator:a3a86b68d536e321488d8b7142111df61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91848e7a1873dfcea7ca8b992f7bc62" id="r_ad91848e7a1873dfcea7ca8b992f7bc62"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#ad91848e7a1873dfcea7ca8b992f7bc62">Version</a> () const override</td></tr>
+<tr class="memdesc:ad91848e7a1873dfcea7ca8b992f7bc62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version  <br /></td></tr>
+<tr class="separator:ad91848e7a1873dfcea7ca8b992f7bc62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2f397dbd16c498d01f29f99d2709d64" id="r_ab2f397dbd16c498d01f29f99d2709d64"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#ab2f397dbd16c498d01f29f99d2709d64">Icon</a> () const override</td></tr>
+<tr class="separator:ab2f397dbd16c498d01f29f99d2709d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac835917870e41bf90e7ea6e267cedad4" id="r_ac835917870e41bf90e7ea6e267cedad4"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#ac835917870e41bf90e7ea6e267cedad4">Details</a> () const override</td></tr>
+<tr class="memdesc:ac835917870e41bf90e7ea6e267cedad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述  <br /></td></tr>
+<tr class="separator:ac835917870e41bf90e7ea6e267cedad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin" id="r_a17ff51c3ec0301ef927f8b5b8ef0c49e"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPlugin</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a17ff51c3ec0301ef927f8b5b8ef0c49e inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin" id="r_af62099c6e9224ddf7c94208b8fcc78c9"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#af62099c6e9224ddf7c94208b8fcc78c9">TypeName</a> (const TYPE t) const</td></tr>
+<tr class="separator:af62099c6e9224ddf7c94208b8fcc78c9 inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin" id="r_ac4747ec15816ab9bec2bc31ce438286e"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#ac4747ec15816ab9bec2bc31ce438286e">Id</a> () const</td></tr>
+<tr class="memdesc:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识。默认： Type() + ":" + <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c" title="协议">Protocol()</a> + ":" + <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:ac4747ec15816ab9bec2bc31ce438286e inherit pub_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ab0e121f8c40950050419694a15f3a60b" id="r_ab0e121f8c40950050419694a15f3a60b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginFileTransfer.html#ab0e121f8c40950050419694a15f3a60b">OnCreateOperate</a> (const QString &amp;szId) override</td></tr>
+<tr class="separator:ab0e121f8c40950050419694a15f3a60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin" id="r_ac8cec990249ce5b34f0d43148925079e"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCOperate.html">COperate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#ac8cec990249ce5b34f0d43148925079e">CreateOperate</a> (const QString &amp;szId, <a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *para)</td></tr>
+<tr class="memdesc:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建 <a class="el" href="classCOperate.html" title="操作接口。">COperate</a> 实例。仅由 <a class="el" href="classCManager.html" title="管理插件">CManager</a> 调用  <br /></td></tr>
+<tr class="separator:ac8cec990249ce5b34f0d43148925079e inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin" id="r_a63a012a7bf038de8006c30ef924e2c34"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a63a012a7bf038de8006c30ef924e2c34">DeleteOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *p)</td></tr>
+<tr class="memdesc:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCOperate.html" title="操作接口。">COperate</a>  <br /></td></tr>
+<tr class="separator:a63a012a7bf038de8006c30ef924e2c34 inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin" id="r_a3c03eec5e85a8d3cfcf553bcd0abc1b4"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a3c03eec5e85a8d3cfcf553bcd0abc1b4">GetSettingsWidget</a> (QWidget *parent)</td></tr>
+<tr class="memdesc:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到设置此插件全局参数的窗口  <br /></td></tr>
+<tr class="separator:a3c03eec5e85a8d3cfcf553bcd0abc1b4 inherit pro_methods_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classCPlugin')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin" id="r_a5d659d10d26bdd085103b2315fc174b7"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TYPE</b> { <br />
+&#160;&#160;<b>RemoteDesktop</b>
+, <b>Terminal</b>
+, <b>Client</b>
+, <b>Service</b>
+, <br />
+&#160;&#160;<b>FileTransfers</b>
+, <b>NetworkTools</b>
+, <b>Tools</b>
+, <b>Custom</b> = 1000
+<br />
+ }</td></tr>
+<tr class="separator:a5d659d10d26bdd085103b2315fc174b7 inherit pub_types_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCPlugin"><td colspan="2" onclick="javascript:toggleInherit('signals_classCPlugin')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCPlugin.html">CPlugin</a></td></tr>
+<tr class="memitem:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin" id="r_a4cd4e7a7124da85468cb1b3ca15944e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPlugin.html#a4cd4e7a7124da85468cb1b3ca15944e7">sigNewOperate</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate, bool bOpenSettingsDialog)</td></tr>
+<tr class="memdesc:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">当在插件中新建操作时，触发此信号  <br /></td></tr>
+<tr class="separator:a4cd4e7a7124da85468cb1b3ca15944e7 inherit signals_classCPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8h_source.html">PluginFileTransfer.h</a> 第 <a class="el" href="PluginFileTransfer_8h_source.html#l00007">7</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae952edcc4d0d91836482534951ac3821" name="ae952edcc4d0d91836482534951ac3821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae952edcc4d0d91836482534951ac3821">&#9670;&#160;</a></span>~CPluginFileTransfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginFileTransfer::~CPluginFileTransfer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a3a86b68d536e321488d8b7142111df61" name="a3a86b68d536e321488d8b7142111df61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a86b68d536e321488d8b7142111df61">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描述 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#aecbb4f2d85cfe4c75ae53c3e050f7813">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac835917870e41bf90e7ea6e267cedad4" name="ac835917870e41bf90e7ea6e267cedad4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac835917870e41bf90e7ea6e267cedad4">&#9670;&#160;</a></span>Details()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::Details </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginFreeRDP.html#ad380980f75232976c82aa1013e768986" title="Show the plugin depends on the freerdp version">CPluginFreeRDP::Details()</a> </dd></dl>
+
+<p>重载 <a class="el" href="classCPlugin.html#a4e83c9d4e9ebc627208e8ff09ec1ee8c">CPlugin</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af1018e2e79b97f7b5834b60ca601615a" name="af1018e2e79b97f7b5834b60ca601615a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1018e2e79b97f7b5834b60ca601615a">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在界面上显示的名称 </p>
+
+<p>重载 <a class="el" href="classCPlugin.html#a9f02199b6529be4a51f814c5c3194509">CPlugin</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2f397dbd16c498d01f29f99d2709d64" name="ab2f397dbd16c498d01f29f99d2709d64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2f397dbd16c498d01f29f99d2709d64">&#9670;&#160;</a></span>Icon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QIcon CPluginFileTransfer::Icon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00061">61</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3e01811e60dd1a87759f8ed0847a825" name="ab3e01811e60dd1a87759f8ed0847a825"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e01811e60dd1a87759f8ed0847a825">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#a946a3be8eed821236c0d894d2a14401f">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab0e121f8c40950050419694a15f3a60b" name="ab0e121f8c40950050419694a15f3a60b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e121f8c40950050419694a15f3a60b">&#9670;&#160;</a></span>OnCreateOperate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCOperate.html">COperate</a> * CPluginFileTransfer::OnCreateOperate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b13bdfa8f50b078d0287f3b29736c6c" name="a6b13bdfa8f50b078d0287f3b29736c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b13bdfa8f50b078d0287f3b29736c6c">&#9670;&#160;</a></span>Protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::Protocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>协议 </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#aad4be4dbc43a29b883701be6192fd46c">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2a3139d9007a8467b97c06d9d0a0dc87" name="a2a3139d9007a8467b97c06d9d0a0dc87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a3139d9007a8467b97c06d9d0a0dc87">&#9670;&#160;</a></span>Type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CPlugin::TYPE CPluginFileTransfer::Type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCPlugin.html">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad91848e7a1873dfcea7ca8b992f7bc62" name="ad91848e7a1873dfcea7ca8b992f7bc62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91848e7a1873dfcea7ca8b992f7bc62">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginFileTransfer::Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Version </p>
+
+<p>实现了 <a class="el" href="classCPlugin.html#a3b1052c480954aec5d80e6f91bb93092">CPlugin</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a> 第 <a class="el" href="PluginFileTransfer_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="PluginFileTransfer_8h_source.html">PluginFileTransfer.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="PluginFileTransfer_8cpp_source.html">PluginFileTransfer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

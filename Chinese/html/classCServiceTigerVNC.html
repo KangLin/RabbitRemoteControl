@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CServiceTigerVNC类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCServiceTigerVNC-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CServiceTigerVNC类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CServiceTigerVNC 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceTigerVNC__inherit__graph.png" border="0" usemap="#aCServiceTigerVNC_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCServiceTigerVNC_inherit__map" id="aCServiceTigerVNC_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,145,177"/>
+<area shape="rect" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="36,79,115,104"/>
+<area shape="poly" title=" " alt="" coords="78,118,78,152,73,152,73,118"/>
+<area shape="rect" title=" " alt="" coords="38,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="78,44,78,79,73,79,73,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CServiceTigerVNC 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceTigerVNC__coll__graph.png" border="0" usemap="#aCServiceTigerVNC_coll__map" alt="Collaboration graph"/></div>
+<map name="aCServiceTigerVNC_coll__map" id="aCServiceTigerVNC_coll__map">
+<area shape="rect" title=" " alt="" coords="25,243,165,268"/>
+<area shape="rect" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="56,168,134,193"/>
+<area shape="poly" title=" " alt="" coords="98,208,98,242,92,242,92,208"/>
+<area shape="rect" title=" " alt="" coords="58,5,132,31"/>
+<area shape="poly" title=" " alt="" coords="56,40,31,57,12,81,8,94,10,106,24,129,48,150,73,166,71,170,45,154,20,133,5,108,3,93,7,79,28,53,53,35"/>
+<area shape="rect" href="classCParameterService.html" title=" " alt="" coords="22,80,168,105"/>
+<area shape="poly" title=" " alt="" coords="98,45,98,80,92,80,92,45"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="193,80,312,105"/>
+<area shape="poly" title=" " alt="" coords="133,34,229,78,226,82,131,39"/>
+<area shape="poly" title=" " alt="" coords="98,119,98,167,92,167,92,119"/>
+<area shape="poly" title=" " alt="" coords="221,114,163,146,118,170,115,166,160,142,219,110"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a17a0ab2962c7f5122282b7dbc0ba0b15" id="r_a17a0ab2962c7f5122282b7dbc0ba0b15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a17a0ab2962c7f5122282b7dbc0ba0b15">CServiceTigerVNC</a> (<a class="el" href="classCPluginService.html">CPluginService</a> *plugin)</td></tr>
+<tr class="separator:a17a0ab2962c7f5122282b7dbc0ba0b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCService"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCService')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:ab0cef52619d8452317fec5be47a57b3e inherit pub_methods_classCService" id="r_ab0cef52619d8452317fec5be47a57b3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ab0cef52619d8452317fec5be47a57b3e">CService</a> (<a class="el" href="classCPluginService.html">CPluginService</a> *plugin)</td></tr>
+<tr class="separator:ab0cef52619d8452317fec5be47a57b3e inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService" id="r_a532ed3df41589aeb2e8c1b9f8ed6342c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a532ed3df41589aeb2e8c1b9f8ed6342c">Init</a> ()</td></tr>
+<tr class="memdesc:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数，支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1fc653675b09ae0f763a950f58b1f4 inherit pub_methods_classCService" id="r_a0a1fc653675b09ae0f763a950f58b1f4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a0a1fc653675b09ae0f763a950f58b1f4">Clean</a> ()</td></tr>
+<tr class="separator:a0a1fc653675b09ae0f763a950f58b1f4 inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c13d79eb6eeaadcbf27e7edc7bac66b inherit pub_methods_classCService" id="r_a1c13d79eb6eeaadcbf27e7edc7bac66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a1c13d79eb6eeaadcbf27e7edc7bac66b">GetParameters</a> ()</td></tr>
+<tr class="separator:a1c13d79eb6eeaadcbf27e7edc7bac66b inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c854daa531516f09b7e90c1689c6ff inherit pub_methods_classCService" id="r_a31c854daa531516f09b7e90c1689c6ff"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a31c854daa531516f09b7e90c1689c6ff">LoadConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a31c854daa531516f09b7e90c1689c6ff inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03bd15deebaae36c0e384c779bedba4b inherit pub_methods_classCService" id="r_a03bd15deebaae36c0e384c779bedba4b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a03bd15deebaae36c0e384c779bedba4b">SaveConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a03bd15deebaae36c0e384c779bedba4b inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a0664ce4fd4fe32558c9e1c198f1395af" id="r_a0664ce4fd4fe32558c9e1c198f1395af"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a0664ce4fd4fe32558c9e1c198f1395af">OnInit</a> () override</td></tr>
+<tr class="memdesc:a0664ce4fd4fe32558c9e1c198f1395af"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化服务  <br /></td></tr>
+<tr class="separator:a0664ce4fd4fe32558c9e1c198f1395af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22aaf1263f553fa0de1389d86224717c" id="r_a22aaf1263f553fa0de1389d86224717c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a22aaf1263f553fa0de1389d86224717c">OnClean</a> () override</td></tr>
+<tr class="memdesc:a22aaf1263f553fa0de1389d86224717c"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理服务  <br /></td></tr>
+<tr class="separator:a22aaf1263f553fa0de1389d86224717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService" id="r_ad3019e7c87e2a2c40d75ada9f01d239e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ad3019e7c87e2a2c40d75ada9f01d239e">OnProcess</a> ()</td></tr>
+<tr class="memdesc:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理服务  <br /></td></tr>
+<tr class="separator:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:aee93e825841eaac717b547cb0abd41de" id="r_aee93e825841eaac717b547cb0abd41de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#aee93e825841eaac717b547cb0abd41de">slotNewConnection</a> ()</td></tr>
+<tr class="separator:aee93e825841eaac717b547cb0abd41de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af710301c372996bbd3141ad294f521ef" id="r_af710301c372996bbd3141ad294f521ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#af710301c372996bbd3141ad294f521ef">slotDisconnected</a> ()</td></tr>
+<tr class="separator:af710301c372996bbd3141ad294f521ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2568882627da208cf7b94495ad6f3174" id="r_a2568882627da208cf7b94495ad6f3174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a2568882627da208cf7b94495ad6f3174">slotError</a> (int nErr, QString szErr)</td></tr>
+<tr class="separator:a2568882627da208cf7b94495ad6f3174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a5fc68d4b84583337a8024adf583a98d5" id="r_a5fc68d4b84583337a8024adf583a98d5"><td class="memItemLeft" align="right" valign="top">QTcpServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a5fc68d4b84583337a8024adf583a98d5">m_Lister</a></td></tr>
+<tr class="separator:a5fc68d4b84583337a8024adf583a98d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a346d774d195fc33ec1e9955bc2660717" id="r_a346d774d195fc33ec1e9955bc2660717"><td class="memItemLeft" align="right" valign="top">QList&lt; QSharedPointer&lt; <a class="el" href="classCConnection.html">CConnection</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceTigerVNC.html#a346d774d195fc33ec1e9955bc2660717">m_lstConnection</a></td></tr>
+<tr class="separator:a346d774d195fc33ec1e9955bc2660717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_slots_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService" id="r_a6c84f82b6557bdbd9229d1862cb17c4a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a6c84f82b6557bdbd9229d1862cb17c4a">slotProcess</a> ()</td></tr>
+<tr class="memdesc:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:abdb383c141fa3aa8427b9abdbc00e2f0 inherit pro_attribs_classCService" id="r_abdb383c141fa3aa8427b9abdbc00e2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abdb383c141fa3aa8427b9abdbc00e2f0">m_pPara</a></td></tr>
+<tr class="separator:abdb383c141fa3aa8427b9abdbc00e2f0 inherit pro_attribs_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb73fabe91597a840f96242f7d1f3f6 inherit pro_attribs_classCService" id="r_abcb73fabe91597a840f96242f7d1f3f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abcb73fabe91597a840f96242f7d1f3f6">m_pPlugin</a></td></tr>
+<tr class="separator:abcb73fabe91597a840f96242f7d1f3f6 inherit pro_attribs_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8h_source.html">ServiceTigerVNC.h</a> 第 <a class="el" href="ServiceTigerVNC_8h_source.html#l00017">17</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a17a0ab2962c7f5122282b7dbc0ba0b15" name="a17a0ab2962c7f5122282b7dbc0ba0b15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a0ab2962c7f5122282b7dbc0ba0b15">&#9670;&#160;</a></span>CServiceTigerVNC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceTigerVNC::CServiceTigerVNC </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td>
+          <td class="paramname"><em>plugin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac9b1d15e1830d64914d3398378d5ff65" name="ac9b1d15e1830d64914d3398378d5ff65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b1d15e1830d64914d3398378d5ff65">&#9670;&#160;</a></span>~CServiceTigerVNC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceTigerVNC::~CServiceTigerVNC </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a22aaf1263f553fa0de1389d86224717c" name="a22aaf1263f553fa0de1389d86224717c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22aaf1263f553fa0de1389d86224717c">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CServiceTigerVNC::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理服务 </p>
+
+<p>实现了 <a class="el" href="classCService.html#a9eb01e01c31bfcb8cf9ec56981b773c9">CService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0664ce4fd4fe32558c9e1c198f1395af" name="a0664ce4fd4fe32558c9e1c198f1395af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0664ce4fd4fe32558c9e1c198f1395af">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CServiceTigerVNC::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化服务 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 OnProcess (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 OnProcess (Qt 事件循环) </li>
+</ul>
+</dd></dl>
+
+<p>实现了 <a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431">CService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af710301c372996bbd3141ad294f521ef" name="af710301c372996bbd3141ad294f521ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af710301c372996bbd3141ad294f521ef">&#9670;&#160;</a></span>slotDisconnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceTigerVNC::slotDisconnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2568882627da208cf7b94495ad6f3174" name="a2568882627da208cf7b94495ad6f3174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2568882627da208cf7b94495ad6f3174">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceTigerVNC::slotError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nErr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szErr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aee93e825841eaac717b547cb0abd41de" name="aee93e825841eaac717b547cb0abd41de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee93e825841eaac717b547cb0abd41de">&#9670;&#160;</a></span>slotNewConnection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CServiceTigerVNC::slotNewConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a> 第 <a class="el" href="ServiceTigerVNC_8cpp_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5fc68d4b84583337a8024adf583a98d5" name="a5fc68d4b84583337a8024adf583a98d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fc68d4b84583337a8024adf583a98d5">&#9670;&#160;</a></span>m_Lister</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTcpServer CServiceTigerVNC::m_Lister</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8h_source.html">ServiceTigerVNC.h</a> 第 <a class="el" href="ServiceTigerVNC_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a346d774d195fc33ec1e9955bc2660717" name="a346d774d195fc33ec1e9955bc2660717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a346d774d195fc33ec1e9955bc2660717">&#9670;&#160;</a></span>m_lstConnection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;QSharedPointer&lt;<a class="el" href="classCConnection.html">CConnection</a>&gt; &gt; CServiceTigerVNC::m_lstConnection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceTigerVNC_8h_source.html">ServiceTigerVNC.h</a> 第 <a class="el" href="ServiceTigerVNC_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Service/<a class="el" href="ServiceTigerVNC_8h_source.html">ServiceTigerVNC.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Service/<a class="el" href="ServiceTigerVNC_8cpp_source.html">ServiceTigerVNC.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

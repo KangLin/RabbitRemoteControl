@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/ChannelSFTP.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_73ddc01320f182272c634e56c95569c4.html">FileTransfer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ChannelSFTP.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright Copyright (c) Kang Lin studio, All Rights Reserved</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;ChannelSSH.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;libssh/sftp.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QDateTime&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define BUF_SIZE 4096</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="classCFileTransfer.html">CFileTransfer</a>;</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classCChannelSFTP.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classCChannelSFTP.html">CChannelSFTP</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCChannelSSH.html">CChannelSSH</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Q_OBJECT</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCChannelSFTP.html">CChannelSFTP</a>(<a class="code hl_class" href="classCBackend.html">CBackend</a>* pBackend, <a class="code hl_class" href="classCParameterSSH.html">CParameterSSH</a>* pPara,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                          <span class="keywordtype">bool</span> bWakeUp = <span class="keyword">true</span>, QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCChannelSFTP.html#a00d444b1661ab6975b6df2d352e3a193">GetDir</a>(<a class="code hl_class" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>* p);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">int</span> MakeDir(<span class="keyword">const</span> QString&amp; dir);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">int</span> RemoveDir(<span class="keyword">const</span> QString&amp; dir);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">int</span> RemoveFile(<span class="keyword">const</span> QString&amp; file);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">int</span> Rename(<span class="keyword">const</span> QString&amp; oldPath, <span class="keyword">const</span> QString&amp; newPath);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">int</span> Process();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span> Q_SLOTS:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="classCChannelSFTP.html#af4f6e43ac1b244650b64c2067f69d56d">slotGetDir</a>(<span class="keyword">const</span> QString&amp; szPath, <a class="code hl_class" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *p);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>Q_SIGNALS:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> sigGetDir(<a class="code hl_class" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>* p, QVector&lt;QSharedPointer&lt;CRemoteFileSystem&gt; &gt; contents, <span class="keywordtype">bool</span> bEnd);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">public</span> Q_SLOTS:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> slotStartFileTransfer(QSharedPointer&lt;CFileTransfer&gt; f);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> slotStopFileTransfer(QSharedPointer&lt;CFileTransfer&gt; f);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>Q_SIGNALS:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> sigFileTransferUpdate(QSharedPointer&lt;CFileTransfer&gt; f);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">virtual</span> qint64 readData(<span class="keywordtype">char</span> *data, qint64 maxlen) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">virtual</span> qint64 writeData(<span class="keyword">const</span> <span class="keywordtype">char</span> *data, qint64 len) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">enum class</span> STATE {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        OPEN,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        READ,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        CLOSE,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        FINISH,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        ERR</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structCChannelSFTP_1_1DIR__READER.html">   60</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCChannelSFTP_1_1DIR__READER.html">DIR_READER</a> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        sftp_dir sftp;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        QString szPath;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        STATE state;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_class" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>* remoteFileSystem;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        QVector&lt;QSharedPointer&lt;CRemoteFileSystem&gt; &gt; vFileNode;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">int</span> Error;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    };</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#if  LIBSSH_VERSION_INT &gt;= SSH_VERSION_INT(0, 11, 0)</span></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structCChannelSFTP_1_1__AIO.html">   70</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCChannelSFTP_1_1__AIO.html">_AIO</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        sftp_aio aio;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        quint64 nStart;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        quint64 nRequests;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        quint64 nTransfers;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordtype">char</span>* buffer;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="};">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structCChannelSFTP_1_1__AFILE.html">   79</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCChannelSFTP_1_1__AFILE.html">_AFILE</a> {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        sftp_file remote;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">int</span> local;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        STATE state;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        QSharedPointer&lt;CFileTransfer&gt; fileTransfer;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#if  LIBSSH_VERSION_INT &gt;= SSH_VERSION_INT(0, 11, 0)</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        QVector&lt;sftp_aio&gt; aio;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="comment">// The chunk size to use for the transfer</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        quint64 nChunkSize;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">int</span> nConcurrentCount;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">int</span> asyncReadId;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        quint64 nRequests;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        quint64 nTransfers;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordtype">char</span> *buffer;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    };</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> OnOpen(ssh_session session) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnClose() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    QSharedPointer&lt;CRemoteFileSystem&gt; GetFileNode(<span class="keyword">const</span> QString &amp;szPath, sftp_attributes attributes);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">int</span> AsyncReadDir();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">int</span> AsyncFile();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">int</span> CleanFileAIO(QSharedPointer&lt;_AFILE&gt; aio);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    sftp_session m_SessionSftp;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    QVector&lt;QSharedPointer&lt;DIR_READER&gt; &gt; m_vDirs;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    QVector&lt;QSharedPointer&lt;_AFILE&gt; &gt; m_vFiles;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>};</div>
+</div>
+<div class="ttc" id="aclassCBackend_html"><div class="ttname"><a href="classCBackend.html">CBackend</a></div><div class="ttdoc">后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...</div><div class="ttdef"><b>Definition</b> <a href="Backend_8h_source.html#l00041">Backend.h:42</a></div></div>
+<div class="ttc" id="aclassCChannelSFTP_html"><div class="ttname"><a href="classCChannelSFTP.html">CChannelSFTP</a></div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8h_source.html#l00013">ChannelSFTP.h:14</a></div></div>
+<div class="ttc" id="aclassCChannelSFTP_html_a00d444b1661ab6975b6df2d352e3a193"><div class="ttname"><a href="classCChannelSFTP.html#a00d444b1661ab6975b6df2d352e3a193">CChannelSFTP::GetDir</a></div><div class="ttdeci">int GetDir(CRemoteFileSystem *p)</div><div class="ttdoc">Synchronize to get the directory</div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8cpp_source.html#l00142">ChannelSFTP.cpp:142</a></div></div>
+<div class="ttc" id="aclassCChannelSFTP_html_af4f6e43ac1b244650b64c2067f69d56d"><div class="ttname"><a href="classCChannelSFTP.html#af4f6e43ac1b244650b64c2067f69d56d">CChannelSFTP::slotGetDir</a></div><div class="ttdeci">void slotGetDir(const QString &amp;szPath, CRemoteFileSystem *p)</div><div class="ttdoc">Get the directory asynchronously</div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8cpp_source.html#l00380">ChannelSFTP.cpp:380</a></div></div>
+<div class="ttc" id="aclassCChannelSSH_html"><div class="ttname"><a href="classCChannelSSH.html">CChannelSSH</a></div><div class="ttdef"><b>Definition</b> <a href="ChannelSSH_8h_source.html#l00013">ChannelSSH.h:14</a></div></div>
+<div class="ttc" id="aclassCFileTransfer_html"><div class="ttname"><a href="classCFileTransfer.html">CFileTransfer</a></div><div class="ttdef"><b>Definition</b> <a href="ListFileModel_8h_source.html#l00010">ListFileModel.h:11</a></div></div>
+<div class="ttc" id="aclassCParameterSSH_html"><div class="ttname"><a href="classCParameterSSH.html">CParameterSSH</a></div><div class="ttdef"><b>Definition</b> <a href="ParameterSSH_8h_source.html#l00007">ParameterSSH.h:8</a></div></div>
+<div class="ttc" id="aclassCRemoteFileSystem_html"><div class="ttname"><a href="classCRemoteFileSystem.html">CRemoteFileSystem</a></div><div class="ttdef"><b>Definition</b> <a href="RemoteFileSystemModel_8h_source.html#l00009">RemoteFileSystemModel.h:10</a></div></div>
+<div class="ttc" id="astructCChannelSFTP_1_1DIR__READER_html"><div class="ttname"><a href="structCChannelSFTP_1_1DIR__READER.html">CChannelSFTP::DIR_READER</a></div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8h_source.html#l00060">ChannelSFTP.h:60</a></div></div>
+<div class="ttc" id="astructCChannelSFTP_1_1__AFILE_html"><div class="ttname"><a href="structCChannelSFTP_1_1__AFILE.html">CChannelSFTP::_AFILE</a></div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8h_source.html#l00079">ChannelSFTP.h:79</a></div></div>
+<div class="ttc" id="astructCChannelSFTP_1_1__AIO_html"><div class="ttname"><a href="structCChannelSFTP_1_1__AIO.html">CChannelSFTP::_AIO</a></div><div class="ttdef"><b>Definition</b> <a href="ChannelSFTP_8h_source.html#l00070">ChannelSFTP.h:70</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

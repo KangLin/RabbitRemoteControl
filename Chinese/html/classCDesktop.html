@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDesktop类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDesktop-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDesktop类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDesktop 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktop__inherit__graph.png" border="0" usemap="#aCDesktop_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDesktop_inherit__map" id="aCDesktop_inherit__map">
+<area shape="rect" title=" " alt="" coords="188,79,273,104"/>
+<area shape="rect" href="classCDesktopWindows.html" title=" " alt="" coords="5,152,149,177"/>
+<area shape="poly" title=" " alt="" coords="195,112,104,154,101,149,193,107"/>
+<area shape="rect" href="classCDesktopXLib.html" title=" " alt="" coords="174,152,287,177"/>
+<area shape="poly" title=" " alt="" coords="233,118,233,152,228,152,228,118"/>
+<area shape="rect" href="classCDisplayWindows.html" title=" " alt="" coords="312,152,451,177"/>
+<area shape="poly" title=" " alt="" coords="268,107,358,149,356,154,266,112"/>
+<area shape="rect" title=" " alt="" coords="193,5,268,31"/>
+<area shape="poly" title=" " alt="" coords="233,44,233,79,228,79,228,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDesktop 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktop__coll__graph.png" border="0" usemap="#aCDesktop_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDesktop_coll__map" id="aCDesktop_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,91,104"/>
+<area shape="rect" title=" " alt="" coords="11,5,85,31"/>
+<area shape="poly" title=" " alt="" coords="51,44,51,79,45,79,45,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a8555d340fdde388c78fea26b26f50ffd" id="r_a8555d340fdde388c78fea26b26f50ffd"><td class="memItemLeft" align="right" valign="top"><a id="a8555d340fdde388c78fea26b26f50ffd" name="a8555d340fdde388c78fea26b26f50ffd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdate</b> (QImage desktop, QRect rect)</td></tr>
+<tr class="separator:a8555d340fdde388c78fea26b26f50ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ab1256b09fa30f250255ddf52567368fe" id="r_ab1256b09fa30f250255ddf52567368fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktop.html#ab1256b09fa30f250255ddf52567368fe">CDesktop</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:ab1256b09fa30f250255ddf52567368fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefcb4bed80fb656f100e527edd0357c0" id="r_aefcb4bed80fb656f100e527edd0357c0"><td class="memItemLeft" align="right" valign="top"><a id="aefcb4bed80fb656f100e527edd0357c0" name="aefcb4bed80fb656f100e527edd0357c0"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b> ()=0</td></tr>
+<tr class="separator:aefcb4bed80fb656f100e527edd0357c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b30b5b023e31abfb0303da133a9be2" id="r_ac2b30b5b023e31abfb0303da133a9be2"><td class="memItemLeft" align="right" valign="top"><a id="ac2b30b5b023e31abfb0303da133a9be2" name="ac2b30b5b023e31abfb0303da133a9be2"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Height</b> ()=0</td></tr>
+<tr class="separator:ac2b30b5b023e31abfb0303da133a9be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcf813f460cfedba45617142400b671" id="r_affcf813f460cfedba45617142400b671"><td class="memItemLeft" align="right" valign="top"><a id="affcf813f460cfedba45617142400b671" name="affcf813f460cfedba45617142400b671"></a>
+virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><b>GetDesktop</b> ()=0</td></tr>
+<tr class="separator:affcf813f460cfedba45617142400b671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0765d1ec3744d685e5f3345b6ad3f0bd" id="r_a0765d1ec3744d685e5f3345b6ad3f0bd"><td class="memItemLeft" align="right" valign="top"><a id="a0765d1ec3744d685e5f3345b6ad3f0bd" name="a0765d1ec3744d685e5f3345b6ad3f0bd"></a>
+virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><b>GetDesktop</b> (int x, int y, int width, int height)=0</td></tr>
+<tr class="separator:a0765d1ec3744d685e5f3345b6ad3f0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0fbf9060f03a68b856a1f38d3f5b59a" id="r_ad0fbf9060f03a68b856a1f38d3f5b59a"><td class="memItemLeft" align="right" valign="top"><a id="ad0fbf9060f03a68b856a1f38d3f5b59a" name="ad0fbf9060f03a68b856a1f38d3f5b59a"></a>
+virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><b>GetCursor</b> (QPoint &amp;pos, QPoint &amp;posHot)=0</td></tr>
+<tr class="separator:ad0fbf9060f03a68b856a1f38d3f5b59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b211f6deeceff74dedb87f811e36d6a" id="r_a8b211f6deeceff74dedb87f811e36d6a"><td class="memItemLeft" align="right" valign="top"><a id="a8b211f6deeceff74dedb87f811e36d6a" name="a8b211f6deeceff74dedb87f811e36d6a"></a>
+virtual QPoint&#160;</td><td class="memItemRight" valign="bottom"><b>GetCursorPosition</b> ()=0</td></tr>
+<tr class="separator:a8b211f6deeceff74dedb87f811e36d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d40a3d42bce7ac7efd3cb06030e314" id="r_ac7d40a3d42bce7ac7efd3cb06030e314"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktop.html#ac7d40a3d42bce7ac7efd3cb06030e314">GetHasCursor</a> () const</td></tr>
+<tr class="separator:ac7d40a3d42bce7ac7efd3cb06030e314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07355b8829bfc734931d957e226746fd" id="r_a07355b8829bfc734931d957e226746fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktop.html#a07355b8829bfc734931d957e226746fd">SetHasCursor</a> (bool newHaveCursor)</td></tr>
+<tr class="separator:a07355b8829bfc734931d957e226746fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a77e37894d4a7bccaa5331405d1fd2908" id="r_a77e37894d4a7bccaa5331405d1fd2908"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCDesktop.html">CDesktop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktop.html#a77e37894d4a7bccaa5331405d1fd2908">Instance</a> ()</td></tr>
+<tr class="separator:a77e37894d4a7bccaa5331405d1fd2908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a3400228e6cd14c5a88cbd4c2a5133dd6" id="r_a3400228e6cd14c5a88cbd4c2a5133dd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktop.html#a3400228e6cd14c5a88cbd4c2a5133dd6">m_bHasCursor</a></td></tr>
+<tr class="separator:a3400228e6cd14c5a88cbd4c2a5133dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab1256b09fa30f250255ddf52567368fe" name="ab1256b09fa30f250255ddf52567368fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1256b09fa30f250255ddf52567368fe">&#9670;&#160;</a></span>CDesktop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDesktop::CDesktop </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad59defc9b7889382a589416de6e13a54" name="ad59defc9b7889382a589416de6e13a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59defc9b7889382a589416de6e13a54">&#9670;&#160;</a></span>~CDesktop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual CDesktop::~CDesktop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ac7d40a3d42bce7ac7efd3cb06030e314" name="ac7d40a3d42bce7ac7efd3cb06030e314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d40a3d42bce7ac7efd3cb06030e314">&#9670;&#160;</a></span>GetHasCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CDesktop::GetHasCursor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a77e37894d4a7bccaa5331405d1fd2908" name="a77e37894d4a7bccaa5331405d1fd2908"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77e37894d4a7bccaa5331405d1fd2908">&#9670;&#160;</a></span>Instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDesktop.html">CDesktop</a> * CDesktop::Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DesktopWindows_8cpp_source.html">DesktopWindows.cpp</a> 第 <a class="el" href="DesktopWindows_8cpp_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a07355b8829bfc734931d957e226746fd" name="a07355b8829bfc734931d957e226746fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07355b8829bfc734931d957e226746fd">&#9670;&#160;</a></span>SetHasCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CDesktop::SetHasCursor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newHaveCursor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a3400228e6cd14c5a88cbd4c2a5133dd6" name="a3400228e6cd14c5a88cbd4c2a5133dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3400228e6cd14c5a88cbd4c2a5133dd6">&#9670;&#160;</a></span>m_bHasCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktop::m_bHasCursor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Desktop_8h_source.html">Desktop.h</a> 第 <a class="el" href="Desktop_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="Desktop_8h_source.html">Desktop.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="DesktopWindows_8cpp_source.html">DesktopWindows.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="DesktopXLib_8cpp_source.html">DesktopXLib.cpp</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Service/<a class="el" href="DisplayWindows_8cpp_source.html">DisplayWindows.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

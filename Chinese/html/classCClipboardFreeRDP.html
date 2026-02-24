@@ -1,0 +1,1377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CClipboardFreeRDP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCClipboardFreeRDP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CClipboardFreeRDP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CClipboardFreeRDP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCClipboardFreeRDP__inherit__graph.png" border="0" usemap="#aCClipboardFreeRDP_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCClipboardFreeRDP_inherit__map" id="aCClipboardFreeRDP_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,153,104"/>
+<area shape="rect" title=" " alt="" coords="42,5,117,31"/>
+<area shape="poly" title=" " alt="" coords="82,44,82,79,77,79,77,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CClipboardFreeRDP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCClipboardFreeRDP__coll__graph.png" border="0" usemap="#aCClipboardFreeRDP_coll__map" alt="Collaboration graph"/></div>
+<map name="aCClipboardFreeRDP_coll__map" id="aCClipboardFreeRDP_coll__map">
+<area shape="rect" title=" " alt="" coords="129,899,277,924"/>
+<area shape="rect" href="classCBackendFreeRDP.html" title=" " alt="" coords="2888,833,3029,859"/>
+<area shape="poly" title=" " alt="" coords="260,925,358,948,415,956,473,959,2665,959,2722,956,2767,946,2863,904,2905,881,2939,857,2942,861,2907,885,2865,908,2768,951,2723,961,2665,965,473,965,415,961,357,953,258,930"/>
+<area shape="rect" title=" " alt="" coords="5,579,80,604"/>
+<area shape="poly" title=" " alt="" coords="59,615,198,897,193,900,54,618"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="431,216,517,241"/>
+<area shape="poly" title=" " alt="" coords="92,574,154,551,228,517,304,472,340,445,373,416,408,371,436,321,455,275,466,241,471,243,460,277,440,323,413,374,377,420,344,450,307,476,231,521,156,556,94,579"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="433,91,515,116"/>
+<area shape="poly" title=" " alt="" coords="64,567,227,390,315,286,349,241,372,205,379,183,381,164,384,145,397,125,413,114,431,107,433,111,416,118,401,129,389,147,386,165,385,184,377,207,354,244,319,289,231,394,68,570"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="168,289,239,315"/>
+<area shape="poly" title=" " alt="" coords="44,564,60,478,77,427,102,379,119,358,138,340,177,313,180,317,142,344,123,362,106,382,82,429,65,479,49,565"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="154,684,253,709"/>
+<area shape="poly" title=" " alt="" coords="76,610,184,682,181,686,73,614"/>
+<area shape="rect" href="classCCursorFreeRDP.html" title=" " alt="" coords="3218,924,3346,949"/>
+<area shape="poly" title=" " alt="" coords="49,617,55,677,70,758,94,849,111,893,132,935,159,988,175,1004,202,1010,2960,1010,3043,1003,3123,987,3194,966,3248,947,3250,952,3196,971,3124,992,3043,1008,2960,1015,202,1015,173,1009,154,992,127,938,106,895,89,850,65,760,50,678,43,618"/>
+<area shape="poly" title=" " alt="" coords="2911,866,2800,897,2733,909,2665,914,473,914,277,914,277,909,473,909,2665,909,2732,904,2799,892,2910,861"/>
+<area shape="rect" href="structCBackendFreeRDP_1_1ClientContext.html" title=" " alt="" coords="3163,811,3401,836"/>
+<area shape="poly" title=" " alt="" coords="3040,829,3053,827,3162,821,3163,826,3054,833,3041,834"/>
+<area shape="poly" title=" " alt="" coords="3019,860,3236,921,3235,926,3017,865"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="1243,211,1383,236"/>
+<area shape="poly" title=" " alt="" coords="1397,219,1591,225,1718,236,1857,253,2004,279,2153,316,2299,365,2369,394,2437,428,2523,478,2606,534,2684,594,2757,654,2876,762,2947,831,2943,835,2873,765,2754,658,2681,598,2602,538,2520,482,2435,432,2367,399,2297,370,2151,321,2003,284,1856,258,1717,241,1591,231,1396,225"/>
+<area shape="poly" title=" " alt="" coords="531,226,1242,221,1242,226,531,231"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="728,123,859,148"/>
+<area shape="poly" title=" " alt="" coords="530,213,703,165,758,146,760,151,705,170,531,218"/>
+<area shape="rect" href="classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="2595,124,2732,149"/>
+<area shape="poly" title=" " alt="" coords="2746,150,2778,161,2811,177,2841,197,2866,223,2880,246,2892,276,2913,350,2929,440,2941,537,2955,719,2960,833,2954,833,2950,719,2936,537,2924,441,2908,352,2887,277,2875,248,2862,226,2838,201,2808,182,2776,166,2744,155"/>
+<area shape="poly" title=" " alt="" coords="529,91,649,75,720,68,792,66,2372,66,2446,72,2517,86,2581,104,2630,121,2629,126,2580,109,2516,91,2445,77,2372,71,792,71,721,74,650,80,530,96"/>
+<area shape="poly" title=" " alt="" coords="529,106,728,126,727,131,529,111"/>
+<area shape="poly" title=" " alt="" coords="223,277,295,203,344,161,397,125,432,111,434,115,400,130,347,166,298,207,226,281"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="2305,443,2436,468"/>
+<area shape="poly" title=" " alt="" coords="2391,431,2648,148,2652,151,2395,434"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="2587,747,2740,772"/>
+<area shape="poly" title=" " alt="" coords="2396,476,2652,745,2648,748,2392,480"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="399,456,549,481"/>
+<area shape="poly" title=" " alt="" coords="563,477,672,487,792,491,1639,491,1829,488,2017,479,2305,458,2305,464,2017,484,1829,493,1639,497,792,497,672,492,563,482"/>
+<area shape="poly" title=" " alt="" coords="447,441,455,433,474,429,490,432,500,438,502,448,497,457,493,455,497,447,495,441,488,437,474,435,458,437,451,445"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1407,633,1567,659"/>
+<area shape="poly" title=" " alt="" coords="494,491,528,528,550,547,574,561,685,603,801,632,919,651,1035,662,1146,665,1247,664,1406,653,1407,658,1247,669,1146,671,1035,667,918,657,800,638,683,608,572,566,547,551,525,532,490,494"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1097,296,1219,321"/>
+<area shape="poly" title=" " alt="" coords="483,442,516,383,541,352,572,326,641,293,715,272,791,262,867,260,940,264,1007,273,1111,293,1110,299,1006,278,940,269,867,265,792,267,716,278,643,298,575,331,545,355,520,386,488,445"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="729,319,857,344"/>
+<area shape="poly" title=" " alt="" coords="489,443,523,400,546,378,572,361,611,345,652,335,729,327,730,332,653,340,612,350,575,366,549,383,527,403,493,446"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="2059,400,2194,425"/>
+<area shape="poly" title=" " alt="" coords="563,464,1383,439,2059,413,2059,418,1383,445,563,469"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1425,369,1549,395"/>
+<area shape="poly" title=" " alt="" coords="508,447,539,433,573,422,693,398,817,382,941,371,1061,366,1273,367,1425,374,1424,380,1273,372,1061,372,941,377,818,387,694,403,574,427,541,438,510,452"/>
+<area shape="poly" title=" " alt="" coords="231,673,373,560,458,480,462,484,376,564,235,678"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2057,712,2196,737"/>
+<area shape="poly" title=" " alt="" coords="235,716,279,744,337,774,403,798,438,805,473,807,1794,807,1881,799,1966,780,2040,756,2095,735,2097,740,2042,761,1968,785,1882,805,1794,813,473,813,437,810,402,803,334,779,276,748,232,720"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1723,684,1863,709"/>
+<area shape="poly" title=" " alt="" coords="267,694,473,694,1488,694,1723,694,1723,699,1488,699,473,699,267,699"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="573,848,704,873"/>
+<area shape="poly" title=" " alt="" coords="218,721,250,776,274,804,303,826,335,842,370,854,443,867,513,870,573,867,573,872,513,875,442,872,369,859,333,847,300,831,270,808,246,779,213,723"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1721,583,1864,608"/>
+<area shape="poly" title=" " alt="" coords="266,681,301,675,509,653,722,634,1135,610,1486,598,1721,593,1721,599,1486,603,1135,615,723,640,510,658,302,681,267,686"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="883,736,1073,761"/>
+<area shape="poly" title=" " alt="" coords="267,707,302,713,461,728,620,738,882,746,882,751,620,743,461,733,301,718,266,713"/>
+<area shape="poly" title=" " alt="" coords="2109,702,2077,659,2055,637,2032,619,1980,588,1933,567,1889,554,1847,547,1755,545,1639,547,792,547,730,546,681,542,633,532,573,515,532,500,498,484,500,479,534,495,574,510,634,527,682,536,730,541,792,542,1639,542,1755,540,1847,542,1891,549,1935,562,1982,583,2035,614,2059,633,2081,656,2113,699"/>
+<area shape="poly" title=" " alt="" coords="1877,701,2057,716,2057,722,1876,706"/>
+<area shape="poly" title=" " alt="" coords="1578,658,1723,683,1722,688,1577,664"/>
+<area shape="poly" title=" " alt="" coords="1232,297,1243,297,1313,295,1383,297,1534,295,1600,296,1686,301,1860,320,2034,350,2197,385,2240,395,2282,409,2348,440,2346,445,2280,414,2239,400,2195,390,2033,355,1860,325,1685,306,1600,301,1534,300,1383,302,1313,301,1243,302,1233,303"/>
+<area shape="poly" title=" " alt="" coords="1185,329,1385,523,1477,632,1473,635,1381,526,1181,333"/>
+<area shape="poly" title=" " alt="" coords="1233,310,1383,319,1876,359,1955,363,1990,366,2034,374,2099,397,2098,402,2033,379,1989,371,1955,368,1876,365,1382,325,1233,315"/>
+<area shape="poly" title=" " alt="" coords="1207,323,1243,334,1339,355,1425,370,1424,376,1337,360,1242,339,1206,328"/>
+<area shape="poly" title=" " alt="" coords="871,324,1073,311,1097,310,1097,315,1074,317,871,329"/>
+<area shape="poly" title=" " alt="" coords="718,858,977,858,1794,858,1918,861,1970,852,2032,826,2060,807,2084,782,2116,736,2120,739,2088,785,2064,811,2035,831,1972,858,1919,866,1794,863,977,863,718,863"/>
+<area shape="poly" title=" " alt="" coords="1877,582,2064,550,2173,525,2280,494,2345,466,2347,471,2282,499,2175,530,2065,555,1878,587"/>
+<area shape="poly" title=" " alt="" coords="1842,610,2034,684,2097,709,2095,714,2032,688,1841,615"/>
+<area shape="poly" title=" " alt="" coords="1087,746,1311,746,1794,746,1934,741,2057,730,2057,735,1935,746,1794,751,1311,751,1087,751"/>
+<area shape="poly" title=" " alt="" coords="2208,424,2306,441,2305,447,2207,429"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="1709,375,1876,400"/>
+<area shape="poly" title=" " alt="" coords="1890,392,2059,405,2059,410,1890,397"/>
+<area shape="poly" title=" " alt="" coords="1562,381,1709,383,1709,389,1562,386"/>
+<area shape="poly" title=" " alt="" coords="872,128,1005,121,1157,118,1639,118,2190,124,2594,132,2594,138,2190,129,1639,123,1157,123,1005,127,873,133"/>
+<area shape="rect" title=" " alt="" coords="435,140,513,165"/>
+<area shape="poly" title=" " alt="" coords="526,147,727,136,728,142,527,153"/>
+<area shape="rect" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="2320,5,2421,31"/>
+<area shape="poly" title=" " alt="" coords="2436,18,2499,28,2532,37,2564,49,2591,65,2616,85,2653,122,2649,126,2613,89,2588,70,2561,54,2530,42,2498,33,2435,23"/>
+<area shape="rect" title=" " alt="" coords="2087,5,2166,31"/>
+<area shape="poly" title=" " alt="" coords="2180,15,2320,15,2320,21,2180,21"/>
+<area shape="rect" href="classCFrmScroll.html" title="The scroll form class" alt="" coords="2325,157,2417,183"/>
+<area shape="poly" title=" " alt="" coords="2430,163,2562,150,2594,146,2595,151,2563,155,2430,168"/>
+<area shape="rect" title=" " alt="" coords="2077,157,2176,183"/>
+<area shape="poly" title=" " alt="" coords="2190,167,2324,167,2324,173,2190,173"/>
+<area shape="poly" title=" " alt="" coords="3197,841,3139,847,3030,850,3030,845,3138,842,3196,835"/>
+<area shape="poly" title=" " alt="" coords="2722,773,2915,831,2914,836,2720,779"/>
+<area shape="poly" title=" " alt="" coords="3204,953,3129,954,3090,949,3052,938,3024,922,3000,901,2966,861,2970,857,3004,897,3027,918,3054,933,3091,944,3130,949,3204,947"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:aa1841863f2867ea7d8f233778529fb7d" id="r_aa1841863f2867ea7d8f233778529fb7d"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#aa1841863f2867ea7d8f233778529fb7d">slotSendFormatDataRequest</a> (CliprdrClientContext *context, UINT32 formatId)</td></tr>
+<tr class="separator:aa1841863f2867ea7d8f233778529fb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08974575da94292768d9cb230d921a7a" id="r_a08974575da94292768d9cb230d921a7a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a08974575da94292768d9cb230d921a7a">slotClipBoardChanged</a> ()</td></tr>
+<tr class="separator:a08974575da94292768d9cb230d921a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:af885d0c7464037eb57df9269dff17d62" id="r_af885d0c7464037eb57df9269dff17d62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#af885d0c7464037eb57df9269dff17d62">sigServerFormatData</a> (const BYTE *pData, UINT32 nLen, UINT32 formatId)</td></tr>
+<tr class="memdesc:af885d0c7464037eb57df9269dff17d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify clipboard get data from server  <br /></td></tr>
+<tr class="separator:af885d0c7464037eb57df9269dff17d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9448360c25fd130db67c5a0b4087e3" id="r_adf9448360c25fd130db67c5a0b4087e3"><td class="memItemLeft" align="right" valign="top"><a id="adf9448360c25fd130db67c5a0b4087e3" name="adf9448360c25fd130db67c5a0b4087e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigServerFileContentsRespose</b> (UINT32 streamId, QByteArray &amp;data)</td></tr>
+<tr class="separator:adf9448360c25fd130db67c5a0b4087e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aaa2a3ab675e2c04bf4e9b8ba2ea859ce" id="r_aaa2a3ab675e2c04bf4e9b8ba2ea859ce"><td class="memItemLeft" align="right" valign="top"><a id="aaa2a3ab675e2c04bf4e9b8ba2ea859ce" name="aaa2a3ab675e2c04bf4e9b8ba2ea859ce"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CClipboardFreeRDP</b> (<a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *parent=nullptr)</td></tr>
+<tr class="separator:aaa2a3ab675e2c04bf4e9b8ba2ea859ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91bf2b467d8c9b7ed265f63d4e55285c" id="r_a91bf2b467d8c9b7ed265f63d4e55285c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a91bf2b467d8c9b7ed265f63d4e55285c">Init</a> (CliprdrClientContext *context, bool bEnable)</td></tr>
+<tr class="separator:a91bf2b467d8c9b7ed265f63d4e55285c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e7f379d67f9c28341cc3affe6eb9afe" id="r_a8e7f379d67f9c28341cc3affe6eb9afe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a8e7f379d67f9c28341cc3affe6eb9afe">UnInit</a> (CliprdrClientContext *context, bool bEnable)</td></tr>
+<tr class="separator:a8e7f379d67f9c28341cc3affe6eb9afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee1f77f972661d04bc14b950e4e6a5c" id="r_a4ee1f77f972661d04bc14b950e4e6a5c"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a4ee1f77f972661d04bc14b950e4e6a5c">ServerFileSizeRequest</a> (const CLIPRDR_FILE_CONTENTS_REQUEST *fileContentsRequest)</td></tr>
+<tr class="separator:a4ee1f77f972661d04bc14b950e4e6a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2058b7c047d75d3ea6a070a7f4725ec" id="r_ad2058b7c047d75d3ea6a070a7f4725ec"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ad2058b7c047d75d3ea6a070a7f4725ec">ServerFileRangeRequest</a> (const CLIPRDR_FILE_CONTENTS_REQUEST *fileContentsRequest)</td></tr>
+<tr class="separator:ad2058b7c047d75d3ea6a070a7f4725ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:ab89eaa4702b94241b1a0364807412802" id="r_ab89eaa4702b94241b1a0364807412802"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ab89eaa4702b94241b1a0364807412802">cb_cliprdr_server_capabilities</a> (CliprdrClientContext *context, const CLIPRDR_CAPABILITIES *capabilities)</td></tr>
+<tr class="separator:ab89eaa4702b94241b1a0364807412802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772c6926ce770207e6d35bbbd658194e" id="r_a772c6926ce770207e6d35bbbd658194e"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a772c6926ce770207e6d35bbbd658194e">cb_cliprdr_server_format_list</a> (CliprdrClientContext *context, const CLIPRDR_FORMAT_LIST *formatList)</td></tr>
+<tr class="separator:a772c6926ce770207e6d35bbbd658194e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc2cb8de1f03bc77911816439cd03b5d" id="r_acc2cb8de1f03bc77911816439cd03b5d"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#acc2cb8de1f03bc77911816439cd03b5d">cb_cliprdr_server_format_list_response</a> (CliprdrClientContext *context, const CLIPRDR_FORMAT_LIST_RESPONSE *formatListResponse)</td></tr>
+<tr class="separator:acc2cb8de1f03bc77911816439cd03b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49730543ecc06bc0e6a40cd8135de12" id="r_ac49730543ecc06bc0e6a40cd8135de12"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ac49730543ecc06bc0e6a40cd8135de12">cb_cliprdr_server_format_data_response</a> (CliprdrClientContext *context, const CLIPRDR_FORMAT_DATA_RESPONSE *formatDataResponse)</td></tr>
+<tr class="separator:ac49730543ecc06bc0e6a40cd8135de12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5dd01c50878b05702e9ef99cb7c295f" id="r_aa5dd01c50878b05702e9ef99cb7c295f"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#aa5dd01c50878b05702e9ef99cb7c295f">cb_cliprdr_server_file_contents_request</a> (CliprdrClientContext *context, const CLIPRDR_FILE_CONTENTS_REQUEST *fileContentsRequest)</td></tr>
+<tr class="separator:aa5dd01c50878b05702e9ef99cb7c295f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3fd902f943a89bfcf0827c2425f3c04" id="r_ac3fd902f943a89bfcf0827c2425f3c04"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ac3fd902f943a89bfcf0827c2425f3c04">cb_cliprdr_server_file_contents_response</a> (CliprdrClientContext *context, const CLIPRDR_FILE_CONTENTS_RESPONSE *fileContentsResponse)</td></tr>
+<tr class="separator:ac3fd902f943a89bfcf0827c2425f3c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a07e72c622da96bd68aa90d4a037d1" id="r_a48a07e72c622da96bd68aa90d4a037d1"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a48a07e72c622da96bd68aa90d4a037d1">cb_cliprdr_monitor_ready</a> (CliprdrClientContext *context, const CLIPRDR_MONITOR_READY *monitorReady)</td></tr>
+<tr class="separator:a48a07e72c622da96bd68aa90d4a037d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76bc5accf4a1d2e02a1ef30e0195844a" id="r_a76bc5accf4a1d2e02a1ef30e0195844a"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a76bc5accf4a1d2e02a1ef30e0195844a">SendClientFormatList</a> (CliprdrClientContext *context)</td></tr>
+<tr class="separator:a76bc5accf4a1d2e02a1ef30e0195844a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f3c87a4b67db05c5f13438e34a71fc" id="r_ac4f3c87a4b67db05c5f13438e34a71fc"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ac4f3c87a4b67db05c5f13438e34a71fc">cb_cliprdr_server_format_data_request</a> (CliprdrClientContext *context, const CLIPRDR_FORMAT_DATA_REQUEST *formatDataRequest)</td></tr>
+<tr class="separator:ac4f3c87a4b67db05c5f13438e34a71fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64818a40a3946c890ab6fdf32080b488" id="r_a64818a40a3946c890ab6fdf32080b488"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a64818a40a3946c890ab6fdf32080b488">SendFormatDataResponse</a> (CliprdrClientContext *context, const BYTE *data, size_t size)</td></tr>
+<tr class="separator:a64818a40a3946c890ab6fdf32080b488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a452020b0532ceee6d3194ab741395769" id="r_a452020b0532ceee6d3194ab741395769"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a452020b0532ceee6d3194ab741395769">SendFileContentsFailure</a> (CliprdrClientContext *context, const CLIPRDR_FILE_CONTENTS_REQUEST *fileContentsRequest)</td></tr>
+<tr class="separator:a452020b0532ceee6d3194ab741395769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd6729c716a29773534ae24facb4f84" id="r_a9cd6729c716a29773534ae24facb4f84"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a9cd6729c716a29773534ae24facb4f84">cb_clipboard_file_size_success</a> (wClipboardDelegate *delegate, const wClipboardFileSizeRequest *request, UINT64 fileSize)</td></tr>
+<tr class="separator:a9cd6729c716a29773534ae24facb4f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6f8c1d401a8ce2d85188c922aea939" id="r_a6e6f8c1d401a8ce2d85188c922aea939"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a6e6f8c1d401a8ce2d85188c922aea939">cb_clipboard_file_size_failure</a> (wClipboardDelegate *delegate, const wClipboardFileSizeRequest *request, UINT errorCode)</td></tr>
+<tr class="separator:a6e6f8c1d401a8ce2d85188c922aea939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a228f5f7e897ff466caafac94b86867c1" id="r_a228f5f7e897ff466caafac94b86867c1"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a228f5f7e897ff466caafac94b86867c1">cb_clipboard_file_range_success</a> (wClipboardDelegate *delegate, const wClipboardFileRangeRequest *request, const BYTE *data, UINT32 size)</td></tr>
+<tr class="separator:a228f5f7e897ff466caafac94b86867c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd8c6db502e406cbe1c6dc6c7199396" id="r_addd8c6db502e406cbe1c6dc6c7199396"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#addd8c6db502e406cbe1c6dc6c7199396">cb_clipboard_file_range_failure</a> (wClipboardDelegate *delegate, const wClipboardFileRangeRequest *request, UINT errorCode)</td></tr>
+<tr class="separator:addd8c6db502e406cbe1c6dc6c7199396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab815159a2f9546cf597ca4ca4d94916b" id="r_ab815159a2f9546cf597ca4ca4d94916b"><td class="memItemLeft" align="right" valign="top">static BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ab815159a2f9546cf597ca4ca4d94916b">cbIsFileNameComponentValid</a> (LPCWSTR lpFileName)</td></tr>
+<tr class="separator:ab815159a2f9546cf597ca4ca4d94916b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a4e36bd7307fd3baf64f50281308f6510" id="r_a4e36bd7307fd3baf64f50281308f6510"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a4e36bd7307fd3baf64f50281308f6510">m_pConnect</a></td></tr>
+<tr class="separator:a4e36bd7307fd3baf64f50281308f6510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afca0e203a0b6e5a7fe5259564983f240" id="r_afca0e203a0b6e5a7fe5259564983f240"><td class="memItemLeft" align="right" valign="top">CliprdrClientContext *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#afca0e203a0b6e5a7fe5259564983f240">m_pCliprdrClientContext</a></td></tr>
+<tr class="separator:afca0e203a0b6e5a7fe5259564983f240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d906f5a018f9898a655b0953b548864" id="r_a5d906f5a018f9898a655b0953b548864"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a5d906f5a018f9898a655b0953b548864">CClipboardMimeData</a></td></tr>
+<tr class="separator:a5d906f5a018f9898a655b0953b548864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2750a44cb8903276c9d11817201d3b2" id="r_ad2750a44cb8903276c9d11817201d3b2"><td class="memItemLeft" align="right" valign="top">QList&lt; qint32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ad2750a44cb8903276c9d11817201d3b2">m_lstClipboardMimeDataId</a></td></tr>
+<tr class="separator:ad2750a44cb8903276c9d11817201d3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e57c3eb3e11c609bd104a7166b95ac5" id="r_a8e57c3eb3e11c609bd104a7166b95ac5"><td class="memItemLeft" align="right" valign="top">wClipboard *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a8e57c3eb3e11c609bd104a7166b95ac5">m_pClipboard</a></td></tr>
+<tr class="separator:a8e57c3eb3e11c609bd104a7166b95ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33767016fd7cfb5df67b32054a37b35c" id="r_a33767016fd7cfb5df67b32054a37b35c"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a33767016fd7cfb5df67b32054a37b35c">m_RequestFormatId</a></td></tr>
+<tr class="separator:a33767016fd7cfb5df67b32054a37b35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45a915e96414a4cea452f1ab0c8a3e2" id="r_ac45a915e96414a4cea452f1ab0c8a3e2"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#ac45a915e96414a4cea452f1ab0c8a3e2">m_FileCapabilityFlags</a></td></tr>
+<tr class="separator:ac45a915e96414a4cea452f1ab0c8a3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46575bee01de530e505bedacc72a0449" id="r_a46575bee01de530e505bedacc72a0449"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a46575bee01de530e505bedacc72a0449">m_bFileSupported</a></td></tr>
+<tr class="separator:a46575bee01de530e505bedacc72a0449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb59a53084419ea20b3fcadf1139126" id="r_a0fb59a53084419ea20b3fcadf1139126"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCClipboardFreeRDP.html#a0fb59a53084419ea20b3fcadf1139126">m_bFileFormatsRegistered</a></td></tr>
+<tr class="separator:a0fb59a53084419ea20b3fcadf1139126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00015">15</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab3aff4128a4ac2a3161ab9003b1c9028" name="ab3aff4128a4ac2a3161ab9003b1c9028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3aff4128a4ac2a3161ab9003b1c9028">&#9670;&#160;</a></span>~CClipboardFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CClipboardFreeRDP::~CClipboardFreeRDP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="addd8c6db502e406cbe1c6dc6c7199396" name="addd8c6db502e406cbe1c6dc6c7199396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addd8c6db502e406cbe1c6dc6c7199396">&#9670;&#160;</a></span>cb_clipboard_file_range_failure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_clipboard_file_range_failure </td>
+          <td>(</td>
+          <td class="paramtype">wClipboardDelegate *&#160;</td>
+          <td class="paramname"><em>delegate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const wClipboardFileRangeRequest *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>errorCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00624">624</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a228f5f7e897ff466caafac94b86867c1" name="a228f5f7e897ff466caafac94b86867c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a228f5f7e897ff466caafac94b86867c1">&#9670;&#160;</a></span>cb_clipboard_file_range_success()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_clipboard_file_range_success </td>
+          <td>(</td>
+          <td class="paramtype">wClipboardDelegate *&#160;</td>
+          <td class="paramname"><em>delegate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const wClipboardFileRangeRequest *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const BYTE *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00604">604</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6e6f8c1d401a8ce2d85188c922aea939" name="a6e6f8c1d401a8ce2d85188c922aea939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e6f8c1d401a8ce2d85188c922aea939">&#9670;&#160;</a></span>cb_clipboard_file_size_failure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_clipboard_file_size_failure </td>
+          <td>(</td>
+          <td class="paramtype">wClipboardDelegate *&#160;</td>
+          <td class="paramname"><em>delegate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const wClipboardFileSizeRequest *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>errorCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00585">585</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9cd6729c716a29773534ae24facb4f84" name="a9cd6729c716a29773534ae24facb4f84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd6729c716a29773534ae24facb4f84">&#9670;&#160;</a></span>cb_clipboard_file_size_success()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_clipboard_file_size_success </td>
+          <td>(</td>
+          <td class="paramtype">wClipboardDelegate *&#160;</td>
+          <td class="paramname"><em>delegate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const wClipboardFileSizeRequest *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT64&#160;</td>
+          <td class="paramname"><em>fileSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00565">565</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48a07e72c622da96bd68aa90d4a037d1" name="a48a07e72c622da96bd68aa90d4a037d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a07e72c622da96bd68aa90d4a037d1">&#9670;&#160;</a></span>cb_cliprdr_monitor_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_MONITOR_READY *&#160;</td>
+          <td class="paramname"><em>monitorReady</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00157">157</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab89eaa4702b94241b1a0364807412802" name="ab89eaa4702b94241b1a0364807412802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab89eaa4702b94241b1a0364807412802">&#9670;&#160;</a></span>cb_cliprdr_server_capabilities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_capabilities </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_CAPABILITIES *&#160;</td>
+          <td class="paramname"><em>capabilities</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa5dd01c50878b05702e9ef99cb7c295f" name="aa5dd01c50878b05702e9ef99cb7c295f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5dd01c50878b05702e9ef99cb7c295f">&#9670;&#160;</a></span>cb_cliprdr_server_file_contents_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_request </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FILE_CONTENTS_REQUEST *&#160;</td>
+          <td class="paramname"><em>fileContentsRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00715">715</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac3fd902f943a89bfcf0827c2425f3c04" name="ac3fd902f943a89bfcf0827c2425f3c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3fd902f943a89bfcf0827c2425f3c04">&#9670;&#160;</a></span>cb_cliprdr_server_file_contents_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FILE_CONTENTS_RESPONSE *&#160;</td>
+          <td class="paramname"><em>fileContentsResponse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00870">870</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac4f3c87a4b67db05c5f13438e34a71fc" name="ac4f3c87a4b67db05c5f13438e34a71fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f3c87a4b67db05c5f13438e34a71fc">&#9670;&#160;</a></span>cb_cliprdr_server_format_data_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FORMAT_DATA_REQUEST *&#160;</td>
+          <td class="paramname"><em>formatDataRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00409">409</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac49730543ecc06bc0e6a40cd8135de12" name="ac49730543ecc06bc0e6a40cd8135de12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49730543ecc06bc0e6a40cd8135de12">&#9670;&#160;</a></span>cb_cliprdr_server_format_data_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_response </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FORMAT_DATA_RESPONSE *&#160;</td>
+          <td class="paramname"><em>formatDataResponse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00850">850</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a772c6926ce770207e6d35bbbd658194e" name="a772c6926ce770207e6d35bbbd658194e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772c6926ce770207e6d35bbbd658194e">&#9670;&#160;</a></span>cb_cliprdr_server_format_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_format_list </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FORMAT_LIST *&#160;</td>
+          <td class="paramname"><em>formatList</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00758">758</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc2cb8de1f03bc77911816439cd03b5d" name="acc2cb8de1f03bc77911816439cd03b5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc2cb8de1f03bc77911816439cd03b5d">&#9670;&#160;</a></span>cb_cliprdr_server_format_list_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FORMAT_LIST_RESPONSE *&#160;</td>
+          <td class="paramname"><em>formatListResponse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00804">804</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab815159a2f9546cf597ca4ca4d94916b" name="ab815159a2f9546cf597ca4ca4d94916b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab815159a2f9546cf597ca4ca4d94916b">&#9670;&#160;</a></span>cbIsFileNameComponentValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CClipboardFreeRDP::cbIsFileNameComponentValid </td>
+          <td>(</td>
+          <td class="paramtype">LPCWSTR&#160;</td>
+          <td class="paramname"><em>lpFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00643">643</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a91bf2b467d8c9b7ed265f63d4e55285c" name="a91bf2b467d8c9b7ed265f63d4e55285c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91bf2b467d8c9b7ed265f63d4e55285c">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CClipboardFreeRDP::Init </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a76bc5accf4a1d2e02a1ef30e0195844a" name="a76bc5accf4a1d2e02a1ef30e0195844a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76bc5accf4a1d2e02a1ef30e0195844a">&#9670;&#160;</a></span>SendClientFormatList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::SendClientFormatList </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00206">206</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a452020b0532ceee6d3194ab741395769" name="a452020b0532ceee6d3194ab741395769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a452020b0532ceee6d3194ab741395769">&#9670;&#160;</a></span>SendFileContentsFailure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::SendFileContentsFailure </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const CLIPRDR_FILE_CONTENTS_REQUEST *&#160;</td>
+          <td class="paramname"><em>fileContentsRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00664">664</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64818a40a3946c890ab6fdf32080b488" name="a64818a40a3946c890ab6fdf32080b488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64818a40a3946c890ab6fdf32080b488">&#9670;&#160;</a></span>SendFormatDataResponse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::SendFormatDataResponse </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const BYTE *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00547">547</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2058b7c047d75d3ea6a070a7f4725ec" name="ad2058b7c047d75d3ea6a070a7f4725ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2058b7c047d75d3ea6a070a7f4725ec">&#9670;&#160;</a></span>ServerFileRangeRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::ServerFileRangeRequest </td>
+          <td>(</td>
+          <td class="paramtype">const CLIPRDR_FILE_CONTENTS_REQUEST *&#160;</td>
+          <td class="paramname"><em>fileContentsRequest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00679">679</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4ee1f77f972661d04bc14b950e4e6a5c" name="a4ee1f77f972661d04bc14b950e4e6a5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee1f77f972661d04bc14b950e4e6a5c">&#9670;&#160;</a></span>ServerFileSizeRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::ServerFileSizeRequest </td>
+          <td>(</td>
+          <td class="paramtype">const CLIPRDR_FILE_CONTENTS_REQUEST *&#160;</td>
+          <td class="paramname"><em>fileContentsRequest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00695">695</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af885d0c7464037eb57df9269dff17d62" name="af885d0c7464037eb57df9269dff17d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af885d0c7464037eb57df9269dff17d62">&#9670;&#160;</a></span>sigServerFormatData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CClipboardFreeRDP::sigServerFormatData </td>
+          <td>(</td>
+          <td class="paramtype">const BYTE *&#160;</td>
+          <td class="paramname"><em>pData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>nLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>formatId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notify clipboard get data from server </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pData</td><td>data pointer </td></tr>
+    <tr><td class="paramname">nLen</td><td>data length </td></tr>
+    <tr><td class="paramname">formatId</td><td>format id if(pData == nullptr &amp;&amp; nLen == 0) is Notify clipboard program has exited </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08974575da94292768d9cb230d921a7a" name="a08974575da94292768d9cb230d921a7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08974575da94292768d9cb230d921a7a">&#9670;&#160;</a></span>slotClipBoardChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CClipboardFreeRDP::slotClipBoardChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1841863f2867ea7d8f233778529fb7d" name="aa1841863f2867ea7d8f233778529fb7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1841863f2867ea7d8f233778529fb7d">&#9670;&#160;</a></span>slotSendFormatDataRequest</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CClipboardFreeRDP::slotSendFormatDataRequest </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>formatId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00833">833</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e7f379d67f9c28341cc3affe6eb9afe" name="a8e7f379d67f9c28341cc3affe6eb9afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e7f379d67f9c28341cc3affe6eb9afe">&#9670;&#160;</a></span>UnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CClipboardFreeRDP::UnInit </td>
+          <td>(</td>
+          <td class="paramtype">CliprdrClientContext *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a> 第 <a class="el" href="ClipboardFreeRDP_8cpp_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5d906f5a018f9898a655b0953b548864" name="a5d906f5a018f9898a655b0953b548864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d906f5a018f9898a655b0953b548864">&#9670;&#160;</a></span>CClipboardMimeData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend CClipboardFreeRDP::CClipboardMimeData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0fb59a53084419ea20b3fcadf1139126" name="a0fb59a53084419ea20b3fcadf1139126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb59a53084419ea20b3fcadf1139126">&#9670;&#160;</a></span>m_bFileFormatsRegistered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CClipboardFreeRDP::m_bFileFormatsRegistered</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a46575bee01de530e505bedacc72a0449" name="a46575bee01de530e505bedacc72a0449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46575bee01de530e505bedacc72a0449">&#9670;&#160;</a></span>m_bFileSupported</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CClipboardFreeRDP::m_bFileSupported</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac45a915e96414a4cea452f1ab0c8a3e2" name="ac45a915e96414a4cea452f1ab0c8a3e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac45a915e96414a4cea452f1ab0c8a3e2">&#9670;&#160;</a></span>m_FileCapabilityFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CClipboardFreeRDP::m_FileCapabilityFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2750a44cb8903276c9d11817201d3b2" name="ad2750a44cb8903276c9d11817201d3b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2750a44cb8903276c9d11817201d3b2">&#9670;&#160;</a></span>m_lstClipboardMimeDataId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;qint32&gt; CClipboardFreeRDP::m_lstClipboardMimeDataId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e57c3eb3e11c609bd104a7166b95ac5" name="a8e57c3eb3e11c609bd104a7166b95ac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e57c3eb3e11c609bd104a7166b95ac5">&#9670;&#160;</a></span>m_pClipboard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">wClipboard* CClipboardFreeRDP::m_pClipboard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afca0e203a0b6e5a7fe5259564983f240" name="afca0e203a0b6e5a7fe5259564983f240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca0e203a0b6e5a7fe5259564983f240">&#9670;&#160;</a></span>m_pCliprdrClientContext</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CliprdrClientContext* CClipboardFreeRDP::m_pCliprdrClientContext</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4e36bd7307fd3baf64f50281308f6510" name="a4e36bd7307fd3baf64f50281308f6510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e36bd7307fd3baf64f50281308f6510">&#9670;&#160;</a></span>m_pConnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a>* CClipboardFreeRDP::m_pConnect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a33767016fd7cfb5df67b32054a37b35c" name="a33767016fd7cfb5df67b32054a37b35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33767016fd7cfb5df67b32054a37b35c">&#9670;&#160;</a></span>m_RequestFormatId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CClipboardFreeRDP::m_RequestFormatId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a> 第 <a class="el" href="ClipboardFreeRDP_8h_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ClipboardFreeRDP_8h_source.html">ClipboardFreeRDP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ClipboardFreeRDP_8cpp_source.html">ClipboardFreeRDP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

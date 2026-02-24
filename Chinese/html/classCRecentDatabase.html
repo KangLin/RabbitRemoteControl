@@ -1,0 +1,560 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CRecentDatabase类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCRecentDatabase-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CRecentDatabase类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CRecentDatabase 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecentDatabase__inherit__graph.png" border="0" usemap="#aCRecentDatabase_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCRecentDatabase_inherit__map" id="aCRecentDatabase_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,144,177"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="28,79,121,104"/>
+<area shape="poly" title=" " alt="" coords="77,118,77,152,72,152,72,118"/>
+<area shape="rect" title=" " alt="" coords="37,5,112,31"/>
+<area shape="poly" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CRecentDatabase 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecentDatabase__coll__graph.png" border="0" usemap="#aCRecentDatabase_coll__map" alt="Collaboration graph"/></div>
+<map name="aCRecentDatabase_coll__map" id="aCRecentDatabase_coll__map">
+<area shape="rect" title=" " alt="" coords="769,719,907,744"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="791,543,885,568"/>
+<area shape="poly" title=" " alt="" coords="841,582,841,718,835,718,835,582"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="875,631,995,656"/>
+<area shape="poly" title=" " alt="" coords="863,575,924,628,920,632,860,579"/>
+<area shape="rect" href="classCDatabaseFile.html" title="The CDatabaseFile class" alt="" coords="684,631,800,656"/>
+<area shape="poly" title=" " alt="" coords="817,579,757,632,754,628,813,575"/>
+<area shape="rect" title=" " alt="" coords="582,5,657,31"/>
+<area shape="poly" title=" " alt="" coords="670,22,727,31,785,45,832,64,846,77,851,91,851,469,848,510,843,543,838,542,843,509,846,469,846,92,842,80,829,69,784,50,726,36,670,28"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="335,80,434,105"/>
+<area shape="poly" title=" " alt="" coords="570,37,422,83,421,77,568,32"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="534,455,694,480"/>
+<area shape="poly" title=" " alt="" coords="658,483,809,540,807,545,656,488"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="316,543,456,568"/>
+<area shape="poly" title=" " alt="" coords="572,487,418,545,416,540,570,482"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="423,155,573,180"/>
+<area shape="poly" title=" " alt="" coords="506,193,517,229,542,303,572,376,584,400,611,453,606,456,580,403,568,378,537,305,511,230,501,194"/>
+<area shape="poly" title=" " alt="" coords="588,160,600,167,592,174,574,177,573,171,590,169,595,167,585,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="583,352,704,377"/>
+<area shape="poly" title=" " alt="" coords="513,190,569,277,634,350,630,354,565,280,509,193"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="579,253,707,279"/>
+<area shape="poly" title=" " alt="" coords="533,185,562,202,630,251,627,255,559,206,531,189"/>
+<area shape="poly" title=" " alt="" coords="416,111,481,152,478,157,413,115"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="235,631,374,656"/>
+<area shape="poly" title=" " alt="" coords="362,117,344,139,339,152,337,166,337,417,333,454,324,481,314,508,306,543,306,568,307,630,302,631,301,568,301,542,308,506,319,479,328,453,331,417,331,166,334,151,340,137,358,113"/>
+<area shape="poly" title=" " alt="" coords="387,119,387,166,387,469,388,542,383,542,382,469,382,166,382,119"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="671,204,802,229"/>
+<area shape="poly" title=" " alt="" coords="448,94,499,100,557,111,618,128,675,152,707,177,730,202,726,206,704,181,673,157,616,133,556,116,498,106,447,100"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="164,303,307,328"/>
+<area shape="poly" title=" " alt="" coords="340,114,317,131,285,176,263,225,248,270,240,303,235,302,243,269,258,223,281,173,313,127,337,110"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="5,403,196,429"/>
+<area shape="poly" title=" " alt="" coords="321,101,257,109,192,122,141,141,127,153,122,166,122,317,117,365,107,403,102,402,111,364,117,317,117,166,123,150,138,137,190,117,256,104,321,96"/>
+<area shape="poly" title=" " alt="" coords="388,632,441,621,461,614,473,605,480,591,478,578,465,544,453,504,441,473,433,442,434,401,446,334,462,270,491,179,496,181,468,271,451,335,439,402,439,441,446,472,458,502,470,542,483,576,485,592,477,608,463,619,442,627,389,637"/>
+<area shape="poly" title=" " alt="" coords="361,579,344,594,314,632,310,629,340,590,357,575"/>
+<area shape="poly" title=" " alt="" coords="743,243,747,314,747,557,744,571,736,584,705,604,661,619,606,630,485,642,374,645,374,640,484,637,606,625,660,614,703,599,732,580,739,569,742,556,742,314,737,244"/>
+<area shape="poly" title=" " alt="" coords="235,342,230,415,230,556,235,579,249,599,267,616,285,628,282,633,263,620,245,603,230,581,225,557,225,415,229,342"/>
+<area shape="poly" title=" " alt="" coords="94,442,87,479,88,499,94,518,107,539,125,559,167,590,214,613,257,628,255,633,211,618,164,595,121,563,103,543,89,520,83,500,82,479,89,441"/>
+<area shape="poly" title=" " alt="" coords="639,391,620,455,615,454,634,390"/>
+<area shape="poly" title=" " alt="" coords="646,292,646,352,641,352,641,292"/>
+<area shape="poly" title=" " alt="" coords="914,667,853,720,850,716,910,663"/>
+<area shape="poly" title=" " alt="" coords="745,669,749,682,755,693,770,707,789,716,787,721,767,711,751,696,744,684,740,670"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRecentDatabase_1_1RecentItem.html">RecentItem</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ad3251220927dfdb4b2b7e73be938536a" id="r_ad3251220927dfdb4b2b7e73be938536a"><td class="memItemLeft" align="right" valign="top"><a id="ad3251220927dfdb4b2b7e73be938536a" name="ad3251220927dfdb4b2b7e73be938536a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CRecentDatabase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:ad3251220927dfdb4b2b7e73be938536a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c3fc031aa02619517ca66cd986b4c2" id="r_ad1c3fc031aa02619517ca66cd986b4c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#ad1c3fc031aa02619517ca66cd986b4c2">AddRecent</a> (const <a class="el" href="structCRecentDatabase_1_1RecentItem.html">RecentItem</a> &amp;item)</td></tr>
+<tr class="separator:ad1c3fc031aa02619517ca66cd986b4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c0adc538dab114d9939e84065bbcbe" id="r_aa0c0adc538dab114d9939e84065bbcbe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#aa0c0adc538dab114d9939e84065bbcbe">DeleteRecent</a> (int id)</td></tr>
+<tr class="separator:aa0c0adc538dab114d9939e84065bbcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5fe6fb679ceebe68d3e613b1ccf402" id="r_a4d5fe6fb679ceebe68d3e613b1ccf402"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a4d5fe6fb679ceebe68d3e613b1ccf402">UpdateRecent</a> (const QString &amp;szFile, const QString &amp;szName, const QString &amp;szDescription)</td></tr>
+<tr class="separator:a4d5fe6fb679ceebe68d3e613b1ccf402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d2d1621fe952ffc56f7646fe7879b9" id="r_af9d2d1621fe952ffc56f7646fe7879b9"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structCRecentDatabase_1_1RecentItem.html">RecentItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#af9d2d1621fe952ffc56f7646fe7879b9">GetRecents</a> (int limit=-1, int offset=0)</td></tr>
+<tr class="separator:af9d2d1621fe952ffc56f7646fe7879b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCDatabase')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a5ab471a3d6124b928ebe5cac24cd6ea0 inherit pub_methods_classCDatabase" id="r_a5ab471a3d6124b928ebe5cac24cd6ea0"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CDatabase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a5ab471a3d6124b928ebe5cac24cd6ea0 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5343cb86caa6e70c5ce522153fcc686c inherit pub_methods_classCDatabase" id="r_a5343cb86caa6e70c5ce522153fcc686c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a5343cb86caa6e70c5ce522153fcc686c">SetDatabase</a> (QSqlDatabase db, <a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara=nullptr)</td></tr>
+<tr class="separator:a5343cb86caa6e70c5ce522153fcc686c inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b8d009f020c71770c433e7ce66333a inherit pub_methods_classCDatabase" id="r_ae3b8d009f020c71770c433e7ce66333a"><td class="memItemLeft" align="right" valign="top">QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ae3b8d009f020c71770c433e7ce66333a">GetDatabase</a> () const</td></tr>
+<tr class="separator:ae3b8d009f020c71770c433e7ce66333a inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase" id="r_a46fd19db9acf07581bbdba37c849a5a5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a46fd19db9acf07581bbdba37c849a5a5">OpenDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara=nullptr)</td></tr>
+<tr class="memdesc:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenDatabase  <br /></td></tr>
+<tr class="separator:a46fd19db9acf07581bbdba37c849a5a5 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239fe256c39ed751e6eb8100b28dc2db inherit pub_methods_classCDatabase" id="r_a239fe256c39ed751e6eb8100b28dc2db"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a239fe256c39ed751e6eb8100b28dc2db">OpenMySqlDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara)</td></tr>
+<tr class="separator:a239fe256c39ed751e6eb8100b28dc2db inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a704093ffdc65b11a9b3014768a722 inherit pub_methods_classCDatabase" id="r_a55a704093ffdc65b11a9b3014768a722"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a55a704093ffdc65b11a9b3014768a722">OpenODBCDatabase</a> (<a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *pPara)</td></tr>
+<tr class="separator:a55a704093ffdc65b11a9b3014768a722 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546297d4f84fd15466b9a59bcb11a099 inherit pub_methods_classCDatabase" id="r_a546297d4f84fd15466b9a59bcb11a099"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a546297d4f84fd15466b9a59bcb11a099">OpenSQLiteDatabase</a> (const QString &amp;connectionName=QString(), const QString &amp;dbPath=QString())</td></tr>
+<tr class="separator:a546297d4f84fd15466b9a59bcb11a099 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4682557c6cebdc2269412de3604f8ca inherit pub_methods_classCDatabase" id="r_ab4682557c6cebdc2269412de3604f8ca"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ab4682557c6cebdc2269412de3604f8ca">IsOpen</a> () const</td></tr>
+<tr class="separator:ab4682557c6cebdc2269412de3604f8ca inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2498713b7439cd59fac98decbf9d2359 inherit pub_methods_classCDatabase" id="r_a2498713b7439cd59fac98decbf9d2359"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a2498713b7439cd59fac98decbf9d2359">CloseDatabase</a> ()</td></tr>
+<tr class="separator:a2498713b7439cd59fac98decbf9d2359 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be75e0f7f8524444ea0cf8158460985 inherit pub_methods_classCDatabase" id="r_a4be75e0f7f8524444ea0cf8158460985"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a4be75e0f7f8524444ea0cf8158460985">ExportToJsonFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a4be75e0f7f8524444ea0cf8158460985 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5037079b0a05846d10194e89aa4cfa56 inherit pub_methods_classCDatabase" id="r_a5037079b0a05846d10194e89aa4cfa56"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a5037079b0a05846d10194e89aa4cfa56">ImportFromJsonFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:a5037079b0a05846d10194e89aa4cfa56 inherit pub_methods_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:afd7a721f5dff651cf0ac774d2ae1a1f2" id="r_afd7a721f5dff651cf0ac774d2ae1a1f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#afd7a721f5dff651cf0ac774d2ae1a1f2">OnInitializeDatabase</a> () override</td></tr>
+<tr class="separator:afd7a721f5dff651cf0ac774d2ae1a1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cc30e7b37d1ba9fcddba3b34215cd18" id="r_a1cc30e7b37d1ba9fcddba3b34215cd18"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a1cc30e7b37d1ba9fcddba3b34215cd18">OnInitializeSqliteDatabase</a> () override</td></tr>
+<tr class="separator:a1cc30e7b37d1ba9fcddba3b34215cd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a097eb9a422341737874678c6b4b46dac" id="r_a097eb9a422341737874678c6b4b46dac"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a097eb9a422341737874678c6b4b46dac">OnInitializeMySqlDatabase</a> () override</td></tr>
+<tr class="separator:a097eb9a422341737874678c6b4b46dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed66d53d907dc1a1cf687c3772d04160" id="r_aed66d53d907dc1a1cf687c3772d04160"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#aed66d53d907dc1a1cf687c3772d04160">ExportToJson</a> (QJsonObject &amp;obj) override</td></tr>
+<tr class="separator:aed66d53d907dc1a1cf687c3772d04160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422c9bed229e9c76695ef291ea48b2cd" id="r_a422c9bed229e9c76695ef291ea48b2cd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a422c9bed229e9c76695ef291ea48b2cd">ImportFromJson</a> (const QJsonObject &amp;obj) override</td></tr>
+<tr class="separator:a422c9bed229e9c76695ef291ea48b2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a7a8636426da9492e7966a3f70c000961" id="r_a7a8636426da9492e7966a3f70c000961"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCDatabaseIcon.html">CDatabaseIcon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a7a8636426da9492e7966a3f70c000961">m_IconDB</a></td></tr>
+<tr class="separator:a7a8636426da9492e7966a3f70c000961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43ab451bbbb87f8020e06139d8954975" id="r_a43ab451bbbb87f8020e06139d8954975"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCDatabaseFile.html">CDatabaseFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecentDatabase.html#a43ab451bbbb87f8020e06139d8954975">m_FileDB</a></td></tr>
+<tr class="separator:a43ab451bbbb87f8020e06139d8954975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('signals_classCDatabase')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:a9702e53141a678e8f5b4a63df6129966 inherit signals_classCDatabase" id="r_a9702e53141a678e8f5b4a63df6129966"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="separator:a9702e53141a678e8f5b4a63df6129966 inherit signals_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCDatabase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCDatabase')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCDatabase.html">CDatabase</a></td></tr>
+<tr class="memitem:ab637869da6fd315eb574b7ab13e60f51 inherit pro_attribs_classCDatabase" id="r_ab637869da6fd315eb574b7ab13e60f51"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ab637869da6fd315eb574b7ab13e60f51">m_szConnectName</a></td></tr>
+<tr class="separator:ab637869da6fd315eb574b7ab13e60f51 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38cbbe64d454d584ac375e3ecfdcfc44 inherit pro_attribs_classCDatabase" id="r_a38cbbe64d454d584ac375e3ecfdcfc44"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#a38cbbe64d454d584ac375e3ecfdcfc44">m_MinVersion</a></td></tr>
+<tr class="separator:a38cbbe64d454d584ac375e3ecfdcfc44 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ef66a49ea7db366c943f473b60e9b1 inherit pro_attribs_classCDatabase" id="r_ad6ef66a49ea7db366c943f473b60e9b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterDatabase.html">CParameterDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDatabase.html#ad6ef66a49ea7db366c943f473b60e9b1">m_pPara</a></td></tr>
+<tr class="separator:ad6ef66a49ea7db366c943f473b60e9b1 inherit pro_attribs_classCDatabase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8h_source.html">RecentDatabase.h</a> 第 <a class="el" href="RecentDatabase_8h_source.html#l00008">8</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a282877c1d6d25f1a491505ae8de8ca51" name="a282877c1d6d25f1a491505ae8de8ca51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a282877c1d6d25f1a491505ae8de8ca51">&#9670;&#160;</a></span>~CRecentDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CRecentDatabase::~CRecentDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad1c3fc031aa02619517ca66cd986b4c2" name="ad1c3fc031aa02619517ca66cd986b4c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c3fc031aa02619517ca66cd986b4c2">&#9670;&#160;</a></span>AddRecent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRecentDatabase::AddRecent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCRecentDatabase_1_1RecentItem.html">RecentItem</a> &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa0c0adc538dab114d9939e84065bbcbe" name="aa0c0adc538dab114d9939e84065bbcbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c0adc538dab114d9939e84065bbcbe">&#9670;&#160;</a></span>DeleteRecent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::DeleteRecent </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00252">252</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aed66d53d907dc1a1cf687c3772d04160" name="aed66d53d907dc1a1cf687c3772d04160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed66d53d907dc1a1cf687c3772d04160">&#9670;&#160;</a></span>ExportToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::ExportToJson </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCDatabase.html">CDatabase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00308">308</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af9d2d1621fe952ffc56f7646fe7879b9" name="af9d2d1621fe952ffc56f7646fe7879b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9d2d1621fe952ffc56f7646fe7879b9">&#9670;&#160;</a></span>GetRecents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structCRecentDatabase_1_1RecentItem.html">CRecentDatabase::RecentItem</a> &gt; CRecentDatabase::GetRecents </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>limit</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a422c9bed229e9c76695ef291ea48b2cd" name="a422c9bed229e9c76695ef291ea48b2cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a422c9bed229e9c76695ef291ea48b2cd">&#9670;&#160;</a></span>ImportFromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::ImportFromJson </td>
+          <td>(</td>
+          <td class="paramtype">const QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCDatabase.html">CDatabase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00337">337</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afd7a721f5dff651cf0ac774d2ae1a1f2" name="afd7a721f5dff651cf0ac774d2ae1a1f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7a721f5dff651cf0ac774d2ae1a1f2">&#9670;&#160;</a></span>OnInitializeDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::OnInitializeDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a097eb9a422341737874678c6b4b46dac" name="a097eb9a422341737874678c6b4b46dac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097eb9a422341737874678c6b4b46dac">&#9670;&#160;</a></span>OnInitializeMySqlDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::OnInitializeMySqlDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1cc30e7b37d1ba9fcddba3b34215cd18" name="a1cc30e7b37d1ba9fcddba3b34215cd18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cc30e7b37d1ba9fcddba3b34215cd18">&#9670;&#160;</a></span>OnInitializeSqliteDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::OnInitializeSqliteDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCDatabase.html">CDatabase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4d5fe6fb679ceebe68d3e613b1ccf402" name="a4d5fe6fb679ceebe68d3e613b1ccf402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5fe6fb679ceebe68d3e613b1ccf402">&#9670;&#160;</a></span>UpdateRecent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRecentDatabase::UpdateRecent </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDescription</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a> 第 <a class="el" href="RecentDatabase_8cpp_source.html#l00229">229</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a43ab451bbbb87f8020e06139d8954975" name="a43ab451bbbb87f8020e06139d8954975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43ab451bbbb87f8020e06139d8954975">&#9670;&#160;</a></span>m_FileDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDatabaseFile.html">CDatabaseFile</a> CRecentDatabase::m_FileDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8h_source.html">RecentDatabase.h</a> 第 <a class="el" href="RecentDatabase_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7a8636426da9492e7966a3f70c000961" name="a7a8636426da9492e7966a3f70c000961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a8636426da9492e7966a3f70c000961">&#9670;&#160;</a></span>m_IconDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDatabaseIcon.html">CDatabaseIcon</a> CRecentDatabase::m_IconDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecentDatabase_8h_source.html">RecentDatabase.h</a> 第 <a class="el" href="RecentDatabase_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Recent/<a class="el" href="RecentDatabase_8h_source.html">RecentDatabase.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Recent/<a class="el" href="RecentDatabase_8cpp_source.html">RecentDatabase.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

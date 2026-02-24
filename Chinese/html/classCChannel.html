@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CChannel类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCChannel-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CChannel类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CHANNEL.html">通道</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>通道接口类。此类默认实现一个 TCP 的通道。  
+ <a href="classCChannel.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Channel_8h_source.html">Channel.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CChannel 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannel__inherit__graph.png" border="0" usemap="#aCChannel_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCChannel_inherit__map" id="aCChannel_inherit__map">
+<area shape="rect" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="121,79,205,104"/>
+<area shape="rect" href="classCChannelIce.html" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="46,152,149,177"/>
+<area shape="poly" title=" " alt="" coords="145,116,110,154,106,150,141,113"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="173,152,283,177"/>
+<area shape="poly" title=" " alt="" coords="185,113,219,150,215,154,181,116"/>
+<area shape="rect" title=" " alt="" coords="117,5,208,31"/>
+<area shape="poly" title=" " alt="" coords="165,44,165,79,160,79,160,44"/>
+<area shape="rect" href="classCChannelSFTP.html" title=" " alt="" coords="5,225,120,251"/>
+<area shape="poly" title=" " alt="" coords="190,185,91,228,89,223,188,180"/>
+<area shape="rect" href="classCChannelSSHTerminal.html" title=" " alt="" coords="145,225,311,251"/>
+<area shape="poly" title=" " alt="" coords="231,191,231,225,225,225,225,191"/>
+<area shape="rect" href="classCChannelSSHTunnel.html" title="SSH 隧道" alt="" coords="336,225,488,251"/>
+<area shape="poly" title=" " alt="" coords="271,180,383,223,381,228,269,185"/>
+<area shape="rect" href="classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。" alt="" coords="310,299,514,324"/>
+<area shape="poly" title=" " alt="" coords="415,264,415,299,409,299,409,264"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CChannel 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannel__coll__graph.png" border="0" usemap="#aCChannel_coll__map" alt="Collaboration graph"/></div>
+<map name="aCChannel_coll__map" id="aCChannel_coll__map">
+<area shape="rect" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="9,79,93,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,96,31"/>
+<area shape="poly" title=" " alt="" coords="53,44,53,79,48,79,48,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a270a6dcabcec7d72426e29d0df2001c8" id="r_a270a6dcabcec7d72426e29d0df2001c8"><td class="memItemLeft" align="right" valign="top"><a id="a270a6dcabcec7d72426e29d0df2001c8" name="a270a6dcabcec7d72426e29d0df2001c8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigConnected</b> ()</td></tr>
+<tr class="memdesc:a270a6dcabcec7d72426e29d0df2001c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is connected. <br /></td></tr>
+<tr class="separator:a270a6dcabcec7d72426e29d0df2001c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40535811d4d70f5dbbe0b473f0c9e5fa" id="r_a40535811d4d70f5dbbe0b473f0c9e5fa"><td class="memItemLeft" align="right" valign="top"><a id="a40535811d4d70f5dbbe0b473f0c9e5fa" name="a40535811d4d70f5dbbe0b473f0c9e5fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDisconnected</b> ()</td></tr>
+<tr class="memdesc:a40535811d4d70f5dbbe0b473f0c9e5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is disconnected <br /></td></tr>
+<tr class="separator:a40535811d4d70f5dbbe0b473f0c9e5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a0547de2864a9b95db7ad4ccf6ffa2" id="r_a50a0547de2864a9b95db7ad4ccf6ffa2"><td class="memItemLeft" align="right" valign="top"><a id="a50a0547de2864a9b95db7ad4ccf6ffa2" name="a50a0547de2864a9b95db7ad4ccf6ffa2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (int nErr, const QString &amp;szErr)</td></tr>
+<tr class="memdesc:a50a0547de2864a9b95db7ad4ccf6ffa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is error <br /></td></tr>
+<tr class="separator:a50a0547de2864a9b95db7ad4ccf6ffa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af80ab8220269cccf1cd9fd5fb74271cc" id="r_af80ab8220269cccf1cd9fd5fb74271cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#af80ab8220269cccf1cd9fd5fb74271cc">CChannel</a> (QTcpSocket *pSocket, QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:af80ab8220269cccf1cd9fd5fb74271cc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。">CChannel</a>  <br /></td></tr>
+<tr class="separator:af80ab8220269cccf1cd9fd5fb74271cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3dbba6ca9f0fa65ae0a018c693c5d44" id="r_ad3dbba6ca9f0fa65ae0a018c693c5d44"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#ad3dbba6ca9f0fa65ae0a018c693c5d44">open</a> (OpenMode mode) override</td></tr>
+<tr class="separator:ad3dbba6ca9f0fa65ae0a018c693c5d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb918ea169f0adf72ff0a04cde24ecfb" id="r_acb918ea169f0adf72ff0a04cde24ecfb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#acb918ea169f0adf72ff0a04cde24ecfb">close</a> () override</td></tr>
+<tr class="separator:acb918ea169f0adf72ff0a04cde24ecfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed01c050ec669ac3bfc68febf5992b28" id="r_aed01c050ec669ac3bfc68febf5992b28"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#aed01c050ec669ac3bfc68febf5992b28">GetDetails</a> ()</td></tr>
+<tr class="memdesc:aed01c050ec669ac3bfc68febf5992b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">依赖信息  <br /></td></tr>
+<tr class="separator:aed01c050ec669ac3bfc68febf5992b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a17424001491e79f13e3080ba40f7d422" id="r_a17424001491e79f13e3080ba40f7d422"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a17424001491e79f13e3080ba40f7d422">InitTranslation</a> ()</td></tr>
+<tr class="memdesc:a17424001491e79f13e3080ba40f7d422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial translation  <br /></td></tr>
+<tr class="separator:a17424001491e79f13e3080ba40f7d422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a049af7801157d4bade669f37769aa48a" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
+<tr class="memdesc:a049af7801157d4bade669f37769aa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation  <br /></td></tr>
+<tr class="separator:a049af7801157d4bade669f37769aa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a5522bb72d841222126cfcecf77d56971" id="r_a5522bb72d841222126cfcecf77d56971"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a5522bb72d841222126cfcecf77d56971">CChannel</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a5522bb72d841222126cfcecf77d56971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a324911e94362daec1b13b9a96df20506" id="r_a324911e94362daec1b13b9a96df20506"><td class="memItemLeft" align="right" valign="top">virtual qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a324911e94362daec1b13b9a96df20506">readData</a> (char *data, qint64 maxlen) override</td></tr>
+<tr class="separator:a324911e94362daec1b13b9a96df20506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac91abd301cbb28fef7aaba2cc31bbc46" id="r_ac91abd301cbb28fef7aaba2cc31bbc46"><td class="memItemLeft" align="right" valign="top">virtual qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#ac91abd301cbb28fef7aaba2cc31bbc46">writeData</a> (const char *data, qint64 len) override</td></tr>
+<tr class="separator:ac91abd301cbb28fef7aaba2cc31bbc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9aa220e3dde85bbe4b6caaece778c3d" id="r_ad9aa220e3dde85bbe4b6caaece778c3d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#ad9aa220e3dde85bbe4b6caaece778c3d">isSequential</a> () const override</td></tr>
+<tr class="separator:ad9aa220e3dde85bbe4b6caaece778c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:af70c7146bb4b8d66d259f0d674c90ecd" id="r_af70c7146bb4b8d66d259f0d674c90ecd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#af70c7146bb4b8d66d259f0d674c90ecd">slotError</a> (QAbstractSocket::SocketError e)</td></tr>
+<tr class="separator:af70c7146bb4b8d66d259f0d674c90ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a8ca3d694010eea2d0f43e5e2e793c1d6" id="r_a8ca3d694010eea2d0f43e5e2e793c1d6"><td class="memItemLeft" align="right" valign="top">QTcpSocket *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a8ca3d694010eea2d0f43e5e2e793c1d6">m_pSocket</a></td></tr>
+<tr class="separator:a8ca3d694010eea2d0f43e5e2e793c1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>通道接口类。此类默认实现一个 TCP 的通道。 </p>
+
+<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00026">26</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="af80ab8220269cccf1cd9fd5fb74271cc" name="af80ab8220269cccf1cd9fd5fb74271cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80ab8220269cccf1cd9fd5fb74271cc">&#9670;&#160;</a></span>CChannel() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CChannel::CChannel </td>
+          <td>(</td>
+          <td class="paramtype">QTcpSocket *&#160;</td>
+          <td class="paramname"><em>pSocket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。">CChannel</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pSocket</td><td>Its owner is the caller </td></tr>
+    <tr><td class="paramname">parent</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a28de30ec727b766834c5a51b66b4846d" name="a28de30ec727b766834c5a51b66b4846d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28de30ec727b766834c5a51b66b4846d">&#9670;&#160;</a></span>~CChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CChannel::~CChannel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5522bb72d841222126cfcecf77d56971" name="a5522bb72d841222126cfcecf77d56971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5522bb72d841222126cfcecf77d56971">&#9670;&#160;</a></span>CChannel() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CChannel::CChannel </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="acb918ea169f0adf72ff0a04cde24ecfb" name="acb918ea169f0adf72ff0a04cde24ecfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb918ea169f0adf72ff0a04cde24ecfb">&#9670;&#160;</a></span>close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannel::close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aed01c050ec669ac3bfc68febf5992b28" name="aed01c050ec669ac3bfc68febf5992b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed01c050ec669ac3bfc68febf5992b28">&#9670;&#160;</a></span>GetDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CChannel::GetDetails </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>依赖信息 </p>
+
+<p>被 <a class="el" href="classCChannelSSH.html#a6fe7142304957fe259665f685cc4a794">CChannelSSH</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a17424001491e79f13e3080ba40f7d422" name="a17424001491e79f13e3080ba40f7d422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17424001491e79f13e3080ba40f7d422">&#9670;&#160;</a></span>InitTranslation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannel::InitTranslation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial translation </p>
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00130">130</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad9aa220e3dde85bbe4b6caaece778c3d" name="ad9aa220e3dde85bbe4b6caaece778c3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9aa220e3dde85bbe4b6caaece778c3d">&#9670;&#160;</a></span>isSequential()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CChannel::isSequential </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00072">72</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad3dbba6ca9f0fa65ae0a018c693c5d44" name="ad3dbba6ca9f0fa65ae0a018c693c5d44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3dbba6ca9f0fa65ae0a018c693c5d44">&#9670;&#160;</a></span>open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CChannel::open </td>
+          <td>(</td>
+          <td class="paramtype">OpenMode&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pSocket</td><td>所有者是这个类的实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>被 <a class="el" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">CChannelSSH</a> , 以及 <a class="el" href="classCChannelSSHTunnelForward.html#a6c822a661d20a1361f1ace9d4d9c7aee">CChannelSSHTunnelForward</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a324911e94362daec1b13b9a96df20506" name="a324911e94362daec1b13b9a96df20506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a324911e94362daec1b13b9a96df20506">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannel::readData </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a049af7801157d4bade669f37769aa48a" name="a049af7801157d4bade669f37769aa48a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a049af7801157d4bade669f37769aa48a">&#9670;&#160;</a></span>RemoveTranslation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannel::RemoveTranslation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove translation </p>
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00138">138</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af70c7146bb4b8d66d259f0d674c90ecd" name="af70c7146bb4b8d66d259f0d674c90ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af70c7146bb4b8d66d259f0d674c90ecd">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannel::slotError </td>
+          <td>(</td>
+          <td class="paramtype">QAbstractSocket::SocketError&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac91abd301cbb28fef7aaba2cc31bbc46" name="ac91abd301cbb28fef7aaba2cc31bbc46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac91abd301cbb28fef7aaba2cc31bbc46">&#9670;&#160;</a></span>writeData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannel::writeData </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8cpp_source.html">Channel.cpp</a> 第 <a class="el" href="Channel_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8ca3d694010eea2d0f43e5e2e793c1d6" name="a8ca3d694010eea2d0f43e5e2e793c1d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca3d694010eea2d0f43e5e2e793c1d6">&#9670;&#160;</a></span>m_pSocket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTcpSocket* CChannel::m_pSocket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Channel_8h_source.html">Channel.h</a> 第 <a class="el" href="Channel_8h_source.html#l00070">70</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8h_source.html">Channel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Channel/<a class="el" href="Channel_8cpp_source.html">Channel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

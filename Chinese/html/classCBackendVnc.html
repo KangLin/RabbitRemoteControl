@@ -1,0 +1,1851 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendVnc类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCBackendVnc-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendVnc类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CBackendVnc 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendVnc__inherit__graph.png" border="0" usemap="#aCBackendVnc_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCBackendVnc_inherit__map" id="aCBackendVnc_inherit__map">
+<area shape="rect" title=" " alt="" coords="100,225,211,251"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="5,152,145,177"/>
+<area shape="poly" title=" " alt="" coords="100,184,144,223,140,227,96,188"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="32,79,119,104"/>
+<area shape="poly" title=" " alt="" coords="78,118,78,152,73,152,73,118"/>
+<area shape="rect" title=" " alt="" coords="38,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="78,44,78,79,73,79,73,44"/>
+<area shape="rect" title=" " alt="" coords="170,152,301,177"/>
+<area shape="poly" title=" " alt="" coords="214,188,170,227,167,223,211,184"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CBackendVnc 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCBackendVnc__coll__graph.png" border="0" usemap="#aCBackendVnc_coll__map" alt="Collaboration graph"/></div>
+<map name="aCBackendVnc_coll__map" id="aCBackendVnc_coll__map">
+<area shape="rect" title=" " alt="" coords="203,896,313,921"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="5,204,145,229"/>
+<area shape="poly" title=" " alt="" coords="86,242,94,276,98,314,98,822,101,838,108,852,133,875,167,890,203,899,202,904,165,895,130,879,103,856,95,840,93,822,93,314,89,277,81,243"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="607,80,693,105"/>
+<area shape="poly" title=" " alt="" coords="594,109,130,207,129,201,593,103"/>
+<area shape="rect" title=" " alt="" coords="670,5,745,31"/>
+<area shape="poly" title=" " alt="" coords="692,43,661,81,657,78,687,40"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="966,80,1065,105"/>
+<area shape="poly" title=" " alt="" coords="759,29,967,77,966,83,758,34"/>
+<area shape="rect" title=" " alt="" coords="193,808,323,833"/>
+<area shape="poly" title=" " alt="" coords="261,847,261,895,255,895,255,847"/>
+<area shape="rect" href="classCParameterVnc.html" title=" " alt="" coords="378,808,501,833"/>
+<area shape="poly" title=" " alt="" coords="404,842,284,898,282,893,401,837"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="405,733,535,759"/>
+<area shape="poly" title=" " alt="" coords="462,773,447,809,442,807,457,771"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="453,155,604,180"/>
+<area shape="poly" title=" " alt="" coords="536,193,538,204,555,360,558,517,558,660,552,685,536,706,516,723,496,735,493,731,513,718,533,702,547,682,553,659,553,517,549,360,533,204,531,194"/>
+<area shape="poly" title=" " alt="" coords="618,160,631,167,622,174,604,177,604,171,620,169,625,167,616,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="714,453,874,478"/>
+<area shape="poly" title=" " alt="" coords="618,172,659,183,697,202,748,244,780,286,801,336,821,401,823,414,821,428,806,454,802,451,815,426,818,414,815,402,796,338,775,289,744,248,694,206,657,188,617,177"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="321,352,443,377"/>
+<area shape="poly" title=" " alt="" coords="441,185,409,196,378,210,350,230,328,255,323,267,322,280,332,306,351,331,370,350,366,354,347,334,328,309,317,281,318,266,324,252,347,226,375,206,407,191,439,180"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="338,253,466,279"/>
+<area shape="poly" title=" " alt="" coords="504,190,419,255,415,251,501,186"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="191,645,325,671"/>
+<area shape="poly" title=" " alt="" coords="440,177,352,187,263,205,225,216,195,230,176,247,169,265,169,571,175,595,190,615,210,631,232,643,229,647,207,635,186,618,170,597,163,572,163,264,171,243,192,226,223,211,262,199,351,182,439,172"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="308,453,432,478"/>
+<area shape="poly" title=" " alt="" coords="528,194,519,242,501,304,473,369,454,400,432,429,415,443,396,455,394,450,412,439,428,425,450,397,468,367,496,302,514,241,523,193"/>
+<area shape="poly" title=" " alt="" coords="953,106,605,157,604,152,952,101"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="993,645,1131,671"/>
+<area shape="poly" title=" " alt="" coords="1079,98,1136,107,1193,121,1237,139,1250,152,1255,166,1255,416,1252,436,1242,462,1209,523,1169,582,1133,623,1114,637,1094,648,1092,643,1111,633,1130,619,1165,579,1204,520,1237,460,1246,435,1250,415,1250,166,1246,155,1234,144,1191,126,1135,112,1078,103"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="771,557,911,583"/>
+<area shape="poly" title=" " alt="" coords="954,111,934,120,918,132,906,148,902,166,902,366,906,414,912,453,912,491,906,511,895,535,883,549,869,559,865,555,880,545,890,532,901,510,906,490,907,453,901,415,897,366,897,166,901,145,914,129,932,116,952,106"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1051,303,1182,328"/>
+<area shape="poly" title=" " alt="" coords="1030,116,1036,128,1114,302,1109,304,1032,130,1026,119"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1276,557,1419,583"/>
+<area shape="poly" title=" " alt="" coords="1079,93,1158,98,1241,110,1278,120,1307,131,1328,147,1335,165,1335,467,1340,517,1347,556,1342,557,1334,517,1330,467,1330,167,1323,150,1305,136,1276,125,1240,116,1157,104,1078,98"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="920,401,1111,427"/>
+<area shape="poly" title=" " alt="" coords="1018,119,1018,166,1018,317,1018,401,1013,401,1013,317,1013,166,1013,119"/>
+<area shape="poly" title=" " alt="" coords="979,657,884,651,785,637,742,626,707,612,683,594,676,583,674,572,674,265,672,249,666,235,643,212,613,194,580,183,582,178,615,190,647,207,670,232,677,247,679,264,679,571,681,581,687,591,709,607,743,621,786,632,884,646,979,652"/>
+<area shape="poly" title=" " alt="" coords="838,596,839,609,844,620,867,633,903,643,992,652,992,658,903,648,865,638,840,623,834,610,833,597"/>
+<area shape="poly" title=" " alt="" coords="794,492,794,512,800,532,810,545,822,555,819,559,806,549,796,535,789,513,788,492"/>
+<area shape="poly" title=" " alt="" coords="416,383,436,398,454,416,467,439,473,464,473,659,473,733,467,733,467,659,467,464,462,441,450,420,432,402,413,387"/>
+<area shape="poly" title=" " alt="" coords="433,379,600,424,728,450,727,455,599,429,431,384"/>
+<area shape="poly" title=" " alt="" coords="359,388,309,438,284,470,263,505,247,543,246,582,258,645,252,646,241,583,242,541,258,503,280,467,305,435,356,384"/>
+<area shape="poly" title=" " alt="" coords="382,391,374,453,369,452,376,391"/>
+<area shape="poly" title=" " alt="" coords="399,292,387,353,382,351,394,291"/>
+<area shape="poly" title=" " alt="" coords="1125,341,1131,375,1134,413,1134,572,1129,596,1116,617,1082,647,1078,643,1111,613,1124,594,1129,571,1129,413,1126,376,1120,342"/>
+<area shape="poly" title=" " alt="" coords="1359,596,1360,610,1355,623,1332,646,1309,661,1286,668,1261,671,1207,669,1144,673,972,699,802,719,536,743,535,737,801,714,972,694,1143,668,1207,664,1261,665,1285,663,1307,656,1329,642,1350,620,1355,609,1354,596"/>
+<area shape="poly" title=" " alt="" coords="1316,592,1254,624,1192,641,1132,652,1131,646,1191,636,1252,619,1313,587"/>
+<area shape="poly" title=" " alt="" coords="1008,440,997,484,995,508,998,533,1009,566,1025,597,1055,644,1051,647,1020,600,1005,568,993,534,990,509,992,483,1003,439"/>
+<area shape="poly" title=" " alt="" coords="300,674,443,731,441,736,298,678"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="255,557,421,583"/>
+<area shape="poly" title=" " alt="" coords="320,595,271,647,267,643,316,591"/>
+<area shape="poly" title=" " alt="" coords="365,492,344,558,339,556,360,490"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a032c99cb5f8f990ae1474c8a02c840da" id="r_a032c99cb5f8f990ae1474c8a02c840da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a032c99cb5f8f990ae1474c8a02c840da">slotConnected</a> ()</td></tr>
+<tr class="separator:a032c99cb5f8f990ae1474c8a02c840da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae42bcf3a6e79c4412c669f574eff516a" id="r_ae42bcf3a6e79c4412c669f574eff516a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ae42bcf3a6e79c4412c669f574eff516a">slotDisConnected</a> ()</td></tr>
+<tr class="separator:ae42bcf3a6e79c4412c669f574eff516a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b104e053b43d2e95968680bc037890f" id="r_a1b104e053b43d2e95968680bc037890f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a1b104e053b43d2e95968680bc037890f">slotReadyRead</a> ()</td></tr>
+<tr class="separator:a1b104e053b43d2e95968680bc037890f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad38b58e9148ddb65520c860a4f23a5c5" id="r_ad38b58e9148ddb65520c860a4f23a5c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ad38b58e9148ddb65520c860a4f23a5c5">slotClipBoardChanged</a> () override</td></tr>
+<tr class="separator:ad38b58e9148ddb65520c860a4f23a5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32734304715ca8b9ff308182e3ad0602" id="r_a32734304715ca8b9ff308182e3ad0602"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a32734304715ca8b9ff308182e3ad0602">slotChannelError</a> (int nErr, const QString &amp;szErr)</td></tr>
+<tr class="separator:a32734304715ca8b9ff308182e3ad0602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_slots_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;Public 槽 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop" id="r_a87dd09d8943dac85c9f3c67726a4eef1"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>slotClipBoardChanged</b> ()=0</td></tr>
+<tr class="memdesc:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">当剪切板发生改变时调用 <br /></td></tr>
+<tr class="separator:a87dd09d8943dac85c9f3c67726a4eef1 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be96b59b49af2eb82a65cd9956c0fc3 inherit pub_slots_classCBackendDesktop" id="r_a0be96b59b49af2eb82a65cd9956c0fc3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a0be96b59b49af2eb82a65cd9956c0fc3">slotMousePressEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:a0be96b59b49af2eb82a65cd9956c0fc3 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62eca6ab89383d0dd7c0d15c59cbe1c inherit pub_slots_classCBackendDesktop" id="r_ab62eca6ab89383d0dd7c0d15c59cbe1c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#ab62eca6ab89383d0dd7c0d15c59cbe1c">slotMouseReleaseEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:ab62eca6ab89383d0dd7c0d15c59cbe1c inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0580cf9aa973ddaa41131b0d5df5e46 inherit pub_slots_classCBackendDesktop" id="r_ab0580cf9aa973ddaa41131b0d5df5e46"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#ab0580cf9aa973ddaa41131b0d5df5e46">slotMouseMoveEvent</a> (QMouseEvent *event, QPoint pos)</td></tr>
+<tr class="separator:ab0580cf9aa973ddaa41131b0d5df5e46 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf9f5d03ca3b5320b82869a40f0356d inherit pub_slots_classCBackendDesktop" id="r_abcf9f5d03ca3b5320b82869a40f0356d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#abcf9f5d03ca3b5320b82869a40f0356d">slotWheelEvent</a> (QWheelEvent *event, QPoint pos)</td></tr>
+<tr class="separator:abcf9f5d03ca3b5320b82869a40f0356d inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919c5f5fe2bab741ee7b89824f8a2a4c inherit pub_slots_classCBackendDesktop" id="r_a919c5f5fe2bab741ee7b89824f8a2a4c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a919c5f5fe2bab741ee7b89824f8a2a4c">slotKeyPressEvent</a> (QKeyEvent *event)</td></tr>
+<tr class="separator:a919c5f5fe2bab741ee7b89824f8a2a4c inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457acf253f94fd0089649e5e5355ddc0 inherit pub_slots_classCBackendDesktop" id="r_a457acf253f94fd0089649e5e5355ddc0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a457acf253f94fd0089649e5e5355ddc0">slotKeyReleaseEvent</a> (QKeyEvent *event)</td></tr>
+<tr class="separator:a457acf253f94fd0089649e5e5355ddc0 inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f7bd1d92d650a09c618520bc715c3d inherit pub_slots_classCBackendDesktop" id="r_a16f7bd1d92d650a09c618520bc715c3d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a16f7bd1d92d650a09c618520bc715c3d">slotInputMethodEvent</a> (QInputMethodEvent *event)</td></tr>
+<tr class="separator:a16f7bd1d92d650a09c618520bc715c3d inherit pub_slots_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a83f790def4e6e797bdaedb16978901a1" id="r_a83f790def4e6e797bdaedb16978901a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a83f790def4e6e797bdaedb16978901a1">CBackendVnc</a> (<a class="el" href="classCOperateDesktop.html">COperateDesktop</a> *pConnecter)</td></tr>
+<tr class="separator:a83f790def4e6e797bdaedb16978901a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad1cf2087fd17c9b72b0e48764b8927c" id="r_aad1cf2087fd17c9b72b0e48764b8927c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#aad1cf2087fd17c9b72b0e48764b8927c">initDone</a> () override</td></tr>
+<tr class="separator:aad1cf2087fd17c9b72b0e48764b8927c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951a8850eb7fdb07720cc08d6cfb41b7" id="r_a951a8850eb7fdb07720cc08d6cfb41b7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a951a8850eb7fdb07720cc08d6cfb41b7">authSuccess</a> () override</td></tr>
+<tr class="separator:a951a8850eb7fdb07720cc08d6cfb41b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bc982231143dc4813ebfc21f16d181a" id="r_a2bc982231143dc4813ebfc21f16d181a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a2bc982231143dc4813ebfc21f16d181a">resizeFramebuffer</a> () override</td></tr>
+<tr class="separator:a2bc982231143dc4813ebfc21f16d181a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1123b8901b1e74038f86701b62ec24fd" id="r_a1123b8901b1e74038f86701b62ec24fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a1123b8901b1e74038f86701b62ec24fd">getUserPasswd</a> (bool secure, std::string *user, std::string *password) override</td></tr>
+<tr class="separator:a1123b8901b1e74038f86701b62ec24fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85640e66dc88978a5207f823f251e270" id="r_a85640e66dc88978a5207f823f251e270"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a85640e66dc88978a5207f823f251e270">getX509File</a> (std::string *ca, std::string *crl) override</td></tr>
+<tr class="separator:a85640e66dc88978a5207f823f251e270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83417e7eba713a46ceb7d80eb3489d26" id="r_a83417e7eba713a46ceb7d80eb3489d26"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a83417e7eba713a46ceb7d80eb3489d26">showMsgBox</a> (rfb::MsgBoxFlags flags, const char *title, const char *text) override</td></tr>
+<tr class="separator:a83417e7eba713a46ceb7d80eb3489d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fa283bd8615ea67977600c2d1d1e9f6" id="r_a3fa283bd8615ea67977600c2d1d1e9f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a3fa283bd8615ea67977600c2d1d1e9f6">setName</a> (const char *name) override</td></tr>
+<tr class="separator:a3fa283bd8615ea67977600c2d1d1e9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c24d03bea94a02e1962d98a70a89228" id="r_a3c24d03bea94a02e1962d98a70a89228"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a3c24d03bea94a02e1962d98a70a89228">framebufferUpdateStart</a> () override</td></tr>
+<tr class="separator:a3c24d03bea94a02e1962d98a70a89228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b450f4608f31b4d93bb84d17490fcae" id="r_a1b450f4608f31b4d93bb84d17490fcae"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a1b450f4608f31b4d93bb84d17490fcae">framebufferUpdateEnd</a> () override</td></tr>
+<tr class="separator:a1b450f4608f31b4d93bb84d17490fcae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a22715161c5d0c3de2a15f546bf1893" id="r_a5a22715161c5d0c3de2a15f546bf1893"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a5a22715161c5d0c3de2a15f546bf1893">setColourMapEntries</a> (int firstColour, int nColours, uint16_t *rgbs) override</td></tr>
+<tr class="separator:a5a22715161c5d0c3de2a15f546bf1893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c4aa33b819b9ccc4c3d51efe8ed221a" id="r_a1c4aa33b819b9ccc4c3d51efe8ed221a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a1c4aa33b819b9ccc4c3d51efe8ed221a">bell</a> () override</td></tr>
+<tr class="separator:a1c4aa33b819b9ccc4c3d51efe8ed221a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88401416f7ccf4d9c3d08ae705a3f4dc" id="r_a88401416f7ccf4d9c3d08ae705a3f4dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a88401416f7ccf4d9c3d08ae705a3f4dc">setLEDState</a> (unsigned int state) override</td></tr>
+<tr class="separator:a88401416f7ccf4d9c3d08ae705a3f4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19360709d9dba731c76ab5f05113a13" id="r_ac19360709d9dba731c76ab5f05113a13"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ac19360709d9dba731c76ab5f05113a13">setCursor</a> (int width, int height, const rfb::Point &amp;hotspot, const uint8_t *data) override</td></tr>
+<tr class="separator:ac19360709d9dba731c76ab5f05113a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada8956ee1a87c8ceed9f0d134e0050d1" id="r_ada8956ee1a87c8ceed9f0d134e0050d1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ada8956ee1a87c8ceed9f0d134e0050d1">setCursorPos</a> (const rfb::Point &amp;pos) override</td></tr>
+<tr class="separator:ada8956ee1a87c8ceed9f0d134e0050d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84e6e610504c2a1e65bd26a448b21f79" id="r_a84e6e610504c2a1e65bd26a448b21f79"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a84e6e610504c2a1e65bd26a448b21f79">fence</a> (uint32_t flags, unsigned int len, const uint8_t data[]) override</td></tr>
+<tr class="separator:a84e6e610504c2a1e65bd26a448b21f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3b839f79b1825a6b7cb8a570dae24b" id="r_a6b3b839f79b1825a6b7cb8a570dae24b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a6b3b839f79b1825a6b7cb8a570dae24b">handleClipboardRequest</a> () override</td></tr>
+<tr class="separator:a6b3b839f79b1825a6b7cb8a570dae24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1b990a6f98302f83f87059bbb27483" id="r_a4f1b990a6f98302f83f87059bbb27483"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a4f1b990a6f98302f83f87059bbb27483">handleClipboardAnnounce</a> (bool available) override</td></tr>
+<tr class="separator:a4f1b990a6f98302f83f87059bbb27483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57cc59353a2010c6c785db952cc09d2" id="r_ae57cc59353a2010c6c785db952cc09d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ae57cc59353a2010c6c785db952cc09d2">handleClipboardData</a> (const char *data) override</td></tr>
+<tr class="separator:ae57cc59353a2010c6c785db952cc09d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:a191e6ec7ca6e084f4b5721a43ff9fe84 inherit pub_methods_classCBackendDesktop" id="r_a191e6ec7ca6e084f4b5721a43ff9fe84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a191e6ec7ca6e084f4b5721a43ff9fe84">CBackendDesktop</a> (<a class="el" href="classCOperateDesktop.html">COperateDesktop</a> *pOperate=nullptr)</td></tr>
+<tr class="separator:a191e6ec7ca6e084f4b5721a43ff9fe84 inherit pub_methods_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e215bbfd13f4fcfca36ddc3be7f906 inherit pub_methods_classCBackendDesktop" id="r_a63e215bbfd13f4fcfca36ddc3be7f906"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a63e215bbfd13f4fcfca36ddc3be7f906">event</a> (QEvent *event) override</td></tr>
+<tr class="separator:a63e215bbfd13f4fcfca36ddc3be7f906 inherit pub_methods_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBackend')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend" id="r_afd174412c610e7b2d451801254d99433"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#afd174412c610e7b2d451801254d99433">CBackend</a> (<a class="el" href="classCOperate.html">COperate</a> *pOperate=nullptr, bool bStopSignal=true)</td></tr>
+<tr class="memdesc:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a>  <br /></td></tr>
+<tr class="separator:afd174412c610e7b2d451801254d99433 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend" id="r_a675c80c148c99b81cd5c22c718cccd26"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26">Start</a> ()</td></tr>
+<tr class="memdesc:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件  <br /></td></tr>
+<tr class="separator:a675c80c148c99b81cd5c22c718cccd26 inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend" id="r_a179ed68b6d28f51dd75d900f48eb4a2e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e">Stop</a> ()</td></tr>
+<tr class="memdesc:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止  <br /></td></tr>
+<tr class="separator:a179ed68b6d28f51dd75d900f48eb4a2e inherit pub_methods_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a53e2144e0396033e185a75c18d1531cd" id="r_a53e2144e0396033e185a75c18d1531cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a53e2144e0396033e185a75c18d1531cd">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a53e2144e0396033e185a75c18d1531cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b381081a0b91b12c0d3ca9a233bb53" id="r_a22b381081a0b91b12c0d3ca9a233bb53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a22b381081a0b91b12c0d3ca9a233bb53">mouseReleaseEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a22b381081a0b91b12c0d3ca9a233bb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a181fb4936d8b6f5871e6623ea9141ad9" id="r_a181fb4936d8b6f5871e6623ea9141ad9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a181fb4936d8b6f5871e6623ea9141ad9">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="separator:a181fb4936d8b6f5871e6623ea9141ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b670844df13c55ea2d8788a0643dc46" id="r_a6b670844df13c55ea2d8788a0643dc46"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a6b670844df13c55ea2d8788a0643dc46">wheelEvent</a> (QWheelEvent *event) override</td></tr>
+<tr class="separator:a6b670844df13c55ea2d8788a0643dc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af97f1e6e6cc9d8681915967c7e719b3e" id="r_af97f1e6e6cc9d8681915967c7e719b3e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#af97f1e6e6cc9d8681915967c7e719b3e">keyPressEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:af97f1e6e6cc9d8681915967c7e719b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f39975708d6cdc87a59665eeda99e03" id="r_a5f39975708d6cdc87a59665eeda99e03"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a5f39975708d6cdc87a59665eeda99e03">keyReleaseEvent</a> (QKeyEvent *event) override</td></tr>
+<tr class="separator:a5f39975708d6cdc87a59665eeda99e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3a2cec2589a61aab71e31919bb4e1b" id="r_adc3a2cec2589a61aab71e31919bb4e1b"><td class="memItemLeft" align="right" valign="top">virtual OnInitReturnValue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#adc3a2cec2589a61aab71e31919bb4e1b">OnInit</a> () override</td></tr>
+<tr class="memdesc:adc3a2cec2589a61aab71e31919bb4e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <br /></td></tr>
+<tr class="separator:adc3a2cec2589a61aab71e31919bb4e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fc425485b96085d58e933da9bbb968" id="r_ab2fc425485b96085d58e933da9bbb968"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ab2fc425485b96085d58e933da9bbb968">OnClean</a> () override</td></tr>
+<tr class="memdesc:ab2fc425485b96085d58e933da9bbb968"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理  <br /></td></tr>
+<tr class="separator:ab2fc425485b96085d58e933da9bbb968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82f4c48df0086b6510078d8ba7dc7a2" id="r_ae82f4c48df0086b6510078d8ba7dc7a2"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ae82f4c48df0086b6510078d8ba7dc7a2">OnProcess</a> () override</td></tr>
+<tr class="memdesc:ae82f4c48df0086b6510078d8ba7dc7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。  <br /></td></tr>
+<tr class="separator:ae82f4c48df0086b6510078d8ba7dc7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdfa2607298878e57023b8bbda463e48" id="r_acdfa2607298878e57023b8bbda463e48"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#acdfa2607298878e57023b8bbda463e48">WakeUp</a> () override</td></tr>
+<tr class="memdesc:acdfa2607298878e57023b8bbda463e48"><td class="mdescLeft">&#160;</td><td class="mdescRight">唤醒后台线程  <br /></td></tr>
+<tr class="separator:acdfa2607298878e57023b8bbda463e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:af979bd256e0affb8fa56ddc8584202b3 inherit pro_methods_classCBackendDesktop" id="r_af979bd256e0affb8fa56ddc8584202b3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#af979bd256e0affb8fa56ddc8584202b3">InputMethodEvent</a> (QInputMethodEvent *event)</td></tr>
+<tr class="separator:af979bd256e0affb8fa56ddc8584202b3 inherit pro_methods_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a08f3a4099fed3a79512f9cac3fcfa196" id="r_a08f3a4099fed3a79512f9cac3fcfa196"><td class="memItemLeft" align="right" valign="top">quint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a08f3a4099fed3a79512f9cac3fcfa196">TranslateRfbKey</a> (quint32 inkey, bool modifier)</td></tr>
+<tr class="memdesc:a08f3a4099fed3a79512f9cac3fcfa196"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCBackendVnc.html#a08f3a4099fed3a79512f9cac3fcfa196" title="CBackendVnc::TranslateRfbKey">CBackendVnc::TranslateRfbKey</a>  <br /></td></tr>
+<tr class="separator:a08f3a4099fed3a79512f9cac3fcfa196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af564468f43f2a552148a2d580a9ad739" id="r_af564468f43f2a552148a2d580a9ad739"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#af564468f43f2a552148a2d580a9ad739">ConnectInformation</a> ()</td></tr>
+<tr class="separator:af564468f43f2a552148a2d580a9ad739"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7777d87b138d97510ed7b6d4d1ed03c2" id="r_a7777d87b138d97510ed7b6d4d1ed03c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a7777d87b138d97510ed7b6d4d1ed03c2">SetPara</a> ()</td></tr>
+<tr class="separator:a7777d87b138d97510ed7b6d4d1ed03c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4258098511d852086706e619387dcf71" id="r_a4258098511d852086706e619387dcf71"><td class="memItemLeft" align="right" valign="top"><a id="a4258098511d852086706e619387dcf71" name="a4258098511d852086706e619387dcf71"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>autoSelectFormatAndEncoding</b> ()</td></tr>
+<tr class="separator:a4258098511d852086706e619387dcf71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312ed33862b6328ae6c0f160862ec161" id="r_a312ed33862b6328ae6c0f160862ec161"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a312ed33862b6328ae6c0f160862ec161">updatePixelFormat</a> ()</td></tr>
+<tr class="separator:a312ed33862b6328ae6c0f160862ec161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef713029be4bf661dea3f7588c2162ae" id="r_aef713029be4bf661dea3f7588c2162ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#aef713029be4bf661dea3f7588c2162ae">SocketInit</a> ()</td></tr>
+<tr class="separator:aef713029be4bf661dea3f7588c2162ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb858c351c5819385366c6d7d8dfc955" id="r_afb858c351c5819385366c6d7d8dfc955"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#afb858c351c5819385366c6d7d8dfc955">SetChannelConnect</a> (QSharedPointer&lt; <a class="el" href="classCChannel.html">CChannel</a> &gt; channel)</td></tr>
+<tr class="separator:afb858c351c5819385366c6d7d8dfc955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ec1f27d99a14c3a9c26fc494ef221d1" id="r_a4ec1f27d99a14c3a9c26fc494ef221d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a4ec1f27d99a14c3a9c26fc494ef221d1">IceInit</a> ()</td></tr>
+<tr class="separator:a4ec1f27d99a14c3a9c26fc494ef221d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae78321d4335076b4c0e2aa50902fcf06" id="r_ae78321d4335076b4c0e2aa50902fcf06"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ae78321d4335076b4c0e2aa50902fcf06">SSHInit</a> ()</td></tr>
+<tr class="separator:ae78321d4335076b4c0e2aa50902fcf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a7ab8efac1c61e3f1c3193e50c7806dcf" id="r_a7ab8efac1c61e3f1c3193e50c7806dcf"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; <a class="el" href="classCChannel.html">CChannel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a7ab8efac1c61e3f1c3193e50c7806dcf">m_DataChannel</a></td></tr>
+<tr class="separator:a7ab8efac1c61e3f1c3193e50c7806dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f0e76d25194fc304ec2c512b7d6cd8" id="r_af0f0e76d25194fc304ec2c512b7d6cd8"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; rdr::InStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#af0f0e76d25194fc304ec2c512b7d6cd8">m_InStream</a></td></tr>
+<tr class="separator:af0f0e76d25194fc304ec2c512b7d6cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace20f64a004c7ba0d34ccc7ed855a452" id="r_ace20f64a004c7ba0d34ccc7ed855a452"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; rdr::OutStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#ace20f64a004c7ba0d34ccc7ed855a452">m_OutStream</a></td></tr>
+<tr class="separator:ace20f64a004c7ba0d34ccc7ed855a452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a833f33d04186e5416ad52dfaaa8b3c" id="r_a4a833f33d04186e5416ad52dfaaa8b3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterVnc.html">CParameterVnc</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendVnc.html#a4a833f33d04186e5416ad52dfaaa8b3c">m_pPara</a></td></tr>
+<tr class="separator:a4a833f33d04186e5416ad52dfaaa8b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCBackendDesktop"><td colspan="2" onclick="javascript:toggleInherit('signals_classCBackendDesktop')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a></td></tr>
+<tr class="memitem:ad2b7af05a5d5a5bb6fa48fb8404ca999 inherit signals_classCBackendDesktop" id="r_ad2b7af05a5d5a5bb6fa48fb8404ca999"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSetDesktopSize</b> (int width, int height)</td></tr>
+<tr class="separator:ad2b7af05a5d5a5bb6fa48fb8404ca999 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a128a6eac59cc545e47c85d0c4261f9fd inherit signals_classCBackendDesktop" id="r_a128a6eac59cc545e47c85d0c4261f9fd"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigServerName</b> (const QString &amp;szName)</td></tr>
+<tr class="separator:a128a6eac59cc545e47c85d0c4261f9fd inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop" id="r_a271b7cff1612d61bd8fc79d4e3415d7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a271b7cff1612d61bd8fc79d4e3415d7d">sigUpdateRect</a> (const QRect &amp;r, const QImage &amp;image)</td></tr>
+<tr class="memdesc:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知视图，图像更新  <br /></td></tr>
+<tr class="separator:a271b7cff1612d61bd8fc79d4e3415d7d inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop" id="r_a537d13cf37b356e8274f679e97f51dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackendDesktop.html#a537d13cf37b356e8274f679e97f51dfd">sigUpdateRect</a> (const QImage &amp;image)</td></tr>
+<tr class="memdesc:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify the CFrmView update image  <br /></td></tr>
+<tr class="separator:a537d13cf37b356e8274f679e97f51dfd inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1251b470c16bea68a2b52399ba474c inherit signals_classCBackendDesktop" id="r_a1e1251b470c16bea68a2b52399ba474c"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateCursor</b> (const QCursor &amp;cursor)</td></tr>
+<tr class="separator:a1e1251b470c16bea68a2b52399ba474c inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92fc842c68afebe88bc5ca2569cad52 inherit signals_classCBackendDesktop" id="r_af92fc842c68afebe88bc5ca2569cad52"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateCursorPosition</b> (const QPoint &amp;pos)</td></tr>
+<tr class="separator:af92fc842c68afebe88bc5ca2569cad52 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145e32d1378de7a6f404ddd172a7cb14 inherit signals_classCBackendDesktop" id="r_a145e32d1378de7a6f404ddd172a7cb14"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdateLedState</b> (unsigned int state)</td></tr>
+<tr class="separator:a145e32d1378de7a6f404ddd172a7cb14 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe362cfca2de92b910f77b003b451b93 inherit signals_classCBackendDesktop" id="r_afe362cfca2de92b910f77b003b451b93"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSetClipboard</b> (QMimeData *data)</td></tr>
+<tr class="separator:afe362cfca2de92b910f77b003b451b93 inherit signals_classCBackendDesktop"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('signals_classCBackend')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend" id="r_a995a76442b28b067ab34dbe0fdffbbb5"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRunning</b> ()</td></tr>
+<tr class="memdesc:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当插件开始成功后触发。仅由插件触发 <br /></td></tr>
+<tr class="separator:a995a76442b28b067ab34dbe0fdffbbb5 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend" id="r_a465330ec1de890111932a2458d37d0be"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStop</b> ()</td></tr>
+<tr class="memdesc:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要通知用户停止时触发。仅由插件触发。 当从插件中需要停止时触发。例如：对端断开连接、重置连接或者连接出错。 <br /></td></tr>
+<tr class="separator:a465330ec1de890111932a2458d37d0be inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend" id="r_ab2055a97b4c856982eedd6ce37f70940"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab2055a97b4c856982eedd6ce37f70940">sigFinished</a> ()</td></tr>
+<tr class="memdesc:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止成功信号。仅由插件触发  <br /></td></tr>
+<tr class="separator:ab2055a97b4c856982eedd6ce37f70940 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend" id="r_a67bf8156353fc085dbe5b5afaf3425cc"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (const int nError, const QString &amp;szError=QString())</td></tr>
+<tr class="memdesc:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">当有错误产生时触发 <br /></td></tr>
+<tr class="separator:a67bf8156353fc085dbe5b5afaf3425cc inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend" id="r_a003c4cf2cd63795187289df16b639e5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a003c4cf2cd63795187289df16b639e5a">sigInformation</a> (const QString &amp;szInfo)</td></tr>
+<tr class="memdesc:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示信息，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a003c4cf2cd63795187289df16b639e5a inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend" id="r_a5e011ebbb8577c03f32fbbba33e759d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a5e011ebbb8577c03f32fbbba33e759d8">sigShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, const QMessageBox::Icon &amp;icon=QMessageBox::Information)</td></tr>
+<tr class="memdesc:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程  <br /></td></tr>
+<tr class="separator:a5e011ebbb8577c03f32fbbba33e759d8 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend" id="r_a780b35e940bdfae5765e5d3337df7a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#a780b35e940bdfae5765e5d3337df7a02">sigBlockShowMessageBox</a> (const QString &amp;szTitle, const QString &amp;szMessage, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton &amp;nRet, bool &amp;checkBox, QString checkBoxContext=QString())</td></tr>
+<tr class="memdesc:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)  <br /></td></tr>
+<tr class="separator:a780b35e940bdfae5765e5d3337df7a02 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend" id="r_ae8fff211d62448cc622947a43cd0ce45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ae8fff211d62448cc622947a43cd0ce45">sigBlockInputDialog</a> (const QString &amp;szTitle, const QString &amp;szLable, const QString &amp;szMessage, QString &amp;szText)</td></tr>
+<tr class="memdesc:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)  <br /></td></tr>
+<tr class="separator:ae8fff211d62448cc622947a43cd0ce45 inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend" id="r_ad3aecd97defce14b02d48102a843136e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ad3aecd97defce14b02d48102a843136e">sigBlockShowWidget</a> (const QString &amp;className, int &amp;nRet, void *pContext)</td></tr>
+<tr class="memdesc:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞后台线程，并在前台线程中显示窗口。  <br /></td></tr>
+<tr class="separator:ad3aecd97defce14b02d48102a843136e inherit signals_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_types_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 类型 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend" id="r_ab255847aef6c0290768b431a7839674f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>OnInitReturnValue</b> { <b>Fail</b> = -1
+, <b>Success</b> = 0
+, <b>UseOnProcess</b> = Success
+, <b>NotUseOnProcess</b> = 1
+ }</td></tr>
+<tr class="separator:ab255847aef6c0290768b431a7839674f inherit pro_types_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCBackend"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCBackend')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCBackend.html">CBackend</a></td></tr>
+<tr class="memitem:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend" id="r_ab74a6b0f25f34ff763dc0f7080f229f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBackend.html#ab74a6b0f25f34ff763dc0f7080f229f6">slotTimeOut</a> ()</td></tr>
+<tr class="memdesc:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="mdescLeft">&#160;</td><td class="mdescRight">一个非 Qt 事件处理，它调用 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba" title="具体操作处理">OnProcess()</a>，并根据其返回值开始新的定时器。 如果是不是一个非 Qt 事件循环（就是普通的循环处理）， 可以重载它，或者 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda" title="初始化">OnInit()</a> 返回值大于 0  <br /></td></tr>
+<tr class="separator:ab74a6b0f25f34ff763dc0f7080f229f6 inherit pro_slots_classCBackend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a> 第 <a class="el" href="BackendVnc_8h_source.html#l00023">23</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a83f790def4e6e797bdaedb16978901a1" name="a83f790def4e6e797bdaedb16978901a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f790def4e6e797bdaedb16978901a1">&#9670;&#160;</a></span>CBackendVnc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendVnc::CBackendVnc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCOperateDesktop.html">COperateDesktop</a> *&#160;</td>
+          <td class="paramname"><em>pConnecter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98187b430f664d194c93bc935b67e8d6" name="a98187b430f664d194c93bc935b67e8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98187b430f664d194c93bc935b67e8d6">&#9670;&#160;</a></span>~CBackendVnc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendVnc::~CBackendVnc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a951a8850eb7fdb07720cc08d6cfb41b7" name="a951a8850eb7fdb07720cc08d6cfb41b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951a8850eb7fdb07720cc08d6cfb41b7">&#9670;&#160;</a></span>authSuccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::authSuccess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l01298">1298</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1c4aa33b819b9ccc4c3d51efe8ed221a" name="a1c4aa33b819b9ccc4c3d51efe8ed221a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c4aa33b819b9ccc4c3d51efe8ed221a">&#9670;&#160;</a></span>bell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::bell </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00629">629</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af564468f43f2a552148a2d580a9ad739" name="af564468f43f2a552148a2d580a9ad739"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af564468f43f2a552148a2d580a9ad739">&#9670;&#160;</a></span>ConnectInformation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CBackendVnc::ConnectInformation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00943">943</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a84e6e610504c2a1e65bd26a448b21f79" name="a84e6e610504c2a1e65bd26a448b21f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e6e610504c2a1e65bd26a448b21f79">&#9670;&#160;</a></span>fence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::fence </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>data</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00663">663</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b450f4608f31b4d93bb84d17490fcae" name="a1b450f4608f31b4d93bb84d17490fcae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b450f4608f31b4d93bb84d17490fcae">&#9670;&#160;</a></span>framebufferUpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::framebufferUpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00750">750</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c24d03bea94a02e1962d98a70a89228" name="a3c24d03bea94a02e1962d98a70a89228"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c24d03bea94a02e1962d98a70a89228">&#9670;&#160;</a></span>framebufferUpdateStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::framebufferUpdateStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00740">740</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1123b8901b1e74038f86701b62ec24fd" name="a1123b8901b1e74038f86701b62ec24fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1123b8901b1e74038f86701b62ec24fd">&#9670;&#160;</a></span>getUserPasswd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::getUserPasswd </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>secure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramname"><em>user</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00676">676</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85640e66dc88978a5207f823f251e270" name="a85640e66dc88978a5207f823f251e270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85640e66dc88978a5207f823f251e270">&#9670;&#160;</a></span>getX509File()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::getX509File </td>
+          <td>(</td>
+          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramname"><em>ca</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramname"><em>crl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00695">695</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4f1b990a6f98302f83f87059bbb27483" name="a4f1b990a6f98302f83f87059bbb27483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1b990a6f98302f83f87059bbb27483">&#9670;&#160;</a></span>handleClipboardAnnounce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::handleClipboardAnnounce </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>available</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l01280">1280</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae57cc59353a2010c6c785db952cc09d2" name="ae57cc59353a2010c6c785db952cc09d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae57cc59353a2010c6c785db952cc09d2">&#9670;&#160;</a></span>handleClipboardData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::handleClipboardData </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l01288">1288</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b3b839f79b1825a6b7cb8a570dae24b" name="a6b3b839f79b1825a6b7cb8a570dae24b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b3b839f79b1825a6b7cb8a570dae24b">&#9670;&#160;</a></span>handleClipboardRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::handleClipboardRequest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l01248">1248</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4ec1f27d99a14c3a9c26fc494ef221d1" name="a4ec1f27d99a14c3a9c26fc494ef221d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ec1f27d99a14c3a9c26fc494ef221d1">&#9670;&#160;</a></span>IceInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::IceInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aad1cf2087fd17c9b72b0e48764b8927c" name="aad1cf2087fd17c9b72b0e48764b8927c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad1cf2087fd17c9b72b0e48764b8927c">&#9670;&#160;</a></span>initDone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::initDone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00588">588</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af97f1e6e6cc9d8681915967c7e719b3e" name="af97f1e6e6cc9d8681915967c7e719b3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af97f1e6e6cc9d8681915967c7e719b3e">&#9670;&#160;</a></span>keyPressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::keyPressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00907">907</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5f39975708d6cdc87a59665eeda99e03" name="a5f39975708d6cdc87a59665eeda99e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f39975708d6cdc87a59665eeda99e03">&#9670;&#160;</a></span>keyReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::keyReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QKeyEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00925">925</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a181fb4936d8b6f5871e6623ea9141ad9" name="a181fb4936d8b6f5871e6623ea9141ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a181fb4936d8b6f5871e6623ea9141ad9">&#9670;&#160;</a></span>mouseMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::mouseMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00834">834</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a53e2144e0396033e185a75c18d1531cd" name="a53e2144e0396033e185a75c18d1531cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e2144e0396033e185a75c18d1531cd">&#9670;&#160;</a></span>mousePressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::mousePressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00792">792</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a22b381081a0b91b12c0d3ca9a233bb53" name="a22b381081a0b91b12c0d3ca9a233bb53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b381081a0b91b12c0d3ca9a233bb53">&#9670;&#160;</a></span>mouseReleaseEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::mouseReleaseEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00819">819</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2fc425485b96085d58e933da9bbb968" name="ab2fc425485b96085d58e933da9bbb968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2fc425485b96085d58e933da9bbb968">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a179ed68b6d28f51dd75d900f48eb4a2e" title="停止">Stop()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a5421972b8e09d32b62f634360f0f8a31">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00418">418</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adc3a2cec2589a61aab71e31919bb4e1b" name="adc3a2cec2589a61aab71e31919bb4e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc3a2cec2589a61aab71e31919bb4e1b">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBackendVnc::OnInitReturnValue CBackendVnc::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 <a class="el" href="classCBackendVnc.html#ae82f4c48df0086b6510078d8ba7dc7a2" title="插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。">OnProcess()</a> (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 <a class="el" href="classCBackendVnc.html#ae82f4c48df0086b6510078d8ba7dc7a2" title="插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。">OnProcess()</a> (qt 事件循环)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCBackend.html#a675c80c148c99b81cd5c22c718cccd26" title="开始。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件">Start()</a> </dd></dl>
+
+<p>实现了 <a class="el" href="classCBackend.html#a51bd54e64478fde607734746145d7dda">CBackend</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00194">194</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae82f4c48df0086b6510078d8ba7dc7a2" name="ae82f4c48df0086b6510078d8ba7dc7a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae82f4c48df0086b6510078d8ba7dc7a2">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::OnProcess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&gt;= 0: continue, Interval call time (msec) </li>
+<li>= -1: stop </li>
+<li>&lt; -1: error </li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>参见</dt><dd>CConnect::Connect() CConnect::slotTimeOut() </dd></dl>
+
+<p>重载 <a class="el" href="classCBackend.html#a1d972eecb77f46d83487bdcc836c22ba">CBackend</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00442">442</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2bc982231143dc4813ebfc21f16d181a" name="a2bc982231143dc4813ebfc21f16d181a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bc982231143dc4813ebfc21f16d181a">&#9670;&#160;</a></span>resizeFramebuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::resizeFramebuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00608">608</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afb858c351c5819385366c6d7d8dfc955" name="afb858c351c5819385366c6d7d8dfc955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb858c351c5819385366c6d7d8dfc955">&#9670;&#160;</a></span>SetChannelConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::SetChannelConnect </td>
+          <td>(</td>
+          <td class="paramtype">QSharedPointer&lt; <a class="el" href="classCChannel.html">CChannel</a> &gt;&#160;</td>
+          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00400">400</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a22715161c5d0c3de2a15f546bf1893" name="a5a22715161c5d0c3de2a15f546bf1893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a22715161c5d0c3de2a15f546bf1893">&#9670;&#160;</a></span>setColourMapEntries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::setColourMapEntries </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>firstColour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nColours</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rgbs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00624">624</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac19360709d9dba731c76ab5f05113a13" name="ac19360709d9dba731c76ab5f05113a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19360709d9dba731c76ab5f05113a13">&#9670;&#160;</a></span>setCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::setCursor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rfb::Point &amp;&#160;</td>
+          <td class="paramname"><em>hotspot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00641">641</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada8956ee1a87c8ceed9f0d134e0050d1" name="ada8956ee1a87c8ceed9f0d134e0050d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada8956ee1a87c8ceed9f0d134e0050d1">&#9670;&#160;</a></span>setCursorPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::setCursorPos </td>
+          <td>(</td>
+          <td class="paramtype">const rfb::Point &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00657">657</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a88401416f7ccf4d9c3d08ae705a3f4dc" name="a88401416f7ccf4d9c3d08ae705a3f4dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88401416f7ccf4d9c3d08ae705a3f4dc">&#9670;&#160;</a></span>setLEDState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::setLEDState </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00634">634</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3fa283bd8615ea67977600c2d1d1e9f6" name="a3fa283bd8615ea67977600c2d1d1e9f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fa283bd8615ea67977600c2d1d1e9f6">&#9670;&#160;</a></span>setName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::setName </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00728">728</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7777d87b138d97510ed7b6d4d1ed03c2" name="a7777d87b138d97510ed7b6d4d1ed03c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7777d87b138d97510ed7b6d4d1ed03c2">&#9670;&#160;</a></span>SetPara()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::SetPara </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a83417e7eba713a46ceb7d80eb3489d26" name="a83417e7eba713a46ceb7d80eb3489d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83417e7eba713a46ceb7d80eb3489d26">&#9670;&#160;</a></span>showMsgBox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CBackendVnc::showMsgBox </td>
+          <td>(</td>
+          <td class="paramtype">rfb::MsgBoxFlags&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00705">705</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a32734304715ca8b9ff308182e3ad0602" name="a32734304715ca8b9ff308182e3ad0602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32734304715ca8b9ff308182e3ad0602">&#9670;&#160;</a></span>slotChannelError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::slotChannelError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nErr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szErr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00578">578</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad38b58e9148ddb65520c860a4f23a5c5" name="ad38b58e9148ddb65520c860a4f23a5c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad38b58e9148ddb65520c860a4f23a5c5">&#9670;&#160;</a></span>slotClipBoardChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::slotClipBoardChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l01239">1239</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a032c99cb5f8f990ae1474c8a02c840da" name="a032c99cb5f8f990ae1474c8a02c840da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032c99cb5f8f990ae1474c8a02c840da">&#9670;&#160;</a></span>slotConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::slotConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00468">468</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae42bcf3a6e79c4412c669f574eff516a" name="ae42bcf3a6e79c4412c669f574eff516a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae42bcf3a6e79c4412c669f574eff516a">&#9670;&#160;</a></span>slotDisConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::slotDisConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00505">505</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b104e053b43d2e95968680bc037890f" name="a1b104e053b43d2e95968680bc037890f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b104e053b43d2e95968680bc037890f">&#9670;&#160;</a></span>slotReadyRead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::slotReadyRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00522">522</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aef713029be4bf661dea3f7588c2162ae" name="aef713029be4bf661dea3f7588c2162ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef713029be4bf661dea3f7588c2162ae">&#9670;&#160;</a></span>SocketInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::SocketInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00261">261</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae78321d4335076b4c0e2aa50902fcf06" name="ae78321d4335076b4c0e2aa50902fcf06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78321d4335076b4c0e2aa50902fcf06">&#9670;&#160;</a></span>SSHInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::SSHInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00370">370</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a08f3a4099fed3a79512f9cac3fcfa196" name="a08f3a4099fed3a79512f9cac3fcfa196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f3a4099fed3a79512f9cac3fcfa196">&#9670;&#160;</a></span>TranslateRfbKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint32 CBackendVnc::TranslateRfbKey </td>
+          <td>(</td>
+          <td class="paramtype">quint32&#160;</td>
+          <td class="paramname"><em>inkey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>modifier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classCBackendVnc.html#a08f3a4099fed3a79512f9cac3fcfa196" title="CBackendVnc::TranslateRfbKey">CBackendVnc::TranslateRfbKey</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inkey</td><td></td></tr>
+    <tr><td class="paramname">modifier</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a href="https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent">https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00978">978</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a312ed33862b6328ae6c0f160862ec161" name="a312ed33862b6328ae6c0f160862ec161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312ed33862b6328ae6c0f160862ec161">&#9670;&#160;</a></span>updatePixelFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::updatePixelFormat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00764">764</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acdfa2607298878e57023b8bbda463e48" name="acdfa2607298878e57023b8bbda463e48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfa2607298878e57023b8bbda463e48">&#9670;&#160;</a></span>WakeUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CBackendVnc::WakeUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>唤醒后台线程 </p>
+
+<p>重载 <a class="el" href="classCBackendDesktop.html#ada865c1ad4a76f9a92513cde4a80f44f">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00456">456</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b670844df13c55ea2d8788a0643dc46" name="a6b670844df13c55ea2d8788a0643dc46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b670844df13c55ea2d8788a0643dc46">&#9670;&#160;</a></span>wheelEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBackendVnc::wheelEvent </td>
+          <td>(</td>
+          <td class="paramtype">QWheelEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCBackendDesktop.html">CBackendDesktop</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a> 第 <a class="el" href="BackendVnc_8cpp_source.html#l00861">861</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a7ab8efac1c61e3f1c3193e50c7806dcf" name="a7ab8efac1c61e3f1c3193e50c7806dcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ab8efac1c61e3f1c3193e50c7806dcf">&#9670;&#160;</a></span>m_DataChannel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;<a class="el" href="classCChannel.html">CChannel</a>&gt; CBackendVnc::m_DataChannel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a> 第 <a class="el" href="BackendVnc_8h_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af0f0e76d25194fc304ec2c512b7d6cd8" name="af0f0e76d25194fc304ec2c512b7d6cd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0f0e76d25194fc304ec2c512b7d6cd8">&#9670;&#160;</a></span>m_InStream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;rdr::InStream&gt; CBackendVnc::m_InStream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a> 第 <a class="el" href="BackendVnc_8h_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ace20f64a004c7ba0d34ccc7ed855a452" name="ace20f64a004c7ba0d34ccc7ed855a452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace20f64a004c7ba0d34ccc7ed855a452">&#9670;&#160;</a></span>m_OutStream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;rdr::OutStream&gt; CBackendVnc::m_OutStream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a> 第 <a class="el" href="BackendVnc_8h_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4a833f33d04186e5416ad52dfaaa8b3c" name="a4a833f33d04186e5416ad52dfaaa8b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a833f33d04186e5416ad52dfaaa8b3c">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterVnc.html">CParameterVnc</a>* CBackendVnc::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a> 第 <a class="el" href="BackendVnc_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Client/<a class="el" href="BackendVnc_8h_source.html">BackendVnc.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/TigerVnc/Client/<a class="el" href="BackendVnc_8cpp_source.html">BackendVnc.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

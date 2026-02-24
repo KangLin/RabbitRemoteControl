@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CChannelSSHTerminal类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCChannelSSHTerminal-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CChannelSSHTerminal类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CChannelSSHTerminal 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannelSSHTerminal__inherit__graph.png" border="0" usemap="#aCChannelSSHTerminal_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCChannelSSHTerminal_inherit__map" id="aCChannelSSHTerminal_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,172,251"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="33,152,144,177"/>
+<area shape="poly" title=" " alt="" coords="91,191,91,225,86,225,86,191"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="47,79,131,104"/>
+<area shape="poly" title=" " alt="" coords="91,118,91,152,86,152,86,118"/>
+<area shape="rect" title=" " alt="" coords="43,5,134,31"/>
+<area shape="poly" title=" " alt="" coords="91,44,91,79,86,79,86,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CChannelSSHTerminal 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCChannelSSHTerminal__coll__graph.png" border="0" usemap="#aCChannelSSHTerminal_coll__map" alt="Collaboration graph"/></div>
+<map name="aCChannelSSHTerminal_coll__map" id="aCChannelSSHTerminal_coll__map">
+<area shape="rect" title=" " alt="" coords="72,665,239,691"/>
+<area shape="rect" href="classCChannelSSH.html" title=" " alt="" coords="100,577,211,603"/>
+<area shape="poly" title=" " alt="" coords="158,617,158,665,153,665,153,617"/>
+<area shape="rect" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="180,477,264,502"/>
+<area shape="poly" title=" " alt="" coords="209,515,165,579,161,576,204,512"/>
+<area shape="rect" title=" " alt="" coords="229,376,319,401"/>
+<area shape="poly" title=" " alt="" coords="264,415,231,478,226,475,259,413"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="5,129,92,155"/>
+<area shape="poly" title=" " alt="" coords="43,169,34,202,30,239,30,490,32,506,38,520,60,544,88,562,118,575,116,580,86,567,56,548,34,523,27,508,25,491,25,239,29,201,38,167"/>
+<area shape="rect" title=" " alt="" coords="98,5,173,31"/>
+<area shape="poly" title=" " alt="" coords="121,44,59,131,55,128,117,40"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="822,80,921,105"/>
+<area shape="poly" title=" " alt="" coords="187,22,822,84,821,89,186,27"/>
+<area shape="rect" href="classChannel_1_1CEvent.html" title=" " alt="" coords="71,228,200,253"/>
+<area shape="poly" title=" " alt="" coords="138,45,138,228,133,228,133,45"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="295,477,419,502"/>
+<area shape="poly" title=" " alt="" coords="322,511,180,580,178,575,320,506"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="509,179,660,204"/>
+<area shape="poly" title=" " alt="" coords="497,206,471,216,448,230,421,257,400,289,385,325,374,361,362,429,359,476,354,476,357,429,369,360,380,323,396,287,417,254,444,226,469,211,495,201"/>
+<area shape="poly" title=" " alt="" coords="675,182,687,191,678,199,660,203,660,197,676,195,681,192,672,187"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="453,477,613,502"/>
+<area shape="poly" title=" " alt="" coords="591,217,595,263,596,322,588,388,580,421,568,452,548,478,544,475,564,449,575,419,583,387,590,322,590,263,586,218"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="421,376,543,401"/>
+<area shape="poly" title=" " alt="" coords="528,211,476,237,453,256,435,279,430,291,430,304,438,330,454,354,471,374,467,377,450,358,433,332,424,304,425,290,430,276,449,252,473,232,526,206"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="445,277,573,303"/>
+<area shape="poly" title=" " alt="" coords="569,217,520,279,516,276,565,213"/>
+<area shape="poly" title=" " alt="" coords="825,112,619,181,618,176,824,107"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="782,665,921,691"/>
+<area shape="poly" title=" " alt="" coords="893,115,914,148,922,169,925,190,925,439,929,523,926,559,912,604,891,640,866,667,862,663,887,637,908,602,920,558,923,523,919,439,919,190,917,170,909,151,889,117"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="463,577,603,603"/>
+<area shape="poly" title=" " alt="" coords="854,117,833,151,826,170,823,190,823,390,819,427,808,457,789,480,766,498,705,526,634,556,572,580,570,575,632,551,703,521,763,493,786,476,803,454,814,426,818,390,818,190,821,169,828,148,850,115"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="942,327,1073,352"/>
+<area shape="poly" title=" " alt="" coords="920,110,943,127,961,153,975,180,995,237,1005,290,1009,326,1004,327,1000,290,990,239,970,182,956,155,939,131,917,114"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1029,425,1172,451"/>
+<area shape="poly" title=" " alt="" coords="935,92,989,99,1042,115,1065,128,1084,144,1096,165,1101,190,1101,341,1103,425,1097,425,1095,341,1095,190,1091,167,1080,147,1062,132,1040,120,988,104,934,98"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="717,528,908,553"/>
+<area shape="poly" title=" " alt="" coords="874,119,874,190,874,440,869,467,857,492,827,529,823,526,852,489,864,465,869,439,869,190,869,119"/>
+<area shape="poly" title=" " alt="" coords="768,674,729,665,694,649,668,625,661,610,658,592,658,289,652,263,638,240,619,221,601,206,604,202,623,217,642,237,657,261,663,288,663,591,666,608,672,622,697,645,731,660,769,668"/>
+<area shape="poly" title=" " alt="" coords="514,615,508,628,511,640,523,646,546,652,617,661,782,672,782,677,616,667,545,657,521,651,507,643,502,628,509,613"/>
+<area shape="poly" title=" " alt="" coords="535,516,535,577,530,577,530,516"/>
+<area shape="poly" title=" " alt="" coords="458,412,373,478,370,474,455,408"/>
+<area shape="poly" title=" " alt="" coords="497,413,529,475,524,478,492,415"/>
+<area shape="poly" title=" " alt="" coords="504,317,488,377,483,375,499,315"/>
+<area shape="poly" title=" " alt="" coords="1000,366,991,399,986,437,986,592,978,619,959,641,932,657,904,668,902,663,930,652,955,637,974,617,981,591,981,437,985,398,995,364"/>
+<area shape="poly" title=" " alt="" coords="1099,465,1088,504,1070,553,1042,602,1024,624,1004,644,964,665,922,675,920,670,962,660,1000,639,1020,621,1038,599,1065,551,1083,503,1093,463"/>
+<area shape="poly" title=" " alt="" coords="800,567,795,578,793,590,795,602,815,637,840,663,836,667,811,640,790,604,788,590,790,577,795,565"/>
+<area shape="poly" title=" " alt="" coords="138,267,138,338,138,491,144,538,154,576,149,577,138,539,133,491,133,338,133,267"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a47e909ede464bed9451e597fafa34cde" id="r_a47e909ede464bed9451e597fafa34cde"><td class="memItemLeft" align="right" valign="top"><a id="a47e909ede464bed9451e597fafa34cde" name="a47e909ede464bed9451e597fafa34cde"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CChannelSSHTerminal</b> (<a class="el" href="classCBackend.html">CBackend</a> *pBackend, <a class="el" href="classCParameterSSH.html">CParameterSSH</a> *pPara)</td></tr>
+<tr class="separator:a47e909ede464bed9451e597fafa34cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6835afbb025f1f67f6ed1852b3ff9c3" id="r_ac6835afbb025f1f67f6ed1852b3ff9c3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#ac6835afbb025f1f67f6ed1852b3ff9c3">OnProcess</a> (int timeout)</td></tr>
+<tr class="separator:ac6835afbb025f1f67f6ed1852b3ff9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fd85507eb15d59477260a9b86a58df4" id="r_a8fd85507eb15d59477260a9b86a58df4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a8fd85507eb15d59477260a9b86a58df4">SetSize</a> (int row, int column)</td></tr>
+<tr class="separator:a8fd85507eb15d59477260a9b86a58df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a4078cda60d1fe94330c845ef8a37c" id="r_aa7a4078cda60d1fe94330c845ef8a37c"><td class="memItemLeft" align="right" valign="top">virtual qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#aa7a4078cda60d1fe94330c845ef8a37c">bytesAvailable</a> () const override</td></tr>
+<tr class="separator:aa7a4078cda60d1fe94330c845ef8a37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCChannelSSH"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCChannelSSH')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCChannelSSH.html">CChannelSSH</a></td></tr>
+<tr class="memitem:a43dd80909cfe1a1d5c20166aa517ffcf inherit pub_methods_classCChannelSSH" id="r_a43dd80909cfe1a1d5c20166aa517ffcf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#a43dd80909cfe1a1d5c20166aa517ffcf">CChannelSSH</a> (<a class="el" href="classCBackend.html">CBackend</a> *pBackend, <a class="el" href="classCParameterSSH.html">CParameterSSH</a> *pPara, bool bWakeUp=true, QObject *parent=nullptr)</td></tr>
+<tr class="separator:a43dd80909cfe1a1d5c20166aa517ffcf inherit pub_methods_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7059859f5ea9058734f2573525b9962 inherit pub_methods_classCChannelSSH" id="r_ab7059859f5ea9058734f2573525b9962"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#ab7059859f5ea9058734f2573525b9962">open</a> (OpenMode mode) override</td></tr>
+<tr class="separator:ab7059859f5ea9058734f2573525b9962 inherit pub_methods_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0b4409fbde59c643c170a392abb517 inherit pub_methods_classCChannelSSH" id="r_a9e0b4409fbde59c643c170a392abb517"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#a9e0b4409fbde59c643c170a392abb517">close</a> () override</td></tr>
+<tr class="separator:a9e0b4409fbde59c643c170a392abb517 inherit pub_methods_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49980ac9095ed939c3448e7369e03d93 inherit pub_methods_classCChannelSSH" id="r_a49980ac9095ed939c3448e7369e03d93"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#a49980ac9095ed939c3448e7369e03d93">WakeUp</a> ()</td></tr>
+<tr class="separator:a49980ac9095ed939c3448e7369e03d93 inherit pub_methods_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe7142304957fe259665f685cc4a794 inherit pub_methods_classCChannelSSH" id="r_a6fe7142304957fe259665f685cc4a794"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#a6fe7142304957fe259665f685cc4a794">GetDetails</a> () override</td></tr>
+<tr class="memdesc:a6fe7142304957fe259665f685cc4a794 inherit pub_methods_classCChannelSSH"><td class="mdescLeft">&#160;</td><td class="mdescRight">依赖信息  <br /></td></tr>
+<tr class="separator:a6fe7142304957fe259665f685cc4a794 inherit pub_methods_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCChannel"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCChannel')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:af80ab8220269cccf1cd9fd5fb74271cc inherit pub_methods_classCChannel" id="r_af80ab8220269cccf1cd9fd5fb74271cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#af80ab8220269cccf1cd9fd5fb74271cc">CChannel</a> (QTcpSocket *pSocket, QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:af80ab8220269cccf1cd9fd5fb74271cc inherit pub_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。">CChannel</a>  <br /></td></tr>
+<tr class="separator:af80ab8220269cccf1cd9fd5fb74271cc inherit pub_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a80a5af1dc5498de5c48a7eb8311c0c76" id="r_a80a5af1dc5498de5c48a7eb8311c0c76"><td class="memItemLeft" align="right" valign="top">virtual qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a80a5af1dc5498de5c48a7eb8311c0c76">readData</a> (char *data, qint64 maxlen) override</td></tr>
+<tr class="separator:a80a5af1dc5498de5c48a7eb8311c0c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a414b04358f97592baae3c97cbff77bee" id="r_a414b04358f97592baae3c97cbff77bee"><td class="memItemLeft" align="right" valign="top">virtual qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a414b04358f97592baae3c97cbff77bee">writeData</a> (const char *data, qint64 maxlen) override</td></tr>
+<tr class="separator:a414b04358f97592baae3c97cbff77bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCChannel"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCChannel')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a5522bb72d841222126cfcecf77d56971 inherit pro_methods_classCChannel" id="r_a5522bb72d841222126cfcecf77d56971"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a5522bb72d841222126cfcecf77d56971">CChannel</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a5522bb72d841222126cfcecf77d56971 inherit pro_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9aa220e3dde85bbe4b6caaece778c3d inherit pro_methods_classCChannel" id="r_ad9aa220e3dde85bbe4b6caaece778c3d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#ad9aa220e3dde85bbe4b6caaece778c3d">isSequential</a> () const override</td></tr>
+<tr class="separator:ad9aa220e3dde85bbe4b6caaece778c3d inherit pro_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a038e919dc830a761f64b30df786c55ed" id="r_a038e919dc830a761f64b30df786c55ed"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a038e919dc830a761f64b30df786c55ed">OnOpen</a> (ssh_session session) override</td></tr>
+<tr class="separator:a038e919dc830a761f64b30df786c55ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b85aea0f22271994b4cfefd844380b" id="r_a47b85aea0f22271994b4cfefd844380b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a47b85aea0f22271994b4cfefd844380b">OnClose</a> () override</td></tr>
+<tr class="separator:a47b85aea0f22271994b4cfefd844380b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a883de60fd36c0919e4e810d9851638b2" id="r_a883de60fd36c0919e4e810d9851638b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#a883de60fd36c0919e4e810d9851638b2">m_nRow</a></td></tr>
+<tr class="separator:a883de60fd36c0919e4e810d9851638b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00c13dc5d9578ff5132f67330b16148" id="r_ac00c13dc5d9578ff5132f67330b16148"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#ac00c13dc5d9578ff5132f67330b16148">m_nColumn</a></td></tr>
+<tr class="separator:ac00c13dc5d9578ff5132f67330b16148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adde5794e8ea20c7d61ca6e3ed45ac494" id="r_adde5794e8ea20c7d61ca6e3ed45ac494"><td class="memItemLeft" align="right" valign="top">qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSHTerminal.html#adde5794e8ea20c7d61ca6e3ed45ac494">m_nBytesAvailable</a></td></tr>
+<tr class="separator:adde5794e8ea20c7d61ca6e3ed45ac494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCChannel"><td colspan="2" onclick="javascript:toggleInherit('signals_classCChannel')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a270a6dcabcec7d72426e29d0df2001c8 inherit signals_classCChannel" id="r_a270a6dcabcec7d72426e29d0df2001c8"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigConnected</b> ()</td></tr>
+<tr class="memdesc:a270a6dcabcec7d72426e29d0df2001c8 inherit signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is connected. <br /></td></tr>
+<tr class="separator:a270a6dcabcec7d72426e29d0df2001c8 inherit signals_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40535811d4d70f5dbbe0b473f0c9e5fa inherit signals_classCChannel" id="r_a40535811d4d70f5dbbe0b473f0c9e5fa"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDisconnected</b> ()</td></tr>
+<tr class="memdesc:a40535811d4d70f5dbbe0b473f0c9e5fa inherit signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is disconnected <br /></td></tr>
+<tr class="separator:a40535811d4d70f5dbbe0b473f0c9e5fa inherit signals_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a0547de2864a9b95db7ad4ccf6ffa2 inherit signals_classCChannel" id="r_a50a0547de2864a9b95db7ad4ccf6ffa2"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (int nErr, const QString &amp;szErr)</td></tr>
+<tr class="memdesc:a50a0547de2864a9b95db7ad4ccf6ffa2 inherit signals_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit when the channel is error <br /></td></tr>
+<tr class="separator:a50a0547de2864a9b95db7ad4ccf6ffa2 inherit signals_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classCChannel"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classCChannel')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="classCChannel.html">CChannel</a></td></tr>
+<tr class="memitem:a17424001491e79f13e3080ba40f7d422 inherit pub_static_methods_classCChannel" id="r_a17424001491e79f13e3080ba40f7d422"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a17424001491e79f13e3080ba40f7d422">InitTranslation</a> ()</td></tr>
+<tr class="memdesc:a17424001491e79f13e3080ba40f7d422 inherit pub_static_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial translation  <br /></td></tr>
+<tr class="separator:a17424001491e79f13e3080ba40f7d422 inherit pub_static_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel" id="r_a049af7801157d4bade669f37769aa48a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannel.html#a049af7801157d4bade669f37769aa48a">RemoveTranslation</a> ()</td></tr>
+<tr class="memdesc:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove translation  <br /></td></tr>
+<tr class="separator:a049af7801157d4bade669f37769aa48a inherit pub_static_methods_classCChannel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCChannelSSH"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCChannelSSH')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCChannelSSH.html">CChannelSSH</a></td></tr>
+<tr class="memitem:af62e16ff60357ecb1332d6687dea16ed inherit pro_attribs_classCChannelSSH" id="r_af62e16ff60357ecb1332d6687dea16ed"><td class="memItemLeft" align="right" valign="top">ssh_session&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#af62e16ff60357ecb1332d6687dea16ed">m_Session</a></td></tr>
+<tr class="separator:af62e16ff60357ecb1332d6687dea16ed inherit pro_attribs_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d643a078927bd779f24c6bca7e8bafd inherit pro_attribs_classCChannelSSH" id="r_a2d643a078927bd779f24c6bca7e8bafd"><td class="memItemLeft" align="right" valign="top">ssh_channel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#a2d643a078927bd779f24c6bca7e8bafd">m_Channel</a></td></tr>
+<tr class="separator:a2d643a078927bd779f24c6bca7e8bafd inherit pro_attribs_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe1cb2d070814c2d296757424cf8404e inherit pro_attribs_classCChannelSSH" id="r_afe1cb2d070814c2d296757424cf8404e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBackend.html">CBackend</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#afe1cb2d070814c2d296757424cf8404e">m_pBackend</a></td></tr>
+<tr class="separator:afe1cb2d070814c2d296757424cf8404e inherit pro_attribs_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa43d3abe4665bd5f8fe8de941ca09f inherit pro_attribs_classCChannelSSH" id="r_adaa43d3abe4665bd5f8fe8de941ca09f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterSSH.html">CParameterSSH</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#adaa43d3abe4665bd5f8fe8de941ca09f">m_pParameter</a></td></tr>
+<tr class="separator:adaa43d3abe4665bd5f8fe8de941ca09f inherit pro_attribs_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae26b0c72364fadc84c3c8f56217f818e inherit pro_attribs_classCChannelSSH" id="r_ae26b0c72364fadc84c3c8f56217f818e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classChannel_1_1CEvent.html">Channel::CEvent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCChannelSSH.html#ae26b0c72364fadc84c3c8f56217f818e">m_pEvent</a></td></tr>
+<tr class="separator:ae26b0c72364fadc84c3c8f56217f818e inherit pro_attribs_classCChannelSSH"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8h_source.html">ChannelSSHTerminal.h</a> 第 <a class="el" href="ChannelSSHTerminal_8h_source.html#l00008">8</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab0dd30921adfb01ea324c4c1fab4112e" name="ab0dd30921adfb01ea324c4c1fab4112e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0dd30921adfb01ea324c4c1fab4112e">&#9670;&#160;</a></span>~CChannelSSHTerminal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CChannelSSHTerminal::~CChannelSSHTerminal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aa7a4078cda60d1fe94330c845ef8a37c" name="aa7a4078cda60d1fe94330c845ef8a37c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7a4078cda60d1fe94330c845ef8a37c">&#9670;&#160;</a></span>bytesAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSSHTerminal::bytesAvailable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00199">199</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a47b85aea0f22271994b4cfefd844380b" name="a47b85aea0f22271994b4cfefd844380b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47b85aea0f22271994b4cfefd844380b">&#9670;&#160;</a></span>OnClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSSHTerminal::OnClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannelSSH.html">CChannelSSH</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a038e919dc830a761f64b30df786c55ed" name="a038e919dc830a761f64b30df786c55ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a038e919dc830a761f64b30df786c55ed">&#9670;&#160;</a></span>OnOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSSHTerminal::OnOpen </td>
+          <td>(</td>
+          <td class="paramtype">ssh_session&#160;</td>
+          <td class="paramname"><em>session</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannelSSH.html">CChannelSSH</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac6835afbb025f1f67f6ed1852b3ff9c3" name="ac6835afbb025f1f67f6ed1852b3ff9c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6835afbb025f1f67f6ed1852b3ff9c3">&#9670;&#160;</a></span>OnProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSSHTerminal::OnProcess </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80a5af1dc5498de5c48a7eb8311c0c76" name="a80a5af1dc5498de5c48a7eb8311c0c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80a5af1dc5498de5c48a7eb8311c0c76">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSSHTerminal::readData </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannel.html">CChannel</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8fd85507eb15d59477260a9b86a58df4" name="a8fd85507eb15d59477260a9b86a58df4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fd85507eb15d59477260a9b86a58df4">&#9670;&#160;</a></span>SetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChannelSSHTerminal::SetSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a414b04358f97592baae3c97cbff77bee" name="a414b04358f97592baae3c97cbff77bee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a414b04358f97592baae3c97cbff77bee">&#9670;&#160;</a></span>writeData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSSHTerminal::writeData </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qint64&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCChannel.html">CChannel</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a> 第 <a class="el" href="ChannelSSHTerminal_8cpp_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="adde5794e8ea20c7d61ca6e3ed45ac494" name="adde5794e8ea20c7d61ca6e3ed45ac494"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adde5794e8ea20c7d61ca6e3ed45ac494">&#9670;&#160;</a></span>m_nBytesAvailable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 CChannelSSHTerminal::m_nBytesAvailable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8h_source.html">ChannelSSHTerminal.h</a> 第 <a class="el" href="ChannelSSHTerminal_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac00c13dc5d9578ff5132f67330b16148" name="ac00c13dc5d9578ff5132f67330b16148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac00c13dc5d9578ff5132f67330b16148">&#9670;&#160;</a></span>m_nColumn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSSHTerminal::m_nColumn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8h_source.html">ChannelSSHTerminal.h</a> 第 <a class="el" href="ChannelSSHTerminal_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a883de60fd36c0919e4e810d9851638b2" name="a883de60fd36c0919e4e810d9851638b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883de60fd36c0919e4e810d9851638b2">&#9670;&#160;</a></span>m_nRow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CChannelSSHTerminal::m_nRow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ChannelSSHTerminal_8h_source.html">ChannelSSHTerminal.h</a> 第 <a class="el" href="ChannelSSHTerminal_8h_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="ChannelSSHTerminal_8h_source.html">ChannelSSHTerminal.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/SSH/<a class="el" href="ChannelSSHTerminal_8cpp_source.html">ChannelSSHTerminal.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgSettingsTelnet类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgSettingsTelnet-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgSettingsTelnet类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgSettingsTelnet 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTelnet__inherit__graph.png" border="0" usemap="#aCDlgSettingsTelnet_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDlgSettingsTelnet_inherit__map" id="aCDlgSettingsTelnet_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,151,104"/>
+<area shape="rect" title=" " alt="" coords="41,5,115,31"/>
+<area shape="poly" title=" " alt="" coords="81,44,81,79,75,79,75,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgSettingsTelnet 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsTelnet__coll__graph.png" border="0" usemap="#aCDlgSettingsTelnet_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDlgSettingsTelnet_coll__map" id="aCDlgSettingsTelnet_coll__map">
+<area shape="rect" title=" " alt="" coords="91,543,237,568"/>
+<area shape="rect" title=" " alt="" coords="127,455,201,480"/>
+<area shape="poly" title=" " alt="" coords="167,494,167,542,161,542,161,494"/>
+<area shape="rect" href="classCParameterTelnet.html" title=" " alt="" coords="226,455,363,480"/>
+<area shape="poly" title=" " alt="" coords="267,490,183,545,180,540,264,485"/>
+<area shape="rect" href="classCParameterTerminalBase.html" title="终端基本参数" alt="" coords="197,253,384,279"/>
+<area shape="poly" title=" " alt="" coords="294,292,297,454,292,455,289,293"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="463,155,614,180"/>
+<area shape="poly" title=" " alt="" coords="467,186,408,206,389,218,371,232,320,256,318,251,368,227,386,214,406,202,465,181"/>
+<area shape="poly" title=" " alt="" coords="628,160,641,167,632,174,614,177,614,171,630,169,635,167,626,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="580,455,740,480"/>
+<area shape="poly" title=" " alt="" coords="588,183,639,210,663,229,682,252,709,298,721,339,719,382,702,432,693,446,681,457,677,453,689,442,698,429,714,381,716,340,704,300,678,255,659,233,636,214,586,187"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="527,352,649,377"/>
+<area shape="poly" title=" " alt="" coords="533,194,526,234,526,256,531,278,540,299,552,319,578,350,574,353,548,322,535,302,525,279,521,257,521,234,528,193"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="540,253,668,279"/>
+<area shape="poly" title=" " alt="" coords="556,190,598,252,594,255,552,193"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="779,80,877,105"/>
+<area shape="poly" title=" " alt="" coords="770,111,585,157,584,152,769,106"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="784,631,923,656"/>
+<area shape="poly" title=" " alt="" coords="831,119,831,166,831,556,837,597,850,629,845,631,832,598,825,557,825,166,825,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="605,543,745,568"/>
+<area shape="poly" title=" " alt="" coords="805,117,788,139,782,152,780,166,780,469,777,497,761,520,742,535,721,545,719,540,739,530,757,517,772,495,775,469,775,166,777,151,783,137,801,113"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="848,204,979,229"/>
+<area shape="poly" title=" " alt="" coords="846,115,907,202,903,205,842,118"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="917,303,1059,328"/>
+<area shape="poly" title=" " alt="" coords="870,109,899,124,930,145,959,171,982,203,992,229,996,257,993,303,987,302,990,257,987,231,978,205,955,175,927,150,896,129,867,113"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1003,403,1194,429"/>
+<area shape="poly" title=" " alt="" coords="892,96,956,104,1022,117,1073,137,1089,150,1095,166,1095,317,1100,403,1095,403,1089,317,1089,166,1084,153,1070,141,1020,122,955,109,891,101"/>
+<area shape="rect" href="classCParameterTerminal.html" title=" " alt="" coords="209,155,364,180"/>
+<area shape="poly" title=" " alt="" coords="765,105,365,158,364,153,765,100"/>
+<area shape="rect" title=" " alt="" coords="791,5,865,31"/>
+<area shape="poly" title=" " alt="" coords="831,45,831,80,825,80,825,45"/>
+<area shape="poly" title=" " alt="" coords="770,635,676,615,624,599,572,578,522,552,475,519,435,479,404,432,393,394,396,355,409,317,429,281,453,248,479,219,523,178,526,182,483,223,458,252,433,284,414,320,401,356,399,393,409,430,439,476,479,515,524,547,574,573,626,594,678,610,771,630"/>
+<area shape="poly" title=" " alt="" coords="672,581,673,594,678,605,694,615,720,624,784,634,784,640,718,629,691,620,674,608,668,596,667,582"/>
+<area shape="poly" title=" " alt="" coords="664,494,667,518,673,542,668,543,661,519,658,494"/>
+<area shape="poly" title=" " alt="" coords="583,392,572,414,554,433,520,446,472,456,364,466,363,461,471,451,518,441,550,428,567,411,578,389"/>
+<area shape="poly" title=" " alt="" coords="618,384,633,400,649,428,659,454,654,456,644,430,629,403,614,388"/>
+<area shape="poly" title=" " alt="" coords="603,292,593,352,587,352,597,291"/>
+<area shape="poly" title=" " alt="" coords="902,242,888,276,881,314,881,557,874,598,862,631,857,629,869,597,876,556,876,314,883,274,897,240"/>
+<area shape="poly" title=" " alt="" coords="989,342,985,415,985,557,978,585,958,606,932,622,904,633,902,628,929,617,955,602,973,582,980,556,980,415,983,342"/>
+<area shape="poly" title=" " alt="" coords="1096,443,1085,480,1066,525,1039,570,1003,609,965,630,923,640,922,635,963,625,1000,605,1035,567,1061,522,1079,478,1091,441"/>
+<area shape="poly" title=" " alt="" coords="290,194,291,229,292,253,287,253,285,229,284,194"/>
+<area shape="rect" href="classCParameterTerminalUI.html" title=" " alt="" coords="5,253,173,279"/>
+<area shape="poly" title=" " alt="" coords="252,188,114,256,112,251,250,184"/>
+<area shape="poly" title=" " alt="" coords="91,292,95,377,103,429,117,479,135,514,156,541,152,544,131,517,112,481,98,430,90,377,86,292"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="33,155,145,180"/>
+<area shape="poly" title=" " alt="" coords="92,194,92,253,87,253,87,194"/>
+<area shape="rect" title=" " alt="" coords="50,80,129,105"/>
+<area shape="poly" title=" " alt="" coords="92,120,92,154,87,154,87,120"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a91ded2e6669d6bbf056cbb5d16e54982" id="r_a91ded2e6669d6bbf056cbb5d16e54982"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#a91ded2e6669d6bbf056cbb5d16e54982">CDlgSettingsTelnet</a> (<a class="el" href="classCParameterTelnet.html">CParameterTelnet</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a91ded2e6669d6bbf056cbb5d16e54982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:ad3477dfaaa39e309a5e20b2809227c45" id="r_ad3477dfaaa39e309a5e20b2809227c45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#ad3477dfaaa39e309a5e20b2809227c45">on_pbOK_clicked</a> ()</td></tr>
+<tr class="separator:ad3477dfaaa39e309a5e20b2809227c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2741109c3aedd8311ded3b2812c9f20a" id="r_a2741109c3aedd8311ded3b2812c9f20a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#a2741109c3aedd8311ded3b2812c9f20a">on_pbCancel_clicked</a> ()</td></tr>
+<tr class="separator:a2741109c3aedd8311ded3b2812c9f20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a441c76fc390047c4bc90e6569886843a" id="r_a441c76fc390047c4bc90e6569886843a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#a441c76fc390047c4bc90e6569886843a">on_pbAddCommand_clicked</a> ()</td></tr>
+<tr class="separator:a441c76fc390047c4bc90e6569886843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb892da5217c9b900b9cdbc53b1e9f48" id="r_abb892da5217c9b900b9cdbc53b1e9f48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#abb892da5217c9b900b9cdbc53b1e9f48">on_leCommand_editingFinished</a> ()</td></tr>
+<tr class="separator:abb892da5217c9b900b9cdbc53b1e9f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04455ac0908bda11fcd6040dcd7abf6" id="r_af04455ac0908bda11fcd6040dcd7abf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#af04455ac0908bda11fcd6040dcd7abf6">on_pbDeleteCommands_clicked</a> ()</td></tr>
+<tr class="separator:af04455ac0908bda11fcd6040dcd7abf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:af7c74767a837fc91ad1dc03bceff40da" id="r_af7c74767a837fc91ad1dc03bceff40da"><td class="memItemLeft" align="right" valign="top">Ui::CDlgSettingsTelnet *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#af7c74767a837fc91ad1dc03bceff40da">ui</a></td></tr>
+<tr class="separator:af7c74767a837fc91ad1dc03bceff40da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187333114ad42ebca67a177dd0f93f2c" id="r_a187333114ad42ebca67a177dd0f93f2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterTelnet.html">CParameterTelnet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#a187333114ad42ebca67a177dd0f93f2c">m_pPara</a></td></tr>
+<tr class="separator:a187333114ad42ebca67a177dd0f93f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea5009ca57a3a9370672c9844109e76" id="r_aeea5009ca57a3a9370672c9844109e76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsTelnet.html#aeea5009ca57a3a9370672c9844109e76">m_pFrmParaAppearnce</a></td></tr>
+<tr class="separator:aeea5009ca57a3a9370672c9844109e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8h_source.html">DlgSettingsTelnet.h</a> 第 <a class="el" href="DlgSettingsTelnet_8h_source.html#l00012">12</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a91ded2e6669d6bbf056cbb5d16e54982" name="a91ded2e6669d6bbf056cbb5d16e54982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ded2e6669d6bbf056cbb5d16e54982">&#9670;&#160;</a></span>CDlgSettingsTelnet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsTelnet::CDlgSettingsTelnet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterTelnet.html">CParameterTelnet</a> *&#160;</td>
+          <td class="paramname"><em>pPara</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5ec819a888d3003a735225b58fcf0a8f" name="a5ec819a888d3003a735225b58fcf0a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ec819a888d3003a735225b58fcf0a8f">&#9670;&#160;</a></span>~CDlgSettingsTelnet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsTelnet::~CDlgSettingsTelnet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="abb892da5217c9b900b9cdbc53b1e9f48" name="abb892da5217c9b900b9cdbc53b1e9f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb892da5217c9b900b9cdbc53b1e9f48">&#9670;&#160;</a></span>on_leCommand_editingFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTelnet::on_leCommand_editingFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a441c76fc390047c4bc90e6569886843a" name="a441c76fc390047c4bc90e6569886843a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a441c76fc390047c4bc90e6569886843a">&#9670;&#160;</a></span>on_pbAddCommand_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTelnet::on_pbAddCommand_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00069">69</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2741109c3aedd8311ded3b2812c9f20a" name="a2741109c3aedd8311ded3b2812c9f20a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2741109c3aedd8311ded3b2812c9f20a">&#9670;&#160;</a></span>on_pbCancel_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTelnet::on_pbCancel_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af04455ac0908bda11fcd6040dcd7abf6" name="af04455ac0908bda11fcd6040dcd7abf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04455ac0908bda11fcd6040dcd7abf6">&#9670;&#160;</a></span>on_pbDeleteCommands_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTelnet::on_pbDeleteCommands_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad3477dfaaa39e309a5e20b2809227c45" name="ad3477dfaaa39e309a5e20b2809227c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3477dfaaa39e309a5e20b2809227c45">&#9670;&#160;</a></span>on_pbOK_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsTelnet::on_pbOK_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a> 第 <a class="el" href="DlgSettingsTelnet_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aeea5009ca57a3a9370672c9844109e76" name="aeea5009ca57a3a9370672c9844109e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeea5009ca57a3a9370672c9844109e76">&#9670;&#160;</a></span>m_pFrmParaAppearnce</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTerminalUI.html">CParameterTerminalUI</a>* CDlgSettingsTelnet::m_pFrmParaAppearnce</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8h_source.html">DlgSettingsTelnet.h</a> 第 <a class="el" href="DlgSettingsTelnet_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a187333114ad42ebca67a177dd0f93f2c" name="a187333114ad42ebca67a177dd0f93f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a187333114ad42ebca67a177dd0f93f2c">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterTelnet.html">CParameterTelnet</a>* CDlgSettingsTelnet::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8h_source.html">DlgSettingsTelnet.h</a> 第 <a class="el" href="DlgSettingsTelnet_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af7c74767a837fc91ad1dc03bceff40da" name="af7c74767a837fc91ad1dc03bceff40da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c74767a837fc91ad1dc03bceff40da">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgSettingsTelnet* CDlgSettingsTelnet::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsTelnet_8h_source.html">DlgSettingsTelnet.h</a> 第 <a class="el" href="DlgSettingsTelnet_8h_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Telnet/<a class="el" href="DlgSettingsTelnet_8h_source.html">DlgSettingsTelnet.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/Telnet/<a class="el" href="DlgSettingsTelnet_8cpp_source.html">DlgSettingsTelnet.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

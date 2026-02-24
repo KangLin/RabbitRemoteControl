@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginServiceFreeRDP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="classCPluginServiceFreeRDP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginServiceFreeRDP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CPluginServiceFreeRDP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceFreeRDP__inherit__graph.png" border="0" usemap="#aCPluginServiceFreeRDP_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCPluginServiceFreeRDP_inherit__map" id="aCPluginServiceFreeRDP_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,180,177"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="33,79,152,104"/>
+<area shape="poly" title=" " alt="" coords="95,118,95,152,90,152,90,118"/>
+<area shape="rect" title=" " alt="" coords="55,5,130,31"/>
+<area shape="poly" title=" " alt="" coords="95,44,95,79,90,79,90,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CPluginServiceFreeRDP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCPluginServiceFreeRDP__coll__graph.png" border="0" usemap="#aCPluginServiceFreeRDP_coll__map" alt="Collaboration graph"/></div>
+<map name="aCPluginServiceFreeRDP_coll__map" id="aCPluginServiceFreeRDP_coll__map">
+<area shape="rect" title=" " alt="" coords="5,152,180,177"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="33,79,152,104"/>
+<area shape="poly" title=" " alt="" coords="95,118,95,152,90,152,90,118"/>
+<area shape="rect" title=" " alt="" coords="55,5,130,31"/>
+<area shape="poly" title=" " alt="" coords="95,44,95,79,90,79,90,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:affcbf553cba5fa529fd84e0da0b4273d" id="r_affcbf553cba5fa529fd84e0da0b4273d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#affcbf553cba5fa529fd84e0da0b4273d">CPluginServiceFreeRDP</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:affcbf553cba5fa529fd84e0da0b4273d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762ec5777179bfacd374a5fa137c5858" id="r_a762ec5777179bfacd374a5fa137c5858"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#a762ec5777179bfacd374a5fa137c5858">Protocol</a> () const override</td></tr>
+<tr class="memdesc:a762ec5777179bfacd374a5fa137c5858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plugin Protocol  <br /></td></tr>
+<tr class="separator:a762ec5777179bfacd374a5fa137c5858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75607c95464e70c14f3ded967139c0e8" id="r_a75607c95464e70c14f3ded967139c0e8"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#a75607c95464e70c14f3ded967139c0e8">Name</a> () const override</td></tr>
+<tr class="memdesc:a75607c95464e70c14f3ded967139c0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:a75607c95464e70c14f3ded967139c0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a2f3a0ceec9ced1f0c5b00ba7e6682" id="r_a66a2f3a0ceec9ced1f0c5b00ba7e6682"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#a66a2f3a0ceec9ced1f0c5b00ba7e6682">DisplayName</a> () const override</td></tr>
+<tr class="memdesc:a66a2f3a0ceec9ced1f0c5b00ba7e6682"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plugin display name  <br /></td></tr>
+<tr class="separator:a66a2f3a0ceec9ced1f0c5b00ba7e6682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45f75d5c833be671bf2e790c855b041" id="r_aa45f75d5c833be671bf2e790c855b041"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#aa45f75d5c833be671bf2e790c855b041">Description</a> () const override</td></tr>
+<tr class="memdesc:aa45f75d5c833be671bf2e790c855b041"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件描述  <br /></td></tr>
+<tr class="separator:aa45f75d5c833be671bf2e790c855b041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPluginService"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPluginService')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCPluginService.html">CPluginService</a></td></tr>
+<tr class="memitem:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService" id="r_a912b68519ed00245b48775b5ca99a2fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a912b68519ed00245b48775b5ca99a2fe">CPluginService</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a912b68519ed00245b48775b5ca99a2fe inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService" id="r_abff4f9416da5a148c27538ca5bdeccf6"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abff4f9416da5a148c27538ca5bdeccf6">Id</a> () const</td></tr>
+<tr class="memdesc:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID. Default: <a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78" title="Plugin Protocol">Protocol()</a> + "_" + <a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:abff4f9416da5a148c27538ca5bdeccf6 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService" id="r_abe81ba8c83db377878dac18301770056"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#abe81ba8c83db377878dac18301770056">Icon</a> () const</td></tr>
+<tr class="separator:abe81ba8c83db377878dac18301770056 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a874a953f1df950231d28cdfbbf4a7a74 inherit pub_methods_classCPluginService" id="r_a874a953f1df950231d28cdfbbf4a7a74"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a874a953f1df950231d28cdfbbf4a7a74">Start</a> ()</td></tr>
+<tr class="memdesc:a874a953f1df950231d28cdfbbf4a7a74 inherit pub_methods_classCPluginService"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a Service  <br /></td></tr>
+<tr class="separator:a874a953f1df950231d28cdfbbf4a7a74 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48224a705329311afef6880798917f9c inherit pub_methods_classCPluginService" id="r_a48224a705329311afef6880798917f9c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#a48224a705329311afef6880798917f9c">Stop</a> ()</td></tr>
+<tr class="separator:a48224a705329311afef6880798917f9c inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService" id="r_ac2ef0e1d3a6a158a4f039e277ba7f819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginService.html#ac2ef0e1d3a6a158a4f039e277ba7f819">InitTranslator</a> ()</td></tr>
+<tr class="separator:ac2ef0e1d3a6a158a4f039e277ba7f819 inherit pub_methods_classCPluginService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a15ed5759dbd68d3ce75395c1b481d639" id="r_a15ed5759dbd68d3ce75395c1b481d639"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCService.html">CService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginServiceFreeRDP.html#a15ed5759dbd68d3ce75395c1b481d639">NewService</a> () override</td></tr>
+<tr class="memdesc:a15ed5759dbd68d3ce75395c1b481d639"><td class="mdescLeft">&#160;</td><td class="mdescRight">New service  <br /></td></tr>
+<tr class="separator:a15ed5759dbd68d3ce75395c1b481d639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8h_source.html">PluginServiceFreeRDP.h</a> 第 <a class="el" href="PluginServiceFreeRDP_8h_source.html#l00008">8</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="affcbf553cba5fa529fd84e0da0b4273d" name="affcbf553cba5fa529fd84e0da0b4273d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affcbf553cba5fa529fd84e0da0b4273d">&#9670;&#160;</a></span>CPluginServiceFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceFreeRDP::CPluginServiceFreeRDP </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00006">6</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac98145127c7bb5c66ea9f764cb967ae9" name="ac98145127c7bb5c66ea9f764cb967ae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98145127c7bb5c66ea9f764cb967ae9">&#9670;&#160;</a></span>~CPluginServiceFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginServiceFreeRDP::~CPluginServiceFreeRDP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00010">10</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aa45f75d5c833be671bf2e790c855b041" name="aa45f75d5c833be671bf2e790c855b041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa45f75d5c833be671bf2e790c855b041">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceFreeRDP::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件描述 </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#a73e3800f08ef049c378485390782d0ad">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66a2f3a0ceec9ced1f0c5b00ba7e6682" name="a66a2f3a0ceec9ced1f0c5b00ba7e6682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a2f3a0ceec9ced1f0c5b00ba7e6682">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceFreeRDP::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The plugin display name </p>
+
+<p>重载 <a class="el" href="classCPluginService.html#a2326bc76c7a40f24ecb401f5aaa57d72">CPluginService</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a75607c95464e70c14f3ded967139c0e8" name="a75607c95464e70c14f3ded967139c0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75607c95464e70c14f3ded967139c0e8">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceFreeRDP::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。 </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#ac796e2be55150d55289024344d5b46f7">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a15ed5759dbd68d3ce75395c1b481d639" name="a15ed5759dbd68d3ce75395c1b481d639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ed5759dbd68d3ce75395c1b481d639">&#9670;&#160;</a></span>NewService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCService.html">CService</a> * CPluginServiceFreeRDP::NewService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>New service </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#a509f9f6f0a05639f6c387bc12c4f959d">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a762ec5777179bfacd374a5fa137c5858" name="a762ec5777179bfacd374a5fa137c5858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762ec5777179bfacd374a5fa137c5858">&#9670;&#160;</a></span>Protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginServiceFreeRDP::Protocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Plugin Protocol </p>
+
+<p>实现了 <a class="el" href="classCPluginService.html#ae0d99a4e203d767ecaab641d50c2ad78">CPluginService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a> 第 <a class="el" href="PluginServiceFreeRDP_8cpp_source.html#l00013">13</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Service/<a class="el" href="PluginServiceFreeRDP_8h_source.html">PluginServiceFreeRDP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Service/<a class="el" href="PluginServiceFreeRDP_8cpp_source.html">PluginServiceFreeRDP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

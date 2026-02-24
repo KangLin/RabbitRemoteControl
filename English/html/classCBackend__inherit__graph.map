@@ -1,0 +1,21 @@
+<map id="CBackend" name="CBackend">
+<area shape="rect" id="Node000001" title="Backend interface." alt="" coords="566,79,653,104"/>
+<area shape="rect" id="Node000003" href="$classCBackendDesktop.html" title="Remote desktop interface." alt="" coords="275,152,415,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="554,110,389,154,387,149,553,105"/>
+<area shape="rect" id="Node000008" href="$classCBackendFileTransfer.html" title=" " alt="" coords="439,152,601,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="586,115,536,154,533,150,583,110"/>
+<area shape="rect" id="Node000009" href="$classCBackendFtpServer.html" title=" " alt="" coords="625,152,775,177"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="636,110,687,150,684,154,633,115"/>
+<area shape="rect" id="Node000010" href="$classCBackendSSH.html" title=" " alt="" coords="799,152,911,177"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="662,105,816,149,814,154,661,110"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="572,5,647,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="612,44,612,79,607,79,607,44"/>
+<area shape="rect" id="Node000004" href="$classCBackendFreeRDP.html" title=" " alt="" coords="5,225,147,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,183,120,228,119,223,288,178"/>
+<area shape="rect" id="Node000005" href="$classCBackendLibVNCServer.html" title=" " alt="" coords="171,225,346,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="323,188,275,227,271,223,319,184"/>
+<area shape="rect" id="Node000006" href="$classCBackendPlayer.html" title=" " alt="" coords="370,225,497,251"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="372,184,421,223,417,227,368,188"/>
+<area shape="rect" id="Node000007" href="$classCBackendVnc.html" title=" " alt="" coords="521,225,631,251"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="396,179,539,223,538,228,395,184"/>
+</map>

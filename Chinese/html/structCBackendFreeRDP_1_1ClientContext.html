@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CBackendFreeRDP::ClientContext结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a></li><li class="navelem"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html">ClientContext</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structCBackendFreeRDP_1_1ClientContext-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CBackendFreeRDP::ClientContext结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+CBackendFreeRDP::ClientContext 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="structCBackendFreeRDP_1_1ClientContext__coll__graph.png" border="0" usemap="#aCBackendFreeRDP_1_1ClientContext_coll__map" alt="Collaboration graph"/></div>
+<map name="aCBackendFreeRDP_1_1ClientContext_coll__map" id="aCBackendFreeRDP_1_1ClientContext_coll__map">
+<area shape="rect" title=" " alt="" coords="2537,702,2776,728"/>
+<area shape="rect" href="classCBackendFreeRDP.html" title=" " alt="" coords="2924,738,3065,764"/>
+<area shape="poly" title=" " alt="" coords="2713,729,2800,747,2863,752,2924,752,2924,757,2863,757,2800,752,2712,734"/>
+<area shape="poly" title=" " alt="" coords="2922,738,2900,735,2776,723,2777,718,2900,730,2923,733"/>
+<area shape="rect" href="classCClipboardFreeRDP.html" title=" " alt="" coords="3201,908,3349,933"/>
+<area shape="poly" title=" " alt="" coords="3008,775,3038,835,3062,865,3091,890,3117,903,3145,912,3202,920,3201,925,3143,917,3115,908,3088,895,3058,869,3034,838,3003,778"/>
+<area shape="rect" href="classCCursorFreeRDP.html" title=" " alt="" coords="3211,784,3339,809"/>
+<area shape="poly" title=" " alt="" coords="3080,762,3178,778,3212,783,3211,788,3177,783,3079,767"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="1193,780,1333,805"/>
+<area shape="poly" title=" " alt="" coords="1347,790,1587,790,2658,790,2731,787,2803,780,2928,761,2929,766,2804,785,2731,792,2658,795,1587,795,1347,795"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="381,762,468,788"/>
+<area shape="poly" title=" " alt="" coords="482,773,1193,788,1193,794,481,779"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="679,705,809,730"/>
+<area shape="poly" title=" " alt="" coords="482,766,564,755,654,739,699,728,701,733,655,744,564,760,482,771"/>
+<area shape="rect" title=" " alt="" coords="5,737,80,762"/>
+<area shape="poly" title=" " alt="" coords="94,750,381,769,381,775,94,756"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="383,661,466,686"/>
+<area shape="poly" title=" " alt="" coords="93,737,382,679,384,684,94,742"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="143,661,214,686"/>
+<area shape="poly" title=" " alt="" coords="69,726,103,703,143,684,145,689,105,708,72,730"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,477,228,502"/>
+<area shape="poly" title=" " alt="" coords="54,723,168,501,173,504,59,726"/>
+<area shape="poly" title=" " alt="" coords="50,775,62,829,86,890,102,918,123,941,148,956,178,962,2996,962,3058,959,3119,951,3224,930,3225,936,3120,956,3058,964,2996,967,177,967,146,961,120,945,98,921,81,893,57,830,45,776"/>
+<area shape="poly" title=" " alt="" coords="64,771,85,794,112,816,143,833,178,840,2463,840,2664,839,2821,835,2977,824,3177,807,3211,803,3211,808,3178,812,2977,830,2821,840,2664,845,2463,846,177,846,141,838,109,821,81,798,60,775"/>
+<area shape="rect" href="classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="2588,633,2725,658"/>
+<area shape="poly" title=" " alt="" coords="2739,657,2818,675,2901,700,2940,718,2973,736,2971,741,2938,723,2899,705,2817,680,2738,662"/>
+<area shape="poly" title=" " alt="" coords="480,667,677,657,927,651,2323,651,2588,646,2588,651,2323,656,927,656,677,662,480,673"/>
+<area shape="poly" title=" " alt="" coords="480,678,679,706,678,711,479,684"/>
+<area shape="poly" title=" " alt="" coords="228,671,383,671,383,676,228,676"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="2256,258,2387,284"/>
+<area shape="poly" title=" " alt="" coords="2339,294,2371,345,2413,401,2476,473,2542,539,2642,631,2639,635,2538,543,2472,476,2409,405,2367,348,2335,297"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="2580,457,2733,482"/>
+<area shape="poly" title=" " alt="" coords="2357,288,2635,454,2632,459,2354,293"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="349,173,500,198"/>
+<area shape="poly" title=" " alt="" coords="436,159,469,105,494,76,523,53,578,22,627,7,678,3,743,3,2079,3,2104,5,2129,12,2173,35,2211,70,2244,110,2271,154,2293,195,2318,257,2313,259,2288,197,2267,156,2240,114,2208,73,2170,40,2127,17,2103,11,2079,8,743,8,678,8,628,13,580,27,525,57,497,80,474,108,440,162"/>
+<area shape="poly" title=" " alt="" coords="398,158,406,150,425,146,441,149,450,155,453,165,448,174,443,172,447,164,446,158,439,154,425,152,409,154,402,162"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1357,376,1517,401"/>
+<area shape="poly" title=" " alt="" coords="444,208,478,248,500,268,525,283,619,324,701,348,775,361,848,365,1001,361,1090,362,1194,368,1357,381,1357,386,1193,374,1090,367,1001,367,847,370,775,366,699,354,617,329,523,288,497,272,474,252,440,211"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1048,185,1169,210"/>
+<area shape="poly" title=" " alt="" coords="514,185,1048,194,1048,199,514,190"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="680,148,808,173"/>
+<area shape="poly" title=" " alt="" coords="513,176,679,163,680,168,514,181"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="2010,112,2145,137"/>
+<area shape="poly" title=" " alt="" coords="468,165,522,146,590,126,666,111,743,104,1745,104,1887,108,2010,116,2009,121,1886,114,1745,110,743,110,666,116,591,131,524,151,470,170"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1375,44,1499,69"/>
+<area shape="poly" title=" " alt="" coords="440,160,474,120,497,101,523,86,556,74,597,65,696,51,813,43,940,39,1188,42,1375,50,1375,55,1188,48,940,45,814,48,697,56,598,70,558,79,525,91,500,105,478,124,444,163"/>
+<area shape="poly" title=" " alt="" coords="189,464,215,414,250,359,291,309,335,263,406,197,410,200,339,266,295,312,254,362,219,416,194,466"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2008,420,2147,445"/>
+<area shape="poly" title=" " alt="" coords="208,509,247,537,300,567,360,591,391,598,423,600,1745,600,1815,598,1870,587,1921,566,1983,530,2009,510,2032,486,2066,443,2070,447,2036,490,2013,514,1985,535,1924,570,1871,592,1816,603,1745,606,423,606,391,603,358,596,297,572,245,542,205,513"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1673,449,1813,474"/>
+<area shape="poly" title=" " alt="" coords="242,487,423,487,1439,487,1563,481,1673,469,1673,474,1563,486,1439,492,423,492,242,492"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="524,426,655,452"/>
+<area shape="poly" title=" " alt="" coords="237,471,252,468,397,449,524,439,524,445,398,454,252,474,238,476"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1672,318,1815,344"/>
+<area shape="poly" title=" " alt="" coords="207,467,251,444,278,437,300,434,349,430,770,368,955,345,1193,327,1263,326,1333,327,1672,328,1672,333,1333,332,1263,331,1193,332,955,351,771,373,350,435,300,439,279,442,253,449,210,472"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="833,529,1024,554"/>
+<area shape="poly" title=" " alt="" coords="237,503,252,506,411,524,571,535,716,540,833,540,833,546,716,545,571,540,411,530,252,511,236,508"/>
+<area shape="poly" title=" " alt="" coords="2057,410,2025,373,2005,355,1983,340,1942,322,1908,315,1826,308,1629,282,1462,263,1176,242,891,225,524,198,500,195,501,190,524,192,891,220,1177,236,1462,258,1630,277,1827,303,1909,310,1944,317,1985,335,2008,351,2029,369,2062,407"/>
+<area shape="poly" title=" " alt="" coords="1826,454,1984,442,2007,439,2008,444,1984,447,1827,460"/>
+<area shape="poly" title=" " alt="" coords="1505,402,1690,446,1689,451,1504,407"/>
+<area shape="poly" title=" " alt="" coords="1183,202,1302,212,1436,216,2079,216,2136,220,2192,230,2285,256,2283,261,2191,235,2135,226,2079,222,1436,222,1301,217,1183,208"/>
+<area shape="poly" title=" " alt="" coords="1125,221,1153,266,1172,289,1195,309,1234,332,1275,350,1358,374,1356,379,1274,355,1231,337,1192,313,1169,293,1149,269,1120,224"/>
+<area shape="poly" title=" " alt="" coords="1183,189,2009,127,2010,132,1183,195"/>
+<area shape="poly" title=" " alt="" coords="1151,177,1405,67,1407,72,1153,182"/>
+<area shape="poly" title=" " alt="" coords="822,166,1048,189,1048,194,822,171"/>
+<area shape="poly" title=" " alt="" coords="669,435,1541,427,1763,426,1984,427,2008,427,2008,433,1984,432,1763,431,1541,432,669,441"/>
+<area shape="poly" title=" " alt="" coords="1828,320,2256,275,2256,280,1829,325"/>
+<area shape="poly" title=" " alt="" coords="1812,344,1985,390,2051,417,2049,422,1983,395,1811,349"/>
+<area shape="poly" title=" " alt="" coords="1038,539,1262,539,1745,539,1791,536,1837,528,1925,502,2000,470,2053,443,2055,447,2002,475,1926,507,1838,533,1791,541,1745,544,1262,544,1038,544"/>
+<area shape="poly" title=" " alt="" coords="2123,140,2176,166,2233,198,2275,228,2308,256,2304,260,2271,232,2231,203,2174,171,2120,145"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="1660,44,1827,69"/>
+<area shape="poly" title=" " alt="" coords="1841,61,1912,71,1985,86,2049,109,2047,114,1983,91,1911,76,1840,66"/>
+<area shape="poly" title=" " alt="" coords="1513,54,1660,54,1660,59,1513,59"/>
+<area shape="poly" title=" " alt="" coords="823,712,1107,707,2323,707,2405,702,2485,688,2615,656,2616,661,2487,694,2405,707,2323,712,1107,712,823,718"/>
+<area shape="rect" title=" " alt="" coords="386,710,463,736"/>
+<area shape="poly" title=" " alt="" coords="477,719,678,716,678,721,477,725"/>
+<area shape="rect" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="2271,590,2372,616"/>
+<area shape="poly" title=" " alt="" coords="2386,608,2588,634,2587,640,2385,614"/>
+<area shape="rect" title=" " alt="" coords="2038,590,2117,616"/>
+<area shape="poly" title=" " alt="" coords="2130,600,2271,600,2271,606,2130,606"/>
+<area shape="rect" href="classCFrmScroll.html" title="The scroll form class" alt="" coords="2275,541,2367,566"/>
+<area shape="poly" title=" " alt="" coords="2381,562,2514,592,2624,630,2622,635,2513,598,2380,567"/>
+<area shape="rect" title=" " alt="" coords="2028,541,2127,566"/>
+<area shape="poly" title=" " alt="" coords="2141,551,2275,551,2275,556,2141,556"/>
+<area shape="poly" title=" " alt="" coords="2690,489,2786,559,2902,653,2948,698,2984,736,2980,740,2944,702,2898,657,2783,563,2687,493"/>
+<area shape="poly" title=" " alt="" coords="3232,904,3164,870,3088,827,3044,795,3009,766,3012,762,3047,791,3091,822,3166,865,3235,900"/>
+<area shape="poly" title=" " alt="" coords="3198,806,3144,805,3089,798,3049,783,3015,766,3017,761,3051,779,3090,792,3144,800,3198,800"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a6cdc87511f05961ce6cfb6136839e0bb" id="r_a6cdc87511f05961ce6cfb6136839e0bb"><td class="memItemLeft" align="right" valign="top">rdpContext&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html#a6cdc87511f05961ce6cfb6136839e0bb">Context</a></td></tr>
+<tr class="separator:a6cdc87511f05961ce6cfb6136839e0bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d9dbff255a346a83aa7b2969331b7cc" id="r_a4d9dbff255a346a83aa7b2969331b7cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCBackendFreeRDP_1_1ClientContext.html#a4d9dbff255a346a83aa7b2969331b7cc">pThis</a></td></tr>
+<tr class="separator:a4d9dbff255a346a83aa7b2969331b7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00163">163</a> 行定义.</p>
+</div><h2 class="groupheader">类成员变量说明</h2>
+<a id="a6cdc87511f05961ce6cfb6136839e0bb" name="a6cdc87511f05961ce6cfb6136839e0bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdc87511f05961ce6cfb6136839e0bb">&#9670;&#160;</a></span>Context</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rdpContext CBackendFreeRDP::ClientContext::Context</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00167">167</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4d9dbff255a346a83aa7b2969331b7cc" name="a4d9dbff255a346a83aa7b2969331b7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d9dbff255a346a83aa7b2969331b7cc">&#9670;&#160;</a></span>pThis</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a>* CBackendFreeRDP::ClientContext::pThis</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a> 第 <a class="el" href="BackendFreeRDP_8h_source.html#l00169">169</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="BackendFreeRDP_8h_source.html">BackendFreeRDP.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

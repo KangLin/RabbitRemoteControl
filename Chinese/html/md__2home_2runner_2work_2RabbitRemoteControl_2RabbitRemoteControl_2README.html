@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: &lt;img src=&quot;App/Client/Resource/Image/io.github.KangLin.RabbitRemoteControl.png&quot; width=&quot;48&quot; height=&quot;48&quot; /&gt;&lt;a href=&quot;https://github.com/KangLin/RabbitRemoteControl&quot; &gt;Rabbit Remote Control&lt;/a&gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">&lt;img src="App/Client/Resource/Image/io.github.KangLin.RabbitRemoteControl.png" width="48" height="48" /&gt;&lt;a href="https://github.com/KangLin/RabbitRemoteControl" &gt;Rabbit Remote Control&lt;/a&gt;</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md341"></a> Author: Kang Lin <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></p>
+<hr  />
+<p><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2README__zh__CN.html">:cn: 中文</a></p>
+<hr  />
+<ul>
+<li>Introduction<ul>
+<li>Screenshot<ul>
+<li>Multiple style</li>
+</ul>
+</li>
+<li>Project repository position</li>
+</ul>
+</li>
+<li>Functions<ul>
+<li>Supported operating system</li>
+<li>Supported multiple languages</li>
+<li>Supported protocols<ul>
+<li>Remote control protocols</li>
+<li>Network protocols</li>
+</ul>
+</li>
+<li>Function list</li>
+<li>Plugins</li>
+</ul>
+</li>
+<li>Status</li>
+<li>Sponsorship and Donations</li>
+<li>Contribution</li>
+<li>Download</li>
+<li>Development<ul>
+<li>Compilation<ul>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html">Compiling for Linux</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows.html">Compiling for Windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>License Agreement</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md345"></a>
+Introduction</h1>
+<p><b>Rabbit Remote Control</b> is an open-source, cross-platform, multi-protocol remote control software.</p>
+<p><b>Allows you to use any device and system from anywhere and remotely manage any device and system in any way</b>.</p>
+<p>Its goal is to be simple, convenient, secure and easy to use, improving work efficiency.</p>
+<p>It includes remote desktop, remote control, file transfer (FTP, SFTP), terminal, remote terminal (SSH, Telnet), player, network tools, and more.</p>
+<h2><a class="anchor" id="autotoc_md346"></a>
+Screenshot</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Main window   </th><th class="markdownTableHeadNone">Recent list menu   </th><th class="markdownTableHeadNone">Connect   </th><th class="markdownTableHeadNone">Work    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><img src="MainWindows_en.png" alt="" class="inline" title="Main window"/>      </td><td class="markdownTableBodyNone"><img src="RecentMenu_en.png" alt="" class="inline" title="Recent list menu"/>      </td><td class="markdownTableBodyNone"><img src="Connect_en.png" alt="" class="inline" title="Connect"/>      </td><td class="markdownTableBodyNone"><img src="Work_en.png" alt="" class="inline" title="Work"/>      </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md347"></a>
+Multiple style</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Default style   </th><th class="markdownTableHeadCenter">Black-Green style   </th><th class="markdownTableHeadCenter">Black style   </th><th class="markdownTableHeadCenter">White style    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><img src="DefaultStyle.png" alt="" class="inline" title="Default style"/>      </td><td class="markdownTableBodyCenter"><img src="Green.png" alt="" class="inline" title="Black-Green style"/>      </td><td class="markdownTableBodyCenter"><img src="black.png" alt="" class="inline" title="Black"/>      </td><td class="markdownTableBodyCenter"><img src="white.png" alt="" class="inline" title="White"/>      </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md348"></a>
+Video</h2>
+<p><a href="https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25">https://github.com/user-attachments/assets/11951698-762a-4771-b4c7-c669788bdc25</a></p>
+<h2><a class="anchor" id="autotoc_md349"></a>
+Project repository position</h2>
+<ul>
+<li>Main repository: <a href="https://github.com/KangLin/RabbitRemoteControl">https://github.com/KangLin/RabbitRemoteControl</a></li>
+<li>Mirror repository:<ul>
+<li>sourceforge: <a href="https://sourceforge.net/projects/rabbitremotecontrol/">https://sourceforge.net/projects/rabbitremotecontrol/</a></li>
+<li>gitlab: <a href="https://gitlab.com/kl222/RabbitRemoteControl">https://gitlab.com/kl222/RabbitRemoteControl</a></li>
+<li>launchpad: <a href="https://launchpad.net/rabbitremotecontrol">https://launchpad.net/rabbitremotecontrol</a></li>
+<li>gitee: <a href="https://gitee.com/kl222/RabbitRemoteControl">https://gitee.com/kl222/RabbitRemoteControl</a></li>
+<li>bitbucket: <a href="https://bitbucket.org/kl222/rabbitremotecontrol">https://bitbucket.org/kl222/rabbitremotecontrol</a></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md350"></a>
+Functions</h1>
+<h2><a class="anchor" id="autotoc_md351"></a>
+Supported operating system</h2>
+<ul>
+<li>[x] Windows 7 SP1 and later</li>
+<li>[x] Unix/Linux</li>
+<li>[x] <a href="https://doc.qt.io/qt-6/android.html">Android</a></li>
+<li>[x] mac os</li>
+</ul>
+<p>See: <a href="https://doc.qt.io/qt-5/supported-platforms.html">Qt5</a>, <a href="https://doc.qt.io/qt-6/supported-platforms.html">Qt6</a></p>
+<p>I do not have Mac devices, so I did not compile and test. Please test by yourself if you have Mac devices. Interested and capable friends are welcome to participate in the development of the project.</p>
+<p>If you want to donate the development devices to me, please contact: (email: <a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a>)</p>
+<ul>
+<li>Remote desktop</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadCenter">Windows   </th><th class="markdownTableHeadCenter">Unix/linux   </th><th class="markdownTableHeadCenter">Android   </th><th class="markdownTableHeadCenter">MAC    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">vnc   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">RDP   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Spice   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Scrcpy   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<ul>
+<li>Terminal</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Windows   </th><th class="markdownTableHeadNone">Unix/linux   </th><th class="markdownTableHeadNone">Android   </th><th class="markdownTableHeadNone">MAC    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Terminal   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SSH   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TELNET   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Serial port   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓   </td></tr>
+</table>
+<ul>
+<li>File Transfer</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Windows   </th><th class="markdownTableHeadNone">Unix/linux   </th><th class="markdownTableHeadNone">Android   </th><th class="markdownTableHeadNone">MAC    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">FTP   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SFTP   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…   </td><td class="markdownTableBodyNone">…   </td></tr>
+</table>
+<ul>
+<li>Tool</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Windows   </th><th class="markdownTableHeadNone">Unix/linux   </th><th class="markdownTableHeadNone">Android   </th><th class="markdownTableHeadNone">MAC    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Player   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Wake on lan   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Screenshot   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Web browser   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">❌   </td><td class="markdownTableBodyNone">✓   </td></tr>
+</table>
+<p>Legend: <br  />
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported</p>
+<h2><a class="anchor" id="autotoc_md352"></a>
+Supported multiple languages</h2>
+<ul>
+<li>[x] English</li>
+<li>[x] Chinese<ul>
+<li>[x] Simplified Chinese</li>
+<li>[x] Traditional Chinese</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md353"></a>
+Supported protocols</h2>
+<h3><a class="anchor" id="autotoc_md354"></a>
+Remote control protocols</h3>
+<ul>
+<li>[x] RFB(Remote frame buffer) is also called VNC(Virtual Network Computing): <a href="https://github.com/rfbproto/rfbproto">https://github.com/rfbproto/rfbproto</a></li>
+<li>[x] RDP(Remote desktop protocol): <a href="https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation">https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation</a></li>
+<li>[ ] Spice: <a href="https://www.spice-space.org/">https://www.spice-space.org/</a></li>
+<li>[x] SSH: <a href="https://www.rfc-editor.org/info/rfc4251">https://www.rfc-editor.org/info/rfc4251</a><ul>
+<li>[x] <a href="https://api.libssh.org/stable/index.html">libssh</a></li>
+</ul>
+</li>
+<li>[x] TELNET: <a href="https://www.rfc-editor.org/info/rfc318">https://www.rfc-editor.org/info/rfc318</a></li>
+<li>[x] Terminal</li>
+<li>[ ] scrcpy: <a href="https://github.com/Genymobile/scrcpy">https://github.com/Genymobile/scrcpy</a></li>
+<li>[x] FTP(File Transfer Protocol): <a href="https://www.rfc-editor.org/info/rfc959">https://www.rfc-editor.org/info/rfc959</a></li>
+<li>[x] SFTP(Secure Shell File Transfer Protocol): <a href="https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02">https://tools.ietf.org/html/draft-ietf-secsh-filexfer-02</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md355"></a>
+Network protocols</h3>
+<ul>
+<li>[x] Peer-to-Peer (P2P) protocol<ul>
+<li>ICE (Interactive Connectivity Establishment): <a href="https://datatracker.ietf.org/doc/rfc8445/">RFC 8445</a></li>
+<li>STUN: <a href="https://datatracker.ietf.org/doc/rfc5389/">RFC 5389</a></li>
+<li>TURN(Traversal Using Relays around NAT): <a href="https://datatracker.ietf.org/doc/rfc5766/">RFC 5766</a></li>
+</ul>
+</li>
+<li>[x] Proxy<ul>
+<li>[x] socks</li>
+<li>[ ] http</li>
+<li>[x] Peer-to-Peer (P2P) proxy protocol: <a href="https://github.com/KangLin/RabbitRemoteControl/issues/7">https://github.com/KangLin/RabbitRemoteControl/issues/7</a></li>
+</ul>
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md356"></a>
+Function list</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"></th><th class="markdownTableHeadCenter">Server   </th><th class="markdownTableHeadCenter">Client   </th><th class="markdownTableHeadCenter">Desktop   </th><th class="markdownTableHeadCenter">Clipboard   </th><th class="markdownTableHeadCenter">File   </th><th class="markdownTableHeadCenter">Audio   </th><th class="markdownTableHeadCenter">Redirection   </th><th class="markdownTableHeadCenter">P2P   </th><th class="markdownTableHeadCenter">Proxy   </th><th class="markdownTableHeadCenter">Terminal    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">RDP   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">RFB   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Spice   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Scrcpy   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Terminal   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">TELNET   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">SSH   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Serial port   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">FTP   </td><td class="markdownTableBodyCenter">✓   </td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">SFTP   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">……   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<p>Legend: <br  />
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Proxy   </th><th class="markdownTableHeadNone">P2P    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">RabbitVNC   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">TigerVNC   </td><td class="markdownTableBodyNone">✓   </td><td class="markdownTableBodyNone">✓    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">LibVNC   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">FreeRDP   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+</table>
+<p>Legend: <br  />
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported</p>
+<h3><a class="anchor" id="autotoc_md357"></a>
+Plugins</h3>
+<ul>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2FreeRDP_2README.html">FreeRDP</a></li>
+<li>VNC<ul>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2RabbitVNC_2README.html">RabbitVNC</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2TigerVnc_2README.html">TigerVnc</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2LibVNCServer_2README.html">LibVNCServer</a></li>
+</ul>
+</li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2WakeOnLan_2README.html">Wake on lan</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2Player_2README.html">Player</a></li>
+<li><a href="Plugins/ScreenCapture">Screen capture: Example</a></li>
+<li>Terminal<ul>
+<li><a href="Plugins/Terminal">Terminal</a></li>
+<li><a href="Plugins/SSH">SSH</a></li>
+<li><a href="Plugins/Telnet">TELNET</a></li>
+<li><a href="Plugins/SerialPort">Serial Port</a></li>
+</ul>
+</li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2FileTransfer_2README.html">File transfer</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2Plugins_2FtpServer_2README.html">Ftp server</a></li>
+<li><a href="Plugins/WebBrowser">Web browser</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md358"></a>
+Status</h1>
+<p><a href="https://kanglin.github.io/RabbitRemoteControl/English/html/index.html"><img src="https://img.shields.io/badge/documentation-online-blue?label=Development%20documents" alt="Development documentation" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual"><img src="https://img.shields.io/badge/documentation-online-blue?label=User%20manual" alt="User manual" class="inline"/></a></p>
+<p><a href="https://github.com/KangLin/RabbitRemoteControl/releases/latest"><img src="https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release" alt="Latest Release" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/releases"><img src="https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release" alt="Release" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/badge.svg" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a></p>
+<p><a href="https://tooomm.github.io/github-release-stats/?username=KangLin&amp;repository=RabbitRemoteControl"><img src="https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads" alt="Downloads from github" class="inline"/></a> <a href="https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download"><img src="https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20downloads" alt="Downloads from sourceforge" style="pointer-events: none;" class="inline"/></a></p>
+<p><a href="https://gitter.im/RabbitRemoteControl/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/RabbitRemoteControl/community.svg" alt="Gitter" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/issues"><img src="https://img.shields.io/github/issues/KangLin/RabbitRemoteControl" alt="GitHub issues" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/"><img src="https://img.shields.io/github/forks/KangLin/RabbitRemoteControl" alt="GitHub forks" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulse"><img src="https://img.shields.io/github/commit-activity/m/KangLin/RabbitRemoteControl" alt="Commit Activity" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulse"><img src="https://img.shields.io/github/last-commit/KangLin/RabbitRemoteControl" alt="Last Commit" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/graphs/contributors"><img src="https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=Contributors" alt="Contributors" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls"><img src="https://img.shields.io/badge/PRs-welcome-yellow.svg" alt="PRs Welcome" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls"><img src="https://img.shields.io/github/issues-pr/KangLin/RabbitRemoteControl" alt="Open PRs" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/KangLin/RabbitRemoteControl" alt="Closed PRs" class="inline"/></a></p>
+<p><a href="https://en.cppreference.com/"><img src="https://img.shields.io/badge/language-c++-red.svg" alt="C++" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/github/languages/top/kanglin/RabbitRemoteControl" alt="Language" class="inline"/> <a href="https://doc.qt.io/qt-5/"><img src="https://img.shields.io/badge/Qt-5-brightgreen" alt="Qt5" class="inline"/></a> <a href="https://doc.qt.io/qt-6/"><img src="https://img.shields.io/badge/Qt-6-brightgreen" alt="Qt6" class="inline"/></a> <a href="https://github.com/KangLin/RabbitRemoteControl"><img src="https://img.shields.io/badge/platform-windows%20|%20linux%20|%20android%20|%20macos-blue.svg" alt="platform" style="pointer-events: none;" class="inline"/></a></p>
+<h3><a class="anchor" id="autotoc_md359"></a>
+Stargazers over time</h3>
+<p><a href="https://star-history.com/#KangLin/RabbitRemoteControl&amp;Date"><img src="https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars" alt="GitHub stars" class="inline"/></a> <a href="https://gitee.com/kl222/RabbitRemoteControl/stargazers"><img src="https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark" alt="Gitee stars" style="pointer-events: none;" class="inline"/></a></p>
+<p><a href="https://starchart.cc/KangLin/RabbitRemoteControl"><img src="https://starchart.cc/KangLin/RabbitRemoteControl.svg" alt="Stargazers over time" style="pointer-events: none;" class="inline"/></a></p>
+<h2><a class="anchor" id="autotoc_md360"></a>
+Build status</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">master   </th><th class="markdownTableHeadCenter">develop    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml"><img src="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml/badge.svg" alt="build" style="pointer-events: none;" class="inline"/></a>   </td><td class="markdownTableBodyCenter"><a href="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml"><img src="https://github.com/KangLin/RabbitRemoteControl/actions/workflows/build.yml/badge.svg?branch=develop" alt="build" style="pointer-events: none;" class="inline"/></a>   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md361"></a>
+Sponsorship and Donations</h1>
+<p>If this software is useful to you, or you like it, please donate and support the author. Thank you!</p>
+<p><a href="https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png" title="donation">![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png "donation")</a></p>
+<p>If it cannot be displayed, please open:</p><ul>
+<li><a href="https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_en.png">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_en.png</a></li>
+<li><a href="https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_en.png">https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_en.png</a></li>
+</ul>
+<p>Contact me:</p><ul>
+<li><a href="#" onclick="location.href='mai'+'lto:'+'kl2'+'22'+'@12'+'6.'+'com'; return false;">kl222<span class="obfuscator">.nosp@m.</span>@126<span class="obfuscator">.nosp@m.</span>.com</a></li>
+<li><a href="https://jami.net">jami</a>: eddacfd6c7b70b258e511e812ffab7d3490396fa</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md362"></a>
+Contribution</h1>
+<ul>
+<li><a href="https://sourceforge.net/p/rabbitremotecontrol/mailman/">Mailing list</a><ul>
+<li>Developer <a href="#" onclick="location.href='mai'+'lto:'+'rab'+'bi'+'tre'+'mo'+'tec'+'on'+'tro'+'l-'+'dev'+'el'+'ope'+'r@'+'lis'+'ts'+'.so'+'ur'+'cef'+'or'+'ge.'+'ne'+'t'; return false;">rabbi<span class="obfuscator">.nosp@m.</span>trem<span class="obfuscator">.nosp@m.</span>oteco<span class="obfuscator">.nosp@m.</span>ntro<span class="obfuscator">.nosp@m.</span>l-dev<span class="obfuscator">.nosp@m.</span>elop<span class="obfuscator">.nosp@m.</span>er@li<span class="obfuscator">.nosp@m.</span>sts.<span class="obfuscator">.nosp@m.</span>sourc<span class="obfuscator">.nosp@m.</span>efor<span class="obfuscator">.nosp@m.</span>ge.ne<span class="obfuscator">.nosp@m.</span>t</a></li>
+<li>Discuss <a href="#" onclick="location.href='mai'+'lto:'+'rab'+'bi'+'tre'+'mo'+'tec'+'on'+'tro'+'l-'+'dis'+'cu'+'ss@'+'li'+'sts'+'.s'+'our'+'ce'+'for'+'ge'+'.ne'+'t'; return false;">rabbi<span class="obfuscator">.nosp@m.</span>trem<span class="obfuscator">.nosp@m.</span>oteco<span class="obfuscator">.nosp@m.</span>ntro<span class="obfuscator">.nosp@m.</span>l-dis<span class="obfuscator">.nosp@m.</span>cuss<span class="obfuscator">.nosp@m.</span>@list<span class="obfuscator">.nosp@m.</span>s.so<span class="obfuscator">.nosp@m.</span>urcef<span class="obfuscator">.nosp@m.</span>orge<span class="obfuscator">.nosp@m.</span>.net</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues">Issues</a></li>
+<li><a href="https://gitter.im/RabbitRemoteControl/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/RabbitRemoteControl/community.svg" alt="Join the chat at https://gitter.im/RabbitRemoteControl/community" style="pointer-events: none;" class="inline"/></a></li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/discussions">Discussions</a></li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/graphs/contributors">Contributors</a>: Thank <a href="https://github.com/KangLin/RabbitRemoteControl/graphs/contributors">Contributors</a></li>
+<li>Maintenance package<ul>
+<li>[ ] Linux<ul>
+<li>[ ] Debian: Need to maintain official packages</li>
+<li>[ ] rpm: Need to maintain official packages</li>
+<li>[x] AppImage</li>
+<li>[x] Snap: <a href="https://snapcraft.io/rabbitremotecontrol">https://snapcraft.io/rabbitremotecontrol</a></li>
+<li>[x] Flatpak: <a href="https://github.com/flathub/io.github.KangLin.RabbitRemoteControl">https://github.com/flathub/io.github.KangLin.RabbitRemoteControl</a></li>
+</ul>
+</li>
+<li>Windows<ul>
+<li>[ ] Windows store: Need to maintain official packages</li>
+</ul>
+</li>
+<li>[ ] macOS: Need to maintain official packages</li>
+<li>[ ] Android: Need to maintain official packages</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md363"></a>
+Download</h1>
+<ul>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2ChangeLog.html">Change log</a></li>
+<li>Semantic Versioning: <a href="https://semver.org/">https://semver.org/</a></li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual">User manual</a></li>
+<li>Release:<ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases/latest"><img src="https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release" alt="Latest Release" style="pointer-events: none;" class="inline"/></a></li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/releases"><img src="https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release" alt="Release" class="inline"/></a></li>
+<li><a href="https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download"><img src="https://a.fsdn.com/con/app/sf-download-button" alt="Download RabbitRemoteControl" class="inline"/></a></li>
+<li><a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/badge.svg" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a> <a href="https://snapcraft.io/rabbitremotecontrol"><img src="https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0" alt="rabbitremotecontrol" style="pointer-events: none;" class="inline"/></a></li>
+<li><a href="https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl"><img src="https://flathub.org/api/badge?locale=en" alt="Download from Flathub" class="inline"/></a></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md364"></a>
+@ref "/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/docs/Doxygen/Develop.md" "Development"</h1>
+<h2><a class="anchor" id="autotoc_md365"></a>
+Development documentation online</h2>
+<ul>
+<li><a href="https://rabbitremotecontrol.sourceforge.io/v0.1.0-bate7/English/html/index.html">sourceforge</a></li>
+<li><a href="https://kanglin.github.io/RabbitRemoteControl/English/html/index.html">github.io</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md366"></a>
+Compilation</h2>
+<ul>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Android__zh__CN.html">Compiling for Android</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Linux.html">Compiling for Linux</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2Windows.html">Compiling for Windows</a></li>
+<li><a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2docs_2Compile_2macOS.html">Compiling for macOS</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md367"></a>
+@ref "/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/License.md" "License.md"</h1>
+<p>Please abide by the <a class="el" href="md__2home_2runner_2work_2RabbitRemoteControl_2RabbitRemoteControl_2License.html">License.md</a> of this project and the license agreement of the dependent library, and thank the authors of dependent library and tools. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CServiceFreeRDP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCServiceFreeRDP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CServiceFreeRDP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CServiceFreeRDP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceFreeRDP__inherit__graph.png" border="0" usemap="#aCServiceFreeRDP_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCServiceFreeRDP_inherit__map" id="aCServiceFreeRDP_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,140,177"/>
+<area shape="rect" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="33,79,112,104"/>
+<area shape="poly" title=" " alt="" coords="75,118,75,152,70,152,70,118"/>
+<area shape="rect" title=" " alt="" coords="35,5,110,31"/>
+<area shape="poly" title=" " alt="" coords="75,44,75,79,70,79,70,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CServiceFreeRDP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCServiceFreeRDP__coll__graph.png" border="0" usemap="#aCServiceFreeRDP_coll__map" alt="Collaboration graph"/></div>
+<map name="aCServiceFreeRDP_coll__map" id="aCServiceFreeRDP_coll__map">
+<area shape="rect" title=" " alt="" coords="28,243,162,268"/>
+<area shape="rect" href="classCService.html" title="服务接口。由具体的协议实现。此接口仅由插件实现。 支持非Qt事件循环。详见： Init() 、 slotProcess() 如果不启用非Qt事件循环。则 OnInit() 返回 &gt; 0" alt="" coords="56,168,134,193"/>
+<area shape="poly" title=" " alt="" coords="98,208,98,242,92,242,92,208"/>
+<area shape="rect" title=" " alt="" coords="58,5,132,31"/>
+<area shape="poly" title=" " alt="" coords="56,40,31,57,12,81,8,94,10,106,24,129,48,150,73,166,71,170,45,154,20,133,5,108,3,93,7,79,28,53,53,35"/>
+<area shape="rect" href="classCParameterService.html" title=" " alt="" coords="22,80,168,105"/>
+<area shape="poly" title=" " alt="" coords="98,45,98,80,92,80,92,45"/>
+<area shape="rect" href="classCPluginService.html" title="服务插件接口。此接口仅由插件实现。" alt="" coords="193,80,312,105"/>
+<area shape="poly" title=" " alt="" coords="133,34,229,78,226,82,131,39"/>
+<area shape="poly" title=" " alt="" coords="98,119,98,167,92,167,92,119"/>
+<area shape="poly" title=" " alt="" coords="221,114,163,146,118,170,115,166,160,142,219,110"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4f515d993dc46c74fca48a3e0bb65f05" id="r_a4f515d993dc46c74fca48a3e0bb65f05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a4f515d993dc46c74fca48a3e0bb65f05">CServiceFreeRDP</a> (<a class="el" href="classCPluginServiceFreeRDP.html">CPluginServiceFreeRDP</a> *plugin)</td></tr>
+<tr class="separator:a4f515d993dc46c74fca48a3e0bb65f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCService"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCService')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:ab0cef52619d8452317fec5be47a57b3e inherit pub_methods_classCService" id="r_ab0cef52619d8452317fec5be47a57b3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ab0cef52619d8452317fec5be47a57b3e">CService</a> (<a class="el" href="classCPluginService.html">CPluginService</a> *plugin)</td></tr>
+<tr class="separator:ab0cef52619d8452317fec5be47a57b3e inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService" id="r_a532ed3df41589aeb2e8c1b9f8ed6342c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a532ed3df41589aeb2e8c1b9f8ed6342c">Init</a> ()</td></tr>
+<tr class="memdesc:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载参数，支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a532ed3df41589aeb2e8c1b9f8ed6342c inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1fc653675b09ae0f763a950f58b1f4 inherit pub_methods_classCService" id="r_a0a1fc653675b09ae0f763a950f58b1f4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a0a1fc653675b09ae0f763a950f58b1f4">Clean</a> ()</td></tr>
+<tr class="separator:a0a1fc653675b09ae0f763a950f58b1f4 inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c13d79eb6eeaadcbf27e7edc7bac66b inherit pub_methods_classCService" id="r_a1c13d79eb6eeaadcbf27e7edc7bac66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a1c13d79eb6eeaadcbf27e7edc7bac66b">GetParameters</a> ()</td></tr>
+<tr class="separator:a1c13d79eb6eeaadcbf27e7edc7bac66b inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c854daa531516f09b7e90c1689c6ff inherit pub_methods_classCService" id="r_a31c854daa531516f09b7e90c1689c6ff"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a31c854daa531516f09b7e90c1689c6ff">LoadConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a31c854daa531516f09b7e90c1689c6ff inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03bd15deebaae36c0e384c779bedba4b inherit pub_methods_classCService" id="r_a03bd15deebaae36c0e384c779bedba4b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a03bd15deebaae36c0e384c779bedba4b">SaveConfigure</a> (const QString &amp;szDir=QString())</td></tr>
+<tr class="separator:a03bd15deebaae36c0e384c779bedba4b inherit pub_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a94aa42cadd03c4767f03ae86d4085005" id="r_a94aa42cadd03c4767f03ae86d4085005"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a94aa42cadd03c4767f03ae86d4085005">OnInit</a> () override</td></tr>
+<tr class="memdesc:a94aa42cadd03c4767f03ae86d4085005"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化服务  <br /></td></tr>
+<tr class="separator:a94aa42cadd03c4767f03ae86d4085005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ba0194af0604af5123233443ae1d83" id="r_a54ba0194af0604af5123233443ae1d83"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a54ba0194af0604af5123233443ae1d83">OnClean</a> () override</td></tr>
+<tr class="memdesc:a54ba0194af0604af5123233443ae1d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">清理服务  <br /></td></tr>
+<tr class="separator:a54ba0194af0604af5123233443ae1d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService" id="r_ad3019e7c87e2a2c40d75ada9f01d239e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#ad3019e7c87e2a2c40d75ada9f01d239e">OnProcess</a> ()</td></tr>
+<tr class="memdesc:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理服务  <br /></td></tr>
+<tr class="separator:ad3019e7c87e2a2c40d75ada9f01d239e inherit pro_methods_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a948e65257a479ef05ef16167ef37909b" id="r_a948e65257a479ef05ef16167ef37909b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a948e65257a479ef05ef16167ef37909b">SetParameters</a> ()</td></tr>
+<tr class="separator:a948e65257a479ef05ef16167ef37909b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a5178462cdc2b7c4dfaecc15f44965282" id="r_a5178462cdc2b7c4dfaecc15f44965282"><td class="memItemLeft" align="right" valign="top">QLoggingCategory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a5178462cdc2b7c4dfaecc15f44965282">m_Log</a></td></tr>
+<tr class="separator:a5178462cdc2b7c4dfaecc15f44965282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09fd6286f1a5d695f55bef684bbc935" id="r_af09fd6286f1a5d695f55bef684bbc935"><td class="memItemLeft" align="right" valign="top">rdpSettings *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#af09fd6286f1a5d695f55bef684bbc935">m_pSettings</a></td></tr>
+<tr class="separator:af09fd6286f1a5d695f55bef684bbc935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f076133b8f0c4d4876528b5c66fea6" id="r_a16f076133b8f0c4d4876528b5c66fea6"><td class="memItemLeft" align="right" valign="top">rdpShadowServer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a16f076133b8f0c4d4876528b5c66fea6">m_pServer</a></td></tr>
+<tr class="separator:a16f076133b8f0c4d4876528b5c66fea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3e24275652c6bd30cf69645e37aa8f" id="r_a4d3e24275652c6bd30cf69645e37aa8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCServiceFreeRDP.html#a4d3e24275652c6bd30cf69645e37aa8f">m_bServerInit</a></td></tr>
+<tr class="separator:a4d3e24275652c6bd30cf69645e37aa8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_slots_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService" id="r_a6c84f82b6557bdbd9229d1862cb17c4a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#a6c84f82b6557bdbd9229d1862cb17c4a">slotProcess</a> ()</td></tr>
+<tr class="memdesc:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService"><td class="mdescLeft">&#160;</td><td class="mdescRight">支持非Qt事件循环  <br /></td></tr>
+<tr class="separator:a6c84f82b6557bdbd9229d1862cb17c4a inherit pro_slots_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCService"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCService')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCService.html">CService</a></td></tr>
+<tr class="memitem:abdb383c141fa3aa8427b9abdbc00e2f0 inherit pro_attribs_classCService" id="r_abdb383c141fa3aa8427b9abdbc00e2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterService.html">CParameterService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abdb383c141fa3aa8427b9abdbc00e2f0">m_pPara</a></td></tr>
+<tr class="separator:abdb383c141fa3aa8427b9abdbc00e2f0 inherit pro_attribs_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb73fabe91597a840f96242f7d1f3f6 inherit pro_attribs_classCService" id="r_abcb73fabe91597a840f96242f7d1f3f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPluginService.html">CPluginService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCService.html#abcb73fabe91597a840f96242f7d1f3f6">m_pPlugin</a></td></tr>
+<tr class="separator:abcb73fabe91597a840f96242f7d1f3f6 inherit pro_attribs_classCService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a> 第 <a class="el" href="ServiceFreeRDP_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a4f515d993dc46c74fca48a3e0bb65f05" name="a4f515d993dc46c74fca48a3e0bb65f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f515d993dc46c74fca48a3e0bb65f05">&#9670;&#160;</a></span>CServiceFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceFreeRDP::CServiceFreeRDP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCPluginServiceFreeRDP.html">CPluginServiceFreeRDP</a> *&#160;</td>
+          <td class="paramname"><em>plugin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a> 第 <a class="el" href="ServiceFreeRDP_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adb0751b0e320bee9eb5fa5e10463cd6c" name="adb0751b0e320bee9eb5fa5e10463cd6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb0751b0e320bee9eb5fa5e10463cd6c">&#9670;&#160;</a></span>~CServiceFreeRDP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CServiceFreeRDP::~CServiceFreeRDP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a> 第 <a class="el" href="ServiceFreeRDP_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a54ba0194af0604af5123233443ae1d83" name="a54ba0194af0604af5123233443ae1d83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ba0194af0604af5123233443ae1d83">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CServiceFreeRDP::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>清理服务 </p>
+
+<p>实现了 <a class="el" href="classCService.html#a9eb01e01c31bfcb8cf9ec56981b773c9">CService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a> 第 <a class="el" href="ServiceFreeRDP_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a94aa42cadd03c4767f03ae86d4085005" name="a94aa42cadd03c4767f03ae86d4085005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94aa42cadd03c4767f03ae86d4085005">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CServiceFreeRDP::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化服务 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>&lt; 0: 错误 </li>
+<li>= 0: 使用 OnProcess (非 Qt 事件循环) </li>
+<li>&gt; 0: 不使用 OnProcess (Qt 事件循环) </li>
+</ul>
+</dd></dl>
+
+<p>实现了 <a class="el" href="classCService.html#a311f3d18846b5d8a96a93c5eb8994431">CService</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a> 第 <a class="el" href="ServiceFreeRDP_8cpp_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a948e65257a479ef05ef16167ef37909b" name="a948e65257a479ef05ef16167ef37909b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a948e65257a479ef05ef16167ef37909b">&#9670;&#160;</a></span>SetParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CServiceFreeRDP::SetParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a> 第 <a class="el" href="ServiceFreeRDP_8cpp_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4d3e24275652c6bd30cf69645e37aa8f" name="a4d3e24275652c6bd30cf69645e37aa8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3e24275652c6bd30cf69645e37aa8f">&#9670;&#160;</a></span>m_bServerInit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CServiceFreeRDP::m_bServerInit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a> 第 <a class="el" href="ServiceFreeRDP_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5178462cdc2b7c4dfaecc15f44965282" name="a5178462cdc2b7c4dfaecc15f44965282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5178462cdc2b7c4dfaecc15f44965282">&#9670;&#160;</a></span>m_Log</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLoggingCategory CServiceFreeRDP::m_Log</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a> 第 <a class="el" href="ServiceFreeRDP_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16f076133b8f0c4d4876528b5c66fea6" name="a16f076133b8f0c4d4876528b5c66fea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16f076133b8f0c4d4876528b5c66fea6">&#9670;&#160;</a></span>m_pServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">rdpShadowServer* CServiceFreeRDP::m_pServer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a> 第 <a class="el" href="ServiceFreeRDP_8h_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af09fd6286f1a5d695f55bef684bbc935" name="af09fd6286f1a5d695f55bef684bbc935"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af09fd6286f1a5d695f55bef684bbc935">&#9670;&#160;</a></span>m_pSettings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">rdpSettings* CServiceFreeRDP::m_pSettings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a> 第 <a class="el" href="ServiceFreeRDP_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Service/<a class="el" href="ServiceFreeRDP_8h_source.html">ServiceFreeRDP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Service/<a class="el" href="ServiceFreeRDP_8cpp_source.html">ServiceFreeRDP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

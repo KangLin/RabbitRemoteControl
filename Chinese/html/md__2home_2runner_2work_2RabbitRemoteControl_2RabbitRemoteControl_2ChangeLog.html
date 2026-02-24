@@ -1,0 +1,708 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: Change Log</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">Change Log</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md8"></a> </p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+v0.1.0-dev</h2>
+<ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/47">Refactor</a><ul>
+<li>App:<ul>
+<li>Rename UI prompts</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Old name   </th><th class="markdownTableHeadNone">New name   </th><th class="markdownTableHeadNone">Function    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Remote   </td><td class="markdownTableBodyNone">Operate   </td><td class="markdownTableBodyNone">Menu    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Remote-&gt;Connect   </td><td class="markdownTableBodyNone">Operate-&gt;Start   </td><td class="markdownTableBodyNone">Menu or tool bar    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Remote-&gt;Disconnect   </td><td class="markdownTableBodyNone">Operate-&gt;Stop   </td><td class="markdownTableBodyNone">Menu or tool bar   </td></tr>
+</table>
+<ul>
+<li>Rename class name</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Old name   </th><th class="markdownTableHeadNone">New Name    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CConnecter   </td><td class="markdownTableBodyNone"><a class="el" href="classCOperate.html" title="操作接口。">COperate</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Connect   </td><td class="markdownTableBodyNone"><a class="el" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支...">CBackend</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ConnectThread   </td><td class="markdownTableBodyNone"><a class="el" href="classCBackendThread.html" title="The backend thread">CBackendThread</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CConnecterThread   </td><td class="markdownTableBodyNone"><a class="el" href="classCOperateDesktop.html" title="远程桌面操作接口">COperateDesktop</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CPluginClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCPlugin.html" title="插件接口">CPlugin</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCManager.html" title="管理插件">CManager</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CParameterConnecter   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。">CParameterOperate</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CParameterClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">FrmParameterClient   </td><td class="markdownTableBodyNone"><a class="el" href="classCParameterPluginUI.html">CParameterPluginUI</a>   </td></tr>
+</table>
+<ul>
+<li>Plugin<ul>
+<li>Terminal</li>
+<li>Terminal SSH</li>
+<li>Terminal telnet</li>
+<li>Serail port</li>
+<li>Add file transfer<ul>
+<li>SFTP</li>
+<li>FTP</li>
+</ul>
+</li>
+<li>Server<ul>
+<li>FTP server</li>
+</ul>
+</li>
+<li>Player<ul>
+<li>Add display subtitle</li>
+</ul>
+</li>
+<li>Add web browser</li>
+</ul>
+</li>
+</ul>
+<p>Add activity menu</p><ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/48">Add input method in freerdp</a></li>
+<li>Application<ul>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/49">App: add favorite from activity list and recent list</a></li>
+<li>favorite and recent with database</li>
+<li>Add view layout</li>
+<li>Add main menu in toolbaar</li>
+</ul>
+</li>
+<li>Add build_mscos.sh. add App bundle</li>
+<li>Add run the program directly without installation for windows install package</li>
+<li><a href="https://github.com/KangLin/RabbitRemoteControl/issues/78">Add store password to system redential</a></li>
+<li>Plugin: fix disable desktop shortcuts in linux. See: <a href="https://github.com/KangLin/RabbitRemoteControl/discussions/91">https://github.com/KangLin/RabbitRemoteControl/discussions/91</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+v0.0.36</h2>
+<ul>
+<li>Client:<ul>
+<li>Fix recode video rate bug</li>
+</ul>
+</li>
+<li>FreeRDP:<ul>
+<li>Add <a class="el" href="classCConnectLayer.html" title="The connect layer class">CConnectLayer</a></li>
+<li>Add Http and sockes v5 proxy</li>
+</ul>
+</li>
+<li>Fix:<ul>
+<li>LibVNCServer: The program crashed because the initialization was not successful.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+v0.0.35</h2>
+<ul>
+<li>App:<ul>
+<li>modify parameter</li>
+<li>Spiltter view: add tab</li>
+</ul>
+</li>
+<li>FreeRDP:<ul>
+<li>Add security parameter settings</li>
+<li>Add connect type settings</li>
+</ul>
+</li>
+<li>Client:<ul>
+<li>modify key board event</li>
+<li>Fix alt, tab receive in native windows bug</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md12"></a>
+v0.0.34</h2>
+<ul>
+<li>App: add splitter view</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md13"></a>
+v0.0.33</h2>
+<ul>
+<li>Remove donate bitcoin</li>
+<li>VNC: modify mouse. add back button</li>
+<li>Add script<ul>
+<li>build_depend.sh</li>
+<li>build_appimage.sh</li>
+<li>build_docker.sh</li>
+</ul>
+</li>
+<li>CI: add arm64(aarch64) release</li>
+<li>Client: modify interfaces<ul>
+<li>CPluginClient<ul>
+<li>Add CPluginClient::OnCreateConnecter</li>
+<li>Modify CPlginClient::CreateConnecter</li>
+</ul>
+</li>
+<li>CClient<ul>
+<li>Modify CClient::CreateConnecter</li>
+<li>Modify CClient::DeleteConnecter</li>
+</ul>
+</li>
+<li>CConnecter<ul>
+<li>Add CConnecter::GetSettingsFile</li>
+<li>Add CConnecter::SetSettingsFile</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WakeOnLan: make singleton</li>
+<li>Applation: modify interfaces<ul>
+<li><a class="el" href="classCView.html" title="The CView class">CView</a><ul>
+<li>add CView::SetCurrentView</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Package:<ul>
+<li>Add flatpak manifests</li>
+<li>Rename Install.nsi to Windows.nsi</li>
+<li>Debian: modify control</li>
+<li>Add rpm package</li>
+</ul>
+</li>
+<li>Rename org.Rabbit.RemoteControl to io.github.KangLin.RabbitRemoteControl<ul>
+<li>Modify .desktop file, icon file name and install script</li>
+</ul>
+</li>
+<li>Application: Rename CFrmListConnects to CFrmListRecnetConnects</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+v0.0.32</h2>
+<ul>
+<li>Fix player menu bug</li>
+<li>Fix player name</li>
+<li>Fix wake on lan bug</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+v0.0.31</h2>
+<ul>
+<li>Use <a href="https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2">RabbitCommon v2.3.2</a></li>
+<li>Fix: full screen bar position bug in Qt6. Because wayland is no coordinate system, borderless forms cannot be dragged and positioned. qt6 use wayland by default. qt5 use xcb default. So that prefix 'qputenv("QT_QPA_PLATFORM", "xcb")' at the beginning of the main function.</li>
+<li>Fix: AppImage load icon fail bug</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md16"></a>
+v0.0.30</h2>
+<ul>
+<li>Client: fix CFrmParameterClient don't save parameters</li>
+<li>App: fix core when the application exit. Because the background thread does not exit when the application exiting, the resource is not released correctly. For the time being, wait 1 second to solve the problem</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md17"></a>
+v0.0.29</h2>
+<ul>
+<li>FreeRDP<ul>
+<li>fix server unsupported clipborad format bug #31</li>
+<li>Fixed crashes caused by mouse side buttons</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md18"></a>
+v0.0.28</h2>
+<ul>
+<li>Client parameters<ul>
+<li>Added the ability to automatically use the system username as the username</li>
+<li>Add zoom viewer</li>
+</ul>
+</li>
+<li>App: remove border when full screen</li>
+<li>Client:<ul>
+<li>Add CConnectDesktop</li>
+<li>Add CClient::Details()</li>
+<li>Add <a class="el" href="classCParameterUI.html" title="参数界面接口">CParameterUI</a></li>
+<li>Add CConnecter::QMenu* GetMenu(QWidget* parent = nullptr)</li>
+<li>Rename CConnecterDesktop to CConnecterConnect</li>
+<li>Rename CConnecterDesktopThread to CConnecterThread</li>
+</ul>
+</li>
+<li>FreeRDP: prepare default settings <br  />
+<ul>
+<li>Fix ripple <a href="https://github.com/KangLin/RabbitRemoteControl/issues/27">#27</a> <a href="https://github.com/KangLin/RabbitRemoteControl/issues/27">#21</a> Because of the default is not set FreeRDP_SupportGraphicsPipeline feature</li>
+</ul>
+</li>
+<li>Plugin<ul>
+<li>Add player. need Qt &gt;= 6.6.0 , record need Qt &gt;= 6.8.0 .</li>
+<li>Add capture screen or window. need Qt &gt;= 6.6.0 , record need Qt &gt;= 6.8.0 .</li>
+<li>Add wake on lan</li>
+</ul>
+</li>
+<li>Package<ul>
+<li>Add snap</li>
+<li>Add AppImage</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md19"></a>
+v0.0.27</h2>
+<ul>
+<li>Client:<ul>
+<li>add OnInitReturnValue in CConnect</li>
+<li>Modify debian package</li>
+<li>Use <a href="https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6">RabbitCommon v2.2.6</a></li>
+<li>Refactor parameter<ul>
+<li>Add <a class="el" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。">CParameterBase</a></li>
+<li>Add <a class="el" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI">CParameterNet</a></li>
+<li>Add <a class="el" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI">CParameterUser</a></li>
+<li>Add <a class="el" href="classCParameterSSH.html">CParameterSSH</a></li>
+<li>Add <a class="el" href="classCParameterProxy.html" title="The proxy parameters.">CParameterProxy</a></li>
+</ul>
+</li>
+<li>TigerVNC: Update tigervnc to v1.13.90</li>
+<li>RabbitVNC: Update tigervnc to v1.13.90</li>
+<li>FreeRDP: The synchronization keyboard and mouse event is sent in the background thread. Fix: the 10. in <a href="https://github.com/KangLin/RabbitRemoteControl/issues/20">ISSUES #20</a></li>
+<li>LibVNCServer: The synchronization keyboard and mouse event is sent in the background thread.</li>
+<li>Channel:<ul>
+<li>add <a class="el" href="classCChannelSSHTunnel.html" title="SSH 隧道">CChannelSSHTunnel</a></li>
+<li>add <a class="el" href="classCSSHTunnelThread.html" title="实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。">CSSHTunnelThread</a> and <a class="el" href="classCChannelSSHTunnelForward.html" title="包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。 实现通过本地 socket 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。">CChannelSSHTunnelForward</a></li>
+<li>Add SSH tunnel<ul>
+<li>TigerVnc: Modify it to add background threads to handle SSH tunnels.</li>
+<li>LibVNCServer: Use local socket forwarding using SSH tunneling.</li>
+<li>FreeRDP: Use local socket forwarding using SSH tunneling.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md20"></a>
+v0.0.26</h2>
+<ul>
+<li>Use RabbitCommon v2</li>
+<li>FreeRDP:<ul>
+<li>Redirection<ul>
+<li>Audio input and output</li>
+<li>Drive(Files)</li>
+<li>Printer</li>
+</ul>
+</li>
+<li>Fix press the left and right mouse buttons at the same time BUG</li>
+</ul>
+</li>
+<li>App:<ul>
+<li>Add open the dialog of list connect settings</li>
+</ul>
+</li>
+<li>Rename tag.sh to deploy.sh</li>
+<li>Fix:<ul>
+<li>Fixed a bug where the correct dependency library could not be loaded when there were different versions of the dependency library under Linux.</li>
+<li>Fixed tab key event</li>
+</ul>
+</li>
+<li>Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName etc</li>
+<li>UI<ul>
+<li>Add set parameter in client<ul>
+<li>Add prefix in name</li>
+<li>Add only show IP:PORT in name</li>
+</ul>
+</li>
+<li>Add set parameter in main windows<ul>
+<li>Add icon in tab view</li>
+<li>Add tooltip in tab view</li>
+</ul>
+</li>
+<li>Optimize the user interface</li>
+<li>Optimize logon and setting dialog<ul>
+<li>RabbitVNC</li>
+<li>TigerVNC</li>
+<li>LibVNCServer</li>
+</ul>
+</li>
+<li>Client:<ul>
+<li>Add sigShowMessage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Client interface<ul>
+<li>Add CConnecter::sigDisconnect()</li>
+<li>Add CConnect::sigDisconnect()</li>
+<li>Add CConnect::sigUpdateRect(const QImage&amp; image)</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md21"></a>
+v0.0.25</h2>
+<ul>
+<li>Modify CI for automation update</li>
+<li>Modify translations</li>
+<li>Add icon theme</li>
+<li>FreeRDP:<ul>
+<li>Clipboard<ul>
+<li>Copy file<ul>
+<li>Client to server</li>
+<li>Server to client(Copy directory is core)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Fix pop menu bug in favorite</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md22"></a>
+v0.0.24</h2>
+<ul>
+<li>Install FreeRDP dll</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md23"></a>
+v0.0.23</h2>
+<ul>
+<li>Rename<ul>
+<li>Rename the directory viewer to client</li>
+<li>Rename the class CPluginViewer to CPluginClient</li>
+<li>Rename the class CPluginViewerThread to <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a></li>
+<li>Rename the class CParameterViewer to CParameterClient</li>
+<li>Rename the class CManagePlugin to CClient</li>
+<li>Rename the functioin CConnecter::SetParameterViewer to CConnecter::SetParameterClient</li>
+</ul>
+</li>
+<li>FreeRDP:<ul>
+<li>Completed clipboard functions<ul>
+<li>Text</li>
+<li>HTML</li>
+<li>Image</li>
+</ul>
+</li>
+<li>Add play bell sound</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md24"></a>
+v0.0.22</h2>
+<ul>
+<li>Add keyboard hook<ul>
+<li>Windows</li>
+</ul>
+</li>
+<li>Refactor parameter</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md25"></a>
+v0.0.21</h2>
+<ul>
+<li>Add core dump in windows</li>
+<li>FIX install MSVC system libraries in windows. See RabbitCommon</li>
+<li>FIX: divide by 0 crash. Affects all previous releases. See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f</li>
+<li>Viewer: add QCheckBox in show dialog</li>
+<li>Viewer: optimize CConnecter::Name() and CConnecter::ServerName()</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md26"></a>
+v0.0.20</h2>
+<ul>
+<li>Add version suffix to Windows dynamic library. see RabbitCommon</li>
+<li>RabbitCommon adds openssl version judgment.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md27"></a>
+v0.0.19</h2>
+<ul>
+<li>Add OpenGL form</li>
+<li>Add open log</li>
+<li>Add ICE<ul>
+<li>RabbitVNC</li>
+<li>TigerVNC</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md28"></a>
+v0.0.18</h2>
+<ul>
+<li>Organize documents</li>
+<li>Service<ul>
+<li>Add service configure application</li>
+<li>Add FreeRDP service</li>
+<li>Modify Desktop and grab cursor<ul>
+<li>linux</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md29"></a>
+v0.0.17</h2>
+<ul>
+<li>FIX the bug disconnect from server</li>
+<li>Modify FreeRDP clipboard<ul>
+<li>Text</li>
+<li>Image</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md30"></a>
+v0.0.16</h2>
+<ul>
+<li>CConnecter add block dialog</li>
+<li>Add enable set system tray icon</li>
+<li>Add RabbitVNC plugin</li>
+<li>Fix same bug<ul>
+<li>Toolbar show bug</li>
+</ul>
+</li>
+<li>Support Qt6</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md31"></a>
+v0.0.15</h2>
+<ul>
+<li>Refactor CConneter parameters interface</li>
+<li>Refactor CConneterDesktop interface<ul>
+<li>add CConneterDesktopThread</li>
+<li>add PluginViewerThread</li>
+</ul>
+</li>
+<li>Modify documents</li>
+<li>Add input password when is connecting</li>
+<li>Add show message dialog in connect</li>
+<li>Add resume the connections when it was last closed at startup</li>
+<li>Fix same bug<ul>
+<li>Fix CConneter::Name CConneter::ServerName bug</li>
+<li>Fix favorite bug</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md32"></a>
+v0.0.14</h2>
+<ul>
+<li>Add system tray icon</li>
+<li>Fix same bug</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md33"></a>
+v0.0.13</h2>
+<ul>
+<li>Modify UI<ul>
+<li>Add clone connect</li>
+<li>Add favorite function</li>
+</ul>
+</li>
+<li>Update manage password<ul>
+<li>Add enable view password</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md34"></a>
+v0.0.12</h2>
+<ul>
+<li>Add settings</li>
+<li>Optimize saving password</li>
+<li>Optimize main windows、toolbar</li>
+<li>FIX: shot screen window</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md35"></a>
+v0.0.11</h2>
+<ul>
+<li>FIX main window focus bug</li>
+<li>Add other translates</li>
+<li>FIX freerdp compile error</li>
+<li>Add input password dialog when is connecting<ul>
+<li>TigerVNC</li>
+<li>LibNVCServer</li>
+<li>FreeRDP</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md36"></a>
+v0.0.10</h2>
+<ul>
+<li>Add zoom view</li>
+<li>FIX: libvncserver initial bug</li>
+<li>Reface viewer parameters</li>
+<li>Add screenslot</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md37"></a>
+v0.0.9</h2>
+<ul>
+<li>Add server<ul>
+<li>RFB<ul>
+<li>TigerVnc</li>
+<li>LIBVNC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add Peer to peer</li>
+<li>Refactor frame</li>
+<li>Add github actions</li>
+<li>App: Add viewer automation adjust scroll bar by mouse move</li>
+<li>Fix some bug</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md38"></a>
+v0.0.8</h2>
+<ul>
+<li>FIX tab view show bug when full screen</li>
+<li>Add proxy<ul>
+<li>tigervnc proxy</li>
+</ul>
+</li>
+<li>Update tigervnc library</li>
+<li>Add recent open menu</li>
+<li>Modify documents<ul>
+<li>Use Doxygen to generate development documentation</li>
+<li>Add doxygen to generate develop documentation</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md39"></a>
+v0.0.7</h2>
+<ul>
+<li>Use update RabbitCommon::CStyle to change style</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md40"></a>
+v0.0.6</h2>
+<ul>
+<li>UI: Use QUIWidget to modify the interface, it can customize the style of the window title bar</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md41"></a>
+v0.0.5</h2>
+<ul>
+<li>FIX: LibVnc cursor bug</li>
+<li>Support Qt6</li>
+<li>FIX: Port range bug</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md42"></a>
+v0.0.4</h2>
+<ul>
+<li>Modify ci</li>
+<li>Add send ctl-alt-del</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md43"></a>
+v0.0.3</h2>
+<ul>
+<li>Fix some bugs</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md44"></a>
+v0.0.2</h2>
+<ul>
+<li>Modify plugins interface</li>
+<li>Modify ci</li>
+<li>Add terminal</li>
+<li>Add telnet</li>
+<li>Add SSH</li>
+<li>RDP</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md45"></a>
+v0.0.1</h2>
+<ul>
+<li>Gui<ul>
+<li>Screen zoom</li>
+</ul>
+</li>
+<li>Supported protocols<ul>
+<li>Vnc base functions</li>
+</ul>
+</li>
+<li>Display<ul>
+<li>Screen</li>
+<li>Cursor</li>
+</ul>
+</li>
+<li>Inputs events<ul>
+<li>Key board</li>
+<li>Mouse</li>
+</ul>
+</li>
+<li>Clipboard(Text)<ul>
+<li>Rdp</li>
+</ul>
+</li>
+<li>Display<ul>
+<li>Screen</li>
+<li>Curson</li>
+</ul>
+</li>
+<li>Inputs event<ul>
+<li>mouse</li>
+<li>Key board</li>
+</ul>
+</li>
+<li>Clipboard </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

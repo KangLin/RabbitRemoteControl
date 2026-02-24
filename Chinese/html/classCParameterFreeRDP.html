@@ -1,0 +1,1953 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterFreeRDP类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterFreeRDP-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterFreeRDP类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>[Declare <a class="el" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]">CParameterFreeRDP</a>]  
+ <a href="classCParameterFreeRDP.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterFreeRDP 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterFreeRDP__inherit__graph.png" border="0" usemap="#aCParameterFreeRDP_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterFreeRDP_inherit__map" id="aCParameterFreeRDP_inherit__map">
+<area shape="rect" title="[Declare CParameterFreeRDP]" alt="" coords="5,299,159,324"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="17,225,147,251"/>
+<area shape="poly" title=" " alt="" coords="85,264,85,299,79,299,79,264"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="7,152,157,177"/>
+<area shape="poly" title=" " alt="" coords="85,191,85,225,79,225,79,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="33,79,131,104"/>
+<area shape="poly" title=" " alt="" coords="85,118,85,152,79,152,79,118"/>
+<area shape="rect" title=" " alt="" coords="45,5,119,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,79,79,79,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterFreeRDP 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterFreeRDP__coll__graph.png" border="0" usemap="#aCParameterFreeRDP_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterFreeRDP_coll__map" id="aCParameterFreeRDP_coll__map">
+<area shape="rect" title="[Declare CParameterFreeRDP]" alt="" coords="301,808,454,833"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="312,733,443,759"/>
+<area shape="poly" title=" " alt="" coords="380,773,380,808,375,808,375,773"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="242,155,393,180"/>
+<area shape="poly" title=" " alt="" coords="229,181,155,193,83,211,53,223,29,235,13,249,8,265,8,659,10,669,16,679,39,696,75,709,119,720,219,734,312,740,312,746,218,739,118,725,73,714,37,700,12,682,5,671,3,660,3,264,9,247,26,231,51,218,82,206,154,188,228,176"/>
+<area shape="poly" title=" " alt="" coords="407,160,419,167,411,174,393,177,392,171,409,169,414,167,405,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="529,455,689,480"/>
+<area shape="poly" title=" " alt="" coords="407,175,469,186,512,202,564,244,596,286,617,336,636,401,639,416,636,432,622,456,617,453,631,430,633,416,631,402,612,338,591,289,560,247,509,206,467,191,406,181"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="291,352,413,377"/>
+<area shape="poly" title=" " alt="" coords="313,194,308,234,311,278,327,319,346,351,342,353,322,321,305,279,302,234,308,193"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="320,253,448,279"/>
+<area shape="poly" title=" " alt="" coords="335,190,378,252,374,255,331,193"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="198,645,333,671"/>
+<area shape="poly" title=" " alt="" coords="307,193,302,205,266,302,255,345,245,402,242,474,247,544,265,644,260,645,242,545,236,474,240,401,250,344,261,300,298,203,303,191"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="86,455,210,480"/>
+<area shape="poly" title=" " alt="" coords="232,188,207,206,185,236,170,270,159,306,152,342,148,409,149,454,144,454,142,408,147,341,153,304,165,268,181,233,203,202,229,183"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="880,80,979,105"/>
+<area shape="poly" title=" " alt="" coords="867,104,393,160,393,154,866,99"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="812,645,951,671"/>
+<area shape="poly" title=" " alt="" coords="937,119,952,225,959,294,961,363,961,572,956,596,941,617,923,635,904,647,901,643,919,630,937,614,951,594,956,571,956,363,953,294,947,225,931,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="581,557,721,583"/>
+<area shape="poly" title=" " alt="" coords="867,107,820,117,775,130,742,147,732,157,729,166,729,469,727,504,710,535,696,549,679,560,676,555,692,545,706,532,722,503,724,469,724,166,728,154,739,143,773,125,819,112,866,101"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="971,204,1101,229"/>
+<area shape="poly" title=" " alt="" coords="956,113,971,128,1005,168,1030,202,1026,205,1001,171,967,131,952,116"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1050,557,1193,583"/>
+<area shape="poly" title=" " alt="" coords="992,103,1036,113,1079,127,1111,144,1120,154,1124,166,1124,469,1124,557,1119,557,1119,469,1119,166,1116,157,1107,148,1077,132,1035,118,991,108"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="747,303,938,328"/>
+<area shape="poly" title=" " alt="" coords="922,120,850,304,845,302,917,118"/>
+<area shape="rect" title=" " alt="" coords="892,5,967,31"/>
+<area shape="poly" title=" " alt="" coords="932,45,932,80,927,80,927,45"/>
+<area shape="poly" title=" " alt="" coords="798,658,702,651,602,637,558,626,522,612,499,594,492,583,489,572,489,265,487,248,481,234,458,211,427,194,392,183,393,178,429,189,462,207,485,231,492,247,495,264,495,571,497,581,502,591,525,608,560,621,603,632,702,646,798,652"/>
+<area shape="poly" title=" " alt="" coords="648,596,649,609,654,620,678,634,718,643,812,653,811,658,717,649,676,639,650,623,644,610,643,597"/>
+<area shape="poly" title=" " alt="" coords="609,494,610,513,616,532,624,545,636,555,632,559,620,548,611,534,605,514,604,494"/>
+<area shape="poly" title=" " alt="" coords="362,390,375,442,385,504,392,607,385,710,382,733,377,733,380,709,386,607,380,504,369,443,357,391"/>
+<area shape="poly" title=" " alt="" coords="374,386,416,428,472,449,529,460,528,465,470,455,413,433,370,390"/>
+<area shape="poly" title=" " alt="" coords="344,391,303,505,282,585,270,646,265,645,277,584,297,503,339,389"/>
+<area shape="poly" title=" " alt="" coords="313,385,270,404,170,457,167,452,268,399,310,380"/>
+<area shape="poly" title=" " alt="" coords="378,293,358,353,353,351,373,291"/>
+<area shape="poly" title=" " alt="" coords="1028,243,1017,277,1012,314,1012,572,1004,599,985,621,959,637,931,648,929,643,956,632,981,617,1000,597,1007,571,1007,314,1012,275,1023,242"/>
+<area shape="poly" title=" " alt="" coords="1131,596,1131,610,1126,623,1109,642,1092,655,1073,662,1054,665,1013,667,963,673,819,700,674,720,443,743,443,737,673,715,818,695,962,668,1012,662,1054,660,1072,657,1089,650,1105,638,1122,620,1126,609,1126,596"/>
+<area shape="poly" title=" " alt="" coords="1089,591,1025,624,941,648,939,643,1023,619,1087,587"/>
+<area shape="poly" title=" " alt="" coords="830,341,814,375,807,415,807,571,812,594,826,614,843,630,862,643,859,647,840,635,821,617,807,596,801,572,801,414,809,374,825,339"/>
+<area shape="poly" title=" " alt="" coords="289,678,323,707,359,731,356,736,320,711,285,682"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="43,557,210,583"/>
+<area shape="poly" title=" " alt="" coords="148,591,180,619,230,643,228,648,177,624,144,595"/>
+<area shape="poly" title=" " alt="" coords="145,494,132,558,126,557,140,493"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:aa353952c43240ea3b836dd31d2ce78ea" id="r_aa353952c43240ea3b836dd31d2ce78ea"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RedirecionSoundType</b> { <b>Disable</b>
+, <b>Local</b>
+, <b>Remote</b>
+ }</td></tr>
+<tr class="separator:aa353952c43240ea3b836dd31d2ce78ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5edc16ef2368336507c1771ddc2ca315" id="r_a5edc16ef2368336507c1771ddc2ca315"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Security</b> { <br />
+&#160;&#160;<b>RDP</b> = 0x01
+, <b>TLS</b> = 0x02
+, <b>NLA</b> = 0x04
+, <b>NLA_Ext</b> = 0x08
+, <br />
+&#160;&#160;<b>RDSAAD</b> = 0x10
+, <b>RDSTLS</b> = 0x20
+<br />
+ }</td></tr>
+<tr class="separator:a5edc16ef2368336507c1771ddc2ca315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ab51bf447460777725caea017eddb038a" id="r_ab51bf447460777725caea017eddb038a"><td class="memItemLeft" align="right" valign="top"><a id="ab51bf447460777725caea017eddb038a" name="ab51bf447460777725caea017eddb038a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigReconnectIntervalChanged</b> ()</td></tr>
+<tr class="separator:ab51bf447460777725caea017eddb038a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9e25ac03b2c4c4af2c0c3d5e415a8f" id="r_a7e9e25ac03b2c4c4af2c0c3d5e415a8f"><td class="memItemLeft" align="right" valign="top"><a id="a7e9e25ac03b2c4c4af2c0c3d5e415a8f" name="a7e9e25ac03b2c4c4af2c0c3d5e415a8f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionSoundChanged</b> (RedirecionSoundType RedirectionSound)</td></tr>
+<tr class="separator:a7e9e25ac03b2c4c4af2c0c3d5e415a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef618a55eb6ac14a7d920fc631a17cf" id="r_a5ef618a55eb6ac14a7d920fc631a17cf"><td class="memItemLeft" align="right" valign="top"><a id="a5ef618a55eb6ac14a7d920fc631a17cf" name="a5ef618a55eb6ac14a7d920fc631a17cf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionSoundParametersChanged</b> ()</td></tr>
+<tr class="separator:a5ef618a55eb6ac14a7d920fc631a17cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe888ab83e0d43138745e9cb045045b5" id="r_afe888ab83e0d43138745e9cb045045b5"><td class="memItemLeft" align="right" valign="top"><a id="afe888ab83e0d43138745e9cb045045b5" name="afe888ab83e0d43138745e9cb045045b5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionMicrophoneChanged</b> (bool RedirectionMicrophone)</td></tr>
+<tr class="separator:afe888ab83e0d43138745e9cb045045b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1084412c7b02e993016459792b432e13" id="r_a1084412c7b02e993016459792b432e13"><td class="memItemLeft" align="right" valign="top"><a id="a1084412c7b02e993016459792b432e13" name="a1084412c7b02e993016459792b432e13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionMicrophoneParametersChanged</b> ()</td></tr>
+<tr class="separator:a1084412c7b02e993016459792b432e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae733b310cea62ed842936d818759126" id="r_aae733b310cea62ed842936d818759126"><td class="memItemLeft" align="right" valign="top"><a id="aae733b310cea62ed842936d818759126" name="aae733b310cea62ed842936d818759126"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionDrivesChanged</b> (QStringList RedirectionDrive)</td></tr>
+<tr class="separator:aae733b310cea62ed842936d818759126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d716809aecf2d7f138b41f3f8c6fd7f" id="r_a6d716809aecf2d7f138b41f3f8c6fd7f"><td class="memItemLeft" align="right" valign="top"><a id="a6d716809aecf2d7f138b41f3f8c6fd7f" name="a6d716809aecf2d7f138b41f3f8c6fd7f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigRedirectionPrinterChanged</b> (bool RedirectionPrinter)</td></tr>
+<tr class="separator:a6d716809aecf2d7f138b41f3f8c6fd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameterBase"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterBase')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterBase.html">CParameterBase</a></td></tr>
+<tr class="memitem:af18d91ed51f2fbdeca025365a6b48a95 inherit signals_classCParameterBase" id="r_af18d91ed51f2fbdeca025365a6b48a95"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigShowServerNameChanged</b> ()</td></tr>
+<tr class="separator:af18d91ed51f2fbdeca025365a6b48a95 inherit signals_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab882a630edc7dcd41c488e8c49f45733 inherit signals_classCParameterBase" id="r_ab882a630edc7dcd41c488e8c49f45733"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEnableInputMethod</b> (bool bEnable)</td></tr>
+<tr class="separator:ab882a630edc7dcd41c488e8c49f45733 inherit signals_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfeed15cb5c48d90b599fc42d3a81833 inherit signals_classCParameterBase" id="r_abfeed15cb5c48d90b599fc42d3a81833"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigAdaptWindowsChanged</b> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="separator:abfeed15cb5c48d90b599fc42d3a81833 inherit signals_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce0ffcc3ddc81f9f33cce301a2dec3f inherit signals_classCParameterBase" id="r_a8ce0ffcc3ddc81f9f33cce301a2dec3f"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigZoomFactorChanged</b> (double newZoomFactor)</td></tr>
+<tr class="separator:a8ce0ffcc3ddc81f9f33cce301a2dec3f inherit signals_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate" id="r_a3612d682561300f4d22c58dab8c3bb52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a3612d682561300f4d22c58dab8c3bb52">sigSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="separator:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="separator:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a0ac4da0dda42098e0d10de4e5ecbd2d4" id="r_a0ac4da0dda42098e0d10de4e5ecbd2d4"><td class="memItemLeft" align="right" valign="top"><a id="a0ac4da0dda42098e0d10de4e5ecbd2d4" name="a0ac4da0dda42098e0d10de4e5ecbd2d4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterFreeRDP</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a0ac4da0dda42098e0d10de4e5ecbd2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe928e086278cb67c2fa94159e525786" id="r_abe928e086278cb67c2fa94159e525786"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abe928e086278cb67c2fa94159e525786">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:abe928e086278cb67c2fa94159e525786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab12901edd0dc2f4f3f7af1a6fcb5d49a" id="r_ab12901edd0dc2f4f3f7af1a6fcb5d49a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ab12901edd0dc2f4f3f7af1a6fcb5d49a">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:ab12901edd0dc2f4f3f7af1a6fcb5d49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe48bf61adc1b0ed63f39fe33d47aaf7" id="r_abe48bf61adc1b0ed63f39fe33d47aaf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abe48bf61adc1b0ed63f39fe33d47aaf7">SetDomain</a> (const QString &amp;szDomain)</td></tr>
+<tr class="separator:abe48bf61adc1b0ed63f39fe33d47aaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a088109574e32bc30a4324c2e39ff1586" id="r_a088109574e32bc30a4324c2e39ff1586"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a088109574e32bc30a4324c2e39ff1586">GetDomain</a> () const</td></tr>
+<tr class="separator:a088109574e32bc30a4324c2e39ff1586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0cdbd051476eabb43811b49e74924a" id="r_a1e0cdbd051476eabb43811b49e74924a"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a1e0cdbd051476eabb43811b49e74924a">GetDesktopWidth</a> () const</td></tr>
+<tr class="separator:a1e0cdbd051476eabb43811b49e74924a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b12312d7bf337497f49cbc434f165b5" id="r_a2b12312d7bf337497f49cbc434f165b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a2b12312d7bf337497f49cbc434f165b5">SetDesktopWidth</a> (UINT32 nWidth)</td></tr>
+<tr class="separator:a2b12312d7bf337497f49cbc434f165b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e411a4d59ca47436538c8916d5a99c" id="r_af6e411a4d59ca47436538c8916d5a99c"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#af6e411a4d59ca47436538c8916d5a99c">GetDesktopHeight</a> () const</td></tr>
+<tr class="separator:af6e411a4d59ca47436538c8916d5a99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3796c53a98c494e0bbd3e971bdb1dbea" id="r_a3796c53a98c494e0bbd3e971bdb1dbea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a3796c53a98c494e0bbd3e971bdb1dbea">SetDesktopHeight</a> (UINT32 nHeight)</td></tr>
+<tr class="separator:a3796c53a98c494e0bbd3e971bdb1dbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fed100bbfd0406b507d9d3fda173880" id="r_a3fed100bbfd0406b507d9d3fda173880"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a3fed100bbfd0406b507d9d3fda173880">GetColorDepth</a> () const</td></tr>
+<tr class="separator:a3fed100bbfd0406b507d9d3fda173880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c785276d66830dd2995c44d9a20f63d" id="r_a8c785276d66830dd2995c44d9a20f63d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a8c785276d66830dd2995c44d9a20f63d">SetColorDepth</a> (UINT32 color)</td></tr>
+<tr class="separator:a8c785276d66830dd2995c44d9a20f63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac36637655b84dcf2513e6dc7e3eb60f0" id="r_ac36637655b84dcf2513e6dc7e3eb60f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ac36637655b84dcf2513e6dc7e3eb60f0">GetUseMultimon</a> () const</td></tr>
+<tr class="separator:ac36637655b84dcf2513e6dc7e3eb60f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6f9df5fd763295824706ea29a04c73" id="r_abf6f9df5fd763295824706ea29a04c73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abf6f9df5fd763295824706ea29a04c73">SetUseMultimon</a> (bool bUse)</td></tr>
+<tr class="separator:abf6f9df5fd763295824706ea29a04c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a5d2dfde93b9a345cd34f8278de8471" id="r_a5a5d2dfde93b9a345cd34f8278de8471"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a5a5d2dfde93b9a345cd34f8278de8471">GetReconnectInterval</a> () const</td></tr>
+<tr class="separator:a5a5d2dfde93b9a345cd34f8278de8471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760e569ed095238ba7268b89f3a7c5a9" id="r_a760e569ed095238ba7268b89f3a7c5a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a760e569ed095238ba7268b89f3a7c5a9">SetReconnectInterval</a> (UINT newReconnectInterval)</td></tr>
+<tr class="separator:a760e569ed095238ba7268b89f3a7c5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20fe99f8b850ba2247cc44d78524e824" id="r_a20fe99f8b850ba2247cc44d78524e824"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a20fe99f8b850ba2247cc44d78524e824">GetShowVerifyDiaglog</a> () const</td></tr>
+<tr class="separator:a20fe99f8b850ba2247cc44d78524e824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd849518a53c30508ec48301a6a21ff3" id="r_afd849518a53c30508ec48301a6a21ff3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#afd849518a53c30508ec48301a6a21ff3">SetShowVerifyDiaglog</a> (bool bShow)</td></tr>
+<tr class="separator:afd849518a53c30508ec48301a6a21ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82b131cc11b5b180bc672380d16cfba" id="r_ab82b131cc11b5b180bc672380d16cfba"><td class="memItemLeft" align="right" valign="top">RedirecionSoundType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ab82b131cc11b5b180bc672380d16cfba">GetRedirectionSound</a> () const</td></tr>
+<tr class="separator:ab82b131cc11b5b180bc672380d16cfba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f76182336e8cd83f2fbd79b97ce25d6" id="r_a3f76182336e8cd83f2fbd79b97ce25d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a3f76182336e8cd83f2fbd79b97ce25d6">SetRedirectionSound</a> (RedirecionSoundType newRedirectionSound)</td></tr>
+<tr class="separator:a3f76182336e8cd83f2fbd79b97ce25d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86de2b12f71804f32b6acdc8dacc88b1" id="r_a86de2b12f71804f32b6acdc8dacc88b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a86de2b12f71804f32b6acdc8dacc88b1">GetRedirectionMicrophone</a> () const</td></tr>
+<tr class="separator:a86de2b12f71804f32b6acdc8dacc88b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb026b16a9d3b1ac939e66433a720d2" id="r_abcb026b16a9d3b1ac939e66433a720d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abcb026b16a9d3b1ac939e66433a720d2">SetRedirectionMicrophone</a> (bool newRedirectionMicrophone)</td></tr>
+<tr class="separator:abcb026b16a9d3b1ac939e66433a720d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bfd084b50ff1ed5c7b36ce5a78609a0" id="r_a4bfd084b50ff1ed5c7b36ce5a78609a0"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a4bfd084b50ff1ed5c7b36ce5a78609a0">GetRedirectionDrives</a> () const</td></tr>
+<tr class="separator:a4bfd084b50ff1ed5c7b36ce5a78609a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15410a3cbea0dd4db7442a7367166694" id="r_a15410a3cbea0dd4db7442a7367166694"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a15410a3cbea0dd4db7442a7367166694">SetRedirectionDrives</a> (const QStringList &amp;newRedirectionDrive)</td></tr>
+<tr class="separator:a15410a3cbea0dd4db7442a7367166694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac15ffbe3e588bb94d51ddcd4f1970d11" id="r_ac15ffbe3e588bb94d51ddcd4f1970d11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ac15ffbe3e588bb94d51ddcd4f1970d11">GetRedirectionPrinter</a> () const</td></tr>
+<tr class="separator:ac15ffbe3e588bb94d51ddcd4f1970d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b700ec87937d977839da6a6101861b9" id="r_a1b700ec87937d977839da6a6101861b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a1b700ec87937d977839da6a6101861b9">SetRedirectionPrinter</a> (bool newRedirectionPrinter)</td></tr>
+<tr class="separator:a1b700ec87937d977839da6a6101861b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a298e60817f8253f2676613ce98af6" id="r_a16a298e60817f8253f2676613ce98af6"><td class="memItemLeft" align="right" valign="top">const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a16a298e60817f8253f2676613ce98af6">GetRedirectionSoundParameters</a> () const</td></tr>
+<tr class="separator:a16a298e60817f8253f2676613ce98af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8795a4911271fe640c5049e6b442b28e" id="r_a8795a4911271fe640c5049e6b442b28e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a8795a4911271fe640c5049e6b442b28e">SetRedirectionSoundParameters</a> (const QString &amp;newRedirectionSoundParameters)</td></tr>
+<tr class="separator:a8795a4911271fe640c5049e6b442b28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8edc008b86d7e3d2032fe812f7d7e5" id="r_a1f8edc008b86d7e3d2032fe812f7d7e5"><td class="memItemLeft" align="right" valign="top">const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a1f8edc008b86d7e3d2032fe812f7d7e5">GetRedirectionMicrophoneParameters</a> () const</td></tr>
+<tr class="separator:a1f8edc008b86d7e3d2032fe812f7d7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092a0fdcdd0183c5a305bc4d528601c7" id="r_a092a0fdcdd0183c5a305bc4d528601c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a092a0fdcdd0183c5a305bc4d528601c7">SetRedirectionMicrophoneParameters</a> (const QString &amp;newRedirectionMicrophoneParameters)</td></tr>
+<tr class="separator:a092a0fdcdd0183c5a305bc4d528601c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec35889188dc49122a10b4bf2e78a4a9" id="r_aec35889188dc49122a10b4bf2e78a4a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#aec35889188dc49122a10b4bf2e78a4a9">GetNegotiateSecurityLayer</a> () const</td></tr>
+<tr class="separator:aec35889188dc49122a10b4bf2e78a4a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a653c078bdbebe8e8c985ce55d3feb505" id="r_a653c078bdbebe8e8c985ce55d3feb505"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a653c078bdbebe8e8c985ce55d3feb505">SetNegotiateSecurityLayer</a> (bool newNegotiateSecurityLayer)</td></tr>
+<tr class="separator:a653c078bdbebe8e8c985ce55d3feb505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b756bf2317d4f984fdf72d865f8433" id="r_ac4b756bf2317d4f984fdf72d865f8433"><td class="memItemLeft" align="right" valign="top">Security&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ac4b756bf2317d4f984fdf72d865f8433">GetSecurity</a> () const</td></tr>
+<tr class="separator:ac4b756bf2317d4f984fdf72d865f8433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bae3642e10c9668c3f37bd9bf588b4c" id="r_a4bae3642e10c9668c3f37bd9bf588b4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a4bae3642e10c9668c3f37bd9bf588b4c">SetSecurity</a> (Security newSecurity)</td></tr>
+<tr class="separator:a4bae3642e10c9668c3f37bd9bf588b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c80952555d99c9af2c2a5b365fbac7" id="r_ac1c80952555d99c9af2c2a5b365fbac7"><td class="memItemLeft" align="right" valign="top">UINT16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ac1c80952555d99c9af2c2a5b365fbac7">GetTlsVersion</a> () const</td></tr>
+<tr class="separator:ac1c80952555d99c9af2c2a5b365fbac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c31f042af4b3a8d5c3c2429386a735a" id="r_a0c31f042af4b3a8d5c3c2429386a735a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a0c31f042af4b3a8d5c3c2429386a735a">SetTlsVersion</a> (UINT16 newTlsVersion)</td></tr>
+<tr class="separator:a0c31f042af4b3a8d5c3c2429386a735a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7972abcdcbca59d90b5f176bfe498ac8" id="r_a7972abcdcbca59d90b5f176bfe498ac8"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a7972abcdcbca59d90b5f176bfe498ac8">GetConnectType</a> () const</td></tr>
+<tr class="separator:a7972abcdcbca59d90b5f176bfe498ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12943e3b1827bd0e38119e58ff613325" id="r_a12943e3b1827bd0e38119e58ff613325"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a12943e3b1827bd0e38119e58ff613325">SetConnectType</a> (UINT32 newConnectType)</td></tr>
+<tr class="separator:a12943e3b1827bd0e38119e58ff613325"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74682c3afa21989c0a95514cef7d8bdb" id="r_a74682c3afa21989c0a95514cef7d8bdb"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a74682c3afa21989c0a95514cef7d8bdb">GetPerformanceFlags</a> () const</td></tr>
+<tr class="separator:a74682c3afa21989c0a95514cef7d8bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715558b778897b5f2bd0087cb98723f1" id="r_a715558b778897b5f2bd0087cb98723f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a715558b778897b5f2bd0087cb98723f1">SetPerformanceFlags</a> (UINT32 newPerformanceFlags)</td></tr>
+<tr class="separator:a715558b778897b5f2bd0087cb98723f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterBase')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterBase.html">CParameterBase</a></td></tr>
+<tr class="memitem:a6caaa2770fa17e46ca6534cc2c28eb7f inherit pub_methods_classCParameterBase" id="r_a6caaa2770fa17e46ca6534cc2c28eb7f"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterBase</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a6caaa2770fa17e46ca6534cc2c28eb7f inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34cd8e91b3c283f474535509079c7a7e inherit pub_methods_classCParameterBase" id="r_a34cd8e91b3c283f474535509079c7a7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a34cd8e91b3c283f474535509079c7a7e">CParameterBase</a> (<a class="el" href="classCParameterOperate.html">CParameterOperate</a> *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a34cd8e91b3c283f474535509079c7a7e inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a716ba98f39b7f6556d9a5fa34d2ac970 inherit pub_methods_classCParameterBase" id="r_a716ba98f39b7f6556d9a5fa34d2ac970"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a716ba98f39b7f6556d9a5fa34d2ac970">GetServerName</a> () const</td></tr>
+<tr class="separator:a716ba98f39b7f6556d9a5fa34d2ac970 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a05e7785364215315f0076181e99ceb inherit pub_methods_classCParameterBase" id="r_a5a05e7785364215315f0076181e99ceb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a5a05e7785364215315f0076181e99ceb">SetServerName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:a5a05e7785364215315f0076181e99ceb inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb24662cf82c6014f6197d730f6ba5e inherit pub_methods_classCParameterBase" id="r_aeeb24662cf82c6014f6197d730f6ba5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#aeeb24662cf82c6014f6197d730f6ba5e">GetShowServerName</a> () const</td></tr>
+<tr class="separator:aeeb24662cf82c6014f6197d730f6ba5e inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79af7e799437dab6a0e46586a6ed19c1 inherit pub_methods_classCParameterBase" id="r_a79af7e799437dab6a0e46586a6ed19c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a79af7e799437dab6a0e46586a6ed19c1">SetShowServerName</a> (bool NewShowServerName)</td></tr>
+<tr class="separator:a79af7e799437dab6a0e46586a6ed19c1 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c7fbb3c4f4cd296dc378ab1a2aaffe inherit pub_methods_classCParameterBase" id="r_a18c7fbb3c4f4cd296dc378ab1a2aaffe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a18c7fbb3c4f4cd296dc378ab1a2aaffe">GetOnlyView</a> () const</td></tr>
+<tr class="separator:a18c7fbb3c4f4cd296dc378ab1a2aaffe inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a641f48511a81ac1f96d84483ca1f1acf inherit pub_methods_classCParameterBase" id="r_a641f48511a81ac1f96d84483ca1f1acf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a641f48511a81ac1f96d84483ca1f1acf">SetOnlyView</a> (bool only)</td></tr>
+<tr class="separator:a641f48511a81ac1f96d84483ca1f1acf inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a695b9251b397df8c32a19ea8d92b670e inherit pub_methods_classCParameterBase" id="r_a695b9251b397df8c32a19ea8d92b670e"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a695b9251b397df8c32a19ea8d92b670e">GetLocalCursor</a> () const</td></tr>
+<tr class="separator:a695b9251b397df8c32a19ea8d92b670e inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5398450037cfb21fe262a059333a34b inherit pub_methods_classCParameterBase" id="r_ae5398450037cfb21fe262a059333a34b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#ae5398450037cfb21fe262a059333a34b">SetLocalCursor</a> (bool cursor)</td></tr>
+<tr class="separator:ae5398450037cfb21fe262a059333a34b inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80dacdd110c88e46d1b3df18e8004e6f inherit pub_methods_classCParameterBase" id="r_a80dacdd110c88e46d1b3df18e8004e6f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a80dacdd110c88e46d1b3df18e8004e6f">GetCursorPosition</a> () const</td></tr>
+<tr class="separator:a80dacdd110c88e46d1b3df18e8004e6f inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f9d43286c6771e68b8d3213a0ab66b inherit pub_methods_classCParameterBase" id="r_a91f9d43286c6771e68b8d3213a0ab66b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a91f9d43286c6771e68b8d3213a0ab66b">SetCursorPosition</a> (bool pos)</td></tr>
+<tr class="separator:a91f9d43286c6771e68b8d3213a0ab66b inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691a684622ed17cd8e76fd8ab5b806f6 inherit pub_methods_classCParameterBase" id="r_a691a684622ed17cd8e76fd8ab5b806f6"><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a691a684622ed17cd8e76fd8ab5b806f6">GetClipboard</a> () const</td></tr>
+<tr class="separator:a691a684622ed17cd8e76fd8ab5b806f6 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab29e1409aa56a5d87422aa8237f15d36 inherit pub_methods_classCParameterBase" id="r_ab29e1409aa56a5d87422aa8237f15d36"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#ab29e1409aa56a5d87422aa8237f15d36">SetClipboard</a> (bool c)</td></tr>
+<tr class="separator:ab29e1409aa56a5d87422aa8237f15d36 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5c1b29f6fb87bd8de97860372131a13 inherit pub_methods_classCParameterBase" id="r_ad5c1b29f6fb87bd8de97860372131a13"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#ad5c1b29f6fb87bd8de97860372131a13">GetSupportsDesktopResize</a> () const</td></tr>
+<tr class="separator:ad5c1b29f6fb87bd8de97860372131a13 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c520d4c839f2cd8b48cc8206818882 inherit pub_methods_classCParameterBase" id="r_a32c520d4c839f2cd8b48cc8206818882"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a32c520d4c839f2cd8b48cc8206818882">SetSupportsDesktopResize</a> (bool newSupportsDesktopResize)</td></tr>
+<tr class="separator:a32c520d4c839f2cd8b48cc8206818882 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d5e511ce4896ace4486f2875a735e8 inherit pub_methods_classCParameterBase" id="r_a72d5e511ce4896ace4486f2875a735e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a72d5e511ce4896ace4486f2875a735e8">GetLedState</a> () const</td></tr>
+<tr class="separator:a72d5e511ce4896ace4486f2875a735e8 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2406dd7780165283cfecadac12b67c inherit pub_methods_classCParameterBase" id="r_a6f2406dd7780165283cfecadac12b67c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a6f2406dd7780165283cfecadac12b67c">SetLedState</a> (bool state)</td></tr>
+<tr class="separator:a6f2406dd7780165283cfecadac12b67c inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235752163b74b0a92e34510b87d6bbed inherit pub_methods_classCParameterBase" id="r_a235752163b74b0a92e34510b87d6bbed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a235752163b74b0a92e34510b87d6bbed">GetEnableLocalInputMethod</a> () const</td></tr>
+<tr class="separator:a235752163b74b0a92e34510b87d6bbed inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605b1f9fa511eaa9033407f68d9ecb62 inherit pub_methods_classCParameterBase" id="r_a605b1f9fa511eaa9033407f68d9ecb62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a605b1f9fa511eaa9033407f68d9ecb62">SetEnableLocalInputMethod</a> (bool enable)</td></tr>
+<tr class="separator:a605b1f9fa511eaa9033407f68d9ecb62 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39259f0d4c683b60feb79bdd0a75c791 inherit pub_methods_classCParameterBase" id="r_a39259f0d4c683b60feb79bdd0a75c791"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a39259f0d4c683b60feb79bdd0a75c791">GetAdaptWindows</a> ()</td></tr>
+<tr class="separator:a39259f0d4c683b60feb79bdd0a75c791 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719b6174e86c7deb93e75a39667fe99e inherit pub_methods_classCParameterBase" id="r_a719b6174e86c7deb93e75a39667fe99e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a719b6174e86c7deb93e75a39667fe99e">SetAdaptWindows</a> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="separator:a719b6174e86c7deb93e75a39667fe99e inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f05682739815087eabf892a52aad88 inherit pub_methods_classCParameterBase" id="r_a77f05682739815087eabf892a52aad88"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a77f05682739815087eabf892a52aad88">GetZoomFactor</a> () const</td></tr>
+<tr class="separator:a77f05682739815087eabf892a52aad88 inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1618991b2452a19eaa6de12efb419d1f inherit pub_methods_classCParameterBase" id="r_a1618991b2452a19eaa6de12efb419d1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a1618991b2452a19eaa6de12efb419d1f">SetZoomFactor</a> (double newZoomFactor)</td></tr>
+<tr class="separator:a1618991b2452a19eaa6de12efb419d1f inherit pub_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate" id="r_a5056c786cd1aec8c584b6f9b633b35fc"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterOperate</b> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a5056c786cd1aec8c584b6f9b633b35fc inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate" id="r_abed288f5e0d87a08f113126f31227a80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">GetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="separator:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate" id="r_a407cc6e826c0af916eb8ca5085d293e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a407cc6e826c0af916eb8ca5085d293e8">SetGlobalParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="separator:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="separator:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="separator:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="separator:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:afc69ba2bd298c4b935546d036bcf654c" id="r_afc69ba2bd298c4b935546d036bcf654c"><td class="memItemLeft" align="right" valign="top">static QRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#afc69ba2bd298c4b935546d036bcf654c">GetScreenGeometry</a> ()</td></tr>
+<tr class="separator:afc69ba2bd298c4b935546d036bcf654c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a85cca569454d8b5c71d8d425b0085a55" id="r_a85cca569454d8b5c71d8d425b0085a55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a85cca569454d8b5c71d8d425b0085a55">RedirectionPrinter</a></td></tr>
+<tr class="separator:a85cca569454d8b5c71d8d425b0085a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1823c51ac7e0f15f045445aa843de04b" id="r_a1823c51ac7e0f15f045445aa843de04b"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a1823c51ac7e0f15f045445aa843de04b">ReconnectInterval</a></td></tr>
+<tr class="separator:a1823c51ac7e0f15f045445aa843de04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448a82cccdab6ca9fbbddb53264f7816" id="r_a448a82cccdab6ca9fbbddb53264f7816"><td class="memItemLeft" align="right" valign="top">RedirecionSoundType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a448a82cccdab6ca9fbbddb53264f7816">RedirectionSound</a></td></tr>
+<tr class="separator:a448a82cccdab6ca9fbbddb53264f7816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91d603835a8bd1d7e913e34f93fddfe" id="r_ab91d603835a8bd1d7e913e34f93fddfe"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ab91d603835a8bd1d7e913e34f93fddfe">RedirectionSoundParameters</a></td></tr>
+<tr class="separator:ab91d603835a8bd1d7e913e34f93fddfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36fa0de8e9e17e853b56128a645dd9d0" id="r_a36fa0de8e9e17e853b56128a645dd9d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a36fa0de8e9e17e853b56128a645dd9d0">RedirectionMicrophone</a></td></tr>
+<tr class="separator:a36fa0de8e9e17e853b56128a645dd9d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6162ce3f7ef8856ae34a01b152d91f" id="r_abd6162ce3f7ef8856ae34a01b152d91f"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abd6162ce3f7ef8856ae34a01b152d91f">RedirectionDrives</a></td></tr>
+<tr class="separator:abd6162ce3f7ef8856ae34a01b152d91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74613f9e9faa292a3dc566ce9a0ac20f" id="r_a74613f9e9faa292a3dc566ce9a0ac20f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a74613f9e9faa292a3dc566ce9a0ac20f">RedirectionMicrophoneParameters</a></td></tr>
+<tr class="separator:a74613f9e9faa292a3dc566ce9a0ac20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_classCParameterBase"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameterBase')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameterBase.html">CParameterBase</a></td></tr>
+<tr class="memitem:a2e7bdf585516ba06546a438a5f42f4f3 inherit properties_classCParameterBase" id="r_a2e7bdf585516ba06546a438a5f42f4f3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a2e7bdf585516ba06546a438a5f42f4f3">Name</a></td></tr>
+<tr class="separator:a2e7bdf585516ba06546a438a5f42f4f3 inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e1814065281aa3b59fe784020d746b inherit properties_classCParameterBase" id="r_aa5e1814065281aa3b59fe784020d746b"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#aa5e1814065281aa3b59fe784020d746b">ServerName</a></td></tr>
+<tr class="separator:aa5e1814065281aa3b59fe784020d746b inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aabfdaee37fead34586df0029974355 inherit properties_classCParameterBase" id="r_a1aabfdaee37fead34586df0029974355"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a1aabfdaee37fead34586df0029974355">ShowServerName</a></td></tr>
+<tr class="separator:a1aabfdaee37fead34586df0029974355 inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ad58a0960fe207a5674d811c0a53ba inherit properties_classCParameterBase" id="r_a57ad58a0960fe207a5674d811c0a53ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a57ad58a0960fe207a5674d811c0a53ba">OnlyView</a></td></tr>
+<tr class="separator:a57ad58a0960fe207a5674d811c0a53ba inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae58f33fe3d50a262a21f25be13818518 inherit properties_classCParameterBase" id="r_ae58f33fe3d50a262a21f25be13818518"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#ae58f33fe3d50a262a21f25be13818518">LocalCursor</a></td></tr>
+<tr class="separator:ae58f33fe3d50a262a21f25be13818518 inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1edce8e2a9e7286c7f79864779c1b0a6 inherit properties_classCParameterBase" id="r_a1edce8e2a9e7286c7f79864779c1b0a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a1edce8e2a9e7286c7f79864779c1b0a6">AdaptWindows</a></td></tr>
+<tr class="separator:a1edce8e2a9e7286c7f79864779c1b0a6 inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b2a2ffcc5197cc8a95de45d6f2053ed inherit properties_classCParameterBase" id="r_a8b2a2ffcc5197cc8a95de45d6f2053ed"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a8b2a2ffcc5197cc8a95de45d6f2053ed">ZoomFactor</a></td></tr>
+<tr class="separator:a8b2a2ffcc5197cc8a95de45d6f2053ed inherit properties_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a15217ab1719e1bb1b6beacb70dfb436c" id="r_a15217ab1719e1bb1b6beacb70dfb436c"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a15217ab1719e1bb1b6beacb70dfb436c">m_szDomain</a></td></tr>
+<tr class="separator:a15217ab1719e1bb1b6beacb70dfb436c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce498a45980269a086df01cecf5e484" id="r_adce498a45980269a086df01cecf5e484"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#adce498a45980269a086df01cecf5e484">m_nWidth</a></td></tr>
+<tr class="separator:adce498a45980269a086df01cecf5e484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d0b7e2a467589d2c554d2de5bdefa4" id="r_ae2d0b7e2a467589d2c554d2de5bdefa4"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ae2d0b7e2a467589d2c554d2de5bdefa4">m_nHeight</a></td></tr>
+<tr class="separator:ae2d0b7e2a467589d2c554d2de5bdefa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc4acd3370705c97afa65b08443f29cd" id="r_acc4acd3370705c97afa65b08443f29cd"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#acc4acd3370705c97afa65b08443f29cd">m_nColorDepth</a></td></tr>
+<tr class="separator:acc4acd3370705c97afa65b08443f29cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbdc435544ac988715fe92a62dd57a3e" id="r_abbdc435544ac988715fe92a62dd57a3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#abbdc435544ac988715fe92a62dd57a3e">m_bUseMultimon</a></td></tr>
+<tr class="separator:abbdc435544ac988715fe92a62dd57a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d558d1e2b4629b0c5b4a7dc45cddfd" id="r_a24d558d1e2b4629b0c5b4a7dc45cddfd"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a24d558d1e2b4629b0c5b4a7dc45cddfd">m_nReconnectInterval</a></td></tr>
+<tr class="separator:a24d558d1e2b4629b0c5b4a7dc45cddfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58d4e68510a8f59515f36d5e560820de" id="r_a58d4e68510a8f59515f36d5e560820de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a58d4e68510a8f59515f36d5e560820de">m_bShowVerifyDiaglog</a></td></tr>
+<tr class="separator:a58d4e68510a8f59515f36d5e560820de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67ab3839783268dfaeeaf8621274165" id="r_ad67ab3839783268dfaeeaf8621274165"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ad67ab3839783268dfaeeaf8621274165">m_bRedirectionPrinter</a></td></tr>
+<tr class="separator:ad67ab3839783268dfaeeaf8621274165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e67501789ee342cd69209224fd5fa99" id="r_a6e67501789ee342cd69209224fd5fa99"><td class="memItemLeft" align="right" valign="top">RedirecionSoundType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a6e67501789ee342cd69209224fd5fa99">m_nRedirectionSound</a></td></tr>
+<tr class="separator:a6e67501789ee342cd69209224fd5fa99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a318f9eee875b7bf3c60fc3935d4a058d" id="r_a318f9eee875b7bf3c60fc3935d4a058d"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a318f9eee875b7bf3c60fc3935d4a058d">m_szRedirectionSoundParameters</a></td></tr>
+<tr class="separator:a318f9eee875b7bf3c60fc3935d4a058d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92ad985b7a000723a6a9319414fd622" id="r_aa92ad985b7a000723a6a9319414fd622"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#aa92ad985b7a000723a6a9319414fd622">m_bRedirectionMicrophone</a></td></tr>
+<tr class="separator:aa92ad985b7a000723a6a9319414fd622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7807bab14f9b2143dc9927ec03fc7213" id="r_a7807bab14f9b2143dc9927ec03fc7213"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a7807bab14f9b2143dc9927ec03fc7213">m_szRedirectionMicrophoneParameters</a></td></tr>
+<tr class="separator:a7807bab14f9b2143dc9927ec03fc7213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a764e12081708bd9797ffb4fa6cdb48a7" id="r_a764e12081708bd9797ffb4fa6cdb48a7"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a764e12081708bd9797ffb4fa6cdb48a7">m_lstRedirectionDrives</a></td></tr>
+<tr class="separator:a764e12081708bd9797ffb4fa6cdb48a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8777c6b794e2fe8fb30fa7fd0ae61e66" id="r_a8777c6b794e2fe8fb30fa7fd0ae61e66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a8777c6b794e2fe8fb30fa7fd0ae61e66">m_bNegotiateSecurityLayer</a></td></tr>
+<tr class="separator:a8777c6b794e2fe8fb30fa7fd0ae61e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac53ca3333e09b9c54674335ade7b2f4e" id="r_ac53ca3333e09b9c54674335ade7b2f4e"><td class="memItemLeft" align="right" valign="top">Security&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#ac53ca3333e09b9c54674335ade7b2f4e">m_Security</a></td></tr>
+<tr class="separator:ac53ca3333e09b9c54674335ade7b2f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a519733e2bf7a32fca28b86298ad2a086" id="r_a519733e2bf7a32fca28b86298ad2a086"><td class="memItemLeft" align="right" valign="top">UINT16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#a519733e2bf7a32fca28b86298ad2a086">m_tlsVersion</a></td></tr>
+<tr class="separator:a519733e2bf7a32fca28b86298ad2a086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaab02d9a69afeef9b134113a89dd457" id="r_acaab02d9a69afeef9b134113a89dd457"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#acaab02d9a69afeef9b134113a89dd457">m_ConnectType</a></td></tr>
+<tr class="separator:acaab02d9a69afeef9b134113a89dd457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc92b1970e960d7bf00abb980d385b68" id="r_afc92b1970e960d7bf00abb980d385b68"><td class="memItemLeft" align="right" valign="top">UINT32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterFreeRDP.html#afc92b1970e960d7bf00abb980d385b68">m_PerformanceFlags</a></td></tr>
+<tr class="separator:afc92b1970e960d7bf00abb980d385b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_attribs_classCParameterBase"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classCParameterBase')"><img src="closed.png" alt="-"/>&#160;Public 属性 继承自 <a class="el" href="classCParameterBase.html">CParameterBase</a></td></tr>
+<tr class="memitem:af58da691f9370b4a8169aa811e6804c9 inherit pub_attribs_classCParameterBase" id="r_af58da691f9370b4a8169aa811e6804c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#af58da691f9370b4a8169aa811e6804c9">m_Net</a></td></tr>
+<tr class="separator:af58da691f9370b4a8169aa811e6804c9 inherit pub_attribs_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b4d59be50c49fba8cb67843335fdf71 inherit pub_attribs_classCParameterBase" id="r_a1b4d59be50c49fba8cb67843335fdf71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterProxy.html">CParameterProxy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a1b4d59be50c49fba8cb67843335fdf71">m_Proxy</a></td></tr>
+<tr class="separator:a1b4d59be50c49fba8cb67843335fdf71 inherit pub_attribs_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9397cb6e512dba0981d3d438a1a48a inherit pub_attribs_classCParameterBase" id="r_adf9397cb6e512dba0981d3d438a1a48a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterRecord.html">CParameterRecord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#adf9397cb6e512dba0981d3d438a1a48a">m_Record</a></td></tr>
+<tr class="separator:adf9397cb6e512dba0981d3d438a1a48a inherit pub_attribs_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="inherit_header pro_methods_classCParameterBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterBase')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterBase.html">CParameterBase</a></td></tr>
+<tr class="memitem:a534040b0c9cc720bedd40845f5c8af67 inherit pro_methods_classCParameterBase" id="r_a534040b0c9cc720bedd40845f5c8af67"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBase.html#a534040b0c9cc720bedd40845f5c8af67">slotSetGlobalParameters</a> () override</td></tr>
+<tr class="memdesc:a534040b0c9cc720bedd40845f5c8af67 inherit pro_methods_classCParameterBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="separator:a534040b0c9cc720bedd40845f5c8af67 inherit pro_methods_classCParameterBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="separator:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>[Declare <a class="el" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]">CParameterFreeRDP</a>] </p>
+<p>[Declare <a class="el" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]">CParameterFreeRDP</a>] </p>
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="aa353952c43240ea3b836dd31d2ce78ea" name="aa353952c43240ea3b836dd31d2ce78ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa353952c43240ea3b836dd31d2ce78ea">&#9670;&#160;</a></span>RedirecionSoundType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CParameterFreeRDP::RedirecionSoundType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5edc16ef2368336507c1771ddc2ca315" name="a5edc16ef2368336507c1771ddc2ca315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5edc16ef2368336507c1771ddc2ca315">&#9670;&#160;</a></span>Security</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CParameterFreeRDP::Security</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a3fed100bbfd0406b507d9d3fda173880" name="a3fed100bbfd0406b507d9d3fda173880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fed100bbfd0406b507d9d3fda173880">&#9670;&#160;</a></span>GetColorDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::GetColorDepth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7972abcdcbca59d90b5f176bfe498ac8" name="a7972abcdcbca59d90b5f176bfe498ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7972abcdcbca59d90b5f176bfe498ac8">&#9670;&#160;</a></span>GetConnectType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::GetConnectType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00313">313</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6e411a4d59ca47436538c8916d5a99c" name="af6e411a4d59ca47436538c8916d5a99c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e411a4d59ca47436538c8916d5a99c">&#9670;&#160;</a></span>GetDesktopHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::GetDesktopHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e0cdbd051476eabb43811b49e74924a" name="a1e0cdbd051476eabb43811b49e74924a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0cdbd051476eabb43811b49e74924a">&#9670;&#160;</a></span>GetDesktopWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::GetDesktopWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00132">132</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a088109574e32bc30a4324c2e39ff1586" name="a088109574e32bc30a4324c2e39ff1586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088109574e32bc30a4324c2e39ff1586">&#9670;&#160;</a></span>GetDomain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CParameterFreeRDP::GetDomain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00373">373</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aec35889188dc49122a10b4bf2e78a4a9" name="aec35889188dc49122a10b4bf2e78a4a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec35889188dc49122a10b4bf2e78a4a9">&#9670;&#160;</a></span>GetNegotiateSecurityLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::GetNegotiateSecurityLayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00339">339</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a74682c3afa21989c0a95514cef7d8bdb" name="a74682c3afa21989c0a95514cef7d8bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74682c3afa21989c0a95514cef7d8bdb">&#9670;&#160;</a></span>GetPerformanceFlags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::GetPerformanceFlags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00326">326</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a5d2dfde93b9a345cd34f8278de8471" name="a5a5d2dfde93b9a345cd34f8278de8471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a5d2dfde93b9a345cd34f8278de8471">&#9670;&#160;</a></span>GetReconnectInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CParameterFreeRDP::GetReconnectInterval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4bfd084b50ff1ed5c7b36ce5a78609a0" name="a4bfd084b50ff1ed5c7b36ce5a78609a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bfd084b50ff1ed5c7b36ce5a78609a0">&#9670;&#160;</a></span>GetRedirectionDrives()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFreeRDP::GetRedirectionDrives </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a86de2b12f71804f32b6acdc8dacc88b1" name="a86de2b12f71804f32b6acdc8dacc88b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86de2b12f71804f32b6acdc8dacc88b1">&#9670;&#160;</a></span>GetRedirectionMicrophone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::GetRedirectionMicrophone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00230">230</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f8edc008b86d7e3d2032fe812f7d7e5" name="a1f8edc008b86d7e3d2032fe812f7d7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8edc008b86d7e3d2032fe812f7d7e5">&#9670;&#160;</a></span>GetRedirectionMicrophoneParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterFreeRDP::GetRedirectionMicrophoneParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00286">286</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac15ffbe3e588bb94d51ddcd4f1970d11" name="ac15ffbe3e588bb94d51ddcd4f1970d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac15ffbe3e588bb94d51ddcd4f1970d11">&#9670;&#160;</a></span>GetRedirectionPrinter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::GetRedirectionPrinter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00258">258</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab82b131cc11b5b180bc672380d16cfba" name="ab82b131cc11b5b180bc672380d16cfba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82b131cc11b5b180bc672380d16cfba">&#9670;&#160;</a></span>GetRedirectionSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterFreeRDP::RedirecionSoundType CParameterFreeRDP::GetRedirectionSound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16a298e60817f8253f2676613ce98af6" name="a16a298e60817f8253f2676613ce98af6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a298e60817f8253f2676613ce98af6">&#9670;&#160;</a></span>GetRedirectionSoundParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterFreeRDP::GetRedirectionSoundParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00272">272</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc69ba2bd298c4b935546d036bcf654c" name="afc69ba2bd298c4b935546d036bcf654c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc69ba2bd298c4b935546d036bcf654c">&#9670;&#160;</a></span>GetScreenGeometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QRect CParameterFreeRDP::GetScreenGeometry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00378">378</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac4b756bf2317d4f984fdf72d865f8433" name="ac4b756bf2317d4f984fdf72d865f8433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b756bf2317d4f984fdf72d865f8433">&#9670;&#160;</a></span>GetSecurity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterFreeRDP::Security CParameterFreeRDP::GetSecurity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00352">352</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a20fe99f8b850ba2247cc44d78524e824" name="a20fe99f8b850ba2247cc44d78524e824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20fe99f8b850ba2247cc44d78524e824">&#9670;&#160;</a></span>GetShowVerifyDiaglog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::GetShowVerifyDiaglog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00203">203</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac1c80952555d99c9af2c2a5b365fbac7" name="ac1c80952555d99c9af2c2a5b365fbac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c80952555d99c9af2c2a5b365fbac7">&#9670;&#160;</a></span>GetTlsVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT16 CParameterFreeRDP::GetTlsVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00300">300</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac36637655b84dcf2513e6dc7e3eb60f0" name="ac36637655b84dcf2513e6dc7e3eb60f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac36637655b84dcf2513e6dc7e3eb60f0">&#9670;&#160;</a></span>GetUseMultimon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::GetUseMultimon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00174">174</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abe928e086278cb67c2fa94159e525786" name="abe928e086278cb67c2fa94159e525786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe928e086278cb67c2fa94159e525786">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterBase.html">CParameterBase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab12901edd0dc2f4f3f7af1a6fcb5d49a" name="ab12901edd0dc2f4f3f7af1a6fcb5d49a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12901edd0dc2f4f3f7af1a6fcb5d49a">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterBase.html">CParameterBase</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8c785276d66830dd2995c44d9a20f63d" name="a8c785276d66830dd2995c44d9a20f63d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c785276d66830dd2995c44d9a20f63d">&#9670;&#160;</a></span>SetColorDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::SetColorDepth </td>
+          <td>(</td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a12943e3b1827bd0e38119e58ff613325" name="a12943e3b1827bd0e38119e58ff613325"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12943e3b1827bd0e38119e58ff613325">&#9670;&#160;</a></span>SetConnectType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetConnectType </td>
+          <td>(</td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>newConnectType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00318">318</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3796c53a98c494e0bbd3e971bdb1dbea" name="a3796c53a98c494e0bbd3e971bdb1dbea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3796c53a98c494e0bbd3e971bdb1dbea">&#9670;&#160;</a></span>SetDesktopHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::SetDesktopHeight </td>
+          <td>(</td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>nHeight</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2b12312d7bf337497f49cbc434f165b5" name="a2b12312d7bf337497f49cbc434f165b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b12312d7bf337497f49cbc434f165b5">&#9670;&#160;</a></span>SetDesktopWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::SetDesktopWidth </td>
+          <td>(</td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>nWidth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00137">137</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abe48bf61adc1b0ed63f39fe33d47aaf7" name="abe48bf61adc1b0ed63f39fe33d47aaf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe48bf61adc1b0ed63f39fe33d47aaf7">&#9670;&#160;</a></span>SetDomain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetDomain </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDomain</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00365">365</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a653c078bdbebe8e8c985ce55d3feb505" name="a653c078bdbebe8e8c985ce55d3feb505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a653c078bdbebe8e8c985ce55d3feb505">&#9670;&#160;</a></span>SetNegotiateSecurityLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetNegotiateSecurityLayer </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newNegotiateSecurityLayer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00344">344</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a715558b778897b5f2bd0087cb98723f1" name="a715558b778897b5f2bd0087cb98723f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a715558b778897b5f2bd0087cb98723f1">&#9670;&#160;</a></span>SetPerformanceFlags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetPerformanceFlags </td>
+          <td>(</td>
+          <td class="paramtype">UINT32&#160;</td>
+          <td class="paramname"><em>newPerformanceFlags</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00331">331</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a760e569ed095238ba7268b89f3a7c5a9" name="a760e569ed095238ba7268b89f3a7c5a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760e569ed095238ba7268b89f3a7c5a9">&#9670;&#160;</a></span>SetReconnectInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetReconnectInterval </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>newReconnectInterval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00193">193</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a15410a3cbea0dd4db7442a7367166694" name="a15410a3cbea0dd4db7442a7367166694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15410a3cbea0dd4db7442a7367166694">&#9670;&#160;</a></span>SetRedirectionDrives()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionDrives </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newRedirectionDrive</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abcb026b16a9d3b1ac939e66433a720d2" name="abcb026b16a9d3b1ac939e66433a720d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb026b16a9d3b1ac939e66433a720d2">&#9670;&#160;</a></span>SetRedirectionMicrophone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionMicrophone </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newRedirectionMicrophone</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a092a0fdcdd0183c5a305bc4d528601c7" name="a092a0fdcdd0183c5a305bc4d528601c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a092a0fdcdd0183c5a305bc4d528601c7">&#9670;&#160;</a></span>SetRedirectionMicrophoneParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionMicrophoneParameters </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newRedirectionMicrophoneParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00291">291</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b700ec87937d977839da6a6101861b9" name="a1b700ec87937d977839da6a6101861b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b700ec87937d977839da6a6101861b9">&#9670;&#160;</a></span>SetRedirectionPrinter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionPrinter </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newRedirectionPrinter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00263">263</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3f76182336e8cd83f2fbd79b97ce25d6" name="a3f76182336e8cd83f2fbd79b97ce25d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f76182336e8cd83f2fbd79b97ce25d6">&#9670;&#160;</a></span>SetRedirectionSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionSound </td>
+          <td>(</td>
+          <td class="paramtype">RedirecionSoundType&#160;</td>
+          <td class="paramname"><em>newRedirectionSound</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00221">221</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8795a4911271fe640c5049e6b442b28e" name="a8795a4911271fe640c5049e6b442b28e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8795a4911271fe640c5049e6b442b28e">&#9670;&#160;</a></span>SetRedirectionSoundParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetRedirectionSoundParameters </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newRedirectionSoundParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00277">277</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4bae3642e10c9668c3f37bd9bf588b4c" name="a4bae3642e10c9668c3f37bd9bf588b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bae3642e10c9668c3f37bd9bf588b4c">&#9670;&#160;</a></span>SetSecurity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetSecurity </td>
+          <td>(</td>
+          <td class="paramtype">Security&#160;</td>
+          <td class="paramname"><em>newSecurity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00357">357</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afd849518a53c30508ec48301a6a21ff3" name="afd849518a53c30508ec48301a6a21ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd849518a53c30508ec48301a6a21ff3">&#9670;&#160;</a></span>SetShowVerifyDiaglog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetShowVerifyDiaglog </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bShow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00208">208</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0c31f042af4b3a8d5c3c2429386a735a" name="a0c31f042af4b3a8d5c3c2429386a735a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c31f042af4b3a8d5c3c2429386a735a">&#9670;&#160;</a></span>SetTlsVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterFreeRDP::SetTlsVersion </td>
+          <td>(</td>
+          <td class="paramtype">UINT16&#160;</td>
+          <td class="paramname"><em>newTlsVersion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00305">305</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abf6f9df5fd763295824706ea29a04c73" name="abf6f9df5fd763295824706ea29a04c73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6f9df5fd763295824706ea29a04c73">&#9670;&#160;</a></span>SetUseMultimon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterFreeRDP::SetUseMultimon </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bUse</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a> 第 <a class="el" href="ParameterFreeRDP_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8777c6b794e2fe8fb30fa7fd0ae61e66" name="a8777c6b794e2fe8fb30fa7fd0ae61e66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8777c6b794e2fe8fb30fa7fd0ae61e66">&#9670;&#160;</a></span>m_bNegotiateSecurityLayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::m_bNegotiateSecurityLayer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00127">127</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa92ad985b7a000723a6a9319414fd622" name="aa92ad985b7a000723a6a9319414fd622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92ad985b7a000723a6a9319414fd622">&#9670;&#160;</a></span>m_bRedirectionMicrophone</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::m_bRedirectionMicrophone</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad67ab3839783268dfaeeaf8621274165" name="ad67ab3839783268dfaeeaf8621274165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67ab3839783268dfaeeaf8621274165">&#9670;&#160;</a></span>m_bRedirectionPrinter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::m_bRedirectionPrinter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a58d4e68510a8f59515f36d5e560820de" name="a58d4e68510a8f59515f36d5e560820de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d4e68510a8f59515f36d5e560820de">&#9670;&#160;</a></span>m_bShowVerifyDiaglog</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::m_bShowVerifyDiaglog</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbdc435544ac988715fe92a62dd57a3e" name="abbdc435544ac988715fe92a62dd57a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbdc435544ac988715fe92a62dd57a3e">&#9670;&#160;</a></span>m_bUseMultimon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::m_bUseMultimon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acaab02d9a69afeef9b134113a89dd457" name="acaab02d9a69afeef9b134113a89dd457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaab02d9a69afeef9b134113a89dd457">&#9670;&#160;</a></span>m_ConnectType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_ConnectType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a764e12081708bd9797ffb4fa6cdb48a7" name="a764e12081708bd9797ffb4fa6cdb48a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a764e12081708bd9797ffb4fa6cdb48a7">&#9670;&#160;</a></span>m_lstRedirectionDrives</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFreeRDP::m_lstRedirectionDrives</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc4acd3370705c97afa65b08443f29cd" name="acc4acd3370705c97afa65b08443f29cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4acd3370705c97afa65b08443f29cd">&#9670;&#160;</a></span>m_nColorDepth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_nColorDepth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae2d0b7e2a467589d2c554d2de5bdefa4" name="ae2d0b7e2a467589d2c554d2de5bdefa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2d0b7e2a467589d2c554d2de5bdefa4">&#9670;&#160;</a></span>m_nHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_nHeight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a24d558d1e2b4629b0c5b4a7dc45cddfd" name="a24d558d1e2b4629b0c5b4a7dc45cddfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d558d1e2b4629b0c5b4a7dc45cddfd">&#9670;&#160;</a></span>m_nReconnectInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_nReconnectInterval</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6e67501789ee342cd69209224fd5fa99" name="a6e67501789ee342cd69209224fd5fa99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e67501789ee342cd69209224fd5fa99">&#9670;&#160;</a></span>m_nRedirectionSound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedirecionSoundType CParameterFreeRDP::m_nRedirectionSound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adce498a45980269a086df01cecf5e484" name="adce498a45980269a086df01cecf5e484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adce498a45980269a086df01cecf5e484">&#9670;&#160;</a></span>m_nWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_nWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc92b1970e960d7bf00abb980d385b68" name="afc92b1970e960d7bf00abb980d385b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc92b1970e960d7bf00abb980d385b68">&#9670;&#160;</a></span>m_PerformanceFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT32 CParameterFreeRDP::m_PerformanceFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00132">132</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac53ca3333e09b9c54674335ade7b2f4e" name="ac53ca3333e09b9c54674335ade7b2f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac53ca3333e09b9c54674335ade7b2f4e">&#9670;&#160;</a></span>m_Security</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Security CParameterFreeRDP::m_Security</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a15217ab1719e1bb1b6beacb70dfb436c" name="a15217ab1719e1bb1b6beacb70dfb436c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15217ab1719e1bb1b6beacb70dfb436c">&#9670;&#160;</a></span>m_szDomain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFreeRDP::m_szDomain</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7807bab14f9b2143dc9927ec03fc7213" name="a7807bab14f9b2143dc9927ec03fc7213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7807bab14f9b2143dc9927ec03fc7213">&#9670;&#160;</a></span>m_szRedirectionMicrophoneParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFreeRDP::m_szRedirectionMicrophoneParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a318f9eee875b7bf3c60fc3935d4a058d" name="a318f9eee875b7bf3c60fc3935d4a058d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a318f9eee875b7bf3c60fc3935d4a058d">&#9670;&#160;</a></span>m_szRedirectionSoundParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFreeRDP::m_szRedirectionSoundParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00121">121</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a519733e2bf7a32fca28b86298ad2a086" name="a519733e2bf7a32fca28b86298ad2a086"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a519733e2bf7a32fca28b86298ad2a086">&#9670;&#160;</a></span>m_tlsVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT16 CParameterFreeRDP::m_tlsVersion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a1823c51ac7e0f15f045445aa843de04b" name="a1823c51ac7e0f15f045445aa843de04b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1823c51ac7e0f15f045445aa843de04b">&#9670;&#160;</a></span>ReconnectInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CParameterFreeRDP::ReconnectInterval</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abd6162ce3f7ef8856ae34a01b152d91f" name="abd6162ce3f7ef8856ae34a01b152d91f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd6162ce3f7ef8856ae34a01b152d91f">&#9670;&#160;</a></span>RedirectionDrives</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterFreeRDP::RedirectionDrives</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a36fa0de8e9e17e853b56128a645dd9d0" name="a36fa0de8e9e17e853b56128a645dd9d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36fa0de8e9e17e853b56128a645dd9d0">&#9670;&#160;</a></span>RedirectionMicrophone</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::RedirectionMicrophone</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a74613f9e9faa292a3dc566ce9a0ac20f" name="a74613f9e9faa292a3dc566ce9a0ac20f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74613f9e9faa292a3dc566ce9a0ac20f">&#9670;&#160;</a></span>RedirectionMicrophoneParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFreeRDP::RedirectionMicrophoneParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85cca569454d8b5c71d8d425b0085a55" name="a85cca569454d8b5c71d8d425b0085a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85cca569454d8b5c71d8d425b0085a55">&#9670;&#160;</a></span>RedirectionPrinter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterFreeRDP::RedirectionPrinter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00013">13</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a448a82cccdab6ca9fbbddb53264f7816" name="a448a82cccdab6ca9fbbddb53264f7816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448a82cccdab6ca9fbbddb53264f7816">&#9670;&#160;</a></span>RedirectionSound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedirecionSoundType CParameterFreeRDP::RedirectionSound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab91d603835a8bd1d7e913e34f93fddfe" name="ab91d603835a8bd1d7e913e34f93fddfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab91d603835a8bd1d7e913e34f93fddfe">&#9670;&#160;</a></span>RedirectionSoundParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterFreeRDP::RedirectionSoundParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a> 第 <a class="el" href="ParameterFreeRDP_8h_source.html#l00016">16</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ParameterFreeRDP_8h_source.html">ParameterFreeRDP.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ParameterFreeRDP_8cpp_source.html">ParameterFreeRDP.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

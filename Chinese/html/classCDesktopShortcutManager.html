@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDesktopShortcutManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDesktopShortcutManager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDesktopShortcutManager类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDesktopShortcutManager 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktopShortcutManager__inherit__graph.png" border="0" usemap="#aCDesktopShortcutManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDesktopShortcutManager_inherit__map" id="aCDesktopShortcutManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,201,104"/>
+<area shape="rect" title=" " alt="" coords="66,5,141,31"/>
+<area shape="poly" title=" " alt="" coords="106,44,106,79,101,79,101,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDesktopShortcutManager 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDesktopShortcutManager__coll__graph.png" border="0" usemap="#aCDesktopShortcutManager_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDesktopShortcutManager_coll__map" id="aCDesktopShortcutManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,201,104"/>
+<area shape="rect" title=" " alt="" coords="66,5,141,31"/>
+<area shape="poly" title=" " alt="" coords="106,44,106,79,101,79,101,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:afdf4150b2dfe34795a6dade3383fd5a5" id="r_afdf4150b2dfe34795a6dade3383fd5a5"><td class="memItemLeft" align="right" valign="top"><a id="afdf4150b2dfe34795a6dade3383fd5a5" name="afdf4150b2dfe34795a6dade3383fd5a5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CDesktopShortcutManager</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:afdf4150b2dfe34795a6dade3383fd5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170cb974c7b99fa64d500da1664e3ebe" id="r_a170cb974c7b99fa64d500da1664e3ebe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a170cb974c7b99fa64d500da1664e3ebe">disableAllShortcuts</a> ()</td></tr>
+<tr class="separator:a170cb974c7b99fa64d500da1664e3ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5ca7e0b32f0c45c77d81be55d48f988" id="r_ab5ca7e0b32f0c45c77d81be55d48f988"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#ab5ca7e0b32f0c45c77d81be55d48f988">restoreAllShortcuts</a> ()</td></tr>
+<tr class="separator:ab5ca7e0b32f0c45c77d81be55d48f988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9e41d1b78abfa0a2f414b00a1e7e43b" id="r_ae9e41d1b78abfa0a2f414b00a1e7e43b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#ae9e41d1b78abfa0a2f414b00a1e7e43b">isDisabled</a> () const</td></tr>
+<tr class="separator:ae9e41d1b78abfa0a2f414b00a1e7e43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab374fc1338afe16d3288f01da21e1ab9" id="r_ab374fc1338afe16d3288f01da21e1ab9"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#ab374fc1338afe16d3288f01da21e1ab9">desktopEnvironment</a> () const</td></tr>
+<tr class="separator:ab374fc1338afe16d3288f01da21e1ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a4a8f32676c99fc8c7a161807fb363763" id="r_a4a8f32676c99fc8c7a161807fb363763"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a4a8f32676c99fc8c7a161807fb363763">detectDesktopEnvironment</a> ()</td></tr>
+<tr class="separator:a4a8f32676c99fc8c7a161807fb363763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf628bbc79fde25b1c5efabb1b71ada" id="r_abaf628bbc79fde25b1c5efabb1b71ada"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#abaf628bbc79fde25b1c5efabb1b71ada">runCommand</a> (const QString &amp;program, const QStringList &amp;args=QStringList(), int timeout=5000)</td></tr>
+<tr class="separator:abaf628bbc79fde25b1c5efabb1b71ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3099dfae8504281ccfaec7fc4a0b358b" id="r_a3099dfae8504281ccfaec7fc4a0b358b"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a3099dfae8504281ccfaec7fc4a0b358b">getCommandOutput</a> (const QString &amp;program, const QStringList &amp;args)</td></tr>
+<tr class="separator:a3099dfae8504281ccfaec7fc4a0b358b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a8af86b3a07d8a628b342dabeea9cc290" id="r_a8af86b3a07d8a628b342dabeea9cc290"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a8af86b3a07d8a628b342dabeea9cc290">backupFile</a> (const QString &amp;sourcePath, const QString &amp;backupPath)</td></tr>
+<tr class="separator:a8af86b3a07d8a628b342dabeea9cc290"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace7e7280a3aae2dd1bcb394b598b05b5" id="r_ace7e7280a3aae2dd1bcb394b598b05b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#ace7e7280a3aae2dd1bcb394b598b05b5">restoreFile</a> (const QString &amp;backupPath, const QString &amp;targetPath)</td></tr>
+<tr class="separator:ace7e7280a3aae2dd1bcb394b598b05b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a9dc7097ceda794a14bdd3bf20feaf634" id="r_a9dc7097ceda794a14bdd3bf20feaf634"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a9dc7097ceda794a14bdd3bf20feaf634">m_desktopEnv</a></td></tr>
+<tr class="separator:a9dc7097ceda794a14bdd3bf20feaf634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f3d19b2c57bfde6343653bd58b72b2a" id="r_a5f3d19b2c57bfde6343653bd58b72b2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a5f3d19b2c57bfde6343653bd58b72b2a">m_shortcutsDisabled</a> = false</td></tr>
+<tr class="separator:a5f3d19b2c57bfde6343653bd58b72b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae47e014f05f4b99f00ad4a53f0871dbd" id="r_ae47e014f05f4b99f00ad4a53f0871dbd"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#ae47e014f05f4b99f00ad4a53f0871dbd">m_gnomeSettings</a></td></tr>
+<tr class="separator:ae47e014f05f4b99f00ad4a53f0871dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc0825f7073fb5e42e4dfd1171991ddd" id="r_afc0825f7073fb5e42e4dfd1171991ddd"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#afc0825f7073fb5e42e4dfd1171991ddd">m_kdeSettings</a></td></tr>
+<tr class="separator:afc0825f7073fb5e42e4dfd1171991ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6371f730859e81ca5719910c55a90adb" id="r_a6371f730859e81ca5719910c55a90adb"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#a6371f730859e81ca5719910c55a90adb">m_gnomeBackupPath</a></td></tr>
+<tr class="separator:a6371f730859e81ca5719910c55a90adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa846a1bf6b7befc2212a58169dd7defb" id="r_aa846a1bf6b7befc2212a58169dd7defb"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDesktopShortcutManager.html#aa846a1bf6b7befc2212a58169dd7defb">m_kdeBackupPath</a></td></tr>
+<tr class="separator:aa846a1bf6b7befc2212a58169dd7defb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a79ee098793c58203e3d855322b852ea7" name="a79ee098793c58203e3d855322b852ea7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ee098793c58203e3d855322b852ea7">&#9670;&#160;</a></span>~CDesktopShortcutManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDesktopShortcutManager::~CDesktopShortcutManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a8af86b3a07d8a628b342dabeea9cc290" name="a8af86b3a07d8a628b342dabeea9cc290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8af86b3a07d8a628b342dabeea9cc290">&#9670;&#160;</a></span>backupFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::backupFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sourcePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>backupPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00508">508</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab374fc1338afe16d3288f01da21e1ab9" name="ab374fc1338afe16d3288f01da21e1ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab374fc1338afe16d3288f01da21e1ab9">&#9670;&#160;</a></span>desktopEnvironment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::desktopEnvironment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4a8f32676c99fc8c7a161807fb363763" name="a4a8f32676c99fc8c7a161807fb363763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a8f32676c99fc8c7a161807fb363763">&#9670;&#160;</a></span>detectDesktopEnvironment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::detectDesktopEnvironment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a170cb974c7b99fa64d500da1664e3ebe" name="a170cb974c7b99fa64d500da1664e3ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170cb974c7b99fa64d500da1664e3ebe">&#9670;&#160;</a></span>disableAllShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::disableAllShortcuts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3099dfae8504281ccfaec7fc4a0b358b" name="a3099dfae8504281ccfaec7fc4a0b358b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3099dfae8504281ccfaec7fc4a0b358b">&#9670;&#160;</a></span>getCommandOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::getCommandOutput </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>program</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00496">496</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae9e41d1b78abfa0a2f414b00a1e7e43b" name="ae9e41d1b78abfa0a2f414b00a1e7e43b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9e41d1b78abfa0a2f414b00a1e7e43b">&#9670;&#160;</a></span>isDisabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::isDisabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab5ca7e0b32f0c45c77d81be55d48f988" name="ab5ca7e0b32f0c45c77d81be55d48f988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5ca7e0b32f0c45c77d81be55d48f988">&#9670;&#160;</a></span>restoreAllShortcuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::restoreAllShortcuts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ace7e7280a3aae2dd1bcb394b598b05b5" name="ace7e7280a3aae2dd1bcb394b598b05b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace7e7280a3aae2dd1bcb394b598b05b5">&#9670;&#160;</a></span>restoreFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::restoreFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>backupPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>targetPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00513">513</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abaf628bbc79fde25b1c5efabb1b71ada" name="abaf628bbc79fde25b1c5efabb1b71ada"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf628bbc79fde25b1c5efabb1b71ada">&#9670;&#160;</a></span>runCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::runCommand </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>program</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>args</em> = <code>QStringList()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>5000</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html#l00464">464</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a9dc7097ceda794a14bdd3bf20feaf634" name="a9dc7097ceda794a14bdd3bf20feaf634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc7097ceda794a14bdd3bf20feaf634">&#9670;&#160;</a></span>m_desktopEnv</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::m_desktopEnv</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6371f730859e81ca5719910c55a90adb" name="a6371f730859e81ca5719910c55a90adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6371f730859e81ca5719910c55a90adb">&#9670;&#160;</a></span>m_gnomeBackupPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::m_gnomeBackupPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae47e014f05f4b99f00ad4a53f0871dbd" name="ae47e014f05f4b99f00ad4a53f0871dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae47e014f05f4b99f00ad4a53f0871dbd">&#9670;&#160;</a></span>m_gnomeSettings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;QString, QVariant&gt; CDesktopShortcutManager::m_gnomeSettings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa846a1bf6b7befc2212a58169dd7defb" name="aa846a1bf6b7befc2212a58169dd7defb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa846a1bf6b7befc2212a58169dd7defb">&#9670;&#160;</a></span>m_kdeBackupPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CDesktopShortcutManager::m_kdeBackupPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc0825f7073fb5e42e4dfd1171991ddd" name="afc0825f7073fb5e42e4dfd1171991ddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc0825f7073fb5e42e4dfd1171991ddd">&#9670;&#160;</a></span>m_kdeSettings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;QString, QString&gt; CDesktopShortcutManager::m_kdeSettings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5f3d19b2c57bfde6343653bd58b72b2a" name="a5f3d19b2c57bfde6343653bd58b72b2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f3d19b2c57bfde6343653bd58b72b2a">&#9670;&#160;</a></span>m_shortcutsDisabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CDesktopShortcutManager::m_shortcutsDisabled = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a> 第 <a class="el" href="Unix_2DesktopShortcuts_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="Unix_2DesktopShortcuts_8h_source.html">DesktopShortcuts.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/Unix/<a class="el" href="Unix_2DesktopShortcuts_8cpp_source.html">DesktopShortcuts.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

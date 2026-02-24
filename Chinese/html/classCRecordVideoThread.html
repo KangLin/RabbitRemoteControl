@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CRecordVideoThread类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCRecordVideoThread-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CRecordVideoThread类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>录制视频线程  
+ <a href="classCRecordVideoThread.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="RecordVideo_8h_source.html">RecordVideo.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CRecordVideoThread 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecordVideoThread__inherit__graph.png" border="0" usemap="#aCRecordVideoThread_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCRecordVideoThread_inherit__map" id="aCRecordVideoThread_inherit__map">
+<area shape="rect" title="录制视频线程" alt="" coords="5,79,164,104"/>
+<area shape="rect" title=" " alt="" coords="46,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="87,44,87,79,82,79,82,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CRecordVideoThread 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRecordVideoThread__coll__graph.png" border="0" usemap="#aCRecordVideoThread_coll__map" alt="Collaboration graph"/></div>
+<map name="aCRecordVideoThread_coll__map" id="aCRecordVideoThread_coll__map">
+<area shape="rect" title="录制视频线程" alt="" coords="5,79,164,104"/>
+<area shape="rect" title=" " alt="" coords="46,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="87,44,87,79,82,79,82,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a83e760e67528b717e455d997f90422ea" id="r_a83e760e67528b717e455d997f90422ea"><td class="memItemLeft" align="right" valign="top"><a id="a83e760e67528b717e455d997f90422ea" name="a83e760e67528b717e455d997f90422ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigUpdate</b> (QImage img)</td></tr>
+<tr class="separator:a83e760e67528b717e455d997f90422ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd7de631d525a8ba354029cfffa4947" id="r_a0dd7de631d525a8ba354029cfffa4947"><td class="memItemLeft" align="right" valign="top"><a id="a0dd7de631d525a8ba354029cfffa4947" name="a0dd7de631d525a8ba354029cfffa4947"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStatusChanged</b> (CFrmViewer::RecordVideoStatus status)</td></tr>
+<tr class="separator:a0dd7de631d525a8ba354029cfffa4947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1526b73fc7ee545eb4d832fea98598dc" id="r_a1526b73fc7ee545eb4d832fea98598dc"><td class="memItemLeft" align="right" valign="top"><a id="a1526b73fc7ee545eb4d832fea98598dc" name="a1526b73fc7ee545eb4d832fea98598dc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigError</b> (int nRet, QString szText)</td></tr>
+<tr class="separator:a1526b73fc7ee545eb4d832fea98598dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a9459ef7a1c97e42bca113fd7ccead783" id="r_a9459ef7a1c97e42bca113fd7ccead783"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecordVideoThread.html#a9459ef7a1c97e42bca113fd7ccead783">CRecordVideoThread</a> ()</td></tr>
+<tr class="separator:a9459ef7a1c97e42bca113fd7ccead783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c035128d50fb3f7db16e706dd16beb" id="r_ae8c035128d50fb3f7db16e706dd16beb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecordVideoThread.html#ae8c035128d50fb3f7db16e706dd16beb">SetFile</a> (const QString &amp;szFile)</td></tr>
+<tr class="separator:ae8c035128d50fb3f7db16e706dd16beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:abe8e75b45fcbac95530720274a4a844d" id="r_abe8e75b45fcbac95530720274a4a844d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecordVideoThread.html#abe8e75b45fcbac95530720274a4a844d">run</a> () override</td></tr>
+<tr class="separator:abe8e75b45fcbac95530720274a4a844d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a9b062ab4899b3e97e7140e5b52979e62" id="r_a9b062ab4899b3e97e7140e5b52979e62"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRecordVideoThread.html#a9b062ab4899b3e97e7140e5b52979e62">m_szFile</a></td></tr>
+<tr class="separator:a9b062ab4899b3e97e7140e5b52979e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>录制视频线程 </p>
+<dl class="section note"><dt>注解</dt><dd>当此线程退出后，会自动删除线程对象。</dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCRecordVideo.html" title="Record video to file">CRecordVideo</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="RecordVideo_8h_source.html">RecordVideo.h</a> 第 <a class="el" href="RecordVideo_8h_source.html#l00028">28</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9459ef7a1c97e42bca113fd7ccead783" name="a9459ef7a1c97e42bca113fd7ccead783"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9459ef7a1c97e42bca113fd7ccead783">&#9670;&#160;</a></span>CRecordVideoThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Record Video Thread CRecordVideoThread::CRecordVideoThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>that the parent object pointer cannot be set here. If set the parent, the object is also deleted when the parent object (CConnecterThread) is destroyed. Because it is deleted when it is finished. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="RecordVideo_8cpp_source.html">RecordVideo.cpp</a> 第 <a class="el" href="RecordVideo_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="abe8e75b45fcbac95530720274a4a844d" name="abe8e75b45fcbac95530720274a4a844d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe8e75b45fcbac95530720274a4a844d">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRecordVideoThread::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecordVideo_8cpp_source.html">RecordVideo.cpp</a> 第 <a class="el" href="RecordVideo_8cpp_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8c035128d50fb3f7db16e706dd16beb" name="ae8c035128d50fb3f7db16e706dd16beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8c035128d50fb3f7db16e706dd16beb">&#9670;&#160;</a></span>SetFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRecordVideoThread::SetFile </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecordVideo_8cpp_source.html">RecordVideo.cpp</a> 第 <a class="el" href="RecordVideo_8cpp_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a9b062ab4899b3e97e7140e5b52979e62" name="a9b062ab4899b3e97e7140e5b52979e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b062ab4899b3e97e7140e5b52979e62">&#9670;&#160;</a></span>m_szFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRecordVideoThread::m_szFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RecordVideo_8h_source.html">RecordVideo.h</a> 第 <a class="el" href="RecordVideo_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="RecordVideo_8h_source.html">RecordVideo.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="RecordVideo_8cpp_source.html">RecordVideo.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

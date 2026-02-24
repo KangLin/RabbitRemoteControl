@@ -1,0 +1,9 @@
+<map id="CPluginClientThread" name="CPluginClientThread">
+<area shape="rect" id="Node000001" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。" alt="" coords="5,168,160,193"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="7,80,116,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,118,82,167,77,168,65,119"/>
+<area shape="rect" id="Node000003" href="$classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。" alt="" coords="141,80,257,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,116,100,170,97,166,171,111"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="160,5,237,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="201,45,201,80,196,80,196,45"/>
+</map>

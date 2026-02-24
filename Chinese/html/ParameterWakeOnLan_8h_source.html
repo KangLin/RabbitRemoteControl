@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WakeOnLan/ParameterWakeOnLan.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b4eaef40a1fe20bedafe9e8e719ce66.html">Plugins</a></li><li class="navelem"><a class="el" href="dir_c96ba4a0119dc749a3de088e9e96375e.html">WakeOnLan</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ParameterWakeOnLan.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef PARAMETERWAKEONLAN_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define PARAMETERWAKEONLAN_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;ParameterOperate.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;ParameterNet.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classCParameterWakeOnLan.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classCParameterWakeOnLan.html">CParameterWakeOnLan</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCParameterOperate.html">CParameterOperate</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    Q_OBJECT</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCParameterWakeOnLan.html">CParameterWakeOnLan</a>(QObject* parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> GetEnable() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">int</span> SetEnable(<span class="keywordtype">bool</span> bEnable);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// Target IP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="classCParameterNet.html">CParameterNet</a> m_Net;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> QString GetMac() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">int</span> SetMac(<span class="keyword">const</span> QString &amp;szMac);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">const</span> QString GetBroadcastAddress() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">int</span> SetBroadcastAddress(<span class="keyword">const</span> QString&amp; szBroadcastAddress);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> QString <a class="code hl_function" href="classCParameterWakeOnLan.html#a6343a2465ba2e273092a3f7316f0f2be">GetNetworkInterface</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> SetNetworkInterface(<span class="keyword">const</span> QString&amp; szName);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> quint16 GetPort() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> SetPort(quint16 port);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">const</span> QString GetPassword() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">int</span> SetPassword(<span class="keyword">const</span> QString&amp; szPassword);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> GetSavePassword() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#a447d76b74b102ca3f79b8d5048321a91">SetSavePassword</a>(<span class="keywordtype">bool</span> save);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> GetRepeat() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> SetRepeat(<span class="keywordtype">int</span> nRepeat);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#afd4cdaaf88ec6c4200e92419514631aa">GetInterval</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#a4a9da9e97d577d6ee02739cccd5540ee">SetInterval</a>(<span class="keywordtype">int</span> nInterval);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#adf401fce46ae5b756daa6fe9b44e3efa">GetTimeOut</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#a06a6d89d88e7912b9c8a9a821d744a38">SetTimeOut</a>(<span class="keywordtype">int</span> nTimeout);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">enum class</span> HostState{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        Online,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        GetMac,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        WakeOnLan,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        Offline</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    };</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    HostState GetHostState() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> SetHostState(HostState newHostState);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>signals:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> sigHostStateChanged();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">bool</span> m_bEnable;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    HostState m_HostState;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    QString m_szMac;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    QString m_szBoardcastAddress;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    QString m_szNetworkInteface;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    quint16 m_nPort;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    QString m_szPassword;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">bool</span> m_bSavePassword;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">int</span> m_nRepeat;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">int</span> m_nInterval; </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classCParameterWakeOnLan.html#ab7152b206e576d95639f98a4714250dd">   90</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classCParameterWakeOnLan.html#ab7152b206e576d95639f98a4714250dd">m_nTimeOut</a>;    </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// CParameter interface</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">OnLoad</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> OnSave(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classCParameterWakeOnLan.html#ab2fc66765d4d40aad47898c8cd1f750d">OnCheckValidity</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// CParameterOperate interface</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">protected</span> slots:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> slotSetGlobalParameters() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif </span><span class="comment">// PARAMETERWAKEONLAN_H</span></div>
+<div class="ttc" id="aclassCParameterNet_html"><div class="ttname"><a href="classCParameterNet.html">CParameterNet</a></div><div class="ttdoc">网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI</div><div class="ttdef"><b>Definition</b> <a href="ParameterNet_8h_source.html#l00025">ParameterNet.h:27</a></div></div>
+<div class="ttc" id="aclassCParameterOperate_html"><div class="ttname"><a href="classCParameterOperate.html">CParameterOperate</a></div><div class="ttdoc">操作参数接口。仅在插件内有效。</div><div class="ttdef"><b>Definition</b> <a href="ParameterOperate_8h_source.html#l00209">ParameterOperate.h:210</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html"><div class="ttname"><a href="classCParameterWakeOnLan.html">CParameterWakeOnLan</a></div><div class="ttdoc">The wake on lan parameters.</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8h_source.html#l00014">ParameterWakeOnLan.h:15</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_a03acf1a34ac8c10cc9c8dc3a90af9a52"><div class="ttname"><a href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">CParameterWakeOnLan::OnLoad</a></div><div class="ttdeci">virtual int OnLoad(QSettings &amp;set) override</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00026">ParameterWakeOnLan.cpp:26</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_a06a6d89d88e7912b9c8a9a821d744a38"><div class="ttname"><a href="classCParameterWakeOnLan.html#a06a6d89d88e7912b9c8a9a821d744a38">CParameterWakeOnLan::SetTimeOut</a></div><div class="ttdeci">int SetTimeOut(int nTimeout)</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00235">ParameterWakeOnLan.cpp:235</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_a447d76b74b102ca3f79b8d5048321a91"><div class="ttname"><a href="classCParameterWakeOnLan.html#a447d76b74b102ca3f79b8d5048321a91">CParameterWakeOnLan::SetSavePassword</a></div><div class="ttdeci">int SetSavePassword(bool save)</div><div class="ttdoc">Set save password</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00193">ParameterWakeOnLan.cpp:193</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_a4a9da9e97d577d6ee02739cccd5540ee"><div class="ttname"><a href="classCParameterWakeOnLan.html#a4a9da9e97d577d6ee02739cccd5540ee">CParameterWakeOnLan::SetInterval</a></div><div class="ttdeci">int SetInterval(int nInterval)</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00221">ParameterWakeOnLan.cpp:221</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_a6343a2465ba2e273092a3f7316f0f2be"><div class="ttname"><a href="classCParameterWakeOnLan.html#a6343a2465ba2e273092a3f7316f0f2be">CParameterWakeOnLan::GetNetworkInterface</a></div><div class="ttdeci">const QString GetNetworkInterface() const</div><div class="ttdoc">Get network interface.</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00146">ParameterWakeOnLan.cpp:146</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_ab2fc66765d4d40aad47898c8cd1f750d"><div class="ttname"><a href="classCParameterWakeOnLan.html#ab2fc66765d4d40aad47898c8cd1f750d">CParameterWakeOnLan::OnCheckValidity</a></div><div class="ttdeci">virtual bool OnCheckValidity() override</div><div class="ttdoc">检查参数是否有效</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00063">ParameterWakeOnLan.cpp:63</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_ab7152b206e576d95639f98a4714250dd"><div class="ttname"><a href="classCParameterWakeOnLan.html#ab7152b206e576d95639f98a4714250dd">CParameterWakeOnLan::m_nTimeOut</a></div><div class="ttdeci">int m_nTimeOut</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8h_source.html#l00090">ParameterWakeOnLan.h:90</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_adf401fce46ae5b756daa6fe9b44e3efa"><div class="ttname"><a href="classCParameterWakeOnLan.html#adf401fce46ae5b756daa6fe9b44e3efa">CParameterWakeOnLan::GetTimeOut</a></div><div class="ttdeci">const int GetTimeOut() const</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00230">ParameterWakeOnLan.cpp:230</a></div></div>
+<div class="ttc" id="aclassCParameterWakeOnLan_html_afd4cdaaf88ec6c4200e92419514631aa"><div class="ttname"><a href="classCParameterWakeOnLan.html#afd4cdaaf88ec6c4200e92419514631aa">CParameterWakeOnLan::GetInterval</a></div><div class="ttdeci">const int GetInterval() const</div><div class="ttdoc">Unit: ms</div><div class="ttdef"><b>Definition</b> <a href="ParameterWakeOnLan_8cpp_source.html#l00216">ParameterWakeOnLan.cpp:216</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

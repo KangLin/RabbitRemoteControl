@@ -1,0 +1,1224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmWebView类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmWebView-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmWebView类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFrmWebView 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmWebView__inherit__graph.png" border="0" usemap="#aCFrmWebView_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmWebView_inherit__map" id="aCFrmWebView_inherit__map">
+<area shape="rect" title=" " alt="" coords="15,79,131,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,141,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmWebView 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmWebView__coll__graph.png" border="0" usemap="#aCFrmWebView_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmWebView_coll__map" id="aCFrmWebView_coll__map">
+<area shape="rect" title=" " alt="" coords="3132,628,3248,653"/>
+<area shape="rect" title=" " alt="" coords="2834,481,2970,507"/>
+<area shape="poly" title=" " alt="" coords="2984,505,3047,524,3109,553,3132,570,3153,590,3182,626,3178,629,3149,594,3129,574,3107,558,3045,529,2982,510"/>
+<area shape="rect" href="classCFrmWebBrowser.html" title=" " alt="" coords="2833,531,2971,556"/>
+<area shape="poly" title=" " alt="" coords="2954,558,3152,625,3150,631,2953,563"/>
+<area shape="rect" title=" " alt="" coords="2190,465,2269,491"/>
+<area shape="poly" title=" " alt="" coords="2282,469,2382,462,2514,461,2588,464,2663,472,2738,484,2810,502,2834,516,2865,528,2863,533,2832,520,2808,507,2737,489,2662,477,2587,470,2514,466,2382,468,2283,475"/>
+<area shape="rect" href="classCFrmDownloadManager.html" title=" " alt="" coords="2445,503,2624,528"/>
+<area shape="poly" title=" " alt="" coords="2283,482,2446,502,2445,507,2282,487"/>
+<area shape="rect" href="classCParameterWebBrowser.html" title=" " alt="" coords="1821,637,2000,663"/>
+<area shape="poly" title=" " alt="" coords="2014,645,2108,641,2306,627,2460,612,2613,590,2809,558,2835,554,2836,559,2810,563,2614,595,2460,617,2306,633,2108,646,2014,650"/>
+<area shape="poly" title=" " alt="" coords="2013,636,2162,613,2245,597,2326,577,2385,555,2445,532,2467,526,2468,531,2446,537,2387,560,2327,582,2246,602,2163,618,2014,641"/>
+<area shape="rect" href="classCMultimediaRecordThread.html" title="The CMultimediaRecordThread class" alt="" coords="2132,528,2327,553"/>
+<area shape="poly" title=" " alt="" coords="1955,630,2023,604,2186,551,2188,556,2025,609,1957,635"/>
+<area shape="rect" href="classCPasswordStore.html" title=" " alt="" coords="2166,700,2293,725"/>
+<area shape="poly" title=" " alt="" coords="1951,666,1986,681,2025,693,2097,705,2166,710,2165,715,2097,710,2023,698,1984,686,1948,671"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="277,311,428,336"/>
+<area shape="poly" title=" " alt="" coords="442,328,775,358,1215,402,1607,449,1738,471,1778,481,1799,491,1810,504,1815,518,1815,546,1813,574,1816,588,1823,602,1845,621,1870,635,1867,640,1842,626,1819,605,1811,589,1807,574,1809,546,1810,519,1805,507,1796,495,1776,486,1737,476,1607,454,1215,407,775,363,441,334"/>
+<area shape="poly" title=" " alt="" coords="332,296,339,288,353,284,365,286,372,293,374,302,370,312,365,310,368,302,367,296,362,291,353,289,342,292,337,299"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1147,236,1307,261"/>
+<area shape="poly" title=" " alt="" coords="398,304,451,287,528,273,606,266,756,256,905,250,1147,246,1147,251,905,255,756,261,607,271,529,278,453,293,400,309"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="837,281,959,307"/>
+<area shape="poly" title=" " alt="" coords="442,323,579,323,734,315,837,302,838,307,735,321,580,328,442,328"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="607,281,735,307"/>
+<area shape="poly" title=" " alt="" coords="441,313,606,297,607,303,442,318"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,535,228,560"/>
+<area shape="poly" title=" " alt="" coords="190,521,216,476,250,426,295,374,335,334,339,338,299,377,254,429,221,479,195,524"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="1841,420,1980,445"/>
+<area shape="poly" title=" " alt="" coords="218,527,279,505,315,497,351,494,1379,494,1460,490,1522,480,1584,468,1664,455,1841,437,1841,442,1664,461,1584,473,1522,486,1460,495,1379,499,351,499,316,502,281,510,220,532"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1475,356,1615,381"/>
+<area shape="poly" title=" " alt="" coords="198,522,221,498,251,476,298,451,321,445,351,443,787,443,983,436,1176,419,1346,397,1474,378,1475,383,1347,403,1177,424,983,442,787,449,351,449,322,450,300,456,253,480,225,502,201,526"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="452,535,583,560"/>
+<area shape="poly" title=" " alt="" coords="241,545,452,545,452,550,241,550"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1473,665,1616,691"/>
+<area shape="poly" title=" " alt="" coords="199,569,226,599,261,631,304,656,327,663,351,666,1228,666,1473,672,1473,677,1228,671,351,671,326,669,302,661,258,635,222,603,195,573"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1449,585,1640,611"/>
+<area shape="poly" title=" " alt="" coords="220,563,281,585,316,592,351,595,1228,595,1449,595,1449,601,1228,601,351,601,315,598,279,590,218,568"/>
+<area shape="rect" title=" " alt="" coords="5,631,80,656"/>
+<area shape="poly" title=" " alt="" coords="71,620,158,558,161,562,74,625"/>
+<area shape="rect" href="classCMultimediaRecord.html" title=" " alt="" coords="1835,567,1986,592"/>
+<area shape="poly" title=" " alt="" coords="63,665,84,688,111,712,143,730,178,737,1546,737,1621,743,1682,751,1710,751,1737,745,1765,732,1796,711,1804,701,1808,692,1809,671,1809,648,1812,635,1819,623,1842,603,1867,590,1870,594,1845,608,1823,626,1817,638,1814,648,1814,671,1813,693,1808,704,1799,715,1768,737,1739,750,1710,756,1682,756,1620,748,1546,742,177,742,141,735,108,716,80,692,59,669"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="1498,129,1591,155"/>
+<area shape="poly" title=" " alt="" coords="43,617,52,499,74,340,91,264,113,201,127,176,142,156,158,144,177,139,1228,139,1498,139,1498,145,1228,145,178,145,161,149,145,160,131,178,118,203,96,266,79,341,57,499,48,617"/>
+<area shape="poly" title=" " alt="" coords="53,669,69,713,94,761,111,782,130,800,152,811,178,815,1912,815,1956,813,1999,805,2083,780,2154,749,2205,723,2207,728,2157,754,2085,785,2000,810,1956,818,1912,821,177,821,150,816,127,804,107,786,90,764,64,715,48,671"/>
+<area shape="poly" title=" " alt="" coords="1881,414,1842,387,1796,362,1664,306,1558,270,1448,247,1306,226,1201,214,1111,209,1032,209,958,213,804,229,607,249,528,250,495,253,453,265,407,287,371,313,368,308,404,283,451,260,494,248,528,245,607,243,803,224,957,208,1031,203,1111,203,1201,209,1307,221,1449,242,1559,265,1666,301,1799,357,1845,382,1884,409"/>
+<area shape="poly" title=" " alt="" coords="1629,372,1711,381,1798,395,1875,417,1873,423,1797,401,1710,386,1628,377"/>
+<area shape="poly" title=" " alt="" coords="1275,264,1511,353,1509,358,1273,269"/>
+<area shape="poly" title=" " alt="" coords="1278,229,1505,152,1507,157,1280,234"/>
+<area shape="poly" title=" " alt="" coords="973,289,1045,284,1122,274,1185,259,1186,264,1123,279,1046,289,973,295"/>
+<area shape="poly" title=" " alt="" coords="749,291,837,291,837,297,749,297"/>
+<area shape="poly" title=" " alt="" coords="597,545,785,545,1379,545,1454,546,1512,545,1569,536,1639,513,1651,505,1663,496,1708,477,1754,462,1840,441,1842,447,1755,467,1709,482,1665,500,1654,509,1641,518,1570,541,1513,550,1454,551,1379,550,785,550,597,550"/>
+<area shape="poly" title=" " alt="" coords="1577,696,1617,719,1665,737,1702,745,1731,749,1761,747,1796,737,1828,722,1856,701,1897,661,1900,665,1859,705,1830,726,1798,742,1761,752,1731,755,1701,751,1663,742,1615,724,1574,701"/>
+<area shape="poly" title=" " alt="" coords="1588,658,1663,631,1703,626,1737,627,1766,624,1780,617,1795,604,1807,589,1811,573,1808,541,1805,506,1809,488,1819,470,1836,454,1857,443,1859,448,1840,458,1823,473,1814,490,1810,507,1814,540,1816,574,1811,591,1799,608,1783,621,1768,629,1737,633,1704,631,1665,637,1590,663"/>
+<area shape="poly" title=" " alt="" coords="1600,692,1645,700,1696,704,1748,697,1773,689,1796,677,1806,666,1808,653,1811,639,1819,623,1844,604,1870,590,1873,595,1847,608,1823,626,1816,640,1813,654,1810,669,1799,681,1775,694,1750,702,1696,709,1644,705,1599,697"/>
+<area shape="poly" title=" " alt="" coords="1581,615,1620,632,1665,646,1744,656,1821,655,1821,661,1744,661,1663,651,1619,637,1579,619"/>
+<area shape="poly" title=" " alt="" coords="1601,579,1719,541,1769,523,1796,511,1803,501,1807,491,1811,481,1819,469,1841,454,1865,443,1867,448,1844,459,1823,473,1816,483,1812,493,1808,504,1799,515,1771,528,1721,546,1603,584"/>
+<area shape="poly" title=" " alt="" coords="1653,587,1664,586,1835,579,1835,584,1664,591,1654,592"/>
+<area shape="poly" title=" " alt="" coords="2638,521,2833,536,2833,541,2638,526"/>
+<area shape="poly" title=" " alt="" coords="2341,546,2445,551,2657,551,2833,545,2833,550,2658,557,2445,557,2340,552"/>
+<area shape="rect" title=" " alt="" coords="1872,484,1949,509"/>
+<area shape="poly" title=" " alt="" coords="1964,501,2137,525,2136,531,1963,507"/>
+<area shape="poly" title=" " alt="" coords="1997,562,2024,558,2132,546,2132,551,2024,563,1997,567"/>
+<area shape="rect" href="classCHistoryDatabase.html" title=" " alt="" coords="2465,180,2605,205"/>
+<area shape="poly" title=" " alt="" coords="2569,211,2621,249,2686,303,2753,370,2784,406,2812,445,2820,465,2822,483,2825,500,2835,516,2852,528,2849,533,2831,520,2820,502,2817,484,2815,467,2807,447,2780,409,2749,373,2682,307,2618,254,2565,216"/>
+<area shape="poly" title=" " alt="" coords="1605,141,1914,150,2327,165,2422,170,2470,177,2469,183,2421,175,2327,170,1914,155,1605,146"/>
+<area shape="rect" href="classCDatabaseUrl.html" title=" " alt="" coords="2173,180,2285,205"/>
+<area shape="poly" title=" " alt="" coords="1592,157,1665,181,1757,204,1830,216,1905,218,2000,214,2173,197,2174,203,2000,219,1905,223,1830,221,1756,209,1663,186,1591,162"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="1851,180,1971,205"/>
+<area shape="poly" title=" " alt="" coords="1605,149,1664,158,1851,183,1850,188,1664,163,1604,154"/>
+<area shape="rect" href="classCBookmarkDatabase.html" title=" " alt="" coords="2455,63,2615,88"/>
+<area shape="poly" title=" " alt="" coords="1564,117,1606,76,1633,55,1663,38,1705,22,1740,16,1821,13,1963,4,2074,4,2185,11,2327,25,2375,30,2422,39,2496,60,2495,65,2421,45,2374,35,2326,30,2185,17,2074,9,1963,9,1821,18,1741,22,1706,28,1665,43,1636,60,1610,80,1568,121"/>
+<area shape="rect" href="classCDatabaseTree.html" title=" " alt="" coords="2169,40,2289,65"/>
+<area shape="poly" title=" " alt="" coords="1604,130,1664,121,1947,83,2169,57,2169,62,1947,89,1664,126,1605,135"/>
+<area shape="rect" href="classCDatabaseFolder.html" title=" " alt="" coords="1844,28,1977,53"/>
+<area shape="poly" title=" " alt="" coords="1572,119,1614,93,1663,70,1709,57,1757,48,1843,40,1844,45,1757,54,1710,62,1665,75,1616,98,1575,124"/>
+<area shape="poly" title=" " alt="" coords="2299,190,2465,190,2465,195,2299,195"/>
+<area shape="poly" title=" " alt="" coords="2275,173,2499,86,2501,91,2277,177"/>
+<area shape="poly" title=" " alt="" coords="1984,190,2173,190,2173,195,1984,195"/>
+<area shape="poly" title=" " alt="" coords="2587,91,2641,116,2704,151,2764,199,2790,227,2812,258,2820,282,2823,314,2822,390,2822,465,2826,495,2835,516,2850,529,2846,533,2831,520,2821,497,2816,465,2817,390,2818,314,2815,283,2807,261,2786,230,2760,203,2701,156,2639,120,2584,96"/>
+<area shape="poly" title=" " alt="" coords="2303,55,2454,67,2454,72,2303,61"/>
+<area shape="poly" title=" " alt="" coords="1991,41,2169,48,2169,53,1991,46"/>
+<area shape="rect" href="classCDlgWebAuth.html" title=" " alt="" coords="2847,751,2957,776"/>
+<area shape="poly" title=" " alt="" coords="2971,768,3039,765,3074,757,3107,744,3133,724,3154,699,3181,652,3185,655,3158,702,3136,728,3109,748,3076,762,3040,770,2971,774"/>
+<area shape="rect" title=" " alt="" coords="2497,751,2572,776"/>
+<area shape="poly" title=" " alt="" coords="2586,761,2846,761,2846,766,2586,766"/>
+<area shape="poly" title=" " alt="" coords="2306,711,2532,708,2670,702,2809,693,2986,672,3131,648,3132,654,2986,677,2810,698,2671,707,2532,713,2307,716"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a680e0da8db8a1c4043bef7298f01a2d5" id="r_a680e0da8db8a1c4043bef7298f01a2d5"><td class="memItemLeft" align="right" valign="top"><a id="a680e0da8db8a1c4043bef7298f01a2d5" name="a680e0da8db8a1c4043bef7298f01a2d5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>favIconChanged</b> (const QIcon &amp;icon)</td></tr>
+<tr class="separator:a680e0da8db8a1c4043bef7298f01a2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc5b63f75115c434b2328c0affbc571" id="r_aafc5b63f75115c434b2328c0affbc571"><td class="memItemLeft" align="right" valign="top"><a id="aafc5b63f75115c434b2328c0affbc571" name="aafc5b63f75115c434b2328c0affbc571"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDevToolsRequested</b> (QWebEnginePage *source)</td></tr>
+<tr class="separator:aafc5b63f75115c434b2328c0affbc571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a016f2394cc69cb0bfc2dfb93f9a75aa7" id="r_a016f2394cc69cb0bfc2dfb93f9a75aa7"><td class="memItemLeft" align="right" valign="top"><a id="a016f2394cc69cb0bfc2dfb93f9a75aa7" name="a016f2394cc69cb0bfc2dfb93f9a75aa7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigCloseRequested</b> ()</td></tr>
+<tr class="separator:a016f2394cc69cb0bfc2dfb93f9a75aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfdfdecfe16c66963ab63d33e469f7f" id="r_aadfdfdecfe16c66963ab63d33e469f7f"><td class="memItemLeft" align="right" valign="top"><a id="aadfdfdecfe16c66963ab63d33e469f7f" name="aadfdfdecfe16c66963ab63d33e469f7f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigLinkHovered</b> (const QString &amp;url)</td></tr>
+<tr class="separator:aadfdfdecfe16c66963ab63d33e469f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146200a22ea7911bb7cbeed925526b98" id="r_a146200a22ea7911bb7cbeed925526b98"><td class="memItemLeft" align="right" valign="top"><a id="a146200a22ea7911bb7cbeed925526b98" name="a146200a22ea7911bb7cbeed925526b98"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigWebActionEnabledChanged</b> (QWebEnginePage::WebAction webAction, bool enabled)</td></tr>
+<tr class="separator:a146200a22ea7911bb7cbeed925526b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a16f60a8ae512573360cad066d0a4bb9a" id="r_a16f60a8ae512573360cad066d0a4bb9a"><td class="memItemLeft" align="right" valign="top"><a id="a16f60a8ae512573360cad066d0a4bb9a" name="a16f60a8ae512573360cad066d0a4bb9a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CFrmWebView</b> (<a class="el" href="classCFrmWebBrowser.html">CFrmWebBrowser</a> *pFrmWebBrowser, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a16f60a8ae512573360cad066d0a4bb9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdcc6d9f13988dec64f4ee6236fc81c" id="r_a6cdcc6d9f13988dec64f4ee6236fc81c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a6cdcc6d9f13988dec64f4ee6236fc81c">setPage</a> (QWebEnginePage *page)</td></tr>
+<tr class="separator:a6cdcc6d9f13988dec64f4ee6236fc81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec869f3f66632f17e6e8261f705dd33" id="r_aaec869f3f66632f17e6e8261f705dd33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#aaec869f3f66632f17e6e8261f705dd33">progress</a> () const</td></tr>
+<tr class="separator:aaec869f3f66632f17e6e8261f705dd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e1b5d3c9482002b29175b7bfc1795bc" id="r_a2e1b5d3c9482002b29175b7bfc1795bc"><td class="memItemLeft" align="right" valign="top">QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a2e1b5d3c9482002b29175b7bfc1795bc">favIcon</a> () const</td></tr>
+<tr class="separator:a2e1b5d3c9482002b29175b7bfc1795bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a1ecb2b63cc81c65998175689731266d0" id="r_a1ecb2b63cc81c65998175689731266d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a1ecb2b63cc81c65998175689731266d0">contextMenuEvent</a> (QContextMenuEvent *event) override</td></tr>
+<tr class="separator:a1ecb2b63cc81c65998175689731266d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f754bf4fcb6b8831f8827937891b6a" id="r_a42f754bf4fcb6b8831f8827937891b6a"><td class="memItemLeft" align="right" valign="top">QWebEngineView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a42f754bf4fcb6b8831f8827937891b6a">createWindow</a> (QWebEnginePage::WebWindowType type) override</td></tr>
+<tr class="separator:a42f754bf4fcb6b8831f8827937891b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39ece4f9a7269736a11d595ce62d3573" id="r_a39ece4f9a7269736a11d595ce62d3573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a39ece4f9a7269736a11d595ce62d3573">CreateWebActionTrigger</a> (QWebEnginePage *page, QWebEnginePage::WebAction)</td></tr>
+<tr class="separator:a39ece4f9a7269736a11d595ce62d3573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:ad2980a8da4cb8c0ae4c93199097e4915" id="r_ad2980a8da4cb8c0ae4c93199097e4915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#ad2980a8da4cb8c0ae4c93199097e4915">slotSelectClientCertificate</a> (QWebEngineClientCertificateSelection clientCertSelection)</td></tr>
+<tr class="separator:ad2980a8da4cb8c0ae4c93199097e4915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488d3bf70190655e483ea67b77186489" id="r_a488d3bf70190655e483ea67b77186489"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a488d3bf70190655e483ea67b77186489">slotAuthenticationRequired</a> (const QUrl &amp;requestUrl, QAuthenticator *auth)</td></tr>
+<tr class="separator:a488d3bf70190655e483ea67b77186489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e03d22068f215408126cfb30e82b5a7" id="r_a0e03d22068f215408126cfb30e82b5a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a0e03d22068f215408126cfb30e82b5a7">slotProxyAuthenticationRequired</a> (const QUrl &amp;requestUrl, QAuthenticator *auth, const QString &amp;proxyHost)</td></tr>
+<tr class="separator:a0e03d22068f215408126cfb30e82b5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e14ef00a2443d3af5f71d0707a7f71" id="r_a46e14ef00a2443d3af5f71d0707a7f71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a46e14ef00a2443d3af5f71d0707a7f71">slotFullScreenRequested</a> (QWebEngineFullScreenRequest fullScreenRequest)</td></tr>
+<tr class="separator:a46e14ef00a2443d3af5f71d0707a7f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a397adb2df992afc1508334f0f6675f" id="r_a7a397adb2df992afc1508334f0f6675f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a7a397adb2df992afc1508334f0f6675f">handleRegisterProtocolHandlerRequested</a> (QWebEngineRegisterProtocolHandlerRequest request)</td></tr>
+<tr class="memdesc:a7a397adb2df992afc1508334f0f6675f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[registerProtocolHandlerRequested]  <br /></td></tr>
+<tr class="separator:a7a397adb2df992afc1508334f0f6675f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615385f7a493ae59f6047fcb2a492801" id="r_a615385f7a493ae59f6047fcb2a492801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a615385f7a493ae59f6047fcb2a492801">slotCertificateError</a> (QWebEngineCertificateError error)</td></tr>
+<tr class="separator:a615385f7a493ae59f6047fcb2a492801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256a5b9adbd1d8f454814c24c6dc7118" id="r_a256a5b9adbd1d8f454814c24c6dc7118"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a256a5b9adbd1d8f454814c24c6dc7118">slotPermissionRequested</a> (QWebEnginePermission permission)</td></tr>
+<tr class="separator:a256a5b9adbd1d8f454814c24c6dc7118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014683ad64921ab88a686ddb13ad9c36" id="r_a014683ad64921ab88a686ddb13ad9c36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a014683ad64921ab88a686ddb13ad9c36">handleImageAnimationPolicyChange</a> (QWebEngineSettings::ImageAnimationPolicy policy)</td></tr>
+<tr class="separator:a014683ad64921ab88a686ddb13ad9c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18f8fe05c835aaa794f4e1c3ed4ce0e2" id="r_a18f8fe05c835aaa794f4e1c3ed4ce0e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a18f8fe05c835aaa794f4e1c3ed4ce0e2">slotFileSystemAccessRequested</a> (QWebEngineFileSystemAccessRequest request)</td></tr>
+<tr class="memdesc:a18f8fe05c835aaa794f4e1c3ed4ce0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">[registerProtocolHandlerRequested]  <br /></td></tr>
+<tr class="separator:a18f8fe05c835aaa794f4e1c3ed4ce0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bd148328e7b0d2a391c834ee459190" id="r_a95bd148328e7b0d2a391c834ee459190"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a95bd148328e7b0d2a391c834ee459190">slotDesktopMediaRequest</a> (const QWebEngineDesktopMediaRequest &amp;request)</td></tr>
+<tr class="separator:a95bd148328e7b0d2a391c834ee459190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f" id="r_a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f">slotWebAuthUxRequested</a> (QWebEngineWebAuthUxRequest *request)</td></tr>
+<tr class="separator:a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3776d0e8f06a39947c24c8179250fd30" id="r_a3776d0e8f06a39947c24c8179250fd30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a3776d0e8f06a39947c24c8179250fd30">onStateChanged</a> (QWebEngineWebAuthUxRequest::WebAuthUxState state)</td></tr>
+<tr class="separator:a3776d0e8f06a39947c24c8179250fd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a1ef488cf874d7ce992bea4e08dcd2429" id="r_a1ef488cf874d7ce992bea4e08dcd2429"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a1ef488cf874d7ce992bea4e08dcd2429">SetupAutoFillScript</a> ()</td></tr>
+<tr class="separator:a1ef488cf874d7ce992bea4e08dcd2429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0b0b79b0b1811284b4225ab2fc6316" id="r_aff0b0b79b0b1811284b4225ab2fc6316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#aff0b0b79b0b1811284b4225ab2fc6316">GlobalFillForm</a> (const QString &amp;username, const QString &amp;szPassword)</td></tr>
+<tr class="separator:aff0b0b79b0b1811284b4225ab2fc6316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc917b3e6bb5342fcdd336bd8e787392" id="r_afc917b3e6bb5342fcdd336bd8e787392"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#afc917b3e6bb5342fcdd336bd8e787392">FillForm</a> (const QString &amp;szUse, const QString &amp;szPassword)</td></tr>
+<tr class="separator:afc917b3e6bb5342fcdd336bd8e787392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340a72169a33cf4f9ddffdb269b4b8d5" id="r_a340a72169a33cf4f9ddffdb269b4b8d5"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a340a72169a33cf4f9ddffdb269b4b8d5">AutoFillForm</a> ()</td></tr>
+<tr class="separator:a340a72169a33cf4f9ddffdb269b4b8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d683f53c1105a44b7544efacc9b9b1" id="r_a52d683f53c1105a44b7544efacc9b9b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a52d683f53c1105a44b7544efacc9b9b1">GetUserAndPassword</a> (QUrl url, QString &amp;szUser, QString &amp;szPassword)</td></tr>
+<tr class="separator:a52d683f53c1105a44b7544efacc9b9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1938985f8f95c19119f34c4673ce4428" id="r_a1938985f8f95c19119f34c4673ce4428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a1938985f8f95c19119f34c4673ce4428">InjectScriptQWebChannel</a> ()</td></tr>
+<tr class="separator:a1938985f8f95c19119f34c4673ce4428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a3504e85f5e8a9fffb01ff9d7e6db6d" id="r_a2a3504e85f5e8a9fffb01ff9d7e6db6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a2a3504e85f5e8a9fffb01ff9d7e6db6d">InjectScriptAutoFill</a> ()</td></tr>
+<tr class="separator:a2a3504e85f5e8a9fffb01ff9d7e6db6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a53817e2ee790141055e2e5512808a2e4" id="r_a53817e2ee790141055e2e5512808a2e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmWebBrowser.html">CFrmWebBrowser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a53817e2ee790141055e2e5512808a2e4">m_pBrowser</a></td></tr>
+<tr class="separator:a53817e2ee790141055e2e5512808a2e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43dc8dca33b97d87c46e65b872df5431" id="r_a43dc8dca33b97d87c46e65b872df5431"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a43dc8dca33b97d87c46e65b872df5431">m_loadProgress</a> = 100</td></tr>
+<tr class="separator:a43dc8dca33b97d87c46e65b872df5431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa693b54bb8cf33045175970403193940" id="r_aa693b54bb8cf33045175970403193940"><td class="memItemLeft" align="right" valign="top">QActionGroup *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#aa693b54bb8cf33045175970403193940">m_imageAnimationGroup</a> = nullptr</td></tr>
+<tr class="separator:aa693b54bb8cf33045175970403193940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f50accf7b3d3c49a474c4da43d3335" id="r_a16f50accf7b3d3c49a474c4da43d3335"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCDlgWebAuth.html">CDlgWebAuth</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#a16f50accf7b3d3c49a474c4da43d3335">m_pDlgWebAuth</a></td></tr>
+<tr class="separator:a16f50accf7b3d3c49a474c4da43d3335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b904eef40292097cfd5bfb16dcb3e9" id="r_ab7b904eef40292097cfd5bfb16dcb3e9"><td class="memItemLeft" align="right" valign="top">QWebChannel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#ab7b904eef40292097cfd5bfb16dcb3e9">m_pWebChannel</a></td></tr>
+<tr class="separator:ab7b904eef40292097cfd5bfb16dcb3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac02a3653292a9665eb4245f3a14ba90" id="r_aac02a3653292a9665eb4245f3a14ba90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPasswordStore.html">CPasswordStore</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmWebView.html#aac02a3653292a9665eb4245f3a14ba90">m_pPasswordStore</a></td></tr>
+<tr class="separator:aac02a3653292a9665eb4245f3a14ba90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00029">29</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a85f03d88887ad48769ab6e0fa4f67806" name="a85f03d88887ad48769ab6e0fa4f67806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f03d88887ad48769ab6e0fa4f67806">&#9670;&#160;</a></span>~CFrmWebView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmWebView::~CFrmWebView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a340a72169a33cf4f9ddffdb269b4b8d5" name="a340a72169a33cf4f9ddffdb269b4b8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340a72169a33cf4f9ddffdb269b4b8d5">&#9670;&#160;</a></span>AutoFillForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CFrmWebView::AutoFillForm </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00590">590</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1ecb2b63cc81c65998175689731266d0" name="a1ecb2b63cc81c65998175689731266d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ecb2b63cc81c65998175689731266d0">&#9670;&#160;</a></span>contextMenuEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::contextMenuEvent </td>
+          <td>(</td>
+          <td class="paramtype">QContextMenuEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a39ece4f9a7269736a11d595ce62d3573" name="a39ece4f9a7269736a11d595ce62d3573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ece4f9a7269736a11d595ce62d3573">&#9670;&#160;</a></span>CreateWebActionTrigger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::CreateWebActionTrigger </td>
+          <td>(</td>
+          <td class="paramtype">QWebEnginePage *&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWebEnginePage::WebAction&#160;</td>
+          <td class="paramname"><em>webAction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00219">219</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42f754bf4fcb6b8831f8827937891b6a" name="a42f754bf4fcb6b8831f8827937891b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42f754bf4fcb6b8831f8827937891b6a">&#9670;&#160;</a></span>createWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWebEngineView * CFrmWebView::createWindow </td>
+          <td>(</td>
+          <td class="paramtype">QWebEnginePage::WebWindowType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00211">211</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2e1b5d3c9482002b29175b7bfc1795bc" name="a2e1b5d3c9482002b29175b7bfc1795bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e1b5d3c9482002b29175b7bfc1795bc">&#9670;&#160;</a></span>favIcon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QIcon CFrmWebView::favIcon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc917b3e6bb5342fcdd336bd8e787392" name="afc917b3e6bb5342fcdd336bd8e787392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc917b3e6bb5342fcdd336bd8e787392">&#9670;&#160;</a></span>FillForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::FillForm </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szUse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPassword</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00676">676</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52d683f53c1105a44b7544efacc9b9b1" name="a52d683f53c1105a44b7544efacc9b9b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52d683f53c1105a44b7544efacc9b9b1">&#9670;&#160;</a></span>GetUserAndPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmWebView::GetUserAndPassword </td>
+          <td>(</td>
+          <td class="paramtype">QUrl&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramname"><em>szUser</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramname"><em>szPassword</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00683">683</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff0b0b79b0b1811284b4225ab2fc6316" name="aff0b0b79b0b1811284b4225ab2fc6316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0b0b79b0b1811284b4225ab2fc6316">&#9670;&#160;</a></span>GlobalFillForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::GlobalFillForm </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPassword</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00670">670</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a014683ad64921ab88a686ddb13ad9c36" name="a014683ad64921ab88a686ddb13ad9c36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a014683ad64921ab88a686ddb13ad9c36">&#9670;&#160;</a></span>handleImageAnimationPolicyChange</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::handleImageAnimationPolicyChange </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineSettings::ImageAnimationPolicy&#160;</td>
+          <td class="paramname"><em>policy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00429">429</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7a397adb2df992afc1508334f0f6675f" name="a7a397adb2df992afc1508334f0f6675f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a397adb2df992afc1508334f0f6675f">&#9670;&#160;</a></span>handleRegisterProtocolHandlerRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::handleRegisterProtocolHandlerRequested </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineRegisterProtocolHandlerRequest&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[registerProtocolHandlerRequested] </p>
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00544">544</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2a3504e85f5e8a9fffb01ff9d7e6db6d" name="a2a3504e85f5e8a9fffb01ff9d7e6db6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a3504e85f5e8a9fffb01ff9d7e6db6d">&#9670;&#160;</a></span>InjectScriptAutoFill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::InjectScriptAutoFill </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00723">723</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1938985f8f95c19119f34c4673ce4428" name="a1938985f8f95c19119f34c4673ce4428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1938985f8f95c19119f34c4673ce4428">&#9670;&#160;</a></span>InjectScriptQWebChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::InjectScriptQWebChannel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00692">692</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3776d0e8f06a39947c24c8179250fd30" name="a3776d0e8f06a39947c24c8179250fd30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3776d0e8f06a39947c24c8179250fd30">&#9670;&#160;</a></span>onStateChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::onStateChanged </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineWebAuthUxRequest::WebAuthUxState&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00513">513</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaec869f3f66632f17e6e8261f705dd33" name="aaec869f3f66632f17e6e8261f705dd33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaec869f3f66632f17e6e8261f705dd33">&#9670;&#160;</a></span>progress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmWebView::progress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00187">187</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6cdcc6d9f13988dec64f4ee6236fc81c" name="a6cdcc6d9f13988dec64f4ee6236fc81c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdcc6d9f13988dec64f4ee6236fc81c">&#9670;&#160;</a></span>setPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::setPage </td>
+          <td>(</td>
+          <td class="paramtype">QWebEnginePage *&#160;</td>
+          <td class="paramname"><em>page</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1ef488cf874d7ce992bea4e08dcd2429" name="a1ef488cf874d7ce992bea4e08dcd2429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef488cf874d7ce992bea4e08dcd2429">&#9670;&#160;</a></span>SetupAutoFillScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::SetupAutoFillScript </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00653">653</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a488d3bf70190655e483ea67b77186489" name="a488d3bf70190655e483ea67b77186489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a488d3bf70190655e483ea67b77186489">&#9670;&#160;</a></span>slotAuthenticationRequired</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotAuthenticationRequired </td>
+          <td>(</td>
+          <td class="paramtype">const QUrl &amp;&#160;</td>
+          <td class="paramname"><em>requestUrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAuthenticator *&#160;</td>
+          <td class="paramname"><em>auth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00361">361</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a615385f7a493ae59f6047fcb2a492801" name="a615385f7a493ae59f6047fcb2a492801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a615385f7a493ae59f6047fcb2a492801">&#9670;&#160;</a></span>slotCertificateError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotCertificateError </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineCertificateError&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a95bd148328e7b0d2a391c834ee459190" name="a95bd148328e7b0d2a391c834ee459190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bd148328e7b0d2a391c834ee459190">&#9670;&#160;</a></span>slotDesktopMediaRequest</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotDesktopMediaRequest </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineDesktopMediaRequest &amp;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00442">442</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a18f8fe05c835aaa794f4e1c3ed4ce0e2" name="a18f8fe05c835aaa794f4e1c3ed4ce0e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f8fe05c835aaa794f4e1c3ed4ce0e2">&#9670;&#160;</a></span>slotFileSystemAccessRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotFileSystemAccessRequested </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineFileSystemAccessRequest&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[registerProtocolHandlerRequested] </p>
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00560">560</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a46e14ef00a2443d3af5f71d0707a7f71" name="a46e14ef00a2443d3af5f71d0707a7f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46e14ef00a2443d3af5f71d0707a7f71">&#9670;&#160;</a></span>slotFullScreenRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotFullScreenRequested </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineFullScreenRequest&#160;</td>
+          <td class="paramname"><em>fullScreenRequest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00530">530</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a256a5b9adbd1d8f454814c24c6dc7118" name="a256a5b9adbd1d8f454814c24c6dc7118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256a5b9adbd1d8f454814c24c6dc7118">&#9670;&#160;</a></span>slotPermissionRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotPermissionRequested </td>
+          <td>(</td>
+          <td class="paramtype">QWebEnginePermission&#160;</td>
+          <td class="paramname"><em>permission</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00418">418</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0e03d22068f215408126cfb30e82b5a7" name="a0e03d22068f215408126cfb30e82b5a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e03d22068f215408126cfb30e82b5a7">&#9670;&#160;</a></span>slotProxyAuthenticationRequired</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotProxyAuthenticationRequired </td>
+          <td>(</td>
+          <td class="paramtype">const QUrl &amp;&#160;</td>
+          <td class="paramname"><em>requestUrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAuthenticator *&#160;</td>
+          <td class="paramname"><em>auth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>proxyHost</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00376">376</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2980a8da4cb8c0ae4c93199097e4915" name="ad2980a8da4cb8c0ae4c93199097e4915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2980a8da4cb8c0ae4c93199097e4915">&#9670;&#160;</a></span>slotSelectClientCertificate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotSelectClientCertificate </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineClientCertificateSelection&#160;</td>
+          <td class="paramname"><em>clientCertSelection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00302">302</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f" name="a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27f1eb9ba81f8a4c2cacd8d5bfa0cd4f">&#9670;&#160;</a></span>slotWebAuthUxRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmWebView::slotWebAuthUxRequested </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineWebAuthUxRequest *&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a> 第 <a class="el" href="FrmWebView_8cpp_source.html#l00497">497</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa693b54bb8cf33045175970403193940" name="aa693b54bb8cf33045175970403193940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa693b54bb8cf33045175970403193940">&#9670;&#160;</a></span>m_imageAnimationGroup</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QActionGroup* CFrmWebView::m_imageAnimationGroup = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a43dc8dca33b97d87c46e65b872df5431" name="a43dc8dca33b97d87c46e65b872df5431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43dc8dca33b97d87c46e65b872df5431">&#9670;&#160;</a></span>m_loadProgress</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmWebView::m_loadProgress = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a53817e2ee790141055e2e5512808a2e4" name="a53817e2ee790141055e2e5512808a2e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53817e2ee790141055e2e5512808a2e4">&#9670;&#160;</a></span>m_pBrowser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmWebBrowser.html">CFrmWebBrowser</a>* CFrmWebView::m_pBrowser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a16f50accf7b3d3c49a474c4da43d3335" name="a16f50accf7b3d3c49a474c4da43d3335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16f50accf7b3d3c49a474c4da43d3335">&#9670;&#160;</a></span>m_pDlgWebAuth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCDlgWebAuth.html">CDlgWebAuth</a>* CFrmWebView::m_pDlgWebAuth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac02a3653292a9665eb4245f3a14ba90" name="aac02a3653292a9665eb4245f3a14ba90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac02a3653292a9665eb4245f3a14ba90">&#9670;&#160;</a></span>m_pPasswordStore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCPasswordStore.html">CPasswordStore</a>* CFrmWebView::m_pPasswordStore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00093">93</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab7b904eef40292097cfd5bfb16dcb3e9" name="ab7b904eef40292097cfd5bfb16dcb3e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7b904eef40292097cfd5bfb16dcb3e9">&#9670;&#160;</a></span>m_pWebChannel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWebChannel* CFrmWebView::m_pWebChannel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a> 第 <a class="el" href="FrmWebView_8h_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="FrmWebView_8h_source.html">FrmWebView.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="FrmWebView_8cpp_source.html">FrmWebView.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

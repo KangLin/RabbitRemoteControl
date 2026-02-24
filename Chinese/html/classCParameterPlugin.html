@@ -1,0 +1,2044 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterPlugin类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterPlugin-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterPlugin类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>插件的全局参数。  
+ <a href="classCParameterPlugin.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterPlugin 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterPlugin__inherit__graph.png" border="0" usemap="#aCParameterPlugin_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterPlugin_inherit__map" id="aCParameterPlugin_inherit__map">
+<area shape="rect" title="插件的全局参数。" alt="" coords="5,152,144,177"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="25,79,124,104"/>
+<area shape="poly" title=" " alt="" coords="77,118,77,152,72,152,72,118"/>
+<area shape="rect" title=" " alt="" coords="37,5,112,31"/>
+<area shape="poly" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterPlugin 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterPlugin__coll__graph.png" border="0" usemap="#aCParameterPlugin_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterPlugin_coll__map" id="aCParameterPlugin_coll__map">
+<area shape="rect" title="插件的全局参数。" alt="" coords="265,257,404,283"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="49,345,199,371"/>
+<area shape="poly" title=" " alt="" coords="253,283,213,293,175,309,151,327,134,347,130,344,148,323,172,304,211,288,251,277"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="171,80,269,105"/>
+<area shape="poly" title=" " alt="" coords="283,99,389,119,436,134,466,153,480,173,486,193,483,214,471,235,445,250,405,261,403,256,443,245,467,231,478,212,481,194,475,175,462,157,434,139,388,124,282,104"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="77,684,217,709"/>
+<area shape="poly" title=" " alt="" coords="157,105,107,115,58,129,22,146,11,156,8,166,8,610,10,624,15,636,34,656,60,671,89,681,87,686,58,676,30,660,11,639,5,625,3,610,3,166,7,153,19,142,56,124,106,110,156,100"/>
+<area shape="poly" title=" " alt="" coords="158,108,116,126,98,139,84,156,73,180,69,206,71,233,78,260,98,309,118,344,114,346,93,312,73,262,66,234,64,206,68,179,79,153,95,135,114,121,156,103"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="527,155,657,180"/>
+<area shape="poly" title=" " alt="" coords="284,94,390,104,450,113,509,127,572,152,570,157,507,132,449,119,389,109,283,99"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="94,155,237,180"/>
+<area shape="poly" title=" " alt="" coords="205,118,176,156,172,153,201,115"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="261,155,451,180"/>
+<area shape="poly" title=" " alt="" coords="255,110,335,152,333,157,253,114"/>
+<area shape="rect" title=" " alt="" coords="183,5,257,31"/>
+<area shape="poly" title=" " alt="" coords="223,45,223,80,217,80,217,45"/>
+<area shape="poly" title=" " alt="" coords="230,686,266,677,298,662,321,640,327,626,329,610,329,357,331,283,337,283,335,357,335,610,332,628,325,643,301,666,268,682,231,691"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="67,596,227,621"/>
+<area shape="poly" title=" " alt="" coords="149,635,149,683,144,683,144,635"/>
+<area shape="poly" title=" " alt="" coords="117,384,107,415,98,452,95,493,101,533,118,567,138,594,134,597,113,570,96,534,90,493,93,451,102,413,111,383"/>
+<area shape="poly" title=" " alt="" coords="214,350,226,358,218,365,200,367,199,362,216,360,221,358,211,355"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="111,508,233,533"/>
+<area shape="poly" title=" " alt="" coords="134,384,152,445,171,507,166,509,147,446,129,385"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="161,420,289,445"/>
+<area shape="poly" title=" " alt="" coords="153,377,210,417,207,422,150,381"/>
+<area shape="poly" title=" " alt="" coords="167,547,153,596,148,595,162,546"/>
+<area shape="poly" title=" " alt="" coords="213,459,182,509,177,506,209,456"/>
+<area shape="poly" title=" " alt="" coords="572,192,544,215,509,236,457,254,405,264,404,259,456,249,507,231,541,211,569,187"/>
+<area shape="poly" title=" " alt="" coords="196,185,269,231,313,255,311,260,267,236,193,190"/>
+<area shape="poly" title=" " alt="" coords="353,194,340,258,334,257,348,193"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:aa7fe2f27815dca990736d4ba12f73f1e" id="r_aa7fe2f27815dca990736d4ba12f73f1e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>PromptType</b> { <b>No</b>
+, <b>First</b>
+ }</td></tr>
+<tr class="separator:aa7fe2f27815dca990736d4ba12f73f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ae54a3de35783e13d8894df92d9b3b230" id="r_ae54a3de35783e13d8894df92d9b3b230"><td class="memItemLeft" align="right" valign="top"><a id="ae54a3de35783e13d8894df92d9b3b230" name="ae54a3de35783e13d8894df92d9b3b230"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigCaptureAllKeyboard</b> ()</td></tr>
+<tr class="separator:ae54a3de35783e13d8894df92d9b3b230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f3cba76c7c2fc9942d0e85847b1465" id="r_ab4f3cba76c7c2fc9942d0e85847b1465"><td class="memItemLeft" align="right" valign="top"><a id="ab4f3cba76c7c2fc9942d0e85847b1465" name="ab4f3cba76c7c2fc9942d0e85847b1465"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigPromptAdministratorPrivilege</b> ()</td></tr>
+<tr class="separator:ab4f3cba76c7c2fc9942d0e85847b1465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609f8a67f5c142000d08183df6b733cb" id="r_a609f8a67f5c142000d08183df6b733cb"><td class="memItemLeft" align="right" valign="top"><a id="a609f8a67f5c142000d08183df6b733cb" name="a609f8a67f5c142000d08183df6b733cb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigEncryptKeyChanged</b> ()</td></tr>
+<tr class="separator:a609f8a67f5c142000d08183df6b733cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a439538b0c86ddbc0ee362cd5beb01fd9" id="r_a439538b0c86ddbc0ee362cd5beb01fd9"><td class="memItemLeft" align="right" valign="top"><a id="a439538b0c86ddbc0ee362cd5beb01fd9" name="a439538b0c86ddbc0ee362cd5beb01fd9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSavePasswordChanged</b> (bool AutoSavePassword)</td></tr>
+<tr class="separator:a439538b0c86ddbc0ee362cd5beb01fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e670bec6a1e5f850f374fa90c864c1" id="r_ab6e670bec6a1e5f850f374fa90c864c1"><td class="memItemLeft" align="right" valign="top"><a id="ab6e670bec6a1e5f850f374fa90c864c1" name="ab6e670bec6a1e5f850f374fa90c864c1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigPromptTypeChanged</b> (PromptType PromptType)</td></tr>
+<tr class="separator:ab6e670bec6a1e5f850f374fa90c864c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b6350f740d571c89369e3a1fbc844b8" id="r_a6b6350f740d571c89369e3a1fbc844b8"><td class="memItemLeft" align="right" valign="top"><a id="a6b6350f740d571c89369e3a1fbc844b8" name="a6b6350f740d571c89369e3a1fbc844b8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigPromptCountChanged</b> (int PromptCount)</td></tr>
+<tr class="separator:a6b6350f740d571c89369e3a1fbc844b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b17cdd059b4c4876094b2ea62e82c5" id="r_aa8b17cdd059b4c4876094b2ea62e82c5"><td class="memItemLeft" align="right" valign="top"><a id="aa8b17cdd059b4c4876094b2ea62e82c5" name="aa8b17cdd059b4c4876094b2ea62e82c5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigViewPassowrdChanged</b> (bool ViewPassowrd)</td></tr>
+<tr class="separator:aa8b17cdd059b4c4876094b2ea62e82c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9405bf9411276511be5eda7090a63b7c" id="r_a9405bf9411276511be5eda7090a63b7c"><td class="memItemLeft" align="right" valign="top"><a id="a9405bf9411276511be5eda7090a63b7c" name="a9405bf9411276511be5eda7090a63b7c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigShowProtocolPrefixChanged</b> ()</td></tr>
+<tr class="separator:a9405bf9411276511be5eda7090a63b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae423307abbbdb1a74447b46ab67225c2" id="r_ae423307abbbdb1a74447b46ab67225c2"><td class="memItemLeft" align="right" valign="top"><a id="ae423307abbbdb1a74447b46ab67225c2" name="ae423307abbbdb1a74447b46ab67225c2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigSHowIpPortInNameChanged</b> ()</td></tr>
+<tr class="separator:ae423307abbbdb1a74447b46ab67225c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b47ae25243c09471795fde1690524f" id="r_a19b47ae25243c09471795fde1690524f"><td class="memItemLeft" align="right" valign="top"><a id="a19b47ae25243c09471795fde1690524f" name="a19b47ae25243c09471795fde1690524f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigAdaptWindowsChanged</b> ()</td></tr>
+<tr class="separator:a19b47ae25243c09471795fde1690524f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a345a78922b8ba86e32c6333ed17bf005" id="r_a345a78922b8ba86e32c6333ed17bf005"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a345a78922b8ba86e32c6333ed17bf005">CParameterPlugin</a> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a345a78922b8ba86e32c6333ed17bf005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a43a6c93a9f3de93557d74163cc685" id="r_ad9a43a6c93a9f3de93557d74163cc685"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterGlobal.html">CParameterGlobal</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ad9a43a6c93a9f3de93557d74163cc685">GetGlobalParameters</a> ()</td></tr>
+<tr class="separator:ad9a43a6c93a9f3de93557d74163cc685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8bace52ba6ec8e94c2ddc3b9425fd9b" id="r_ae8bace52ba6ec8e94c2ddc3b9425fd9b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ae8bace52ba6ec8e94c2ddc3b9425fd9b">GetCaptureAllKeyboard</a> () const</td></tr>
+<tr class="separator:ae8bace52ba6ec8e94c2ddc3b9425fd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8d15cc33f3da36b6b50b71b9e8984c" id="r_a9a8d15cc33f3da36b6b50b71b9e8984c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a9a8d15cc33f3da36b6b50b71b9e8984c">SetCaptureAllKeyboard</a> (bool bCapture)</td></tr>
+<tr class="separator:a9a8d15cc33f3da36b6b50b71b9e8984c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c1312f65934fce51efb02041e18a9a7" id="r_a2c1312f65934fce51efb02041e18a9a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a2c1312f65934fce51efb02041e18a9a7">GetDesktopShortcutsScript</a> () const</td></tr>
+<tr class="separator:a2c1312f65934fce51efb02041e18a9a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80273b00b6599a1cfb465c39e04dc933" id="r_a80273b00b6599a1cfb465c39e04dc933"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a80273b00b6599a1cfb465c39e04dc933">SetDesktopShortcutsScript</a> (bool newDesktopShortcutsScript)</td></tr>
+<tr class="separator:a80273b00b6599a1cfb465c39e04dc933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607f87a8c52067ee671d33d52059e4a3" id="r_a607f87a8c52067ee671d33d52059e4a3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a607f87a8c52067ee671d33d52059e4a3">GetDisableDesktopShortcutsScript</a> () const</td></tr>
+<tr class="separator:a607f87a8c52067ee671d33d52059e4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4299b3d21db67130a477eee549a4cb7" id="r_af4299b3d21db67130a477eee549a4cb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#af4299b3d21db67130a477eee549a4cb7">SetDisableDesktopShortcutsScript</a> (const QString &amp;newDisableDesktopShortcutsScript)</td></tr>
+<tr class="separator:af4299b3d21db67130a477eee549a4cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebacd1fd221866576c0c4eca16cbea16" id="r_aebacd1fd221866576c0c4eca16cbea16"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#aebacd1fd221866576c0c4eca16cbea16">GetRestoreDesktopShortcutsScript</a> () const</td></tr>
+<tr class="separator:aebacd1fd221866576c0c4eca16cbea16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233e664dcb3ce9b8be65dea7e82a5367" id="r_a233e664dcb3ce9b8be65dea7e82a5367"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a233e664dcb3ce9b8be65dea7e82a5367">SetRestoreDesktopShortcutsScript</a> (const QString &amp;newRestoreDesktopShortcutsScript)</td></tr>
+<tr class="separator:a233e664dcb3ce9b8be65dea7e82a5367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00dc1bab47888b9a12a41fd05f7b4c4a" id="r_a00dc1bab47888b9a12a41fd05f7b4c4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a00dc1bab47888b9a12a41fd05f7b4c4a">GetEnableLocalInputMethod</a> () const</td></tr>
+<tr class="separator:a00dc1bab47888b9a12a41fd05f7b4c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7ed5f37403a8e5f529b0aac3512573" id="r_ada7ed5f37403a8e5f529b0aac3512573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ada7ed5f37403a8e5f529b0aac3512573">SetEnableLocalInputMethod</a> (bool enable)</td></tr>
+<tr class="separator:ada7ed5f37403a8e5f529b0aac3512573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd53cbe9a47145245158c408c8047e6" id="r_a8dd53cbe9a47145245158c408c8047e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a8dd53cbe9a47145245158c408c8047e6">GetPromptAdministratorPrivilege</a> ()</td></tr>
+<tr class="separator:a8dd53cbe9a47145245158c408c8047e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2682100f2387f19098c4a9eecdafa17c" id="r_a2682100f2387f19098c4a9eecdafa17c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a2682100f2387f19098c4a9eecdafa17c">SetPromptAdministratorPrivilege</a> (bool bShow)</td></tr>
+<tr class="separator:a2682100f2387f19098c4a9eecdafa17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac43c2fbe05321e377def286897c2dae4" id="r_ac43c2fbe05321e377def286897c2dae4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ac43c2fbe05321e377def286897c2dae4">GetEnableSystemUserToUser</a> () const</td></tr>
+<tr class="separator:ac43c2fbe05321e377def286897c2dae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98a39c1cd590ac93e3511a16521ceb68" id="r_a98a39c1cd590ac93e3511a16521ceb68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a98a39c1cd590ac93e3511a16521ceb68">SetEnableSystemUserToUser</a> (bool enable)</td></tr>
+<tr class="separator:a98a39c1cd590ac93e3511a16521ceb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c632634373dfdd90b2d24e05d04ed4c" id="r_a4c632634373dfdd90b2d24e05d04ed4c"><td class="memItemLeft" align="right" valign="top">const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a4c632634373dfdd90b2d24e05d04ed4c">GetEncryptKey</a> () const</td></tr>
+<tr class="separator:a4c632634373dfdd90b2d24e05d04ed4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66bdb6e11a22520b6d5857d850a2a383" id="r_a66bdb6e11a22520b6d5857d850a2a383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a66bdb6e11a22520b6d5857d850a2a383">SetEncryptKey</a> (const QString &amp;newPassword)</td></tr>
+<tr class="separator:a66bdb6e11a22520b6d5857d850a2a383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ab0e5fbbf9116f40036299107dfe65" id="r_ad4ab0e5fbbf9116f40036299107dfe65"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ad4ab0e5fbbf9116f40036299107dfe65">GetSavePassword</a> () const</td></tr>
+<tr class="separator:ad4ab0e5fbbf9116f40036299107dfe65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44ff8812a5eb6e23fbce62a3790a55f" id="r_af44ff8812a5eb6e23fbce62a3790a55f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#af44ff8812a5eb6e23fbce62a3790a55f">SetSavePassword</a> (bool NewAutoSavePassword)</td></tr>
+<tr class="separator:af44ff8812a5eb6e23fbce62a3790a55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac145985304240bbc2ba45132049132ea" id="r_ac145985304240bbc2ba45132049132ea"><td class="memItemLeft" align="right" valign="top">PromptType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ac145985304240bbc2ba45132049132ea">GetPromptType</a> () const</td></tr>
+<tr class="separator:ac145985304240bbc2ba45132049132ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a1144ad296c2c4a17b621ad5f1492f8" id="r_a9a1144ad296c2c4a17b621ad5f1492f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a9a1144ad296c2c4a17b621ad5f1492f8">SetPromptType</a> (PromptType NewPromptType)</td></tr>
+<tr class="separator:a9a1144ad296c2c4a17b621ad5f1492f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea710e27c75174662e0dd5fdc904de0b" id="r_aea710e27c75174662e0dd5fdc904de0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#aea710e27c75174662e0dd5fdc904de0b">GetPromptCount</a> () const</td></tr>
+<tr class="separator:aea710e27c75174662e0dd5fdc904de0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a903e1e8b0b4f67965342ca72a010c8c1" id="r_a903e1e8b0b4f67965342ca72a010c8c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a903e1e8b0b4f67965342ca72a010c8c1">SetPromptCount</a> (int NewPromptCount)</td></tr>
+<tr class="separator:a903e1e8b0b4f67965342ca72a010c8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29bd47273fc71d2f42275fb0f0317dce" id="r_a29bd47273fc71d2f42275fb0f0317dce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a29bd47273fc71d2f42275fb0f0317dce">GetViewPassowrd</a> () const</td></tr>
+<tr class="separator:a29bd47273fc71d2f42275fb0f0317dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39f08018b445859d897e9288dc570577" id="r_a39f08018b445859d897e9288dc570577"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a39f08018b445859d897e9288dc570577">SetViewPassowrd</a> (bool NewViewPassowrd)</td></tr>
+<tr class="separator:a39f08018b445859d897e9288dc570577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a455a7165a4e09c570ec84a8a832590b4" id="r_a455a7165a4e09c570ec84a8a832590b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a455a7165a4e09c570ec84a8a832590b4">GetUseSystemCredential</a> () const</td></tr>
+<tr class="separator:a455a7165a4e09c570ec84a8a832590b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0413b5028b17898b1ac2b533adcc7421" id="r_a0413b5028b17898b1ac2b533adcc7421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a0413b5028b17898b1ac2b533adcc7421">SetUseSystemCredential</a> (bool newUseSystemCredential)</td></tr>
+<tr class="separator:a0413b5028b17898b1ac2b533adcc7421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad179b94fc446f210e3976aaa27827c04" id="r_ad179b94fc446f210e3976aaa27827c04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ad179b94fc446f210e3976aaa27827c04">GetShowProtocolPrefix</a> () const</td></tr>
+<tr class="separator:ad179b94fc446f210e3976aaa27827c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a460d18a6d33bca517604aa5c93602d33" id="r_a460d18a6d33bca517604aa5c93602d33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a460d18a6d33bca517604aa5c93602d33">SetShowProtocolPrefix</a> (bool bShowProtocolPrefix)</td></tr>
+<tr class="separator:a460d18a6d33bca517604aa5c93602d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbbf22023f7ef12cd6dc50a9258cc640" id="r_abbbf22023f7ef12cd6dc50a9258cc640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#abbbf22023f7ef12cd6dc50a9258cc640">GetShowIpPortInName</a> () const</td></tr>
+<tr class="separator:abbbf22023f7ef12cd6dc50a9258cc640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff502109c4910a2e81f91231c4ae673" id="r_a6ff502109c4910a2e81f91231c4ae673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a6ff502109c4910a2e81f91231c4ae673">SetShowIpPortInName</a> (bool bShowIpPortInName)</td></tr>
+<tr class="separator:a6ff502109c4910a2e81f91231c4ae673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d94244a33b18b31c579194af782bac" id="r_a24d94244a33b18b31c579194af782bac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a24d94244a33b18b31c579194af782bac">GetAdaptWindows</a> ()</td></tr>
+<tr class="separator:a24d94244a33b18b31c579194af782bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a744c646d4a7d65edafcb07077d107c95" id="r_a744c646d4a7d65edafcb07077d107c95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a744c646d4a7d65edafcb07077d107c95">SetAdaptWindows</a> (<a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> aw)</td></tr>
+<tr class="separator:a744c646d4a7d65edafcb07077d107c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af320d37265a213aaa891a0e1f0a45f56" id="r_af320d37265a213aaa891a0e1f0a45f56"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#af320d37265a213aaa891a0e1f0a45f56">GetEnableSetPluginsPath</a> () const</td></tr>
+<tr class="separator:af320d37265a213aaa891a0e1f0a45f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a899a3d8363f322be3de44c16eb14f459" id="r_a899a3d8363f322be3de44c16eb14f459"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a899a3d8363f322be3de44c16eb14f459">SetEnableSetPluginsPath</a> (bool newEnableSetPluginsPath)</td></tr>
+<tr class="separator:a899a3d8363f322be3de44c16eb14f459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93e37a027e05d64daa8b95a8b0d1a46d" id="r_a93e37a027e05d64daa8b95a8b0d1a46d"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a93e37a027e05d64daa8b95a8b0d1a46d">GetPluginsPath</a> () const</td></tr>
+<tr class="separator:a93e37a027e05d64daa8b95a8b0d1a46d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f6902253aad0bf867de4bdfbcf258c3" id="r_a3f6902253aad0bf867de4bdfbcf258c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a3f6902253aad0bf867de4bdfbcf258c3">SetPluginsPath</a> (const QStringList &amp;newPluginsPath)</td></tr>
+<tr class="separator:a3f6902253aad0bf867de4bdfbcf258c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab95472ad27606619df305f17ce871c89" id="r_ab95472ad27606619df305f17ce871c89"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ab95472ad27606619df305f17ce871c89">GetOnlyLoadInWhitelist</a> () const</td></tr>
+<tr class="separator:ab95472ad27606619df305f17ce871c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7b16c470b3a160c55d1fb1cb8dd5a3" id="r_a5d7b16c470b3a160c55d1fb1cb8dd5a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a5d7b16c470b3a160c55d1fb1cb8dd5a3">SetOnlyLoadInWhitelist</a> (bool newOnlyLoadInWhitelist)</td></tr>
+<tr class="separator:a5d7b16c470b3a160c55d1fb1cb8dd5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a58f0850823b1935be6b2d86f875d6f78" id="r_a58f0850823b1935be6b2d86f875d6f78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFilter.html">CParameterFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a58f0850823b1935be6b2d86f875d6f78">m_WhiteList</a></td></tr>
+<tr class="separator:a58f0850823b1935be6b2d86f875d6f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100e7fd9621c3c3c7b5b8194331c0b21" id="r_a100e7fd9621c3c3c7b5b8194331c0b21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFilter.html">CParameterFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a100e7fd9621c3c3c7b5b8194331c0b21">m_BlackList</a></td></tr>
+<tr class="separator:a100e7fd9621c3c3c7b5b8194331c0b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa538e26f4b3b53e5d525e745dd745484" id="r_aa538e26f4b3b53e5d525e745dd745484"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterRecord.html">CParameterRecord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#aa538e26f4b3b53e5d525e745dd745484">m_Record</a></td></tr>
+<tr class="separator:aa538e26f4b3b53e5d525e745dd745484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06add1505000c5baf586836284262d36" id="r_a06add1505000c5baf586836284262d36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterMediaDevices.html">CParameterMediaDevices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a06add1505000c5baf586836284262d36">m_MediaDevices</a></td></tr>
+<tr class="separator:a06add1505000c5baf586836284262d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a9f09bdd6e372eb351c3cff9702f2e61e" id="r_a9f09bdd6e372eb351c3cff9702f2e61e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a9f09bdd6e372eb351c3cff9702f2e61e">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a9f09bdd6e372eb351c3cff9702f2e61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2a9bb34083c7d34d352d8ede4148c2" id="r_a0d2a9bb34083c7d34d352d8ede4148c2"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a0d2a9bb34083c7d34d352d8ede4148c2">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a0d2a9bb34083c7d34d352d8ede4148c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a5b71f4a0082da045f5525aecaa4caf7f" id="r_a5b71f4a0082da045f5525aecaa4caf7f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a5b71f4a0082da045f5525aecaa4caf7f">EncryptKey</a></td></tr>
+<tr class="separator:a5b71f4a0082da045f5525aecaa4caf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64a14e069350dc8f395b0a69fce313e7" id="r_a64a14e069350dc8f395b0a69fce313e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a64a14e069350dc8f395b0a69fce313e7">SavePassword</a></td></tr>
+<tr class="separator:a64a14e069350dc8f395b0a69fce313e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb1bbc745a745be2dd2af9a88ffcf8a" id="r_abeb1bbc745a745be2dd2af9a88ffcf8a"><td class="memItemLeft" align="right" valign="top">PromptType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#abeb1bbc745a745be2dd2af9a88ffcf8a">PromptType</a></td></tr>
+<tr class="separator:abeb1bbc745a745be2dd2af9a88ffcf8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8edc095788ae2c102a9da825fd838f69" id="r_a8edc095788ae2c102a9da825fd838f69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a8edc095788ae2c102a9da825fd838f69">PromptCount</a></td></tr>
+<tr class="separator:a8edc095788ae2c102a9da825fd838f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06daafff33877c45e61b660b37380436" id="r_a06daafff33877c45e61b660b37380436"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a06daafff33877c45e61b660b37380436">ViewPassowrd</a></td></tr>
+<tr class="separator:a06daafff33877c45e61b660b37380436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad2dae266ea5cb75eca52cb55646735" id="r_a5ad2dae266ea5cb75eca52cb55646735"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a5ad2dae266ea5cb75eca52cb55646735">ShowProtocolPrefix</a></td></tr>
+<tr class="separator:a5ad2dae266ea5cb75eca52cb55646735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7211c9042bc2e2a796b3c41b6094837f" id="r_a7211c9042bc2e2a796b3c41b6094837f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a7211c9042bc2e2a796b3c41b6094837f">ShowIpPortInName</a></td></tr>
+<tr class="separator:a7211c9042bc2e2a796b3c41b6094837f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9dc858dc8631b117f1eefc0dc0df34" id="r_a2c9dc858dc8631b117f1eefc0dc0df34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a2c9dc858dc8631b117f1eefc0dc0df34">AdaptWindows</a></td></tr>
+<tr class="separator:a2c9dc858dc8631b117f1eefc0dc0df34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ae708f8699959e443de3b3d55277243c9" id="r_ae708f8699959e443de3b3d55277243c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterGlobal.html">CParameterGlobal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ae708f8699959e443de3b3d55277243c9">m_GlobalParameter</a></td></tr>
+<tr class="separator:ae708f8699959e443de3b3d55277243c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8942a73918d287e1476c161e02341ee7" id="r_a8942a73918d287e1476c161e02341ee7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a8942a73918d287e1476c161e02341ee7">m_bCaptureAllKeyboard</a></td></tr>
+<tr class="separator:a8942a73918d287e1476c161e02341ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7487661ea89ffcc834783d1c8c6472" id="r_a0f7487661ea89ffcc834783d1c8c6472"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a0f7487661ea89ffcc834783d1c8c6472">m_bDesktopShortcutsScript</a></td></tr>
+<tr class="separator:a0f7487661ea89ffcc834783d1c8c6472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c46b14d8a826e2daf537a1c0a8c771" id="r_ad7c46b14d8a826e2daf537a1c0a8c771"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ad7c46b14d8a826e2daf537a1c0a8c771">m_szDisableDesktopShortcutsScript</a></td></tr>
+<tr class="separator:ad7c46b14d8a826e2daf537a1c0a8c771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc9a50d1cd5fe1fa4429ab1e67dcaa43" id="r_afc9a50d1cd5fe1fa4429ab1e67dcaa43"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#afc9a50d1cd5fe1fa4429ab1e67dcaa43">m_szRestoreDesktopShortcutsScript</a></td></tr>
+<tr class="separator:afc9a50d1cd5fe1fa4429ab1e67dcaa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade01f6fac315242ef3ad74ca204562c2" id="r_ade01f6fac315242ef3ad74ca204562c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ade01f6fac315242ef3ad74ca204562c2">m_bEnableLocalInputMethod</a></td></tr>
+<tr class="separator:ade01f6fac315242ef3ad74ca204562c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0e2d19cb2ed1b99a5092fd60e9ad04" id="r_acd0e2d19cb2ed1b99a5092fd60e9ad04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#acd0e2d19cb2ed1b99a5092fd60e9ad04">m_bPromptAdministratorPrivilege</a></td></tr>
+<tr class="separator:acd0e2d19cb2ed1b99a5092fd60e9ad04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0b74aea2df7d03d7735b7bd3aa336e4" id="r_ab0b74aea2df7d03d7735b7bd3aa336e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ab0b74aea2df7d03d7735b7bd3aa336e4">m_bEnableSystemUserToUser</a></td></tr>
+<tr class="separator:ab0b74aea2df7d03d7735b7bd3aa336e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02aab052419c9eb3d1df289abd14a490" id="r_a02aab052419c9eb3d1df289abd14a490"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a02aab052419c9eb3d1df289abd14a490">m_szEncryptKey</a></td></tr>
+<tr class="separator:a02aab052419c9eb3d1df289abd14a490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affff105a2c80e9c2eec12336b63f2003" id="r_affff105a2c80e9c2eec12336b63f2003"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#affff105a2c80e9c2eec12336b63f2003">m_bSavePassword</a></td></tr>
+<tr class="separator:affff105a2c80e9c2eec12336b63f2003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389ab0d160e16b55e30b9abbe6083036" id="r_a389ab0d160e16b55e30b9abbe6083036"><td class="memItemLeft" align="right" valign="top">PromptType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a389ab0d160e16b55e30b9abbe6083036">m_PromptType</a></td></tr>
+<tr class="separator:a389ab0d160e16b55e30b9abbe6083036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f8ac046824c6917b99614d30e1caf8" id="r_a53f8ac046824c6917b99614d30e1caf8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a53f8ac046824c6917b99614d30e1caf8">m_nPromptCount</a></td></tr>
+<tr class="separator:a53f8ac046824c6917b99614d30e1caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ceeba848fa18eb8ab024710229303ad" id="r_a7ceeba848fa18eb8ab024710229303ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a7ceeba848fa18eb8ab024710229303ad">m_bViewPassowrd</a></td></tr>
+<tr class="separator:a7ceeba848fa18eb8ab024710229303ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd743ed9fde4ac181d0c60cc0e69a5ef" id="r_acd743ed9fde4ac181d0c60cc0e69a5ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#acd743ed9fde4ac181d0c60cc0e69a5ef">m_bUseSystemCredential</a></td></tr>
+<tr class="separator:acd743ed9fde4ac181d0c60cc0e69a5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b847f749017abda3bebc95264782f0a" id="r_a3b847f749017abda3bebc95264782f0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a3b847f749017abda3bebc95264782f0a">m_bShowProtocolPrefix</a></td></tr>
+<tr class="separator:a3b847f749017abda3bebc95264782f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4bf313f506daf90295c3ef9bf1a4e3a" id="r_ad4bf313f506daf90295c3ef9bf1a4e3a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#ad4bf313f506daf90295c3ef9bf1a4e3a">m_bShowIpPortInName</a></td></tr>
+<tr class="separator:ad4bf313f506daf90295c3ef9bf1a4e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c00e7bf3707415740233ea1b325a38" id="r_a63c00e7bf3707415740233ea1b325a38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a63c00e7bf3707415740233ea1b325a38">m_AdaptWindows</a></td></tr>
+<tr class="separator:a63c00e7bf3707415740233ea1b325a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d4276772ba6834b421e908feecb81cf" id="r_a7d4276772ba6834b421e908feecb81cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a7d4276772ba6834b421e908feecb81cf">m_bEnableSetPluginsPath</a></td></tr>
+<tr class="separator:a7d4276772ba6834b421e908feecb81cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68aef31c9165d23ca9c93aa3b7f4960a" id="r_a68aef31c9165d23ca9c93aa3b7f4960a"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a68aef31c9165d23ca9c93aa3b7f4960a">m_szPluginsPath</a></td></tr>
+<tr class="separator:a68aef31c9165d23ca9c93aa3b7f4960a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440266fc2c213b22636c6e3ab1e95cca" id="r_a440266fc2c213b22636c6e3ab1e95cca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterPlugin.html#a440266fc2c213b22636c6e3ab1e95cca">m_bOnlyLoadInWhitelist</a></td></tr>
+<tr class="separator:a440266fc2c213b22636c6e3ab1e95cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>插件的全局参数。 </p>
+<ul>
+<li>仅在插件管理者 (<a class="el" href="classCManager.html" title="管理插件">CManager</a>) 和插件中使用。</li>
+<li>应用程序不能访问，但是可以通过 <a class="el" href="classCManager.html#a20d7ff6fea27ec2d7679c159c7f7fa78" title="得到设置参数窗口">CManager::GetSettingsWidgets</a> 进行设置。</li>
+<li>插件可通过 <a class="el" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80" title="Get CParameterPlugin">CParameterOperate::GetGlobalParameters()</a> 访问。</li>
+</ul>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCOperate.html#a6f1e5cc9b0814df85cf4fe3492b554cc" title="应用插件全局参数">COperate::SetGlobalParameters</a> <a class="el" href="classCParameterGlobal.html" title="全局参数">CParameterGlobal</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00033">33</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="aa7fe2f27815dca990736d4ba12f73f1e" name="aa7fe2f27815dca990736d4ba12f73f1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7fe2f27815dca990736d4ba12f73f1e">&#9670;&#160;</a></span>PromptType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CParameterPlugin::PromptType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a345a78922b8ba86e32c6333ed17bf005" name="a345a78922b8ba86e32c6333ed17bf005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a345a78922b8ba86e32c6333ed17bf005">&#9670;&#160;</a></span>CParameterPlugin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterPlugin::CParameterPlugin </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00007">7</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae87cde3d872fbcb2a59b451d28715833" name="ae87cde3d872fbcb2a59b451d28715833"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae87cde3d872fbcb2a59b451d28715833">&#9670;&#160;</a></span>~CParameterPlugin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterPlugin::~CParameterPlugin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a24d94244a33b18b31c579194af782bac" name="a24d94244a33b18b31c579194af782bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d94244a33b18b31c579194af782bac">&#9670;&#160;</a></span>GetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterPlugin::GetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00321">321</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8bace52ba6ec8e94c2ddc3b9425fd9b" name="ae8bace52ba6ec8e94c2ddc3b9425fd9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8bace52ba6ec8e94c2ddc3b9425fd9b">&#9670;&#160;</a></span>GetCaptureAllKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetCaptureAllKeyboard </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2c1312f65934fce51efb02041e18a9a7" name="a2c1312f65934fce51efb02041e18a9a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c1312f65934fce51efb02041e18a9a7">&#9670;&#160;</a></span>GetDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a607f87a8c52067ee671d33d52059e4a3" name="a607f87a8c52067ee671d33d52059e4a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a607f87a8c52067ee671d33d52059e4a3">&#9670;&#160;</a></span>GetDisableDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::GetDisableDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00157">157</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00dc1bab47888b9a12a41fd05f7b4c4a" name="a00dc1bab47888b9a12a41fd05f7b4c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00dc1bab47888b9a12a41fd05f7b4c4a">&#9670;&#160;</a></span>GetEnableLocalInputMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetEnableLocalInputMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af320d37265a213aaa891a0e1f0a45f56" name="af320d37265a213aaa891a0e1f0a45f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af320d37265a213aaa891a0e1f0a45f56">&#9670;&#160;</a></span>GetEnableSetPluginsPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetEnableSetPluginsPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00335">335</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac43c2fbe05321e377def286897c2dae4" name="ac43c2fbe05321e377def286897c2dae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac43c2fbe05321e377def286897c2dae4">&#9670;&#160;</a></span>GetEnableSystemUserToUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetEnableSystemUserToUser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00197">197</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4c632634373dfdd90b2d24e05d04ed4c" name="a4c632634373dfdd90b2d24e05d04ed4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c632634373dfdd90b2d24e05d04ed4c">&#9670;&#160;</a></span>GetEncryptKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString &amp; CParameterPlugin::GetEncryptKey </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00210">210</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad9a43a6c93a9f3de93557d74163cc685" name="ad9a43a6c93a9f3de93557d74163cc685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a43a6c93a9f3de93557d74163cc685">&#9670;&#160;</a></span>GetGlobalParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterGlobal.html">CParameterGlobal</a> * CParameterPlugin::GetGlobalParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab95472ad27606619df305f17ce871c89" name="ab95472ad27606619df305f17ce871c89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab95472ad27606619df305f17ce871c89">&#9670;&#160;</a></span>GetOnlyLoadInWhitelist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetOnlyLoadInWhitelist </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00358">358</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a93e37a027e05d64daa8b95a8b0d1a46d" name="a93e37a027e05d64daa8b95a8b0d1a46d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93e37a027e05d64daa8b95a8b0d1a46d">&#9670;&#160;</a></span>GetPluginsPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterPlugin::GetPluginsPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00348">348</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8dd53cbe9a47145245158c408c8047e6" name="a8dd53cbe9a47145245158c408c8047e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd53cbe9a47145245158c408c8047e6">&#9670;&#160;</a></span>GetPromptAdministratorPrivilege()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetPromptAdministratorPrivilege </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00183">183</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aea710e27c75174662e0dd5fdc904de0b" name="aea710e27c75174662e0dd5fdc904de0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea710e27c75174662e0dd5fdc904de0b">&#9670;&#160;</a></span>GetPromptCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPlugin::GetPromptCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00252">252</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac145985304240bbc2ba45132049132ea" name="ac145985304240bbc2ba45132049132ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac145985304240bbc2ba45132049132ea">&#9670;&#160;</a></span>GetPromptType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterPlugin::PromptType CParameterPlugin::GetPromptType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00238">238</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aebacd1fd221866576c0c4eca16cbea16" name="aebacd1fd221866576c0c4eca16cbea16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebacd1fd221866576c0c4eca16cbea16">&#9670;&#160;</a></span>GetRestoreDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::GetRestoreDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad4ab0e5fbbf9116f40036299107dfe65" name="ad4ab0e5fbbf9116f40036299107dfe65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ab0e5fbbf9116f40036299107dfe65">&#9670;&#160;</a></span>GetSavePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool &amp; CParameterPlugin::GetSavePassword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00224">224</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbbf22023f7ef12cd6dc50a9258cc640" name="abbbf22023f7ef12cd6dc50a9258cc640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbf22023f7ef12cd6dc50a9258cc640">&#9670;&#160;</a></span>GetShowIpPortInName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetShowIpPortInName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00307">307</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad179b94fc446f210e3976aaa27827c04" name="ad179b94fc446f210e3976aaa27827c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad179b94fc446f210e3976aaa27827c04">&#9670;&#160;</a></span>GetShowProtocolPrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetShowProtocolPrefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00293">293</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a455a7165a4e09c570ec84a8a832590b4" name="a455a7165a4e09c570ec84a8a832590b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455a7165a4e09c570ec84a8a832590b4">&#9670;&#160;</a></span>GetUseSystemCredential()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetUseSystemCredential </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00280">280</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a29bd47273fc71d2f42275fb0f0317dce" name="a29bd47273fc71d2f42275fb0f0317dce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29bd47273fc71d2f42275fb0f0317dce">&#9670;&#160;</a></span>GetViewPassowrd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::GetViewPassowrd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9f09bdd6e372eb351c3cff9702f2e61e" name="a9f09bdd6e372eb351c3cff9702f2e61e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f09bdd6e372eb351c3cff9702f2e61e">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPlugin::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>参见</dt><dd>CClient::LoadSettings </dd></dl>
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0d2a9bb34083c7d34d352d8ede4148c2" name="a0d2a9bb34083c7d34d352d8ede4148c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d2a9bb34083c7d34d352d8ede4148c2">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPlugin::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>参见</dt><dd>CClient::SaveSettings </dd></dl>
+
+<p>实现了 <a class="el" href="classCParameter.html">CParameter</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a744c646d4a7d65edafcb07077d107c95" name="a744c646d4a7d65edafcb07077d107c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a744c646d4a7d65edafcb07077d107c95">&#9670;&#160;</a></span>SetAdaptWindows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetAdaptWindows </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a>&#160;</td>
+          <td class="paramname"><em>aw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00326">326</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a8d15cc33f3da36b6b50b71b9e8984c" name="a9a8d15cc33f3da36b6b50b71b9e8984c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8d15cc33f3da36b6b50b71b9e8984c">&#9670;&#160;</a></span>SetCaptureAllKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetCaptureAllKeyboard </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bCapture</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80273b00b6599a1cfb465c39e04dc933" name="a80273b00b6599a1cfb465c39e04dc933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80273b00b6599a1cfb465c39e04dc933">&#9670;&#160;</a></span>SetDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newDesktopShortcutsScript</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00136">136</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af4299b3d21db67130a477eee549a4cb7" name="af4299b3d21db67130a477eee549a4cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4299b3d21db67130a477eee549a4cb7">&#9670;&#160;</a></span>SetDisableDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetDisableDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newDisableDesktopShortcutsScript</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada7ed5f37403a8e5f529b0aac3512573" name="ada7ed5f37403a8e5f529b0aac3512573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7ed5f37403a8e5f529b0aac3512573">&#9670;&#160;</a></span>SetEnableLocalInputMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetEnableLocalInputMethod </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a899a3d8363f322be3de44c16eb14f459" name="a899a3d8363f322be3de44c16eb14f459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a899a3d8363f322be3de44c16eb14f459">&#9670;&#160;</a></span>SetEnableSetPluginsPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetEnableSetPluginsPath </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newEnableSetPluginsPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00340">340</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98a39c1cd590ac93e3511a16521ceb68" name="a98a39c1cd590ac93e3511a16521ceb68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98a39c1cd590ac93e3511a16521ceb68">&#9670;&#160;</a></span>SetEnableSystemUserToUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetEnableSystemUserToUser </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00202">202</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66bdb6e11a22520b6d5857d850a2a383" name="a66bdb6e11a22520b6d5857d850a2a383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66bdb6e11a22520b6d5857d850a2a383">&#9670;&#160;</a></span>SetEncryptKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetEncryptKey </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newPassword</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00215">215</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5d7b16c470b3a160c55d1fb1cb8dd5a3" name="a5d7b16c470b3a160c55d1fb1cb8dd5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d7b16c470b3a160c55d1fb1cb8dd5a3">&#9670;&#160;</a></span>SetOnlyLoadInWhitelist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetOnlyLoadInWhitelist </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newOnlyLoadInWhitelist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00363">363</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3f6902253aad0bf867de4bdfbcf258c3" name="a3f6902253aad0bf867de4bdfbcf258c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f6902253aad0bf867de4bdfbcf258c3">&#9670;&#160;</a></span>SetPluginsPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetPluginsPath </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newPluginsPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00353">353</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2682100f2387f19098c4a9eecdafa17c" name="a2682100f2387f19098c4a9eecdafa17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2682100f2387f19098c4a9eecdafa17c">&#9670;&#160;</a></span>SetPromptAdministratorPrivilege()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetPromptAdministratorPrivilege </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bShow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a903e1e8b0b4f67965342ca72a010c8c1" name="a903e1e8b0b4f67965342ca72a010c8c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a903e1e8b0b4f67965342ca72a010c8c1">&#9670;&#160;</a></span>SetPromptCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetPromptCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>NewPromptCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00257">257</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a1144ad296c2c4a17b621ad5f1492f8" name="a9a1144ad296c2c4a17b621ad5f1492f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a1144ad296c2c4a17b621ad5f1492f8">&#9670;&#160;</a></span>SetPromptType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetPromptType </td>
+          <td>(</td>
+          <td class="paramtype">PromptType&#160;</td>
+          <td class="paramname"><em>NewPromptType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00243">243</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a233e664dcb3ce9b8be65dea7e82a5367" name="a233e664dcb3ce9b8be65dea7e82a5367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233e664dcb3ce9b8be65dea7e82a5367">&#9670;&#160;</a></span>SetRestoreDesktopShortcutsScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetRestoreDesktopShortcutsScript </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newRestoreDesktopShortcutsScript</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af44ff8812a5eb6e23fbce62a3790a55f" name="af44ff8812a5eb6e23fbce62a3790a55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af44ff8812a5eb6e23fbce62a3790a55f">&#9670;&#160;</a></span>SetSavePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetSavePassword </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>NewAutoSavePassword</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00229">229</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6ff502109c4910a2e81f91231c4ae673" name="a6ff502109c4910a2e81f91231c4ae673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ff502109c4910a2e81f91231c4ae673">&#9670;&#160;</a></span>SetShowIpPortInName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetShowIpPortInName </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bShowIpPortInName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a460d18a6d33bca517604aa5c93602d33" name="a460d18a6d33bca517604aa5c93602d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a460d18a6d33bca517604aa5c93602d33">&#9670;&#160;</a></span>SetShowProtocolPrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetShowProtocolPrefix </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bShowProtocolPrefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00298">298</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0413b5028b17898b1ac2b533adcc7421" name="a0413b5028b17898b1ac2b533adcc7421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0413b5028b17898b1ac2b533adcc7421">&#9670;&#160;</a></span>SetUseSystemCredential()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetUseSystemCredential </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newUseSystemCredential</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00285">285</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a39f08018b445859d897e9288dc570577" name="a39f08018b445859d897e9288dc570577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39f08018b445859d897e9288dc570577">&#9670;&#160;</a></span>SetViewPassowrd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterPlugin::SetViewPassowrd </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>NewViewPassowrd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a> 第 <a class="el" href="ParameterPlugin_8cpp_source.html#l00271">271</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a63c00e7bf3707415740233ea1b325a38" name="a63c00e7bf3707415740233ea1b325a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c00e7bf3707415740233ea1b325a38">&#9670;&#160;</a></span>m_AdaptWindows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterPlugin::m_AdaptWindows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00186">186</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8942a73918d287e1476c161e02341ee7" name="a8942a73918d287e1476c161e02341ee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8942a73918d287e1476c161e02341ee7">&#9670;&#160;</a></span>m_bCaptureAllKeyboard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bCaptureAllKeyboard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0f7487661ea89ffcc834783d1c8c6472" name="a0f7487661ea89ffcc834783d1c8c6472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7487661ea89ffcc834783d1c8c6472">&#9670;&#160;</a></span>m_bDesktopShortcutsScript</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bDesktopShortcutsScript</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ade01f6fac315242ef3ad74ca204562c2" name="ade01f6fac315242ef3ad74ca204562c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade01f6fac315242ef3ad74ca204562c2">&#9670;&#160;</a></span>m_bEnableLocalInputMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bEnableLocalInputMethod</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d4276772ba6834b421e908feecb81cf" name="a7d4276772ba6834b421e908feecb81cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d4276772ba6834b421e908feecb81cf">&#9670;&#160;</a></span>m_bEnableSetPluginsPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bEnableSetPluginsPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00193">193</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab0b74aea2df7d03d7735b7bd3aa336e4" name="ab0b74aea2df7d03d7735b7bd3aa336e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0b74aea2df7d03d7735b7bd3aa336e4">&#9670;&#160;</a></span>m_bEnableSystemUserToUser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bEnableSystemUserToUser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a100e7fd9621c3c3c7b5b8194331c0b21" name="a100e7fd9621c3c3c7b5b8194331c0b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100e7fd9621c3c3c7b5b8194331c0b21">&#9670;&#160;</a></span>m_BlackList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFilter.html">CParameterFilter</a> CParameterPlugin::m_BlackList</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00201">201</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a440266fc2c213b22636c6e3ab1e95cca" name="a440266fc2c213b22636c6e3ab1e95cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440266fc2c213b22636c6e3ab1e95cca">&#9670;&#160;</a></span>m_bOnlyLoadInWhitelist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bOnlyLoadInWhitelist</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00204">204</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acd0e2d19cb2ed1b99a5092fd60e9ad04" name="acd0e2d19cb2ed1b99a5092fd60e9ad04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd0e2d19cb2ed1b99a5092fd60e9ad04">&#9670;&#160;</a></span>m_bPromptAdministratorPrivilege</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bPromptAdministratorPrivilege</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<a id="affff105a2c80e9c2eec12336b63f2003" name="affff105a2c80e9c2eec12336b63f2003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affff105a2c80e9c2eec12336b63f2003">&#9670;&#160;</a></span>m_bSavePassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bSavePassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad4bf313f506daf90295c3ef9bf1a4e3a" name="ad4bf313f506daf90295c3ef9bf1a4e3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4bf313f506daf90295c3ef9bf1a4e3a">&#9670;&#160;</a></span>m_bShowIpPortInName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bShowIpPortInName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00177">177</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3b847f749017abda3bebc95264782f0a" name="a3b847f749017abda3bebc95264782f0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b847f749017abda3bebc95264782f0a">&#9670;&#160;</a></span>m_bShowProtocolPrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bShowProtocolPrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00168">168</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acd743ed9fde4ac181d0c60cc0e69a5ef" name="acd743ed9fde4ac181d0c60cc0e69a5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd743ed9fde4ac181d0c60cc0e69a5ef">&#9670;&#160;</a></span>m_bUseSystemCredential</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bUseSystemCredential</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00158">158</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7ceeba848fa18eb8ab024710229303ad" name="a7ceeba848fa18eb8ab024710229303ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ceeba848fa18eb8ab024710229303ad">&#9670;&#160;</a></span>m_bViewPassowrd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::m_bViewPassowrd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae708f8699959e443de3b3d55277243c9" name="ae708f8699959e443de3b3d55277243c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae708f8699959e443de3b3d55277243c9">&#9670;&#160;</a></span>m_GlobalParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterGlobal.html">CParameterGlobal</a> CParameterPlugin::m_GlobalParameter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a06add1505000c5baf586836284262d36" name="a06add1505000c5baf586836284262d36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06add1505000c5baf586836284262d36">&#9670;&#160;</a></span>m_MediaDevices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterMediaDevices.html">CParameterMediaDevices</a> CParameterPlugin::m_MediaDevices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00208">208</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a53f8ac046824c6917b99614d30e1caf8" name="a53f8ac046824c6917b99614d30e1caf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53f8ac046824c6917b99614d30e1caf8">&#9670;&#160;</a></span>m_nPromptCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPlugin::m_nPromptCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00142">142</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a389ab0d160e16b55e30b9abbe6083036" name="a389ab0d160e16b55e30b9abbe6083036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a389ab0d160e16b55e30b9abbe6083036">&#9670;&#160;</a></span>m_PromptType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PromptType CParameterPlugin::m_PromptType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa538e26f4b3b53e5d525e745dd745484" name="aa538e26f4b3b53e5d525e745dd745484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa538e26f4b3b53e5d525e745dd745484">&#9670;&#160;</a></span>m_Record</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRecord.html">CParameterRecord</a> CParameterPlugin::m_Record</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad7c46b14d8a826e2daf537a1c0a8c771" name="ad7c46b14d8a826e2daf537a1c0a8c771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7c46b14d8a826e2daf537a1c0a8c771">&#9670;&#160;</a></span>m_szDisableDesktopShortcutsScript</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::m_szDisableDesktopShortcutsScript</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a02aab052419c9eb3d1df289abd14a490" name="a02aab052419c9eb3d1df289abd14a490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02aab052419c9eb3d1df289abd14a490">&#9670;&#160;</a></span>m_szEncryptKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::m_szEncryptKey</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a68aef31c9165d23ca9c93aa3b7f4960a" name="a68aef31c9165d23ca9c93aa3b7f4960a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68aef31c9165d23ca9c93aa3b7f4960a">&#9670;&#160;</a></span>m_szPluginsPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterPlugin::m_szPluginsPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00203">203</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc9a50d1cd5fe1fa4429ab1e67dcaa43" name="afc9a50d1cd5fe1fa4429ab1e67dcaa43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc9a50d1cd5fe1fa4429ab1e67dcaa43">&#9670;&#160;</a></span>m_szRestoreDesktopShortcutsScript</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::m_szRestoreDesktopShortcutsScript</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a58f0850823b1935be6b2d86f875d6f78" name="a58f0850823b1935be6b2d86f875d6f78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f0850823b1935be6b2d86f875d6f78">&#9670;&#160;</a></span>m_WhiteList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterFilter.html">CParameterFilter</a> CParameterPlugin::m_WhiteList</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00200">200</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a2c9dc858dc8631b117f1eefc0dc0df34" name="a2c9dc858dc8631b117f1eefc0dc0df34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c9dc858dc8631b117f1eefc0dc0df34">&#9670;&#160;</a></span>AdaptWindows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFrmViewer.html#a7016012fa654d69746418fa635be420a">CFrmViewer::ADAPT_WINDOWS</a> CParameterPlugin::AdaptWindows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00187">187</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5b71f4a0082da045f5525aecaa4caf7f" name="a5b71f4a0082da045f5525aecaa4caf7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b71f4a0082da045f5525aecaa4caf7f">&#9670;&#160;</a></span>EncryptKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterPlugin::EncryptKey</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8edc095788ae2c102a9da825fd838f69" name="a8edc095788ae2c102a9da825fd838f69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8edc095788ae2c102a9da825fd838f69">&#9670;&#160;</a></span>PromptCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterPlugin::PromptCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00143">143</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abeb1bbc745a745be2dd2af9a88ffcf8a" name="abeb1bbc745a745be2dd2af9a88ffcf8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeb1bbc745a745be2dd2af9a88ffcf8a">&#9670;&#160;</a></span>PromptType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PromptType CParameterPlugin::PromptType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64a14e069350dc8f395b0a69fce313e7" name="a64a14e069350dc8f395b0a69fce313e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64a14e069350dc8f395b0a69fce313e7">&#9670;&#160;</a></span>SavePassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::SavePassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7211c9042bc2e2a796b3c41b6094837f" name="a7211c9042bc2e2a796b3c41b6094837f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7211c9042bc2e2a796b3c41b6094837f">&#9670;&#160;</a></span>ShowIpPortInName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::ShowIpPortInName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00178">178</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5ad2dae266ea5cb75eca52cb55646735" name="a5ad2dae266ea5cb75eca52cb55646735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ad2dae266ea5cb75eca52cb55646735">&#9670;&#160;</a></span>ShowProtocolPrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::ShowProtocolPrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00169">169</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a06daafff33877c45e61b660b37380436" name="a06daafff33877c45e61b660b37380436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06daafff33877c45e61b660b37380436">&#9670;&#160;</a></span>ViewPassowrd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterPlugin::ViewPassowrd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a> 第 <a class="el" href="ParameterPlugin_8h_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterPlugin_8h_source.html">ParameterPlugin.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterPlugin_8cpp_source.html">ParameterPlugin.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

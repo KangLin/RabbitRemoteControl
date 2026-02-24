@@ -1,0 +1,886 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CViewSplitter类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCViewSplitter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CViewSplitter类 参考<div class="ingroups"><a class="el" href="group__APP.html">程序</a> &raquo; <a class="el" href="group__VIEWER__APP.html">玉兔远程控制程序</a> &raquo; <a class="el" href="group__ViewApi.html">视图应用接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The split view class  
+ <a href="classCViewSplitter.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CViewSplitter 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCViewSplitter__inherit__graph.png" border="0" usemap="#aCViewSplitter_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCViewSplitter_inherit__map" id="aCViewSplitter_inherit__map">
+<area shape="rect" title="The split view class" alt="" coords="5,152,116,177"/>
+<area shape="rect" href="classCView.html" title="The CView class" alt="" coords="29,79,92,104"/>
+<area shape="poly" title=" " alt="" coords="63,118,63,152,58,152,58,118"/>
+<area shape="rect" title=" " alt="" coords="21,5,100,31"/>
+<area shape="poly" title=" " alt="" coords="63,44,63,79,58,79,58,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CViewSplitter 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCViewSplitter__coll__graph.png" border="0" usemap="#aCViewSplitter_coll__map" alt="Collaboration graph"/></div>
+<map name="aCViewSplitter_coll__map" id="aCViewSplitter_coll__map">
+<area shape="rect" title="The split view class" alt="" coords="65,705,175,731"/>
+<area shape="rect" href="classCView.html" title="The CView class" alt="" coords="89,631,151,656"/>
+<area shape="poly" title=" " alt="" coords="123,670,123,705,117,705,117,670"/>
+<area shape="rect" title=" " alt="" coords="153,543,231,568"/>
+<area shape="poly" title=" " alt="" coords="188,583,175,608,161,622,145,633,142,628,158,618,171,605,184,580"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="5,543,128,568"/>
+<area shape="poly" title=" " alt="" coords="52,581,48,594,50,605,67,622,90,632,87,637,64,626,46,608,42,593,47,579"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="529,80,628,105"/>
+<area shape="poly" title=" " alt="" coords="516,99,388,106,240,119,173,128,118,140,82,153,72,160,69,167,69,469,69,542,64,542,64,469,64,165,68,156,79,148,117,134,172,123,240,114,388,101,516,94"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="105,155,255,180"/>
+<area shape="poly" title=" " alt="" coords="516,106,364,132,235,157,234,152,364,127,515,101"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="549,631,688,656"/>
+<area shape="poly" title=" " alt="" coords="583,119,620,630,615,631,578,119"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="255,543,395,568"/>
+<area shape="poly" title=" " alt="" coords="516,107,472,118,429,131,397,148,388,157,385,166,385,469,381,496,366,520,343,544,339,541,362,517,376,494,380,468,380,166,384,154,394,144,427,126,470,113,515,102"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="599,204,729,229"/>
+<area shape="poly" title=" " alt="" coords="597,115,658,202,654,205,592,118"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="678,303,821,328"/>
+<area shape="poly" title=" " alt="" coords="619,109,679,146,709,172,733,203,745,229,751,257,753,302,747,303,745,257,740,230,728,205,705,176,676,150,617,114"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="769,403,959,429"/>
+<area shape="poly" title=" " alt="" coords="642,95,710,103,779,116,809,125,833,136,850,149,856,166,856,317,859,365,865,403,859,404,854,365,851,317,851,166,845,152,830,140,807,130,777,121,709,108,642,101"/>
+<area shape="rect" title=" " alt="" coords="541,5,616,31"/>
+<area shape="poly" title=" " alt="" coords="581,45,581,80,576,80,576,45"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="115,455,275,480"/>
+<area shape="poly" title=" " alt="" coords="165,489,137,506,83,545,80,540,135,502,162,485"/>
+<area shape="poly" title=" " alt="" coords="225,486,271,516,308,540,305,545,268,521,222,490"/>
+<area shape="poly" title=" " alt="" coords="174,194,165,230,156,276,152,326,157,377,172,420,190,453,185,456,167,422,152,378,147,326,151,275,160,229,169,192"/>
+<area shape="poly" title=" " alt="" coords="270,160,282,167,274,174,256,177,255,171,272,169,277,167,267,165"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="167,352,289,377"/>
+<area shape="poly" title=" " alt="" coords="188,193,208,278,227,351,222,353,203,279,183,194"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="217,253,345,279"/>
+<area shape="poly" title=" " alt="" coords="204,187,271,251,267,255,200,191"/>
+<area shape="poly" title=" " alt="" coords="535,638,498,628,464,613,440,590,433,574,431,557,431,265,426,252,413,239,366,215,306,197,245,183,246,177,307,191,368,210,416,234,431,249,436,264,436,556,438,573,445,587,467,608,500,623,536,633"/>
+<area shape="poly" title=" " alt="" coords="295,578,282,592,280,599,283,605,295,611,318,617,387,626,549,637,549,642,386,632,317,622,293,616,279,609,275,599,277,590,291,574"/>
+<area shape="poly" title=" " alt="" coords="659,243,651,277,647,314,647,557,640,598,627,631,622,629,635,597,641,556,641,314,645,276,653,242"/>
+<area shape="poly" title=" " alt="" coords="751,342,751,415,751,557,743,585,723,606,697,622,669,633,667,628,695,617,720,602,738,582,745,556,745,415,746,342"/>
+<area shape="poly" title=" " alt="" coords="861,443,850,480,831,525,805,570,768,609,730,630,689,640,687,635,728,625,765,605,800,567,827,522,845,478,856,441"/>
+<area shape="poly" title=" " alt="" coords="222,392,201,456,196,454,217,390"/>
+<area shape="poly" title=" " alt="" coords="271,292,237,353,232,351,266,289"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a16c41e000d329ecdb45319ce4a9fc8cc" id="r_a16c41e000d329ecdb45319ce4a9fc8cc"><td class="memItemLeft" align="right" valign="top"><a id="a16c41e000d329ecdb45319ce4a9fc8cc" name="a16c41e000d329ecdb45319ce4a9fc8cc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CViewSplitter</b> (<a class="el" href="classCParameterApp.html">CParameterApp</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a16c41e000d329ecdb45319ce4a9fc8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae58c231817373c83216041d6c21ec2f0" id="r_ae58c231817373c83216041d6c21ec2f0"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#ae58c231817373c83216041d6c21ec2f0">AddView</a> (QWidget *pView) override</td></tr>
+<tr class="separator:ae58c231817373c83216041d6c21ec2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f6ed56c31f9d08613596f858dcfb4d" id="r_a53f6ed56c31f9d08613596f858dcfb4d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a53f6ed56c31f9d08613596f858dcfb4d">RemoveView</a> (QWidget *pView) override</td></tr>
+<tr class="separator:a53f6ed56c31f9d08613596f858dcfb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca3e5da43cb9578ba2ed27f9bd00ba0" id="r_a7ca3e5da43cb9578ba2ed27f9bd00ba0"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a7ca3e5da43cb9578ba2ed27f9bd00ba0">GetCurrentView</a> () override</td></tr>
+<tr class="separator:a7ca3e5da43cb9578ba2ed27f9bd00ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3351e148bbbb450bb260022152eac605" id="r_a3351e148bbbb450bb260022152eac605"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a3351e148bbbb450bb260022152eac605">SetCurrentView</a> (QWidget *pView) override</td></tr>
+<tr class="separator:a3351e148bbbb450bb260022152eac605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bbc23796b1f1a2b7f372bb1fc65c7bf" id="r_a9bbc23796b1f1a2b7f372bb1fc65c7bf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a9bbc23796b1f1a2b7f372bb1fc65c7bf">SetWidowsTitle</a> (QWidget *pView, const QString &amp;szTitle, const QIcon &amp;icon, const QString &amp;szToolTip) override</td></tr>
+<tr class="separator:a9bbc23796b1f1a2b7f372bb1fc65c7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a335858a4c5d49041d70408122e0f1" id="r_a14a335858a4c5d49041d70408122e0f1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a14a335858a4c5d49041d70408122e0f1">SetFullScreen</a> (bool bFull) override</td></tr>
+<tr class="separator:a14a335858a4c5d49041d70408122e0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69b4d9cb5df798484d65c764696009c5" id="r_a69b4d9cb5df798484d65c764696009c5"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a69b4d9cb5df798484d65c764696009c5">SetVisibleTab</a> (bool bVisible) override</td></tr>
+<tr class="separator:a69b4d9cb5df798484d65c764696009c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCView"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCView')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCView.html">CView</a></td></tr>
+<tr class="memitem:a25f2ff1a5fe5eaaaa77c21a41e776526 inherit pub_methods_classCView" id="r_a25f2ff1a5fe5eaaaa77c21a41e776526"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CView</b> (<a class="el" href="classCParameterApp.html">CParameterApp</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a25f2ff1a5fe5eaaaa77c21a41e776526 inherit pub_methods_classCView"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ae961ba28f03fb46b986c4db54449fec1" id="r_ae961ba28f03fb46b986c4db54449fec1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#ae961ba28f03fb46b986c4db54449fec1">GetIndex</a> (QWidget *pView, int &amp;nRow, int &amp;nCol)</td></tr>
+<tr class="separator:ae961ba28f03fb46b986c4db54449fec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9946409161f8ef9e01c80c9aaadb464a" id="r_a9946409161f8ef9e01c80c9aaadb464a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a9946409161f8ef9e01c80c9aaadb464a">GetContainer</a> (const int &amp;nRow, const int &amp;nCol)</td></tr>
+<tr class="separator:a9946409161f8ef9e01c80c9aaadb464a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8653e8099a16f1a60065a9148becf02f" id="r_a8653e8099a16f1a60065a9148becf02f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a8653e8099a16f1a60065a9148becf02f">GetContainer</a> (QWidget *pView)</td></tr>
+<tr class="separator:a8653e8099a16f1a60065a9148becf02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a764575b03728eed863c95fc4fd10237d" id="r_a764575b03728eed863c95fc4fd10237d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a764575b03728eed863c95fc4fd10237d">ActiveContainer</a> (QWidget *pView)</td></tr>
+<tr class="memdesc:a764575b03728eed863c95fc4fd10237d"><td class="mdescLeft">&#160;</td><td class="mdescRight">突出当前视图  <br /></td></tr>
+<tr class="separator:a764575b03728eed863c95fc4fd10237d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae360afc384a126d665057553d5c72ecd" id="r_ae360afc384a126d665057553d5c72ecd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#ae360afc384a126d665057553d5c72ecd">SetSizes</a> ()</td></tr>
+<tr class="separator:ae360afc384a126d665057553d5c72ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a25ea660e6e950e4f68293e6043780e9e" id="r_a25ea660e6e950e4f68293e6043780e9e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a25ea660e6e950e4f68293e6043780e9e">m_nRow</a></td></tr>
+<tr class="separator:a25ea660e6e950e4f68293e6043780e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02fe3980acc17faa8646f03d42ffe8ff" id="r_a02fe3980acc17faa8646f03d42ffe8ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a02fe3980acc17faa8646f03d42ffe8ff">m_nCount</a></td></tr>
+<tr class="separator:a02fe3980acc17faa8646f03d42ffe8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48f64cfaaf368cdfe8ccfdfc73cef5c8" id="r_a48f64cfaaf368cdfe8ccfdfc73cef5c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a48f64cfaaf368cdfe8ccfdfc73cef5c8">m_nIdxRow</a></td></tr>
+<tr class="separator:a48f64cfaaf368cdfe8ccfdfc73cef5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac928fe72e0be6dfbf939bfa270dda8c" id="r_aac928fe72e0be6dfbf939bfa270dda8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#aac928fe72e0be6dfbf939bfa270dda8c">m_nIdxCol</a></td></tr>
+<tr class="separator:aac928fe72e0be6dfbf939bfa270dda8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27728d6a2f6f3ad4d6aa03c2c960ddff" id="r_a27728d6a2f6f3ad4d6aa03c2c960ddff"><td class="memItemLeft" align="right" valign="top">QSplitter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a27728d6a2f6f3ad4d6aa03c2c960ddff">m_pMain</a></td></tr>
+<tr class="separator:a27728d6a2f6f3ad4d6aa03c2c960ddff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66b8ac5c1b60450fc118d121d41bab9b" id="r_a66b8ac5c1b60450fc118d121d41bab9b"><td class="memItemLeft" align="right" valign="top">QVector&lt; QSplitter * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a66b8ac5c1b60450fc118d121d41bab9b">m_Row</a></td></tr>
+<tr class="separator:a66b8ac5c1b60450fc118d121d41bab9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83a975cac3e8e4eb6c57f84d5d949bc5" id="r_a83a975cac3e8e4eb6c57f84d5d949bc5"><td class="memItemLeft" align="right" valign="top">QMap&lt; QWidget *, <a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a83a975cac3e8e4eb6c57f84d5d949bc5">m_Container</a></td></tr>
+<tr class="separator:a83a975cac3e8e4eb6c57f84d5d949bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0fc0fdcea81a1aa22e47e6dbf578fb" id="r_a2d0fc0fdcea81a1aa22e47e6dbf578fb"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#a2d0fc0fdcea81a1aa22e47e6dbf578fb">m_szStyleSheet</a></td></tr>
+<tr class="separator:a2d0fc0fdcea81a1aa22e47e6dbf578fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af94c6e1227cf8d1eafdbda911951d470" id="r_af94c6e1227cf8d1eafdbda911951d470"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCViewSplitter.html#af94c6e1227cf8d1eafdbda911951d470">m_HandleWidth</a></td></tr>
+<tr class="separator:af94c6e1227cf8d1eafdbda911951d470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCView"><td colspan="2" onclick="javascript:toggleInherit('signals_classCView')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCView.html">CView</a></td></tr>
+<tr class="memitem:a4d0f07d80eef2ab2dc1dffc229609876 inherit signals_classCView" id="r_a4d0f07d80eef2ab2dc1dffc229609876"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a4d0f07d80eef2ab2dc1dffc229609876">sigCloseView</a> (const QWidget *pView)</td></tr>
+<tr class="separator:a4d0f07d80eef2ab2dc1dffc229609876 inherit signals_classCView"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9a72cfe48924ee0c390baa7db7924d inherit signals_classCView" id="r_a2e9a72cfe48924ee0c390baa7db7924d"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigCurrentChanged</b> (const QWidget *pView)</td></tr>
+<tr class="separator:a2e9a72cfe48924ee0c390baa7db7924d inherit signals_classCView"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCView"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCView')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCView.html">CView</a></td></tr>
+<tr class="memitem:a1c1c61f76bac86e4b11269dc16dffbab inherit pro_attribs_classCView" id="r_a1c1c61f76bac86e4b11269dc16dffbab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterApp.html">CParameterApp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCView.html#a1c1c61f76bac86e4b11269dc16dffbab">m_pParameterApp</a></td></tr>
+<tr class="separator:a1c1c61f76bac86e4b11269dc16dffbab inherit pro_attribs_classCView"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The split view class </p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="acec67c8d2c48b45775d5102de379a134" name="acec67c8d2c48b45775d5102de379a134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec67c8d2c48b45775d5102de379a134">&#9670;&#160;</a></span>~CViewSplitter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CViewSplitter::~CViewSplitter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a764575b03728eed863c95fc4fd10237d" name="a764575b03728eed863c95fc4fd10237d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a764575b03728eed863c95fc4fd10237d">&#9670;&#160;</a></span>ActiveContainer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::ActiveContainer </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>突出当前视图 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pView</td><td>需要突出的视图。如果为　nullptr　,则重置所有视图为普通 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00364">364</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae58c231817373c83216041d6c21ec2f0" name="ae58c231817373c83216041d6c21ec2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae58c231817373c83216041d6c21ec2f0">&#9670;&#160;</a></span>AddView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::AddView </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>QWidget* pView must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>实现了 <a class="el" href="classCView.html#a7e651d3bc8b112c7a0a65c9b336e6390">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9946409161f8ef9e01c80c9aaadb464a" name="a9946409161f8ef9e01c80c9aaadb464a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9946409161f8ef9e01c80c9aaadb464a">&#9670;&#160;</a></span>GetContainer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a> * CViewSplitter::GetContainer </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>nRow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>nCol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00342">342</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8653e8099a16f1a60065a9148becf02f" name="a8653e8099a16f1a60065a9148becf02f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8653e8099a16f1a60065a9148becf02f">&#9670;&#160;</a></span>GetContainer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a> * CViewSplitter::GetContainer </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00356">356</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7ca3e5da43cb9578ba2ed27f9bd00ba0" name="a7ca3e5da43cb9578ba2ed27f9bd00ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca3e5da43cb9578ba2ed27f9bd00ba0">&#9670;&#160;</a></span>GetCurrentView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget * CViewSplitter::GetCurrentView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>The return QWidget* must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>实现了 <a class="el" href="classCView.html#a83c27ae1c59e01887396630801a3c622">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00197">197</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae961ba28f03fb46b986c4db54449fec1" name="ae961ba28f03fb46b986c4db54449fec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae961ba28f03fb46b986c4db54449fec1">&#9670;&#160;</a></span>GetIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::GetIndex </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>nRow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>nCol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00322">322</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a53f6ed56c31f9d08613596f858dcfb4d" name="a53f6ed56c31f9d08613596f858dcfb4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53f6ed56c31f9d08613596f858dcfb4d">&#9670;&#160;</a></span>RemoveView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::RemoveView </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>注解</dt><dd>QWidget* pView must is same as CConnecter::GetViewer() </dd></dl>
+
+<p>实现了 <a class="el" href="classCView.html#ad730d6191dc8256f41a9eb2442f1fac8">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00130">130</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3351e148bbbb450bb260022152eac605" name="a3351e148bbbb450bb260022152eac605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3351e148bbbb450bb260022152eac605">&#9670;&#160;</a></span>SetCurrentView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::SetCurrentView </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCView.html">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00205">205</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a14a335858a4c5d49041d70408122e0f1" name="a14a335858a4c5d49041d70408122e0f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a335858a4c5d49041d70408122e0f1">&#9670;&#160;</a></span>SetFullScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::SetFullScreen </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bFull</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCView.html">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae360afc384a126d665057553d5c72ecd" name="ae360afc384a126d665057553d5c72ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae360afc384a126d665057553d5c72ecd">&#9670;&#160;</a></span>SetSizes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::SetSizes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00381">381</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a69b4d9cb5df798484d65c764696009c5" name="a69b4d9cb5df798484d65c764696009c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69b4d9cb5df798484d65c764696009c5">&#9670;&#160;</a></span>SetVisibleTab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::SetVisibleTab </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bVisible</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCView.html">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9bbc23796b1f1a2b7f372bb1fc65c7bf" name="a9bbc23796b1f1a2b7f372bb1fc65c7bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bbc23796b1f1a2b7f372bb1fc65c7bf">&#9670;&#160;</a></span>SetWidowsTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CViewSplitter::SetWidowsTitle </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>pView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szTitle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QIcon &amp;&#160;</td>
+          <td class="paramname"><em>icon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szToolTip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCView.html">CView</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a> 第 <a class="el" href="ViewSplitter_8cpp_source.html#l00227">227</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a83a975cac3e8e4eb6c57f84d5d949bc5" name="a83a975cac3e8e4eb6c57f84d5d949bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83a975cac3e8e4eb6c57f84d5d949bc5">&#9670;&#160;</a></span>m_Container</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;QWidget*, <a class="el" href="classCViewSplitterContainer.html">CViewSplitterContainer</a>*&gt; CViewSplitter::m_Container</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af94c6e1227cf8d1eafdbda911951d470" name="af94c6e1227cf8d1eafdbda911951d470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94c6e1227cf8d1eafdbda911951d470">&#9670;&#160;</a></span>m_HandleWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::m_HandleWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a02fe3980acc17faa8646f03d42ffe8ff" name="a02fe3980acc17faa8646f03d42ffe8ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02fe3980acc17faa8646f03d42ffe8ff">&#9670;&#160;</a></span>m_nCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::m_nCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac928fe72e0be6dfbf939bfa270dda8c" name="aac928fe72e0be6dfbf939bfa270dda8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac928fe72e0be6dfbf939bfa270dda8c">&#9670;&#160;</a></span>m_nIdxCol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::m_nIdxCol</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48f64cfaaf368cdfe8ccfdfc73cef5c8" name="a48f64cfaaf368cdfe8ccfdfc73cef5c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f64cfaaf368cdfe8ccfdfc73cef5c8">&#9670;&#160;</a></span>m_nIdxRow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::m_nIdxRow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a25ea660e6e950e4f68293e6043780e9e" name="a25ea660e6e950e4f68293e6043780e9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ea660e6e950e4f68293e6043780e9e">&#9670;&#160;</a></span>m_nRow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CViewSplitter::m_nRow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a27728d6a2f6f3ad4d6aa03c2c960ddff" name="a27728d6a2f6f3ad4d6aa03c2c960ddff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27728d6a2f6f3ad4d6aa03c2c960ddff">&#9670;&#160;</a></span>m_pMain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSplitter* CViewSplitter::m_pMain</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66b8ac5c1b60450fc118d121d41bab9b" name="a66b8ac5c1b60450fc118d121d41bab9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66b8ac5c1b60450fc118d121d41bab9b">&#9670;&#160;</a></span>m_Row</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;QSplitter*&gt; CViewSplitter::m_Row</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2d0fc0fdcea81a1aa22e47e6dbf578fb" name="a2d0fc0fdcea81a1aa22e47e6dbf578fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0fc0fdcea81a1aa22e47e6dbf578fb">&#9670;&#160;</a></span>m_szStyleSheet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CViewSplitter::m_szStyleSheet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a> 第 <a class="el" href="ViewSplitter_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="ViewSplitter_8h_source.html">ViewSplitter.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/<a class="el" href="ViewSplitter_8cpp_source.html">ViewSplitter.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

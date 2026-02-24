@@ -1,0 +1,1230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CRemoteFileSystem类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCRemoteFileSystem-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CRemoteFileSystem类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CRemoteFileSystem 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRemoteFileSystem__inherit__graph.png" border="0" usemap="#aCRemoteFileSystem_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCRemoteFileSystem_inherit__map" id="aCRemoteFileSystem_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,160,104"/>
+<area shape="rect" title=" " alt="" coords="45,5,120,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CRemoteFileSystem 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCRemoteFileSystem__coll__graph.png" border="0" usemap="#aCRemoteFileSystem_coll__map" alt="Collaboration graph"/></div>
+<map name="aCRemoteFileSystem_coll__map" id="aCRemoteFileSystem_coll__map">
+<area shape="rect" title=" " alt="" coords="5,80,160,105"/>
+<area shape="poly" title=" " alt="" coords="175,85,187,93,178,99,161,102,160,97,176,94,181,93,173,90"/>
+<area shape="rect" title=" " alt="" coords="45,5,120,31"/>
+<area shape="poly" title=" " alt="" coords="85,45,85,80,80,80,80,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a686418c77cabfcd6b3b3364ee2542353" id="r_a686418c77cabfcd6b3b3364ee2542353"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TYPE</b> { <br />
+&#160;&#160;<b>NO</b> = 0x00
+, <b>FILE</b> = 0x01
+, <b>DRIVE</b> = 0x02
+, <b>DIR</b> = 0x04
+, <br />
+&#160;&#160;<b>SYMLINK</b> = 0x08
+, <b>SPECIAL</b> = 0x10
+, <b>DIRS</b> = DRIVE | DIR | SYMLINK | SPECIAL
+, <b>ALL</b> = DIRS | FILE
+<br />
+ }</td></tr>
+<tr class="separator:a686418c77cabfcd6b3b3364ee2542353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9d287b29242381eaef90709888eebe" id="r_acc9d287b29242381eaef90709888eebe"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ColumnValue</b> { <br />
+&#160;&#160;<b>Name</b> = 0
+, <b>Size</b>
+, <b>Type</b>
+, <b>LastModified</b>
+, <br />
+&#160;&#160;<b>Permission</b>
+, <b>Owner</b>
+, <b>End</b>
+<br />
+ }</td></tr>
+<tr class="separator:acc9d287b29242381eaef90709888eebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813ba2f7f898715444315b0281a696d6" id="r_a813ba2f7f898715444315b0281a696d6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> { <b>No</b>
+, <b>Getting</b>
+, <b>Ok</b>
+ }</td></tr>
+<tr class="separator:a813ba2f7f898715444315b0281a696d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a47b636c189b6789914ac7728633b3a6c" id="r_a47b636c189b6789914ac7728633b3a6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a47b636c189b6789914ac7728633b3a6c">CRemoteFileSystem</a> (const QString &amp;szPath, TYPES type)</td></tr>
+<tr class="separator:a47b636c189b6789914ac7728633b3a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a425e8523a3d099f7965faf05da09b9f8" id="r_a425e8523a3d099f7965faf05da09b9f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a425e8523a3d099f7965faf05da09b9f8">CRemoteFileSystem</a> (const <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &amp;file)</td></tr>
+<tr class="separator:a425e8523a3d099f7965faf05da09b9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c51e59428344bac2c04a1ed61f96631" id="r_a0c51e59428344bac2c04a1ed61f96631"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a0c51e59428344bac2c04a1ed61f96631">Data</a> (int column)</td></tr>
+<tr class="separator:a0c51e59428344bac2c04a1ed61f96631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1019245c1ca4f30035521d73a59072f7" id="r_a1019245c1ca4f30035521d73a59072f7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a1019245c1ca4f30035521d73a59072f7">ChildCount</a> ()</td></tr>
+<tr class="separator:a1019245c1ca4f30035521d73a59072f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45c70becf70bc3dfb589809aa5b21b62" id="r_a45c70becf70bc3dfb589809aa5b21b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a45c70becf70bc3dfb589809aa5b21b62">SetParent</a> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *pParent)</td></tr>
+<tr class="separator:a45c70becf70bc3dfb589809aa5b21b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b27fb1745ec9ce5d3b7191896811ce6" id="r_a9b27fb1745ec9ce5d3b7191896811ce6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a9b27fb1745ec9ce5d3b7191896811ce6">AppendChild</a> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *pChild)</td></tr>
+<tr class="memdesc:a9b27fb1745ec9ce5d3b7191896811ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append child  <br /></td></tr>
+<tr class="separator:a9b27fb1745ec9ce5d3b7191896811ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c61de0e38a08a88ad7a9d38b28ecef" id="r_a67c61de0e38a08a88ad7a9d38b28ecef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a67c61de0e38a08a88ad7a9d38b28ecef">RemoveChild</a> (int index)</td></tr>
+<tr class="separator:a67c61de0e38a08a88ad7a9d38b28ecef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00a2b070c63f67d2da618e282f0cdf8a" id="r_a00a2b070c63f67d2da618e282f0cdf8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a00a2b070c63f67d2da618e282f0cdf8a">GetChild</a> (int nIndex)</td></tr>
+<tr class="separator:a00a2b070c63f67d2da618e282f0cdf8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc1ba9d782018c28b8733c2cc4fba44" id="r_a6bc1ba9d782018c28b8733c2cc4fba44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a6bc1ba9d782018c28b8733c2cc4fba44">GetParent</a> ()</td></tr>
+<tr class="separator:a6bc1ba9d782018c28b8733c2cc4fba44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df94be1fb35274ec03ac9e9ce63b21c" id="r_a2df94be1fb35274ec03ac9e9ce63b21c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a2df94be1fb35274ec03ac9e9ce63b21c">IndexOf</a> (<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *pChild)</td></tr>
+<tr class="separator:a2df94be1fb35274ec03ac9e9ce63b21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2124b9ae48f538f40f681d88bc7653a1" id="r_a2124b9ae48f538f40f681d88bc7653a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a2124b9ae48f538f40f681d88bc7653a1">IndexOf</a> (const QString &amp;szPath)</td></tr>
+<tr class="separator:a2124b9ae48f538f40f681d88bc7653a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0774e80a538a5448bd29e9cda3ddd361" id="r_a0774e80a538a5448bd29e9cda3ddd361"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a0774e80a538a5448bd29e9cda3ddd361">IndexOfParent</a> ()</td></tr>
+<tr class="separator:a0774e80a538a5448bd29e9cda3ddd361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add181533bde7c640e4a02d29072ad469" id="r_add181533bde7c640e4a02d29072ad469"><td class="memItemLeft" align="right" valign="top">const State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#add181533bde7c640e4a02d29072ad469">GetState</a> () const</td></tr>
+<tr class="separator:add181533bde7c640e4a02d29072ad469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a60314b70f080bfa962004fdf6c786" id="r_ae6a60314b70f080bfa962004fdf6c786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#ae6a60314b70f080bfa962004fdf6c786">SetState</a> (State s)</td></tr>
+<tr class="separator:ae6a60314b70f080bfa962004fdf6c786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54552cb5aa653a1bfe869ca037b98994" id="r_a54552cb5aa653a1bfe869ca037b98994"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a54552cb5aa653a1bfe869ca037b98994">GetPath</a> ()</td></tr>
+<tr class="separator:a54552cb5aa653a1bfe869ca037b98994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93275d5e6ee9048b456cda9576385abe" id="r_a93275d5e6ee9048b456cda9576385abe"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a93275d5e6ee9048b456cda9576385abe">GetName</a> ()</td></tr>
+<tr class="separator:a93275d5e6ee9048b456cda9576385abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d32a17acc54aec086547606313d69a" id="r_ae1d32a17acc54aec086547606313d69a"><td class="memItemLeft" align="right" valign="top">quint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#ae1d32a17acc54aec086547606313d69a">GetSize</a> ()</td></tr>
+<tr class="separator:ae1d32a17acc54aec086547606313d69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03f26300a31cdfd8b96a44b5e45b078" id="r_ad03f26300a31cdfd8b96a44b5e45b078"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#ad03f26300a31cdfd8b96a44b5e45b078">SetSize</a> (quint64 size)</td></tr>
+<tr class="separator:ad03f26300a31cdfd8b96a44b5e45b078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bdc9cd6fc6a61c7645c44635e1d351" id="r_aa1bdc9cd6fc6a61c7645c44635e1d351"><td class="memItemLeft" align="right" valign="top">TYPES&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#aa1bdc9cd6fc6a61c7645c44635e1d351">GetType</a> ()</td></tr>
+<tr class="separator:aa1bdc9cd6fc6a61c7645c44635e1d351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad58c905b2fa9992fc7aa3e8f3d4e8a4d" id="r_ad58c905b2fa9992fc7aa3e8f3d4e8a4d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#ad58c905b2fa9992fc7aa3e8f3d4e8a4d">IsDir</a> ()</td></tr>
+<tr class="separator:ad58c905b2fa9992fc7aa3e8f3d4e8a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8271e3b63446ebf0978bff5fc91a42ca" id="r_a8271e3b63446ebf0978bff5fc91a42ca"><td class="memItemLeft" align="right" valign="top">QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a8271e3b63446ebf0978bff5fc91a42ca">Icon</a> ()</td></tr>
+<tr class="separator:a8271e3b63446ebf0978bff5fc91a42ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233ef166563a41c9e3a7998ad82d3ed2" id="r_a233ef166563a41c9e3a7998ad82d3ed2"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a233ef166563a41c9e3a7998ad82d3ed2">GetCreateTime</a> ()</td></tr>
+<tr class="separator:a233ef166563a41c9e3a7998ad82d3ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e3a04b128da6405e0438758f22910be" id="r_a1e3a04b128da6405e0438758f22910be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a1e3a04b128da6405e0438758f22910be">SetCreateTime</a> (const QDateTime &amp;date)</td></tr>
+<tr class="separator:a1e3a04b128da6405e0438758f22910be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9cbb0e36dd49fcd790071b1e843a7f" id="r_a2f9cbb0e36dd49fcd790071b1e843a7f"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a2f9cbb0e36dd49fcd790071b1e843a7f">GetLastModified</a> ()</td></tr>
+<tr class="separator:a2f9cbb0e36dd49fcd790071b1e843a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e14fc36ebf641ba7f1bc4d52a6bad08" id="r_a1e14fc36ebf641ba7f1bc4d52a6bad08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a1e14fc36ebf641ba7f1bc4d52a6bad08">SetLastModified</a> (const QDateTime &amp;date)</td></tr>
+<tr class="separator:a1e14fc36ebf641ba7f1bc4d52a6bad08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98fa59cc92791cf1f381d8bb1f3eb1b1" id="r_a98fa59cc92791cf1f381d8bb1f3eb1b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a98fa59cc92791cf1f381d8bb1f3eb1b1">SetPermissions</a> (QFileDevice::Permissions privileges)</td></tr>
+<tr class="separator:a98fa59cc92791cf1f381d8bb1f3eb1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0084d420310662759df0ccdf38924d60" id="r_a0084d420310662759df0ccdf38924d60"><td class="memItemLeft" align="right" valign="top">QFileDevice::Permissions&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a0084d420310662759df0ccdf38924d60">GetPermissions</a> ()</td></tr>
+<tr class="separator:a0084d420310662759df0ccdf38924d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7244dc6123e5a604b5256d70fde59614" id="r_a7244dc6123e5a604b5256d70fde59614"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a7244dc6123e5a604b5256d70fde59614">GetOwner</a> ()</td></tr>
+<tr class="separator:a7244dc6123e5a604b5256d70fde59614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45da404929f0a0c4c7e8cb9e820c7d76" id="r_a45da404929f0a0c4c7e8cb9e820c7d76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a45da404929f0a0c4c7e8cb9e820c7d76">SetOwner</a> (QString szOwner)</td></tr>
+<tr class="separator:a45da404929f0a0c4c7e8cb9e820c7d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a194cefcd3a0c6305a4815e0dcae6eb88" id="r_a194cefcd3a0c6305a4815e0dcae6eb88"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a194cefcd3a0c6305a4815e0dcae6eb88">HeaderData</a> (int section)</td></tr>
+<tr class="separator:a194cefcd3a0c6305a4815e0dcae6eb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdc84c4314f7a2eccb2a1afc9df24d94" id="r_abdc84c4314f7a2eccb2a1afc9df24d94"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#abdc84c4314f7a2eccb2a1afc9df24d94">ColumnCount</a> ()</td></tr>
+<tr class="separator:abdc84c4314f7a2eccb2a1afc9df24d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a37777f3e749358a47c8aab454a24a036" id="r_a37777f3e749358a47c8aab454a24a036"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a37777f3e749358a47c8aab454a24a036">m_pParent</a></td></tr>
+<tr class="separator:a37777f3e749358a47c8aab454a24a036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0f0f2f1350e4b5ee127ea73182c2674" id="r_ad0f0f2f1350e4b5ee127ea73182c2674"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#ad0f0f2f1350e4b5ee127ea73182c2674">m_vChild</a></td></tr>
+<tr class="separator:ad0f0f2f1350e4b5ee127ea73182c2674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ef87dcafe175d1162faadeab65ae14e" id="r_a3ef87dcafe175d1162faadeab65ae14e"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a3ef87dcafe175d1162faadeab65ae14e">m_szPath</a></td></tr>
+<tr class="separator:a3ef87dcafe175d1162faadeab65ae14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f77e04798dc9d0b1238e240a0d6a755" id="r_a6f77e04798dc9d0b1238e240a0d6a755"><td class="memItemLeft" align="right" valign="top">quint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a6f77e04798dc9d0b1238e240a0d6a755">m_nSize</a></td></tr>
+<tr class="separator:a6f77e04798dc9d0b1238e240a0d6a755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f5a873f5bf4e0d58dd640b0dc93565" id="r_af8f5a873f5bf4e0d58dd640b0dc93565"><td class="memItemLeft" align="right" valign="top">TYPES&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#af8f5a873f5bf4e0d58dd640b0dc93565">m_Type</a></td></tr>
+<tr class="separator:af8f5a873f5bf4e0d58dd640b0dc93565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4769784efe5114e8be13d30485fdff6" id="r_aa4769784efe5114e8be13d30485fdff6"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#aa4769784efe5114e8be13d30485fdff6">m_createTime</a></td></tr>
+<tr class="separator:aa4769784efe5114e8be13d30485fdff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82b0c64d1fcb2e30b579a30a93fd1b6" id="r_aa82b0c64d1fcb2e30b579a30a93fd1b6"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#aa82b0c64d1fcb2e30b579a30a93fd1b6">m_lastModifed</a></td></tr>
+<tr class="separator:aa82b0c64d1fcb2e30b579a30a93fd1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8aab066c4cacd3549435be48c920c6" id="r_a0a8aab066c4cacd3549435be48c920c6"><td class="memItemLeft" align="right" valign="top">QFileDevice::Permissions&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a0a8aab066c4cacd3549435be48c920c6">m_Permissions</a></td></tr>
+<tr class="separator:a0a8aab066c4cacd3549435be48c920c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c982f6ab83f9c820c7d054f9643c9e1" id="r_a7c982f6ab83f9c820c7d054f9643c9e1"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a7c982f6ab83f9c820c7d054f9643c9e1">m_szOwner</a></td></tr>
+<tr class="separator:a7c982f6ab83f9c820c7d054f9643c9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bfa913205cb2bb40086a2bd94e9978" id="r_a79bfa913205cb2bb40086a2bd94e9978"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRemoteFileSystem.html#a79bfa913205cb2bb40086a2bd94e9978">m_State</a></td></tr>
+<tr class="separator:a79bfa913205cb2bb40086a2bd94e9978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00009">9</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="acc9d287b29242381eaef90709888eebe" name="acc9d287b29242381eaef90709888eebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9d287b29242381eaef90709888eebe">&#9670;&#160;</a></span>ColumnValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CRemoteFileSystem::ColumnValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a813ba2f7f898715444315b0281a696d6" name="a813ba2f7f898715444315b0281a696d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813ba2f7f898715444315b0281a696d6">&#9670;&#160;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CRemoteFileSystem::State</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a686418c77cabfcd6b3b3364ee2542353" name="a686418c77cabfcd6b3b3364ee2542353"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a686418c77cabfcd6b3b3364ee2542353">&#9670;&#160;</a></span>TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CRemoteFileSystem::TYPE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00013">13</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a47b636c189b6789914ac7728633b3a6c" name="a47b636c189b6789914ac7728633b3a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47b636c189b6789914ac7728633b3a6c">&#9670;&#160;</a></span>CRemoteFileSystem() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CRemoteFileSystem::CRemoteFileSystem </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TYPES&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a65f72f056287030d008c73d42b0ead73" name="a65f72f056287030d008c73d42b0ead73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65f72f056287030d008c73d42b0ead73">&#9670;&#160;</a></span>~CRemoteFileSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CRemoteFileSystem::~CRemoteFileSystem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a425e8523a3d099f7965faf05da09b9f8" name="a425e8523a3d099f7965faf05da09b9f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a425e8523a3d099f7965faf05da09b9f8">&#9670;&#160;</a></span>CRemoteFileSystem() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CRemoteFileSystem::CRemoteFileSystem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a9b27fb1745ec9ce5d3b7191896811ce6" name="a9b27fb1745ec9ce5d3b7191896811ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b27fb1745ec9ce5d3b7191896811ce6">&#9670;&#160;</a></span>AppendChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::AppendChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td>
+          <td class="paramname"><em>pChild</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Append child </p>
+<dl class="section note"><dt>注解</dt><dd>Must set all the properties before call them. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1019245c1ca4f30035521d73a59072f7" name="a1019245c1ca4f30035521d73a59072f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1019245c1ca4f30035521d73a59072f7">&#9670;&#160;</a></span>ChildCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::ChildCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abdc84c4314f7a2eccb2a1afc9df24d94" name="abdc84c4314f7a2eccb2a1afc9df24d94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdc84c4314f7a2eccb2a1afc9df24d94">&#9670;&#160;</a></span>ColumnCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::ColumnCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00141">141</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0c51e59428344bac2c04a1ed61f96631" name="a0c51e59428344bac2c04a1ed61f96631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c51e59428344bac2c04a1ed61f96631">&#9670;&#160;</a></span>Data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariant CRemoteFileSystem::Data </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00a2b070c63f67d2da618e282f0cdf8a" name="a00a2b070c63f67d2da618e282f0cdf8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a2b070c63f67d2da618e282f0cdf8a">&#9670;&#160;</a></span>GetChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> * CRemoteFileSystem::GetChild </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a233ef166563a41c9e3a7998ad82d3ed2" name="a233ef166563a41c9e3a7998ad82d3ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233ef166563a41c9e3a7998ad82d3ed2">&#9670;&#160;</a></span>GetCreateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDateTime CRemoteFileSystem::GetCreateTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00275">275</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2f9cbb0e36dd49fcd790071b1e843a7f" name="a2f9cbb0e36dd49fcd790071b1e843a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f9cbb0e36dd49fcd790071b1e843a7f">&#9670;&#160;</a></span>GetLastModified()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDateTime CRemoteFileSystem::GetLastModified </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00285">285</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a93275d5e6ee9048b456cda9576385abe" name="a93275d5e6ee9048b456cda9576385abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93275d5e6ee9048b456cda9576385abe">&#9670;&#160;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::GetName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00227">227</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7244dc6123e5a604b5256d70fde59614" name="a7244dc6123e5a604b5256d70fde59614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7244dc6123e5a604b5256d70fde59614">&#9670;&#160;</a></span>GetOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::GetOwner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00305">305</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6bc1ba9d782018c28b8733c2cc4fba44" name="a6bc1ba9d782018c28b8733c2cc4fba44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bc1ba9d782018c28b8733c2cc4fba44">&#9670;&#160;</a></span>GetParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> * CRemoteFileSystem::GetParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a54552cb5aa653a1bfe869ca037b98994" name="a54552cb5aa653a1bfe869ca037b98994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54552cb5aa653a1bfe869ca037b98994">&#9670;&#160;</a></span>GetPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::GetPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00222">222</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0084d420310662759df0ccdf38924d60" name="a0084d420310662759df0ccdf38924d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0084d420310662759df0ccdf38924d60">&#9670;&#160;</a></span>GetPermissions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QFileDevice::Permissions CRemoteFileSystem::GetPermissions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00295">295</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae1d32a17acc54aec086547606313d69a" name="ae1d32a17acc54aec086547606313d69a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d32a17acc54aec086547606313d69a">&#9670;&#160;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint64 CRemoteFileSystem::GetSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00242">242</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add181533bde7c640e4a02d29072ad469" name="add181533bde7c640e4a02d29072ad469"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add181533bde7c640e4a02d29072ad469">&#9670;&#160;</a></span>GetState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CRemoteFileSystem::State CRemoteFileSystem::GetState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00320">320</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1bdc9cd6fc6a61c7645c44635e1d351" name="aa1bdc9cd6fc6a61c7645c44635e1d351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1bdc9cd6fc6a61c7645c44635e1d351">&#9670;&#160;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CRemoteFileSystem::TYPES CRemoteFileSystem::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00270">270</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a194cefcd3a0c6305a4815e0dcae6eb88" name="a194cefcd3a0c6305a4815e0dcae6eb88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194cefcd3a0c6305a4815e0dcae6eb88">&#9670;&#160;</a></span>HeaderData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::HeaderData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>section</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8271e3b63446ebf0978bff5fc91a42ca" name="a8271e3b63446ebf0978bff5fc91a42ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8271e3b63446ebf0978bff5fc91a42ca">&#9670;&#160;</a></span>Icon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QIcon CRemoteFileSystem::Icon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00257">257</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2124b9ae48f538f40f681d88bc7653a1" name="a2124b9ae48f538f40f681d88bc7653a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2124b9ae48f538f40f681d88bc7653a1">&#9670;&#160;</a></span>IndexOf() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::IndexOf </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00204">204</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2df94be1fb35274ec03ac9e9ce63b21c" name="a2df94be1fb35274ec03ac9e9ce63b21c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df94be1fb35274ec03ac9e9ce63b21c">&#9670;&#160;</a></span>IndexOf() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::IndexOf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td>
+          <td class="paramname"><em>pChild</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00199">199</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0774e80a538a5448bd29e9cda3ddd361" name="a0774e80a538a5448bd29e9cda3ddd361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0774e80a538a5448bd29e9cda3ddd361">&#9670;&#160;</a></span>IndexOfParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::IndexOfParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00214">214</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad58c905b2fa9992fc7aa3e8f3d4e8a4d" name="ad58c905b2fa9992fc7aa3e8f3d4e8a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58c905b2fa9992fc7aa3e8f3d4e8a4d">&#9670;&#160;</a></span>IsDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CRemoteFileSystem::IsDir </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00252">252</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a67c61de0e38a08a88ad7a9d38b28ecef" name="a67c61de0e38a08a88ad7a9d38b28ecef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c61de0e38a08a88ad7a9d38b28ecef">&#9670;&#160;</a></span>RemoveChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CRemoteFileSystem::RemoveChild </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00184">184</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e3a04b128da6405e0438758f22910be" name="a1e3a04b128da6405e0438758f22910be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3a04b128da6405e0438758f22910be">&#9670;&#160;</a></span>SetCreateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetCreateTime </td>
+          <td>(</td>
+          <td class="paramtype">const QDateTime &amp;&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00280">280</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e14fc36ebf641ba7f1bc4d52a6bad08" name="a1e14fc36ebf641ba7f1bc4d52a6bad08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e14fc36ebf641ba7f1bc4d52a6bad08">&#9670;&#160;</a></span>SetLastModified()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetLastModified </td>
+          <td>(</td>
+          <td class="paramtype">const QDateTime &amp;&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00290">290</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a45da404929f0a0c4c7e8cb9e820c7d76" name="a45da404929f0a0c4c7e8cb9e820c7d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45da404929f0a0c4c7e8cb9e820c7d76">&#9670;&#160;</a></span>SetOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetOwner </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szOwner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00310">310</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a45c70becf70bc3dfb589809aa5b21b62" name="a45c70becf70bc3dfb589809aa5b21b62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45c70becf70bc3dfb589809aa5b21b62">&#9670;&#160;</a></span>SetParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetParent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a> *&#160;</td>
+          <td class="paramname"><em>pParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98fa59cc92791cf1f381d8bb1f3eb1b1" name="a98fa59cc92791cf1f381d8bb1f3eb1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98fa59cc92791cf1f381d8bb1f3eb1b1">&#9670;&#160;</a></span>SetPermissions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetPermissions </td>
+          <td>(</td>
+          <td class="paramtype">QFileDevice::Permissions&#160;</td>
+          <td class="paramname"><em>privileges</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00300">300</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad03f26300a31cdfd8b96a44b5e45b078" name="ad03f26300a31cdfd8b96a44b5e45b078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03f26300a31cdfd8b96a44b5e45b078">&#9670;&#160;</a></span>SetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetSize </td>
+          <td>(</td>
+          <td class="paramtype">quint64&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00247">247</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae6a60314b70f080bfa962004fdf6c786" name="ae6a60314b70f080bfa962004fdf6c786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a60314b70f080bfa962004fdf6c786">&#9670;&#160;</a></span>SetState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CRemoteFileSystem::SetState </td>
+          <td>(</td>
+          <td class="paramtype">State&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a> 第 <a class="el" href="RemoteFileSystemModel_8cpp_source.html#l00315">315</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa4769784efe5114e8be13d30485fdff6" name="aa4769784efe5114e8be13d30485fdff6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4769784efe5114e8be13d30485fdff6">&#9670;&#160;</a></span>m_createTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDateTime CRemoteFileSystem::m_createTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa82b0c64d1fcb2e30b579a30a93fd1b6" name="aa82b0c64d1fcb2e30b579a30a93fd1b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa82b0c64d1fcb2e30b579a30a93fd1b6">&#9670;&#160;</a></span>m_lastModifed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDateTime CRemoteFileSystem::m_lastModifed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6f77e04798dc9d0b1238e240a0d6a755" name="a6f77e04798dc9d0b1238e240a0d6a755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f77e04798dc9d0b1238e240a0d6a755">&#9670;&#160;</a></span>m_nSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint64 CRemoteFileSystem::m_nSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0a8aab066c4cacd3549435be48c920c6" name="a0a8aab066c4cacd3549435be48c920c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8aab066c4cacd3549435be48c920c6">&#9670;&#160;</a></span>m_Permissions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QFileDevice::Permissions CRemoteFileSystem::m_Permissions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a37777f3e749358a47c8aab454a24a036" name="a37777f3e749358a47c8aab454a24a036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37777f3e749358a47c8aab454a24a036">&#9670;&#160;</a></span>m_pParent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>* CRemoteFileSystem::m_pParent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a79bfa913205cb2bb40086a2bd94e9978" name="a79bfa913205cb2bb40086a2bd94e9978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bfa913205cb2bb40086a2bd94e9978">&#9670;&#160;</a></span>m_State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">State CRemoteFileSystem::m_State</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7c982f6ab83f9c820c7d054f9643c9e1" name="a7c982f6ab83f9c820c7d054f9643c9e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c982f6ab83f9c820c7d054f9643c9e1">&#9670;&#160;</a></span>m_szOwner</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::m_szOwner</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3ef87dcafe175d1162faadeab65ae14e" name="a3ef87dcafe175d1162faadeab65ae14e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ef87dcafe175d1162faadeab65ae14e">&#9670;&#160;</a></span>m_szPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CRemoteFileSystem::m_szPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00093">93</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af8f5a873f5bf4e0d58dd640b0dc93565" name="af8f5a873f5bf4e0d58dd640b0dc93565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8f5a873f5bf4e0d58dd640b0dc93565">&#9670;&#160;</a></span>m_Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPES CRemoteFileSystem::m_Type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad0f0f2f1350e4b5ee127ea73182c2674" name="ad0f0f2f1350e4b5ee127ea73182c2674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0f0f2f1350e4b5ee127ea73182c2674">&#9670;&#160;</a></span>m_vChild</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;<a class="el" href="classCRemoteFileSystem.html">CRemoteFileSystem</a>*&gt; CRemoteFileSystem::m_vChild</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a> 第 <a class="el" href="RemoteFileSystemModel_8h_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="RemoteFileSystemModel_8h_source.html">RemoteFileSystemModel.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FileTransfer/<a class="el" href="RemoteFileSystemModel_8cpp_source.html">RemoteFileSystemModel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

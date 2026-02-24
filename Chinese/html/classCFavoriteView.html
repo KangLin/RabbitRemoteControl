@@ -1,0 +1,1410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFavoriteView类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFavoriteView-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFavoriteView类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CFavoriteView 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFavoriteView__inherit__graph.png" border="0" usemap="#aCFavoriteView_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFavoriteView_inherit__map" id="aCFavoriteView_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,120,104"/>
+<area shape="rect" title=" " alt="" coords="23,5,102,31"/>
+<area shape="poly" title=" " alt="" coords="65,44,65,79,60,79,60,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFavoriteView 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFavoriteView__coll__graph.png" border="0" usemap="#aCFavoriteView_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFavoriteView_coll__map" id="aCFavoriteView_coll__map">
+<area shape="rect" title=" " alt="" coords="3099,69,3213,95"/>
+<area shape="rect" title=" " alt="" coords="2877,5,2955,31"/>
+<area shape="poly" title=" " alt="" coords="2970,24,3075,49,3126,67,3124,72,3074,54,2969,30"/>
+<area shape="rect" href="classCParameterApp.html" title=" " alt="" coords="1619,256,1742,281"/>
+<area shape="poly" title=" " alt="" coords="1756,267,2000,270,2917,270,2958,264,2996,249,3032,226,3063,198,3114,139,3145,94,3149,97,3118,143,3067,202,3035,230,2999,253,2959,269,2918,275,2000,275,1756,273"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,479,228,504"/>
+<area shape="poly" title=" " alt="" coords="181,464,195,395,207,352,224,309,246,270,274,237,309,214,329,208,351,206,1367,206,1443,211,1519,223,1640,253,1639,259,1518,228,1443,216,1367,211,351,211,330,213,311,219,278,241,251,273,229,312,212,354,200,396,186,466"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="277,348,428,373"/>
+<area shape="poly" title=" " alt="" coords="206,468,333,372,336,376,209,472"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="1932,536,2071,561"/>
+<area shape="poly" title=" " alt="" coords="197,514,222,549,258,586,301,615,326,624,351,627,1682,627,1765,620,1846,602,1917,579,1970,559,1972,564,1919,584,1847,607,1766,625,1682,633,351,633,324,629,299,620,254,590,218,552,193,517"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1611,455,1751,480"/>
+<area shape="poly" title=" " alt="" coords="241,475,295,467,351,463,1167,463,1611,464,1611,470,1167,469,351,469,295,472,242,480"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="452,668,583,693"/>
+<area shape="poly" title=" " alt="" coords="187,517,194,548,207,584,226,618,254,647,300,671,352,684,404,688,451,687,452,692,404,693,351,689,298,676,250,651,222,622,202,586,189,550,181,518"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="759,505,901,531"/>
+<area shape="poly" title=" " alt="" coords="242,491,759,512,758,518,241,497"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1071,564,1261,589"/>
+<area shape="poly" title=" " alt="" coords="207,510,235,530,270,550,310,565,352,571,831,571,1071,573,1071,578,831,577,351,577,309,570,268,555,232,535,204,515"/>
+<area shape="rect" title=" " alt="" coords="5,284,80,309"/>
+<area shape="poly" title=" " alt="" coords="63,319,171,477,166,480,58,322"/>
+<area shape="rect" href="classCDatabase.html" title=" " alt="" coords="1634,117,1727,143"/>
+<area shape="poly" title=" " alt="" coords="49,270,65,228,91,181,108,160,128,143,151,132,177,127,1367,127,1634,127,1634,133,1367,133,178,133,153,137,131,148,112,164,96,184,70,230,54,272"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1285,256,1445,281"/>
+<area shape="poly" title=" " alt="" coords="1459,266,1619,266,1619,271,1459,271"/>
+<area shape="poly" title=" " alt="" coords="1399,286,1660,452,1658,457,1397,291"/>
+<area shape="poly" title=" " alt="" coords="1407,248,1649,140,1652,145,1409,253"/>
+<area shape="poly" title=" " alt="" coords="387,339,451,310,528,290,606,282,797,268,987,262,1285,264,1285,269,987,268,797,274,607,287,529,296,453,315,389,344"/>
+<area shape="poly" title=" " alt="" coords="332,333,339,325,353,321,365,324,372,330,374,340,370,349,365,347,368,339,367,333,362,328,353,327,342,329,337,336"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="925,297,1047,323"/>
+<area shape="poly" title=" " alt="" coords="441,353,734,333,925,314,925,319,735,338,442,358"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="607,297,735,323"/>
+<area shape="poly" title=" " alt="" coords="432,343,452,339,606,316,607,321,452,345,433,348"/>
+<area shape="poly" title=" " alt="" coords="1982,526,1950,488,1930,470,1907,455,1862,436,1823,424,1787,418,1753,417,1679,420,1587,418,1247,395,915,380,428,365,428,359,915,374,1248,390,1587,413,1679,414,1753,412,1788,413,1824,419,1864,431,1909,450,1933,465,1954,484,1986,523"/>
+<area shape="poly" title=" " alt="" coords="1765,469,1836,479,1909,497,1949,514,1982,534,1980,538,1947,519,1907,502,1835,484,1765,475"/>
+<area shape="poly" title=" " alt="" coords="596,678,829,678,1682,678,1799,680,1848,671,1907,646,1934,627,1958,604,1990,560,1995,563,1962,607,1938,631,1909,651,1850,676,1800,685,1682,683,829,683,596,683"/>
+<area shape="poly" title=" " alt="" coords="915,515,1165,515,1682,515,1816,522,1932,536,1932,541,1815,527,1682,521,1165,521,915,521"/>
+<area shape="poly" title=" " alt="" coords="1275,570,1932,548,1932,554,1276,576"/>
+<area shape="poly" title=" " alt="" coords="1060,306,1156,301,1261,290,1316,279,1317,284,1262,295,1157,306,1061,311"/>
+<area shape="poly" title=" " alt="" coords="748,307,925,307,925,313,748,313"/>
+<area shape="rect" href="classCFavoriteModel.html" title=" " alt="" coords="2855,128,2977,153"/>
+<area shape="poly" title=" " alt="" coords="2985,122,3074,101,3107,92,3108,97,3075,106,2986,127"/>
+<area shape="rect" title=" " alt="" coords="2555,121,2711,147"/>
+<area shape="poly" title=" " alt="" coords="2725,133,2854,137,2854,142,2725,139"/>
+<area shape="rect" href="classCFavoriteDatabase.html" title=" " alt="" coords="2561,72,2706,97"/>
+<area shape="poly" title=" " alt="" coords="2720,82,3098,80,3098,85,2720,87"/>
+<area shape="poly" title=" " alt="" coords="2712,97,2855,126,2854,131,2711,103"/>
+<area shape="rect" href="classCDatabaseTree.html" title=" " alt="" coords="2270,77,2390,103"/>
+<area shape="poly" title=" " alt="" coords="2404,86,2560,83,2560,89,2404,91"/>
+<area shape="poly" title=" " alt="" coords="1741,124,2269,91,2270,96,1741,129"/>
+<area shape="rect" href="classCDatabaseFolder.html" title=" " alt="" coords="1935,67,2068,92"/>
+<area shape="poly" title=" " alt="" coords="1740,115,1774,109,1934,85,1935,90,1775,114,1741,120"/>
+<area shape="rect" href="classCDatabaseIcon.html" title=" " alt="" coords="2095,16,2215,41"/>
+<area shape="poly" title=" " alt="" coords="1714,108,1774,81,1859,58,1946,42,2094,28,2094,33,1947,47,1860,63,1776,86,1716,113"/>
+<area shape="rect" href="classCDatabaseFile.html" title="The CDatabaseFile class" alt="" coords="2097,160,2213,185"/>
+<area shape="poly" title=" " alt="" coords="1741,140,1775,146,1951,162,2097,169,2097,174,1950,168,1774,151,1740,146"/>
+<area shape="poly" title=" " alt="" coords="2082,79,2270,85,2270,91,2082,85"/>
+<area shape="poly" title=" " alt="" coords="2229,33,2531,66,2561,70,2560,76,2530,71,2228,38"/>
+<area shape="poly" title=" " alt="" coords="2226,159,2421,126,2574,95,2575,100,2422,131,2227,164"/>
+<area shape="rect" href="structCFavoriteModel_1_1tree.html" title=" " alt="" coords="2555,209,2712,235"/>
+<area shape="poly" title=" " alt="" coords="2691,203,2870,151,2872,156,2692,208"/>
+<area shape="poly" title=" " alt="" coords="2605,195,2613,186,2633,183,2650,185,2660,191,2663,201,2658,210,2653,208,2658,200,2656,195,2648,190,2633,188,2616,191,2609,198"/>
+<area shape="rect" href="structCFavoriteDatabase_1_1Item.html" title=" " alt="" coords="2239,209,2421,235"/>
+<area shape="poly" title=" " alt="" coords="2435,219,2555,219,2555,225,2435,225"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:aacab6e68d6d090d99a2db8ab34e38c81" id="r_aacab6e68d6d090d99a2db8ab34e38c81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#aacab6e68d6d090d99a2db8ab34e38c81">slotAddToFavorite</a> (const QString &amp;szFile, const QString &amp;szName, const QString &amp;szDescription, const QIcon &amp;icon)</td></tr>
+<tr class="separator:aacab6e68d6d090d99a2db8ab34e38c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690d10b42386cd4d6d1c777e745a9271" id="r_a690d10b42386cd4d6d1c777e745a9271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a690d10b42386cd4d6d1c777e745a9271">slotUpdateFavorite</a> (const QString &amp;szFile, const QString &amp;szName=QString(), const QString &amp;szDescription=QString(), const QIcon &amp;icon=QIcon())</td></tr>
+<tr class="separator:a690d10b42386cd4d6d1c777e745a9271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1baf496f8e2953f28c30edd00e543d" id="r_a4e1baf496f8e2953f28c30edd00e543d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a4e1baf496f8e2953f28c30edd00e543d">eventFilter</a> (QObject *watched, QEvent *event) override</td></tr>
+<tr class="separator:a4e1baf496f8e2953f28c30edd00e543d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:af9617acebd687109c767c01fd3cc7b9e" id="r_af9617acebd687109c767c01fd3cc7b9e"><td class="memItemLeft" align="right" valign="top"><a id="af9617acebd687109c767c01fd3cc7b9e" name="af9617acebd687109c767c01fd3cc7b9e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigStart</b> (const QString &amp;szFile, bool bOpenSettings)</td></tr>
+<tr class="separator:af9617acebd687109c767c01fd3cc7b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63212502760788b1c53db4bfde5892f9" id="r_a63212502760788b1c53db4bfde5892f9"><td class="memItemLeft" align="right" valign="top"><a id="a63212502760788b1c53db4bfde5892f9" name="a63212502760788b1c53db4bfde5892f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigFavorite</b> ()</td></tr>
+<tr class="separator:a63212502760788b1c53db4bfde5892f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a86894c25690d0cfc8464cc50cbaa9a51" id="r_a86894c25690d0cfc8464cc50cbaa9a51"><td class="memItemLeft" align="right" valign="top"><a id="a86894c25690d0cfc8464cc50cbaa9a51" name="a86894c25690d0cfc8464cc50cbaa9a51"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CFavoriteView</b> (<a class="el" href="classCParameterApp.html">CParameterApp</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a86894c25690d0cfc8464cc50cbaa9a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e9142f1a376cc7da62510ae5e512214" id="r_a6e9142f1a376cc7da62510ae5e512214"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a6e9142f1a376cc7da62510ae5e512214">Initial</a> ()</td></tr>
+<tr class="separator:a6e9142f1a376cc7da62510ae5e512214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a4800255d83e85768d5b7cf465de3a627" id="r_a4800255d83e85768d5b7cf465de3a627"><td class="memItemLeft" align="right" valign="top">RabbitCommon::CTitleBar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a4800255d83e85768d5b7cf465de3a627">m_pDockTitleBar</a></td></tr>
+<tr class="separator:a4800255d83e85768d5b7cf465de3a627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a49c0cf4deb6303e4d3ba3061958f2d8f" id="r_a49c0cf4deb6303e4d3ba3061958f2d8f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a49c0cf4deb6303e4d3ba3061958f2d8f">dragEnterEvent</a> (QDragEnterEvent *event) override</td></tr>
+<tr class="separator:a49c0cf4deb6303e4d3ba3061958f2d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a628ba6ca5b854d4a8b4c2ffbacdbb" id="r_a97a628ba6ca5b854d4a8b4c2ffbacdbb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a97a628ba6ca5b854d4a8b4c2ffbacdbb">dragMoveEvent</a> (QDragMoveEvent *event) override</td></tr>
+<tr class="separator:a97a628ba6ca5b854d4a8b4c2ffbacdbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed035f2e03414cdeb9ec12510be1867" id="r_a0ed035f2e03414cdeb9ec12510be1867"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a0ed035f2e03414cdeb9ec12510be1867">dropEvent</a> (QDropEvent *event) override</td></tr>
+<tr class="separator:a0ed035f2e03414cdeb9ec12510be1867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a5f5b0445ac8ac8b041aed50882ca904f" id="r_a5f5b0445ac8ac8b041aed50882ca904f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a5f5b0445ac8ac8b041aed50882ca904f">slotFavrtieClicked</a> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:a5f5b0445ac8ac8b041aed50882ca904f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab53b06371deac49f8416b6e2aa640d49" id="r_ab53b06371deac49f8416b6e2aa640d49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ab53b06371deac49f8416b6e2aa640d49">slotFavortiedoubleClicked</a> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:ab53b06371deac49f8416b6e2aa640d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6d94649fc8f075bbe0c26ce1d33419" id="r_a1a6d94649fc8f075bbe0c26ce1d33419"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a1a6d94649fc8f075bbe0c26ce1d33419">slotCustomContextMenu</a> (const QPoint &amp;pos)</td></tr>
+<tr class="separator:a1a6d94649fc8f075bbe0c26ce1d33419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b19c9b510d2a0e900469602c7dfec35" id="r_a7b19c9b510d2a0e900469602c7dfec35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a7b19c9b510d2a0e900469602c7dfec35">slotStart</a> ()</td></tr>
+<tr class="separator:a7b19c9b510d2a0e900469602c7dfec35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ae16297ec0c0fd6e56004385c9cc30" id="r_a79ae16297ec0c0fd6e56004385c9cc30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a79ae16297ec0c0fd6e56004385c9cc30">slotOpenStart</a> ()</td></tr>
+<tr class="separator:a79ae16297ec0c0fd6e56004385c9cc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f011584d146df8b10aae4c67dc7e65" id="r_af7f011584d146df8b10aae4c67dc7e65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#af7f011584d146df8b10aae4c67dc7e65">slotEdit</a> ()</td></tr>
+<tr class="separator:af7f011584d146df8b10aae4c67dc7e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9dfd301217b854b8453b78949d7d9c" id="r_a3c9dfd301217b854b8453b78949d7d9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a3c9dfd301217b854b8453b78949d7d9c">slotDelete</a> ()</td></tr>
+<tr class="separator:a3c9dfd301217b854b8453b78949d7d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46ac3662f593d1fcac8219574d1f0a60" id="r_a46ac3662f593d1fcac8219574d1f0a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a46ac3662f593d1fcac8219574d1f0a60">slotNewGroup</a> ()</td></tr>
+<tr class="separator:a46ac3662f593d1fcac8219574d1f0a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae22f3def7e6ba1a7c5f7b2cb70ddde77" id="r_ae22f3def7e6ba1a7c5f7b2cb70ddde77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ae22f3def7e6ba1a7c5f7b2cb70ddde77">slotDoubleEditNode</a> (bool bEdit)</td></tr>
+<tr class="separator:ae22f3def7e6ba1a7c5f7b2cb70ddde77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80235ed5b87997b63a000fe522ad24c7" id="r_a80235ed5b87997b63a000fe522ad24c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a80235ed5b87997b63a000fe522ad24c7">slotMenu</a> ()</td></tr>
+<tr class="separator:a80235ed5b87997b63a000fe522ad24c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1262a4e27f59e1661d235c36b40810" id="r_a3e1262a4e27f59e1661d235c36b40810"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a3e1262a4e27f59e1661d235c36b40810">slotImport</a> ()</td></tr>
+<tr class="separator:a3e1262a4e27f59e1661d235c36b40810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319a45f78f88f0211917f414ebad8d39" id="r_a319a45f78f88f0211917f414ebad8d39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a319a45f78f88f0211917f414ebad8d39">slotExport</a> ()</td></tr>
+<tr class="separator:a319a45f78f88f0211917f414ebad8d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733d03ce13023d26b154dc0d80f39f0a" id="r_a733d03ce13023d26b154dc0d80f39f0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a733d03ce13023d26b154dc0d80f39f0a">slotRefresh</a> ()</td></tr>
+<tr class="separator:a733d03ce13023d26b154dc0d80f39f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a7d46c743ebcf93031bb4baaffd4eb1c0" id="r_a7d46c743ebcf93031bb4baaffd4eb1c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a7d46c743ebcf93031bb4baaffd4eb1c0">setupUI</a> ()</td></tr>
+<tr class="separator:a7d46c743ebcf93031bb4baaffd4eb1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad928cb5c78e6a78bfeacd5830ff8cc44" id="r_ad928cb5c78e6a78bfeacd5830ff8cc44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ad928cb5c78e6a78bfeacd5830ff8cc44">setupToolBar</a> (QLayout *layout)</td></tr>
+<tr class="separator:ad928cb5c78e6a78bfeacd5830ff8cc44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98120b629fc1e89fad1fbaa8a42cb776" id="r_a98120b629fc1e89fad1fbaa8a42cb776"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a98120b629fc1e89fad1fbaa8a42cb776">setupTreeView</a> (QLayout *layout)</td></tr>
+<tr class="separator:a98120b629fc1e89fad1fbaa8a42cb776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5df08bec377ebeae5b46839e6d427a8" id="r_ac5df08bec377ebeae5b46839e6d427a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ac5df08bec377ebeae5b46839e6d427a8">EnableAction</a> (const QModelIndex &amp;index=QModelIndex())</td></tr>
+<tr class="separator:ac5df08bec377ebeae5b46839e6d427a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ac93651c6ea3de8b6ee0bccd5524f8c1f" id="r_ac93651c6ea3de8b6ee0bccd5524f8c1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterApp.html">CParameterApp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ac93651c6ea3de8b6ee0bccd5524f8c1f">m_pParaApp</a></td></tr>
+<tr class="separator:ac93651c6ea3de8b6ee0bccd5524f8c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37151e19066fdccdbf86f8a2cffbbb83" id="r_a37151e19066fdccdbf86f8a2cffbbb83"><td class="memItemLeft" align="right" valign="top">QTreeView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a37151e19066fdccdbf86f8a2cffbbb83">m_pTreeView</a></td></tr>
+<tr class="separator:a37151e19066fdccdbf86f8a2cffbbb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da2a667dd42ab1363517020948e0a2b" id="r_a1da2a667dd42ab1363517020948e0a2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFavoriteModel.html">CFavoriteModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a1da2a667dd42ab1363517020948e0a2b">m_pModel</a></td></tr>
+<tr class="separator:a1da2a667dd42ab1363517020948e0a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81ea8d4775b941b1bb6d732e5eb52c9a" id="r_a81ea8d4775b941b1bb6d732e5eb52c9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFavoriteDatabase.html">CFavoriteDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a81ea8d4775b941b1bb6d732e5eb52c9a">m_pDatabase</a></td></tr>
+<tr class="separator:a81ea8d4775b941b1bb6d732e5eb52c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0520b3c7bfd6faacc51e77e520e8b2ba" id="r_a0520b3c7bfd6faacc51e77e520e8b2ba"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a0520b3c7bfd6faacc51e77e520e8b2ba">m_pStartAction</a></td></tr>
+<tr class="separator:a0520b3c7bfd6faacc51e77e520e8b2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536c57513e2ab956cdcddb074ce712de" id="r_a536c57513e2ab956cdcddb074ce712de"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a536c57513e2ab956cdcddb074ce712de">m_pEidtStartAction</a></td></tr>
+<tr class="separator:a536c57513e2ab956cdcddb074ce712de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d90d2d4069caf77307a68780d4687eb" id="r_a7d90d2d4069caf77307a68780d4687eb"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a7d90d2d4069caf77307a68780d4687eb">m_pAddFolderAction</a></td></tr>
+<tr class="separator:a7d90d2d4069caf77307a68780d4687eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5424f92172a3304669f2eeff9ea4bbe0" id="r_a5424f92172a3304669f2eeff9ea4bbe0"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a5424f92172a3304669f2eeff9ea4bbe0">m_pEditAction</a></td></tr>
+<tr class="separator:a5424f92172a3304669f2eeff9ea4bbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d3a325c84036c56776aa959bb18ae8" id="r_a98d3a325c84036c56776aa959bb18ae8"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a98d3a325c84036c56776aa959bb18ae8">m_pDeleteAction</a></td></tr>
+<tr class="separator:a98d3a325c84036c56776aa959bb18ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7633608a3650d7eb5ae03900b9f2cce8" id="r_a7633608a3650d7eb5ae03900b9f2cce8"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a7633608a3650d7eb5ae03900b9f2cce8">m_pImportAction</a></td></tr>
+<tr class="separator:a7633608a3650d7eb5ae03900b9f2cce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763fdbc0d5da29228b88bf12909df2a7" id="r_a763fdbc0d5da29228b88bf12909df2a7"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a763fdbc0d5da29228b88bf12909df2a7">m_pExportAction</a></td></tr>
+<tr class="separator:a763fdbc0d5da29228b88bf12909df2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46d3c7a5ffd15e47e69e95cce8025e85" id="r_a46d3c7a5ffd15e47e69e95cce8025e85"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#a46d3c7a5ffd15e47e69e95cce8025e85">m_pRefresh</a></td></tr>
+<tr class="separator:a46d3c7a5ffd15e47e69e95cce8025e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb396d474a4409741009274bc52c2367" id="r_adb396d474a4409741009274bc52c2367"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#adb396d474a4409741009274bc52c2367">m_pShowToolbar</a></td></tr>
+<tr class="separator:adb396d474a4409741009274bc52c2367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad71d8f7984ed19878fcbfe3bb2fb0dfe" id="r_ad71d8f7984ed19878fcbfe3bb2fb0dfe"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ad71d8f7984ed19878fcbfe3bb2fb0dfe">m_pMenu</a></td></tr>
+<tr class="separator:ad71d8f7984ed19878fcbfe3bb2fb0dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae359a8d51b77e22b93ba49b789fb6fc8" id="r_ae359a8d51b77e22b93ba49b789fb6fc8"><td class="memItemLeft" align="right" valign="top">QPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFavoriteView.html#ae359a8d51b77e22b93ba49b789fb6fc8">m_DragStartPosition</a></td></tr>
+<tr class="separator:ae359a8d51b77e22b93ba49b789fb6fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9bf0146e9a9a796ac99724011defaf6f" name="a9bf0146e9a9a796ac99724011defaf6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf0146e9a9a796ac99724011defaf6f">&#9670;&#160;</a></span>~CFavoriteView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFavoriteView::~CFavoriteView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a49c0cf4deb6303e4d3ba3061958f2d8f" name="a49c0cf4deb6303e4d3ba3061958f2d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49c0cf4deb6303e4d3ba3061958f2d8f">&#9670;&#160;</a></span>dragEnterEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::dragEnterEvent </td>
+          <td>(</td>
+          <td class="paramtype">QDragEnterEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00492">492</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a97a628ba6ca5b854d4a8b4c2ffbacdbb" name="a97a628ba6ca5b854d4a8b4c2ffbacdbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97a628ba6ca5b854d4a8b4c2ffbacdbb">&#9670;&#160;</a></span>dragMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::dragMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QDragMoveEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00504">504</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0ed035f2e03414cdeb9ec12510be1867" name="a0ed035f2e03414cdeb9ec12510be1867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed035f2e03414cdeb9ec12510be1867">&#9670;&#160;</a></span>dropEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::dropEvent </td>
+          <td>(</td>
+          <td class="paramtype">QDropEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00508">508</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac5df08bec377ebeae5b46839e6d427a8" name="ac5df08bec377ebeae5b46839e6d427a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5df08bec377ebeae5b46839e6d427a8">&#9670;&#160;</a></span>EnableAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::EnableAction </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em> = <code>QModelIndex()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00223">223</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4e1baf496f8e2953f28c30edd00e543d" name="a4e1baf496f8e2953f28c30edd00e543d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1baf496f8e2953f28c30edd00e543d">&#9670;&#160;</a></span>eventFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CFavoriteView::eventFilter </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>watched</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00591">591</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6e9142f1a376cc7da62510ae5e512214" name="a6e9142f1a376cc7da62510ae5e512214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e9142f1a376cc7da62510ae5e512214">&#9670;&#160;</a></span>Initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::Initial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00210">210</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad928cb5c78e6a78bfeacd5830ff8cc44" name="ad928cb5c78e6a78bfeacd5830ff8cc44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad928cb5c78e6a78bfeacd5830ff8cc44">&#9670;&#160;</a></span>setupToolBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::setupToolBar </td>
+          <td>(</td>
+          <td class="paramtype">QLayout *&#160;</td>
+          <td class="paramname"><em>layout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98120b629fc1e89fad1fbaa8a42cb776" name="a98120b629fc1e89fad1fbaa8a42cb776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98120b629fc1e89fad1fbaa8a42cb776">&#9670;&#160;</a></span>setupTreeView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::setupTreeView </td>
+          <td>(</td>
+          <td class="paramtype">QLayout *&#160;</td>
+          <td class="paramname"><em>layout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00178">178</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d46c743ebcf93031bb4baaffd4eb1c0" name="a7d46c743ebcf93031bb4baaffd4eb1c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d46c743ebcf93031bb4baaffd4eb1c0">&#9670;&#160;</a></span>setupUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::setupUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aacab6e68d6d090d99a2db8ab34e38c81" name="aacab6e68d6d090d99a2db8ab34e38c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacab6e68d6d090d99a2db8ab34e38c81">&#9670;&#160;</a></span>slotAddToFavorite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotAddToFavorite </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDescription</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QIcon &amp;&#160;</td>
+          <td class="paramname"><em>icon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00252">252</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1a6d94649fc8f075bbe0c26ce1d33419" name="a1a6d94649fc8f075bbe0c26ce1d33419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a6d94649fc8f075bbe0c26ce1d33419">&#9670;&#160;</a></span>slotCustomContextMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotCustomContextMenu </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00355">355</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3c9dfd301217b854b8453b78949d7d9c" name="a3c9dfd301217b854b8453b78949d7d9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c9dfd301217b854b8453b78949d7d9c">&#9670;&#160;</a></span>slotDelete</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotDelete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00397">397</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae22f3def7e6ba1a7c5f7b2cb70ddde77" name="ae22f3def7e6ba1a7c5f7b2cb70ddde77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae22f3def7e6ba1a7c5f7b2cb70ddde77">&#9670;&#160;</a></span>slotDoubleEditNode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotDoubleEditNode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEdit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00322">322</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af7f011584d146df8b10aae4c67dc7e65" name="af7f011584d146df8b10aae4c67dc7e65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7f011584d146df8b10aae4c67dc7e65">&#9670;&#160;</a></span>slotEdit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotEdit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00383">383</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a319a45f78f88f0211917f414ebad8d39" name="a319a45f78f88f0211917f414ebad8d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a319a45f78f88f0211917f414ebad8d39">&#9670;&#160;</a></span>slotExport</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotExport </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00468">468</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab53b06371deac49f8416b6e2aa640d49" name="ab53b06371deac49f8416b6e2aa640d49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53b06371deac49f8416b6e2aa640d49">&#9670;&#160;</a></span>slotFavortiedoubleClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotFavortiedoubleClicked </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5f5b0445ac8ac8b041aed50882ca904f" name="a5f5b0445ac8ac8b041aed50882ca904f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f5b0445ac8ac8b041aed50882ca904f">&#9670;&#160;</a></span>slotFavrtieClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotFavrtieClicked </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00307">307</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3e1262a4e27f59e1661d235c36b40810" name="a3e1262a4e27f59e1661d235c36b40810"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1262a4e27f59e1661d235c36b40810">&#9670;&#160;</a></span>slotImport</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotImport </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00443">443</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80235ed5b87997b63a000fe522ad24c7" name="a80235ed5b87997b63a000fe522ad24c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80235ed5b87997b63a000fe522ad24c7">&#9670;&#160;</a></span>slotMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00330">330</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a46ac3662f593d1fcac8219574d1f0a60" name="a46ac3662f593d1fcac8219574d1f0a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46ac3662f593d1fcac8219574d1f0a60">&#9670;&#160;</a></span>slotNewGroup</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotNewGroup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00416">416</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a79ae16297ec0c0fd6e56004385c9cc30" name="a79ae16297ec0c0fd6e56004385c9cc30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ae16297ec0c0fd6e56004385c9cc30">&#9670;&#160;</a></span>slotOpenStart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotOpenStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00372">372</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a733d03ce13023d26b154dc0d80f39f0a" name="a733d03ce13023d26b154dc0d80f39f0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a733d03ce13023d26b154dc0d80f39f0a">&#9670;&#160;</a></span>slotRefresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotRefresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00437">437</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7b19c9b510d2a0e900469602c7dfec35" name="a7b19c9b510d2a0e900469602c7dfec35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b19c9b510d2a0e900469602c7dfec35">&#9670;&#160;</a></span>slotStart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00361">361</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a690d10b42386cd4d6d1c777e745a9271" name="a690d10b42386cd4d6d1c777e745a9271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690d10b42386cd4d6d1c777e745a9271">&#9670;&#160;</a></span>slotUpdateFavorite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFavoriteView::slotUpdateFavorite </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em> = <code>QString()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szDescription</em> = <code>QString()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QIcon &amp;&#160;</td>
+          <td class="paramname"><em>icon</em> = <code>QIcon()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a> 第 <a class="el" href="FavoriteView_8cpp_source.html#l00299">299</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae359a8d51b77e22b93ba49b789fb6fc8" name="ae359a8d51b77e22b93ba49b789fb6fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae359a8d51b77e22b93ba49b789fb6fc8">&#9670;&#160;</a></span>m_DragStartPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPoint CFavoriteView::m_DragStartPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d90d2d4069caf77307a68780d4687eb" name="a7d90d2d4069caf77307a68780d4687eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d90d2d4069caf77307a68780d4687eb">&#9670;&#160;</a></span>m_pAddFolderAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pAddFolderAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00075">75</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a81ea8d4775b941b1bb6d732e5eb52c9a" name="a81ea8d4775b941b1bb6d732e5eb52c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ea8d4775b941b1bb6d732e5eb52c9a">&#9670;&#160;</a></span>m_pDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFavoriteDatabase.html">CFavoriteDatabase</a>* CFavoriteView::m_pDatabase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00072">72</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98d3a325c84036c56776aa959bb18ae8" name="a98d3a325c84036c56776aa959bb18ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d3a325c84036c56776aa959bb18ae8">&#9670;&#160;</a></span>m_pDeleteAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pDeleteAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4800255d83e85768d5b7cf465de3a627" name="a4800255d83e85768d5b7cf465de3a627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4800255d83e85768d5b7cf465de3a627">&#9670;&#160;</a></span>m_pDockTitleBar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RabbitCommon::CTitleBar* CFavoriteView::m_pDockTitleBar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5424f92172a3304669f2eeff9ea4bbe0" name="a5424f92172a3304669f2eeff9ea4bbe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5424f92172a3304669f2eeff9ea4bbe0">&#9670;&#160;</a></span>m_pEditAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pEditAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a536c57513e2ab956cdcddb074ce712de" name="a536c57513e2ab956cdcddb074ce712de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536c57513e2ab956cdcddb074ce712de">&#9670;&#160;</a></span>m_pEidtStartAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pEidtStartAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00074">74</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a763fdbc0d5da29228b88bf12909df2a7" name="a763fdbc0d5da29228b88bf12909df2a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763fdbc0d5da29228b88bf12909df2a7">&#9670;&#160;</a></span>m_pExportAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pExportAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7633608a3650d7eb5ae03900b9f2cce8" name="a7633608a3650d7eb5ae03900b9f2cce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7633608a3650d7eb5ae03900b9f2cce8">&#9670;&#160;</a></span>m_pImportAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pImportAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad71d8f7984ed19878fcbfe3bb2fb0dfe" name="ad71d8f7984ed19878fcbfe3bb2fb0dfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad71d8f7984ed19878fcbfe3bb2fb0dfe">&#9670;&#160;</a></span>m_pMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* CFavoriteView::m_pMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1da2a667dd42ab1363517020948e0a2b" name="a1da2a667dd42ab1363517020948e0a2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da2a667dd42ab1363517020948e0a2b">&#9670;&#160;</a></span>m_pModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCFavoriteModel.html">CFavoriteModel</a>* CFavoriteView::m_pModel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac93651c6ea3de8b6ee0bccd5524f8c1f" name="ac93651c6ea3de8b6ee0bccd5524f8c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac93651c6ea3de8b6ee0bccd5524f8c1f">&#9670;&#160;</a></span>m_pParaApp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterApp.html">CParameterApp</a>* CFavoriteView::m_pParaApp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00069">69</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a46d3c7a5ffd15e47e69e95cce8025e85" name="a46d3c7a5ffd15e47e69e95cce8025e85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46d3c7a5ffd15e47e69e95cce8025e85">&#9670;&#160;</a></span>m_pRefresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pRefresh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adb396d474a4409741009274bc52c2367" name="adb396d474a4409741009274bc52c2367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb396d474a4409741009274bc52c2367">&#9670;&#160;</a></span>m_pShowToolbar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pShowToolbar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0520b3c7bfd6faacc51e77e520e8b2ba" name="a0520b3c7bfd6faacc51e77e520e8b2ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0520b3c7bfd6faacc51e77e520e8b2ba">&#9670;&#160;</a></span>m_pStartAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFavoriteView::m_pStartAction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a37151e19066fdccdbf86f8a2cffbbb83" name="a37151e19066fdccdbf86f8a2cffbbb83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37151e19066fdccdbf86f8a2cffbbb83">&#9670;&#160;</a></span>m_pTreeView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTreeView* CFavoriteView::m_pTreeView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a> 第 <a class="el" href="FavoriteView_8h_source.html#l00070">70</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Favorite/<a class="el" href="FavoriteView_8h_source.html">FavoriteView.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/App/Client/Favorite/<a class="el" href="FavoriteView_8cpp_source.html">FavoriteView.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

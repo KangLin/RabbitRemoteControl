@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: Wiki</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">Wiki</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md267"></a> </p>
+<h1><a class="anchor" id="autotoc_md268"></a>
+配置数据库</h1>
+<h2><a class="anchor" id="autotoc_md269"></a>
+配置 MySQL</h2>
+<p>以下命令都在服务器上执行。</p>
+<ul>
+<li>检查 MySQL 用户权限</li>
+</ul>
+<p>登录MySQL服务器（在服务器上执行。默认密码为空）：</p>
+<div class="fragment"><div class="line">$ sudo mysql -uroot -p</div>
+</div><!-- fragment --><div class="fragment"><div class="line">-- 查看现有用户和权限</div>
+<div class="line">SELECT user, host FROM mysql.user;</div>
+<div class="line"> </div>
+<div class="line">-- 查看特定用户的权限</div>
+<div class="line">SHOW GRANTS FOR &#39;用户名&#39;@&#39;192.168.137.1&#39;;</div>
+</div><!-- fragment --><ul>
+<li>创建或修改用户权限</li>
+</ul>
+<div class="fragment"><div class="line">-- 方法1：为特定IP创建用户并授权</div>
+<div class="line">CREATE USER &#39;用户名&#39;@&#39;192.168.137.1&#39; IDENTIFIED BY &#39;密码&#39;;</div>
+<div class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;用户名&#39;@&#39;192.168.137.1&#39;;</div>
+<div class="line"> </div>
+<div class="line">-- 方法2：允许整个网段</div>
+<div class="line">CREATE USER &#39;用户名&#39;@&#39;192.168.137.%&#39; IDENTIFIED BY &#39;密码&#39;;</div>
+<div class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;用户名&#39;@&#39;192.168.137.%&#39;;</div>
+<div class="line"> </div>
+<div class="line">-- 方法3：允许所有IP（不推荐生产环境）</div>
+<div class="line">CREATE USER &#39;用户名&#39;@&#39;%&#39; IDENTIFIED BY &#39;密码&#39;;</div>
+<div class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;用户名&#39;@&#39;%&#39;;</div>
+<div class="line"> </div>
+<div class="line">-- 刷新权限</div>
+<div class="line">FLUSH PRIVILEGES;</div>
+</div><!-- fragment --><ul>
+<li>修改 MySQL 绑定地址</li>
+</ul>
+<p>编辑MySQL配置文件（通常为/etc/mysql/mysql.conf.d/mysqld.cnf或/etc/my.cnf）：</p>
+<div class="fragment"><div class="line">[mysqld]</div>
+<div class="line"># 允许所有IP连接</div>
+<div class="line">bind-address = 0.0.0.0</div>
+<div class="line"> </div>
+<div class="line"># 或指定多个IP</div>
+<div class="line"># bind-address = 127.0.0.1,192.168.137.1</div>
+</div><!-- fragment --><p>重启MySQL服务：</p>
+<div class="fragment"><div class="line"># Ubuntu/Debian</div>
+<div class="line">sudo systemctl restart mysql</div>
+<div class="line"> </div>
+<div class="line"># CentOS/RHEL</div>
+<div class="line">sudo systemctl restart mysqld</div>
+</div><!-- fragment --><ul>
+<li>配置防火墙设置</li>
+</ul>
+<p>确保防火墙允许MySQL端口（默认3306）：</p>
+<div class="fragment"><div class="line"># 查看防火墙状态</div>
+<div class="line">sudo ufw status  # Ubuntu</div>
+<div class="line">sudo firewall-cmd --list-all  # CentOS</div>
+<div class="line"> </div>
+<div class="line"># 开放端口</div>
+<div class="line">sudo ufw allow 3306/tcp</div>
+<div class="line"># 或</div>
+<div class="line">sudo firewall-cmd --permanent --add-port=3306/tcp</div>
+<div class="line">sudo firewall-cmd --reload</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md270"></a>
+在 windows 下使用 ODBC 访问 MySQL 数据库</h2>
+<h3><a class="anchor" id="autotoc_md271"></a>
+配置 ODBC</h3>
+<ul>
+<li>下载 MySql Connector/ODBC 驱动： <a href="https://dev.mysql.com/downloads/connector/odbc/">https://dev.mysql.com/downloads/connector/odbc/</a></li>
+<li>下载后安装</li>
+<li>打开 “控制面板→系统和安全→管理工具→ODBC 数据源(64 位)”。注意：如果你的程序是32位的，就选择　“ODBC　数据源(32　位）”<ul>
+<li>在“用户 DSN”或“系统 DSN”标签下，添加一个新的数据源，选择 MySQL ODBC 驱动程序，并填写以下信息：<ul>
+<li>数据源名称（必填）。它与程序设置中的数据库名相同。默认为：remote_control。详见：https://github.com/KangLin/RabbitRemoteControl/blob/48d6d1f3efaed444204cae04322a38e963c66047/Src/Database.cpp#L125</li>
+<li>服务器地址</li>
+<li>用户名</li>
+<li>密码</li>
+<li>数据库名称(可选）。如果填，请先用 <a href="https://github.com/KangLin/RabbitRemoteControl/blob/master/App/Client/Resource/Database/mysql.sql">mysql.sql</a> 建立好数据库。如果不填，程序会自动建立数据库。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md272"></a>
+问: 当运行 AppImage, 出现下面错误：</h1>
+<div class="fragment"><div class="line">[root@8bbd00d2d0eb home]# ./RabbitRemoteControl_v0.0.32_Linux_x86_64.AppImage </div>
+<div class="line">qt.qpa.xcb: could not connect to display </div>
+<div class="line">qt.qpa.plugin: From 6.5.0, xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin.</div>
+<div class="line">qt.qpa.plugin: Could not load the Qt platform plugin &quot;xcb&quot; in &quot;&quot; even though it was found.</div>
+<div class="line">This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.</div>
+<div class="line"> </div>
+<div class="line">Available platform plugins are: xcb.</div>
+<div class="line"> </div>
+<div class="line">Aborted (core dumped)</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md273"></a>
+答: 这是因为系统没有安装桌面环境。</h2>
+<p>设置桌面环境。例如：</p>
+<div class="fragment"><div class="line"># 安装虚拟桌面 (virtual framebuffer X server for X Version 11)</div>
+<div class="line">sudo apt install -y -q xvfb xpra</div>
+<div class="line"># 启动桌面</div>
+<div class="line">sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &amp;</div>
+<div class="line"># 设置桌面环境变量</div>
+<div class="line">export DISPLAY=:91.0</div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

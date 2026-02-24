@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CManageConnect类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate7</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-slots">Public 槽</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCManageConnect-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CManageConnect类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__LIBAPI__THREAD.html">线程模型</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>管理连接。此类仅用于 <a class="el" href="classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。">CPluginThread</a>  
+ <a href="classCManageConnect.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CManageConnect 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCManageConnect__inherit__graph.png" border="0" usemap="#aCManageConnect_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCManageConnect_inherit__map" id="aCManageConnect_inherit__map">
+<area shape="rect" title="管理连接。此类仅用于 CPluginThread" alt="" coords="5,79,141,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,111,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CManageConnect 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCManageConnect__coll__graph.png" border="0" usemap="#aCManageConnect_coll__map" alt="Collaboration graph"/></div>
+<map name="aCManageConnect_coll__map" id="aCManageConnect_coll__map">
+<area shape="rect" title="管理连接。此类仅用于 CPluginThread" alt="" coords="5,79,141,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,111,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public 槽</h2></td></tr>
+<tr class="memitem:a16ebd05cad9d5318cdfa132dc10841e8" id="r_a16ebd05cad9d5318cdfa132dc10841e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a16ebd05cad9d5318cdfa132dc10841e8">slotConnect</a> (CConnecterConnect *pConnecter)</td></tr>
+<tr class="separator:a16ebd05cad9d5318cdfa132dc10841e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5438d36b74366725955a6bfaf11e1ddb" id="r_a5438d36b74366725955a6bfaf11e1ddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a5438d36b74366725955a6bfaf11e1ddb">slotDisconnect</a> (CConnecterConnect *pConnecter)</td></tr>
+<tr class="separator:a5438d36b74366725955a6bfaf11e1ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a3adf7bd161acd960a4adaaf4a51f14be" id="r_a3adf7bd161acd960a4adaaf4a51f14be"><td class="memItemLeft" align="right" valign="top"><a id="a3adf7bd161acd960a4adaaf4a51f14be" name="a3adf7bd161acd960a4adaaf4a51f14be"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CManageConnect</b> (QObject *parent=nullptr)</td></tr>
+<tr class="separator:a3adf7bd161acd960a4adaaf4a51f14be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a69c90f536c48e0bf9f4c63ad5cfb41a1" id="r_a69c90f536c48e0bf9f4c63ad5cfb41a1"><td class="memItemLeft" align="right" valign="top">QMap&lt; CConnecterConnect *, CConnect * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCManageConnect.html#a69c90f536c48e0bf9f4c63ad5cfb41a1">m_Connects</a></td></tr>
+<tr class="separator:a69c90f536c48e0bf9f4c63ad5cfb41a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>管理连接。此类仅用于 <a class="el" href="classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。">CPluginThread</a> </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginThread.html" title="一个线程处理多个连接者 CConnecterConnect 。 一个连接者对应一个连接，也就是一个线程处理多个连接。 此类仅用于 CPluginClientThread 由插件使用。">CPluginThread</a> <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> CConnecterConnect </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a> 第 <a class="el" href="ManageConnect_8h_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a57b5c0dcc1a6da273a808195de6ce7f9" name="a57b5c0dcc1a6da273a808195de6ce7f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57b5c0dcc1a6da273a808195de6ce7f9">&#9670;&#160;</a></span>~CManageConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CManageConnect::~CManageConnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a> 第 <a class="el" href="ManageConnect_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a16ebd05cad9d5318cdfa132dc10841e8" name="a16ebd05cad9d5318cdfa132dc10841e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ebd05cad9d5318cdfa132dc10841e8">&#9670;&#160;</a></span>slotConnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CManageConnect::slotConnect </td>
+          <td>(</td>
+          <td class="paramtype">CConnecterConnect *&#160;</td>
+          <td class="paramname"><em>pConnecter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a> 第 <a class="el" href="ManageConnect_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5438d36b74366725955a6bfaf11e1ddb" name="a5438d36b74366725955a6bfaf11e1ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5438d36b74366725955a6bfaf11e1ddb">&#9670;&#160;</a></span>slotDisconnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CManageConnect::slotDisconnect </td>
+          <td>(</td>
+          <td class="paramtype">CConnecterConnect *&#160;</td>
+          <td class="paramname"><em>pConnecter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a> 第 <a class="el" href="ManageConnect_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a69c90f536c48e0bf9f4c63ad5cfb41a1" name="a69c90f536c48e0bf9f4c63ad5cfb41a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69c90f536c48e0bf9f4c63ad5cfb41a1">&#9670;&#160;</a></span>m_Connects</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;CConnecterConnect*, CConnect*&gt; CManageConnect::m_Connects</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a> 第 <a class="el" href="ManageConnect_8h_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ManageConnect_8h_source.html">ManageConnect.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/<a class="el" href="ManageConnect_8cpp_source.html">ManageConnect.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
