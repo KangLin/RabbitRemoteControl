@@ -31,7 +31,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOLS_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      RabbitRemoteControl_VERSION: v0.0.36
+      RabbitRemoteControl_VERSION: v0.1.0-bate7
       artifact_name: build_mingw
 
     # Map the job outputs to step outputs

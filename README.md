@@ -295,7 +295,7 @@ Contact me:
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.36/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.1.0-bate7/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

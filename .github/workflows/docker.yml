@@ -77,7 +77,7 @@ jobs:
     runs-on: ${{matrix.variant.os}}
 
     env:
-      RabbitRemoteControl_VERSION: 0.0.36
+      RabbitRemoteControl_VERSION: 0.1.0-bate7
       artifact_name: build_docker
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source

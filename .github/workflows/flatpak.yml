@@ -20,7 +20,7 @@ jobs:
 
     env:
       artifact_name: build_flatpak
-      RabbitRemoteControl_VERSION: v0.0.36
+      RabbitRemoteControl_VERSION: v0.1.0-bate7
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
