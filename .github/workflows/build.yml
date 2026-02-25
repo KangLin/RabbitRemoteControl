@@ -186,7 +186,7 @@ jobs:
           BUILD_TIME=`date --rfc-3339=second`
           echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
           echo "|Supported platforms: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html) [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)|支持平台: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html) [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)|" >> ${{github.workspace}}/Release.md
-          #echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
+          echo "|[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|[文件检验和](https://github.com/KangLin/RabbitRemoteControl/releases/download/${{ github.ref_name }}/CheckSum.md)|" >> ${{github.workspace}}/Release.md
           echo "|[Online development document](https://rabbitremotecontrol.sourceforge.io/${{ github.ref_name }}/English/html/index.html)|[在线开发文档](https://rabbitremotecontrol.sourceforge.io/${{ github.ref_name }}/Chinese/html/index.html)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
@@ -201,7 +201,7 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
-          #echo "[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/test_${{ github.ref_name }}/CheckSum.md)" >> ${{github.workspace}}/Release.md
+          echo "[File checksum](https://github.com/KangLin/RabbitRemoteControl/releases/download/test_${{ github.ref_name }}/CheckSum.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       - name: Add download
@@ -267,7 +267,7 @@ jobs:
                  rm -fr $file
               fi
           done
-          cat ${{github.workspace}}/CheckSum.md >> ${{github.workspace}}/Release.md
+          #cat ${{github.workspace}}/CheckSum.md >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
       # See: [访问有关工作流运行的上下文信息](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context)

@@ -295,14 +295,16 @@ Contact me:
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
+
 - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.36/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation
-- [Compiling for Android](docs/Compile/Android_zh_CN.md)
+
 - [Compiling for Linux](docs/Compile/Linux.md)
 - [Compiling for Windows](docs/Compile/Windows.md)
 - [Compiling for macOS](docs/Compile/macOS.md)
+- [Compiling for Android](docs/Compile/Android_zh_CN.md)
 
 ## [License Agreement](License.md "License.md")
 
