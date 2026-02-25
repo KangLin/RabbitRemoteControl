@@ -19,6 +19,9 @@ public:
     QString GetOptions() const;
     void SetOptions(const QString &newOptions);
 
+    static QSet<QString> GetSupportDatabase();
+    const QString Details() const;
+
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;

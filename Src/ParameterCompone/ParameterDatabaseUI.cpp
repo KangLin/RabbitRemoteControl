@@ -29,8 +29,7 @@ CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
 
     QStringList drivers = QSqlDatabase::drivers();
     qDebug(log) << "Database:" << drivers;
-    QSet<QString> supportDrivers;
-    supportDrivers << "QSQLITE" << "QMYSQL" << "QODBC";
+    QSet<QString> supportDrivers = CParameterDatabase::GetSupportDatabase();
     QSet<QString> drv(drivers.begin(), drivers.end());
     QSet<QString> interDb = drv.intersect(supportDrivers);
     QStringList lstDb(interDb.begin(), interDb.end());

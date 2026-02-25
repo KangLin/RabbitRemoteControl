@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QSqlDatabase>
 #include "ParameterDatabase.h"
 
 CParameterDatabase::CParameterDatabase(QObject *parent, const QString &szPrefix)
@@ -66,4 +67,26 @@ void CParameterDatabase::SetOptions(const QString &newOptions)
         return;
     m_szOptions = newOptions;
     SetModified(true);
+}
+
+QSet<QString> CParameterDatabase::GetSupportDatabase()
+{
+    QSet<QString> supportDrivers;
+    supportDrivers << "QSQLITE" << "QMYSQL" << "QODBC";
+    return supportDrivers;
+}
+
+const QString CParameterDatabase::Details() const
+{
+    auto supportDrivers = GetSupportDatabase();
+    QString szDetail = "## " + tr("Database drivers") + "\n";
+    foreach(auto d, QSqlDatabase::drivers()){
+        szDetail += "  - " + d;
+        if(GetType() == d) {
+            szDetail += " (" + tr("Current used") + ")";
+        } else if(supportDrivers.contains(d))
+            szDetail += " (" + tr("Supported") + ")";
+        szDetail += "\n";
+    }
+    return szDetail;
 }

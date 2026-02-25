@@ -646,8 +646,12 @@ const QString CManager::Details() const
 #endif
 
     if(!szDetail.isEmpty()) {
-        szDetail = "## " + tr("Dependency libraries:") + "\n" + szDetail;
+        szDetail = "## " + tr("Dependency libraries") + "\n" + szDetail;
     }
+
+    if(m_pParameterPlugin)
+        szDetail += m_pParameterPlugin->GetGlobalParameters()->m_pDatabase->Details();
+
     szDetail += m_szDetails;
     return szDetail;
 }
