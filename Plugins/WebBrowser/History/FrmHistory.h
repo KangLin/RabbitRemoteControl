@@ -31,6 +31,8 @@ private slots:
     void slotExport();
     void slotComboxIndexChanged(int index);
     void slotLimit(int v);
+    void on_leSearch_textChanged(const QString &keyword);
+
 private:
     QString extractDomain(const QString &url);
     void onDeleteHistoryItem(const QModelIndex &index);

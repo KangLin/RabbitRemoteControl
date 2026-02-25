@@ -170,6 +170,15 @@ bool CHistoryModel::removeItems(const QString &url)
     return false;
 }
 
+bool CHistoryModel::search(const QString &keyword)
+{
+    if(!m_pDatabase) return false;
+    beginResetModel();
+    m_historyItems = m_pDatabase->searchHistory(keyword);
+    endResetModel();
+    return true;
+}
+
 bool CHistoryModel::importFromCSV(const QString &filename)
 {
     if(!m_pDatabase) return false;

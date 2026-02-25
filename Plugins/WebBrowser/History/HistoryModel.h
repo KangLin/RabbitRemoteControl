@@ -16,9 +16,9 @@ public:
     ~CHistoryModel();
 
     enum Column {
-        ColumnVisitTime = 0,
-        ColumnTitle,
+        ColumnTitle = 0,
         ColumnUrl,
+        ColumnVisitTime,
         ColumnCount,
     };
     Q_ENUM(Column)
@@ -40,6 +40,8 @@ public:
     HistoryItem getItem(const QModelIndex &index) const;
     bool removeDomainItems(const QString& szDomain);
     bool removeItems(const QString& url);
+    
+    bool search(const QString &keyword);
 
     bool importFromCSV(const QString& filename);
     bool exportToCSV(const QString &filename);

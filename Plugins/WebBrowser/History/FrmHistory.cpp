@@ -12,6 +12,8 @@
 #include <QComboBox>
 #include <QDateEdit>
 #include <QSpinBox>
+#include <QLabel>
+#include <QLineEdit>
 
 #include "FrmHistory.h"
 #include "RabbitCommonDir.h"
@@ -34,6 +36,7 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
     setWindowTitle(tr("History"));
 
     QToolBar* pToolBar = new QToolBar(this);
+    layout()->addWidget(pToolBar);
 
     QDate curDate = QDate::currentDate();
     m_pDateStart = new QDateEdit(curDate.addDays(-7), pToolBar);
@@ -95,15 +98,9 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
         pSettings->setToolTip(pSettings->text());
         pSettings->setStatusTip(pSettings->text());
     }//*/
-    
+
     pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"), this, SLOT(close()));
-
-    QLayout* pLayout = nullptr;
-    pLayout = new QVBoxLayout(this);
-    pLayout->addWidget(pToolBar);
-    pLayout->addWidget(ui->splitter);
-    setLayout(pLayout);
-
+    
     check = connect(ui->tableView, &QTableView::customContextMenuRequested,
                     this, &CFrmHistory::slotCustomContextMenuRequested);
     //ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -529,4 +526,9 @@ void CFrmHistory::slotLimit(int v)
     if(m_pPara)
         m_pPara->SetDatabaseViewLimit(v);
     slotRefresh();
+}
+
+void CFrmHistory::on_leSearch_textChanged(const QString &keyword)
+{
+    m_pModelHistory->search(keyword);
 }
