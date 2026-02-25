@@ -122,13 +122,14 @@ void CFrmBookmark::setupToolBar()
         check = connect(pDeleteAction, &QAction::triggered, this, &CFrmBookmark::onDeleteBookmark);
         Q_ASSERT(check);
     }
-
+    
+    /*
     // 设为最爱
     QAction *favoriteAction = m_pToolBar->addAction(QIcon::fromTheme("favorites"), tr("Favorite"));
     if(favoriteAction) {
         check = connect(favoriteAction, &QAction::triggered, this, &CFrmBookmark::onSetFavorite);
         Q_ASSERT(check);
-    }
+    }//*/
 
     m_pToolBar->addSeparator();
 
