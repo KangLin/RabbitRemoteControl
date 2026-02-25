@@ -552,34 +552,34 @@ Please select the HTML bookmark file exported from your browser.</source>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="266"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="271"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="337"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="521"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="541"/>
         <source>Add bookmark</source>
         <translation>增加书签</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="104"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="300"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="522"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
         <source>Add folder</source>
         <translation>增加文件夹</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="113"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="513"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="524"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="533"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="544"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="120"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="519"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="526"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="539"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="546"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="127"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="516"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="536"/>
         <source>Favorite</source>
         <translation>收藏夹</translation>
     </message>
@@ -658,6 +658,9 @@ Please select the HTML bookmark file exported from your browser.</source>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="421"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="430"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="434"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="440"/>
         <source>Import bookmarks</source>
         <translation>导入书签</translation>
     </message>
@@ -667,49 +670,52 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>HTML(*.html);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="427"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="444"/>
-        <source>Success</source>
-        <translation>成功</translation>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="431"/>
+        <source>Successfully imported bookmarks from file: %1</source>
+        <translation>成功从文件导入书签：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="427"/>
-        <source>Bookmarks imported successfully</source>
-        <translation>书签导入成功</translation>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
+        <source>Failed to import bookmark from file: %1</source>
+        <translation>从文件导入书签失败：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="430"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
-        <source>Failure</source>
-        <translation>失败</translation>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="441"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
+        <source>Invalid file: %1</source>
+        <translation>无效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="430"/>
-        <source>Failed to import bookmark</source>
-        <translation>导入书签失败</translation>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="442"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="468"/>
+        <source>Please use html file</source>
+        <translation>请使用 html 文件</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="438"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="458"/>
+        <source>Bookmarks successfully exported to file: %1</source>
+        <translation>成功导出书签到文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
+        <source>Failed to export bookmark to file: %1</source>
+        <translation>导出书签到文件失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="448"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="457"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="460"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="466"/>
         <source>Export bookmarks</source>
         <translation>导入书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="440"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="450"/>
         <source>HTML (*.html);; All files (*.*)</source>
         <translation>HTML (*.html);; All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="444"/>
-        <source>Bookmarks exported successfully</source>
-        <translation>导出书签成功</translation>
-    </message>
-    <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
-        <source>Failed to export bookmark</source>
-        <translation>导出书签失败</translation>
-    </message>
-    <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="509"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="529"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
@@ -947,45 +953,71 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>网址：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="464"/>
+        <location filename="../../History/FrmHistory.cpp" line="444"/>
+        <source>Successfully imported histories from JSON file: %1</source>
+        <translation>成功从 JSON&#x3000;文件导入历史：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="447"/>
+        <source>Failed to import histories from JSON file: %1</source>
+        <translation>从 JSON 文件导入历史失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="456"/>
+        <source>Successfully imported histories from CSV file: %1</source>
+        <translation>成功从 CSV&#x3000;文件导入历史：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="459"/>
+        <source>Failed to import histories from CSV file: %1</source>
+        <translation>从 CSV 文件导入历史失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="465"/>
+        <location filename="../../History/FrmHistory.cpp" line="502"/>
+        <source>Invalid file: %1</source>
+        <translation>无效文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="466"/>
+        <location filename="../../History/FrmHistory.cpp" line="503"/>
+        <source>Please use JSON or CSV file</source>
+        <translation>请用 JSON 或 CSV 文件</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="482"/>
+        <source>Histories successfully exported to JSON file: %1</source>
+        <translation>成功导出历史到 JSON 文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="485"/>
+        <source>Failed to export histories to JSON file: %1</source>
+        <translation>导出历史到 JSON 文件失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="493"/>
+        <source>Histories successfully exported to CSV file: %1</source>
+        <translation>成功导出历史到 CSV 文件：%1&#x3000;</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="496"/>
+        <source>Failed to export histories to CSV file: %1</source>
+        <translation>导出历史到 CSV 文件失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="474"/>
         <source>JSON (*.json);; CSV (*.csv);; All files (*.*)</source>
         <translation>JSON (*.json);; CSV (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="470"/>
-        <source>Histories exported to json file successfully</source>
-        <translation>浏览历史导出到 json 文件成功</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="472"/>
-        <source>Failed to export histories to json file</source>
-        <translation>浏览历史导出到 json 文件失败</translation>
-    </message>
-    <message>
         <location filename="../../History/FrmHistory.cpp" line="433"/>
+        <location filename="../../History/FrmHistory.cpp" line="443"/>
+        <location filename="../../History/FrmHistory.cpp" line="446"/>
+        <location filename="../../History/FrmHistory.cpp" line="455"/>
+        <location filename="../../History/FrmHistory.cpp" line="458"/>
+        <location filename="../../History/FrmHistory.cpp" line="464"/>
         <source>Import histories</source>
         <translation>导入历史记录</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="442"/>
-        <location filename="../../History/FrmHistory.cpp" line="451"/>
-        <location filename="../../History/FrmHistory.cpp" line="470"/>
-        <location filename="../../History/FrmHistory.cpp" line="478"/>
-        <source>Success</source>
-        <translation>成功</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="451"/>
-        <source>Histories import from csv file successfully</source>
-        <translation>从 CSV 文件导入历史记录成功</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="444"/>
-        <location filename="../../History/FrmHistory.cpp" line="453"/>
-        <location filename="../../History/FrmHistory.cpp" line="472"/>
-        <location filename="../../History/FrmHistory.cpp" line="480"/>
-        <source>Failure</source>
-        <translation>失败</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="435"/>
@@ -993,34 +1025,14 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>JSON (*.json);; CSV (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="442"/>
-        <source>Histories import from json file successfully</source>
-        <translation>导入浏览历史成功</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="444"/>
-        <source>Failed to import histories from json file</source>
-        <translation>导入浏览历史失败</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="453"/>
-        <source>Failed to import histories from csv file</source>
-        <translation>从 CSV 文件导入历史失败</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="462"/>
+        <location filename="../../History/FrmHistory.cpp" line="472"/>
+        <location filename="../../History/FrmHistory.cpp" line="481"/>
+        <location filename="../../History/FrmHistory.cpp" line="484"/>
+        <location filename="../../History/FrmHistory.cpp" line="492"/>
+        <location filename="../../History/FrmHistory.cpp" line="495"/>
+        <location filename="../../History/FrmHistory.cpp" line="501"/>
         <source>Export histories</source>
         <translation>导出历史</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="478"/>
-        <source>Histories exported to csv file successfully</source>
-        <translation>导出历史到 CSV 文件成功</translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="480"/>
-        <source>Failed to export histories to csv file</source>
-        <translation>导出历史到 CSV 文件失败</translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="380"/>

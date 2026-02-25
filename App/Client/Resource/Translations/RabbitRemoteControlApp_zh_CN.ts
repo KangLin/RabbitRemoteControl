@@ -85,13 +85,35 @@
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="457"/>
-        <source>Successfully imported favorite from json file</source>
-        <translation>成功从 JSON 文件导入收藏</translation>
+        <source>Successfully imported favorite from JSON file: %1</source>
+        <translation>成功从 JSON 文件导入收藏：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="481"/>
-        <source>Successfully export favorite to json file</source>
-        <translation>成功导出收藏到 JSON 文件</translation>
+        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
+        <source>Failed to import favorite from JSON file: %1</source>
+        <translation>从 JSON 文件导入收藏失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="466"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="493"/>
+        <source>Invalid file: %1</source>
+        <translation>无效文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="467"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="494"/>
+        <source>Please use JSON file</source>
+        <translation>请使用 JSON 文件</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="484"/>
+        <source>Favorite successfully exported to JSON file: %1</source>
+        <translation>成功导出收藏到 JSON 文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="488"/>
+        <source>Failed to export favorite to JSON file: %1</source>
+        <translation>导出收藏到 JSON 文件失败：%1</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="390"/>
@@ -105,41 +127,25 @@
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="446"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="456"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="465"/>
         <source>Import favorite</source>
         <translation>导入收藏</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="448"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="476"/>
         <source>JSON (*.json)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="456"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="480"/>
-        <source>Success</source>
-        <translation>成功</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="484"/>
-        <source>Failure</source>
-        <translation>失败</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
-        <source>Failed to import favorite from json file</source>
-        <translation>从 json 文件导入收藏失败</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="471"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="483"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="492"/>
         <source>Export favorite</source>
         <translation>导出收藏</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="485"/>
-        <source>Failed to export favorite to json file</source>
-        <translation>导出收藏到 json 文件失败</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="420"/>
@@ -545,7 +551,7 @@ File: %1</source>
     <message>
         <location filename="../../Recent/RecentModel.cpp" line="42"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>标识</translation>
     </message>
     <message>
         <location filename="../../Recent/RecentModel.cpp" line="43"/>

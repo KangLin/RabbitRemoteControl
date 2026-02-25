@@ -453,15 +453,18 @@ void CFavoriteView::slotImport()
             if (m_pDatabase->ImportFromJsonFile(filename)) {
                 slotRefresh();
                 QMessageBox::information(
-                    this, tr("Success"),
-                    tr("Successfully imported favorite from json file"));
+                    this, tr("Import favorite"),
+                    tr("Successfully imported favorite from JSON file: %1").arg(filename));
             } else {
-                QMessageBox::warning(
-                    this, tr("Failure"),
-                    tr("Failed to import favorite from json file"));
+                QMessageBox::critical(
+                    this, tr("Import favorite"),
+                    tr("Failed to import favorite from JSON file: %1").arg(filename));
             }
             return;
         }
+        QMessageBox::warning(this, tr("Import favorite"),
+                             tr("Invalid file: %1").arg(filename) + "\n\n"
+                                 + tr("Please use JSON file"));
     }
 }
 
@@ -477,15 +480,18 @@ void CFavoriteView::slotExport()
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
             if (m_pDatabase->ExportToJsonFile(filename)) {
                 QMessageBox::information(
-                    this, tr("Success"),
-                    tr("Successfully export favorite to json file"));
+                    this, tr("Export favorite"),
+                    tr("Favorite successfully exported to JSON file: %1").arg(filename));
             } else {
-                QMessageBox::warning(
-                    this, tr("Failure"),
-                    tr("Failed to export favorite to json file"));
+                QMessageBox::critical(
+                    this, tr("Export favorite"),
+                    tr("Failed to export favorite to JSON file: %1").arg(filename));
             }
             return;
         }
+        QMessageBox::critical(this, tr("Export favorite"),
+                              tr("Invalid file: %1").arg(filename) + "\n\n"
+                                  + tr("Please use JSON file"));
     }
 }
 

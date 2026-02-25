@@ -422,14 +422,24 @@ void CFrmBookmark::onImportBookmarks()
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
         tr("HTML(*.html);; All files (*.*)"));
 
-    if (!filename.isEmpty()) {
+    if (filename.isEmpty()) return;
+
+    QFileInfo fi(filename);
+    if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
         if (m_pDatabase->importFromHtml(filename)) {
-            QMessageBox::information(this, tr("Success"), tr("Bookmarks imported successfully"));
+            QMessageBox::information(this, tr("Import bookmarks"),
+                                     tr("Successfully imported bookmarks from file: %1").arg(filename));
             refresh();
         } else {
-            QMessageBox::warning(this, tr("Failure"), tr("Failed to import bookmark"));
+            QMessageBox::critical(this, tr("Import bookmarks"),
+                                 tr("Failed to import bookmark from file: %1").arg(filename));
         }
+        return;
     }
+
+    QMessageBox::warning(this, tr("Import bookmarks"),
+                         tr("Invalid file: %1").arg(filename) + "\n\n"
+                             + tr("Please use html file"));
 }
 
 void CFrmBookmark::onExportBookmarks()
@@ -438,14 +448,24 @@ void CFrmBookmark::onExportBookmarks()
         this, tr("Export bookmarks"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
         tr("HTML (*.html);; All files (*.*)"));
+    
+    if (filename.isEmpty()) return;
 
-    if (!filename.isEmpty()) {
+    QFileInfo fi(filename);
+    if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
         if (m_pDatabase->exportToHtml(filename)) {
-            QMessageBox::information(this, tr("Success"), tr("Bookmarks exported successfully"));
+            QMessageBox::information(this, tr("Export bookmarks"),
+                                     tr("Bookmarks successfully exported to file: %1").arg(filename));
         } else {
-            QMessageBox::warning(this, tr("Failure"), tr("Failed to export bookmark"));
+            QMessageBox::critical(this, tr("Export bookmarks"),
+                                  tr("Failed to export bookmark to file: %1").arg(filename));
         }
+        return;
     }
+
+    QMessageBox::warning(this, tr("Export bookmarks"),
+                         tr("Invalid file: %1").arg(filename) + "\n\n"
+                             + tr("Please use html file"));
 }
 
 void CFrmBookmark::onSearchTextChanged(const QString &text)
