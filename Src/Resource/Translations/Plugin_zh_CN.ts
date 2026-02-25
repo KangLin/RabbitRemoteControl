@@ -402,8 +402,8 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="649"/>
-        <source>Dependency libraries:</source>
-        <translation>依赖库：</translation>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
     </message>
 </context>
 <context>
@@ -670,6 +670,24 @@ Some features are limited.
     </message>
 </context>
 <context>
+    <name>CParameterDatabase</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="82"/>
+        <source>Database drivers</source>
+        <translation>数据库驱动</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="86"/>
+        <source>Current used</source>
+        <translation>当前使用的</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="88"/>
+        <source>Supported</source>
+        <translation>支持的</translation>
+    </message>
+</context>
+<context>
     <name>CParameterDatabaseUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="14"/>
@@ -707,33 +725,33 @@ Some features are limited.
         <translation>数据库</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="78"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="77"/>
         <source>Set the database name</source>
         <translation>设置数据库名称</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="83"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="82"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation>设置数据库文件名。如果设置为空，则使用默认数据库文件。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="87"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="86"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation>此名称可以是一个 DSN，一个 DSN 文件名（.dsn)，或者一个连接字符串。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="88"/>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="87"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="94"/>
         <source>Configure database</source>
         <translation>配置数据库</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="107"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="106"/>
         <source>Database file</source>
         <translation>数据库文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="108"/>
+        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="107"/>
         <source>Database file (*.db);; All files (*.*)</source>
         <translation>数据库文件 (*.db);; 所有文件 (*.*)</translation>
     </message>

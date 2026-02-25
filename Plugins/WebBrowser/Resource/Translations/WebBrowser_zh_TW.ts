@@ -549,173 +549,172 @@ Please select the HTML bookmark file exported from your browser.</source>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="97"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="266"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="271"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="337"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="541"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="267"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="272"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="338"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
         <source>Add bookmark</source>
         <translation>增加書簽</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="104"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="300"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="301"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
         <source>Add folder</source>
         <translation>增加文件夾</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="113"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="533"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="544"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="534"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="120"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="539"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="546"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="547"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="127"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="536"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
         <source>Favorite</source>
         <translation>收藏夾</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="136"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="137"/>
         <source>Import</source>
         <translation>導入</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="143"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="144"/>
         <source>Export</source>
         <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="152"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="153"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="193"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="194"/>
         <source>Title</source>
         <translation>標題</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="267"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="338"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="268"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="339"/>
         <source>Url:</source>
         <translation>網址：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="272"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="333"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="273"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="334"/>
         <source>Title:</source>
         <translation>標題：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="301"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="353"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="302"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="354"/>
         <source>Folder name:</source>
         <translation>文件夾名：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="332"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="333"/>
         <source>Edit bookmark</source>
         <translation>編輯書簽</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="352"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="353"/>
         <source>Rename folder</source>
         <translation>重命名文件夾</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="372"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="372"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
         <source>The folder &quot;%1&quot; is not delete</source>
         <translation>文件夾 &quot;%1&quot; 不能被刪除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="378"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="379"/>
         <source>Are you sure you want to delete the bookmark &quot;%1&quot;?</source>
         <translation>確認刪除書簽 &quot;%1&quot; ？</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="380"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="381"/>
         <source>Are you sure you want to delete the folder &quot;%1&quot;?</source>
         <translation>確認刪除文件夾  &quot;%1&quot; ？</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="386"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="387"/>
         <source>Confirm deletion</source>
         <translation>確認刪除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="421"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="430"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="434"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="440"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="422"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="431"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="441"/>
         <source>Import bookmarks</source>
         <translation>導入書簽</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="423"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="424"/>
         <source>HTML(*.html);; All files (*.*)</source>
         <translation>HTML(*.html);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="431"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="432"/>
         <source>Successfully imported bookmarks from file: %1</source>
         <translation>成功從文件導入書簽：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="436"/>
         <source>Failed to import bookmark from file: %1</source>
         <translation>從文件導入書簽失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="441"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="442"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="468"/>
         <source>Invalid file: %1</source>
         <translation>無效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="442"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="468"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="443"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="469"/>
         <source>Please use html file</source>
         <translation>請使用 html 文件</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="458"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="459"/>
         <source>Bookmarks successfully exported to file: %1</source>
         <translation>成功導出書簽到文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
         <source>Failed to export bookmark to file: %1</source>
         <translation>導出書簽到文件失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="448"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="457"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="460"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="466"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="449"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="458"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
         <source>Export bookmarks</source>
         <translation>導入書簽</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="450"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="451"/>
         <source>HTML (*.html);; All files (*.*)</source>
         <translation>HTML (*.html);; All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="529"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="530"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
@@ -835,247 +834,252 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="34"/>
+        <location filename="../../History/FrmHistory.ui" line="22"/>
+        <source>Search:</source>
+        <translation>搜索：</translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="36"/>
         <source>History</source>
         <translation>歷史記錄</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="60"/>
-        <location filename="../../History/FrmHistory.cpp" line="276"/>
+        <location filename="../../History/FrmHistory.cpp" line="63"/>
+        <location filename="../../History/FrmHistory.cpp" line="273"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="71"/>
+        <location filename="../../History/FrmHistory.cpp" line="74"/>
         <source>Limit</source>
         <translation>限製</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="84"/>
+        <location filename="../../History/FrmHistory.cpp" line="87"/>
         <source>Import</source>
         <translation>導入</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="86"/>
+        <location filename="../../History/FrmHistory.cpp" line="89"/>
         <source>Export</source>
         <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="99"/>
+        <location filename="../../History/FrmHistory.cpp" line="102"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="160"/>
+        <location filename="../../History/FrmHistory.cpp" line="157"/>
         <source>Open the selected %1 urls</source>
         <translation>打開選擇的 %1 個網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="169"/>
+        <location filename="../../History/FrmHistory.cpp" line="166"/>
         <source>Delete the selected %1 urls</source>
         <translation>刪除選擇的 %1 個網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="180"/>
+        <location filename="../../History/FrmHistory.cpp" line="177"/>
         <source>All selected</source>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="186"/>
+        <location filename="../../History/FrmHistory.cpp" line="183"/>
         <source>Cancel selected</source>
         <translation>取消選擇</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="199"/>
+        <location filename="../../History/FrmHistory.cpp" line="196"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="208"/>
+        <location filename="../../History/FrmHistory.cpp" line="205"/>
         <source>Open in new tab</source>
         <translation>在新標簽中打開</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="216"/>
+        <location filename="../../History/FrmHistory.cpp" line="213"/>
         <source>Copy url</source>
         <translation>復製網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="225"/>
+        <location filename="../../History/FrmHistory.cpp" line="222"/>
         <source>Copy title</source>
         <translation>復製標題</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="235"/>
+        <location filename="../../History/FrmHistory.cpp" line="232"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="243"/>
+        <location filename="../../History/FrmHistory.cpp" line="240"/>
         <source>Delete all urls %1</source>
         <translation>刪除所有網址 %1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="254"/>
+        <location filename="../../History/FrmHistory.cpp" line="251"/>
         <source>Delete all urls from %1</source>
         <translation>刪除所有 %1 網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="265"/>
-        <location filename="../../History/FrmHistory.cpp" line="384"/>
+        <location filename="../../History/FrmHistory.cpp" line="262"/>
+        <location filename="../../History/FrmHistory.cpp" line="381"/>
         <source>Properties</source>
         <translation>屬性</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="284"/>
+        <location filename="../../History/FrmHistory.cpp" line="281"/>
         <source>Clear all urls</source>
         <translation>清除所有網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="328"/>
-        <location filename="../../History/FrmHistory.cpp" line="351"/>
+        <location filename="../../History/FrmHistory.cpp" line="325"/>
+        <location filename="../../History/FrmHistory.cpp" line="348"/>
         <source>Delete the url</source>
         <translation>刪除網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="329"/>
+        <location filename="../../History/FrmHistory.cpp" line="326"/>
         <source>Are you sure you want to delete the url &quot;%1&quot;?</source>
         <translation>確定刪除網址 &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="352"/>
+        <location filename="../../History/FrmHistory.cpp" line="349"/>
         <source>Are you sure you want to delete all url from &quot;%1&quot;?</source>
         <translation>確定刪除所有網址 &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="378"/>
+        <location filename="../../History/FrmHistory.cpp" line="375"/>
         <source>Url:</source>
         <translation>網址：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="444"/>
+        <location filename="../../History/FrmHistory.cpp" line="441"/>
         <source>Successfully imported histories from JSON file: %1</source>
         <translation>成功從 JSON&#x3000;文件導入歷史：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="447"/>
+        <location filename="../../History/FrmHistory.cpp" line="444"/>
         <source>Failed to import histories from JSON file: %1</source>
         <translation>從 JSON 文件導入歷史失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="456"/>
+        <location filename="../../History/FrmHistory.cpp" line="453"/>
         <source>Successfully imported histories from CSV file: %1</source>
         <translation>成功從 CSV&#x3000;文件導入歷史：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="459"/>
+        <location filename="../../History/FrmHistory.cpp" line="456"/>
         <source>Failed to import histories from CSV file: %1</source>
         <translation>從 CSV 文件導入歷史失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="465"/>
-        <location filename="../../History/FrmHistory.cpp" line="502"/>
+        <location filename="../../History/FrmHistory.cpp" line="462"/>
+        <location filename="../../History/FrmHistory.cpp" line="499"/>
         <source>Invalid file: %1</source>
         <translation>無效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="466"/>
-        <location filename="../../History/FrmHistory.cpp" line="503"/>
+        <location filename="../../History/FrmHistory.cpp" line="463"/>
+        <location filename="../../History/FrmHistory.cpp" line="500"/>
         <source>Please use JSON or CSV file</source>
         <translation>請用 JSON 或 CSV 文件</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="482"/>
+        <location filename="../../History/FrmHistory.cpp" line="479"/>
         <source>Histories successfully exported to JSON file: %1</source>
         <translation>成功導出歷史到 JSON 文件：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="485"/>
+        <location filename="../../History/FrmHistory.cpp" line="482"/>
         <source>Failed to export histories to JSON file: %1</source>
         <translation>導出歷史到 JSON 文件失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="493"/>
+        <location filename="../../History/FrmHistory.cpp" line="490"/>
         <source>Histories successfully exported to CSV file: %1</source>
         <translation>成功導出歷史到 CSV 文件：%1&#x3000;</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="496"/>
+        <location filename="../../History/FrmHistory.cpp" line="493"/>
         <source>Failed to export histories to CSV file: %1</source>
         <translation>導出歷史到 CSV 文件失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="474"/>
+        <location filename="../../History/FrmHistory.cpp" line="471"/>
         <source>JSON (*.json);; CSV (*.csv);; All files (*.*)</source>
         <translation>JSON (*.json);; CSV (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="433"/>
+        <location filename="../../History/FrmHistory.cpp" line="430"/>
+        <location filename="../../History/FrmHistory.cpp" line="440"/>
         <location filename="../../History/FrmHistory.cpp" line="443"/>
-        <location filename="../../History/FrmHistory.cpp" line="446"/>
+        <location filename="../../History/FrmHistory.cpp" line="452"/>
         <location filename="../../History/FrmHistory.cpp" line="455"/>
-        <location filename="../../History/FrmHistory.cpp" line="458"/>
-        <location filename="../../History/FrmHistory.cpp" line="464"/>
+        <location filename="../../History/FrmHistory.cpp" line="461"/>
         <source>Import histories</source>
         <translation>導入歷史記錄</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="435"/>
+        <location filename="../../History/FrmHistory.cpp" line="432"/>
         <source>JSON (*.json);; CSV file (*.csv);; All files (*.*)</source>
         <translation>JSON (*.json);; CSV (*.csv);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="472"/>
+        <location filename="../../History/FrmHistory.cpp" line="469"/>
+        <location filename="../../History/FrmHistory.cpp" line="478"/>
         <location filename="../../History/FrmHistory.cpp" line="481"/>
-        <location filename="../../History/FrmHistory.cpp" line="484"/>
+        <location filename="../../History/FrmHistory.cpp" line="489"/>
         <location filename="../../History/FrmHistory.cpp" line="492"/>
-        <location filename="../../History/FrmHistory.cpp" line="495"/>
-        <location filename="../../History/FrmHistory.cpp" line="501"/>
+        <location filename="../../History/FrmHistory.cpp" line="498"/>
         <source>Export histories</source>
         <translation>導出歷史</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="380"/>
+        <location filename="../../History/FrmHistory.cpp" line="377"/>
         <source>Visit Time:</source>
         <translation>訪問時間：</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="41"/>
+        <location filename="../../History/FrmHistory.cpp" line="44"/>
         <source>Start date</source>
         <translation>開始日期</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="44"/>
+        <location filename="../../History/FrmHistory.cpp" line="47"/>
         <source>End date</source>
         <translation>結束日期</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="46"/>
+        <location filename="../../History/FrmHistory.cpp" line="49"/>
         <source>One day</source>
         <translation>今天</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="47"/>
+        <location filename="../../History/FrmHistory.cpp" line="50"/>
         <source>Two days</source>
         <translation>兩天</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="48"/>
+        <location filename="../../History/FrmHistory.cpp" line="51"/>
         <source>One Week</source>
         <translation>一周</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="49"/>
+        <location filename="../../History/FrmHistory.cpp" line="52"/>
         <source>One month</source>
         <translation>一月</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="405"/>
+        <location filename="../../History/FrmHistory.cpp" line="402"/>
         <source>Delete the urls</source>
         <translation>刪除所有網址</translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="406"/>
+        <location filename="../../History/FrmHistory.cpp" line="403"/>
         <source>Are you sure you want to delete the selected %1 urls?</source>
         <translation>確定刪除所有選擇的 %1 網址？</translation>
     </message>
