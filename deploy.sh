@@ -31,9 +31,13 @@ if [ -n "$1" ]; then
     fi
     git tag -a $1 -m "Release $1 ${MESSAGE}"
 else
-    echo "Usage: $0 release_version [release_message]"
+    echo "Update version and push to remote repository."
+    echo "If no parameters are provided, the data will not be pushed to the remote repository."
+    echo ""
+    echo "Usage: $0 [release_version] [release_message]"
     echo "   release_version format: [v][0-9].[0-9].[0-9]"
-    exit -1
+    echo ""
+    #exit -1
 fi
 
 # Modify the version number in the version-related files
@@ -42,7 +46,9 @@ if [ -z "$VERSION" ]; then
     VERSION=`git rev-parse --short HEAD`
 fi
 
-VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\.0-9A-Za-z-]*"
+echo "Update version to $VERSION ......"
+
+VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\-\^_~0-9A-Za-z]*"
 
 sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/Windows.nsi
 #sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
@@ -129,6 +135,7 @@ function replace_paragraph {
 #replace_paragraph "贡献者" "详见" "Author" ${SOURCE_DIR}/Authors_zh_CN.md
 
 if [ -n "$1" ]; then
+    echo "Push to remote repository ......"
     git add .
     git commit -m "Release $1"
     git tag -d $1
