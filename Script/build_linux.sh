@@ -436,6 +436,10 @@ if [ $DEB -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+    fi
+
     export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
@@ -479,6 +483,10 @@ if [ $APPIMAGE -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+    fi
+
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
@@ -509,7 +517,13 @@ if [ $MACOS -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+    fi
+
     ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
