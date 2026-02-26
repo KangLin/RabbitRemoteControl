@@ -64,7 +64,7 @@ class CBookmarkDatabase : public CDatabase
     Q_OBJECT
 public:
     static CBookmarkDatabase* Instance(const QSqlDatabase& database);
-    static CBookmarkDatabase* Instance(const QString& szFile = QString());
+    static CBookmarkDatabase* Instance();
 
     // 书签操作
     int addBookmark(const BookmarkItem &item);

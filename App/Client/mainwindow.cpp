@@ -58,7 +58,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pActionTBOperate(nullptr)
     , m_pDockRecent(nullptr)
     , m_pRecent(nullptr)
-    , m_pRecentDb(nullptr)
     , m_pDockActive(nullptr)
     , m_pFrmActive(nullptr)
     , m_pSecureLevel(nullptr)
@@ -240,12 +239,11 @@ MainWindow::MainWindow(QWidget *parent)
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
     }
 
-    m_pRecentDb = new CRecentDatabase(this);
     m_pDockRecent = new QDockWidget(this);
     if(m_pDockRecent)
     {
         m_pRecent
-            = new CFrmRecent(this, &m_Manager, m_pRecentDb, m_Parameter, true,
+            = new CFrmRecent(this, &m_Manager, &m_RecentDb, m_Parameter, true,
                                  m_pDockRecent);
         if(m_pRecent) {
             if(m_pRecent->m_pDockTitleBar)
@@ -418,17 +416,16 @@ void MainWindow::slotInitial()
     m_Manager.EnumPlugins(this);
 
     if(m_Manager.GetGlobalParameters())
-        m_Parameter.m_pDatabase = m_Manager.GetGlobalParameters()->m_pDatabase;
+        m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
 
-    if(m_pRecentDb)
-        m_pRecentDb->OpenDatabase(m_Parameter.m_pDatabase);
+    m_RecentDb.OpenDatabase(&m_Parameter.m_Database, "recent_connect");
 
     if(m_pRecentMenu) {
         szMsg = tr("Load recent menu ......");
         box.setText(szMsg);
         slotInformation(szMsg);
         qApp->processEvents();
-        auto recents = m_pRecentDb->GetRecents(m_Parameter.GetRecentMenuMaxCount());
+        auto recents = m_RecentDb.GetRecents(m_Parameter.GetRecentMenuMaxCount());
         //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
         for(auto it = recents.rbegin(); it != recents.rend(); it++) {
             m_pRecentMenu->addRecentFile(it->szFile, it->szName, it->icon);
@@ -966,7 +963,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         item.szDescription = pOperate->Description();
         item.szFile = szFile;
         item.time = QDateTime::currentDateTime();
-        m_pRecentDb->AddRecent(item);
+        m_RecentDb.AddRecent(item);
     }
     
     if(!pOperate->Name().isEmpty())
@@ -1267,10 +1264,8 @@ void MainWindow::slotUpdateName(const QString& szName)
         m_pRecentMenu->updateRecentFile(p->GetSettingsFile(), szName, p->Icon());
 
     // Update recent list view dock widget
-    if(m_pRecentDb) {
-        m_pRecentDb->UpdateRecent(
-            p->GetSettingsFile(), p->Name(), p->Description());
-    }
+    m_RecentDb.UpdateRecent(
+        p->GetSettingsFile(), p->Name(), p->Description());
 
     // Update activity menu
     foreach(auto a, ui->menuActivity->actions()) {
@@ -1520,7 +1515,7 @@ void MainWindow::slotShortCut()
 
 void MainWindow::on_actionOpenListRecent_triggered()
 {
-    CFrmRecent* p = new CFrmRecent(this, &m_Manager, m_pRecentDb, m_Parameter, false);
+    CFrmRecent* p = new CFrmRecent(this, &m_Manager, &m_RecentDb, m_Parameter, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigStart(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));

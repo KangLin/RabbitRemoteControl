@@ -9,7 +9,7 @@ class PLUGIN_EXPORT CParameterDatabase : public CParameterOperate
 public:
     explicit CParameterDatabase(QObject *parent = nullptr,
                                 const QString& szPrefix = QString());
-
+    virtual CParameterDatabase& operator=(const CParameterDatabase &in);
     CParameterNet m_Net;
 
     QString GetType() const;

@@ -3,18 +3,13 @@
 
 CParameterGlobal::CParameterGlobal(QObject *parent, const QString &szPrefix)
     : CParameter{parent, szPrefix}
-    , m_pDatabase(nullptr)
+    , m_Database(this)
     , m_SaveSettingsType(SaveSettingsType::File)
 {
-    m_pDatabase = new CParameterDatabase(this);
 }
 
 CParameterGlobal::~CParameterGlobal()
 {
-    if(m_pDatabase) {
-        delete m_pDatabase;
-        m_pDatabase = nullptr;
-    }
 }
 
 int CParameterGlobal::OnLoad(QSettings &set)

@@ -90,3 +90,14 @@ const QString CParameterDatabase::Details() const
     }
     return szDetail;
 }
+
+CParameterDatabase& CParameterDatabase::operator=(const CParameterDatabase &in)
+{
+    m_Net = in.m_Net;
+
+    m_szType = in.m_szType;
+    m_szDatabaseName = in.m_szDatabaseName;
+    m_szOptions = in.m_szOptions;
+
+    return *this;
+}

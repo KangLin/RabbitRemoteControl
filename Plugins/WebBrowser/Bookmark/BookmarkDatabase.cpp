@@ -27,12 +27,12 @@ CBookmarkDatabase* CBookmarkDatabase::Instance(const QSqlDatabase &database)
     return g_pDatabase;
 }
 
-CBookmarkDatabase* CBookmarkDatabase::Instance(const QString &szFile)
+CBookmarkDatabase* CBookmarkDatabase::Instance()
 {
     if(!g_pDatabase) {
         g_pDatabase = new CBookmarkDatabase();
         if(g_pDatabase) {
-            bool bRet = g_pDatabase->OpenSQLiteDatabase("bookmarks_connect", szFile);
+            bool bRet = g_pDatabase->OpenDatabase(nullptr, "bookmarks_connect");
             if(!bRet) {
                 delete g_pDatabase;
                 g_pDatabase = nullptr;

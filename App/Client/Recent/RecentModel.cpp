@@ -121,13 +121,9 @@ bool CRecentModel::removeRows(int row, int count, const QModelIndex &parent)
 
 void CRecentModel::refresh(int limit)
 {
-    if(!m_pDatabase) {
-        m_pDatabase = new CRecentDatabase(this);
-        if(!m_pDatabase->OpenDatabase(m_pParameterApp->m_pDatabase))
-            return;
-    }
-    if(!m_pDatabase->IsOpen())
+    if(!(m_pDatabase && m_pDatabase->IsOpen())) {
         return;
+    }
 
     beginResetModel();
     m_Items.clear();

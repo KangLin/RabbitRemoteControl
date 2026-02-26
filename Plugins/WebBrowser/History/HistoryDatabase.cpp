@@ -41,13 +41,13 @@ void enableSqlTrace(const QString& connectionName)
 }
 #endif // HAVE_SQLITE
 
-CHistoryDatabase* CHistoryDatabase::Instance(const QString &szPath)
+CHistoryDatabase* CHistoryDatabase::Instance(CParameterDatabase *para)
 {
     static CHistoryDatabase* p = nullptr;
     if(!p) {
         p = new CHistoryDatabase();
         if(p) {
-            bool bRet = p->OpenSQLiteDatabase("history_connection", szPath);
+            bool bRet = p->OpenDatabase(para, "history_connection");
             if(!bRet) {
                 delete p;
                 p = nullptr;

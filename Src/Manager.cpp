@@ -157,7 +157,7 @@ int CManager::Initial(QString szFile)
     if(m_pDatabaseFile) {
         CParameterDatabase* pDB = nullptr;
         if(GetGlobalParameters())
-            pDB = GetGlobalParameters()->m_pDatabase;
+            pDB = &GetGlobalParameters()->m_Database;
         m_pDatabaseFile->OpenDatabase(pDB);
     }
 
@@ -555,7 +555,7 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
     auto pDatabase = new CParameterDatabaseUI(parent);
     if(pDatabase) {
         if(GetGlobalParameters())
-            pDatabase->SetParameter(GetGlobalParameters()->m_pDatabase);
+            pDatabase->SetParameter(&GetGlobalParameters()->m_Database);
         lstWidget.push_back(pDatabase);
     }
 
@@ -650,7 +650,7 @@ const QString CManager::Details() const
     }
 
     if(m_pParameterPlugin)
-        szDetail += m_pParameterPlugin->GetGlobalParameters()->m_pDatabase->Details();
+        szDetail += m_pParameterPlugin->GetGlobalParameters()->m_Database.Details();
 
     szDetail += m_szDetails;
     return szDetail;

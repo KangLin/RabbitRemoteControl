@@ -522,6 +522,7 @@ CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
     m_FolderDB.SetTableName(szPrefix + "_" + m_FolderDB.GetTableName());
+    m_szConnectName = szPrefix + "_" + "tree_connect";
 }
 
 bool CDatabaseTree::OnInitializeDatabase()

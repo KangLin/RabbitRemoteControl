@@ -30,7 +30,8 @@ class PLUGIN_EXPORT CParameterNet
 public:
     explicit CParameterNet(CParameterOperate* parent,
                            const QString& szPrefix = QString());
-    
+    virtual CParameterNet& operator =(const CParameterNet& in);
+
     virtual const QString GetHost() const;
     virtual void SetHost(const QString& szHost);
 Q_SIGNALS:

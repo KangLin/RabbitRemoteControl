@@ -18,17 +18,21 @@ public:
 
     void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara = nullptr);
     QSqlDatabase GetDatabase() const;
-    
+
     /*!
      * \brief OpenDatabase
-     * \param pPara: nullptr: use sqlite database
+     * \param pPara: nullptr, use sqlite database
+     * \param szConnectName: connect name
      * \return 
      */
-    virtual bool OpenDatabase(CParameterDatabase* pPara = nullptr);
-    virtual bool OpenMySqlDatabase(CParameterDatabase* pPara);
-    virtual bool OpenODBCDatabase(CParameterDatabase* pPara);
-    virtual bool OpenSQLiteDatabase(const QString &connectionName = QString(),
-                                    const QString &dbPath = QString());
+    virtual bool OpenDatabase(CParameterDatabase* pPara = nullptr,
+                              const QString& szConnectName = QString());
+    virtual bool OpenMySqlDatabase(CParameterDatabase* pPara,
+                                   const QString& szConnectName = QString());
+    virtual bool OpenODBCDatabase(CParameterDatabase* pPara,
+                                  const QString& szConnectName = QString());
+    virtual bool OpenSQLiteDatabase(CParameterDatabase* pPara = nullptr,
+                                    const QString &szConnectionName = QString());
     virtual bool IsOpen() const;
     virtual void CloseDatabase();
 

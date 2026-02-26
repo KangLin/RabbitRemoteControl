@@ -3,7 +3,6 @@
 #pragma once
 
 #include "FrmViewer.h"
-#include "ParameterGlobal.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
 
@@ -12,6 +11,8 @@
 #endif
 
 #include "ParameterFilter.h"
+
+class CParameterGlobal;
 
 /*!
  * \~chinese 插件的全局参数。
@@ -23,7 +24,7 @@
  * \~english Global parameters of plugins
  * - The parameters is valid in the CManager and plugin.
  * - The application cannot access it,
- *   but the application can be set it via CManager::GetSettingsWidgets .
+ *   but the application can be set it via CManager::GetSettingsWidgets() .
  * - The plugin can be accessed via CParameterOperate::GetGlobalParameters().
  *
  * \~
@@ -41,7 +42,7 @@ public:
 public:
     CParameterGlobal *GetGlobalParameters();
 private:
-    CParameterGlobal m_GlobalParameter;
+    CParameterGlobal* m_pGlobalParameter;
 
 protected:
     /*!

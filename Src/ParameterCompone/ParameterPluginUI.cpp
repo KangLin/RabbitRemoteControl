@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QFileDialog>
+#include "ParameterGlobal.h"
 #include "ParameterPluginUI.h"
 #include "ui_ParameterPluginUI.h"
 #include "RabbitCommonTools.h"

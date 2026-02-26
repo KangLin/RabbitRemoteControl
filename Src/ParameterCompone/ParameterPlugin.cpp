@@ -1,12 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include "ParameterGlobal.h"
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "ParameterPlugin.h"
 
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
-    , m_GlobalParameter(this, "Global")
+    , m_pGlobalParameter(new CParameterGlobal(this, "Global"))
     , m_bCaptureAllKeyboard(true)
     , m_bDesktopShortcutsScript(false)
     , m_bEnableLocalInputMethod(false)
@@ -33,17 +34,22 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
 {}
 
 CParameterPlugin::~CParameterPlugin()
-{}
+{
+    if(m_pGlobalParameter) {
+        delete m_pGlobalParameter;
+        m_pGlobalParameter = nullptr;
+    }
+}
 
 CParameterGlobal* CParameterPlugin::GetGlobalParameters()
 {
-    return &m_GlobalParameter;
+    return m_pGlobalParameter;
 }
 
 int CParameterPlugin::OnLoad(QSettings &set)
 {
     int nRet = 0;
-    nRet = m_GlobalParameter.Load(set);
+    nRet = m_pGlobalParameter->Load(set);
     if(nRet) return nRet;
 
     set.beginGroup("Plugin");
@@ -87,7 +93,7 @@ int CParameterPlugin::OnLoad(QSettings &set)
 int CParameterPlugin::OnSave(QSettings& set)
 {
     int nRet = 0;
-    nRet = m_GlobalParameter.Save(set);
+    nRet = m_pGlobalParameter->Save(set);
     if(nRet) return nRet;
 
     set.beginGroup("Plugin");

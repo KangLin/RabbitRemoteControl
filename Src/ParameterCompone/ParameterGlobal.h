@@ -4,7 +4,7 @@
 
 #include "Parameter.h"
 
-class CParameterDatabase;
+#include "ParameterDatabase.h"
 
 /*!
  * \~chinese
@@ -13,7 +13,15 @@ class CParameterDatabase;
  * - 可以在插件管理者 (CManager) 和插件中以及应用中使用。
  * - 应用程序可以通过 CManager::GetGlobalParameters() 得到它。
  * - 插件可以通 CParameterPlugin::GetGlobalParameters() 访问。
- * - 应用通过  CManager::GetSettingsWidgets 进行设置。
+ * - 应用通过  CManager::GetSettingsWidgets() 进行设置。
+ *
+ * \~english
+ * \brief Global parameters
+ * \details
+ * - The parameters is valid in the CManager, plugin and application
+ * - The applicat can be accessed via CManager::GetGlobalParameters()
+ * - The plugin can be accessed via CParameterPlugin::GetGlobalParameters()
+ * - The application can be set it via CManager::GetSettingsWidgets()
  *
  * \~
  * \see CManager::GetGlobalParameters CParameterGlobal
@@ -27,7 +35,7 @@ public:
                               const QString& szPrefix = QString());
     ~CParameterGlobal();
 
-    CParameterDatabase* m_pDatabase;
+    CParameterDatabase m_Database;
 
 public:
     enum SaveSettingsType{

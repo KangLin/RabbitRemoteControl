@@ -42,11 +42,12 @@ QSqlDatabase CDatabase::GetDatabase() const
     return m_database;
 }
 
-bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
+bool CDatabase::OpenDatabase(CParameterDatabase *pPara,
+                             const QString &szConnectName)
 {
     bool bRet = false;
     if(!pPara) {
-        bRet = OpenSQLiteDatabase();
+        bRet = OpenSQLiteDatabase(pPara, szConnectName);
         return bRet;
     }
 
@@ -55,11 +56,11 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
     Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
 
     if(pPara->GetType() == "QSQLITE")
-        bRet = OpenSQLiteDatabase(QString(), pPara->GetDatabaseName());
+        bRet = OpenSQLiteDatabase(pPara, szConnectName);
     else if(pPara->GetType() == "QMYSQL")
-        bRet = OpenMySqlDatabase(pPara);
+        bRet = OpenMySqlDatabase(pPara, szConnectName);
     else if(pPara->GetType() == "QODBC")
-        bRet = OpenODBCDatabase(pPara);
+        bRet = OpenODBCDatabase(pPara, szConnectName);
 
     QSqlDriver *driver = GetDatabase().driver();
     if (driver) {
@@ -82,24 +83,28 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara)
     return bRet;
 }
 
-bool CDatabase::OpenSQLiteDatabase(
-    const QString &connectionName, const QString &dbPath)
+bool CDatabase::OpenSQLiteDatabase(CParameterDatabase* pPara,
+                                   const QString &szConnectionName)
 {
     QString databasePath;
-    if (dbPath.isEmpty()) {
+    if(pPara)
+        databasePath = pPara->GetDatabaseName();
+    if (databasePath.isEmpty()) {
         // 使用默认路径
         QString dataDir = RabbitCommon::CDir::Instance()->GetDirUserDatabase();
         QDir dir(dataDir);
         if (!dir.exists()) {
             dir.mkpath(dataDir);
         }
+#if DEBUG
+        databasePath = dir.filePath("remote_control_dev.db");
+#else
         databasePath = dir.filePath("remote_control.db");
-    } else {
-        databasePath = dbPath;
+#endif
     }
 
-    if(!connectionName.isEmpty())
-        m_szConnectName = connectionName;
+    if(!szConnectionName.isEmpty())
+        m_szConnectName = szConnectionName;
 
     // 打开或创建数据库
     m_database = QSqlDatabase::addDatabase("QSQLITE", m_szConnectName);
@@ -120,14 +125,24 @@ bool CDatabase::OpenSQLiteDatabase(
     return OnInitializeDatabase();
 }
 
-bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
+bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara,
+                                  const QString &szConnectName)
 {
     if(!pPara) return false;
+
+    if(!szConnectName.isEmpty())
+        m_szConnectName = szConnectName;
+
     // 打开或创建数据库
     m_database = QSqlDatabase::addDatabase("QMYSQL", m_szConnectName);
     QString szDbName = pPara->GetDatabaseName();
-    if(szDbName.isEmpty())
+    if(szDbName.isEmpty()) {
+#if DEBUG
+        szDbName = "remote_control_dev";
+#else
         szDbName = "remote_control";
+#endif
+    }
     m_database.setDatabaseName(szDbName);
     auto &net = pPara->m_Net;
     m_database.setHostName(net.GetHost());
@@ -168,14 +183,24 @@ bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara)
     return OnInitializeDatabase();
 }
 
-bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara)
+bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara,
+                                 const QString &szConnectName)
 {
     if(!pPara) return false;
+
+    if(!szConnectName.isEmpty())
+        m_szConnectName = szConnectName;
+
     // 打开或创建数据库
     m_database = QSqlDatabase::addDatabase("QODBC", m_szConnectName);
     QString szDbName = pPara->GetDatabaseName();
-    if(szDbName.isEmpty())
+    if(szDbName.isEmpty()) {
+#if DEBUG
+        szDbName = "remote_control_dev";
+#else
         szDbName = "remote_control";
+#endif
+    }
     m_database.setDatabaseName(szDbName);
 
     if (!m_database.open()) {

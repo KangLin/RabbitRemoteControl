@@ -4,6 +4,7 @@
 #include <QLoggingCategory>
 #include <QWebEngineProfile>
 #include "ParameterWebBrowser.h"
+#include "ParameterGlobal.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
 CParameterWebBrowser::CParameterWebBrowser(QObject *parent, const QString &szPrefix)
@@ -102,6 +103,10 @@ void CParameterWebBrowser::slotSetGlobalParameters()
     }
     m_Record = pPlugin->m_Record;
     m_MediaDevices = pPlugin->m_MediaDevices;
+    auto pGloabl = pPlugin->GetGlobalParameters();
+    if(pGloabl) {
+        m_Database = pGloabl->m_Database;
+    }
 }
 
 QString CParameterWebBrowser::GetHomeUrl()

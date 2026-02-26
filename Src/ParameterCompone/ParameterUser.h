@@ -26,7 +26,8 @@ class PLUGIN_EXPORT CParameterUser : public CParameterOperate
 public:
     explicit CParameterUser(CParameterOperate* parent,
                             const QString& szPrefix = QString());
-    
+    virtual CParameterUser& operator =(const CParameterUser& in);
+
     enum class TYPE{
         None,
         OnlyPassword,
@@ -101,24 +102,27 @@ private Q_SLOTS:
     void slotLoadPassword();
     void slotLoadPassPhrase();
 private:
-    QList<TYPE> m_Type;
-    TYPE m_UsedType;
+    struct strData {
+        QList<TYPE> m_Type;
+        TYPE m_UsedType;
 
-    QString m_szUser;
-    
-    // Password
-    QString m_szPassword;
-    bool m_bSavePassword;
-    
-    // Public key
-    bool m_bUseSystemFile;
-    QString m_szPublicKeyFile;
-    QString m_szPrivateKeyFile;
-    QString m_szPassphrase;
-    bool m_bSavePassphrase;
-    
-    QString m_szCAFile;
-    QString m_szCRLFile;
-    
-    QMap<TYPE, QString> m_TypeName;
+        QString m_szUser;
+
+        // Password
+        QString m_szPassword;
+        bool m_bSavePassword;
+
+        // Public key
+        bool m_bUseSystemFile;
+        QString m_szPublicKeyFile;
+        QString m_szPrivateKeyFile;
+        QString m_szPassphrase;
+        bool m_bSavePassphrase;
+
+        QString m_szCAFile;
+        QString m_szCRLFile;
+
+        QMap<TYPE, QString> m_TypeName;
+    };
+    strData m_Data;
 };

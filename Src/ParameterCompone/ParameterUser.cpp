@@ -18,13 +18,13 @@ static QString ServiceName()
 
 CParameterUser::CParameterUser(CParameterOperate *parent, const QString &szPrefix)
     : CParameterOperate(parent, szPrefix)
-    , m_Type(QList<TYPE>() << TYPE::UserPassword)
-    , m_UsedType(TYPE::UserPassword)
-    , m_bSavePassword(false)
-    , m_bUseSystemFile(true)
-    , m_bSavePassphrase(false)
 {
-    m_TypeName = {{TYPE::None, tr("None")},
+    m_Data.m_Type << TYPE::UserPassword;
+    m_Data.m_UsedType = TYPE::UserPassword;
+    m_Data.m_bSavePassword = false;
+    m_Data.m_bUseSystemFile = true;
+    m_Data.m_bSavePassphrase = false;
+    m_Data.m_TypeName = {{TYPE::None, tr("None")},
         {TYPE::OnlyPassword, tr("Password")},
         {TYPE::UserPassword, tr("Username and password")},
         {TYPE::PublicKey, tr("Public key")},
@@ -205,70 +205,76 @@ int CParameterUser::OnSave(QSettings &set)
     return 0;
 }
 
+CParameterUser& CParameterUser::operator =(const CParameterUser& in)
+{
+    m_Data = in.m_Data;
+    return *this;
+}
+
 QList<CParameterUser::TYPE> CParameterUser::GetType() const
 {
-    return m_Type;
+    return m_Data.m_Type;
 }
 
 int CParameterUser::SetType(QList<TYPE> type)
 {
-    if(m_Type == type)
+    if(m_Data.m_Type == type)
         return 0;
-    m_Type = type;
+    m_Data.m_Type = type;
     SetModified(true);
     return 0;
 }
 
 CParameterUser::TYPE CParameterUser::GetUsedType() const
 {
-    return m_UsedType;
+    return m_Data.m_UsedType;
 }
 
 int CParameterUser::SetUsedType(TYPE type)
 {
-    if(m_UsedType == type)
+    if(m_Data.m_UsedType == type)
         return 0;
-    m_UsedType = type;
+    m_Data.m_UsedType = type;
     SetModified(true);
     return 0;
 }
 
 const QString CParameterUser::GetUser() const
 {
-    return m_szUser;
+    return m_Data.m_szUser;
 }
 
 void CParameterUser::SetUser(const QString &szUser)
 {
-    if (m_szUser == szUser)
+    if (m_Data.m_szUser == szUser)
         return;
-    m_szUser = szUser;
+    m_Data.m_szUser = szUser;
     SetModified(true);
 }
 
 const QString CParameterUser::GetPassword() const
 {
-    return m_szPassword;
+    return m_Data.m_szPassword;
 }
 
 void CParameterUser::SetPassword(const QString &szPassword)
 {
-    if(m_szPassword == szPassword)
+    if(m_Data.m_szPassword == szPassword)
         return;
-    m_szPassword = szPassword;
+    m_Data.m_szPassword = szPassword;
     SetModified(true);
 }
 
 const bool CParameterUser::GetSavePassword() const
 {
-    return m_bSavePassword;
+    return m_Data.m_bSavePassword;
 }
 
 void CParameterUser::SetSavePassword(bool save)
 {
-    if (m_bSavePassword == save)
+    if (m_Data.m_bSavePassword == save)
         return;
-    m_bSavePassword = save;
+    m_Data.m_bSavePassword = save;
     SetModified(true);
 }
 
@@ -297,110 +303,110 @@ void CParameterUser::slotSetGlobalParameters()
 //! Get use system file
 bool CParameterUser::GetUseSystemFile() const
 {
-    return m_bUseSystemFile;
+    return m_Data.m_bUseSystemFile;
 }
 
 int CParameterUser::SetUseSystemFile(bool use)
 {
-    if(m_bUseSystemFile == use)
+    if(m_Data.m_bUseSystemFile == use)
         return 0;
-    m_bUseSystemFile = use;
+    m_Data.m_bUseSystemFile = use;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::GetPassphrase() const
 {
-    return m_szPassphrase;
+    return m_Data.m_szPassphrase;
 }
 
 int CParameterUser::SetPassphrase(const QString passphrase)
 {
-    if(m_szPassphrase == passphrase)
+    if(m_Data.m_szPassphrase == passphrase)
         return 0;
-    m_szPassphrase = passphrase;
+    m_Data.m_szPassphrase = passphrase;
     SetModified(true);
     return 0;
 }
 
 bool CParameterUser::GetSavePassphrase() const
 {
-    return m_bSavePassphrase;
+    return m_Data.m_bSavePassphrase;
 }
 
 int CParameterUser::SetSavePassphrase(bool bSave)
 {
-    if(m_bSavePassphrase == bSave)
+    if(m_Data.m_bSavePassphrase == bSave)
         return 0;
-    m_bSavePassphrase = bSave;
+    m_Data.m_bSavePassphrase = bSave;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::GetPublicKeyFile() const
 {
-    return m_szPublicKeyFile;
+    return m_Data.m_szPublicKeyFile;
 }
 
 int CParameterUser::SetPublicKeyFile(const QString szFile)
 {
-    if(m_szPublicKeyFile == szFile)
+    if(m_Data.m_szPublicKeyFile == szFile)
         return 0;
-    m_szPublicKeyFile = szFile;
+    m_Data.m_szPublicKeyFile = szFile;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::GetPrivateKeyFile() const
 {
-    return m_szPrivateKeyFile;
+    return m_Data.m_szPrivateKeyFile;
 }
 
 int CParameterUser::SetPrivateKeyFile(const QString szFile)
 {
-    if(m_szPrivateKeyFile == szFile)
+    if(m_Data.m_szPrivateKeyFile == szFile)
         return 0;
-    m_szPrivateKeyFile = szFile;
+    m_Data.m_szPrivateKeyFile = szFile;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::GetCAFile() const
 {
-    return m_szCAFile;
+    return m_Data.m_szCAFile;
 }
 
 int CParameterUser::SetCAFile(const QString &ca)
 {
-    if(m_szCAFile == ca)
+    if(m_Data.m_szCAFile == ca)
         return 0;
-    m_szCAFile = ca;
+    m_Data.m_szCAFile = ca;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::GetCRLFile() const
 {
-    return m_szCRLFile;
+    return m_Data.m_szCRLFile;
 }
 
 int CParameterUser::SetCRLFile(const QString &crl)
 {
-    if(m_szCRLFile == crl)
+    if(m_Data.m_szCRLFile == crl)
         return 0;
-    m_szCRLFile = crl;
+    m_Data.m_szCRLFile = crl;
     SetModified(true);
     return 0;
 }
 
 QString CParameterUser::ConvertTypeToName(TYPE t)
 {
-    return m_TypeName[t];
+    return m_Data.m_TypeName[t];
 }
 
 int CParameterUser::SetTypeName(TYPE t, const QString& szName)
 {
-    m_TypeName[t] = szName;
+    m_Data.m_TypeName[t] = szName;
     return 0;
 }
 

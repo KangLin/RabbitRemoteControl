@@ -149,6 +149,8 @@ public:
     virtual int SaveSettings(const QString szFile = QString());
 
     /*!
+     * \~chinese 得到全局参数
+     * \~english
      * \brief Get Global Parameters
      */
     CParameterGlobal *GetGlobalParameters();

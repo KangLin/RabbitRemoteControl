@@ -219,7 +219,7 @@ private:
 private:
     QDockWidget* m_pDockRecent;
     CFrmRecent* m_pRecent;
-    CRecentDatabase* m_pRecentDb;
+    CRecentDatabase m_RecentDb;
 private Q_SLOTS:
     void on_actionOpenListRecent_triggered();
     

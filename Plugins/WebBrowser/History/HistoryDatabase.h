@@ -21,7 +21,7 @@ class CHistoryDatabase : public CDatabase
 {
     Q_OBJECT
 public:
-    static CHistoryDatabase* Instance(const QString& szPath = QString());
+    static CHistoryDatabase* Instance(CParameterDatabase* para = nullptr);
 
     // 历史记录操作
     bool addHistoryEntry(const QString &url);

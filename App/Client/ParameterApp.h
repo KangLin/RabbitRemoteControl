@@ -13,7 +13,7 @@ public:
     explicit CParameterApp(QObject *parent = nullptr);
     virtual ~CParameterApp();
 
-    CParameterDatabase* m_pDatabase;
+    CParameterDatabase m_Database;
 
 protected:
     virtual int OnLoad(QSettings &set);

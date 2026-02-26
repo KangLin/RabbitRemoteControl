@@ -79,11 +79,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
 
-    QString szDbHistory = GetProfile()->persistentStoragePath();
-    if(!(szDbHistory.right(1) == '/' || szDbHistory.right(1) == '\\'))
-        szDbHistory += QDir::separator();
-    szDbHistory += "History.db";
-    m_pHistoryDatabase = CHistoryDatabase::Instance(szDbHistory);
+    m_pHistoryDatabase = CHistoryDatabase::Instance();
 
     QString szDbBookmarks = GetProfile()->persistentStoragePath();
     if(!(szDbBookmarks.right(1) == '/' || szDbBookmarks.right(1) == '\\'))
