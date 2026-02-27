@@ -86,9 +86,9 @@ update_verion() {
 }
 
 init_value() {
-    SOURCE_DIR=`pwd` #$(dirname $(readlink -f $0))
-    if [ -f ${SOURCE_DIR}/Script/RabbitCommon.sh ]; then
-        source ${SOURCE_DIR}/Script/RabbitCommon.sh
+    SOURCE_DIR=$(dirname $(safe_readlink $0))
+    if [ -f ${SOURCE_DIR}/Script/common.sh ]; then
+        source ${SOURCE_DIR}/Script/common.sh
         check_git
     fi
 
@@ -104,16 +104,45 @@ init_value() {
     # SemVer, git, deb and rpm version pattern
     VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~^][0-9A-Za-z.-]*)?"
 
+    COMMIT="OFF"
     DEPLOY="OFF"
     VERSION=""
     MESSAGE=""
+
+    # Check if sed supports -E
+    if sed -E 's/a/b/g' 1>/dev/null 2>/dev/null <<< "test"; then
+        #echo "Using sed with -E flag"
+        SED_CMD="sed -i -E"
+    else
+        #echo "Falling back to BRE pattern"
+        # Convert pattern to BRE
+        BRE_PATTERN=$(sed_safe_pattern "$VERSION_PATTERN")
+        SED_CMD="sed -i"
+        VERSION_PATTERN="$BRE_PATTERN"
+    fi
 }
 
-# Function to create sed-safe pattern
-sed_safe_pattern() {
-    local pattern="$1"
-    # Escape special chars for sed BRE
-    echo "$pattern" | sed 's/\([][\.*^$+?(){}|/]\)/\\\1/g'
+show_value() {
+    echo ""
+    echo "= Configuration:"
+    echo "  Commit: ${COMMIT}"
+    echo "  Deploy: ${DEPLOY}"
+    echo "  Version: ${VERSION:-not specified}"
+    echo "  Message: ${MESSAGE:-not specified}"
+    echo "  Remaining args: $@"
+    echo ""
+    echo "  DEBIAN_VERSION: $DEBIAN_VERSION"
+    echo "  RPM_VERSION: $RPM_VERSION"
+    echo "  MAJOR_VERSION: $MAJOR_VERSION"
+    echo "  DATE_TIME_UTC: $DATE_TIME_UTC"
+    echo ""
+    echo "  CURRENT_VERSION: $CURRENT_VERSION"
+    echo "  PRE_TAG: $PRE_TAG"
+    echo "  SOURCE_DIR: $SOURCE_DIR"
+    echo ""
+    echo "  SED_CMD: $SED_CMD"
+    echo "  VERSION_PATTERN: $VERSION_PATTERN"
+    echo ""
 }
 
 # Display detailed usage information
@@ -126,24 +155,52 @@ Update version and push to remote repository.
 Usage: $0 [OPTION ...] [VERSION]
 
 Options:
-  -h Show this help message
-  -s Show current version
-  -v Set version to \"VERSION\"
-  -t Tag and deploy
-  -m Set Release message to \"MESSAGE\"
+  Information:
+    -h                      Show this help message
+    -s                      Show current version
+
+  Version Management:
+    -u                      Auto-increment current version
+    -v VERSION              Set specific version (e.g., v1.0.0, 2.1.0-beta)
+    -m MESSAGE              Set release message (used with -u, -c, -t)
+
+  Version + Git Operations:
+    -c                      Update version and commit changes
+    -t VERSION              Set version, create git tag, and push to remote
 
 Version format:
-  See: https://semver.org/"
-  Expected format: [v]X.Y.Z[-prerelease][+build]"
+  Follows Semantic Versioning (SemVer) 2.0.0
+    See: https://semver.org/
+
+  Format: [v]X.Y.Z[-prerelease][+build]
+
+  Examples:
+    v1.0.0               # Release version
+    v2.0.0-dev           # Development Version
+    2.1.0-beta           # Prerelease version
+    v1.2.3-alpha+001     # With build metadata
+    3.0.0-rc.1           # Release candidate
 
 Examples:
   # Show current version
   $0
   $0 -s
 
+  # Only update version with current version
+  $0 -u
+  $0 -u -m "Release note"
+
   # Only update version
   $0 v1.0.0-dev
   $0 -v v1.0.0-dev
+
+  # Update version and commit code
+  # With current version
+  $0 -c
+  $0 -c -m "Release note"
+  # With specify Version
+  $0 -c v1.0.0-dev
+  $0 -c -m "Release note" v1.0.0-dev
 
   # Update version and deploy
   $0 -t v1.0.0
@@ -168,11 +225,12 @@ parse_with_getopts() {
     # 使用 getopts 解析选项
     # "hdv:t:m:" 含义：
     # h: 无参数
-    # d: 无参数
+    # c: 无参数
+    # s: 无参数
     # v: 需要参数（冒号跟在后面）
     # t: 需要参数
     # m: 需要参数
-    while getopts "hsv:t:m:" opt; do
+    while getopts "hcusv:t:m:" opt; do
         case $opt in
             h)
                 usage_long
@@ -181,6 +239,12 @@ parse_with_getopts() {
                 echo "Current version: $CURRENT_VERSION"
                 exit 0
                 ;;
+            u)
+                VERSION=$CURRENT_VERSION
+                ;;
+            c)
+                COMMIT="ON"
+                ;;
             v)
                 VERSION="$OPTARG"
                 #echo "Version set to: $VERSION"
@@ -188,6 +252,7 @@ parse_with_getopts() {
             t)
                 VERSION="$OPTARG"
                 DEPLOY="ON"
+                COMMIT="ON"
                 #echo "Tag set to: $TAG"
                 ;;
             m)
@@ -215,6 +280,10 @@ parse_with_getopts() {
         shift
     fi
 
+    if [ -z "$VERSION" ]; then
+        VERSION=$CURRENT_VERSION
+    fi
+
     # 参数验证
     if [ -n "$VERSION" ]; then
         if [[ ! "$VERSION" =~ ^${VERSION_PATTERN}$ ]]; then
@@ -240,95 +309,80 @@ parse_with_getopts() {
 
     # Record update time
     DATE_TIME_UTC=$(date -u +"%Y-%m-%d %H:%M:%S (UTC)")
-
-    # Display results
-    echo ""
-    echo "= Configuration:"
-    echo "  Deploy: ${DEPLOY}"
-    echo "  Version: ${VERSION:-not specified}"
-    echo "  Message: ${MESSAGE:-not specified}"
-    echo "  Remaining args: $@"
-    echo ""
-    echo "  DEBIAN_VERSION: $DEBIAN_VERSION"
-    echo "  RPM_VERSION: $RPM_VERSION"
-    echo "  MAJOR_VERSION: $MAJOR_VERSION"
-    echo "  DATE_TIME_UTC: $DATE_TIME_UTC"
-    echo ""
 }
 
-init_value
+# Function to create sed-safe pattern
+sed_safe_pattern() {
+    local pattern="$1"
+    # Escape special chars for sed BRE
+    echo "$pattern" | sed 's/\([][\.*^$+?(){}|/]\)/\\\1/g'
+}
 
-# 执行解析函数
-parse_with_getopts "$@"
-
-if [ "$DEPLOY" = "ON" ]; then
-    #PRE_TAG=`git tag --sort=-taggerdate | head -n 1`
-    echo "= Current version: $CURRENT_VERSION"
-    echo "  Latest tag: ${PRE_TAG:-none}"
-    echo "  New tag version: $VERSION"
-    echo "  Message: $MESSAGE"
-    echo ""
-    echo "Please verify:"
-    echo "  √ Tests passed?"
-    echo "  √ Translations updated?"
-    echo "  √ Setup files correct?"
-    echo "  √ Update_*.json files updated?"
-    echo ""
-
-    read -t 30 -p "? Deploy? (y/N): " INPUT
-    if [ "${INPUT:-N}" != "Y" ] && [ "${INPUT:-N}" != "y" ]; then
-        echo "X Deployment cancelled"
-        exit 0
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
     fi
+}
 
-    echo ""
+create_tag() {
+    if [ "$DEPLOY" = "ON" ]; then
+        #PRE_TAG=`git tag --sort=-taggerdate | head -n 1`
+        echo "= Current version: $CURRENT_VERSION"
+        echo "  Latest tag: ${PRE_TAG:-none}"
+        echo "  New tag version: $VERSION"
+        echo "  Message: $MESSAGE"
+        echo ""
+        echo "Please verify:"
+        echo "  √ Tests passed?"
+        echo "  √ Translations updated?"
+        echo "  √ Setup files correct?"
+        echo "  √ Update_*.json files updated?"
+        echo ""
 
-    # Remove existing tag if it exists
-    if git rev-parse "$VERSION" >/dev/null 2>&1; then
-        echo "= Tag $VERSION already exists, deleting ......"
-        git tag -d "$VERSION"
-        echo "√ Successfully delete tag $VERSION"
+        read -t 30 -p "? Deploy? (y/N): " INPUT
+        if [ "${INPUT:-N}" != "Y" ] && [ "${INPUT:-N}" != "y" ]; then
+            echo "X Deployment cancelled"
+            exit 0
+        fi
+
+        echo ""
+
+        # Remove existing tag if it exists
+        if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "= Tag $VERSION already exists, deleting ......"
+            git tag -d "$VERSION"
+            echo "√ Successfully delete tag $VERSION"
+            echo ""
+        fi
+
+        # Create new tag
+        echo "= Creating tag: $VERSION ......"
+        git tag -a "$VERSION" -m "${MESSAGE}"
+        echo "√ Tag created: $VERSION"
         echo ""
     fi
+}
 
-    # Create new tag
-    echo "= Creating tag: $VERSION ......"
-    git tag -a "$VERSION" -m "${MESSAGE}"
-    echo "√ Tag created: $VERSION"
-    echo ""
-fi
-
-if [ -z "$VERSION" ]; then
-    VERSION=`git describe --tags`
-    if [ -z "$VERSION" ]; then
-        VERSION=`git rev-parse --short HEAD`
-    fi
-    echo "X Error: the VERSION is empty"
-    usage_long
-fi
-
-echo "= Update version to $VERSION ......"
-
-# Check if sed supports -E
-if sed -E 's/a/b/g' 1>/dev/null 2>/dev/null <<< "test"; then
-    echo "Using sed with -E flag"
-    SED_CMD="sed -i -E"
-else
-    echo "Falling back to BRE pattern"
-    # Convert pattern to BRE
-    BRE_PATTERN=$(sed_safe_pattern "$VERSION_PATTERN")
-    SED_CMD="sed -i"
-    VERSION_PATTERN="$BRE_PATTERN"
-fi
-
-update_verion
-
-echo "√ Version updated to $VERSION successfully!"
-#echo "  Time: $DATE_TIME_UTC"
-echo ""
-
-if [ "$DEPLOY" = "ON" ]; then
-    echo "= Push to remote repository ......"
+commit_code() {
+    echo "= Commit code ......"
     git add .
 
     # Commit if there are changes
@@ -339,16 +393,46 @@ if [ "$DEPLOY" = "ON" ]; then
         echo "X No changes to commit"
         exit 1
     fi
+}
 
-    # Update tag (delete and recreate)
-    if git rev-parse "$VERSION" >/dev/null 2>&1; then
-        git tag -d "$VERSION"
+push_remote_repository() {
+    if [ "$DEPLOY" = "ON" ]; then
+        echo "= Push to remote repository ......"
+
+        # Update tag (delete and recreate)
+        if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            git tag -d "$VERSION"
+        fi
+        git tag -a "$VERSION" -m "$MESSAGE"
+
+        # Push commits and tags
+        git push origin HEAD
+        git push origin "$VERSION"
+
+        echo "√ Push to remote repository successfully!"
     fi
-    git tag -a "$VERSION" -m "$MESSAGE"
+}
 
-    # Push commits and tags
-    git push origin HEAD
-    git push origin "$VERSION"
+# Start program
+init_value
 
-    echo "√ Push to remote repository successfully!"
+# 执行解析函数
+parse_with_getopts "$@"
+
+show_value
+
+create_tag
+
+echo "= Update version to $VERSION ......"
+
+update_verion
+
+echo "√ Version updated to $VERSION successfully!"
+#echo "  Time: $DATE_TIME_UTC"
+echo ""
+
+if [ "$COMMIT" = "ON" ]; then
+    commit_code
 fi
+
+push_remote_repository
