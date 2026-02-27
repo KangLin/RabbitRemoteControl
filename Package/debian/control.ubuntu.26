@@ -6,7 +6,7 @@ Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
 Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
  ninja-build, qmake6, qt6-tools-dev, qt6-tools-dev-tools, qt6-base-dev, qt6-base-dev-tools,
- qt6-qpa-plugins, libqt6svg6-dev, qt6-l10n-tools, qt6-translations-l10n,
+ qt6-qpa-plugins, qt6-svg-dev, qt6-l10n-tools, qt6-translations-l10n,
  libqt6sql6-mysql, libqt6sql6-sqlite, libqt6sql6-odbc,
  qt6-scxml-dev, qt6-multimedia-dev, qt6-serialport-dev, qt6-websockets-dev,
  qt6-webengine-dev, qt6-webengine-dev-tools, qt6-positioning-dev, qt6-webchannel-dev,
