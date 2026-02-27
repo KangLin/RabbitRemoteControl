@@ -4,7 +4,7 @@
 
 name: rabbitremotecontrol
 title: Rabbit Remote Control
-version: '0.0.36'
+version: '1.0.0-dev'
 type: app
 license: GPL-3.0+
 contact: kl222@126.com
