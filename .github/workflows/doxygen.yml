@@ -75,13 +75,13 @@ jobs:
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
         cmake ${{github.workspace}} \
-            -DBUILD_APP:BOOL=OF \
-            -DBUILD_CLIENT:BOOL=OFF \
-            -DBUILD_PLUGINS:BOOL=OFF \
-            -DBUILD_SERVICE:BOOL=OFF \
-            -DBUILD_ABOUT:BOOL=OFF \
-            -DBUILD_ADMINAUTHORISER:BOOL=OFF \
-            -DBUILD_UPDATE:BOOL=OFF \
+            -DBUILD_APP=OF \
+            -DBUILD_CLIENT=OFF \
+            -DBUILD_PLUGINS=OFF \
+            -DBUILD_SERVICE=OFF \
+            -DWITH_ABOUT=OFF \
+            -DWITH_ADMINAUTHORISER=OFF \
+            -DWITH_UPDATE=OFF \
             -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install \
             -DBUILD_DOCS=ON
