@@ -85,6 +85,37 @@ update_verion() {
 
 }
 
+# Function to create sed-safe pattern
+sed_safe_pattern() {
+    local pattern="$1"
+    # Escape special chars for sed BRE
+    echo "$pattern" | sed 's/\([][\.*^$+?(){}|/]\)/\\\1/g'
+}
+
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 init_value() {
     SOURCE_DIR=$(dirname $(safe_readlink $0))
     if [ -f ${SOURCE_DIR}/Script/common.sh ]; then
@@ -99,9 +130,10 @@ init_value() {
 
     PRE_TAG=`git tag --sort=-creatordate | head -n 1`
 
-    # Official SemVer 2.0.0 pattern
-    SEMVER_PATTERN="v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?"
+    # Official SemVer 2.0.0 pattern. See: https://semver.org/
+    SEMVER_PATTERN='v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?'
     # SemVer, git, deb and rpm version pattern
+    # [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
     VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
 
     COMMIT="OFF"
@@ -222,15 +254,12 @@ parse_with_getopts() {
         exit 0
     fi
 
+    OPTIONS="hcusv:t:m:"
     # 使用 getopts 解析选项
-    # "hdv:t:m:" 含义：
+    # OPTIONS 含义：字符后无冒号表示无参数，字符后有冒号表示需要参数。
     # h: 无参数
-    # c: 无参数
-    # s: 无参数
     # v: 需要参数（冒号跟在后面）
-    # t: 需要参数
-    # m: 需要参数
-    while getopts "hcusv:t:m:" opt; do
+    while getopts $OPTIONS opt; do
         case $opt in
             h)
                 usage_long
@@ -309,37 +338,6 @@ parse_with_getopts() {
 
     # Record update time
     DATE_TIME_UTC=$(date -u +"%Y-%m-%d %H:%M:%S (UTC)")
-}
-
-# Function to create sed-safe pattern
-sed_safe_pattern() {
-    local pattern="$1"
-    # Escape special chars for sed BRE
-    echo "$pattern" | sed 's/\([][\.*^$+?(){}|/]\)/\\\1/g'
-}
-
-# 安全的 readlink 函数，兼容各种系统
-safe_readlink() {
-    local path="$1"
-    if [ -L "$path" ]; then
-        if command -v readlink >/dev/null 2>&1; then
-            if readlink -f "$path" >/dev/null 2>&1; then
-                readlink -f "$path"
-            else
-                readlink "$path"
-            fi
-        else
-            ls -l "$path" | awk '{print $NF}'
-        fi
-    elif [ -e "$path" ]; then
-        if command -v realpath >/dev/null 2>&1; then
-            realpath "$path"
-        else
-            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
-        fi
-    else
-        echo "$path"
-    fi
 }
 
 create_tag() {

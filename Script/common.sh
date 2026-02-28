@@ -513,3 +513,241 @@ test_sed_pattern() {
         echo "  X BRE: No match"
     fi
 }
+
+# Official SemVer 2.0.0 pattern. See: https://semver.org/
+SEMVER_PATTERN='v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?'
+# SemVer, git, deb and rpm version pattern
+# [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
+VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
+
+# 函数：版本号解析器，返回包含所有信息的数组
+# $1: 版本字符串
+# #2: 输出的版本数组。需要用 `local -a` 声明：例如 `local -a version_info` 或者 `local version_info=()`
+# 使用：
+#    ver="v1.0.0"
+#    local -a result
+#    version_parser "$ver" result
+#    if [[ $? -eq 0 ]]; then
+#        display_version_info "${result[@]}"
+#    fi
+version_parser() {
+    local version=$1
+    local -n version_data=$2 # 使用引用传递
+    
+    # 定义版本号模式
+    local major minor patch pre build
+
+    # 移除 v 前缀
+    version=${version#v}
+    
+    # 正则表达式匹配语义化版本
+    local semantic_pattern=${SEMVER_PATTERN}
+
+    if [[ $version =~ $semantic_pattern ]]; then
+        # 基本版本信息 [major, minor, patch, pre, build, 完整版本, 是否预发布, 是否包含构建]
+        version_data=(
+            "${BASH_REMATCH[1]}"           # major
+            "${BASH_REMATCH[2]}"           # minor
+            "${BASH_REMATCH[3]}"           # patch
+            "${BASH_REMATCH[5]:-}"          # pre
+            "${BASH_REMATCH[10]:-}"          # build
+            "$version"                      # original
+            $([[ -n "${BASH_REMATCH[5]}" ]] && echo "true" || echo "false")  # is_pre
+            $([[ -n "${BASH_REMATCH[10]}" ]] && echo "true" || echo "false")  # has_build
+        )
+        return 0
+    fi
+
+    echo "ERROR: Unable to parse version number '$version'" >&2
+    return 1
+}
+
+# 辅助函数：显示版本数组
+display_version_info() {
+    local -a data=($@)
+    
+    if [[ ${#data[@]} -ge 8 ]]; then
+        cat << EOF
+版本信息:
+  原始版本: ${data[5]}
+  主版本号: ${data[0]}
+  次版本号: ${data[1]}
+  修订号: ${data[2]}
+  预发布标签: ${data[3]:-(无)}
+  构建元数据: ${data[4]:-(无)}
+  是否预发布: ${data[6]}
+  是否包含构建: ${data[7]}
+EOF
+    else
+        echo "数据不完整"
+    fi
+}
+
+# 函数：返回版本号的关联数组
+# $1: 版本字符串
+# #2: 输出的版本关联数组。需要用 `local -A` 声明：例如 `local -A version_info`
+parse_version_assoc() {
+    local version=$1
+    local -n version_array=$2  # 使用引用传递
+    # 正则表达式匹配语义化版本
+    local pattern=$SEMVER_PATTERN
+    #local pattern='^([0-9]+)\.([0-9]+)\.([0-9]+)(-([a-zA-Z0-9\.]+))?(\+([a-zA-Z0-9\.]+))?$'
+    
+    # 移除 v 前缀
+    version=${version#v}
+    
+    if [[ $version =~ $pattern ]]; then
+        version_array[major]="${BASH_REMATCH[1]}"
+        version_array[minor]="${BASH_REMATCH[2]}"
+        version_array[patch]="${BASH_REMATCH[3]}"
+        version_array[pre]="${BASH_REMATCH[5]:-}"  # 默认空字符串
+        version_array[build]="${BASH_REMATCH[10]:-}"
+        return 0
+    else
+        echo "ERROR: Unable to parse version number '$version'" >&2
+        return 1
+    fi
+}
+
+# 比较预发布版本
+compare_pre_release() {
+    local pre1=$1
+    local pre2=$2
+    
+    IFS='.' read -ra parts1 <<< "$pre1"
+    IFS='.' read -ra parts2 <<< "$pre2"
+    
+    local i=0
+    while [[ $i -lt ${#parts1[@]} ]] && [[ $i -lt ${#parts2[@]} ]]; do
+        # 判断是数字还是字符串
+        if [[ ${parts1[$i]} =~ ^[0-9]+$ ]] && [[ ${parts2[$i]} =~ ^[0-9]+$ ]]; then
+            # 数字比较
+            if [[ ${parts1[$i]} -gt ${parts2[$i]} ]]; then
+                return 1
+            elif [[ ${parts1[$i]} -lt ${parts2[$i]} ]]; then
+                return 2
+            fi
+        elif [[ ${parts1[$i]} =~ ^[0-9]+$ ]] && [[ ! ${parts2[$i]} =~ ^[0-9]+$ ]]; then
+            return 2  # 数字 < 非数字
+        elif [[ ! ${parts1[$i]} =~ ^[0-9]+$ ]] && [[ ${parts2[$i]} =~ ^[0-9]+$ ]]; then
+            return 1  # 非数字 > 数字
+        else
+            # 字符串比较
+            if [[ ${parts1[$i]} > ${parts2[$i]} ]]; then
+                return 1
+            elif [[ ${parts1[$i]} < ${parts2[$i]} ]]; then
+                return 2
+            fi
+        fi
+        ((i++))
+    done
+    
+    # 如果所有相同部分都相等，较长的预发布版本更低
+    if [[ ${#parts1[@]} -gt ${#parts2[@]} ]]; then
+        return 2
+    elif [[ ${#parts1[@]} -lt ${#parts2[@]} ]]; then
+        return 1
+    fi
+    
+    return 0
+}
+
+# 版本号比较函数
+# 返回值：
+#   0: 版本相等
+#   1: 版本1 > 版本2
+#   2: 版本1 < 版本2
+#   3: 版本格式错误
+compare_versions() {
+    local ver1=$1
+    local ver2=$2
+
+    # 解析版本号到数组
+    local -a parts1
+    local -a parts2
+
+    version_parser "$ver1" parts1 || return 3
+    version_parser "$ver2" parts2 || return 3
+    #echo "parts1 size: ${#parts1[@]}; ${parts1[@]}"
+    #echo "parts2 size: ${#parts2[@]}; ${parts2[@]}"
+
+    # 检查数组元素个数
+    if [ ${#parts1[@]} -lt 3 ] || [ ${#parts2[@]} -lt 3 ]; then
+        echo "version format error" >&2
+        return 3
+    fi
+
+    # 比较主版本、次版本、修订号
+    for i in 0 1 2; do
+        if [[ ${parts1[$i]} -gt ${parts2[$i]} ]]; then
+            return 1
+        elif [[ ${parts1[$i]} -lt ${parts2[$i]} ]]; then
+            return 2
+        fi
+    done
+
+    # 比较预发布版本（如果有）
+    local pre1="${parts1[3]}"
+    local pre2="${parts2[3]}"
+
+    # 如果一个有预发布，一个没有，则有预发布的版本更低
+    if [[ -n "$pre1" && -z "$pre2" ]]; then
+        return 2
+    elif [[ -z "$pre1" && -n "$pre2" ]]; then
+        return 1
+    elif [[ -n "$pre1" && -n "$pre2" ]]; then
+        # 比较预发布版本
+        compare_pre_release "$pre1" "$pre2"
+        local result=$?
+        [[ $result -ne 0 ]] && return $result
+    fi
+
+    return 0  # 完全相等
+}
+
+# 辅助函数：将返回值转换为可读文本
+get_comparison_text() {
+    case $1 in
+        0) echo "相等" ;;
+        1) echo "大于" ;;
+        2) echo "小于" ;;
+        3) echo "格式错误" ;;
+        *) echo "未知($1)" ;;
+    esac
+}
+
+test_version() {
+    # 批量测试
+    test_versions=(
+        "1.2.3"
+        "2.1.0-beta.2"
+        "3.0.0+build.123"
+        "v4.5.6-alpha.1+build.789"
+        "5.6"
+        "v5.6.6"
+    )
+    
+    for ver in "${test_versions[@]}"; do
+        echo "================================="
+        echo "测试版本: $ver"
+        local -a result #声明普通数组
+        if version_parser "$ver" result; then
+            display_version_info "${result[@]}"
+        fi
+    done
+    
+    # 使用示例
+    local -A version_info #声明关联数组
+    if parse_version_assoc "2.1.0-beta.2+build.456" version_info; then
+        echo "主版本: ${version_info[major]}"
+        echo "次版本: ${version_info[minor]}"
+        echo "修订号: ${version_info[patch]}"
+        echo "预发布: ${version_info[pre]}"
+        echo "构建号: ${version_info[build]}"
+    fi
+
+    echo "compare_versions \"v1.0.0\" \"1.0.0\": `compare_versions "v1.0.0" "1.0.0"; echo $?`"
+    echo "compare_versions \"v1.0.0\" \"1.1.0\": `compare_versions "v1.0.0" "1.1.0"; echo $?`"
+    echo "compare_versions \"v2.0.0\" \"1.1.0\": `compare_versions "v2.0.0" "1.1.0"; echo $?`"
+    echo "compare_versions \"v2.0.0-alpha\" \"2.0.0-beta\": `compare_versions "v2.0.0-alpha" "2.0.0-beta"; echo $?`"
+}
