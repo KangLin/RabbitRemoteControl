@@ -28,7 +28,6 @@ update_verion() {
     $SED_CMD "s/RabbitRemoteControl_VERSION_PRE:.*/RabbitRemoteControl_VERSION_PRE: ${PRE_TAG}/g" ${SOURCE_DIR}/.github/workflows/build.yml
     $SED_CMD "s/version:.*'${VERSION_PATTERN}'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
 
-    RPM_VERSION_PATTERN="[0-9]\+\.[0-9]\+\.[0-9]\+[\+\._~\^0-9A-Za-z]*"
     $SED_CMD "s/Version:.*${VERSION_PATTERN}/Version:        ${RPM_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
     CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
@@ -132,8 +131,9 @@ init_value() {
 
     # Official SemVer 2.0.0 pattern. See: https://semver.org/
     SEMVER_PATTERN='v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?'
-    # SemVer, git, deb and rpm version pattern
     # [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
+    RPM_VERSION_PATTERN="[0-9]+\.[0-9]+\.[0-9]+[+._~^0-9A-Za-z]*"
+    # SemVer, git, deb and rpm version pattern
     VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
 
     COMMIT="OFF"

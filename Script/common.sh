@@ -516,8 +516,9 @@ test_sed_pattern() {
 
 # Official SemVer 2.0.0 pattern. See: https://semver.org/
 SEMVER_PATTERN='v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?'
-# SemVer, git, deb and rpm version pattern
 # [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
+RPM_VERSION_PATTERN="[0-9]+\.[0-9]+\.[0-9]+[+._~^0-9A-Za-z]*"
+# SemVer, git, deb and rpm version pattern
 VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
 
 # 函数：版本号解析器，返回包含所有信息的数组

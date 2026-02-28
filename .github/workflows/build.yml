@@ -7,7 +7,7 @@ env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   RabbitRemoteControl_VERSION: 1.0.0-dev
-  RabbitRemoteControl_VERSION_PRE: v0.1.0-bate5
+  RabbitRemoteControl_VERSION_PRE: v0.1.0-bate7
 
 on:
   push:
