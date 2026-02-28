@@ -13,6 +13,7 @@
  *  \ingroup APP
  */
 
+#include <QtGlobal>
 #include <QLoggingCategory>
 #include <QApplication>
 #include <QSettings>
