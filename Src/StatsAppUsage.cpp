@@ -155,8 +155,8 @@ void CStatsAppUsage::Download(const QString &szFile)
     if(!szVersion.isEmpty()) {
         if(RabbitCommon::CTools::VersionValid(szVersion)) {
             auto map = RabbitCommon::CTools::GetVersion(szVersion);
-            if(!map.value("PreRelease").isEmpty()
-                || !map.value("Build").isEmpty()) {
+            if(!map.preRelease.isEmpty()
+                || !map.build.isEmpty()) {
                 file += "Dev";
                 static QRegularExpression regex("[-|+]");
                 szVersion = szVersion.left(szVersion.indexOf(regex));
