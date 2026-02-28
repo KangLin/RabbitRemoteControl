@@ -248,6 +248,7 @@ parse_with_getopts() {
 
     if [ $# -eq 0 ]; then
         echo "Current version: $CURRENT_VERSION"
+        echo "Last tag: $PRE_TAG"
         echo ""
         echo "Help:"
         echo "  $0 -h"
