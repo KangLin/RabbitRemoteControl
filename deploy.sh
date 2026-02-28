@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
 
 set -e
 
@@ -116,6 +117,14 @@ safe_readlink() {
 }
 
 init_value() {
+    # Official SemVer 2.0.0 pattern. See: https://semver.org/
+    SEMVER_PATTERN="v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?"
+    # [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
+    RPM_VERSION_PATTERN="[0-9]+\.[0-9]+\.[0-9]+[+._~^0-9A-Za-z]*"
+    # SemVer, git, deb and rpm version pattern
+    VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
+    TAG_RELEASE_PATTERN="v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+
     SOURCE_DIR=$(dirname $(safe_readlink $0))
     if [ -f ${SOURCE_DIR}/Script/common.sh ]; then
         source ${SOURCE_DIR}/Script/common.sh
@@ -127,14 +136,7 @@ init_value() {
         CURRENT_VERSION=`git rev-parse HEAD`
     fi
 
-    PRE_TAG=`git tag --sort=-creatordate | head -n 1`
-
-    # Official SemVer 2.0.0 pattern. See: https://semver.org/
-    SEMVER_PATTERN='v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?'
-    # [rpm version](https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/)
-    RPM_VERSION_PATTERN="[0-9]+\.[0-9]+\.[0-9]+[+._~^0-9A-Za-z]*"
-    # SemVer, git, deb and rpm version pattern
-    VERSION_PATTERN="v?[0-9]+\.[0-9]+\.[0-9]+([-+_~.^][0-9A-Za-z.-]*)?"
+    PRE_TAG=`git tag --sort=-creatordate | grep -E "^${TAG_RELEASE_PATTERN}$" | head -n 1`
 
     COMMIT="OFF"
     DEPLOY="OFF"
@@ -248,7 +250,7 @@ parse_with_getopts() {
 
     if [ $# -eq 0 ]; then
         echo "Current version: $CURRENT_VERSION"
-        echo "Last tag: $PRE_TAG"
+        echo "Last release tag: $PRE_TAG"
         echo ""
         echo "Help:"
         echo "  $0 -h"
@@ -345,7 +347,7 @@ create_tag() {
     if [ "$DEPLOY" = "ON" ]; then
         #PRE_TAG=`git tag --sort=-taggerdate | head -n 1`
         echo "= Current version: $CURRENT_VERSION"
-        echo "  Latest tag: ${PRE_TAG:-none}"
+        echo "  Latest release tag: ${PRE_TAG:-none}"
         echo "  New tag version: $VERSION"
         echo "  Message: $MESSAGE"
         echo ""
