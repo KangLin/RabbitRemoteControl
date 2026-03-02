@@ -260,8 +260,8 @@ int CManager::FindPlugins(QDir dir, QStringList filters)
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         if(m_pParameterPlugin
-            && (!m_pParameterPlugin->m_WhiteList.contains(szPlugins) || !m_pParameterPlugin->m_WhiteList.contains(fileName))
-            && (m_pParameterPlugin->m_BlackList.contains(szPlugins) || m_pParameterPlugin->m_BlackList.contains(fileName))) {
+            && (!m_pParameterPlugin->m_WhiteList.contains(fileName) || !m_pParameterPlugin->m_WhiteList.contains(fileName))
+            && (m_pParameterPlugin->m_BlackList.contains(fileName) || m_pParameterPlugin->m_BlackList.contains(fileName))) {
             qInfo(log) << "Filter:" << szPlugins << "in blacklist";
             continue;
         }

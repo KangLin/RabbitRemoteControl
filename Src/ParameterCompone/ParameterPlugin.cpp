@@ -87,6 +87,9 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetOnlyLoadInWhitelist(set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
     
     set.endGroup();
+
+    m_WhiteList.InitDatabase(&m_pGlobalParameter->m_Database);
+    m_BlackList.InitDatabase(&m_pGlobalParameter->m_Database);
     return 0;
 }
 

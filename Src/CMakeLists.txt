@@ -55,11 +55,12 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
     ParameterCompone/Stats.h
-    ParameterCompone/ParameterDatabase.h
-    ParameterCompone/ParameterDatabaseUI.h
     CheckBoxHeader.h
-    Database.h
-    DatabaseTree.h
+    Database/Database.h
+    Database/DatabaseTree.h
+    Database/DatabaseFilter.h
+    Database/ParameterDatabase.h
+    Database/ParameterDatabaseUI.h
     )
 
 list(APPEND PLUGIN_HEADER_FILES
@@ -106,16 +107,17 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
     ParameterCompone/Stats.cpp
-    ParameterCompone/ParameterDatabase.cpp
-    ParameterCompone/ParameterDatabaseUI.cpp
     DlgInputPassword.cpp
     DlgUserPassword.cpp
     Hook.cpp
     Unix/DesktopShortcuts.cpp
     StatsAppUsage.cpp
     CheckBoxHeader.cpp
-    Database.cpp
-    DatabaseTree.cpp
+    Database/Database.cpp
+    Database/DatabaseTree.cpp
+    Database/DatabaseFilter.cpp
+    Database/ParameterDatabase.cpp
+    Database/ParameterDatabaseUI.cpp
     )
 
 set(PLUGIN_UI_FILES
@@ -127,7 +129,7 @@ set(PLUGIN_UI_FILES
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
     ParameterCompone/ParameterSSHTunnelUI.ui
-    ParameterCompone/ParameterDatabaseUI.ui
+    Database/ParameterDatabaseUI.ui
     )
 
 if(WIN32)
@@ -356,6 +358,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Channel
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/Database
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         ${PLUGIN_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${PLUGIN_INSTALL_HEADER_FILES}

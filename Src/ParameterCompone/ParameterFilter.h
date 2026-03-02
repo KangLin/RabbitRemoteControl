@@ -2,8 +2,11 @@
 
 #pragma once
 #include <QSet>
+
 #include "Parameter.h"
 
+class CDatabaseFilter;
+class CParameterDatabase;
 class CParameterFilter : public CParameter
 {
     Q_OBJECT
@@ -11,7 +14,9 @@ class CParameterFilter : public CParameter
 public:
     explicit CParameterFilter(QObject *parent = nullptr,
                               const QString& szPrefix = QString());
+    ~CParameterFilter();
 
+    bool InitDatabase(CParameterDatabase* pDB);
     virtual bool contains(const QString& szKey);
 
     int AddKey(const QString& szKey);
@@ -22,6 +27,8 @@ public:
 
 private:
     QSet<QString> m_Key;
+    CDatabaseFilter* m_pDatabase;
+    QString m_szSuffix;
 
 protected:
     virtual int OnLoad(QSettings &set) override;

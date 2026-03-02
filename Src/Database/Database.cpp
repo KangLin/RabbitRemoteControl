@@ -11,8 +11,9 @@
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "IconUtils.h"
-#include "Database.h"
 
+#include "Database.h"
+#include "ParameterDatabase.h"
 static Q_LOGGING_CATEGORY(log, "DB")
 CDatabase::CDatabase(QObject *parent)
     : QObject{parent}

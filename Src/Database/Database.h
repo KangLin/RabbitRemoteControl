@@ -7,8 +7,8 @@
 #include <QDateTime>
 #include <QJsonObject>
 #include "plugin_export.h"
-#include "ParameterDatabase.h"
 
+class CParameterDatabase;
 class PLUGIN_EXPORT CDatabase : public QObject
 {
     Q_OBJECT
