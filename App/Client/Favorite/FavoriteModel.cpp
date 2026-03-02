@@ -252,7 +252,7 @@ bool CFavoriteModel::AddFavorite(
         // Update
         auto it = items.at(0);
         if(it.id <= 0) return false;
-        bool ok = MoveTree(it.id, parentId);
+        bool ok = MoveTree(item, parentId);
         if(!ok) return false;
         m_pDatabase->Move(it.id, parentId);
     }
@@ -400,30 +400,27 @@ bool CFavoriteModel::UpdateTree(const QString &szFile)
     auto items = m_pDatabase->GetFavorite(szFile);
     foreach(auto it, items) {
         if(it.id <= 0) continue;
-        auto leaf = m_pDatabase->GetLeaf(it.id);
-        if(leaf.GetId() == 0)
-            continue;
-        int parentId = leaf.GetParentId();
-        tree* parent = GetTree(parentId);
+        tree* parent = GetTree(it.parentId);
         if(!parent) continue;
-        auto c = parent->FindChild(it.id);
-        if(!c) continue;
-        c->item = it;
-        QModelIndex changedIndex = CreateIndex(parent);
-        if (changedIndex.isValid()) {
-            emit dataChanged(changedIndex, changedIndex);
+        QList<tree*> children = parent->FindChild(it);
+        if(children.isEmpty()) continue;
+        foreach(auto c, children) {
+            c->item = it;
+            QModelIndex changedIndex = CreateIndex(parent);
+            if (changedIndex.isValid()) {
+                emit dataChanged(changedIndex, changedIndex);
+            }
         }
     }
     return true;
 }
 
-bool CFavoriteModel::MoveTree(int id, int newParentId)
+bool CFavoriteModel::MoveTree(const CFavoriteDatabase::Item &item, int newParentId)
 {
-    auto leaf = m_pDatabase->GetLeaf(id);
-    if(leaf.GetId() == 0)
+    if(0 == item.id)
         return false;
 
-    int parentId = leaf.GetParentId();
+    int parentId = item.parentId;
     if(parentId == newParentId)
         return true;
 
@@ -433,17 +430,19 @@ bool CFavoriteModel::MoveTree(int id, int newParentId)
     tree* newParent = GetTree(newParentId);
     if(!newParent) return false;
 
-    tree* cur = parent->FindChild(id);
-    int sourcePos = parent->children.indexOf(cur);
-    if(sourcePos < 0)
-        return false;
-    int desPos = parent->GetInserIndex(cur);
-    QModelIndex index = CreateIndex(parent);
-    QModelIndex newIndex = CreateIndex(newParent);
-    beginMoveRows(index, sourcePos, sourcePos, newIndex, desPos);
-    parent->RemoveChild(cur);
-    newParent->AddChild(cur);
-    endMoveRows();
+    auto children = parent->FindChild(item);
+    foreach(auto cur, children) {
+        int sourcePos = parent->children.indexOf(cur);
+        if(sourcePos < 0)
+            return false;
+        int desPos = parent->GetInserIndex(cur);
+        QModelIndex index = CreateIndex(parent);
+        QModelIndex newIndex = CreateIndex(newParent);
+        beginMoveRows(index, sourcePos, sourcePos, newIndex, desPos);
+        parent->RemoveChild(cur);
+        newParent->AddChild(cur);
+        endMoveRows();
+    }
     return true;
 }
 
@@ -544,28 +543,31 @@ bool CFavoriteModel::tree::RemoveChild(tree *child)
     return true;
 }
 
-CFavoriteModel::tree* CFavoriteModel::tree::FindChild(int id) const
+QList<CFavoriteModel::tree*> CFavoriteModel::tree::FindChild(const CFavoriteDatabase::Item &item) const
 {
+    QList<tree*> lstChildren;
     for (auto child : children) {
-        if (child->item.id == id) {
-            return child;
+        if (child->item.id == item.id && child->item.type == item.type) {
+            lstChildren << child;
         }
     }
-    return nullptr;
+    return lstChildren;
 }
 
-CFavoriteModel::tree* CFavoriteModel::tree::FindRecursive(int id) const
+QList<CFavoriteModel::tree*> CFavoriteModel::tree::FindRecursive(const CFavoriteDatabase::Item &item) const
 {
-    if (item.id == id) {
-        return const_cast<tree*>(this);
+    QList<tree*> lstChildren;
+    if (item.id == this->item.id && item.type == this->item.type) {
+        lstChildren << const_cast<tree*>(this);
+        return lstChildren;
     }
 
     for (auto child : children) {
-        tree* found = child->FindRecursive(id);
-        if (found) {
-            return found;
+        QList<tree*> found = child->FindRecursive(item);
+        if (!found.isEmpty()) {
+            lstChildren << found;
         }
     }
 
-    return nullptr;
+    return lstChildren;
 }

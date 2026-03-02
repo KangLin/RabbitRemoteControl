@@ -75,8 +75,8 @@ private:
         bool AddChild(tree* child);
         bool InsertChild(int index, tree* child);
         bool RemoveChild(tree* child);
-        tree* FindChild(int id) const;
-        tree* FindRecursive(int id) const;
+        QList<tree*> FindChild(const CFavoriteDatabase::Item &item) const;
+        QList<tree*> FindRecursive(const CFavoriteDatabase::Item &item) const;
 
     private:
         int m_row = 0; // the row of item in the it's parent
@@ -93,5 +93,5 @@ private:
     void ClearTree(tree* node);
     bool AddTree(const CFavoriteDatabase::Item& item, int parentId);
     bool UpdateTree(const QString &szFile);
-    bool MoveTree(int id, int newParentId);
+    bool MoveTree(const CFavoriteDatabase::Item& item, int newParentId);
 };

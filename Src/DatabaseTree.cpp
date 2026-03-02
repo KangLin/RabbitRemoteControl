@@ -832,6 +832,7 @@ TreeItem CDatabaseTree::GetLeaf(int id)
         item.SetLastVisitTime(query.value(4).toDateTime());
         item.SetParentId(query.value(5).toInt());
     }
+
     return item;
 }
 

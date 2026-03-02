@@ -20,6 +20,7 @@ public:
 
     void Initial();
     RabbitCommon::CTitleBar* m_pDockTitleBar;
+
 public Q_SLOTS:
     void slotAddToFavorite(const QString &szFile,
                            const QString& szName,
