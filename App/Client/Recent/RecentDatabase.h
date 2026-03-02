@@ -2,8 +2,11 @@
 
 #pragma once
 
+#include <QDir>
+#include <QFileInfo>
 #include <QIcon>
 #include "Database.h"
+#include "RabbitCommonDir.h"
 
 class CRecentDatabase : public CDatabase
 {
@@ -11,7 +14,7 @@ class CRecentDatabase : public CDatabase
 
 public:
     explicit CRecentDatabase(QObject *parent = nullptr);
-    ~CRecentDatabase();
+    virtual ~CRecentDatabase();
 
     struct RecentItem {
         int id;
@@ -20,17 +23,19 @@ public:
         QString szName;
         QString szProtocol;
         QString szType;
-        QString szFile;
+        int SetFile(const QString& file);
+        QString GetFile();
         QDateTime time;
         QString szDescription;
-        RecentItem() : id(0) {
-        }
+        RecentItem();
+    private:
+        QString szFile;
+        friend CRecentDatabase;
     };
 
     int AddRecent(const RecentItem &item);
     bool DeleteRecent(int id);
-    bool UpdateRecent(
-        const QString &szFile, const QString& szName, const QString& szDescription);
+    bool UpdateRecent(const RecentItem &item);
     QList<RecentItem> GetRecents(int limit = -1, int offset = 0);
 
 private:
@@ -39,6 +44,8 @@ private:
     virtual bool OnInitializeMySqlDatabase() override;
     virtual bool ExportToJson(QJsonObject &obj) override;
     virtual bool ImportFromJson(const QJsonObject &obj) override;
+
+    bool UpdateRecent(const QString &szFile, const QString& szName, const QString& szDescription);
 
     CDatabaseIcon m_IconDB;
     CDatabaseFile m_FileDB;

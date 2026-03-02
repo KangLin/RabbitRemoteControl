@@ -25,7 +25,7 @@ class CFrmRecent : public QWidget, CManager::Handle
     
 public:
     explicit CFrmRecent(MainWindow* pMainWindow, CManager* pManager,
-                        CRecentDatabase* pDb, CParameterApp &parameterApp,
+                        CParameterApp &parameterApp,
                         bool bDock = false, QWidget *parent = nullptr);
     virtual ~CFrmRecent();
 
@@ -35,6 +35,9 @@ public:
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 
     int Init();
+    int AddRecent(const CRecentDatabase::RecentItem &item);
+    bool UpdateRecent(const CRecentDatabase::RecentItem &item);
+    QList<CRecentDatabase::RecentItem> GetRecents(int limit = -1, int offset = 0);
 
 public Q_SLOTS:
     void slotRefresh();
@@ -84,7 +87,7 @@ private:
     QAction* m_pImport;
 
     QTableView* m_pTableView;
-    CRecentDatabase* m_pDatabase;
+    CRecentDatabase m_Database;
     CRecentModel* m_pModel;
     CManager* m_pManager;
     bool m_bDock;

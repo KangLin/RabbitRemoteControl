@@ -347,7 +347,7 @@ bool CDatabaseUrl::OnInitializeMySqlDatabase()
         "    title TEXT,"
         "    icon INTEGER DEFAULT 0,"
         "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    UNIQUE KEY idx_url_url (url(255))"
+        "    UNIQUE KEY idx_url_url (url(32767))"
         ")"
         );
     

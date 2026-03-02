@@ -15,6 +15,31 @@
 #include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "App.Recent.Db")
+
+CRecentDatabase::RecentItem::RecentItem() : id(0) {
+}
+
+int CRecentDatabase::RecentItem::SetFile(const QString& file) {
+    QFileInfo fi(file);
+    QFileInfo d(RabbitCommon::CDir::Instance()->GetDirUserData() + QDir::separator());
+    //qDebug(log) << "\n" << fi.path() << "\n" << d.path() << "\n" << fi.absoluteFilePath() << "\n" << d.absoluteFilePath();
+    if(fi.absolutePath() == d.absolutePath())
+        szFile = fi.fileName();
+    else
+        szFile = file;
+    return 0;
+}
+
+QString CRecentDatabase::RecentItem::GetFile() {
+    QFileInfo fi(szFile);
+    //qDebug(log) << szFile << fi.absolutePath();
+    if(fi.isRelative()) {
+        return RabbitCommon::CDir::Instance()->GetDirUserData()
+            + QDir::separator() + szFile;
+    }
+    return szFile;
+}
+
 CRecentDatabase::CRecentDatabase(QObject *parent)
     : CDatabase{parent}
 {
@@ -226,6 +251,11 @@ int CRecentDatabase::AddRecent(const RecentItem &item)
     return query.lastInsertId().toInt();
 }
 
+bool CRecentDatabase::UpdateRecent(const RecentItem& item)
+{
+    return UpdateRecent(item.szFile, item.szName, item.szDescription);
+}
+
 bool CRecentDatabase::UpdateRecent(
     const QString &szFile, const QString& szName, const QString& szDescription)
 {
@@ -243,7 +273,8 @@ bool CRecentDatabase::UpdateRecent(
 
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to update recent:" << query.lastError().text();
+        qCritical(log) << "Failed to update recent:" << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
     }
     emit sigChanged();
     return success;

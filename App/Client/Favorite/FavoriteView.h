@@ -10,6 +10,11 @@
 #include "FavoriteModel.h"
 #include "ParameterApp.h"
 
+/*!
+ * \brief The CFavoriteView class
+ * \note The file is exist in RabbitCommon::CDir::Instance()->GetDirUserData(),
+ *       then remove the path, only save file name. other save the file path.
+ */
 class CFavoriteView : public QWidget
 {
     Q_OBJECT
@@ -65,6 +70,8 @@ private:
     void setupToolBar(QLayout* layout);
     void setupTreeView(QLayout* layout);
     void EnableAction(const QModelIndex& index = QModelIndex());
+    QString GetFile(const QString szFile);
+    QString SetFile(const QString szFile);
 
 private:
     CParameterApp* m_pParaApp;

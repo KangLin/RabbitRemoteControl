@@ -23,8 +23,8 @@ Qt::ItemFlags CRecentModel::flags(const QModelIndex &index) const
         return f;
 
     auto item = m_Items.at(index.row());
-    QFileInfo fi(item.szFile);
-    if(!item.szFile.isEmpty() && fi.exists())
+    QFileInfo fi(item.GetFile());
+    if(fi.exists())
         f |= Qt::ItemIsEnabled;
     else
         f &= ~Qt::ItemIsEnabled;
@@ -84,7 +84,7 @@ QVariant CRecentModel::data(const QModelIndex &index, int role) const
         case ID:
             return item.szOperateId;
         case File:
-            return item.szFile;
+            return item.GetFile();
         }
         break;
 

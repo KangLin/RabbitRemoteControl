@@ -16,7 +16,7 @@
 static Q_LOGGING_CATEGORY(log, "App.FrmListRecent")
 
 CFrmRecent::CFrmRecent(
-    MainWindow *pMainWindow, CManager *pManager, CRecentDatabase *pDb,
+    MainWindow *pMainWindow, CManager *pManager,
     CParameterApp &parameterApp, bool bDock, QWidget *parent)
     : QWidget(parent)
     , m_pMainWindow(pMainWindow)
@@ -24,7 +24,6 @@ CFrmRecent::CFrmRecent(
     , m_pToolBar(nullptr)
     , m_ptbOperate(nullptr)
     , m_pMenuNew(nullptr)
-    , m_pDatabase(pDb)
     , m_pModel(nullptr)
     , m_pManager(pManager)
     , m_bDock(bDock)
@@ -167,8 +166,6 @@ CFrmRecent::CFrmRecent(
     Q_ASSERT(check);
     layout()->addWidget(m_pTableView);
 
-    m_pModel = new CRecentModel(&m_ParameterApp, m_pDatabase, m_pTableView);
-    m_pTableView->setModel(m_pModel);
     m_pTableView->verticalHeader()->hide();
     m_pTableView->setSelectionMode(QAbstractItemView::SingleSelection);
     m_pTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -177,32 +174,6 @@ CFrmRecent::CFrmRecent(
         m_pTableView->hideColumn(CRecentModel::ColumnNo::ID);
         m_pTableView->hideColumn(CRecentModel::ColumnNo::File);
     }
-    
-    check = connect(m_pDatabase, &CRecentDatabase::sigChanged,
-                    this, &CFrmRecent::slotRefresh);
-    Q_ASSERT(check);
-
-    // if(!bDock)
-    //     slotLoadFiles();
-
-    //必须在 setModel 后,才能应用
-    /*第二个参数可以为：
-    QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
-    QHeaderView::Fixed           ：2 用户不可更改列宽
-    QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
-    QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
-    */
-    m_pTableView->horizontalHeader()->setSectionResizeMode(
-#if defined(DEBUG) && !defined(Q_OS_ANDROID)
-        0,
-#endif
-        QHeaderView::Interactive);
-    //以下设置列宽函数必须要数据加载完成后使用,才能应用
-    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
-    //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
-    //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
-    //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
-    //m_pTableView->resizeColumnToContents(3); //设置第1列宽度自适应内容
 }
 
 CFrmRecent::~CFrmRecent()
@@ -211,9 +182,54 @@ CFrmRecent::~CFrmRecent()
 
 int CFrmRecent::Init()
 {
+    if(!m_Database.IsOpen()) {
+        m_Database.OpenDatabase(&m_ParameterApp.m_Database, "recent_connection");
+    }
+    m_pModel = new CRecentModel(&m_ParameterApp, &m_Database, m_pTableView);
+    m_pTableView->setModel(m_pModel);
+    if(m_pTableView->horizontalHeader()) {
+        // check = connect(&m_Database, &CRecentDatabase::sigChanged,
+        //                 this, &CFrmRecent::slotRefresh);
+        // Q_ASSERT(check);
+        //必须在 setModel 后,才能应用
+        /*第二个参数可以为：
+        QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
+        QHeaderView::Fixed           ：2 用户不可更改列宽
+        QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
+        QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
+        */
+        m_pTableView->horizontalHeader()->setSectionResizeMode(
+#if defined(DEBUG) && !defined(Q_OS_ANDROID)
+            0,
+#endif
+            QHeaderView::Interactive);
+    }
+    //以下设置列宽函数必须要数据加载完成后使用,才能应用
+    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
+    //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
+
     m_pManager->EnumPlugins(this);
     slotRefresh();
     return 0;
+}
+
+int CFrmRecent::AddRecent(const CRecentDatabase::RecentItem &item)
+{
+    int nRet = m_Database.AddRecent(item);
+    slotRefresh();
+    return nRet;
+}
+
+bool CFrmRecent::UpdateRecent(const CRecentDatabase::RecentItem &item)
+{
+    bool bRet = m_Database.UpdateRecent(item);
+    slotRefresh();
+    return bRet;
+}
+
+QList<CRecentDatabase::RecentItem> CFrmRecent::GetRecents(int limit, int offset)
+{
+    return m_Database.GetRecents(limit, offset);
 }
 
 void CFrmRecent::slotRefresh()
@@ -243,7 +259,7 @@ int CFrmRecent::InsertItem(COperate *c, QString& szFile)
     item.szName = c->Name();
     item.szProtocol = c->Protocol();
     item.szType = c->GetTypeName();
-    item.szFile = szFile;
+    item.SetFile(szFile);
     m_pModel->addItem(item);
 
     m_pTableView->selectRow(0);
@@ -341,7 +357,7 @@ void CFrmRecent::slotEdit()
     foreach(auto index, lstIndex)
     {
         auto item = m_pModel->getItem(index);
-        QString szFile = item.szFile;
+        QString szFile = item.GetFile();
         if(szFile.isEmpty()) continue;
         COperate* pOperate = m_pManager->LoadOperate(szFile);
         int nRet = pOperate->OpenDialogSettings(this);
@@ -364,7 +380,7 @@ void CFrmRecent::slotEditConnect()
     foreach(auto index, lstIndex)
     {
         auto item = m_pModel->getItem(index);
-        QString szFile = item.szFile;
+        QString szFile = item.GetFile();
         if(szFile.isEmpty()) continue;
         COperate* c = m_pManager->LoadOperate(szFile);
         int nRet = c->OpenDialogSettings(this);
@@ -390,7 +406,7 @@ void CFrmRecent::slotCopy()
     foreach(auto index, lstIndex)
     {
         auto item = m_pModel->getItem(index);
-        QString szFile = item.szFile;
+        QString szFile = item.GetFile();
         if(szFile.isEmpty()) continue;
         COperate* pOperate = m_pManager->LoadOperate(szFile);
 
@@ -477,7 +493,7 @@ void CFrmRecent::slotStart()
     foreach(auto index, lstIndex)
     {
         auto item = m_pModel->getItem(index);
-        QString szFile = item.szFile;
+        QString szFile = item.GetFile();
         if(szFile.isEmpty()) continue;
         emit sigStart(szFile);
     }
@@ -523,7 +539,7 @@ void CFrmRecent::slotDoubleClicked(const QModelIndex& index)
     if(!m_pModel) return;
     if(!index.isValid()) return;
     auto item = m_pModel->getItem(index);
-    QString szFile = item.szFile;
+    QString szFile = item.GetFile();
     if(szFile.isEmpty()) return;
     emit sigStart(szFile);
     if(!m_bDock) close();
@@ -537,12 +553,12 @@ void CFrmRecent::slotAddToFavorite()
     {
         if(!index.isValid()) continue;
         auto item = m_pModel->getItem(index);
-        QFileInfo fi(item.szFile);
-        if(0 == item.id || item.szFile.isEmpty() || !fi.exists()) continue;
+        QFileInfo fi(item.GetFile());
+        if(0 == item.id || item.GetFile().isEmpty() || !fi.exists()) continue;
         QString szName = item.szName;
         QIcon icon = item.icon;
         QString szDescription = item.szDescription;
-        QString szFile = item.szFile;
+        QString szFile = item.GetFile();
         emit sigAddToFavorite(szFile, szName, szDescription, icon);
     }
 }
@@ -557,7 +573,7 @@ void CFrmRecent::slotImport()
     if (!filename.isEmpty()) {
         QFileInfo fi(filename);
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
-            if (m_pDatabase->ImportFromJsonFile(filename)) {
+            if (m_Database.ImportFromJsonFile(filename)) {
                 slotRefresh();
                 QMessageBox::information(
                     this, tr("Success"),
@@ -582,7 +598,7 @@ void CFrmRecent::slotExport()
     if (!filename.isEmpty()) {
         QFileInfo fi(filename);
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
-            if (m_pDatabase->ExportToJsonFile(filename)) {
+            if (m_Database.ExportToJsonFile(filename)) {
                 QMessageBox::information(
                     this, tr("Success"),
                     tr("Successfully exported recent to json file"));
