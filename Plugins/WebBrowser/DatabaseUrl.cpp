@@ -17,7 +17,7 @@ bool CDatabaseUrl::OnInitializeDatabase()
     bool success = false;
     success = CDatabase::OnInitializeDatabase();
     if(!success) return success;
-    m_iconDB.SetDatabase(GetDatabase());
+    m_iconDB.SetDatabase(GetDatabase(), m_pPara);
     success = m_iconDB.OnInitializeDatabase();
     return success;
 }
@@ -309,7 +309,7 @@ bool CDatabaseUrl::OnInitializeSqliteDatabase()
     // 创建历史记录表
     bool success = query.exec(
         "CREATE TABLE IF NOT EXISTS url ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
         "    url TEXT UNIQUE NOT NULL,"
         "    title TEXT,"
         "    icon INTEGER DEFAULT 0,"
@@ -347,7 +347,7 @@ bool CDatabaseUrl::OnInitializeMySqlDatabase()
         "    title TEXT,"
         "    icon INTEGER DEFAULT 0,"
         "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    INDEX idx_url_url (url)"
+        "    UNIQUE KEY idx_url_url (url(255))"
         ")"
         );
     

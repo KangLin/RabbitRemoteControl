@@ -760,7 +760,7 @@ bool CDatabaseFile::OnInitializeMySqlDatabase()
         ")";
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create file table:"
+        qCritical(log) << "Failed to create" << m_szTableName << "table:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
         return false;

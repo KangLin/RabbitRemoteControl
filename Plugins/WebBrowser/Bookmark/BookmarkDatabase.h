@@ -63,7 +63,7 @@ class CBookmarkDatabase : public CDatabase
 {
     Q_OBJECT
 public:
-    static CBookmarkDatabase* Instance(const QSqlDatabase& database);
+    static CBookmarkDatabase* Instance(CParameterDatabase *para);
     static CBookmarkDatabase* Instance();
 
     // 书签操作

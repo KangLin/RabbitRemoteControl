@@ -79,14 +79,6 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
 
-    m_pHistoryDatabase = CHistoryDatabase::Instance();
-
-    QString szDbBookmarks = GetProfile()->persistentStoragePath();
-    if(!(szDbBookmarks.right(1) == '/' || szDbBookmarks.right(1) == '\\'))
-        szDbBookmarks += QDir::separator();
-    szDbBookmarks += "Bookmarks.db";
-    m_pBookmarkDatabase = CBookmarkDatabase::Instance(m_pHistoryDatabase->GetDatabase());
-
     setWindowIcon(QIcon::fromTheme("web-browser"));
 
     QVBoxLayout* pLayout = new QVBoxLayout(this);
@@ -812,10 +804,15 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 int CFrmWebBrowser::Start()
 {
     int nRet = 0;
+
+    m_pHistoryDatabase = CHistoryDatabase::Instance(&m_pPara->m_Database);
+    m_pBookmarkDatabase = CBookmarkDatabase::Instance(&m_pPara->m_Database);
+
     if(m_pTab && m_pTab->count() == 0) {
         // Add new web view
         m_pAddPage->trigger();
     }
+
     return nRet;
 }
 

@@ -15,13 +15,16 @@
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark.DB")
 static CBookmarkDatabase* g_pDatabase = nullptr;
-CBookmarkDatabase* CBookmarkDatabase::Instance(const QSqlDatabase &database)
+CBookmarkDatabase* CBookmarkDatabase::Instance(CParameterDatabase *para)
 {
     if(!g_pDatabase) {
         g_pDatabase = new CBookmarkDatabase();
         if(g_pDatabase) {
-            g_pDatabase->SetDatabase(database);
-            g_pDatabase->OnInitializeDatabase();
+            bool bRet = g_pDatabase->OpenDatabase(para, "bookmark_connection");
+            if(!bRet) {
+                delete g_pDatabase;
+                g_pDatabase = nullptr;
+            }
         }
     }
     return g_pDatabase;
@@ -56,9 +59,9 @@ CBookmarkDatabase::~CBookmarkDatabase()
 
 bool CBookmarkDatabase::OnInitializeDatabase()
 {
-    m_UrlDB.SetDatabase(GetDatabase());
+    m_UrlDB.SetDatabase(GetDatabase(), m_pPara);
     m_UrlDB.OnInitializeDatabase();
-    m_TreeDB.SetDatabase(GetDatabase());
+    m_TreeDB.SetDatabase(GetDatabase(), m_pPara);
     m_TreeDB.OnInitializeDatabase();
 
     if(m_TreeDB.GetNodeCount() == 0) {

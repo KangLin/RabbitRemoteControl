@@ -73,7 +73,7 @@ bool CHistoryDatabase::OnInitializeDatabase()
     bool success = false;
     success = CDatabase::OnInitializeDatabase();
     if(!success) return false;
-    m_UrlDB.SetDatabase(GetDatabase());
+    m_UrlDB.SetDatabase(GetDatabase(), m_pPara);
     m_UrlDB.OnInitializeDatabase();
     return success;
 }
@@ -796,7 +796,9 @@ bool CHistoryDatabase::OnInitializeMySqlDatabase()
         );
     
     if (!success) {
-        qCritical(log) << "Failed to create table:" << query.lastError().text();
+        qCritical(log) << "Failed to create history table:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
         return false;
     }
 

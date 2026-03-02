@@ -12,11 +12,12 @@
 class PLUGIN_EXPORT CDatabase : public QObject
 {
     Q_OBJECT
+
 public:
     explicit CDatabase(QObject *parent = nullptr);
     virtual ~CDatabase();
 
-    void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara = nullptr);
+    void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara);
     QSqlDatabase GetDatabase() const;
 
     /*!
