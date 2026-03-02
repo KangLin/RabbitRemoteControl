@@ -1219,25 +1219,28 @@ void MainWindow::slotInformation(const QString& szInfo)
 
 void MainWindow::slotStatusMessage(QString szMessage, MessageLevel level)
 {
-    QPalette pe;
-    switch ((MessageLevel)level) {
-    case MessageLevel::Error:
-        pe.setColor(QPalette::WindowText, Qt::red);
-        break;
-    case MessageLevel::Warning:
-        pe.setColor(QPalette::WindowText, Qt::yellow);
-        break;
-    default:
-        break;
-    }
+    if(this->isMaximized()) {
+        QPalette pe;
+        switch ((MessageLevel)level) {
+        case MessageLevel::Error:
+            pe.setColor(QPalette::WindowText, Qt::red);
+            break;
+        case MessageLevel::Warning:
+            pe.setColor(QPalette::WindowText, Qt::yellow);
+            break;
+        default:
+            break;
+        }
 
-    m_StatusBarMessage.setPalette(pe);
-    m_StatusBarMessage.setToolTip(szMessage);
-    QFontMetrics metrics(m_StatusBarMessage.font());
+        m_StatusBarMessage.setPalette(pe);
+        m_StatusBarMessage.setToolTip(szMessage);
+        QFontMetrics metrics(m_StatusBarMessage.font());
 
-    szMessage = metrics.elidedText(szMessage, Qt::ElideRight, m_StatusBarMessage.width());
+        szMessage = metrics.elidedText(szMessage, Qt::ElideRight, m_StatusBarMessage.width());
 
-    m_StatusBarMessage.setText(szMessage);
+        m_StatusBarMessage.setText(szMessage);
+    } else
+        this->statusBar()->showMessage(szMessage);
 }
 
 void MainWindow::slotUpdateName()
