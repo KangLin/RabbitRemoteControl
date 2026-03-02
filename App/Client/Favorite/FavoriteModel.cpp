@@ -561,13 +561,11 @@ QList<CFavoriteModel::tree*> CFavoriteModel::tree::FindRecursive(const CFavorite
         lstChildren << const_cast<tree*>(this);
         return lstChildren;
     }
-
     for (auto child : children) {
         QList<tree*> found = child->FindRecursive(item);
         if (!found.isEmpty()) {
             lstChildren << found;
         }
     }
-
     return lstChildren;
 }

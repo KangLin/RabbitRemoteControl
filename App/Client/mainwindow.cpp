@@ -403,8 +403,9 @@ void MainWindow::slotInitial()
 {
     qDebug(log) << Q_FUNC_INFO;
 
-    QMessageBox box(QMessageBox::Information, tr("Load"), "");
+    QMessageBox box(QMessageBox::Information, tr("Load"), tr("Load ......"));
     box.showNormal();
+    qApp->processEvents();
     setEnabled(false);
 
     QString szMsg;

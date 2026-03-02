@@ -796,7 +796,7 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="16"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
@@ -853,7 +853,7 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
@@ -919,37 +919,37 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="35"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="24"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="109"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="110"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="113"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="114"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="116"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="119"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="120"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="160"/>
         <source>Open disable desktop shortcuts script</source>
         <translation>打开禁用桌面快捷键脚本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="170"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="171"/>
         <source>Open restore desktop shortcuts script</source>
         <translation>打开恢复桌面局势键脚本</translation>
     </message>

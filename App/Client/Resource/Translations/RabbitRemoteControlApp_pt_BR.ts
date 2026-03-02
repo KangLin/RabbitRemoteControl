@@ -4,61 +4,173 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="291"/>
-        <location filename="../../FavoriteView.cpp" line="295"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="127"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="420"/>
         <source>New group</source>
         <translation>Novo grupo</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="51"/>
-        <location filename="../../FavoriteView.cpp" line="56"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="51"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="56"/>
         <source>Tools</source>
         <translation>Ferramentas</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="286"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="91"/>
+        <source>Show tool bar</source>
+        <translation type="unfinished">Mostrar barra de ferramentas</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="105"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="28"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="136"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="390"/>
+        <source>Edit</source>
+        <translation type="unfinished">Editar</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="145"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="406"/>
+        <source>Delete</source>
+        <translation type="unfinished">Remover</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="155"/>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="163"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="172"/>
+        <source>Refresh</source>
+        <translation type="unfinished">Atualizar</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="261"/>
+        <source>Root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="282"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="287"/>
+        <source>Add favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="283"/>
+        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="288"/>
+        <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="390"/>
+        <source>Enter the modified name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="406"/>
+        <source>Will be delete &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="446"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="456"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="465"/>
+        <source>Import favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="448"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="476"/>
+        <source>JSON (*.json)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="457"/>
+        <source>Successfully imported favorite from JSON file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
+        <source>Failed to import favorite from JSON file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="466"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="493"/>
+        <source>Invalid file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="467"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="494"/>
+        <source>Please use JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="483"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="492"/>
+        <source>Export favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="484"/>
+        <source>Favorite successfully exported to JSON file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="488"/>
+        <source>Failed to export favorite to JSON file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="47"/>
         <source>Favorite</source>
         <translation>Favoritos</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="287"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="115"/>
         <source>Open settings and Start</source>
         <translation>Editar e Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="288"/>
         <source>Delete operate</source>
-        <translation>Remover atividade</translation>
+        <translation type="vanished">Remover atividade</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="293"/>
         <source>Delete group</source>
-        <translation>Remover grupo</translation>
+        <translation type="vanished">Remover grupo</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="341"/>
         <source>Input</source>
-        <translation>Entrada</translation>
+        <translation type="vanished">Entrada</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="341"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="420"/>
         <source>Input group name</source>
         <translation>Digite o nome do grupo</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="346"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation type="vanished">Erro</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="346"/>
         <source>The group [%1] is existed</source>
-        <translation>O grupo [%1] já existe</translation>
+        <translation type="vanished">O grupo [%1] já existe</translation>
     </message>
 </context>
 <context>
@@ -129,135 +241,255 @@
 <context>
     <name>CFrmListRecent</name>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="32"/>
         <source>Recently list</source>
-        <translation>Recentes</translation>
+        <translation type="vanished">Recentes</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="37"/>
-        <location filename="../../FrmListRecent.cpp" line="39"/>
-        <location filename="../../FrmListRecent.cpp" line="40"/>
         <source>Start</source>
-        <translation>Iniciar</translation>
+        <translation type="vanished">Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="42"/>
-        <location filename="../../FrmListRecent.cpp" line="44"/>
-        <location filename="../../FrmListRecent.cpp" line="45"/>
         <source>Edit and Start</source>
-        <translation>Editar e Iniciar</translation>
+        <translation type="vanished">Editar e Iniciar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="52"/>
-        <location filename="../../FrmListRecent.cpp" line="56"/>
-        <location filename="../../FrmListRecent.cpp" line="57"/>
-        <location filename="../../FrmListRecent.cpp" line="58"/>
         <source>New</source>
-        <translation>Novo</translation>
+        <translation type="vanished">Novo</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="64"/>
-        <location filename="../../FrmListRecent.cpp" line="66"/>
-        <location filename="../../FrmListRecent.cpp" line="67"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation type="vanished">Editar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="68"/>
-        <location filename="../../FrmListRecent.cpp" line="70"/>
-        <location filename="../../FrmListRecent.cpp" line="71"/>
         <source>Copy</source>
-        <translation>Copiar</translation>
+        <translation type="vanished">Copiar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="73"/>
-        <location filename="../../FrmListRecent.cpp" line="75"/>
-        <location filename="../../FrmListRecent.cpp" line="76"/>
         <source>Delete</source>
-        <translation>Remover</translation>
+        <translation type="vanished">Remover</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="78"/>
-        <location filename="../../FrmListRecent.cpp" line="82"/>
-        <location filename="../../FrmListRecent.cpp" line="83"/>
         <source>Detail</source>
-        <translation>Detalhes</translation>
+        <translation type="vanished">Detalhes</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="85"/>
         <source>Add to favorite</source>
-        <translation>Adicionar aos favoritos</translation>
+        <translation type="vanished">Adicionar aos favoritos</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="93"/>
-        <location filename="../../FrmListRecent.cpp" line="95"/>
-        <location filename="../../FrmListRecent.cpp" line="96"/>
         <source>Refresh</source>
-        <translation>Atualizar</translation>
+        <translation type="vanished">Atualizar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="99"/>
-        <location filename="../../FrmListRecent.cpp" line="101"/>
-        <location filename="../../FrmListRecent.cpp" line="102"/>
         <source>Close</source>
-        <translation>Fechar</translation>
+        <translation type="vanished">Fechar</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="110"/>
-        <location filename="../../FrmListRecent.cpp" line="113"/>
         <source>Tools</source>
-        <translation>Ferramentas</translation>
+        <translation type="vanished">Ferramentas</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="129"/>
         <source>Show tool bar</source>
-        <translation>Mostrar barra de ferramentas</translation>
+        <translation type="vanished">Mostrar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="160"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="vanished">Nome</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="161"/>
         <source>Protocol</source>
-        <translation>Protocolo</translation>
+        <translation type="vanished">Protocolo</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="162"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation type="vanished">Tipo</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="163"/>
         <source>Date</source>
-        <translation>Data</translation>
+        <translation type="vanished">Data</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="164"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="165"/>
         <source>File</source>
-        <translation>Arquivo</translation>
+        <translation type="vanished">Arquivo</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="327"/>
-        <location filename="../../FrmListRecent.cpp" line="420"/>
         <source>Warning</source>
-        <translation>Aviso</translation>
+        <translation type="vanished">Aviso</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="328"/>
         <source>The file is exists. whether to overwrite it? File: %1</source>
-        <translation>O arquivo já existe. Devo substituí-lo? Arquivo: %1</translation>
+        <translation type="vanished">O arquivo já existe. Devo substituí-lo? Arquivo: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecent.cpp" line="421"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
-        <translation>O arquivo já existe. Devo substituí-lo? Se selecionar Não, modifique o nome.</translation>
+        <translation type="vanished">O arquivo já existe. Devo substituí-lo? Se selecionar Não, modifique o nome.</translation>
+    </message>
+</context>
+<context>
+    <name>CFrmRecent</name>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="39"/>
+        <source>Recently list</source>
+        <translation type="unfinished">Recentes</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="44"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="46"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="47"/>
+        <source>Start</source>
+        <translation type="unfinished">Iniciar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="49"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="51"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="52"/>
+        <source>Edit and Start</source>
+        <translation type="unfinished">Editar e Iniciar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="59"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="63"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="64"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="65"/>
+        <source>New</source>
+        <translation type="unfinished">Novo</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="71"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="73"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="74"/>
+        <source>Edit</source>
+        <translation type="unfinished">Editar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="75"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="77"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="78"/>
+        <source>Copy</source>
+        <translation type="unfinished">Copiar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="80"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="82"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="83"/>
+        <source>Delete</source>
+        <translation type="unfinished">Remover</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="85"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="89"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="90"/>
+        <source>Detail</source>
+        <translation type="unfinished">Detalhes</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="93"/>
+        <source>Add to favorite</source>
+        <translation type="unfinished">Adicionar aos favoritos</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="100"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="102"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="103"/>
+        <source>Refresh</source>
+        <translation type="unfinished">Atualizar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="106"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="108"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="109"/>
+        <source>Close</source>
+        <translation type="unfinished">Fechar</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="112"/>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="114"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="122"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="125"/>
+        <source>Tools</source>
+        <translation type="unfinished">Ferramentas</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="145"/>
+        <source>Show tool bar</source>
+        <translation type="unfinished">Mostrar barra de ferramentas</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="308"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="416"/>
+        <source>Warning</source>
+        <translation type="unfinished">Aviso</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="309"/>
+        <source>The file is exists. whether to overwrite it?
+File: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="417"/>
+        <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
+        <translation type="unfinished">O arquivo já existe. Devo substituí-lo? Se selecionar Não, modifique o nome.</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="553"/>
+        <source>Import recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="555"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="580"/>
+        <source>JSON (*.json)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="563"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="587"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="564"/>
+        <source>Successfully imported recent from json file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="567"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="591"/>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="568"/>
+        <source>Failed to import recent from json file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="578"/>
+        <source>Export recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="588"/>
+        <source>Successfully exported recent to json file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/FrmRecent.cpp" line="592"/>
+        <source>Failed to export recent to json file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -402,6 +634,39 @@
         <location filename="../../ParameterDlgSettings.ui" line="353"/>
         <source>No(&amp;N)</source>
         <translation>Cancelar(&amp;C)</translation>
+    </message>
+</context>
+<context>
+    <name>CRecentModel</name>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="38"/>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="39"/>
+        <source>Protocol</source>
+        <translation type="unfinished">Protocolo</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="40"/>
+        <source>Type</source>
+        <translation type="unfinished">Tipo</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="41"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="42"/>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <location filename="../../Recent/RecentModel.cpp" line="43"/>
+        <source>File</source>
+        <translation type="unfinished">Arquivo</translation>
     </message>
 </context>
 <context>
@@ -630,10 +895,10 @@
         <location filename="../../mainwindow.ui" line="229"/>
         <location filename="../../mainwindow.ui" line="232"/>
         <location filename="../../mainwindow.ui" line="235"/>
-        <location filename="../../mainwindow.cpp" line="542"/>
-        <location filename="../../mainwindow.cpp" line="543"/>
-        <location filename="../../mainwindow.cpp" line="544"/>
-        <location filename="../../mainwindow.cpp" line="545"/>
+        <location filename="../../mainwindow.cpp" line="573"/>
+        <location filename="../../mainwindow.cpp" line="574"/>
+        <location filename="../../mainwindow.cpp" line="575"/>
+        <location filename="../../mainwindow.cpp" line="576"/>
         <source>Full screen</source>
         <translation>Tela cheia</translation>
     </message>
@@ -701,16 +966,16 @@
         <translation type="vanished">Sair do modo de tela cheia(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="583"/>
-        <location filename="../../mainwindow.cpp" line="584"/>
-        <location filename="../../mainwindow.cpp" line="585"/>
-        <location filename="../../mainwindow.cpp" line="586"/>
+        <location filename="../../mainwindow.cpp" line="614"/>
+        <location filename="../../mainwindow.cpp" line="615"/>
+        <location filename="../../mainwindow.cpp" line="616"/>
+        <location filename="../../mainwindow.cpp" line="617"/>
         <source>Exit full screen</source>
         <translation>Sair do modo de tela cheia</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="814"/>
-        <location filename="../../mainwindow.cpp" line="833"/>
+        <location filename="../../mainwindow.cpp" line="845"/>
+        <location filename="../../mainwindow.cpp" line="864"/>
         <source>Load file fail: </source>
         <translation>Falha no carregamento do arquivo: </translation>
     </message>
@@ -719,129 +984,139 @@
         <location filename="../../mainwindow.ui" line="292"/>
         <location filename="../../mainwindow.ui" line="295"/>
         <location filename="../../mainwindow.ui" line="298"/>
-        <location filename="../../mainwindow.cpp" line="825"/>
+        <location filename="../../mainwindow.cpp" line="856"/>
         <source>Open rabbit remote control file</source>
         <translation>Abrir arquivo do Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="88"/>
-        <location filename="../../mainwindow.cpp" line="89"/>
+        <location filename="../../mainwindow.cpp" line="94"/>
+        <location filename="../../mainwindow.cpp" line="95"/>
         <source>Send rate</source>
         <translation>Taxa de envio</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="93"/>
-        <location filename="../../mainwindow.cpp" line="94"/>
+        <location filename="../../mainwindow.cpp" line="99"/>
+        <location filename="../../mainwindow.cpp" line="100"/>
         <source>Receives rate</source>
         <translation>Taxa de recebimento</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="98"/>
-        <location filename="../../mainwindow.cpp" line="99"/>
+        <location filename="../../mainwindow.cpp" line="104"/>
+        <location filename="../../mainwindow.cpp" line="105"/>
         <source>Total sends</source>
         <translation>Total de envios</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="103"/>
-        <location filename="../../mainwindow.cpp" line="104"/>
+        <location filename="../../mainwindow.cpp" line="109"/>
+        <location filename="../../mainwindow.cpp" line="110"/>
         <source>Total receives</source>
         <translation>Total de recebimentos</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="127"/>
+        <location filename="../../mainwindow.cpp" line="133"/>
         <source>Recently</source>
         <translation>Recentes</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="102"/>
-        <location filename="../../mainwindow.cpp" line="158"/>
-        <location filename="../../mainwindow.cpp" line="159"/>
-        <location filename="../../mainwindow.cpp" line="160"/>
+        <location filename="../../mainwindow.cpp" line="164"/>
+        <location filename="../../mainwindow.cpp" line="165"/>
+        <location filename="../../mainwindow.cpp" line="166"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="347"/>
+        <location filename="../../mainwindow.cpp" line="354"/>
         <source>ICE signal status</source>
         <translation>Status de sinal ICE</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="401"/>
+        <location filename="../../mainwindow.cpp" line="412"/>
         <source>Load plugins ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="407"/>
+        <location filename="../../mainwindow.cpp" line="425"/>
         <source>Load recent menu ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="413"/>
+        <location filename="../../mainwindow.cpp" line="445"/>
         <source>Load favorite ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="419"/>
+        <location filename="../../mainwindow.cpp" line="437"/>
         <source>Load list recent dock ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="427"/>
+        <location filename="../../mainwindow.cpp" line="406"/>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="406"/>
+        <source>Load ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="456"/>
         <source>Load laster operate ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="431"/>
+        <location filename="../../mainwindow.cpp" line="462"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="827"/>
+        <location filename="../../mainwindow.cpp" line="858"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>Arquivos do Rabbit Remote Control (*.rrc);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="929"/>
+        <location filename="../../mainwindow.cpp" line="971"/>
         <source>Starting: </source>
         <translation>Iniciando: </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1004"/>
+        <location filename="../../mainwindow.cpp" line="1046"/>
         <source>Connected to </source>
         <translation>Conectado a </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1115"/>
+        <location filename="../../mainwindow.cpp" line="1157"/>
         <source>ICE signal status: Connected</source>
         <translation>Status de sinal ICE: Conectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1124"/>
+        <location filename="../../mainwindow.cpp" line="1166"/>
         <source>ICE signal status: Disconnected</source>
         <translation>Status de sinal ICE: Desconectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1163"/>
+        <location filename="../../mainwindow.cpp" line="1205"/>
         <source>Use message box to display information</source>
         <translation>Usar caixa de mensagem para exibir informações</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1376"/>
+        <location filename="../../mainwindow.cpp" line="1439"/>
         <source>Hide menu bar</source>
         <translation>Ocultar barra de menu</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1377"/>
+        <location filename="../../mainwindow.cpp" line="1440"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>A barra de menus ficará oculta, a barra de ferramentas deve ser mostrada.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1408"/>
+        <location filename="../../mainwindow.cpp" line="1471"/>
         <source>Hide tool bar</source>
         <translation>Ocultar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1409"/>
+        <location filename="../../mainwindow.cpp" line="1472"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>A barra de ferramentas ficará oculta, a barra de menus deve ser mostrada.</translation>
     </message>
@@ -849,22 +1124,22 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="100"/>
+        <location filename="../../main.cpp" line="101"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="106"/>
+        <location filename="../../main.cpp" line="107"/>
         <source>Rabbit Remote Control</source>
         <translation>Rabbit Remote Control</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="107"/>
+        <location filename="../../main.cpp" line="108"/>
         <source>Kang Lin Studio</source>
         <translation>Kang Lin Studio</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="133"/>
+        <location filename="../../main.cpp" line="139"/>
         <source>Generate update json file End</source>
         <translation>Fim da geração do arquivo JSON de atualização</translation>
     </message>
