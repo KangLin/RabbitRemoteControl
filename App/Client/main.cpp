@@ -108,11 +108,16 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
-    QSharedPointer<CFrmUpdater> pUpdater;
     // Check update version
+    QScopedPointer<CFrmUpdater> pUpdater(new CFrmUpdater());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     if(qEnvironmentVariable("SNAP").isEmpty()
-        && qEnvironmentVariable("FLATPAK_ID").isEmpty()) {
-        pUpdater = QSharedPointer<CFrmUpdater>(new CFrmUpdater());
+        && qEnvironmentVariable("FLATPAK_ID").isEmpty())
+#else
+    if(qgetenv("SNAP").isEmpty()
+        && qgetenv("FLATPAK_ID").isEmpty())
+#endif
+    {
         if(pUpdater) {
             pUpdater->setAttribute(Qt::WA_DeleteOnClose, false);
             QIcon icon = QIcon::fromTheme("app");
@@ -138,7 +143,7 @@ int main(int argc, char *argv[])
             qCritical(log) << "new CFrmUpdater() fail";
         }
     }
-#endif
+#endif // #ifdef HAVE_UPDATE
 
     CStatsAppUsage* pStats = nullptr;
     int randomInt = 0;
