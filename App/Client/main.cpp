@@ -170,12 +170,7 @@ int main(int argc, char *argv[])
         app.processEvents();
         // For time-consuming operations
         nRet = w->Initial();
-        if(nRet) {
-            qCritical(log) << "Initialize error";
-            QMessageBox::critical(nullptr, QObject::tr("Error"),
-                                  QObject::tr("Initialize error"));
-        }
-        else
+        if(!nRet)
             nRet = app.exec();
     } catch (std::exception &e) {
         qCritical(log) << "exception:" << e.what();

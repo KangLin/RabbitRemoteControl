@@ -401,70 +401,109 @@ MainWindow::~MainWindow()
 //! For time-consuming operations
 int MainWindow::Initial()
 {
-    int nRet = 0;
     qDebug(log) << Q_FUNC_INFO;
 
-    QMessageBox box(QMessageBox::Information, tr("Load"), tr("Load ......"));
-    box.showNormal();
-    qApp->processEvents();
+    int nRet = 0;
+    QString szErr;
+
     setEnabled(false);
+    do {
+        QMessageBox initMsgBox(QMessageBox::Information, tr("Load"), tr("Load ......"));
+        initMsgBox.showNormal();
+        qApp->processEvents();
 
-    QString szMsg;
-    szMsg = tr("Load plugins ......");
-    box.setText(szMsg);
-    slotInformation(szMsg);
-    qApp->processEvents();
-    nRet = m_Manager.Initial();
-    if(nRet) return nRet;
-    m_Manager.EnumPlugins(this);
-
-    if(m_Manager.GetGlobalParameters())
-        m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
-
-    if(m_pRecent) {
-        szMsg = tr("Load list recent dock ......");
-        box.setText(szMsg);
+        QString szMsg;    
+        szMsg = tr("Load plugins ......");
+        initMsgBox.setText(szMsg);
         slotInformation(szMsg);
         qApp->processEvents();
-        nRet = m_pRecent->Init();
-        if(nRet) return nRet;
-    }
+        nRet = m_Manager.Initial();
+        if(nRet) {
+            szErr = tr("Initial manage error");
+            break;
+        }
+        m_Manager.EnumPlugins(this);
 
-    if(m_pRecentMenu) {
-        szMsg = tr("Load recent menu ......");
-        box.setText(szMsg);
-        slotInformation(szMsg);
-        qApp->processEvents();
+        if(m_Manager.GetGlobalParameters())
+            m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
+
         if(m_pRecent) {
-            auto recents = m_pRecent->GetRecents(m_Parameter.GetRecentMenuMaxCount());
-            //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
-            for(auto it = recents.rbegin(); it != recents.rend(); it++) {
-                m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
+            szMsg = tr("Load list recent dock ......");
+            initMsgBox.setText(szMsg);
+            slotInformation(szMsg);
+            qApp->processEvents();
+            nRet = m_pRecent->Init();
+            if(nRet) {
+                szErr = tr("Initial recent dock error");
+                break;
             }
         }
-    }
 
-    if(m_pFavoriteView) {
-        szMsg = tr("Load favorite ......");
-        box.setText(szMsg);
+        if(m_pRecentMenu) {
+            szMsg = tr("Load recent menu ......");
+            initMsgBox.setText(szMsg);
+            slotInformation(szMsg);
+            qApp->processEvents();
+            if(m_pRecent) {
+                auto recents = m_pRecent->GetRecents(m_Parameter.GetRecentMenuMaxCount());
+                //qDebug(log) << "recents totaol:" << recents.size() << m_Parameter.GetRecentMenuMaxCount();
+                for(auto it = recents.rbegin(); it != recents.rend(); it++) {
+                    m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
+                }
+            }
+        }
+
+        if(m_pFavoriteView) {
+            szMsg = tr("Load favorite ......");
+            initMsgBox.setText(szMsg);
+            slotInformation(szMsg);
+            qApp->processEvents();
+            nRet = m_pFavoriteView->Initial();
+            if(nRet) {
+                szErr = tr("Initial favorite error");
+                break;
+            }
+        }
+
+        slotEnableSystemTrayIcon();
+
+        setEnabled(true);
+
+        szMsg = tr("Load laster operate ......");
+        initMsgBox.setText(szMsg);
         slotInformation(szMsg);
         qApp->processEvents();
-        nRet = m_pFavoriteView->Initial();
-        if(nRet) return nRet;
-    }
+        nRet = LoadOperateLasterClose();
+        if(nRet) {
+            szErr = tr("Initial load laster close operate error");
+            break;
+        }
 
-    slotEnableSystemTrayIcon();
+        slotInformation(tr("Ready"));
+
+        return nRet;
+    } while(false);
 
     setEnabled(true);
 
-    szMsg = tr("Load laster operate ......");
-    box.setText(szMsg);
-    slotInformation(szMsg);
-    qApp->processEvents();
-    nRet = LoadOperateLasterClose();
-    if(nRet) return nRet;
+    QMessageBox errMsgBox;
+    errMsgBox.setWindowTitle(QObject::tr("Error"));
+    errMsgBox.setText(QObject::tr("Initial error:") + szErr);
+    errMsgBox.setIcon(QMessageBox::Critical);
 
-    slotInformation(tr("Ready"));
+    auto logMenu = RabbitCommon::CTools::GetLogMenu();
+    QPushButton *pbLog = new QPushButton(logMenu->title());
+    pbLog->setMenu(logMenu);
+
+    QPushButton *pbettings = new QPushButton(ui->actionSettings->text());
+    QMenu* pSettings = new QMenu(pbettings);
+    pSettings->addAction(ui->actionSettings);
+    pbettings->setMenu(pSettings);
+    errMsgBox.addButton(pbettings, QMessageBox::ActionRole);
+    errMsgBox.addButton(pbLog, QMessageBox::ActionRole);
+    errMsgBox.addButton(QMessageBox::Cancel);
+
+    errMsgBox.exec();
 
     return nRet;
 }

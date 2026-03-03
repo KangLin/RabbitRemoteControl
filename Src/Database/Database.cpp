@@ -165,6 +165,8 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
     if (!m_database.open()) {
         qCritical(log) << "Failed to open mysql database:"
                        << m_database.lastError().text()
+                       << "Host:" << net.GetHost() << "Port:" << net.GetPort()
+                       << "User:" << user.GetUser()
                        << "connect name:" << m_database.connectionName()
                        << "database name:" << m_database.databaseName();
         return false;
