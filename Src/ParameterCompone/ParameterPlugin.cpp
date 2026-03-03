@@ -85,11 +85,15 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetPluginsPath(set.value("Paths", GetPluginsPath()).toStringList());
     SetEnableSetPluginsPath(set.value("Paths/Enable", GetEnableSetPluginsPath()).toBool());
     SetOnlyLoadInWhitelist(set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
-    
-    set.endGroup();
 
-    m_WhiteList.InitDatabase(&m_pGlobalParameter->m_Database);
-    m_BlackList.InitDatabase(&m_pGlobalParameter->m_Database);
+    set.endGroup();
+    
+    // Only in local database
+    CParameterDatabase db;
+    db = m_pGlobalParameter->m_Database;
+    db.SetType("QSQLITE");
+    m_WhiteList.InitDatabase(&db);
+    m_BlackList.InitDatabase(&db);
     return 0;
 }
 

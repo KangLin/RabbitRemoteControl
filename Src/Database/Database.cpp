@@ -139,6 +139,7 @@ bool CDatabase::OpenSQLiteDatabase(const CParameterDatabase *pPara,
 bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
                                   const QString &szConnectName)
 {
+    bool success = false;
     if(!pPara) return false;
 
     if(!szConnectName.isEmpty())
@@ -154,7 +155,7 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
         szDbName = "remote_control";
 #endif
     }
-    m_database.setDatabaseName(szDbName);
+
     auto &net = pPara->m_Net;
     m_database.setHostName(net.GetHost());
     m_database.setPort(net.GetPort());
@@ -173,7 +174,7 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
     }
 
     QSqlQuery query(GetDatabase());
-    bool success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
+    success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
     if (!success) {
         qCritical(log) << "Failed to create" << szDbName << "database:"
                        << query.lastError().text()
@@ -189,8 +190,11 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
         return false;
     }
 
+    m_database.setDatabaseName(szDbName);
     qInfo(log) << "Open mysql database connect:"
                << m_database.connectionName()
+               << "Host:" << net.GetHost() << "Port:" << net.GetPort()
+               << "User:" << user.GetUser()
                << "database name:" << m_database.databaseName();
 
     return OnInitializeDatabase();
