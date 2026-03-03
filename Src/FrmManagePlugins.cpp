@@ -142,15 +142,19 @@ int CFrmManagePlugins::FindPlugins(QDir dir, QStringList filters, bool bAdd)
 int CFrmManagePlugins::AddItem(CPlugin* plugin, const QString& szPath)
 {
     QList<QStandardItem*> lstItems;
-    auto pWhitelist = new QStandardItem();
+    auto pWhitelist = new QStandardItem(QString(tr("Whitelist").toStdString().size(), ' '));
     pWhitelist->setCheckable(true);
-    if(m_pPara->m_WhiteList.contains(szPath))
+    if(m_pPara->m_WhiteList.contains(szPath)) {
         pWhitelist->setCheckState(Qt::Checked);
+        //pWhitelist->setText(QString(tr("Whitelist").toStdString().size(), ' '));
+    }
     lstItems << pWhitelist;
-    auto pBlacklist = new QStandardItem();
+    auto pBlacklist = new QStandardItem(QString(tr("Blacklist").toStdString().size(), ' '));
     pBlacklist->setCheckable(true);
-    if(m_pPara->m_BlackList.contains(szPath))
+    if(m_pPara->m_BlackList.contains(szPath)) {
         pBlacklist->setCheckState(Qt::Checked);
+        //pBlacklist->setText(QString(tr("Blacklist").toStdString().size(), ' '));
+    }
     lstItems << pBlacklist;
     auto pName = new QStandardItem(plugin->Icon(), plugin->DisplayName());
     lstItems << pName;

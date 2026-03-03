@@ -14,8 +14,8 @@ public:
     int RemoveKey(const QString& szKey);
     int Clear();
     [[nodiscard]] virtual bool isEmpty();
+    int OnProcess(std::function<int(const QString& key)> cb, bool bErrExit = false);
 
-    [[nodiscard]] virtual bool OnInitializeDatabase() override;
     [[nodiscard]] virtual bool ExportToJson(QJsonObject &obj) override;
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject &obj) override;
 

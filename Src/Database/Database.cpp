@@ -90,7 +90,7 @@ bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
         qDebug(log) << "Multiple result sets:" << driver->hasFeature(QSqlDriver::MultipleResultSets);
         qDebug(log) << "Cancel query:" << driver->hasFeature(QSqlDriver::CancelQuery);
     }
-    
+
     return bRet;
 }
 
@@ -132,7 +132,7 @@ bool CDatabase::OpenSQLiteDatabase(const CParameterDatabase *pPara,
     qInfo(log) << "Open sqlite database connect:"
                << m_database.connectionName()
                << "database name:" << m_database.databaseName();
-    
+
     return OnInitializeDatabase();
 }
 
@@ -179,7 +179,7 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
         return false;
     }
 
-    success = query.exec("use remote_control");
+    success = query.exec("use " + szDbName);
     if (!success) {
         qCritical(log) << "Failed to use" << szDbName << "database:"
                        << query.lastError().text()
@@ -231,7 +231,7 @@ bool CDatabase::OpenODBCDatabase(const CParameterDatabase *pPara,
         return false;
     }
 
-    success = query.exec("use remote_control");
+    success = query.exec("use " + szDbName);
     if (!success) {
         qCritical(log) << "Failed to use" << szDbName << "database:"
                        << query.lastError().text()

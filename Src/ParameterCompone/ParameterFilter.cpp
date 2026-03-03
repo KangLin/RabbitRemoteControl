@@ -1,6 +1,8 @@
+#include <QLoggingCategory>
 #include "ParameterFilter.h"
 #include "DatabaseFilter.h"
 
+static Q_LOGGING_CATEGORY(log, "Client.Parameter.Filter")
 CParameterFilter::CParameterFilter(QObject *parent, const QString &szPrefix)
     : CParameter{parent, szPrefix}
     , m_pDatabase(nullptr)
@@ -18,11 +20,15 @@ CParameterFilter::~CParameterFilter()
 
 bool CParameterFilter::InitDatabase(CParameterDatabase *pDB)
 {
-    if(!m_pDatabase) return false;
+    if(!pDB) return false;
     m_pDatabase = new CDatabaseFilter(m_szSuffix);
     if(m_pDatabase) {
-        bool ok = m_pDatabase->OpenDatabase(pDB, "connect_filter_"  + m_szSuffix);
-        if(!ok) return false;
+        QString szConnectName = "connect_filter_"  + m_szSuffix;
+        bool ok = m_pDatabase->OpenDatabase(pDB, szConnectName);
+        if(!ok) {
+            qCritical(log) << "Failed to open database:" << szConnectName;
+            return false;
+        }
     }
     return true;
 }
@@ -78,6 +84,9 @@ bool CParameterFilter::isEmpty()
 int CParameterFilter::OnProcess(std::function<int (const QString &)> cb, bool bErrExit)
 {
     if(!cb) return -1;
+    if(m_pDatabase) {
+        return m_pDatabase->OnProcess(cb, bErrExit);
+    }
     foreach(auto k, m_Key) {
         int nRet = cb(k);
         if(bErrExit && nRet)
@@ -88,6 +97,8 @@ int CParameterFilter::OnProcess(std::function<int (const QString &)> cb, bool bE
 
 int CParameterFilter::OnLoad(QSettings &set)
 {
+    if(m_pDatabase) return 0;
+
     QStringList s = set.value("Key").toStringList();
     foreach(auto k, s) {
         AddKey(k);
@@ -97,6 +108,8 @@ int CParameterFilter::OnLoad(QSettings &set)
 
 int CParameterFilter::OnSave(QSettings &set)
 {
+    if(m_pDatabase) return 0;
+
     QStringList s;
     foreach (auto k, m_Key) {
         s << k;

@@ -105,6 +105,26 @@ bool CDatabaseFilter::isEmpty()
     return !query.next();
 }
 
+int CDatabaseFilter::OnProcess(std::function<int (const QString &)> cb, bool bErrExit)
+{
+    QSqlQuery query(GetDatabase());
+    query.prepare("SELECT `key` FROM " + m_szTableName);
+    bool bRet = query.exec();
+    if(!bRet) {
+        qCritical(log) << "Failed to isEmpty:"
+                       << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return -1;
+    }
+    while(query.next()) {
+        QString szKey = query.value(0).toString();
+        int nRet = cb(szKey);
+        if(bErrExit && nRet)
+            return nRet;
+    }
+    return 0;
+}
+
 bool CDatabaseFilter::ExportToJson(QJsonObject &obj)
 {
     return true;
@@ -117,32 +137,44 @@ bool CDatabaseFilter::ImportFromJson(const QJsonObject &obj)
 
 bool CDatabaseFilter::OnInitializeSqliteDatabase()
 {
-    return true;
-}
-
-bool CDatabaseFilter::OnInitializeMySqlDatabase()
-{
-    return true;
-}
-
-bool CDatabaseFilter::OnInitializeDatabase()
-{
     QSqlQuery query(GetDatabase());
 
-    bool success = query.exec(
+    query.prepare(
         "CREATE TABLE IF NOT EXISTS "
         + m_szTableName +
         " ("
         "    `key` TEXT PRIMARY KEY NOT NULL"
         " )"
         );
+    bool success = query.exec();
 
     if (!success) {
-        qCritical(log) << "Failed to create folders sqlite table:"
+        qCritical(log) << "Failed to create sqlite table:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
         return false;
     }
+    return true;
+}
 
+bool CDatabaseFilter::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+
+    query.prepare(
+        "CREATE TABLE IF NOT EXISTS "
+        + m_szTableName +
+        " ("
+        "    `key` TEXT NOT NULL,"
+        "    UNIQUE KEY `uk_key` (`key`(255))"
+        " )"
+        );
+    bool success = query.exec();
+    if (!success) {
+        qCritical(log) << "Failed to create mysql table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
     return true;
 }

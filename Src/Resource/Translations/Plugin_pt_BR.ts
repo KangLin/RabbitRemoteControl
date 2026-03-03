@@ -284,42 +284,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="243"/>
+        <location filename="../../FrmManagePlugins.cpp" line="145"/>
+        <location filename="../../FrmManagePlugins.cpp" line="247"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="247"/>
+        <location filename="../../FrmManagePlugins.cpp" line="152"/>
+        <location filename="../../FrmManagePlugins.cpp" line="251"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="251"/>
+        <location filename="../../FrmManagePlugins.cpp" line="255"/>
         <source>Name</source>
         <translation type="unfinished">Nome</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="252"/>
+        <location filename="../../FrmManagePlugins.cpp" line="256"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="253"/>
+        <location filename="../../FrmManagePlugins.cpp" line="257"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="181"/>
+        <location filename="../../FrmManagePlugins.cpp" line="185"/>
         <source>Plugin path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="219"/>
+        <location filename="../../FrmManagePlugins.cpp" line="223"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="220"/>
+        <location filename="../../FrmManagePlugins.cpp" line="224"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
@@ -501,23 +503,23 @@ Some features are limited.
         <translation type="unfinished">Sempre exibir</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="232"/>
+        <location filename="../../Manager.cpp" line="234"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="330"/>
-        <location filename="../../Manager.cpp" line="644"/>
+        <location filename="../../Manager.cpp" line="332"/>
+        <location filename="../../Manager.cpp" line="646"/>
         <source>Version:</source>
         <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="566"/>
+        <location filename="../../Manager.cpp" line="568"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="649"/>
+        <location filename="../../Manager.cpp" line="651"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -792,17 +794,17 @@ Some features are limited.
 <context>
     <name>CParameterDatabase</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="82"/>
         <source>Database drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="86"/>
         <source>Current used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabase.cpp" line="88"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="88"/>
         <source>Supported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -810,68 +812,68 @@ Some features are limited.
 <context>
     <name>CParameterDatabaseUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="14"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished">Formulário</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="38"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="38"/>
         <source>Type:</source>
         <translation type="unfinished">Tipo:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="59"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="59"/>
         <source>Options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="73"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="73"/>
         <source>Database name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="83"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="83"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.ui" line="92"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="92"/>
         <source>The setting will take effect only after restarting the program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="25"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="25"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="77"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="77"/>
         <source>Set the database name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="82"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="86"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="87"/>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="94"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="87"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="94"/>
         <source>Configure database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="106"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
         <source>Database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterDatabaseUI.cpp" line="107"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>Database file (*.db);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
