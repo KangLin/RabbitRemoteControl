@@ -419,6 +419,14 @@ void MainWindow::slotInitial()
     if(m_Manager.GetGlobalParameters())
         m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
 
+    if(m_pRecent) {
+        szMsg = tr("Load list recent dock ......");
+        box.setText(szMsg);
+        slotInformation(szMsg);
+        qApp->processEvents();
+        m_pRecent->Init();
+    }
+
     if(m_pRecentMenu) {
         szMsg = tr("Load recent menu ......");
         box.setText(szMsg);
@@ -431,14 +439,6 @@ void MainWindow::slotInitial()
                 m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
             }
         }
-    }
-
-    if(m_pRecent) {
-        szMsg = tr("Load list recent dock ......");
-        box.setText(szMsg);
-        slotInformation(szMsg);
-        qApp->processEvents();
-        m_pRecent->Init();
     }
 
     if(m_pFavoriteView) {
