@@ -207,17 +207,22 @@ void CFavoriteView::setupTreeView(QLayout *layout)
     //m_pTreeView->installEventFilter(this);
 }
 
-void CFavoriteView::Initial()
+int CFavoriteView::Initial()
 {
+    int nRet = 0;
     m_pDatabase = new CFavoriteDatabase(this);
-    if(m_pDatabase)
-        m_pDatabase->OpenDatabase(&m_pParaApp->m_Database, "favorite_connect");
+    if(m_pDatabase) {
+        bool bRet = m_pDatabase->OpenDatabase(&m_pParaApp->m_Database, "favorite_connect");
+        if(!bRet)
+            return -1;
+    }
     if(m_pDatabase) {
         m_pModel = new CFavoriteModel(m_pDatabase, this);
         m_pTreeView->setModel(m_pModel);
     }
 
     EnableAction();
+    return nRet;
 }
 
 void CFavoriteView::EnableAction(const QModelIndex &index)

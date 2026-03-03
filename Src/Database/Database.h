@@ -17,44 +17,63 @@ public:
     explicit CDatabase(QObject *parent = nullptr);
     virtual ~CDatabase();
 
-    void SetDatabase(QSqlDatabase db, CParameterDatabase* pPara);
-    QSqlDatabase GetDatabase() const;
+    /*!
+     * \brief Share an existing database
+     * \param db
+     * \note After the call is completed, OnInitializeDatabase needs to be called
+     */
+    void SetDatabase(const CDatabase* db);
+    /*!
+     * \brief Share an existing database
+     * \param db
+     * \param pPara
+     */
+    void SetDatabase(const QSqlDatabase db, const CParameterDatabase* pPara);
+    [[nodiscard]] QSqlDatabase GetDatabase() const;
 
     /*!
-     * \brief OpenDatabase
+     * \brief Open a new database
      * \param pPara: nullptr, use sqlite database
      * \param szConnectName: connect name
-     * \return 
+     * \return
+     *        - true: successfully
+     *        - false: failed
      */
-    virtual bool OpenDatabase(CParameterDatabase* pPara = nullptr,
+    [[nodiscard]] virtual bool OpenDatabase(const CParameterDatabase* pPara = nullptr,
                               const QString& szConnectName = QString());
-    virtual bool OpenMySqlDatabase(CParameterDatabase* pPara,
+    [[nodiscard]] virtual bool OpenMySqlDatabase(const CParameterDatabase* pPara,
                                    const QString& szConnectName = QString());
-    virtual bool OpenODBCDatabase(CParameterDatabase* pPara,
+    [[nodiscard]] virtual bool OpenODBCDatabase(const CParameterDatabase* pPara,
                                   const QString& szConnectName = QString());
-    virtual bool OpenSQLiteDatabase(CParameterDatabase* pPara = nullptr,
+    [[nodiscard]] virtual bool OpenSQLiteDatabase(const CParameterDatabase* pPara = nullptr,
                                     const QString &szConnectionName = QString());
-    virtual bool IsOpen() const;
+    [[nodiscard]] virtual bool IsOpen() const;
     virtual void CloseDatabase();
 
-    virtual bool OnInitializeDatabase();
+    /*!
+     * \brief Initialize database
+     * \return
+     */
+    [[nodiscard]] virtual bool OnInitializeDatabase();
 
-    virtual bool ExportToJsonFile(const QString& szFile);
-    virtual bool ImportFromJsonFile(const QString& szFile);
-    virtual bool ExportToJson(QJsonObject& obj) = 0;
-    virtual bool ImportFromJson(const QJsonObject& obj) = 0;
+    [[nodiscard]] const CParameterDatabase* GetParameter() const;
+
+    [[nodiscard]] virtual bool ExportToJsonFile(const QString& szFile);
+    [[nodiscard]] virtual bool ImportFromJsonFile(const QString& szFile);
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) = 0;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) = 0;
 
 Q_SIGNALS:
     void sigChanged();
 
 protected:
-    virtual bool OnInitializeSqliteDatabase();
-    virtual bool OnInitializeMySqlDatabase();
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase();
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase();
 
 protected:
     QString m_szConnectName;
     QString m_MinVersion;
-    CParameterDatabase* m_pPara;
+    const CParameterDatabase* m_pPara;
 
 private:
     QSqlDatabase m_database;
@@ -74,14 +93,14 @@ public:
      * \return icon's id
      * \note If the icon is not exist. then insert the icon to table
      */
-    int GetIcon(const QIcon& icon);
-    QIcon GetIcon(int id);
+    [[nodiscard]] int GetIcon(const QIcon& icon);
+    [[nodiscard]] QIcon GetIcon(int id);
 
-    virtual bool ExportToJson(QJsonObject& obj) override;
-    virtual bool ImportFromJson(const QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
-    static bool ExportIconToJson(/*in*/const QIcon& icon, /*out*/QJsonObject& obj);
-    static bool ImportIconFromJson(/*in*/const QJsonObject &obj, /*out*/QIcon& icon);
+    [[nodiscard]] static bool ExportIconToJson(/*in*/const QIcon& icon, /*out*/QJsonObject& obj);
+    [[nodiscard]] static bool ImportIconFromJson(/*in*/const QJsonObject &obj, /*out*/QIcon& icon);
 
 protected:
     bool OnInitializeSqliteDatabase() override;
@@ -106,26 +125,24 @@ public:
     /*!
      * \brief Load
      * \param szFile: the file path
-     * \note The file field in database is filename, don't include path.
      */
-    QByteArray Load(const QString &szFile);
+    [[nodiscard]] QByteArray Load(const QString &szFile);
     /*!
      * \brief Save
      * \param szFile: the file path
-     * \note The file field in database is filename, don't include path.
      */
     bool Save(const QString& szFile);
 
-    virtual bool ExportToJson(QJsonObject &obj) override;
-    virtual bool ImportFromJson(const QJsonObject &obj) override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject &obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject &obj) override;
     
-    static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
-    static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
-    bool ImportFileToDatabaseFromJson(const QJsonObject &obj, QString &szFile);
+    [[nodiscard]] static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
+    [[nodiscard]] static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
+    [[nodiscard]] bool ImportFileToDatabaseFromJson(const QJsonObject &obj, QString &szFile);
 
 protected:
-    virtual bool OnInitializeSqliteDatabase() override;
-    virtual bool OnInitializeMySqlDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 
 private:
     QString m_szTableName;

@@ -399,8 +399,9 @@ MainWindow::~MainWindow()
 }
 
 //! For time-consuming operations
-void MainWindow::slotInitial()
+int MainWindow::Initial()
 {
+    int nRet = 0;
     qDebug(log) << Q_FUNC_INFO;
 
     QMessageBox box(QMessageBox::Information, tr("Load"), tr("Load ......"));
@@ -413,7 +414,8 @@ void MainWindow::slotInitial()
     box.setText(szMsg);
     slotInformation(szMsg);
     qApp->processEvents();
-    m_Manager.Initial();
+    nRet = m_Manager.Initial();
+    if(nRet) return nRet;
     m_Manager.EnumPlugins(this);
 
     if(m_Manager.GetGlobalParameters())
@@ -424,7 +426,8 @@ void MainWindow::slotInitial()
         box.setText(szMsg);
         slotInformation(szMsg);
         qApp->processEvents();
-        m_pRecent->Init();
+        nRet = m_pRecent->Init();
+        if(nRet) return nRet;
     }
 
     if(m_pRecentMenu) {
@@ -446,7 +449,8 @@ void MainWindow::slotInitial()
         box.setText(szMsg);
         slotInformation(szMsg);
         qApp->processEvents();
-        m_pFavoriteView->Initial();
+        nRet = m_pFavoriteView->Initial();
+        if(nRet) return nRet;
     }
 
     slotEnableSystemTrayIcon();
@@ -457,11 +461,12 @@ void MainWindow::slotInitial()
     box.setText(szMsg);
     slotInformation(szMsg);
     qApp->processEvents();
-    LoadOperateLasterClose();
+    nRet = LoadOperateLasterClose();
+    if(nRet) return nRet;
 
     slotInformation(tr("Ready"));
 
-    return;
+    return nRet;
 }
 
 void MainWindow::SetView(CView* pView)
@@ -1531,7 +1536,9 @@ void MainWindow::on_actionOpenListRecent_triggered()
                     m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QString,QIcon)));
     Q_ASSERT(check);
     
-    p->Init();
+    int nRet = p->Init();
+    if(nRet) return;
+
     QDialog d;
     d.resize(540, 400);
     d.setWindowIcon(windowIcon());

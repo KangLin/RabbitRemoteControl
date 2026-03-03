@@ -183,7 +183,8 @@ CFrmRecent::~CFrmRecent()
 int CFrmRecent::Init()
 {
     if(!m_Database.IsOpen()) {
-        m_Database.OpenDatabase(&m_ParameterApp.m_Database, "recent_connection");
+        bool bRet = m_Database.OpenDatabase(&m_ParameterApp.m_Database, "recent_connection");
+        if(!bRet) return -1;
     }
     m_pModel = new CRecentModel(&m_ParameterApp, &m_Database, m_pTableView);
     m_pTableView->setModel(m_pModel);

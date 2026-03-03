@@ -30,7 +30,12 @@ CDatabase::~CDatabase()
     CloseDatabase();
 }
 
-void CDatabase::SetDatabase(QSqlDatabase db, CParameterDatabase *pPara)
+void CDatabase::SetDatabase(const CDatabase *db)
+{
+    SetDatabase(db->GetDatabase(), db->GetParameter());
+}
+
+void CDatabase::SetDatabase(const QSqlDatabase db, const CParameterDatabase *pPara)
 {
     QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
     Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
@@ -43,7 +48,12 @@ QSqlDatabase CDatabase::GetDatabase() const
     return m_database;
 }
 
-bool CDatabase::OpenDatabase(CParameterDatabase *pPara,
+const CParameterDatabase *CDatabase::GetParameter() const
+{
+    return m_pPara;
+}
+
+bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
                              const QString &szConnectName)
 {
     bool bRet = false;
@@ -84,7 +94,7 @@ bool CDatabase::OpenDatabase(CParameterDatabase *pPara,
     return bRet;
 }
 
-bool CDatabase::OpenSQLiteDatabase(CParameterDatabase* pPara,
+bool CDatabase::OpenSQLiteDatabase(const CParameterDatabase *pPara,
                                    const QString &szConnectionName)
 {
     QString databasePath;
@@ -126,7 +136,7 @@ bool CDatabase::OpenSQLiteDatabase(CParameterDatabase* pPara,
     return OnInitializeDatabase();
 }
 
-bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara,
+bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
                                   const QString &szConnectName)
 {
     if(!pPara) return false;
@@ -184,7 +194,7 @@ bool CDatabase::OpenMySqlDatabase(CParameterDatabase *pPara,
     return OnInitializeDatabase();
 }
 
-bool CDatabase::OpenODBCDatabase(CParameterDatabase* pPara,
+bool CDatabase::OpenODBCDatabase(const CParameterDatabase *pPara,
                                  const QString &szConnectName)
 {
     if(!pPara) return false;

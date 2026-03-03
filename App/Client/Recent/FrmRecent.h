@@ -34,7 +34,7 @@ public:
 
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 
-    int Init();
+    [[nodiscard]] int Init();
     int AddRecent(const CRecentDatabase::RecentItem &item);
     bool UpdateRecent(const CRecentDatabase::RecentItem &item);
     QList<CRecentDatabase::RecentItem> GetRecents(int limit = -1, int offset = 0);

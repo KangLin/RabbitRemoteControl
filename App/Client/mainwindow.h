@@ -41,7 +41,7 @@ public:
     virtual ~MainWindow() override;
 public:
     //! For time-consuming operations
-    void slotInitial();
+    [[nodiscard]] int Initial();
 
 Q_SIGNALS:
     void sigFullScreen(bool bFullScreen);

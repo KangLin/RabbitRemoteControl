@@ -12,15 +12,15 @@ public:
     virtual CParameterDatabase& operator=(const CParameterDatabase &in);
     CParameterNet m_Net;
 
-    QString GetType() const;
+    [[nodiscard]] QString GetType() const;
     void SetType(const QString &newType);
-    QString GetDatabaseName() const;
+    [[nodiscard]] QString GetDatabaseName() const;
     void SetDatabaseName(const QString &newDatabaseName);
-    QString GetOptions() const;
+    [[nodiscard]] QString GetOptions() const;
     void SetOptions(const QString &newOptions);
 
-    static QSet<QString> GetSupportDatabase();
-    const QString Details() const;
+    [[nodiscard]] static QSet<QString> GetSupportDatabase();
+    [[nodiscard]] const QString Details() const;
 
 protected:
     virtual int OnLoad(QSettings &set) override;

@@ -165,12 +165,18 @@ int main(int argc, char *argv[])
     try {
         //w->setWindowIcon(QIcon::themeName("app"));
         //w->setWindowTitle(app.applicationDisplayName());
-        
+        app.processEvents();
         w->show();
         app.processEvents();
         // For time-consuming operations
-        w->slotInitial();
-        nRet = app.exec();
+        nRet = w->Initial();
+        if(nRet) {
+            qCritical(log) << "Initialize error";
+            QMessageBox::critical(nullptr, QObject::tr("Error"),
+                                  QObject::tr("Initialize error"));
+        }
+        else
+            nRet = app.exec();
     } catch (std::exception &e) {
         qCritical(log) << "exception:" << e.what();
     } catch(...) {

@@ -9,9 +9,19 @@ project(RabbitRemoteControl
     )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 set(CMAKE_CXX_STANDARD 17)
+# 确保编译器支持 C++17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
+# 避免使用编译器特定的扩展语法，从而提高跨平台一致性。
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_C_STANDARD 17)
+# 确保编译器支持 C17
+set(CMAKE_C_STANDARD_REQUIRED ON)
+# 避免使用编译器特定的扩展语法，从而提高跨平台一致性。
+set(CMAKE_C_EXTENSIONS OFF)
+
 #set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 

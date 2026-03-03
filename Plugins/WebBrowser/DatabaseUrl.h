@@ -29,22 +29,22 @@ public:
     bool DeleteUrl(int id);
     bool UpdateUrl(const QString& url, const QString& title = QString(), const QIcon& icon = QIcon());
     bool UpdateUrl(int id, const QString& title = QString(), const QIcon& icon = QIcon());
-    UrlItem GetItem(int id);
-    UrlItem GetItem(const QString& url);
-    int GetId(const QString& url);
-    QList<int> GetDomain(const QString& szDomain);
-    QList<UrlItem> Search(const QString& keyword);
+    [[nodiscard]] UrlItem GetItem(int id);
+    [[nodiscard]] UrlItem GetItem(const QString& url);
+    [[nodiscard]] int GetId(const QString& url);
+    [[nodiscard]] QList<int> GetDomain(const QString& szDomain);
+    [[nodiscard]] QList<UrlItem> Search(const QString& keyword);
 
-    virtual bool OnInitializeDatabase() override;
-    virtual bool ExportToJson(QJsonObject& obj) override;
-    virtual bool ImportFromJson(const QJsonObject& obj) override;
+    [[nodiscard]] virtual bool OnInitializeDatabase() override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 private:
     CDatabaseIcon m_iconDB;
     
     // CDatabase interface
 protected:
-    virtual bool OnInitializeSqliteDatabase() override;
-    virtual bool OnInitializeMySqlDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 };
 

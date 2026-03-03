@@ -313,7 +313,7 @@ void CBookmarkDatabase::buildBookmarkTree(QDomDocument &doc,
     // 获取该文件夹下的书签
     QList<BookmarkItem> bookmarks = getAllBookmarks(folderId);
 
-    for (const auto &bookmark : bookmarks) {
+    foreach (const auto &bookmark, bookmarks) {
         QDomElement dtElement = doc.createElement("DT");
         parentElement.appendChild(dtElement);
 
@@ -324,7 +324,7 @@ void CBookmarkDatabase::buildBookmarkTree(QDomDocument &doc,
     // 获取子文件夹
     QList<BookmarkItem> subFolders = getSubFolders(folderId);
 
-    for (const auto &folder : subFolders) {
+    foreach (const auto &folder, subFolders) {
         // 创建文件夹
         QDomElement dtElement = doc.createElement("DT");
         parentElement.appendChild(dtElement);
@@ -682,7 +682,7 @@ int CBookmarkDatabase::getOrCreateFolder(const QString &folderPath,
     int currentParentId = 0;
 
     // 逐级创建文件夹
-    for (const QString &part : pathParts) {
+    foreach (const QString &part, pathParts) {
         if (part.isEmpty()) continue;
 
         currentParentId = getOrCreateFolder(part, currentParentId);

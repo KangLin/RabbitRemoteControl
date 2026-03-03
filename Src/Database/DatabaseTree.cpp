@@ -313,6 +313,7 @@ bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
 
 bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbDeleteLeaf)
 {
+    int nRet = 0;
     // 删除子目录
     auto folders = GetSubFolders(id);
     foreach(auto f, folders) {
@@ -320,10 +321,13 @@ bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbD
     }
 
     // 删除其下面的所有条目
-    if(cbDeleteLeaf)
-        cbDeleteLeaf(id);
+    if(cbDeleteLeaf) {
+        nRet = cbDeleteLeaf(id);
+        if(nRet) return false;
+    }
 
-    OnDeleteLeafs(id);
+    nRet = OnDeleteLeafs(id);
+    if(nRet) return false;
 
     // 删除文件夹
     QSqlQuery query(GetDatabase());
@@ -342,7 +346,7 @@ bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbD
     return success;
 }
 
-bool CDatabaseFolder::OnDeleteLeafs(int id)
+int CDatabaseFolder::OnDeleteLeafs(int id)
 {
     return true;
 }

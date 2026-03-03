@@ -134,7 +134,7 @@ int CManager::Initial(QString szFile)
             
             if(QMessageBox::Yes == nRet) {
                 RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
-                return 0;
+                return -1;
             }
         }
         
@@ -156,9 +156,11 @@ int CManager::Initial(QString szFile)
     m_pDatabaseFile = new CDatabaseFile(this);
     if(m_pDatabaseFile) {
         CParameterDatabase* pDB = nullptr;
-        if(GetGlobalParameters())
+        if(GetGlobalParameters()) {
             pDB = &GetGlobalParameters()->m_Database;
-        m_pDatabaseFile->OpenDatabase(pDB);
+        }
+        bool bRet = m_pDatabaseFile->OpenDatabase(pDB);
+        if(!bRet) return -1;
     }
 
     return 0;
@@ -404,7 +406,7 @@ COperate* CManager::LoadOperate(const QString &szFile)
     if(szFile.isEmpty()) return nullptr;
     qDebug(log) << "Load operate configure file:"<< szFile;
     if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
-        == CParameterGlobal::SaveSettingsType::Database) {
+        == CParameterGlobal::SaveSettingsType::Database && m_pDatabaseFile) {
         QByteArray content = m_pDatabaseFile->Load(szFile);
         if(!content.isEmpty()) {
             QFile f(szFile);
@@ -494,7 +496,7 @@ int CManager::SaveOperate(COperate *pOperate)
     }
 
     if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
-        == CParameterGlobal::SaveSettingsType::Database) {
+        == CParameterGlobal::SaveSettingsType::Database && m_pDatabaseFile) {
         return m_pDatabaseFile->Save(szFile) ? 0 : -1;
     }
 

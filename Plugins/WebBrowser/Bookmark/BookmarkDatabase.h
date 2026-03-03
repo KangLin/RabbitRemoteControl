@@ -36,11 +36,11 @@ struct BookmarkItem {
         , type(BookmarkType_Bookmark)
     {}
 
-    bool isFolder() const { return type == BookmarkType_Folder; }
-    bool isSeparator() const { return type == BookmarkType_Separator; }
-    bool isBookmark() const { return type == BookmarkType_Bookmark; }
+    [[nodiscard]] bool isFolder() const { return type == BookmarkType_Folder; }
+    [[nodiscard]] bool isSeparator() const { return type == BookmarkType_Separator; }
+    [[nodiscard]] bool isBookmark() const { return type == BookmarkType_Bookmark; }
 
-    QIcon getIcon() const {
+    [[nodiscard]] QIcon getIcon() const {
         if (!icon.isNull()) {
             return icon;
         }
@@ -80,23 +80,23 @@ public:
     bool moveFolder(int folderId, int newParentId);
 
     // 查询操作
-    BookmarkItem getBookmark(int id);
-    QList<BookmarkItem> getBookmarkByUrl(const QString &url);
-    QList<BookmarkItem> getAllBookmarks(int folderId = 0);
-    QList<BookmarkItem> searchBookmarks(const QString &keyword);
+    [[nodiscard]] BookmarkItem getBookmark(int id);
+    [[nodiscard]] QList<BookmarkItem> getBookmarkByUrl(const QString &url);
+    [[nodiscard]] QList<BookmarkItem> getAllBookmarks(int folderId = 0);
+    [[nodiscard]] QList<BookmarkItem> searchBookmarks(const QString &keyword);
 
     // 文件夹查询
-    QList<BookmarkItem> getAllFolders();
-    QList<BookmarkItem> getSubFolders(int folderId);
+    [[nodiscard]] QList<BookmarkItem> getAllFolders();
+    [[nodiscard]] QList<BookmarkItem> getSubFolders(int folderId);
 
     // 导入导出
     bool importFromHtml(const QString &filename);
     bool exportToHtml(const QString &filename);
     bool importFromBrowser(const QString &browserName);
 
-    TreeItem BookmarkToTree(const BookmarkItem& tree, bool setKey = false);
-    BookmarkItem TreeToBookmark(const TreeItem& tree);
-    BookmarkItem TreeToBookmark(const TreeItem& item, const CDatabaseUrl::UrlItem& url);
+    [[nodiscard]] TreeItem BookmarkToTree(const BookmarkItem& tree, bool setKey = false);
+    [[nodiscard]] BookmarkItem TreeToBookmark(const TreeItem& tree);
+    [[nodiscard]] BookmarkItem TreeToBookmark(const TreeItem& item, const CDatabaseUrl::UrlItem& url);
 
 signals:
     void bookmarksChanged();
@@ -110,7 +110,7 @@ signals:
 private:
     explicit CBookmarkDatabase(QObject *parent = nullptr);
     ~CBookmarkDatabase();
-    bool OnInitializeDatabase() override;
+    [[nodiscard]] bool OnInitializeDatabase() override;
 
     void buildBookmarkDocument(QDomDocument &doc);
     void buildBookmarkTree(

@@ -52,7 +52,7 @@ public:
     explicit CManager(QObject *parent = nullptr);
     virtual ~CManager();
     
-    int Initial(QString szFile = QString());
+    [[nodiscard]] int Initial(QString szFile = QString());
 
     /*!
      * \~chinese

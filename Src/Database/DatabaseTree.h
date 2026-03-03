@@ -9,31 +9,31 @@ public:
     TreeItem();
     TreeItem(const TreeItem& item);
 
-    bool IsNode() const;
-    bool IsLeaf() const;
+    [[nodiscard]] bool IsNode() const;
+    [[nodiscard]] bool IsLeaf() const;
 
     enum TYPE {
         Node,
         Leaf
     };
-    TYPE GetType() const;
+    [[nodiscard]] TYPE GetType() const;
     void SetType(TYPE type);
-    int GetId() const;
+    [[nodiscard]] int GetId() const;
     void SetId(int newId);
-    QString GetName() const;
+    [[nodiscard]] QString GetName() const;
     void SetName(const QString &newName);
-    QDateTime GetCreateTime() const;
+    [[nodiscard]] QDateTime GetCreateTime() const;
     void SetCreateTime(const QDateTime &newCreateTime);
-    QDateTime GetModifyTime() const;
+    [[nodiscard]] QDateTime GetModifyTime() const;
     void SetModifyTime(const QDateTime &newModifyTime);
-    QDateTime GetLastVisitTime() const;
+    [[nodiscard]] QDateTime GetLastVisitTime() const;
     void SetLastVisitTime(const QDateTime &newLastVisitTime);
-    int GetParentId() const;
+    [[nodiscard]] int GetParentId() const;
     void SetParentId(int newParentId);
-    int GetSortOrder() const;
+    [[nodiscard]] int GetSortOrder() const;
     void SetSortOrder(int newSortOrder);
 
-    int GetKey() const;
+    [[nodiscard]] int GetKey() const;
     void SetKey(int newNKey);
 
 private:
@@ -62,29 +62,29 @@ public:
     bool DeleteFolder(int id, std::function<int(int parentId)> cbDeleteLeaf = nullptr);
     bool MoveFolder(int id, int newParentId);
     // 文件夹查询
-    TreeItem GetFolder(int id);
-    QList<TreeItem> GetAllFolders();
-    QList<TreeItem> GetSubFolders(int parentId);
+    [[nodiscard]] TreeItem GetFolder(int id);
+    [[nodiscard]] QList<TreeItem> GetAllFolders();
+    [[nodiscard]] QList<TreeItem> GetSubFolders(int parentId);
     /*!
      * \brief Get count
      * \param parentId: 0 : Get all count
      * \return
      */
-    int GetCount(int parentId = 0);
+    [[nodiscard]] int GetCount(int parentId = 0);
 
-    virtual bool ExportToJson(QJsonObject& obj) override;
-    virtual bool ImportFromJson(const QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
-    QString GetTableName() const;
+    [[nodiscard]] QString GetTableName() const;
     void SetTableName(const QString &newSzTableName);
 
 Q_SIGNALS:
     void sigAddFolder(int id, int parentId);
 
 protected:
-    virtual bool OnDeleteLeafs(int id);
-    virtual bool OnInitializeSqliteDatabase() override;
-    virtual bool OnInitializeMySqlDatabase() override;
+    [[nodiscard]] virtual int OnDeleteLeafs(int id);
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
     
 private:
     QString m_szTableName;
@@ -113,31 +113,31 @@ public:
     virtual bool DeleteChild(int parentId, bool delKey = false);
     virtual bool Move(int id, int newParent);
 
-    TreeItem GetLeaf(int id);
+    [[nodiscard]] TreeItem GetLeaf(int id);
     /*!
      * \brief Get the leaves under nodeId
      * \param nodeId:
      *          - < 0: Get all leaves
      *          - >= 0: Get the leaves under the node
      */
-    QList<TreeItem> GetLeaves(int nodeId);
+    [[nodiscard]] QList<TreeItem> GetLeaves(int nodeId);
     /*!
      * \brief Get leaves
      * \param value: Get the leaves of value
      */
-    QList<TreeItem> GetLeavesByKey(int key);
-    QList<TreeItem> GetLeavesByKey(QList<int> key);
-    int GetLeafCount(int parentId = 0);
+    [[nodiscard]] QList<TreeItem> GetLeavesByKey(int key);
+    [[nodiscard]] QList<TreeItem> GetLeavesByKey(QList<int> key);
+    [[nodiscard]] int GetLeafCount(int parentId = 0);
 
     // Node operate
     virtual int AddNode(const QString &name, int parentId = 0);
     virtual bool RenameNode(int id, const QString &newName);
     virtual bool DeleteNode(int id, bool delKey = false);
     virtual bool MoveNode(int id, int newParentId);
-    TreeItem GetNode(int id);
-    QList<TreeItem> GetAllNodes();
-    QList<TreeItem> GetSubNodes(int parentId);
-    int GetNodeCount(int nParentId = 0);
+    [[nodiscard]] TreeItem GetNode(int id);
+    [[nodiscard]] QList<TreeItem> GetAllNodes();
+    [[nodiscard]] QList<TreeItem> GetSubNodes(int parentId);
+    [[nodiscard]] int GetNodeCount(int nParentId = 0);
 
     /*!
      * \~chinese
@@ -148,11 +148,11 @@ public:
      * \param parentId: 0, Get all count
      * \return
      */
-    int GetCount(int parentId = 0);
+    [[nodiscard]] int GetCount(int parentId = 0);
 
-    virtual bool OnInitializeDatabase() override;
-    virtual bool ExportToJson(QJsonObject& obj) override;
-    virtual bool ImportFromJson(const QJsonObject& obj) override;
+    [[nodiscard]] virtual bool OnInitializeDatabase() override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 Q_SIGNALS:
     void sigAddFolder(int id, int parentId);
@@ -166,9 +166,9 @@ protected:
      * \return treu: 成功
      *         false: 失败。删除停止。
      */
-    virtual bool OnDeleteKey(int key);
-    virtual bool OnInitializeSqliteDatabase() override;
-    virtual bool OnInitializeMySqlDatabase() override;
+    [[nodiscard]] virtual bool OnDeleteKey(int key);
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 
 private:
     QString m_szTableName;

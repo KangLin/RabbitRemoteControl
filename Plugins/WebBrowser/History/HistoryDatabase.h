@@ -35,16 +35,16 @@ public:
     void scheduleCleanup(int maxDays, int maxCount);
 
     // 查询操作
-    QList<HistoryItem> getAllHistory(int limit = -1, int offset = 0);
-    QList<HistoryItem> getHistoryByDate(const QDate &date);
-    QList<HistoryItem> getHistoryByDate(const QDate &start, const QDate &end, int limit = 100);
-    QList<HistoryItem> searchHistory(const QString &keyword);
-    HistoryItem getHistoryByUrl(const QString &url);
-    HistoryItem getHistoryById(int id);
+    [[nodiscard]] QList<HistoryItem> getAllHistory(int limit = -1, int offset = 0);
+    [[nodiscard]] QList<HistoryItem> getHistoryByDate(const QDate &date);
+    [[nodiscard]] QList<HistoryItem> getHistoryByDate(const QDate &start, const QDate &end, int limit = 100);
+    [[nodiscard]] QList<HistoryItem> searchHistory(const QString &keyword);
+    [[nodiscard]] HistoryItem getHistoryByUrl(const QString &url);
+    [[nodiscard]] HistoryItem getHistoryById(int id);
 
     // 统计信息
-    int getHistoryCount();
-    QDateTime getLastVisitTime();
+    [[nodiscard]] int getHistoryCount();
+    [[nodiscard]] QDateTime getLastVisitTime();
 
     bool importFromCSV(const QString& filename);
     bool exportToCSV(const QString &filename);
@@ -60,16 +60,16 @@ private:
 private:
     explicit CHistoryDatabase(QObject *parent = nullptr);
     ~CHistoryDatabase();
-    bool OnInitializeDatabase() override;
+    [[nodiscard]] bool OnInitializeDatabase() override;
     CDatabaseUrl m_UrlDB;
 
-    virtual bool ExportToJson(QJsonObject &obj) override;
-    virtual bool ImportFromJson(const QJsonObject &obj) override;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject &obj) override;
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject &obj) override;
     
     // CDatabase interface
 protected:
-    virtual bool OnInitializeSqliteDatabase() override;
-    virtual bool OnInitializeMySqlDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
+    [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 };
 
 void enableSqlTrace(const QString& connectionName = QSqlDatabase::defaultConnection);
