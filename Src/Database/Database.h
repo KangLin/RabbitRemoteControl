@@ -39,14 +39,21 @@ public:
      *        - true: successfully
      *        - false: failed
      */
-    [[nodiscard]] virtual bool OpenDatabase(const CParameterDatabase* pPara = nullptr,
-                              const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenMySqlDatabase(const CParameterDatabase* pPara,
-                                   const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenODBCDatabase(const CParameterDatabase* pPara,
-                                  const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenSQLiteDatabase(const CParameterDatabase* pPara = nullptr,
-                                    const QString &szConnectionName = QString());
+    [[nodiscard]] virtual bool OpenDatabase(
+        const CParameterDatabase* pPara = nullptr,
+        const QString& szConnectName = QString());
+    [[nodiscard]] virtual bool OpenMySqlDatabase(
+        const CParameterDatabase* pPara,
+        const QString& szConnectName = QString());
+    [[nodiscard]] virtual bool OpenODBCDatabase(
+        const CParameterDatabase* pPara,
+        const QString& szConnectName = QString());
+    [[nodiscard]] virtual bool OpenSQLiteDatabase(
+        const CParameterDatabase* pPara,
+        const QString &szConnectionName = QString());
+    [[nodiscard]] virtual bool OpenSQLiteDatabase(
+        const QString& szFile,
+        const QString& szConnectionName = QString());
     [[nodiscard]] virtual bool IsOpen() const;
     virtual void CloseDatabase();
 
@@ -60,8 +67,8 @@ public:
 
     [[nodiscard]] virtual bool ExportToJsonFile(const QString& szFile);
     [[nodiscard]] virtual bool ImportFromJsonFile(const QString& szFile);
-    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) = 0;
-    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) = 0;
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj);
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj);
 
 Q_SIGNALS:
     void sigChanged();

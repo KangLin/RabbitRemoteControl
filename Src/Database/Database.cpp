@@ -97,9 +97,17 @@ bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
 bool CDatabase::OpenSQLiteDatabase(const CParameterDatabase *pPara,
                                    const QString &szConnectionName)
 {
-    QString databasePath;
-    if(pPara)
-        databasePath = pPara->GetDatabaseName();
+    QString szFile;
+    if(pPara) {
+        szFile = pPara->GetDatabaseName();
+    }
+    return OpenSQLiteDatabase(szFile, szConnectionName);
+}
+
+bool CDatabase::OpenSQLiteDatabase(
+    const QString& szFile, const QString& szConnectionName)
+{
+    QString databasePath = szFile;
     if (databasePath.isEmpty()) {
         // 使用默认路径
         QString dataDir = RabbitCommon::CDir::Instance()->GetDirUserDatabase();
@@ -353,6 +361,16 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
 
     file.close();
     return bRet;
+}
+
+bool CDatabase::ImportFromJson(const QJsonObject &obj)
+{
+    return true;
+}
+
+bool CDatabase::ExportToJson(QJsonObject &obj)
+{
+    return true;
 }
 
 CDatabaseIcon::CDatabaseIcon(QObject *parent)
