@@ -546,8 +546,11 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
             libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
             libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
-            libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
+            libxcb-* libxcb-cursor0 \
             libxkbcommon-dev
+        if ! [[ $DISTRO_VERSION =~ 26\.[0-9]+ ]]; then
+            package_install xserver-xorg-input-kbd xserver-xorg-input-mouse
+        fi
         # Base dependency
         package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
         # RabbitCommon dependency
