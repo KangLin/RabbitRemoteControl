@@ -4,6 +4,7 @@
 #include <QLoggingCategory>
 #include "RecentModel.h"
 #include "ParameterApp.h"
+#include "ParameterGlobal.h"
 
 static Q_LOGGING_CATEGORY(log, "App.Recent.Model")
 CRecentModel::CRecentModel(CParameterApp *pPara, CRecentDatabase *pDb, QObject *parent)
@@ -23,8 +24,21 @@ Qt::ItemFlags CRecentModel::flags(const QModelIndex &index) const
         return f;
 
     auto item = m_Items.at(index.row());
-    QFileInfo fi(item.GetFile());
-    if(fi.exists())
+    QString szFile = item.GetFile();
+    if(szFile.isEmpty()) {
+        return f;
+    }
+
+    bool bExist = false;
+    QFileInfo fi(szFile);
+    if(m_pParameterApp->GetGlobalParameters()->GetSaveSettingsType()
+        == CParameterGlobal::SaveSettingsType::File) {
+        bExist = fi.exists();
+    } else {
+        bExist = m_pDatabase->HasFileContents(item);
+    }
+
+    if(bExist)
         f |= Qt::ItemIsEnabled;
     else
         f &= ~Qt::ItemIsEnabled;

@@ -803,3 +803,20 @@ bool CDatabaseFile::OnInitializeMySqlDatabase()
 
     return true;
 }
+
+bool CDatabaseFile::IsExist(const QString &szFile)
+{
+    QSqlQuery query(GetDatabase());
+    query.prepare("SELECT * from " + m_szTableName +
+                  " WHERE `file`=:file");
+    query.bindValue(":file", szFile);
+    bool ok = query.exec();
+    if(!ok) {
+        qCritical(log) << "Failed to the file:" << szFile << " is exist in"
+                       << m_szTableName << "table:"
+                       << m_szTableName << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
+        return false;
+    }
+    return query.next();
+}

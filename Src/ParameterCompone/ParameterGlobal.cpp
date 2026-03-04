@@ -36,4 +36,5 @@ void CParameterGlobal::SetSaveSettingsType(const SaveSettingsType &type)
         return;
     m_SaveSettingsType = type;
     SetModified(true);
+    emit sigSaveSettingsTypeChanged();
 }

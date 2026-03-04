@@ -74,7 +74,7 @@ bool CHistoryDatabase::OnInitializeDatabase()
     success = CDatabase::OnInitializeDatabase();
     if(!success) return false;
     m_UrlDB.SetDatabase(GetDatabase(), m_pPara);
-    m_UrlDB.OnInitializeDatabase();
+    success = m_UrlDB.OnInitializeDatabase();
     return success;
 }
 

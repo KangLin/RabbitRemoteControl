@@ -44,6 +44,8 @@ public:
     };
     SaveSettingsType GetSaveSettingsType() const;
     void SetSaveSettingsType(const SaveSettingsType& type);
+Q_SIGNALS:
+    void sigSaveSettingsTypeChanged();
 private:
     SaveSettingsType m_SaveSettingsType;
 

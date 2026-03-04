@@ -59,10 +59,13 @@ CBookmarkDatabase::~CBookmarkDatabase()
 
 bool CBookmarkDatabase::OnInitializeDatabase()
 {
+    bool bRet = false;
     m_UrlDB.SetDatabase(GetDatabase(), m_pPara);
-    m_UrlDB.OnInitializeDatabase();
+    bRet = m_UrlDB.OnInitializeDatabase();
+    if(!bRet) return false;
     m_TreeDB.SetDatabase(GetDatabase(), m_pPara);
-    m_TreeDB.OnInitializeDatabase();
+    bRet = m_TreeDB.OnInitializeDatabase();
+    if(!bRet) return false;
 
     if(m_TreeDB.GetNodeCount() == 0) {
         m_TreeDB.AddNode(tr("Bookmarks"), 0);

@@ -38,6 +38,8 @@ public:
     bool UpdateRecent(const RecentItem &item);
     QList<RecentItem> GetRecents(int limit = -1, int offset = 0);
 
+    bool HasFileContents(const RecentItem &item);
+
 private:
     bool OnInitializeDatabase() override;
     virtual bool OnInitializeSqliteDatabase() override;

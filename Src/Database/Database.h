@@ -128,6 +128,8 @@ class PLUGIN_EXPORT CDatabaseFile : public CDatabase
 public:
     explicit CDatabaseFile(QObject* parent = nullptr);
     explicit CDatabaseFile(const QString& szPrefix, QObject *parent = nullptr);
+
+    bool IsExist(const QString& szFile);
     
     /*!
      * \brief Load

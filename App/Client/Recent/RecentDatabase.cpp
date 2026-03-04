@@ -336,6 +336,11 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int of
     return items;
 }
 
+bool CRecentDatabase::HasFileContents(const RecentItem &item)
+{
+    return m_FileDB.IsExist(item.szFile);
+}
+
 bool CRecentDatabase::ExportToJson(QJsonObject &obj)
 {
     QJsonArray recents;

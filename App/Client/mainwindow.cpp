@@ -424,8 +424,21 @@ int MainWindow::Initial()
         }
         m_Manager.EnumPlugins(this);
 
-        if(m_Manager.GetGlobalParameters())
+        if(m_Manager.GetGlobalParameters()) {
+            //m_Parameter.SetGlobalParameters(m_Manager.GetGlobalParameters());
+            bool bRet = QMetaObject::invokeMethod(
+                &m_Parameter,
+                "SetGlobalParameters",
+                Qt::DirectConnection,
+                Q_ARG(CParameterGlobal*, m_Manager.GetGlobalParameters()));
+            if(!bRet) {
+                szErr = tr("Failed to set global parameters");
+                qCritical(log) << szErr;
+                nRet = -1;
+                break;
+            }
             m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
+        }
 
         if(m_pRecent) {
             szMsg = tr("Load list recent dock ......");
@@ -450,6 +463,18 @@ int MainWindow::Initial()
                 for(auto it = recents.rbegin(); it != recents.rend(); it++) {
                     m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
                 }
+                m_pRecentMenu->slotShowFileEixst(
+                    m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
+                bool check = connect(
+                    m_Parameter.GetGlobalParameters(),
+                    &CParameterGlobal::sigSaveSettingsTypeChanged,
+                    m_pRecentMenu, [this]() {
+                        if(!(m_pRecentMenu && m_Parameter.GetGlobalParameters()))
+                            return;
+                        m_pRecentMenu->slotShowFileEixst(
+                            m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
+                    });
+                Q_ASSERT(check);
             }
         }
 

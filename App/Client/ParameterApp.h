@@ -5,6 +5,7 @@
 #include "Parameter.h"
 #include "ParameterDatabase.h"
 
+class CParameterGlobal;
 class CParameterApp : public CParameter
 {
     Q_OBJECT
@@ -14,6 +15,11 @@ public:
     virtual ~CParameterApp();
 
     CParameterDatabase m_Database;
+    CParameterGlobal* GetGlobalParameters() const;
+
+private:
+    Q_INVOKABLE void SetGlobalParameters(CParameterGlobal* pGlobal);
+    CParameterGlobal* m_pGloablParamter;
 
 protected:
     virtual int OnLoad(QSettings &set);

@@ -1,13 +1,15 @@
-#include "ParameterApp.h"
+
 #include <QSettings>
 #include <QDir>
 #include "RabbitCommonDir.h"
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
+#include "ParameterGlobal.h"
+#include "ParameterApp.h"
 
 CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow"),
-    m_Database(this),
+    m_pGloablParamter(nullptr),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_ViewType(ViewType::Tab),
@@ -170,6 +172,16 @@ int CParameterApp::OnSave(QSettings &set)
     return CICE::Instance()->GetParameter()->Save(set);
 #endif
     return 0;
+}
+
+CParameterGlobal* CParameterApp::GetGlobalParameters() const
+{
+    return m_pGloablParamter;
+}
+
+void CParameterApp::SetGlobalParameters(CParameterGlobal* para)
+{
+    m_pGloablParamter = para;
 }
 
 bool CParameterApp::GetReceiveShortCut() const
