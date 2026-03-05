@@ -159,8 +159,8 @@ void TreeItem::SetLastVisitTime(const QDateTime &newLastVisitTime)
 CDatabaseFolder::CDatabaseFolder(QObject *parent)
     : CDatabase(parent)
 {
-    m_szConnectName = "folder_connect";
     m_szTableName = "folders";
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
@@ -168,6 +168,7 @@ CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
 {
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 bool CDatabaseFolder::OnInitializeSqliteDatabase()
@@ -517,7 +518,7 @@ CDatabaseTree::CDatabaseTree(QObject *parent)
     : CDatabase(parent)
 {
     m_szTableName = "tree";
-    m_szConnectName = "tree_connect";
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
@@ -526,7 +527,7 @@ CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
     m_FolderDB.SetTableName(szPrefix + "_" + m_FolderDB.GetTableName());
-    m_szConnectName = szPrefix + "_" + "tree_connect";
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 bool CDatabaseTree::OnInitializeDatabase()

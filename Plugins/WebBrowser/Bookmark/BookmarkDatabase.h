@@ -59,6 +59,10 @@ struct BookmarkItem {
 
 };
 
+/*!
+ * \brief The CBookmarkDatabase class
+ * \ingroup DATABASE_API
+ */
 class CBookmarkDatabase : public CDatabase
 {
     Q_OBJECT

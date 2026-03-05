@@ -4,6 +4,10 @@
 
 #include "Database.h"
 
+/*!
+ * \brief The CDatabaseFilter class
+ * \ingroup DATABASE_API
+ */
 class PLUGIN_EXPORT CDatabaseFilter : public CDatabase
 {
 public:

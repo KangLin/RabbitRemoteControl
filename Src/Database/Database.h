@@ -9,6 +9,15 @@
 #include "plugin_export.h"
 
 class CParameterDatabase;
+
+/*!
+ * \chinese 提供打开数据库和初始化数据库等接口
+ * \english Provide interfaces such as opening the database and initializing the database
+ *
+ * \~
+ * \ingroup APP_API PLUGIN_API
+ * \defgroup DATABASE_API
+ */
 class PLUGIN_EXPORT CDatabase : public QObject
 {
     Q_OBJECT
@@ -86,6 +95,10 @@ private:
     QSqlDatabase m_database;
 };
 
+/*!
+ * \brief The CDatabaseIcon class
+ * \ingroup DATABASE_API
+ */
 class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
 {
     Q_OBJECT
@@ -120,6 +133,7 @@ private:
 /*!
  * \brief The CDatabaseFile class
  * \note The file field is filename, don't include path.
+ * \ingroup DATABASE_API
  */
 class PLUGIN_EXPORT CDatabaseFile : public CDatabase
 {

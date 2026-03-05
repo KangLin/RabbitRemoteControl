@@ -48,6 +48,10 @@ private:
     int m_SortOrder;
 };
 
+/*!
+ * \brief The CDatabaseFolder class
+ * \ingroup DATABASE_API
+ */
 class PLUGIN_EXPORT CDatabaseFolder : public CDatabase
 {
     Q_OBJECT
@@ -90,6 +94,10 @@ private:
     QString m_szTableName;
 };
 
+/*!
+ * \brief The CDatabaseTree class
+ * \ingroup DATABASE_API
+ */
 class PLUGIN_EXPORT CDatabaseTree : public CDatabase
 {
     Q_OBJECT

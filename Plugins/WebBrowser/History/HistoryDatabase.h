@@ -17,6 +17,10 @@ struct HistoryItem {
     QDateTime visitTime;
 };
 
+/*!
+ * \brief The CHistoryDatabase class
+ * \ingroup DATABASE_API
+ */
 class CHistoryDatabase : public CDatabase
 {
     Q_OBJECT

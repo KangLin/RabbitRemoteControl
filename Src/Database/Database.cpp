@@ -21,7 +21,6 @@ CDatabase::CDatabase(QObject *parent)
     , m_pPara(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
-    m_szConnectName = "connect";
 }
 
 CDatabase::~CDatabase()
@@ -376,16 +375,16 @@ bool CDatabase::ExportToJson(QJsonObject &obj)
 CDatabaseIcon::CDatabaseIcon(QObject *parent)
     : CDatabase(parent)
 {
-    m_szConnectName = "icon_connect";
     m_szTableName = "icon";
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 CDatabaseIcon::CDatabaseIcon(const QString &szPrefix, QObject *parent)
     : CDatabaseIcon(parent)
 {
-    m_szConnectName = "icon_connect";
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 bool CDatabaseIcon::OnInitializeSqliteDatabase()
@@ -671,16 +670,16 @@ bool CDatabaseFile::ImportFileToDatabaseFromJson(const QJsonObject &obj, QString
 
 CDatabaseFile::CDatabaseFile(QObject* parent) : CDatabase(parent)
 {
-    m_szConnectName = "file_connect";
     m_szTableName = "file";
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 CDatabaseFile::CDatabaseFile(const QString &szPrefix, QObject *parent)
     : CDatabase(parent)
 {
-    m_szConnectName = "file_connect";
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
+    m_szConnectName = m_szTableName + "_connect";
 }
 
 bool CDatabaseFile::ExportToJson(QJsonObject &obj)

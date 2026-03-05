@@ -8,6 +8,10 @@
 #include "Database.h"
 #include "RabbitCommonDir.h"
 
+/*!
+ * \brief The CRecentDatabase class
+ * \ingroup DATABASE_API
+ */
 class CRecentDatabase : public CDatabase
 {
     Q_OBJECT

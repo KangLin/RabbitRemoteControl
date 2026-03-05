@@ -7,6 +7,10 @@
 #include <QIcon>
 #include "DatabaseTree.h"
 
+/*!
+ * \brief The CFavoriteDatabase class
+ * \ingroup DATABASE_API
+ */
 class CFavoriteDatabase : public CDatabaseTree
 {
     Q_OBJECT
