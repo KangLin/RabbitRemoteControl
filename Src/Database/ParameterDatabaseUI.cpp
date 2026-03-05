@@ -88,6 +88,13 @@ void CParameterDatabaseUI::slotTypeCurrentTextChanged(const QString &text)
         bNet = false;
     } else if("QMYSQL" == text) {
         bNet = true;
+        if(m_pPara) {
+            auto &net = m_pPara->m_Net;
+            if(0 == net.GetPort()) {
+                net.SetPort(3306);
+                ui->wNet->SetParameter(&net);
+            }
+        }
     }
 
     if(szHelp.isEmpty())
