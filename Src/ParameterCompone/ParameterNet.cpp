@@ -70,6 +70,7 @@ QString CParameterNet::GetPrompt()
 
 CParameterNet& CParameterNet::operator =(const CParameterNet& in)
 {
+    m_szHost = in.m_szHost;
     m_nPort = in.m_nPort;
     m_User = in.m_User;
     m_szPrompt = in.m_szPrompt;
