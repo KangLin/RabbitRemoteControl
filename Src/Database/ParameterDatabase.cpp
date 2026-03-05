@@ -8,6 +8,7 @@ CParameterDatabase::CParameterDatabase(QObject *parent, const QString &szPrefix)
     , m_Net(this, "Database")
     , m_szType("QSQLITE")
 {
+    m_Net.SetPort(3306);
 }
 
 int CParameterDatabase::OnLoad(QSettings &set)
