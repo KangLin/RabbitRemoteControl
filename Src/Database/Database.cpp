@@ -52,9 +52,20 @@ const CParameterDatabase *CDatabase::GetParameter() const
     return m_pPara;
 }
 
+const QString CDatabase::GetError() const
+{
+    return m_szError;
+}
+
+void CDatabase::SetError(const QString &szErr)
+{
+    m_szError = szErr;
+}
+
 bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
                              const QString &szConnectName)
 {
+    SetError();
     bool bRet = false;
     if(!pPara) {
         bRet = OpenSQLiteDatabase(pPara, szConnectName);
@@ -71,6 +82,8 @@ bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
         bRet = OpenMySqlDatabase(pPara, szConnectName);
     else if(pPara->GetType() == "QODBC")
         bRet = OpenODBCDatabase(pPara, szConnectName);
+    else
+        SetError(tr("The database type is unknow:") + " " + pPara->GetType());
 
     QSqlDriver *driver = GetDatabase().driver();
     if (driver) {
@@ -127,12 +140,13 @@ bool CDatabase::OpenSQLiteDatabase(
     // 打开或创建数据库
     m_database = QSqlDatabase::addDatabase("QSQLITE", m_szConnectName);
     m_database.setDatabaseName(databasePath);
-
+    
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open sqlite database:"
-                       << m_database.lastError().text()
-                       << "connect name:" << m_database.connectionName()
-                       << "database name:" << m_database.databaseName();
+        SetError("Failed to open sqlite database: "
+                 + m_database.lastError().text()
+                 + "; connect name: " + m_database.connectionName()
+                 + "; database name: " + m_database.databaseName());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -169,31 +183,35 @@ bool CDatabase::OpenMySqlDatabase(const CParameterDatabase *pPara,
     auto &user = net.m_User;
     m_database.setUserName(user.GetName());
     m_database.setPassword(user.GetPassword());
-
+    
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open mysql database:"
-                       << m_database.lastError().text()
-                       << "Host:" << net.GetHost() << "Port:" << net.GetPort()
-                       << "User:" << user.GetUser()
-                       << "connect name:" << m_database.connectionName()
-                       << "database name:" << m_database.databaseName();
+        SetError("Failed to open mysql database: "
+                 + m_database.lastError().text()
+                 + "; Host: " + net.GetHost()
+                 + "; Port: " + QString::number(net.GetPort())
+                 + "; User: " + user.GetUser()
+                 + "; connect name: " + m_database.connectionName()
+                 + "; database name: " + m_database.databaseName());
+        qCritical(log) << GetError();
         return false;
     }
 
     QSqlQuery query(GetDatabase());
     success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
     if (!success) {
-        qCritical(log) << "Failed to create" << szDbName << "database:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create " + szDbName + " database: "
+                 + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
     success = query.exec("use " + szDbName);
     if (!success) {
-        qCritical(log) << "Failed to use" << szDbName << "database:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to use " + szDbName + " database: "
+                 + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -226,29 +244,32 @@ bool CDatabase::OpenODBCDatabase(const CParameterDatabase *pPara,
 #endif
     }
     m_database.setDatabaseName(szDbName);
-
+    
     if (!m_database.open()) {
-        qCritical(log) << "Failed to open odbc database:"
-                       << m_database.lastError().text()
-                       << "connect name:" << m_database.connectionName()
-                       << "database name:" << m_database.databaseName();
+        SetError("Failed to open odbc database: "
+                 + m_database.lastError().text()
+                 + "; connect name: " + m_database.connectionName()
+                 + "; database name: " + m_database.databaseName());
+        qCritical(log) << GetError();
         return false;
     }
-
+    
     QSqlQuery query(GetDatabase());
     bool success = query.exec("CREATE DATABASE IF NOT EXISTS " + szDbName);
     if (!success) {
-        qCritical(log) << "Failed to create" << szDbName << "database:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create " + szDbName + " database: "
+                 + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
     success = query.exec("use " + szDbName);
     if (!success) {
-        qCritical(log) << "Failed to use" << szDbName << "database:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to use " + szDbName + " database: "
+                 + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -299,9 +320,11 @@ void CDatabase::CloseDatabase()
 
 bool CDatabase::ExportToJsonFile(const QString &szFile)
 {
+    SetError();
     QFile file(szFile);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qCritical(log) << "Failed to open file:" << szFile << file.errorString();
+        SetError("Failed to open export JSON file: " + szFile + "; " + file.errorString());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -333,9 +356,11 @@ bool CDatabase::ExportToJsonFile(const QString &szFile)
 bool CDatabase::ImportFromJsonFile(const QString &szFile)
 {
     bool bRet = false;
+    SetError();
     QFile file(szFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qCritical(log) << "Failed to open file:" << szFile << file.errorString();
+        SetError("Failed to open import JSON file: " + szFile + "; " + file.errorString());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -346,13 +371,15 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
             break;
         auto root = doc.object();
         if(root["Title"] != "Rabbit Remote Control") {
-            qCritical(log) << "The file format is error";
+            SetError("The file format is error");
+            qCritical(log) << GetError();
             break;
         }
         QString szVersion = root["Version"].toString();
         if(RabbitCommon::CTools::VersionCompare(szVersion, m_MinVersion) < 0) {
-            qCritical(log) << "The version is not support:"
-                           << szVersion << "<" << m_MinVersion;
+            SetError("The version is not support: "
+                     + szVersion + " < " + m_MinVersion);
+            qCritical(log) << GetError();
             break;
         }
         bRet = ImportFromJson(doc.object());
@@ -402,9 +429,10 @@ bool CDatabaseIcon::OnInitializeSqliteDatabase()
         ;
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create icon sqlite table:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create icon sqlite table: "
+                 + m_szTableName + "; error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
     success = query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_name ON " + m_szTableName + "(name)");
@@ -439,9 +467,10 @@ bool CDatabaseIcon::OnInitializeMySqlDatabase()
         ;
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create icon mysql table:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create icon mysql table: "
+                 + m_szTableName + "; " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -487,8 +516,9 @@ int CDatabaseIcon::GetIcon(const QIcon &icon)
         query.bindValue(":data", data);
         bRet = query.exec();
         if(!bRet) {
-            qCritical(log) << "Failed to insert icon hash:"
-                           << szHash << query.lastError().text();
+            SetError("Failed to insert icon hash: "
+                     + szHash + "; " + query.lastError().text());
+            qCritical(log) << GetError();
             return 0;
         }
         return query.lastInsertId().toInt();
@@ -500,8 +530,9 @@ int CDatabaseIcon::GetIcon(const QIcon &icon)
     query.bindValue(":name", szName);
     bRet = query.exec();
     if(!bRet) {
-        qCritical(log) << "Failed to select icon name:"
-                       << szName << query.lastError().text();
+        SetError("Failed to select icon name: "
+                 + szName + "; " + query.lastError().text());
+        qCritical(log) << GetError();
         return 0;
     }
     if(query.next()) {
@@ -514,8 +545,9 @@ int CDatabaseIcon::GetIcon(const QIcon &icon)
     query.bindValue(":name", szName);
     bRet = query.exec();
     if(!bRet) {
-        qCritical(log) << "Failed to insert icon name:"
-                       << szName << query.lastError().text();
+        SetError("Failed to insert icon name: "
+                 + szName + "; " + query.lastError().text());
+        qCritical(log) << GetError();
         return 0;
     }
     return query.lastInsertId().toInt();
@@ -532,8 +564,9 @@ QIcon CDatabaseIcon::GetIcon(int id)
     query.bindValue(":id", id);
     bool bRet = query.exec();
     if(!bRet) {
-        qCritical(log) << "Failed to get icon id:"
-                       << id << query.lastError().text();
+        SetError("Failed to get icon id: "
+                 + QString::number(id) + "; " + query.lastError().text());
+        qCritical(log) << GetError();
         return icon;
     }
 

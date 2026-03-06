@@ -73,7 +73,8 @@ public:
     [[nodiscard]] virtual bool OnInitializeDatabase();
 
     [[nodiscard]] const CParameterDatabase* GetParameter() const;
-
+    [[nodiscard]] const QString GetError() const;
+    
     [[nodiscard]] virtual bool ExportToJsonFile(const QString& szFile);
     [[nodiscard]] virtual bool ImportFromJsonFile(const QString& szFile);
     [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj);
@@ -85,6 +86,7 @@ Q_SIGNALS:
 protected:
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase();
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase();
+    void SetError(const QString& szErr = QString());
 
 protected:
     QString m_szConnectName;
@@ -93,6 +95,7 @@ protected:
 
 private:
     QSqlDatabase m_database;
+    QString m_szError;
 };
 
 /*!

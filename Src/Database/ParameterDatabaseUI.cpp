@@ -208,10 +208,16 @@ void CParameterDatabaseUI::on_pbTestConnect_clicked()
     ui->wNet->Accept();
     dbPara.m_Net = m_Net;
     CDatabase db;
-    if(db.OpenDatabase(&dbPara))
+    bool bRet = db.OpenDatabase(&dbPara);
+    if(bRet) {
+        bRet = db.IsOpen();
+    }
+    if(bRet)
         QMessageBox::information(this, tr("Test connect"), tr("Test connect is successfully"));
     else
-        QMessageBox::critical(this, tr("Test connect"), tr("Test connect is failed"));
+        QMessageBox::critical(this, tr("Test connect"),
+                              tr("Test connect is failed") + "\n\n"
+                                  + db.GetError());
     db.CloseDatabase();
 }
 
