@@ -33,8 +33,8 @@ public:
     virtual int onProcess(const QString &id, CPlugin *pPlugin) override;
 
     RabbitCommon::CTitleBar* m_pDockTitleBar;
-
-    [[nodiscard]] int Init();
+    
+    [[nodiscard]] int Initial();
     int AddRecent(const CRecentDatabase::RecentItem &item);
     bool UpdateRecent(const CRecentDatabase::RecentItem &item);
     QList<CRecentDatabase::RecentItem> GetRecents(int limit = -1, int offset = 0);

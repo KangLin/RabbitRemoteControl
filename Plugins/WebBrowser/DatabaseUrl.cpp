@@ -17,8 +17,7 @@ bool CDatabaseUrl::OnInitializeDatabase()
     bool success = false;
     success = CDatabase::OnInitializeDatabase();
     if(!success) return success;
-    m_iconDB.SetDatabase(GetDatabase(), m_pPara);
-    success = m_iconDB.OnInitializeDatabase();
+    success = m_iconDB.SetDatabase(GetDatabase(), m_pPara);
     return success;
 }
 

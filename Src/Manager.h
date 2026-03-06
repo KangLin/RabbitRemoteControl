@@ -52,6 +52,12 @@ public:
     explicit CManager(QObject *parent = nullptr);
     virtual ~CManager();
     
+    /*!
+     * \brief Initial
+     * \param szFile
+     * \return 0: success; other: failed
+     * \note It must be the first function called after instantiation
+     */
     [[nodiscard]] int Initial(QString szFile = QString());
 
     /*!

@@ -180,10 +180,12 @@ CFrmRecent::~CFrmRecent()
 {
 }
 
-int CFrmRecent::Init()
+int CFrmRecent::Initial()
 {
     if(!m_Database.IsOpen()) {
-        bool bRet = m_Database.OpenDatabase(&m_ParameterApp.m_Database, "recent_connection");
+        bool bRet = false;
+        //bRet = m_Database.OpenDatabase(&m_ParameterApp.GetGlobalParameters()->m_Database, "recent_connection");
+        bRet = m_Database.SetDatabase(&m_ParameterApp.GetGlobalParameters()->m_DatabaseRemote);
         if(!bRet) return -1;
     }
     m_pModel = new CRecentModel(&m_ParameterApp, &m_Database, m_pTableView);

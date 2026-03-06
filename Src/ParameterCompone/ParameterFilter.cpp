@@ -21,6 +21,7 @@ CParameterFilter::~CParameterFilter()
 bool CParameterFilter::InitDatabase(CParameterDatabase *pDB)
 {
     if(!pDB) return false;
+    Q_ASSERT(!m_pDatabase);
     m_pDatabase = new CDatabaseFilter(m_szSuffix);
     if(m_pDatabase) {
         QString szConnectName = "connect_filter_"  + m_szSuffix;
@@ -29,6 +30,18 @@ bool CParameterFilter::InitDatabase(CParameterDatabase *pDB)
             qCritical(log) << "Failed to open database:" << szConnectName;
             return false;
         }
+    }
+    return true;
+}
+
+bool CParameterFilter::InitDatabase(CDatabase *pDB)
+{
+    if(!pDB) return false;
+    Q_ASSERT(!m_pDatabase);
+    m_pDatabase = new CDatabaseFilter(m_szSuffix);
+    if(m_pDatabase) {
+        bool bRet = m_pDatabase->SetDatabase(pDB->GetDatabase(), pDB->GetParameter());
+        if(!bRet) return false;
     }
     return true;
 }

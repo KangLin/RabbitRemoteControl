@@ -144,12 +144,9 @@ bool CFavoriteDatabase::OnInitializeDatabase()
     bool bRet = false;
     bRet = CDatabaseTree::OnInitializeDatabase();
     if(!bRet) return false;
-
-    m_IconDB.SetDatabase(GetDatabase(), m_pPara);
-    bRet = m_IconDB.OnInitializeDatabase();
+    bRet = m_IconDB.SetDatabase(GetDatabase(), m_pPara);
     if(!bRet) return false;
-    m_FileDB.SetDatabase(GetDatabase(), m_pPara);
-    bRet = m_FileDB.OnInitializeDatabase();
+    bRet = m_FileDB.SetDatabase(GetDatabase(), m_pPara);
     return bRet;
 }
 

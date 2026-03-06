@@ -92,6 +92,20 @@ int CManager::Initial(QString szFile)
     if(m_pParameterPlugin) {
         LoadSettings(m_szSettingsFile);
         
+        // Initial database
+        auto pg = GetGlobalParameters();
+        Q_ASSERT(pg);
+        QString szFile;
+        szFile = pg->m_Database.GetDatabaseName();
+        bool bRet = pg->m_DatabaseLocal.OpenSQLiteDatabase(szFile, "Local_connect");
+        if(!bRet) return -1;
+        bRet = pg->m_DatabaseRemote.OpenDatabase(&pg->m_Database, "Remote_connect");
+        if(!bRet) return -1;
+        bRet = m_pParameterPlugin->m_WhiteList.InitDatabase(&pg->m_DatabaseLocal);
+        if(!bRet) return -1;
+        bRet = m_pParameterPlugin->m_BlackList.InitDatabase(&pg->m_DatabaseLocal);
+        if(!bRet) return -1;
+
         bool bReboot = true;
         QString szSnap;
         QString szFlatpak;
@@ -155,11 +169,8 @@ int CManager::Initial(QString szFile)
 
     m_pDatabaseFile = new CDatabaseFile(this);
     if(m_pDatabaseFile) {
-        CParameterDatabase* pDB = nullptr;
-        if(GetGlobalParameters()) {
-            pDB = &GetGlobalParameters()->m_Database;
-        }
-        bool bRet = m_pDatabaseFile->OpenDatabase(pDB);
+        auto pg = GetGlobalParameters();
+        bool bRet = m_pDatabaseFile->SetDatabase(&pg->m_DatabaseRemote);
         if(!bRet) return -1;
     }
 

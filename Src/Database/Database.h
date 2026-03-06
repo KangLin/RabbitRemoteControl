@@ -29,15 +29,14 @@ public:
     /*!
      * \brief Share an existing database
      * \param db
-     * \note After the call is completed, OnInitializeDatabase needs to be called
      */
-    void SetDatabase(const CDatabase* db);
+    [[nodiscard]] bool SetDatabase(const CDatabase* db);
     /*!
      * \brief Share an existing database
      * \param db
      * \param pPara
      */
-    void SetDatabase(const QSqlDatabase db, const CParameterDatabase* pPara);
+    [[nodiscard]] bool SetDatabase(const QSqlDatabase db, const CParameterDatabase* pPara);
     [[nodiscard]] QSqlDatabase GetDatabase() const;
 
     /*!
@@ -66,12 +65,6 @@ public:
     [[nodiscard]] virtual bool IsOpen() const;
     virtual void CloseDatabase();
 
-    /*!
-     * \brief Initialize database
-     * \return
-     */
-    [[nodiscard]] virtual bool OnInitializeDatabase();
-
     [[nodiscard]] const CParameterDatabase* GetParameter() const;
     [[nodiscard]] const QString GetError() const;
     
@@ -84,6 +77,11 @@ Q_SIGNALS:
     void sigChanged();
 
 protected:
+    /*!
+     * \brief Initialize database
+     * \return
+     */
+    [[nodiscard]] virtual bool OnInitializeDatabase();
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase();
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase();
     void SetError(const QString& szErr = QString());

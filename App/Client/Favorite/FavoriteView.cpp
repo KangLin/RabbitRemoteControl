@@ -21,6 +21,8 @@
 #include "FavoriteMimeData.h"
 #include "TitleBar.h"
 #include "FavoriteView.h"
+#include "ParameterGlobal.h"
+#include "Database.h"
 
 static Q_LOGGING_CATEGORY(log, "Favorite")
 
@@ -212,9 +214,11 @@ int CFavoriteView::Initial()
     int nRet = 0;
     m_pDatabase = new CFavoriteDatabase(this);
     if(m_pDatabase) {
-        bool bRet = m_pDatabase->OpenDatabase(&m_pParaApp->m_Database, "favorite_connect");
-        if(!bRet)
-            return -1;
+        bool bRet = false;
+        //bRet = m_pDatabase->OpenDatabase(&m_pParaApp->GetGlobalParameters()->m_Database, "favorite_connect");
+        auto pg = m_pParaApp->GetGlobalParameters();
+        bRet = m_pDatabase->SetDatabase(&pg->m_DatabaseRemote);
+        if(!bRet) return -1;
     }
     if(m_pDatabase) {
         m_pModel = new CFavoriteModel(m_pDatabase, this);

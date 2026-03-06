@@ -22,7 +22,7 @@ class CFavoriteView : public QWidget
 public:
     explicit CFavoriteView(CParameterApp* pPara, QWidget *parent = nullptr);
     virtual ~CFavoriteView();
-
+    
     [[nodiscard]] int Initial();
     RabbitCommon::CTitleBar* m_pDockTitleBar;
 

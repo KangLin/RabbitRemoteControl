@@ -59,11 +59,9 @@ bool CRecentDatabase::OnInitializeDatabase()
     if(!bRet) return false;
 
     // Create icon table
-    m_IconDB.SetDatabase(GetDatabase(), m_pPara);
-    bRet = m_IconDB.OnInitializeDatabase();
+    bRet = m_IconDB.SetDatabase(GetDatabase(), m_pPara);
     if(!bRet) return bRet;
-    m_FileDB.SetDatabase(GetDatabase(), m_pPara);
-    bRet = m_FileDB.OnInitializeDatabase();
+    bRet = m_FileDB.SetDatabase(GetDatabase(), m_pPara);
     return bRet;
 }
 

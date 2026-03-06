@@ -35,7 +35,6 @@ public:
     [[nodiscard]] QList<int> GetDomain(const QString& szDomain);
     [[nodiscard]] QList<UrlItem> Search(const QString& keyword);
 
-    [[nodiscard]] virtual bool OnInitializeDatabase() override;
     [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
@@ -44,6 +43,7 @@ private:
     
     // CDatabase interface
 protected:
+    [[nodiscard]] virtual bool OnInitializeDatabase() override;
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 };

@@ -5,6 +5,7 @@
 
 #include "Parameter.h"
 
+class CDatabase;
 class CDatabaseFilter;
 class CParameterDatabase;
 class CParameterFilter : public CParameter
@@ -17,6 +18,7 @@ public:
     ~CParameterFilter();
 
     bool InitDatabase(CParameterDatabase* pDB);
+    bool InitDatabase(CDatabase* pDB);
     virtual bool contains(const QString& szKey);
 
     int AddKey(const QString& szKey);

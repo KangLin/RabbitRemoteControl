@@ -48,10 +48,6 @@ CParameterGlobal* CParameterPlugin::GetGlobalParameters()
 
 int CParameterPlugin::OnLoad(QSettings &set)
 {
-    int nRet = 0;
-    nRet = m_pGlobalParameter->Load(set);
-    if(nRet) return nRet;
-
     set.beginGroup("Plugin");
     SetCaptureAllKeyboard(
         set.value("CaptureAllKeyboard", GetCaptureAllKeyboard()).toBool());
@@ -87,22 +83,12 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetOnlyLoadInWhitelist(set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
 
     set.endGroup();
-    
-    // Only in local database
-    CParameterDatabase db;
-    db = m_pGlobalParameter->m_Database;
-    db.SetType("QSQLITE");
-    m_WhiteList.InitDatabase(&db);
-    m_BlackList.InitDatabase(&db);
+
     return 0;
 }
 
 int CParameterPlugin::OnSave(QSettings& set)
 {
-    int nRet = 0;
-    nRet = m_pGlobalParameter->Save(set);
-    if(nRet) return nRet;
-
     set.beginGroup("Plugin");
     set.setValue("CaptureAllKeyboard", GetCaptureAllKeyboard());
     set.setValue("DesktopShortcutsScript/Enable", GetDesktopShortcutsScript());

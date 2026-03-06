@@ -5,6 +5,7 @@
 #include "Parameter.h"
 
 #include "ParameterDatabase.h"
+#include "Database.h"
 
 /*!
  * \~chinese
@@ -36,6 +37,8 @@ public:
     ~CParameterGlobal();
 
     CParameterDatabase m_Database;
+    CDatabase m_DatabaseLocal;
+    CDatabase m_DatabaseRemote;
 
 public:
     enum SaveSettingsType{

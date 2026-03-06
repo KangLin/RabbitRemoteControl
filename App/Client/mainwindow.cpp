@@ -423,21 +423,21 @@ int MainWindow::Initial()
             break;
         }
         m_Manager.EnumPlugins(this);
-
-        if(m_Manager.GetGlobalParameters()) {
-            //m_Parameter.SetGlobalParameters(m_Manager.GetGlobalParameters());
+        
+        auto pg = m_Manager.GetGlobalParameters();
+        if(pg) {
+            //m_Parameter.SetGlobalParameters(pg);
             bool bRet = QMetaObject::invokeMethod(
                 &m_Parameter,
                 "SetGlobalParameters",
                 Qt::DirectConnection,
-                Q_ARG(CParameterGlobal*, m_Manager.GetGlobalParameters()));
+                Q_ARG(CParameterGlobal*, pg));
             if(!bRet) {
                 szErr = tr("Failed to set global parameters");
                 qCritical(log) << szErr;
                 nRet = -1;
                 break;
             }
-            m_Parameter.m_Database = m_Manager.GetGlobalParameters()->m_Database;
         }
 
         if(m_pRecent) {
@@ -445,7 +445,7 @@ int MainWindow::Initial()
             initMsgBox.setText(szMsg);
             slotInformation(szMsg);
             qApp->processEvents();
-            nRet = m_pRecent->Init();
+            nRet = m_pRecent->Initial();
             if(nRet) {
                 szErr = tr("Initial recent dock error");
                 break;
@@ -1598,7 +1598,7 @@ void MainWindow::on_actionOpenListRecent_triggered()
                     m_pFavoriteView, SLOT(slotAddToFavorite(QString,QString,QString,QIcon)));
     Q_ASSERT(check);
     
-    int nRet = p->Init();
+    int nRet = p->Initial();
     if(nRet) return;
 
     QDialog d;

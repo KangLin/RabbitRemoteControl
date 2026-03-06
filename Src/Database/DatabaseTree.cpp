@@ -536,8 +536,7 @@ bool CDatabaseTree::OnInitializeDatabase()
     bRet = CDatabase::OnInitializeDatabase();
 
     if(!bRet) return false;
-    m_FolderDB.SetDatabase(GetDatabase(), m_pPara);
-    bRet = m_FolderDB.OnInitializeDatabase();
+    bRet = m_FolderDB.SetDatabase(GetDatabase(), m_pPara);
     if(!bRet) return false;
     bRet = connect(&m_FolderDB, &CDatabaseFolder::sigAddFolder,
                    this, &CDatabaseTree::sigAddFolder);

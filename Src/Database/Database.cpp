@@ -29,17 +29,18 @@ CDatabase::~CDatabase()
     CloseDatabase();
 }
 
-void CDatabase::SetDatabase(const CDatabase *db)
+bool CDatabase::SetDatabase(const CDatabase *db)
 {
-    SetDatabase(db->GetDatabase(), db->GetParameter());
+    return SetDatabase(db->GetDatabase(), db->GetParameter());
 }
 
-void CDatabase::SetDatabase(const QSqlDatabase db, const CParameterDatabase *pPara)
+bool CDatabase::SetDatabase(const QSqlDatabase db, const CParameterDatabase *pPara)
 {
     QString szErr = "Only one of OpenDatabase and SetDatabase can be called, and it can only be called once";
     Q_ASSERT_X(!IsOpen(), "Database", szErr.toStdString().c_str());
     m_database = db;
     m_pPara = pPara;
+    return OnInitializeDatabase();
 }
 
 QSqlDatabase CDatabase::GetDatabase() const

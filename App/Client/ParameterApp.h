@@ -14,7 +14,6 @@ public:
     explicit CParameterApp(QObject *parent = nullptr);
     virtual ~CParameterApp();
 
-    CParameterDatabase m_Database;
     CParameterGlobal* GetGlobalParameters() const;
 
 private:

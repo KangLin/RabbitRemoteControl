@@ -158,7 +158,6 @@ public:
      */
     [[nodiscard]] int GetCount(int parentId = 0);
 
-    [[nodiscard]] virtual bool OnInitializeDatabase() override;
     [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
@@ -175,6 +174,7 @@ protected:
      *         false: 失败。删除停止。
      */
     [[nodiscard]] virtual bool OnDeleteKey(int key);
+    [[nodiscard]] virtual bool OnInitializeDatabase() override;
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
 
