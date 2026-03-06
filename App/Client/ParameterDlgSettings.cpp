@@ -6,6 +6,7 @@
 #include <QScreen>
 #include <QApplication>
 
+#include "ParameterUI.h"
 #include "ParameterDlgSettings.h"
 #include "ui_ParameterDlgSettings.h"
 
@@ -167,8 +168,26 @@ void CParameterDlgSettings::on_pbOk_clicked()
 
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
     m_pParameters->SetMessageBoxDisplayInformation(ui->cbMessageBoxDisplayInfo->isChecked());
-    
+
     m_pParameters->SetKeepSplitViewWhenFullScreen(ui->cbKeepSplitView->isChecked());
+    
+    // Check validity
+    for(int i = 0; i < ui->tabWidget->count(); i++) {
+        QWidget* v = ui->tabWidget->widget(i);
+        CParameterUI* w = qobject_cast<CParameterUI*>(v);
+        if(!w) {
+            QScrollArea* pScroll = qobject_cast<QScrollArea*>(v);
+            if(!pScroll) continue;
+            w = qobject_cast<CParameterUI*>(pScroll->widget());
+            if(!w) continue;
+        }
+
+        bool bRet = w->CheckValidity(true);
+        if(bRet) continue;
+
+        ui->tabWidget->setCurrentIndex(i);
+        return;
+    }
     accept();
 }
 

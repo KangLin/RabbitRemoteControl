@@ -51,6 +51,7 @@ CFrmManagePlugins::CFrmManagePlugins(QWidget *parent) : CParameterUI(parent)
 int CFrmManagePlugins::SetParameter(CParameter *pParameter)
 {
     m_pPara = qobject_cast<CParameterPlugin*>(pParameter);
+    if(!m_pPara) return -1;
     bool checked = m_pPara->GetEnableSetPluginsPath();
     ui->gbPluginsPath->setChecked(checked);
     on_gbPluginsPath_clicked(checked);

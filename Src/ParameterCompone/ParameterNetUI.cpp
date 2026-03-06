@@ -4,7 +4,7 @@
 #include <QLoggingCategory>
 #include <QMessageBox>
 
-static Q_LOGGING_CATEGORY(log, "Client.Parameter.Net.UI")
+static Q_LOGGING_CATEGORY(log, "Parameter.Net.UI")
 
 CParameterNetUI::CParameterNetUI(QWidget *parent)
     : CParameterUI(parent),

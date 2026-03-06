@@ -464,7 +464,7 @@ int MainWindow::Initial()
                     m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
                 }
                 m_pRecentMenu->slotShowFileEixst(
-                    m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
+                    m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::Local);
                 bool check = connect(
                     m_Parameter.GetGlobalParameters(),
                     &CParameterGlobal::sigSaveSettingsTypeChanged,
@@ -472,7 +472,7 @@ int MainWindow::Initial()
                         if(!(m_pRecentMenu && m_Parameter.GetGlobalParameters()))
                             return;
                         m_pRecentMenu->slotShowFileEixst(
-                            m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
+                            m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::Local);
                     });
                 Q_ASSERT(check);
             }
@@ -510,7 +510,8 @@ int MainWindow::Initial()
     } while(false);
 
     setEnabled(true);
-
+    
+    slotError(nRet, szErr);
     QMessageBox errMsgBox;
     errMsgBox.setWindowTitle(QObject::tr("Error"));
     errMsgBox.setText(QObject::tr("Initial error:") + szErr);

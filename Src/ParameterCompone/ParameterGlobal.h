@@ -39,7 +39,7 @@ public:
 
 public:
     enum SaveSettingsType{
-        File,
+        Local,
         Database
     };
     SaveSettingsType GetSaveSettingsType() const;

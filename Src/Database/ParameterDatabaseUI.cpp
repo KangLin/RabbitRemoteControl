@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QMessageBox>
 #include <QSqlDatabase>
 #include <QLoggingCategory>
 #include <QSet>
@@ -12,12 +13,14 @@
 #include "ParameterUser.h"
 #include "ParameterDatabaseUI.h"
 #include "ui_ParameterDatabaseUI.h"
+#include "ParameterGlobal.h"
 
 static Q_LOGGING_CATEGORY(log, "Para.Database.UI")
 CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
     : CParameterUI(parent)
     , ui(new Ui::CParameterDatabaseUI)
-    , m_pPara(nullptr)
+    , m_pParaDB(nullptr)
+    , m_pParaGlobal(nullptr)
 {
     bool check = false;
     ui->setupUi(this);
@@ -47,26 +50,73 @@ CParameterDatabaseUI::~CParameterDatabaseUI()
 
 int CParameterDatabaseUI::SetParameter(CParameter *pParameter)
 {
-    m_pPara = qobject_cast<CParameterDatabase*>(pParameter);
-    if(!m_pPara) return -1;
+    m_pParaGlobal = qobject_cast<CParameterGlobal*>(pParameter);
+    if(!m_pParaGlobal) return -1;
 
-    ui->wNet->SetParameter(&m_pPara->m_Net);
+    m_pParaDB = &m_pParaGlobal->m_Database;
+    if(!m_pParaDB) return -1;
 
-    ui->cbType->setCurrentText(m_pPara->GetType());
-    ui->leDatabaseName->setText(m_pPara->GetDatabaseName());
-    ui->leOptions->setText(m_pPara->GetOptions());
+    ui->wNet->SetParameter(&m_pParaDB->m_Net);
+
+    ui->cbType->setCurrentText(m_pParaDB->GetType());
+    ui->leDatabaseName->setText(m_pParaDB->GetDatabaseName());
+    ui->leOptions->setText(m_pParaDB->GetOptions());
+    
+    switch(m_pParaGlobal->GetSaveSettingsType()) {
+    case CParameterGlobal::SaveSettingsType::Local:
+        ui->rbSaveSettingsToLocal->setChecked(true);
+        break;
+    case CParameterGlobal::SaveSettingsType::Database:
+        ui->rbSaveSettingsToDatabase->setChecked(true);
+        break;
+    }
+    ui->lbDatabaseWarn->setVisible(
+        ui->rbSaveSettingsToDatabase->isChecked()
+        && ui->cbType->currentText() != "QSQLITE");
 
     return 0;
+}
+
+bool CParameterDatabaseUI::CheckValidity(bool validity)
+{
+    if(!validity) return true;
+
+    if(ui->cbType->currentText() == "QMYSQL") {
+        if(!ui->wNet->CheckValidity(validity)) {
+            return false;
+        }
+    }
+
+    if(ui->rbSaveSettingsToLocal->isChecked()) {
+        if(ui->cbType->currentText() != "QSQLITE") {
+            QString szErr = tr("Save operate settings to:") + " \"" + tr("Locale") + "\". " + tr("but the database is not set local database \"QSQLITE\".");
+            szErr += "\n\n";
+            szErr += tr("Please modify databse \"Type\" to \"QSQLITE\"") + " ";
+            szErr += tr("or modify ") + tr("Save operate settings to:") + " " + tr("Database");
+            QMessageBox::critical(this, tr("Error"), szErr);
+            qCritical(log) << szErr;
+            ui->rbSaveSettingsToDatabase->setFocus();
+            return false;
+        }
+    }
+
+    return true;
 }
 
 int CParameterDatabaseUI::Accept()
 {
     ui->wNet->Accept();
-    m_pPara->SetType(ui->cbType->currentText());
+    m_pParaDB->SetType(ui->cbType->currentText());
 
-    m_pPara->SetDatabaseName(ui->leDatabaseName->text());
-    m_pPara->SetOptions(ui->leOptions->text());
-
+    m_pParaDB->SetDatabaseName(ui->leDatabaseName->text());
+    m_pParaDB->SetOptions(ui->leOptions->text());
+    
+    if(ui->rbSaveSettingsToLocal->isChecked()) {
+        m_pParaGlobal->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Local);
+    } else if(ui->rbSaveSettingsToDatabase->isChecked()) {
+        m_pParaGlobal->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Database);
+    }
+    
     return 0;
 }
 
@@ -88,8 +138,8 @@ void CParameterDatabaseUI::slotTypeCurrentTextChanged(const QString &text)
         bNet = false;
     } else if("QMYSQL" == text) {
         bNet = true;
-        if(m_pPara) {
-            auto &net = m_pPara->m_Net;
+        if(m_pParaDB) {
+            auto &net = m_pParaDB->m_Net;
             if(0 == net.GetPort()) {
                 net.SetPort(3306);
                 ui->wNet->SetParameter(&net);
@@ -104,6 +154,10 @@ void CParameterDatabaseUI::slotTypeCurrentTextChanged(const QString &text)
     ui->leDatabaseName->setToolTip(szMsg);
     ui->pbBrowser->setVisible(bBrowser);
     ui->wNet->setVisible(bNet);
+
+    ui->lbDatabaseWarn->setVisible(
+        ui->rbSaveSettingsToDatabase->isChecked()
+        && ui->cbType->currentText() != "QSQLITE");
 }
 
 void CParameterDatabaseUI::on_pbBrowser_clicked()
@@ -132,4 +186,9 @@ bool CParameterDatabaseUI::eventFilter(QObject *watched, QEvent *event)
         }
     }
     return QWidget::eventFilter(watched, event);
+}
+
+void CParameterDatabaseUI::on_rbSaveSettingsToDatabase_toggled(bool checked)
+{
+    ui->lbDatabaseWarn->setVisible(checked && ui->cbType->currentText() != "QSQLITE");
 }

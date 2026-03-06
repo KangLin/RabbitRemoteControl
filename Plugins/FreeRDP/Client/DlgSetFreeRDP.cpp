@@ -232,6 +232,7 @@ CDlgSetFreeRDP::~CDlgSetFreeRDP()
     delete ui;
 }
 
+// [Check validity and accept]
 void CDlgSetFreeRDP::on_pbOk_clicked()
 {
     int nRet = 0;
@@ -366,6 +367,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     accept();
 }
+// [Check validity and accept]
 
 void CDlgSetFreeRDP::on_pbCancel_clicked()
 {

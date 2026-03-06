@@ -110,7 +110,7 @@ public:
      * 用法示例：
      * \snippet App/Client/mainwindow.cpp Get the widget that settings plugin parameters
      * 
-     * 在 CParameterDlgSettings 的构造函数中连接信号和槽
+     * 在 CParameterDlgSettings::AddViewers() 函数中连接信号和槽
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 
      * \~english Get parameter settings widget
@@ -124,7 +124,7 @@ public:
      * \snippet Src/ParameterPluginUI.h Accept parameters
      * Usage:
      * \snippet App/Client/mainwindow.cpp Get the widget that settings plugin parameters
-     * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings
+     * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings::AddViewers()
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 
      * \~

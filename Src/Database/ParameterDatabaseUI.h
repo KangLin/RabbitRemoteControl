@@ -17,6 +17,7 @@ public:
     ~CParameterDatabaseUI();
 
     virtual int SetParameter(CParameter *pParameter) override;
+    virtual bool CheckValidity(bool validity) override;
     virtual int Accept() override;
 
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
@@ -24,8 +25,11 @@ public:
 private slots:
     void slotTypeCurrentTextChanged(const QString &text);
     void on_pbBrowser_clicked();
-
+    
+    void on_rbSaveSettingsToDatabase_toggled(bool checked);
+    
 private:
     Ui::CParameterDatabaseUI *ui;
-    CParameterDatabase* m_pPara;
+    CParameterDatabase* m_pParaDB;
+    CParameterGlobal* m_pParaGlobal;
 };

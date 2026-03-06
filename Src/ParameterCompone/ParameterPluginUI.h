@@ -27,6 +27,7 @@ private:
     // CParameterUI interface
 public:
     virtual int SetParameter(CParameter *pParameter) override;
+    virtual bool CheckValidity(bool validity) override;
     virtual int Accept() override;
 private slots:
     void on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state);

@@ -24,7 +24,8 @@ public:
      * \~chinese 设置参数，并初始化界面
      * \param pParameter: 相关的参数。在重载函数中转换成相应的类型。
      * \~english Set the parameters and initialize the user interface
-     * \param pParameter: Related parameters. Convert to the appropriate type in the overloaded function.
+     * \param pParameter: Related parameters.
+     *        Convert to the appropriate type in the overloaded function.
      */
     virtual int SetParameter(CParameter* pParameter) = 0;
     /*!
@@ -37,11 +38,15 @@ public:
      *    - true: Check parameters
      *    - false: Not check parameters
      */
-    virtual bool CheckValidity(bool validity = false);
+    Q_INVOKABLE virtual bool CheckValidity(bool validity = false);
     /*!
-     * \~chinese 接受参数
+     * \~chinese 接受参数。如果需要，可先调用 CheckValidity
+     * \snippet Plugins/FreeRDP/Client/DlgSetFreeRDP.cpp Check validity and accept
      * \return 成功返回 0 。其它值为失败。
-     * \~english Accept parameters
+     
+     * \~english Accept parameters.
+     *           If necessary, you can call CheckValidity first.
+     * \snippet Plugins/FreeRDP/Client/DlgSetFreeRDP.cpp Check validity and accept
      * \return 0 is success. otherwise is fail
      */
     virtual int Accept() = 0;
@@ -49,6 +54,17 @@ public:
     //! [override functions]
 
 public Q_SLOTS:
+    /*!
+     * \~chinese 设置参数，并初始化界面
+     * \param pParameter: 相关的参数。在重载函数 SetParameter() 中转换成相应的类型。
+     * \~english Set the parameters and initialize the user interface
+     * \param pParameter: Related parameters.
+     *        Convert to the appropriate type in the overloaded function SetParameter().
+     */
     virtual void slotSetParameter(CParameter* pParameter);
+    /*!
+     * \~chinese 接受参数。不调用 CheckValidity
+     * \~english Accept parameters. Not call CheckValidity.
+     */
     virtual void slotAccept();
 };

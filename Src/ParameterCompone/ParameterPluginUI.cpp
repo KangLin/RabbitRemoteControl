@@ -1,12 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QMessageBox>
 #include <QFileDialog>
+#include <QLoggingCategory>
 #include "ParameterGlobal.h"
 #include "ParameterPluginUI.h"
 #include "ui_ParameterPluginUI.h"
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 
+static Q_LOGGING_CATEGORY(log, "Parameter.Plugin.UI")
 CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
     CParameterUI(parent),
     ui(new Ui::CParameterPluginUI),
@@ -30,6 +33,14 @@ CParameterPluginUI::~CParameterPluginUI()
     delete ui;
 }
 
+bool CParameterPluginUI::CheckValidity(bool validity)
+{
+    if(!validity) return true;
+
+    
+    return true;
+}
+
 int CParameterPluginUI::Accept()
 {
     if(!m_pPara)
@@ -42,10 +53,6 @@ int CParameterPluginUI::Accept()
     m_pPara->SetPromptAdministratorPrivilege(
         ui->cbPromptAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
-    if(ui->rbSaveSettingsToFile->isChecked())
-        m_pPara->GetGlobalParameters()->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::File);
-    else if(ui->rbSaveSettingsToDatabase->isChecked())
-        m_pPara->GetGlobalParameters()->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Database);
     m_pPara->SetAdaptWindows(
         (CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
 
@@ -98,14 +105,6 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
     ui->cbPromptAdminPrivilege->setChecked(
         m_pPara->GetPromptAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
-    switch(m_pPara->GetGlobalParameters()->GetSaveSettingsType()) {
-    case CParameterGlobal::SaveSettingsType::File:
-        ui->rbSaveSettingsToFile->setChecked(true);
-        break;
-    case CParameterGlobal::SaveSettingsType::Database:
-        ui->rbSaveSettingsToDatabase->setChecked(true);
-        break;
-    }
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-original"),
                             tr("Original"),
                             (int)CFrmViewer::ADAPT_WINDOWS::Original);

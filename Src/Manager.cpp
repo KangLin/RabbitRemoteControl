@@ -544,21 +544,25 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 
     CFrmManagePlugins* pManagePlugins = new CFrmManagePlugins(parent);
     if(pManagePlugins) {
-        pManagePlugins->SetParameter(m_pParameterPlugin);
-        lstWidget.push_back(pManagePlugins);
+        int nRet = pManagePlugins->SetParameter(m_pParameterPlugin);
+        if(!nRet)
+            lstWidget.push_back(pManagePlugins);
     }
 
     CParameterPluginUI* pClient = new CParameterPluginUI(parent);
     if(pClient) {
-        pClient->SetParameter(m_pParameterPlugin);
-        lstWidget.push_back(pClient);
+        int nRet = pClient->SetParameter(m_pParameterPlugin);
+        if(!nRet)
+            lstWidget.push_back(pClient);
     }
 
     auto pDatabase = new CParameterDatabaseUI(parent);
     if(pDatabase) {
-        if(GetGlobalParameters())
-            pDatabase->SetParameter(&GetGlobalParameters()->m_Database);
-        lstWidget.push_back(pDatabase);
+        if(GetGlobalParameters()) {
+            int nRet = pDatabase->SetParameter(GetGlobalParameters());
+            if(!nRet)
+                lstWidget.push_back(pDatabase);
+        }
     }
 
 #if defined(HAVE_QTERMWIDGET)
@@ -571,14 +575,16 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
 #endif
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
-        pRecord->SetParameter(&m_pParameterPlugin->m_Record);
-        lstWidget.push_back(pRecord);
+        int nRet = pRecord->SetParameter(&m_pParameterPlugin->m_Record);
+        if(!nRet)
+            lstWidget.push_back(pRecord);
     }
 
     CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(parent);
     if(pMediaDevices) {
-        pMediaDevices->SetParameter(&m_pParameterPlugin->m_MediaDevices.m_Para);
-        lstWidget.push_back(pMediaDevices);
+        int nRet = pMediaDevices->SetParameter(&m_pParameterPlugin->m_MediaDevices.m_Para);
+        if(!nRet)
+            lstWidget.push_back(pMediaDevices);
     }
 
     //! [Get the widget to set global parameters for the plugin]
