@@ -16,7 +16,7 @@ CFrmAddBookmark::CFrmAddBookmark(const QString &szTitle, const QUrl &url,
     , m_Url(url)
     , m_Icon(icon)
     , m_pPara(pPara)
-    , m_pDatabase(CBookmarkDatabase::Instance())
+    , m_pDatabase(nullptr)
     , m_pModelTree(nullptr)
 {
     ui->setupUi(this);
@@ -30,6 +30,7 @@ CFrmAddBookmark::CFrmAddBookmark(const QString &szTitle, const QUrl &url,
     ui->leTitle->setText(m_szTitle);
 
     if(m_pPara) {
+        m_pDatabase = &pPara->m_BookmarkDatabase;
         resize(m_pPara->GetWindowSize());
         ui->cbSave->setChecked(m_pPara->GetBookmarkShowEditor());
     }

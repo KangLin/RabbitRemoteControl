@@ -103,10 +103,12 @@ void CParameterWebBrowser::slotSetGlobalParameters()
     }
     m_Record = pPlugin->m_Record;
     m_MediaDevices = pPlugin->m_MediaDevices;
-    auto pGloabl = pPlugin->GetGlobalParameters();
-    if(pGloabl) {
-        m_Database = pGloabl->m_Database;
-    }
+
+    auto pg = pPlugin->GetGlobalParameters();
+    bool bRet = m_HistoryDatabase.SetDatabase(&pg->m_DatabaseRemote);
+    Q_UNUSED(bRet);
+    bRet = m_BookmarkDatabase.SetDatabase(&pg->m_DatabaseRemote);
+    Q_UNUSED(bRet);
 }
 
 QString CParameterWebBrowser::GetHomeUrl()

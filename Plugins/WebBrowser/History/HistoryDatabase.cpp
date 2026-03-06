@@ -41,22 +41,6 @@ void enableSqlTrace(const QString& connectionName)
 }
 #endif // HAVE_SQLITE
 
-CHistoryDatabase* CHistoryDatabase::Instance(CParameterDatabase *para)
-{
-    static CHistoryDatabase* p = nullptr;
-    if(!p) {
-        p = new CHistoryDatabase();
-        if(p) {
-            bool bRet = p->OpenDatabase(para, "history_connection");
-            if(!bRet) {
-                delete p;
-                p = nullptr;
-            }
-        }
-    }
-    return p;
-}
-
 CHistoryDatabase::CHistoryDatabase(QObject *parent)
     : CDatabase(parent)
 {
@@ -749,13 +733,14 @@ bool CHistoryDatabase::OnInitializeSqliteDatabase()
     QSqlQuery query(GetDatabase());
     
     // 创建历史记录表
-    bool success = query.exec(
+    query.prepare(
         "CREATE TABLE IF NOT EXISTS history ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    url INTEGER NOT NULL,"
         "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
         ")"
         );
+    bool success = query.exec();
     
     if (!success) {
         qCritical(log) << "Failed to create table:" << query.lastError().text();
@@ -763,13 +748,15 @@ bool CHistoryDatabase::OnInitializeSqliteDatabase()
     }
     
     // 创建索引
-    success = query.exec("CREATE INDEX IF NOT EXISTS idx_history_url ON history(url)");
+    query.prepare("CREATE INDEX IF NOT EXISTS idx_history_url ON history(url)");
+    success = query.exec();
     if (!success) {
         qWarning(log) << "Failed to create index idx_history_url:"
                        << query.lastError().text()
                        << query.executedQuery();
     }
-    success = query.exec("CREATE INDEX IF NOT EXISTS idx_history_time ON history(visit_time)");
+    query.prepare("CREATE INDEX IF NOT EXISTS idx_history_time ON history(visit_time)");
+    success = query.exec();
     if (!success) {
         qWarning(log) << "Failed to create index idx_history_time:"
                       << query.lastError().text()
@@ -784,7 +771,7 @@ bool CHistoryDatabase::OnInitializeMySqlDatabase()
     QSqlQuery query(GetDatabase());
     
     // 创建历史记录表
-    bool success = query.exec(
+    query.prepare(
         "CREATE TABLE IF NOT EXISTS history ("
         "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
         "    url INTEGER NOT NULL,"
@@ -793,6 +780,7 @@ bool CHistoryDatabase::OnInitializeMySqlDatabase()
         "    INDEX idx_history_time (visit_time)"
         ")"
         );
+    bool success = query.exec();
     
     if (!success) {
         qCritical(log) << "Failed to create history table:"

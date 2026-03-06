@@ -52,7 +52,7 @@ CAddressCompleterItem::CAddressCompleterItem(const QString &title,
     setAttribute(Qt::WA_Hover);
 }
 
-CAddressCompleter::CAddressCompleter(QWidget *parent)
+CAddressCompleter::CAddressCompleter(CHistoryDatabase *db, QWidget *parent)
     : QWidget(parent)
     , m_pLineEdit(nullptr)
     , m_pShowAnimation(nullptr)
@@ -60,6 +60,7 @@ CAddressCompleter::CAddressCompleter(QWidget *parent)
     , m_currentSelectedIndex(-1)
     , m_maxVisibleItems(8)
     , m_isCompleterVisible(false)
+    , m_pDatabase(db)
 {
     m_szEnter = tr("Enter '@' show commands") + "; "
                 + tr("Enter a website URL or search content ......");
@@ -304,8 +305,8 @@ void CAddressCompleter::performSearch()
 
     // 搜索历史记录
     QList<HistoryItem> lstHistory;
-    if(CHistoryDatabase::Instance())
-        lstHistory = CHistoryDatabase::Instance()->searchHistory(keyword);
+    if(m_pDatabase)
+        lstHistory = m_pDatabase->searchHistory(keyword);
 
     // 添加搜索结果
     int count = 0;

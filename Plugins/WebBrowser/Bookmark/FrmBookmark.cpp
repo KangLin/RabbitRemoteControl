@@ -19,7 +19,7 @@ static Q_LOGGING_CATEGORY(log, "WebBrowser.Bookmark")
 CFrmBookmark::CFrmBookmark(CParameterWebBrowser *pPara, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CFrmBookmark)
-    , m_pDatabase(CBookmarkDatabase::Instance())
+    , m_pDatabase(nullptr)
     , m_pPara(pPara)
     , m_pTreeView(nullptr)
     , m_pSearchEdit(nullptr)
@@ -33,8 +33,10 @@ CFrmBookmark::CFrmBookmark(CParameterWebBrowser *pPara, QWidget *parent)
     setupUI();
     loadBookmarks();
 
-    if(m_pPara)
+    if(m_pPara) {
+        m_pDatabase = &pPara->m_BookmarkDatabase;
         resize(m_pPara->GetWindowSize());
+    }
 }
 
 CFrmBookmark::~CFrmBookmark()

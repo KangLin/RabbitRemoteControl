@@ -16,8 +16,6 @@
 #include "FrmDownloadManager.h"
 #include "ParameterWebBrowser.h"
 #include "MultimediaRecord.h"
-#include "History/HistoryDatabase.h"
-#include "Bookmark/BookmarkDatabase.h"
 
 class CFrmWebBrowser : public QWidget
 {
@@ -133,7 +131,4 @@ private:
 
     CMultimediaRecordThread* m_pMultimediaRecord;
     QTimer m_tmRecord;
-
-    CHistoryDatabase* m_pHistoryDatabase;
-    CBookmarkDatabase* m_pBookmarkDatabase;
 };

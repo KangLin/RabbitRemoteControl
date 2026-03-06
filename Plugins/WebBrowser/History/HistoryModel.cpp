@@ -14,7 +14,8 @@ CHistoryModel::CHistoryModel(CParameterWebBrowser *pPara, QObject *parent)
     // if (m_pDatabase && m_pDatabase->isOpen()) {
     //     refresh();
     // }
-    m_pDatabase = CHistoryDatabase::Instance();
+    if(pPara)
+        m_pDatabase = &pPara->m_HistoryDatabase;
 }
 
 CHistoryModel::~CHistoryModel()

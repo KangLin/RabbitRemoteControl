@@ -66,9 +66,10 @@ struct BookmarkItem {
 class CBookmarkDatabase : public CDatabase
 {
     Q_OBJECT
+
 public:
-    static CBookmarkDatabase* Instance(CParameterDatabase *para);
-    static CBookmarkDatabase* Instance();
+    explicit CBookmarkDatabase(QObject *parent = nullptr);
+    ~CBookmarkDatabase();
 
     // 书签操作
     int addBookmark(const BookmarkItem &item);
@@ -112,8 +113,6 @@ signals:
     void folderDeleted(int folderId);
 
 private:
-    explicit CBookmarkDatabase(QObject *parent = nullptr);
-    ~CBookmarkDatabase();
     [[nodiscard]] bool OnInitializeDatabase() override;
 
     void buildBookmarkDocument(QDomDocument &doc);

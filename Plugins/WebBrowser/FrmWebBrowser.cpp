@@ -36,6 +36,7 @@
 #include "FrmAddBookmark.h"
 #include "DlgSettings.h"
 #include "FrmWebBrowser.h"
+#include "ParameterGlobal.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Browser")
 CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidget *parent)
@@ -73,8 +74,6 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     , m_pCaptureFulPage(nullptr)
     , m_pRecord(nullptr)
     , m_pMultimediaRecord(nullptr)
-    , m_pHistoryDatabase(nullptr)
-    , m_pBookmarkDatabase(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
@@ -150,7 +149,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     });
     Q_ASSERT(check);
     // 创建地址栏自动完成器
-    auto pAddressCompleter = new CAddressCompleter(this);
+    auto pAddressCompleter = new CAddressCompleter(&m_pPara->m_HistoryDatabase, this);
     pAddressCompleter->attachToLineEdit(m_pUrlLineEdit);
     if(m_pPara)
         pAddressCompleter->setMaxVisibleItems(m_pPara->GetAddCompleterLines());
@@ -389,8 +388,8 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                         CFrmWebView* pWeb = qobject_cast<CFrmWebView*>(sender());
                         if(IsCurrentView(pWeb))
                             m_pUrlLineEdit->setText(url.toString());
-                        if(m_pHistoryDatabase) {
-                            m_pHistoryDatabase->addHistoryEntry(url.toString());
+                        if(m_pPara) {
+                            m_pPara->m_HistoryDatabase.addHistoryEntry(url.toString());
                         }
                     });
     Q_ASSERT(check);
@@ -404,8 +403,8 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                             setWindowTitle(title);
                             emit sigUpdateTitle();
                         }
-                        if(m_pHistoryDatabase) {
-                            m_pHistoryDatabase->updateHistoryEntry(pWeb->url().toString(), title);
+                        if(m_pPara) {
+                            m_pPara->m_HistoryDatabase.updateHistoryEntry(pWeb->url().toString(), title);
                         }
                     });
     Q_ASSERT(check);
@@ -420,8 +419,8 @@ void CFrmWebBrowser::SetConnect(CFrmWebView* pWeb)
                             setWindowIcon(icon);
                             emit sigUpdateTitle();
                         }
-                        if(m_pHistoryDatabase) {
-                            m_pHistoryDatabase->updateHistoryEntry(pWeb->url().toString(), QString(), icon);
+                        if(m_pPara) {
+                            m_pPara->m_HistoryDatabase.updateHistoryEntry(pWeb->url().toString(), QString(), icon);
                         }
                     });
     Q_ASSERT(check);
@@ -804,9 +803,6 @@ int CFrmWebBrowser::InitMenu(QMenu *pMenu)
 int CFrmWebBrowser::Start()
 {
     int nRet = 0;
-
-    m_pHistoryDatabase = CHistoryDatabase::Instance(&m_pPara->m_Database);
-    m_pBookmarkDatabase = CBookmarkDatabase::Instance(&m_pPara->m_Database);
 
     if(m_pTab && m_pTab->count() == 0) {
         // Add new web view

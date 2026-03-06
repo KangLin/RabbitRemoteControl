@@ -4,7 +4,9 @@
 #include "ParameterOperate.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
-#include "ParameterDatabase.h"
+
+#include "History/HistoryDatabase.h"
+#include "Bookmark/BookmarkDatabase.h"
 
 class CParameterWebBrowser : public CParameterOperate
 {
@@ -16,7 +18,9 @@ public:
 
     CParameterRecord m_Record;
     CParameterMediaDevices m_MediaDevices;
-    CParameterDatabase m_Database;
+
+    CHistoryDatabase m_HistoryDatabase;
+    CBookmarkDatabase m_BookmarkDatabase;
 
 public:
     QString GetHomeUrl();

@@ -72,7 +72,8 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
     bool success = query.exec();
     if (!success) {
         nId = 0;
-        qCritical(log) << "Failed to add url:" << url << query.lastError().text();
+        qCritical(log) << "Failed to add url:" << url << query.lastError().text()
+                       << "Sql:" << query.executedQuery();
     } else {
         if(0 == nId)
             nId = query.lastInsertId().toInt();
@@ -306,15 +307,16 @@ bool CDatabaseUrl::OnInitializeSqliteDatabase()
     QSqlQuery query(GetDatabase());
     
     // 创建历史记录表
-    bool success = query.exec(
+    query.prepare(
         "CREATE TABLE IF NOT EXISTS url ("
-        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    url TEXT UNIQUE NOT NULL,"
         "    title TEXT,"
         "    icon INTEGER DEFAULT 0,"
         "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
         ")"
         );
+    bool success = query.exec();
     
     if (!success) {
         qCritical(log) << "Failed to create url table:"
@@ -324,7 +326,8 @@ bool CDatabaseUrl::OnInitializeSqliteDatabase()
     }
     
     // 创建索引
-    success = query.exec("CREATE INDEX IF NOT EXISTS idx_url_url ON url(url)");
+    query.prepare("CREATE INDEX IF NOT EXISTS idx_url_url ON url(url)");
+    success = query.exec();
     if (!success) {
         qWarning(log) << "Failed to create index idx_url_url:"
                        << query.lastError().text()
@@ -339,7 +342,7 @@ bool CDatabaseUrl::OnInitializeMySqlDatabase()
     QSqlQuery query(GetDatabase());
     
     // 创建历史记录表
-    bool success = query.exec(
+    query.prepare(
         "CREATE TABLE IF NOT EXISTS url ("
         "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
         "    url TEXT NOT NULL,"
@@ -349,6 +352,7 @@ bool CDatabaseUrl::OnInitializeMySqlDatabase()
         "    UNIQUE KEY idx_url_url (url(32767))"
         ")"
         );
+    bool success = query.exec();
     
     if (!success) {
         qCritical(log) << "Failed to create url table:"

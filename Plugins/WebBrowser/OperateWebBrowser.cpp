@@ -3,6 +3,7 @@
 #include <QLoggingCategory>
 #include <DlgSettings.h>
 #include "Plugin.h"
+#include "ParameterGlobal.h"
 #include "OperateWebBrowser.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Operate")
@@ -76,6 +77,7 @@ int COperateWebBrowser::Initial()
     int nRet = COperate::Initial();
     if(nRet) return nRet;
     QMenu* pMenu = &m_Menu;
+
     m_pWeb = new CFrmWebBrowser(&m_Parameter);
     if(m_pWeb) {
         pMenu = m_pWeb->GetMenu();

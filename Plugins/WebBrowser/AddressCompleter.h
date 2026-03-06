@@ -11,6 +11,8 @@
 #include <QIcon>
 #include <QPropertyAnimation>
 
+class CHistoryDatabase;
+
 /*!
  * \~chinese 浏览器的地址栏自动完成功能
  * \~english Browser address bar autocomplete feature
@@ -39,7 +41,7 @@ class CAddressCompleter : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CAddressCompleter(QWidget *parent = nullptr);
+    explicit CAddressCompleter(CHistoryDatabase* db, QWidget *parent = nullptr);
     ~CAddressCompleter();
 
     void attachToLineEdit(QLineEdit *lineEdit);
@@ -92,4 +94,6 @@ private:
     int m_currentSelectedIndex;
     int m_maxVisibleItems;
     bool m_isCompleterVisible;
+
+    CHistoryDatabase* m_pDatabase;
 };
