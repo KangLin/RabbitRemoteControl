@@ -204,6 +204,14 @@
     </message>
 </context>
 <context>
+    <name>CDatabase</name>
+    <message>
+        <location filename="../../Database/Database.cpp" line="86"/>
+        <source>Database type not supported:</source>
+        <translation>數據庫類型未知：</translation>
+    </message>
+</context>
+<context>
     <name>CDlgInputPassword</name>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
@@ -268,44 +276,44 @@
         <translation>加載插件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="145"/>
-        <location filename="../../FrmManagePlugins.cpp" line="247"/>
+        <location filename="../../FrmManagePlugins.cpp" line="146"/>
+        <location filename="../../FrmManagePlugins.cpp" line="248"/>
         <source>Whitelist</source>
         <translation>白名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="152"/>
-        <location filename="../../FrmManagePlugins.cpp" line="251"/>
+        <location filename="../../FrmManagePlugins.cpp" line="153"/>
+        <location filename="../../FrmManagePlugins.cpp" line="252"/>
         <source>Blacklist</source>
         <translation>黑名單</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="255"/>
+        <location filename="../../FrmManagePlugins.cpp" line="256"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="256"/>
+        <location filename="../../FrmManagePlugins.cpp" line="257"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="257"/>
+        <location filename="../../FrmManagePlugins.cpp" line="258"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="185"/>
+        <location filename="../../FrmManagePlugins.cpp" line="186"/>
         <source>Plugin path</source>
         <translation>插件路徑</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="223"/>
+        <location filename="../../FrmManagePlugins.cpp" line="224"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="224"/>
+        <location filename="../../FrmManagePlugins.cpp" line="225"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -333,14 +341,14 @@
         <translation>移除</translation>
     </message>
     <message>
+        <location filename="../../FrmManagePlugins.ui" line="75"/>
+        <source>The setting will take effect only after restarting the application.</source>
+        <translation>需要應用重啟後，設置才能生效</translation>
+    </message>
+    <message>
         <location filename="../../FrmManagePlugins.ui" line="92"/>
         <source>Only the plugins in the whitelist will be loaded.</source>
         <translation>僅加載白名單中的插件</translation>
-    </message>
-    <message>
-        <location filename="../../FrmManagePlugins.ui" line="75"/>
-        <source>The settings will take effect after the application is restarted.</source>
-        <translation>需要重啟應用後，設置才能生效。</translation>
     </message>
 </context>
 <context>
@@ -393,17 +401,17 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="332"/>
-        <location filename="../../Manager.cpp" line="646"/>
+        <location filename="../../Manager.cpp" line="652"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="568"/>
+        <location filename="../../Manager.cpp" line="572"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="651"/>
+        <location filename="../../Manager.cpp" line="657"/>
         <source>Dependency libraries</source>
         <translation>依賴庫</translation>
     </message>
@@ -674,17 +682,17 @@ Some features are limited.
 <context>
     <name>CParameterDatabase</name>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="83"/>
         <source>Database drivers</source>
         <translation>數據庫驅動</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="87"/>
         <source>Current used</source>
         <translation>當前使用的</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="88"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="89"/>
         <source>Supported</source>
         <translation>支持的</translation>
     </message>
@@ -697,65 +705,122 @@ Some features are limited.
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="38"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="20"/>
+        <source>The setting will take effect only after restarting the application.</source>
+        <translation>需要應用重啟後，設置才能生效</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="32"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="59"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="77"/>
         <source>Options:</source>
         <translation>選項：</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="73"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="119"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <source>Save operate settings to:</source>
+        <translation>保存操作到：</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="127"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <source>Local</source>
+        <translation>本地</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="143"/>
+        <source>Warn: Please ensure that the database you want to access is secure. Otherwise, information such as recent lists and favorites may be leaked.</source>
+        <translation>警告：請確保將要訪問的數據庫安全，否則會泄漏最近列表和收藏等信息。</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="53"/>
         <source>Database name:</source>
         <translation>數據庫名稱：</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="83"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="63"/>
         <source>Browser</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="92"/>
-        <source>The setting will take effect only after restarting the program.</source>
-        <translation>需要重啟程序設置才能生效。</translation>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="104"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="218"/>
+        <source>Test</source>
+        <translation>測試</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="25"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="134"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="30"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
         <source>Database</source>
         <translation>數據庫</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="77"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <source>but the database is not set local database &quot;QSQLITE&quot;.</source>
+        <translation>但是數據庫沒有設置為本地數據庫 &quot;QSQLITE&quot;。</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="97"/>
+        <source>Please modify database &quot;Type&quot; to &quot;QSQLITE&quot;</source>
+        <translation>請修改數據庫&#x3000;&quot;類型&quot; 為&#x3000;&quot;QSQLITE&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <source>or modify </source>
+        <translation>或修改</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="99"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="131"/>
         <source>Set the database name</source>
         <translation>設置數據庫名稱</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="136"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation>設置數據庫文件名。如果設置為空，則使用默認數據庫文件。</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation>此名稱可以是一個 DSN，一個 DSN 文件名（.dsn)，或者一個連接字符串。</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="87"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="94"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="141"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="155"/>
         <source>Configure database</source>
         <translation>配置數據庫</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="171"/>
         <source>Database file</source>
         <translation>數據庫文件</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="172"/>
         <source>Database file (*.db);; All files (*.*)</source>
         <translation>數據庫文件 (*.db);; 所有文件 (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <source>Test is successfully!</source>
+        <translation>測試成功！</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="219"/>
+        <source>Test is failed!</source>
+        <translation>測試失敗！</translation>
     </message>
 </context>
 <context>
@@ -798,160 +863,145 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="19"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="246"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
         <source>Enable use the system user as the user</source>
         <translation>允許使用系統用戶作為用戶</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="109"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
         <source>Store password with system credential manager</source>
         <translation>使用系統憑據管理器存儲密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="135"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="94"/>
         <source>Desktop shortcuts script</source>
         <translation>桌面快捷鍵腳本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="108"/>
         <source>Disable script:</source>
         <translation>禁用腳本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="139"/>
         <source>Browser</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="170"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="129"/>
         <source>Restore script:</source>
         <translation>恢復腳本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="227"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="66"/>
         <source>Viewer zoom:</source>
         <translation>縮放視圖：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
-        <source>Save settings to:</source>
-        <translation>保存設置到：</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="259"/>
-        <source>File</source>
-        <translation>文件</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="266"/>
-        <source>Database</source>
-        <translation>數據庫</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理員權限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="195"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="201"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
         <source>Show protocol prefix in name</source>
         <translation>在連接名中顯示協議前綴</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
         <source>Only show ip:port in name</source>
         <translation>在連接名中僅顯示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="119"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
         <source>Enable local input method</source>
         <translation>允話本地輸入法</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="44"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密密鑰用於加密保存的密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="126"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
         <source>Capture all keyboard</source>
         <translation>捕獲所有按鍵</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="52"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="186"/>
         <source>Encrypt key:</source>
         <translation>加密密鑰：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="83"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="217"/>
         <source>Prompt type:</source>
         <translation>提示類型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="90"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="154"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
         <source>Enable save password</source>
         <translation>允許保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="35"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Enable view password</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="110"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="109"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="114"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="113"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="116"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="120"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="119"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
         <source>Open disable desktop shortcuts script</source>
         <translation>打開禁用桌面快捷鍵腳本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="171"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="170"/>
         <source>Open restore desktop shortcuts script</source>
         <translation>打開恢復桌面局勢鍵腳本</translation>
     </message>

@@ -5,7 +5,7 @@
     <name>CFavoriteView</name>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="127"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="420"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="427"/>
         <source>New group</source>
         <translation>新建組</translation>
     </message>
@@ -37,13 +37,13 @@
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="136"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="390"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="397"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="145"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="406"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="413"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
@@ -63,92 +63,92 @@
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="261"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="268"/>
         <source>Root</source>
         <translation>根</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="282"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="287"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="289"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="294"/>
         <source>Add favorite</source>
         <translation>增加收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="283"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="290"/>
         <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
         <translation>&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="288"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="295"/>
         <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
         <translation>&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="457"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="464"/>
         <source>Successfully imported favorite from JSON file: %1</source>
         <translation>成功從 JSON 文件導入收藏：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="468"/>
         <source>Failed to import favorite from JSON file: %1</source>
         <translation>從 JSON 文件導入收藏失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="466"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="493"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="500"/>
         <source>Invalid file: %1</source>
         <translation>無效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="467"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="494"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="501"/>
         <source>Please use JSON file</source>
         <translation>請使用 JSON 文件</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="484"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="491"/>
         <source>Favorite successfully exported to JSON file: %1</source>
         <translation>成功導出收藏到 JSON 文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="488"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="495"/>
         <source>Failed to export favorite to JSON file: %1</source>
         <translation>導出收藏到 JSON 文件失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="390"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="397"/>
         <source>Enter the modified name</source>
         <translation>輸入修改後的名稱</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="406"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="413"/>
         <source>Will be delete &quot;%1&quot;</source>
         <translation>&quot;%1&quot; 將被刪除</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="446"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="456"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="465"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="453"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="463"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="467"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="472"/>
         <source>Import favorite</source>
         <translation>導入收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="448"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="476"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="455"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="483"/>
         <source>JSON (*.json)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="483"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="492"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="481"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="490"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="494"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="499"/>
         <source>Export favorite</source>
         <translation>導出收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="420"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="427"/>
         <source>Input group name</source>
         <translation>輸入組名</translation>
     </message>
@@ -221,163 +221,163 @@
 <context>
     <name>CFrmRecent</name>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="39"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="38"/>
         <source>Recently list</source>
         <translation>最近的列表</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="44"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="43"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="45"/>
         <location filename="../../Recent/FrmRecent.cpp" line="46"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="47"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="49"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="48"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="50"/>
         <location filename="../../Recent/FrmRecent.cpp" line="51"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="52"/>
         <source>Edit and Start</source>
         <translation>編輯並開始</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="59"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="58"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="62"/>
         <location filename="../../Recent/FrmRecent.cpp" line="63"/>
         <location filename="../../Recent/FrmRecent.cpp" line="64"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="65"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="71"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="70"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="72"/>
         <location filename="../../Recent/FrmRecent.cpp" line="73"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="74"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="75"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="74"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="76"/>
         <location filename="../../Recent/FrmRecent.cpp" line="77"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="78"/>
         <source>Copy</source>
         <translation>復製</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="80"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="79"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="81"/>
         <location filename="../../Recent/FrmRecent.cpp" line="82"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="83"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="85"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="84"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="88"/>
         <location filename="../../Recent/FrmRecent.cpp" line="89"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="90"/>
         <source>Detail</source>
         <translation>細節</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="93"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="92"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夾</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="100"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="99"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="101"/>
         <location filename="../../Recent/FrmRecent.cpp" line="102"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="103"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="106"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="105"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="107"/>
         <location filename="../../Recent/FrmRecent.cpp" line="108"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="109"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="112"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="111"/>
         <source>Import</source>
         <translation>導入</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="114"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="113"/>
         <source>Export</source>
         <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="122"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="125"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="121"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="124"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="145"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="144"/>
         <source>Show tool bar</source>
         <translation>顯示工具條</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="308"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="416"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="325"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="433"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="309"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="326"/>
         <source>The file is exists. whether to overwrite it?
 File: %1</source>
         <translation>文件已存在。是否覆蓋它?
 文件： %1</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="417"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="434"/>
         <source>The file is exists. whether to overwrite it? If select No, please modify the name.</source>
         <translation>文件已存在。是否覆蓋它?如果選擇否，請改名稱。</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="553"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="570"/>
         <source>Import recent</source>
         <translation>導入</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="555"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="580"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="572"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="597"/>
         <source>JSON (*.json)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="563"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="587"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="580"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="604"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="564"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="581"/>
         <source>Successfully imported recent from json file</source>
         <translation>成功從 JSON 文件導入</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="567"/>
-        <location filename="../../Recent/FrmRecent.cpp" line="591"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="584"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="608"/>
         <source>Failure</source>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="568"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="585"/>
         <source>Failed to import recent from json file</source>
         <translation>從 JSON 文件導入失敗</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="578"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="595"/>
         <source>Export recent</source>
         <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="588"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="605"/>
         <source>Successfully exported recent to json file</source>
         <translation>成功導出到 JSON 文件</translation>
     </message>
     <message>
-        <location filename="../../Recent/FrmRecent.cpp" line="592"/>
+        <location filename="../../Recent/FrmRecent.cpp" line="609"/>
         <source>Failed to export recent to json file</source>
         <translation>導出到 JSON 文件失敗</translation>
     </message>
@@ -529,32 +529,32 @@ File: %1</source>
 <context>
     <name>CRecentModel</name>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="38"/>
+        <location filename="../../Recent/RecentModel.cpp" line="52"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="39"/>
+        <location filename="../../Recent/RecentModel.cpp" line="53"/>
         <source>Protocol</source>
         <translation>協議</translation>
     </message>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="40"/>
+        <location filename="../../Recent/RecentModel.cpp" line="54"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="41"/>
+        <location filename="../../Recent/RecentModel.cpp" line="55"/>
         <source>Time</source>
         <translation>時間</translation>
     </message>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="42"/>
+        <location filename="../../Recent/RecentModel.cpp" line="56"/>
         <source>ID</source>
         <translation>標識</translation>
     </message>
     <message>
-        <location filename="../../Recent/RecentModel.cpp" line="43"/>
+        <location filename="../../Recent/RecentModel.cpp" line="57"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
@@ -562,212 +562,212 @@ File: %1</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../mainwindow.ui" line="14"/>
+        <location filename="../../mainwindow.ui" line="20"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔遠程控製</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="31"/>
+        <location filename="../../mainwindow.ui" line="37"/>
         <source>Help</source>
         <translation>幫助</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="39"/>
+        <location filename="../../mainwindow.ui" line="45"/>
         <source>View</source>
         <translation>視圖</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="70"/>
-        <location filename="../../mainwindow.ui" line="73"/>
         <location filename="../../mainwindow.ui" line="76"/>
+        <location filename="../../mainwindow.ui" line="79"/>
+        <location filename="../../mainwindow.ui" line="82"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="120"/>
+        <location filename="../../mainwindow.ui" line="126"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="133"/>
+        <location filename="../../mainwindow.ui" line="139"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="160"/>
-        <location filename="../../mainwindow.ui" line="163"/>
         <location filename="../../mainwindow.ui" line="166"/>
         <location filename="../../mainwindow.ui" line="169"/>
         <location filename="../../mainwindow.ui" line="172"/>
+        <location filename="../../mainwindow.ui" line="175"/>
+        <location filename="../../mainwindow.ui" line="178"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="180"/>
-        <location filename="../../mainwindow.ui" line="183"/>
         <location filename="../../mainwindow.ui" line="186"/>
         <location filename="../../mainwindow.ui" line="189"/>
         <location filename="../../mainwindow.ui" line="192"/>
+        <location filename="../../mainwindow.ui" line="195"/>
+        <location filename="../../mainwindow.ui" line="198"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="203"/>
-        <location filename="../../mainwindow.ui" line="206"/>
         <location filename="../../mainwindow.ui" line="209"/>
         <location filename="../../mainwindow.ui" line="212"/>
         <location filename="../../mainwindow.ui" line="215"/>
+        <location filename="../../mainwindow.ui" line="218"/>
+        <location filename="../../mainwindow.ui" line="221"/>
         <source>ToolBar</source>
         <translation>工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="223"/>
-        <location filename="../../mainwindow.ui" line="226"/>
         <location filename="../../mainwindow.ui" line="229"/>
         <location filename="../../mainwindow.ui" line="232"/>
         <location filename="../../mainwindow.ui" line="235"/>
-        <location filename="../../mainwindow.cpp" line="573"/>
-        <location filename="../../mainwindow.cpp" line="574"/>
-        <location filename="../../mainwindow.cpp" line="575"/>
-        <location filename="../../mainwindow.cpp" line="576"/>
+        <location filename="../../mainwindow.ui" line="238"/>
+        <location filename="../../mainwindow.ui" line="241"/>
+        <location filename="../../mainwindow.cpp" line="643"/>
+        <location filename="../../mainwindow.cpp" line="644"/>
+        <location filename="../../mainwindow.cpp" line="645"/>
+        <location filename="../../mainwindow.cpp" line="646"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="246"/>
-        <location filename="../../mainwindow.ui" line="249"/>
         <location filename="../../mainwindow.ui" line="252"/>
         <location filename="../../mainwindow.ui" line="255"/>
         <location filename="../../mainwindow.ui" line="258"/>
+        <location filename="../../mainwindow.ui" line="261"/>
+        <location filename="../../mainwindow.ui" line="264"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="289"/>
+        <location filename="../../mainwindow.ui" line="295"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="312"/>
-        <location filename="../../mainwindow.ui" line="315"/>
         <location filename="../../mainwindow.ui" line="318"/>
         <location filename="../../mainwindow.ui" line="321"/>
         <location filename="../../mainwindow.ui" line="324"/>
+        <location filename="../../mainwindow.ui" line="327"/>
+        <location filename="../../mainwindow.ui" line="330"/>
         <source>TabBar</source>
         <translation>標簽條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="346"/>
-        <location filename="../../mainwindow.ui" line="349"/>
         <location filename="../../mainwindow.ui" line="352"/>
+        <location filename="../../mainwindow.ui" line="355"/>
+        <location filename="../../mainwindow.ui" line="358"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="394"/>
-        <location filename="../../mainwindow.ui" line="397"/>
         <location filename="../../mainwindow.ui" line="400"/>
         <location filename="../../mainwindow.ui" line="403"/>
         <location filename="../../mainwindow.ui" line="406"/>
+        <location filename="../../mainwindow.ui" line="409"/>
+        <location filename="../../mainwindow.ui" line="412"/>
         <source>Open the list of recent</source>
         <translation>打開最近列表</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="468"/>
+        <location filename="../../mainwindow.ui" line="474"/>
         <source>Tab</source>
         <translation>標簽</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="476"/>
+        <location filename="../../mainwindow.ui" line="482"/>
         <source>Split</source>
         <translation>拆分</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="479"/>
-        <location filename="../../mainwindow.ui" line="482"/>
+        <location filename="../../mainwindow.ui" line="485"/>
+        <location filename="../../mainwindow.ui" line="488"/>
         <source>Split view</source>
         <translation>拆分視圖</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="490"/>
+        <location filename="../../mainwindow.ui" line="496"/>
         <source>User manual</source>
         <translation>用戶手冊</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="498"/>
-        <location filename="../../mainwindow.ui" line="501"/>
+        <location filename="../../mainwindow.ui" line="504"/>
+        <location filename="../../mainwindow.ui" line="507"/>
         <source>Default</source>
         <translation>默認</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="509"/>
-        <location filename="../../mainwindow.ui" line="512"/>
+        <location filename="../../mainwindow.ui" line="515"/>
+        <location filename="../../mainwindow.ui" line="518"/>
         <source>Simple</source>
         <translation>簡單</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="520"/>
-        <location filename="../../mainwindow.ui" line="523"/>
+        <location filename="../../mainwindow.ui" line="526"/>
+        <location filename="../../mainwindow.ui" line="529"/>
         <source>Minimalism</source>
         <translation>極簡</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="377"/>
-        <location filename="../../mainwindow.ui" line="380"/>
         <location filename="../../mainwindow.ui" line="383"/>
         <location filename="../../mainwindow.ui" line="386"/>
+        <location filename="../../mainwindow.ui" line="389"/>
+        <location filename="../../mainwindow.ui" line="392"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夾</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="98"/>
+        <location filename="../../mainwindow.ui" line="104"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="417"/>
-        <location filename="../../mainwindow.ui" line="420"/>
         <location filename="../../mainwindow.ui" line="423"/>
         <location filename="../../mainwindow.ui" line="426"/>
         <location filename="../../mainwindow.ui" line="429"/>
+        <location filename="../../mainwindow.ui" line="432"/>
+        <location filename="../../mainwindow.ui" line="435"/>
         <source>Main menu bar</source>
         <translation>主菜單條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="437"/>
-        <location filename="../../mainwindow.ui" line="440"/>
         <location filename="../../mainwindow.ui" line="443"/>
         <location filename="../../mainwindow.ui" line="446"/>
         <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="452"/>
+        <location filename="../../mainwindow.ui" line="455"/>
         <source>Status bar</source>
         <translation>狀態條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="460"/>
+        <location filename="../../mainwindow.ui" line="466"/>
         <source>Record video</source>
         <translation>錄製視頻</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="332"/>
-        <location filename="../../mainwindow.ui" line="335"/>
         <location filename="../../mainwindow.ui" line="338"/>
+        <location filename="../../mainwindow.ui" line="341"/>
+        <location filename="../../mainwindow.ui" line="344"/>
         <source>Zoom window to remote desktop</source>
         <translation>縮放窗口到遠程桌面大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="43"/>
+        <location filename="../../mainwindow.ui" line="49"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="53"/>
-        <location filename="../../mainwindow.ui" line="56"/>
         <location filename="../../mainwindow.ui" line="59"/>
+        <location filename="../../mainwindow.ui" line="62"/>
+        <location filename="../../mainwindow.ui" line="65"/>
         <source>Activity</source>
         <translation>活動的</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="102"/>
+        <location filename="../../mainwindow.ui" line="108"/>
         <location filename="../../mainwindow.cpp" line="164"/>
         <location filename="../../mainwindow.cpp" line="165"/>
         <location filename="../../mainwindow.cpp" line="166"/>
@@ -775,28 +775,28 @@ File: %1</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="266"/>
-        <location filename="../../mainwindow.ui" line="269"/>
         <location filename="../../mainwindow.ui" line="272"/>
         <location filename="../../mainwindow.ui" line="275"/>
         <location filename="../../mainwindow.ui" line="278"/>
+        <location filename="../../mainwindow.ui" line="281"/>
+        <location filename="../../mainwindow.ui" line="284"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="286"/>
         <location filename="../../mainwindow.ui" line="292"/>
-        <location filename="../../mainwindow.ui" line="295"/>
         <location filename="../../mainwindow.ui" line="298"/>
-        <location filename="../../mainwindow.cpp" line="856"/>
+        <location filename="../../mainwindow.ui" line="301"/>
+        <location filename="../../mainwindow.ui" line="304"/>
+        <location filename="../../mainwindow.cpp" line="926"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="360"/>
-        <location filename="../../mainwindow.ui" line="363"/>
         <location filename="../../mainwindow.ui" line="366"/>
         <location filename="../../mainwindow.ui" line="369"/>
+        <location filename="../../mainwindow.ui" line="372"/>
+        <location filename="../../mainwindow.ui" line="375"/>
         <source>Clone</source>
         <translation>克隆</translation>
     </message>
@@ -805,16 +805,16 @@ File: %1</source>
         <translation type="vanished">ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="614"/>
-        <location filename="../../mainwindow.cpp" line="615"/>
-        <location filename="../../mainwindow.cpp" line="616"/>
-        <location filename="../../mainwindow.cpp" line="617"/>
+        <location filename="../../mainwindow.cpp" line="684"/>
+        <location filename="../../mainwindow.cpp" line="685"/>
+        <location filename="../../mainwindow.cpp" line="686"/>
+        <location filename="../../mainwindow.cpp" line="687"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="845"/>
-        <location filename="../../mainwindow.cpp" line="864"/>
+        <location filename="../../mainwindow.cpp" line="915"/>
+        <location filename="../../mainwindow.cpp" line="934"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
@@ -853,92 +853,117 @@ File: %1</source>
         <translation>ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="412"/>
+        <location filename="../../mainwindow.cpp" line="416"/>
         <source>Load plugins ......</source>
         <translation>加載插件&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="425"/>
+        <location filename="../../mainwindow.cpp" line="456"/>
         <source>Load recent menu ......</source>
         <translation>加載最近菜單&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="445"/>
+        <location filename="../../mainwindow.cpp" line="482"/>
         <source>Load favorite ......</source>
         <translation>加載收藏夾&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="437"/>
+        <location filename="../../mainwindow.cpp" line="444"/>
         <source>Load list recent dock ......</source>
         <translation>加載最近列表&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="406"/>
+        <location filename="../../mainwindow.cpp" line="411"/>
         <source>Load</source>
         <translation>加載</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="406"/>
+        <location filename="../../mainwindow.cpp" line="411"/>
         <source>Load ......</source>
         <translation>加載 ......</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="456"/>
+        <location filename="../../mainwindow.cpp" line="422"/>
+        <source>Initial manage error</source>
+        <translation>初始 CManage 錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="435"/>
+        <source>Failed to set global parameters</source>
+        <translation>設置全局參數錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="450"/>
+        <source>Initial recent dock error</source>
+        <translation>初始化最近停泊條錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="488"/>
+        <source>Initial favorite error</source>
+        <translation>初始化收藏錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="497"/>
         <source>Load laster operate ......</source>
         <translation>加載上次關閉時最後操作&#x3000;……</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="462"/>
+        <location filename="../../mainwindow.cpp" line="503"/>
+        <source>Initial load laster close operate error</source>
+        <translation>初始化上次關閉時的最後操作錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="507"/>
         <source>Ready</source>
         <translation>準備好了</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="858"/>
+        <location filename="../../mainwindow.cpp" line="928"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="971"/>
+        <location filename="../../mainwindow.cpp" line="1041"/>
         <source>Starting: </source>
         <translation>開始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1046"/>
+        <location filename="../../mainwindow.cpp" line="1116"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1157"/>
+        <location filename="../../mainwindow.cpp" line="1227"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1166"/>
+        <location filename="../../mainwindow.cpp" line="1236"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1205"/>
+        <location filename="../../mainwindow.cpp" line="1275"/>
         <source>Use message box to display information</source>
         <translation>使用消息框顯示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1439"/>
+        <location filename="../../mainwindow.cpp" line="1509"/>
         <source>Hide menu bar</source>
         <translation>隱藏菜單欄</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1440"/>
+        <location filename="../../mainwindow.cpp" line="1510"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>將隱藏菜單欄，必須顯示工具條。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1471"/>
+        <location filename="../../mainwindow.cpp" line="1541"/>
         <source>Hide tool bar</source>
         <translation>隱藏工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1472"/>
+        <location filename="../../mainwindow.cpp" line="1542"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>
@@ -964,6 +989,16 @@ File: %1</source>
         <location filename="../../main.cpp" line="139"/>
         <source>Generate update json file End</source>
         <translation>產生更新文件結束</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="516"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="517"/>
+        <source>Initial error:</source>
+        <translation>初始化錯誤：</translation>
     </message>
 </context>
 </TS>

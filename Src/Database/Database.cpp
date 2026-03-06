@@ -83,7 +83,7 @@ bool CDatabase::OpenDatabase(const CParameterDatabase *pPara,
     else if(pPara->GetType() == "QODBC")
         bRet = OpenODBCDatabase(pPara, szConnectName);
     else
-        SetError(tr("The database type is unknow:") + " " + pPara->GetType());
+        SetError(tr("Database type not supported:") + " " + pPara->GetType());
 
     QSqlDriver *driver = GetDatabase().driver();
     if (driver) {

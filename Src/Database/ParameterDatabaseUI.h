@@ -28,7 +28,7 @@ private slots:
     
     void on_rbSaveSettingsToDatabase_toggled(bool checked);
     
-    void on_pbTestConnect_clicked();
+    void on_pbTest_clicked();
     
 private:
     Ui::CParameterDatabaseUI *ui;

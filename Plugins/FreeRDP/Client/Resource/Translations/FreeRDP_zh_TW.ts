@@ -257,9 +257,8 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation>服務器為空，請輸入</translation>
+        <translation type="vanished">服務器為空，請輸入</translation>
     </message>
 </context>
 <context>
@@ -423,8 +422,8 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="331"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="381"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="441"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="383"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="443"/>
         <source>Local screen</source>
         <translation>本地屏幕</translation>
     </message>
@@ -698,7 +697,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>自動檢測連接質量</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="595"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="597"/>
         <source>Selected counts: </source>
         <translation>選擇數： </translation>
     </message>
@@ -744,14 +743,12 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation>服務器為空，請輸入</translation>
+        <translation type="vanished">服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
 </context>
 <context>

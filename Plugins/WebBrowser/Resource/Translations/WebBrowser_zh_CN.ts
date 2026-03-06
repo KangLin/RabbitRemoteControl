@@ -87,32 +87,32 @@
 <context>
     <name>CBookmarkDatabase</name>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="65"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="71"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="66"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="72"/>
         <source>Other</source>
         <translation>其它</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="67"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="73"/>
         <source>Favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="68"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="74"/>
         <source>Frequently Used Websites</source>
         <translation>经常使用的网址</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="412"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="418"/>
         <source>Format error</source>
         <translation>格式错误</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="413"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="419"/>
         <source>This is not a valid bookmark file format.
 Please select the HTML bookmark file exported from your browser.</source>
         <translation>不是一个有效的书签文件格式。
@@ -1087,250 +1087,250 @@ Please select the HTML bookmark file exported from your browser.</source>
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="106"/>
+        <location filename="../../FrmWebBrowser.cpp" line="98"/>
         <source>Back</source>
         <translation>后退</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="116"/>
+        <location filename="../../FrmWebBrowser.cpp" line="108"/>
         <source>Forward</source>
         <translation>前进</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="126"/>
+        <location filename="../../FrmWebBrowser.cpp" line="118"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="140"/>
+        <location filename="../../FrmWebBrowser.cpp" line="132"/>
         <source>go</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="199"/>
+        <location filename="../../FrmWebBrowser.cpp" line="191"/>
         <source>Add tab page</source>
         <translation>增加标签页</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="211"/>
+        <location filename="../../FrmWebBrowser.cpp" line="203"/>
         <source>Download Manager</source>
         <translation>下载管理器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="272"/>
+        <location filename="../../FrmWebBrowser.cpp" line="264"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="317"/>
-        <location filename="../../FrmWebBrowser.cpp" line="326"/>
+        <location filename="../../FrmWebBrowser.cpp" line="309"/>
+        <location filename="../../FrmWebBrowser.cpp" line="318"/>
         <source>New page</source>
         <translation>新页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="616"/>
+        <location filename="../../FrmWebBrowser.cpp" line="608"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="787"/>
+        <location filename="../../FrmWebBrowser.cpp" line="779"/>
         <source>History</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="628"/>
+        <location filename="../../FrmWebBrowser.cpp" line="620"/>
         <source>Add incognito tab</source>
         <translation>添加隐身标签页</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="197"/>
+        <location filename="../../FrmWebBrowser.cpp" line="189"/>
         <source>Add bookmark</source>
         <translation>增加书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="638"/>
+        <location filename="../../FrmWebBrowser.cpp" line="630"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="645"/>
+        <location filename="../../FrmWebBrowser.cpp" line="637"/>
         <source>Add Incognito Window</source>
         <translation>添加隐身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="654"/>
+        <location filename="../../FrmWebBrowser.cpp" line="646"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="667"/>
+        <location filename="../../FrmWebBrowser.cpp" line="659"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="668"/>
+        <location filename="../../FrmWebBrowser.cpp" line="660"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
+        <location filename="../../FrmWebBrowser.cpp" line="668"/>
         <location filename="../../FrmWebBrowser.cpp" line="676"/>
-        <location filename="../../FrmWebBrowser.cpp" line="684"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未发现</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="678"/>
+        <location filename="../../FrmWebBrowser.cpp" line="670"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 发现：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="694"/>
+        <location filename="../../FrmWebBrowser.cpp" line="686"/>
         <source>Find &amp;Next</source>
         <translation>查找下一个</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="705"/>
+        <location filename="../../FrmWebBrowser.cpp" line="697"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一个</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="717"/>
-        <location filename="../../FrmWebBrowser.cpp" line="719"/>
-        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="709"/>
+        <location filename="../../FrmWebBrowser.cpp" line="711"/>
+        <location filename="../../FrmWebBrowser.cpp" line="712"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="728"/>
-        <location filename="../../FrmWebBrowser.cpp" line="730"/>
-        <location filename="../../FrmWebBrowser.cpp" line="731"/>
+        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="722"/>
+        <location filename="../../FrmWebBrowser.cpp" line="723"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="741"/>
-        <location filename="../../FrmWebBrowser.cpp" line="743"/>
-        <location filename="../../FrmWebBrowser.cpp" line="744"/>
+        <location filename="../../FrmWebBrowser.cpp" line="733"/>
+        <location filename="../../FrmWebBrowser.cpp" line="735"/>
+        <location filename="../../FrmWebBrowser.cpp" line="736"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="757"/>
+        <location filename="../../FrmWebBrowser.cpp" line="749"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="762"/>
+        <location filename="../../FrmWebBrowser.cpp" line="754"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="768"/>
-        <location filename="../../FrmWebBrowser.cpp" line="772"/>
+        <location filename="../../FrmWebBrowser.cpp" line="760"/>
+        <location filename="../../FrmWebBrowser.cpp" line="764"/>
         <source>Inspector</source>
         <translation>检查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="782"/>
+        <location filename="../../FrmWebBrowser.cpp" line="774"/>
         <source>Bookmark</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="786"/>
+        <location filename="../../FrmWebBrowser.cpp" line="778"/>
         <source>Manage Bookmark </source>
         <translation>管理书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="791"/>
-        <location filename="../../FrmWebBrowser.cpp" line="793"/>
+        <location filename="../../FrmWebBrowser.cpp" line="783"/>
+        <location filename="../../FrmWebBrowser.cpp" line="785"/>
         <source>Capture page</source>
         <translation>截取页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="795"/>
-        <location filename="../../FrmWebBrowser.cpp" line="797"/>
+        <location filename="../../FrmWebBrowser.cpp" line="787"/>
+        <location filename="../../FrmWebBrowser.cpp" line="789"/>
         <source>Capture full page</source>
         <translation>截取整个页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="798"/>
-        <location filename="../../FrmWebBrowser.cpp" line="801"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
+        <location filename="../../FrmWebBrowser.cpp" line="790"/>
+        <location filename="../../FrmWebBrowser.cpp" line="793"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="877"/>
+        <location filename="../../FrmWebBrowser.cpp" line="874"/>
         <source>Web browser</source>
         <translation>网页浏览器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1066"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1063"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1067"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1064"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1091"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1088"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1092"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1089"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1093"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1090"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1131"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1128"/>
         <source>Fail: Save capture page to the file: </source>
         <translation>失败：保存截取页面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1136"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1133"/>
         <source>Save capture page to the file：</source>
         <translation>保存截取页面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1173"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1170"/>
         <source>Fail: capture full page</source>
         <translation>失败：截取整个页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1177"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1174"/>
         <source>Capture full page to</source>
         <translation>截取整个页面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1203"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1200"/>
         <source>Start capture full page</source>
         <translation>开始截取整个页面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1209"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1206"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1222"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1219"/>
         <source>Fail record web page</source>
         <translation>录制页面失败</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1230"/>
         <source>Start record web page</source>
         <translation>开始录制页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1243"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1240"/>
         <source>Record web page is stopped</source>
         <translation>录制页面停止</translation>
     </message>

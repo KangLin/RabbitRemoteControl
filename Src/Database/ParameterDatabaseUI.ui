@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>The setting will take effect only after restarting the program.</string>
+      <string>The setting will take effect only after restarting the application.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -99,9 +99,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pbTestConnect">
+      <widget class="QPushButton" name="pbTest">
        <property name="text">
-        <string>Test connect</string>
+        <string>Test</string>
        </property>
       </widget>
      </item>

@@ -92,9 +92,9 @@ bool CParameterDatabaseUI::CheckValidity(bool validity)
 
     if(ui->rbSaveSettingsToLocal->isChecked()) {
         if(ui->cbType->currentText() != "QSQLITE") {
-            QString szErr = tr("Save operate settings to:") + " \"" + tr("Locale") + "\". " + tr("but the database is not set local database \"QSQLITE\".");
+            QString szErr = tr("Save operate settings to:") + " \"" + tr("Local") + "\". " + tr("but the database is not set local database \"QSQLITE\".");
             szErr += "\n\n";
-            szErr += tr("Please modify databse \"Type\" to \"QSQLITE\"") + " ";
+            szErr += tr("Please modify database \"Type\" to \"QSQLITE\"") + " ";
             szErr += tr("or modify ") + tr("Save operate settings to:") + " " + tr("Database");
             QMessageBox::critical(this, tr("Error"), szErr);
             qCritical(log) << szErr;
@@ -197,7 +197,7 @@ void CParameterDatabaseUI::on_rbSaveSettingsToDatabase_toggled(bool checked)
     ui->lbDatabaseWarn->setVisible(checked && ui->cbType->currentText() != "QSQLITE");
 }
 
-void CParameterDatabaseUI::on_pbTestConnect_clicked()
+void CParameterDatabaseUI::on_pbTest_clicked()
 {
     CParameterDatabase dbPara;
     dbPara.SetType(ui->cbType->currentText());
@@ -213,10 +213,10 @@ void CParameterDatabaseUI::on_pbTestConnect_clicked()
         bRet = db.IsOpen();
     }
     if(bRet)
-        QMessageBox::information(this, tr("Test connect"), tr("Test connect is successfully"));
+        QMessageBox::information(this, tr("Test"), tr("Test is successfully!"));
     else
-        QMessageBox::critical(this, tr("Test connect"),
-                              tr("Test connect is failed") + "\n\n"
+        QMessageBox::critical(this, tr("Test"),
+                              tr("Test is failed!") + "\n\n"
                                   + db.GetError());
     db.CloseDatabase();
 }
