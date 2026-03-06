@@ -28,8 +28,11 @@ private slots:
     
     void on_rbSaveSettingsToDatabase_toggled(bool checked);
     
+    void on_pbTestConnect_clicked();
+    
 private:
     Ui::CParameterDatabaseUI *ui;
     CParameterDatabase* m_pParaDB;
     CParameterGlobal* m_pParaGlobal;
+    CParameterNet m_Net;
 };

@@ -14,6 +14,7 @@
 #include "ParameterDatabaseUI.h"
 #include "ui_ParameterDatabaseUI.h"
 #include "ParameterGlobal.h"
+#include "Database.h"
 
 static Q_LOGGING_CATEGORY(log, "Para.Database.UI")
 CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
@@ -21,6 +22,7 @@ CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
     , ui(new Ui::CParameterDatabaseUI)
     , m_pParaDB(nullptr)
     , m_pParaGlobal(nullptr)
+    , m_Net(nullptr)
 {
     bool check = false;
     ui->setupUi(this);
@@ -55,8 +57,9 @@ int CParameterDatabaseUI::SetParameter(CParameter *pParameter)
 
     m_pParaDB = &m_pParaGlobal->m_Database;
     if(!m_pParaDB) return -1;
-
-    ui->wNet->SetParameter(&m_pParaDB->m_Net);
+    
+    m_Net = m_pParaDB->m_Net;
+    ui->wNet->SetParameter(&m_Net);
 
     ui->cbType->setCurrentText(m_pParaDB->GetType());
     ui->leDatabaseName->setText(m_pParaDB->GetDatabaseName());
@@ -106,6 +109,7 @@ bool CParameterDatabaseUI::CheckValidity(bool validity)
 int CParameterDatabaseUI::Accept()
 {
     ui->wNet->Accept();
+    m_pParaDB->m_Net = m_Net;
     m_pParaDB->SetType(ui->cbType->currentText());
 
     m_pParaDB->SetDatabaseName(ui->leDatabaseName->text());
@@ -192,3 +196,22 @@ void CParameterDatabaseUI::on_rbSaveSettingsToDatabase_toggled(bool checked)
 {
     ui->lbDatabaseWarn->setVisible(checked && ui->cbType->currentText() != "QSQLITE");
 }
+
+void CParameterDatabaseUI::on_pbTestConnect_clicked()
+{
+    CParameterDatabase dbPara;
+    dbPara.SetType(ui->cbType->currentText());
+    dbPara.SetDatabaseName(ui->leDatabaseName->text());
+    dbPara.SetOptions(ui->leOptions->text());
+    if(!CheckValidity(true))
+        return;
+    ui->wNet->Accept();
+    dbPara.m_Net = m_Net;
+    CDatabase db;
+    if(db.OpenDatabase(&dbPara))
+        QMessageBox::information(this, tr("Test connect"), tr("Test connect is successfully"));
+    else
+        QMessageBox::critical(this, tr("Test connect"), tr("Test connect is failed"));
+    db.CloseDatabase();
+}
+
