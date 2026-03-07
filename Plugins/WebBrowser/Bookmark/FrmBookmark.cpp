@@ -31,12 +31,13 @@ CFrmBookmark::CFrmBookmark(CParameterWebBrowser *pPara, QWidget *parent)
     setAcceptDrops(true);
 
     setupUI();
-    loadBookmarks();
 
     if(m_pPara) {
         m_pDatabase = &pPara->m_BookmarkDatabase;
         resize(m_pPara->GetWindowSize());
     }
+
+    loadBookmarks();
 }
 
 CFrmBookmark::~CFrmBookmark()

@@ -10,12 +10,14 @@ CHistoryModel::CHistoryModel(CParameterWebBrowser *pPara, QObject *parent)
     , m_pPara(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
+
+    if(pPara)
+        m_pDatabase = &pPara->m_HistoryDatabase;
+
     // Call refresh() by user
     // if (m_pDatabase && m_pDatabase->isOpen()) {
     //     refresh();
     // }
-    if(pPara)
-        m_pDatabase = &pPara->m_HistoryDatabase;
 }
 
 CHistoryModel::~CHistoryModel()
