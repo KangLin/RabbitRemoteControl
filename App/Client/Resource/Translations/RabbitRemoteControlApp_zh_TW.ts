@@ -905,12 +905,12 @@ File: %1</source>
     <message>
         <location filename="../../mainwindow.cpp" line="497"/>
         <source>Load laster operate ......</source>
-        <translation>加載上次關閉時最後操作&#x3000;……</translation>
+        <translation>加載上次關閉時的操作&#x3000;……</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="503"/>
         <source>Initial load laster close operate error</source>
-        <translation>初始化上次關閉時的最後操作錯誤</translation>
+        <translation>初始化上次關閉時的操作錯誤</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="507"/>
