@@ -207,6 +207,7 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
             success = query.exec();
             if (!success) {
                 QString szErr = "Failed to insert favorite table: " + query.lastError().text();
+                SetError(szErr);
                 qCritical(log) << szErr;
                 throw std::runtime_error(szErr.toStdString());
             }
@@ -214,23 +215,29 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
             key = query.lastInsertId().toInt();
             if(0 >= key) {
                 QString szErr = "Failed to insert favorite table";
+                SetError(szErr);
+                qCritical(log) << szErr;
                 throw std::runtime_error(szErr.toStdString());
             }
         }
 
         // 在 tree 表中增加
-        TreeItem item;
+        TreeItem item(TreeItem::Leaf);
         item.SetKey(key);
         item.SetParentId(parentId);
         int id = Add(item);
         if (0 >= id) {
             QString szErr = "Failed to insert favorite folder table";
+            SetError(szErr);
+            qCritical(log) << szErr;
             throw std::runtime_error(szErr.toStdString());
         }
 
         // 提交事务
         if (!db.commit()) {
             QString szErr = "Failed to commit transaction:" + db.lastError().text();
+            SetError(szErr);
+            qCritical(log) << szErr;
             throw std::runtime_error(szErr.toStdString());
         }
 
@@ -474,7 +481,7 @@ bool CFavoriteDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
         bRet = CDatabaseIcon::ImportIconFromJson(itemObj, icon);
         if(!bRet) continue;
 
-        AddFavorite(szFile, itemObj["name"].toString(), icon, itemObj["description"].toString(), parentId);
+        AddFavorite(CDatabaseFile::SetFile(szFile), itemObj["name"].toString(), icon, itemObj["description"].toString(), parentId);
     }
 
     return true;
@@ -499,7 +506,7 @@ bool CFavoriteDatabase::ExportToJson(int parentId, QJsonArray &obj)
             oItem.insert("name", item.szName);
 
             // File
-            bool bRet = CDatabaseFile::ExportFileToJson(item.szFile, oItem);
+            bool bRet = CDatabaseFile::ExportFileToJson(CDatabaseFile::GetFile(item.szFile), oItem);
             if(!bRet) continue;
 
             // Icon

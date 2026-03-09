@@ -10,25 +10,17 @@
 #include "DatabaseTree.h"
 
 static Q_LOGGING_CATEGORY(log, "DB.Tree")
-TreeItem::TreeItem()
-    : m_Type(Node)
-    , m_id(0)
-    , m_nKey(0)
-    , m_ParentId(0)
-    , m_SortOrder(0)
-{}
+TreeItem::TreeItem(TYPE type) {
+    m_Data.m_Type = type;
+    m_Data.m_id = 0;
+    m_Data.m_nKey = 0;
+    m_Data.m_ParentId = 0;
+    m_Data.m_SortOrder = 0;
+}
 
 TreeItem::TreeItem(const TreeItem &item)
 {
-    m_Type = item.m_Type;
-    m_id = item.m_id;
-    m_szName = item.m_szName;
-    m_nKey = item.m_nKey;
-    m_ParentId = item.m_ParentId;
-    m_SortOrder = item.m_SortOrder;
-    m_CreateTime = item.m_CreateTime;
-    m_ModifyTime = item.m_ModifyTime;
-    m_LastVisitTime = item.m_LastVisitTime;
+    m_Data = item.m_Data;
 }
 
 bool TreeItem::IsNode() const
@@ -43,132 +35,101 @@ bool TreeItem::IsLeaf() const
 
 TreeItem::TYPE TreeItem::GetType() const
 {
-    return m_Type;
+    return m_Data.m_Type;
 }
 
 void TreeItem::SetType(TYPE type)
 {
-    m_Type = type;
+    m_Data.m_Type = type;
 }
 
 int TreeItem::GetId() const
 {
-    return m_id;
+    return m_Data.m_id;
 }
 
 void TreeItem::SetId(int newId)
 {
-    m_id = newId;
+    m_Data.m_id = newId;
 }
 
 QString TreeItem::GetName() const
 {
-    return m_szName;
+    return m_Data.m_szName;
 }
 
 void TreeItem::SetName(const QString &newName)
 {
-    m_szName = newName;
+    m_Data.m_szName = newName;
 }
 
 int TreeItem::GetParentId() const
 {
-    return m_ParentId;
+    return m_Data.m_ParentId;
 }
 
 void TreeItem::SetParentId(int newParentId)
 {
-    m_ParentId = newParentId;
+    m_Data.m_ParentId = newParentId;
 }
 
 int TreeItem::GetSortOrder() const
 {
-    return m_SortOrder;
+    return m_Data.m_SortOrder;
 }
 
 void TreeItem::SetSortOrder(int newSortOrder)
 {
-    m_SortOrder = newSortOrder;
+    m_Data.m_SortOrder = newSortOrder;
 }
 
 int TreeItem::GetKey() const
 {
-    return m_nKey;
+    return m_Data.m_nKey;
 }
 
 void TreeItem::SetKey(int newNKey)
 {
-    m_nKey = newNKey;
+    m_Data.m_nKey = newNKey;
 }
 
 QDateTime TreeItem::GetCreateTime() const
 {
-    return m_CreateTime;
+    return m_Data.m_CreateTime;
 }
 
 void TreeItem::SetCreateTime(const QDateTime &newCreateTime)
 {
-    m_CreateTime = newCreateTime;
+    m_Data.m_CreateTime = newCreateTime;
 }
-
-// QIcon TreeItem::GetIcon() const
-// {
-//     if (!m_Icon.isNull()) {
-//         return m_Icon;
-//     }
-
-//     QString url = m_Value;
-//     if (url.startsWith("https://")) {
-//         return QIcon::fromTheme("security-high");
-//     } else if (url.startsWith("http://")) {
-//         return QIcon::fromTheme("security-low");
-//     }
-
-//     if (IsNode()) {
-//         return QIcon::fromTheme("folder");
-//     }
-
-//     return QIcon::fromTheme("file");
-// }
-
-// void TreeItem::SetIcon(const QIcon &newIcon)
-// {
-//     m_Icon = newIcon;
-// }
 
 QDateTime TreeItem::GetModifyTime() const
 {
-    return m_ModifyTime;
+    return m_Data.m_ModifyTime;
 }
 
 void TreeItem::SetModifyTime(const QDateTime &newModifyTime)
 {
-    m_ModifyTime = newModifyTime;
+    m_Data.m_ModifyTime = newModifyTime;
 }
 
 QDateTime TreeItem::GetLastVisitTime() const
 {
-    return m_LastVisitTime;
+    return m_Data.m_LastVisitTime;
 }
 
 void TreeItem::SetLastVisitTime(const QDateTime &newLastVisitTime)
 {
-    m_LastVisitTime = newLastVisitTime;
-}
-
-CDatabaseFolder::CDatabaseFolder(QObject *parent)
-    : CDatabase(parent)
-{
-    m_szTableName = "folders";
-    m_szConnectName = m_szTableName + "_connect";
+    m_Data.m_LastVisitTime = newLastVisitTime;
 }
 
 CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
-    : CDatabaseFolder(parent)
+    : CDatabase(parent)
 {
+    m_szTableName = "folders";
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
-    m_szConnectName = m_szTableName + "_connect";
+    m_szConnectName = "connect_" + m_szTableName;
 }
 
 bool CDatabaseFolder::OnInitializeSqliteDatabase()
@@ -179,7 +140,7 @@ bool CDatabaseFolder::OnInitializeSqliteDatabase()
     query.exec("PRAGMA foreign_keys = ON");
 
     // 创建文件夹表
-    bool success = query.exec(
+    bool bRet = query.exec(
         "CREATE TABLE IF NOT EXISTS "
         + m_szTableName +
         " ("
@@ -191,15 +152,19 @@ bool CDatabaseFolder::OnInitializeSqliteDatabase()
         ")"
         );
 
-    if (!success) {
-        qCritical(log) << "Failed to create folders sqlite table:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    if (!bRet) {
+        SetError("Failed to create folders sqlite table: " + m_szTableName
+                 + "; Error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
 
     // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_parent ON " + m_szTableName + "(parent_id)");
+    bRet = query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_parent ON " + m_szTableName + "(parent_id)");
+    if(!bRet)
+        qDebug(log) << "Failed to create index idx_" + m_szTableName + "_parent:" << query.lastError().text()
+                    << "; Sql: " + query.executedQuery();
 
     return true;
 }
@@ -212,7 +177,7 @@ bool CDatabaseFolder::OnInitializeMySqlDatabase()
     query.exec("PRAGMA foreign_keys = ON");
 
     // 创建文件夹表
-    bool success = query.exec(
+    bool bRet = query.exec(
         "CREATE TABLE IF NOT EXISTS "
         + m_szTableName +
         " ("
@@ -225,7 +190,7 @@ bool CDatabaseFolder::OnInitializeMySqlDatabase()
         "    INDEX idx_parent_sort (parent_id, sort_order)"
         ")"
         );
-    if (!success) {
+    if (!bRet) {
         qCritical(log) << "Failed to create folders mysql table:"
                        << m_szTableName << query.lastError().text()
                        << "Sql:" << query.executedQuery();
@@ -237,7 +202,7 @@ bool CDatabaseFolder::OnInitializeMySqlDatabase()
 
 int CDatabaseFolder::AddFolder(const QString &name, int parentId)
 {
-    bool ok = false;
+    bool bRet = false;
     QSqlQuery query(GetDatabase());
 
     // Check if it already exists
@@ -247,10 +212,11 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
                   );
     query.bindValue(":parent_id", parentId);
     query.bindValue(":name", name);
-    ok = query.exec();
-    if(!ok) {
-        qCritical(log) << "Failed to add folders:" << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    bRet = query.exec();
+    if(!bRet) {
+        SetError("Failed to add folders: " + query.lastError().text()
+                       + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return 0;
     }
     if(query.next()) {
@@ -261,8 +227,13 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
     query.prepare("SELECT MAX(sort_order) FROM " + m_szTableName
                   + " WHERE parent_id = :parent_id");
     query.bindValue(":parent_id", parentId);
-    query.exec();
-
+    bRet = query.exec();
+    if(!bRet) {
+        SetError("Failed to get max sort_order: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+        return 0;
+    }
     int maxOrder = 0;
     if (query.next()) {
         maxOrder = query.value(0).toInt() + 1;
@@ -278,16 +249,18 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
     query.bindValue(":sort_order", maxOrder);
 
     int id = 0;
-    bool success = query.exec();
-    if (success) {
+    bRet = query.exec();
+    if (bRet) {
         id = query.lastInsertId().toInt();
         if(id > 0) {
             emit sigAddFolder(id, parentId);
             emit sigChanged();
         }
-    } else
-        qCritical(log) << "Failed to add folders:" << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    } else {
+        SetError("Failed to add folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+    }
 
     return id;
 }
@@ -299,16 +272,14 @@ bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
                   " SET name = :name WHERE id = :id");
     query.bindValue(":id", id);
     query.bindValue(":name", newName);
-
     bool success = query.exec();
-
     if (success)
         emit sigChanged();
-    else
-        qCritical(log) << "Failed to rename folders:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
-
+    else {
+        SetError("Failed to rename folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+    }
     return success;
 }
 
@@ -339,10 +310,11 @@ bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbD
 
     if (success)
         emit sigChanged();
-    else
-        qCritical(log) << "Failed to delete folders:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    else {
+        SetError("Failed to delete folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+    }
 
     return success;
 }
@@ -352,37 +324,27 @@ int CDatabaseFolder::OnDeleteLeafs(int id)
     return true;
 }
 
-QString CDatabaseFolder::GetTableName() const
-{
-    return m_szTableName;
-}
-
-void CDatabaseFolder::SetTableName(const QString &newSzTableName)
-{
-    m_szTableName = newSzTableName;
-}
-
 bool CDatabaseFolder::MoveFolder(int id, int newParentId)
 {
     QSqlQuery query(GetDatabase());
-    query.prepare("UPDATE " + m_szTableName + " SET parent_id = :parent_id WHERE id = :id");
+    query.prepare("UPDATE " + m_szTableName +
+                  " SET parent_id = :parent_id WHERE id = :id");
     query.bindValue(":id", id);
     query.bindValue(":parent_id", newParentId);
-
-    bool success = query.exec();
-
-    if (success)
+    bool bRet = query.exec();
+    if (bRet)
         emit sigChanged();
-    else
-        qCritical(log) << "Failed to move folders:" << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
-
-    return success;
+    else {
+        SetError("Failed to move folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+    }
+    return bRet;
 }
 
 TreeItem CDatabaseFolder::GetFolder(int id)
 {
-    TreeItem folder;
+    TreeItem folder(TreeItem::Node);
     if(0 >= id) return folder;
     QSqlQuery query(GetDatabase());
     query.prepare(
@@ -393,36 +355,32 @@ TreeItem CDatabaseFolder::GetFolder(int id)
     query.bindValue(":id", id);
     if (query.exec()) {
         if(query.next()) {
-            folder.SetType(TreeItem::Node);
             folder.SetId(query.value(0).toInt());
             folder.SetName(query.value(1).toString());
             folder.SetParentId(query.value(2).toInt());
             folder.SetSortOrder(query.value(3).toInt());
             folder.SetCreateTime(query.value(4).toDateTime());
         }
-    } else
-        qCritical(log) << "Failed to get folder:"
-                       << id << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
-
+    } else {
+        SetError("Failed to get folder: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery() +  QString::number(id));
+        qCritical(log) << GetError();
+    }
     return folder;
 }
 
 QList<TreeItem> CDatabaseFolder::GetAllFolders()
 {
     QList<TreeItem> folders;
-
     QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
-        "FROM " + m_szTableName + " "
-                          "ORDER BY parent_id, sort_order, name"
+        " FROM " + m_szTableName + " " +
+        " ORDER BY parent_id, sort_order, name"
         );
-
     if (query.exec()) {
         while (query.next()) {
-            TreeItem folder;
-            folder.SetType(TreeItem::Node);
+            TreeItem folder(TreeItem::Node);
             folder.SetId(query.value(0).toInt());
             folder.SetName(query.value(1).toString());
             folder.SetParentId(query.value(2).toInt());
@@ -431,6 +389,10 @@ QList<TreeItem> CDatabaseFolder::GetAllFolders()
 
             folders.append(folder);
         }
+    } else {
+        SetError("Failed to get all folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return folders;
@@ -443,16 +405,14 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
     QSqlQuery query(GetDatabase());
     query.prepare(
         "SELECT id, name, parent_id, sort_order, created_time "
-        "FROM " + m_szTableName + " "
-                          "WHERE parent_id = :parent_id "
-                          "ORDER BY sort_order, name"
+        "FROM " + m_szTableName + " " +
+        "WHERE parent_id = :parent_id " +
+        "ORDER BY sort_order, name"
         );
     query.bindValue(":parent_id", parentId);
-
     if (query.exec()) {
         while (query.next()) {
-            TreeItem folder;
-            folder.SetType(TreeItem::Node);
+            TreeItem folder(TreeItem::Node);
             folder.SetId(query.value(0).toInt());
             folder.SetName(query.value(1).toString());
             folder.SetParentId(query.value(2).toInt());
@@ -461,6 +421,10 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
 
             folders.append(folder);
         }
+    } else {
+        SetError("Failed to get sub folders: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return folders;
@@ -489,9 +453,9 @@ bool CDatabaseFolder::ExportToJson(QJsonObject& obj)
         );
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to export folder to json:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to export folder to json: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return false;
     }
     QJsonArray folder;
@@ -514,20 +478,14 @@ bool CDatabaseFolder::ImportFromJson(const QJsonObject& obj)
     return true;
 }
 
-CDatabaseTree::CDatabaseTree(QObject *parent)
+CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
     : CDatabase(parent)
+    , m_FolderDB(szPrefix)
 {
     m_szTableName = "tree";
-    m_szConnectName = m_szTableName + "_connect";
-}
-
-CDatabaseTree::CDatabaseTree(const QString &szPrefix, QObject *parent)
-    : CDatabaseTree(parent)
-{
     if(!szPrefix.isEmpty())
         m_szTableName = szPrefix + "_" + m_szTableName;
-    m_FolderDB.SetTableName(szPrefix + "_" + m_FolderDB.GetTableName());
-    m_szConnectName = m_szTableName + "_connect";
+    m_szConnectName = "connect_" + m_szTableName;
 }
 
 bool CDatabaseTree::OnInitializeDatabase()
@@ -548,33 +506,31 @@ bool CDatabaseTree::OnInitializeDatabase()
 bool CDatabaseTree::OnInitializeSqliteDatabase()
 {
     QSqlQuery query(GetDatabase());
-
+    
     // 启用外键约束
     query.exec("PRAGMA foreign_keys = ON");
-
-    // 创建书签表
-    bool success = query.exec(
-        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    parent_id INTEGER DEFAULT 0,"
-        "    name TEXT,"
-        "    value INTEGER DEFAULT 0,"
-        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    last_visit_time DATETIME"
-        ")"
-        );
-
-    if (!success) {
-        qCritical(log) << "Failed to create tree table:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    
+    QString szSql =
+        "CREATE TABLE IF NOT EXISTS `" + m_szTableName + "` (" +
+        "    `id` INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    `parent_id` INTEGER DEFAULT 0,"
+        "    `name` TEXT,"
+        "    `key` INTEGER DEFAULT 0,"
+        "    `created_time` DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    `modified_time` DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    `last_visit_time` DATETIME"
+        ")";
+    bool bRet = query.exec(szSql);
+    if (!bRet) {
+        SetError("Failed to create tree sqlite table: " + query.lastError().text()
+                 + "; Sql: " + szSql);
+        qCritical(log) << GetError();
         return false;
     }
 
     // 创建索引
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_value ON " + m_szTableName + "(value)");
-    query.exec("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_parent_id ON " + m_szTableName + "(parent_id)");
+    query.exec("CREATE INDEX IF NOT EXISTS `idx_" + m_szTableName + "_key` ON " + m_szTableName + "(`key`)");
+    query.exec("CREATE INDEX IF NOT EXISTS `idx_" + m_szTableName + "_parent_id` ON " + m_szTableName + "(`parent_id`)");
 
     return true;
 }
@@ -586,47 +542,52 @@ bool CDatabaseTree::OnInitializeMySqlDatabase()
     // 启用外键约束
     query.exec("PRAGMA foreign_keys = ON");
     
-    // 创建书签表
-    bool success = query.exec(
-        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
-        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
-        "    parent_id INTEGER DEFAULT 0,"
-        "    name TEXT,"
-        "    value INTEGER DEFAULT 0,"
-        "    created_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    modified_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    last_visit_time DATETIME,"
-        "    INDEX idx_value (value),"
-        "    INDEX idx_parent_id (parent_id)"
-        ")"
-        );
-    
-    if (!success) {
-        qCritical(log) << "Failed to create tree table:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    QString szSql =
+        "CREATE TABLE IF NOT EXISTS `" + m_szTableName + "` (" +
+        "    `id` INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    `parent_id` INTEGER DEFAULT 0,"
+        "    `name` TEXT,"
+        "    `key` INTEGER DEFAULT 0,"
+        "    `created_time` DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    `modified_time` DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    `last_visit_time` DATETIME,"
+        "    INDEX `idx_key` (`key`),"
+        "    INDEX `idx_parent_id` (`parent_id`)"
+        ")";
+    bool bRet = query.exec(szSql);
+    if (!bRet) {
+        SetError("Failed to create tree mysql table: " + query.lastError().text()
+                 + "; Sql: " + szSql);
+        qCritical(log) << GetError();
         return false;
     }
-    
+
     return true;
 }
 
 int CDatabaseTree::Add(const TreeItem &item)
 {
     bool ok = false;
-    QSqlQuery query(GetDatabase());
+    // Check if it is a leaf
+    if(item.IsNode()) {
+        qCritical(log) << "The item is not leaf";
+        return 0;
+    }
 
+    QSqlQuery query(GetDatabase());
+    
     // Check if it already exists
     query.prepare(
-        "SELECT id FROM " + m_szTableName +
-        " WHERE value=:key AND parent_id=:parent_id"
+        "SELECT `id` FROM " + m_szTableName +
+        " WHERE `key`=:key AND `parent_id`=:parent_id"
         );
     query.bindValue(":key", item.GetKey());
     query.bindValue(":parent_id", item.GetParentId());
     ok = query.exec();
     if(!ok) {
-        qCritical(log) << "Failed to add tree:" << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to add tree: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return 0;
     }
     if(query.next()) {
@@ -635,8 +596,8 @@ int CDatabaseTree::Add(const TreeItem &item)
 
     // Insert
     query.prepare(
-        "INSERT INTO " + m_szTableName + " (name, value, "
-        "created_time, modified_time, last_visit_time, parent_id) "
+        "INSERT INTO `" + m_szTableName + "` (`name`, `key`, "
+        "`created_time`, `modified_time`, `last_visit_time`, `parent_id`) "
         "VALUES (:name, :key, "
         ":created_time, :modified_time, :last_visit_time, :parent_id)"
         );
@@ -649,12 +610,11 @@ int CDatabaseTree::Add(const TreeItem &item)
     query.bindValue(":last_visit_time", time);
     query.bindValue(":parent_id", item.GetParentId());
 
-    bool success = query.exec();
-
-    if (!success) {
-        qCritical(log) << "Failed to add tree item:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    bool bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to add tree item: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return 0;
     }
 
@@ -666,16 +626,22 @@ int CDatabaseTree::Add(const TreeItem &item)
 
 bool CDatabaseTree::Update(const TreeItem &item)
 {
+    // Check if it is a leaf
+    if(item.IsNode()) {
+        qCritical(log) << "The item is not leaf";
+        return false;
+    }
+
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "UPDATE " + m_szTableName + " SET "
-        "name = :name, "
-        "value = :key, "
-        "created_time = :created_time, "
-        "modified_time = :modified_time, "
-        "last_visit_time = :last_visit_time, "
-        "parent_id = :parent_id "
-        "WHERE id = :id"
+        "UPDATE `" + m_szTableName + "` SET "
+        "`name` = :name, "
+        "`key` = :key, "
+        "`created_time` = :created_time, "
+        "`modified_time` = :modified_time, "
+        "`last_visit_time` = :last_visit_time, "
+        "`parent_id` = :parent_id "
+        "WHERE `id` = :id"
         );
     query.bindValue(":name", item.GetName());
     query.bindValue(":key", item.GetKey());
@@ -686,13 +652,13 @@ bool CDatabaseTree::Update(const TreeItem &item)
     query.bindValue(":id", item.GetId());
     qDebug(log) << "Sql:" << query.executedQuery();
     qDebug(log) << "Bound value:" << query.boundValues();
-    bool success = query.exec();
-    if (!success) {
-        qCritical(log) << "Failed to update tree item:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+    bool bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to update tree item: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
-    return success;
+    return bRet;
 }
 
 bool CDatabaseTree::Delete(int id, bool delKey)
@@ -710,7 +676,7 @@ bool CDatabaseTree::Delete(int id, bool delKey)
         }
     }
     QSqlQuery query(GetDatabase());
-    query.prepare("DELETE FROM " + m_szTableName + " WHERE id = :id");
+    query.prepare("DELETE FROM `" + m_szTableName + "` WHERE `id` = :id");
     query.bindValue(":id", id);
 
     bool success = query.exec();
@@ -743,14 +709,14 @@ bool CDatabaseTree::Delete(QList<int> items, bool delKey)
     }
 
     QSqlQuery query(GetDatabase());
-    QString szSql = "DELETE FROM " + m_szTableName + " WHERE ";
+    QString szSql = "DELETE FROM `" + m_szTableName + "` WHERE ";
     int i = 0;
     foreach(auto id, items) {
         if(0 == i) {
             i++;
-            szSql += " id = " + QString::number(id);
+            szSql += " `id` = " + QString::number(id);
         } else {
-            szSql += " OR id = " + QString::number(id);
+            szSql += " OR `id` = " + QString::number(id);
         }
     }
     bool success = query.exec(szSql);
@@ -771,13 +737,11 @@ bool CDatabaseTree::DeleteChild(int parentId, bool delKey)
             if(!Delete(leaf.GetId(), delKey))
                 return false;
         }
-        return true;
     }
 
     QSqlQuery query(GetDatabase());
-    query.prepare("DELETE FROM " + m_szTableName + " WHERE parent_id = :parent_id");
+    query.prepare("DELETE FROM `" + m_szTableName + "` WHERE `parent_id` = :parent_id");
     query.bindValue(":parent_id", parentId);
-
     bool success = query.exec();
     if (!success) {
         qCritical(log) << "Failed to delete child item:"
@@ -792,8 +756,8 @@ bool CDatabaseTree::Move(int id, int newParent)
 {
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "UPDATE " + m_szTableName + " SET "
-        "parent_id = :parent_id WHERE id = :id");
+        "UPDATE `" + m_szTableName + "` SET "
+        "`parent_id` = :parent_id WHERE `id` = :id");
     query.bindValue(":parent_id", newParent);
     query.bindValue(":id", id);
 
@@ -809,14 +773,13 @@ bool CDatabaseTree::Move(int id, int newParent)
 
 TreeItem CDatabaseTree::GetLeaf(int id)
 {
-    TreeItem item;
-    item.SetType(TreeItem::Leaf);
+    TreeItem item(TreeItem::Leaf);
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT name, value,  "
-        "created_time, modified_time, last_visit_time, parent_id FROM " + m_szTableName +
-        " WHERE id = :id");
+        "SELECT `name`, `key`,  "
+        "`created_time`, `modified_time`, `last_visit_time`, `parent_id` FROM `" + m_szTableName + "` "
+        " WHERE `id` = :id");
     query.bindValue(":id", id);
 
     bool success = query.exec();
@@ -845,11 +808,11 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
     QList<TreeItem> items;
     QSqlQuery query(GetDatabase());
     QString szSql;
-    szSql = "SELECT id, name, value, "
-            "created_time, modified_time, last_visit_time, parent_id "
-            "FROM " + m_szTableName;
+    szSql = "SELECT `id`, `name`, `key`, "
+            "`created_time`, `modified_time`, `last_visit_time`, `parent_id` "
+            "FROM `" + m_szTableName + "`";
     if(0 <= nodeId)
-        szSql += " WHERE parent_id = :parent_id";
+        szSql += " WHERE `parent_id` = :parent_id";
     query.prepare(szSql);
     query.bindValue(":parent_id", nodeId);
     bool success = query.exec();
@@ -861,8 +824,7 @@ QList<TreeItem> CDatabaseTree::GetLeaves(int nodeId)
     }
 
     while(query.next()) {
-        TreeItem item;
-        item.SetType(TreeItem::Leaf);
+        TreeItem item(TreeItem::Leaf);
         item.SetId(query.value(0).toInt());
         item.SetName(query.value(1).toString());
         item.SetKey(query.value(2).toInt());
@@ -882,10 +844,10 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(int key)
 
     QSqlQuery query(GetDatabase());
     QString szSql;
-    szSql = "SELECT id, name, "
-            "created_time, modified_time, last_visit_time, parent_id "
-            "FROM " + m_szTableName +
-            " WHERE value = :key";
+    szSql = "SELECT `id`, `name`, "
+            " `created_time`, `modified_time`, `last_visit_time`, `parent_id` "
+            " FROM `" + m_szTableName + "` " +
+            " WHERE `key` = :key";
     query.prepare(szSql);
     query.bindValue(":key", key);
     bool success = query.exec();
@@ -897,8 +859,7 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(int key)
     }
 
     while(query.next()) {
-        TreeItem item;
-        item.SetType(TreeItem::Leaf);
+        TreeItem item(TreeItem::Leaf);
         item.SetId(query.value(0).toInt());
         item.SetName(query.value(1).toString());
         item.SetKey(key);
@@ -919,17 +880,17 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
 
     QSqlQuery query(GetDatabase());
     QString szSql;
-    szSql = "SELECT id, name, value, "
-            "created_time, modified_time, last_visit_time, parent_id "
-            "FROM " + m_szTableName +
+    szSql = "SELECT `id`, `name`, `key`, "
+            " `created_time`, `modified_time`, `last_visit_time`, `parent_id` "
+            " FROM `" + m_szTableName + "` "
             " WHERE ";
     int i = 0;
     foreach(auto KeyId, key) {
         if(0 == i++) {
-            szSql += " value = " + QString::number(KeyId);
+            szSql += " `key` = " + QString::number(KeyId);
             continue;
         }
-            szSql += " OR value = " + QString::number(KeyId);
+            szSql += " OR `key` = " + QString::number(KeyId);
     }
     bool success = query.exec(szSql);
     if (!success) {
@@ -940,8 +901,7 @@ QList<TreeItem> CDatabaseTree::GetLeavesByKey(QList<int> key)
     }
 
     while(query.next()) {
-        TreeItem item;
-        item.SetType(TreeItem::Leaf);
+        TreeItem item(TreeItem::Leaf);
         item.SetId(query.value(0).toInt());
         item.SetName(query.value(1).toString());
         item.SetKey(query.value(2).toInt());
@@ -1027,8 +987,9 @@ bool CDatabaseTree::ExportToJson(QJsonObject& obj)
 
     QSqlQuery query(GetDatabase());
     query.prepare(
-        "SELECT id, parent_id, name, value, "
-        "created_time, modified_time, last_visit_time FROM " + m_szTableName);
+        "SELECT `id`, `parent_id`, `name`, `key`, "
+        " `created_time`, `modified_time`, `last_visit_time` "
+        " FROM `" + m_szTableName + "`");
     bool success = query.exec();
     if (!success) {
         qCritical(log) << "Failed to export tree to json:"

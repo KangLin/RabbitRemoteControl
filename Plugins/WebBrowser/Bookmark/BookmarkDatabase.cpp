@@ -704,10 +704,9 @@ QDomElement CBookmarkDatabase::findFirstElement(const QDomElement &parent, const
 
 TreeItem CBookmarkDatabase::BookmarkToTree(const BookmarkItem& tree, bool setKey)
 {
-    TreeItem item;
     TreeItem::TYPE type;
     type = tree.type == BookmarkType_Folder ? TreeItem::Node: TreeItem::Leaf;
-    item.SetType(type);
+    TreeItem item(type);   
     item.SetId(tree.id);
     item.SetParentId(tree.folderId);
     item.SetCreateTime(tree.createdTime);

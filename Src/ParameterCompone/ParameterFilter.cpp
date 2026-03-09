@@ -12,7 +12,6 @@ CParameterFilter::CParameterFilter(QObject *parent, const QString &szPrefix)
 CParameterFilter::~CParameterFilter()
 {
     if(m_pDatabase) {
-        m_pDatabase->CloseDatabase();
         delete m_pDatabase;
         m_pDatabase = nullptr;
     }

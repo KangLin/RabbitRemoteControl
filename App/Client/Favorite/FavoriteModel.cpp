@@ -252,7 +252,7 @@ bool CFavoriteModel::AddFavorite(
         // Update
         auto it = items.at(0);
         if(it.id <= 0) return false;
-        bool ok = MoveTree(item, parentId);
+        bool ok = MoveTree(it, parentId);
         if(!ok) return false;
         m_pDatabase->Move(it.id, parentId);
     }

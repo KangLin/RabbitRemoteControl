@@ -70,8 +70,6 @@ private:
     void setupToolBar(QLayout* layout);
     void setupTreeView(QLayout* layout);
     void EnableAction(const QModelIndex& index = QModelIndex());
-    QString GetFile(const QString szFile);
-    QString SetFile(const QString szFile);
 
 private:
     CParameterApp* m_pParaApp;

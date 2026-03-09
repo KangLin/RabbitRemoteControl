@@ -266,7 +266,7 @@ void CFavoriteView::slotAddToFavorite(const QString &file,
 {
     if(!m_pModel || !m_pTreeView) return;
 
-    QString szFile = SetFile(file);
+    QString szFile = CDatabaseFile::SetFile(file);
 
     int parentId = 0;
     QString szGroup = tr("Root");
@@ -312,7 +312,7 @@ void CFavoriteView::slotUpdateFavorite(
     const QString &szDescription, const QIcon &icon)
 {
     if(!m_pModel || !m_pTreeView || szFile.isEmpty()) return;
-    m_pModel->UpdateFavorite(SetFile(szFile), szName, szDescription, icon);
+    m_pModel->UpdateFavorite(CDatabaseFile::SetFile(szFile), szName, szDescription, icon);
 }
 
 void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)
@@ -327,7 +327,7 @@ void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
         return;
     QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
     if(!szFile.isEmpty())
-        emit sigStart(GetFile(szFile), false);
+        emit sigStart(CDatabaseFile::GetFile(szFile), false);
 }
 
 void CFavoriteView::slotDoubleEditNode(bool bEdit)
@@ -376,7 +376,7 @@ void CFavoriteView::slotStart()
     {
         QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
         if(!szFile.isEmpty())
-            emit sigStart(GetFile(szFile), false);
+            emit sigStart(CDatabaseFile::GetFile(szFile), false);
     }
 }
 
@@ -387,7 +387,7 @@ void CFavoriteView::slotOpenStart()
     {
         QString szFile = m_pModel->data(index, CFavoriteModel::RoleFile).toString();
         if(!szFile.isEmpty())
-            emit sigStart(GetFile(szFile), true);
+            emit sigStart(CDatabaseFile::GetFile(szFile), true);
     }
 }
 
@@ -608,27 +608,4 @@ void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 bool CFavoriteView::eventFilter(QObject *watched, QEvent *event)
 {
     return QWidget::eventFilter(watched, event);
-}
-
-QString CFavoriteView::GetFile(const QString szFile)
-{
-    QFileInfo fi(szFile);
-    //qDebug(log) << szFile << fi.absolutePath();
-    if(fi.isRelative()) {
-        return RabbitCommon::CDir::Instance()->GetDirUserData()
-        + QDir::separator() + szFile;
-    }
-    return szFile;
-}
-
-QString CFavoriteView::SetFile(const QString file)
-{
-    QString szFile;
-    QFileInfo fi(file);
-    QFileInfo d(RabbitCommon::CDir::Instance()->GetDirUserData() + QDir::separator());
-    if(fi.absolutePath() == d.absolutePath())
-        szFile = fi.fileName();
-    else
-        szFile = file;
-    return szFile;
 }

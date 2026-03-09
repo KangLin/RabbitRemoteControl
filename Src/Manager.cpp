@@ -52,6 +52,11 @@ CManager::~CManager()
     qDebug(log) << "CManager::~CManager()";
 
     qApp->removeEventFilter(this);
+    
+    if(m_pDatabaseFile) {
+        delete m_pDatabaseFile;
+        m_pDatabaseFile = nullptr;
+    }
 
     if(m_pHook) {
         m_pHook->UnRegisterKeyboard();
@@ -167,7 +172,7 @@ int CManager::Initial(QString szFile)
     
     LoadPlugins();
 
-    m_pDatabaseFile = new CDatabaseFile(this);
+    m_pDatabaseFile = new CDatabaseFile();
     if(m_pDatabaseFile) {
         auto pg = GetGlobalParameters();
         bool bRet = m_pDatabaseFile->SetDatabase(&pg->m_DatabaseRemote);
@@ -418,6 +423,7 @@ COperate* CManager::LoadOperate(const QString &szFile)
     qDebug(log) << "Load operate configure file:"<< szFile;
     if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
         == CParameterGlobal::SaveSettingsType::Database && m_pDatabaseFile) {
+        qDebug(log) << "Load file from database";
         QByteArray content = m_pDatabaseFile->Load(szFile);
         if(!content.isEmpty()) {
             QFile f(szFile);
@@ -508,6 +514,7 @@ int CManager::SaveOperate(COperate *pOperate)
 
     if(m_pParameterPlugin->GetGlobalParameters()->GetSaveSettingsType()
         == CParameterGlobal::SaveSettingsType::Database && m_pDatabaseFile) {
+        qDebug(log) << "Save file to database";
         return m_pDatabaseFile->Save(szFile) ? 0 : -1;
     }
 

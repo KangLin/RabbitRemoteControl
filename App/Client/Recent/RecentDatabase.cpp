@@ -20,24 +20,12 @@ CRecentDatabase::RecentItem::RecentItem() : id(0) {
 }
 
 int CRecentDatabase::RecentItem::SetFile(const QString& file) {
-    QFileInfo fi(file);
-    QFileInfo d(RabbitCommon::CDir::Instance()->GetDirUserData() + QDir::separator());
-    //qDebug(log) << "\n" << fi.path() << "\n" << d.path() << "\n" << fi.absoluteFilePath() << "\n" << d.absoluteFilePath();
-    if(fi.absolutePath() == d.absolutePath())
-        szFile = fi.fileName();
-    else
-        szFile = file;
+    szFile = CDatabaseFile::SetFile(file);
     return 0;
 }
 
 QString CRecentDatabase::RecentItem::GetFile() {
-    QFileInfo fi(szFile);
-    //qDebug(log) << szFile << fi.absolutePath();
-    if(fi.isRelative()) {
-        return RabbitCommon::CDir::Instance()->GetDirUserData()
-            + QDir::separator() + szFile;
-    }
-    return szFile;
+    return CDatabaseFile::GetFile(szFile);
 }
 
 CRecentDatabase::CRecentDatabase(QObject *parent)
@@ -49,7 +37,6 @@ CRecentDatabase::CRecentDatabase(QObject *parent)
 CRecentDatabase::~CRecentDatabase()
 {
     qDebug(log) << Q_FUNC_INFO;
-    CloseDatabase();
 }
 
 bool CRecentDatabase::OnInitializeDatabase()
@@ -346,7 +333,7 @@ bool CRecentDatabase::ExportToJson(QJsonObject &obj)
     foreach(auto it, items) {
         QJsonObject itemObj;
 
-        bool bRet = CDatabaseFile::ExportFileToJson(it.szFile, itemObj);
+        bool bRet = CDatabaseFile::ExportFileToJson(it.GetFile(), itemObj);
         if(!bRet) continue;
 
         itemObj.insert("OperateId", it.szOperateId);
@@ -379,10 +366,12 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
     for(auto it = recents.begin(); it != recents.end(); it++) {
         QJsonObject itemObj = it->toObject();
         RecentItem item;
-
-        bool bRet = m_FileDB.ImportFileToDatabaseFromJson(itemObj, item.szFile);
+        
+        QString szFile;
+        bool bRet = m_FileDB.ImportFileToDatabaseFromJson(itemObj, szFile);
         if(!bRet) continue;
 
+        item.SetFile(szFile);
         // Check if is exist in recent
         QSqlQuery query(GetDatabase());
         query.prepare(

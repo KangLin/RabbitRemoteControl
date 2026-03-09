@@ -50,28 +50,31 @@ public:
     [[nodiscard]] virtual bool OpenDatabase(
         const CParameterDatabase* pPara = nullptr,
         const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenMySqlDatabase(
+    [[nodiscard]] bool OpenMySqlDatabase(
         const CParameterDatabase* pPara,
         const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenODBCDatabase(
+    [[nodiscard]] bool OpenODBCDatabase(
         const CParameterDatabase* pPara,
         const QString& szConnectName = QString());
-    [[nodiscard]] virtual bool OpenSQLiteDatabase(
+    [[nodiscard]] bool OpenSQLiteDatabase(
         const CParameterDatabase* pPara,
         const QString &szConnectionName = QString());
-    [[nodiscard]] virtual bool OpenSQLiteDatabase(
+    [[nodiscard]] bool OpenSQLiteDatabase(
         const QString& szFile,
         const QString& szConnectionName = QString());
+
     [[nodiscard]] virtual bool IsOpen() const;
-    virtual void CloseDatabase();
+    /*!
+     * \brief Close database
+     * \note It is only necessary to use it to close the database when using OpenDatabase.
+     */
+    void CloseDatabase();
 
     [[nodiscard]] const CParameterDatabase* GetParameter() const;
     [[nodiscard]] const QString GetError() const;
     
     [[nodiscard]] virtual bool ExportToJsonFile(const QString& szFile);
     [[nodiscard]] virtual bool ImportFromJsonFile(const QString& szFile);
-    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj);
-    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj);
 
 Q_SIGNALS:
     void sigChanged();
@@ -86,6 +89,9 @@ protected:
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase();
     void SetError(const QString& szErr = QString());
 
+    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj);
+    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj);
+
 protected:
     QString m_szConnectName;
     QString m_MinVersion;
@@ -93,11 +99,12 @@ protected:
 
 private:
     QSqlDatabase m_database;
+    bool m_bOwner;
     QString m_szError;
 };
 
 /*!
- * \brief The CDatabaseIcon class
+ * \brief Icon database
  * \ingroup DATABASE_API
  */
 class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
@@ -105,8 +112,8 @@ class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
     Q_OBJECT
 
 public:
-    explicit CDatabaseIcon(QObject *parent = nullptr);
-    explicit CDatabaseIcon(const QString& szPrefix, QObject *parent = nullptr);
+    explicit CDatabaseIcon(const QString& szSuffix = QString(),
+                           QObject *parent = nullptr);
 
     /*!
      * \brief Get icon id
@@ -117,9 +124,6 @@ public:
     [[nodiscard]] int GetIcon(const QIcon& icon);
     [[nodiscard]] QIcon GetIcon(int id);
 
-    [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
-    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
-
     [[nodiscard]] static bool ExportIconToJson(/*in*/const QIcon& icon, /*out*/QJsonObject& obj);
     [[nodiscard]] static bool ImportIconFromJson(/*in*/const QJsonObject &obj, /*out*/QIcon& icon);
 
@@ -127,12 +131,14 @@ protected:
     bool OnInitializeSqliteDatabase() override;
     bool OnInitializeMySqlDatabase() override;
 
+    //[[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
+
 private:
     QString m_szTableName;
 };
 
 /*!
- * \brief The CDatabaseFile class
+ * \brief File database
  * \note The file field is filename, don't include path.
  * \ingroup DATABASE_API
  */
@@ -141,28 +147,56 @@ class PLUGIN_EXPORT CDatabaseFile : public CDatabase
     Q_OBJECT
     
 public:
-    explicit CDatabaseFile(QObject* parent = nullptr);
-    explicit CDatabaseFile(const QString& szPrefix, QObject *parent = nullptr);
+    explicit CDatabaseFile(const QString& szSuffix = QString(),
+                           QObject *parent = nullptr);
 
     bool IsExist(const QString& szFile);
-    
+
     /*!
      * \brief Load
-     * \param szFile: the file path
+     * \param szFile: the file path(with file system)
      */
     [[nodiscard]] QByteArray Load(const QString &szFile);
     /*!
      * \brief Save
-     * \param szFile: the file path
+     * \param szFile: the file path(with file system)
      */
     bool Save(const QString& szFile);
-
-    [[nodiscard]] virtual bool ExportToJson(QJsonObject &obj) override;
-    [[nodiscard]] virtual bool ImportFromJson(const QJsonObject &obj) override;
     
+    /*!
+     * \brief ExportFileToJson
+     * \param szFile: file path(with file system)
+     * \param obj
+     * \return 
+     */
     [[nodiscard]] static bool ExportFileToJson(const QString &szFile, QJsonObject &obj);
+    /*!
+     * \brief Import file from JSON
+     * \param obj
+     * \param szFile: file path(with file system)
+     * \return 
+     */
     [[nodiscard]] static bool ImportFileFromJson(const QJsonObject &obj, QString &szFile);
+    /*!
+     * \brief Import file to database from JSON
+     * \param obj
+     * \param szFile: file path(with file system)
+     * \return 
+     */
     [[nodiscard]] bool ImportFileToDatabaseFromJson(const QJsonObject &obj, QString &szFile);
+
+    /*!
+     * \brief Get the file with file system from the file in database
+     * \param szFile: the file in database
+     * \return the file with file system
+     */
+    [[nodiscard]] static QString GetFile(const QString& szFile);
+    /*!
+     * \brief Set the file with file system to the file in database
+     * \param szFile: the file with system system
+     * \return the file in database
+     */
+    [[nodiscard]] static QString SetFile(const QString& szFile);
 
 protected:
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;

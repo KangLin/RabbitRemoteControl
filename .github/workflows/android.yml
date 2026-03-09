@@ -433,7 +433,14 @@ jobs:
             -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
             -DBUILD_LibVNCServer=OFF \
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
-            -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
+            -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
+            -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 \
+            -DINSTALL_QTERMWIDGET=ON \
+            -DQt6Keychain_DIR=${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain \
+            -DINSTALL_QTKEYCHAIN=ON \
+            -DQFtpServerLib_DIR=${{env.INSTALL_DIR}}/lib/cmake/QFtpServerLib \
+            -DINSTALL_QFtpServer=ON \
+            -DRABBIT_ENABLE_INSTALL_TARGETS=ON
           cmake --build --preset "android-${{env.ANDROID_ABI}}-qt6"
 
       - name: Update configure file

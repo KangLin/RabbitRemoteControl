@@ -8,7 +8,8 @@ class CDatabaseUrl : public CDatabase
 {
     Q_OBJECT
 public:
-    explicit CDatabaseUrl(QObject *parent = nullptr);
+    explicit CDatabaseUrl(const QString &szSuffix = QString(),
+                          QObject *parent = nullptr);
 
     struct UrlItem {
         int id;
@@ -39,6 +40,7 @@ public:
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 private:
+    QString m_szTableName;
     CDatabaseIcon m_iconDB;
     
     // CDatabase interface

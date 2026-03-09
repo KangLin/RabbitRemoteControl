@@ -7,10 +7,15 @@
 #include "DatabaseUrl.h"
 
 static Q_LOGGING_CATEGORY(log, "DB.Url")
-CDatabaseUrl::CDatabaseUrl(QObject *parent)
+CDatabaseUrl::CDatabaseUrl(const QString &szSuffix, QObject *parent)
     : CDatabase{parent}
-{}
-
+{
+    m_szTableName = "url";
+    if(!szSuffix.isEmpty()) {
+        m_szTableName = m_szTableName + "_" + szSuffix;
+    }
+    m_szConnectName = "connect_" + m_szTableName;
+}
 
 bool CDatabaseUrl::OnInitializeDatabase()
 {
@@ -21,6 +26,73 @@ bool CDatabaseUrl::OnInitializeDatabase()
     return success;
 }
 
+bool CDatabaseUrl::OnInitializeSqliteDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    bool bRet = query.prepare(
+        "CREATE TABLE IF NOT EXISTS " + m_szTableName + " ("
+        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    url TEXT UNIQUE NOT NULL,"
+        "    title TEXT,"
+        "    icon INTEGER DEFAULT 0,"
+        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
+        ")"
+        );
+    if (!bRet) {
+        SetError("Failed to create " + m_szTableName + " sqlite table. Error: " + query.lastError().text());
+        qCritical(log) << GetError();
+        return false;
+    }
+    bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to create " + m_szTableName + " sqlite table: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        return false;
+    }
+    
+    // 创建索引
+    query.prepare("CREATE INDEX IF NOT EXISTS idx_" + m_szTableName + "_url ON " + m_szTableName + "(url)");
+    bRet = query.exec();
+    if (!bRet) {
+        qWarning(log) << "Failed to create index idx_" + m_szTableName + "_url:"
+                      << query.lastError().text()
+                      << query.executedQuery();
+    }
+    
+    return true;
+}
+
+bool CDatabaseUrl::OnInitializeMySqlDatabase()
+{
+    QSqlQuery query(GetDatabase());
+    
+    // 创建历史记录表
+    bool bRet = query.prepare(
+        "CREATE TABLE IF NOT EXISTS `" + m_szTableName + "` ("
+        "    `id` INTEGER PRIMARY KEY AUTO_INCREMENT,"
+        "    `url` TEXT NOT NULL,"
+        "    `title` TEXT,"
+        "    `icon` INTEGER DEFAULT 0,"
+        "    `visit_time` DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    UNIQUE KEY `idx_url` (`url`(255))"
+        ")"
+        );
+    if (!bRet) {
+        SetError("Failed to create " + m_szTableName + " mysql table. Error: " + query.lastError().text());
+        qCritical(log) << GetError();
+        return false;
+    }
+    bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to create " + m_szTableName + " mysql table. Error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
+        return false;
+    }
+    
+    return bRet;
+}
+
 int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &icon)
 {
     int nId = 0;
@@ -29,10 +101,15 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
     QSqlQuery query(GetDatabase());
 
     // 检查URL是否已存在
-    query.prepare("SELECT id, title, icon FROM url WHERE url = :url");
+    query.prepare("SELECT id, title, icon FROM " + m_szTableName + " WHERE url = :url");
     query.bindValue(":url", url);
-
-    if (query.exec() && query.next()) {
+    if (!query.exec()) {
+        SetError("Failed to exec: " + query.executedQuery()
+                 + "; Error: " + query.lastError().text());
+        qCritical(log) << GetError();
+        return -1;
+    }
+    if(query.next()) {
         // 更新现有记录
         nId = query.value(0).toInt();
         QString szTitle = query.value(1).toString();
@@ -41,9 +118,8 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
         int iconID = query.value(2).toInt();
         if(!icon.isNull())
             iconID = m_iconDB.GetIcon(icon);
-
         query.prepare(
-            "UPDATE url SET "
+            "UPDATE " + m_szTableName + " SET "
             "title = :title, "
             "icon = :icon, "
             "visit_time = :visit_time "
@@ -56,7 +132,7 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
     } else {
         // 插入新记录
         query.prepare(
-            "INSERT INTO url (url, title, icon) "
+            "INSERT INTO " + m_szTableName + " (url, title, icon) "
             "VALUES (:url, :title, :icon)"
             );
         query.bindValue(":url", url);
@@ -72,8 +148,10 @@ int CDatabaseUrl::AddUrl(const QString &url, const QString &title, const QIcon &
     bool success = query.exec();
     if (!success) {
         nId = 0;
-        qCritical(log) << "Failed to add url:" << url << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to add " + m_szTableName + ": " + url
+                 + "; Error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     } else {
         if(0 == nId)
             nId = query.lastInsertId().toInt();
@@ -87,16 +165,17 @@ bool CDatabaseUrl::DeleteUrl(const QString &url)
     if (url.isEmpty()) return false;
 
     QSqlQuery query(GetDatabase());
-
-    query.prepare("DELETE from url WHERE url = :url");
+    query.prepare("DELETE from " + m_szTableName + " WHERE url = :url");
     query.bindValue(":url", url);
-
-    bool success = query.exec();
-    if (!success) {
-        qCritical(log) << "Failed to delete url:" << url << query.lastError().text();
+    bool bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to delete " + m_szTableName + ": " + url
+                 + "; Error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
-    return success;
+    return bRet;
 }
 
 bool CDatabaseUrl::DeleteUrl(int id)
@@ -105,12 +184,15 @@ bool CDatabaseUrl::DeleteUrl(int id)
 
     QSqlQuery query(GetDatabase());
 
-    query.prepare("DELETE from url WHERE id = :id");
+    query.prepare("DELETE from " + m_szTableName + " WHERE id = :id");
     query.bindValue(":id", id);
 
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to delete url:" << id << query.lastError().text();
+        SetError("Failed to delete " + m_szTableName + ": " + QString::number(id)
+                 + "; Error: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -121,22 +203,22 @@ bool CDatabaseUrl::UpdateUrl(const QString &url, const QString &title, const QIc
     if (url.isEmpty()) return false;
     if(title.isEmpty() && icon.isNull()) return false;
 
-    QSqlQuery query(GetDatabase());
-
     QString szSql;
-    szSql += "visit_time=\"" + QDateTime::currentDateTime().toString() + "\" ";
+    szSql += "visit_time=\"" + QDateTime::currentDateTime().toString(Qt::ISODate) + "\" ";
     if(!title.isEmpty())
         szSql += ", title=\"" + title + "\" ";
     if(!icon.isNull()) {
         szSql += ", icon=" + QString::number(m_iconDB.GetIcon(icon)) + " ";
     }
 
-    szSql = "UPDATE url SET " + szSql;
-    szSql += "WHERE url=\"" + url + "\"";
-
+    szSql = "UPDATE " + m_szTableName + " SET " + szSql;
+    szSql += " WHERE url=\"" + url + "\"";
+    
+    QSqlQuery query(GetDatabase());
     bool success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to update url:" << szSql << query.lastError().text();
+        SetError("Failed to update url: " + query.lastError().text() + "; Sql: " + szSql);
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -145,34 +227,25 @@ bool CDatabaseUrl::UpdateUrl(const QString &url, const QString &title, const QIc
 bool CDatabaseUrl::UpdateUrl(int id, const QString &title, const QIcon &icon)
 {
     if (0 >= id) return false;
-
     if(title.isEmpty() && icon.isNull()) return false;
+    
     QString szSql;
-    szSql += "visit_time=\"" + QDateTime::currentDateTime().toString() + "\" ";
+    szSql += "visit_time=\"" + QDateTime::currentDateTime().toString(Qt::ISODate) + "\" ";
     if(!title.isEmpty())
         szSql += ", title=\"" + title + "\" ";
     if(!icon.isNull()) {
         szSql += ", icon=" + QString::number(m_iconDB.GetIcon(icon)) + " ";
     }
+    szSql = "UPDATE " + m_szTableName + " SET " + szSql;
+    szSql += " WHERE id = " + QString::number(id);
 
     QSqlQuery query(GetDatabase());
-    query.prepare("SELECT title, icon FROM url WHERE id = :id");
+    query.prepare(szSql);
     query.bindValue(":id", id);
-
-    if (query.exec() && query.next()) {
-        if(szSql.isEmpty())
-            return false;
-
-        szSql = "UPDATE url SET " + szSql;
-        szSql += "WHERE id = " + QString::number(id);
-    } else {
-        qCritical(log) << "Failed to update url, url is not exist:" << id;
-        return false;
-    }
-
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to update url:" << szSql << query.lastError().text();
+        SetError("Failed to update url: " + query.lastError().text() + "; Sql: " + szSql);
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -184,11 +257,9 @@ CDatabaseUrl::UrlItem CDatabaseUrl::GetItem(int id)
     if (0 >= id) return item;
 
     QSqlQuery query(GetDatabase());
-
-    query.prepare("SELECT url, title, icon, visit_time FROM url "
-                  "WHERE id = :id");
+    query.prepare("SELECT url, title, icon, visit_time FROM " + m_szTableName +
+                  " WHERE id = :id");
     query.bindValue(":id", id);
-
     if (query.exec() && query.next()) {
         item.id = id;
         item.szUrl = query.value(0).toString();
@@ -206,11 +277,9 @@ CDatabaseUrl::UrlItem CDatabaseUrl::GetItem(const QString& url)
     if (url.isEmpty()) return item;
 
     QSqlQuery query(GetDatabase());
-
-    query.prepare("SELECT id, title, icon, visit_time FROM url "
-                  "WHERE url = :url");
+    query.prepare("SELECT id, title, icon, visit_time FROM " + m_szTableName +
+                  " WHERE url = :url");
     query.bindValue(":url", url);
-
     if (query.exec() && query.next()) {
         item.szUrl = url;
         item.id = query.value(0).toInt();
@@ -225,14 +294,22 @@ CDatabaseUrl::UrlItem CDatabaseUrl::GetItem(const QString& url)
 int CDatabaseUrl::GetId(const QString& url)
 {
     if (url.isEmpty()) return 0;
-
     QSqlQuery query(GetDatabase());
-
-    query.prepare("SELECT id, title, icon FROM url "
-                  "WHERE url = :url");
+    bool bRet = query.prepare("SELECT id, title, icon FROM " + m_szTableName +
+                  " WHERE url = :url");
+    if(!bRet) {
+        SetError("Failed to get id prepare: " + query.lastError().text() + "; url: " + url);
+        qCritical(log) << GetError();
+        return 0;
+    }
     query.bindValue(":url", url);
-
-    if (query.exec() && query.next()) {
+    bRet = query.exec();
+    if (!bRet) {
+        SetError("Failed to get id: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery() + "; url: " + url);
+        qCritical(log) << GetError();
+    }
+    if(query.next()) {
         return query.value(0).toInt();
     }
     return 0;
@@ -242,9 +319,8 @@ QList<int> CDatabaseUrl::GetDomain(const QString &szDomain)
 {
     QList<int> ret;
     QSqlQuery query(GetDatabase());
-    query.prepare("SELECT id FROM url WHERE url LIKE :url");
+    query.prepare("SELECT id FROM " + m_szTableName + " WHERE url LIKE :url");
     query.bindValue(":url", QString("%%://%%%1%%").arg(szDomain));
-
     bool bRet = query.exec();
     if (bRet) {
         while(query.next()) {
@@ -255,7 +331,6 @@ QList<int> CDatabaseUrl::GetDomain(const QString &szDomain)
                        << query.lastError().text()
                        << query.executedQuery();
     }
-
     return ret;
 }
 
@@ -267,12 +342,11 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
     QString searchPattern = "%" + keyword + "%";
     query.prepare(
         "SELECT id, url, title, visit_time, icon "
-        "FROM url "
+        "FROM " + m_szTableName + " "
         "WHERE url LIKE :pattern OR title LIKE :pattern "
         "ORDER BY visit_time DESC"
         );
     query.bindValue(":pattern", searchPattern);
-
     if (query.exec()) {
         while (query.next()) {
             UrlItem item;
@@ -284,9 +358,9 @@ QList<CDatabaseUrl::UrlItem> CDatabaseUrl::Search(const QString &keyword)
             items.append(item);
         }
     } else {
-        qCritical(log) << "Failed to search:"
-                       << query.lastError().text()
-                       << query.executedQuery();
+        SetError("Failed to search:" + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return items;
@@ -300,66 +374,4 @@ bool CDatabaseUrl::ExportToJson(QJsonObject &obj)
 bool CDatabaseUrl::ImportFromJson(const QJsonObject &obj)
 {
     return true;
-}
-
-bool CDatabaseUrl::OnInitializeSqliteDatabase()
-{
-    QSqlQuery query(GetDatabase());
-    
-    // 创建历史记录表
-    query.prepare(
-        "CREATE TABLE IF NOT EXISTS url ("
-        "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    url TEXT UNIQUE NOT NULL,"
-        "    title TEXT,"
-        "    icon INTEGER DEFAULT 0,"
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-        );
-    bool success = query.exec();
-    
-    if (!success) {
-        qCritical(log) << "Failed to create url table:"
-                       << query.lastError().text()
-                       << query.executedQuery();
-        return false;
-    }
-    
-    // 创建索引
-    query.prepare("CREATE INDEX IF NOT EXISTS idx_url_url ON url(url)");
-    success = query.exec();
-    if (!success) {
-        qWarning(log) << "Failed to create index idx_url_url:"
-                       << query.lastError().text()
-                       << query.executedQuery();
-    }
-
-    return true;
-}
-
-bool CDatabaseUrl::OnInitializeMySqlDatabase()
-{
-    QSqlQuery query(GetDatabase());
-    
-    // 创建历史记录表
-    query.prepare(
-        "CREATE TABLE IF NOT EXISTS url ("
-        "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
-        "    url TEXT NOT NULL,"
-        "    title TEXT,"
-        "    icon INTEGER DEFAULT 0,"
-        "    visit_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    UNIQUE KEY idx_url_url (url(32767))"
-        ")"
-        );
-    bool success = query.exec();
-    
-    if (!success) {
-        qCritical(log) << "Failed to create url table:"
-                       << query.lastError().text()
-                       << query.executedQuery();
-        return false;
-    }
-
-    return success;
 }

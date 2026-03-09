@@ -6,16 +6,16 @@
 
 class PLUGIN_EXPORT TreeItem {
 public:
-    TreeItem();
+    enum TYPE {
+        Node,
+        Leaf
+    };
+    TreeItem(TYPE type);
     TreeItem(const TreeItem& item);
 
     [[nodiscard]] bool IsNode() const;
     [[nodiscard]] bool IsLeaf() const;
 
-    enum TYPE {
-        Node,
-        Leaf
-    };
     [[nodiscard]] TYPE GetType() const;
     void SetType(TYPE type);
     [[nodiscard]] int GetId() const;
@@ -37,15 +37,18 @@ public:
     void SetKey(int newNKey);
 
 private:
-    TYPE m_Type;
-    int m_id;
-    QString m_szName;
-    int m_nKey;
-    QDateTime m_CreateTime;
-    QDateTime m_ModifyTime;
-    QDateTime m_LastVisitTime;
-    int m_ParentId;
-    int m_SortOrder;
+    struct _DATA{
+        TYPE m_Type;
+        int m_id;
+        QString m_szName;
+        int m_nKey;
+        QDateTime m_CreateTime;
+        QDateTime m_ModifyTime;
+        QDateTime m_LastVisitTime;
+        int m_ParentId;
+        int m_SortOrder;
+    };
+    _DATA m_Data;
 };
 
 /*!
@@ -57,8 +60,8 @@ class PLUGIN_EXPORT CDatabaseFolder : public CDatabase
     Q_OBJECT
 
 public:
-    explicit CDatabaseFolder(QObject *parent = nullptr);
-    explicit CDatabaseFolder(const QString& szPrefix, QObject *parent = nullptr);
+    explicit CDatabaseFolder(const QString& szPrefix = QString(),
+                             QObject *parent = nullptr);
 
     // 文件夹操作
     int AddFolder(const QString &name, int parentId = 0);
@@ -71,16 +74,14 @@ public:
     [[nodiscard]] QList<TreeItem> GetSubFolders(int parentId);
     /*!
      * \brief Get count
-     * \param parentId: 0 : Get all count
+     * \param parentId: - 0 : Get all count
+     *                  - other: get the count of children in parentId 
      * \return
      */
     [[nodiscard]] int GetCount(int parentId = 0);
 
     [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj) override;
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
-
-    [[nodiscard]] QString GetTableName() const;
-    void SetTableName(const QString &newSzTableName);
 
 Q_SIGNALS:
     void sigAddFolder(int id, int parentId);
@@ -103,11 +104,10 @@ class PLUGIN_EXPORT CDatabaseTree : public CDatabase
     Q_OBJECT
 
 public:
-    explicit CDatabaseTree(QObject* parent = nullptr);
-    explicit CDatabaseTree(const QString& szPrefix, QObject* parent = nullptr);
+    explicit CDatabaseTree(const QString& szPrefix = QString(),
+                           QObject* parent = nullptr);
 
-    // Leaf operate
-
+    // ====== Leaf operate ======
     /*!
      * \brief Add item
      * \param item
@@ -137,7 +137,7 @@ public:
     [[nodiscard]] QList<TreeItem> GetLeavesByKey(QList<int> key);
     [[nodiscard]] int GetLeafCount(int parentId = 0);
 
-    // Node operate
+    // ====== Node operate ======
     virtual int AddNode(const QString &name, int parentId = 0);
     virtual bool RenameNode(int id, const QString &newName);
     virtual bool DeleteNode(int id, bool delKey = false);
