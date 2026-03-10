@@ -47,7 +47,7 @@ public:
      *        - true: successfully
      *        - false: failed
      */
-    [[nodiscard]] virtual bool OpenDatabase(
+    [[nodiscard]] bool OpenDatabase(
         const CParameterDatabase* pPara = nullptr,
         const QString& szConnectName = QString());
     [[nodiscard]] bool OpenMySqlDatabase(

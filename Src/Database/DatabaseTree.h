@@ -10,8 +10,10 @@ public:
         Node,
         Leaf
     };
+
     TreeItem(TYPE type);
     TreeItem(const TreeItem& item);
+    TreeItem& operator = (const TreeItem& item);
 
     [[nodiscard]] bool IsNode() const;
     [[nodiscard]] bool IsLeaf() const;
@@ -66,7 +68,10 @@ public:
     // 文件夹操作
     int AddFolder(const QString &name, int parentId = 0);
     bool RenameFolder(int id, const QString &newName);
-    bool DeleteFolder(int id, std::function<int(int parentId)> cbDeleteLeaf = nullptr);
+    bool DeleteFolder(
+        int id,
+        std::function<bool(int parentId)> cbDeleteLeaf = nullptr,
+        bool checkReturn = true);
     bool MoveFolder(int id, int newParentId);
     // 文件夹查询
     [[nodiscard]] TreeItem GetFolder(int id);
@@ -87,7 +92,7 @@ Q_SIGNALS:
     void sigAddFolder(int id, int parentId);
 
 protected:
-    [[nodiscard]] virtual int OnDeleteLeafs(int id);
+    [[nodiscard]] virtual bool OnDeleteLeafs(int id);
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase() override;
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase() override;
     

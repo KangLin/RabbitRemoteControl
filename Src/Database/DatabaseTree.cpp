@@ -23,6 +23,12 @@ TreeItem::TreeItem(const TreeItem &item)
     m_Data = item.m_Data;
 }
 
+TreeItem& TreeItem::operator =(const TreeItem& item)
+{
+    m_Data = item.m_Data;
+    return *this;
+}
+
 bool TreeItem::IsNode() const
 {
     return Node == GetType();
@@ -283,23 +289,34 @@ bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
     return success;
 }
 
-bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbDeleteLeaf)
+bool CDatabaseFolder::DeleteFolder(
+    int id, std::function<bool (int)> cbDeleteLeaf, bool checkReturn)
 {
-    int nRet = 0;
+    bool bRet = 0;
     // 删除子目录
     auto folders = GetSubFolders(id);
     foreach(auto f, folders) {
-        DeleteFolder(f.GetId(), cbDeleteLeaf);
+        bRet = DeleteFolder(f.GetId(), cbDeleteLeaf, checkReturn);
+        if(checkReturn && !bRet)
+            return false;
     }
 
     // 删除其下面的所有条目
     if(cbDeleteLeaf) {
-        nRet = cbDeleteLeaf(id);
-        if(nRet) return false;
+        bRet = cbDeleteLeaf(id);
+        if(checkReturn && !bRet) {
+            SetError("Failed to call cbDeleteLeaf");
+            qCritical(log) << GetError();
+            return false;
+        }
     }
 
-    nRet = OnDeleteLeafs(id);
-    if(nRet) return false;
+    bRet = OnDeleteLeafs(id);
+    if(checkReturn && !bRet) {
+        SetError("Failed to call OnDeleteLeafs");
+        qCritical(log) << GetError();
+        return false;
+    }
 
     // 删除文件夹
     QSqlQuery query(GetDatabase());
@@ -319,8 +336,9 @@ bool CDatabaseFolder::DeleteFolder(int id, std::function<int (int parentId)> cbD
     return success;
 }
 
-int CDatabaseFolder::OnDeleteLeafs(int id)
+bool CDatabaseFolder::OnDeleteLeafs(int id)
 {
+    Q_UNUSED(id);
     return true;
 }
 
@@ -418,7 +436,6 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
             folder.SetParentId(query.value(2).toInt());
             folder.SetSortOrder(query.value(3).toInt());
             folder.SetCreateTime(query.value(4).toDateTime());
-
             folders.append(folder);
         }
     } else {
@@ -744,9 +761,9 @@ bool CDatabaseTree::DeleteChild(int parentId, bool delKey)
     query.bindValue(":parent_id", parentId);
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to delete child item:"
-                       << m_szTableName << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to delete child item:" + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -941,9 +958,12 @@ bool CDatabaseTree::RenameNode(int id, const QString &newName)
 
 bool CDatabaseTree::DeleteNode(int id, bool delKey)
 {
-    return m_FolderDB.DeleteFolder(id, [&, delKey](int parentId)->int {
-        return DeleteChild(parentId, delKey);
-    });
+    return m_FolderDB.DeleteFolder(
+        id,
+        [&, delKey](int parentId)->bool {
+            return DeleteChild(parentId, delKey);
+        },
+        true);
 }
 
 bool CDatabaseTree::MoveNode(int id, int newParentId)
