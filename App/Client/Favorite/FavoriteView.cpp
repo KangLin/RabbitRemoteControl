@@ -185,7 +185,14 @@ void CFavoriteView::setupTreeView(QLayout *layout)
         return;
     layout->addWidget(m_pTreeView);
 
+    //m_pTreeView->installEventFilter(this);
+    m_pTreeView->viewport()->installEventFilter(this);
     m_pTreeView->setAcceptDrops(true);
+    m_pTreeView->setDragEnabled(true);
+    m_pTreeView->setDragDropMode(QTreeView::InternalMove);
+    m_pTreeView->setDefaultDropAction(Qt::MoveAction);
+    m_pTreeView->setDropIndicatorShown(true);
+
     m_pTreeView->setUniformRowHeights(true);
     m_pTreeView->setHeaderHidden(true);
 
@@ -508,77 +515,113 @@ void CFavoriteView::slotExport()
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
-    qDebug(log) << "dragEnterEvent";
+    qDebug(log) << Q_FUNC_INFO;
     const CFavoriteMimeData* pData =
         qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
     {
         qDebug(log) << "dragEnterEvent acceptProposedAction";
         event->acceptProposedAction();
-    }
+        /*
+        // 设置拖拽时的光标
+        if (event->proposedAction() == Qt::MoveAction) {
+            setCursor(Qt::DragMoveCursor);
+        } else {
+            setCursor(Qt::DragCopyCursor);
+        }//*/
+    } else
+        event->ignore();
 }
 
 void CFavoriteView::dragMoveEvent(QDragMoveEvent *event)
 {
+    qDebug(log) << Q_FUNC_INFO;
+    const CFavoriteMimeData* pData =
+        qobject_cast<const CFavoriteMimeData*>(event->mimeData());
+    if (!pData)
+    {
+        event->ignore();
+        return;
+    }
 }
 
 void CFavoriteView::dropEvent(QDropEvent *event)
 {
-    qDebug(log) << "dropEvent";
+    qDebug(log) << Q_FUNC_INFO << "drop action:" << event->dropAction();
+
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
-    if(!pData) return;
-    /*
-    QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
-    if(!pModel) return;
+    if(!pData || pData->m_Items.isEmpty() || !m_pTreeView || !m_pModel) {
+        event->ignore();
+        return;
+    }
+
+    bool bRet = false;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    auto index = indexAt(event->position().toPoint());
+    auto idxParent = m_pTreeView->indexAt(event->position().toPoint());
 #else
-    auto index = indexAt(event->pos());
+    auto idxParent = m_pTreeView->indexAt(event->pos());
 #endif
-    if(index.isValid())
+    CFavoriteDatabase::Item item
+        = m_pModel->data(idxParent, CFavoriteModel::RoleItem)
+              .value<CFavoriteDatabase::Item>();
+    if(0 < item.id && item.isFolder())
     {
-        auto item = pModel->itemFromIndex(index);
-        if(item->data().isNull())
-        {
-            foreach(auto i, pData->m_Items)
-            {
-                qDebug(log) << "dropEvent:" << item->text();
-                
-                auto newItem = NewItem(i);
-                item->appendRow(newItem);
-                if(event->dropAction() == Qt::MoveAction)
-                    pModel->removeRow(i.row(), i.parent());
-            } 
-        } else
-            qWarning(log) << "Don't group node. the data:" << item->data();
-    }else{
         foreach(auto i, pData->m_Items)
         {
-            pModel->appendRow(NewItem(i));
-            if(event->dropAction() == Qt::MoveAction)
-                pModel->removeRow(i.row(), i.parent());
+            if(i == idxParent) {
+                qWarning(log) << "Don't drag, the same node.";
+                break;
+            }
+            if (event->dropAction() == Qt::MoveAction)
+                bRet = m_pModel->Move(i, idxParent);
+            else if (event->dropAction() == Qt::CopyAction)
+                bRet = m_pModel->Copy(i, idxParent);
+            if(!bRet) break;
         }
+    } else {
+        qWarning(log) << "Don't group node. the id:" << item.id
+                      << " Folder:" << item.isFolder();
     }
-//*/
-    event->accept();
-}
-/*
-QStandardItem* CFavoriteView::NewItem(const QModelIndex &index)
-{
-    QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
-    if(!pModel) return nullptr;
-    auto item = pModel->itemFromIndex(index);
-    if(!item) return nullptr;
-    auto ri = new QStandardItem(item->text());
-    ri->setData(item->data());
-    return ri;
+
+    if(bRet)
+        event->accept();
+    else
+        event->ignore();
 }
 
 void CFavoriteView::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton)
-        m_DragStartPosition = event->pos();
-    QTreeView::mousePressEvent(event);
+    qDebug(log) << "mousePressEvent";
+    if (m_pTreeView && m_pTreeView->selectionModel()
+        && event->button() == Qt::LeftButton) {
+        // 获取选中的索引
+        QModelIndexList indexes = m_pTreeView->selectionModel()->selectedIndexes();
+        if (!indexes.isEmpty()) {
+            QDrag *drag = new QDrag(this);
+            do {
+                if(!drag) break;
+                m_DragStartPosition = event->pos();
+                CFavoriteMimeData *pData = new CFavoriteMimeData();
+                pData->m_Items = indexes;
+                drag->setMimeData(pData);
+                Qt::DropAction dropAction = Qt::MoveAction;
+                /*
+                if(event->modifiers() & Qt::ControlModifier) {
+                    dropAction = Qt::CopyAction;
+                    // 设置拖拽时的光标
+                    // QIcon icon = QIcon::fromTheme("edit-copy");
+                    // QSize size(16, 16);
+                    // if(!icon.availableSizes().isEmpty())
+                    //     size = icon.availableSizes().at(0);
+                    // drag->setDragCursor(icon.pixmap(size), Qt::MoveAction);
+                }//*/
+                drag->exec(dropAction);
+            } while(0);
+            if(drag)
+                delete drag;
+        }
+    }
+    QWidget::mousePressEvent(event);
 }
 
 void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
@@ -591,21 +634,40 @@ void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
                 < QApplication::startDragDistance())
             break;
         qDebug(log) << "mouseMoveEvent drag";
-        QDrag *drag = new QDrag(this);
-        CFavoriteMimeData *pData = new CFavoriteMimeData();
-        pData->m_Items = this->selectionModel()->selectedIndexes();
-        drag->setMimeData(pData);
         
-        Qt::DropAction dropAction = Qt::MoveAction;
-        if(event->modifiers() & Qt::ControlModifier)
-            dropAction = Qt::CopyAction;
-        drag->exec(dropAction);
     } while (false);
     
-    QTreeView::mouseMoveEvent(event);
+    QWidget::mouseMoveEvent(event);
 }
-//*/
+
 bool CFavoriteView::eventFilter(QObject *watched, QEvent *event)
 {
+    // 处理 treeview 的事件
+    if (watched == m_pTreeView->viewport()) { // 处理 viewport 的事件
+        qDebug(log) << Q_FUNC_INFO << "Viewport event:" << event->type();
+
+        switch (event->type()) {
+        case QEvent::DragEnter:
+            dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+            return true;
+        case QEvent::DragMove:
+            dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+            return true;
+        case QEvent::Drop:
+            dropEvent(static_cast<QDropEvent*>(event));
+            return true;
+        case QEvent::MouseButtonPress:
+            mousePressEvent(static_cast<QMouseEvent*>(event));
+            // 不返回true，让 viewport 也处理
+            break;
+        case QEvent::MouseMove:
+            mouseMoveEvent(static_cast<QMouseEvent*>(event));
+            // 不返回true，让 viewport 也处理
+            break;
+        default:
+            break;
+        }
+    }
+
     return QWidget::eventFilter(watched, event);
 }

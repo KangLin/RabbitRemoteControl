@@ -270,6 +270,52 @@ bool CFavoriteModel::UpdateFavorite(
     return true;
 }
 
+bool CFavoriteModel::Move(QModelIndex index, QModelIndex parentIndex)
+{
+    if(!index.isValid()) return false;
+    tree* ip = GetTree(index);
+    if(!ip) return false;
+    tree* ipParent = GetTree(parentIndex);
+    if(!ipParent || ipParent->item.isFavorite()) return false;
+    int nParentId = ipParent->item.id;
+    auto& item = ip->item;
+    bool bRet = false;
+    if(item.isFavorite())
+        bRet = m_pDatabase->Move(item.id, nParentId);
+    else {
+        if(item.id != nParentId)
+            bRet = m_pDatabase->MoveNode(item.id, nParentId);
+        else
+            qWarning(log) << "The same node:" << item.id;
+    }
+    if(bRet)
+        bRet = MoveTree(ip->item, ipParent->item.id);
+    return bRet;
+}
+
+// TODO: not test!!!
+bool CFavoriteModel::Copy(QModelIndex index, QModelIndex parentIndex)
+{
+    bool bRet = false;
+    if(!index.isValid()) return false;
+    tree* ip = GetTree(index);
+    if(!ip) return false;
+    tree* ipParent = GetTree(parentIndex);
+    if(!ipParent || ipParent->item.isFavorite()) return false;
+    int nParentId = ipParent->item.id;
+    auto& item = ip->item;
+    if(item.isFavorite())
+        bRet = AddFavorite(item.szFile, item.szName, item.GetIcon(),
+                           item.szDescription, nParentId);
+    else {
+        if(item.id != nParentId)
+            bRet = m_pDatabase->AddNode(item.szName, nParentId);
+        if(bRet)
+            bRet = AddTree(item, nParentId);
+    }
+    return bRet;
+}
+
 CFavoriteDatabase::Item CFavoriteModel::GetFavorite(const QString &szFile)
 {
     CFavoriteDatabase::Item item;
@@ -422,6 +468,9 @@ bool CFavoriteModel::MoveTree(const CFavoriteDatabase::Item &item, int newParent
 
     int parentId = item.parentId;
     if(parentId == newParentId)
+        return true;
+
+    if(item.isFolder() && item.id == newParentId)
         return true;
 
     tree* parent = GetTree(parentId);

@@ -35,21 +35,20 @@ public Q_SLOTS:
                             const QString& szName = QString(),
                             const QString& szDescription = QString(),
                             const QIcon& icon = QIcon());
-    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings);
     void sigFavorite();
 
-    // QWidget interface
 protected:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
-/*
+
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
-  */
+
 private slots:
     void slotFavrtieClicked(const QModelIndex &index);
     void slotFavortiedoubleClicked(const QModelIndex &index);

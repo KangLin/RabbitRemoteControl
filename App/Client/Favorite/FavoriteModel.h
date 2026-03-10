@@ -26,6 +26,8 @@ public:
     CFavoriteDatabase::Item GetFavorite(const QString& szFile);
     void Refresh();
 
+    bool Move(QModelIndex index, QModelIndex parentIndex);
+    bool Copy(QModelIndex index, QModelIndex parentIndex);
     enum RoleType {
         RoleFile = Qt::UserRole,
         RoleNodeType,
