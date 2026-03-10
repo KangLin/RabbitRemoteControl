@@ -106,6 +106,7 @@ cmake . -B $RPM_BUILD_DIR  \
     -DWITH_WebEngineWidgets=ON \
     -DBUILD_FREERDP=ON \
     -DRABBIT_ENABLE_INSTALL_TARGETS=ON \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DINSTALL_QFtpServer=ON
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 

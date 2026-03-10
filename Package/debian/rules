@@ -46,6 +46,7 @@ override_dh_auto_configure:
 		-DWITH_CMARK=OFF \
 		-DWITH_CMARK_GFM=ON \
 		-DWITH_WebEngineWidgets=ON \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 		${CMAKE_CONFIG_PARAS}
 
 override_dh_auto_build:
