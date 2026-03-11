@@ -40,5 +40,5 @@ public:
 
     // COperate interface
 public:
-    CStats *GetStats();
+    CStats *GetStats() override;
 };
