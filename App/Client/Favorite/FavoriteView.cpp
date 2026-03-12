@@ -594,18 +594,26 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
     qDebug(log) << "mousePressEvent";
     if (m_pTreeView && m_pTreeView->selectionModel()
         && event->button() == Qt::LeftButton) {
+
         // 获取选中的索引
         QModelIndexList indexes = m_pTreeView->selectionModel()->selectedIndexes();
         if (!indexes.isEmpty()) {
-            QDrag *drag = new QDrag(this);
-            do {
-                if(!drag) break;
-                m_DragStartPosition = event->pos();
-                CFavoriteMimeData *pData = new CFavoriteMimeData();
-                pData->m_Items = indexes;
-                drag->setMimeData(pData);
-                Qt::DropAction dropAction = Qt::MoveAction;
-                /*
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            auto curIndex = m_pTreeView->indexAt(event->position().toPoint());
+#else
+            auto curIndex = m_pTreeView->indexAt(event->pos());
+#endif
+            if(indexes.contains(curIndex)) {
+                QDrag *drag = new QDrag(this);
+                do {
+                    if(!drag) break;
+                    m_DragStartPosition = event->pos();
+                    CFavoriteMimeData *pData = new CFavoriteMimeData();
+                    pData->m_Items = indexes;
+                    drag->setMimeData(pData);
+                    Qt::DropAction dropAction = Qt::MoveAction;
+                    /*
                 if(event->modifiers() & Qt::ControlModifier) {
                     dropAction = Qt::CopyAction;
                     // 设置拖拽时的光标
@@ -615,10 +623,11 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
                     //     size = icon.availableSizes().at(0);
                     // drag->setDragCursor(icon.pixmap(size), Qt::MoveAction);
                 }//*/
-                drag->exec(dropAction);
-            } while(0);
-            if(drag)
-                delete drag;
+                    drag->exec(dropAction);
+                } while(0);
+                if(drag)
+                    delete drag;
+            }
         }
     }
     QWidget::mousePressEvent(event);
