@@ -57,7 +57,7 @@ bool CRecentDatabase::OnInitializeSqliteDatabase()
     QSqlQuery query(GetDatabase());
 
     // Create recent table
-    bool success = query.exec(
+    QString szSql =
         "CREATE TABLE IF NOT EXISTS recent ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    operate_id TEXT NOT NULL,"
@@ -68,11 +68,13 @@ bool CRecentDatabase::OnInitializeSqliteDatabase()
         "    file TEXT UNIQUE NOT NULL,"
         "    time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    description TEXT"
-        ")"
-        );
+        ")";
+    bool success = query.exec(szSql);
 
     if (!success) {
-        qCritical(log) << "Failed to create recent table:" << query.lastError().text();
+        SetError("Failed to create recent table: " + query.lastError().text()
+                 + "; Sql:" + szSql);
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -90,7 +92,7 @@ bool CRecentDatabase::OnInitializeSqliteDatabase()
                     << "Sql:" << query.executedQuery();
     }
 
-    QString szSql = R"(
+    szSql = R"(
         CREATE TRIGGER delete_icon_after_recent
         AFTER DELETE ON recent
         FOR EACH ROW
@@ -122,7 +124,7 @@ bool CRecentDatabase::OnInitializeMySqlDatabase()
     QSqlQuery query(GetDatabase());
 
     // Create recent table
-    success = query.exec(
+    QString szSql =
         "CREATE TABLE IF NOT EXISTS recent ("
         "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
         "    operate_id TEXT NOT NULL,"
@@ -134,12 +136,12 @@ bool CRecentDatabase::OnInitializeMySqlDatabase()
         "    time DATETIME DEFAULT CURRENT_TIMESTAMP,"
         "    description TEXT,"
         "    UNIQUE KEY uk_recent_file (file(255))"
-        ")"
-        );
+        ")";
+    success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create recent table:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create recent table: " + query.lastError().text()
+                 + "; Sql: " + szSql);
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -150,7 +152,7 @@ bool CRecentDatabase::OnInitializeMySqlDatabase()
                     << "Sql:" << query.executedQuery();
     }
 
-    QString szSql = R"(
+    szSql = R"(
         CREATE TRIGGER delete_icon_after_recent
         AFTER DELETE ON recent
         FOR EACH ROW
@@ -227,7 +229,9 @@ int CRecentDatabase::AddRecent(const RecentItem &item)
     }
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to add recent:" << query.lastError().text();
+        SetError("Failed to add recent: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
         return 0;
     }
 
@@ -258,8 +262,9 @@ bool CRecentDatabase::UpdateRecent(
 
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to update recent:" << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to update recent: " + query.lastError().text()
+                       + "; Sql: " +  query.executedQuery());
+        qCritical(log) << GetError();
     }
     emit sigChanged();
     return success;
@@ -273,8 +278,10 @@ bool CRecentDatabase::DeleteRecent(int id)
     query.bindValue(":id", id);
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to delete recent id:"
-                       << id << query.lastError().text();
+        SetError("Failed to delete recent: " + query.lastError().text()
+                 + "; Sql: " +  query.executedQuery()
+                 + "; id: " + QString::number(id));
+        qCritical(log) << GetError();
     }
     return success;
 }
@@ -315,7 +322,9 @@ QList<CRecentDatabase::RecentItem> CRecentDatabase::GetRecents(int limit, int of
             items.append(item);
         }
     } else {
-        qCritical(log) << "Failed to get recents:" << query.lastError().text();
+        SetError("Failed to get recents: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery());
+        qCritical(log) << GetError();
     }
 
     return items;
@@ -359,7 +368,8 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray recents = obj["Recent"].toArray();
     if(recents.isEmpty()){
-        qCritical(log) << "The file format is error. Don't find recents";
+        SetError(tr("The file format is error. Don't find recents"));
+        qCritical(log) << GetError();
         return false;
     }
 
