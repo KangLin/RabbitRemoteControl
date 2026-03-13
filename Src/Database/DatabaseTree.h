@@ -77,6 +77,8 @@ public:
     [[nodiscard]] TreeItem GetFolder(int id);
     [[nodiscard]] QList<TreeItem> GetAllFolders();
     [[nodiscard]] QList<TreeItem> GetSubFolders(int parentId);
+    [[nodiscard]] bool InSubFolder(int parentId, int id);
+
     /*!
      * \brief Get count
      * \param parentId: - 0 : Get all count

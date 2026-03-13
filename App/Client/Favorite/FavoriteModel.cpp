@@ -282,10 +282,15 @@ bool CFavoriteModel::Move(QModelIndex index, QModelIndex parentIndex)
     if(item.isFavorite())
         bRet = m_pDatabase->Move(item.id, nParentId);
     else {
-        if(item.id != nParentId)
+        if(item.id != nParentId && ip->FindRecursive(ipParent->item).isEmpty())
             bRet = m_pDatabase->MoveNode(item.id, nParentId);
-        else
-            qWarning(log) << "The same node:" << item.id;
+        else {
+            if(item.id == nParentId)
+                qWarning(log) << "The same node:" << item.id;
+            else
+                qWarning(log) << "The destination node is a child node of this node."
+                              << item.id << ipParent->item.id;
+        }
     }
     if(bRet)
         bRet = MoveTree(ip->item, ipParent->item.id);

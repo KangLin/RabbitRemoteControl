@@ -346,12 +346,21 @@ bool CDatabaseFolder::MoveFolder(int id, int newParentId)
         qWarning(log) << GetError();
         return false;
     }
+    // Check the newParentId is not the child of id
+    bool bRet = InSubFolder(id, newParentId);
+    if(bRet) {
+        SetError("The id is the parent of newParentId. "
+                 + QString::number(id) + " is the parent of "
+                 + QString::number(newParentId));
+        qWarning(log) << GetError();
+        return false;
+    }
     QSqlQuery query(GetDatabase());
     query.prepare("UPDATE `" + m_szTableName + "` "
                   " SET `parent_id` = :parent_id WHERE `id` = :id");
     query.bindValue(":id", id);
     query.bindValue(":parent_id", newParentId);
-    bool bRet = query.exec();
+    bRet = query.exec();
     if (bRet)
         emit sigChanged();
     else {
@@ -447,6 +456,19 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
     }
 
     return folders;
+}
+
+bool CDatabaseFolder::InSubFolder(int parentId, int id)
+{
+    bool bRet = false;
+    auto items = GetSubFolders(parentId);
+    foreach(auto it, items) {
+        if(it.GetId() == id)
+            return true;
+        bRet = InSubFolder(it.GetId(), id);
+        if(bRet) return true;
+    }
+    return bRet;
 }
 
 int CDatabaseFolder::GetCount(int parentId)
