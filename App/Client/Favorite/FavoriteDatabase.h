@@ -26,10 +26,10 @@ public:
         QString szFile;
         QString szDescription;
         TreeItem::TYPE type;
-        Item()
+        explicit Item(TreeItem::TYPE t = TreeItem::Node)
             : id(0)
             , parentId(0)
-            , type(TreeItem::Leaf)
+            , type(t)
         {}
         QIcon GetIcon() {
             if(!icon.isNull())
@@ -40,6 +40,10 @@ public:
         }
         bool isFolder() const { return type == TreeItem::Node; }
         bool isFavorite() const { return type == TreeItem::Leaf; }
+        // 添加有效性检查
+        bool isValid() const {
+            return id > 0 || !szFile.isEmpty();
+        }
     };
 
     int AddFavorite(const QString &szFile, const QString& szName,

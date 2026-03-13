@@ -315,8 +315,7 @@ bool CFavoriteDatabase::UpdateFavorite(
 
 CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
 {
-    Item item;
-    item.type = TreeItem::Leaf;
+    Item item(TreeItem::Leaf);
     auto leaf = GetLeaf(id);
     if(leaf.GetId() == 0)
         return item;
@@ -351,8 +350,7 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
 QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetFavorite(const QString &szFile)
 {
     QList<CFavoriteDatabase::Item> lstItems;
-    Item item;
-    item.type = TreeItem::Leaf;
+    Item item(TreeItem::Leaf);
 
     QSqlQuery query(GetDatabase());
     query.prepare(
@@ -389,11 +387,10 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetFavorite(const QString &szF
 CFavoriteDatabase::Item CFavoriteDatabase::GetGroup(int id)
 {
     auto f = GetNode(id);
-    Item item;
+    Item item(f.GetType());
     item.id = f.GetId();
     item.parentId = f.GetParentId();
     item.szName = f.GetName();
-    item.type = f.GetType();
     return item;
 }
 
@@ -403,11 +400,10 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetChildren(int parentId)
     // Get nodes
     auto folders = GetSubNodes(parentId);
     foreach(auto f, folders) {
-        Item item;
+        Item item(f.GetType());
         item.id = f.GetId();
         item.parentId = f.GetParentId();
         item.szName = f.GetName();
-        item.type = f.GetType();
         children << item;
     }
     // Get leaves

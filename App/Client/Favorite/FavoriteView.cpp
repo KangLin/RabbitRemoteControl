@@ -561,10 +561,11 @@ void CFavoriteView::dropEvent(QDropEvent *event)
 #else
     auto idxParent = m_pTreeView->indexAt(event->pos());
 #endif
-    CFavoriteDatabase::Item item
-        = m_pModel->data(idxParent, CFavoriteModel::RoleItem)
-              .value<CFavoriteDatabase::Item>();
-    if(0 < item.id && item.isFolder())
+    QVariant v = m_pModel->data(idxParent, CFavoriteModel::RoleItem);
+    CFavoriteDatabase::Item item(TreeItem::TYPE::Node);
+    if(v.isValid())
+        item = v.value<CFavoriteDatabase::Item>();
+    if(0 <= item.id && item.isFolder())
     {
         foreach(auto i, pData->m_Items)
         {
@@ -614,15 +615,15 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
                     drag->setMimeData(pData);
                     Qt::DropAction dropAction = Qt::MoveAction;
                     /*
-                if(event->modifiers() & Qt::ControlModifier) {
-                    dropAction = Qt::CopyAction;
-                    // 设置拖拽时的光标
-                    // QIcon icon = QIcon::fromTheme("edit-copy");
-                    // QSize size(16, 16);
-                    // if(!icon.availableSizes().isEmpty())
-                    //     size = icon.availableSizes().at(0);
-                    // drag->setDragCursor(icon.pixmap(size), Qt::MoveAction);
-                }//*/
+                    if(event->modifiers() & Qt::ControlModifier) {
+                        dropAction = Qt::CopyAction;
+                        // 设置拖拽时的光标
+                        // QIcon icon = QIcon::fromTheme("edit-copy");
+                        // QSize size(16, 16);
+                        // if(!icon.availableSizes().isEmpty())
+                        //     size = icon.availableSizes().at(0);
+                        // drag->setDragCursor(icon.pixmap(size), Qt::MoveAction);
+                    }//*/
                     drag->exec(dropAction);
                 } while(0);
                 if(drag)

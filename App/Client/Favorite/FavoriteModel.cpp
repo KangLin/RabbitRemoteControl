@@ -232,8 +232,7 @@ bool CFavoriteModel::AddFavorite(
 {
     if(!m_pDatabase || !m_Folders.contains(parentId)) return false;
     int id = 0;
-    CFavoriteDatabase::Item item;
-    item.type = TreeItem::Leaf;
+    CFavoriteDatabase::Item item(TreeItem::Leaf);
     // Check if it already exists
     auto items = m_pDatabase->GetFavorite(szFile);
     if(items.isEmpty()) {
@@ -318,7 +317,7 @@ bool CFavoriteModel::Copy(QModelIndex index, QModelIndex parentIndex)
 
 CFavoriteDatabase::Item CFavoriteModel::GetFavorite(const QString &szFile)
 {
-    CFavoriteDatabase::Item item;
+    CFavoriteDatabase::Item item(TreeItem::TYPE::Leaf);
     if(!m_pDatabase) return item;
     auto items = m_pDatabase->GetFavorite(szFile);
     if(!items.isEmpty()) {
@@ -484,7 +483,7 @@ bool CFavoriteModel::MoveTree(const CFavoriteDatabase::Item &item, int newParent
         int sourcePos = parent->children.indexOf(cur);
         if(sourcePos < 0)
             return false;
-        int desPos = parent->GetInserIndex(cur);
+        int desPos = newParent->GetInserIndex(cur);
         QModelIndex index = CreateIndex(parent);
         QModelIndex newIndex = CreateIndex(newParent);
         beginMoveRows(index, sourcePos, sourcePos, newIndex, desPos);
@@ -495,7 +494,7 @@ bool CFavoriteModel::MoveTree(const CFavoriteDatabase::Item &item, int newParent
     return true;
 }
 
-CFavoriteModel::tree::tree()
+CFavoriteModel::tree::tree(): item(TreeItem::TYPE::Node)
 {}
 
 CFavoriteModel::tree::tree(CFavoriteDatabase::Item i)
