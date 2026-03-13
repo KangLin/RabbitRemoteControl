@@ -153,5 +153,10 @@
 \details
 + Class relationship
   \image html docs/Image/Channel.svg
-  
+
+
+\defgroup LIBAPI_DATABASE Database
+\ingroup LIBAPI
+\brief Database
+
 */

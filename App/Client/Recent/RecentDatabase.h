@@ -10,7 +10,7 @@
 
 /*!
  * \brief The CRecentDatabase class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class CRecentDatabase : public CDatabase
 {

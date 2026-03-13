@@ -61,7 +61,7 @@ struct BookmarkItem {
 
 /*!
  * \brief The CBookmarkDatabase class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class CBookmarkDatabase : public CDatabase
 {

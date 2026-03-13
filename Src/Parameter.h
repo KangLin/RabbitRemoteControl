@@ -25,7 +25,12 @@
  *      \ref section_Use_CParameterPlugin
  *      \see CParameterPlugin
  *           COperate::SetGlobalParameters
- *   3. 同时在应用程序、插件管理者 (CManager) 和插件内有效。暂时没有使用此类型。
+ *   3. 同时在应用程序、插件管理者 (CManager) 和插件内有效。
+ *     - 可以在插件管理者 (CManager) 和插件中以及应用中使用。
+ *     - 应用程序可以通过 CManager::GetGlobalParameters() 得到它。
+ *     - 插件可以通 CParameterPlugin::GetGlobalParameters() 访问。
+ *     - 应用通过  CManager::GetSettingsWidgets() 进行设置。
+ *     \see CParameterGlobal CParameterPlugin CManager CManager::GetGlobalParameters
  * - 参数界面： CParameterUI
  *
  * \~english
@@ -49,7 +54,11 @@
  *      \see CParameterClient
  *           COperate::SetGlobalParameters
  *   3. Valid in both the application and the Client and the plugin.
- *      This type is not used at this time.
+ *     - The parameters is valid in the CManager, plugin and application
+ *     - The applicat can be accessed via CManager::GetGlobalParameters()
+ *     - The plugin can be accessed via CParameterPlugin::GetGlobalParameters()
+ *     - The application can be set it via CManager::GetSettingsWidgets()
+ *     \see CParameterGlobal CParameterPlugin CManager CManager::GetGlobalParameters
  * - CParameterUI
  * \~
  * \ingroup LIBAPI_PLUGIN

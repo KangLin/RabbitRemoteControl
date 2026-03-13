@@ -55,7 +55,7 @@ private:
 
 /*!
  * \brief The CDatabaseNode class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabaseNode : public CDatabase
 {
@@ -104,7 +104,7 @@ private:
 
 /*!
  * \brief The CDatabaseTree class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabaseTree : public CDatabase
 {

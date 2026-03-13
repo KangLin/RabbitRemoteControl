@@ -6,7 +6,7 @@
 
 /*!
  * \brief The CDatabaseFilter class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabaseFilter : public CDatabase
 {

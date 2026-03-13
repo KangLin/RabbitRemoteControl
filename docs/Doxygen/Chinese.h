@@ -146,4 +146,8 @@
 + 类关系图
   \image html docs/Image/Channel.svg
 
+\defgroup LIBAPI_DATABASE 数据库
+\ingroup LIBAPI
+\brief 数据库
+
 */

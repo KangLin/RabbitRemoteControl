@@ -11,12 +11,11 @@
 class CParameterDatabase;
 
 /*!
- * \chinese 提供打开数据库和初始化数据库等接口
- * \english Provide interfaces such as opening the database and initializing the database
+ * \~chinese 提供打开数据库和初始化数据库等接口
+ * \~english Provide interfaces such as opening the database and initializing the database
  *
  * \~
- * \ingroup APP_API PLUGIN_API
- * \defgroup DATABASE_API
+ * \ingroup APP_API PLUGIN_API LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabase : public QObject
 {
@@ -25,6 +24,10 @@ class PLUGIN_EXPORT CDatabase : public QObject
 public:
     explicit CDatabase(QObject *parent = nullptr);
     virtual ~CDatabase();
+
+    //!@{
+    //! \~chinese \name 共享已打开的数据库
+    //! \~english \name Share an existing database
 
     /*!
      * \brief Share an existing database
@@ -37,10 +40,15 @@ public:
      * \param pPara
      */
     [[nodiscard]] bool SetDatabase(const QSqlDatabase db, const CParameterDatabase* pPara);
+    //!@}
+
     [[nodiscard]] QSqlDatabase GetDatabase() const;
 
-    /*!
-     * \brief Open a new database
+    //!@{
+    //! \~chinese \name 打开一个新的数据库
+    //! \~english \name Open a new database
+
+    /*! \brief Open a new database
      * \param pPara: nullptr, use sqlite database
      * \param szConnectName: connect name
      * \return
@@ -62,7 +70,8 @@ public:
     [[nodiscard]] bool OpenSQLiteDatabase(
         const QString& szFile,
         const QString& szConnectionName = QString());
-
+    //!@}
+    
     [[nodiscard]] virtual bool IsOpen() const;
     /*!
      * \brief Close database
@@ -72,14 +81,21 @@ public:
 
     [[nodiscard]] const CParameterDatabase* GetParameter() const;
     [[nodiscard]] const QString GetError() const;
-    
+
+    //!@{
+    //! \~chinese \name 导入与导出操作
+    //! \~english \name Export and import operate
     [[nodiscard]] virtual bool ExportToJsonFile(const QString& szFile);
     [[nodiscard]] virtual bool ImportFromJsonFile(const QString& szFile);
+    //!@}
 
 Q_SIGNALS:
     void sigChanged();
 
 protected:
+    //!@{
+    //! \~chinese \name 初始化数据库和表
+    //! \~english \name Initialize table
     /*!
      * \brief Initialize database
      * \return
@@ -87,6 +103,8 @@ protected:
     [[nodiscard]] virtual bool OnInitializeDatabase();
     [[nodiscard]] virtual bool OnInitializeSqliteDatabase();
     [[nodiscard]] virtual bool OnInitializeMySqlDatabase();
+    //!@}
+
     void SetError(const QString& szErr = QString());
 
     [[nodiscard]] virtual bool ExportToJson(QJsonObject& obj);
@@ -105,7 +123,7 @@ private:
 
 /*!
  * \brief Icon database
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabaseIcon : public CDatabase
 {
@@ -140,7 +158,7 @@ private:
 /*!
  * \brief File database
  * \note The file field is filename, don't include path.
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class PLUGIN_EXPORT CDatabaseFile : public CDatabase
 {

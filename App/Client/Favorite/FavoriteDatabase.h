@@ -9,7 +9,7 @@
 
 /*!
  * \brief The CFavoriteDatabase class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class CFavoriteDatabase : public CDatabaseTree
 {

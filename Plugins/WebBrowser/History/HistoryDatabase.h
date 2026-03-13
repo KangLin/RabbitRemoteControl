@@ -19,7 +19,7 @@ struct HistoryItem {
 
 /*!
  * \brief The CHistoryDatabase class
- * \ingroup DATABASE_API
+ * \ingroup LIBAPI_DATABASE
  */
 class CHistoryDatabase : public CDatabase
 {
