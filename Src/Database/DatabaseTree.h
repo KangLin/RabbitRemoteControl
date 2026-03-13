@@ -54,30 +54,30 @@ private:
 };
 
 /*!
- * \brief The CDatabaseFolder class
+ * \brief The CDatabaseNode class
  * \ingroup DATABASE_API
  */
-class PLUGIN_EXPORT CDatabaseFolder : public CDatabase
+class PLUGIN_EXPORT CDatabaseNode : public CDatabase
 {
     Q_OBJECT
 
 public:
-    explicit CDatabaseFolder(const QString& szPrefix = QString(),
+    explicit CDatabaseNode(const QString& szPrefix = QString(),
                              QObject *parent = nullptr);
 
     // 文件夹操作
-    int AddFolder(const QString &name, int parentId = 0);
-    bool RenameFolder(int id, const QString &newName);
-    bool DeleteFolder(
+    int AddNode(const QString &name, int parentId = 0);
+    bool RenameNode(int id, const QString &newName);
+    bool DeleteNode(
         int id,
         std::function<bool(int parentId)> cbDeleteLeaf = nullptr,
         bool checkReturn = true);
-    bool MoveFolder(int id, int newParentId);
+    bool MoveNode(int id, int newParentId);
     // 文件夹查询
-    [[nodiscard]] TreeItem GetFolder(int id);
-    [[nodiscard]] QList<TreeItem> GetAllFolders();
-    [[nodiscard]] QList<TreeItem> GetSubFolders(int parentId);
-    [[nodiscard]] bool InSubFolder(int parentId, int id);
+    [[nodiscard]] TreeItem GetNode(int id);
+    [[nodiscard]] QList<TreeItem> GetAllNodes();
+    [[nodiscard]] QList<TreeItem> GetSubNodes(int parentId);
+    [[nodiscard]] bool InSubNode(int parentId, int id);
 
     /*!
      * \brief Get count
@@ -91,7 +91,7 @@ public:
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 Q_SIGNALS:
-    void sigAddFolder(int id, int parentId);
+    void sigAddNode(int id, int parentId);
 
 protected:
     [[nodiscard]] virtual bool OnDeleteLeafs(int id);
@@ -169,7 +169,7 @@ public:
     [[nodiscard]] virtual bool ImportFromJson(const QJsonObject& obj) override;
 
 Q_SIGNALS:
-    void sigAddFolder(int id, int parentId);
+    void sigAddNode(int id, int parentId);
     void sigAdd(int id, int parentId);
 
 protected:
@@ -187,5 +187,5 @@ protected:
 
 private:
     QString m_szTableName;
-    CDatabaseFolder m_FolderDB;
+    CDatabaseNode m_FolderDB;
 };

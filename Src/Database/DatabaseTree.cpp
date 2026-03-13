@@ -129,7 +129,7 @@ void TreeItem::SetLastVisitTime(const QDateTime &newLastVisitTime)
     m_Data.m_LastVisitTime = newLastVisitTime;
 }
 
-CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
+CDatabaseNode::CDatabaseNode(const QString &szPrefix, QObject *parent)
     : CDatabase(parent)
 {
     m_szTableName = "folders";
@@ -138,7 +138,7 @@ CDatabaseFolder::CDatabaseFolder(const QString &szPrefix, QObject *parent)
     m_szConnectName = "connect_" + m_szTableName;
 }
 
-bool CDatabaseFolder::OnInitializeSqliteDatabase()
+bool CDatabaseNode::OnInitializeSqliteDatabase()
 {
     QSqlQuery query(GetDatabase());
 
@@ -174,7 +174,7 @@ bool CDatabaseFolder::OnInitializeSqliteDatabase()
     return true;
 }
 
-bool CDatabaseFolder::OnInitializeMySqlDatabase()
+bool CDatabaseNode::OnInitializeMySqlDatabase()
 {
     QSqlQuery query(GetDatabase());
 
@@ -205,7 +205,7 @@ bool CDatabaseFolder::OnInitializeMySqlDatabase()
     return true;
 }
 
-int CDatabaseFolder::AddFolder(const QString &name, int parentId)
+int CDatabaseNode::AddNode(const QString &name, int parentId)
 {
     bool bRet = false;
     QSqlQuery query(GetDatabase());
@@ -258,7 +258,7 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
     if (bRet) {
         id = query.lastInsertId().toInt();
         if(id > 0) {
-            emit sigAddFolder(id, parentId);
+            emit sigAddNode(id, parentId);
             emit sigChanged();
         }
     } else {
@@ -270,7 +270,7 @@ int CDatabaseFolder::AddFolder(const QString &name, int parentId)
     return id;
 }
 
-bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
+bool CDatabaseNode::RenameNode(int id, const QString &newName)
 {
     QSqlQuery query(GetDatabase());
     query.prepare("UPDATE `" + m_szTableName + "` "
@@ -288,14 +288,14 @@ bool CDatabaseFolder::RenameFolder(int id, const QString &newName)
     return bRet;
 }
 
-bool CDatabaseFolder::DeleteFolder(
+bool CDatabaseNode::DeleteNode(
     int id, std::function<bool (int)> cbDeleteLeaf, bool checkReturn)
 {
     bool bRet = false;
     // 删除子目录
-    auto folders = GetSubFolders(id);
+    auto folders = GetSubNodes(id);
     foreach(auto f, folders) {
-        bRet = DeleteFolder(f.GetId(), cbDeleteLeaf, checkReturn);
+        bRet = DeleteNode(f.GetId(), cbDeleteLeaf, checkReturn);
         if(checkReturn && !bRet)
             return false;
     }
@@ -333,13 +333,13 @@ bool CDatabaseFolder::DeleteFolder(
     return bRet;
 }
 
-bool CDatabaseFolder::OnDeleteLeafs(int id)
+bool CDatabaseNode::OnDeleteLeafs(int id)
 {
     Q_UNUSED(id);
     return true;
 }
 
-bool CDatabaseFolder::MoveFolder(int id, int newParentId)
+bool CDatabaseNode::MoveNode(int id, int newParentId)
 {
     if(id == newParentId) {
         SetError("Failed to move node. The same node: " + id);
@@ -347,7 +347,7 @@ bool CDatabaseFolder::MoveFolder(int id, int newParentId)
         return false;
     }
     // Check the newParentId is not the child of id
-    bool bRet = InSubFolder(id, newParentId);
+    bool bRet = InSubNode(id, newParentId);
     if(bRet) {
         SetError("The id is the parent of newParentId. "
                  + QString::number(id) + " is the parent of "
@@ -371,7 +371,7 @@ bool CDatabaseFolder::MoveFolder(int id, int newParentId)
     return bRet;
 }
 
-TreeItem CDatabaseFolder::GetFolder(int id)
+TreeItem CDatabaseNode::GetNode(int id)
 {
     TreeItem folder(TreeItem::Node);
     if(0 >= id) return folder;
@@ -398,7 +398,7 @@ TreeItem CDatabaseFolder::GetFolder(int id)
     return folder;
 }
 
-QList<TreeItem> CDatabaseFolder::GetAllFolders()
+QList<TreeItem> CDatabaseNode::GetAllNodes()
 {
     QList<TreeItem> folders;
     QSqlQuery query(GetDatabase());
@@ -426,7 +426,7 @@ QList<TreeItem> CDatabaseFolder::GetAllFolders()
     return folders;
 }
 
-QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
+QList<TreeItem> CDatabaseNode::GetSubNodes(int parentId)
 {
     QList<TreeItem> folders;
 
@@ -458,20 +458,20 @@ QList<TreeItem> CDatabaseFolder::GetSubFolders(int parentId)
     return folders;
 }
 
-bool CDatabaseFolder::InSubFolder(int parentId, int id)
+bool CDatabaseNode::InSubNode(int parentId, int id)
 {
     bool bRet = false;
-    auto items = GetSubFolders(parentId);
+    auto items = GetSubNodes(parentId);
     foreach(auto it, items) {
         if(it.GetId() == id)
             return true;
-        bRet = InSubFolder(it.GetId(), id);
+        bRet = InSubNode(it.GetId(), id);
         if(bRet) return true;
     }
     return bRet;
 }
 
-int CDatabaseFolder::GetCount(int parentId)
+int CDatabaseNode::GetCount(int parentId)
 {
     QSqlQuery query(GetDatabase());
     if(0 == parentId) {
@@ -491,7 +491,7 @@ int CDatabaseFolder::GetCount(int parentId)
     return 0;
 }
 
-bool CDatabaseFolder::ExportToJson(QJsonObject& obj)
+bool CDatabaseNode::ExportToJson(QJsonObject& obj)
 {
     QSqlQuery query(GetDatabase());
     query.prepare(
@@ -520,7 +520,7 @@ bool CDatabaseFolder::ExportToJson(QJsonObject& obj)
     return true;
 }
 
-bool CDatabaseFolder::ImportFromJson(const QJsonObject& obj)
+bool CDatabaseNode::ImportFromJson(const QJsonObject& obj)
 {
     return true;
 }
@@ -543,8 +543,8 @@ bool CDatabaseTree::OnInitializeDatabase()
     if(!bRet) return false;
     bRet = m_FolderDB.SetDatabase(GetDatabase(), m_pPara);
     if(!bRet) return false;
-    bRet = connect(&m_FolderDB, &CDatabaseFolder::sigAddFolder,
-                   this, &CDatabaseTree::sigAddFolder);
+    bRet = connect(&m_FolderDB, &CDatabaseNode::sigAddNode,
+                   this, &CDatabaseTree::sigAddNode);
     Q_ASSERT(bRet);
 
     return bRet;
@@ -980,17 +980,17 @@ int CDatabaseTree::GetLeafCount(int parentId)
 
 int CDatabaseTree::AddNode(const QString &name, int parentId)
 {
-    return m_FolderDB.AddFolder(name, parentId);
+    return m_FolderDB.AddNode(name, parentId);
 }
 
 bool CDatabaseTree::RenameNode(int id, const QString &newName)
 {
-    return m_FolderDB.RenameFolder(id, newName);
+    return m_FolderDB.RenameNode(id, newName);
 }
 
 bool CDatabaseTree::DeleteNode(int id, bool delKey)
 {
-    return m_FolderDB.DeleteFolder(
+    return m_FolderDB.DeleteNode(
         id,
         [&, delKey](int parentId)->bool {
             return DeleteChild(parentId, delKey);
@@ -1000,22 +1000,22 @@ bool CDatabaseTree::DeleteNode(int id, bool delKey)
 
 bool CDatabaseTree::MoveNode(int id, int newParentId)
 {
-    return m_FolderDB.MoveFolder(id, newParentId);
+    return m_FolderDB.MoveNode(id, newParentId);
 }
 
 TreeItem CDatabaseTree::GetNode(int id)
 {
-    return m_FolderDB.GetFolder(id);
+    return m_FolderDB.GetNode(id);
 }
 
 QList<TreeItem> CDatabaseTree::GetAllNodes()
 {
-    return m_FolderDB.GetAllFolders();
+    return m_FolderDB.GetAllNodes();
 }
 
 QList<TreeItem> CDatabaseTree::GetSubNodes(int parentId)
 {
-    return m_FolderDB.GetSubFolders(parentId);
+    return m_FolderDB.GetSubNodes(parentId);
 }
 
 int CDatabaseTree::GetNodeCount(int nParentId)
