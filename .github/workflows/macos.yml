@@ -51,7 +51,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}
-      qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine"
+      qt_modules: "qtscxml qtmultimedia qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard"
       VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}

@@ -22,7 +22,7 @@ BuildRequires: cmake desktop-file-utils appstream curl wget
 # Qt6
 BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
-BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
+BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtspeech-devel
 BuildRequires: qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
 
 BuildRequires: qtkeychain-qt6-devel qtermwidget-devel
@@ -47,9 +47,9 @@ BuildRequires: mysql-devel
 Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
 Requires: libvncserver libwinpr freerdp fuse3 libpcap libcurl
 Requires: zlib gnutls nettle gmp pam 
-Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
-Requires: qt6-qtserialport qt6-qtsvg qt6-qtbase-mysql
-Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel
+Requires: qt6-qtbase qt6-qtbase-mysql qt6-qtbase-odbc qt6-qtbase-psql
+Requires: qt6-qtmultimedia qt6-qt5compat qt6-qtscxml qt6-qtserialport qt6-qtsvg
+Requires: qt6-qtwebengine qt6-qtpositioning qt6-qtwebchannel qt6-qtspeech
 Requires: qtkeychain-qt6 qtermwidget
 Requires: mysql-libs
 

@@ -436,6 +436,7 @@ if [ $DEB -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
+    # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
     fi
@@ -483,6 +484,7 @@ if [ $APPIMAGE -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
+    # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
     fi
@@ -520,6 +522,7 @@ if [ $MACOS -eq 1 ]; then
 
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
 
+    # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
     fi

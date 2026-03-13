@@ -630,7 +630,8 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
                 qt6-svg-dev qt6-l10n-tools qt6-translations-l10n \
                 qt6-scxml-dev qt6-multimedia-dev qt6-serialport-dev qt6-websockets-dev \
                 qt6-webengine-dev qt6-webengine-dev-tools qt6-positioning-dev qt6-webchannel-dev \
-                libqt6sql6-mysql libqt6sql6-sqlite libqt6sql6-odbc
+                libqt6sql6-mysql libqt6sql6-sqlite libqt6sql6-odbc libqt6sql6-psql \
+                qt6-speech-dev
         fi
         if [ $QTKEYCHAIN -ne 1 ]; then
             package_install qtkeychain-qt6-dev
@@ -669,10 +670,10 @@ if [ $QT -eq 1 ]; then
 
         echo "PATH: $PATH"
         if [ "`uname -m`" == "x86_64" ]; then
-            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
          elif [ "`uname -m`" == "aarch64" ]; then
-            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard
             mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
         fi
     fi
