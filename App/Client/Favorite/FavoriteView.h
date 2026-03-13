@@ -4,6 +4,7 @@
 
 #include <QTreeView>
 #include <QStandardItem>
+#include <QMessageBox>
 
 #include "TitleBar.h"
 #include "FavoriteDatabase.h"
@@ -39,12 +40,24 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigStart(const QString &szFile, bool bOpenSettings);
     void sigFavorite();
-
-protected:
-    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+    /*!
+     * \~chinese
+     * \brief 用消息对话框(QMessageBox)显示信息
+     *
+     * \~english
+     * \brief Use message box display information
+     *
+     * \~
+     * \see COperate::sigShowMessageBox()
+     */
+    virtual void sigShowMessageBox(const QString& title, const QString& message,
+                                    const QMessageBox::Icon& icon);
+private:
+    void InitialDragDrop();
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

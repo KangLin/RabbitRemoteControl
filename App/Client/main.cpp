@@ -67,7 +67,7 @@ void InitAndroidVirtualKeyboard()
     //qputenv("QT_VIRTUALKEYBOARD_HANDWRITING", QByteArray("1"));
     
     // 启用调试
-    qputenv("QT_DEBUG_IM", "1");
+    //qputenv("QT_DEBUG_IM", "1");
 }
 
 int main(int argc, char *argv[])

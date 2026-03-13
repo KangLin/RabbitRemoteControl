@@ -185,13 +185,7 @@ void CFavoriteView::setupTreeView(QLayout *layout)
         return;
     layout->addWidget(m_pTreeView);
 
-    //m_pTreeView->installEventFilter(this);
-    m_pTreeView->viewport()->installEventFilter(this);
-    m_pTreeView->setAcceptDrops(true);
-    m_pTreeView->setDragEnabled(true);
-    m_pTreeView->setDragDropMode(QTreeView::InternalMove);
-    m_pTreeView->setDefaultDropAction(Qt::MoveAction);
-    m_pTreeView->setDropIndicatorShown(true);
+    InitialDragDrop();
 
     m_pTreeView->setUniformRowHeights(true);
     m_pTreeView->setHeaderHidden(true);
@@ -471,12 +465,13 @@ void CFavoriteView::slotImport()
             if (m_pDatabase->ImportFromJsonFile(filename)) {
                 slotRefresh();
                 QMessageBox::information(
-                    this, tr("Import favorite"),
+                    this, tr("Success"),
                     tr("Successfully imported favorite from JSON file: %1").arg(filename));
             } else {
-                QMessageBox::critical(
-                    this, tr("Import favorite"),
-                    tr("Failed to import favorite from JSON file: %1").arg(filename));
+                QString szErr = tr("Failed to import favorite from JSON file: %1").arg(filename) + "\n";
+                if(!m_pDatabase->GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_pDatabase->GetError();
+                QMessageBox::critical(this, tr("Failure"), szErr);
             }
             return;
         }
@@ -498,24 +493,45 @@ void CFavoriteView::slotExport()
         if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
             if (m_pDatabase->ExportToJsonFile(filename)) {
                 QMessageBox::information(
-                    this, tr("Export favorite"),
+                    this, tr("Success"),
                     tr("Favorite successfully exported to JSON file: %1").arg(filename));
             } else {
-                QMessageBox::critical(
-                    this, tr("Export favorite"),
-                    tr("Failed to export favorite to JSON file: %1").arg(filename));
+                QString szErr = tr("Failed to import favorite from JSON file: %1").arg(filename) + "\n";
+                if(!m_pDatabase->GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_pDatabase->GetError();
+                QMessageBox::critical(this, tr("Failure"), szErr);
             }
             return;
         }
-        QMessageBox::critical(this, tr("Export favorite"),
+        QMessageBox::critical(this, tr("Failure"),
                               tr("Invalid file: %1").arg(filename) + "\n\n"
                                   + tr("Please use JSON file"));
     }
 }
 
+void CFavoriteView::InitialDragDrop()
+{
+    if(!m_pTreeView || !m_pTreeView->viewport())
+        return;
+    //m_pTreeView->installEventFilter(this);
+    m_pTreeView->viewport()->installEventFilter(this);
+    m_pTreeView->setAcceptDrops(true);
+    m_pTreeView->setDragEnabled(true);
+    m_pTreeView->setDragDropMode(QTreeView::InternalMove);
+    m_pTreeView->setDefaultDropAction(Qt::MoveAction);
+    m_pTreeView->setDropIndicatorShown(true);
+}
+
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO;
+    auto urls = event->mimeData()->urls();
+    if(event->mimeData()->hasUrls() && urls.length() == 1) {
+        //qDebug(log) << event->mimeData()->urls();
+        event->acceptProposedAction();
+        return;
+    }
+
     const CFavoriteMimeData* pData =
         qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
@@ -529,25 +545,43 @@ void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
         } else {
             setCursor(Qt::DragCopyCursor);
         }//*/
-    } else
-        event->ignore();
+    }
 }
 
 void CFavoriteView::dragMoveEvent(QDragMoveEvent *event)
 {
-    qDebug(log) << Q_FUNC_INFO;
-    const CFavoriteMimeData* pData =
-        qobject_cast<const CFavoriteMimeData*>(event->mimeData());
-    if (!pData)
-    {
-        event->ignore();
-        return;
-    }
+    // qDebug(log) << Q_FUNC_INFO;
+    // const CFavoriteMimeData* pData =
+    //     qobject_cast<const CFavoriteMimeData*>(event->mimeData());
+    // if (!pData)
+    // {
+    //     event->ignore();
+    //     return;
+    // }
 }
 
 void CFavoriteView::dropEvent(QDropEvent *event)
 {
     qDebug(log) << Q_FUNC_INFO << "drop action:" << event->dropAction();
+    bool bRet = false;
+    auto urls = event->mimeData()->urls();
+    foreach(auto url, urls)
+    {
+        if(url.isLocalFile()) {
+            QString filename = url.toLocalFile();
+            if (m_pDatabase->ImportFromJsonFile(filename)) {
+                slotRefresh();
+                emit sigShowMessageBox(tr("Success"), tr("Successfully imported favorite from JSON file: %1").arg(filename), QMessageBox::Information);
+            } else {
+                QString szErr = tr("Failed to import favorite from JSON file: %1").arg(filename) + "\n";
+                if(!m_pDatabase->GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_pDatabase->GetError();
+                emit sigShowMessageBox(tr("Failure"), szErr, QMessageBox::Critical);
+            }
+        }
+    }
+    if(bRet)
+        event->accept();
 
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if(!pData || pData->m_Items.isEmpty() || !m_pTreeView || !m_pModel) {
@@ -555,7 +589,6 @@ void CFavoriteView::dropEvent(QDropEvent *event)
         return;
     }
 
-    bool bRet = false;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     auto idxParent = m_pTreeView->indexAt(event->position().toPoint());
 #else
@@ -654,7 +687,7 @@ bool CFavoriteView::eventFilter(QObject *watched, QEvent *event)
 {
     // 处理 treeview 的事件
     if (watched == m_pTreeView->viewport()) { // 处理 viewport 的事件
-        qDebug(log) << Q_FUNC_INFO << "Viewport event:" << event->type();
+        //qDebug(log) << Q_FUNC_INFO << "Viewport event:" << event->type();
 
         switch (event->type()) {
         case QEvent::DragEnter:

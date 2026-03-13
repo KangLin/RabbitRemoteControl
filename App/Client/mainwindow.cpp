@@ -1651,7 +1651,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
     
     if(event->mimeData()->hasUrls())
     {
-        qWarning(log) << event->mimeData()->urls();
+        //qDebug(log) << event->mimeData()->urls();
         event->acceptProposedAction();
     }
 }
@@ -1664,6 +1664,7 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 void MainWindow::dropEvent(QDropEvent *event)
 {
     qDebug(log) << "dropEvent";
+    bool bRet = false;
     if(!event->mimeData()->hasUrls())
         return;
     auto urls = event->mimeData()->urls();
@@ -1671,7 +1672,12 @@ void MainWindow::dropEvent(QDropEvent *event)
     {
         if(url.isLocalFile())
             slotOpenFile(url.toLocalFile());
+        bRet = true;
     }
+    if(bRet)
+        event->accept();
+    else
+        event->ignore();
 }
 
 void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)

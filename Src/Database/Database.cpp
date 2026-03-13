@@ -372,7 +372,7 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
     SetError();
     QFile file(szFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        SetError("Failed to open import JSON file: " + szFile + "; Error: " + file.errorString());
+        SetError(tr("Failed to open import JSON file: %1; Error: %2").arg(szFile, file.errorString()));
         qCritical(log) << GetError();
         return false;
     }
@@ -380,18 +380,21 @@ bool CDatabase::ImportFromJsonFile(const QString &szFile)
     do {
         QJsonDocument doc;
         doc = QJsonDocument::fromJson(file.readAll());
-        if(!doc.isObject())
+        if(!doc.isObject()) {
+            SetError(tr("Not a valid JSON file"));
+            qCritical(log) << GetError();
             break;
+        }
         auto root = doc.object();
         QString szTitle = root["Title"].toString();
         if(szTitle != "Rabbit Remote Control") {
-            SetError("The file format is error. The title: " + szTitle + " != Rabbit Remote Control");
+            SetError(tr("File format error. The title: \"%1\" is not \"Rabbit Remote Control\"").arg(szTitle));
             qCritical(log) << GetError();
             break;
         }
         QString szVersion = root["Version"].toString();
         if(RabbitCommon::CTools::VersionCompare(szVersion, m_MinVersion) < 0) {
-            SetError("The version is not support: "
+            SetError(tr("The version is no longer supported: ")
                      + szVersion + " < " + m_MinVersion);
             qCritical(log) << GetError();
             break;

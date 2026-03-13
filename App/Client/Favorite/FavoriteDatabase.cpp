@@ -23,18 +23,20 @@ bool CFavoriteDatabase::OnInitializeSqliteDatabase()
     QSqlQuery query(GetDatabase());
 
     // Create favorite table
-    bool success = query.exec(
+    QString szSql =
         "CREATE TABLE IF NOT EXISTS favorite ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT," // the id is the key of tree table
         "    name TEXT NOT NULL,"
         "    icon INTEGER DEFAULT 0,"
         "    file TEXT UNIQUE NOT NULL,"
         "    description TEXT"
-        ")"
-        );
+        ")";
+    bool success = query.exec(szSql);
 
     if (!success) {
-        qCritical(log) << "Failed to create favorite table:" << query.lastError().text();
+        SetError("Failed to create favorite table: " + query.lastError().text()
+                 + "; Sql: " + szSql);
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -49,7 +51,7 @@ bool CFavoriteDatabase::OnInitializeSqliteDatabase()
         qDebug(log) << "Failed to drop trigger delete_icon_after_favorite:" << query.lastError().text();
     }
     // Create trigger
-    QString szSql = R"(
+    szSql = R"(
         CREATE TRIGGER delete_icon_after_favorite
         AFTER DELETE ON favorite
         FOR EACH ROW
@@ -79,7 +81,7 @@ bool CFavoriteDatabase::OnInitializeMySqlDatabase()
     QSqlQuery query(GetDatabase());
 
     // Create favorite table
-    success = query.exec(
+    QString szSql =
         "CREATE TABLE IF NOT EXISTS favorite ("
         "    id INTEGER PRIMARY KEY AUTO_INCREMENT," // the id is the key of tree table
         "    name TEXT NOT NULL,"
@@ -87,12 +89,13 @@ bool CFavoriteDatabase::OnInitializeMySqlDatabase()
         "    file TEXT NOT NULL,"
         "    description TEXT,"
         "    UNIQUE KEY uk_favorite_file (file(255))"
-        ")"
-        );
+        ")";
+    success = query.exec(szSql);
     if (!success) {
-        qCritical(log) << "Failed to create favorite table:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to create favorite table: "
+                       + query.lastError().text()
+                       + "; Sql: " + szSql);
+        qCritical(log) << GetError();
         return false;
     }
 
@@ -103,7 +106,7 @@ bool CFavoriteDatabase::OnInitializeMySqlDatabase()
                     << "Sql:" << query.executedQuery();
     }
     // Create trigger
-    QString szSql = R"(
+    szSql = R"(
         CREATE TRIGGER delete_icon_after_favorite
         AFTER DELETE ON favorite
         FOR EACH ROW
@@ -177,7 +180,8 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
     bool success = false;
     // 使用事务确保数据一致性
     if (!db.transaction()) {
-        qCritical(log) << "Failed to start transaction:" << db.lastError().text();
+        SetError("Failed to start transaction: " + db.lastError().text());
+        qCritical(log) << GetError();
         return ret;
     }
 
@@ -208,7 +212,6 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
             if (!success) {
                 QString szErr = "Failed to insert favorite table: " + query.lastError().text();
                 SetError(szErr);
-                qCritical(log) << szErr;
                 throw std::runtime_error(szErr.toStdString());
             }
 
@@ -216,7 +219,6 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
             if(0 >= key) {
                 QString szErr = "Failed to insert favorite table";
                 SetError(szErr);
-                qCritical(log) << szErr;
                 throw std::runtime_error(szErr.toStdString());
             }
         }
@@ -229,7 +231,6 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
         if (0 >= id) {
             QString szErr = "Failed to insert favorite folder table";
             SetError(szErr);
-            qCritical(log) << szErr;
             throw std::runtime_error(szErr.toStdString());
         }
 
@@ -237,7 +238,6 @@ int CFavoriteDatabase::AddFavorite(const QString &szFile,
         if (!db.commit()) {
             QString szErr = "Failed to commit transaction:" + db.lastError().text();
             SetError(szErr);
-            qCritical(log) << szErr;
             throw std::runtime_error(szErr.toStdString());
         }
 
@@ -277,10 +277,11 @@ bool CFavoriteDatabase::UpdateFavorite(
     szSql = "UPDATE favorite SET " + szSql + " WHERE id=" + QString::number(id);
     //qDebug(log) << "Sql:" << szSql;
     bool ok = query.exec(szSql);
-    if(!ok)
-        qCritical(log) << "Failed to update favorite:"
-                       << id << query.lastError().text()
-                       << "Sql:" << szSql;
+    if(!ok) {
+        SetError("Failed to update favorite: " + query.lastError().text()
+                 + "; Sql: " + szSql);
+        qCritical(log) << GetError();
+    }
     return ok;
 }
 
@@ -306,10 +307,11 @@ bool CFavoriteDatabase::UpdateFavorite(
     szSql = "UPDATE favorite SET " + szSql + " WHERE file=\"" + szFile + "\"";
     //qDebug(log) << "Sql:" << szSql;
     bool ok = query.exec(szSql);
-    if(!ok)
-        qCritical(log) << "Failed to update favorite:"
-                       << szFile << query.lastError().text()
-                       << "Sql:" << szSql;
+    if(!ok) {
+        SetError("Failed to update favorite: " + query.lastError().text()
+                       + "; Sql: " + szSql);
+        qCritical(log) << GetError();
+    }
     return ok;
 }
 
@@ -330,9 +332,10 @@ CFavoriteDatabase::Item CFavoriteDatabase::GetFavorite(int id)
     //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
-        qCritical(log) << "Failed to get favorite:"
-                       << id << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to get favorite: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery()
+                 + "; id: " + QString::number(id));
+        qCritical(log) << GetError();
         return item;
     }
     if(query.next()) {
@@ -362,9 +365,9 @@ QList<CFavoriteDatabase::Item> CFavoriteDatabase::GetFavorite(const QString &szF
     //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
-        qCritical(log) << "Failed to get favorite:"
-                       << szFile << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to get favorite: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery() + "; szFile: " + szFile);;
+        qCritical(log) << GetError();
         return lstItems;
     }
     if(query.next()) {
@@ -427,9 +430,10 @@ bool CFavoriteDatabase::OnDeleteKey(int key)
     //qDebug(log) << "Bound value:" << query.boundValues();
     bool ok = query.exec();
     if(!ok) {
-        qCritical(log) << "Failed to delete favorite:"
-                       << key << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
+        SetError("Failed to delete favorite: " + query.lastError().text()
+                 + "; Sql: " + query.executedQuery()
+                 + "; key: " + QString::number(key));
+        qCritical(log) << GetError();
         return false;
     }
     return ok;
@@ -449,7 +453,8 @@ bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray favorites = obj["favorite"].toArray();
     if(favorites.isEmpty()) {
-        qCritical(log) << "The file format is error. Json without favorite";
+        SetError(tr("The file format is error. Json without favorite"));
+        qCritical(log) << GetError();
         return false;
     }
 
