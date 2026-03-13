@@ -48,6 +48,18 @@ Q_SIGNALS:
                           const QString& szName,
                           const QString& szDescription,
                           const QIcon& icon);
+    /*!
+     * \~chinese
+     * \brief 用消息对话框(QMessageBox)显示信息
+     *
+     * \~english
+     * \brief Use message box display information
+     *
+     * \~
+     * \see COperate::sigShowMessageBox()
+     */
+    virtual void sigShowMessageBox(const QString& title, const QString& message,
+                                   const QMessageBox::Icon& icon);
 
 private slots:
     void slotEditConnect();
@@ -91,4 +103,14 @@ private:
     CRecentModel* m_pModel;
     CManager* m_pManager;
     bool m_bDock;
+
+private:
+    void InitialDrop();
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };

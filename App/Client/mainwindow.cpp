@@ -231,6 +231,9 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(m_pFavoriteView, SIGNAL(sigFavorite()),
                             this, SLOT(on_actionAdd_to_favorite_triggered()));
             Q_ASSERT(check);
+            check = connect(m_pFavoriteView, &CFavoriteView::sigShowMessageBox,
+                            this, &MainWindow::slotShowMessageBox);
+            Q_ASSERT(check);
             check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
                             m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
             Q_ASSERT(check);
@@ -264,6 +267,9 @@ MainWindow::MainWindow(QWidget *parent)
             Q_ASSERT(check);
             check = connect(m_pRecent, &CFrmRecent::sigAddToFavorite,
                             m_pFavoriteView, &CFavoriteView::slotAddToFavorite);
+            Q_ASSERT(check);
+            check = connect(m_pRecent, &CFrmRecent::sigShowMessageBox,
+                            this, &MainWindow::slotShowMessageBox);
             Q_ASSERT(check);
             m_pDockRecent->setWidget(m_pRecent);
             m_pDockRecent->setWindowTitle(

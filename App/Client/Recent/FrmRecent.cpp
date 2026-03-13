@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QMimeData>
 #include <QVBoxLayout>
 #include <QDateTime>
 #include <QStandardItem>
@@ -13,7 +14,7 @@
 #include "FrmRecent.h"
 #include "RabbitCommonDir.h"
 
-static Q_LOGGING_CATEGORY(log, "App.FrmListRecent")
+static Q_LOGGING_CATEGORY(log, "App.CFrmRecent")
 
 CFrmRecent::CFrmRecent(
     MainWindow *pMainWindow, CManager *pManager,
@@ -156,6 +157,7 @@ CFrmRecent::CFrmRecent(
 
     Q_ASSERT(m_pManager);
     m_pTableView = new QTableView(this);
+    InitialDrop();
     m_pTableView->setContextMenuPolicy(Qt::CustomContextMenu);
     check = connect(m_pTableView,
                     SIGNAL(customContextMenuRequested(const QPoint &)),
@@ -582,9 +584,10 @@ void CFrmRecent::slotImport()
                     this, tr("Success"),
                     tr("Successfully imported recent from json file"));
             } else {
-                QMessageBox::warning(
-                    this, tr("Failure"),
-                    tr("Failed to import recent from json file"));
+                QString szErr = tr("Failed to import recent from json file: %1").arg(filename) + "\n";
+                if(!m_Database.GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_Database.GetError();
+                QMessageBox::critical(this, tr("Failure"), szErr);
             }
             return;
         }
@@ -606,11 +609,89 @@ void CFrmRecent::slotExport()
                     this, tr("Success"),
                     tr("Successfully exported recent to json file"));
             } else {
-                QMessageBox::warning(
-                    this, tr("Failure"),
-                    tr("Failed to export recent to json file"));
+                QString szErr = tr("Failed to export recent to json file: %1").arg(filename) + "\n";
+                if(!m_Database.GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_Database.GetError();
+                QMessageBox::critical(this, tr("Failure"), szErr);
             }
             return;
         }
     }
+}
+
+void CFrmRecent::InitialDrop()
+{
+    if(!m_pTableView || !m_pTableView->viewport())
+        return;
+    m_pTableView->viewport()->installEventFilter(this);
+    m_pTableView->setAcceptDrops(true);
+    //m_pTableView->setDragEnabled(true);
+    m_pTableView->setDragDropMode(QTreeView::DropOnly);
+    m_pTableView->setDefaultDropAction(Qt::MoveAction);
+    m_pTableView->setDropIndicatorShown(true);
+}
+
+void CFrmRecent::dragEnterEvent(QDragEnterEvent *event)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    auto urls = event->mimeData()->urls();
+    if(event->mimeData()->hasUrls() && urls.length() == 1) {
+        //qDebug(log) << event->mimeData()->urls();
+        event->acceptProposedAction();
+        return;
+    }
+}
+
+void CFrmRecent::dragMoveEvent(QDragMoveEvent *event)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+}
+
+void CFrmRecent::dropEvent(QDropEvent *event)
+{
+    //qDebug(log) << Q_FUNC_INFO;
+    bool bRet = false;
+    auto urls = event->mimeData()->urls();
+    foreach(auto url, urls)
+    {
+        if(url.isLocalFile()) {
+            QString filename = url.toLocalFile();
+            if (m_Database.ImportFromJsonFile(filename)) {
+                slotRefresh();
+                emit sigShowMessageBox(tr("Success"),
+                                       tr("Successfully imported recent from json file"),
+                                       QMessageBox::Information);
+            } else {
+                QString szErr = tr("Failed to import recent from json file: %1").arg(filename) + "\n";
+                if(!m_Database.GetError().isEmpty())
+                    szErr += "\n" + tr("Error: ") + m_Database.GetError();
+                emit sigShowMessageBox(tr("Failure"), szErr, QMessageBox::Critical);
+            }
+        }
+    }
+    if(bRet)
+        event->accept();
+    else
+        event->ignore();
+}
+
+bool CFrmRecent::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == m_pTableView->viewport()) {
+        //qDebug(log) << Q_FUNC_INFO << "Viewport event:" << event->type();
+        switch (event->type()) {
+        case QEvent::DragEnter:
+            dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+            return true;
+        case QEvent::DragMove:
+            dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+            return true;
+        case QEvent::Drop:
+            dropEvent(static_cast<QDropEvent*>(event));
+            return true;
+        default:
+            break;
+        }
+    }
+    return QWidget::eventFilter(watched, event);
 }
