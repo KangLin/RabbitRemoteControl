@@ -177,6 +177,7 @@ private Q_SLOTS:
     void on_actionMain_menu_bar_M_toggled(bool checked);
     void on_actionToolBar_T_toggled(bool checked);
     void on_actionStatus_bar_S_toggled(bool checked);
+    void on_actionVirtual_Keyboard_triggered();
 
     ///////// Full screen /////////
 private:

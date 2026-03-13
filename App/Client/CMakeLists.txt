@@ -75,7 +75,8 @@ list(APPEND APP_INCLUDE_DIRS
 #    endif()
 #endif()
 
-set(APP_QT_COMPONENTS Core Gui Widgets Network Svg Xml Multimedia MultimediaWidgets Sql)
+set(APP_QT_COMPONENTS Core Gui Widgets Network Svg Xml
+    Multimedia MultimediaWidgets Sql)
 if(QT_VERSION_MAJOR VERSION_GREATER_EQUAL 6)
     list(APPEND APP_QT_COMPONENTS StateMachine)
 endif()
@@ -86,6 +87,13 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
     ENDFOREACH()
 else()
     message(FATAL_ERROR "Qt${QT_VERSION_MAJOR} don't found")
+endif()
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS VirtualKeyboard)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND QT_LIBRARIES Qt${QT_VERSION_MAJOR}::VirtualKeyboard)
+    list(APPEND APP_PRIVATE_DEFINITIONS HAVE_VirtualKeyboard)
+    list(APPEND SOURCE_FILES VirtualKeyboardSettingsDialog.cpp)
+    list(APPEND HEADER_FILES VirtualKeyboardSettingsDialog.h)
 endif()
 
 option(WITH_MACOSX_BUNDLE "Create BUNDLE directory" OFF)
@@ -101,6 +109,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS ${APP_INCLUDE_DIRS}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
         RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
+        ${APP_PRIVATE_DEFINITIONS}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES} ${AppImage}
     PRIVATE_LIBS Plugin ${QT_LIBRARIES}
     )

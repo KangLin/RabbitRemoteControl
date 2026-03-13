@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -92,6 +92,7 @@
     <addaction name="menuType"/>
     <addaction name="menuLayout"/>
     <addaction name="actionTabBar_B"/>
+    <addaction name="actionVirtual_Keyboard"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
     <addaction name="actionMain_menu_bar_M"/>
@@ -527,6 +528,17 @@
    </property>
    <property name="statusTip">
     <string>Minimalism</string>
+   </property>
+  </action>
+  <action name="actionVirtual_Keyboard">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Virtual Keyboard</string>
    </property>
   </action>
  </widget>

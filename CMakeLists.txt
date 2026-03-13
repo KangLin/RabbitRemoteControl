@@ -131,16 +131,16 @@ if(RabbitCommon_ROOT AND EXISTS ${RabbitCommon_ROOT}/Src)
 else()
     find_package(RabbitCommon)
     if(NOT RabbitCommon_FOUND)
-        message("RabbitCommon_ROOT is not found. Please use one of the following ways to set it:")
-        message("1. Set RabbitCommon_ROOT to the install prefix of RabbitCommon.")
-        message("2. Set RabbitCommon_ROOT to source code root of RabbitCommon.")
-        message("2.1 Please download the source code of RabbitCommon from https://github.com/KangLin/RabbitCommon")
-        message("   ag:")
-        message("       git clone https://github.com/KangLin/RabbitCommon.git ${CMAKE_SOURCE_DIR}/..")
-        message("2.2 Then set cmake variable or environment variable RabbitCommon_ROOT to download root directory.")
-        message("   ag:")
-        message("       cmake -DRabbitCommon_ROOT=${CMAKE_SOURCE_DIR}/.. ")
-        message(FATAL_ERROR "RabbitCommon_ROOT isn't set.")
+        message(FATAL_ERROR
+            "RabbitCommon_ROOT is not found. Please use one of the following ways to set it:\n"
+            "1. Set RabbitCommon_ROOT to the install prefix of RabbitCommon.\n"
+            "2. Set RabbitCommon_ROOT to source code root of RabbitCommon.\n"
+            "2.1 Please download the source code of RabbitCommon from https://github.com/KangLin/RabbitCommon\n"
+            "   ag:\n"
+            "       git clone https://github.com/KangLin/RabbitCommon.git ${CMAKE_SOURCE_DIR}/..\n"
+            "2.2 Then set cmake variable or environment variable RabbitCommon_ROOT to download root directory.\n"
+            "   ag:\n"
+            "       cmake -DRabbitCommon_ROOT=${CMAKE_SOURCE_DIR}/.. ")
     endif()
 endif()
 

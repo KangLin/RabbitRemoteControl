@@ -18,6 +18,7 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 #include <QThread>
+#include <QInputMethod>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -75,8 +76,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->menubar->show();
 
+    ui->actionVirtual_Keyboard->setVisible(false);
+#if HAVE_VirtualKeyboard
+    QByteArray imModule = qgetenv("QT_IM_MODULE");
+    bool bVisible = (imModule == "qtvirtualkeyboard" && nullptr != qApp->inputMethod());
+    ui->actionVirtual_Keyboard->setEnabled(bVisible);
+    ui->actionVirtual_Keyboard->setVisible(bVisible);
+#endif
+
     check = connect(&m_Manager, &CManager::sigNewOperate,
-                    this, [&](COperate* pOperate, bool bOpenSettingsDialog){
+                    this, [&](COperate* pOperate, bool bOpenSettingsDialog) {
         Start(pOperate, bOpenSettingsDialog);
     });
     Q_ASSERT(check);
@@ -1556,6 +1565,14 @@ void MainWindow::on_actionStatus_bar_S_toggled(bool checked)
 {
     statusBar()->setVisible(checked);
     m_Parameter.SetStatusBar(checked);
+}
+
+void MainWindow::on_actionVirtual_Keyboard_triggered()
+{
+    auto inputMethod = qApp->inputMethod();
+    if(inputMethod) {
+        inputMethod->setVisible(ui->actionVirtual_Keyboard->isChecked());
+    }
 }
 
 // [Get the widget that settings plugin parameters]

@@ -45,9 +45,42 @@
 
 static Q_LOGGING_CATEGORY(log, "App.Main")
 
+// Android平台的专用初始化函数（必须在QGuiApplication之前）
+void InitAndroidVirtualKeyboard()
+{
+    // 设置输入法模块（必须在QGuiApplication之前）
+    qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
+    
+    // Android特定环境变量
+    //qputenv("QT_VIRTUALKEYBOARD_ANDROID_HEIGHT", "400"); // 设置键盘高度
+    // 设置键盘样式
+    //qputenv("QT_VIRTUALKEYBOARD_STYLE", QByteArray("default")); // 可选: default, retro, etc.
+    
+    // 设置布局（可选中文）
+    //qputenv("QT_VIRTUALKEYBOARD_LAYOUT", "en_US");
+    // qputenv("QT_VIRTUALKEYBOARD_LAYOUT", "zh_CN");
+    
+    // 禁用硬件键盘检测（强制显示虚拟键盘）
+    //qputenv("QT_VIRTUALKEYBOARD_FORCE_ANDROID", "1");
+    
+    // 设置手写识别（如果需要）
+    //qputenv("QT_VIRTUALKEYBOARD_HANDWRITING", QByteArray("1"));
+    
+    // 启用调试
+    qputenv("QT_DEBUG_IM", "1");
+}
+
 int main(int argc, char *argv[])
 {
     int nRet = 0;
+
+// #if HAVE_VirtualKeyboard && defined(Q_OS_ANDROID)
+//     InitAndroidVirtualKeyboard();
+// #endif
+
+    // 检查环境变量是否设置成功
+    QByteArray imModule = qgetenv("QT_IM_MODULE");
+    qDebug(log) << "QT_IM_MODULE set to:" << imModule;
 
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
@@ -94,6 +127,11 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication app(argc, argv);
+
+    QInputMethod *inputMethod = app.inputMethod();
+    qDebug(log) << "Input method available:" << (inputMethod != nullptr);
+    if(inputMethod)
+        qDebug(log) << "Input method locale:" << inputMethod->locale();
 
     RabbitCommon::CTools::Instance()->Init();
 
