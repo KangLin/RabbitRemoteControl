@@ -50,11 +50,13 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
 
     m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
     m_pProxyUI->SetParameter(&m_pSettings->m_Proxy);
-    ui->tabWidget->insertTab(1, m_pProxyUI, m_pProxyUI->windowIcon(), tr("Proxy"));
-    
+    InsertView(m_pProxyUI, 1);
+
     m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
     m_pRecordUI->SetParameter(&m_pSettings->m_Record);
-    ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), tr("Record"));
+    QList<QWidget *> ws;
+    ws << m_pRecordUI;
+    AddViewers(ws);
 
     // Display
     // It has to be the first. GetScreenGeometry depends on it
@@ -647,3 +649,81 @@ void CDlgSetFreeRDP::on_cbConnectType_currentIndexChanged(int index)
     ui->cbDesktopCompositing->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
 }
 
+void CDlgSetFreeRDP::InsertView(QWidget* pView, int pos)
+{
+    int nWidth = 0;
+    int nHeigth = 0;
+    if(!pView) return;
+    nWidth = qMax(nWidth, pView->frameSize().width());
+    nHeigth = qMax(nHeigth, pView->frameSize().height());
+
+    bool bScroll = false;
+    QScreen* pScreen = QApplication::primaryScreen();
+    QSize size = this->size();
+    if(nWidth > size.width() || nHeigth > size.height())
+        bScroll = true;
+    // [connect accepted to slotAccept of widget]
+
+    QString szMsg;
+    if(bScroll)
+    {
+        QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
+        if(!pScroll) return;
+        pScroll->setWidget(pView);
+        pView = pScroll;
+    }
+    ui->tabWidget->insertTab(pos, pView, pView->windowIcon(), pView->windowTitle());
+    bool check = false;
+    check = connect(this, SIGNAL(accepted()), pView, SLOT(slotAccept()));
+    if(!check)
+    {
+        szMsg = "Class '" + QString(pView->metaObject()->className())
+        + "' must has slot slotAccept(), please add it. "
+            + "Or the class derived from CParameterUI";
+        qCritical(log) << szMsg;
+    }
+    Q_ASSERT_X(check, "CParameterDlgSettings", szMsg.toStdString().c_str());
+
+    // [connect accepted to slotAccept of widget]
+}
+
+void CDlgSetFreeRDP::AddViewers(const QList<QWidget *> &wViewer)
+{
+    int nWidth = 0;
+    int nHeigth = 0;
+    foreach(auto p, wViewer) {
+        if(!p) continue;
+        nWidth = qMax(nWidth, p->frameSize().width());
+        nHeigth = qMax(nHeigth, p->frameSize().height());
+    }
+    bool bScroll = false;
+    QScreen* pScreen = QApplication::primaryScreen();
+    QSize size = this->size();
+    if(nWidth > size.width() || nHeigth > size.height())
+        bScroll = true;
+    // [connect accepted to slotAccept of widget]
+    foreach(auto p, wViewer)
+    {
+        QString szMsg;
+        QWidget* pView = p;
+        if(bScroll)
+        {
+            QScrollArea* pScroll = new QScrollArea(ui->tabWidget);
+            if(!pScroll) continue;
+            pScroll->setWidget(p);
+            pView = pScroll;
+        }
+        ui->tabWidget->addTab(pView, p->windowIcon(), p->windowTitle());
+        bool check = false;
+        check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
+        if(!check)
+        {
+            szMsg = "Class '" + QString(p->metaObject()->className())
+            + "' must has slot slotAccept(), please add it. "
+                + "Or the class derived from CParameterUI";
+            qCritical(log) << szMsg;
+        }
+        Q_ASSERT_X(check, "CParameterDlgSettings", szMsg.toStdString().c_str());
+    }
+    // [connect accepted to slotAccept of widget]
+}
