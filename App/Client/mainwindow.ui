@@ -92,7 +92,7 @@
     <addaction name="menuType"/>
     <addaction name="menuLayout"/>
     <addaction name="actionTabBar_B"/>
-    <addaction name="actionVirtual_Keyboard"/>
+    <addaction name="actionKeyboard"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
     <addaction name="actionMain_menu_bar_M"/>
@@ -530,7 +530,7 @@
     <string>Minimalism</string>
    </property>
   </action>
-  <action name="actionVirtual_Keyboard">
+  <action name="actionKeyboard">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -538,7 +538,13 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Virtual Keyboard</string>
+    <string>Keyboard</string>
+   </property>
+   <property name="statusTip">
+    <string>Show keyboard</string>
+   </property>
+   <property name="whatsThis">
+    <string>Show keyboard</string>
    </property>
   </action>
  </widget>

@@ -48,7 +48,7 @@ jobs:
       ANDROID_PLATFORM: android-34
       ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtspeech qtvirtualkeyboard'
+      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtspeech' # qtvirtualkeyboard'
 
     # Map the job outputs to step outputs
     outputs:

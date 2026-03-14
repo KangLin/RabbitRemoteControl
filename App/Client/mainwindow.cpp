@@ -19,6 +19,7 @@
 #include <QLoggingCategory>
 #include <QThread>
 #include <QInputMethod>
+#include <QGuiApplication>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -76,12 +77,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->menubar->show();
 
-    ui->actionVirtual_Keyboard->setVisible(false);
-#if HAVE_VirtualKeyboard
-    QByteArray imModule = qgetenv("QT_IM_MODULE");
-    bool bVisible = (imModule == "qtvirtualkeyboard" && nullptr != qApp->inputMethod());
-    ui->actionVirtual_Keyboard->setEnabled(bVisible);
-    ui->actionVirtual_Keyboard->setVisible(bVisible);
+    ui->actionKeyboard->setVisible(false);
+#if ANDROID
+    bool bVisible = (nullptr != QGuiApplication::inputMethod());
+    ui->actionKeyboard->setVisible(bVisible);
+    ui->actionKeyboard->setEnabled(bVisible);
 #endif
 
     check = connect(&m_Manager, &CManager::sigNewOperate,
@@ -1573,11 +1573,25 @@ void MainWindow::on_actionStatus_bar_S_toggled(bool checked)
     m_Parameter.SetStatusBar(checked);
 }
 
-void MainWindow::on_actionVirtual_Keyboard_triggered()
+void MainWindow::on_actionKeyboard_triggered()
 {
-    auto inputMethod = qApp->inputMethod();
+    auto inputMethod = QGuiApplication::inputMethod();
     if(inputMethod) {
-        inputMethod->setVisible(ui->actionVirtual_Keyboard->isChecked());
+        bool bVisible = ui->actionKeyboard->isChecked();
+        ui->actionKeyboard->setChecked(bVisible);
+        if(bVisible) {
+            QObject *focusObject = QGuiApplication::focusObject();
+            if(m_pView && m_pView->GetCurrentView())
+                focusObject = m_pView->GetCurrentView();
+            if (focusObject) {
+                // 可选：强制焦点对象发送输入法请求
+                QInputMethodEvent event;
+                QCoreApplication::sendEvent(focusObject, &event);
+            }
+            inputMethod->show();
+        }
+        else
+            inputMethod->hide();
     }
 }
 

@@ -833,8 +833,8 @@ File: %1</source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="541"/>
-        <source>Virtual Keyboard</source>
-        <translation>虛擬鍵盤</translation>
+        <source>Keyboard</source>
+        <translation>鍵盤</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="384"/>
