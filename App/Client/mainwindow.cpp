@@ -77,9 +77,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menubar->show();
 
     ui->actionVirtual_Keyboard->setVisible(false);
-#if HAVE_VirtualKeyboard
-    QByteArray imModule = qgetenv("QT_IM_MODULE");
-    bool bVisible = (imModule == "qtvirtualkeyboard" && nullptr != qApp->inputMethod());
+#if ANDROID
+    //QByteArray imModule = qgetenv("QT_IM_MODULE");
+    bool bVisible = true; // (imModule == "qtvirtualkeyboard" && nullptr != qApp->inputMethod());
     ui->actionVirtual_Keyboard->setEnabled(bVisible);
     ui->actionVirtual_Keyboard->setVisible(bVisible);
 #endif
