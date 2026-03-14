@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>186</width>
-    <height>95</height>
+    <width>550</width>
+    <height>104</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
   <property name="frameShape">
-   <enum>QFrame::Panel</enum>
+   <enum>QFrame::Shape::Panel</enum>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

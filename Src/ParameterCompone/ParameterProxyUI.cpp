@@ -10,6 +10,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     , m_uiSSH(nullptr)
 {
     bool bCheck = false;
+    setWindowTitle(tr("Proxy"));
     setLayout(new QBoxLayout(QBoxLayout::TopToBottom, this));
     Q_ASSERT(layout());
 

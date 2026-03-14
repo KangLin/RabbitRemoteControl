@@ -47,6 +47,8 @@ private slots:
     void on_cbSecurityEnable_stateChanged(int arg1);
 
 private:
+    void InsertView(QWidget *p, int pos);
+    void AddViewers(const QList<QWidget*> &wViewer);
     QRect GetScreenGeometry();
     int UpdateDesktopSize();
     int InsertDesktopSize(QString szSize);
