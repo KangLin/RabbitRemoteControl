@@ -206,9 +206,29 @@
 <context>
     <name>CDatabase</name>
     <message>
-        <location filename="../../Database/Database.cpp" line="86"/>
+        <location filename="../../Database/Database.cpp" line="90"/>
         <source>Database type not supported:</source>
         <translation>数据库类型未知：</translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="375"/>
+        <source>Failed to open import JSON file: %1; Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="384"/>
+        <source>Not a valid JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="391"/>
+        <source>File format error. The title: &quot;%1&quot; is not &quot;Rabbit Remote Control&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="397"/>
+        <source>The version is no longer supported: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -362,7 +382,7 @@
 <context>
     <name>CManager</name>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
+        <location filename="../../Manager.cpp" line="134"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
@@ -370,48 +390,48 @@ Some features are limited.
 一些功能受限。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="118"/>
+        <location filename="../../Manager.cpp" line="137"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation>例如：不能禁用系统快捷键（例如：Ctrl+Alt+del）。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="120"/>
+        <location filename="../../Manager.cpp" line="139"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation>例如：不能使用局域网内唤醒功能。</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="122"/>
+        <location filename="../../Manager.cpp" line="141"/>
         <source>Restart program by administrator?</source>
         <translation>用管理员权限重启程序？</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="123"/>
+        <location filename="../../Manager.cpp" line="142"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="125"/>
+        <location filename="../../Manager.cpp" line="144"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="234"/>
+        <location filename="../../Manager.cpp" line="250"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="332"/>
-        <location filename="../../Manager.cpp" line="652"/>
+        <location filename="../../Manager.cpp" line="348"/>
+        <location filename="../../Manager.cpp" line="670"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="572"/>
+        <location filename="../../Manager.cpp" line="590"/>
         <source>Terminal</source>
         <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="657"/>
+        <location filename="../../Manager.cpp" line="675"/>
         <source>Dependency libraries</source>
         <translation>依赖库</translation>
     </message>
