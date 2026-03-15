@@ -417,6 +417,7 @@ jobs:
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
 
       - name: Build RabbitRemoteControl with cmake preset
+        if: ${{ startsWith(github.ref, 'refs/heads/develop') }}
         working-directory: ${{github.workspace}}
         env:
           # See: https://doc.qt.io/qt-6/cmake-variable-qt-android-sign-apk.html
