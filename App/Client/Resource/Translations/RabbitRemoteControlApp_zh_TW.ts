@@ -605,72 +605,72 @@ File: %1</source>
     <name>CVirtualKeyboardSettingsDialog</name>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
-        <source>虛擬鍵盤設置</source>
+        <source>虚拟键盘设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="41"/>
-        <source>輸入語言</source>
+        <source>输入语言</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="56"/>
-        <source>選擇輸入語言:</source>
+        <source>选择输入语言:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="61"/>
-        <source>外觀設置</source>
+        <source>外观设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="66"/>
-        <source>鍵盤主題:</source>
+        <source>键盘主题:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="77"/>
-        <source>按鍵大小:</source>
+        <source>按键大小:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="95"/>
-        <source>顯示按鍵輔助小文本</source>
+        <source>显示按键辅助小文本</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="96"/>
-        <source>自動大寫</source>
+        <source>自动大写</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="101"/>
-        <source>按鍵反饋</source>
+        <source>按键反馈</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="104"/>
-        <source>啟用按鍵音</source>
+        <source>启用按键音</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="105"/>
-        <source>啟用震動反饋</source>
+        <source>启用震动反馈</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="112"/>
-        <source>恢復默認</source>
+        <source>恢复默认</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="113"/>
-        <source>應用</source>
+        <source>应用</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="114"/>
-        <source>確定</source>
+        <source>确定</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -835,6 +835,12 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="541"/>
         <source>Keyboard</source>
         <translation>鍵盤</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="544"/>
+        <location filename="../../mainwindow.ui" line="547"/>
+        <source>Show keyboard</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="384"/>

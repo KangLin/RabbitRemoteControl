@@ -837,6 +837,12 @@ File: %1</source>
         <translation>键盘</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="544"/>
+        <location filename="../../mainwindow.ui" line="547"/>
+        <source>Show keyboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="384"/>
         <location filename="../../mainwindow.ui" line="387"/>
         <location filename="../../mainwindow.ui" line="390"/>

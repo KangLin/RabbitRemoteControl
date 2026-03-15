@@ -1072,7 +1072,12 @@ Some features are limited.
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="29"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="13"/>
+        <source>Proxy</source>
+        <translation type="unfinished">代理</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="30"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>

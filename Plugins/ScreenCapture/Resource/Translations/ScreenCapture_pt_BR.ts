@@ -11,42 +11,42 @@
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="30"/>
-        <location filename="../../DlgCapture.ui" line="65"/>
+        <location filename="../../DlgCapture.ui" line="42"/>
         <source>Target</source>
         <translation>Alvo</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="36"/>
+        <location filename="../../DlgCapture.ui" line="113"/>
         <source>Operate</source>
         <translation>Operação</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="42"/>
+        <location filename="../../DlgCapture.ui" line="119"/>
         <source>Shot</source>
         <translation>Captura</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="49"/>
+        <location filename="../../DlgCapture.ui" line="126"/>
         <source>Record</source>
         <translation>Gravação</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="73"/>
+        <location filename="../../DlgCapture.ui" line="50"/>
         <source>Screen</source>
         <translation>Tela</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="100"/>
+        <location filename="../../DlgCapture.ui" line="77"/>
         <source>Window</source>
         <translation>Janela</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="119"/>
+        <location filename="../../DlgCapture.ui" line="96"/>
         <source>Custom rectangle</source>
         <translation>Retângulo</translation>
     </message>
     <message>
-        <location filename="../../DlgCapture.ui" line="126"/>
+        <location filename="../../DlgCapture.ui" line="103"/>
         <source>Customize</source>
         <translation>Personalizado</translation>
     </message>

@@ -204,6 +204,34 @@
     </message>
 </context>
 <context>
+    <name>CDatabase</name>
+    <message>
+        <location filename="../../Database/Database.cpp" line="90"/>
+        <source>Database type not supported:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="375"/>
+        <source>Failed to open import JSON file: %1; Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="384"/>
+        <source>Not a valid JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="391"/>
+        <source>File format error. The title: &quot;%1&quot; is not &quot;Rabbit Remote Control&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/Database.cpp" line="397"/>
+        <source>The version is no longer supported: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgInputPassword</name>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
@@ -284,44 +312,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="145"/>
-        <location filename="../../FrmManagePlugins.cpp" line="247"/>
+        <location filename="../../FrmManagePlugins.cpp" line="146"/>
+        <location filename="../../FrmManagePlugins.cpp" line="248"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="152"/>
-        <location filename="../../FrmManagePlugins.cpp" line="251"/>
+        <location filename="../../FrmManagePlugins.cpp" line="153"/>
+        <location filename="../../FrmManagePlugins.cpp" line="252"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="255"/>
+        <location filename="../../FrmManagePlugins.cpp" line="256"/>
         <source>Name</source>
         <translation type="unfinished">Nome</translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="256"/>
+        <location filename="../../FrmManagePlugins.cpp" line="257"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="257"/>
+        <location filename="../../FrmManagePlugins.cpp" line="258"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="185"/>
+        <location filename="../../FrmManagePlugins.cpp" line="186"/>
         <source>Plugin path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="223"/>
+        <location filename="../../FrmManagePlugins.cpp" line="224"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmManagePlugins.cpp" line="224"/>
+        <location filename="../../FrmManagePlugins.cpp" line="225"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
@@ -350,7 +378,7 @@
     </message>
     <message>
         <location filename="../../FrmManagePlugins.ui" line="75"/>
-        <source>The settings will take effect after the application is restarted.</source>
+        <source>The setting will take effect only after restarting the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -471,55 +499,55 @@ Reiniciar o programa como administrador?</translation>
         <translation type="vanished">### Plugins</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="115"/>
+        <location filename="../../Manager.cpp" line="134"/>
         <source>The programe is not administrator privilege.
 Some features are limited.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="118"/>
+        <location filename="../../Manager.cpp" line="137"/>
         <source>Eg: Can not disable system shortcuts(eg: Ctrl+Alt+del).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="120"/>
+        <location filename="../../Manager.cpp" line="139"/>
         <source>Eg: Can not use the wake on LAN feature.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="122"/>
+        <location filename="../../Manager.cpp" line="141"/>
         <source>Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="123"/>
+        <location filename="../../Manager.cpp" line="142"/>
         <source>Warning</source>
         <translation type="unfinished">Aviso</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="125"/>
+        <location filename="../../Manager.cpp" line="144"/>
         <source>Always shown</source>
         <translation type="unfinished">Sempre exibir</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="234"/>
+        <location filename="../../Manager.cpp" line="250"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="332"/>
-        <location filename="../../Manager.cpp" line="646"/>
+        <location filename="../../Manager.cpp" line="348"/>
+        <location filename="../../Manager.cpp" line="670"/>
         <source>Version:</source>
         <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="568"/>
+        <location filename="../../Manager.cpp" line="590"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="651"/>
+        <location filename="../../Manager.cpp" line="675"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -794,17 +822,17 @@ Some features are limited.
 <context>
     <name>CParameterDatabase</name>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="83"/>
         <source>Database drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="87"/>
         <source>Current used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabase.cpp" line="88"/>
+        <location filename="../../Database/ParameterDatabase.cpp" line="89"/>
         <source>Supported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -817,64 +845,121 @@ Some features are limited.
         <translation type="unfinished">Formulário</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="38"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="20"/>
+        <source>The setting will take effect only after restarting the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="32"/>
         <source>Type:</source>
         <translation type="unfinished">Tipo:</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="59"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="77"/>
         <source>Options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="73"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="104"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="218"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="119"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <source>Save operate settings to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="127"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <source>Local</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="143"/>
+        <source>Warn: Please ensure that the database you want to access is secure. Otherwise, information such as recent lists and favorites may be leaked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="53"/>
         <source>Database name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="83"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="63"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="92"/>
-        <source>The setting will take effect only after restarting the program.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="25"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="134"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="30"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="77"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <source>but the database is not set local database &quot;QSQLITE&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="97"/>
+        <source>Please modify database &quot;Type&quot; to &quot;QSQLITE&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <source>or modify </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="99"/>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="131"/>
         <source>Set the database name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="82"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="136"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="86"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="87"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="94"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="141"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="155"/>
         <source>Configure database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="171"/>
         <source>Database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="172"/>
         <source>Database file (*.db);; All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <source>Test is successfully!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="219"/>
+        <source>Test is failed!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -918,7 +1003,7 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="19"/>
         <source>Plugin</source>
         <translation>Plugin</translation>
     </message>
@@ -927,104 +1012,89 @@ Some features are limited.
         <translation type="vanished">Ativar recebimento de evento de teclado (tecla de atalho)</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="246"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
         <source>Enable use the system user as the user</source>
         <translation>Usar o usuário do sistema como o usuário</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="109"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
         <source>Store password with system credential manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="227"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="66"/>
         <source>Viewer zoom:</source>
         <translation>Zoom do visualizador:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Prompt administrator privilege</source>
         <translation>Solicitar privilégios de administrador</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="201"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
         <source>Show protocol prefix in name</source>
         <translation>Mostrar prefixo de protocolo no nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="126"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
         <source>Capture all keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
         <source>Only show ip:port in name</source>
         <translation>Mostrar apenas ip:porta no nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="119"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
         <source>Enable local input method</source>
         <translation>Ativar método de entrada local</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="135"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="94"/>
         <source>Desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="108"/>
         <source>Disable script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="159"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="139"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="170"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="129"/>
         <source>Restore script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
-        <source>Save settings to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="259"/>
-        <source>File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="266"/>
-        <source>Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="44"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
         <source>Key used to encrypt saved password:</source>
         <translation>Chave usada para criptografar a senha salva:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="52"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="186"/>
         <source>Encrypt key:</source>
         <translation>Chave de criptografia:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="83"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="217"/>
         <source>Prompt type:</source>
         <translation>Solicitar tipo:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="90"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="97"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
         <source>First</source>
         <translation>Primeira vez</translation>
     </message>
@@ -1033,53 +1103,53 @@ Some features are limited.
         <translation type="vanished">Sempre</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="195"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="154"/>
         <source>Password</source>
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
         <source>Enable save password</source>
         <translation>Ativar salvar senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="35"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Enable view password</source>
         <translation>Ativar senha de visualização</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="110"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="109"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="114"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="113"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="116"/>
         <source>Zoom to window</source>
         <translation>Zoom para a janela</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="120"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="119"/>
         <source>Keep aspect ratio to window</source>
         <translation>Manter a proporção para a janela</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="160"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
         <source>Open disable desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="171"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="170"/>
         <source>Open restore desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1130,7 +1200,12 @@ Some features are limited.
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="29"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="13"/>
+        <source>Proxy</source>
+        <translation type="unfinished">Proxy</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="30"/>
         <source>Type:</source>
         <translation>Tipo:</translation>
     </message>
