@@ -192,6 +192,10 @@ int CWakeOnLanModel::AddItem(QSharedPointer<CParameterWakeOnLan> para)
     if(!para)
         return -1;
     QString szIp = para->m_Net.GetHost();
+    if(szIp.isEmpty()) {
+        qCritical(log) << "The ip is empty";
+        return -1;
+    }
     foreach(auto p, m_Data)
     {
         if(p->m_Net.GetHost() == szIp){

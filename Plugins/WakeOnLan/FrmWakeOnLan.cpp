@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include <QLoggingCategory>
 #include <QMessageBox>
 
@@ -54,7 +56,7 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
     QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
     */
     ui->tableView->horizontalHeader()->setSectionResizeMode(
-        QHeaderView::Interactive);
+        QHeaderView::ResizeToContents);
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
     //ui->tableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
@@ -89,6 +91,11 @@ QModelIndex CFrmWakeOnLan::GetCurrentIndex()
 QModelIndexList CFrmWakeOnLan::GetSelect()
 {
     return ui->tableView->selectionModel()->selectedRows();
+}
+
+QToolBar* CFrmWakeOnLan::GetToolBar()
+{
+    return ui->toolBar;
 }
 
 bool CFrmWakeOnLan::eventFilter(QObject *watched, QEvent *event)

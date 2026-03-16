@@ -1,8 +1,10 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef FRMWAKEONLAN_H
 #define FRMWAKEONLAN_H
 
 #include <QWidget>
-
+#include <QToolBar>
 #include "WakeOnLanModel.h"
 
 namespace Ui {
@@ -19,6 +21,8 @@ public:
     ~CFrmWakeOnLan();
     QModelIndex GetCurrentIndex();
     QModelIndexList GetSelect();
+    QToolBar* GetToolBar();
+
 public Q_SLOTS:
     void slotRemoveRow();
 Q_SIGNALS:

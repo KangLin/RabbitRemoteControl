@@ -47,8 +47,11 @@ int COperateWakeOnLan::Initial()
     if(!m_pModel)
         return -1;
     m_pView = new CFrmWakeOnLan(m_pModel);
-    if(!m_pView) return -2;
+    if(!m_pView) return -1;
+    QToolBar* pToolBar = m_pView->GetToolBar();
+    if(!pToolBar) return -1;
     m_pView->setWindowTitle(plugin->Name());
+
     check = connect(m_pView, SIGNAL(sigViewerFocusIn(QWidget*)),
                     this, SIGNAL(sigViewerFocusIn(QWidget*)));
     Q_ASSERT(check);
@@ -72,12 +75,13 @@ int COperateWakeOnLan::Initial()
                      });
     m_Menu.addSeparator();
 
-    m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+    QAction* pRefresh = m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                      this, [&](){
                          foreach(auto p, m_pModel->m_Data)
                          m_Arp.GetMac(p);
                      });
-    m_Menu.addAction(
+    pToolBar->addAction(pRefresh);
+    QAction* pMac = m_Menu.addAction(
         QIcon::fromTheme("mac"), tr("Get mac address"),
         this, [&](){
             if(!m_pModel || !m_pView)
@@ -89,7 +93,8 @@ int COperateWakeOnLan::Initial()
                     p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
             }
         });
-    m_Menu.addAction(
+    pToolBar->addAction(pMac);
+    QAction* pWal = m_Menu.addAction(
         QIcon::fromTheme("lan"), tr("Wake on lan"),
         this, [&](){
             if(!m_pModel || !m_pView)
@@ -101,11 +106,14 @@ int COperateWakeOnLan::Initial()
                     p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
             }
         });
+    pToolBar->addAction(pWal);
+    pToolBar->addSeparator();
     m_Menu.addSeparator();
 
-    m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
+    QAction* pAdd = m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
                      this, SLOT(slotAdd()));
-    m_Menu.addAction(QIcon::fromTheme("document-edit"), tr("Edit"),
+    pToolBar->addAction(pAdd);
+    QAction* pEdit = m_Menu.addAction(QIcon::fromTheme("document-edit"), tr("Edit"),
                      this, [&](){
                          QSharedPointer<CParameterWakeOnLan> para
                              = m_pModel->GetData(m_pView->GetCurrentIndex());
@@ -120,8 +128,10 @@ int COperateWakeOnLan::Initial()
                          dlg.SetParameter(para.data());
                          RC_SHOW_WINDOW(&dlg);
                      });
-    m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
+    pToolBar->addAction(pEdit);
+    QAction* pRemove = m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
                      m_pView, SLOT(slotRemoveRow()));
+    pToolBar->addAction(pRemove);
 
     return 0;
 }

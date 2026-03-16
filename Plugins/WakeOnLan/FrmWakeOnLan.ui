@@ -15,6 +15,19 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
+    <widget class="QToolBar" name="toolBar">
+     <property name="windowTitle">
+      <string>toolBar</string>
+     </property>
+     <attribute name="toolBarArea">
+      <enum>TopToolBarArea</enum>
+     </attribute>
+     <attribute name="toolBarBreak">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QTableView" name="tableView">
      <property name="sortingEnabled">
       <bool>false</bool>
