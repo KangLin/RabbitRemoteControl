@@ -35,8 +35,7 @@ CFrmHistory::CFrmHistory(CParameterWebBrowser *pPara,
 
     setWindowTitle(tr("History"));
 
-    QToolBar* pToolBar = new QToolBar(this);
-    layout()->addWidget(pToolBar);
+    QToolBar* pToolBar = ui->toolBar;
 
     QDate curDate = QDate::currentDate();
     m_pDateStart = new QDateEdit(curDate.addDays(-7), pToolBar);
