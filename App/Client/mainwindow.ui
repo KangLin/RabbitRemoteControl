@@ -114,6 +114,8 @@
     </widget>
     <addaction name="menuStart"/>
     <addaction name="actionStop"/>
+    <addaction name="actionStop_All"/>
+    <addaction name="actionStop_other"/>
     <addaction name="actionOpenListRecent"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="separator"/>
@@ -545,6 +547,28 @@
    </property>
    <property name="whatsThis">
     <string>Show keyboard</string>
+   </property>
+  </action>
+  <action name="actionStop_All">
+   <property name="icon">
+    <iconset theme="media-playback-stop"/>
+   </property>
+   <property name="text">
+    <string>Stop All</string>
+   </property>
+   <property name="toolTip">
+    <string>Stop All</string>
+   </property>
+  </action>
+  <action name="actionStop_other">
+   <property name="icon">
+    <iconset theme="media-playback-stop"/>
+   </property>
+   <property name="text">
+    <string>Stop other</string>
+   </property>
+   <property name="toolTip">
+    <string>Stop other</string>
    </property>
   </action>
  </widget>

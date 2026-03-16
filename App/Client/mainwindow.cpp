@@ -783,6 +783,8 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
                 if(a->data().value<COperate*>() == o)
                     a->setChecked(true);
             }
+            ui->actionStop_other->setText(
+                tr("Stop other except the current \"%1\"").arg(o->Name()));
         }
     }
 }
@@ -793,6 +795,16 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionStop->setEnabled(bEnable);
+    ui->actionStop_All->setEnabled(bEnable);
+    ui->actionStop_other->setEnabled(bEnable);
+    if(bEnable) {
+        if(m_Operates.size() > 1)
+            ui->actionStop_other->setEnabled(true);
+        else
+            ui->actionStop_other->setEnabled(false);
+    } else {
+        ui->actionStop_other->setText(tr("Stop other"));
+    }
     ui->actionTabBar_B->setEnabled(bEnable);
     ui->menuActivity->setEnabled(bEnable);
     m_ptbMenuActivity->setEnabled(bEnable);
@@ -1119,16 +1131,17 @@ void MainWindow::slotRunning()
     }
     //*/
 
-    SetSecureLevel(p);
+    slotCurrentViewChanged(p->GetViewer());
 
     auto m = p->GetMenu();
     if(m) {
         m->addSeparator();
         m->addAction(ui->actionClone);
+        m->addAction(ui->actionStop_All);
+        m->addAction(ui->actionStop_other);
     }
-    slotLoadOperateMenu();
 
-    slotInformation(tr("Connected to ") + p->Name());
+    slotInformation(tr("Connected to ") + "\"" + p->Name() + "\"");
     qDebug(log) << Q_FUNC_INFO << p->Name();
 }
 //! [MainWindow slotRunning]
@@ -1148,11 +1161,35 @@ void MainWindow::slotCloseView(const QWidget* pView)
     }
 }
 
+void MainWindow::on_actionStop_other_triggered()
+{
+    if(!m_pView) return;
+    foreach(auto p, m_Operates)
+    {
+        if(p->GetViewer() != m_pView->GetCurrentView())
+        {
+            //TODO: Whether to save the setting
+            emit p->sigUpdateParameters(p);
+            p->Stop();
+        }
+    }
+}
+
+void MainWindow::on_actionStop_All_triggered()
+{
+    foreach(auto p, m_Operates)
+    {
+        //TODO: Whether to save the setting
+        emit p->sigUpdateParameters(p);
+        p->Stop();
+    }
+}
+
 void MainWindow::on_actionStop_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!m_pView) return;
-    
+
     QWidget* pView = m_pView->GetCurrentView();
     slotCloseView(pView);    
 }

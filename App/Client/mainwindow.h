@@ -92,6 +92,8 @@ public:
     ///////// Stop /////////
 private Q_SLOTS:
     void on_actionStop_triggered();
+    void on_actionStop_All_triggered();
+    void on_actionStop_other_triggered();
     void slotCloseView(const QWidget* pView);
     void slotStop();
     void slotFinished();
