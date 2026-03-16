@@ -184,6 +184,7 @@ int main(int argc, char *argv[])
 #endif // #ifdef HAVE_UPDATE
 
     CStatsAppUsage* pStats = nullptr;
+    /*
     int randomInt = 0;
     int nMin = 10;
     int nMax = 50;
@@ -196,7 +197,7 @@ int main(int argc, char *argv[])
     QTimer::singleShot(randomInt, [&](){
         pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
         app.processEvents();
-    });
+    });//*/
 
     MainWindow* w = new MainWindow();
 
