@@ -4,82 +4,82 @@
 <context>
     <name>CAddressCompleter</name>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="64"/>
+        <location filename="../../AddressCompleter.cpp" line="65"/>
         <source>Enter &apos;@&apos; show commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="65"/>
+        <location filename="../../AddressCompleter.cpp" line="66"/>
         <source>Enter a website URL or search content ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="67"/>
+        <location filename="../../AddressCompleter.cpp" line="68"/>
         <source>Enter ↲ key: Apply current url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="69"/>
+        <location filename="../../AddressCompleter.cpp" line="70"/>
         <source>Enter ↲ key: Apply current item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="70"/>
+        <location filename="../../AddressCompleter.cpp" line="71"/>
         <source>Tab ⇆ key: Apply current item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="71"/>
+        <location filename="../../AddressCompleter.cpp" line="72"/>
         <source>Esc Key: Exit address completer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="72"/>
+        <location filename="../../AddressCompleter.cpp" line="73"/>
         <source>Space Key: Exit address completer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="73"/>
+        <location filename="../../AddressCompleter.cpp" line="74"/>
         <source>↑ (Upper arrow) key: Select previous item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="74"/>
+        <location filename="../../AddressCompleter.cpp" line="75"/>
         <source>↓ (Down arrow) key: Select next item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="272"/>
+        <location filename="../../AddressCompleter.cpp" line="273"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="273"/>
+        <location filename="../../AddressCompleter.cpp" line="274"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="274"/>
+        <location filename="../../AddressCompleter.cpp" line="275"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="275"/>
+        <location filename="../../AddressCompleter.cpp" line="276"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="376"/>
+        <location filename="../../AddressCompleter.cpp" line="377"/>
         <source>Search &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="385"/>
+        <location filename="../../AddressCompleter.cpp" line="386"/>
         <source>Use default search engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="410"/>
+        <location filename="../../AddressCompleter.cpp" line="411"/>
         <source>Search in %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -87,32 +87,32 @@
 <context>
     <name>CBookmarkDatabase</name>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="65"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="39"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="66"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="40"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="67"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="41"/>
         <source>Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="68"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="42"/>
         <source>Frequently Used Websites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="412"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="386"/>
         <source>Format error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="413"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="387"/>
         <source>This is not a valid bookmark file format.
 Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
@@ -498,27 +498,27 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="118"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="119"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="133"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="134"/>
         <source>Delete %1 bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="182"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="183"/>
         <source>New folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="182"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="183"/>
         <source>Create new folder in folder &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="194"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="195"/>
         <source>Add folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -532,188 +532,188 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="58"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="61"/>
         <source>Search:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="62"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="65"/>
         <source>Input keyword to search boolmark ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="81"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="84"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="97"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="267"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="272"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="338"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="100"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="270"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="275"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="341"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
         <source>Add bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="104"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="301"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="107"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="304"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="546"/>
         <source>Add folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="113"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="534"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="116"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="548"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="120"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="547"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="123"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="550"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="137"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="140"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="144"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="147"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="153"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="156"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="194"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="197"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="268"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="339"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="271"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="342"/>
         <source>Url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="273"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="334"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="276"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="337"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="302"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="354"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="305"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="357"/>
         <source>Folder name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="333"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="336"/>
         <source>Edit bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="353"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="356"/>
         <source>Rename folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="376"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="376"/>
         <source>The folder &quot;%1&quot; is not delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="379"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="382"/>
         <source>Are you sure you want to delete the bookmark &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="381"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="384"/>
         <source>Are you sure you want to delete the folder &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="387"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="390"/>
         <source>Confirm deletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="422"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="431"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="441"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="425"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="434"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="438"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="444"/>
         <source>Import bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="424"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="427"/>
         <source>HTML(*.html);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="432"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
         <source>Successfully imported bookmarks from file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="436"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="439"/>
         <source>Failed to import bookmark from file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="442"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="468"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="445"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="471"/>
         <source>Invalid file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="443"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="469"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="472"/>
         <source>Please use html file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="449"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="458"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="452"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="464"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="470"/>
         <source>Export bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="451"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="454"/>
         <source>HTML (*.html);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="459"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
         <source>Bookmarks successfully exported to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="465"/>
         <source>Failed to export bookmark to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="530"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="533"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1086,250 +1086,250 @@ Please select the HTML bookmark file exported from your browser.</source>
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="106"/>
+        <location filename="../../FrmWebBrowser.cpp" line="97"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="116"/>
+        <location filename="../../FrmWebBrowser.cpp" line="107"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="126"/>
+        <location filename="../../FrmWebBrowser.cpp" line="117"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="140"/>
+        <location filename="../../FrmWebBrowser.cpp" line="131"/>
         <source>go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="199"/>
+        <location filename="../../FrmWebBrowser.cpp" line="190"/>
         <source>Add tab page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="211"/>
+        <location filename="../../FrmWebBrowser.cpp" line="202"/>
         <source>Download Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="272"/>
+        <location filename="../../FrmWebBrowser.cpp" line="263"/>
         <source>Operate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmWebBrowser.cpp" line="308"/>
         <location filename="../../FrmWebBrowser.cpp" line="317"/>
-        <location filename="../../FrmWebBrowser.cpp" line="326"/>
         <source>New page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="616"/>
+        <location filename="../../FrmWebBrowser.cpp" line="607"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="787"/>
+        <location filename="../../FrmWebBrowser.cpp" line="778"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="628"/>
+        <location filename="../../FrmWebBrowser.cpp" line="619"/>
         <source>Add incognito tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="197"/>
+        <location filename="../../FrmWebBrowser.cpp" line="188"/>
         <source>Add bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="638"/>
+        <location filename="../../FrmWebBrowser.cpp" line="629"/>
         <source>Add window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="645"/>
+        <location filename="../../FrmWebBrowser.cpp" line="636"/>
         <source>Add Incognito Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="654"/>
+        <location filename="../../FrmWebBrowser.cpp" line="645"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="667"/>
+        <location filename="../../FrmWebBrowser.cpp" line="658"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="668"/>
+        <location filename="../../FrmWebBrowser.cpp" line="659"/>
         <source>Find:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="676"/>
-        <location filename="../../FrmWebBrowser.cpp" line="684"/>
+        <location filename="../../FrmWebBrowser.cpp" line="667"/>
+        <location filename="../../FrmWebBrowser.cpp" line="675"/>
         <source>&quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="678"/>
+        <location filename="../../FrmWebBrowser.cpp" line="669"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="694"/>
+        <location filename="../../FrmWebBrowser.cpp" line="685"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="705"/>
+        <location filename="../../FrmWebBrowser.cpp" line="696"/>
         <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="717"/>
-        <location filename="../../FrmWebBrowser.cpp" line="719"/>
-        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="708"/>
+        <location filename="../../FrmWebBrowser.cpp" line="710"/>
+        <location filename="../../FrmWebBrowser.cpp" line="711"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="728"/>
-        <location filename="../../FrmWebBrowser.cpp" line="730"/>
-        <location filename="../../FrmWebBrowser.cpp" line="731"/>
+        <location filename="../../FrmWebBrowser.cpp" line="719"/>
+        <location filename="../../FrmWebBrowser.cpp" line="721"/>
+        <location filename="../../FrmWebBrowser.cpp" line="722"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="741"/>
-        <location filename="../../FrmWebBrowser.cpp" line="743"/>
-        <location filename="../../FrmWebBrowser.cpp" line="744"/>
+        <location filename="../../FrmWebBrowser.cpp" line="732"/>
+        <location filename="../../FrmWebBrowser.cpp" line="734"/>
+        <location filename="../../FrmWebBrowser.cpp" line="735"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="757"/>
+        <location filename="../../FrmWebBrowser.cpp" line="748"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="762"/>
+        <location filename="../../FrmWebBrowser.cpp" line="753"/>
         <source>Print to PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="782"/>
+        <location filename="../../FrmWebBrowser.cpp" line="773"/>
         <source>Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="786"/>
+        <location filename="../../FrmWebBrowser.cpp" line="777"/>
         <source>Manage Bookmark </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="791"/>
-        <location filename="../../FrmWebBrowser.cpp" line="793"/>
+        <location filename="../../FrmWebBrowser.cpp" line="782"/>
+        <location filename="../../FrmWebBrowser.cpp" line="784"/>
         <source>Capture page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="795"/>
-        <location filename="../../FrmWebBrowser.cpp" line="797"/>
+        <location filename="../../FrmWebBrowser.cpp" line="786"/>
+        <location filename="../../FrmWebBrowser.cpp" line="788"/>
         <source>Capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="798"/>
-        <location filename="../../FrmWebBrowser.cpp" line="801"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
+        <location filename="../../FrmWebBrowser.cpp" line="789"/>
+        <location filename="../../FrmWebBrowser.cpp" line="792"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1229"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="877"/>
+        <location filename="../../FrmWebBrowser.cpp" line="870"/>
         <source>Web browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1091"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1084"/>
         <source>Print to PDF finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1131"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1124"/>
         <source>Fail: Save capture page to the file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1136"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1129"/>
         <source>Save capture page to the file：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1173"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1166"/>
         <source>Fail: capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1177"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1170"/>
         <source>Capture full page to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1203"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1196"/>
         <source>Start capture full page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1209"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1202"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1222"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1215"/>
         <source>Fail record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1226"/>
         <source>Start record web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1243"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
         <source>Record web page is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="768"/>
-        <location filename="../../FrmWebBrowser.cpp" line="772"/>
+        <location filename="../../FrmWebBrowser.cpp" line="759"/>
+        <location filename="../../FrmWebBrowser.cpp" line="763"/>
         <source>Inspector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1066"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1059"/>
         <source>Print finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1067"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1060"/>
         <source>Successfully printed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1092"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1085"/>
         <source>Successfully printed to PDF.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1093"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1086"/>
         <source>PDF file: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1452,27 +1452,27 @@ Do you want to reload the page ?</source>
 <context>
     <name>CHistoryModel</name>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="29"/>
+        <location filename="../../History/HistoryModel.cpp" line="32"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="30"/>
+        <location filename="../../History/HistoryModel.cpp" line="33"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="31"/>
+        <location filename="../../History/HistoryModel.cpp" line="34"/>
         <source>Visit Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="69"/>
+        <location filename="../../History/HistoryModel.cpp" line="72"/>
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="84"/>
+        <location filename="../../History/HistoryModel.cpp" line="87"/>
         <source>Title: %1
 Url: %2
 Visit Time: %3</source>

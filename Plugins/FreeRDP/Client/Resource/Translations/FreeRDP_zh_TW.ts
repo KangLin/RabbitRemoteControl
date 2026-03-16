@@ -609,14 +609,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>遠程顏色深度：</translation>
     </message>
     <message>
-        <source>Proxy</source>
-        <translation type="vanished">代理</translation>
-    </message>
-    <message>
-        <source>Record</source>
-        <translation type="vanished">錄製</translation>
-    </message>
-    <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="82"/>
         <source>8 bits</source>
         <translation>8 比特</translation>

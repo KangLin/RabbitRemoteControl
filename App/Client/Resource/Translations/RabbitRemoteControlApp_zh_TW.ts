@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.1" language="zh_">
 <context>
     <name>CFavoriteDatabase</name>
     <message>
@@ -12,111 +12,138 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="129"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
-        <source>New group</source>
-        <translation>新建組</translation>
-    </message>
-    <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="49"/>
         <source>Favorite</source>
-        <translation>收藏夾</translation>
+        <translation type="unfinished">收藏夾</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="53"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="58"/>
         <source>Tools</source>
-        <translation>工具</translation>
+        <translation type="unfinished">工具</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="93"/>
         <source>Show tool bar</source>
-        <translation>顯示工具條</translation>
+        <translation type="unfinished">顯示工具條</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="107"/>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="unfinished">開始</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="117"/>
         <source>Open settings and Start</source>
-        <translation>打開設置並開始</translation>
+        <translation type="unfinished">打開設置並開始</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="129"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
+        <source>New group</source>
+        <translation type="unfinished">新建組</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="138"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
         <source>Edit</source>
-        <translation>編輯</translation>
+        <translation type="unfinished">編輯</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="147"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
         <source>Delete</source>
-        <translation>刪除</translation>
+        <translation type="unfinished">刪除</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="157"/>
         <source>Import</source>
-        <translation>導入</translation>
+        <translation type="unfinished">導入</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="165"/>
         <source>Export</source>
-        <translation>導出</translation>
+        <translation type="unfinished">導出</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="174"/>
         <source>Refresh</source>
-        <translation>刷新</translation>
+        <translation type="unfinished">刷新</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="273"/>
         <source>Root</source>
-        <translation>根</translation>
+        <translation type="unfinished">根</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="294"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="299"/>
         <source>Add favorite</source>
-        <translation>增加收藏</translation>
+        <translation type="unfinished">增加收藏</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="295"/>
         <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
-        <translation>&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
+        <translation type="unfinished">&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="300"/>
         <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
-        <translation>&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
+        <translation type="unfinished">&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
+        <source>Enter the modified name</source>
+        <translation type="unfinished">輸入修改後的名稱</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
+        <source>Will be delete &quot;%1&quot;</source>
+        <translation type="unfinished">&quot;%1&quot; 將被刪除</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
+        <source>Input group name</source>
+        <translation type="unfinished">輸入組名</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="458"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="478"/>
+        <source>Import favorite</source>
+        <translation type="unfinished">導入收藏</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="489"/>
+        <source>JSON (*.json)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="468"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="496"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
         <source>Success</source>
-        <translation>成功</translation>
+        <translation type="unfinished">成功</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="469"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
         <source>Successfully imported favorite from JSON file: %1</source>
-        <translation>成功從 JSON 文件導入收藏：%1</translation>
+        <translation type="unfinished">成功從 JSON 文件導入收藏：%1</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="471"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="499"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="576"/>
         <source>Failed to import favorite from JSON file: %1</source>
-        <translation>從 JSON 文件導入收藏失敗：%1</translation>
+        <translation type="unfinished">從 JSON 文件導入收藏失敗：%1</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="501"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="578"/>
         <source>Error: </source>
-        <translation>錯誤：</translation>
+        <translation type="unfinished">錯誤：</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
@@ -124,56 +151,29 @@
         <location filename="../../Favorite/FavoriteView.cpp" line="506"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="579"/>
         <source>Failure</source>
-        <translation>失敗</translation>
+        <translation type="unfinished">失敗</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="479"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="507"/>
         <source>Invalid file: %1</source>
-        <translation>無效文件：%1</translation>
+        <translation type="unfinished">無效文件：%1</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="480"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="508"/>
         <source>Please use JSON file</source>
-        <translation>請使用 JSON 文件</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
-        <source>Favorite successfully exported to JSON file: %1</source>
-        <translation>成功導出收藏到 JSON 文件：%1</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
-        <source>Enter the modified name</source>
-        <translation>輸入修改後的名稱</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
-        <source>Will be delete &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; 將被刪除</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="458"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="478"/>
-        <source>Import favorite</source>
-        <translation>導入收藏</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="489"/>
-        <source>JSON (*.json)</source>
-        <translation></translation>
+        <translation type="unfinished">請使用 JSON 文件</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
         <source>Export favorite</source>
-        <translation>導出收藏</translation>
+        <translation type="unfinished">導出收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
-        <source>Input group name</source>
-        <translation>輸入組名</translation>
+        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
+        <source>Favorite successfully exported to JSON file: %1</source>
+        <translation type="unfinished">成功導出收藏到 JSON 文件：%1</translation>
     </message>
 </context>
 <context>
@@ -602,6 +602,121 @@ File: %1</source>
     </message>
 </context>
 <context>
+    <name>CTWFavoriteView</name>
+    <message>
+        <source>New group</source>
+        <translation type="vanished">新建組</translation>
+    </message>
+    <message>
+        <source>Favorite</source>
+        <translation type="vanished">收藏夾</translation>
+    </message>
+    <message>
+        <source>Tools</source>
+        <translation type="vanished">工具</translation>
+    </message>
+    <message>
+        <source>Show tool bar</source>
+        <translation type="vanished">顯示工具條</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="vanished">開始</translation>
+    </message>
+    <message>
+        <source>Open settings and Start</source>
+        <translation type="vanished">打開設置並開始</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="vanished">編輯</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="vanished">刪除</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="vanished">導入</translation>
+    </message>
+    <message>
+        <source>Export</source>
+        <translation type="vanished">導出</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="vanished">刷新</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation type="vanished">根</translation>
+    </message>
+    <message>
+        <source>Add favorite</source>
+        <translation type="vanished">增加收藏</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
+        <translation type="vanished">&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
+        <translation type="vanished">&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
+    </message>
+    <message>
+        <source>Success</source>
+        <translation type="vanished">成功</translation>
+    </message>
+    <message>
+        <source>Successfully imported favorite from JSON file: %1</source>
+        <translation type="vanished">成功從 JSON 文件導入收藏：%1</translation>
+    </message>
+    <message>
+        <source>Failed to import favorite from JSON file: %1</source>
+        <translation type="vanished">從 JSON 文件導入收藏失敗：%1</translation>
+    </message>
+    <message>
+        <source>Error: </source>
+        <translation type="vanished">錯誤：</translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="vanished">失敗</translation>
+    </message>
+    <message>
+        <source>Invalid file: %1</source>
+        <translation type="vanished">無效文件：%1</translation>
+    </message>
+    <message>
+        <source>Please use JSON file</source>
+        <translation type="vanished">請使用 JSON 文件</translation>
+    </message>
+    <message>
+        <source>Favorite successfully exported to JSON file: %1</source>
+        <translation type="vanished">成功導出收藏到 JSON 文件：%1</translation>
+    </message>
+    <message>
+        <source>Enter the modified name</source>
+        <translation type="vanished">輸入修改後的名稱</translation>
+    </message>
+    <message>
+        <source>Will be delete &quot;%1&quot;</source>
+        <translation type="vanished">&quot;%1&quot; 將被刪除</translation>
+    </message>
+    <message>
+        <source>Import favorite</source>
+        <translation type="vanished">導入收藏</translation>
+    </message>
+    <message>
+        <source>Export favorite</source>
+        <translation type="vanished">導出收藏</translation>
+    </message>
+    <message>
+        <source>Input group name</source>
+        <translation type="vanished">輸入組名</translation>
+    </message>
+</context>
+<context>
     <name>CVirtualKeyboardSettingsDialog</name>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
@@ -704,48 +819,48 @@ File: %1</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="127"/>
+        <location filename="../../mainwindow.ui" line="129"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="140"/>
+        <location filename="../../mainwindow.ui" line="142"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="167"/>
-        <location filename="../../mainwindow.ui" line="170"/>
-        <location filename="../../mainwindow.ui" line="173"/>
-        <location filename="../../mainwindow.ui" line="176"/>
-        <location filename="../../mainwindow.ui" line="179"/>
+        <location filename="../../mainwindow.ui" line="169"/>
+        <location filename="../../mainwindow.ui" line="172"/>
+        <location filename="../../mainwindow.ui" line="175"/>
+        <location filename="../../mainwindow.ui" line="178"/>
+        <location filename="../../mainwindow.ui" line="181"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="187"/>
-        <location filename="../../mainwindow.ui" line="190"/>
-        <location filename="../../mainwindow.ui" line="193"/>
-        <location filename="../../mainwindow.ui" line="196"/>
-        <location filename="../../mainwindow.ui" line="199"/>
+        <location filename="../../mainwindow.ui" line="189"/>
+        <location filename="../../mainwindow.ui" line="192"/>
+        <location filename="../../mainwindow.ui" line="195"/>
+        <location filename="../../mainwindow.ui" line="198"/>
+        <location filename="../../mainwindow.ui" line="201"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="210"/>
-        <location filename="../../mainwindow.ui" line="213"/>
-        <location filename="../../mainwindow.ui" line="216"/>
-        <location filename="../../mainwindow.ui" line="219"/>
-        <location filename="../../mainwindow.ui" line="222"/>
+        <location filename="../../mainwindow.ui" line="212"/>
+        <location filename="../../mainwindow.ui" line="215"/>
+        <location filename="../../mainwindow.ui" line="218"/>
+        <location filename="../../mainwindow.ui" line="221"/>
+        <location filename="../../mainwindow.ui" line="224"/>
         <source>ToolBar</source>
         <translation>工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="230"/>
-        <location filename="../../mainwindow.ui" line="233"/>
-        <location filename="../../mainwindow.ui" line="236"/>
-        <location filename="../../mainwindow.ui" line="239"/>
-        <location filename="../../mainwindow.ui" line="242"/>
+        <location filename="../../mainwindow.ui" line="232"/>
+        <location filename="../../mainwindow.ui" line="235"/>
+        <location filename="../../mainwindow.ui" line="238"/>
+        <location filename="../../mainwindow.ui" line="241"/>
+        <location filename="../../mainwindow.ui" line="244"/>
         <location filename="../../mainwindow.cpp" line="658"/>
         <location filename="../../mainwindow.cpp" line="659"/>
         <location filename="../../mainwindow.cpp" line="660"/>
@@ -754,99 +869,112 @@ File: %1</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="253"/>
-        <location filename="../../mainwindow.ui" line="256"/>
-        <location filename="../../mainwindow.ui" line="259"/>
-        <location filename="../../mainwindow.ui" line="262"/>
-        <location filename="../../mainwindow.ui" line="265"/>
+        <location filename="../../mainwindow.ui" line="255"/>
+        <location filename="../../mainwindow.ui" line="258"/>
+        <location filename="../../mainwindow.ui" line="261"/>
+        <location filename="../../mainwindow.ui" line="264"/>
+        <location filename="../../mainwindow.ui" line="267"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="296"/>
+        <location filename="../../mainwindow.ui" line="298"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="319"/>
-        <location filename="../../mainwindow.ui" line="322"/>
-        <location filename="../../mainwindow.ui" line="325"/>
-        <location filename="../../mainwindow.ui" line="328"/>
-        <location filename="../../mainwindow.ui" line="331"/>
+        <location filename="../../mainwindow.ui" line="321"/>
+        <location filename="../../mainwindow.ui" line="324"/>
+        <location filename="../../mainwindow.ui" line="327"/>
+        <location filename="../../mainwindow.ui" line="330"/>
+        <location filename="../../mainwindow.ui" line="333"/>
         <source>TabBar</source>
         <translation>標簽條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="353"/>
-        <location filename="../../mainwindow.ui" line="356"/>
-        <location filename="../../mainwindow.ui" line="359"/>
+        <location filename="../../mainwindow.ui" line="355"/>
+        <location filename="../../mainwindow.ui" line="358"/>
+        <location filename="../../mainwindow.ui" line="361"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="401"/>
-        <location filename="../../mainwindow.ui" line="404"/>
-        <location filename="../../mainwindow.ui" line="407"/>
-        <location filename="../../mainwindow.ui" line="410"/>
-        <location filename="../../mainwindow.ui" line="413"/>
+        <location filename="../../mainwindow.ui" line="403"/>
+        <location filename="../../mainwindow.ui" line="406"/>
+        <location filename="../../mainwindow.ui" line="409"/>
+        <location filename="../../mainwindow.ui" line="412"/>
+        <location filename="../../mainwindow.ui" line="415"/>
         <source>Open the list of recent</source>
         <translation>打開最近列表</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="475"/>
+        <location filename="../../mainwindow.ui" line="477"/>
         <source>Tab</source>
         <translation>標簽</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="483"/>
+        <location filename="../../mainwindow.ui" line="485"/>
         <source>Split</source>
         <translation>拆分</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="486"/>
-        <location filename="../../mainwindow.ui" line="489"/>
+        <location filename="../../mainwindow.ui" line="488"/>
+        <location filename="../../mainwindow.ui" line="491"/>
         <source>Split view</source>
         <translation>拆分視圖</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="497"/>
+        <location filename="../../mainwindow.ui" line="499"/>
         <source>User manual</source>
         <translation>用戶手冊</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="505"/>
-        <location filename="../../mainwindow.ui" line="508"/>
+        <location filename="../../mainwindow.ui" line="507"/>
+        <location filename="../../mainwindow.ui" line="510"/>
         <source>Default</source>
         <translation>默認</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="516"/>
-        <location filename="../../mainwindow.ui" line="519"/>
+        <location filename="../../mainwindow.ui" line="518"/>
+        <location filename="../../mainwindow.ui" line="521"/>
         <source>Simple</source>
         <translation>簡單</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="527"/>
-        <location filename="../../mainwindow.ui" line="530"/>
+        <location filename="../../mainwindow.ui" line="529"/>
+        <location filename="../../mainwindow.ui" line="532"/>
         <source>Minimalism</source>
         <translation>極簡</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="541"/>
+        <location filename="../../mainwindow.ui" line="543"/>
         <source>Keyboard</source>
         <translation>鍵盤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="544"/>
-        <location filename="../../mainwindow.ui" line="547"/>
+        <location filename="../../mainwindow.ui" line="546"/>
+        <location filename="../../mainwindow.ui" line="549"/>
         <source>Show keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示鍵盤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="384"/>
-        <location filename="../../mainwindow.ui" line="387"/>
-        <location filename="../../mainwindow.ui" line="390"/>
-        <location filename="../../mainwindow.ui" line="393"/>
+        <location filename="../../mainwindow.ui" line="557"/>
+        <location filename="../../mainwindow.ui" line="560"/>
+        <source>Stop All</source>
+        <translation>全部停止</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="568"/>
+        <location filename="../../mainwindow.ui" line="571"/>
+        <location filename="../../mainwindow.cpp" line="806"/>
+        <source>Stop other</source>
+        <translation>停止其它的</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="386"/>
+        <location filename="../../mainwindow.ui" line="389"/>
+        <location filename="../../mainwindow.ui" line="392"/>
+        <location filename="../../mainwindow.ui" line="395"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夾</translation>
     </message>
@@ -856,32 +984,32 @@ File: %1</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="424"/>
-        <location filename="../../mainwindow.ui" line="427"/>
-        <location filename="../../mainwindow.ui" line="430"/>
-        <location filename="../../mainwindow.ui" line="433"/>
-        <location filename="../../mainwindow.ui" line="436"/>
+        <location filename="../../mainwindow.ui" line="426"/>
+        <location filename="../../mainwindow.ui" line="429"/>
+        <location filename="../../mainwindow.ui" line="432"/>
+        <location filename="../../mainwindow.ui" line="435"/>
+        <location filename="../../mainwindow.ui" line="438"/>
         <source>Main menu bar</source>
         <translation>主菜單條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="444"/>
-        <location filename="../../mainwindow.ui" line="447"/>
-        <location filename="../../mainwindow.ui" line="450"/>
-        <location filename="../../mainwindow.ui" line="453"/>
-        <location filename="../../mainwindow.ui" line="456"/>
+        <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="452"/>
+        <location filename="../../mainwindow.ui" line="455"/>
+        <location filename="../../mainwindow.ui" line="458"/>
         <source>Status bar</source>
         <translation>狀態條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="467"/>
+        <location filename="../../mainwindow.ui" line="469"/>
         <source>Record video</source>
         <translation>錄製視頻</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="339"/>
-        <location filename="../../mainwindow.ui" line="342"/>
-        <location filename="../../mainwindow.ui" line="345"/>
+        <location filename="../../mainwindow.ui" line="341"/>
+        <location filename="../../mainwindow.ui" line="344"/>
+        <location filename="../../mainwindow.ui" line="347"/>
         <source>Zoom window to remote desktop</source>
         <translation>縮放窗口到遠程桌面大小</translation>
     </message>
@@ -906,28 +1034,28 @@ File: %1</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="273"/>
-        <location filename="../../mainwindow.ui" line="276"/>
-        <location filename="../../mainwindow.ui" line="279"/>
-        <location filename="../../mainwindow.ui" line="282"/>
-        <location filename="../../mainwindow.ui" line="285"/>
+        <location filename="../../mainwindow.ui" line="275"/>
+        <location filename="../../mainwindow.ui" line="278"/>
+        <location filename="../../mainwindow.ui" line="281"/>
+        <location filename="../../mainwindow.ui" line="284"/>
+        <location filename="../../mainwindow.ui" line="287"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="293"/>
-        <location filename="../../mainwindow.ui" line="299"/>
-        <location filename="../../mainwindow.ui" line="302"/>
-        <location filename="../../mainwindow.ui" line="305"/>
-        <location filename="../../mainwindow.cpp" line="941"/>
+        <location filename="../../mainwindow.ui" line="295"/>
+        <location filename="../../mainwindow.ui" line="301"/>
+        <location filename="../../mainwindow.ui" line="304"/>
+        <location filename="../../mainwindow.ui" line="307"/>
+        <location filename="../../mainwindow.cpp" line="953"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="367"/>
-        <location filename="../../mainwindow.ui" line="370"/>
-        <location filename="../../mainwindow.ui" line="373"/>
-        <location filename="../../mainwindow.ui" line="376"/>
+        <location filename="../../mainwindow.ui" line="369"/>
+        <location filename="../../mainwindow.ui" line="372"/>
+        <location filename="../../mainwindow.ui" line="375"/>
+        <location filename="../../mainwindow.ui" line="378"/>
         <source>Clone</source>
         <translation>克隆</translation>
     </message>
@@ -944,8 +1072,8 @@ File: %1</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="930"/>
-        <location filename="../../mainwindow.cpp" line="949"/>
+        <location filename="../../mainwindow.cpp" line="942"/>
+        <location filename="../../mainwindow.cpp" line="961"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
@@ -1049,52 +1177,57 @@ File: %1</source>
         <translation>準備好了</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="943"/>
+        <location filename="../../mainwindow.cpp" line="787"/>
+        <source>Stop other except the current &quot;%1&quot;</source>
+        <translation>除了當前的 &quot;%1&quot; 以外全部停止</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="955"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1056"/>
+        <location filename="../../mainwindow.cpp" line="1068"/>
         <source>Starting: </source>
         <translation>開始：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1131"/>
+        <location filename="../../mainwindow.cpp" line="1144"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1242"/>
+        <location filename="../../mainwindow.cpp" line="1279"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1251"/>
+        <location filename="../../mainwindow.cpp" line="1288"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1290"/>
+        <location filename="../../mainwindow.cpp" line="1327"/>
         <source>Use message box to display information</source>
         <translation>使用消息框顯示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1524"/>
+        <location filename="../../mainwindow.cpp" line="1561"/>
         <source>Hide menu bar</source>
         <translation>隱藏菜單欄</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1525"/>
+        <location filename="../../mainwindow.cpp" line="1562"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>將隱藏菜單欄，必須顯示工具條。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1556"/>
+        <location filename="../../mainwindow.cpp" line="1593"/>
         <source>Hide tool bar</source>
         <translation>隱藏工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1557"/>
+        <location filename="../../mainwindow.cpp" line="1594"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>

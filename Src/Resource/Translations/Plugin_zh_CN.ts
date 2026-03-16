@@ -213,22 +213,22 @@
     <message>
         <location filename="../../Database/Database.cpp" line="375"/>
         <source>Failed to open import JSON file: %1; Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>从 JSON 文件导入失败：%1；错误：%2</translation>
     </message>
     <message>
         <location filename="../../Database/Database.cpp" line="384"/>
         <source>Not a valid JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的 JSON 文件</translation>
     </message>
     <message>
         <location filename="../../Database/Database.cpp" line="391"/>
         <source>File format error. The title: &quot;%1&quot; is not &quot;Rabbit Remote Control&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>文件格式错误。标题：&quot;%1&quot; 不是 &quot;Rabbit Remote Control&quot;</translation>
     </message>
     <message>
         <location filename="../../Database/Database.cpp" line="397"/>
         <source>The version is no longer supported: </source>
-        <translation type="unfinished"></translation>
+        <translation>此版本不再受支持：</translation>
     </message>
 </context>
 <context>

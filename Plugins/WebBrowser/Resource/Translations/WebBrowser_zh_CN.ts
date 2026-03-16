@@ -4,82 +4,82 @@
 <context>
     <name>CAddressCompleter</name>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="65"/>
+        <location filename="../../AddressCompleter.cpp" line="66"/>
         <source>Enter a website URL or search content ......</source>
         <translation>输入网址或搜索内容……</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="73"/>
+        <location filename="../../AddressCompleter.cpp" line="74"/>
         <source>↑ (Upper arrow) key: Select previous item</source>
         <translation>↑ (向上光标)键：选择前一个条目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="67"/>
+        <location filename="../../AddressCompleter.cpp" line="68"/>
         <source>Enter ↲ key: Apply current url</source>
         <translation>Enter ↲ 键：应用当前网址</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="64"/>
+        <location filename="../../AddressCompleter.cpp" line="65"/>
         <source>Enter &apos;@&apos; show commands</source>
         <translation>输入 &apos;@&apos; 显示命令</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="69"/>
+        <location filename="../../AddressCompleter.cpp" line="70"/>
         <source>Enter ↲ key: Apply current item</source>
         <translation>Enter ↲ 键：应用当前条目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="70"/>
+        <location filename="../../AddressCompleter.cpp" line="71"/>
         <source>Tab ⇆ key: Apply current item</source>
         <translation>Tab ⇆ 键：应用当前条目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="71"/>
+        <location filename="../../AddressCompleter.cpp" line="72"/>
         <source>Esc Key: Exit address completer</source>
         <translation>Esc 键：退出</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="72"/>
+        <location filename="../../AddressCompleter.cpp" line="73"/>
         <source>Space Key: Exit address completer</source>
         <translation>空格键：退出</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="74"/>
+        <location filename="../../AddressCompleter.cpp" line="75"/>
         <source>↓ (Down arrow) key: Select next item</source>
         <translation>↓ (向下光标)键：选择下一个条目</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="272"/>
+        <location filename="../../AddressCompleter.cpp" line="273"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="273"/>
+        <location filename="../../AddressCompleter.cpp" line="274"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="274"/>
+        <location filename="../../AddressCompleter.cpp" line="275"/>
         <source>History</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="275"/>
+        <location filename="../../AddressCompleter.cpp" line="276"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="376"/>
+        <location filename="../../AddressCompleter.cpp" line="377"/>
         <source>Search &quot;%1&quot;</source>
         <translation>搜索 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="385"/>
+        <location filename="../../AddressCompleter.cpp" line="386"/>
         <source>Use default search engine</source>
         <translation>使用默认搜索引擎</translation>
     </message>
     <message>
-        <location filename="../../AddressCompleter.cpp" line="410"/>
+        <location filename="../../AddressCompleter.cpp" line="411"/>
         <source>Search in %1</source>
         <translation>在 %1 搜索</translation>
     </message>
@@ -87,32 +87,32 @@
 <context>
     <name>CBookmarkDatabase</name>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="71"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="39"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="72"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="40"/>
         <source>Other</source>
         <translation>其它</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="73"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="41"/>
         <source>Favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="74"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="42"/>
         <source>Frequently Used Websites</source>
         <translation>经常使用的网址</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="418"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="386"/>
         <source>Format error</source>
         <translation>格式错误</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="419"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="387"/>
         <source>This is not a valid bookmark file format.
 Please select the HTML bookmark file exported from your browser.</source>
         <translation>不是一个有效的书签文件格式。
@@ -499,27 +499,27 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="118"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="119"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="133"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="134"/>
         <source>Delete %1 bookmarks</source>
         <translation>删除 %1 个书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="182"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="183"/>
         <source>New folder:</source>
         <translation>新建文件夹：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="182"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="183"/>
         <source>Create new folder in folder &quot;%1&quot;</source>
         <translation>在文件夹 &quot;%1&quot; 中建立新文件夹：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="194"/>
+        <location filename="../../Bookmark/FrmAddBookmark.cpp" line="195"/>
         <source>Add folder</source>
         <translation>增加文件夹</translation>
     </message>
@@ -533,188 +533,188 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="58"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="61"/>
         <source>Search:</source>
         <translation>搜索：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="62"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="65"/>
         <source>Input keyword to search boolmark ......</source>
         <translation>输入关键字搜索书签……</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="81"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="84"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="97"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="267"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="272"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="338"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="100"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="270"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="275"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="341"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
         <source>Add bookmark</source>
         <translation>增加书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="104"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="301"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="107"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="304"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="546"/>
         <source>Add folder</source>
         <translation>增加文件夹</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="113"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="534"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="116"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="548"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="120"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="547"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="123"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="550"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
         <source>Favorite</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="137"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="140"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="144"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="147"/>
         <source>Export</source>
         <translation>导出</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="153"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="156"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="194"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="197"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="268"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="339"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="271"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="342"/>
         <source>Url:</source>
         <translation>网址：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="273"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="334"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="276"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="337"/>
         <source>Title:</source>
         <translation>标题：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="302"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="354"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="305"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="357"/>
         <source>Folder name:</source>
         <translation>文件夹名：</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="333"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="336"/>
         <source>Edit bookmark</source>
         <translation>编辑书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="353"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="356"/>
         <source>Rename folder</source>
         <translation>重命名文件夹</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="376"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="373"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="376"/>
         <source>The folder &quot;%1&quot; is not delete</source>
         <translation>文件夹 &quot;%1&quot; 不能被删除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="379"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="382"/>
         <source>Are you sure you want to delete the bookmark &quot;%1&quot;?</source>
         <translation>确认删除书签 &quot;%1&quot; ？</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="381"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="384"/>
         <source>Are you sure you want to delete the folder &quot;%1&quot;?</source>
         <translation>确认删除文件夹  &quot;%1&quot; ？</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="387"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="390"/>
         <source>Confirm deletion</source>
         <translation>确认删除</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="422"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="431"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="441"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="425"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="434"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="438"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="444"/>
         <source>Import bookmarks</source>
         <translation>导入书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="424"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="427"/>
         <source>HTML(*.html);; All files (*.*)</source>
         <translation>HTML(*.html);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="432"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="435"/>
         <source>Successfully imported bookmarks from file: %1</source>
         <translation>成功从文件导入书签：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="436"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="439"/>
         <source>Failed to import bookmark from file: %1</source>
         <translation>从文件导入书签失败：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="442"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="468"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="445"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="471"/>
         <source>Invalid file: %1</source>
         <translation>无效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="443"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="469"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="472"/>
         <source>Please use html file</source>
         <translation>请使用 html 文件</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="459"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
         <source>Bookmarks successfully exported to file: %1</source>
         <translation>成功导出书签到文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="465"/>
         <source>Failed to export bookmark to file: %1</source>
         <translation>导出书签到文件失败：%1</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="449"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="458"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="452"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="464"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="470"/>
         <source>Export bookmarks</source>
         <translation>导入书签</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="451"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="454"/>
         <source>HTML (*.html);; All files (*.*)</source>
         <translation>HTML (*.html);; All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="530"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="533"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
@@ -1087,250 +1087,250 @@ Please select the HTML bookmark file exported from your browser.</source>
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="98"/>
+        <location filename="../../FrmWebBrowser.cpp" line="97"/>
         <source>Back</source>
         <translation>后退</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="108"/>
+        <location filename="../../FrmWebBrowser.cpp" line="107"/>
         <source>Forward</source>
         <translation>前进</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="118"/>
+        <location filename="../../FrmWebBrowser.cpp" line="117"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="132"/>
+        <location filename="../../FrmWebBrowser.cpp" line="131"/>
         <source>go</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="191"/>
+        <location filename="../../FrmWebBrowser.cpp" line="190"/>
         <source>Add tab page</source>
         <translation>增加标签页</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="203"/>
+        <location filename="../../FrmWebBrowser.cpp" line="202"/>
         <source>Download Manager</source>
         <translation>下载管理器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="264"/>
+        <location filename="../../FrmWebBrowser.cpp" line="263"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="309"/>
-        <location filename="../../FrmWebBrowser.cpp" line="318"/>
+        <location filename="../../FrmWebBrowser.cpp" line="308"/>
+        <location filename="../../FrmWebBrowser.cpp" line="317"/>
         <source>New page</source>
         <translation>新页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="608"/>
+        <location filename="../../FrmWebBrowser.cpp" line="607"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="779"/>
+        <location filename="../../FrmWebBrowser.cpp" line="778"/>
         <source>History</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="620"/>
+        <location filename="../../FrmWebBrowser.cpp" line="619"/>
         <source>Add incognito tab</source>
         <translation>添加隐身标签页</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="189"/>
+        <location filename="../../FrmWebBrowser.cpp" line="188"/>
         <source>Add bookmark</source>
         <translation>增加书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="630"/>
+        <location filename="../../FrmWebBrowser.cpp" line="629"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="637"/>
+        <location filename="../../FrmWebBrowser.cpp" line="636"/>
         <source>Add Incognito Window</source>
         <translation>添加隐身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="646"/>
+        <location filename="../../FrmWebBrowser.cpp" line="645"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="659"/>
+        <location filename="../../FrmWebBrowser.cpp" line="658"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="660"/>
+        <location filename="../../FrmWebBrowser.cpp" line="659"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="668"/>
-        <location filename="../../FrmWebBrowser.cpp" line="676"/>
+        <location filename="../../FrmWebBrowser.cpp" line="667"/>
+        <location filename="../../FrmWebBrowser.cpp" line="675"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未发现</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="670"/>
+        <location filename="../../FrmWebBrowser.cpp" line="669"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 发现：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="686"/>
+        <location filename="../../FrmWebBrowser.cpp" line="685"/>
         <source>Find &amp;Next</source>
         <translation>查找下一个</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="697"/>
+        <location filename="../../FrmWebBrowser.cpp" line="696"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一个</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="709"/>
+        <location filename="../../FrmWebBrowser.cpp" line="708"/>
+        <location filename="../../FrmWebBrowser.cpp" line="710"/>
         <location filename="../../FrmWebBrowser.cpp" line="711"/>
-        <location filename="../../FrmWebBrowser.cpp" line="712"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="720"/>
+        <location filename="../../FrmWebBrowser.cpp" line="719"/>
+        <location filename="../../FrmWebBrowser.cpp" line="721"/>
         <location filename="../../FrmWebBrowser.cpp" line="722"/>
-        <location filename="../../FrmWebBrowser.cpp" line="723"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="733"/>
+        <location filename="../../FrmWebBrowser.cpp" line="732"/>
+        <location filename="../../FrmWebBrowser.cpp" line="734"/>
         <location filename="../../FrmWebBrowser.cpp" line="735"/>
-        <location filename="../../FrmWebBrowser.cpp" line="736"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="749"/>
+        <location filename="../../FrmWebBrowser.cpp" line="748"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="754"/>
+        <location filename="../../FrmWebBrowser.cpp" line="753"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="760"/>
-        <location filename="../../FrmWebBrowser.cpp" line="764"/>
+        <location filename="../../FrmWebBrowser.cpp" line="759"/>
+        <location filename="../../FrmWebBrowser.cpp" line="763"/>
         <source>Inspector</source>
         <translation>检查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="774"/>
+        <location filename="../../FrmWebBrowser.cpp" line="773"/>
         <source>Bookmark</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="778"/>
+        <location filename="../../FrmWebBrowser.cpp" line="777"/>
         <source>Manage Bookmark </source>
         <translation>管理书签</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="783"/>
-        <location filename="../../FrmWebBrowser.cpp" line="785"/>
+        <location filename="../../FrmWebBrowser.cpp" line="782"/>
+        <location filename="../../FrmWebBrowser.cpp" line="784"/>
         <source>Capture page</source>
         <translation>截取页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="787"/>
-        <location filename="../../FrmWebBrowser.cpp" line="789"/>
+        <location filename="../../FrmWebBrowser.cpp" line="786"/>
+        <location filename="../../FrmWebBrowser.cpp" line="788"/>
         <source>Capture full page</source>
         <translation>截取整个页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="790"/>
-        <location filename="../../FrmWebBrowser.cpp" line="793"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
+        <location filename="../../FrmWebBrowser.cpp" line="789"/>
+        <location filename="../../FrmWebBrowser.cpp" line="792"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1229"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="874"/>
+        <location filename="../../FrmWebBrowser.cpp" line="870"/>
         <source>Web browser</source>
         <translation>网页浏览器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1063"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1059"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1064"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1060"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1088"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1084"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1089"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1085"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1090"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1086"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1128"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1124"/>
         <source>Fail: Save capture page to the file: </source>
         <translation>失败：保存截取页面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1133"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1129"/>
         <source>Save capture page to the file：</source>
         <translation>保存截取页面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1170"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1166"/>
         <source>Fail: capture full page</source>
         <translation>失败：截取整个页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1174"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1170"/>
         <source>Capture full page to</source>
         <translation>截取整个页面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1200"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1196"/>
         <source>Start capture full page</source>
         <translation>开始截取整个页面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1206"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1202"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1219"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1215"/>
         <source>Fail record web page</source>
         <translation>录制页面失败</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1230"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1226"/>
         <source>Start record web page</source>
         <translation>开始录制页面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1240"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
         <source>Record web page is stopped</source>
         <translation>录制页面停止</translation>
     </message>
@@ -1454,27 +1454,27 @@ Do you want to reload the page ?</source>
 <context>
     <name>CHistoryModel</name>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="29"/>
+        <location filename="../../History/HistoryModel.cpp" line="32"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="30"/>
+        <location filename="../../History/HistoryModel.cpp" line="33"/>
         <source>Url</source>
         <translation>网址</translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="31"/>
+        <location filename="../../History/HistoryModel.cpp" line="34"/>
         <source>Visit Time</source>
         <translation>访问时间</translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="69"/>
+        <location filename="../../History/HistoryModel.cpp" line="72"/>
         <source>Untitled</source>
         <translation>无标题</translation>
     </message>
     <message>
-        <location filename="../../History/HistoryModel.cpp" line="84"/>
+        <location filename="../../History/HistoryModel.cpp" line="87"/>
         <source>Title: %1
 Url: %2
 Visit Time: %3</source>

@@ -47,53 +47,53 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="104"/>
+        <location filename="../../DlgSettings.ui" line="108"/>
         <source>Root directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="114"/>
+        <location filename="../../DlgSettings.ui" line="118"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="125"/>
+        <location filename="../../DlgSettings.ui" line="129"/>
         <source>Aollow anonymous login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="132"/>
+        <location filename="../../DlgSettings.ui" line="136"/>
         <source>Read-only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="141"/>
+        <location filename="../../DlgSettings.ui" line="145"/>
         <source>Enable listen at all network interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="156"/>
+        <location filename="../../DlgSettings.ui" line="160"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="184"/>
-        <location filename="../../DlgSettings.ui" line="223"/>
+        <location filename="../../DlgSettings.ui" line="188"/>
+        <location filename="../../DlgSettings.ui" line="227"/>
         <location filename="../../DlgSettings.cpp" line="152"/>
         <location filename="../../DlgSettings.cpp" line="166"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="191"/>
-        <location filename="../../DlgSettings.ui" line="216"/>
+        <location filename="../../DlgSettings.ui" line="195"/>
+        <location filename="../../DlgSettings.ui" line="220"/>
         <location filename="../../DlgSettings.cpp" line="154"/>
         <location filename="../../DlgSettings.cpp" line="168"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="201"/>
+        <location filename="../../DlgSettings.ui" line="205"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -242,6 +242,11 @@
     <message>
         <location filename="../../PluginFtpServer.cpp" line="47"/>
         <source>It uses: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFtpServer.cpp" line="63"/>
+        <source>QFtpServerLib version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
