@@ -319,7 +319,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cd vcpkg
         vcpkg install pcapplusplus
 
-**Note**: PcapPlusPlus in vcpkg relies on WinPcap,
+**Note**: PcapPlusPlus in vcpkg relies on [WinPcap](https://www.winpcap.org/),
 but WinPcap does not work in Windows 10.
 So compile from source, relying on the npcap library.
 
@@ -329,6 +329,8 @@ So compile from source, relying on the npcap library.
       -DPCAP_ROOT=[npcap SDK directory] ^
       -DPacket_ROOT=[npcap SDK directory] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+See: [msvc.yml](.github\workflows\msvc.yml)
 
 #### QFtpServer
 

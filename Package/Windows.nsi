@@ -136,17 +136,18 @@ Function InstallRuntime
 FunctionEnd
 
 Function InstallNpcap
-    IfFileExists "$OUTDIR\bin\npcap-1.80.exe" ExecNpcap
+    ; NOTE: 如何要修改版本号，需要同时修改 .github\workflows\msvc.yml 中相应的版本
+    IfFileExists "$OUTDIR\bin\npcap-1.87.exe" ExecNpcap
     MessageBox MB_YESNO|MB_ICONQUESTION "$(LANG_DOWNLOAD_NPCAP)" IDYES Download IDNO ExitNpcap
     Download:
-    NSISdl::download "https://npcap.com/dist/npcap-1.80.exe" "$OUTDIR\bin\npcap-1.80.exe"
+    NSISdl::download "https://npcap.com/dist/npcap-1.87.exe" "$OUTDIR\bin\npcap-1.87.exe"
     Pop $R0 ;Get the return value
       StrCmp $R0 "success" ExecNpcap
         ExecShell "open" "https://npcap.com/#download"
-        MessageBox MB_OK "Download npcap-1.80.exe failed: $R0. Please install npcap manually from https://npcap.com/#download"
+        MessageBox MB_OK "Download npcap-1.87.exe failed: $R0. Please install npcap manually from https://npcap.com/#download"
         Goto ExitNpcap
 ExecNpcap:
-    ExecShell "" '"$OUTDIR\bin\npcap-1.80.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
+    ExecShell "" '"$OUTDIR\bin\npcap-1.87.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
 ExitNpcap:
 FunctionEnd
 

@@ -324,7 +324,9 @@
         cd vcpkg
         vcpkg install pcapplusplus
 
-**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 及以后的版本上工作。
+**注意**： vcpkg 中 PcapPlusPlus 依赖 [WinPcap](https://www.winpcap.org/)，
+但 WinPcap 不能在 Windows 10 及以后的版本上工作。并且它已停止更新。
+Windows10 及以后的版本需要 [npcap](https://npcap.com)
 所以从源码编译，依赖 [npcap](https://npcap.com) 库。
 
 - 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
@@ -332,6 +334,8 @@
       -DPCAP_ROOT=[npcap SDK 目录] ^
       -DPacket_ROOT=[npcap SDK 目录] ^
       -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
+
+详见：[msvc.yml](.github\workflows\msvc.yml)
 
 #### QFtpServer
 
