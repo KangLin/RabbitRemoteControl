@@ -623,7 +623,7 @@ Some features are limited.
         <location filename="../../OperateDesktop.cpp" line="328"/>
         <location filename="../../OperateDesktop.cpp" line="330"/>
         <location filename="../../OperateDesktop.cpp" line="331"/>
-        <location filename="../../OperateDesktop.cpp" line="547"/>
+        <location filename="../../OperateDesktop.cpp" line="549"/>
         <source>Start record</source>
         <translation>開始錄製</translation>
     </message>
@@ -635,7 +635,7 @@ Some features are limited.
         <translation>暫停錄製</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="544"/>
+        <location filename="../../OperateDesktop.cpp" line="546"/>
         <source>Stop record</source>
         <translation>停止錄製</translation>
     </message>
@@ -846,7 +846,7 @@ Some features are limited.
 <context>
     <name>CParameterNet</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterNet.cpp" line="13"/>
         <source>The host is empty. please set it</source>
         <translation>主機是空，請設置它。</translation>
     </message>
@@ -874,7 +874,7 @@ Some features are limited.
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="46"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="58"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>

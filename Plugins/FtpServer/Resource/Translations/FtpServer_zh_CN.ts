@@ -4,14 +4,29 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="58"/>
-        <source>Ftp server listen in %1</source>
-        <translation>Ftp 服务在 %1 监听</translation>
+        <location filename="../../BackendFtpServer.cpp" line="60"/>
+        <source>Ftp server listen on all address port %1. the lan ip is %2</source>
+        <translation>Ftp 服务在所有地址的端口 %1 上监听。局域网地址是 %2</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="62"/>
-        <source>Ftp server is not listening in %1</source>
-        <translation>Ftp 服务不能在在 %1 监听</translation>
+        <location filename="../../BackendFtpServer.cpp" line="65"/>
+        <source>Failed to Ftp server is listening on %1</source>
+        <translation>Ftp 服务在 %1 上监听失败</translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="74"/>
+        <source>Failed: Ftp server is not set to listen on any address</source>
+        <translation>失败：Ftp 服务没有设置监听地址</translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="83"/>
+        <source>Failed to Ftp server is listening on %1:%2</source>
+        <translation>Ftp 服务在 %1:%2 上监听失败</translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="94"/>
+        <source>Ftp server is listening on </source>
+        <translation>Ftp 服务监听在 </translation>
     </message>
 </context>
 <context>
@@ -22,80 +37,70 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="27"/>
+        <location filename="../../DlgSettings.ui" line="37"/>
         <source>General</source>
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="35"/>
-        <source>Port:</source>
-        <translation>端口：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="55"/>
+        <location filename="../../DlgSettings.ui" line="48"/>
         <source>Max connect count:</source>
         <translation>最大连接数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="76"/>
-        <source>User name:</source>
-        <translation>用户名：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="90"/>
-        <source>Password:</source>
-        <translation>密码：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="108"/>
+        <location filename="../../DlgSettings.ui" line="75"/>
         <source>Root directory:</source>
         <translation>根目录：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="118"/>
+        <location filename="../../DlgSettings.ui" line="85"/>
         <source>Browser</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="129"/>
+        <location filename="../../DlgSettings.ui" line="94"/>
         <source>Aollow anonymous login</source>
         <translation>允许匿名登录</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="136"/>
+        <location filename="../../DlgSettings.ui" line="101"/>
         <source>Read-only</source>
         <translation>只读</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="145"/>
+        <location filename="../../DlgSettings.ui" line="108"/>
         <source>Enable listen at all network interface</source>
         <translation>允许在所有网络接口上监听</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="160"/>
+        <location filename="../../DlgSettings.ui" line="123"/>
         <source>Whitelist</source>
         <translation>白名单</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="188"/>
-        <location filename="../../DlgSettings.ui" line="227"/>
-        <location filename="../../DlgSettings.cpp" line="152"/>
-        <location filename="../../DlgSettings.cpp" line="166"/>
+        <location filename="../../DlgSettings.ui" line="151"/>
+        <location filename="../../DlgSettings.ui" line="190"/>
+        <location filename="../../DlgSettings.cpp" line="149"/>
+        <location filename="../../DlgSettings.cpp" line="163"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
-        <location filename="../../DlgSettings.ui" line="220"/>
-        <location filename="../../DlgSettings.cpp" line="154"/>
-        <location filename="../../DlgSettings.cpp" line="168"/>
+        <location filename="../../DlgSettings.ui" line="158"/>
+        <location filename="../../DlgSettings.ui" line="183"/>
+        <location filename="../../DlgSettings.cpp" line="151"/>
+        <location filename="../../DlgSettings.cpp" line="165"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="205"/>
+        <location filename="../../DlgSettings.ui" line="168"/>
         <source>Blacklist</source>
         <translation>黑名单</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.cpp" line="23"/>
+        <source>Use the following &quot;Enable listen at all network interface&quot;</source>
+        <translation>使用下面&quot;允许在所有网络接口上监听&quot;</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.cpp" line="30"/>
@@ -157,12 +162,12 @@
         <translation>增加 IP 及掩码：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="177"/>
+        <location filename="../../DlgSettings.cpp" line="174"/>
         <source>Add whilte list</source>
         <translation>增加白名单</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="193"/>
+        <location filename="../../DlgSettings.cpp" line="190"/>
         <source>Add black list</source>
         <translation>增加黑名单</translation>
     </message>
@@ -218,13 +223,13 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="114"/>
         <location filename="../../OperateFtpServer.cpp" line="146"/>
+        <location filename="../../OperateFtpServer.cpp" line="178"/>
         <source>Start server</source>
         <translation>开始服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="158"/>
+        <location filename="../../OperateFtpServer.cpp" line="190"/>
         <source>Stop server</source>
         <translation>停止服务器</translation>
     </message>

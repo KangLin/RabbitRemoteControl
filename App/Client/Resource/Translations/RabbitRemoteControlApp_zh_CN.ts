@@ -602,84 +602,6 @@ File: %1</source>
     </message>
 </context>
 <context>
-    <name>CVirtualKeyboardSettingsDialog</name>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
-        <source>虚拟键盘设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="41"/>
-        <source>输入语言</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="56"/>
-        <source>选择输入语言:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="61"/>
-        <source>外观设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="66"/>
-        <source>键盘主题:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="77"/>
-        <source>按键大小:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="95"/>
-        <source>显示按键辅助小文本</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="96"/>
-        <source>自动大写</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="101"/>
-        <source>按键反馈</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="104"/>
-        <source>启用按键音</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="105"/>
-        <source>启用震动反馈</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="112"/>
-        <source>恢复默认</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="113"/>
-        <source>应用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="114"/>
-        <source>确定</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="115"/>
-        <source>取消</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../mainwindow.ui" line="20"/>
@@ -1097,22 +1019,22 @@ File: %1</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1561"/>
+        <location filename="../../mainwindow.cpp" line="1562"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1562"/>
+        <location filename="../../mainwindow.cpp" line="1563"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1593"/>
+        <location filename="../../mainwindow.cpp" line="1594"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1594"/>
+        <location filename="../../mainwindow.cpp" line="1595"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>
