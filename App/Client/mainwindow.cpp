@@ -1338,6 +1338,7 @@ void MainWindow::slotShowMessageBox(
 void MainWindow::slotInformation(const QString& szInfo)
 {
     slotStatusMessage(szInfo, MessageLevel::Normal);
+    //statusBar()->showMessage(szInfo);
 }
 
 void MainWindow::slotStatusMessage(QString szMessage, MessageLevel level)

@@ -37,32 +37,66 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
 
     QString szUser;
     QString szPassword;
+    auto &net = m_Para->m_Net;
     if(!m_Para->GetAnonymousLogin()) {
-        szUser = m_Para->GetUser();
-        szPassword = m_Para->GetPassword();
+        auto &user = net.m_User;
+        szUser = user.GetName();
+        szPassword = user.GetPassword();
     }
-    m_pServer = new CFtpServer(this, m_Para->GetRoot(), m_Para->GetPort(),
+
+    m_pServer = new CFtpServer(this, m_Para->GetRoot(), net.GetPort(),
                               szUser, szPassword,
                               m_Para->GetReadOnly());
+    if(!m_pServer) {
+        qCritical(log) << "Failed to new CFtpServer";
+        return OnInitReturnValue::Fail;
+    }
+
     m_pServer->SetFilter(this);
     bool bListen = false;
-    if(m_Para->GetListenAll())
+    if(m_Para->GetListenAll()) {
         bListen = m_pServer->Listening();
-    else {
+        if(bListen) {
+            QString szMsg = tr("Ftp server listen on all address port %1. the lan ip is %2")
+                                .arg(net.GetPort()).arg(m_pServer->lanIp());
+            qInfo(log) << szMsg;
+            emit sigInformation(szMsg);
+        } else {
+            QString szErr = tr("Failed to Ftp server is listening on %1")
+               .arg(net.GetPort());
+            qCritical(log) << szErr;
+            emit sigError(-1, szErr);
+            return OnInitReturnValue::Fail;
+        }
+    } else {
+        QString szErr;
+        if(m_Para->GetListen().isEmpty()) {
+            szErr = tr("Failed: Ftp server is not set to listen on any address");
+            qCritical(log) << szErr;
+            emit sigError(-1, szErr);
+            return OnInitReturnValue::Fail;
+        }
         foreach (auto a, m_Para->GetListen()) {
             QHostAddress addr(a);
             bListen = m_pServer->Listening(addr);
+            if(!bListen) {
+                szErr = tr("Failed to Ftp server is listening on %1:%2")
+                                    .arg(addr.toString()).arg(net.GetPort());
+                qCritical(log) << szErr;
+                emit sigError(-1, szErr);
+                return OnInitReturnValue::Fail;
+            }
+            if(!szErr.isEmpty())
+                szErr += "; ";
+            szErr += addr.toString() + ":" + QString::number(net.GetPort());
+        }
+        if(bListen) {
+            QString szMsg = tr("Ftp server is listening on ") + szErr;
+            qInfo(log) << szMsg;
+            emit sigInformation(szMsg);
         }
     }
-    if(bListen) {
-        QString szMsg = tr("Ftp server listen in %1").arg(m_Para->GetPort());
-        qInfo(log) << szMsg;
-        emit sigInformation(szMsg);
-    } else {
-        QString szErr = tr("Ftp server is not listening in %1").arg(m_Para->GetPort());
-        emit sigError(-1, szErr);
-        return OnInitReturnValue::Fail;
-    }
+
     return OnInitReturnValue::NotUseOnProcess;
 }
 
@@ -101,7 +135,7 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
             QHostAddress addr(szIP);
             auto sub = QHostAddress::parseSubnet(i);
             if(addr.isInSubnet(sub.first, sub.second)) {
-                qDebug(log) << "Filet" << szIP << "in blacklist";
+                qInfo(log) << "Filet" << szIP << "in blacklist";
                 return true;
             }
         }

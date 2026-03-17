@@ -100,6 +100,9 @@ private:
     State m_State;
 };
 
+// 在类外部声明操作符（通常放在头文件末尾）
+Q_DECLARE_OPERATORS_FOR_FLAGS(CRemoteFileSystem::TYPES)
+
 class CRemoteFileSystemModel : public QAbstractItemModel
 {
     Q_OBJECT

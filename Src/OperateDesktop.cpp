@@ -385,6 +385,7 @@ int COperateDesktop::Stop()
     return nRet;
 }
 
+//! [Desktop set global paramets]
 int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
 {
     if(GetParameter())
@@ -424,6 +425,7 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
     }
     return -1;
 }
+//! [Desktop set global paramets]
 
 CParameterBase* COperateDesktop::GetParameter()
 {

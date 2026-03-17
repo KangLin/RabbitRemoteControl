@@ -293,6 +293,9 @@ protected:
      * \~english Apply the global parameters of the plug-in
      * \note Call CParameterOperate::SetGlobalParameters to set the global parameters for the operation parameters,
      *       and connect the signals related to the global parameters.
+     *
+     * \~
+     * \snippet Src/OperateDesktop.cpp Desktop set global paramets
      * \see CManager::CreateOperate CParameterPlugin
      */
     Q_INVOKABLE virtual int SetGlobalParameters(CParameterPlugin* pPara) = 0;

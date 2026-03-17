@@ -35,6 +35,18 @@ int CParameterNetUI::SetParameter(CParameter *pParameter)
     // Call user UI SetParameter
     ui->wUser->SetParameter(&m_pNet->m_User);
 
+    // Show ui
+    CParameterNet::SHOW_UIS uis = m_pNet->GetShowUI();
+    ui->lbHost->setVisible(uis & CParameterNet::SHOW_UI::Host);
+    ui->leHost->setVisible(uis & CParameterNet::SHOW_UI::Host);
+    ui->lbPort->setVisible(uis & CParameterNet::SHOW_UI::Port);
+    ui->spPort->setVisible(uis & CParameterNet::SHOW_UI::Port);
+    ui->wUser->setVisible(uis & CParameterNet::SHOW_UI::User);
+
+    uis = m_pNet->GetEnableUI();
+    ui->leHost->setEnabled(uis & CParameterNet::SHOW_UI::Host);
+    ui->spPort->setEnabled(uis & CParameterNet::SHOW_UI::Port);
+    ui->wUser->setEnabled(uis & CParameterNet::SHOW_UI::User);
     return 0;
 }
 //! [Set Parameter]

@@ -211,8 +211,11 @@ class PLUGIN_EXPORT CParameterOperate : public CParameter
     Q_OBJECT
 
 public:
+    /*!
+     * \see CParameter::CParameter
+     */
     explicit CParameterOperate(
-        QObject *parent = nullptr,
+        QObject *parent,
         const QString& szPrefix = QString());
 
     //! Get CParameterPlugin

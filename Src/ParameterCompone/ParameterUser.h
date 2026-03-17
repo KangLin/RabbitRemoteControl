@@ -27,7 +27,11 @@ public:
     explicit CParameterUser(CParameterOperate* parent,
                             const QString& szPrefix = QString());
     virtual CParameterUser& operator =(const CParameterUser& in);
-
+    
+    /*!
+     * \~chinese 用于控制显示界面元素
+     * \~english Used to control display interface elements
+     */
     enum class TYPE{
         None,
         OnlyPassword,

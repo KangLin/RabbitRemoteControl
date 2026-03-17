@@ -19,10 +19,10 @@ CDlgSettings::CDlgSettings(QSharedPointer<CParameterFtpServer> para, QWidget *pa
     bool check = false;
     ui->setupUi(this);
     Q_ASSERT(m_Para);
-    
-    ui->sbPort->setValue(m_Para->GetPort());
-    ui->leUser->setText(m_Para->GetUser());
-    ui->lePassword->setText(m_Para->GetPassword());
+
+    para->m_Net.SetHost(tr("Use the following \"Enable listen at all network interface\""));
+    ui->wNet->SetParameter(&para->m_Net);
+
     ui->leRoot->setText(m_Para->GetRoot());
     ui->cbAnonmousLogin->setChecked(m_Para->GetAnonymousLogin());
     ui->cbReadOnly->setChecked(m_Para->GetReadOnly());
@@ -100,9 +100,8 @@ void CDlgSettings::on_pbRoot_clicked()
 
 void CDlgSettings::accept()
 {
-    m_Para->SetPort(ui->sbPort->value());
-    m_Para->SetUser(ui->leUser->text());
-    m_Para->SetPassword(ui->lePassword->text());
+    ui->wNet->Accept();
+
     m_Para->SetRoot(ui->leRoot->text());
     m_Para->SetAnonymousLogin(ui->cbAnonmousLogin->isChecked());
     m_Para->SetReadOnly(ui->cbReadOnly->isChecked());
@@ -135,8 +134,6 @@ void CDlgSettings::accept()
 void CDlgSettings::on_cbAnonmousLogin_checkStateChanged(const Qt::CheckState &arg1)
 {
     bool bEnable = (Qt::Checked != arg1);
-    ui->lePassword->setEnabled(bEnable);
-    ui->leUser->setEnabled(bEnable);
 }
 
 void CDlgSettings::on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1)

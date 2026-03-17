@@ -66,6 +66,11 @@ public Q_SLOTS:
 protected:
     virtual int Initial() override;
     virtual int Clean() override;
+    /*!
+     * \brief Set Global Parameters
+     * \param pPara
+     * \return 
+     */
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
     int WriteTerminal(const char* buf, int len);
 

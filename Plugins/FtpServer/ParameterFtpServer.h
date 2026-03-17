@@ -2,7 +2,8 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include "ParameterOperate.h"
+
+#include "ParameterNet.h"
 
 class CParameterFtpServer : public CParameterOperate
 {
@@ -12,13 +13,9 @@ public:
     explicit CParameterFtpServer(
         QObject *parent = nullptr,
         const QString& szPrefix = QString());
+    
+    CParameterNet m_Net;
 
-    uint16_t GetPort() const;
-    void SetPort(uint16_t newPort);
-    QString GetUser() const;
-    void SetUser(const QString &newUser);
-    QString GetPassword() const;
-    void SetPassword(const QString &newPassword);
     bool GetAnonymousLogin() const;
     void SetAnonymousLogin(bool newAnonymousLogin);
     bool GetReadOnly() const;
@@ -47,9 +44,6 @@ public:
     void SetBlacklist(const QStringList &newBlacklist);
     
 private:
-    uint16_t m_nPort;
-    QString m_szUser;
-    QString m_szPassword;
     QString m_szRoot;
     bool m_bAnonymousLogin;
     bool m_bReadOnly;

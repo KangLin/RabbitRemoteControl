@@ -237,7 +237,7 @@ public:
      * \param szPrefix Prefix \see QSetting::beginGroup
      * \param szPrefix: 前缀。 \see QSetting::beginGroup
      */
-    explicit CParameter(QObject *parent = nullptr,
+    explicit CParameter(QObject *parent,
                         const QString& szPrefix = QString());
     virtual ~CParameter();
 

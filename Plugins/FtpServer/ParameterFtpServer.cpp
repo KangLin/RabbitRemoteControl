@@ -5,50 +5,19 @@
 
 CParameterFtpServer::CParameterFtpServer(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
-    , m_nPort(21)
-    , m_bAnonymousLogin(true)
+    , m_Net(this)
+    , m_bAnonymousLogin(false)
     , m_bReadOnly(true)
     , m_ConnectCount(2)
     , m_bListenAll(true)
-{}
-
-uint16_t CParameterFtpServer::GetPort() const
 {
-    return m_nPort;
-}
-
-void CParameterFtpServer::SetPort(uint16_t newPort)
-{
-    if(m_nPort == newPort)
-        return;
-    m_nPort = newPort;
-    SetModified(true);
-}
-
-QString CParameterFtpServer::GetUser() const
-{
-    return m_szUser;
-}
-
-void CParameterFtpServer::SetUser(const QString &newUser)
-{
-    if(m_szUser == newUser)
-        return;
-    m_szUser = newUser;
-    SetModified(true);
-}
-
-QString CParameterFtpServer::GetPassword() const
-{
-    return m_szPassword;
-}
-
-void CParameterFtpServer::SetPassword(const QString &newPassword)
-{
-    if(m_szPassword == newPassword)
-        return;
-    m_szPassword = newPassword;
-    SetModified(true);
+#if defined(Q_OS_UNIX)
+    m_Net.SetPort(2121);
+#else
+    m_Net.SetPort(21);
+#endif
+    m_Net.m_User.SetSavePassword(true);
+    m_Net.SetEnablleUI(CParameterNet::SHOW_UI::Port | CParameterNet::SHOW_UI::User);
 }
 
 bool CParameterFtpServer::GetAnonymousLogin() const
@@ -157,9 +126,6 @@ void CParameterFtpServer::SetBlacklist(const QStringList &newBlacklist)
 
 int CParameterFtpServer::OnLoad(QSettings &set)
 {
-    SetPort(set.value("Port", GetPort()).toUInt());
-    SetUser(set.value("UserName", GetUser()).toString());
-    SetPassword(set.value("Password", GetPassword()).toString());
     SetRoot(set.value("Root", GetRoot()).toString());
     SetAnonymousLogin(set.value("AnonemousLogin", GetAnonymousLogin()).toBool());
     SetReadOnly(set.value("ReadOnly", GetReadOnly()).toBool());
@@ -173,9 +139,6 @@ int CParameterFtpServer::OnLoad(QSettings &set)
 
 int CParameterFtpServer::OnSave(QSettings &set)
 {
-    set.setValue("Port", GetPort());
-    set.setValue("UserName", GetUser());
-    set.setValue("Password", GetPassword());
     set.setValue("Root", GetRoot());
     set.setValue("AnonemousLogin", GetAnonymousLogin());
     set.setValue("ReadOnly", GetReadOnly());

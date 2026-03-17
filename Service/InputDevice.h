@@ -23,7 +23,9 @@ public:
         UWheelButton = 0x20,
         DWheelButton = 0x40
     };
+    Q_ENUM(MouseButton)
     Q_DECLARE_FLAGS(MouseButtons, MouseButton)
+    Q_FLAG(MouseButtons)
     virtual int KeyEvent(quint32 keysym, quint32 keycode, bool down = true) = 0;
     virtual int MouseEvent(MouseButtons buttons, QPoint pos) = 0;
     virtual int MouseEvent(MouseButtons buttons, int x, int y) = 0;
@@ -35,4 +37,6 @@ protected:
     explicit CInputDevice(){}
 };
 
+// 在类外部声明操作符（通常放在头文件末尾）
+Q_DECLARE_OPERATORS_FOR_FLAGS(CInputDevice::MouseButtons)
 #endif // CINPUTDEVICE_H

@@ -130,6 +130,11 @@ public Q_SLOTS:
     virtual void slotScreenShot();
 
 protected:
+    /*!
+     * \brief Set Global Parameters
+     * \param pPara
+     * \return
+     */
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
 
 private Q_SLOTS:

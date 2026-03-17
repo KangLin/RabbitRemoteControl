@@ -15,6 +15,8 @@
 #include "Stats.h"
 #include "RemoteFileSystemModel.h"
 
+Q_DECLARE_METATYPE(CRemoteFileSystem::TYPES)
+
 static Q_LOGGING_CATEGORY(log, "RemoteFileSystem.Model")
 
 static int g_CRemoteFileSystem = qRegisterMetaType<CRemoteFileSystem>("CRemoteFileSystem");

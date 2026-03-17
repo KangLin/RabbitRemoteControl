@@ -67,8 +67,40 @@ CBackend* COperateFtpServer::InstanceBackend()
 
 int COperateFtpServer::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    qDebug(log) << Q_FUNC_INFO;
-    return 0;
+    if(GetParameter())
+    {
+        GetParameter()->SetGlobalParameters(pPara);
+        GetParameter()->m_Net.m_User.SetSavePassword(true);
+        if(pPara)
+        {
+            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+                                 this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
+                            this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+        }
+        return 0;
+    } else {
+        QString szMsg = "There is not parameters! "
+                        "please first create parameters, "
+                        "then call SetParameter() in the ";
+        szMsg += metaObject()->className() + QString("::")
+                 + metaObject()->className();
+        szMsg += QString("() or ") + metaObject()->className()
+                 + QString("::") + "Initial()";
+        szMsg += " to set the parameters pointer. "
+                 "Default set CParameterClient for the parameters of operate "
+                 "(CParameterOperate or its derived classes) "
+                 "See CManager::CreateOperate. "
+                 "If you are sure the parameter of operate "
+                 "does not need CParameterClient. "
+                 "Please overload the SetGlobalParameters() in the ";
+        szMsg += QString(metaObject()->className()) + " . don't set it";
+        qCritical(log) << szMsg.toStdString().c_str();
+        Q_ASSERT(false);
+    }
+    return -1;
 }
 
 QDialog *COperateFtpServer::OnOpenDialogSettings(QWidget *parent)
