@@ -112,5 +112,10 @@
         <source>It uses libssh: https://www.libssh.org .</source>
         <translation>Ele usa libssh: https://www.libssh.org .</translation>
     </message>
+    <message>
+        <location filename="../../PluginLibSSH.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

@@ -105,5 +105,10 @@
         <source>(Experimental)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../PluginRawStream.cpp" line="59"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

@@ -4,27 +4,27 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="60"/>
+        <location filename="../../BackendFtpServer.cpp" line="64"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation>Ftp 服务在所有地址的端口 %1 上监听。局域网地址是 %2</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="65"/>
+        <location filename="../../BackendFtpServer.cpp" line="69"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation>Ftp 服务在 %1 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="74"/>
+        <location filename="../../BackendFtpServer.cpp" line="78"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation>失败：Ftp 服务没有设置监听地址</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="83"/>
+        <location filename="../../BackendFtpServer.cpp" line="87"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation>Ftp 服务在 %1:%2 上监听失败</translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="94"/>
+        <location filename="../../BackendFtpServer.cpp" line="98"/>
         <source>Ftp server is listening on </source>
         <translation>Ftp 服务监听在 </translation>
     </message>
@@ -223,15 +223,40 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="146"/>
-        <location filename="../../OperateFtpServer.cpp" line="178"/>
+        <location filename="../../OperateFtpServer.cpp" line="144"/>
+        <location filename="../../OperateFtpServer.cpp" line="176"/>
         <source>Start server</source>
         <translation>开始服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="190"/>
+        <location filename="../../OperateFtpServer.cpp" line="189"/>
         <source>Stop server</source>
         <translation>停止服务器</translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="233"/>
+        <source>Name: </source>
+        <translation>名称：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="236"/>
+        <source>Type: </source>
+        <translation>类型：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="239"/>
+        <source>Protocol: </source>
+        <translation>协议：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="249"/>
+        <source>Security level: </source>
+        <translation>安全级别：</translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="256"/>
+        <source>Description: </source>
+        <translation>描述：</translation>
     </message>
 </context>
 <context>

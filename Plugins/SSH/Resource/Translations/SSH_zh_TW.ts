@@ -60,32 +60,32 @@
 <context>
     <name>COperateSSH</name>
     <message>
-        <location filename="../../OperateSSH.cpp" line="109"/>
+        <location filename="../../OperateSSH.cpp" line="126"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="112"/>
+        <location filename="../../OperateSSH.cpp" line="129"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="115"/>
+        <location filename="../../OperateSSH.cpp" line="132"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="125"/>
+        <location filename="../../OperateSSH.cpp" line="142"/>
         <source>Server address: </source>
         <translation>服務器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="129"/>
+        <location filename="../../OperateSSH.cpp" line="147"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="132"/>
+        <location filename="../../OperateSSH.cpp" line="154"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
@@ -111,6 +111,11 @@
         <location filename="../../PluginLibSSH.cpp" line="48"/>
         <source>It uses libssh: https://www.libssh.org .</source>
         <translation>它使用 libssh: https://www.libssh.org </translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibSSH.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation>依賴庫</translation>
     </message>
 </context>
 </TS>

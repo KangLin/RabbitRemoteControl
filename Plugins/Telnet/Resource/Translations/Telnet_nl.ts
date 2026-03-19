@@ -150,5 +150,10 @@
         <source>Telnet: It is not safe. Please use SSH in the production environment.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../PluginTelnet.cpp" line="60"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

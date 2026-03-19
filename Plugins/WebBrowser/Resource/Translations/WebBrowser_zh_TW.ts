@@ -242,7 +242,7 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="100"/>
+        <location filename="../../DlgSettings.cpp" line="115"/>
         <source>Download folder</source>
         <translation>下載文件夾</translation>
     </message>
@@ -827,6 +827,474 @@ Please select the HTML bookmark file exported from your browser.</source>
     </message>
 </context>
 <context>
+    <name>CFrmExtensionManager</name>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.ui" line="14"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="50"/>
+        <source>Chrome Extension Manager</source>
+        <translation>擴展管理器</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.ui" line="20"/>
+        <source>toolBar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="69"/>
+        <source>Install Extension</source>
+        <translation>安裝擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="72"/>
+        <source>Load Extension</source>
+        <translation>加載擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="75"/>
+        <source>Uninstall</source>
+        <translation>卸載</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="77"/>
+        <source>Refresh</source>
+        <translation>刷新</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="79"/>
+        <source>Copy popup url to clipboard</source>
+        <translation>復製彈出窗口 Url 到剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="81"/>
+        <source>Copy path to clipboard</source>
+        <translation>復製路徑到剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="83"/>
+        <source>Details</source>
+        <translation>詳情</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="85"/>
+        <source>Open Folder</source>
+        <translation>打開文件夾</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
+        <source>Enabled</source>
+        <translation>允許的</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="93"/>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
+        <source>Popup url</source>
+        <translation>彈出窗口 Url</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
+        <source>ID</source>
+        <translation>標識</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="94"/>
+        <source>Path</source>
+        <translation>路徑</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="307"/>
+        <source>Chrome Extension (*.crx);;All Files (*)</source>
+        <translation>Chrome 擴展 (*.crx);; 所有文件 (*)</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="309"/>
+        <source>Install Chrome Extension</source>
+        <translation>安裝 Chrome 擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="319"/>
+        <source>Load Chrome Extension</source>
+        <translation>加載 Chrome 擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="331"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="332"/>
+        <source>Please select an extension to uninstall</source>
+        <translation>請選擇要卸載的擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="342"/>
+        <source>Confirm</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="343"/>
+        <source>Do you want to uninstall &apos;%1&apos;?</source>
+        <translation>你是卸載 &apos;%1&apos;?</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="370"/>
+        <source>Extension Details:</source>
+        <translation>擴展詳情：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="371"/>
+        <source>Name:</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="372"/>
+        <source>Description:</source>
+        <translation>描述：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
+        <source>Enable:</source>
+        <translation>允許：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
+        <source>TRUE</source>
+        <translation>真</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="373"/>
+        <source>FALSE</source>
+        <translation>假</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="374"/>
+        <source>ID:</source>
+        <translation>標識：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="375"/>
+        <source>Popup url:</source>
+        <translation>彈出窗口 Url:</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="376"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="454"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="460"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="474"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="484"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="490"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="504"/>
+        <source>Path:</source>
+        <translation>路徑：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="378"/>
+        <source>Extension Details</source>
+        <translation>擴展詳情</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="385"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="386"/>
+        <source>Developer tools for extensions not yet implemented</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="452"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="467"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="482"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="497"/>
+        <source>Successful</source>
+        <translation>成功的</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="453"/>
+        <source>Successfully installed extension</source>
+        <translation>成功安裝擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="458"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="472"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="488"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="502"/>
+        <source>Failed</source>
+        <translation>失敗</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="459"/>
+        <source>Failed to install extension.</source>
+        <translation>安裝擴展失敗。</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="461"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="475"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="491"/>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="505"/>
+        <source>Error:</source>
+        <translation>錯誤：</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="468"/>
+        <source>Successfully uninstalled extension</source>
+        <translation>成功的移除擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="473"/>
+        <source>Failed to uninstall extension.</source>
+        <translation>移除擴展失敗</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="483"/>
+        <source>Successfully loaded extension</source>
+        <translation>成功加載擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="489"/>
+        <source>Failed to load extension.</source>
+        <translation>加載擴展失敗</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="498"/>
+        <source>Successfully unloaded extension</source>
+        <translation>成功的卸載擴展</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionManager.cpp" line="503"/>
+        <source>Failed to unload extension.</source>
+        <translation>卸載擴展失敗</translation>
+    </message>
+</context>
+<context>
+    <name>CFrmExtensionStore</name>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="14"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="51"/>
+        <source>Chrome Extension Store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="22"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="101"/>
+        <source>Search extensions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="29"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="104"/>
+        <source>Search</source>
+        <translation type="unfinished">搜索</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="36"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="105"/>
+        <source>Popular</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="43"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="106"/>
+        <source>Recommended</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="76"/>
+        <source>Extension Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="86"/>
+        <source>Select an extension to view details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="122"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="107"/>
+        <source>Download</source>
+        <translation type="unfinished">下載</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="129"/>
+        <source>Install from File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="136"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="109"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="143"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="110"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="150"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="111"/>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.ui" line="157"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="112"/>
+        <source>Clear Cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
+        <source>Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="84"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
+        <source>Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="85"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="108"/>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="115"/>
+        <source>Extension Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="365"/>
+        <source>Please enter a search keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="386"/>
+        <source>Please select an extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="398"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="399"/>
+        <source>Do you want to download &apos;%1&apos;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="416"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="417"/>
+        <source>Extension manager not set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="422"/>
+        <source>Chrome Extension (*.crx);;Extension Folder;;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="424"/>
+        <source>Select Downloaded Extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="442"/>
+        <source>All downloads cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="479"/>
+        <source>Cache cleared</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="525"/>
+        <source>Network Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="526"/>
+        <source>Failed to connect to extension store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="581"/>
+        <source>Not Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="586"/>
+        <source>Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="637"/>
+        <source>Install Now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Extension/FrmExtensionStore.cpp" line="638"/>
+        <source>Do you want to install this extension now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmHistory</name>
     <message>
         <location filename="../../History/FrmHistory.ui" line="14"/>
@@ -836,7 +1304,7 @@ Please select the HTML bookmark file exported from your browser.</source>
     <message>
         <location filename="../../History/FrmHistory.ui" line="20"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.ui" line="35"/>
@@ -1092,250 +1560,250 @@ Please select the HTML bookmark file exported from your browser.</source>
 <context>
     <name>CFrmWebBrowser</name>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="97"/>
+        <location filename="../../FrmWebBrowser.cpp" line="100"/>
         <source>Back</source>
         <translation>後退</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="107"/>
+        <location filename="../../FrmWebBrowser.cpp" line="110"/>
         <source>Forward</source>
         <translation>前進</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="117"/>
+        <location filename="../../FrmWebBrowser.cpp" line="120"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="131"/>
+        <location filename="../../FrmWebBrowser.cpp" line="134"/>
         <source>go</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="190"/>
+        <location filename="../../FrmWebBrowser.cpp" line="193"/>
         <source>Add tab page</source>
         <translation>增加標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="202"/>
+        <location filename="../../FrmWebBrowser.cpp" line="205"/>
         <source>Download Manager</source>
         <translation>下載管理器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="263"/>
+        <location filename="../../FrmWebBrowser.cpp" line="266"/>
         <source>Operate</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="308"/>
-        <location filename="../../FrmWebBrowser.cpp" line="317"/>
+        <location filename="../../FrmWebBrowser.cpp" line="311"/>
+        <location filename="../../FrmWebBrowser.cpp" line="320"/>
         <source>New page</source>
         <translation>新頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="607"/>
+        <location filename="../../FrmWebBrowser.cpp" line="614"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="778"/>
+        <location filename="../../FrmWebBrowser.cpp" line="785"/>
         <source>History</source>
         <translation>歷史</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="619"/>
+        <location filename="../../FrmWebBrowser.cpp" line="626"/>
         <source>Add incognito tab</source>
         <translation>添加隱身標簽頁</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="188"/>
+        <location filename="../../FrmWebBrowser.cpp" line="191"/>
         <source>Add bookmark</source>
         <translation>增加書簽</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="629"/>
+        <location filename="../../FrmWebBrowser.cpp" line="636"/>
         <source>Add window</source>
         <translation>新增加窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="636"/>
+        <location filename="../../FrmWebBrowser.cpp" line="643"/>
         <source>Add Incognito Window</source>
         <translation>添加隱身窗口</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="645"/>
+        <location filename="../../FrmWebBrowser.cpp" line="652"/>
         <source>&amp;Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="658"/>
+        <location filename="../../FrmWebBrowser.cpp" line="665"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="659"/>
+        <location filename="../../FrmWebBrowser.cpp" line="666"/>
         <source>Find:</source>
         <translation>查找：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="667"/>
-        <location filename="../../FrmWebBrowser.cpp" line="675"/>
+        <location filename="../../FrmWebBrowser.cpp" line="674"/>
+        <location filename="../../FrmWebBrowser.cpp" line="682"/>
         <source>&quot;%1&quot; not found.</source>
         <translation>&quot;%1&quot; 未發現</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="669"/>
+        <location filename="../../FrmWebBrowser.cpp" line="676"/>
         <source>&quot;%1&quot; found: %2/%3</source>
         <translation>&quot;%1&quot; 發現：%2/%3</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="685"/>
+        <location filename="../../FrmWebBrowser.cpp" line="692"/>
         <source>Find &amp;Next</source>
         <translation>查找下一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="696"/>
+        <location filename="../../FrmWebBrowser.cpp" line="703"/>
         <source>Find &amp;Previous</source>
         <translation>查找前一個</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="708"/>
-        <location filename="../../FrmWebBrowser.cpp" line="710"/>
-        <location filename="../../FrmWebBrowser.cpp" line="711"/>
+        <location filename="../../FrmWebBrowser.cpp" line="715"/>
+        <location filename="../../FrmWebBrowser.cpp" line="717"/>
+        <location filename="../../FrmWebBrowser.cpp" line="718"/>
         <source>Original</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="719"/>
-        <location filename="../../FrmWebBrowser.cpp" line="721"/>
-        <location filename="../../FrmWebBrowser.cpp" line="722"/>
+        <location filename="../../FrmWebBrowser.cpp" line="726"/>
+        <location filename="../../FrmWebBrowser.cpp" line="728"/>
+        <location filename="../../FrmWebBrowser.cpp" line="729"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="732"/>
-        <location filename="../../FrmWebBrowser.cpp" line="734"/>
-        <location filename="../../FrmWebBrowser.cpp" line="735"/>
+        <location filename="../../FrmWebBrowser.cpp" line="739"/>
+        <location filename="../../FrmWebBrowser.cpp" line="741"/>
+        <location filename="../../FrmWebBrowser.cpp" line="742"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="748"/>
+        <location filename="../../FrmWebBrowser.cpp" line="755"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="753"/>
+        <location filename="../../FrmWebBrowser.cpp" line="760"/>
         <source>Print to PDF</source>
         <translation>打印到 PDF</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="759"/>
-        <location filename="../../FrmWebBrowser.cpp" line="763"/>
+        <location filename="../../FrmWebBrowser.cpp" line="766"/>
+        <location filename="../../FrmWebBrowser.cpp" line="770"/>
         <source>Inspector</source>
         <translation>檢查器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="773"/>
+        <location filename="../../FrmWebBrowser.cpp" line="780"/>
         <source>Bookmark</source>
         <translation>書簽</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="777"/>
+        <location filename="../../FrmWebBrowser.cpp" line="784"/>
         <source>Manage Bookmark </source>
         <translation>管理書簽</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="782"/>
-        <location filename="../../FrmWebBrowser.cpp" line="784"/>
+        <location filename="../../FrmWebBrowser.cpp" line="789"/>
+        <location filename="../../FrmWebBrowser.cpp" line="791"/>
         <source>Capture page</source>
         <translation>截取頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="786"/>
-        <location filename="../../FrmWebBrowser.cpp" line="788"/>
+        <location filename="../../FrmWebBrowser.cpp" line="793"/>
+        <location filename="../../FrmWebBrowser.cpp" line="795"/>
         <source>Capture full page</source>
         <translation>截取整個頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="789"/>
-        <location filename="../../FrmWebBrowser.cpp" line="792"/>
-        <location filename="../../FrmWebBrowser.cpp" line="1229"/>
+        <location filename="../../FrmWebBrowser.cpp" line="796"/>
+        <location filename="../../FrmWebBrowser.cpp" line="799"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
         <source>Record</source>
         <translation>錄製</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="870"/>
+        <location filename="../../FrmWebBrowser.cpp" line="877"/>
         <source>Web browser</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1059"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1066"/>
         <source>Print finished</source>
         <translation>打印完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1060"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1067"/>
         <source>Successfully printed</source>
         <translation>打印成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1084"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1091"/>
         <source>Print to PDF finished</source>
         <translation>打印到 PDF 完成</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1085"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1092"/>
         <source>Successfully printed to PDF.</source>
         <translation>打印到 PDF 成功</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1086"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1093"/>
         <source>PDF file: </source>
         <translation>PDF 文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1124"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1131"/>
         <source>Fail: Save capture page to the file: </source>
         <translation>失敗：保存截取頁面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1129"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1136"/>
         <source>Save capture page to the file：</source>
         <translation>保存截取頁面到文件：</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1166"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1173"/>
         <source>Fail: capture full page</source>
         <translation>失敗：截取整個頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1170"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1177"/>
         <source>Capture full page to</source>
         <translation>截取整個頁面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1196"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1203"/>
         <source>Start capture full page</source>
         <translation>開始截取整個頁面到</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1202"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1209"/>
         <source>Stop record</source>
         <translation>停止錄製</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1215"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1222"/>
         <source>Fail record web page</source>
         <translation>錄製頁面失敗</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1226"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1233"/>
         <source>Start record web page</source>
         <translation>開始錄製頁面</translation>
     </message>
     <message>
-        <location filename="../../FrmWebBrowser.cpp" line="1236"/>
+        <location filename="../../FrmWebBrowser.cpp" line="1243"/>
         <source>Record web page is stopped</source>
         <translation>錄製頁面停止</translation>
     </message>

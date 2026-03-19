@@ -281,6 +281,11 @@
         <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
         <translation>它使用 QTermWidget: https://github.com/KangLin/qtermwidget</translation>
     </message>
+    <message>
+        <location filename="../../PluginTerminal.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation>依賴庫</translation>
+    </message>
 </context>
 <context>
     <name>CTerminal</name>
@@ -330,12 +335,12 @@
         <translation>開始命令：</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="168"/>
+        <location filename="../../Terminal.cpp" line="170"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="171"/>
+        <location filename="../../Terminal.cpp" line="177"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

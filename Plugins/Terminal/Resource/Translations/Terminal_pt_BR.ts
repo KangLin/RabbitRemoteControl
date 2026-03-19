@@ -281,6 +281,11 @@
         <source>It uses QTermWidget: https://github.com/KangLin/qtermwidget</source>
         <translation>Ele usa QTermWidget: https://github.com/KangLin/qtermwidget</translation>
     </message>
+    <message>
+        <location filename="../../PluginTerminal.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CTerminal</name>

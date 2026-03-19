@@ -113,12 +113,12 @@
         <translation>串口：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="155"/>
+        <location filename="../../OperateSerialPort.cpp" line="156"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="158"/>
+        <location filename="../../OperateSerialPort.cpp" line="163"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
@@ -145,6 +145,11 @@
         <location filename="../../PluginSerialPort.cpp" line="34"/>
         <source>Serial port terminal</source>
         <translation>串口终端</translation>
+    </message>
+    <message>
+        <location filename="../../PluginSerialPort.cpp" line="59"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
     </message>
 </context>
 </TS>

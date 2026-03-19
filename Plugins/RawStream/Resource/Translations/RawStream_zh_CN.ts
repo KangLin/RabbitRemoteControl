@@ -37,37 +37,37 @@
 <context>
     <name>COperateRawStream</name>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="148"/>
+        <location filename="../../OperateRawStream.cpp" line="149"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="151"/>
+        <location filename="../../OperateRawStream.cpp" line="152"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="154"/>
+        <location filename="../../OperateRawStream.cpp" line="155"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="162"/>
+        <location filename="../../OperateRawStream.cpp" line="163"/>
         <source>Raw stream type: </source>
         <translation>原始流类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="167"/>
+        <location filename="../../OperateRawStream.cpp" line="168"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="172"/>
+        <location filename="../../OperateRawStream.cpp" line="174"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="175"/>
+        <location filename="../../OperateRawStream.cpp" line="181"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
@@ -104,6 +104,11 @@
         <location filename="../../PluginRawStream.cpp" line="36"/>
         <source>(Experimental)</source>
         <translation>(实验性的)</translation>
+    </message>
+    <message>
+        <location filename="../../PluginRawStream.cpp" line="59"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
     </message>
 </context>
 </TS>

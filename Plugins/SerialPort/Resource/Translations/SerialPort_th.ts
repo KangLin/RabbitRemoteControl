@@ -146,5 +146,10 @@
         <source>Serial port terminal</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../PluginSerialPort.cpp" line="59"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

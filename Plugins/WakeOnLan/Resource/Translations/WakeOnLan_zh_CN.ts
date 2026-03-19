@@ -5,17 +5,22 @@
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
-        <location filename="../../FrmWakeOnLan.cpp" line="24"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="26"/>
         <source>Wake on lan</source>
         <translation>局域网唤醒</translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="76"/>
+        <location filename="../../FrmWakeOnLan.ui" line="20"/>
+        <source>toolBar</source>
+        <translation>工具条</translation>
+    </message>
+    <message>
+        <location filename="../../FrmWakeOnLan.cpp" line="78"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="77"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="79"/>
         <source>Please select a item</source>
         <translation>请选择一个项目</translation>
     </message>
@@ -23,64 +28,49 @@
 <context>
     <name>COperateWakeOnLan</name>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="106"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="113"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="108"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="116"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="115"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="123"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="116"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="124"/>
         <source>Please select a item</source>
         <translation>请选择一个项目</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="123"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="132"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="75"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="78"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="64"/>
         <source>Copy ip address to clipbord</source>
         <translation>复制 IP 地址到剪切板</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="81"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="85"/>
         <source>Get mac address</source>
         <translation>得到 MAC 地址</translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="93"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="98"/>
         <source>Wake on lan</source>
         <translation>局域网唤醒</translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="175"/>
-        <source>Warning</source>
-        <translation>警告</translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="176"/>
-        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation>没有管理员权限，一些功能(得到 MAC 地址)受限。请用管理员权限重启程序。</translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="180"/>
-        <source>Always shown</source>
-        <translation>总是显示</translation>
     </message>
 </context>
 <context>
@@ -168,7 +158,7 @@
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ParameterWakeOnLanUI.ui" line="301"/>
+        <location filename="../../ParameterWakeOnLanUI.ui" line="298"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
@@ -209,18 +199,23 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="67"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="72"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="76"/>
         <source>Wake on lan</source>
         <translation>局域网唤醒</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="91"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="92"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
+    </message>
+    <message>
+        <location filename="../../PluginWakeOnLan.cpp" line="96"/>
         <source>version: </source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="94"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="99"/>
         <source>Pcap lib version info: </source>
         <translation>Pcap 库版本信息:</translation>
     </message>

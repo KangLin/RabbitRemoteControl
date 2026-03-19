@@ -660,6 +660,84 @@ Some features are limited.
     </message>
 </context>
 <context>
+    <name>COperateTerminal</name>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
+        <source>Copy selection to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
+        <source>Paste clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
+        <source>Paste selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
+        <source>Zoom reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
+        <source>Find ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterDatabase</name>
     <message>
         <location filename="../../Database/ParameterDatabase.cpp" line="83"/>
@@ -1271,6 +1349,136 @@ Some features are limited.
     <message>
         <location filename="../../ParameterCompone/ParameterSSHTunnelUI.cpp" line="51"/>
         <source>Packet capture (*.pcap *.cap)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterTerminalUI</name>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
+        <source>Cursor shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
+        <source>Scroll bar position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
+        <source>Terminal Transparency:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
+        <source>Background Image:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
+        <source>Browse(&amp;B)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
+        <source>Key binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
+        <source>Show terminal size when windows resize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
+        <source>Enable bi-directional text support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
+        <source>History size(in lines):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
+        <source>Flow Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
+        <source>Example: Display font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
+        <source>Backgroup image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
+        <source>BlockCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
+        <source>UnderlineCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
+        <source>IBeamCursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
+        <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
