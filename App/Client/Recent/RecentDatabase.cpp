@@ -368,7 +368,7 @@ bool CRecentDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray recents = obj["Recent"].toArray();
     if(recents.isEmpty()){
-        SetError(tr("The file format is error. Don't find recents"));
+        SetError(tr("The file format is error. Don't find \"recents\""));
         qCritical(log) << GetError();
         return false;
     }

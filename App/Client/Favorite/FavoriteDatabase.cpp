@@ -453,7 +453,7 @@ bool CFavoriteDatabase::ImportFromJson(const QJsonObject &obj)
 {
     QJsonArray favorites = obj["favorite"].toArray();
     if(favorites.isEmpty()) {
-        SetError(tr("The file format is error. Json without favorite"));
+        SetError(tr("The file format is error. Json without \"favorite\""));
         qCritical(log) << GetError();
         return false;
     }

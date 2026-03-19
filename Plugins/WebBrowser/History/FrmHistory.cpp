@@ -439,7 +439,7 @@ void CFrmHistory::slotImport()
             QMessageBox::information(this, tr("Import histories"),
                                      tr("Successfully imported histories from JSON file: %1").arg(filename));
         } else {
-            QMessageBox::warning(this, tr("Import histories"),
+            QMessageBox::critical(this, tr("Import histories"),
                                  tr("Failed to import histories from JSON file: %1").arg(filename));
         }
         return;
@@ -451,7 +451,7 @@ void CFrmHistory::slotImport()
             QMessageBox::information(this, tr("Import histories"),
                                      tr("Successfully imported histories from CSV file: %1").arg(filename));
         } else {
-            QMessageBox::warning(this, tr("Import histories"),
+            QMessageBox::critical(this, tr("Import histories"),
                                  tr("Failed to import histories from CSV file: %1").arg(filename));
         }
         return;
@@ -477,7 +477,7 @@ void CFrmHistory::slotExport()
             QMessageBox::information(this, tr("Export histories"),
                                      tr("Histories successfully exported to JSON file: %1").arg(filename));
         } else {
-            QMessageBox::warning(this, tr("Export histories"),
+            QMessageBox::critical(this, tr("Export histories"),
                                  tr("Failed to export histories to JSON file: %1").arg(filename));
         }
         return;
@@ -488,7 +488,7 @@ void CFrmHistory::slotExport()
             QMessageBox::information(this, tr("Export histories"),
                                      tr("Histories successfully exported to CSV file: %1").arg(filename));
         } else {
-            QMessageBox::warning(this, tr("Export histories"),
+            QMessageBox::critical(this, tr("Export histories"),
                                  tr("Failed to export histories to CSV file: %1").arg(filename));
         }
         return;

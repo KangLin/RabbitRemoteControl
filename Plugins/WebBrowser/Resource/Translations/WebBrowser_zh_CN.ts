@@ -1925,6 +1925,14 @@ Do you want to reload the page ?</source>
     </message>
 </context>
 <context>
+    <name>CHistoryDatabase</name>
+    <message>
+        <location filename="../../History/HistoryDatabase.cpp" line="763"/>
+        <source>The file format is error. Json without &quot;browser_history&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CHistoryModel</name>
     <message>
         <location filename="../../History/HistoryModel.cpp" line="32"/>

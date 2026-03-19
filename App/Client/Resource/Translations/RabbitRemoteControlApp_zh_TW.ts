@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>CFavoriteDatabase</name>
     <message>
         <location filename="../../Favorite/FavoriteDatabase.cpp" line="456"/>
-        <source>The file format is error. Json without favorite</source>
-        <translation>文件格式錯誤。未發現 favorite</translation>
+        <source>The file format is error. Json without &quot;favorite&quot;</source>
+        <translation>文件格式錯誤。未發現 &quot;favorite&quot;</translation>
     </message>
 </context>
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="49"/>
-        <source>Favorite</source>
-        <translation type="unfinished">收藏夾</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="53"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="58"/>
-        <source>Tools</source>
-        <translation type="unfinished">工具</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="93"/>
-        <source>Show tool bar</source>
-        <translation type="unfinished">顯示工具條</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="107"/>
-        <source>Start</source>
-        <translation type="unfinished">開始</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="117"/>
-        <source>Open settings and Start</source>
-        <translation type="unfinished">打開設置並開始</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="129"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="130"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="433"/>
         <source>New group</source>
-        <translation type="unfinished">新建組</translation>
+        <translation>新建組</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="138"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="50"/>
+        <source>Favorite</source>
+        <translation>收藏夾</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="54"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="59"/>
+        <source>Tools</source>
+        <translation>工具</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="94"/>
+        <source>Show tool bar</source>
+        <translation>顯示工具條</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="108"/>
+        <source>Start</source>
+        <translation>開始</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="118"/>
+        <source>Open settings and Start</source>
+        <translation>打開設置並開始</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="139"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="403"/>
         <source>Edit</source>
-        <translation type="unfinished">編輯</translation>
+        <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="147"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="148"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="419"/>
         <source>Delete</source>
-        <translation type="unfinished">刪除</translation>
+        <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="157"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="158"/>
         <source>Import</source>
-        <translation type="unfinished">導入</translation>
+        <translation>導入</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="165"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="166"/>
         <source>Export</source>
-        <translation type="unfinished">導出</translation>
+        <translation>導出</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="174"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="175"/>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="273"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="274"/>
         <source>Root</source>
-        <translation type="unfinished">根</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="294"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="299"/>
-        <source>Add favorite</source>
-        <translation type="unfinished">增加收藏</translation>
+        <translation>根</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="295"/>
-        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
-        <translation type="unfinished">&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
-    </message>
-    <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="300"/>
+        <source>Add favorite</source>
+        <translation>增加收藏</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="296"/>
+        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
+        <translation>&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="301"/>
         <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
-        <translation type="unfinished">&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
-        <source>Enter the modified name</source>
-        <translation type="unfinished">輸入修改後的名稱</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
-        <source>Will be delete &quot;%1&quot;</source>
-        <translation type="unfinished">&quot;%1&quot; 將被刪除</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
-        <source>Input group name</source>
-        <translation type="unfinished">輸入組名</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="458"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="478"/>
-        <source>Import favorite</source>
-        <translation type="unfinished">導入收藏</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="489"/>
-        <source>JSON (*.json)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="468"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="496"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
-        <source>Success</source>
-        <translation type="unfinished">成功</translation>
+        <translation>&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="469"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="575"/>
+        <source>Success</source>
+        <translation>成功</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="470"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="575"/>
         <source>Successfully imported favorite from JSON file: %1</source>
-        <translation type="unfinished">成功從 JSON 文件導入收藏：%1</translation>
+        <translation>成功從 JSON 文件導入收藏：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="471"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="499"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="576"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="472"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="500"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="577"/>
         <source>Failed to import favorite from JSON file: %1</source>
-        <translation type="unfinished">從 JSON 文件導入收藏失敗：%1</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="501"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="578"/>
-        <source>Error: </source>
-        <translation type="unfinished">錯誤：</translation>
+        <translation>從 JSON 文件導入收藏失敗：%1</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="502"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="506"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="579"/>
-        <source>Failure</source>
-        <translation type="unfinished">失敗</translation>
+        <source>Error: </source>
+        <translation>錯誤：</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="479"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="475"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="503"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="507"/>
-        <source>Invalid file: %1</source>
-        <translation type="unfinished">無效文件：%1</translation>
+        <location filename="../../Favorite/FavoriteView.cpp" line="580"/>
+        <source>Failure</source>
+        <translation>失敗</translation>
     </message>
     <message>
         <location filename="../../Favorite/FavoriteView.cpp" line="480"/>
         <location filename="../../Favorite/FavoriteView.cpp" line="508"/>
+        <source>Invalid file: %1</source>
+        <translation>無效文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="481"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="509"/>
         <source>Please use JSON file</source>
-        <translation type="unfinished">請使用 JSON 文件</translation>
+        <translation>請使用 JSON 文件</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
-        <source>Export favorite</source>
-        <translation type="unfinished">導出收藏</translation>
-    </message>
-    <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="498"/>
         <source>Favorite successfully exported to JSON file: %1</source>
-        <translation type="unfinished">成功導出收藏到 JSON 文件：%1</translation>
+        <translation>成功導出收藏到 JSON 文件：%1</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="403"/>
+        <source>Enter the modified name</source>
+        <translation>輸入修改後的名稱</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="419"/>
+        <source>Will be delete &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; 將被刪除</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="459"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="479"/>
+        <source>Import favorite</source>
+        <translation>導入收藏</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="490"/>
+        <source>JSON (*.json)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="488"/>
+        <source>Export favorite</source>
+        <translation>導出收藏</translation>
+    </message>
+    <message>
+        <location filename="../../Favorite/FavoriteView.cpp" line="433"/>
+        <source>Input group name</source>
+        <translation>輸入組名</translation>
     </message>
 </context>
 <context>
@@ -564,8 +564,8 @@ File: %1</source>
     <name>CRecentDatabase</name>
     <message>
         <location filename="../../Recent/RecentDatabase.cpp" line="371"/>
-        <source>The file format is error. Don&apos;t find recents</source>
-        <translation>文件格式錯誤。未發現 recents </translation>
+        <source>The file format is error. Don&apos;t find &quot;recents&quot;</source>
+        <translation>文件格式錯誤。未發現 &quot;recents&quot;</translation>
     </message>
 </context>
 <context>
@@ -602,190 +602,75 @@ File: %1</source>
     </message>
 </context>
 <context>
-    <name>CTWFavoriteView</name>
-    <message>
-        <source>New group</source>
-        <translation type="vanished">新建組</translation>
-    </message>
-    <message>
-        <source>Favorite</source>
-        <translation type="vanished">收藏夾</translation>
-    </message>
-    <message>
-        <source>Tools</source>
-        <translation type="vanished">工具</translation>
-    </message>
-    <message>
-        <source>Show tool bar</source>
-        <translation type="vanished">顯示工具條</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">開始</translation>
-    </message>
-    <message>
-        <source>Open settings and Start</source>
-        <translation type="vanished">打開設置並開始</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="vanished">編輯</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">刪除</translation>
-    </message>
-    <message>
-        <source>Import</source>
-        <translation type="vanished">導入</translation>
-    </message>
-    <message>
-        <source>Export</source>
-        <translation type="vanished">導出</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="vanished">刷新</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation type="vanished">根</translation>
-    </message>
-    <message>
-        <source>Add favorite</source>
-        <translation type="vanished">增加收藏</translation>
-    </message>
-    <message>
-        <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
-        <translation type="vanished">&quot;%1&quot; 已收藏於 &quot;%2&quot; 之中</translation>
-    </message>
-    <message>
-        <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
-        <translation type="vanished">&quot;%1&quot; 已收藏，確定想移到 &quot;%2&quot;?</translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation type="vanished">成功</translation>
-    </message>
-    <message>
-        <source>Successfully imported favorite from JSON file: %1</source>
-        <translation type="vanished">成功從 JSON 文件導入收藏：%1</translation>
-    </message>
-    <message>
-        <source>Failed to import favorite from JSON file: %1</source>
-        <translation type="vanished">從 JSON 文件導入收藏失敗：%1</translation>
-    </message>
-    <message>
-        <source>Error: </source>
-        <translation type="vanished">錯誤：</translation>
-    </message>
-    <message>
-        <source>Failure</source>
-        <translation type="vanished">失敗</translation>
-    </message>
-    <message>
-        <source>Invalid file: %1</source>
-        <translation type="vanished">無效文件：%1</translation>
-    </message>
-    <message>
-        <source>Please use JSON file</source>
-        <translation type="vanished">請使用 JSON 文件</translation>
-    </message>
-    <message>
-        <source>Favorite successfully exported to JSON file: %1</source>
-        <translation type="vanished">成功導出收藏到 JSON 文件：%1</translation>
-    </message>
-    <message>
-        <source>Enter the modified name</source>
-        <translation type="vanished">輸入修改後的名稱</translation>
-    </message>
-    <message>
-        <source>Will be delete &quot;%1&quot;</source>
-        <translation type="vanished">&quot;%1&quot; 將被刪除</translation>
-    </message>
-    <message>
-        <source>Import favorite</source>
-        <translation type="vanished">導入收藏</translation>
-    </message>
-    <message>
-        <source>Export favorite</source>
-        <translation type="vanished">導出收藏</translation>
-    </message>
-    <message>
-        <source>Input group name</source>
-        <translation type="vanished">輸入組名</translation>
-    </message>
-</context>
-<context>
     <name>CVirtualKeyboardSettingsDialog</name>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="13"/>
-        <source>虚拟键盘设置</source>
+        <source>虛擬鍵盤設置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="41"/>
-        <source>输入语言</source>
+        <source>輸入語言</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="56"/>
-        <source>选择输入语言:</source>
+        <source>選擇輸入語言:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="61"/>
-        <source>外观设置</source>
+        <source>外觀設置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="66"/>
-        <source>键盘主题:</source>
+        <source>鍵盤主題:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="77"/>
-        <source>按键大小:</source>
+        <source>按鍵大小:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="95"/>
-        <source>显示按键辅助小文本</source>
+        <source>顯示按鍵輔助小文本</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="96"/>
-        <source>自动大写</source>
+        <source>自動大寫</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="101"/>
-        <source>按键反馈</source>
+        <source>按鍵反饋</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="104"/>
-        <source>启用按键音</source>
+        <source>啟用按鍵音</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="105"/>
-        <source>启用震动反馈</source>
+        <source>啟用震動反饋</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="112"/>
-        <source>恢复默认</source>
+        <source>恢復默認</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="113"/>
-        <source>应用</source>
+        <source>應用</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../VirtualKeyboardSettingsDialog.cpp" line="114"/>
-        <source>确定</source>
+        <source>確定</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

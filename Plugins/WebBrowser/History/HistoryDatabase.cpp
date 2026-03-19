@@ -78,7 +78,7 @@ bool CHistoryDatabase::addHistoryEntry(const QString &url)
     QSqlQuery query(GetDatabase());
     query.prepare(
         "INSERT INTO history (url, visit_time) "
-        "VALUES (:url, :visit_time)"
+        "VALUES (:url, :visit_time) "
         );
     query.bindValue(":url", nUrlId);
     QDateTime tm = QDateTime::currentDateTime();
@@ -86,7 +86,11 @@ bool CHistoryDatabase::addHistoryEntry(const QString &url)
 
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to add history:" << query.lastError().text();
+        QString szErr = "Failed to add history: " + query.lastError().text()
+                + "; Sql: " + query.executedQuery()
+                + "; url: " + url;
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -109,14 +113,18 @@ bool CHistoryDatabase::addHistoryEntry(const QString &url, const QString& title,
     QSqlQuery query(GetDatabase());
     query.prepare(
         "INSERT INTO history (url, visit_time) "
-        "VALUES (:url, :visit_time)"
+        "VALUES (:url, :visit_time) "
         );
     query.bindValue(":url", nUrlId);
     query.bindValue(":visit_time", time);
 
     bool success = query.exec();
     if (!success) {
-        qCritical(log) << "Failed to add history:" << query.lastError().text();
+        QString szErr = "Failed to add history: " + query.lastError().text()
+                            + "; Sql: " + query.executedQuery()
+                            + "; url: " + url;
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -144,7 +152,16 @@ bool CHistoryDatabase::updateHistoryEntry(int id, const QString &title, const QI
         "WHERE id=:id"
         );
     query.bindValue(":id", id);
-    if(query.exec() && query.next()) {
+    if(!query.exec()) {
+        QString szErr = "Failed to update history: " + query.lastError().text()
+                + "; Sql: " + query.executedQuery()
+                + "; id: " + QString::number(id);
+        SetError(szErr);
+        qCritical(log) << GetError();
+        return false;
+    }
+
+    if(query.next()) {
         int urlId = query.value(0).toInt();
         return m_UrlDB.UpdateUrl(urlId, title, icon);
     }
@@ -158,7 +175,15 @@ bool CHistoryDatabase::deleteHistoryEntry(int id)
     query.prepare("DELETE FROM history WHERE id = :id");
     query.bindValue(":id", id);
 
-    return query.exec();
+    bool bRet = query.exec();
+    if(!bRet) {
+        QString szErr = "Failed to delete history: " + query.lastError().text()
+                + "; Sql: " + query.executedQuery()
+                + "; id: " + QString::number(id);
+        SetError(szErr);
+        qCritical(log) << GetError();
+    }
+    return bRet;
 }
 
 bool CHistoryDatabase::deleteHistoryEntry(const QString &url)
@@ -169,7 +194,15 @@ bool CHistoryDatabase::deleteHistoryEntry(const QString &url)
     QSqlQuery query(GetDatabase());
     query.prepare("DELETE FROM history WHERE url = :url");
     query.bindValue(":url", urlId);
-    return query.exec();
+    bool bRet = query.exec();
+    if(!bRet) {
+        QString szErr = "Failed to delete history: " + query.lastError().text()
+                + "; Sql: " + query.executedQuery()
+                + "; url: " + url;
+        SetError(szErr);
+        qCritical(log) << GetError();
+    }
+    return bRet;
 }
 
 bool CHistoryDatabase::deleteDomainEntries(const QString &szDomain)
@@ -180,8 +213,14 @@ bool CHistoryDatabase::deleteDomainEntries(const QString &szDomain)
         QSqlQuery query(GetDatabase());
         query.prepare("DELETE FROM history WHERE url = :url");
         query.bindValue(":url", urlId);
-        if(!query.exec())
-            qCritical(log) << "Failed to delete domain:" << szDomain << "url id:" << urlId;
+        if(!query.exec()) {
+            QString szErr = "Failed to delete domain: " + szDomain
+                            + "; Error: " + query.lastError().text()
+                            + "; Sql: " + query.executedQuery()
+                            + "; url id: " + QString::number(urlId);
+            SetError(szErr);
+            qCritical(log) << GetError();
+        }
         m_UrlDB.DeleteUrl(urlId);
     }
     return true;
@@ -200,10 +239,14 @@ bool CHistoryDatabase::clearHistory(int days)
     }
 
     bool success = query.exec();
-
     if (success) {
         // 清理后重置自增ID
         query.exec("VACUUM");
+    } else {
+        QString szErr = "Failed to clear history: " + query.lastError().text()
+                        + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return success;
@@ -268,7 +311,10 @@ QList<HistoryItem> CHistoryDatabase::getAllHistory(int limit, int offset)
             historyList.append(item);
         }
     } else {
-        qCritical(log) << "Failed to get all history:" << query.lastError().text();
+        QString szErr = "Failed to get all history:" + query.lastError().text()
+                        + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return historyList;
@@ -298,6 +344,11 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(const QDate &date)
             item.icon = urlItem.icon;
             historyList.append(item);
         }
+    } else {
+        QString szErr = "Failed to get history by date:" + query.lastError().text()
+            + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return historyList;
@@ -331,6 +382,11 @@ QList<HistoryItem> CHistoryDatabase::getHistoryByDate(
             item.icon = urlItem.icon;
             historyList.append(item);
         }
+    } else {
+        QString szErr = "Failed to get history by date:" + query.lastError().text()
+            + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return historyList;
@@ -366,12 +422,20 @@ HistoryItem CHistoryDatabase::getHistoryByUrl(const QString &url)
         );
     query.bindValue(":url", urlItem.id);
 
-    if (query.exec() && query.next()) {
-        item.id = query.value(0).toInt();
-        item.url = urlItem.szUrl;
-        item.title = urlItem.szTitle;
-        item.icon = urlItem.icon;
-        item.visitTime = query.value(1).toDateTime();
+    if (query.exec()) {
+        if(query.next()) {
+            item.id = query.value(0).toInt();
+            item.url = urlItem.szUrl;
+            item.title = urlItem.szTitle;
+            item.icon = urlItem.icon;
+            item.visitTime = query.value(1).toDateTime();
+        }
+    } else {
+        QString szErr = "Failed to get history by url:" + query.lastError().text()
+            + "; Sql: " + query.executedQuery()
+            + "; Url: " + url;
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return item;
@@ -387,15 +451,23 @@ HistoryItem CHistoryDatabase::getHistoryById(int id)
         "FROM history WHERE id = :id"
         );
     query.bindValue(":id", id);
-
-    if (query.exec() && query.next()) {
-        item.id = query.value(0).toInt();
-        int urlId = query.value(1).toInt();
-        auto urlItem = m_UrlDB.GetItem(urlId);
-        item.url = urlItem.szUrl;
-        item.title = urlItem.szTitle;
-        item.icon = urlItem.icon;
-        item.visitTime = query.value(2).toDateTime();
+    
+    if (query.exec()) {
+        if(query.next()) {
+            item.id = query.value(0).toInt();
+            int urlId = query.value(1).toInt();
+            auto urlItem = m_UrlDB.GetItem(urlId);
+            item.url = urlItem.szUrl;
+            item.title = urlItem.szTitle;
+            item.icon = urlItem.icon;
+            item.visitTime = query.value(2).toDateTime();
+        }
+    } else {
+        QString szErr = "Failed to get history by id:" + query.lastError().text()
+        + "; Sql: " + query.executedQuery()
+            + "; id: " + QString::number(id);
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return item;
@@ -408,6 +480,11 @@ int CHistoryDatabase::getHistoryCount()
 
     if (query.next()) {
         return query.value(0).toInt();
+    } else {
+        QString szErr = "Failed to get history count:" + query.lastError().text()
+                        + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return 0;
@@ -420,68 +497,14 @@ QDateTime CHistoryDatabase::getLastVisitTime()
 
     if (query.next()) {
         return query.value(0).toDateTime();
+    } else {
+        QString szErr = "Failed to get last visit time:" + query.lastError().text()
+            + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
 
     return QDateTime();
-}
-
-bool CHistoryDatabase::importFromJson(const QString &filename)
-{
-    QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return false;
-
-    do {
-        QJsonDocument doc;
-        doc = QJsonDocument::fromJson(file.readAll());
-        if(!doc.isArray())
-            break;
-        auto array = doc.array();
-        for(auto it = array.begin(); it != array.end(); it++) {
-            auto o = it->toObject();
-            QString url = o["url"].toString();
-            QString title = o["title"].toString();
-            QDateTime time = QDateTime::fromString(o["visit_time"].toString());
-            qDebug(log) << "title:" << title << "url:" << url << "visit_time:" << time;
-            bool ok = addHistoryEntry(url, title, time);
-            if(!ok)
-                qWarning(log) << "Failed to add history:" << o["title"].toString();
-        }
-    } while(0);
-
-    file.close();
-    return true;
-}
-
-bool CHistoryDatabase::exportToJson(const QString &filename)
-{
-    QFile file(filename);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        return false;
-
-    QTextStream out(&file);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    out.setEncoding(QStringConverter::Utf8);
-#else
-    out.setCodec("UTF-8");
-#endif
-    out.setGenerateByteOrderMark(true);  // 添加 UTF-8 BOM
-
-    QJsonDocument doc;
-    QJsonArray list;
-    auto items = getAllHistory();
-    foreach(auto it, items) {
-        QJsonObject title;
-        title.insert("title", it.title);
-        title.insert("url", it.url);
-        title.insert("visit_time", it.visitTime.toString());
-        list.append(title);
-    }
-    doc.setArray(list);
-    out << doc.toJson();
-
-    file.close();
-    return true;
 }
 
 bool CHistoryDatabase::importFromCSV(const QString &filename)
@@ -720,11 +743,37 @@ bool CHistoryDatabase::importCsvRecord(const QStringList &fields)
 
 bool CHistoryDatabase::ExportToJson(QJsonObject &obj)
 {
+    QJsonArray list;
+    auto items = getAllHistory();
+    foreach(auto it, items) {
+        QJsonObject title;
+        title.insert("title", it.title);
+        title.insert("url", it.url);
+        title.insert("visit_time", it.visitTime.toString());
+        list.append(title);
+    }
+    obj.insert("browser_history", list);
     return true;
 }
 
 bool CHistoryDatabase::ImportFromJson(const QJsonObject &obj)
 {
+    auto array = obj["browser_history"].toArray();
+    if(array.isEmpty()) {
+        SetError(tr("The file format is error. Json without \"browser_history\""));
+        qCritical(log) << GetError();
+        return false;
+    }
+    for(auto it = array.begin(); it != array.end(); it++) {
+        auto o = it->toObject();
+        QString url = o["url"].toString();
+        QString title = o["title"].toString();
+        QDateTime time = QDateTime::fromString(o["visit_time"].toString());
+        qDebug(log) << "title:" << title << "url:" << url << "visit_time:" << time;
+        bool ok = addHistoryEntry(url, title, time);
+        if(!ok)
+            qWarning(log) << "Failed to add history:" << o["title"].toString();
+    }
     return true;
 }
 
@@ -743,7 +792,11 @@ bool CHistoryDatabase::OnInitializeSqliteDatabase()
     bool success = query.exec();
     
     if (!success) {
-        qCritical(log) << "Failed to create table:" << query.lastError().text();
+        QString szErr = "Failed to create history sqlite table:"
+                        + query.lastError().text()
+                        + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
         return false;
     }
     
@@ -769,8 +822,6 @@ bool CHistoryDatabase::OnInitializeSqliteDatabase()
 bool CHistoryDatabase::OnInitializeMySqlDatabase()
 {
     QSqlQuery query(GetDatabase());
-    
-    // 创建历史记录表
     query.prepare(
         "CREATE TABLE IF NOT EXISTS history ("
         "    id INTEGER PRIMARY KEY AUTO_INCREMENT,"
@@ -781,13 +832,12 @@ bool CHistoryDatabase::OnInitializeMySqlDatabase()
         ")"
         );
     bool success = query.exec();
-    
     if (!success) {
-        qCritical(log) << "Failed to create history table:"
-                       << query.lastError().text()
-                       << "Sql:" << query.executedQuery();
-        return false;
+        QString szErr = "Failed to create history mysql table:"
+                       + query.lastError().text()
+                       + "; Sql: " + query.executedQuery();
+        SetError(szErr);
+        qCritical(log) << GetError();
     }
-
-    return true;
+    return success;
 }
