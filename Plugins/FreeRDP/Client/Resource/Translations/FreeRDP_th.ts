@@ -253,14 +253,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
 </context>
 <context>
-    <name>CConnectLayerQTcpSocket</name>
-    <message>
-        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CDlgDesktopSize</name>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="14"/>
@@ -708,35 +700,27 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="114"/>
-        <source>FreeRDP</source>
+        <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="115"/>
+        <source>FreeRDP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="116"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="118"/>
+        <location filename="../../PluginFreeRDP.cpp" line="119"/>
         <source>Build version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="124"/>
+        <location filename="../../PluginFreeRDP.cpp" line="125"/>
         <source>Build date: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ConnectLayerSSHTunnel</name>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
-        <source>The server is empty, please input it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
-        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

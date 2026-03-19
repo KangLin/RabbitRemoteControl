@@ -1507,28 +1507,33 @@ Visit Time: %3</source>
         <translation>Web 瀏覽器：瀏覽網頁</translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="67"/>
-        <location filename="../../PluginWebBrowser.cpp" line="72"/>
+        <location filename="../../PluginWebBrowser.cpp" line="65"/>
+        <source>Dependency libraries</source>
+        <translation>依賴庫</translation>
+    </message>
+    <message>
+        <location filename="../../PluginWebBrowser.cpp" line="68"/>
+        <location filename="../../PluginWebBrowser.cpp" line="73"/>
         <source>version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="69"/>
+        <location filename="../../PluginWebBrowser.cpp" line="70"/>
         <source>Process name:</source>
         <translation>進程名：</translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="71"/>
+        <location filename="../../PluginWebBrowser.cpp" line="72"/>
         <source>Chromium:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="75"/>
+        <location filename="../../PluginWebBrowser.cpp" line="76"/>
         <source>Security patch version:</source>
         <translation>安全補丁版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="86"/>
+        <location filename="../../PluginWebBrowser.cpp" line="87"/>
         <source>Set Web Wrowser</source>
         <translation>設置網頁瀏覽器</translation>
     </message>

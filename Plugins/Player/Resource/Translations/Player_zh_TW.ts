@@ -202,7 +202,7 @@
         <location filename="../../PluginPlayer.cpp" line="35"/>
         <location filename="../../PluginPlayer.cpp" line="44"/>
         <source>(Experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>(實驗性的)</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="40"/>
@@ -216,21 +216,26 @@
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation>依賴庫</translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="70"/>
         <source>Qt version:</source>
         <translation>Qt 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="70"/>
+        <location filename="../../PluginPlayer.cpp" line="71"/>
         <source>Compile version: </source>
         <translation>編譯版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="71"/>
+        <location filename="../../PluginPlayer.cpp" line="72"/>
         <source>Runtime version: </source>
         <translation>運行版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="73"/>
+        <location filename="../../PluginPlayer.cpp" line="74"/>
         <source>Use QVideoWidget</source>
         <translation>使用 QVideoWidget</translation>
     </message>

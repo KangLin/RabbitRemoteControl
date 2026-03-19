@@ -421,17 +421,37 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="348"/>
-        <location filename="../../Manager.cpp" line="670"/>
+        <location filename="../../Manager.cpp" line="676"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="590"/>
+        <location filename="../../Manager.cpp" line="349"/>
+        <source>Type:</source>
+        <translation>類型：</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="351"/>
+        <source>Protocol:</source>
+        <translation>協議：</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="352"/>
+        <source>ID:</source>
+        <translation>標識：</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="354"/>
+        <source>Description:</source>
+        <translation>描述：</translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="596"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="675"/>
+        <location filename="../../Manager.cpp" line="681"/>
         <source>Dependency libraries</source>
         <translation>依賴庫</translation>
     </message>

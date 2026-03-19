@@ -833,7 +833,12 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.ui" line="22"/>
+        <location filename="../../History/FrmHistory.ui" line="20"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.ui" line="35"/>
         <source>Search:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -843,242 +848,242 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="44"/>
+        <location filename="../../History/FrmHistory.cpp" line="43"/>
         <source>Start date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="47"/>
+        <location filename="../../History/FrmHistory.cpp" line="46"/>
         <source>End date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="49"/>
+        <location filename="../../History/FrmHistory.cpp" line="48"/>
         <source>One day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="50"/>
+        <location filename="../../History/FrmHistory.cpp" line="49"/>
         <source>Two days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="51"/>
+        <location filename="../../History/FrmHistory.cpp" line="50"/>
         <source>One Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="52"/>
+        <location filename="../../History/FrmHistory.cpp" line="51"/>
         <source>One month</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="63"/>
-        <location filename="../../History/FrmHistory.cpp" line="273"/>
+        <location filename="../../History/FrmHistory.cpp" line="62"/>
+        <location filename="../../History/FrmHistory.cpp" line="272"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="74"/>
+        <location filename="../../History/FrmHistory.cpp" line="73"/>
         <source>Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="87"/>
+        <location filename="../../History/FrmHistory.cpp" line="86"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="89"/>
+        <location filename="../../History/FrmHistory.cpp" line="88"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="102"/>
+        <location filename="../../History/FrmHistory.cpp" line="101"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="157"/>
+        <location filename="../../History/FrmHistory.cpp" line="156"/>
         <source>Open the selected %1 urls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="166"/>
+        <location filename="../../History/FrmHistory.cpp" line="165"/>
         <source>Delete the selected %1 urls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="177"/>
+        <location filename="../../History/FrmHistory.cpp" line="176"/>
         <source>All selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="183"/>
+        <location filename="../../History/FrmHistory.cpp" line="182"/>
         <source>Cancel selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="196"/>
+        <location filename="../../History/FrmHistory.cpp" line="195"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="205"/>
+        <location filename="../../History/FrmHistory.cpp" line="204"/>
         <source>Open in new tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="213"/>
+        <location filename="../../History/FrmHistory.cpp" line="212"/>
         <source>Copy url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="222"/>
+        <location filename="../../History/FrmHistory.cpp" line="221"/>
         <source>Copy title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="232"/>
+        <location filename="../../History/FrmHistory.cpp" line="231"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="240"/>
+        <location filename="../../History/FrmHistory.cpp" line="239"/>
         <source>Delete all urls %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="251"/>
+        <location filename="../../History/FrmHistory.cpp" line="250"/>
         <source>Delete all urls from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="262"/>
-        <location filename="../../History/FrmHistory.cpp" line="381"/>
+        <location filename="../../History/FrmHistory.cpp" line="261"/>
+        <location filename="../../History/FrmHistory.cpp" line="380"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="281"/>
+        <location filename="../../History/FrmHistory.cpp" line="280"/>
         <source>Clear all urls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="325"/>
-        <location filename="../../History/FrmHistory.cpp" line="348"/>
+        <location filename="../../History/FrmHistory.cpp" line="324"/>
+        <location filename="../../History/FrmHistory.cpp" line="347"/>
         <source>Delete the url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="326"/>
+        <location filename="../../History/FrmHistory.cpp" line="325"/>
         <source>Are you sure you want to delete the url &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="349"/>
+        <location filename="../../History/FrmHistory.cpp" line="348"/>
         <source>Are you sure you want to delete all url from &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="375"/>
+        <location filename="../../History/FrmHistory.cpp" line="374"/>
         <source>Url:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="377"/>
+        <location filename="../../History/FrmHistory.cpp" line="376"/>
         <source>Visit Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="402"/>
+        <location filename="../../History/FrmHistory.cpp" line="401"/>
         <source>Delete the urls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="403"/>
+        <location filename="../../History/FrmHistory.cpp" line="402"/>
         <source>Are you sure you want to delete the selected %1 urls?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="430"/>
-        <location filename="../../History/FrmHistory.cpp" line="440"/>
-        <location filename="../../History/FrmHistory.cpp" line="443"/>
-        <location filename="../../History/FrmHistory.cpp" line="452"/>
-        <location filename="../../History/FrmHistory.cpp" line="455"/>
-        <location filename="../../History/FrmHistory.cpp" line="461"/>
+        <location filename="../../History/FrmHistory.cpp" line="429"/>
+        <location filename="../../History/FrmHistory.cpp" line="439"/>
+        <location filename="../../History/FrmHistory.cpp" line="442"/>
+        <location filename="../../History/FrmHistory.cpp" line="451"/>
+        <location filename="../../History/FrmHistory.cpp" line="454"/>
+        <location filename="../../History/FrmHistory.cpp" line="460"/>
         <source>Import histories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="432"/>
+        <location filename="../../History/FrmHistory.cpp" line="431"/>
         <source>JSON (*.json);; CSV file (*.csv);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="441"/>
+        <location filename="../../History/FrmHistory.cpp" line="440"/>
         <source>Successfully imported histories from JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="444"/>
+        <location filename="../../History/FrmHistory.cpp" line="443"/>
         <source>Failed to import histories from JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="453"/>
+        <location filename="../../History/FrmHistory.cpp" line="452"/>
         <source>Successfully imported histories from CSV file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="456"/>
+        <location filename="../../History/FrmHistory.cpp" line="455"/>
         <source>Failed to import histories from CSV file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../History/FrmHistory.cpp" line="461"/>
+        <location filename="../../History/FrmHistory.cpp" line="498"/>
+        <source>Invalid file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="462"/>
         <location filename="../../History/FrmHistory.cpp" line="499"/>
-        <source>Invalid file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="463"/>
-        <location filename="../../History/FrmHistory.cpp" line="500"/>
         <source>Please use JSON or CSV file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="469"/>
-        <location filename="../../History/FrmHistory.cpp" line="478"/>
-        <location filename="../../History/FrmHistory.cpp" line="481"/>
-        <location filename="../../History/FrmHistory.cpp" line="489"/>
-        <location filename="../../History/FrmHistory.cpp" line="492"/>
-        <location filename="../../History/FrmHistory.cpp" line="498"/>
+        <location filename="../../History/FrmHistory.cpp" line="468"/>
+        <location filename="../../History/FrmHistory.cpp" line="477"/>
+        <location filename="../../History/FrmHistory.cpp" line="480"/>
+        <location filename="../../History/FrmHistory.cpp" line="488"/>
+        <location filename="../../History/FrmHistory.cpp" line="491"/>
+        <location filename="../../History/FrmHistory.cpp" line="497"/>
         <source>Export histories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="471"/>
+        <location filename="../../History/FrmHistory.cpp" line="470"/>
         <source>JSON (*.json);; CSV (*.csv);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="479"/>
+        <location filename="../../History/FrmHistory.cpp" line="478"/>
         <source>Histories successfully exported to JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="482"/>
+        <location filename="../../History/FrmHistory.cpp" line="481"/>
         <source>Failed to export histories to JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="490"/>
+        <location filename="../../History/FrmHistory.cpp" line="489"/>
         <source>Histories successfully exported to CSV file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="493"/>
+        <location filename="../../History/FrmHistory.cpp" line="492"/>
         <source>Failed to export histories to CSV file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1498,28 +1503,33 @@ Visit Time: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="67"/>
-        <location filename="../../PluginWebBrowser.cpp" line="72"/>
+        <location filename="../../PluginWebBrowser.cpp" line="65"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginWebBrowser.cpp" line="68"/>
+        <location filename="../../PluginWebBrowser.cpp" line="73"/>
         <source>version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="69"/>
+        <location filename="../../PluginWebBrowser.cpp" line="70"/>
         <source>Process name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="71"/>
+        <location filename="../../PluginWebBrowser.cpp" line="72"/>
         <source>Chromium:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="75"/>
+        <location filename="../../PluginWebBrowser.cpp" line="76"/>
         <source>Security patch version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWebBrowser.cpp" line="86"/>
+        <location filename="../../PluginWebBrowser.cpp" line="87"/>
         <source>Set Web Wrowser</source>
         <translation type="unfinished"></translation>
     </message>

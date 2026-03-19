@@ -253,6 +253,11 @@
     </message>
     <message>
         <location filename="../../PluginFtpServer.cpp" line="63"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFtpServer.cpp" line="64"/>
         <source>QFtpServerLib version</source>
         <translation>QFtpServerLib 版本号</translation>
     </message>

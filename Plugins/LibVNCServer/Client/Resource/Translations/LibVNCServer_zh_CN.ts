@@ -160,5 +160,10 @@
         <source>It uses LibVNCServer</source>
         <translation>此插件使用 LibVNCServer</translation>
     </message>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="62"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
+    </message>
 </context>
 </TS>

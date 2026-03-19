@@ -160,5 +160,10 @@
         <source>It uses LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="62"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

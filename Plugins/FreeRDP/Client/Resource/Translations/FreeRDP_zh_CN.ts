@@ -711,21 +711,26 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="114"/>
+        <source>Dependency libraries</source>
+        <translation>依赖库</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="115"/>
         <source>FreeRDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="115"/>
+        <location filename="../../PluginFreeRDP.cpp" line="116"/>
         <source>version: </source>
         <translation>版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="118"/>
+        <location filename="../../PluginFreeRDP.cpp" line="119"/>
         <source>Build version: </source>
         <translation>编译版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="124"/>
+        <location filename="../../PluginFreeRDP.cpp" line="125"/>
         <source>Build date: </source>
         <translation>编译日期：</translation>
     </message>

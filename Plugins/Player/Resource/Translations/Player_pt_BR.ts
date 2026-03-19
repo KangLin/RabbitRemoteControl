@@ -216,21 +216,26 @@
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="69"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="70"/>
         <source>Qt version:</source>
         <translation>Versão do Qt:</translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="70"/>
+        <location filename="../../PluginPlayer.cpp" line="71"/>
         <source>Compile version: </source>
         <translation>Versão de compilação: </translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="71"/>
+        <location filename="../../PluginPlayer.cpp" line="72"/>
         <source>Runtime version: </source>
         <translation>Versão do runtime: </translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="73"/>
+        <location filename="../../PluginPlayer.cpp" line="74"/>
         <source>Use QVideoWidget</source>
         <translation>Usar QVideoWidget</translation>
     </message>

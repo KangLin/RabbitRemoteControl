@@ -420,17 +420,37 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Manager.cpp" line="348"/>
-        <location filename="../../Manager.cpp" line="670"/>
+        <location filename="../../Manager.cpp" line="676"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="590"/>
+        <location filename="../../Manager.cpp" line="349"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="351"/>
+        <source>Protocol:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="352"/>
+        <source>ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="354"/>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Manager.cpp" line="596"/>
         <source>Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Manager.cpp" line="675"/>
+        <location filename="../../Manager.cpp" line="681"/>
         <source>Dependency libraries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -622,7 +642,7 @@ Some features are limited.
         <location filename="../../OperateDesktop.cpp" line="328"/>
         <location filename="../../OperateDesktop.cpp" line="330"/>
         <location filename="../../OperateDesktop.cpp" line="331"/>
-        <location filename="../../OperateDesktop.cpp" line="547"/>
+        <location filename="../../OperateDesktop.cpp" line="549"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -634,7 +654,7 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="544"/>
+        <location filename="../../OperateDesktop.cpp" line="546"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -786,7 +806,7 @@ Some features are limited.
 <context>
     <name>CParameterNet</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterNet.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterNet.cpp" line="13"/>
         <source>The host is empty. please set it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -814,7 +834,7 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="46"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="58"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>

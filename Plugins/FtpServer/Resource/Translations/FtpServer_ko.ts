@@ -4,13 +4,28 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="58"/>
-        <source>Ftp server listen in %1</source>
+        <location filename="../../BackendFtpServer.cpp" line="60"/>
+        <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="62"/>
-        <source>Ftp server is not listening in %1</source>
+        <location filename="../../BackendFtpServer.cpp" line="65"/>
+        <source>Failed to Ftp server is listening on %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="74"/>
+        <source>Failed: Ftp server is not set to listen on any address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="83"/>
+        <source>Failed to Ftp server is listening on %1:%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../BackendFtpServer.cpp" line="94"/>
+        <source>Ftp server is listening on </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -22,79 +37,69 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="27"/>
+        <location filename="../../DlgSettings.ui" line="37"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="35"/>
-        <source>Port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="55"/>
+        <location filename="../../DlgSettings.ui" line="48"/>
         <source>Max connect count:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="76"/>
-        <source>User name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="90"/>
-        <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="108"/>
+        <location filename="../../DlgSettings.ui" line="75"/>
         <source>Root directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="118"/>
+        <location filename="../../DlgSettings.ui" line="85"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="129"/>
+        <location filename="../../DlgSettings.ui" line="94"/>
         <source>Aollow anonymous login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="136"/>
+        <location filename="../../DlgSettings.ui" line="101"/>
         <source>Read-only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="145"/>
+        <location filename="../../DlgSettings.ui" line="108"/>
         <source>Enable listen at all network interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="160"/>
+        <location filename="../../DlgSettings.ui" line="123"/>
         <source>Whitelist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="188"/>
-        <location filename="../../DlgSettings.ui" line="227"/>
-        <location filename="../../DlgSettings.cpp" line="152"/>
-        <location filename="../../DlgSettings.cpp" line="166"/>
+        <location filename="../../DlgSettings.ui" line="151"/>
+        <location filename="../../DlgSettings.ui" line="190"/>
+        <location filename="../../DlgSettings.cpp" line="149"/>
+        <location filename="../../DlgSettings.cpp" line="163"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
-        <location filename="../../DlgSettings.ui" line="220"/>
-        <location filename="../../DlgSettings.cpp" line="154"/>
-        <location filename="../../DlgSettings.cpp" line="168"/>
+        <location filename="../../DlgSettings.ui" line="158"/>
+        <location filename="../../DlgSettings.ui" line="183"/>
+        <location filename="../../DlgSettings.cpp" line="151"/>
+        <location filename="../../DlgSettings.cpp" line="165"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="205"/>
+        <location filename="../../DlgSettings.ui" line="168"/>
         <source>Blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.cpp" line="23"/>
+        <source>Use the following &quot;Enable listen at all network interface&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -155,12 +160,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="177"/>
+        <location filename="../../DlgSettings.cpp" line="174"/>
         <source>Add whilte list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.cpp" line="193"/>
+        <location filename="../../DlgSettings.cpp" line="190"/>
         <source>Add black list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -216,13 +221,13 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="114"/>
         <location filename="../../OperateFtpServer.cpp" line="146"/>
+        <location filename="../../OperateFtpServer.cpp" line="178"/>
         <source>Start server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="158"/>
+        <location filename="../../OperateFtpServer.cpp" line="190"/>
         <source>Stop server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -246,6 +251,11 @@
     </message>
     <message>
         <location filename="../../PluginFtpServer.cpp" line="63"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFtpServer.cpp" line="64"/>
         <source>QFtpServerLib version</source>
         <translation type="unfinished"></translation>
     </message>
