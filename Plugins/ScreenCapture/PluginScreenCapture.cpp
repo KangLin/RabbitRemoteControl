@@ -51,6 +51,11 @@ const QIcon CPluginScreenCapture::Icon() const
     return QIcon::fromTheme("camera-photo");
 }
 
+const QString CPluginScreenCapture::Details() const
+{
+    return QString();
+}
+
 COperate *CPluginScreenCapture::OnCreateOperate(const QString &szId)
 {
     COperate* p = new CScreenCapture(this);

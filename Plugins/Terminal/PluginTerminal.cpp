@@ -66,7 +66,8 @@ const QString CPluginTerminal::Version() const
 const QString CPluginTerminal::Details() const
 {
     QString szDetails;
-    szDetails = COperateTerminal::Details();
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += COperateTerminal::Details();
     return szDetails;
 }
 

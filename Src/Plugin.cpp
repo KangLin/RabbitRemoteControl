@@ -78,11 +78,6 @@ const QString CPlugin::DisplayName() const
     return Name();
 }
 
-const QString CPlugin::Details() const
-{
-    return QString();
-}
-
 //! [CPlugin CreateOperate]
 COperate* CPlugin::CreateOperate(
     const QString &szId, CParameterPlugin* para)

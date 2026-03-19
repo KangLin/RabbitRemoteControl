@@ -344,9 +344,15 @@ int CManager::AppendPlugin(CPlugin *p)
         << "initial translator fail" << bRet << val;
     }
 
-    m_szDetails += "### " + p->DisplayName() + "\n"
-                   + tr("Version:") + " " + p->Version() + "  \n"
-                   + p->Description() + "\n";
+    m_szDetails += "### " + p->DisplayName() + "\n";
+    m_szDetails += "- " + tr("Version:") + " " + p->Version() + "\n";
+    m_szDetails += "- " + tr("Type:") + " " + p->TypeName(p->Type()) + "\n";
+    if(!p->Protocol().isEmpty())
+        m_szDetails += "- " + tr("Protocol:") + " " + p->Protocol() + "\n";
+    m_szDetails += "- " + tr("ID:") + " " + p->Id() + "\n";
+    if(!p->Description().isEmpty())
+        m_szDetails += "- " + tr("Description:") + " " + p->Description() + "\n";
+
     if(!p->Details().isEmpty())
         m_szDetails += p->Details() + "\n";
 

@@ -89,13 +89,14 @@ const QString CPluginWakeOnLan::Version() const
 const QString CPluginWakeOnLan::Details() const
 {
     QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
 #ifdef HAVE_PCAPPLUSPLUS
-    szDetails = "- PcapPlusPlus";
+    szDetails += "  - PcapPlusPlus";
     szDetails += "\n";
-    szDetails += "  - " + tr("version: ")
+    szDetails += "    - " + tr("version: ")
                  + pcpp::getPcapPlusPlusVersionFull().c_str();
     szDetails += "\n";
-    szDetails += "    - " + tr("Pcap lib version info: ")
+    szDetails += "      - " + tr("Pcap lib version info: ")
                  + pcpp::IPcapDevice::getPcapLibVersionInfo().c_str();
 #endif
     return szDetails;

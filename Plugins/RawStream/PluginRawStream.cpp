@@ -53,6 +53,14 @@ const QString CPluginRawStream::Version() const
     return PluginRawStream_VERSION;
 }
 
+const QString CPluginRawStream::Details() const
+{
+    QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += COperateTerminal::Details();
+    return szDetails;
+}
+
 COperate* CPluginRawStream::OnCreateOperate(const QString &szId)
 {
     return new COperateRawStream(this);

@@ -62,17 +62,18 @@ COperate *CPluginWebBrowser::OnCreateOperate(const QString &szId)
 const QString CPluginWebBrowser::Details() const
 {
     QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
 #if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
-    szDetails += "- QWebEngine" + QString("\n");
-    szDetails += "  - " + tr("version:") + " " + qWebEngineVersion() + "\n";
+    szDetails += "  - QWebEngine" + QString("\n");
+    szDetails += "    - " + tr("version:") + " " + qWebEngineVersion() + "\n";
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-    szDetails += "  - " + tr("Process name:") + " " + qWebEngineProcessName() + "\n";
+    szDetails += "    - " + tr("Process name:") + " " + qWebEngineProcessName() + "\n";
 #endif
-    szDetails += "  - " + tr("Chromium:") + "\n";
-    szDetails += "    - " + tr("version:") + " " + qWebEngineChromiumVersion() + "\n";
+    szDetails += "    - " + tr("Chromium:") + "\n";
+    szDetails += "      - " + tr("version:") + " " + qWebEngineChromiumVersion() + "\n";
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
-    szDetails += "    - " + tr("Security patch version:") + " " + qWebEngineChromiumSecurityPatchVersion() + "\n";
+    szDetails += "      - " + tr("Security patch version:") + " " + qWebEngineChromiumSecurityPatchVersion() + "\n";
 #endif
     return szDetails;
 }

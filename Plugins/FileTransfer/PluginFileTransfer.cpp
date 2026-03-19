@@ -67,16 +67,17 @@ const QIcon CPluginFileTransfer::Icon() const
 const QString CPluginFileTransfer::Details() const
 {
     QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
 #ifdef HAVE_LIBSSH
     CChannelSSH channel(nullptr, nullptr);
     szDetails += channel.GetDetails();
 #endif
 
 #if HAVE_CURL
-    szDetails += "- " + tr("libCurl") + " ";
+    szDetails += "  - " + tr("libCurl") + " ";
     curl_version_info_data *version_info = curl_version_info(CURLVERSION_NOW);
     szDetails += tr("Version:") + " " + QString(version_info->version) + "\n";
-    szDetails += "  - " + tr("Supported protocols:") + " ";
+    szDetails += "    - " + tr("Supported protocols:") + " ";
     if (version_info->protocols) {
         for (int i = 0; version_info->protocols[i]; i++) {
             szDetails += " ";
@@ -85,10 +86,10 @@ const QString CPluginFileTransfer::Details() const
     }
     szDetails += "\n";
     #if CURL_VERSION_SSL
-        szDetails += "  - " + QString("SSL supported:") + " " + QString(version_info->features & CURL_VERSION_SSL ? "Yes" : "No") + "\n";
+        szDetails += "    - " + QString("SSL supported:") + " " + QString(version_info->features & CURL_VERSION_SSL ? "Yes" : "No") + "\n";
     #endif
     #if CURL_VERSION_LIBSSH2
-        szDetails += "  - " + QString("LIBSSH2 supported:") +  " " + QString(version_info->features & CURL_VERSION_LIBSSH2 ? "Yes" : "No") + "\n";
+        szDetails += "    - " + QString("LIBSSH2 supported:") +  " " + QString(version_info->features & CURL_VERSION_LIBSSH2 ? "Yes" : "No") + "\n";
     #endif
 #endif
     return szDetails;

@@ -53,6 +53,14 @@ const QString CPluginSerialPort::Version() const
     return PluginSerialPort_VERSION;
 }
 
+const QString CPluginSerialPort::Details() const
+{
+    QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += COperateTerminal::Details();
+    return szDetails;
+}
+
 COperate* CPluginSerialPort::OnCreateOperate(const QString &szId)
 {
     return new COperateSerialPort(this);

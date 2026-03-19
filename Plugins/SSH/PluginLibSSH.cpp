@@ -66,7 +66,8 @@ const QString CPluginLibSSH::Version() const
 const QString CPluginLibSSH::Details() const
 {
     QString szDetails;
-    szDetails = COperateTerminal::Details();
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += COperateTerminal::Details();
 #ifdef HAVE_LIBSSH
     CChannelSSH channel(nullptr, nullptr);
     szDetails += channel.GetDetails();

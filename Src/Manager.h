@@ -236,6 +236,7 @@ private Q_SLOTS:
 
 private:
     QString m_szSettingsFile;
+    //! ID -> CPlugin
     QMap<QString, CPlugin*> m_Plugins;
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;

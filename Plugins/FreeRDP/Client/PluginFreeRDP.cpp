@@ -111,21 +111,22 @@ const QString CPluginFreeRDP::Version() const
 const QString CPluginFreeRDP::Details() const
 {
     QString szDetails;
-    szDetails = "- " + tr("FreeRDP") + "\n";
-    szDetails += "  - " + tr("version: ");
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += "  - " + tr("FreeRDP") + "\n";
+    szDetails += "    - " + tr("version: ");
     szDetails += freerdp_get_version_string();
     szDetails += "\n";
-    szDetails += "  - " + tr("Build version: ");
+    szDetails += "    - " + tr("Build version: ");
     szDetails += freerdp_get_build_revision();
     szDetails += ":";
     szDetails += freerdp_get_build_revision();
     szDetails += "\n";
 #if FREERDP_VERSION_MAJOR < 3
-    szDetails += "  - " + tr("Build date: ");
+    szDetails += "    - " + tr("Build date: ");
     szDetails += freerdp_get_build_date();
     szDetails += "\n";
 #endif
-    szDetails += "  - ";
+    szDetails += "    - ";
     szDetails += freerdp_get_build_config();
 
 #ifdef HAVE_LIBSSH

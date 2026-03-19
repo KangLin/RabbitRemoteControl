@@ -613,6 +613,7 @@ void MainWindow::on_actionAbout_triggered()
             about->m_AppIcon = p.toImage();
         }
     }
+    about->m_szBuildTime = QString("%1/%2").arg(__DATE__, __TIME__);
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
     about->m_szDetails = m_Manager.Details();

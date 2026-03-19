@@ -59,6 +59,7 @@ const QString CPluginLibVNCServer::Version() const
 const QString CPluginLibVNCServer::Details() const
 {
     QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
 #ifdef HAVE_LIBSSH
     CChannelSSHTunnel channel(nullptr, nullptr, nullptr);
     szDetails += channel.GetDetails();

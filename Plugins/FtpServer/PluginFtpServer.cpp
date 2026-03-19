@@ -49,7 +49,7 @@ const QString CPluginFtpServer::Description() const
 
 const QString CPluginFtpServer::Version() const
 {
-    return 0;
+    return PluginFtpServer_VERSION;
 }
 
 const QIcon CPluginFtpServer::Icon() const
@@ -60,7 +60,8 @@ const QIcon CPluginFtpServer::Icon() const
 const QString CPluginFtpServer::Details() const
 {
     QString szDetails;
-    szDetails = "- " + tr("QFtpServerLib version") + ": " + QFtpServerLib_VERSION;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += "  - " + tr("QFtpServerLib version") + ": " + QFtpServerLib_VERSION;
     return szDetails;
 }
 

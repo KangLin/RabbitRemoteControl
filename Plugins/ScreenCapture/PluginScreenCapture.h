@@ -25,6 +25,7 @@ public:
     virtual const QString Description() const override;
     virtual const QString Version() const override;
     virtual const QIcon Icon() const override;
+    virtual const QString Details() const override;
 
 private:
     virtual COperate* OnCreateOperate(const QString &szId) override;

@@ -54,6 +54,14 @@ const QString CPluginTelnet::Version() const
     return PluginTelnet_VERSION;
 }
 
+const QString CPluginTelnet::Details() const
+{
+    QString szDetails;
+    szDetails += "- " + tr("Dependency libraries") + "\n";
+    szDetails += COperateTerminal::Details();
+    return szDetails;
+}
+
 COperate *CPluginTelnet::OnCreateOperate(const QString &szId)
 {
     if(Id() == szId)
