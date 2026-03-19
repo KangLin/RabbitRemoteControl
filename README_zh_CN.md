@@ -219,9 +219,10 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 [![贡献者](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 [![提交活动](https://img.shields.io/github/commit-activity/m/KangLin/RabbitRemoteControl?label=提交活动)](https://github.com/KangLin/RabbitRemoteControl/pulse)
 [![最后提交](https://img.shields.io/github/last-commit/KangLin/RabbitRemoteControl?label=最后提交)](https://github.com/KangLin/RabbitRemoteControl/pulse)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
-[![Open PRs](https://img.shields.io/github/issues-pr/KangLin/RabbitRemoteControl?label=打开%20PRS)](https://github.com/KangLin/RabbitRemoteControl/pulls)
-[![Closed PRs](https://img.shields.io/github/issues-pr-closed/KangLin/RabbitRemoteControl?label=关闭%20PRS)](https://github.com/KangLin/RabbitRemoteControl/pulls?q=is%3Apr+is%3Aclosed)
+
+[![欢迎“提交合并请求”](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
+[![打开的“提交合并请求”](https://img.shields.io/github/issues-pr/KangLin/RabbitRemoteControl?label=打开%20PRS)](https://github.com/KangLin/RabbitRemoteControl/pulls)
+[![关闭的“提交合并请求”](https://img.shields.io/github/issues-pr-closed/KangLin/RabbitRemoteControl?label=关闭%20PRS)](https://github.com/KangLin/RabbitRemoteControl/pulls?q=is%3Apr+is%3Aclosed)
 
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
 ![Language](https://img.shields.io/github/languages/top/kanglin/RabbitRemoteControl)
