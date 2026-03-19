@@ -167,7 +167,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/FreeRDP/FreeRDP.git
-        tag: 3.23.0
+        tag: 3.24.1
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
