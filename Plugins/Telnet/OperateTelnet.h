@@ -15,7 +15,7 @@ public:
 
 public:
     [[nodiscard]] virtual CBackend *InstanceBackend() override;
-    [[nodiscard]] virtual SecurityLevel GetSecurityLevel() override;
+    [[nodiscard]] virtual CSecurityLevel::Level GetSecurityLevel() const override;
     virtual int Start() override;
     virtual int Stop() override;
 
@@ -30,6 +30,7 @@ private:
     CParameterTelnet m_Parameters;
     QTelnet m_Telnet;
     bool m_bLogin;
+    CSecurityLevel::Level m_SecurityLevel;
     
     // COperate interface
 public:

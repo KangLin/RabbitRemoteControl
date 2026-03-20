@@ -60,3 +60,46 @@ protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
 };
+
+/*!
+ * \~chinese 安全级别
+ * \~english Security level
+ */
+class PLUGIN_EXPORT CSecurityLevel : QObject {
+    Q_OBJECT
+public:
+    enum Level {
+        No = -1,                  // No the function
+
+        Authentication = 0x01,
+        SecureChannel = 0x02,     // Channel is secure.
+        Proxy = 0x04,
+
+        Secure = 0x03,            // Green
+        Normal = 0x04,            // Yellow
+        Risky = 0x00,             // Red
+    };
+
+    CSecurityLevel(Level = Level::No, QObject* parent = nullptr);
+    ~CSecurityLevel();
+
+    [[nodiscard]] virtual Level GetLevel() const;
+    [[nodiscard]] virtual QString GetString() const;
+    [[nodiscard]] virtual QColor GetColor() const;
+    [[nodiscard]] virtual QString GetUnicodeIcon() const;
+    [[nodiscard]] virtual QIcon GetIcon() const;
+    [[nodiscard]] static QString GetString(Level level);
+    [[nodiscard]] static QString GetUnicodeIcon(Level level);
+    [[nodiscard]] static QIcon GetIcon(Level level);
+    [[nodiscard]] static QColor GetColor(Level level);
+
+Q_SIGNALS:
+    /*!
+     * \~chinese 当安全级别改变时触发
+     * \~english Triggered when the security level changes
+     */
+    void sigSecurityLevel(Level level);
+
+private:
+    Level m_Level;
+};

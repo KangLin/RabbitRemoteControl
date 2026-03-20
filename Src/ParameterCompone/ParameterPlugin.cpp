@@ -5,6 +5,7 @@
 #include "RabbitCommonDir.h"
 #include "ParameterPlugin.h"
 
+Q_DECLARE_METATYPE(CParameterPlugin::NameStyles)
 CParameterPlugin::CParameterPlugin(QObject *parent)
     : CParameter(parent)
     , m_pGlobalParameter(new CParameterGlobal(this, "Global"))
@@ -18,8 +19,7 @@ CParameterPlugin::CParameterPlugin(QObject *parent)
     , m_nPromptCount(0)
     , m_bViewPassowrd(false)
     , m_bUseSystemCredential(true)
-    , m_bShowProtocolPrefix(false)
-    , m_bShowIpPortInName(false)
+    , m_NameStyles(NameStyle::ServerName | NameStyle::SecurityLevel)
     , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_bEnableSetPluginsPath(false)
     , m_WhiteList(this, "Plugin/Paths/Whilelist")
@@ -59,7 +59,8 @@ int CParameterPlugin::OnLoad(QSettings &set)
     SetRestoreDesktopShortcutsScript(
         set.value("DesktopShortcutsScript/Restore",
                   GetRestoreDesktopShortcutsScript()).toString());
-    SetEnableLocalInputMethod(set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
+    SetEnableLocalInputMethod(
+        set.value("InputMethod", GetEnableLocalInputMethod()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
         set.value("AdministratorPrivilege/Prompt",
@@ -72,15 +73,18 @@ int CParameterPlugin::OnLoad(QSettings &set)
                               ));
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
     SetViewPassowrd(set.value("Password/View", GetViewPassowrd()).toBool());
-    SetUseSystemCredential(set.value("Password/UseSystemCredential", GetUseSystemCredential()).toBool());
-    SetShowProtocolPrefix(set.value("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
-    SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
+    SetUseSystemCredential(set.value("Password/UseSystemCredential",
+                                     GetUseSystemCredential()).toBool());
+    SetNameStyles(static_cast<NameStyle>(
+        set.value("Operate/NameStyles", (int)GetNameStyles()).toInt()));
     SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
 
     SetPluginsPath(set.value("Paths", GetPluginsPath()).toStringList());
-    SetEnableSetPluginsPath(set.value("Paths/Enable", GetEnableSetPluginsPath()).toBool());
-    SetOnlyLoadInWhitelist(set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
+    SetEnableSetPluginsPath(
+        set.value("Paths/Enable", GetEnableSetPluginsPath()).toBool());
+    SetOnlyLoadInWhitelist(
+        set.value("OnlyLoadInWhitelist", GetOnlyLoadInWhitelist()).toBool());
 
     set.endGroup();
 
@@ -101,8 +105,7 @@ int CParameterPlugin::OnSave(QSettings& set)
     set.setValue("Password/Save", GetSavePassword());
     set.setValue("Password/View", GetViewPassowrd());
     set.setValue("Password/UseSystemCredential", GetUseSystemCredential());
-    set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
-    set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
+    set.setValue("Operate/NameStyles", (int)GetNameStyles());
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
 
     set.setValue("Paths", GetPluginsPath());
@@ -289,32 +292,18 @@ void CParameterPlugin::SetUseSystemCredential(bool newUseSystemCredential)
     SetModified(true);
 }
 
-bool CParameterPlugin::GetShowProtocolPrefix() const
+CParameterPlugin::NameStyles CParameterPlugin::GetNameStyles() const
 {
-    return m_bShowProtocolPrefix;
+    return m_NameStyles;
 }
 
-void CParameterPlugin::SetShowProtocolPrefix(bool bShowProtocolPrefix)
+void CParameterPlugin::SetNameStyles(const NameStyles &newNameStyles)
 {
-    if(m_bShowProtocolPrefix == bShowProtocolPrefix)
+    if (m_NameStyles == newNameStyles)
         return;
-    m_bShowProtocolPrefix = bShowProtocolPrefix;
+    m_NameStyles = newNameStyles;
     SetModified(true);
-    emit sigShowProtocolPrefixChanged();
-}
-
-bool CParameterPlugin::GetShowIpPortInName() const
-{
-    return m_bShowIpPortInName;
-}
-
-void CParameterPlugin::SetShowIpPortInName(bool bShowIpPortInName)
-{
-    if(m_bShowIpPortInName == bShowIpPortInName)
-        return;
-    m_bShowIpPortInName = bShowIpPortInName;
-    SetModified(true);
-    emit sigSHowIpPortInNameChanged();
+    emit sigNameStylesChanged();
 }
 
 CFrmViewer::ADAPT_WINDOWS CParameterPlugin::GetAdaptWindows()

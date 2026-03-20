@@ -40,7 +40,7 @@ public:
      */
     Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
     //! Get parameters
-    [[nodiscard]] virtual CParameterTerminalBase* GetParameter();
+    [[nodiscard]] virtual CParameterTerminalBase* GetParameter() const;
     /*!
      * \~chinese 设置参数指针
      * \note 先建立参数对象，然后构造函数或 Initial() 中调用此函数设置参数指针

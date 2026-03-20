@@ -59,19 +59,32 @@ public:
     //! \~chinese \name 属性
     //! \~english \name Property
 
-    //! Identity
+    //! \~chinese 标识
+    //! \~englis Identity
     [[nodiscard]] virtual const QString Id();
-    //! Name
+    //! \~chinese 名称
+    //! \~english Name
+    //! \~
+    //! \snippet Src\OperateDesktop.cpp The name of the desktop operate
+    //! \see COperateDesktop::Name()
     [[nodiscard]] virtual const QString Name();
-    //! Description
+    //! \~chinese 描述
+    //! \~english Description
+    //! \~
+    //! \snippet Src\OperateDesktop.cpp The description of the desktop operate
+    //! \see COperateDesktop::Description()
     [[nodiscard]] virtual const QString Description();
-    //! Protocol
+    //! \~chinese 协议
+    //! \~englis Protocol
     [[nodiscard]] virtual const QString Protocol() const;
-    //! Version
+    //! \~chinese 版本
+    //! \~englis Version
     [[nodiscard]] virtual const qint16 Version() const = 0;
-    //! Icon
+    //! \~chinese 图标
+    //! \~englis Icon
     [[nodiscard]] virtual const QIcon Icon() const;
-    //! Get type name
+    //! \~chinese 类型名
+    //! \~englis Type name
     [[nodiscard]] virtual const QString GetTypeName() const;
     //!@}
 
@@ -107,6 +120,9 @@ public:
      *   \li QDialog::Accepted
      *   \li QDialog::Rejected
      *   \li -1: error
+     *
+     * \~
+     * \see OnOpenDialogSettings
      */
     [[nodiscard]] virtual int OpenDialogSettings(QWidget* parent = nullptr);
     /*!
@@ -114,23 +130,9 @@ public:
      */
     [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
-    [[nodiscard]] virtual CStats* GetStats();
-
-    enum class SecurityLevel {
-        No,                       // No the function
-        Secure,                   // Both authentication and channels are secure. Green
-        NonSecureAuthentication,  // Non-secure authentication over a secure channel. Blue
-        SecureChannel,            // Channel is secure. Yellow
-        Normal = SecureChannel,
-        SecureAuthentication,     // There is security verification, not a secure channel. Orange
-        Risky                     // Red
-    };
-    [[nodiscard]] virtual SecurityLevel GetSecurityLevel();
-    [[nodiscard]] virtual QString GetSecurityLevelString();
-    [[nodiscard]] virtual QColor GetSecurityLevelColor();
-    [[nodiscard]] static QString GetSecurityLevelString(SecurityLevel level);
-    [[nodiscard]] static QColor GetSecurityLevelColor(SecurityLevel level);
-
+    //!@{
+    //! \~chinese \name 主工作流
+    //! \~english \name Main Workflow
 public:
     /**
      * \~chinese
@@ -200,6 +202,7 @@ Q_SIGNALS:
      * \see Disconnect()
      */
     void sigFinished();
+    //!@}
 
     /*!
      * \~chinese 视图获得焦点
@@ -306,7 +309,12 @@ protected:
      * \see CManager::DeleteOperate 
      */
     Q_INVOKABLE CPlugin* GetPlugin() const;
-
+    /*!
+     * \brief Create Object
+     * \param className: class name
+     * \param parent
+     * \return Created object
+     */
     static QObject* createObject(const QString &className, QObject* parent = NULL);
 
 private:
@@ -325,7 +333,7 @@ private:
      * \see OpenDialogSettings
      */
     [[nodiscard]] virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
-    
+
     //!@{
     //! \~chinese \name 加载和保存参数
     //! \~english \name Load and save settings
@@ -370,6 +378,31 @@ protected:
      * \see CManger::SaveOperate
      */
     Q_INVOKABLE virtual int Save(QString szFile = QString());
+    //!@}
+
+    //!@{
+    //! \~chinese \name 统计
+    //! \~english \name Stats
+public:
+    [[nodiscard]] virtual CStats* GetStats();
+    /*!
+     * \brief Get Security Level
+     * \return
+     * \see CSecurityLevel
+     */
+    [[nodiscard]] virtual CSecurityLevel::Level GetSecurityLevel() const;
+Q_SIGNALS:
+    /*!
+     * \~chinese 当安全级别改变时触发。其派生类不要直接触发，需要使用 slotSetSecurityLevel 触发
+     * \~english Triggered when the security level changes.
+     *           Its derived classes should not be triggered directly;
+     *           they need to be triggered using slotSetSecurityLevel.
+     */
+    void sigSecurityLevel(CSecurityLevel::Level level);
+protected Q_SLOTS:
+    void slotSetSecurityLevel(CSecurityLevel::Level level);
+private:
+    CSecurityLevel::Level m_SecurityLevel;
     //!@}
 
 protected Q_SLOTS:

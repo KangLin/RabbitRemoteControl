@@ -64,8 +64,16 @@ int CParameterPluginUI::Accept()
         m_pPara->SetPromptType(CParameterPlugin::PromptType::First);
     if(ui->rbPromptNo->isChecked())
         m_pPara->SetPromptType(CParameterPlugin::PromptType::No);
-    m_pPara->SetShowProtocolPrefix(ui->cbShowPrefix->isChecked());
-    m_pPara->SetShowIpPortInName(ui->cbShowIPPort->isChecked());
+
+    CParameterPlugin::NameStyles nameStyle;
+    if(ui->cbShowProtocol->isChecked())
+        nameStyle |= CParameterPlugin::NameStyle::Protocol;
+    if(ui->cbShowServerName->isChecked())
+        nameStyle |= CParameterPlugin::NameStyle::ServerName;
+    if(ui->cbShowSecurityLevel->isChecked())
+        nameStyle |= CParameterPlugin::NameStyle::SecurityLevel;
+    m_pPara->SetNameStyles(nameStyle);
+
     return 0;
 }
 
@@ -140,8 +148,13 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
         break;
     }
 
-    ui->cbShowPrefix->setChecked(m_pPara->GetShowProtocolPrefix());
-    ui->cbShowIPPort->setChecked(m_pPara->GetShowIpPortInName());
+    ui->cbShowProtocol->setChecked(
+        m_pPara->GetNameStyles() & CParameterPlugin::NameStyle::Protocol);
+    ui->cbShowServerName->setChecked(
+        m_pPara->GetNameStyles() & CParameterPlugin::NameStyle::ServerName);
+    ui->cbShowSecurityLevel->setChecked(
+        m_pPara->GetNameStyles() & CParameterPlugin::NameStyle::SecurityLevel);
+
     return 0;
 }
 

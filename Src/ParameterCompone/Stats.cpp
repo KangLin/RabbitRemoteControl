@@ -110,3 +110,124 @@ int CStats::OnSave(QSettings &set)
 {
     return 0;
 }
+
+CSecurityLevel::CSecurityLevel(CSecurityLevel::Level level, QObject* parent)
+    : QObject(parent)
+    , m_Level(level)
+{
+}
+
+CSecurityLevel::~CSecurityLevel()
+{}
+
+CSecurityLevel::Level CSecurityLevel::GetLevel() const
+{
+    return m_Level;
+}
+
+QString CSecurityLevel::GetString() const
+{
+    return GetString(GetLevel());
+}
+
+QColor CSecurityLevel::GetColor() const
+{
+    return GetColor(GetLevel());
+}
+
+QString CSecurityLevel::GetUnicodeIcon() const
+{
+    return GetUnicodeIcon(GetLevel());
+}
+
+QIcon CSecurityLevel::GetIcon() const
+{
+    return GetIcon(GetLevel());
+}
+
+QString CSecurityLevel::GetString(Level level)
+{
+    if(Level::No == level)
+        return QString();
+    if(Level::Secure == level)
+        return tr("Secure");
+    if(Level::Risky == level)
+        return tr("Risk");
+    if(Level::Secure & level) {
+        QString s = tr("Normal") + ": ";
+        if(Level::SecureChannel & level)
+            s += tr("Secure channel");
+        else if(Level::Authentication & level)
+            s+= tr("Authentication");
+        return s;
+    }
+    if(Level::Normal & level)
+        return tr("Normal");
+    return QString();
+}
+
+/*!
+ * \brief COperate::GetSecurityLevelUnicodeIcon
+ * \param level
+ * \return
+ * | 符号　| Unicode 编码 | 说明 | 含义 |
+ * |:----:|-------------|------|------|
+ * | 🔓 | `U+1F513` | 开锁 | 未加密、无保护 |
+ * | 🔐 | `U+1F510` | 带钥匙的锁（关闭） | 安全（有保护） |
+ * | 🔒 | `U+1F512` | 闭锁 | 安全（已锁定） |
+ * | 🔏 | `U+1F50F` | 带笔的锁 | 隐私模式 |
+ * | ⚠ | `U+26A0` | 警告 | 不安全警告 |
+ * | ❌ | `U+274C` | 红叉 | 错误、不安全 |
+ * | 🛡 | `U+1F6E1` | 盾牌 | 有保护（安全） |
+ * | 🔴 | `U+1F534` | 红圈 | 危险、警告 |
+ * | 🟡 | `U+1F7E1` | 黄圈 | 注意、谨慎 |
+ * | 🟢 | `U+1F7E2` | 绿圈 | 安全 |
+ */
+QString CSecurityLevel::GetUnicodeIcon(Level level)
+{
+    if(Level::No == level)
+        return QString();
+    if(Level::Secure == level)
+        return "🟢🛡🔐";
+    if(Level::Risky == level)
+        return "🔴";
+    if(Level::Secure & level || Level::Normal & level) {
+        QString s = "🟡";
+        if(Level::SecureChannel & level)
+            s += "🛡";
+        else if(Level::Authentication & level)
+            s+= "🔐";
+        return s;
+    }
+    return QString();
+}
+
+QColor CSecurityLevel::GetColor(Level level)
+{
+    if(Level::No == level)
+        return QColor();
+    if(Level::Secure == level)
+        return Qt::GlobalColor::green;
+    if(Level::Risky == level)
+        return Qt::GlobalColor::red;
+    if(Level::Secure & level)
+        return Qt::GlobalColor::yellow;
+    if(Level::Normal & level)
+        return Qt::GlobalColor::yellow;
+    return QColor();
+}
+
+QIcon CSecurityLevel::GetIcon(Level level)
+{
+    if(Level::No == level)
+        return QIcon();
+    if(Level::Secure == level)
+        return QIcon::fromTheme("lock");
+    if(Level::Risky == level)
+        return QIcon::fromTheme("unlock");
+    if(Level::Secure & level)
+        return QIcon::fromTheme("dialog-warning");
+    if(Level::Normal & level)
+        return QIcon::fromTheme("dialog-warning");
+    return QIcon();
+}

@@ -16,14 +16,17 @@ public:
     ~COperateFtpServer();
 
 public:
+    virtual const QString Name() override;
+    virtual const QString Description() override;
     virtual const qint16 Version() const override;
     virtual QWidget *GetViewer() override;
     virtual int Start() override;
     virtual int Stop() override;
-    Q_INVOKABLE virtual CBackend* InstanceBackend();
-    QSharedPointer<CParameterFtpServer> GetParameter();
+
+    QSharedPointer<CParameterFtpServer> GetParameter() const;
 
 protected:
+    Q_INVOKABLE virtual CBackend* InstanceBackend();
     virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
     virtual int Initial() override;
     virtual int Clean() override;
@@ -41,6 +44,5 @@ private:
     QSharedPointer<CParameterFtpServer> m_Para;
     CFrmMain* m_pView;
     QAction* m_pStart;
-    
     friend class CFrmMain;
 };

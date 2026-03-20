@@ -7,14 +7,15 @@
 #include "OperateFtpServer.h"
 
 static Q_LOGGING_CATEGORY(log, "FtpServer.Backend")
-CBackendFtpServer::CBackendFtpServer(COperate *pOperate) : CBackend(pOperate)
+CBackendFtpServer::CBackendFtpServer(COperateFtpServer *pOperate)
+    : CBackend(pOperate)
+    , m_pOperate(pOperate)
     , m_pServer(nullptr)
     , m_nTotal(0)
     , m_nDisconnect(0)
 {
     qDebug(log) << Q_FUNC_INFO;
-    COperateFtpServer* po = qobject_cast<COperateFtpServer*>(pOperate);
-    m_Para = po->GetParameter();
+    m_Para = m_pOperate->GetParameter();
 }
 
 CBackendFtpServer::~CBackendFtpServer()
@@ -35,6 +36,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     m_Sockets.clear();
     emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
 
+    CSecurityLevel::Level securityLevel = CSecurityLevel::Level::Risky;
     QString szUser;
     QString szPassword;
     auto &net = m_Para->m_Net;
@@ -42,6 +44,8 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         auto &user = net.m_User;
         szUser = user.GetName();
         szPassword = user.GetPassword();
+        if(!szPassword.isEmpty())
+            securityLevel = CSecurityLevel::Level::Authentication;
     }
 
     m_pServer = new CFtpServer(this, m_Para->GetRoot(), net.GetPort(),
@@ -97,16 +101,15 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         }
     }
 
+    emit sigSecurityLevel(securityLevel);
     return OnInitReturnValue::NotUseOnProcess;
 }
 
 int CBackendFtpServer::OnClean()
 {
     qDebug(log) << Q_FUNC_INFO;
-
     if(m_pServer)
         delete m_pServer;
-
     return 0;
 }
 

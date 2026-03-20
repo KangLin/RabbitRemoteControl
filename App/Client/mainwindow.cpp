@@ -1029,6 +1029,15 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
         }
     });
     Q_ASSERT(check);
+    check = connect(pOperate, &COperate::sigSecurityLevel,
+                    this, [this, pOperate](CSecurityLevel::Level level) {
+        if(m_pView && pOperate) {
+            if(m_pView->GetCurrentView() == pOperate->GetViewer())
+                slotCurrentViewChanged(pOperate->GetViewer());
+        }
+    });
+    Q_ASSERT(check);
+
     if(set)
     {
         int nRet = pOperate->OpenDialogSettings(this);
@@ -1262,14 +1271,13 @@ void MainWindow::SetSecureLevel(COperate* o)
 {
     if(!m_pSecureLevel) return;
     if(o) {
-        if(COperate::SecurityLevel::No == o->GetSecurityLevel())
-        {
+        QString szLevel = CSecurityLevel::GetUnicodeIcon(o->GetSecurityLevel());
+        if(szLevel.isEmpty()) {
             m_pSecureLevel->hide();
             return;
         }
-        SetIndicator(m_pSecureLevel, o->GetSecurityLevelColor(), statusBar()->height() / 2);
-        m_pSecureLevel->setToolTip(o->GetSecurityLevelString());
-        m_pSecureLevel->setStatusTip(o->GetSecurityLevelString());
+        m_pSecureLevel->setText(szLevel);
+        m_pSecureLevel->setToolTip(CSecurityLevel::GetString(o->GetSecurityLevel()));
         m_pSecureLevel->show();
     } else
         m_pSecureLevel->hide();

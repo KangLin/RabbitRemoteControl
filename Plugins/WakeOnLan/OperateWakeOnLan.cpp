@@ -165,7 +165,10 @@ const QString COperateWakeOnLan::Id()
 const QString COperateWakeOnLan::Name()
 {
     QString szName;
-    if(m_pParameterPlugin && m_pParameterPlugin->GetShowProtocolPrefix())
+    if(m_pParameterPlugin
+        && (m_pParameterPlugin->GetNameStyles()
+            & CParameterPlugin::NameStyle::Protocol)
+        && !Protocol().isEmpty())
         szName = Protocol() + ":";
     szName += GetPlugin()->DisplayName();
     return szName;
@@ -186,6 +189,12 @@ int COperateWakeOnLan::Stop()
 int COperateWakeOnLan::SetGlobalParameters(CParameterPlugin* pPara)
 {
     m_pParameterPlugin = pPara;
+    if(pPara)
+    {
+        bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
+                             this, SLOT(slotUpdateName()));
+        Q_ASSERT(check);
+    }
     return 0;
 }
 

@@ -14,13 +14,15 @@ static Q_LOGGING_CATEGORY(log, "Operate")
 
 COperate::COperate(CPlugin *plugin)
     : QObject{plugin}
+    , m_SecurityLevel(CSecurityLevel::Level::No)
     , m_pPlugin(plugin)
     , m_pActionSettings(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
+    bool check = false;
     if(QApplication::clipboard())
     {
-        bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                              this, SIGNAL(sigClipBoardChanged()));
         Q_ASSERT(check);
     }
@@ -64,8 +66,13 @@ const QString COperate::Description()
         szDescription += "\n";
     }
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     szDescription += tr("Description: ") + GetPlugin()->Description();
     return szDescription;
@@ -119,59 +126,18 @@ CStats *COperate::GetStats()
     return nullptr;
 }
 
-COperate::SecurityLevel COperate::GetSecurityLevel()
+CSecurityLevel::Level COperate::GetSecurityLevel() const
 {
-    return SecurityLevel::No;
+    return m_SecurityLevel;
 }
 
-QString COperate::GetSecurityLevelString()
+void COperate::slotSetSecurityLevel(CSecurityLevel::Level level)
 {
-    return GetSecurityLevelString(GetSecurityLevel());
-}
-
-QString COperate::GetSecurityLevelString(SecurityLevel level)
-{
-    switch (level) {
-    case SecurityLevel::No:
-        return tr("No");
-    case SecurityLevel::Secure:
-        return tr("Secure");
-    case SecurityLevel::NonSecureAuthentication:
-        return tr("Non-secure authentication over a secure channel");
-    case SecurityLevel::Normal:
-        return tr("Channel is secure.");
-    case SecurityLevel::SecureAuthentication:
-        return tr("There is security verification, not a secure channel.");
-    case SecurityLevel::Risky:
-        return tr("Risky");
-    default:
-        break;
-    }
-    return QString();
-}
-
-QColor COperate::GetSecurityLevelColor()
-{
-    return GetSecurityLevelColor(GetSecurityLevel());
-}
-
-QColor COperate::GetSecurityLevelColor(SecurityLevel level)
-{
-    switch (level) {
-    case SecurityLevel::Secure:
-        return Qt::GlobalColor::green;
-    case SecurityLevel::NonSecureAuthentication:
-        return Qt::GlobalColor::blue;
-    case SecurityLevel::Normal:
-        return Qt::GlobalColor::yellow;
-    case SecurityLevel::SecureAuthentication:
-        return Qt::GlobalColor::darkRed;
-    case SecurityLevel::Risky:
-        return Qt::GlobalColor::red;
-    default:
-        break;
-    }
-    return QColor();
+    if(m_SecurityLevel == level)
+        return;
+    m_SecurityLevel = level;
+    emit sigSecurityLevel(m_SecurityLevel);
+    slotUpdateName();
 }
 
 QString COperate::GetSettingsFile()

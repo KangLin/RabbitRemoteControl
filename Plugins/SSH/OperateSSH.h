@@ -4,6 +4,7 @@
 
 #include "OperateTerminal.h"
 #include "ParameterTerminalSSH.h"
+#include "Channel.h"
 
 class COperateSSH : public COperateTerminal
 {
@@ -18,7 +19,6 @@ public:
     [[nodiscard]] virtual const QString Id() override;
     [[nodiscard]] virtual const QString Name() override;
     [[nodiscard]] virtual const QString Description() override;
-    [[nodiscard]] virtual SecurityLevel GetSecurityLevel() override;
 
 Q_SIGNALS:
     void sigReceiveData(const QByteArray& data);

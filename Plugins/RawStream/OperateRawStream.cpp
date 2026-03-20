@@ -127,7 +127,8 @@ const QString COperateRawStream::Name()
             auto &net = m_Parameter.m_Net;
             if(!net.GetHost().isEmpty()) {
                 if(m_Parameter.GetGlobalParameters()
-                    && m_Parameter.GetGlobalParameters()->GetShowProtocolPrefix()
+                    && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                        & CParameterPlugin::NameStyle::Protocol)
                     && !Protocol().isEmpty())
                     szName = Protocol() + ":";
                 szName += net.GetHost()
@@ -168,8 +169,13 @@ const QString COperateRawStream::Description()
                              + ":" + QString::number(net.GetPort()) + "\n";
     }
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();

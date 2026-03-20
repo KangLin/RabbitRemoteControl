@@ -2,9 +2,11 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-#include "OperateFtpServer.h"
+
 #include "BackendFtpServer.h"
 #include "DlgSettings.h"
+#include "Plugin.h"
+#include "OperateFtpServer.h"
 
 static Q_LOGGING_CATEGORY(log, "FtpServer.Operate")
 COperateFtpServer::COperateFtpServer(CPlugin *plugin)
@@ -67,17 +69,12 @@ CBackend* COperateFtpServer::InstanceBackend()
 
 int COperateFtpServer::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    if(GetParameter())
-    {
+    if(GetParameter()) {
         GetParameter()->SetGlobalParameters(pPara);
         GetParameter()->m_Net.m_User.SetSavePassword(true);
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+        if(pPara) {
+            bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
                                  this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
         }
         return 0;
@@ -165,7 +162,7 @@ int COperateFtpServer::Clean()
     return 0;
 }
 
-QSharedPointer<CParameterFtpServer> COperateFtpServer::GetParameter()
+QSharedPointer<CParameterFtpServer> COperateFtpServer::GetParameter() const
 {
     return m_Para;
 }
@@ -180,6 +177,7 @@ void COperateFtpServer::slotStart(bool checked)
         m_pStart->setIcon(QIcon::fromTheme("media-playback-start"));
         if(m_pThread)
         {
+            slotSetSecurityLevel(CSecurityLevel::Level::No);
             m_pThread->quit();
             //Don't delete m_pThread, See CBackendThread
             m_pThread = nullptr;
@@ -202,4 +200,59 @@ void COperateFtpServer::slotStart(bool checked)
                     });
     Q_ASSERT(check);
     m_pThread->start();
+}
+
+const QString COperateFtpServer::Name()
+{
+    QString szName;
+    // Show the name of parameter
+    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
+        szName += GetParameter()->GetName();
+    else {
+        // Show the name
+        szName += COperate::Name();
+    }
+
+    // Show the prefix of security level
+    QString szSecurityLevel;
+    CSecurityLevel sl(GetSecurityLevel());
+    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+         & CParameterPlugin::NameStyle::SecurityLevel)
+        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !sl.GetUnicodeIcon().isEmpty())
+        szSecurityLevel = sl.GetUnicodeIcon().left(2);
+
+    return szSecurityLevel + szName;
+}
+
+const QString COperateFtpServer::Description()
+{
+    QString szDescription;
+    if(!Name().isEmpty())
+        szDescription = tr("Name: ") + Name() + "\n";
+
+    if(!GetTypeName().isEmpty())
+        szDescription += tr("Type: ") + GetTypeName() + "\n";
+
+    if(!Protocol().isEmpty()) {
+        szDescription += tr("Protocol: ") + Protocol();
+#ifdef DEBUG
+        if(!GetPlugin()->DisplayName().isEmpty())
+            szDescription += " - " + GetPlugin()->DisplayName();
+#endif
+        szDescription += "\n";
+    }
+
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
+
+    if(!GetPlugin()->Description().isEmpty())
+        szDescription += tr("Description: ") + GetPlugin()->Description();
+
+    return szDescription;
 }

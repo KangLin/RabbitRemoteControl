@@ -17,20 +17,27 @@
    <item row="7" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Name</string>
+      <string>Operate Name</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
+       <widget class="QCheckBox" name="cbShowProtocol">
         <property name="text">
-         <string>Show protocol prefix in name</string>
+         <string>Show protocol</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="cbShowServerName">
+        <property name="text">
+         <string>Show server name</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
+       <widget class="QCheckBox" name="cbShowSecurityLevel">
         <property name="text">
-         <string>Only show ip:port in name</string>
+         <string>Show Security Level</string>
         </property>
        </widget>
       </item>
@@ -256,8 +263,8 @@
   <tabstop>rbPromptFirst</tabstop>
   <tabstop>cbSavePassword</tabstop>
   <tabstop>cbEnableViewPassword</tabstop>
-  <tabstop>cbShowPrefix</tabstop>
-  <tabstop>cbShowIPPort</tabstop>
+  <tabstop>cbShowProtocol</tabstop>
+  <tabstop>cbShowServerName</tabstop>
  </tabstops>
  <resources/>
  <connections/>

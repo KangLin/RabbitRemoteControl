@@ -96,19 +96,9 @@ public:
     virtual ~COperateDesktop();
 
     /*!
-     * \~chinese
-     * 新建后端实例。它的所有者是调用者，
-     * 如果调用者不再使用它，调用者必须负责释放它。
-     *
-     * \~english New CBackend. the ownership is caller.
-     *        if don't use, the caller must delete it.
-     * \~see CBackendThread
-     */
-    Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
-    /*!
      * \brief Get parameter
      */
-    [[nodiscard]] virtual CParameterBase* GetParameter();
+    [[nodiscard]] virtual CParameterBase* GetParameter() const;
     /*!
      * \~chinese 设置参数指针
      * \note 先建立参数，然后构造函数或 Initial() 中调用此函数设置参数指针
@@ -130,6 +120,16 @@ public Q_SLOTS:
     virtual void slotScreenShot();
 
 protected:
+    /*!
+     * \~chinese
+     * 新建后端实例。它的所有者是调用者，
+     * 如果调用者不再使用它，调用者必须负责释放它。
+     *
+     * \~english New CBackend. the ownership is caller.
+     *        if don't use, the caller must delete it.
+     * \~see CBackendThread
+     */
+    Q_INVOKABLE virtual CBackend* InstanceBackend() = 0;
     /*!
      * \brief Set Global Parameters
      * \param pPara
@@ -168,7 +168,7 @@ private:
 protected:
     /*!
      * \~chinese
-     * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
+     * \brief 当前连接服务名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
      * \return 返回服务名
      *
      * \~english
@@ -176,6 +176,8 @@ protected:
      *        (remote desktop name, if not present, then IP:PORT).
      *        eg: Server name or Ip:Port
      * \return Current connect server name.
+     * \~
+     * \see slotSetServerName
      */
     [[nodiscard]] virtual QString ServerName();
 private:

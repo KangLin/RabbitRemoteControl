@@ -107,8 +107,13 @@ const QString COperateTerminal::Description()
         szDescription += "\n";
     }
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
@@ -231,7 +236,7 @@ int COperateTerminal::Stop()
     return nRet;
 }
 
-CParameterTerminalBase* COperateTerminal::GetParameter()
+CParameterTerminalBase* COperateTerminal::GetParameter() const
 {
     return m_pParameters;
 }
@@ -350,16 +355,11 @@ const QString COperateTerminal::Details()
 int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
 {
     Q_ASSERT(pPara);
-    if(GetParameter())
-    {
+    if(GetParameter()) {
         GetParameter()->SetGlobalParameters(pPara);
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+        if(pPara) {
+            bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
                                  this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
         }
         return 0;

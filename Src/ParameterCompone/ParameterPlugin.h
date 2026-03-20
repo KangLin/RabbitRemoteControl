@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <QObject>
 #include "FrmViewer.h"
 #include "ParameterRecord.h"
 #include "ParameterMediaDevices.h"
@@ -159,30 +160,28 @@ private:
     bool m_bUseSystemCredential;
 
     //////////////// Password end ////////////////
-    
 public:
-    bool GetShowProtocolPrefix() const;
-    void SetShowProtocolPrefix(bool bShowProtocolPrefix);
+    enum class NameStyle {
+        Protocol = 0x01,
+        ServerName = 0x02,
+        SecurityLevel =0x04
+    };
+    Q_ENUM(NameStyle)
+    Q_DECLARE_FLAGS(NameStyles, NameStyle)
+    Q_FLAG(NameStyles);
+    NameStyles GetNameStyles() const;
+    void SetNameStyles(const NameStyles &newNameStyles);
 Q_SIGNALS:
-    void sigShowProtocolPrefixChanged();    
+    void sigNameStylesChanged();
 private:
-    bool m_bShowProtocolPrefix;
-    Q_PROPERTY(bool ShowProtocolPrefix READ GetShowProtocolPrefix WRITE SetShowProtocolPrefix NOTIFY sigShowProtocolPrefixChanged)
-
-public:
-    bool GetShowIpPortInName() const;
-    void SetShowIpPortInName(bool bShowIpPortInName);
-Q_SIGNALS:
-    void sigSHowIpPortInNameChanged();
-private:
-    bool m_bShowIpPortInName;
-    Q_PROPERTY(bool ShowIpPortInName READ GetShowIpPortInName WRITE SetShowIpPortInName NOTIFY sigSHowIpPortInNameChanged)
+    NameStyles m_NameStyles;
 
 public:
     CFrmViewer::ADAPT_WINDOWS GetAdaptWindows();
     void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw);
 Q_SIGNALS:
     void sigAdaptWindowsChanged();
+
 private:
     CFrmViewer::ADAPT_WINDOWS m_AdaptWindows;
     Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
@@ -211,3 +210,6 @@ public:
     CParameterTerminal m_Terminal;
 #endif
 };
+
+// 在类外部声明操作符（通常放在头文件末尾）
+Q_DECLARE_OPERATORS_FOR_FLAGS(CParameterPlugin::NameStyles)

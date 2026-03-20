@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QMutex>
 #include "plugin_export.h"
+#include "Stats.h"
 
 #define DEFAULT_TIMEOUT 500000
 
@@ -62,6 +63,11 @@ Q_SIGNALS:
     void sigDisconnected();
     //! emit when the channel is error
     void sigError(int nErr, const QString& szErr);
+    /*!
+     * \~chinese 当安全级别改变时触发
+     * \~english Triggered when the security level changes
+     */
+    void sigSecurityLevel(CSecurityLevel::Level level);
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);

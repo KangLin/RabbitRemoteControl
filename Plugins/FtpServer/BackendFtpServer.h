@@ -7,12 +7,13 @@
 #include "ftpserver.h"
 #include "ParameterFtpServer.h"
 
+class COperateFtpServer;
 class CBackendFtpServer : public CBackend, CFtpServerFilter
 {
     Q_OBJECT
 
 public:
-    explicit CBackendFtpServer(COperate *pOperate = nullptr);
+    explicit CBackendFtpServer(COperateFtpServer *pOperate = nullptr);
     ~CBackendFtpServer() override;
     
     // CFtpServerFilter interface
@@ -32,6 +33,7 @@ private Q_SLOTS:
     void slotDisconnected();
 
 private:
+    COperateFtpServer* m_pOperate;
     CFtpServer* m_pServer;
     QSharedPointer<CParameterFtpServer> m_Para;
     QList<QSslSocket*> m_Sockets;

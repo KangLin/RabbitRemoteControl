@@ -53,11 +53,6 @@ CBackend *COperateSSH::InstanceBackend()
     return new CBackendSSH(this);
 }
 
-COperateSSH::SecurityLevel COperateSSH::GetSecurityLevel()
-{
-    return SecurityLevel::Secure;
-}
-
 void COperateSSH::slotReceiveData(const QByteArray &data)
 {
     //qDebug(log) << Q_FUNC_INFO << data.length();
@@ -89,7 +84,8 @@ const QString COperateSSH::Name()
         auto &sshNet = m_Parameters.m_SSH.m_Net;
         if(!sshNet.GetHost().isEmpty()) {
             if(m_Parameters.GetGlobalParameters()
-                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix()
+                && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                     & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
                 szName = Protocol() + ":";
             szName += sshNet.GetHost()
@@ -99,7 +95,16 @@ const QString COperateSSH::Name()
 
     if(szName.isEmpty())
          szName = COperateTerminal::Name();
-    return szName;
+
+    QString szSecurityLevel;
+    CSecurityLevel sl(GetSecurityLevel());
+    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+         & CParameterPlugin::NameStyle::SecurityLevel)
+        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !sl.GetUnicodeIcon().isEmpty())
+        szSecurityLevel = sl.GetUnicodeIcon().left(2);
+
+    return szSecurityLevel + szName;
 }
 
 const QString COperateSSH::Description()
@@ -125,8 +130,13 @@ const QString COperateSSH::Description()
         szDescription += tr("Server address: ") + sshNet.GetHost()
                          + ":" + QString::number(sshNet.GetPort()) + "\n";
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();

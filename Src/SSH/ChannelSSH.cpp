@@ -203,7 +203,9 @@ bool CChannelSSH::open(OpenMode mode)
                               user.GetPassphrase(),
                               nMeth);
         if(nRet) break;
-        
+
+        emit sigSecurityLevel(CSecurityLevel::Level::Secure);
+
         nRet = OnOpen(m_Session);
         if(nRet) break;
         

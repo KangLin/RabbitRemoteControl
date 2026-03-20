@@ -14,6 +14,7 @@ COperateTelnet::COperateTelnet(CPlugin *parent)
     : COperateTerminal(parent)
     , m_Telnet(QTelnet::TCP)
     , m_bLogin(false)
+    , m_SecurityLevel(CSecurityLevel::Level::Risky)
 {
     qDebug(log) << Q_FUNC_INFO;
     auto &net = m_Parameters.m_Net;
@@ -29,9 +30,9 @@ COperateTelnet::~COperateTelnet()
     qDebug(log) << Q_FUNC_INFO;
 }
 
-COperateTelnet::SecurityLevel COperateTelnet::GetSecurityLevel()
+CSecurityLevel::Level COperateTelnet::GetSecurityLevel() const
 {
-    return COperateTelnet::SecurityLevel::Risky;
+    return m_SecurityLevel;
 }
 
 QDialog *COperateTelnet::OnOpenDialogSettings(QWidget *parent)
@@ -156,7 +157,8 @@ const QString COperateTelnet::Name()
         auto &net = m_Parameters.m_Net;
         if(!net.GetHost().isEmpty()) {
             if(m_Parameters.GetGlobalParameters()
-                && m_Parameters.GetGlobalParameters()->GetShowProtocolPrefix()
+                && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                     & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
                 szName = Protocol() + ":";
             szName += net.GetHost()
@@ -165,7 +167,16 @@ const QString COperateTelnet::Name()
     }
     if(szName.isEmpty())
         szName = COperateTerminal::Name();
-    return szName;
+
+    QString szSecurityLevel;
+    CSecurityLevel sl(GetSecurityLevel());
+    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+         & CParameterPlugin::NameStyle::SecurityLevel)
+        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !sl.GetUnicodeIcon().isEmpty())
+        szSecurityLevel = sl.GetUnicodeIcon().left(2);
+
+    return szSecurityLevel + szName;
 }
 
 const QString COperateTelnet::Description()
@@ -191,8 +202,13 @@ const QString COperateTelnet::Description()
         szDescription += tr("Server address: ") + net.GetHost()
                          + ":" + QString::number(net.GetPort()) + "\n";
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
@@ -230,6 +246,8 @@ void COperateTelnet::slotNewData(const char *buf, int len)
                 m_Telnet.sendData(password.toStdString().c_str(), password.length());
                 m_Telnet.sendData("\n", 1);
                 m_bLogin = true;
+                m_SecurityLevel = CSecurityLevel::Level::Authentication;
+                slotSetSecurityLevel(m_SecurityLevel);
             }
             qDebug(log) << "Password:" << password;
 

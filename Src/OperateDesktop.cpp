@@ -82,23 +82,38 @@ const QString COperateDesktop::Id()
     return szId;
 }
 
+//! [The name of the desktop operate]
 const QString COperateDesktop::Name()
 {
     QString szName;
-
+    // Show the name of parameter
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         szName += GetParameter()->GetName();
     else {
+        // Show the prefix of protocol
         if(GetParameter() && GetParameter()->GetGlobalParameters()
-            && GetParameter()->GetGlobalParameters()->GetShowProtocolPrefix()
+            && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                & CParameterPlugin::NameStyle::Protocol)
             && !Protocol().isEmpty())
             szName = Protocol() + ":";
+        // Show the server name
         szName += ServerName();
     }
 
-    return szName;
-}
+    // Show the prefix of security level
+    QString szSecurityLevel;
+    CSecurityLevel sl(GetSecurityLevel());
+    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+         & CParameterPlugin::NameStyle::SecurityLevel)
+        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !sl.GetUnicodeIcon().isEmpty())
+        szSecurityLevel = sl.GetUnicodeIcon().left(2);
 
+    return szSecurityLevel + szName;
+}
+//! [The name of the desktop operate]
+
+//! [The description of the desktop operate]
 const QString COperateDesktop::Description()
 {
     QString szDescription;
@@ -150,15 +165,21 @@ const QString COperateDesktop::Description()
         if(!szProxy.isEmpty())
             szDescription += szProxy + "\n";
     }
-    
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+
+    CSecurityLevel sl(GetSecurityLevel());
+    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
     
     return szDescription;
 }
+//! [The description of the desktop operate]
 
 const qint16 COperateDesktop::Version() const
 {
@@ -388,17 +409,12 @@ int COperateDesktop::Stop()
 //! [Desktop set global paramets]
 int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
 {
-    if(GetParameter())
-    {
+    if(GetParameter()) {
         GetParameter()->SetGlobalParameters(pPara);
 
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+        if(pPara) {
+            bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
                                  this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
             Q_ASSERT(check);
         }
 
@@ -427,7 +443,7 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
 }
 //! [Desktop set global paramets]
 
-CParameterBase* COperateDesktop::GetParameter()
+CParameterBase* COperateDesktop::GetParameter() const
 {
     return m_pPara;
 }
@@ -612,9 +628,10 @@ void COperateDesktop::slotShortcutLock()
     emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_L, Qt::NoModifier));
 }
 
-
+//! [Get server name]
 QString COperateDesktop::ServerName()
 {
+    // Show IP:Port without server name
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
             || m_szServerName.isEmpty())
@@ -624,21 +641,25 @@ QString COperateDesktop::ServerName()
                        + QString::number(GetParameter()->m_Net.GetPort());
         }
     if(GetParameter() && GetParameter()->GetGlobalParameters()
-        && GetParameter()->GetGlobalParameters()->GetShowIpPortInName())
+        && !(GetParameter()->GetGlobalParameters()->GetNameStyles()
+            & CParameterPlugin::NameStyle::ServerName))
     {
         return GetParameter()->m_Net.GetHost()
             + ":" + QString::number(GetParameter()->m_Net.GetPort());
     }
+    // Show the server name of parameter
     if(m_szServerName.isEmpty() && GetParameter())
         return GetParameter()->GetServerName();
+    // Show the server name
     return m_szServerName;
 }
+//! [Get server name]
 
 void COperateDesktop::slotSetServerName(const QString& szName)
 {
     do{
         if(m_szServerName == szName)
-            break;;
+            break;
 
         m_szServerName = szName;
         if(GetParameter())

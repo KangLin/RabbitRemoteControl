@@ -75,6 +75,9 @@ int CBackend::SetConnect(COperate *pOperate)
         pOperate, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
         Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigSecurityLevel(CSecurityLevel::Level)),
+                    pOperate, SLOT(slotSetSecurityLevel(CSecurityLevel::Level)));
+    Q_ASSERT(check);
     return 0;
 }
 

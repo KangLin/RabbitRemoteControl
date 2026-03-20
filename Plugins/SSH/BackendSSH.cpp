@@ -51,6 +51,10 @@ CBackendSSH::OnInitReturnValue CBackendSSH::OnInit()
         return OnInitReturnValue::Fail;
     }
 
+    check = connect(m_pChannelSSH, &CChannelSSHTerminal::sigSecurityLevel,
+                    this, &CBackendSSH::sigSecurityLevel);
+    Q_ASSERT(check);
+
     check = connect(m_pChannelSSH, &CChannelSSHTerminal::sigConnected,
                     this, [&](){
                         if(!m_pPara->GetCommands().isEmpty()) {
