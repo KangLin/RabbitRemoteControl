@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
         //w->setWindowIcon(QIcon::themeName("app"));
         //w->setWindowTitle(app.applicationDisplayName());
         app.processEvents();
-        w->show();
+        RC_SHOW_WINDOW(w);
         app.processEvents();
         // For time-consuming operations
         nRet = w->Initial();

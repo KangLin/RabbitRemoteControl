@@ -95,10 +95,21 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/images/app"));
 #endif
 
-    m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
-                                  QSizePolicy::Policy::Fixed);
+    /*
+    QSize screenSize;
+    if(QApplication::primaryScreen()) {
+        screenSize = QApplication::primaryScreen()->availableSize();
+        //TODO: 当支持多屏幕时，修改此处
+        //screenSize = QApplication::primaryScreen()->availableVirtualSize();
+    }
+    if(!screenSize.isEmpty())
+        setMaximumSize(screenSize);
+    //*/
+
+    //m_StatusBarMessage.setSizePolicy(QSizePolicy::Policy::Expanding,
+    //                              QSizePolicy::Policy::Fixed);
     //m_StatusBarMessage.setWordWrap(true);
-    this->statusBar()->addWidget(&m_StatusBarMessage);
+    this->statusBar()->addPermanentWidget(&m_StatusBarMessage);
 
     m_SendRate.setToolTip(tr("Send rate"));
     m_SendRate.setStatusTip(tr("Send rate"));
@@ -1352,25 +1363,28 @@ void MainWindow::slotInformation(const QString& szInfo)
 
 void MainWindow::slotStatusMessage(QString szMessage, MessageLevel level)
 {
+    QString szLevel;
     QPalette pe;
     switch ((MessageLevel)level) {
     case MessageLevel::Error:
         pe.setColor(QPalette::WindowText, Qt::red);
+        szLevel = "X";
         break;
     case MessageLevel::Warning:
         pe.setColor(QPalette::WindowText, Qt::yellow);
+        szLevel = "!";
         break;
     default:
         break;
     }
-
     m_StatusBarMessage.setPalette(pe);
     m_StatusBarMessage.setToolTip(szMessage);
 
     //QFontMetrics metrics(m_StatusBarMessage.font());
     //szMessage = metrics.elidedText(szMessage, Qt::ElideRight, m_StatusBarMessage.width());
 
-    m_StatusBarMessage.setText(szMessage);
+    m_StatusBarMessage.setText(szLevel);//*/
+    statusBar()->showMessage(szMessage);
 }
 
 void MainWindow::slotUpdateName()
