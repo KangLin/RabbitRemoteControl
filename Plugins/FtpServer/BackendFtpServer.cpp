@@ -42,7 +42,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     auto &net = m_Para->m_Net;
     if(!m_Para->GetAnonymousLogin()) {
         auto &user = net.m_User;
-        szUser = user.GetName();
+        szUser = user.GetUser();
         szPassword = user.GetPassword();
         if(!szPassword.isEmpty())
             securityLevel = CSecurityLevel::Level::Authentication;
