@@ -729,6 +729,8 @@ if [ $FREERDP -eq 1 ]; then
           -DWITH_KRB5=OFF \
           -DWITH_MANPAGES=OFF \
           -DWITH_WAYLAND=OFF
+          # See: https://github.com/FreeRDP/FreeRDP/discussions/11139
+          #-DWITH_INTERNAL_MD4=ON
         cmake --build . --config Release --parallel $(nproc)
         cmake --build . --config Release --target install
         popd

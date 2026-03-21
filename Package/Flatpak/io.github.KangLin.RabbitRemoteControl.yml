@@ -184,6 +184,9 @@ modules:
       - -DWITH_CLIENT=OFF
       - -DCHANNEL_URBDRC:BOOL=ON
       - -DWITH_KRB5=ON
+      # See: https://github.com/FreeRDP/FreeRDP/discussions/11139
+      #- -DWITH_INTERNAL_MD4=ON
+
     cleanup:
       - /bin
       - /share

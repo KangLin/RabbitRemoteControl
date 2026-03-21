@@ -160,6 +160,8 @@ parts:
       - -DWITH_CLIENT_SDL=OFF
       - -DWITH_PROXY_MODULES=OFF
       - -DCMAKE_VERBOSE_MAKEFILE=OFF
+      # See: https://github.com/FreeRDP/FreeRDP/discussions/11139
+      #- -DWITH_INTERNAL_MD4=ON
     stage:
       - -usr/share
       - -usr/bin
