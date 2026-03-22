@@ -2,11 +2,19 @@
 
 #include <QFileDialog>
 #include <QLoggingCategory>
+
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+    #include "FrmExtensionManager.h"
+    #include "FrmExtensionStore.h"
+#endif
+#include "FrmWebBrowser.h"
 #include "DlgSettings.h"
 #include "ui_DlgSettings.h"
 
 static Q_LOGGING_CATEGORY(log, "WebBrowser.Parameter")
-CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
+CDlgSettings::CDlgSettings(QWebEngineProfile *pProfile,
+                           CParameterWebBrowser *para,
+                           QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgSettings)
     , m_pPara(para)
@@ -48,6 +56,13 @@ CDlgSettings::CDlgSettings(CParameterWebBrowser *para, QWidget *parent)
     m_pMediaDevices = new CFrmMediaDevices(true, this);
     m_pMediaDevices->SetParameter(&m_pPara->m_MediaDevices.m_Para);
     ui->tabWidget->addTab(m_pMediaDevices, m_pMediaDevices->windowIcon(), m_pMediaDevices->windowTitle());
+
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+    CFrmExtensionManager* pExtension = new CFrmExtensionManager(pProfile);
+    ui->tabWidget->addTab(pExtension, pExtension->windowIcon(), pExtension->windowTitle());
+    CFrmExtensionStore* pStore = new CFrmExtensionStore();
+    ui->tabWidget->addTab(pStore, pStore->windowIcon(), pStore->windowTitle());
+#endif
 }
 
 CDlgSettings::~CDlgSettings()

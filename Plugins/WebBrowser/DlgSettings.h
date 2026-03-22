@@ -2,10 +2,13 @@
 #pragma once
 #include <QDialog>
 #include <QStandardItemModel>
+#include <QWebEngineProfile>
+
 #include "ParameterWebBrowser.h"
 #include "ParameterRecordUI.h"
 #include "FrmMediaDevices.h"
 
+class CFrmWebBrowser;
 namespace Ui {
 class CDlgSettings;
 }
@@ -15,7 +18,9 @@ class CDlgSettings : public QDialog
     Q_OBJECT
 
 public:
-    explicit CDlgSettings(CParameterWebBrowser* para, QWidget *parent = nullptr);
+    explicit CDlgSettings(QWebEngineProfile* pProfile,
+                          CParameterWebBrowser* para,
+                          QWidget *parent = nullptr);
     ~CDlgSettings();
 
 public slots:

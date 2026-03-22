@@ -23,6 +23,9 @@
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
     #include <QWebEngineProfileBuilder>
 #endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    #include <QWebEngineExtensionManager>
+#endif
 #include <QLoggingCategory>
 
 #include "RabbitCommonDir.h"
@@ -173,7 +176,7 @@ CFrmWebBrowser::CFrmWebBrowser(CParameterWebBrowser *pPara, bool bMenuBar, QWidg
     check = connect(pAddressCompleter, &CAddressCompleter::sigCommand,
                     this, [&](const QString& cmd) {
         if(cmd.startsWith("@setting")) {
-            CDlgSettings dlg(m_pPara);
+            CDlgSettings dlg(GetProfile(), m_pPara);
             RC_SHOW_WINDOW(&dlg);
         } else if(cmd.startsWith("@history")) {
             slotHistory();
@@ -497,18 +500,22 @@ QWebEngineProfile* CFrmWebBrowser::GetProfile(bool offTheRecord)
     //m_profile->setPersistentStoragePath(m_profile->cachePath() + QDir::separator() + "Persistent");
     //m_profile->setHttpCacheMaximumSize(50);
     qDebug(log) << "User agent:" << m_profile->httpUserAgent()
+                << "Persistent path:" << m_profile->persistentStoragePath()
+                << "Cache path:" << m_profile->cachePath()
+                << "Storage name:" << m_profile->storageName()
+                << "Cookie:" << m_profile->cookieStore()
+                << "Is off the Record:" << m_profile->isOffTheRecord()
+                << "Download:" << m_profile->downloadPath()
+#if QT_VERSION > QT_VERSION_CHECK(6, 10, 0)
+                << "Extension path:" << m_profile->extensionManager()->installPath()
+#endif
 #if QT_VERSION > QT_VERSION_CHECK(6, 8, 0)
                 //<< "AllPermissions:" << m_profile->listAllPermissions()
                 << "persistentPermissionsPolicy:" << m_profile->persistentPermissionsPolicy()
 #endif
                 << "persistentCookiesPolicy:" << m_profile->persistentCookiesPolicy()
                 << "httpCacheMaximumSize:" << m_profile->httpCacheMaximumSize()
-                << "Persistent path:" << m_profile->persistentStoragePath()
-                << "Cache path:" << m_profile->cachePath()
-                << "Storage name:" << m_profile->storageName()
-                << "Cookie:" << m_profile->cookieStore()
-                << "Is off the Record:" << m_profile->isOffTheRecord()
-                << "Download:" << m_profile->downloadPath();
+        ;
     return m_profile.get();
 }
 
