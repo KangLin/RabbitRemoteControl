@@ -325,6 +325,11 @@
         <source>The plugin is used TigerVNC</source>
         <translation>此插件使用 TigerVNC</translation>
     </message>
+    <message>
+        <location filename="../../PluginTigerVnc.cpp" line="65"/>
+        <source>Dependency libraries</source>
+        <translation>依賴庫</translation>
+    </message>
 </context>
 <context>
     <name>S:</name>

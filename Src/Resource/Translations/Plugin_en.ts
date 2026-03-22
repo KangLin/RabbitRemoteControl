@@ -54,129 +54,129 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="256"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="258"/>
         <source>SSH failed: Get server public key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="271"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="273"/>
         <source>SSH failed: Get public key hash value fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="289"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
         <source>the host key for server changed. it is now:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="291"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="293"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="304"/>
         <source>For security reasons, connection will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="292"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="303"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="294"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="305"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="299"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="301"/>
         <source>the host key for this server was not found but an other type of key exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="300"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="302"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="310"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="312"/>
         <source>is not find in known host file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="311"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="313"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="337"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="315"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="339"/>
         <source>Host key hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="316"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="340"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="318"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="342"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="332"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="355"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="334"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="357"/>
         <source>Reject the host key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="336"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="338"/>
         <source>is unknown. Do you trust the host key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="359"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="360"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="362"/>
         <source>the host key hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="361"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="363"/>
         <source>Will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="412"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="414"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="436"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="438"/>
         <source>Failed authenticating with password. User: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="463"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="465"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="472"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
         <source>SSH failed: Import public key fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="474"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="476"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="510"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="486"/>
-        <location filename="../../SSH/ChannelSSH.cpp" line="519"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="488"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="521"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="495"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="497"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSH.cpp" line="506"/>
+        <location filename="../../SSH/ChannelSSH.cpp" line="508"/>
         <source>SSH failed: Import private key fail.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -458,67 +458,37 @@ Some features are limited.
 <context>
     <name>COperate</name>
     <message>
-        <location filename="../../Operate.cpp" line="53"/>
+        <location filename="../../Operate.cpp" line="55"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="56"/>
+        <location filename="../../Operate.cpp" line="58"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="59"/>
+        <location filename="../../Operate.cpp" line="61"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="68"/>
+        <location filename="../../Operate.cpp" line="71"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="70"/>
+        <location filename="../../Operate.cpp" line="77"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="101"/>
+        <location filename="../../Operate.cpp" line="108"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Operate.cpp" line="136"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="138"/>
-        <source>Secure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="140"/>
-        <source>Non-secure authentication over a secure channel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="142"/>
-        <source>Channel is secure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="144"/>
-        <source>There is security verification, not a secure channel.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="146"/>
-        <source>Risky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Operate.cpp" line="232"/>
+        <location filename="../../Operate.cpp" line="198"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -526,135 +496,135 @@ Some features are limited.
 <context>
     <name>COperateDesktop</name>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="106"/>
+        <location filename="../../OperateDesktop.cpp" line="121"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="109"/>
+        <location filename="../../OperateDesktop.cpp" line="124"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="112"/>
+        <location filename="../../OperateDesktop.cpp" line="127"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="121"/>
+        <location filename="../../OperateDesktop.cpp" line="136"/>
         <source>Server name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="125"/>
+        <location filename="../../OperateDesktop.cpp" line="140"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="128"/>
+        <location filename="../../OperateDesktop.cpp" line="143"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="134"/>
+        <location filename="../../OperateDesktop.cpp" line="149"/>
         <source>SSH tunnel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="141"/>
+        <location filename="../../OperateDesktop.cpp" line="156"/>
         <source>Sockes v5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="155"/>
+        <location filename="../../OperateDesktop.cpp" line="171"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="158"/>
+        <location filename="../../OperateDesktop.cpp" line="178"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="210"/>
-        <location filename="../../OperateDesktop.cpp" line="212"/>
+        <location filename="../../OperateDesktop.cpp" line="231"/>
+        <location filename="../../OperateDesktop.cpp" line="233"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="215"/>
-        <location filename="../../OperateDesktop.cpp" line="217"/>
-        <location filename="../../OperateDesktop.cpp" line="218"/>
-        <source>Zoom to window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateDesktop.cpp" line="227"/>
-        <location filename="../../OperateDesktop.cpp" line="229"/>
-        <location filename="../../OperateDesktop.cpp" line="230"/>
-        <source>Keep aspect ratio to window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../../OperateDesktop.cpp" line="236"/>
         <location filename="../../OperateDesktop.cpp" line="238"/>
-        <location filename="../../OperateDesktop.cpp" line="240"/>
-        <location filename="../../OperateDesktop.cpp" line="241"/>
-        <source>Original</source>
+        <location filename="../../OperateDesktop.cpp" line="239"/>
+        <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../OperateDesktop.cpp" line="248"/>
         <location filename="../../OperateDesktop.cpp" line="250"/>
         <location filename="../../OperateDesktop.cpp" line="251"/>
+        <source>Keep aspect ratio to window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="259"/>
+        <location filename="../../OperateDesktop.cpp" line="261"/>
+        <location filename="../../OperateDesktop.cpp" line="262"/>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateDesktop.cpp" line="269"/>
+        <location filename="../../OperateDesktop.cpp" line="271"/>
+        <location filename="../../OperateDesktop.cpp" line="272"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="264"/>
-        <location filename="../../OperateDesktop.cpp" line="266"/>
-        <location filename="../../OperateDesktop.cpp" line="267"/>
+        <location filename="../../OperateDesktop.cpp" line="285"/>
+        <location filename="../../OperateDesktop.cpp" line="287"/>
+        <location filename="../../OperateDesktop.cpp" line="288"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="310"/>
+        <location filename="../../OperateDesktop.cpp" line="331"/>
         <source>Send shortcut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="313"/>
+        <location filename="../../OperateDesktop.cpp" line="334"/>
         <source>Send Ctl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="315"/>
+        <location filename="../../OperateDesktop.cpp" line="336"/>
         <source>Send lock screen (Win+L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="319"/>
-        <location filename="../../OperateDesktop.cpp" line="320"/>
-        <location filename="../../OperateDesktop.cpp" line="321"/>
+        <location filename="../../OperateDesktop.cpp" line="340"/>
+        <location filename="../../OperateDesktop.cpp" line="341"/>
+        <location filename="../../OperateDesktop.cpp" line="342"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="328"/>
-        <location filename="../../OperateDesktop.cpp" line="330"/>
-        <location filename="../../OperateDesktop.cpp" line="331"/>
-        <location filename="../../OperateDesktop.cpp" line="549"/>
+        <location filename="../../OperateDesktop.cpp" line="349"/>
+        <location filename="../../OperateDesktop.cpp" line="351"/>
+        <location filename="../../OperateDesktop.cpp" line="352"/>
+        <location filename="../../OperateDesktop.cpp" line="565"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="337"/>
-        <location filename="../../OperateDesktop.cpp" line="338"/>
-        <location filename="../../OperateDesktop.cpp" line="339"/>
+        <location filename="../../OperateDesktop.cpp" line="358"/>
+        <location filename="../../OperateDesktop.cpp" line="359"/>
+        <location filename="../../OperateDesktop.cpp" line="360"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="546"/>
+        <location filename="../../OperateDesktop.cpp" line="562"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -662,77 +632,77 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="96"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="99"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="102"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="111"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="114"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="158"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="202"/>
         <source>Copy selection to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="161"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="205"/>
         <source>Paste clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="163"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="207"/>
         <source>Paste selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="165"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="209"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="167"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="169"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="213"/>
         <source>Zoom reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="184"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="228"/>
         <source>Find ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="189"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="233"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="343"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
         <source>QTermWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="344"/>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -926,140 +896,145 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <source>Operate Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
+        <source>Show protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
+        <source>Show server name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <source>Show Security Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
         <source>Enable use the system user as the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
         <source>Store password with system credential manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="66"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="73"/>
         <source>Viewer zoom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
-        <source>Show protocol prefix in name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="85"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="92"/>
         <source>Capture all keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
-        <source>Only show ip:port in name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
         <source>Enable local input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="94"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="101"/>
         <source>Desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="108"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="115"/>
         <source>Disable script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="139"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="129"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
         <source>Restore script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="178"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="186"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="217"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="161"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="162"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
         <source>Enable save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="176"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="109"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="113"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="121"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="116"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="124"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="119"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="127"/>
         <source>Keep aspect ratio to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="159"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="172"/>
         <source>Open disable desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="170"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="183"/>
         <source>Open restore desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1753,6 +1728,37 @@ Some features are limited.
     <message>
         <location filename="../../SSH/SSHTunnelThread.cpp" line="56"/>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CSecurityLevel</name>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="153"/>
+        <source>Secure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="156"/>
+        <source>Risk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="158"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="166"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="160"/>
+        <source>Secure channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="162"/>
+        <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

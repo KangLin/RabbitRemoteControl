@@ -57,12 +57,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="66"/>
+        <location filename="../../DlgPlayer.cpp" line="32"/>
         <source>Camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="74"/>
+        <location filename="../../DlgPlayer.cpp" line="40"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>

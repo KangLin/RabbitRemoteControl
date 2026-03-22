@@ -1929,7 +1929,7 @@ Do you want to reload the page ?</source>
     <message>
         <location filename="../../History/HistoryDatabase.cpp" line="763"/>
         <source>The file format is error. Json without &quot;browser_history&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>文件格式錯誤。JSON 中沒有發現&quot;browser_history&quot;</translation>
     </message>
 </context>
 <context>

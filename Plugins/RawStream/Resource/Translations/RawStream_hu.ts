@@ -37,37 +37,37 @@
 <context>
     <name>COperateRawStream</name>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="148"/>
+        <location filename="../../OperateRawStream.cpp" line="149"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="151"/>
+        <location filename="../../OperateRawStream.cpp" line="152"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="154"/>
+        <location filename="../../OperateRawStream.cpp" line="155"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="162"/>
+        <location filename="../../OperateRawStream.cpp" line="163"/>
         <source>Raw stream type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="167"/>
+        <location filename="../../OperateRawStream.cpp" line="168"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="172"/>
+        <location filename="../../OperateRawStream.cpp" line="174"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateRawStream.cpp" line="175"/>
+        <location filename="../../OperateRawStream.cpp" line="181"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

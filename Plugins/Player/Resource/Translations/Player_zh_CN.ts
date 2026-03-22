@@ -57,12 +57,12 @@
         <translation>音频输出：</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="66"/>
+        <location filename="../../DlgPlayer.cpp" line="32"/>
         <source>Camera</source>
         <translation>摄像头</translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="74"/>
+        <location filename="../../DlgPlayer.cpp" line="40"/>
         <source>Url</source>
         <translation></translation>
     </message>

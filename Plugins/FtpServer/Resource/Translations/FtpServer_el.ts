@@ -4,27 +4,27 @@
 <context>
     <name>CBackendFtpServer</name>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="60"/>
+        <location filename="../../BackendFtpServer.cpp" line="64"/>
         <source>Ftp server listen on all address port %1. the lan ip is %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="65"/>
+        <location filename="../../BackendFtpServer.cpp" line="69"/>
         <source>Failed to Ftp server is listening on %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="74"/>
+        <location filename="../../BackendFtpServer.cpp" line="78"/>
         <source>Failed: Ftp server is not set to listen on any address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="83"/>
+        <location filename="../../BackendFtpServer.cpp" line="87"/>
         <source>Failed to Ftp server is listening on %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendFtpServer.cpp" line="94"/>
+        <location filename="../../BackendFtpServer.cpp" line="98"/>
         <source>Ftp server is listening on </source>
         <translation type="unfinished"></translation>
     </message>
@@ -221,14 +221,39 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="146"/>
-        <location filename="../../OperateFtpServer.cpp" line="178"/>
+        <location filename="../../OperateFtpServer.cpp" line="143"/>
+        <location filename="../../OperateFtpServer.cpp" line="175"/>
         <source>Start server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="190"/>
+        <location filename="../../OperateFtpServer.cpp" line="188"/>
         <source>Stop server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="232"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="235"/>
+        <source>Type: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="238"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="248"/>
+        <source>Security level: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../OperateFtpServer.cpp" line="255"/>
+        <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

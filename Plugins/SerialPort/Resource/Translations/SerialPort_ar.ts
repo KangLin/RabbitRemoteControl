@@ -113,12 +113,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="155"/>
+        <location filename="../../OperateSerialPort.cpp" line="156"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateSerialPort.cpp" line="158"/>
+        <location filename="../../OperateSerialPort.cpp" line="163"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

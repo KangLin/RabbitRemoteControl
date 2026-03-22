@@ -62,73 +62,73 @@
 <context>
     <name>COperateTelnet</name>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="66"/>
+        <location filename="../../OperateTelnet.cpp" line="63"/>
         <source>Telnet error:
 %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="112"/>
+        <location filename="../../OperateTelnet.cpp" line="109"/>
         <source>Unconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="115"/>
+        <location filename="../../OperateTelnet.cpp" line="112"/>
         <source>Resolve DNS %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="118"/>
+        <location filename="../../OperateTelnet.cpp" line="115"/>
         <source>Connecting a %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="121"/>
+        <location filename="../../OperateTelnet.cpp" line="118"/>
         <source>Connected a %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="124"/>
+        <location filename="../../OperateTelnet.cpp" line="121"/>
         <source>Bound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="127"/>
+        <location filename="../../OperateTelnet.cpp" line="124"/>
         <source>Listening</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="130"/>
+        <location filename="../../OperateTelnet.cpp" line="127"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="175"/>
+        <location filename="../../OperateTelnet.cpp" line="183"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="178"/>
+        <location filename="../../OperateTelnet.cpp" line="186"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="181"/>
+        <location filename="../../OperateTelnet.cpp" line="189"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="191"/>
+        <location filename="../../OperateTelnet.cpp" line="199"/>
         <source>Server address: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="195"/>
+        <location filename="../../OperateTelnet.cpp" line="204"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateTelnet.cpp" line="198"/>
+        <location filename="../../OperateTelnet.cpp" line="211"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

@@ -5,17 +5,22 @@
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
-        <location filename="../../FrmWakeOnLan.cpp" line="24"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="26"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="76"/>
+        <location filename="../../FrmWakeOnLan.ui" line="20"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmWakeOnLan.cpp" line="78"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="77"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="79"/>
         <source>Please select a item</source>
         <translation type="unfinished"></translation>
     </message>
@@ -23,63 +28,48 @@
 <context>
     <name>COperateWakeOnLan</name>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="106"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="113"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="108"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="116"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="115"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="123"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="116"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="124"/>
         <source>Please select a item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="123"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="132"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="75"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="78"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="61"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="64"/>
         <source>Copy ip address to clipbord</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="81"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="85"/>
         <source>Get mac address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="93"/>
+        <location filename="../../OperateWakeOnLan.cpp" line="98"/>
         <source>Wake on lan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="175"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="176"/>
-        <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../OperateWakeOnLan.cpp" line="180"/>
-        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -164,12 +154,12 @@
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.ui" line="285"/>
-        <source>OK</source>
+        <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterWakeOnLanUI.ui" line="298"/>
-        <source>Cancel</source>
+        <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -209,18 +199,23 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="67"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="72"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="76"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="91"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="92"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginWakeOnLan.cpp" line="96"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="94"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="99"/>
         <source>Pcap lib version info: </source>
         <translation type="unfinished"></translation>
     </message>
