@@ -79,7 +79,7 @@ void CFrmAddBookmark::on_pbAdd_clicked()
             item.folderId = id;
             m_pDatabase->updateBookmark(item);
         } else {
-            BookmarkItem item;
+            BookmarkItem item(BookmarkType::BookmarkType_Bookmark);
             item.title = ui->leTitle->text();
             item.url = m_Url.toString();
             item.folderId = id;

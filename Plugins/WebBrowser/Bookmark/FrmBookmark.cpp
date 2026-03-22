@@ -276,8 +276,8 @@ void CFrmBookmark::onAddBookmark()
                                           tr("Title:"), QLineEdit::Normal,
                                           "", &ok);
     if (!ok) return;
-
-    BookmarkItem item;
+    
+    BookmarkItem item(BookmarkType_Bookmark);
     item.url = url;
     item.title = title.isEmpty() ? url : title;
     item.createdTime = QDateTime::currentDateTime();
@@ -424,11 +424,23 @@ void CFrmBookmark::onImportBookmarks()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Import bookmarks"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("HTML(*.html);; All files (*.*)"));
+        tr("JSON (*.json);; HTML(*.html);; All files (*.*)"));
 
     if (filename.isEmpty()) return;
 
     QFileInfo fi(filename);
+    if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+        if (m_pDatabase->ImportFromJsonFile(filename)) {
+            QMessageBox::information(this, tr("Import bookmarks"),
+                                     tr("Successfully imported bookmarks from file: %1").arg(filename));
+            refresh();
+        } else {
+            QMessageBox::critical(this, tr("Import bookmarks"),
+                                  tr("Failed to import bookmark from file: %1").arg(filename) + "\n\n"
+                                      + tr("Error: ") + m_pDatabase->GetError());
+        }
+        return;
+    }
     if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
         if (m_pDatabase->importFromHtml(filename)) {
             QMessageBox::information(this, tr("Import bookmarks"),
@@ -451,11 +463,22 @@ void CFrmBookmark::onExportBookmarks()
     QString filename = QFileDialog::getSaveFileName(
         this, tr("Export bookmarks"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("HTML (*.html);; All files (*.*)"));
+        tr("JSON (*.json);; HTML (*.html);; All files (*.*)"));
     
     if (filename.isEmpty()) return;
 
     QFileInfo fi(filename);
+    if(0 == fi.suffix().compare("json", Qt::CaseInsensitive)) {
+        if (m_pDatabase->ExportToJsonFile(filename)) {
+            QMessageBox::information(this, tr("Export bookmarks"),
+                                     tr("Bookmarks successfully exported to file: %1").arg(filename));
+        } else {
+            QMessageBox::critical(this, tr("Export bookmarks"),
+                                  tr("Failed to export bookmark to file: %1").arg(filename) + "\n\n"
+                                      + tr("Error: ") + m_pDatabase->GetError());
+        }
+        return;
+    }
     if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
         if (m_pDatabase->exportToHtml(filename)) {
             QMessageBox::information(this, tr("Export bookmarks"),
