@@ -30,10 +30,10 @@ struct BookmarkItem {
     int folderId;
     BookmarkType type;
 
-    BookmarkItem()
+    BookmarkItem(BookmarkType t)
         : id(0)
         , folderId(1) // 指向默认收藏夹
-        , type(BookmarkType_Bookmark)
+        , type(t)
     {}
 
     [[nodiscard]] bool isFolder() const { return type == BookmarkType_Folder; }
@@ -142,5 +142,8 @@ private:
 
     virtual bool ExportToJson(QJsonObject &obj) override;
     virtual bool ImportFromJson(const QJsonObject &obj) override;
+private:
+    bool ExportToJson(int parentId, QJsonArray& obj);
+    bool ImportFromJson(int parentId, const QJsonArray& obj);
 };
 

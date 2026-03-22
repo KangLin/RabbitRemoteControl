@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QLoggingCategory>
+#include <QJsonArray>
 
 #include "BookmarkDatabase.h"
 
@@ -112,7 +113,7 @@ bool CBookmarkDatabase::moveFolder(int folderId, int newParentId)
 
 BookmarkItem CBookmarkDatabase::getBookmark(int id)
 {
-    BookmarkItem item;
+    BookmarkItem item(BookmarkType_Bookmark);
 
     auto leaf = m_TreeDB.GetLeaf(id);
     if(leaf.GetId() == 0) return item;
@@ -123,7 +124,7 @@ BookmarkItem CBookmarkDatabase::getBookmark(int id)
 QList<BookmarkItem> CBookmarkDatabase::getBookmarkByUrl(const QString &url)
 {
     QList<BookmarkItem> lstItems;
-    BookmarkItem item;
+    BookmarkItem item(BookmarkType_Bookmark);
 
     auto urlItem = m_UrlDB.GetItem(url);
     auto leaves = m_TreeDB.GetLeavesByKey(urlItem.id);
@@ -532,7 +533,7 @@ int CBookmarkDatabase::importBookmark(const QDomElement &aElement,
     QDateTime lastModified = parseTimestamp(lastModifiedStr);
 
     // 创建书签对象
-    BookmarkItem item;
+    BookmarkItem item(BookmarkType_Bookmark);
     item.url = url;
     item.title = title;
     item.createdTime = addDate.isValid() ? addDate : QDateTime::currentDateTime();
@@ -721,7 +722,7 @@ TreeItem CBookmarkDatabase::BookmarkToTree(const BookmarkItem& tree, bool setKey
 
 BookmarkItem CBookmarkDatabase::TreeToBookmark(const TreeItem& tree)
 {
-    BookmarkItem item;
+    BookmarkItem item(BookmarkType_Bookmark);
     CDatabaseUrl::UrlItem url = m_UrlDB.GetItem(tree.GetKey());
     item = TreeToBookmark(tree, url);
     return item;
@@ -730,7 +731,7 @@ BookmarkItem CBookmarkDatabase::TreeToBookmark(const TreeItem& tree)
 BookmarkItem CBookmarkDatabase::TreeToBookmark(
     const TreeItem& tree, const CDatabaseUrl::UrlItem& url)
 {
-    BookmarkItem item;
+    BookmarkItem item(BookmarkType_Bookmark);
     item.id = tree.GetId();
     item.folderId = tree.GetParentId();
     item.createdTime = tree.GetCreateTime();
@@ -749,13 +750,96 @@ BookmarkItem CBookmarkDatabase::TreeToBookmark(
     return item;
 }
 
-
 bool CBookmarkDatabase::ExportToJson(QJsonObject &obj)
 {
-    return true;
+    bool bRet = true;
+    QJsonArray root;
+    bRet = ExportToJson(0, root);
+    if(bRet)
+        obj.insert("browser_bookmark", root);
+    return bRet;
 }
 
 bool CBookmarkDatabase::ImportFromJson(const QJsonObject &obj)
 {
+    bool bRet = false;
+    QJsonArray bookmark = obj["browser_bookmark"].toArray();
+    if(bookmark.isEmpty()) {
+        SetError(tr("The file format is error. Json without \"browser_bookmark\""));
+        qCritical(log) << GetError();
+        return false;
+    }
+
+    bRet = ImportFromJson(0, bookmark);
+    return bRet;
+}
+
+bool CBookmarkDatabase::ImportFromJson(int parentId, const QJsonArray &obj)
+{
+    for(auto it = obj.begin(); it != obj.end(); it++) {
+        QJsonObject itemObj = it->toObject();
+        if(itemObj.isEmpty()) continue;
+        if(BookmarkType::BookmarkType_Folder == itemObj["type"].toInt()) {
+            QString szName = itemObj["name"].toString();
+            int id = addFolder(szName, parentId);
+            QJsonArray items = itemObj[szName].toArray();
+            if(items.isEmpty()) continue;
+            ImportFromJson(id, items);
+            continue;
+        }
+
+        BookmarkItem item(BookmarkType::BookmarkType_Bookmark);
+        item.title = itemObj["title"].toString();
+        item.url = itemObj["url"].toString();
+        item.folderId = parentId;
+
+        QIcon icon;
+        bool bRet = CDatabaseIcon::ImportIconFromJson(itemObj, icon);
+        if(!bRet) continue;
+        item.icon =icon;
+
+        addBookmark(item);
+    }
+    
+    return true;
+}
+
+bool CBookmarkDatabase::ExportToJson(int parentId, QJsonArray &obj)
+{
+    auto items = getSubFolders(parentId);
+    foreach(auto item, items) {
+        QJsonObject oItem;
+        if(item.isFolder()) {
+            QJsonArray aItem;
+            bool bRet = ExportToJson(item.id, aItem);
+            if(!bRet) continue;
+
+            oItem.insert("type", item.type);
+            oItem.insert("name", item.title);
+            oItem.insert(item.title, aItem);
+        } else {
+            Q_ASSERT_X(false, "ExportBookmark", "The item is not node");
+            continue;
+        }
+        
+        obj.append(oItem);    
+    }
+
+    items = getAllBookmarks(parentId);
+    foreach(auto item, items) {
+        QJsonObject oItem;
+        if(item.isBookmark()) {
+            oItem.insert("type", item.type);
+            oItem.insert("title", item.title);
+            oItem.insert("url", item.url);
+            // Icon
+            bool bRet = CDatabaseIcon::ExportIconToJson(item.getIcon(), oItem);
+            if(!bRet) continue;
+        } else {
+            Q_ASSERT_X(false, "ExportBookmark", "The item is not bookmark");
+            continue;
+        }
+        obj.append(oItem);    
+    }
     return true;
 }
