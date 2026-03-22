@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(WebBrowser_QT_COMPONENTS Core Gui Widgets WebEngineWidgets WebEngineCore Sql Xml)
+set(WebBrowser_QT_COMPONENTS Core Gui Widgets Network WebEngineWidgets WebEngineCore Sql Xml)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${WebBrowser_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${WebBrowser_QT_COMPONENTS})
@@ -94,6 +94,22 @@ if(QT_VERSION VERSION_GREATER_EQUAL "6.7.0")
         DlgWebAuth.ui
         DlgScreenCapture.ui
         )
+endif()
+
+if(QT_VERSION VERSION_GREATER_EQUAL "6.10.0")
+    list(APPEND WebBrowser_SOURCE_FILES
+        Extension/FrmExtensionManager.cpp
+        Extension/FrmExtensionStore.cpp
+        )
+    list(APPEND WebBrowser_HEADER_FILES
+        Extension/FrmExtensionManager.h
+        Extension/FrmExtensionStore.h
+        )
+    list(APPEND WebBrowser_UI_FILES
+        Extension/FrmExtensionManager.ui
+        Extension/FrmExtensionStore.ui
+        )
+    list(APPEND WebBrowser_INCLUDE_DIR $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Extension>)
 endif()
 
 option(WITH_QtKEYCHAIN "With qtkeychain" ON)

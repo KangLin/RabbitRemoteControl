@@ -1980,7 +1980,7 @@ Visit Time: %3</source>
     <message>
         <location filename="../../PluginWebBrowser.cpp" line="42"/>
         <source>Web browser: Browsing the web</source>
-        <translation>Web 瀏覽器：瀏覽網頁</translation>
+        <translation>網頁瀏覽器：瀏覽網頁</translation>
     </message>
     <message>
         <location filename="../../PluginWebBrowser.cpp" line="65"/>

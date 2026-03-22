@@ -68,7 +68,7 @@ int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
 QDialog *COperateWebBrowser::OnOpenDialogSettings(QWidget *parent)
 {
     qDebug(log) << Q_FUNC_INFO;
-    return new CDlgSettings(&m_Parameter, parent);
+    return new CDlgSettings(m_pWeb->GetProfile(), &m_Parameter, parent);
 }
 
 int COperateWebBrowser::Initial()

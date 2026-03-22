@@ -41,6 +41,8 @@ public:
     QWebEngineView *CreateWindow(QWebEnginePage::WebWindowType type, bool offTheRecord = false);
     [[nodiscard]] virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
+    [[nodiscard]] QWebEngineProfile* GetProfile(bool offTheRecord = false);
+
 Q_SIGNALS:
     void sigInformation(const QString& szInfo);
     void sigError(const int nError, const QString &szError);
@@ -77,7 +79,6 @@ private:
     int InitMenu(QMenu* pMenu);
     void EnableAction(bool enable);
     void SetConnect(CFrmWebView* pWeb);
-    [[nodiscard]] QWebEngineProfile* GetProfile(bool offTheRecord = false);
     [[nodiscard]] CFrmWebView *CreateWebView(bool offTheRecord = false);
     [[nodiscard]] QWidget* CreateTab(/*[in/out]*/CFrmWebView **view = nullptr, bool offTheRecord = false);
     enum class ViewType{
