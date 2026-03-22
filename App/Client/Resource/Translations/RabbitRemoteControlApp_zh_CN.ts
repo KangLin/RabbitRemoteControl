@@ -12,166 +12,166 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="130"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="433"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="129"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
         <source>New group</source>
         <translation>新建组</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="50"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="49"/>
         <source>Favorite</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="54"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="59"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="53"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="58"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="94"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="93"/>
         <source>Show tool bar</source>
         <translation>显示工具条</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="108"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="107"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="118"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="117"/>
         <source>Open settings and Start</source>
         <translation>打开设置并开始</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="139"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="403"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="138"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="148"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="419"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="147"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="158"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="157"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="166"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="165"/>
         <source>Export</source>
         <translation>导出</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="175"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="174"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="274"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="273"/>
         <source>Root</source>
         <translation>根</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="295"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="300"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="294"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="299"/>
         <source>Add favorite</source>
         <translation>增加收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="296"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="295"/>
         <source>&quot;%1&quot; already exists in &quot;%2&quot;</source>
         <translation>&quot;%1&quot; 已收藏于 &quot;%2&quot; 之中</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="301"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="300"/>
         <source>&quot;%1&quot; already exists, do you want to move it to &quot;%2&quot;?</source>
         <translation>&quot;%1&quot; 已收藏，确定想移到 &quot;%2&quot;?</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="469"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="575"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="468"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="496"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="470"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="575"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="469"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="574"/>
         <source>Successfully imported favorite from JSON file: %1</source>
         <translation>成功从 JSON 文件导入收藏：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="472"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="500"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="577"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="471"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="499"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="576"/>
         <source>Failed to import favorite from JSON file: %1</source>
         <translation>从 JSON 文件导入收藏失败：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="502"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="579"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="473"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="501"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="578"/>
         <source>Error: </source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="475"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="503"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="507"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="580"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="474"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="502"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="506"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="579"/>
         <source>Failure</source>
         <translation>失败</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="480"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="508"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="479"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="507"/>
         <source>Invalid file: %1</source>
         <translation>无效文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="481"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="509"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="480"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="508"/>
         <source>Please use JSON file</source>
         <translation>请使用 JSON 文件</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="498"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="497"/>
         <source>Favorite successfully exported to JSON file: %1</source>
         <translation>成功导出收藏到 JSON 文件：%1</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="403"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="402"/>
         <source>Enter the modified name</source>
         <translation>输入修改后的名称</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="419"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="418"/>
         <source>Will be delete &quot;%1&quot;</source>
         <translation>&quot;%1&quot; 将被删除</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="459"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="479"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="458"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="478"/>
         <source>Import favorite</source>
         <translation>导入收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="461"/>
-        <location filename="../../Favorite/FavoriteView.cpp" line="490"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="460"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="489"/>
         <source>JSON (*.json)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="488"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="487"/>
         <source>Export favorite</source>
         <translation>导出收藏</translation>
     </message>
     <message>
-        <location filename="../../Favorite/FavoriteView.cpp" line="433"/>
+        <location filename="../../Favorite/FavoriteView.cpp" line="432"/>
         <source>Input group name</source>
         <translation>输入组名</translation>
     </message>

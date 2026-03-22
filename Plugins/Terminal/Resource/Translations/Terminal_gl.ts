@@ -335,12 +335,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="168"/>
+        <location filename="../../Terminal.cpp" line="170"/>
         <source>Security level: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Terminal.cpp" line="171"/>
+        <location filename="../../Terminal.cpp" line="177"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>

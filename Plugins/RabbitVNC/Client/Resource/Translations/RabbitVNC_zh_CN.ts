@@ -2,37 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CConnectRabbitVNC</name>
-    <message>
-        <source>Logon to </source>
-        <translation type="vanished">登录到 </translation>
-    </message>
-    <message>
-        <source>Please check that the username and password are correct.</source>
-        <translation type="vanished">请检查用户名和密码是否正确。</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">错误</translation>
-    </message>
-    <message>
-        <source>The proxy server is empty, please input it</source>
-        <translation type="vanished">代理服务器为空，请输入</translation>
-    </message>
-    <message>
-        <source>The server is empty, please input it</source>
-        <translation type="vanished">服务器为空，请输入</translation>
-    </message>
-    <message>
-        <source>Connect to </source>
-        <translation type="vanished">连接到 </translation>
-    </message>
-    <message>
-        <source> fail.</source>
-        <translation type="vanished"> 失败。</translation>
-    </message>
-</context>
-<context>
     <name>CConnectVnc</name>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="308"/>
@@ -81,37 +50,6 @@
     </message>
 </context>
 <context>
-    <name>CDlgGetPasswordRabbitVNC</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">输入密码</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">确定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation type="vanished">用户：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密码：</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密码</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">为 %1 设置密码</translation>
-    </message>
-</context>
-<context>
     <name>CDlgGetPasswordVNC</name>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="14"/>
@@ -121,7 +59,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="20"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.ui" line="61"/>
@@ -137,193 +75,6 @@
         <location filename="../../../../TigerVnc/Client/DlgGetUserPasswordVNC.cpp" line="50"/>
         <source>Set password for %1</source>
         <translation>为 %1 设置密码</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgSettingsRabbitVNC</name>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">错误</translation>
-    </message>
-    <message>
-        <source>Please set domain</source>
-        <translation type="vanished">请设置域名</translation>
-    </message>
-    <message>
-        <source>Setting RabbitVNC</source>
-        <translation type="vanished">设置玉兔 VNC</translation>
-    </message>
-    <message>
-        <source>Ok(&amp;O)</source>
-        <translation type="vanished">确定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancle(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <translation type="vanished">服务器</translation>
-    </message>
-    <message>
-        <source>Show local cursor</source>
-        <translation type="vanished">显示本地光标</translation>
-    </message>
-    <message>
-        <source>Enable clipboard</source>
-        <translation type="vanished">允许剪切板</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">名称：</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Connecter name</source>
-        <translation type="vanished">连接名称</translation>
-    </message>
-    <message>
-        <source>Please checked save password to enable</source>
-        <translation type="vanished">请选择保存密码允许输入</translation>
-    </message>
-    <message>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation type="vanished">菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="vanished">共享</translation>
-    </message>
-    <message>
-        <source>Real time update</source>
-        <translation type="vanished">实时更新</translation>
-    </message>
-    <message>
-        <source>Only view</source>
-        <translation type="vanished">仅查看</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密码</translation>
-    </message>
-    <message>
-        <source>Support windows resize</source>
-        <translation type="vanished">支持窗口大小改变</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation type="vanished">服务器：</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="vanished">端口：</translation>
-    </message>
-    <message>
-        <source>User name:</source>
-        <translation type="vanished">用户名：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密码：</translation>
-    </message>
-    <message>
-        <source>Show server name</source>
-        <translation type="vanished">显示服务器名</translation>
-    </message>
-    <message>
-        <source>Domain:</source>
-        <translation type="vanished">域名：</translation>
-    </message>
-    <message>
-        <source>Turn user:</source>
-        <translation type="vanished">Turn 用户：</translation>
-    </message>
-    <message>
-        <source>Peer user:</source>
-        <translation type="vanished">对端用户：</translation>
-    </message>
-    <message>
-        <source>Turn server:</source>
-        <translation type="vanished">Turn 服务器：</translation>
-    </message>
-    <message>
-        <source>Signal server:</source>
-        <translation type="vanished">信令服务器：</translation>
-    </message>
-    <message>
-        <source>Signal user:</source>
-        <translation type="vanished">信令用户：</translation>
-    </message>
-    <message>
-        <source>Stun server:</source>
-        <translation type="vanished">Stun 服务器：</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="vanished">代理</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">无</translation>
-    </message>
-    <message>
-        <source>Compress</source>
-        <translation type="vanished">压缩</translation>
-    </message>
-    <message>
-        <source>Color level</source>
-        <translation type="vanished">颜色级别</translation>
-    </message>
-    <message>
-        <source>Full</source>
-        <translation type="vanished">全彩色</translation>
-    </message>
-    <message>
-        <source>Low</source>
-        <translation type="vanished">低</translation>
-    </message>
-    <message>
-        <source>Meduim</source>
-        <translation type="vanished">中</translation>
-    </message>
-    <message>
-        <source>Very low</source>
-        <translation type="vanished">极低</translation>
-    </message>
-    <message>
-        <source>0=fast, 9=best</source>
-        <translation type="vanished">0=最快, 9=最好</translation>
-    </message>
-    <message>
-        <source>Enable JPEG compress</source>
-        <translation type="vanished">允许JPEG压缩</translation>
-    </message>
-    <message>
-        <source>0=Worst, 9=best</source>
-        <translation type="vanished">0=最差, 9=最好</translation>
-    </message>
-    <message>
-        <source>preferred Encoding</source>
-        <translation type="vanished">首选编码</translation>
-    </message>
-    <message>
-        <source>Raw</source>
-        <translation type="vanished">原始</translation>
-    </message>
-    <message>
-        <source>Compress level:</source>
-        <translation type="vanished">压缩级别</translation>
-    </message>
-    <message>
-        <source>Auto select</source>
-        <translation type="vanished">自动选择</translation>
-    </message>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">输入密码</translation>
     </message>
 </context>
 <context>
@@ -394,10 +145,6 @@
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="160"/>
         <source>Peer user:</source>
         <translation>对端用户：</translation>
-    </message>
-    <message>
-        <source>Compress</source>
-        <translation type="obsolete">压缩</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/DlgSettingsVnc.ui" line="189"/>

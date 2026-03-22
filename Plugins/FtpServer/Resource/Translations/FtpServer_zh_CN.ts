@@ -223,38 +223,38 @@
 <context>
     <name>COperateFtpServer</name>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="144"/>
-        <location filename="../../OperateFtpServer.cpp" line="176"/>
+        <location filename="../../OperateFtpServer.cpp" line="143"/>
+        <location filename="../../OperateFtpServer.cpp" line="175"/>
         <source>Start server</source>
         <translation>开始服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="189"/>
+        <location filename="../../OperateFtpServer.cpp" line="188"/>
         <source>Stop server</source>
         <translation>停止服务器</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="233"/>
+        <location filename="../../OperateFtpServer.cpp" line="232"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="236"/>
+        <location filename="../../OperateFtpServer.cpp" line="235"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="239"/>
+        <location filename="../../OperateFtpServer.cpp" line="238"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="249"/>
+        <location filename="../../OperateFtpServer.cpp" line="248"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateFtpServer.cpp" line="256"/>
+        <location filename="../../OperateFtpServer.cpp" line="255"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

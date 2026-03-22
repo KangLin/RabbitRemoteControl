@@ -258,8 +258,9 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>CConnectLayerQTcpSocket</name>
     <message>
+        <location filename="../../ConnectLayerQTcpSocket.cpp" line="57"/>
         <source>The server is empty, please input it</source>
-        <translation type="vanished">O servidor está vazio, insira-o</translation>
+        <translation>O servidor está vazio, insira-o</translation>
     </message>
 </context>
 <context>
@@ -747,12 +748,14 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>ConnectLayerSSHTunnel</name>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="46"/>
         <source>The server is empty, please input it</source>
-        <translation type="vanished">O servidor está vazio, insira-o</translation>
+        <translation>O servidor está vazio, insira-o</translation>
     </message>
     <message>
+        <location filename="../../ConnectLayerSSHTunnel.cpp" line="48"/>
         <source>Error</source>
-        <translation type="vanished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>

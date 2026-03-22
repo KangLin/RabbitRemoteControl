@@ -6,7 +6,7 @@
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRawStream.ui" line="24"/>

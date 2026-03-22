@@ -60,32 +60,32 @@
 <context>
     <name>COperateSSH</name>
     <message>
-        <location filename="../../OperateSSH.cpp" line="126"/>
+        <location filename="../../OperateSSH.cpp" line="114"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="129"/>
+        <location filename="../../OperateSSH.cpp" line="117"/>
         <source>Type: </source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="132"/>
+        <location filename="../../OperateSSH.cpp" line="120"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="142"/>
+        <location filename="../../OperateSSH.cpp" line="130"/>
         <source>Server address: </source>
         <translation>服務器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="147"/>
+        <location filename="../../OperateSSH.cpp" line="135"/>
         <source>Security level: </source>
         <translation>安全級別：</translation>
     </message>
     <message>
-        <location filename="../../OperateSSH.cpp" line="154"/>
+        <location filename="../../OperateSSH.cpp" line="142"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>

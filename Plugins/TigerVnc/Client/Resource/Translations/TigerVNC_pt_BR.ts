@@ -316,6 +316,11 @@
         <source>The plugin is used TigerVNC</source>
         <translation>O plugin usa TigerVNC</translation>
     </message>
+    <message>
+        <location filename="../../PluginTigerVnc.cpp" line="65"/>
+        <source>Dependency libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>S:</name>
