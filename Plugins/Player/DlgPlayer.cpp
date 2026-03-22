@@ -27,6 +27,25 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     if(!m_pParameters->GetName().isEmpty())
         ui->leName->setText(m_pParameters->GetName());
 
+    if(QMediaDevices::videoInputs().size() > 0)
+    {
+        ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
+        foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
+            ui->cmbCamera->addItem(cameraDevice.description());
+        }
+        if(m_pParameters->GetCamera() > -1)
+            ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
+    }
+
+    ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
+    ui->leUrl->setText(m_pParameters->GetUrl());
+
+    int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
+    if(-1 < nIndex) {
+        ui->cmbType->setCurrentIndex(nIndex);
+        on_cmbType_currentIndexChanged(nIndex);
+    }
+
     foreach(auto ai, QMediaDevices::audioInputs())
     {
         ui->cmbAudioInput->addItem(ai.description());
@@ -60,25 +79,6 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
 
     ui->cbEnableSubtitle->setCheckable(true);
     ui->cbEnableSubtitle->setChecked(m_pParameters->GetSubtitle());
-    
-    if(QMediaDevices::videoInputs().size() > 0)
-    {
-        ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
-        foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
-            ui->cmbCamera->addItem(cameraDevice.description());
-        }
-        if(m_pParameters->GetCamera() > -1)
-            ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
-    }
-
-    ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
-    ui->leUrl->setText(m_pParameters->GetUrl());
-
-    int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
-    if(-1 < nIndex) {
-        ui->cmbType->setCurrentIndex(nIndex);
-        on_cmbType_currentIndexChanged(nIndex);
-    }
 
     m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
     m_pRecordUI->SetParameter(&m_pParameters->m_Record);

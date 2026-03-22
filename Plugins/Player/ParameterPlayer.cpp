@@ -15,7 +15,7 @@ CParameterPlayer::CParameterPlayer(QObject *parent)
     , m_bAudioOutputMuted(false)
     , m_fAudioOutputVolume(100)
     , m_nScreen(-1)
-    , m_bSubtitle(true)
+    , m_bSubtitle(false)
 {}
 
 const CParameterPlayer::TYPE CParameterPlayer::GetType() const
