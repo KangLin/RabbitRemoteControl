@@ -143,6 +143,62 @@ jobs:
         run: |
           sudo chmod 777 ${QT_ROOT_DIR}/bin/qt-cmake
 
+      - name: libpcap
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -f ${{env.INSTALL_DIR}}/lib/libpcap.a ]; then
+              wget https://www.tcpdump.org/release/libpcap-1.10.6.tar.xz
+              tar xvf libpcap-1.10.6.tar.xz
+              cd libpcap-1.10.6
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=Release \
+                  -DBUILD_SHARED_LIBS=OFF \
+                  -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
+                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                  -DANDROID_ABI=${{env.ANDROID_ABI}} \
+                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                  -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed
+              cmake --build . --config Release
+              cmake --build . --config Release --target install
+          fi
+
+      - name: pcapplusplus
+        #if: false
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{ env.INSTALL_DIR }}/lib/cmake/pcapplusplus ]; then
+              git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+              cd PcapPlusPlus
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=Release \
+                  -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
+                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                  -DANDROID_ABI=${{env.ANDROID_ABI}} \
+                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                  -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed \
+                  -DPCAPPP_BUILD_EXAMPLES=OFF \
+                  -DPCAPPP_BUILD_TESTS=OFF \
+                  -DPCAPPP_BUILD_TUTORIALS=OFF \
+                  -DPCAP_LIBRARY=${{env.INSTALL_DIR}}/lib/libpcap.a \
+                  -DPCAP_INCLUDE_DIR=${{env.INSTALL_DIR}}/include
+              cmake --build . --config Release
+              cmake --build . --config Release --target install
+          fi
+
       - name: build RabbitVNC
         if: false
         working-directory: ${{env.SOURCE_DIR}}
@@ -280,16 +336,13 @@ jobs:
               cd lxqt-build-tools
               cmake -E make_directory build
               cd build
-              ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                  -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
-                  -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
-                  -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR} \
-                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                  -DVCPKG_VERBOSE=ON \
-                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
-                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+              ${QT_ROOT_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+                -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
+                -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
+                -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+                -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
@@ -303,18 +356,13 @@ jobs:
               cd qtermwidget
               cmake -E make_directory build
               cd build
-              ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              ${QT_ROOT_DIR}/bin/qt-cmake .. \
+                  -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                   -Dlxqt2-build-tools_DIR=${{env.INSTALL_DIR}}/share/cmake/lxqt2-build-tools \
                   -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
                   -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
-                  -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
-                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                  -DVCPKG_VERBOSE=ON \
-                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
-                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
-                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+                  -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake
               cmake --build .  --config ${{matrix.BUILD_TYPE}}
               cmake --build .  --config ${{matrix.BUILD_TYPE}} --target install
           fi
@@ -328,7 +376,8 @@ jobs:
             cd qtkeychain
             cmake -E make_directory build
             cd build
-            ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+            ${QT_ROOT_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
                 -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
@@ -347,7 +396,8 @@ jobs:
             cd QFtpServer
             cmake -E make_directory build
             cd build
-            ${QT_ROOT_DIR}/bin/qt-cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+            ${QT_ROOT_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}}/lib/cmake \
                 -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
@@ -406,6 +456,8 @@ jobs:
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
               -Dqtermwidget6_DIR=${{env.INSTALL_DIR}}/lib/cmake/qtermwidget6 \
+              -DPcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus \
+              -DPCAP_ROOT=${{env.INSTALL_DIR}} \
               -DINSTALL_QTERMWIDGET=ON \
               -DQt6Keychain_DIR=${{env.INSTALL_DIR}}/lib/cmake/Qt6Keychain \
               -DINSTALL_QTKEYCHAIN=ON \

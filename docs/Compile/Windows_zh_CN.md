@@ -373,7 +373,8 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
-  + qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5
+  + qtermwidget6_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget6
+  + PcapPlusPlus_DIR: [PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
 - 如果使用 vcpkg，增加下面参数

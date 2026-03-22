@@ -64,11 +64,11 @@ jobs:
 
           - PACKAGE: rpm
             image: fedora
-            lable: "41"
+            lable: "42"
             os: ubuntu-24.04
           - PACKAGE: rpm
             image: fedora
-            lable: "41"
+            lable: "42"
             os: ubuntu-24.04-arm
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)

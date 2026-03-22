@@ -368,7 +368,8 @@ See: [msvc.yml](.github\workflows\msvc.yml)
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel installation path]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
-  + QTermWidget5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
+  + QTermWidget6_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget6
+  + PcapPlusPlus_DIR: [PcapPlusPlus install path]/lib/cmake/pcapplusplus
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR: [QtService installation path]/lib/cmake/QtService
 - If using vcpkg, please set the CMake parameters:

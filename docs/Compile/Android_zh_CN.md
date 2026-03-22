@@ -141,6 +141,47 @@
 
       cmake --install .
 
+##### PcapPlusPlus
+
+- 从源码编译
+  + 源码位置：https://github.com/seladb/PcapPlusPlus
+
+        ~$ git clone https://github.com/seladb/PcapPlusPlus.git
+
+- 使用 vcpkg
+  + 源码位置：https://github.com/microsoft/vcpkg/
+
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./vcpkg install pcapplusplus
+
+- 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
+      -DPCAP_ROOT=[libpcap 安装目录]
+
+###### libpcap
+
+PcapPlusPlus 依赖此库。
+
+- 使用系统预编译开发库
+
+      ~$ wget https://www.tcpdump.org/release/libpcap-1.10.6.tar.xz
+      ~$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=OFF \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=... \
+        -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+        -DANDROID_ABI=${{env.ANDROID_ABI}} \
+        -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+        -DVCPKG_VERBOSE=ON \
+        -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+        -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+        -DVCPKG_TRACE_FIND_PACKAGE=ON \
+        -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed
+
+- 源码位置：https://github.com/the-tcpdump-group/libpcap
+
 #### 玉兔公共库
 
 - 此库默认放在与本项目同级目录下
@@ -189,6 +230,8 @@
   - qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5
   - libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   - QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
+  - PcapPlusPlus_DIR: [PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
+    - -DPCAP_ROOT: [libpcap 安装目录]
 - 如果使用 vcpkg，增加下面参数
   - 因为使用了 vcpkg 清单模式，所以依赖库在 `vcpkg.json` 中。
   - CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake

@@ -519,7 +519,7 @@ It is depended by PcapPlusPlus
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
-  + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
+  + qtermwidget6_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget6
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR: [QtService installation path]/lib/cmake/QtService
   + PcapPlusPlus_DIR: [PcapPlusPlus install path]/lib/cmake/pcapplusplus

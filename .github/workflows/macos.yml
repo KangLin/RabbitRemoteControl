@@ -95,7 +95,7 @@ jobs:
         run: |
           # See: https://formulae.brew.sh/
           brew update
-          brew install nasm autoconf automake libtool pkg-config zstd libpcap libvncserver # pcapplusplus qt qtkeychain
+          brew install nasm autoconf automake ninja make libtool pkg-config zstd libpcap libvncserver # pcapplusplus qt qtkeychain
 
       - name: build RabbitVNC
         if: false
@@ -135,7 +135,8 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed \
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
-                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF
             cmake --build . --config Release
             cmake --install . --config Release --strip
           fi

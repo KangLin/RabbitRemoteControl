@@ -513,9 +513,10 @@ PcapPlusPlus 依赖此库。
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
-  + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + qtermwidget6_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget6
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
+  + PcapPlusPlus_DIR: [PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
 - 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   + VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能
