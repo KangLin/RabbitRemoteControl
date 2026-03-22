@@ -382,8 +382,13 @@ protected:
 
     //!@{
     //! \~chinese \name 统计
-    //! \~english \name Stats
+    //! \~english \name Statistics
 public:
+    /*!
+     * \~chinese 得到统计信息。如果有，其派生类则需要重载此函数提供统计信息。
+     * \~english Get statistics. If so, its derived class needs to overload this function to provide statistical information.
+     * \return Statistics pointer
+     */
     [[nodiscard]] virtual CStats* GetStats();
     /*!
      * \brief Get Security Level

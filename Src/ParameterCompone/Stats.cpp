@@ -150,7 +150,8 @@ QString CSecurityLevel::GetString(Level level)
     if(Level::No == level)
         return QString();
     if(Level::Secure == level)
-        return tr("Secure");
+        return tr("Secure") + ": "
+               + tr("Secure channel") + " + " + tr("Authentication");
     if(Level::Risky == level)
         return tr("Risk");
     if(Level::Secure & level) {

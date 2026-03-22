@@ -14,7 +14,6 @@ COperateTelnet::COperateTelnet(CPlugin *parent)
     : COperateTerminal(parent)
     , m_Telnet(QTelnet::TCP)
     , m_bLogin(false)
-    , m_SecurityLevel(CSecurityLevel::Level::Risky)
 {
     qDebug(log) << Q_FUNC_INFO;
     auto &net = m_Parameters.m_Net;
@@ -28,11 +27,6 @@ COperateTelnet::COperateTelnet(CPlugin *parent)
 COperateTelnet::~COperateTelnet()
 {
     qDebug(log) << Q_FUNC_INFO;
-}
-
-CSecurityLevel::Level COperateTelnet::GetSecurityLevel() const
-{
-    return m_SecurityLevel;
 }
 
 QDialog *COperateTelnet::OnOpenDialogSettings(QWidget *parent)
@@ -51,6 +45,8 @@ int COperateTelnet::Start()
         return -1;
 
     slotUpdateParameter(this);
+
+    slotSetSecurityLevel(CSecurityLevel::Level::Risky);
 
     bool check = false;
     check = connect(&m_Telnet, &QTelnet::stateChanged,
@@ -157,7 +153,7 @@ const QString COperateTelnet::Name()
         auto &net = m_Parameters.m_Net;
         if(!net.GetHost().isEmpty()) {
             if(m_Parameters.GetGlobalParameters()
-                && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                && (m_Parameters.GetGlobalParameters()->GetNameStyles()
                      & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
                 szName = Protocol() + ":";
@@ -170,7 +166,8 @@ const QString COperateTelnet::Name()
 
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+    if(m_Parameters.GetGlobalParameters()
+        && (m_Parameters.GetGlobalParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
         && GetSecurityLevel() != CSecurityLevel::Level::No
         && !sl.GetUnicodeIcon().isEmpty())
@@ -246,8 +243,7 @@ void COperateTelnet::slotNewData(const char *buf, int len)
                 m_Telnet.sendData(password.toStdString().c_str(), password.length());
                 m_Telnet.sendData("\n", 1);
                 m_bLogin = true;
-                m_SecurityLevel = CSecurityLevel::Level::Authentication;
-                slotSetSecurityLevel(m_SecurityLevel);
+                slotSetSecurityLevel(CSecurityLevel::Level::Authentication);
             }
             qDebug(log) << "Password:" << password;
 

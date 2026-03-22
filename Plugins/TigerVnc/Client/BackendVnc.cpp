@@ -25,6 +25,7 @@
 #include <rfb/keysymdef.h>
 #endif
 
+
 #include "FramePixelBuffer.h"
 
 #include <QDir>
