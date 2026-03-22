@@ -1638,21 +1638,15 @@ void MainWindow::on_actionKeyboard_triggered()
 {
     auto inputMethod = QGuiApplication::inputMethod();
     if(inputMethod) {
-        bool bVisible = ui->actionKeyboard->isChecked();
-        ui->actionKeyboard->setChecked(bVisible);
-        if(bVisible) {
-            QObject *focusObject = QGuiApplication::focusObject();
-            if(m_pView && m_pView->GetCurrentView())
-                focusObject = m_pView->GetCurrentView();
-            if (focusObject) {
-                // 可选：强制焦点对象发送输入法请求
-                QInputMethodEvent event;
-                QCoreApplication::sendEvent(focusObject, &event);
-            }
-            inputMethod->show();
-        }
-        else
-            inputMethod->hide();
+        // QObject *focusObject = QGuiApplication::focusObject();
+        // if(m_pView && m_pView->GetCurrentView())
+        //     focusObject = m_pView->GetCurrentView();
+        // if (focusObject) {
+        //     // 可选：强制焦点对象发送输入法请求
+        //     QInputMethodEvent event;
+        //     QCoreApplication::sendEvent(focusObject, &event);
+        // }
+        inputMethod->show();
     }
 }
 
