@@ -182,18 +182,6 @@ bool CHistoryModel::search(const QString &keyword)
     return true;
 }
 
-bool CHistoryModel::importFromCSV(const QString &filename)
-{
-    if(!m_pDatabase) return false;
-    return m_pDatabase->importFromCSV(filename);
-}
-
-bool CHistoryModel::exportToCSV(const QString &filename)
-{
-    if(!m_pDatabase) return false;
-    return m_pDatabase->exportToCSV(filename);
-}
-
 bool CHistoryModel::importFromJson(const QString &filename)
 {
     if(!m_pDatabase) return false;

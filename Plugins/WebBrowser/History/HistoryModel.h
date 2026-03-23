@@ -42,9 +42,6 @@ public:
     bool removeItems(const QString& url);
     
     bool search(const QString &keyword);
-
-    bool importFromCSV(const QString& filename);
-    bool exportToCSV(const QString &filename);
     bool importFromJson(const QString& filename);
     bool exportToJson(const QString& filename);
 private:

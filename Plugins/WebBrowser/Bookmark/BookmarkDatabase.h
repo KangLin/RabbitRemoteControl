@@ -94,11 +94,6 @@ public:
     [[nodiscard]] QList<BookmarkItem> getAllFolders();
     [[nodiscard]] QList<BookmarkItem> getSubFolders(int folderId);
 
-    // 导入导出
-    bool importFromHtml(const QString &filename);
-    bool exportToHtml(const QString &filename);
-    bool importFromBrowser(const QString &browserName);
-
     [[nodiscard]] TreeItem BookmarkToTree(const BookmarkItem& tree, bool setKey = false);
     [[nodiscard]] BookmarkItem TreeToBookmark(const TreeItem& tree);
     [[nodiscard]] BookmarkItem TreeToBookmark(const TreeItem& item, const CDatabaseUrl::UrlItem& url);
@@ -114,28 +109,6 @@ signals:
 
 private:
     [[nodiscard]] bool OnInitializeDatabase() override;
-
-    void buildBookmarkDocument(QDomDocument &doc);
-    void buildBookmarkTree(
-        QDomDocument &doc, QDomElement &parentElement, int folderId);
-    QDomElement createBookmarkDomElement(
-        QDomDocument &doc, const BookmarkItem &bookmark);
-    int parseHtmlBookmarks(const QString &htmlContent);
-    int parseBookmarkList(const QDomElement &dlElement,
-                          const QString &currentPath,
-                          QMap<QString, int> &folderMap);
-    int parseDtElement(const QDomElement &dtElement,
-                       const QString &currentPath,
-                       QMap<QString, int> &folderMap);
-    int importBookmark(const QDomElement &aElement,
-                       const QString &folderPath, QMap<QString, int> &folderMap);
-    QString importFolder(const QDomElement &h3Element,
-                         const QString &parentPath,
-                         QMap<QString, int> &folderMap);
-    int getOrCreateFolder(const QString &folderPath, int parentFolderId);
-    int getOrCreateFolder(const QString &folderPath, QMap<QString, int> &folderMap);
-    QDateTime parseTimestamp(const QString &timestampStr);
-    QDomElement findFirstElement(const QDomElement &parent, const QString &tagName);
 
     CDatabaseTree m_TreeDB;
     CDatabaseUrl m_UrlDB;

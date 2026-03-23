@@ -424,7 +424,7 @@ void CFrmBookmark::onImportBookmarks()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Import bookmarks"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("JSON (*.json);; HTML(*.html);; All files (*.*)"));
+        tr("JSON (*.json);; All files (*.*)"));
 
     if (filename.isEmpty()) return;
 
@@ -441,17 +441,6 @@ void CFrmBookmark::onImportBookmarks()
         }
         return;
     }
-    if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
-        if (m_pDatabase->importFromHtml(filename)) {
-            QMessageBox::information(this, tr("Import bookmarks"),
-                                     tr("Successfully imported bookmarks from file: %1").arg(filename));
-            refresh();
-        } else {
-            QMessageBox::critical(this, tr("Import bookmarks"),
-                                 tr("Failed to import bookmark from file: %1").arg(filename));
-        }
-        return;
-    }
 
     QMessageBox::warning(this, tr("Import bookmarks"),
                          tr("Invalid file: %1").arg(filename) + "\n\n"
@@ -463,7 +452,7 @@ void CFrmBookmark::onExportBookmarks()
     QString filename = QFileDialog::getSaveFileName(
         this, tr("Export bookmarks"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("JSON (*.json);; HTML (*.html);; All files (*.*)"));
+        tr("JSON (*.json);; All files (*.*)"));
     
     if (filename.isEmpty()) return;
 
@@ -476,16 +465,6 @@ void CFrmBookmark::onExportBookmarks()
             QMessageBox::critical(this, tr("Export bookmarks"),
                                   tr("Failed to export bookmark to file: %1").arg(filename) + "\n\n"
                                       + tr("Error: ") + m_pDatabase->GetError());
-        }
-        return;
-    }
-    if(0 == fi.suffix().compare("html", Qt::CaseInsensitive)) {
-        if (m_pDatabase->exportToHtml(filename)) {
-            QMessageBox::information(this, tr("Export bookmarks"),
-                                     tr("Bookmarks successfully exported to file: %1").arg(filename));
-        } else {
-            QMessageBox::critical(this, tr("Export bookmarks"),
-                                  tr("Failed to export bookmark to file: %1").arg(filename));
         }
         return;
     }

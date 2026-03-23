@@ -51,15 +51,6 @@ public:
     [[nodiscard]] int getHistoryCount();
     [[nodiscard]] QDateTime getLastVisitTime();
 
-    bool importFromCSV(const QString& filename);
-    bool exportToCSV(const QString &filename);
-private:
-    QString escapeForCsv(const QString &text);
-    QString unescapeCsvField(const QString &field);
-    bool validateCsvHeader(const QString &headerLine);
-    QStringList parseCsvLine(const QString &line);
-    bool importCsvRecord(const QStringList &fields);
-
 private:
     [[nodiscard]] bool OnInitializeDatabase() override;
     CDatabaseUrl m_UrlDB;

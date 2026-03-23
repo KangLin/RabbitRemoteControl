@@ -428,7 +428,7 @@ void CFrmHistory::slotImport()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Import histories"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("JSON (*.json);; CSV file (*.csv);; All files (*.*)"));
+        tr("JSON (*.json);; All files (*.*)"));
 
     if (filename.isEmpty()) return;
 
@@ -445,18 +445,6 @@ void CFrmHistory::slotImport()
         return;
     }
 
-    if(0 == fi.suffix().compare("csv", Qt::CaseInsensitive)) {
-        if(m_pModelHistory->importFromCSV(filename)) {
-            slotRefresh();
-            QMessageBox::information(this, tr("Import histories"),
-                                     tr("Successfully imported histories from CSV file: %1").arg(filename));
-        } else {
-            QMessageBox::critical(this, tr("Import histories"),
-                                 tr("Failed to import histories from CSV file: %1").arg(filename));
-        }
-        return;
-    }
-
     QMessageBox::critical(this, tr("Import histories"),
                           tr("Invalid file: %1").arg(filename) + "\n\n"
                               + tr("Please use JSON or CSV file"));
@@ -467,7 +455,7 @@ void CFrmHistory::slotExport()
     QString filename = QFileDialog::getSaveFileName(
         this, tr("Export histories"),
         RabbitCommon::CDir::Instance()->GetDirUserDocument(),
-        tr("JSON (*.json);; CSV (*.csv);; All files (*.*)"));
+        tr("JSON (*.json);; All files (*.*)"));
 
     if (filename.isEmpty()) return;
 
@@ -479,17 +467,6 @@ void CFrmHistory::slotExport()
         } else {
             QMessageBox::critical(this, tr("Export histories"),
                                  tr("Failed to export histories to JSON file: %1").arg(filename));
-        }
-        return;
-    }
-
-    if(0 == fi.suffix().compare("csv", Qt::CaseInsensitive)) {
-        if (m_pModelHistory->exportToCSV(filename)) {
-            QMessageBox::information(this, tr("Export histories"),
-                                     tr("Histories successfully exported to CSV file: %1").arg(filename));
-        } else {
-            QMessageBox::critical(this, tr("Export histories"),
-                                 tr("Failed to export histories to CSV file: %1").arg(filename));
         }
         return;
     }
