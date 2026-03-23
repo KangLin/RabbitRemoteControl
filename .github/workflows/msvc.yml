@@ -21,7 +21,7 @@ jobs:
             BUILD_TYPE: Release
             qt_version: 6.10.3
             qt_arch: win64_msvc2022_64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtspeech qtvirtualkeyboard
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat qtwebsockets qtpositioning qtwebchannel qtwebengine qtpdf qtspeech qtvirtualkeyboard
             os: windows-2022
 
           - CMAKE_GENERATOR_PLATFORM: arm64
@@ -241,7 +241,7 @@ jobs:
           dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}' # optional, default is 5.15.2
           arch: '${{matrix.qt_arch}}' # optional
-          modules: '${{env.qt_modules}}' # optional.  see: https://ddalcino.github.io/aqt-list-server/
+          modules: '${{env.qt_modules}}' # optional. see: https://ddalcino.github.io/aqt-list-server/
           cache: true
           cache-key-prefix: cached-qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
