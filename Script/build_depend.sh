@@ -501,6 +501,16 @@ validate_parameters
 # Display configuration
 show_configuration
 
+case "$DISTRO" in
+ubuntu|debian)
+    LIB_PATH="lib"
+    ;;
+fedora)
+    LIB_PATH="lib64"
+    ;;
+esac
+
+
 if [ $SYSTEM_UPDATE -eq 1 ]; then
     echo "System update ......"
     case "$PACKAGE_TOOL" in
@@ -566,7 +576,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         package_install libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
         package_install libx264-dev libx265-dev
         # Needed by QtMultimedia
-        #package_install pipewire
+        package_install pipewire
         # Needed by QtMultimedia
         #package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
@@ -696,7 +706,7 @@ fi
 if [ $LIBSSH -eq 1 ]; then
     echo "Install libssh ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/libssh ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/libssh ]; then
         git clone -b libssh-0.11.3 --depth=1 https://git.libssh.org/projects/libssh.git
         cmake -E make_directory $BUILD_DEPEND_DIR/libssh
         pushd $BUILD_DEPEND_DIR/libssh
@@ -732,7 +742,7 @@ if [ $FREERDP -eq 1 ]; then
           # See: https://github.com/FreeRDP/FreeRDP/discussions/11139
           #-DWITH_INTERNAL_MD4=ON
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
     popd
@@ -741,7 +751,7 @@ fi
 if [ $TIGERVNC -eq 1 ]; then
     echo "Install tigervnc ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/tigervnc ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/tigervnc ]; then
       git clone --depth=1 https://github.com/KangLin/tigervnc.git
       cmake -E make_directory $BUILD_DEPEND_DIR/tigervnc
       pushd $BUILD_DEPEND_DIR/tigervnc
@@ -751,7 +761,7 @@ if [ $TIGERVNC -eq 1 ]; then
           -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF \
           -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       cmake --build . --config Release --parallel $(nproc)
-      cmake --build . --config Release --target install
+      cmake --install . --config Release
       popd
     fi
     popd
@@ -760,7 +770,7 @@ fi
 if [ $PCAPPLUSPLUS -eq 1 ]; then
     echo "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/pcapplusplus ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
         git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
         pushd $BUILD_DEPEND_DIR/PcapPlusPlus
@@ -771,7 +781,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
             -DPCAPPP_BUILD_TESTS=OFF \
             -DPCAPPP_BUILD_TUTORIALS=OFF
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
     popd
@@ -780,7 +790,7 @@ fi
 if [ $libdatachannel -eq 1 ]; then
     echo "Install libdatachannel ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/LibDataChannel ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/LibDataChannel ]; then
       git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
       cd libdatachannel
       git submodule update --init --recursive
@@ -790,7 +800,7 @@ if [ $libdatachannel -eq 1 ]; then
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
       cmake --build . --config Release --parallel $(nproc)
-      cmake --build . --config Release --target install
+      cmake --install . --config Release
       popd
     fi
     popd
@@ -799,7 +809,7 @@ fi
 if [ $QtService -eq 1 ]; then
     echo "Install QtService ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/QtService ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QtService ]; then
       git clone --depth=1 https://github.com/KangLin/qt-solutions.git
       cd qt-solutions/qtservice
       git submodule update --init --recursive
@@ -809,7 +819,7 @@ if [ $QtService -eq 1 ]; then
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
           -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
-      cmake --build . --config Release --target install
+      cmake --install . --config Release
       popd
     fi
     popd
@@ -838,10 +848,10 @@ if [ $QTERMWIDGET -eq 1 ]; then
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/qtermwidget6 ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/qtermwidget6 ]; then
         pushd "$SOURCE_DIR"
         if [ ! -d qtermwidget ]; then
             git clone --depth=1 https://github.com/KangLin/qtermwidget.git
@@ -854,7 +864,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -Dlxqt2-build-tools_DIR=${INSTALL_DIR}/share/cmake/lxqt2-build-tools
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
     popd
@@ -863,7 +873,7 @@ fi
 if [ $QTKEYCHAIN -eq 1 ]; then
     echo "Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/Qt6Keychain ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/Qt6Keychain ]; then
         git clone -b 0.15.0 --depth=1 https://github.com/frankosterfeld/qtkeychain.git
         cmake -E make_directory $BUILD_DEPEND_DIR/qtkeychain
         pushd $BUILD_DEPEND_DIR/qtkeychain
@@ -872,7 +882,7 @@ if [ $QTKEYCHAIN -eq 1 ]; then
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DBUILD_WITH_QT6:BOOL=ON
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
     popd
@@ -881,7 +891,7 @@ fi
 if [ $QFtpServer -eq 1 ]; then
     echo "Install QFtpServer ......"
     pushd "$SOURCE_DIR"
-    if [ ! -d ${INSTALL_DIR}/lib/cmake/QFtpServerLib/QFtpServerLib ]; then
+    if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QFtpServerLib/QFtpServerLib ]; then
         git clone --depth=1 https://github.com/KangLin/QFtpServer.git
         cmake -E make_directory $BUILD_DEPEND_DIR/QFtpServer
         pushd $BUILD_DEPEND_DIR/QFtpServer
@@ -890,7 +900,7 @@ if [ $QFtpServer -eq 1 ]; then
             -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DWITH_APP=OFF
         cmake --build . --config Release --parallel $(nproc)
-        cmake --build . --config Release --target install
+        cmake --install . --config Release
         popd
     fi
     popd

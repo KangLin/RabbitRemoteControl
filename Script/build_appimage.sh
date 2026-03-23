@@ -158,7 +158,7 @@ fi
 
 pushd "${TOOLS_DIR}"
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-`uname -m`.AppImage
+    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-`uname -m`.AppImage
     chmod u+x linuxdeploy-`uname -m`.AppImage
 fi
 if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
@@ -237,8 +237,17 @@ if [ -n "$QMAKE" ]; then
     fi
 fi
 
+case "$DISTRO" in
+ubuntu|debian)
+    DEPLOY_PARA=
+    ;;
+fedora)
+    export NO_STRIP=true
+    ;;
+esac
+
 # [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
-${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
+${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir ${DEPLOY_PARA} \
     --plugin qt \
     --output appimage \
     --deploy-deps-only=${INSTALL_APP_DIR}/plugins

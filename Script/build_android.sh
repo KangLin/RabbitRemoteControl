@@ -49,6 +49,6 @@ ${Qt6_DIR}/bin/qt-cmake .. \
     -Dtigervnc_DIR=${DEPENDENT_INSTALL_DIR}/lib/cmake \
     -DQXmpp_DIR=${DEPENDENT_INSTALL_DIR}/lib/cmake/qxmpp \
     -DBUILD_FREERDP=ON
-cmake --build . 
-cmake --install .
+cmake --build . --config ${BUILD_TYPE}
+cmake --install . --config ${BUILD_TYPE}
 cd $OLD_DIR

@@ -367,10 +367,20 @@ if [ $DOCKER -eq 1 ]; then
            cp \${SOURCE_CODE_DIR}/rabbitremotecontrol*.deb /home/build/
            "
     fi
+
     if [ $APPIMAGE -eq 1 ]; then
-        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+        #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
+        #    DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        #fi
+        case "$DISTRO" in
+        ubuntu|debian)
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
-        fi
+            ;;
+        fedora)
+            # Install getopt
+            dnf install -y util-linux
+            ;;
+        esac
         docker run --privileged ${DOCKER_PARA} \
             -e CI=${CI} \
             --volume ${REPO_ROOT}:/home/RabbitRemoteControl \
@@ -398,6 +408,7 @@ if [ $DOCKER -eq 1 ]; then
             popd
             "
     fi
+
     if [ $RPM -eq 1 ]; then
         docker run --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
@@ -459,22 +470,24 @@ if [ $APPIMAGE -eq 1 ]; then
 #                export QMAKE=$QT_ROOT/bin/qmake
 #                export QT_PLUGIN_PATH=$QT_ROOT/plugins
 #                export PATH=$QT_ROOT/libexec:$PATH
-#                export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
-#                export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
 #                export CMAKE_PREFIX_PATH=$QT_ROOT:${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 #                ;;
 #        esac
+        LIB_PATH="lib"
         depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain --qftpserver"
         ;;
     fedora)
+        LIB_PATH="lib64"
+        depend_para="$depend_para --package-tool=dnf --qftpserver "
+        #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
         ;;
     *)
     esac
 
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export BUILD_FREERDP=ON
-    export PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=${INSTALL_DIR}/lib:$LD_LIBRARY_PATH
+    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
     ./build_depend.sh --system_update --base --default \
@@ -496,7 +509,7 @@ fi
 
 if [ $RPM -eq 1 ]; then
     echo "build rpm package ......"
-    dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
+    #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --qftpserver \
         --install=${INSTALL_DIR} \

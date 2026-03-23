@@ -59,6 +59,14 @@ jobs:
             image: ubuntu
             lable: "25.04"
             os: ubuntu-24.04-arm
+          # - PACKAGE: appimage
+          #   image: fedora
+          #   lable: "42"
+          #   os: ubuntu-24.04
+          # - PACKAGE: appimage
+          #   image: fedora
+          #   lable: "42"
+          #   os: ubuntu-24.04-arm
 
           - PACKAGE: rpm
             image: fedora
@@ -149,10 +157,10 @@ jobs:
           mv rabbitremotecontrol_*.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${docker_image}_`uname -m`.deb
 
       - name: AppIagme update configure file
-        if: ${{ matrix.variant.PACKAGE == 'appimage' }}
+        if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'ubuntu'}}
         #continue-on-error: true
         run: |
-          # OpenGL
+          #sudo ./Script/build_depend.sh --system_update --base
           sudo apt update -y -q
           sudo apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
           sudo apt install -y -q libfuse-dev libfuse3-dev
@@ -180,6 +188,18 @@ jobs:
              --md5 "${MD5SUM}"
           popd
           popd
+
+      - name: AppIagme update configure file
+        if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'fedora'}}
+        #continue-on-error: true
+        run: |
+          ARCH=`uname -m`
+          pushd ${{env.BUILD_DIR}}/build_linux/install
+          sudo mv -f RabbitRemoteControl_${ARCH}.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}.AppImage
+          popd
+          pushd ${{env.BUILD_DIR}}/build_linux
+          mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup
+          zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_fedora_${ARCH}_Setup/*
 
       - name: Update artifact
         #if: ${{matrix.variant.PACKAGE != 'deb'}}
