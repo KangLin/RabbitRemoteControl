@@ -55,13 +55,19 @@ jobs:
             image: ubuntu
             lable: "25.04"
             os: ubuntu-24.04
-            BUILD_VERBOSE: OFF
           - PACKAGE: appimage
             image: ubuntu
             lable: "25.04"
             os: ubuntu-24.04-arm
-            BUILD_VERBOSE: OFF
 
+          - PACKAGE: rpm
+            image: fedora
+            lable: "43"
+            os: ubuntu-24.04
+          - PACKAGE: rpm
+            image: fedora
+            lable: "43"
+            os: ubuntu-24.04-arm
           - PACKAGE: rpm
             image: fedora
             lable: "42"
@@ -69,6 +75,14 @@ jobs:
           - PACKAGE: rpm
             image: fedora
             lable: "42"
+            os: ubuntu-24.04-arm
+          - PACKAGE: rpm
+            image: fedora
+            lable: "41"
+            os: ubuntu-24.04
+          - PACKAGE: rpm
+            image: fedora
+            lable: "41"
             os: ubuntu-24.04-arm
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
