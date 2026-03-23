@@ -1135,6 +1135,7 @@ BOOL CBackendFreeRDP::cb_authenticate_ex(freerdp* instance,
 
     if(!username || !password || !domain) return FALSE;
 
+    return cb_authenticate(instance, username, password, domain);
     rdpContext* pContext = (rdpContext*)instance->context;
 #ifdef Q_OS_WINDOWS
     BOOL fSave;
