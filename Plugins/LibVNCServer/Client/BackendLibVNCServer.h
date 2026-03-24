@@ -69,6 +69,8 @@ private:
 #ifdef HAVE_LIBSSH
     CSSHTunnelThread* m_pThread;
 #endif
+
+    CSecurityLevel::Levels m_SecurityLevel;
 };
 
 #endif // CCONNECTLIBVNC_H

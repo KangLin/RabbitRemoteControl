@@ -49,6 +49,7 @@ CBackendLibVNCServer::CBackendLibVNCServer(COperateLibVNCServer *pOperate)
 #ifdef HAVE_LIBSSH
     ,m_pThread(nullptr)
 #endif
+    , m_SecurityLevel(CSecurityLevel::Level::Risk)
 {
     rfbClientLog = rfbQtClientLog;
 
@@ -184,6 +185,7 @@ CBackendLibVNCServer::OnInitReturnValue CBackendLibVNCServer::OnInit()
         emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
         emit sigServerName(m_pClient->desktopName);
         emit sigInformation(szInfo);
+        emit sigSecurityLevel(m_SecurityLevel);
         emit sigRunning();
         return OnInitReturnValue::UseOnProcess;
     }
@@ -462,6 +464,8 @@ char* CBackendLibVNCServer::cb_get_password(rfbClient *client)
             szPassword = net->m_User.GetPassword();
         }
     }
+    if(!szPassword.isEmpty())
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Authentication;
     return strdup(szPassword.toStdString().c_str());
 }
 
@@ -966,6 +970,7 @@ void CBackendLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
+    emit sigSecurityLevel(m_SecurityLevel |= CSecurityLevel::Level::Proxy);
     emit sigRunning();
 }
 

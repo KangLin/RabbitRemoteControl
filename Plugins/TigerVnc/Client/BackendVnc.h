@@ -102,6 +102,7 @@ private:
     int IceInit();
     int SSHInit();
 
+    CSecurityLevel::Levels m_SecurityLevel;
 };
 
 #endif // CCONNECTVNC_H

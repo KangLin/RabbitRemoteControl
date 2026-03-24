@@ -95,8 +95,9 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 static const unsigned bpsEstimateWindow = 1000;
 
 CBackendVnc::CBackendVnc(COperateDesktop *pConnecter)
-    : CBackendDesktop(pConnecter),
-      m_pPara(nullptr)
+    : CBackendDesktop(pConnecter)
+    , m_pPara(nullptr)
+    , m_SecurityLevel(CSecurityLevel::Level::Risk)
 {
     static bool initlog = false;
     if(!initlog)
@@ -394,6 +395,7 @@ int CBackendVnc::SSHInit()
         emit sigShowMessageBox(tr("Error"), szMsg, QMessageBox::Critical);
         return -2;
     }
+    m_SecurityLevel = CSecurityLevel::Level::Proxy;
 #endif
     return 0;
 }
@@ -603,6 +605,7 @@ void CBackendVnc::initDone()
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
     updatePixelFormat();
 
+    emit sigSecurityLevel(m_SecurityLevel);
     emit sigRunning();
 }
 
@@ -690,6 +693,8 @@ void CBackendVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
                 *password = user.GetPassword().toStdString();
             }
         }
+        if(!password->empty())
+            m_SecurityLevel |= CSecurityLevel::Level::Authentication;
     }
 }
 
