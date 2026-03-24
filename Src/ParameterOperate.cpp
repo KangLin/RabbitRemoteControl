@@ -4,6 +4,7 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 
+#include "RabbitCommonDir.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
 #include "DlgInputPassword.h"
@@ -92,8 +93,20 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
     std::string key;
     if(GetGlobalParameters())
         key = GetGlobalParameters()->GetEncryptKey().toStdString();
-    if(!key.empty())
+    if(key.empty()) {
+        // Load readom password from config file
+        QSettings s(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+        QByteArray baRandom = s.value("Plugin/Password/Random").toByteArray();
+        QString szRandom;
+        if(!baRandom.isEmpty()) {
+            RabbitCommon::CEncrypt eRandom;
+            eRandom.Dencode(baRandom, szRandom);
+        }
+        if(!szRandom.isEmpty())
+            e.SetPassword(szRandom.toStdString().c_str());
+    } else {
         e.SetPassword(key.c_str());
+    }
     
     if(!e.Dencode(pwByte, password)
         && PasswordSum(password.toStdString(), key) == sum)
@@ -134,6 +147,7 @@ int CParameterOperate::SavePassword(const QString &szKey,
 {
     if(!bSave)
     {
+        // Not save. then delete field from configure
         set.remove(szKey);
         set.remove(szKey + "_sum");
         return 0;
@@ -167,8 +181,26 @@ int CParameterOperate::SavePassword(const QString &szKey,
             }
         }
     }
-    if(!key.empty())
+    if(key.empty()) {
+        // Use random password
+        QSettings s(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+        QByteArray baRandom = s.value("Plugin/Password/Random").toByteArray();
+        QString szRandom;
+        if(baRandom.isEmpty()) {
+            // Generate a random password of a specified length
+            szRandom = RabbitCommon::CPasswordGenerator::GeneratePassword().c_str();
+            RabbitCommon::CEncrypt eRandom;
+            QByteArray baRandom;
+            eRandom.Encode(szRandom, baRandom);
+            s.setValue("Plugin/Password/Random", baRandom);
+        } else {
+            RabbitCommon::CEncrypt eRandom;
+            eRandom.Dencode(baRandom, szRandom);
+        }
+        e.SetPassword(szRandom.toStdString().c_str());
+    } else {
         e.SetPassword(key.c_str());
+    }
     if(password.isEmpty())
         return 0;
     e.Encode(password, encryptPassword);
