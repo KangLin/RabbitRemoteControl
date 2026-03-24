@@ -67,39 +67,48 @@ protected:
  */
 class PLUGIN_EXPORT CSecurityLevel : QObject {
     Q_OBJECT
+
 public:
     enum Level {
-        No = -1,                  // No the function
-
+        No = 0x8000,              // No the function
+        Risk = 0x00,
         Authentication = 0x01,
-        SecureChannel = 0x02,     // Channel is secure.
+        SecureChannel = 0x02,
         Proxy = 0x04,
+        Gateway = 0x08,
+        Redirect = 0x010,
 
-        Secure = 0x03,            // Green
-        Normal = 0x04,            // Yellow
-        Risky = 0x00,             // Red
+        SecureMask = Authentication | SecureChannel,   // Green
+        NormalMask = Proxy | Gateway | Redirect,       // Yellow
+        RiskyMask = ~SecureMask                        // Red
     };
+    Q_ENUM(Level)
+    Q_DECLARE_FLAGS(Levels, Level)
+    Q_FLAG(Levels)
 
-    CSecurityLevel(Level = Level::No, QObject* parent = nullptr);
+    CSecurityLevel(Levels level = Level::No, QObject* parent = nullptr);
     ~CSecurityLevel();
 
-    [[nodiscard]] virtual Level GetLevel() const;
+    [[nodiscard]] virtual Levels GetLevel() const;
     [[nodiscard]] virtual QString GetString() const;
     [[nodiscard]] virtual QColor GetColor() const;
     [[nodiscard]] virtual QString GetUnicodeIcon() const;
     [[nodiscard]] virtual QIcon GetIcon() const;
-    [[nodiscard]] static QString GetString(Level level);
-    [[nodiscard]] static QString GetUnicodeIcon(Level level);
-    [[nodiscard]] static QIcon GetIcon(Level level);
-    [[nodiscard]] static QColor GetColor(Level level);
+    [[nodiscard]] static QString GetString(const Levels &level);
+    [[nodiscard]] static QString GetUnicodeIcon(const Levels &level);
+    [[nodiscard]] static QIcon GetIcon(const Levels &level);
+    [[nodiscard]] static QColor GetColor(const Levels &level);
 
 Q_SIGNALS:
     /*!
      * \~chinese 当安全级别改变时触发
      * \~english Triggered when the security level changes
      */
-    void sigSecurityLevel(Level level);
+    void sigSecurityLevel(Levels level);
 
 private:
-    Level m_Level;
+    Levels m_Level;
 };
+
+// 在类外部声明操作符（通常放在头文件末尾）
+Q_DECLARE_OPERATORS_FOR_FLAGS(CSecurityLevel::Levels)

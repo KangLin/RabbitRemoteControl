@@ -1041,7 +1041,7 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
     });
     Q_ASSERT(check);
     check = connect(pOperate, &COperate::sigSecurityLevel,
-                    this, [this, pOperate](CSecurityLevel::Level level) {
+                    this, [this, pOperate]() {
         if(m_pView && pOperate) {
             if(m_pView->GetCurrentView() == pOperate->GetViewer())
                 slotCurrentViewChanged(pOperate->GetViewer());

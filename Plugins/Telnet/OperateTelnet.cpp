@@ -46,7 +46,7 @@ int COperateTelnet::Start()
 
     slotUpdateParameter(this);
 
-    slotSetSecurityLevel(CSecurityLevel::Level::Risky);
+    slotSetSecurityLevel(CSecurityLevel::Level::Risk);
 
     bool check = false;
     check = connect(&m_Telnet, &QTelnet::stateChanged,
@@ -169,7 +169,7 @@ const QString COperateTelnet::Name()
     if(m_Parameters.GetGlobalParameters()
         && (m_Parameters.GetGlobalParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
-        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())
         szSecurityLevel = sl.GetUnicodeIcon().left(2);
 
@@ -200,7 +200,7 @@ const QString COperateTelnet::Description()
                          + ":" + QString::number(net.GetPort()) + "\n";
 
     CSecurityLevel sl(GetSecurityLevel());
-    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+    if(!(GetSecurityLevel() & CSecurityLevel::Level::No)) {
         szDescription += tr("Security level: ");
         if(!sl.GetUnicodeIcon().isEmpty())
             szDescription += sl.GetUnicodeIcon() + " ";

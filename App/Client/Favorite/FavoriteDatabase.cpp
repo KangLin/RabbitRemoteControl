@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <stdexcept>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>

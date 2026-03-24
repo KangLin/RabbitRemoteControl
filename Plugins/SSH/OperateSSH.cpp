@@ -100,7 +100,7 @@ const QString COperateSSH::Name()
     CSecurityLevel sl(GetSecurityLevel());
     if((GetParameter()->GetGlobalParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
-        && GetSecurityLevel() != CSecurityLevel::Level::No
+        && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())
         szSecurityLevel = sl.GetUnicodeIcon().left(2);
 
@@ -131,7 +131,7 @@ const QString COperateSSH::Description()
                          + ":" + QString::number(sshNet.GetPort()) + "\n";
 
     CSecurityLevel sl(GetSecurityLevel());
-    if(GetSecurityLevel() != CSecurityLevel::Level::No) {
+    if(!(GetSecurityLevel() & CSecurityLevel::Level::No)) {
         szDescription += tr("Security level: ");
         if(!sl.GetUnicodeIcon().isEmpty())
             szDescription += sl.GetUnicodeIcon() + " ";

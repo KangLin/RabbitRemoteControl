@@ -36,7 +36,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
     m_Sockets.clear();
     emit sigConnectCount(m_nTotal, m_Sockets.size(), m_nDisconnect);
 
-    CSecurityLevel::Level securityLevel = CSecurityLevel::Level::Risky;
+    CSecurityLevel::Levels securityLevel;
     QString szUser;
     QString szPassword;
     auto &net = m_Para->m_Net;
@@ -45,7 +45,7 @@ CBackend::OnInitReturnValue CBackendFtpServer::OnInit()
         szUser = user.GetUser();
         szPassword = user.GetPassword();
         if(!szPassword.isEmpty())
-            securityLevel = CSecurityLevel::Level::Authentication;
+            securityLevel |= CSecurityLevel::Level::Authentication;
     }
 
     m_pServer = new CFtpServer(this, m_Para->GetRoot(), net.GetPort(),

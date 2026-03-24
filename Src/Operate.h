@@ -395,7 +395,7 @@ public:
      * \return
      * \see CSecurityLevel
      */
-    [[nodiscard]] virtual CSecurityLevel::Level GetSecurityLevel() const;
+    [[nodiscard]] virtual CSecurityLevel::Levels GetSecurityLevel() const;
 Q_SIGNALS:
     /*!
      * \~chinese 当安全级别改变时触发。其派生类不要直接触发，需要使用 slotSetSecurityLevel 触发
@@ -403,11 +403,11 @@ Q_SIGNALS:
      *           Its derived classes should not be triggered directly;
      *           they need to be triggered using slotSetSecurityLevel.
      */
-    void sigSecurityLevel(CSecurityLevel::Level level);
+    void sigSecurityLevel();
 protected Q_SLOTS:
-    void slotSetSecurityLevel(CSecurityLevel::Level level);
+    void slotSetSecurityLevel(CSecurityLevel::Levels level);
 private:
-    CSecurityLevel::Level m_SecurityLevel;
+    CSecurityLevel::Levels m_SecurityLevel;
     //!@}
 
 protected Q_SLOTS:

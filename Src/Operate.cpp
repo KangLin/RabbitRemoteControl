@@ -126,17 +126,17 @@ CStats *COperate::GetStats()
     return nullptr;
 }
 
-CSecurityLevel::Level COperate::GetSecurityLevel() const
+CSecurityLevel::Levels COperate::GetSecurityLevel() const
 {
     return m_SecurityLevel;
 }
 
-void COperate::slotSetSecurityLevel(CSecurityLevel::Level level)
+void COperate::slotSetSecurityLevel(CSecurityLevel::Levels level)
 {
     if(m_SecurityLevel == level)
         return;
     m_SecurityLevel = level;
-    emit sigSecurityLevel(m_SecurityLevel);
+    emit sigSecurityLevel();
     slotUpdateName();
 }
 

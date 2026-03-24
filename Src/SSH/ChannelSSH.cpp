@@ -204,7 +204,7 @@ bool CChannelSSH::open(OpenMode mode)
                               nMeth);
         if(nRet) break;
 
-        emit sigSecurityLevel(CSecurityLevel::Level::Secure);
+        emit sigSecurityLevel(CSecurityLevel::Level::SecureMask);
 
         nRet = OnOpen(m_Session);
         if(nRet) break;

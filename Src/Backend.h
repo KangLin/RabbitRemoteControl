@@ -274,7 +274,7 @@ Q_SIGNALS:
      * \~chinese 当安全级别改变时触发
      * \~english Triggered when the security level changes
      */
-    void sigSecurityLevel(CSecurityLevel::Level level);
+    void sigSecurityLevel(CSecurityLevel::Levels level);
 
 private:
     int SetConnect(COperate* pOperate);

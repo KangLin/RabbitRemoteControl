@@ -1,6 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 #include "Stats.h"
 
+Q_DECLARE_METATYPE(CSecurityLevel::Levels)
+
 CStats::CStats(CParameterOperate *parent, const QString &szPrefix)
     : CParameterOperate{parent}
     , m_tmInterval(1)
@@ -111,7 +113,7 @@ int CStats::OnSave(QSettings &set)
     return 0;
 }
 
-CSecurityLevel::CSecurityLevel(CSecurityLevel::Level level, QObject* parent)
+CSecurityLevel::CSecurityLevel(Levels level, QObject* parent)
     : QObject(parent)
     , m_Level(level)
 {
@@ -120,7 +122,7 @@ CSecurityLevel::CSecurityLevel(CSecurityLevel::Level level, QObject* parent)
 CSecurityLevel::~CSecurityLevel()
 {}
 
-CSecurityLevel::Level CSecurityLevel::GetLevel() const
+CSecurityLevel::Levels CSecurityLevel::GetLevel() const
 {
     return m_Level;
 }
@@ -145,26 +147,51 @@ QIcon CSecurityLevel::GetIcon() const
     return GetIcon(GetLevel());
 }
 
-QString CSecurityLevel::GetString(Level level)
+QString CSecurityLevel::GetString(const Levels &level)
 {
-    if(Level::No == level)
-        return QString();
-    if(Level::Secure == level)
-        return tr("Secure") + ": "
-               + tr("Secure channel") + " + " + tr("Authentication");
-    if(Level::Risky == level)
-        return tr("Risk");
-    if(Level::Secure & level) {
-        QString s = tr("Normal") + ": ";
-        if(Level::SecureChannel & level)
-            s += tr("Secure channel");
-        else if(Level::Authentication & level)
-            s+= tr("Authentication");
-        return s;
+    QString szSecurity;
+    if(Level::SecureChannel & level) {
+        if(!szSecurity.isEmpty())
+            szSecurity += " + ";
+        szSecurity += tr("Secure channel");
     }
-    if(Level::Normal & level)
-        return tr("Normal");
-    return QString();
+    if(Level::Authentication & level) {
+        if(!szSecurity.isEmpty())
+            szSecurity += " + ";
+        szSecurity += tr("Authentication");
+    }
+    QString szNormal;
+    if(Level::Proxy & level) {
+        if(!szNormal.isEmpty())
+            szNormal += " + ";
+        szNormal += tr("Proxy");
+    }
+    if(Level::Gateway & level) {
+        if(!szNormal.isEmpty())
+            szNormal += " + ";
+        szNormal += tr("Gateway");
+    }
+    if(Level::Redirect & level) {
+        if(!szNormal.isEmpty())
+            szNormal += " + ";
+        szNormal += tr("Redirect");
+    }
+
+    if(level & Level::No)
+        return QString();
+    
+    if(level == Level::SecureMask)
+        return tr("Secure") + ": " + szSecurity;
+    if(Level::SecureMask & level) {
+        QString szMsg = tr("Normal") + ": " + szSecurity;
+        if(!szNormal.isEmpty()) {
+            if(!szSecurity.isEmpty())
+                szMsg += " + ";
+            szMsg += szNormal;
+        }
+        return szMsg;
+    }
+    return tr("Risk");
 }
 
 /*!
@@ -184,15 +211,13 @@ QString CSecurityLevel::GetString(Level level)
  * | 🟡 | `U+1F7E1` | 黄圈 | 注意、谨慎 |
  * | 🟢 | `U+1F7E2` | 绿圈 | 安全 |
  */
-QString CSecurityLevel::GetUnicodeIcon(Level level)
+QString CSecurityLevel::GetUnicodeIcon(const Levels &level)
 {
-    if(Level::No == level)
+    if(Level::No & level)
         return QString();
-    if(Level::Secure == level)
+    if(level == Level::SecureMask)
         return "🟢🛡🔐";
-    if(Level::Risky == level)
-        return "🔴";
-    if(Level::Secure & level || Level::Normal & level) {
+    if(Level::SecureMask & level) {
         QString s = "🟡";
         if(Level::SecureChannel & level)
             s += "🛡";
@@ -200,35 +225,27 @@ QString CSecurityLevel::GetUnicodeIcon(Level level)
             s+= "🔐";
         return s;
     }
-    return QString();
+    return "🔴";
 }
 
-QColor CSecurityLevel::GetColor(Level level)
+QColor CSecurityLevel::GetColor(const Levels &level)
 {
-    if(Level::No == level)
+    if(Level::No & level)
         return QColor();
-    if(Level::Secure == level)
+    if(level == Level::SecureMask)
         return Qt::GlobalColor::green;
-    if(Level::Risky == level)
-        return Qt::GlobalColor::red;
-    if(Level::Secure & level)
+    if(Level::SecureMask & level)
         return Qt::GlobalColor::yellow;
-    if(Level::Normal & level)
-        return Qt::GlobalColor::yellow;
-    return QColor();
+    return Qt::GlobalColor::red;
 }
 
-QIcon CSecurityLevel::GetIcon(Level level)
+QIcon CSecurityLevel::GetIcon(const Levels &level)
 {
-    if(Level::No == level)
+    if(Level::No & level)
         return QIcon();
-    if(Level::Secure == level)
+    if(level == Level::SecureMask)
         return QIcon::fromTheme("lock");
-    if(Level::Risky == level)
-        return QIcon::fromTheme("unlock");
-    if(Level::Secure & level)
+    if(Level::SecureMask & level)
         return QIcon::fromTheme("dialog-warning");
-    if(Level::Normal & level)
-        return QIcon::fromTheme("dialog-warning");
-    return QIcon();
+    return QIcon::fromTheme("unlock");
 }

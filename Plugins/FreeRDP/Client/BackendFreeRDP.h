@@ -191,7 +191,8 @@ private:
     int CleanSSHTunnelPipe();
     CSSHTunnelThread* m_pThreadSSH;
 #endif // HAVE_LIBSSH
-
+    
+    CSecurityLevel::Levels m_SecurityLevel;
 private Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
 };

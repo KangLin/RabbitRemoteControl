@@ -165,10 +165,12 @@ CBackendFreeRDP::OnInitReturnValue CBackendFreeRDP::OnInit()
         freerdp_settings_set_string(
             settings, FreeRDP_Username,
             user.GetUser().toStdString().c_str());
-    if(!user.GetPassword().isEmpty())
+    if(!user.GetPassword().isEmpty()) {
         freerdp_settings_set_string(
             settings, FreeRDP_Password,
             user.GetPassword().toStdString().c_str());
+        m_SecurityLevel |= CSecurityLevel::Level::Authentication;
+    }
 
     freerdp_settings_set_bool(
         settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
@@ -586,6 +588,7 @@ int CBackendFreeRDP::cbClientStart(rdpContext *context)
         QString szInfo = tr("Connected to ") + szServer;
         qInfo(log) << szInfo;
         emit pThis->sigInformation(szInfo);
+        emit pThis->sigSecurityLevel(pThis->m_SecurityLevel);
     } else {
         //DWORD dwErrCode = freerdp_error_info(instance);
         UINT32 nRet = freerdp_get_last_error(context);
@@ -1544,8 +1547,10 @@ BOOL CBackendFreeRDP::cb_authenticate(freerdp* instance, char** username,
             *domain = _strdup(szDomain.toStdString().c_str());
         if(!szName.isEmpty() && username)
             *username = _strdup(szName.toStdString().c_str());
-        if(password)
+        if(password) {
             *password = _strdup(szPassword.toStdString().c_str());
+            pThis->m_SecurityLevel |= CSecurityLevel::Level::Authentication;
+        }
     } else
         return FALSE;
 
@@ -1575,8 +1580,11 @@ BOOL CBackendFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
             *domain = _strdup(szDomain.toStdString().c_str());
         if(!szName.isEmpty() && username)
             *username = _strdup(szName.toStdString().c_str());
-        if(password)
+        if(password) {
             *password = _strdup(szPassword.toStdString().c_str());
+            pThis->m_SecurityLevel |= CSecurityLevel::Level::Authentication;
+        }
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Gateway;
     } else
         return FALSE;
 
@@ -1675,6 +1683,13 @@ DWORD CBackendFreeRDP::cb_verify_certificate_ex(freerdp *instance,
         //pThis->m_pParameter->SetServerName(common_name);
         emit pThis->sigServerName(common_name);
     }
+    
+    // Set security level
+    pThis->m_SecurityLevel |= CSecurityLevel::Level::SecureChannel;
+    if (flags & VERIFY_CERT_FLAG_GATEWAY)
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Gateway;
+    if (flags & VERIFY_CERT_FLAG_REDIRECT)
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Redirect;
 
     if(!pThis->m_pParameter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept
@@ -1695,8 +1710,9 @@ DWORD CBackendFreeRDP::cb_verify_certificate_ex(freerdp *instance,
 #endif
 
     QString szType = tr("RDP-Server");
-    if (flags & VERIFY_CERT_FLAG_GATEWAY)
+    if (flags & VERIFY_CERT_FLAG_GATEWAY) {
         szType = tr("RDP-Gateway");
+    }
     if (flags & VERIFY_CERT_FLAG_REDIRECT)
         szType = tr("RDP-Redirect");
 
@@ -1781,6 +1797,13 @@ DWORD CBackendFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     if(common_name)
         emit pThis->sigServerName(common_name);
 
+    // Set security level
+    pThis->m_SecurityLevel |= CSecurityLevel::Level::SecureChannel;
+    if (flags & VERIFY_CERT_FLAG_GATEWAY)
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Gateway;
+    if (flags & VERIFY_CERT_FLAG_REDIRECT)
+        pThis->m_SecurityLevel |= CSecurityLevel::Level::Redirect;
+    
     if(!pThis->m_pParameter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */
