@@ -9,7 +9,7 @@
 
 #### Qt Creator
 
-版本：v18.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v19.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -34,7 +34,7 @@
   运行 Qt 需要
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.9.3
+    当前使用版本：Qt 6.10.3
     - 则需要设置环境变量（或者 CMAKE 参数）： QT_ROOT、Qt6_DIR 或者 Qt6_DIR
       - 环境变量
 
@@ -56,7 +56,7 @@
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
-  版本: 3.27.0
+  版本: 3.31.5
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 - vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)

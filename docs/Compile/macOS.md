@@ -9,7 +9,7 @@ Author: Eduardo Mozart de Oliveira <eduardomozart182@gmail.com>
 
 #### Qt Creator
 
-Version: v18.0.0 (ARM64) 
+Version: v19.0.0 (ARM64) 
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -62,7 +62,7 @@ GNU getopt needs to be installed.
 
 #### CMake: [https://cmake.org](https://cmake.org/)
 
-  Version: Greater than 3.27.0
+  Version: Greater than 3.31.5
 
     ~$ brew install cmake
 
@@ -75,7 +75,7 @@ GNU getopt needs to be installed.
 
 #### Qt: [https://download.qt.io/official_releases/qt/](https://download.qt.io/official_releases/qt/)
   - Qt (official release)
-    Current version: Qt 6.9.3
+    Current version: Qt 6.10.3
 
         ~$ brew install qt
 

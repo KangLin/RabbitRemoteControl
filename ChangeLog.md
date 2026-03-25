@@ -38,6 +38,9 @@
     - Player
       - Add display subtitle
     - Add web browser
+  - Plugin interface
+    - Add stats
+    - Add security level
 
 - Add activity menu
 - [Add input method in freerdp](https://github.com/KangLin/RabbitRemoteControl/issues/48)

@@ -37,6 +37,9 @@
     - 播放器
       - 增加显示字幕
     - 增加网页浏览器
+  - 插件接口
+    - 增加统计信息
+    - 增加安全级别
 
 - 增加活动菜单
 - [为 FreeRDP 增加输入法](https://github.com/KangLin/RabbitRemoteControl/issues/48)

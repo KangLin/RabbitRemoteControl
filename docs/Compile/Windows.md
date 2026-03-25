@@ -10,7 +10,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 
 #### QtCreator
 
-Version: v18.0.0
+Version: v19.0.0
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -37,7 +37,7 @@ Prior versions don't have CMake support.
   Required to run Qt.
 - Qt
   - Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 6.9.3
+    Current version: Qt 6.10.3
     - Set environment variable or cmake parameters: QT_ROOT, Qt6_DIR or Qt6_DIR
       - Environment variable
 
@@ -59,7 +59,7 @@ Prior versions don't have CMake support.
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 - CMake: [https://www.cmake.org/](https://cmake.org/)
-  Version: 3.27.0
+  Version: 3.31.5
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 - vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)

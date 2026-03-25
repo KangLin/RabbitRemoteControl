@@ -16,20 +16,20 @@
 
 - 编译器
   - [Android SDK](https://developer.android.google.cn/studio?hl=zh-cn)
-    - 当前版本: 9.0
+    - 当前版本: 34
   - [Android NDK](https://developer.android.google.cn/ndk/downloads?hl=en)
-    - 当前版本：20.0.5594570
+    - 当前版本：27.3.13750724
   - [Java](https://www.java.com/zh-CN/)
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.9.3
+    当前使用版本：Qt 6.10.3
     详见： https://doc.qt.io/qt-6/android.html
   - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
-    当前使用版本：18.0.0
+    当前使用版本：19.0.0
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
-  版本: 3.27.0
+  版本: 3.31.5
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - [ninja](https://ninja-build.org/)
 - vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
