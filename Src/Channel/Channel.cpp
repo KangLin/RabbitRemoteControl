@@ -45,6 +45,8 @@ qint64 CChannel::readData(char *data, qint64 maxlen)
     nRet = m_pSocket->read(data, maxlen);
     if(nRet < 0)
         setErrorString(m_pSocket->errorString());
+    else
+        emit sigReceive(nRet);
     return nRet;
 }
 
@@ -66,6 +68,8 @@ qint64 CChannel::writeData(const char *data, qint64 len)
     nRet = m_pSocket->write(data, len);
     if(nRet < 0)
         setErrorString(m_pSocket->errorString());
+    else
+        emit sigSend(nRet);
     return nRet;
 }
 

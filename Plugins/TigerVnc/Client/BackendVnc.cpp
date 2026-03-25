@@ -94,8 +94,9 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
-CBackendVnc::CBackendVnc(COperateDesktop *pConnecter)
-    : CBackendDesktop(pConnecter)
+CBackendVnc::CBackendVnc(COperateDesktop *pOperate)
+    : CBackendDesktop(pOperate)
+    , m_pOperate(pOperate)
     , m_pPara(nullptr)
     , m_SecurityLevel(CSecurityLevel::Level::Risk)
 {
@@ -114,7 +115,7 @@ CBackendVnc::CBackendVnc(COperateDesktop *pConnecter)
         */
         initlog = true;
     }
-    m_pPara = dynamic_cast<CParameterVnc*>(pConnecter->GetParameter());
+    m_pPara = dynamic_cast<CParameterVnc*>(pOperate->GetParameter());
     Q_ASSERT(m_pPara);
 
     if(!m_pPara->GetLocalCursor())
@@ -415,6 +416,14 @@ int CBackendVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotChannelError(int, const QString&)));
     Q_ASSERT(check);
+    if(m_pOperate && m_pOperate->GetStats()) {
+        check = connect(channel.data(), SIGNAL(sigReceive(quint64)),
+                        m_pOperate->GetStats(), SLOT(AddReceives(quint64)));
+        Q_ASSERT(check);
+        check = connect(channel.data(), SIGNAL(sigSend(quint64)),
+                        m_pOperate->GetStats(), SLOT(AddSends(quint64)));
+        Q_ASSERT(check);
+    }
     return 0;
 }
 

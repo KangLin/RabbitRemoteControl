@@ -21,8 +21,6 @@ public:
     QString TotalReceives();
     quint64 GetTotalSends();
     quint64 GetTotalReceives();
-    virtual void AddSends(quint64 size);
-    virtual void AddReceives(quint64 size);
 
     QString SendRate();
     QString ReceiveRate();
@@ -55,6 +53,8 @@ public Q_SLOTS:
      * \brief Calculating
      */
     virtual void slotCalculating();
+    virtual void AddSends(quint64 size);
+    virtual void AddReceives(quint64 size);
 
 private:
     QAtomicInteger<quint64> m_TotalSends;

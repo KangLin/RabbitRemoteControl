@@ -27,7 +27,7 @@ class CBackendVnc
     Q_OBJECT
 
 public:
-    explicit CBackendVnc(COperateDesktop* pConnecter);
+    explicit CBackendVnc(COperateDesktop* pOperate);
     virtual ~CBackendVnc() override;
 
 public Q_SLOTS:
@@ -91,6 +91,7 @@ private:
     QString ConnectInformation();
 
 private:
+    COperateDesktop* m_pOperate;
     CParameterVnc* m_pPara;
     int SetPara();
     void autoSelectFormatAndEncoding();

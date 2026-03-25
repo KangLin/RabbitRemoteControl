@@ -4,6 +4,7 @@
 
 #include "OperateDesktop.h"
 #include "ParameterVnc.h"
+#include "Stats.h"
 
 class COperateVnc : public COperateDesktop
 {
@@ -16,6 +17,8 @@ public:
     virtual const QString Id() override;
     virtual const qint16 Version() const override;
 
+    virtual CStats *GetStats() override;
+
 protected:
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) override;
     virtual CBackend* InstanceBackend() override;
@@ -27,5 +30,6 @@ private:
 
 private:
     CParameterVnc m_Para;
+    CStats m_Stats;
 };
 

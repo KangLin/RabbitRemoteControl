@@ -43,6 +43,11 @@ const qint16 COperateVnc::Version() const
     return 0;
 }
 
+CStats *COperateVnc::GetStats()
+{
+    return &m_Stats;
+}
+
 QString COperateVnc::ServerName()
 {
     if(GetParameter())

@@ -272,6 +272,9 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
         return nRet;
     }
 
+    if(nRet)
+        emit sigReceive(nRet);
+
     return nRet;
 }
 
@@ -311,6 +314,9 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
         setErrorString(szErr);
         return -2;
     }
+
+    if(nRet)
+        emit sigSend(nRet);
 
     return nRet;
 }

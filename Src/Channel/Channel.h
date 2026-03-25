@@ -63,11 +63,22 @@ Q_SIGNALS:
     void sigDisconnected();
     //! emit when the channel is error
     void sigError(int nErr, const QString& szErr);
+
     /*!
      * \~chinese 当安全级别改变时触发
      * \~english Triggered when the security level changes
      */
     void sigSecurityLevel(CSecurityLevel::Levels level);
+    /*!
+     * \brief Send data counts
+     * \param counts
+     */
+    void sigSend(quint64 counts);
+    /*!
+     * \brief Receive data counts
+     * \param counts
+     */
+    void sigReceive(quint64 counts);
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);
