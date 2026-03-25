@@ -4,47 +4,47 @@
 <context>
     <name>CBackendVnc</name>
     <message>
-        <location filename="../../BackendVnc.cpp" line="317"/>
+        <location filename="../../BackendVnc.cpp" line="320"/>
         <source>The proxy server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="319"/>
-        <location filename="../../BackendVnc.cpp" line="351"/>
-        <location filename="../../BackendVnc.cpp" line="393"/>
-        <location filename="../../BackendVnc.cpp" line="542"/>
-        <location filename="../../BackendVnc.cpp" line="557"/>
+        <location filename="../../BackendVnc.cpp" line="322"/>
+        <location filename="../../BackendVnc.cpp" line="354"/>
+        <location filename="../../BackendVnc.cpp" line="396"/>
+        <location filename="../../BackendVnc.cpp" line="554"/>
+        <location filename="../../BackendVnc.cpp" line="569"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="349"/>
+        <location filename="../../BackendVnc.cpp" line="352"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="384"/>
+        <location filename="../../BackendVnc.cpp" line="387"/>
         <source>Failed to open SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="536"/>
+        <location filename="../../BackendVnc.cpp" line="548"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="540"/>
-        <location filename="../../BackendVnc.cpp" line="553"/>
+        <location filename="../../BackendVnc.cpp" line="552"/>
+        <location filename="../../BackendVnc.cpp" line="565"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="541"/>
+        <location filename="../../BackendVnc.cpp" line="553"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendVnc.cpp" line="549"/>
+        <location filename="../../BackendVnc.cpp" line="561"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,7 +323,7 @@
 <context>
     <name>S:</name>
     <message>
-        <location filename="../../BackendVnc.cpp" line="951"/>
+        <location filename="../../BackendVnc.cpp" line="966"/>
         <source></source>
         <comment>Will be filled in with a string describing the</comment>
         <translation></translation>

@@ -190,7 +190,7 @@
     </message>
     <message>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
         <translation>通道已结束</translation>
     </message>
@@ -700,7 +700,7 @@ Some features are limited.
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
         <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
@@ -897,114 +897,114 @@ Some features are limited.
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="209"/>
         <source>Enable use the system user as the user</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="199"/>
         <source>Store password with system credential manager</source>
         <translation>使用系统凭据管理器存储密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="101"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="29"/>
         <source>Desktop shortcuts script</source>
         <translation>桌面快捷键脚本</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="115"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
         <source>Disable script:</source>
         <translation>禁用脚本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="53"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
         <source>Browser</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
         <source>Restore script:</source>
         <translation>恢复脚本：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="216"/>
         <source>Enable local input method</source>
         <translation>允话本地输入法</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="134"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密密钥用于加密保存的密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="92"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Capture all keyboard</source>
         <translation>捕获所有按键</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="223"/>
         <source>Operate Name</source>
         <translation>操作名称</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="229"/>
         <source>Show protocol</source>
         <translation>显示协议</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="236"/>
         <source>Show server name</source>
         <translation>显示服务名</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
         <source>Show Security Level</source>
         <translation>显示安全级别</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
         <source>Encrypt key:</source>
         <translation>加密密钥：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="173"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="161"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="110"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
         <source>Enable save password</source>
         <translation>允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="176"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
@@ -1829,59 +1829,71 @@ Some features are limited.
 <context>
     <name>CSecurityLevel</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="153"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="193"/>
         <source>Secure</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="156"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="203"/>
         <source>Risk</source>
         <translation>危险</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="158"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="166"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="195"/>
         <source>Normal</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="160"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="165"/>
         <source>Secure channel</source>
         <translation>安全通道</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="162"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="170"/>
         <source>Authentication</source>
         <translation>认证</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="176"/>
+        <source>Proxy</source>
+        <translation>代理</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="181"/>
+        <source>Gateway</source>
+        <translation>网关</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="186"/>
+        <source>Redirect</source>
+        <translation>重定向</translation>
     </message>
 </context>
 <context>
     <name>CStats</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
         <source>KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
         <source>MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="26"/>
         <source>GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="60"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="65"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="66"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="71"/>
         <source>S</source>
         <translation></translation>
     </message>

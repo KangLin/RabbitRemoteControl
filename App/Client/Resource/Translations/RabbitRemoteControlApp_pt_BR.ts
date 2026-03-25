@@ -4,7 +4,7 @@
 <context>
     <name>CFavoriteDatabase</name>
     <message>
-        <location filename="../../Favorite/FavoriteDatabase.cpp" line="456"/>
+        <location filename="../../Favorite/FavoriteDatabase.cpp" line="457"/>
         <source>The file format is error. Json without &quot;favorite&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -997,7 +997,7 @@ File: %1</source>
     <message>
         <location filename="../../mainwindow.ui" line="563"/>
         <location filename="../../mainwindow.ui" line="566"/>
-        <location filename="../../mainwindow.cpp" line="818"/>
+        <location filename="../../mainwindow.cpp" line="819"/>
         <source>Stop other</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1118,8 +1118,8 @@ File: %1</source>
         <translation>Sair do modo de tela cheia</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="954"/>
-        <location filename="../../mainwindow.cpp" line="973"/>
+        <location filename="../../mainwindow.cpp" line="955"/>
+        <location filename="../../mainwindow.cpp" line="974"/>
         <source>Load file fail: </source>
         <translation>Falha no carregamento do arquivo: </translation>
     </message>
@@ -1128,7 +1128,7 @@ File: %1</source>
         <location filename="../../mainwindow.ui" line="296"/>
         <location filename="../../mainwindow.ui" line="299"/>
         <location filename="../../mainwindow.ui" line="302"/>
-        <location filename="../../mainwindow.cpp" line="965"/>
+        <location filename="../../mainwindow.cpp" line="966"/>
         <source>Open rabbit remote control file</source>
         <translation>Abrir arquivo do Rabbit Remote Control</translation>
     </message>
@@ -1240,57 +1240,57 @@ File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="799"/>
+        <location filename="../../mainwindow.cpp" line="798"/>
         <source>Stop other except the current &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="967"/>
+        <location filename="../../mainwindow.cpp" line="968"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>Arquivos do Rabbit Remote Control (*.rrc);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1089"/>
+        <location filename="../../mainwindow.cpp" line="1090"/>
         <source>Starting: </source>
         <translation>Iniciando: </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1165"/>
+        <location filename="../../mainwindow.cpp" line="1166"/>
         <source>Connected to </source>
         <translation>Conectado a </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1299"/>
+        <location filename="../../mainwindow.cpp" line="1300"/>
         <source>ICE signal status: Connected</source>
         <translation>Status de sinal ICE: Conectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1308"/>
+        <location filename="../../mainwindow.cpp" line="1309"/>
         <source>ICE signal status: Disconnected</source>
         <translation>Status de sinal ICE: Desconectado</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1347"/>
+        <location filename="../../mainwindow.cpp" line="1348"/>
         <source>Use message box to display information</source>
         <translation>Usar caixa de mensagem para exibir informações</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1585"/>
+        <location filename="../../mainwindow.cpp" line="1586"/>
         <source>Hide menu bar</source>
         <translation>Ocultar barra de menu</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1586"/>
+        <location filename="../../mainwindow.cpp" line="1587"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>A barra de menus ficará oculta, a barra de ferramentas deve ser mostrada.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1617"/>
+        <location filename="../../mainwindow.cpp" line="1618"/>
         <source>Hide tool bar</source>
         <translation>Ocultar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1618"/>
+        <location filename="../../mainwindow.cpp" line="1619"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>A barra de ferramentas ficará oculta, a barra de menus deve ser mostrada.</translation>
     </message>

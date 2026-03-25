@@ -4,168 +4,168 @@
 <context>
     <name>CBackendFreeRDP</name>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="271"/>
+        <location filename="../../BackendFreeRDP.cpp" line="273"/>
         <source>The server is empty, please input it</source>
         <translation>O servidor está vazio, insira-o</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="273"/>
-        <location filename="../../BackendFreeRDP.cpp" line="647"/>
+        <location filename="../../BackendFreeRDP.cpp" line="275"/>
+        <location filename="../../BackendFreeRDP.cpp" line="650"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="586"/>
+        <location filename="../../BackendFreeRDP.cpp" line="588"/>
         <source>Connected to </source>
         <translation>Conectado a </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="594"/>
+        <location filename="../../BackendFreeRDP.cpp" line="597"/>
         <source>Connect to </source>
         <translation>Conexão a </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="594"/>
+        <location filename="../../BackendFreeRDP.cpp" line="597"/>
         <source> fail.</source>
         <translation> falhou.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="608"/>
-        <location filename="../../BackendFreeRDP.cpp" line="614"/>
-        <location filename="../../BackendFreeRDP.cpp" line="620"/>
-        <location filename="../../BackendFreeRDP.cpp" line="626"/>
+        <location filename="../../BackendFreeRDP.cpp" line="611"/>
+        <location filename="../../BackendFreeRDP.cpp" line="617"/>
+        <location filename="../../BackendFreeRDP.cpp" line="623"/>
+        <location filename="../../BackendFreeRDP.cpp" line="629"/>
         <source>Logon to </source>
         <translation>Logon em </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="609"/>
+        <location filename="../../BackendFreeRDP.cpp" line="612"/>
         <source> fail. Please check that the username and password are correct.</source>
         <translation> falhou. Verifique se o nome de usuário e a senha estão corretos.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="615"/>
+        <location filename="../../BackendFreeRDP.cpp" line="618"/>
         <source> fail. Please check password are correct.</source>
         <translation> falhou. Verifique se a senha está correta.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="621"/>
+        <location filename="../../BackendFreeRDP.cpp" line="624"/>
         <source> authentication fail. please add a CA certificate to the store.</source>
         <translation> falhou na autenticação. Adicione um certificado CA ao repositório.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="627"/>
+        <location filename="../../BackendFreeRDP.cpp" line="630"/>
         <source> connect transport layer fail.</source>
         <translation> falhou na camada de transporte de conexão.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="628"/>
+        <location filename="../../BackendFreeRDP.cpp" line="631"/>
         <source>Please:</source>
         <translation>Por favor:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="629"/>
+        <location filename="../../BackendFreeRDP.cpp" line="632"/>
         <source>1. Check for any network related issues</source>
         <translation>1. Verifique se há problemas relacionados à rede</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="630"/>
+        <location filename="../../BackendFreeRDP.cpp" line="633"/>
         <source>2. Check you have proper security settings (&apos;NLA&apos; enabled is required for most connections nowadays)</source>
         <translation>2. Verifique se você tem as configurações de segurança adequadas (&apos;NLA&apos; habilitado é necessário para a maioria das conexões hoje em dia)</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="631"/>
-        <location filename="../../BackendFreeRDP.cpp" line="638"/>
+        <location filename="../../BackendFreeRDP.cpp" line="634"/>
+        <location filename="../../BackendFreeRDP.cpp" line="641"/>
         <source>If you do not know the server security settings, contact your server administrator.</source>
         <translation>Se você não souber as configurações de segurança do servidor, entre em contato com o administrador do servidor.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="632"/>
+        <location filename="../../BackendFreeRDP.cpp" line="635"/>
         <source>3. Check the certificate is proper (and guacd properly checks that)</source>
         <translation>3. Verifique se o certificado está correto (e guacd verifica isso corretamente)</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="637"/>
+        <location filename="../../BackendFreeRDP.cpp" line="640"/>
         <source>Please check you have proper security settings.</source>
         <translation>Verifique se você tem as configurações de segurança adequadas.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="641"/>
+        <location filename="../../BackendFreeRDP.cpp" line="644"/>
         <source>The connect was canceled.</source>
         <translation>A conexão foi cancelada.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="846"/>
+        <location filename="../../BackendFreeRDP.cpp" line="849"/>
         <source>Invalid dimensions:</source>
         <translation>Dimensões inválidas:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1000"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1003"/>
         <source>FreeRDP logon info: [</source>
         <translation>Informações de logon do FreeRDP: [</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1309"/>
         <source>Choose</source>
         <translation>Selecionar</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1305"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1309"/>
         <source>Please choose smartcard</source>
         <translation>Por favor, escolha o token/cartão</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1696"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1789"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1712"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1813"/>
         <source>RDP-Server</source>
         <translation>Servidor-RDP</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1698"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1791"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1714"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1815"/>
         <source>RDP-Gateway</source>
         <translation>Gateway-RDP</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1700"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1793"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1717"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1817"/>
         <source>RDP-Redirect</source>
         <translation>RDP-Redirect</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1702"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1719"/>
         <source>Verify certificate</source>
         <translation>Verificar certificado</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1705"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1797"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1722"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1821"/>
         <source>: %1:%2</source>
         <translation>: %1:%2</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1706"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1723"/>
         <source>Common name: </source>
         <translation>Nome Comum: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1707"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1724"/>
         <source>Subject: </source>
         <translation>Emitido Para: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1708"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1725"/>
         <source>Issuer: </source>
         <translation>Emitido Por: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1712"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1729"/>
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>O certificado X.509 acima foi alterado.
 É possível que o servidor tenha alterado seu certificado ou Talvez tenha sido atacado. Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1718"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1735"/>
         <source>The above X.509 certificate could not be verified.
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
@@ -174,83 +174,83 @@ Possivelmente porque você não tem o certificado de autoridade de certificaçã
 Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao armazenamento.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1726"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1815"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1743"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1839"/>
         <source>Yes - trusted</source>
         <translation>Sim - confiável</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1727"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1816"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1744"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1840"/>
         <source>Ignore - temporary trusted</source>
         <translation>Ignorar - temporariamente confiável</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1728"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1817"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1745"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1841"/>
         <source>No - no trusted</source>
         <translation>Não - não confiável</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1734"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1823"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1751"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1847"/>
         <source>Don&apos;t show again</source>
         <translation>Não mostrar novamente</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1795"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1819"/>
         <source>Verify changed certificate</source>
         <translation>Verificar certificado alterado</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1798"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1822"/>
         <source>New Certificate details:</source>
         <translation>Detalhes do Novo Certificado:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1799"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1823"/>
         <source>name: </source>
         <translation>Nome Comum: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1800"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1804"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1824"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1828"/>
         <source>subject: </source>
         <translation>Emitido Para: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1801"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1805"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1825"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1829"/>
         <source>issuer: </source>
         <translation>Emitido Por: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1803"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1827"/>
         <source>Old Certificate details:</source>
         <translation>Detalhes do Certificado Antigo:</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1808"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1832"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>O certificado X.509 acima não pôde ser verificado, possivelmente porque você não possui o certificado da CA em seu repositório de certificados ou porque o certificado expirou. Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao repositório.</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1881"/>
         <source>Consent message</source>
         <translation>Mensagem de consentimento</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1857"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1881"/>
         <source>Service message</source>
         <translation>Mensagem de serviço</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1869"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1893"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
         <translation>Eu entendo e concordo com os termos desta política (S/N)</translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1875"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1899"/>
         <source>Gateway message</source>
         <translation>Mensagem do Gateway</translation>
     </message>
@@ -309,7 +309,7 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
         <translation>OK(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="66"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="69"/>
         <source>Cancel(&amp;C)</source>
         <translation>Cancelar(&amp;C)</translation>
     </message>
@@ -761,18 +761,18 @@ Consulte a documentação do OpenSSL sobre como adicionar uma CA privada ao arma
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1633"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1642"/>
         <source>Valid from: </source>
         <translation>Válido a partir de: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1634"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1643"/>
         <source>Valid to: </source>
         <translation>Válido até: </translation>
     </message>
     <message>
-        <location filename="../../BackendFreeRDP.cpp" line="1635"/>
-        <location filename="../../BackendFreeRDP.cpp" line="1642"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1644"/>
+        <location filename="../../BackendFreeRDP.cpp" line="1651"/>
         <source>Fingerprint: </source>
         <translation>Impressão Digital: </translation>
     </message>

@@ -87,34 +87,28 @@
 <context>
     <name>CBookmarkDatabase</name>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="39"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="40"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="40"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="41"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="41"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="42"/>
         <source>Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="42"/>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="43"/>
         <source>Frequently Used Websites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="386"/>
-        <source>Format error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="387"/>
-        <source>This is not a valid bookmark file format.
-Please select the HTML bookmark file exported from your browser.</source>
+        <location filename="../../Bookmark/BookmarkDatabase.cpp" line="256"/>
+        <source>The file format is error. Json without &quot;browser_bookmark&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -551,28 +545,28 @@ Please select the HTML bookmark file exported from your browser.</source>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="270"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="275"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="341"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="547"/>
         <source>Add bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="107"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="304"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="546"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="548"/>
         <source>Add folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="116"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="537"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="548"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="539"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="550"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="123"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="543"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="550"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="545"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="552"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -653,13 +647,14 @@ Please select the HTML bookmark file exported from your browser.</source>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="425"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="434"/>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="438"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="444"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="445"/>
         <source>Import bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="427"/>
-        <source>HTML(*.html);; All files (*.*)</source>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="455"/>
+        <source>JSON (*.json);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -673,47 +668,48 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="445"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="471"/>
-        <source>Invalid file: %1</source>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="440"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="467"/>
+        <source>Error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Bookmark/FrmBookmark.cpp" line="446"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="472"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="473"/>
+        <source>Invalid file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="447"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="474"/>
         <source>Please use html file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="452"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="461"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="464"/>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="470"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="453"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="465"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="472"/>
         <source>Export bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="454"/>
-        <source>HTML (*.html);; All files (*.*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="462"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="463"/>
         <source>Bookmarks successfully exported to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="465"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="466"/>
         <source>Failed to export bookmark to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="533"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="535"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Bookmark/FrmBookmark.cpp" line="540"/>
+        <location filename="../../Bookmark/FrmBookmark.cpp" line="542"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1477,15 +1473,14 @@ Please select the HTML bookmark file exported from your browser.</source>
         <location filename="../../History/FrmHistory.cpp" line="429"/>
         <location filename="../../History/FrmHistory.cpp" line="439"/>
         <location filename="../../History/FrmHistory.cpp" line="442"/>
-        <location filename="../../History/FrmHistory.cpp" line="451"/>
-        <location filename="../../History/FrmHistory.cpp" line="454"/>
-        <location filename="../../History/FrmHistory.cpp" line="460"/>
+        <location filename="../../History/FrmHistory.cpp" line="448"/>
         <source>Import histories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../History/FrmHistory.cpp" line="431"/>
-        <source>JSON (*.json);; CSV file (*.csv);; All files (*.*)</source>
+        <location filename="../../History/FrmHistory.cpp" line="458"/>
+        <source>JSON (*.json);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1499,60 +1494,33 @@ Please select the HTML bookmark file exported from your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="452"/>
-        <source>Successfully imported histories from CSV file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="455"/>
-        <source>Failed to import histories from CSV file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="461"/>
-        <location filename="../../History/FrmHistory.cpp" line="498"/>
+        <location filename="../../History/FrmHistory.cpp" line="449"/>
+        <location filename="../../History/FrmHistory.cpp" line="475"/>
         <source>Invalid file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="462"/>
-        <location filename="../../History/FrmHistory.cpp" line="499"/>
+        <location filename="../../History/FrmHistory.cpp" line="450"/>
+        <location filename="../../History/FrmHistory.cpp" line="476"/>
         <source>Please use JSON or CSV file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../History/FrmHistory.cpp" line="456"/>
+        <location filename="../../History/FrmHistory.cpp" line="465"/>
         <location filename="../../History/FrmHistory.cpp" line="468"/>
-        <location filename="../../History/FrmHistory.cpp" line="477"/>
-        <location filename="../../History/FrmHistory.cpp" line="480"/>
-        <location filename="../../History/FrmHistory.cpp" line="488"/>
-        <location filename="../../History/FrmHistory.cpp" line="491"/>
-        <location filename="../../History/FrmHistory.cpp" line="497"/>
+        <location filename="../../History/FrmHistory.cpp" line="474"/>
         <source>Export histories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="470"/>
-        <source>JSON (*.json);; CSV (*.csv);; All files (*.*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="478"/>
+        <location filename="../../History/FrmHistory.cpp" line="466"/>
         <source>Histories successfully exported to JSON file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../History/FrmHistory.cpp" line="481"/>
+        <location filename="../../History/FrmHistory.cpp" line="469"/>
         <source>Failed to export histories to JSON file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="489"/>
-        <source>Histories successfully exported to CSV file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../History/FrmHistory.cpp" line="492"/>
-        <source>Failed to export histories to CSV file: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1919,6 +1887,14 @@ Do you want to reload the page ?</source>
     <message>
         <location filename="../../FrmWebView.cpp" line="579"/>
         <source>Give %1 %2 access to %3?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CHistoryDatabase</name>
+    <message>
+        <location filename="../../History/HistoryDatabase.cpp" line="529"/>
+        <source>The file format is error. Json without &quot;browser_history&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

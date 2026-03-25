@@ -190,7 +190,7 @@
     </message>
     <message>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="196"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="376"/>
         <source>The channel is eof</source>
         <translation type="unfinished"></translation>
     </message>
@@ -896,114 +896,114 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="223"/>
         <source>Operate Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="26"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="229"/>
         <source>Show protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="33"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="236"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="40"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
         <source>Show Security Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="209"/>
         <source>Enable use the system user as the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="250"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="199"/>
         <source>Store password with system credential manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
         <source>Viewer zoom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="50"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
         <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="92"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="20"/>
         <source>Capture all keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="57"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="216"/>
         <source>Enable local input method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="101"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="29"/>
         <source>Desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="115"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="43"/>
         <source>Disable script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="146"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="53"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="74"/>
         <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="136"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="64"/>
         <source>Restore script:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="185"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="134"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="224"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="173"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="231"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="161"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="110"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="169"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
         <source>Enable save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="176"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
@@ -1734,59 +1734,71 @@ Some features are limited.
 <context>
     <name>CSecurityLevel</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="153"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="193"/>
         <source>Secure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="156"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="203"/>
         <source>Risk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="158"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="166"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="195"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="160"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="165"/>
         <source>Secure channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="154"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="162"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="170"/>
         <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="176"/>
+        <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="181"/>
+        <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/Stats.cpp" line="186"/>
+        <source>Redirect</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CStats</name>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="18"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
         <source>B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="20"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
         <source>KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="22"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
         <source>MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="24"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="26"/>
         <source>GB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/Stats.cpp" line="60"/>
-        <location filename="../../ParameterCompone/Stats.cpp" line="65"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="66"/>
+        <location filename="../../ParameterCompone/Stats.cpp" line="71"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>

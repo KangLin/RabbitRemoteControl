@@ -4,46 +4,46 @@
 <context>
     <name>CBackendLibVNCServer</name>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="81"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="82"/>
         <source>Protocol version error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="82"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="162"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="177"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="956"/>
-        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="83"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="163"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="178"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="960"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="996"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="160"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="161"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="174"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="175"/>
         <source>Fail: Connect to %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="940"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="944"/>
         <source>Will connect to local socket server: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="949"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="953"/>
         <source>Fail: Connect to %1:%2 &lt;- %3:%4 &lt;- %5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="979"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="984"/>
         <source>Will connect to local socket server: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../BackendLibVNCServer.cpp" line="986"/>
+        <location filename="../../BackendLibVNCServer.cpp" line="991"/>
         <source>Fail: Connect to %1:%2 with %3</source>
         <translation type="unfinished"></translation>
     </message>
