@@ -50,11 +50,15 @@ quint64 CStats::GetTotalReceives()
 void CStats::AddSends(quint64 size)
 {
     m_TotalSends += size;
+    if(GetSendRate() <= 0)
+        emit sigDataChanged();
 }
 
 void CStats::AddReceives(quint64 size)
 {
     m_TotalReceives += size;
+    if(GetReceiveRate() <= 0)
+        emit sigDataChanged();
 }
 
 QString CStats::SendRate()
@@ -94,13 +98,18 @@ int CStats::SetInterval(int interval)
 
 void CStats::slotCalculating()
 {
-    if(m_lastTime.secsTo(QDateTime::currentDateTime()) < m_tmInterval)
-        return;
+    qint64 interval = m_lastTime.msecsTo(QDateTime::currentDateTime());
 
-    m_dbSendRate = (double)(m_TotalSends - m_lastSends) / (double)m_tmInterval;
-    m_lastSends = m_TotalSends;
-    m_dbReceiveRate = (double)(m_TotalReceives - m_lastReceives) / (double)m_tmInterval;
-    m_lastReceives = m_TotalReceives;
+    if(interval > 0) {
+        m_dbSendRate = (double)(m_TotalSends - m_lastSends) * 1000 / interval;
+        m_dbReceiveRate = (double)(m_TotalReceives - m_lastReceives) * 1000 / interval;
+    }
+
+    if(interval >= GetInterval() * 1000) {
+        m_lastSends = m_TotalSends;
+        m_lastReceives = m_TotalReceives;
+        m_lastTime = QDateTime::currentDateTime();
+    }
 }
 
 int CStats::OnLoad(QSettings &set)

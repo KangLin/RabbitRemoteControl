@@ -34,15 +34,26 @@ public:
     [[nodiscard]] virtual double GetReceiveRate();
 
     /*!
-     * \brief Get interval. Unit: seconds
+     * \brief Get interval. Unit: Seconds
      */
     [[nodiscard]] int GetInterval();
     /*!
-     * \brief Set interval. Unit: seconds
+     * \brief Set interval. Unit: Seconds
      */
-    int SetInterval(int interval = 5);
+    int SetInterval(int interval = 1);
+
+Q_SIGNALS:
+    /*!
+     * \~chinese 当数据发生变化时触发，用于通知用户实时调用 slotCalculating 进行计算。
+     * \~english Triggered when data changes,
+     *           used to notify users to call slotCalculating(true) in real time for calculation.
+     */
+    void sigDataChanged();
 
 public Q_SLOTS:
+    /*!
+     * \brief Calculating
+     */
     virtual void slotCalculating();
 
 private:

@@ -790,7 +790,6 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
     foreach(auto o, m_Operates) {
         if(o->GetViewer() == pView) {
             SetSecureLevel(o);
-            SetStatsVisible(o->GetStats());
             foreach (auto a, ui->menuActivity->actions()) {
                 if(a->data().value<COperate*>() == o)
                     a->setChecked(true);
@@ -799,6 +798,8 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
                 tr("Stop other except the current \"%1\"").arg(o->Name()));
         }
     }
+
+    QTimer::singleShot(0, this, SLOT(slotTimeOut()));
 }
 
 void MainWindow::EnableMenu(bool bEnable)
@@ -1850,8 +1851,38 @@ void MainWindow::slotEnableSystemTrayIcon()
         slotSystemTrayIconTypeChanged();
 }
 
+void MainWindow::SetStatsVisible(bool visible)
+{
+    if(m_SendRate.isVisible() == visible)
+        return;
+    m_SendRate.setVisible(visible);
+    m_ReceivesRate.setVisible(visible);
+    m_TotalSends.setVisible(visible);
+    m_TotalReceives.setVisible(visible);
+}
+
+void MainWindow::StartTimer()
+{
+    bool bStart = false;
+    int nMinInterval = 1;
+    foreach(auto o, m_Operates) {
+        if(o && o->GetStats()) {
+            nMinInterval = qMin(nMinInterval, o->GetStats()->GetInterval());
+            bStart = true;
+        }
+    }
+    if(bStart) {
+        m_Timer.start(nMinInterval * 1000);
+        //qDebug(log) << "Time interval:" << nMinInterval;
+    } else {
+        m_Timer.stop();
+        SetStatsVisible(false);
+    }
+}
+
 void MainWindow::slotTimeOut()
 {
+    //qDebug(log) << Q_FUNC_INFO;
     auto pWin = m_pView->GetCurrentView();
     if(!pWin) {
         qDebug(log) << "The current view is empty";
@@ -1875,32 +1906,6 @@ void MainWindow::slotTimeOut()
             break;
         }
     }
-}
-
-void MainWindow::SetStatsVisible(bool visible)
-{
-    if(m_SendRate.isVisible() == visible)
-        return;
-    m_SendRate.setVisible(visible);
-    m_ReceivesRate.setVisible(visible);
-    m_TotalSends.setVisible(visible);
-    m_TotalReceives.setVisible(visible);
-}
-
-void MainWindow::StartTimer()
-{
-    bool bStart = false;
-    int nMinInterval = 60;
-    foreach(auto o, m_Operates) {
-        if(o && o->GetStats()) {
-            nMinInterval = qMin(nMinInterval, o->GetStats()->GetInterval());
-            bStart = true;
-        }
-    }
-    if(bStart)
-        m_Timer.start(nMinInterval * 1000);
-    else
-        m_Timer.stop();
 }
 
 void MainWindow::on_actionUser_manual_triggered()

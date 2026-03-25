@@ -138,8 +138,6 @@ private:
     QLabel m_StatusBarMessage;
 
     ///////// Stats //////////
-private Q_SLOTS:
-    void slotTimeOut();
 private:
     QTimer m_Timer;
     QLabel m_TotalSends;
@@ -148,6 +146,8 @@ private:
     QLabel m_ReceivesRate;
     void SetStatsVisible(bool visible);
     void StartTimer();
+private Q_SLOTS:
+    void slotTimeOut();
 
     ///////// Secure level /////////
 private:
