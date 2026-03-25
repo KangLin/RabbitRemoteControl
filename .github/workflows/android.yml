@@ -247,7 +247,7 @@ jobs:
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
             #git clone https://github.com/KangLin/libvncserver.git
-            git clone --depth=1 https://github.com/LibVNC/libvncserver.git
+            git clone -b LibVNCServer-0.9.15 https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build

@@ -210,8 +210,8 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer (
-            #git clone --depth=1 https://github.com/KangLin/libvncserver.git
-            git clone  --depth=1 https://github.com/LibVNC/libvncserver.git
+            git clone --depth=1 https://github.com/KangLin/libvncserver.git
+            #git clone --depth=1 https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             cmake -E make_directory build
             cd build
