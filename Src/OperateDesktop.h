@@ -44,7 +44,7 @@ class CBackendThread;
  *  It starts a background thread by default.
  *  It implements a background thread to handle a operate.
  *  Can be used with plugins whose plugin interface
- *  derives from CPluginClient for operate is blocking model.
+ *  derives from CPlugin for operate is blocking model.
  *  
  *  Principle: Start a background thread (CBackendThread) in Start() .
  *  Call InstanceBackend() in the thread to instantiate CBackend,

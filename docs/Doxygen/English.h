@@ -70,7 +70,7 @@
 \details
 + Thread module
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient COperateThread
+    \see CPlugin COperateThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     - The plugin does not have a background thread, and all connections use the main thread
     - The plugin has a background thread, and all connections use the same background thread
@@ -82,11 +82,11 @@
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
-  - Implement CPluginClient.
+  - Implement CPlugin.
     + No background thread or Blocked background thread
       (A background thread handles a connection. The connection is blocked.).
       E.g. FreeRDP
-      - Derive from CPluginClient. For example: CPluginFreeRDP 
+      - Derive from CPlugin. For example: CPluginFreeRDP
         + Implement the Qt interface in the class declaration:
           \snippet Plugins/FreeRDP/Client/PluginFreeRDP.h Qt plugin interface
         + Initialize the operation in the constructor.
@@ -135,7 +135,7 @@
     - CConnect
 + The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient COperateThread
+    \see CPlugin COperateThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     \see CPluginClientThread COperateDesktop
 + Class relationship

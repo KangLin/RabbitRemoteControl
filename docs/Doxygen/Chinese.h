@@ -66,7 +66,7 @@
 
 + 线程模型：
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
-    \see CPluginClient COperateThread
+    \see CPlugin COperateThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     - 插件没有后台线程，所有连接使用主线程
     - 插件有一个后台线程，所有连接使用同一个后台线程
@@ -78,9 +78,9 @@
 + 写一个插件：
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
-  - 实现插件接口 CPluginClient
+  - 实现插件接口 CPlugin
     + 如果没有后台线程，或者是阻塞线程模型（一个后台线程处理一个连接。连接是阻塞的）。例如：FreeRDP
-      - 从 CPluginClient 派生插件。例如： \ref CPluginFreeRDP
+      - 从 CPlugin 派生插件。例如： \ref CPluginFreeRDP
         + 在类声明中实现Qt接口:
           \snippet Plugins/FreeRDP/Client/PluginFreeRDP.h Qt plugin interface
         + 在构造函数中初始化操作。例如：初始化资源等
@@ -125,7 +125,7 @@
 + 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
          每个连接者启动一个后台线程。
-    \see CPluginClient COperateThread
+    \see CPlugin COperateThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     插件启动一个线程，连接者重用此线程，它不再启动线程。
     \see CPluginClientThread COperateDesktop

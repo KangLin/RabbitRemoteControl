@@ -19,7 +19,7 @@ public:
 #endif
     // [Qt plugin interface]
 
-    // CPluginClient interface
+    // CPlugin interface
 public:
     virtual const TYPE Type() const override;
     virtual const QString Protocol() const override;

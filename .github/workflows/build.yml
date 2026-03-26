@@ -190,14 +190,16 @@ jobs:
                 echo "" >> ${{github.workspace}}/Release.md
               fi
 
-              content=$(<${{github.workspace}}/ChangeLog_zh_CN.md)
-              if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
-                echo "## :cn: 修改日志" >> ${{github.workspace}}/Release.md
-                echo "" >> ${{github.workspace}}/Release.md
-                get_section ${{github.workspace}}/ChangeLog_zh_CN.md >> ${{github.workspace}}/Release.md
-                echo "" >> ${{github.workspace}}/Release.md
-              fi
+              # content=$(<${{github.workspace}}/ChangeLog_zh_CN.md)
+              # if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
+              #   echo "## :cn: 修改日志" >> ${{github.workspace}}/Release.md
+              #   echo "" >> ${{github.workspace}}/Release.md
+              #   get_section ${{github.workspace}}/ChangeLog_zh_CN.md >> ${{github.workspace}}/Release.md
+              #   echo "" >> ${{github.workspace}}/Release.md
+              # fi
           fi
+
+          echo "-------------------------" >> ${{github.workspace}}/Release.md
           # 因为其它网站也可能需要，所以用完整的 URL
           echo "|:us: English|:cn: 中文|" >> ${{github.workspace}}/Release.md
           echo "| :-    |:- |" >> ${{github.workspace}}/Release.md
@@ -225,6 +227,7 @@ jobs:
                 echo "" >> ${{github.workspace}}/Release.md
               fi
           fi
+          echo "-------------------------" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
           echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
