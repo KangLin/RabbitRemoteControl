@@ -79,6 +79,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: false
+          fetch-depth: 1
 
       - name: clean test tag
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
@@ -178,6 +179,25 @@ jobs:
       - name: Add change log file in Release.md file
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
+          if [ -f ${{github.workspace}}/Script/common.sh ]; then
+              source ${{github.workspace}}/Script/common.sh
+
+              content=$(<${{github.workspace}}/ChangeLog.log)
+              if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
+                echo "## :us: Change log" >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog.log >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+              fi
+
+              content=$(<${{github.workspace}}/ChangeLog_zh_CN.log)
+              if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
+                echo "## :cn: 修改日志" >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog_zh_CN.log >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+              fi
+          fi
           # 因为其它网站也可能需要，所以用完整的 URL
           echo "|:us: English|:cn: 中文|" >> ${{github.workspace}}/Release.md
           echo "| :-    |:- |" >> ${{github.workspace}}/Release.md
@@ -194,6 +214,17 @@ jobs:
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
           echo "**This release is for development and testing purposes only!**" >> ${{github.workspace}}/Release.md
+          if [ -f ${{github.workspace}}/Script/common.sh ]; then
+              source ${{github.workspace}}/Script/common.sh
+
+              content=$(<${{github.workspace}}/ChangeLog.log)
+              if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
+                echo "## :us: Change log" >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog.log >> ${{github.workspace}}/Release.md
+                echo "" >> ${{github.workspace}}/Release.md
+              fi
+          fi
           echo "" >> ${{github.workspace}}/Release.md
           echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md

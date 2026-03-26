@@ -45,6 +45,103 @@
 # [>]        - Progress / Next step
 # [*]        - Generic bullet point
 
+check_echo_color() {
+    # 定义颜色常量
+    # 8色（标准）
+    BLACK='\033[0;30m'
+    DARK_GRAY='\033[1;30m'
+    RED='\033[0;31m'
+    LIGHT_RED='\033[1;31m'
+    GREEN='\033[0;32m'
+    LIGHT_GREEN='\033[1;32m'
+    BROWN='\033[0;33m'
+    YELLOW='\033[1;33m'
+    BLUE='\033[0;34m'
+    LIGHT_BLUE='\033[1;34m'
+    PURPLE='\033[0;35m'
+    LIGHT_PURPLE='\033[1;35m'
+    CYAN='\033[0;36m'
+    LIGHT_CYAN='\033[1;36m'
+    LIGHT_GRAY='\033[0;37m'
+    WHITE='\033[1;37m'
+    # 256色（需要终端支持）
+    # 格式：\033[38;5;${color}m 前景色
+    # 格式：\033[48;5;${color}m 背景色
+    # 背景颜色（在颜色代码基础上加 10）
+    BG_BLACK='\033[40m'
+    BG_RED='\033[41m'
+    BG_GREEN='\033[42m'
+    BG_YELLOW='\033[43m'
+    BG_BLUE='\033[44m'
+    BG_PURPLE='\033[45m'
+    BG_CYAN='\033[46m'
+    BG_WHITE='\033[47m'
+    # 样式
+    BOLD='\033[1m'
+    UNDERLINE='\033[4m'
+    BLINK='\033[5m'  # 闪烁（部分终端不支持）
+    REVERSE='\033[7m'  # 反显
+    # 重置
+    NC='\033[0m'  # No Color
+
+    # 检查是否支持颜色
+    if [ -t 1 ] && [ "$TERM" != "dumb" ]; then
+        # 支持颜色
+        RED='\033[0;31m'
+        GREEN='\033[0;32m'
+        NC='\033[0m'
+    else
+        # 不支持颜色
+        RED=''
+        GREEN=''
+        NC=''
+    fi
+
+    echo -e "${GREEN}带颜色的输出${NC}"
+}
+
+check_echo_color_with_tput() {
+    # 使用 tput（更兼容）
+    if command -v tput >/dev/null 2>&1 && [ -t 1 ]; then
+        BOLD=$(tput bold)
+        RED=$(tput setaf 1)
+        GREEN=$(tput setaf 2)
+        YELLOW=$(tput setaf 3)
+        BLUE=$(tput setaf 4)
+        MAGENTA=$(tput setaf 5)
+        CYAN=$(tput setaf 6)
+        NC=$(tput sgr0)
+    else
+        BOLD=""; RED=""; GREEN=""; YELLOW=""; BLUE=""; MAGENTA=""; CYAN=""; NC=""
+    fi
+}
+#check_echo_color
+#check_echo_color_with_tput
+log_info() {
+    echo -e "${GREEN}[i]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1"
+}
+log_warn() {
+    echo -e "${YELLOW}[!]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1"
+}
+log_error() {
+    echo -e "${RED}[X]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" >&2
+}
+log_success() {
+    echo -e "${GREEN}[✓]${NC} $1"
+}
+log_fail() {
+    echo -e "${RED}[X]${NC} $1" >&2
+}
+echo_success() {
+    echo -e "${GREEN} $1 ${NC}"
+}
+echo_warn() {
+    echo -e "${YELLOW} $1 ${NC}"
+}
+echo_error() {
+    echo -e "${RED} $1 ${NC}" >&2
+}
+
 # Validate directory path
 validate_directory() {
     local dir="$1"
@@ -759,4 +856,60 @@ test_version() {
     echo "compare_versions \"1.0.0-rc.1\" \"1.1.0\": `compare_versions "1.0.0-rc.1" "1.1.0"; echo $?`"
     echo "compare_versions \"v2.0.0+dev\" \"v2.0.0+dev.1\": `compare_versions "v2.0.0+dev" "v2.0.0+dev.1"; echo $?`"
     echo "compare_versions \"v2.0.0-alpha+dev\" \"v2.0.0-alpha+dev.1\": `compare_versions "v2.0.0-alpha+dev" "v2.0.0-alpha+dev.1"; echo $?`"
+}
+
+
+# 获取第一个 ### 到第二个 ### 之间的内容（包括标记行）
+# sed -n '/###/,/###/p' 文件
+# 获取第一个 ### 到第二个 ### 之间的内容（不包括标记行）
+# sed -n '/###/,/###/{//!p}' 文件
+# 获取特定范围的 ### 之间的内容（例如第1对和第2对）
+# sed -n '/###/,/###/p' 文件 | head -n -1  # 不包括结束标记
+# 获取从第一个 ### 到最后一个 ### 之间的所有内容
+# sed -n '/###/,/###/p' 文件
+
+# 获取两个 ### 之间的内容（包括标记）
+#awk '/###/,/###/' 文件
+# 获取两个 ### 之间的内容（不包括标记）
+#awk '/###/{flag=!flag; next} flag' 文件
+# 获取第一个 ### 到第二个 ### 之间的内容（不包括标记）
+# awk '/###/{count++; if(count==1){flag=1; next} if(count==2){flag=0; exit}} flag' 文件
+
+#关键说明
+#sed -n '/start/,/end/p'：打印从 start 到 end 的所有行
+#awk '/start/,/end/'：打印从 start 到 end 的所有行
+#{//!p}：sed 中的排除模式行，不打印匹配的行
+#flag=!flag：awk 中的切换标志技巧
+#next：跳过当前行，不打印
+#选择哪种方法取决于：
+#是否需要排除标记行
+#是否需要处理多个区块
+#文件大小（大文件建议用 awk）
+#是否包含特殊字符
+
+# 函数：获取两个标记之间的内容
+# 参数1: 文件名
+# 参数2: 标记（默认 ###）
+# 参数3: 区块索引（默认 1，获取第几个区块）
+get_section() {
+    local file="$1"
+    local marker="${2:-###}"
+    local index="${3:-1}"
+
+    awk -v marker="$marker" -v idx="$index" '
+    $0 ~ marker {
+        count++
+        if (count == idx * 2 - 1) {
+            in_section = 1
+            next
+        }
+        if (count == idx * 2) {
+            in_section = 0
+            exit
+        }
+    }
+    in_section {
+        print
+    }
+    ' "$file"
 }
