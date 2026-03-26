@@ -237,7 +237,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/KangLin/tigervnc.git
-        commit: 28b43d32eff8a4875cd4683261bda3548fd14204
+        branch: master
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
