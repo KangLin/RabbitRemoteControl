@@ -1,0 +1,1320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CFrmExtensionManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate8</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCFrmExtensionManager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CFrmExtensionManager类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>扩展管理器界面  
+ <a href="classCFrmExtensionManager.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CFrmExtensionManager 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmExtensionManager__inherit__graph.png" border="0" usemap="#aCFrmExtensionManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCFrmExtensionManager_inherit__map" id="aCFrmExtensionManager_inherit__map">
+<area shape="rect" title="扩展管理器界面" alt="" coords="5,79,183,104"/>
+<area shape="rect" title=" " alt="" coords="55,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="97,44,97,79,91,79,91,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CFrmExtensionManager 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCFrmExtensionManager__coll__graph.png" border="0" usemap="#aCFrmExtensionManager_coll__map" alt="Collaboration graph"/></div>
+<map name="aCFrmExtensionManager_coll__map" id="aCFrmExtensionManager_coll__map">
+<area shape="rect" title="扩展管理器界面" alt="" coords="5,79,183,104"/>
+<area shape="rect" title=" " alt="" coords="55,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="97,44,97,79,91,79,91,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ab2b0b924381cd02c869d07018b2c4308" id="r_ab2b0b924381cd02c869d07018b2c4308"><td class="memItemLeft" align="right" valign="top"><a id="ab2b0b924381cd02c869d07018b2c4308" name="ab2b0b924381cd02c869d07018b2c4308"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CFrmExtensionManager</b> (QWebEngineProfile *profile, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ab2b0b924381cd02c869d07018b2c4308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae760a00ab2fd8f67bf388cfd684cb1e7" id="r_ae760a00ab2fd8f67bf388cfd684cb1e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ae760a00ab2fd8f67bf388cfd684cb1e7">SetProfile</a> (QWebEngineProfile *profile)</td></tr>
+<tr class="memdesc:ae760a00ab2fd8f67bf388cfd684cb1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 WebEngine Profile  <br /></td></tr>
+<tr class="separator:ae760a00ab2fd8f67bf388cfd684cb1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4e8faf3f260e7ee6faeaea92e7c4851" id="r_ae4e8faf3f260e7ee6faeaea92e7c4851"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ae4e8faf3f260e7ee6faeaea92e7c4851">InstallExtension</a> (const QString &amp;path)</td></tr>
+<tr class="memdesc:ae4e8faf3f260e7ee6faeaea92e7c4851"><td class="mdescLeft">&#160;</td><td class="mdescRight">安装或加载 Chrome 扩展  <br /></td></tr>
+<tr class="separator:ae4e8faf3f260e7ee6faeaea92e7c4851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab7ec2aa3409aa2c59c1b461a7501c4" id="r_a6ab7ec2aa3409aa2c59c1b461a7501c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a6ab7ec2aa3409aa2c59c1b461a7501c4">UninstallExtension</a> (const QString &amp;id)</td></tr>
+<tr class="memdesc:a6ab7ec2aa3409aa2c59c1b461a7501c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">卸载扩展  <br /></td></tr>
+<tr class="separator:a6ab7ec2aa3409aa2c59c1b461a7501c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8f11f23cef187a539fcf5521342ce5" id="r_a2d8f11f23cef187a539fcf5521342ce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a2d8f11f23cef187a539fcf5521342ce5">EnableExtension</a> (const QString &amp;id, bool bEnable)</td></tr>
+<tr class="memdesc:a2d8f11f23cef187a539fcf5521342ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">启用扩展  <br /></td></tr>
+<tr class="separator:a2d8f11f23cef187a539fcf5521342ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc505fc9e3a82aacecc3f799abde913" id="r_abcc505fc9e3a82aacecc3f799abde913"><td class="memItemLeft" align="right" valign="top">QList&lt; QWebEngineExtensionInfo &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#abcc505fc9e3a82aacecc3f799abde913">GetInstalledExtensions</a> () const</td></tr>
+<tr class="memdesc:abcc505fc9e3a82aacecc3f799abde913"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取已安装的扩展列表  <br /></td></tr>
+<tr class="separator:abcc505fc9e3a82aacecc3f799abde913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dfacb8f0a0e94fb58ec7487c15d187d" id="r_a2dfacb8f0a0e94fb58ec7487c15d187d"><td class="memItemLeft" align="right" valign="top">QWebEngineExtensionInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a2dfacb8f0a0e94fb58ec7487c15d187d">GetExtensionInfo</a> (const QString &amp;id) const</td></tr>
+<tr class="memdesc:a2dfacb8f0a0e94fb58ec7487c15d187d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取扩展详细信息  <br /></td></tr>
+<tr class="separator:a2dfacb8f0a0e94fb58ec7487c15d187d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:af1e770580604a773eed892f5e0d697a2" id="r_af1e770580604a773eed892f5e0d697a2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ColumnNo</b> { <br />
+&#160;&#160;<b>Name</b> = 0
+, <b>Enabled</b>
+, <b>Description</b>
+, <b>PopupUrl</b>
+, <br />
+&#160;&#160;<b>ID</b>
+, <b>Path</b>
+<br />
+ }</td></tr>
+<tr class="separator:af1e770580604a773eed892f5e0d697a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:adf3b2696b9fa60c0b4d3690a80a536f8" id="r_adf3b2696b9fa60c0b4d3690a80a536f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#adf3b2696b9fa60c0b4d3690a80a536f8">on_pbInstall_clicked</a> ()</td></tr>
+<tr class="separator:adf3b2696b9fa60c0b4d3690a80a536f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072bd0ce4cf73cfc4335b56204b19275" id="r_a072bd0ce4cf73cfc4335b56204b19275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a072bd0ce4cf73cfc4335b56204b19275">on_pbLoad_clicked</a> ()</td></tr>
+<tr class="separator:a072bd0ce4cf73cfc4335b56204b19275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd83d1aa59795505275113ba7c3b6976" id="r_acd83d1aa59795505275113ba7c3b6976"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#acd83d1aa59795505275113ba7c3b6976">on_pbUninstall_clicked</a> ()</td></tr>
+<tr class="separator:acd83d1aa59795505275113ba7c3b6976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8f7d43cc2a12ae11f8152cf9fe32905" id="r_ac8f7d43cc2a12ae11f8152cf9fe32905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ac8f7d43cc2a12ae11f8152cf9fe32905">on_pbRefresh_clicked</a> ()</td></tr>
+<tr class="separator:ac8f7d43cc2a12ae11f8152cf9fe32905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18991174c36e543ad22ef92048e53bc2" id="r_a18991174c36e543ad22ef92048e53bc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a18991174c36e543ad22ef92048e53bc2">on_pbDetails_clicked</a> ()</td></tr>
+<tr class="separator:a18991174c36e543ad22ef92048e53bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01703d457b4b752b945aafae0b09821" id="r_ab01703d457b4b752b945aafae0b09821"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ab01703d457b4b752b945aafae0b09821">on_pbOpenDevTools_clicked</a> ()</td></tr>
+<tr class="separator:ab01703d457b4b752b945aafae0b09821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80aa3055157ccfaf67aa1617eea21306" id="r_a80aa3055157ccfaf67aa1617eea21306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a80aa3055157ccfaf67aa1617eea21306">on_pbOpenExtensionPath_clicked</a> ()</td></tr>
+<tr class="separator:a80aa3055157ccfaf67aa1617eea21306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af485d3fe3ce14071037c2a1a8a833b" id="r_a7af485d3fe3ce14071037c2a1a8a833b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a7af485d3fe3ce14071037c2a1a8a833b">slotExtensionItemChanged</a> (QStandardItem *item)</td></tr>
+<tr class="separator:a7af485d3fe3ce14071037c2a1a8a833b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dce0c3c70c3fb2ffbb1b724e262ddf9" id="r_a1dce0c3c70c3fb2ffbb1b724e262ddf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a1dce0c3c70c3fb2ffbb1b724e262ddf9">slotSelectionChanged</a> ()</td></tr>
+<tr class="separator:a1dce0c3c70c3fb2ffbb1b724e262ddf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783f3b3ca35430500c71ed69d7630aaf" id="r_a783f3b3ca35430500c71ed69d7630aaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a783f3b3ca35430500c71ed69d7630aaf">slotCustomContextMenu</a> (const QPoint &amp;pos)</td></tr>
+<tr class="separator:a783f3b3ca35430500c71ed69d7630aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7e9359642ccb267940393f9a437d5c" id="r_a7d7e9359642ccb267940393f9a437d5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a7d7e9359642ccb267940393f9a437d5c">slotLoadFinished</a> (const QWebEngineExtensionInfo &amp;extension)</td></tr>
+<tr class="separator:a7d7e9359642ccb267940393f9a437d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024cb60a37e823493445583523e3f7de" id="r_a024cb60a37e823493445583523e3f7de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a024cb60a37e823493445583523e3f7de">slotInstallFinished</a> (const QWebEngineExtensionInfo &amp;extension)</td></tr>
+<tr class="separator:a024cb60a37e823493445583523e3f7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed03985699b250e9880c785b800356f5" id="r_aed03985699b250e9880c785b800356f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#aed03985699b250e9880c785b800356f5">slotUnloadFinished</a> (const QWebEngineExtensionInfo &amp;extension)</td></tr>
+<tr class="separator:aed03985699b250e9880c785b800356f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae13510088180fde6c730868d8a6f1ceb" id="r_ae13510088180fde6c730868d8a6f1ceb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ae13510088180fde6c730868d8a6f1ceb">slotUninstallFinished</a> (const QWebEngineExtensionInfo &amp;extension)</td></tr>
+<tr class="separator:ae13510088180fde6c730868d8a6f1ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47e6ae89975689ae370fe28b5deea1de" id="r_a47e6ae89975689ae370fe28b5deea1de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a47e6ae89975689ae370fe28b5deea1de">slotCopyPopupUrl</a> ()</td></tr>
+<tr class="separator:a47e6ae89975689ae370fe28b5deea1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3c470aeb37e12573d7c1f9c2f18e22c" id="r_aa3c470aeb37e12573d7c1f9c2f18e22c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#aa3c470aeb37e12573d7c1f9c2f18e22c">slotCopyPath</a> ()</td></tr>
+<tr class="separator:aa3c470aeb37e12573d7c1f9c2f18e22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5" id="r_a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5">InitializeUI</a> ()</td></tr>
+<tr class="separator:a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeddadf8adc0160f8efe5008f92798871" id="r_aeddadf8adc0160f8efe5008f92798871"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#aeddadf8adc0160f8efe5008f92798871">SetupConnections</a> ()</td></tr>
+<tr class="separator:aeddadf8adc0160f8efe5008f92798871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab28cd18b074d9d62987366f146b811f2" id="r_ab28cd18b074d9d62987366f146b811f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ab28cd18b074d9d62987366f146b811f2">RefreshExtensionList</a> ()</td></tr>
+<tr class="separator:ab28cd18b074d9d62987366f146b811f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fee91329a16e8366bb2b994dec518ec" id="r_a5fee91329a16e8366bb2b994dec518ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a5fee91329a16e8366bb2b994dec518ec">AddExtensionItem</a> (const QWebEngineExtensionInfo &amp;info)</td></tr>
+<tr class="separator:a5fee91329a16e8366bb2b994dec518ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4cbe4740bfdb34410c3b764a3ff9f8a" id="r_ab4cbe4740bfdb34410c3b764a3ff9f8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ab4cbe4740bfdb34410c3b764a3ff9f8a">RemoveExtensionItem</a> (const QString &amp;extensionId)</td></tr>
+<tr class="separator:ab4cbe4740bfdb34410c3b764a3ff9f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:af1aed65055606444c28e52851143faa6" id="r_af1aed65055606444c28e52851143faa6"><td class="memItemLeft" align="right" valign="top">Ui::CFrmExtensionManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#af1aed65055606444c28e52851143faa6">ui</a></td></tr>
+<tr class="separator:af1aed65055606444c28e52851143faa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dae2220116d4a4338176c950378aa92" id="r_a8dae2220116d4a4338176c950378aa92"><td class="memItemLeft" align="right" valign="top">QWebEngineProfile *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a8dae2220116d4a4338176c950378aa92">m_pProfile</a></td></tr>
+<tr class="separator:a8dae2220116d4a4338176c950378aa92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72206b2f48063a6c28abd19e63fae3b6" id="r_a72206b2f48063a6c28abd19e63fae3b6"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a72206b2f48063a6c28abd19e63fae3b6">m_pModelExtensions</a></td></tr>
+<tr class="separator:a72206b2f48063a6c28abd19e63fae3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457a0c5f749e72fdefbc97f95ea600b9" id="r_a457a0c5f749e72fdefbc97f95ea600b9"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a457a0c5f749e72fdefbc97f95ea600b9">m_pInstall</a></td></tr>
+<tr class="separator:a457a0c5f749e72fdefbc97f95ea600b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4382721284cff3ffea8cd56e23c44e81" id="r_a4382721284cff3ffea8cd56e23c44e81"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a4382721284cff3ffea8cd56e23c44e81">m_pLoad</a></td></tr>
+<tr class="separator:a4382721284cff3ffea8cd56e23c44e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9effd9423f1f743f5021bdf6d88b782" id="r_ab9effd9423f1f743f5021bdf6d88b782"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#ab9effd9423f1f743f5021bdf6d88b782">m_pUninstall</a></td></tr>
+<tr class="separator:ab9effd9423f1f743f5021bdf6d88b782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a695091df9b9827a328beff93b3da0506" id="r_a695091df9b9827a328beff93b3da0506"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a695091df9b9827a328beff93b3da0506">m_pRefresh</a></td></tr>
+<tr class="separator:a695091df9b9827a328beff93b3da0506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b1eaa974b8f452c423ad46c1acced9" id="r_af2b1eaa974b8f452c423ad46c1acced9"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#af2b1eaa974b8f452c423ad46c1acced9">m_pCopyUrl</a></td></tr>
+<tr class="separator:af2b1eaa974b8f452c423ad46c1acced9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8119114a3efdb6ee63c4029015cc7b0" id="r_aa8119114a3efdb6ee63c4029015cc7b0"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#aa8119114a3efdb6ee63c4029015cc7b0">m_pCopyPath</a></td></tr>
+<tr class="separator:aa8119114a3efdb6ee63c4029015cc7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a669d0645847dd30125cf2e322efd3afe" id="r_a669d0645847dd30125cf2e322efd3afe"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a669d0645847dd30125cf2e322efd3afe">m_pDetails</a></td></tr>
+<tr class="separator:a669d0645847dd30125cf2e322efd3afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772a288a9961d5f7b31ce8ca34c7a8e5" id="r_a772a288a9961d5f7b31ce8ca34c7a8e5"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrmExtensionManager.html#a772a288a9961d5f7b31ce8ca34c7a8e5">m_pOpenFolder</a></td></tr>
+<tr class="separator:a772a288a9961d5f7b31ce8ca34c7a8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>扩展管理器界面 </p>
+<ul>
+<li>Qt 版本要求：必须使用 Qt 6.10 或更高版本</li>
+<li>扩展格式：只支持 Manifest V3 格式的扩展</li>
+<li>配置文件：不能使用 off-the-record 的配置文件</li>
+</ul>
+<p>查找 Chrome 已安装的扩展：</p><ul>
+<li>在 Chrmoe 地址栏中输入： <code>chrome://version/</code></li>
+<li>在其中找到“个人资料路径”</li>
+<li>Chrome 扩展位于“个人资料路径”下的“Extensions”目录下 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00028">28</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="af1e770580604a773eed892f5e0d697a2" name="af1e770580604a773eed892f5e0d697a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1e770580604a773eed892f5e0d697a2">&#9670;&#160;</a></span>ColumnNo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum CFrmExtensionManager::ColumnNo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a7cef21b062c4e4ebcb7713bc363749f6" name="a7cef21b062c4e4ebcb7713bc363749f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cef21b062c4e4ebcb7713bc363749f6">&#9670;&#160;</a></span>~CFrmExtensionManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFrmExtensionManager::~CFrmExtensionManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a5fee91329a16e8366bb2b994dec518ec" name="a5fee91329a16e8366bb2b994dec518ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fee91329a16e8366bb2b994dec518ec">&#9670;&#160;</a></span>AddExtensionItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmExtensionManager::AddExtensionItem </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineExtensionInfo &amp;&#160;</td>
+          <td class="paramname"><em>info</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00256">256</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2d8f11f23cef187a539fcf5521342ce5" name="a2d8f11f23cef187a539fcf5521342ce5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d8f11f23cef187a539fcf5521342ce5">&#9670;&#160;</a></span>EnableExtension()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::EnableExtension </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>启用扩展 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extensionId</td><td>- 扩展 ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2dfacb8f0a0e94fb58ec7487c15d187d" name="a2dfacb8f0a0e94fb58ec7487c15d187d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dfacb8f0a0e94fb58ec7487c15d187d">&#9670;&#160;</a></span>GetExtensionInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWebEngineExtensionInfo CFrmExtensionManager::GetExtensionInfo </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取扩展详细信息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extensionId</td><td>- 扩展 ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00223">223</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abcc505fc9e3a82aacecc3f799abde913" name="abcc505fc9e3a82aacecc3f799abde913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcc505fc9e3a82aacecc3f799abde913">&#9670;&#160;</a></span>GetInstalledExtensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; QWebEngineExtensionInfo &gt; CFrmExtensionManager::GetInstalledExtensions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取已安装的扩展列表 </p>
+<dl class="section return"><dt>返回</dt><dd>扩展信息列表 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00212">212</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5" name="a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba6f7a6cab81e0f7b4cd0c7dde6a7a5">&#9670;&#160;</a></span>InitializeUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::InitializeUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae4e8faf3f260e7ee6faeaea92e7c4851" name="ae4e8faf3f260e7ee6faeaea92e7c4851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4e8faf3f260e7ee6faeaea92e7c4851">&#9670;&#160;</a></span>InstallExtension()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::InstallExtension </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>安装或加载 Chrome 扩展 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>- 扩展文件路径 (.crx 文件或解包目录) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>Qt 版本要求：必须使用 Qt 6.10 或更高版本</li>
+<li>扩展格式：只支持 Manifest V3 格式的扩展</li>
+<li>配置文件：不能使用 off-the-record 的配置文件 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00157">157</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a18991174c36e543ad22ef92048e53bc2" name="a18991174c36e543ad22ef92048e53bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18991174c36e543ad22ef92048e53bc2">&#9670;&#160;</a></span>on_pbDetails_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbDetails_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00357">357</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf3b2696b9fa60c0b4d3690a80a536f8" name="adf3b2696b9fa60c0b4d3690a80a536f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf3b2696b9fa60c0b4d3690a80a536f8">&#9670;&#160;</a></span>on_pbInstall_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbInstall_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00305">305</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a072bd0ce4cf73cfc4335b56204b19275" name="a072bd0ce4cf73cfc4335b56204b19275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a072bd0ce4cf73cfc4335b56204b19275">&#9670;&#160;</a></span>on_pbLoad_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbLoad_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00316">316</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab01703d457b4b752b945aafae0b09821" name="ab01703d457b4b752b945aafae0b09821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01703d457b4b752b945aafae0b09821">&#9670;&#160;</a></span>on_pbOpenDevTools_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbOpenDevTools_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00381">381</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80aa3055157ccfaf67aa1617eea21306" name="a80aa3055157ccfaf67aa1617eea21306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80aa3055157ccfaf67aa1617eea21306">&#9670;&#160;</a></span>on_pbOpenExtensionPath_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbOpenExtensionPath_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00389">389</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac8f7d43cc2a12ae11f8152cf9fe32905" name="ac8f7d43cc2a12ae11f8152cf9fe32905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f7d43cc2a12ae11f8152cf9fe32905">&#9670;&#160;</a></span>on_pbRefresh_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbRefresh_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00351">351</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acd83d1aa59795505275113ba7c3b6976" name="acd83d1aa59795505275113ba7c3b6976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd83d1aa59795505275113ba7c3b6976">&#9670;&#160;</a></span>on_pbUninstall_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::on_pbUninstall_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00325">325</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab28cd18b074d9d62987366f146b811f2" name="ab28cd18b074d9d62987366f146b811f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab28cd18b074d9d62987366f146b811f2">&#9670;&#160;</a></span>RefreshExtensionList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmExtensionManager::RefreshExtensionList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00238">238</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab4cbe4740bfdb34410c3b764a3ff9f8a" name="ab4cbe4740bfdb34410c3b764a3ff9f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cbe4740bfdb34410c3b764a3ff9f8a">&#9670;&#160;</a></span>RemoveExtensionItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmExtensionManager::RemoveExtensionItem </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>extensionId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00293">293</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae760a00ab2fd8f67bf388cfd684cb1e7" name="ae760a00ab2fd8f67bf388cfd684cb1e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae760a00ab2fd8f67bf388cfd684cb1e7">&#9670;&#160;</a></span>SetProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrmExtensionManager::SetProfile </td>
+          <td>(</td>
+          <td class="paramtype">QWebEngineProfile *&#160;</td>
+          <td class="paramname"><em>profile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置 WebEngine Profile </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>- QWebEngineProfile 对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回 0，失败返回 -1 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeddadf8adc0160f8efe5008f92798871" name="aeddadf8adc0160f8efe5008f92798871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeddadf8adc0160f8efe5008f92798871">&#9670;&#160;</a></span>SetupConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::SetupConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa3c470aeb37e12573d7c1f9c2f18e22c" name="aa3c470aeb37e12573d7c1f9c2f18e22c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3c470aeb37e12573d7c1f9c2f18e22c">&#9670;&#160;</a></span>slotCopyPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotCopyPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00523">523</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a47e6ae89975689ae370fe28b5deea1de" name="a47e6ae89975689ae370fe28b5deea1de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47e6ae89975689ae370fe28b5deea1de">&#9670;&#160;</a></span>slotCopyPopupUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotCopyPopupUrl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00508">508</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a783f3b3ca35430500c71ed69d7630aaf" name="a783f3b3ca35430500c71ed69d7630aaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783f3b3ca35430500c71ed69d7630aaf">&#9670;&#160;</a></span>slotCustomContextMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotCustomContextMenu </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00427">427</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7af485d3fe3ce14071037c2a1a8a833b" name="a7af485d3fe3ce14071037c2a1a8a833b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7af485d3fe3ce14071037c2a1a8a833b">&#9670;&#160;</a></span>slotExtensionItemChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotExtensionItemChanged </td>
+          <td>(</td>
+          <td class="paramtype">QStandardItem *&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00403">403</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a024cb60a37e823493445583523e3f7de" name="a024cb60a37e823493445583523e3f7de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a024cb60a37e823493445583523e3f7de">&#9670;&#160;</a></span>slotInstallFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotInstallFinished </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineExtensionInfo &amp;&#160;</td>
+          <td class="paramname"><em>extension</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00448">448</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7d7e9359642ccb267940393f9a437d5c" name="a7d7e9359642ccb267940393f9a437d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7e9359642ccb267940393f9a437d5c">&#9670;&#160;</a></span>slotLoadFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotLoadFinished </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineExtensionInfo &amp;&#160;</td>
+          <td class="paramname"><em>extension</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00478">478</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1dce0c3c70c3fb2ffbb1b724e262ddf9" name="a1dce0c3c70c3fb2ffbb1b724e262ddf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dce0c3c70c3fb2ffbb1b724e262ddf9">&#9670;&#160;</a></span>slotSelectionChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotSelectionChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00416">416</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae13510088180fde6c730868d8a6f1ceb" name="ae13510088180fde6c730868d8a6f1ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae13510088180fde6c730868d8a6f1ceb">&#9670;&#160;</a></span>slotUninstallFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotUninstallFinished </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineExtensionInfo &amp;&#160;</td>
+          <td class="paramname"><em>extension</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00464">464</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aed03985699b250e9880c785b800356f5" name="aed03985699b250e9880c785b800356f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed03985699b250e9880c785b800356f5">&#9670;&#160;</a></span>slotUnloadFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::slotUnloadFinished </td>
+          <td>(</td>
+          <td class="paramtype">const QWebEngineExtensionInfo &amp;&#160;</td>
+          <td class="paramname"><em>extension</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00494">494</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6ab7ec2aa3409aa2c59c1b461a7501c4" name="a6ab7ec2aa3409aa2c59c1b461a7501c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab7ec2aa3409aa2c59c1b461a7501c4">&#9670;&#160;</a></span>UninstallExtension()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFrmExtensionManager::UninstallExtension </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>卸载扩展 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extensionId</td><td>- 扩展 ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a> 第 <a class="el" href="FrmExtensionManager_8cpp_source.html#l00180">180</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa8119114a3efdb6ee63c4029015cc7b0" name="aa8119114a3efdb6ee63c4029015cc7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8119114a3efdb6ee63c4029015cc7b0">&#9670;&#160;</a></span>m_pCopyPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pCopyPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af2b1eaa974b8f452c423ad46c1acced9" name="af2b1eaa974b8f452c423ad46c1acced9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b1eaa974b8f452c423ad46c1acced9">&#9670;&#160;</a></span>m_pCopyUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pCopyUrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a669d0645847dd30125cf2e322efd3afe" name="a669d0645847dd30125cf2e322efd3afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a669d0645847dd30125cf2e322efd3afe">&#9670;&#160;</a></span>m_pDetails</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pDetails</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a457a0c5f749e72fdefbc97f95ea600b9" name="a457a0c5f749e72fdefbc97f95ea600b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a457a0c5f749e72fdefbc97f95ea600b9">&#9670;&#160;</a></span>m_pInstall</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pInstall</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4382721284cff3ffea8cd56e23c44e81" name="a4382721284cff3ffea8cd56e23c44e81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4382721284cff3ffea8cd56e23c44e81">&#9670;&#160;</a></span>m_pLoad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pLoad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a72206b2f48063a6c28abd19e63fae3b6" name="a72206b2f48063a6c28abd19e63fae3b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72206b2f48063a6c28abd19e63fae3b6">&#9670;&#160;</a></span>m_pModelExtensions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel* CFrmExtensionManager::m_pModelExtensions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a772a288a9961d5f7b31ce8ca34c7a8e5" name="a772a288a9961d5f7b31ce8ca34c7a8e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772a288a9961d5f7b31ce8ca34c7a8e5">&#9670;&#160;</a></span>m_pOpenFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pOpenFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8dae2220116d4a4338176c950378aa92" name="a8dae2220116d4a4338176c950378aa92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dae2220116d4a4338176c950378aa92">&#9670;&#160;</a></span>m_pProfile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWebEngineProfile* CFrmExtensionManager::m_pProfile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a695091df9b9827a328beff93b3da0506" name="a695091df9b9827a328beff93b3da0506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a695091df9b9827a328beff93b3da0506">&#9670;&#160;</a></span>m_pRefresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pRefresh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab9effd9423f1f743f5021bdf6d88b782" name="ab9effd9423f1f743f5021bdf6d88b782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9effd9423f1f743f5021bdf6d88b782">&#9670;&#160;</a></span>m_pUninstall</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* CFrmExtensionManager::m_pUninstall</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af1aed65055606444c28e52851143faa6" name="af1aed65055606444c28e52851143faa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1aed65055606444c28e52851143faa6">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CFrmExtensionManager* CFrmExtensionManager::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a> 第 <a class="el" href="FrmExtensionManager_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Extension/<a class="el" href="FrmExtensionManager_8h_source.html">FrmExtensionManager.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/Extension/<a class="el" href="FrmExtensionManager_8cpp_source.html">FrmExtensionManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

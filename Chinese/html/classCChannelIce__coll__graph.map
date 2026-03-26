@@ -1,0 +1,11 @@
+<map id="CChannelIce" name="CChannelIce">
+<area shape="rect" id="Node000001" title="ICE 通道类。此类实现一个 ICE 的通道。" alt="" coords="54,168,157,193"/>
+<area shape="rect" id="Node000002" href="$classCChannel.html" title="通道接口类。此类默认实现一个 TCP 的通道。" alt="" coords="9,80,93,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,115,100,166,95,169,63,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,96,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="53,45,53,80,48,80,48,45"/>
+<area shape="rect" id="Node000004" href="$classCIceSignal.html" title="ICE 信令接口类" alt="" coords="117,80,208,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="150,118,116,169,111,166,145,115"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="125,5,200,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="165,45,165,80,160,80,160,45"/>
+</map>

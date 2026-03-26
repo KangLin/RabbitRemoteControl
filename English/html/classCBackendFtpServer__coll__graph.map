@@ -1,0 +1,27 @@
+<map id="CBackendFtpServer" name="CBackendFtpServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,432,199,457"/>
+<area shape="rect" id="Node000002" href="$classCBackend.html" title="Backend interface." alt="" coords="5,168,92,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,207,40,241,37,282,40,326,51,368,62,387,77,404,108,430,104,434,73,408,58,390,46,370,34,327,32,282,35,240,40,206"/>
+<area shape="rect" id="Node000008" href="$classCBackendThread.html" title="The backend thread." alt="" coords="105,256,235,281"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="56,206,62,219,71,230,90,244,112,253,110,258,87,248,67,234,57,221,51,208"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="130,5,205,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="152,43,123,82,59,169,55,166,119,78,148,40"/>
+<area shape="rect" id="Node000006" href="$classCOperate.html" title="Operate interface." alt="" coords="219,168,302,193"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="188,40,218,79,244,128,259,167,254,169,240,130,213,81,184,43"/>
+<area shape="rect" id="Node000007" href="$classCPlugin.html" title="Plugin interface." alt="" coords="132,80,203,105"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="170,45,170,80,165,80,165,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="61,344,188,369"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="127,383,127,431,122,431,122,383"/>
+<area shape="rect" id="Node000005" href="$classCOperateFtpServer.html" title=" " alt="" coords="223,344,370,369"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,378,149,434,147,429,260,373"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="283,203,290,216,299,252,302,288,301,344,295,344,297,288,294,253,285,218,278,205"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="226,203,204,219,189,238,178,257,173,255,184,235,200,215,222,198"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="165,119,166,131,171,142,189,155,220,166,218,171,187,159,167,146,161,133,160,119"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="186,291,212,318,234,331,258,341,256,346,232,336,208,322,182,295"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="118,168,195,193"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="163,206,171,255,166,256,158,207"/>
+<area shape="rect" id="Node000010" href="$classCFrmMain.html" title=" " alt="" coords="343,256,431,281"/>
+<area shape="poly" id="edge13_Node000005_Node000010" title=" " alt="" coords="367,293,311,345,307,342,363,289"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="348,168,427,193"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="390,207,390,255,385,255,385,207"/>
+</map>

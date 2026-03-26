@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterProxy类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate8</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterProxy-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterProxy类 参考<div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__PLUGIN.html">插件库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER__COMPONE.html">参数组件</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The proxy parameters.  
+ <a href="classCParameterProxy.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameterProxy 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterProxy__inherit__graph.png" border="0" usemap="#aCParameterProxy_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterProxy_inherit__map" id="aCParameterProxy_inherit__map">
+<area shape="rect" title="The proxy parameters." alt="" coords="13,225,148,251"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="5,152,156,177"/>
+<area shape="poly" title=" " alt="" coords="83,191,83,225,78,225,78,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="31,79,130,104"/>
+<area shape="poly" title=" " alt="" coords="83,118,83,152,78,152,78,118"/>
+<area shape="rect" title=" " alt="" coords="43,5,118,31"/>
+<area shape="poly" title=" " alt="" coords="83,44,83,79,78,79,78,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterProxy 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterProxy__coll__graph.png" border="0" usemap="#aCParameterProxy_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterProxy_coll__map" id="aCParameterProxy_coll__map">
+<area shape="rect" title="The proxy parameters." alt="" coords="227,645,362,671"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="403,155,554,180"/>
+<area shape="poly" title=" " alt="" coords="390,182,318,194,248,212,219,223,196,236,181,250,176,265,176,556,178,572,184,586,205,610,233,629,261,643,259,647,230,634,202,614,180,589,173,574,171,557,171,264,177,247,193,232,217,219,247,207,317,189,389,177"/>
+<area shape="poly" title=" " alt="" coords="568,160,581,167,572,174,554,177,554,171,570,169,575,167,566,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="605,440,765,465"/>
+<area shape="poly" title=" " alt="" coords="524,184,550,202,577,232,601,265,641,334,669,396,684,439,679,441,664,398,636,336,597,268,573,235,546,206,521,188"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="355,352,477,377"/>
+<area shape="poly" title=" " alt="" coords="484,194,483,258,476,295,462,329,451,343,438,354,435,350,448,339,458,327,471,293,478,257,479,194"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="313,253,441,279"/>
+<area shape="poly" title=" " alt="" coords="459,191,391,255,388,251,455,187"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="233,440,357,465"/>
+<area shape="poly" title=" " alt="" coords="408,187,379,197,350,212,324,231,304,255,292,278,285,304,281,357,286,405,294,439,289,440,281,406,276,357,279,303,287,276,299,252,321,227,347,207,376,192,406,182"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="907,80,1005,105"/>
+<area shape="poly" title=" " alt="" coords="893,106,554,157,554,152,892,101"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="883,836,1021,861"/>
+<area shape="poly" title=" " alt="" coords="1019,92,1101,97,1189,109,1227,118,1258,130,1280,146,1288,165,1288,748,1280,768,1259,786,1229,800,1191,813,1104,832,1022,843,1021,838,1103,826,1189,808,1227,795,1256,781,1276,765,1283,747,1283,167,1276,149,1256,135,1226,123,1188,114,1101,103,1019,98"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="727,645,867,671"/>
+<area shape="poly" title=" " alt="" coords="959,119,959,166,959,506,955,532,944,556,929,577,909,596,866,627,827,648,824,643,864,623,906,592,925,574,940,553,950,530,953,505,953,166,953,119"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="684,733,815,759"/>
+<area shape="poly" title=" " alt="" coords="933,117,916,139,910,152,908,166,908,608,903,643,882,672,859,694,834,711,784,736,781,731,831,707,856,689,878,669,898,641,903,608,903,166,905,151,911,137,929,113"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="977,204,1119,229"/>
+<area shape="poly" title=" " alt="" coords="975,115,1041,202,1037,206,971,118"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1062,303,1253,328"/>
+<area shape="poly" title=" " alt="" coords="1000,109,1066,145,1100,171,1129,202,1143,228,1152,256,1159,302,1154,303,1147,257,1138,230,1125,206,1097,175,1064,150,997,113"/>
+<area shape="rect" title=" " alt="" coords="807,5,881,31"/>
+<area shape="poly" title=" " alt="" coords="875,36,939,78,937,82,872,40"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="619,543,712,568"/>
+<area shape="poly" title=" " alt="" coords="838,44,831,92,831,454,828,474,819,491,806,506,790,518,752,537,713,548,712,543,750,532,787,514,802,502,814,488,822,472,825,454,825,91,833,43"/>
+<area shape="poly" title=" " alt="" coords="869,847,763,839,652,822,603,809,564,793,537,773,529,761,527,748,527,265,523,240,513,217,487,182,492,179,517,215,528,239,532,264,532,747,534,759,541,769,566,788,605,804,653,817,764,834,869,842"/>
+<area shape="poly" title=" " alt="" coords="818,680,944,834,940,837,814,683"/>
+<area shape="poly" title=" " alt="" coords="727,470,746,488,771,529,787,574,799,645,794,646,781,575,766,531,742,491,723,474"/>
+<area shape="poly" title=" " alt="" coords="683,479,670,543,665,542,678,478"/>
+<area shape="poly" title=" " alt="" coords="420,391,416,472,408,521,393,569,377,599,352,623,318,647,315,643,349,619,373,596,388,567,403,520,410,471,414,391"/>
+<area shape="poly" title=" " alt="" coords="463,379,567,413,646,437,645,442,566,419,462,384"/>
+<area shape="poly" title=" " alt="" coords="380,386,351,403,307,442,304,438,348,399,378,381"/>
+<area shape="poly" title=" " alt="" coords="389,290,414,351,409,353,385,292"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="5,155,189,180"/>
+<area shape="poly" title=" " alt="" coords="144,182,345,251,343,256,143,187"/>
+<area shape="poly" title=" " alt="" coords="651,581,643,602,643,611,647,619,677,631,732,643,731,648,676,636,644,623,638,612,638,601,646,579"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="573,645,699,671"/>
+<area shape="poly" title=" " alt="" coords="633,578,621,593,618,606,620,619,631,644,626,646,615,621,613,606,616,591,629,575"/>
+<area shape="poly" title=" " alt="" coords="750,772,752,793,762,810,781,821,810,830,883,840,882,845,809,835,778,826,758,814,747,794,744,773"/>
+<area shape="poly" title=" " alt="" coords="664,677,736,731,732,735,660,681"/>
+<area shape="poly" title=" " alt="" coords="1048,244,1044,314,1044,748,1037,777,1019,803,997,823,975,838,972,834,993,819,1015,799,1032,775,1039,747,1039,314,1043,243"/>
+<area shape="poly" title=" " alt="" coords="1149,342,1138,373,1133,408,1133,748,1131,766,1123,783,1097,809,1061,828,1022,839,1021,834,1059,823,1093,805,1118,780,1125,765,1128,747,1128,407,1133,371,1144,340"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="211,543,378,568"/>
+<area shape="poly" title=" " alt="" coords="297,582,297,645,292,645,292,582"/>
+<area shape="poly" title=" " alt="" coords="297,479,297,543,292,543,292,479"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a22676db592cafce48482bf18e7e7f754" id="r_a22676db592cafce48482bf18e7e7f754"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TYPE</b> { <br />
+&#160;&#160;<b>None</b> = 0
+, <b>System</b>
+, <b>SockesV5</b>
+, <b>Http</b>
+, <br />
+&#160;&#160;<b>SSHTunnel</b>
+<br />
+ }</td></tr>
+<tr class="separator:a22676db592cafce48482bf18e7e7f754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a0e36da9939cd9f5401a86662ace95f9c" id="r_a0e36da9939cd9f5401a86662ace95f9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a0e36da9939cd9f5401a86662ace95f9c">CParameterProxy</a> (<a class="el" href="classCParameterOperate.html">CParameterOperate</a> *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a0e36da9939cd9f5401a86662ace95f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add443a40dc415b6c0b21dfcff60a5d3a" id="r_add443a40dc415b6c0b21dfcff60a5d3a"><td class="memItemLeft" align="right" valign="top">QList&lt; TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#add443a40dc415b6c0b21dfcff60a5d3a">GetType</a> () const</td></tr>
+<tr class="separator:add443a40dc415b6c0b21dfcff60a5d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a445da78115f55c867bc2343d1cf8f1" id="r_a2a445da78115f55c867bc2343d1cf8f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a2a445da78115f55c867bc2343d1cf8f1">SetType</a> (QList&lt; TYPE &gt; type)</td></tr>
+<tr class="separator:a2a445da78115f55c867bc2343d1cf8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8fa18f91432bd85de759b3610ad6b3" id="r_a5a8fa18f91432bd85de759b3610ad6b3"><td class="memItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a5a8fa18f91432bd85de759b3610ad6b3">GetUsedType</a> () const</td></tr>
+<tr class="separator:a5a8fa18f91432bd85de759b3610ad6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3944396494cf45c5e40ffa21229398a6" id="r_a3944396494cf45c5e40ffa21229398a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a3944396494cf45c5e40ffa21229398a6">SetUsedType</a> (TYPE type)</td></tr>
+<tr class="separator:a3944396494cf45c5e40ffa21229398a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29849ba83809c5fdf8242ab027e612e3" id="r_a29849ba83809c5fdf8242ab027e612e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a29849ba83809c5fdf8242ab027e612e3">SetTypeName</a> (TYPE t, const QString &amp;szName)</td></tr>
+<tr class="separator:a29849ba83809c5fdf8242ab027e612e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a7c0e62e8a11a4d74e1a620e2adb7a" id="r_a13a7c0e62e8a11a4d74e1a620e2adb7a"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a13a7c0e62e8a11a4d74e1a620e2adb7a">ConvertTypeToName</a> (TYPE t)</td></tr>
+<tr class="separator:a13a7c0e62e8a11a4d74e1a620e2adb7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a58bef92def69a3a3d6e42a68ff27a48e inherit pub_methods_classCParameterOperate" id="r_a58bef92def69a3a3d6e42a68ff27a48e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a58bef92def69a3a3d6e42a68ff27a48e inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate" id="r_abed288f5e0d87a08f113126f31227a80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#abed288f5e0d87a08f113126f31227a80">GetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="separator:abed288f5e0d87a08f113126f31227a80 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate" id="r_a407cc6e826c0af916eb8ca5085d293e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a407cc6e826c0af916eb8ca5085d293e8">SetGlobalParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="separator:a407cc6e826c0af916eb8ca5085d293e8 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="separator:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="separator:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="separator:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:aa35b6d1854ae3abc4d6341d31977fc68 inherit pub_methods_classCParameter" id="r_aa35b6d1854ae3abc4d6341d31977fc68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:aa35b6d1854ae3abc4d6341d31977fc68 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a6f3c61cbfb710ecd0ad88015757d36cf" id="r_a6f3c61cbfb710ecd0ad88015757d36cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a6f3c61cbfb710ecd0ad88015757d36cf">m_Http</a></td></tr>
+<tr class="separator:a6f3c61cbfb710ecd0ad88015757d36cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64b4ad1dc0f0b6905d5b16063fcb054" id="r_ac64b4ad1dc0f0b6905d5b16063fcb054"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterNet.html">CParameterNet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#ac64b4ad1dc0f0b6905d5b16063fcb054">m_SockesV5</a></td></tr>
+<tr class="separator:ac64b4ad1dc0f0b6905d5b16063fcb054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe297a555b75bb96b328e781a2dc1ddb" id="r_afe297a555b75bb96b328e781a2dc1ddb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#afe297a555b75bb96b328e781a2dc1ddb">m_SSH</a></td></tr>
+<tr class="separator:afe297a555b75bb96b328e781a2dc1ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a4ca581d508fb6ab3e4208507540d33bf" id="r_a4ca581d508fb6ab3e4208507540d33bf"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a4ca581d508fb6ab3e4208507540d33bf">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a4ca581d508fb6ab3e4208507540d33bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea056da731e0cda9335632ca6dfd0ef" id="r_a0ea056da731e0cda9335632ca6dfd0ef"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a0ea056da731e0cda9335632ca6dfd0ef">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a0ea056da731e0cda9335632ca6dfd0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="separator:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a6c8c027116f45428be26b40368ed4082" id="r_a6c8c027116f45428be26b40368ed4082"><td class="memItemLeft" align="right" valign="top">QList&lt; TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a6c8c027116f45428be26b40368ed4082">m_Type</a></td></tr>
+<tr class="separator:a6c8c027116f45428be26b40368ed4082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7bb6cf81c099d3f00ccdc11a359d1b0" id="r_ad7bb6cf81c099d3f00ccdc11a359d1b0"><td class="memItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#ad7bb6cf81c099d3f00ccdc11a359d1b0">m_UsedType</a></td></tr>
+<tr class="separator:ad7bb6cf81c099d3f00ccdc11a359d1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340bcdf0fbaa24d8b7b8af62a8341d08" id="r_a340bcdf0fbaa24d8b7b8af62a8341d08"><td class="memItemLeft" align="right" valign="top">QMap&lt; TYPE, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterProxy.html#a340bcdf0fbaa24d8b7b8af62a8341d08">m_TypeName</a></td></tr>
+<tr class="separator:a340bcdf0fbaa24d8b7b8af62a8341d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate" id="r_a3612d682561300f4d22c58dab8c3bb52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a3612d682561300f4d22c58dab8c3bb52">sigSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="separator:a3612d682561300f4d22c58dab8c3bb52 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="separator:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate" id="r_a4e92e0588bf8de1fa7181cd2d29ab059"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a4e92e0588bf8de1fa7181cd2d29ab059">slotSetGlobalParameters</a> ()</td></tr>
+<tr class="memdesc:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="separator:a4e92e0588bf8de1fa7181cd2d29ab059 inherit pro_slots_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>The proxy parameters. </p>
+<p>Its UI is <a class="el" href="classCParameterProxyUI.html" title="The proxy parameter UI">CParameterProxyUI</a></p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameterProxyUI.html" title="The proxy parameter UI">CParameterProxyUI</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a22676db592cafce48482bf18e7e7f754" name="a22676db592cafce48482bf18e7e7f754"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22676db592cafce48482bf18e7e7f754">&#9670;&#160;</a></span>TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class CParameterProxy::TYPE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a0e36da9939cd9f5401a86662ace95f9c" name="a0e36da9939cd9f5401a86662ace95f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e36da9939cd9f5401a86662ace95f9c">&#9670;&#160;</a></span>CParameterProxy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterProxy::CParameterProxy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameterOperate.html">CParameterOperate</a> *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em> = <code>QString()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00004">4</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a13a7c0e62e8a11a4d74e1a620e2adb7a" name="a13a7c0e62e8a11a4d74e1a620e2adb7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a7c0e62e8a11a4d74e1a620e2adb7a">&#9670;&#160;</a></span>ConvertTypeToName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterProxy::ConvertTypeToName </td>
+          <td>(</td>
+          <td class="paramtype">TYPE&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add443a40dc415b6c0b21dfcff60a5d3a" name="add443a40dc415b6c0b21dfcff60a5d3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add443a40dc415b6c0b21dfcff60a5d3a">&#9670;&#160;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; CParameterProxy::TYPE &gt; CParameterProxy::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a8fa18f91432bd85de759b3610ad6b3" name="a5a8fa18f91432bd85de759b3610ad6b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a8fa18f91432bd85de759b3610ad6b3">&#9670;&#160;</a></span>GetUsedType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterProxy::TYPE CParameterProxy::GetUsedType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4ca581d508fb6ab3e4208507540d33bf" name="a4ca581d508fb6ab3e4208507540d33bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca581d508fb6ab3e4208507540d33bf">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxy::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0ea056da731e0cda9335632ca6dfd0ef" name="a0ea056da731e0cda9335632ca6dfd0ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea056da731e0cda9335632ca6dfd0ef">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxy::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2a445da78115f55c867bc2343d1cf8f1" name="a2a445da78115f55c867bc2343d1cf8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a445da78115f55c867bc2343d1cf8f1">&#9670;&#160;</a></span>SetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxy::SetType </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; TYPE &gt;&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a29849ba83809c5fdf8242ab027e612e3" name="a29849ba83809c5fdf8242ab027e612e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29849ba83809c5fdf8242ab027e612e3">&#9670;&#160;</a></span>SetTypeName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxy::SetTypeName </td>
+          <td>(</td>
+          <td class="paramtype">TYPE&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3944396494cf45c5e40ffa21229398a6" name="a3944396494cf45c5e40ffa21229398a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3944396494cf45c5e40ffa21229398a6">&#9670;&#160;</a></span>SetUsedType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterProxy::SetUsedType </td>
+          <td>(</td>
+          <td class="paramtype">TYPE&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a> 第 <a class="el" href="ParameterProxy_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a6f3c61cbfb710ecd0ad88015757d36cf" name="a6f3c61cbfb710ecd0ad88015757d36cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f3c61cbfb710ecd0ad88015757d36cf">&#9670;&#160;</a></span>m_Http</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNet.html">CParameterNet</a> CParameterProxy::m_Http</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac64b4ad1dc0f0b6905d5b16063fcb054" name="ac64b4ad1dc0f0b6905d5b16063fcb054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64b4ad1dc0f0b6905d5b16063fcb054">&#9670;&#160;</a></span>m_SockesV5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterNet.html">CParameterNet</a> CParameterProxy::m_SockesV5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afe297a555b75bb96b328e781a2dc1ddb" name="afe297a555b75bb96b328e781a2dc1ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe297a555b75bb96b328e781a2dc1ddb">&#9670;&#160;</a></span>m_SSH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterSSHTunnel.html">CParameterSSHTunnel</a> CParameterProxy::m_SSH</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6c8c027116f45428be26b40368ed4082" name="a6c8c027116f45428be26b40368ed4082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8c027116f45428be26b40368ed4082">&#9670;&#160;</a></span>m_Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;TYPE&gt; CParameterProxy::m_Type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a340bcdf0fbaa24d8b7b8af62a8341d08" name="a340bcdf0fbaa24d8b7b8af62a8341d08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340bcdf0fbaa24d8b7b8af62a8341d08">&#9670;&#160;</a></span>m_TypeName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;TYPE, QString&gt; CParameterProxy::m_TypeName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad7bb6cf81c099d3f00ccdc11a359d1b0" name="ad7bb6cf81c099d3f00ccdc11a359d1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7bb6cf81c099d3f00ccdc11a359d1b0">&#9670;&#160;</a></span>m_UsedType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPE CParameterProxy::m_UsedType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a> 第 <a class="el" href="ParameterProxy_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterProxy_8h_source.html">ParameterProxy.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Src/ParameterCompone/<a class="el" href="ParameterProxy_8cpp_source.html">ParameterProxy.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

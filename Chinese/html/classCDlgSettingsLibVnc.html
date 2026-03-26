@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CDlgSettingsLibVnc类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate8</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCDlgSettingsLibVnc-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CDlgSettingsLibVnc类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CDlgSettingsLibVnc 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsLibVnc__inherit__graph.png" border="0" usemap="#aCDlgSettingsLibVnc_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCDlgSettingsLibVnc_inherit__map" id="aCDlgSettingsLibVnc_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,155,104"/>
+<area shape="rect" title=" " alt="" coords="43,5,117,31"/>
+<area shape="poly" title=" " alt="" coords="83,44,83,79,77,79,77,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CDlgSettingsLibVnc 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDlgSettingsLibVnc__coll__graph.png" border="0" usemap="#aCDlgSettingsLibVnc_coll__map" alt="Collaboration graph"/></div>
+<map name="aCDlgSettingsLibVnc_coll__map" id="aCDlgSettingsLibVnc_coll__map">
+<area shape="rect" title=" " alt="" coords="767,928,916,953"/>
+<area shape="rect" title=" " alt="" coords="225,840,300,865"/>
+<area shape="poly" title=" " alt="" coords="314,863,566,903,767,928,766,934,565,908,313,868"/>
+<area shape="rect" href="classCParameterLibVNCServer.html" title=" " alt="" coords="748,840,935,865"/>
+<area shape="poly" title=" " alt="" coords="844,879,844,927,839,927,839,879"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="776,737,907,763"/>
+<area shape="poly" title=" " alt="" coords="844,777,844,840,839,840,839,777"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="706,155,857,180"/>
+<area shape="poly" title=" " alt="" coords="784,194,784,265,784,648,789,675,801,699,831,735,827,739,796,701,784,676,779,649,779,265,779,194"/>
+<area shape="poly" title=" " alt="" coords="871,160,883,167,875,174,857,177,856,171,873,169,878,167,869,165"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="579,429,739,455"/>
+<area shape="poly" title=" " alt="" coords="771,193,765,205,705,337,666,430,661,428,700,335,760,203,766,191"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="938,341,1059,367"/>
+<area shape="poly" title=" " alt="" coords="865,182,903,202,926,227,952,266,995,340,990,342,948,269,922,231,900,206,862,187"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="971,253,1099,279"/>
+<area shape="poly" title=" " alt="" coords="871,177,913,187,953,202,993,226,1024,251,1021,255,990,230,951,206,911,192,870,182"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="819,635,954,660"/>
+<area shape="poly" title=" " alt="" coords="803,189,824,223,832,243,835,264,835,546,839,572,850,596,877,633,873,636,845,598,834,573,829,546,829,265,827,245,819,225,799,192"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="937,429,1061,455"/>
+<area shape="poly" title=" " alt="" coords="828,184,853,202,870,223,882,243,894,282,905,321,928,365,957,400,987,427,983,431,954,404,923,368,900,323,889,283,877,246,866,226,849,206,825,188"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="239,80,337,105"/>
+<area shape="poly" title=" " alt="" coords="351,101,706,152,705,158,351,106"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="324,840,463,865"/>
+<area shape="poly" title=" " alt="" coords="225,100,156,107,84,120,54,129,29,139,13,152,8,166,8,751,11,767,20,781,34,793,52,803,99,818,154,828,258,836,312,837,324,839,323,844,312,843,258,842,153,834,98,824,50,808,31,797,16,784,6,769,3,752,3,166,9,149,27,135,52,124,83,115,155,102,224,95"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="585,635,725,660"/>
+<area shape="poly" title=" " alt="" coords="351,99,380,107,406,121,425,140,432,166,432,399,437,423,449,438,465,454,480,478,486,500,489,518,491,535,498,556,515,586,540,608,566,622,594,632,592,637,564,627,537,613,511,590,494,558,486,537,483,519,481,501,475,480,461,458,445,442,432,425,427,400,427,166,420,142,403,125,378,112,350,104"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="431,737,561,763"/>
+<area shape="poly" title=" " alt="" coords="265,117,248,139,242,152,240,166,240,443,236,478,226,508,201,560,191,584,186,607,190,631,205,658,219,671,240,683,298,705,366,723,431,735,430,741,365,728,297,710,238,688,216,675,201,662,185,633,181,607,186,582,196,558,221,506,231,477,235,443,235,166,237,151,243,137,261,113"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="215,635,358,660"/>
+<area shape="poly" title=" " alt="" coords="291,119,291,166,291,546,290,634,284,634,285,546,285,166,285,119"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="26,204,217,229"/>
+<area shape="poly" title=" " alt="" coords="251,114,220,132,171,171,134,206,131,202,168,167,217,127,248,109"/>
+<area shape="rect" title=" " alt="" coords="383,5,457,31"/>
+<area shape="poly" title=" " alt="" coords="388,40,310,82,308,77,386,35"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="508,532,601,557"/>
+<area shape="poly" title=" " alt="" coords="472,32,491,42,507,55,519,71,524,91,524,218,528,313,537,405,555,531,550,532,532,405,523,313,519,218,519,92,515,73,504,59,488,46,469,37"/>
+<area shape="poly" title=" " alt="" coords="388,827,383,750,379,648,382,548,388,508,398,478,432,420,476,367,526,321,578,280,678,216,754,178,756,183,681,221,581,284,529,325,480,371,437,423,402,480,393,509,388,549,385,648,388,750,394,826"/>
+<area shape="poly" title=" " alt="" coords="640,673,632,685,610,724,597,758,580,788,548,818,507,839,464,849,462,844,505,834,545,814,576,785,592,755,606,722,627,683,636,670"/>
+<area shape="poly" title=" " alt="" coords="664,468,679,557,685,581,688,596,685,612,670,636,665,633,680,610,682,596,680,582,673,558,659,468"/>
+<area shape="poly" title=" " alt="" coords="604,463,579,480,565,507,558,532,553,531,560,505,575,477,601,458"/>
+<area shape="poly" title=" " alt="" coords="1035,372,1054,389,1102,444,1121,471,1135,497,1144,525,1145,553,1137,582,1119,612,1101,626,1081,628,1061,628,1042,637,1027,655,1021,675,1014,696,998,715,977,728,954,738,908,748,906,743,952,733,974,723,994,711,1010,693,1016,674,1022,653,1038,633,1060,623,1081,622,1099,621,1115,609,1132,580,1140,552,1139,525,1130,499,1116,473,1097,447,1050,393,1031,376"/>
+<area shape="poly" title=" " alt="" coords="937,372,850,393,702,432,700,427,849,388,935,367"/>
+<area shape="poly" title=" " alt="" coords="974,377,948,401,926,431,904,487,893,546,889,598,889,634,883,634,883,598,888,545,899,486,922,428,944,398,970,373"/>
+<area shape="poly" title=" " alt="" coords="1001,381,1001,429,996,429,996,381"/>
+<area shape="rect" href="classCParameterNetUI.html" title="The net parameter UI" alt="" coords="1309,635,1443,660"/>
+<area shape="poly" title=" " alt="" coords="1073,361,1143,371,1217,385,1282,404,1307,415,1324,427,1344,452,1359,480,1375,540,1380,595,1380,635,1374,635,1375,596,1370,541,1354,482,1340,455,1321,431,1304,419,1280,409,1216,390,1142,376,1073,366"/>
+<area shape="poly" title=" " alt="" coords="1027,293,1006,342,1001,340,1022,291"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="971,155,1155,180"/>
+<area shape="poly" title=" " alt="" coords="1058,194,1041,254,1035,253,1053,192"/>
+<area shape="poly" title=" " alt="" coords="548,571,546,591,552,609,566,624,586,633,583,638,563,628,547,612,540,591,543,570"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="434,635,561,660"/>
+<area shape="poly" title=" " alt="" coords="535,569,525,583,512,610,503,635,498,634,507,608,520,580,531,566"/>
+<area shape="poly" title=" " alt="" coords="476,774,407,842,403,838,472,771"/>
+<area shape="poly" title=" " alt="" coords="500,674,499,737,493,737,494,674"/>
+<area shape="poly" title=" " alt="" coords="372,654,498,667,598,681,646,695,694,711,791,735,789,740,693,716,645,700,597,687,497,672,371,659"/>
+<area shape="poly" title=" " alt="" coords="289,673,293,716,308,762,323,785,342,806,379,838,375,842,338,810,319,788,303,764,288,717,284,674"/>
+<area shape="poly" title=" " alt="" coords="115,243,107,274,103,309,103,751,108,767,124,781,149,795,180,806,253,826,324,839,323,844,252,831,179,812,147,799,121,786,104,770,97,752,97,309,101,273,110,242"/>
+<area shape="poly" title=" " alt="" coords="856,670,845,685,839,712,841,737,836,737,834,712,840,683,852,667"/>
+<area shape="rect" href="classCParameterProxyUI.html" title="The proxy parameter UI" alt="" coords="1068,737,1217,763"/>
+<area shape="poly" title=" " alt="" coords="929,663,1115,735,1113,740,927,667"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="921,532,1087,557"/>
+<area shape="poly" title=" " alt="" coords="959,565,931,583,909,610,894,636,889,633,904,607,928,579,956,561"/>
+<area shape="rect" href="classCParameterSSHTunnelUI.html" title=" " alt="" coords="1053,635,1233,660"/>
+<area shape="poly" title=" " alt="" coords="1027,565,1080,608,1120,632,1118,637,1077,613,1024,569"/>
+<area shape="poly" title=" " alt="" coords="1003,468,1006,532,1001,532,997,469"/>
+<area shape="poly" title=" " alt="" coords="1116,773,1025,834,909,906,866,930,863,925,907,902,1022,829,1113,768"/>
+<area shape="rect" href="classCParameterUI.html" title="参数界面接口" alt="" coords="1215,532,1327,557"/>
+<area shape="poly" title=" " alt="" coords="1271,572,1266,604,1256,643,1239,682,1212,715,1174,739,1171,735,1209,711,1234,679,1251,641,1261,603,1266,571"/>
+<area shape="poly" title=" " alt="" coords="1294,565,1366,633,1362,637,1291,569"/>
+<area shape="poly" title=" " alt="" coords="1247,568,1159,637,1156,633,1244,564"/>
+<area shape="rect" title=" " alt="" coords="1231,429,1310,455"/>
+<area shape="poly" title=" " alt="" coords="1273,469,1273,532,1268,532,1268,469"/>
+<area shape="poly" title=" " alt="" coords="1356,671,1326,695,1290,716,1253,730,1216,740,1214,735,1252,725,1288,711,1323,690,1352,667"/>
+<area shape="poly" title=" " alt="" coords="1145,674,1145,737,1140,737,1140,674"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ad026d41efdf25a96e4dd322f4143d180" id="r_ad026d41efdf25a96e4dd322f4143d180"><td class="memItemLeft" align="right" valign="top"><a id="ad026d41efdf25a96e4dd322f4143d180" name="ad026d41efdf25a96e4dd322f4143d180"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CDlgSettingsLibVnc</b> (<a class="el" href="classCParameterLibVNCServer.html">CParameterLibVNCServer</a> *pPara, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ad026d41efdf25a96e4dd322f4143d180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:a37ac2cdb63547f702369cc0fae8ab592" id="r_a37ac2cdb63547f702369cc0fae8ab592"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#a37ac2cdb63547f702369cc0fae8ab592">on_pbOk_clicked</a> ()</td></tr>
+<tr class="separator:a37ac2cdb63547f702369cc0fae8ab592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a37aca4ab62ab7dcede028acd9e2322" id="r_a5a37aca4ab62ab7dcede028acd9e2322"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#a5a37aca4ab62ab7dcede028acd9e2322">on_pbCancel_clicked</a> ()</td></tr>
+<tr class="separator:a5a37aca4ab62ab7dcede028acd9e2322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca06761ba4da25f8ba4aa1c94db9e80" id="r_abca06761ba4da25f8ba4aa1c94db9e80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#abca06761ba4da25f8ba4aa1c94db9e80">on_cbCompress_stateChanged</a> (int arg1)</td></tr>
+<tr class="separator:abca06761ba4da25f8ba4aa1c94db9e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab905864348020db726cd7c37543d83e5" id="r_ab905864348020db726cd7c37543d83e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#ab905864348020db726cd7c37543d83e5">on_cbJPEG_stateChanged</a> (int arg1)</td></tr>
+<tr class="separator:ab905864348020db726cd7c37543d83e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a188e0d90cecdc57dbe5fee641c973b9e" id="r_a188e0d90cecdc57dbe5fee641c973b9e"><td class="memItemLeft" align="right" valign="top">Ui::CDlgSettingsLibVnc *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#a188e0d90cecdc57dbe5fee641c973b9e">ui</a></td></tr>
+<tr class="separator:a188e0d90cecdc57dbe5fee641c973b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145c04bbf7196fec92aa8abf3e15b344" id="r_a145c04bbf7196fec92aa8abf3e15b344"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterLibVNCServer.html">CParameterLibVNCServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#a145c04bbf7196fec92aa8abf3e15b344">m_pPara</a></td></tr>
+<tr class="separator:a145c04bbf7196fec92aa8abf3e15b344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0430b9f2494db15ba4ab35e493b18e" id="r_a0c0430b9f2494db15ba4ab35e493b18e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterProxyUI.html">CParameterProxyUI</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDlgSettingsLibVnc.html#a0c0430b9f2494db15ba4ab35e493b18e">m_pProxyUI</a></td></tr>
+<tr class="separator:a0c0430b9f2494db15ba4ab35e493b18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8h_source.html">DlgSettingsLibVnc.h</a> 第 <a class="el" href="DlgSettingsLibVnc_8h_source.html#l00017">17</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae316f2af95ce02e50df95ea9ecf44702" name="ae316f2af95ce02e50df95ea9ecf44702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae316f2af95ce02e50df95ea9ecf44702">&#9670;&#160;</a></span>~CDlgSettingsLibVnc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDlgSettingsLibVnc::~CDlgSettingsLibVnc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a> 第 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html#l00070">70</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="abca06761ba4da25f8ba4aa1c94db9e80" name="abca06761ba4da25f8ba4aa1c94db9e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abca06761ba4da25f8ba4aa1c94db9e80">&#9670;&#160;</a></span>on_cbCompress_stateChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsLibVnc::on_cbCompress_stateChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a> 第 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab905864348020db726cd7c37543d83e5" name="ab905864348020db726cd7c37543d83e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab905864348020db726cd7c37543d83e5">&#9670;&#160;</a></span>on_cbJPEG_stateChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsLibVnc::on_cbJPEG_stateChanged </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a> 第 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html#l00139">139</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a37aca4ab62ab7dcede028acd9e2322" name="a5a37aca4ab62ab7dcede028acd9e2322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a37aca4ab62ab7dcede028acd9e2322">&#9670;&#160;</a></span>on_pbCancel_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsLibVnc::on_pbCancel_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a> 第 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a37ac2cdb63547f702369cc0fae8ab592" name="a37ac2cdb63547f702369cc0fae8ab592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ac2cdb63547f702369cc0fae8ab592">&#9670;&#160;</a></span>on_pbOk_clicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDlgSettingsLibVnc::on_pbOk_clicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a> 第 <a class="el" href="DlgSettingsLibVnc_8cpp_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a145c04bbf7196fec92aa8abf3e15b344" name="a145c04bbf7196fec92aa8abf3e15b344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145c04bbf7196fec92aa8abf3e15b344">&#9670;&#160;</a></span>m_pPara</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterLibVNCServer.html">CParameterLibVNCServer</a>* CDlgSettingsLibVnc::m_pPara</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8h_source.html">DlgSettingsLibVnc.h</a> 第 <a class="el" href="DlgSettingsLibVnc_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0c0430b9f2494db15ba4ab35e493b18e" name="a0c0430b9f2494db15ba4ab35e493b18e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0430b9f2494db15ba4ab35e493b18e">&#9670;&#160;</a></span>m_pProxyUI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterProxyUI.html">CParameterProxyUI</a>* CDlgSettingsLibVnc::m_pProxyUI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8h_source.html">DlgSettingsLibVnc.h</a> 第 <a class="el" href="DlgSettingsLibVnc_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a188e0d90cecdc57dbe5fee641c973b9e" name="a188e0d90cecdc57dbe5fee641c973b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a188e0d90cecdc57dbe5fee641c973b9e">&#9670;&#160;</a></span>ui</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ui::CDlgSettingsLibVnc* CDlgSettingsLibVnc::ui</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="DlgSettingsLibVnc_8h_source.html">DlgSettingsLibVnc.h</a> 第 <a class="el" href="DlgSettingsLibVnc_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/LibVNCServer/Client/<a class="el" href="DlgSettingsLibVnc_8h_source.html">DlgSettingsLibVnc.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/LibVNCServer/Client/<a class="el" href="DlgSettingsLibVnc_8cpp_source.html">DlgSettingsLibVnc.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
