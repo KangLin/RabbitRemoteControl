@@ -297,7 +297,7 @@ Contact me:
 
 ### Development documentation online
 
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v1.0.0-dev/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.1.0-bate8/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

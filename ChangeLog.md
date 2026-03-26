@@ -1,6 +1,6 @@
 ## Change Log
 
-### v0.1.0-dev
+### v0.1.0-bate8
 - [Refactor](https://github.com/KangLin/RabbitRemoteControl/issues/47)
   - App:
     - Rename UI prompts

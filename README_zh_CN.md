@@ -295,7 +295,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 ### 在线开发文档
 
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v1.0.0-dev/Chinese/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.1.0-bate8/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 编译
