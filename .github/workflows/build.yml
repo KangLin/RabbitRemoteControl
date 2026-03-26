@@ -182,19 +182,19 @@ jobs:
           if [ -f ${{github.workspace}}/Script/common.sh ]; then
               source ${{github.workspace}}/Script/common.sh
 
-              content=$(<${{github.workspace}}/ChangeLog.log)
+              content=$(<${{github.workspace}}/ChangeLog.md)
               if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
                 echo "## :us: Change log" >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
-                get_section ${{github.workspace}}/ChangeLog.log >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog.md >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
               fi
 
-              content=$(<${{github.workspace}}/ChangeLog_zh_CN.log)
+              content=$(<${{github.workspace}}/ChangeLog_zh_CN.md)
               if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
                 echo "## :cn: 修改日志" >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
-                get_section ${{github.workspace}}/ChangeLog_zh_CN.log >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog_zh_CN.md >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
               fi
           fi
@@ -217,11 +217,11 @@ jobs:
           if [ -f ${{github.workspace}}/Script/common.sh ]; then
               source ${{github.workspace}}/Script/common.sh
 
-              content=$(<${{github.workspace}}/ChangeLog.log)
+              content=$(<${{github.workspace}}/ChangeLog.md)
               if [[ $content =~ ${{env.RabbitRemoteControl_VERSION}} ]]; then
                 echo "## :us: Change log" >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
-                get_section ${{github.workspace}}/ChangeLog.log >> ${{github.workspace}}/Release.md
+                get_section ${{github.workspace}}/ChangeLog.md >> ${{github.workspace}}/Release.md
                 echo "" >> ${{github.workspace}}/Release.md
               fi
           fi
@@ -308,7 +308,11 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         continue-on-error: true
         run: |
-          gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Release.md
+          if [[ $RabbitRemoteControl_VERSION =~ ^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Release.md
+          else
+            gh release create ${{ github.ref_name }} --prerelease --latest=false --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Release.md
+          fi
 
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
