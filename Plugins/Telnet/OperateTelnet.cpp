@@ -156,7 +156,7 @@ const QString COperateTelnet::Name()
                 && (m_Parameters.GetGlobalParameters()->GetNameStyles()
                      & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
-                szName = Protocol() + ":";
+                szName = Protocol() + ": ";
             szName += net.GetHost()
                       + ":" + QString::number(net.GetPort());
         }

@@ -95,7 +95,7 @@ const QString COperateDesktop::Name()
             && (GetParameter()->GetGlobalParameters()->GetNameStyles()
                 & CParameterPlugin::NameStyle::Protocol)
             && !Protocol().isEmpty())
-            szName = Protocol() + ":";
+            szName = Protocol() + ": ";
         // Show the server name
         szName += ServerName();
     }

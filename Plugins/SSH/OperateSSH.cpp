@@ -87,7 +87,7 @@ const QString COperateSSH::Name()
                 && (GetParameter()->GetGlobalParameters()->GetNameStyles()
                      & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
-                szName = Protocol() + ":";
+                szName = Protocol() + ": ";
             szName += sshNet.GetHost()
                       + ":" + QString::number(sshNet.GetPort());
         }

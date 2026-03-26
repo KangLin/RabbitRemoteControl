@@ -169,7 +169,7 @@ const QString COperateWakeOnLan::Name()
         && (m_pParameterPlugin->GetNameStyles()
             & CParameterPlugin::NameStyle::Protocol)
         && !Protocol().isEmpty())
-        szName = Protocol() + ":";
+        szName = Protocol() + ": ";
     szName += GetPlugin()->DisplayName();
     return szName;
 }

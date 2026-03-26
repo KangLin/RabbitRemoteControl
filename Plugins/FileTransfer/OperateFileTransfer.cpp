@@ -149,7 +149,7 @@ const QString COperateFileTransfer::Name()
     if(!pNet->GetHost().isEmpty()) {
         if(m_Parameter.GetGlobalParameters()
             && m_Parameter.GetGlobalParameters()->GetShowProtocolPrefix())
-            szName = Protocol() + ":";
+            szName = Protocol() + ": ";
         szName += pNet->GetHost()
                   + ":" + QString::number(pNet->GetPort());
     }
