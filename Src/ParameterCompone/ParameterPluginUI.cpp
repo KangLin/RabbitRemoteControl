@@ -137,6 +137,8 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
 #endif
     ui->leEncryptKey->setText(m_pPara->GetEncryptKey());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
+    on_cbSavePassword_checkStateChanged(ui->cbSavePassword->checkState());
+    
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
     ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
     switch (m_pPara->GetPromptType()) {
@@ -161,6 +163,13 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
 void CParameterPluginUI::on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state)
 {
     ui->gpEncryptKey->setEnabled(Qt::Unchecked == state);
+}
+
+void CParameterPluginUI::on_cbSavePassword_checkStateChanged(const Qt::CheckState &state)
+{
+    bool bEnabled = Qt::CheckState::Checked == state;
+    ui->cbSystemCredential->setVisible(bEnabled);
+    ui->gpEncryptKey->setVisible(bEnabled);
 }
 
 void CParameterPluginUI::on_pbDesktopShortcutsDisable_clicked()

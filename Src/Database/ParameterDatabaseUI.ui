@@ -109,12 +109,6 @@
    </item>
    <item row="6" column="0">
     <widget class="QGroupBox" name="groupBox_3">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>Save operate settings to:</string>
      </property>
@@ -124,7 +118,7 @@
         <item>
          <widget class="QRadioButton" name="rbSaveSettingsToLocal">
           <property name="text">
-           <string>Local</string>
+           <string>File</string>
           </property>
          </widget>
         </item>
@@ -158,7 +152,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>0</height>
       </size>
      </property>
     </spacer>

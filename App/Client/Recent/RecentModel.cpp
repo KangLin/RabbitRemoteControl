@@ -32,7 +32,7 @@ Qt::ItemFlags CRecentModel::flags(const QModelIndex &index) const
     bool bExist = false;
     QFileInfo fi(szFile);
     if(m_pParameterApp->GetGlobalParameters()->GetSaveSettingsType()
-        == CParameterGlobal::SaveSettingsType::Local) {
+        == CParameterGlobal::SaveSettingsType::File) {
         bExist = fi.exists();
     } else {
         bExist = m_pDatabase->HasFileContents(item);

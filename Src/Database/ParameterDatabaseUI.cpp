@@ -66,7 +66,7 @@ int CParameterDatabaseUI::SetParameter(CParameter *pParameter)
     ui->leOptions->setText(m_pParaDB->GetOptions());
     
     switch(m_pParaGlobal->GetSaveSettingsType()) {
-    case CParameterGlobal::SaveSettingsType::Local:
+    case CParameterGlobal::SaveSettingsType::File:
         ui->rbSaveSettingsToLocal->setChecked(true);
         break;
     case CParameterGlobal::SaveSettingsType::Database:
@@ -116,7 +116,7 @@ int CParameterDatabaseUI::Accept()
     m_pParaDB->SetOptions(ui->leOptions->text());
     
     if(ui->rbSaveSettingsToLocal->isChecked()) {
-        m_pParaGlobal->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Local);
+        m_pParaGlobal->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::File);
     } else if(ui->rbSaveSettingsToDatabase->isChecked()) {
         m_pParaGlobal->SetSaveSettingsType(CParameterGlobal::SaveSettingsType::Database);
     }

@@ -490,7 +490,7 @@ int MainWindow::Initial()
                     m_pRecentMenu->addRecentFile(it->GetFile(), it->szName, it->icon);
                 }
                 m_pRecentMenu->slotShowFileEixst(
-                    m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::Local);
+                    m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
                 bool check = connect(
                     m_Parameter.GetGlobalParameters(),
                     &CParameterGlobal::sigSaveSettingsTypeChanged,
@@ -498,7 +498,7 @@ int MainWindow::Initial()
                         if(!(m_pRecentMenu && m_Parameter.GetGlobalParameters()))
                             return;
                         m_pRecentMenu->slotShowFileEixst(
-                            m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::Local);
+                            m_Parameter.GetGlobalParameters()->GetSaveSettingsType() == CParameterGlobal::File);
                     });
                 Q_ASSERT(check);
             }

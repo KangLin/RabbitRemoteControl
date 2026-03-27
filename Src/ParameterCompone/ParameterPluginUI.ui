@@ -131,7 +131,7 @@
       <item row="2" column="0">
        <widget class="QGroupBox" name="gpEncryptKey">
         <property name="title">
-         <string>Key used to encrypt saved password:</string>
+         <string>Save the encrypted password in the settings:</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
@@ -145,11 +145,17 @@
            </item>
            <item>
             <widget class="QLineEdit" name="leEncryptKey">
+             <property name="toolTip">
+              <string>&quot;Encryption Key&quot; is used to encrypt saved passwords. If left empty, a random &quot;Encryption Key&quot; will be used.</string>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
              <property name="echoMode">
               <enum>QLineEdit::EchoMode::Password</enum>
+             </property>
+             <property name="placeholderText">
+              <string>&quot;Encryption Key&quot; is used to encrypt saved passwords. If left empty, a random &quot;Encryption Key&quot; will be used.</string>
              </property>
             </widget>
            </item>
@@ -196,7 +202,7 @@
       <item row="1" column="0">
        <widget class="QCheckBox" name="cbSystemCredential">
         <property name="text">
-         <string>Store password with system credential manager</string>
+         <string>Save the password to the system's credential manager</string>
         </property>
        </widget>
       </item>
@@ -206,7 +212,7 @@
    <item row="4" column="0">
     <widget class="QCheckBox" name="cbEnableUserName">
      <property name="text">
-      <string>Enable use the system user as the user</string>
+      <string>Enable use the current system user as the default user in new settings</string>
      </property>
     </widget>
    </item>
@@ -262,7 +268,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>0</height>
       </size>
      </property>
     </spacer>

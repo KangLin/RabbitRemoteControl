@@ -4,7 +4,7 @@
 CParameterGlobal::CParameterGlobal(QObject *parent, const QString &szPrefix)
     : CParameter{parent, szPrefix}
     , m_Database(this)
-    , m_SaveSettingsType(SaveSettingsType::Local)
+    , m_SaveSettingsType(SaveSettingsType::File)
 {
 }
 
