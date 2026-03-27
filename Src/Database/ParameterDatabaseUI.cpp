@@ -30,6 +30,15 @@ CParameterDatabaseUI::CParameterDatabaseUI(QWidget *parent)
     setWindowTitle(tr("Database"));
 
     ui->leDatabaseName->installEventFilter(this);
+    QString szUrl;
+    szUrl =  "<a href=https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual#sharing-operation-parameters>" + tr("Sharing \"Operation Parameters\"") + "</a>";
+    ui->gpSaveOperateSettings->setWhatsThis(szUrl);
+    ui->gpSaveOperateSettings->installEventFilter(this);
+    ui->rbSaveSettingsToDatabase->setWhatsThis(szUrl);
+    ui->rbSaveSettingsToDatabase->installEventFilter(this);
+    ui->rbSaveSettingsToLocal->setWhatsThis(szUrl);
+    ui->rbSaveSettingsToLocal->installEventFilter(this);
+
     ui->pbBrowser->setVisible(false);
 
     QStringList drivers = QSqlDatabase::drivers();
@@ -180,13 +189,11 @@ void CParameterDatabaseUI::on_pbBrowser_clicked()
 
 bool CParameterDatabaseUI::eventFilter(QObject *watched, QEvent *event)
 {
-    if(ui->leDatabaseName == watched) {
-        if(event->type() == QEvent::WhatsThisClicked) {
-            QWhatsThisClickedEvent* e = (QWhatsThisClickedEvent*)event;
-            if(e) {
-                qDebug(log) << e->href();
-                return QDesktopServices::openUrl(e->href());
-            }
+    if(event->type() == QEvent::WhatsThisClicked) {
+        QWhatsThisClickedEvent* e = (QWhatsThisClickedEvent*)event;
+        if(e) {
+            qDebug(log) << e->href();
+            return QDesktopServices::openUrl(e->href());
         }
     }
     return QWidget::eventFilter(watched, event);

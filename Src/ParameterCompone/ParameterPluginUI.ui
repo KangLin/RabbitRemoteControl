@@ -105,7 +105,7 @@
     </layout>
    </item>
    <item row="5" column="0">
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="gbPassword">
      <property name="title">
       <string>Password</string>
      </property>
@@ -114,6 +114,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
          <widget class="QCheckBox" name="cbSavePassword">
+          <property name="statusTip">
+           <string/>
+          </property>
           <property name="text">
            <string>Enable save password</string>
           </property>

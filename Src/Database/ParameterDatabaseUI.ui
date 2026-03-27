@@ -108,7 +108,7 @@
     </layout>
    </item>
    <item row="6" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="gpSaveOperateSettings">
      <property name="title">
       <string>Save operate settings to:</string>
      </property>

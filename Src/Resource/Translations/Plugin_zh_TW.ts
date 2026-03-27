@@ -633,60 +633,79 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
-        <translation type="vanished">名稱：</translation>
+        <translation>名稱：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
-        <translation type="vanished">類型：</translation>
+        <translation>類型：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
-        <translation type="vanished">協議：</translation>
+        <translation>協議：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
-        <translation type="vanished">安全級別：</translation>
+        <translation>安全級別：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
-        <translation type="vanished">描述：</translation>
+        <translation>描述：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
+        <source>QTermWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="202"/>
         <source>Copy selection to clipboard</source>
-        <translation type="vanished">復製選擇到剪切板</translation>
+        <translation>復製選擇到剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="205"/>
         <source>Paste clipboard</source>
-        <translation type="vanished">粘貼剪切板</translation>
+        <translation>粘貼剪切板</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="207"/>
         <source>Paste selection</source>
-        <translation type="vanished">粘貼到選擇</translation>
+        <translation>粘貼到選擇</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="209"/>
         <source>Zoom in</source>
-        <translation type="vanished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
         <source>Zoom out</source>
-        <translation type="vanished">縮小</translation>
+        <translation>縮小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="213"/>
         <source>Zoom reset</source>
-        <translation type="vanished">重置縮放</translation>
+        <translation>重置縮放</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="228"/>
         <source>Find ......</source>
-        <translation type="vanished">查找 ……</translation>
+        <translation>查找 ……</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="233"/>
         <source>Clear</source>
-        <translation type="vanished">清除</translation>
+        <translation>清除</translation>
     </message>
     <message>
+        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
-        <translation type="vanished">版本：</translation>
+        <translation>版本：</translation>
     </message>
 </context>
 <context>
@@ -731,13 +750,13 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="113"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>Save operate settings to:</source>
         <translation>保存操作到：</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
         <source>Local</source>
         <translation>本地</translation>
     </message>
@@ -758,8 +777,8 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="104"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="218"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="223"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="225"/>
         <source>Test</source>
         <translation>測試</translation>
     </message>
@@ -771,68 +790,73 @@ Some features are limited.
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="128"/>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="30"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>Database</source>
         <translation>數據庫</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="34"/>
+        <source>Sharing &quot;Operation Parameters&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
         <source>but the database is not set local database &quot;QSQLITE&quot;.</source>
         <translation>但是數據庫沒有設置為本地數據庫 &quot;QSQLITE&quot;。</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="97"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
         <source>Please modify database &quot;Type&quot; to &quot;QSQLITE&quot;</source>
         <translation>請修改數據庫&#x3000;&quot;類型&quot; 為&#x3000;&quot;QSQLITE&quot;</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>or modify </source>
         <translation>或修改</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="99"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="108"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="131"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
         <source>Set the database name</source>
         <translation>設置數據庫名稱</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="136"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="145"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation>設置數據庫文件名。如果設置為空，則使用默認數據庫文件。</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="149"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation>此名稱可以是一個 DSN，一個 DSN 文件名（.dsn)，或者一個連接字符串。</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="141"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="155"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="150"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="164"/>
         <source>Configure database</source>
         <translation>配置數據庫</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="171"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="180"/>
         <source>Database file</source>
         <translation>數據庫文件</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="172"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="181"/>
         <source>Database file (*.db);; All files (*.*)</source>
         <translation>數據庫文件 (*.db);; 所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="223"/>
         <source>Test is successfully!</source>
         <translation>測試成功！</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="219"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="226"/>
         <source>Test is failed!</source>
         <translation>測試失敗！</translation>
     </message>
@@ -877,7 +901,7 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
         <source>Plugin</source>
         <translation>插件</translation>
     </message>
@@ -908,12 +932,6 @@ Some features are limited.
         <translation>縮放視圖：</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="205"/>
-        <source>Save the password to the system&apos;s password manager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&quot;Encrypt Key&quot; used to encrypt saved password:</source>
         <translation type="vanished">&quot;加密密鑰&quot;用於加密保存的密碼：</translation>
     </message>
@@ -922,21 +940,18 @@ Some features are limited.
         <translation type="vanished">用於加密保存的密碼。如果為空，使用隨機的&quot;加密密鑰&quot;。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="215"/>
-=======
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
->>>>>>> Stashed changes
         <source>Enable use the current system user as the default user in new settings</source>
         <translation>允許使用當前系統用戶作為新設置中的默認用戶</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="259"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="262"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理員權限</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="222"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
         <source>Enable local input method</source>
         <translation>允話本地輸入法</translation>
     </message>
@@ -946,12 +961,6 @@ Some features are limited.
         <translation>捕獲所有按鍵</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="149"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="158"/>
-        <source>“Encryption Key” is used to encrypt stored passwords. If left blank, a random “Encryption Key” will be used.</source>
-        <translation type="unfinished"></translation>
-=======
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
         <source>Save the encrypted password in the settings:</source>
         <translation>保存加密的密碼到設置中：</translation>
@@ -966,54 +975,44 @@ Some features are limited.
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
         <source>Save the password to the system&apos;s credential manager</source>
         <translation>保存密碼到系統憑據管理中</translation>
->>>>>>> Stashed changes
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="229"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="232"/>
         <source>Operate Name</source>
         <translation>操作名稱</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="235"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
         <source>Show protocol</source>
         <translation>顯示協議</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="242"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="245"/>
         <source>Show server name</source>
         <translation>顯示服務名</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="249"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="252"/>
         <source>Show Security Level</source>
         <translation>顯示安全級別</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="145"/>
         <source>Encrypt key:</source>
         <translation>加密密鑰：</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="134"/>
-        <source>Save the encrypted password in the settings:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="179"/>
-=======
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="182"/>
->>>>>>> Stashed changes
         <source>Prompt type:</source>
         <translation>提示類型</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="186"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="189"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="193"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="196"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
@@ -1023,72 +1022,48 @@ Some features are limited.
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
         <source>Enable save password</source>
         <translation>允許保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="128"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="32"/>
         <source>Enable view password</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
-=======
         <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="35"/>
         <source>Password Security</source>
         <translation>密碼安全</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="135"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="134"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="121"/>
-=======
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="139"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="138"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="124"/>
-=======
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="142"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="141"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="127"/>
-=======
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="145"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="144"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="181"/>
-=======
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="199"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="190"/>
         <source>Open disable desktop shortcuts script</source>
         <translation>打開禁用桌面快捷鍵腳本</translation>
     </message>
     <message>
-<<<<<<< Updated upstream
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="192"/>
-=======
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="210"/>
->>>>>>> Stashed changes
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="201"/>
         <source>Open restore desktop shortcuts script</source>
         <translation>打開恢復桌面局勢鍵腳本</translation>
     </message>
@@ -1403,100 +1378,131 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation type="vanished">通用</translation>
+        <translation>通用</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation type="vanished">字體：</translation>
+        <translation>字體：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation type="vanished">顏色方案：</translation>
+        <translation>顏色方案：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation type="vanished">光標形狀：</translation>
+        <translation>光標形狀：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation type="vanished">透明度：</translation>
+        <translation>透明度：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation type="vanished">背景圖像：</translation>
+        <translation>背景圖像：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation type="vanished">滾動條位置：</translation>
+        <translation>滾動條位置：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation type="vanished">瀏覽(&amp;B)</translation>
+        <translation>瀏覽(&amp;B)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation type="vanished">鍵盤綁定：</translation>
+        <translation>鍵盤綁定：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation type="vanished">窗口大小改變時顯示其大小</translation>
+        <translation>窗口大小改變時顯示其大小</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation type="vanished">允許雙向文本</translation>
+        <translation>允許雙向文本</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation type="vanished">歷史記錄</translation>
+        <translation>歷史記錄</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation type="vanished">歷史記錄大小（行數）：</translation>
+        <translation>歷史記錄大小（行數）：</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation type="vanished">無限製</translation>
+        <translation>無限製</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation type="vanished">流量控製</translation>
+        <translation>流量控製</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation type="vanished">示例：顯示字體</translation>
+        <translation>示例：顯示字體</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation type="vanished">背景圖像</translation>
+        <translation>背景圖像</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation type="vanished">圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation>圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation type="vanished">方塊光標</translation>
+        <translation>方塊光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation type="vanished">下劃線光標</translation>
+        <translation>下劃線光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation type="vanished">I 形光標</translation>
+        <translation>I 形光標</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation type="vanished">無</translation>
+        <translation>無</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation type="vanished">左</translation>
+        <translation>左</translation>
     </message>
     <message>
+        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation type="vanished">右</translation>
+        <translation>右</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QWhatsThisClickedEvent>
+#include <QDesktopServices>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QLoggingCategory>
@@ -16,6 +18,7 @@ CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
     m_pPara(nullptr)
 {
     ui->setupUi(this);
+
     setWindowTitle(tr("Plugin"));
     if(RabbitCommon::CTools::HasAdministratorPrivilege()) {
         ui->cbPromptAdminPrivilege->setText("");
@@ -25,7 +28,21 @@ CParameterPluginUI::CParameterPluginUI(QWidget *parent) :
             tr("Prompt administrator privilege"));
         ui->cbPromptAdminPrivilege->show();
     }
+
     ui->pbEncryptKey->setToolTip(tr("Enable view password"));
+
+    QString szPasswordUrl;
+    szPasswordUrl = "<a href=https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual#password-security>" + tr("Password Security") + "</a>";
+    ui->gbPassword->setWhatsThis(szPasswordUrl);
+    ui->gbPassword->installEventFilter(this);
+    ui->pbEncryptKey->setWhatsThis(szPasswordUrl);
+    ui->pbEncryptKey->installEventFilter(this);
+    ui->cbSystemCredential->setWhatsThis(szPasswordUrl);
+    ui->cbSystemCredential->installEventFilter(this);
+    ui->leEncryptKey->setWhatsThis(szPasswordUrl);
+    ui->leEncryptKey->installEventFilter(this);
+    ui->gpEncryptKey->setWhatsThis(szPasswordUrl);
+    ui->gpEncryptKey->installEventFilter(this);
 }
 
 CParameterPluginUI::~CParameterPluginUI()
@@ -137,8 +154,7 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
 #endif
     ui->leEncryptKey->setText(m_pPara->GetEncryptKey());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
-    on_cbSavePassword_checkStateChanged(ui->cbSavePassword->checkState());
-    
+
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
     ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
     switch (m_pPara->GetPromptType()) {
@@ -163,13 +179,6 @@ int CParameterPluginUI::SetParameter(CParameter *pParameter)
 void CParameterPluginUI::on_cbSystemCredential_checkStateChanged(const Qt::CheckState &state)
 {
     ui->gpEncryptKey->setEnabled(Qt::Unchecked == state);
-}
-
-void CParameterPluginUI::on_cbSavePassword_checkStateChanged(const Qt::CheckState &state)
-{
-    bool bEnabled = Qt::CheckState::Checked == state;
-    ui->cbSystemCredential->setVisible(bEnabled);
-    ui->gpEncryptKey->setVisible(bEnabled);
 }
 
 void CParameterPluginUI::on_pbDesktopShortcutsDisable_clicked()
@@ -197,4 +206,16 @@ void CParameterPluginUI::on_pbDesktopShortcutsRestore_clicked()
 void CParameterPluginUI::on_cbCaptureAllKeyboard_checkStateChanged(const Qt::CheckState &arg1)
 {
     ui->gpDesktopShortcutsSctipt->setEnabled(Qt::CheckState::Checked == arg1);
+}
+
+bool CParameterPluginUI::eventFilter(QObject *watched, QEvent *event)
+{
+    if(event->type() == QEvent::WhatsThisClicked) {
+        QWhatsThisClickedEvent* e = (QWhatsThisClickedEvent*)event;
+        if(e) {
+            qDebug(log) << e->href();
+            return QDesktopServices::openUrl(e->href());
+        }
+    }
+    return QWidget::eventFilter(watched, event);
 }
