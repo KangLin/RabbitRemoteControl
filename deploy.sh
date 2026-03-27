@@ -345,7 +345,7 @@ parse_with_getopts() {
 }
 
 check_chang_log() {
-    echo "  ? Modified change log?"
+    echo "  - Modified change log ?"
     local content=$(<${SOURCE_DIR}/ChangeLog.md)
     if [[ $content =~ $VERSION ]]; then
         echo_success "    √ Modified in \"ChangeLog.md\""
@@ -369,9 +369,9 @@ create_tag() {
         echo "  Message: $MESSAGE"
         echo ""
         echo "Please verify:"
-        echo "  ? Modify change log?"
+        echo "  - Test is ok ?"
+        echo "  - Translations updated ?"
         check_chang_log
-        echo "  ? Translations updated?"
         echo ""
 
         read -t 60 -p "? Deploy? (y/N): " INPUT
