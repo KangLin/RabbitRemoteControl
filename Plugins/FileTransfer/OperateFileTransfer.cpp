@@ -148,7 +148,7 @@ const QString COperateFileTransfer::Name()
     }
     if(!pNet->GetHost().isEmpty()) {
         if(m_Parameter.GetGlobalParameters()
-            && m_Parameter.GetGlobalParameters()->GetShowProtocolPrefix())
+            && m_Parameter.GetGlobalParameters()->GetNameStyles() == CParameterPlugin::NameStyle::Protocol)
             szName = Protocol() + ": ";
         szName += pNet->GetHost()
                   + ":" + QString::number(pNet->GetPort());
@@ -181,8 +181,13 @@ const QString COperateFileTransfer::Description()
         szDescription += tr("Server address: ") + net.GetHost()
                          + ":" + QString::number(net.GetPort()) + "\n";
 
-    if(GetSecurityLevel() != SecurityLevel::No)
-        szDescription += tr("Security level: ") + GetSecurityLevelString() + "\n";
+    CSecurityLevel sl(GetSecurityLevel());
+    if(!(GetSecurityLevel() & CSecurityLevel::Level::No)) {
+        szDescription += tr("Security level: ");
+        if(!sl.GetUnicodeIcon().isEmpty())
+            szDescription += sl.GetUnicodeIcon() + " ";
+        szDescription += sl.GetString() + "\n";
+    }
 
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
