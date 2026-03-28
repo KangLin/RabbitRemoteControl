@@ -347,13 +347,13 @@ parse_with_getopts() {
 check_chang_log() {
     echo "  - Modified change log ?"
     local content=$(<${SOURCE_DIR}/ChangeLog.md)
-    if [[ $content =~ $VERSION ]]; then
+    if [[ $content =~ "$VERSION" ]]; then
         echo_success "    √ Modified in \"ChangeLog.md\""
     else
         echo_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog.md\""
     fi
     content=$(<${SOURCE_DIR}/ChangeLog_zh_CN.md)
-    if [[ $content =~ $VERSION ]]; then
+    if [[ $content =~ "$VERSION" ]]; then
         echo_success "    √ Modified in \"ChangeLog_zh_CN.md\""
     else
         echo_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog_zh_CN.md\""
