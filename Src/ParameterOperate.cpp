@@ -18,33 +18,33 @@ CParameterOperate::CParameterOperate(QObject *parent, const QString &szPrefix)
     , m_pParameterPlugin(nullptr)
 {
     bool check = false;
-    check = connect(this, SIGNAL(sigSetGlobalParameters()),
-                    this, SLOT(slotSetGlobalParameters()));
+    check = connect(this, SIGNAL(sigSetPluginParameters()),
+                    this, SLOT(slotSetPluginParameters()));
     Q_ASSERT(check);
     CParameterOperate* p = qobject_cast<CParameterOperate*>(parent);
-    if(p) {
+    if(p && this != p) {
         m_Parent = p;
-        check = connect(m_Parent, SIGNAL(sigSetGlobalParameters()),
-                        this, SIGNAL(sigSetGlobalParameters()));
+        check = connect(m_Parent, SIGNAL(sigSetPluginParameters()),
+                        this, SIGNAL(sigSetPluginParameters()));
         Q_ASSERT(check);
     }
 }
 
-CParameterPlugin* CParameterOperate::GetGlobalParameters()
+CParameterPlugin* CParameterOperate::GetPluginParameters()
 {
-    if(m_Parent) return m_Parent->GetGlobalParameters();
+    if(!m_pParameterPlugin&& m_Parent) return m_Parent->GetPluginParameters();
     return m_pParameterPlugin;
 }
 
-int CParameterOperate::SetGlobalParameters(CParameterPlugin *p)
+int CParameterOperate::SetPluginParameters(CParameterPlugin *p)
 {
     if(m_pParameterPlugin == p) return 0;
     m_pParameterPlugin = p;
-    emit sigSetGlobalParameters();
+    emit sigSetPluginParameters();
     return 0;
 }
 
-void CParameterOperate::slotSetGlobalParameters()
+void CParameterOperate::slotSetPluginParameters()
 {
     return;
 }
@@ -91,8 +91,8 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
     RabbitCommon::CEncrypt e;
 
     std::string key;
-    if(GetGlobalParameters())
-        key = GetGlobalParameters()->GetEncryptKey().toStdString();
+    if(GetPluginParameters())
+        key = GetPluginParameters()->GetEncryptKey().toStdString();
     if(key.empty()) {
         // Load readom password from config file
         QSettings s(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
@@ -113,14 +113,14 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
         return 0;
 
     qDebug(log) << "Password don't dencode or sum is error";
-    if(key.empty() && GetGlobalParameters()) {
-        switch (GetGlobalParameters()->GetPromptType()) {
+    if(key.empty() && GetPluginParameters()) {
+        switch (GetPluginParameters()->GetPromptType()) {
         case CParameterPlugin::PromptType::First:
         {
-            int nCount = GetGlobalParameters()->GetPromptCount();
+            int nCount = GetPluginParameters()->GetPromptCount();
             if(nCount >= 1)
                 return -1;
-            GetGlobalParameters()->SetPromptCount(nCount + 1);
+            GetPluginParameters()->SetPromptCount(nCount + 1);
             break;
         }
         case CParameterPlugin::PromptType::No:
@@ -128,14 +128,14 @@ int CParameterOperate::LoadPassword(const QString &szTitle,
             return -1;
         }
 
-        CDlgInputPassword d(GetGlobalParameters()->GetViewPassowrd(), false);
+        CDlgInputPassword d(GetPluginParameters()->GetViewPassowrd(), false);
         if(QDialog::Accepted != d.exec())
             return -1;
 
         key = d.GetPassword().toStdString();
         if(key.empty()) return -1;
         
-        GetGlobalParameters()->SetEncryptKey(key.c_str());
+        GetPluginParameters()->SetEncryptKey(key.c_str());
         return LoadPassword(szTitle, szKey, password, set);
     }
     return -1;
@@ -156,23 +156,23 @@ int CParameterOperate::SavePassword(const QString &szKey,
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
     std::string key;
-    if(GetGlobalParameters()) {
-        key = GetGlobalParameters()->GetEncryptKey().toStdString();
+    if(GetPluginParameters()) {
+        key = GetPluginParameters()->GetEncryptKey().toStdString();
         if(key.empty())
         {
-            switch (GetGlobalParameters()->GetPromptType()) {
+            switch (GetPluginParameters()->GetPromptType()) {
             case CParameterPlugin::PromptType::First:
             {
-                int nCount = GetGlobalParameters()->GetPromptCount();
+                int nCount = GetPluginParameters()->GetPromptCount();
                 if(nCount >= 1)
                     break;
-                GetGlobalParameters()->SetPromptCount(nCount + 1);
+                GetPluginParameters()->SetPromptCount(nCount + 1);
                 QString szKey;
-                CDlgInputPassword dlg(GetGlobalParameters()->GetViewPassowrd(), true);
+                CDlgInputPassword dlg(GetPluginParameters()->GetViewPassowrd(), true);
                 if(QDialog::Accepted != dlg.exec())
                     break;
                 szKey = dlg.GetPassword();
-                GetGlobalParameters()->SetEncryptKey(szKey);
+                GetPluginParameters()->SetEncryptKey(szKey);
                 key = szKey.toStdString();
                 break;
             }

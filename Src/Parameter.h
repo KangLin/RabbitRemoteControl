@@ -24,7 +24,7 @@
  *      插件管理者 (CManager) 和插件可以直接使用。插件可以以其做为初始化值。
  *      \ref section_Use_CParameterPlugin
  *      \see CParameterPlugin
- *           COperate::SetGlobalParameters
+ *           COperate::SetPluginParameters
  *   3. 同时在应用程序、插件管理者 (CManager) 和插件内有效。
  *     - 可以在插件管理者 (CManager) 和插件中以及应用中使用。
  *     - 应用程序可以通过 CManager::GetGlobalParameters() 得到它。
@@ -52,7 +52,7 @@
  *      The plugin maybe use them as initialization values.
  *      \ref section_Use_CParameterPlugin
  *      \see CParameterClient
- *           COperate::SetGlobalParameters
+ *           COperate::SetPluginParameters
  *   3. Valid in both the application and the Client and the plugin.
  *     - The parameters is valid in the CManager, plugin and application
  *     - The applicat can be accessed via CManager::GetGlobalParameters()

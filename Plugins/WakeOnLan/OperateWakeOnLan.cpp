@@ -186,7 +186,7 @@ int COperateWakeOnLan::Stop()
     return 0;
 }
 
-int COperateWakeOnLan::SetGlobalParameters(CParameterPlugin* pPara)
+int COperateWakeOnLan::SetPluginParameters(CParameterPlugin* pPara)
 {
     m_pParameterPlugin = pPara;
     if(pPara)
@@ -213,7 +213,7 @@ int COperateWakeOnLan::Save(QSettings &set)
 void COperateWakeOnLan::slotAdd()
 {
     QSharedPointer<CParameterWakeOnLan> para(new CParameterWakeOnLan());
-    para->SetGlobalParameters(m_pParameterPlugin);
+    para->SetPluginParameters(m_pParameterPlugin);
     CParameterWakeOnLanUI dlg;
     dlg.SetParameter(para.data());
     int nRet = RC_SHOW_WINDOW(&dlg);

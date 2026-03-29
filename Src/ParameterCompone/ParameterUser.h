@@ -101,7 +101,7 @@ protected Q_SLOTS:
     /*!
      * \brief Initialize this parameter based on the global parameter
      */
-    virtual void slotSetGlobalParameters() override;
+    virtual void slotSetPluginParameters() override;
 private Q_SLOTS:
     void slotLoadPassword();
     void slotLoadPassPhrase();

@@ -129,5 +129,5 @@ protected:
     virtual int OnSave(QSettings &set) override;
     
     // CParameterOperate interface
-    virtual void slotSetGlobalParameters() override;
+    virtual void slotSetPluginParameters() override;
 };

@@ -71,7 +71,7 @@ protected:
      * \param pPara
      * \return 
      */
-    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    virtual int SetPluginParameters(CParameterPlugin *pPara) override;
     int WriteTerminal(const char* buf, int len);
 
 private Q_SLOTS:

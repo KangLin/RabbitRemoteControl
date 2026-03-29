@@ -291,17 +291,17 @@ protected:
     Q_INVOKABLE virtual int Clean();
     /*!
      * \~chinese 应用插件全局参数
-     * \note 调用 CParameterOperate::SetGlobalParameters 设置操作参数的全局参数，并连接与全局参数相关的信号
+     * \note 调用 CParameterOperate::SetPluginParameters 设置操作参数的全局参数，并连接与全局参数相关的信号
      *
-     * \~english Apply the global parameters of the plug-in
-     * \note Call CParameterOperate::SetGlobalParameters to set the global parameters for the operation parameters,
+     * \~english Apply the parameters of the plug-in
+     * \note Call CParameterOperate::SetPluginParameters to set the global parameters for the operation parameters,
      *       and connect the signals related to the global parameters.
      *
      * \~
      * \snippet Src/OperateDesktop.cpp Desktop set global paramets
      * \see CManager::CreateOperate CParameterPlugin
      */
-    Q_INVOKABLE virtual int SetGlobalParameters(CParameterPlugin* pPara) = 0;
+    Q_INVOKABLE virtual int SetPluginParameters(CParameterPlugin* pPara) = 0;
 
 protected:
     /*!

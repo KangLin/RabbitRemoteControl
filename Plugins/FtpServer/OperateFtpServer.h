@@ -27,7 +27,7 @@ public:
 
 protected:
     Q_INVOKABLE virtual CBackend* InstanceBackend();
-    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    virtual int SetPluginParameters(CParameterPlugin *pPara) override;
     virtual int Initial() override;
     virtual int Clean() override;
     virtual int Load(QSettings &set) override;

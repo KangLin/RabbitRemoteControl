@@ -92,9 +92,9 @@ int CParameterWebBrowser::OnSave(QSettings &set)
     return nRet;
 }
 
-void CParameterWebBrowser::slotSetGlobalParameters()
+void CParameterWebBrowser::slotSetPluginParameters()
 {
-    CParameterPlugin* pPlugin = GetGlobalParameters();
+    CParameterPlugin* pPlugin = GetPluginParameters();
     if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;

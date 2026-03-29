@@ -110,9 +110,9 @@ int COperateFileTransfer::Stop()
     return nRet;
 }
 
-int COperateFileTransfer::SetGlobalParameters(CParameterPlugin *pPara)
+int COperateFileTransfer::SetPluginParameters(CParameterPlugin *pPara)
 {
-    return m_Parameter.SetGlobalParameters(pPara);
+    return m_Parameter.SetPluginParameters(pPara);
 }
 
 QDialog *COperateFileTransfer::OnOpenDialogSettings(QWidget *parent)
@@ -147,8 +147,8 @@ const QString COperateFileTransfer::Name()
         break;
     }
     if(!pNet->GetHost().isEmpty()) {
-        if(m_Parameter.GetGlobalParameters()
-            && m_Parameter.GetGlobalParameters()->GetNameStyles() == CParameterPlugin::NameStyle::Protocol)
+        if(m_Parameter.GetPluginParameters()
+            && m_Parameter.GetPluginParameters()->GetNameStyles() == CParameterPlugin::NameStyle::Protocol)
             szName = Protocol() + ": ";
         szName += pNet->GetHost()
                   + ":" + QString::number(pNet->GetPort());

@@ -221,7 +221,7 @@ CPlugin* COperate::GetPlugin() const
     return m_pPlugin;
 }
 
-int COperate::SetGlobalParameters(CParameterPlugin *pPara)
+int COperate::SetPluginParameters(CParameterPlugin *pPara)
 {
     QString szMsg = "There is not parameters! "
                     "please first create parameters, "
@@ -236,7 +236,7 @@ int COperate::SetGlobalParameters(CParameterPlugin *pPara)
              "See CManager::CreateOperate. "
              "If you are sure the parameter of operate "
              "does not need CParameterClient. "
-             "Please overload the SetGlobalParameters() in the ";
+             "Please overload the SetPluginParameters() in the ";
     szMsg += QString(metaObject()->className()) + " . don't set it";
     qCritical(log) << szMsg.toStdString().c_str();
     Q_ASSERT_X(false, Q_FUNC_INFO, szMsg.toStdString().c_str());

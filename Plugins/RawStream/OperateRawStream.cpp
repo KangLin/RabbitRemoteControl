@@ -126,8 +126,8 @@ const QString COperateRawStream::Name()
         if(CParameterRawStream::TYPE::TCP == m_Parameter.GetType()) {
             auto &net = m_Parameter.m_Net;
             if(!net.GetHost().isEmpty()) {
-                if(m_Parameter.GetGlobalParameters()
-                    && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+                if(m_Parameter.GetPluginParameters()
+                    && (GetParameter()->GetPluginParameters()->GetNameStyles()
                         & CParameterPlugin::NameStyle::Protocol)
                     && !Protocol().isEmpty())
                     szName = Protocol() + ": ";

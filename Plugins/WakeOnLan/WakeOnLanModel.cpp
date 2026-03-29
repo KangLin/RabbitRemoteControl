@@ -279,7 +279,7 @@ int CWakeOnLanModel::Load(QSettings &set, CParameterPlugin* pPlugin)
             nRet = -1;
             break;
         }
-        p->SetGlobalParameters(pPlugin);
+        p->SetPluginParameters(pPlugin);
         set.beginGroup("Host" + QString::number(i));
         nRet = p->Load(set);
         set.endGroup();

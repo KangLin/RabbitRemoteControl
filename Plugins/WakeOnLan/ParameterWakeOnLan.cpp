@@ -93,11 +93,11 @@ bool CParameterWakeOnLan::OnCheckValidity()
     return true;
 }
 
-void CParameterWakeOnLan::slotSetGlobalParameters()
+void CParameterWakeOnLan::slotSetPluginParameters()
 {
-    if(GetGlobalParameters())
+    if(GetPluginParameters())
     {
-        SetSavePassword(GetGlobalParameters()->GetSavePassword());
+        SetSavePassword(GetPluginParameters()->GetSavePassword());
     }
 }
 

@@ -57,7 +57,7 @@ int CParameterUserUI::SetParameter(CParameter *pParameter)
     ui->lePassword->setText(m_pUser->GetPassword());
     ui->pbSave->setChecked(m_pUser->GetSavePassword());
     on_pbSave_clicked();
-    auto plugPara = m_pUser->GetGlobalParameters();
+    auto plugPara = m_pUser->GetPluginParameters();
     if(plugPara)
         ui->pbSave->setEnabled(plugPara->GetSavePassword());
     SetPushButtonTooltip(ui->pbSave, tr("Save password"),

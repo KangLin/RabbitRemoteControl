@@ -77,7 +77,7 @@ public:
      *       请在其派生类的构造函数（或者　Initial() ）中实例化参数，
      *       并在　Initial()　调用 COperateDesktop::SetParameter 设置参数指针。
      *       如果参数不需要 CParameterClient ，
-     *       那请在其派生类重载 COperate::SetGlobalParameters 并忽略它。
+     *       那请在其派生类重载 COperate::SetPluginParameters 并忽略它。
      *
      * \~english
      * \param plugin: The plugin pointer must be specified as
@@ -86,10 +86,10 @@ public:
      *       Please instantiate the parameters and call COperateDesktop::SetParameter
      *       in the derived class( or Initial() ) to set the parameters pointer.
      *       If you are sure the parameter does not need CParameterClient.
-     *       please overload the COperate::SetGlobalParameters in the derived class. don't set it. Add commentMore actions
+     *       please overload the COperate::SetPluginParameters in the derived class. don't set it. Add commentMore actions
      *
      * \~
-     * \see CManager::CreateConnecter SetGlobalParameters SetParameter
+     * \see CManager::CreateConnecter SetPluginParameters SetParameter
      *      CParameterOperate CParameterClient
      */
     explicit COperateDesktop(CPlugin *plugin);
@@ -135,7 +135,7 @@ protected:
      * \param pPara
      * \return
      */
-    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    virtual int SetPluginParameters(CParameterPlugin *pPara) override;
 
 private Q_SLOTS:
     //! emit by zoom menu in the class

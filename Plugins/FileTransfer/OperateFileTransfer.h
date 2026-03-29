@@ -41,7 +41,7 @@ public:
     CParameterFileTransfer* GetParameter();
 
 protected:
-    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    virtual int SetPluginParameters(CParameterPlugin *pPara) override;
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;

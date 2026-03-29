@@ -55,7 +55,7 @@ int CParameterBase::OnLoad(QSettings &set)
     SetAdaptWindows(
         (CFrmViewer::ADAPT_WINDOWS)
         set.value("Viewer/AdaptType",
-                  (int)GetGlobalParameters()->GetAdaptWindows()).toInt());
+                  (int)GetPluginParameters()->GetAdaptWindows()).toInt());
     SetEnableLocalInputMethod(set.value("LocalInputMethod", GetEnableLocalInputMethod()).toBool());
     return CParameterOperate::OnLoad(set);
 }
@@ -210,9 +210,9 @@ void CParameterBase::SetZoomFactor(double newZoomFactor)
     return;
 }
 
-void CParameterBase::slotSetGlobalParameters()
+void CParameterBase::slotSetPluginParameters()
 {
-    CParameterPlugin* pPlugin = GetGlobalParameters();
+    CParameterPlugin* pPlugin = GetPluginParameters();
     if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;

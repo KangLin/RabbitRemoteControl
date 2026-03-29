@@ -59,7 +59,7 @@ int CParameterUser::OnLoad(QSettings &set)
     if(GetSavePassword())
     {
 #if HAVE_QTKEYCHAIN
-        auto para = GetGlobalParameters();
+        auto para = GetPluginParameters();
         if(para && para->GetUseSystemCredential()) {
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
@@ -89,7 +89,7 @@ int CParameterUser::OnLoad(QSettings &set)
     SetSavePassphrase(set.value("SavePassphrase", GetSavePassphrase()).toBool());
     if(GetSavePassphrase()) {
 #if HAVE_QTKEYCHAIN
-        auto para = GetGlobalParameters();
+        auto para = GetPluginParameters();
         if(para && para->GetUseSystemCredential()) {
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
@@ -136,7 +136,7 @@ int CParameterUser::OnSave(QSettings &set)
     set.setValue("SavePassword", GetSavePassword());
     if(GetSavePassword() && !GetPassword().isEmpty()) {
 #if HAVE_QTKEYCHAIN
-        auto para = GetGlobalParameters();
+        auto para = GetPluginParameters();
         if(para && para->GetUseSystemCredential()) {
             QString key("Password");
             auto net = qobject_cast<CParameterNet*>(parent());
@@ -169,7 +169,7 @@ int CParameterUser::OnSave(QSettings &set)
     set.setValue("SavePassphrase", GetSavePassphrase());
     if(GetSavePassphrase() && !GetPassphrase().isEmpty()) {
 #if HAVE_QTKEYCHAIN
-        auto para = GetGlobalParameters();
+        auto para = GetPluginParameters();
         if(para && para->GetUseSystemCredential()) {
             QString key("Passphrase");
             auto net = qobject_cast<CParameterNet*>(parent());
@@ -279,21 +279,21 @@ void CParameterUser::SetSavePassword(bool save)
 }
 
 //! [Initialize parameter after set CParameterPlugin]
-void CParameterUser::slotSetGlobalParameters()
+void CParameterUser::slotSetPluginParameters()
 {
-    if(!GetGlobalParameters()) {
+    if(!GetPluginParameters()) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "CParameterUser", szErr.toStdString().c_str());
         return;
     }
     
-    if(GetGlobalParameters())
+    if(GetPluginParameters())
     {
-        if(GetGlobalParameters()->GetEnableSystemUserToUser())
+        if(GetPluginParameters()->GetEnableSystemUserToUser())
             SetUser(RabbitCommon::CTools::GetCurrentUser());
-        SetSavePassword(GetGlobalParameters()->GetSavePassword());
-        SetSavePassphrase(GetGlobalParameters()->GetSavePassword());
+        SetSavePassword(GetPluginParameters()->GetSavePassword());
+        SetSavePassphrase(GetPluginParameters()->GetSavePassword());
     }
     
     return;

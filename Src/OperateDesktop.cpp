@@ -91,8 +91,8 @@ const QString COperateDesktop::Name()
         szName += GetParameter()->GetName();
     else {
         // Show the prefix of protocol
-        if(GetParameter() && GetParameter()->GetGlobalParameters()
-            && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+        if(GetParameter() && GetParameter()->GetPluginParameters()
+            && (GetParameter()->GetPluginParameters()->GetNameStyles()
                 & CParameterPlugin::NameStyle::Protocol)
             && !Protocol().isEmpty())
             szName = Protocol() + ": ";
@@ -103,7 +103,7 @@ const QString COperateDesktop::Name()
     // Show the prefix of security level
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+    if((GetParameter()->GetPluginParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
         && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())
@@ -407,10 +407,10 @@ int COperateDesktop::Stop()
 }
 
 //! [Desktop set global paramets]
-int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
+int COperateDesktop::SetPluginParameters(CParameterPlugin *pPara)
 {
     if(GetParameter()) {
-        GetParameter()->SetGlobalParameters(pPara);
+        GetParameter()->SetPluginParameters(pPara);
 
         if(pPara) {
             bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
@@ -434,7 +434,7 @@ int COperateDesktop::SetGlobalParameters(CParameterPlugin *pPara)
                  "See CManager::CreateOperate. "
                  "If you are sure the parameter of operate "
                  "does not need CParameterClient. "
-                 "Please overload the SetGlobalParameters() in the ";
+                 "Please overload the SetPluginParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);
@@ -640,8 +640,8 @@ QString COperateDesktop::ServerName()
                 return GetParameter()->m_Net.GetHost() + ":"
                        + QString::number(GetParameter()->m_Net.GetPort());
         }
-    if(GetParameter() && GetParameter()->GetGlobalParameters()
-        && !(GetParameter()->GetGlobalParameters()->GetNameStyles()
+    if(GetParameter() && GetParameter()->GetPluginParameters()
+        && !(GetParameter()->GetPluginParameters()->GetNameStyles()
             & CParameterPlugin::NameStyle::ServerName))
     {
         return GetParameter()->m_Net.GetHost()

@@ -67,10 +67,10 @@ CBackend* COperateFtpServer::InstanceBackend()
     return p;
 }
 
-int COperateFtpServer::SetGlobalParameters(CParameterPlugin *pPara)
+int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
 {
     if(GetParameter()) {
-        GetParameter()->SetGlobalParameters(pPara);
+        GetParameter()->SetPluginParameters(pPara);
         GetParameter()->m_Net.m_User.SetSavePassword(true);
         if(pPara) {
             bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
@@ -92,7 +92,7 @@ int COperateFtpServer::SetGlobalParameters(CParameterPlugin *pPara)
                  "See CManager::CreateOperate. "
                  "If you are sure the parameter of operate "
                  "does not need CParameterClient. "
-                 "Please overload the SetGlobalParameters() in the ";
+                 "Please overload the SetPluginParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);
@@ -216,7 +216,7 @@ const QString COperateFtpServer::Name()
     // Show the prefix of security level
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+    if((GetParameter()->GetPluginParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
         && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())

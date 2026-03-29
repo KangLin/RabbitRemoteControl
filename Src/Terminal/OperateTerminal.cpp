@@ -376,11 +376,11 @@ void COperateTerminal::slotFocusOut()
     SetShotcuts(false);
 }
 
-int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
+int COperateTerminal::SetPluginParameters(CParameterPlugin *pPara)
 {
     Q_ASSERT(pPara);
     if(GetParameter()) {
-        GetParameter()->SetGlobalParameters(pPara);
+        GetParameter()->SetPluginParameters(pPara);
         if(pPara) {
             bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
                                  this, SLOT(slotUpdateName()));
@@ -401,7 +401,7 @@ int COperateTerminal::SetGlobalParameters(CParameterPlugin *pPara)
                  "See CManager::CreateOperate. "
                  "If you are sure the parameter of operate "
                  "does not need CParameterPlugin. "
-                 "Please overload the SetGlobalParameters() in the ";
+                 "Please overload the SetPluginParameters() in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);

@@ -27,9 +27,9 @@ int CParameterTerminalBase::OnSave(QSettings &set)
     return CParameterOperate::OnSave(set);
 }
 
-void CParameterTerminalBase::slotSetGlobalParameters()
+void CParameterTerminalBase::slotSetPluginParameters()
 {
-    CParameterPlugin* pPlugin = GetGlobalParameters();
+    CParameterPlugin* pPlugin = GetPluginParameters();
     if(!pPlugin) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;

@@ -58,10 +58,10 @@ QMenu* COperateWebBrowser::GetMenu(QWidget *parent)
     return COperate::GetMenu(parent);
 }
 
-int COperateWebBrowser::SetGlobalParameters(CParameterPlugin *pPara)
+int COperateWebBrowser::SetPluginParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
-    m_Parameter.SetGlobalParameters(pPara);
+    m_Parameter.SetPluginParameters(pPara);
     return nRet;
 }
 

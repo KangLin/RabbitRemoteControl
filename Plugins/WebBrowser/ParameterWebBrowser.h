@@ -130,5 +130,5 @@ protected:
 
     // CParameterOperate interface
 protected slots:
-    virtual void slotSetGlobalParameters() override;
+    virtual void slotSetPluginParameters() override;
 };

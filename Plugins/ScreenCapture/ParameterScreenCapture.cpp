@@ -77,9 +77,9 @@ int CParameterScreenCapture::SetWindow(QCapturableWindow w)
     return 0;
 }
 
-void CParameterScreenCapture::slotSetGlobalParameters()
+void CParameterScreenCapture::slotSetPluginParameters()
 {
-    auto p = GetGlobalParameters();
+    auto p = GetPluginParameters();
     if(!p) return;
     m_Record = p->m_Record;
 }

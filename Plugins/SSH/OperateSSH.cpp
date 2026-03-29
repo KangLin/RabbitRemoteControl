@@ -83,8 +83,8 @@ const QString COperateSSH::Name()
     if(szName.isEmpty()) {
         auto &sshNet = m_Parameters.m_SSH.m_Net;
         if(!sshNet.GetHost().isEmpty()) {
-            if(m_Parameters.GetGlobalParameters()
-                && (GetParameter()->GetGlobalParameters()->GetNameStyles()
+            if(m_Parameters.GetPluginParameters()
+                && (GetParameter()->GetPluginParameters()->GetNameStyles()
                      & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
                 szName = Protocol() + ": ";
@@ -98,7 +98,7 @@ const QString COperateSSH::Name()
 
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if((GetParameter()->GetGlobalParameters()->GetNameStyles()
+    if((GetParameter()->GetPluginParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
         && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())

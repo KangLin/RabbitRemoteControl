@@ -13,15 +13,15 @@
  *  - 应用程序不能访问，只能通过 COperate::OpenDialogSettings 进行设置。
  *  - 插件通过 COperateDesktop::GetParameter()、COperateTerminal::GetParameter()　等访问操作参数
  *  - \ref section_Use_CParameterBase
- *  - 需要访问全局参数 (CParameterPlugin) 的分类，需要从此类派生。
- *    通过调用 CParameterOperate::GetGlobalParameters()
+ *  - 需要访问插件的全局参数 (CParameterPlugin) 的分类，需要从此类派生。
+ *    通过调用 CParameterOperate::GetPluginParameters()
  *    访问全局参数 (CParameterPlugin)
  *
  * \details
- * 设置和得到全局参数。需要操作全局参数的参数应该从此类派生。
- * \section section_Use_CParameterPlugin 使用全局参数(CParameterPlugin)
+ * 设置和得到插件的全局参数。需要操作插件的全局参数的参数应该从此类派生。
+ * \section section_Use_CParameterPlugin 使用插件的全局参数(CParameterPlugin)
  * \subsection sub_Set_CParameterPlugin_in_CParameterOperate 为操作参数(CParameterOperate 或其派生类)设置全局参数(CParameterPlugin)
- *  - 如果操作参数 ( CParameterOperate 或其派生类 ) 需要全局参数 (CParameterPlugin) 。
+ *  - 如果操作参数 ( CParameterOperate 或其派生类 ) 需要插件的全局参数 (CParameterPlugin) 。
  *    - 请在 COperate 派生类的构造函数中实例化操作参数。例如：
  *      \snippet Plugins/FreeRDP/Client/OperateFreeRDP.h Initialize parameter
  *    - 调用 COperateDesktop::SetParameter 设置参数指针。例如：
@@ -29,11 +29,11 @@
  *    - 默认会自动为操作参数设置 CParameterPlugin 。详见: CPlugin::CreateOperate 。
  *      \snippet Src/Plugin.cpp CPlugin CreateOperate
  *    - 如果参数不需要 CParameterPlugin ，
- *      那请在 COperate 派生类重载 COperate::SetGlobalParameters 不设置它。
+ *      那请在 COperate 派生类重载 COperate::SetPluginParameters 不设置它。
  * \subsection sub_Use_CParameterPlugin_in_CParameterOperate 在操作参数 ( CParameterOperate 或其派生类 ) 中使用全局参数 (CParameterPlugin)
- *   - 在操作参数 ( CParameterOperate 或其派生类 ) 使用 CParameterOperate::GetGlobalParameters() 来得到全局参数 (CParameterPlugin) 。
- *   - 操作参数 ( CParameterOperate 或其派生类 ) 使用全局参数 (CParameterPlugin) 的值做为其初始值。
- *     请重载 CParameterOperate::slotSetGlobalParameters 并在其中初始化相关的值。\n
+ *   - 在操作参数 ( CParameterOperate 或其派生类 ) 使用 CParameterOperate::GetPluginParameters() 来得到全局参数 (CParameterPlugin) 。
+ *   - 操作参数 ( CParameterOperate 或其派生类 ) 使用插件的全局参数 (CParameterPlugin) 的值做为其初始值。
+ *     请重载 CParameterOperate::slotSetPluginParameters 并在其中初始化相关的值。\n
  *     例如：是否保存密码以 CParameterPlugin 的成员值做为其初始化值。
  *     \snippet Src/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterPlugin
  *
@@ -61,9 +61,9 @@
  *    class CParameterAudio : public CParameter
  *    \endcode
  *
- *  其中 CParameterBase ， CParameterUser 它需要全局参数，
+ *  其中 CParameterBase ， CParameterUser 它需要插件的全局参数，
  *  所以必须从 CParameterOperate 派生。
- *  其它的类型则不需要全局参数的，从 CParameter 派生。
+ *  其它的类型则不需要插件的全局参数的，从 CParameter 派生。
  *
  *  那么操作参数可以是以上类型的集合：
  *
@@ -87,7 +87,7 @@
  *  \endcode
  *
  *  \note
- *  - 需要全局参数的操作参数必须从 CParameterOperate 派生，否则可以从 CParameter 派生
+ *  - 需要插件的全局参数的操作参数必须从 CParameterOperate 派生，否则可以从 CParameter 派生
  *  - 当成员实例化时
  *    - CParameterUser 必须设置构造函数的参数 parent
  *      为 CParameterOperate 的实例（一般设置为 this）。
@@ -103,14 +103,14 @@
  *  - The application cannot access it directly,
  *    it can only be set via COperate::OpenDialogSettings.
  *  - The plugin can access via COperateDesktop::GetParameter(), COperateTerminal::GetParameter() etc
- *  - Need access the global parameters (CParameterPlugin),
+ *  - Need access the plugin parameters (CParameterPlugin),
  *    must be derived from the class.
- *    Access the global parameters (CParameterPlugin)
- *    via CParameterOperate::GetGlobalParameters()
+ *    Access the plugin parameters (CParameterPlugin)
+ *    via CParameterOperate::GetPluginParameters()
  *  - \ref section_Use_CParameterBase
  *
  * \details
- * Set and get global parameters. Parameters that need to manipulate global parameters should be derived from this class.
+ * Set and get plugin parameters. Parameters that need to manipulate plugin parameters should be derived from this class.
  * \section section_Use_CParameterPlugin Use CParameterPlugin
  * \subsection sub_Set_CParameterPlugin_in_CParameterOperate Set CParameterPlugin for CParameterOperate
  *  - If the parameters of operate(CParameterOperate or it's derived class)
@@ -124,14 +124,14 @@
  *      See: CPlugin::CreateOperate .
  *      \snippet Src/Plugin.cpp CPlugin CreateOperate
  *    - If you are sure to the parameter does not need CParameterPlugin.
- *      please overload the COperate::SetGlobalParameters
+ *      please overload the COperate::SetPluginParameters
  *      in the COperate derived class, don't set it.
  * \subsection sub_Use_CParameterPlugin_in_CParameterOperate Use CParameterPlugin in CParameterOperate
- *  - Use CParameterOperate::GetGlobalParameters() get CParameterPlugin
+ *  - Use CParameterOperate::GetPluginParameters() get CParameterPlugin
  *    in the parameters of operate(CParameterOperate or it's derived class)
  *  - The parameters of operate(CParameterOperate or it's derived class)
  *    use the value of CParameterPlugin as its initial value. \n
- *    Please override CParameterOperate::slotSetGlobalParameters
+ *    Please override CParameterOperate::slotSetPluginParameters
  *    and initialize the relevant values in it.\n
  *    For example, Whether to save the password
  *    with the member value of CParameterPlugin as its initialization value.
@@ -162,7 +162,7 @@
  *    class CParameterAudio : public CParameter
  *    \endcode
  *
- *  CParameterBase, CParameterUser need global parameters,
+ *  CParameterBase, CParameterUser need plugin parameters,
  *  so that it must derived from CParameterOperate.
  *  other is derived from CParameter.
  *  
@@ -189,7 +189,7 @@
  *
  *  \note
  *  - The connect parameter must be derived from CParameterOperate
- *  - The operate parameters that require global parameters
+ *  - The operate parameters that require plugin parameters
  *    must be derived from CParameterOperate,
  *    otherwise they can be derived from CParameter
  *  - When a member is instantiated,
@@ -201,9 +201,9 @@
  *      CParameterPlugin
  *      CManager::CreateOperate
  *      CPlugin::CreateOperate 
- *      COperate::SetGlobalParameters
+ *      COperate::SetPluginParameters
  *      COperateDesktop::SetParameter
- *      CParameterOperate::GetGlobalParameters
+ *      CParameterOperate::GetPluginParameters
  * \ingroup CLIENT_PARAMETER
  */
 class PLUGIN_EXPORT CParameterOperate : public CParameter
@@ -219,8 +219,8 @@ public:
         const QString& szPrefix = QString());
 
     //! Get CParameterPlugin
-    CParameterPlugin* GetGlobalParameters();
-    int SetGlobalParameters(CParameterPlugin *p);
+    CParameterPlugin* GetPluginParameters();
+    int SetPluginParameters(CParameterPlugin *p);
 
     const QString GetName() const;
     void SetName(const QString& szName);
@@ -231,9 +231,9 @@ Q_SIGNALS:
      * \~chinese 仅由此类使用
      * \~english Only used by this class
      * \~
-     * \see slotSetGlobalParameters
+     * \see slotSetPluginParameters
      */
-    void sigSetGlobalParameters();
+    void sigSetPluginParameters();
     void sigNameChanged(const QString &name = QString());
 
 protected Q_SLOTS:
@@ -246,7 +246,7 @@ protected Q_SLOTS:
      * \~
      * \ref sub_Use_CParameterPlugin_in_CParameterOperate
      */
-    virtual void slotSetGlobalParameters();
+    virtual void slotSetPluginParameters();
 
 protected:
     QByteArray PasswordSum(const std::string &password, const std::string &key);
@@ -259,7 +259,7 @@ public:
 private:
     CParameterOperate* m_Parent;
     /*!
-     * \see CManager::CreateConnecter COperate::SetGlobalParameters
+     * \see CManager::CreateConnecter COperate::SetPluginParameters
      */
     CParameterPlugin* m_pParameterPlugin;
 

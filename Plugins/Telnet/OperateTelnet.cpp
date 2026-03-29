@@ -152,8 +152,8 @@ const QString COperateTelnet::Name()
     if(szName.isEmpty()) {
         auto &net = m_Parameters.m_Net;
         if(!net.GetHost().isEmpty()) {
-            if(m_Parameters.GetGlobalParameters()
-                && (m_Parameters.GetGlobalParameters()->GetNameStyles()
+            if(m_Parameters.GetPluginParameters()
+                && (m_Parameters.GetPluginParameters()->GetNameStyles()
                      & CParameterPlugin::NameStyle::Protocol)
                 && !Protocol().isEmpty())
                 szName = Protocol() + ": ";
@@ -166,8 +166,8 @@ const QString COperateTelnet::Name()
 
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
-    if(m_Parameters.GetGlobalParameters()
-        && (m_Parameters.GetGlobalParameters()->GetNameStyles()
+    if(m_Parameters.GetPluginParameters()
+        && (m_Parameters.GetPluginParameters()->GetNameStyles()
          & CParameterPlugin::NameStyle::SecurityLevel)
         && !(GetSecurityLevel() & CSecurityLevel::Level::No)
         && !sl.GetUnicodeIcon().isEmpty())

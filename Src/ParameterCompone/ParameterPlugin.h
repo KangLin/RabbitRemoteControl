@@ -20,16 +20,16 @@ class CParameterGlobal;
  * \details
  * - 仅在插件管理者 (CManager) 和插件中使用。
  * - 应用程序不能访问，但是可以通过 CManager::GetSettingsWidgets 进行设置。
- * - 插件可通过 CParameterOperate::GetGlobalParameters() 访问。
+ * - 插件可通过 CParameterOperate::GetPluginParameters() 访问。
  *
  * \~english Global parameters of plugins
  * - The parameters is valid in the CManager and plugin.
  * - The application cannot access it,
  *   but the application can be set it via CManager::GetSettingsWidgets() .
- * - The plugin can be accessed via CParameterOperate::GetGlobalParameters().
+ * - The plugin can be accessed via CParameterOperate::GetPluginParameters().
  *
  * \~
- * \see COperate::SetGlobalParameters CParameterGlobal
+ * \see COperate::SetPluginParameters CParameterGlobal
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class PLUGIN_EXPORT CParameterPlugin : public CParameter

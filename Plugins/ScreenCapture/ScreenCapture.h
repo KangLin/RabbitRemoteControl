@@ -56,7 +56,7 @@ public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
-    virtual int SetGlobalParameters(CParameterPlugin *pPara) override;
+    virtual int SetPluginParameters(CParameterPlugin *pPara) override;
 
     // COperate interface
 protected:
