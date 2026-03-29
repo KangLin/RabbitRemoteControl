@@ -22,7 +22,7 @@ CViewSplitterContainer::CViewSplitterContainer(QWidget *pView, CParameterApp *pP
     m_pTab->installEventFilter(this);
 
     SetVisibleTab(true);
-    m_pTab->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+    m_pTab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     if(m_pView) {
         m_pView->show();
         m_pTab->setWindowTitle(m_pView->windowTitle());

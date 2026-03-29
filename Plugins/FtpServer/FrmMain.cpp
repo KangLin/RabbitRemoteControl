@@ -14,6 +14,7 @@ CFrmMain::CFrmMain(COperateFtpServer *pOperate, QWidget *parent)
     bool check = false;
     ui->setupUi(this);
 
+    ui->tvConnect->installEventFilter(this);
     ui->tvConnect->setModel(&m_ModelConnect);
     //ui->tvConnect->verticalHeader()->hide();
     ui->tvConnect->setSelectionMode(QAbstractItemView::MultiSelection);
@@ -35,6 +36,7 @@ CFrmMain::CFrmMain(COperateFtpServer *pOperate, QWidget *parent)
 #endif
         QHeaderView::Interactive);
 
+    Q_ASSERT(pOperate);
     check = connect(ui->tvConnect, SIGNAL(customContextMenuRequested(const QPoint &)),
                     this, SLOT(slotContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
@@ -56,6 +58,10 @@ CFrmMain::CFrmMain(COperateFtpServer *pOperate, QWidget *parent)
     });
     Q_ASSERT(check);
     slotConnectCount(0, 0, 0);
+
+    check = connect(this, &CFrmMain::sigViewerFocusIn,
+                    pOperate, &COperate::sigViewerFocusIn);
+    Q_ASSERT(check);
 }
 
 CFrmMain::~CFrmMain()
@@ -114,4 +120,24 @@ void CFrmMain::slotContextMenuRequested(const QPoint& pos)
     });
     QPoint p = ui->tvConnect->mapToGlobal(pos);
     m.exec(p);
+}
+
+void CFrmMain::focusInEvent(QFocusEvent *event)
+{
+    emit sigViewerFocusIn(this);
+}
+
+bool CFrmMain::eventFilter(QObject *watched, QEvent *event)
+{
+    switch(event->type()){
+    case QEvent::FocusIn: {
+        emit sigViewerFocusIn(this);
+        event->accept();
+        return true;
+    }
+    default:
+        break;
+    }
+
+    return QWidget::eventFilter(watched, event);
 }

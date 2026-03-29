@@ -107,11 +107,11 @@ bool CFrmWakeOnLan::eventFilter(QObject *watched, QEvent *event)
         {
             //qDebug(log) << Q_FUNC_INFO << event;
             emit sigViewerFocusIn(this);
-            return false;
+            return true;
         }
         default:
-            return false;
+            break;
         }
     }
-    return false;
+    return QWidget::eventFilter(watched, event);
 }

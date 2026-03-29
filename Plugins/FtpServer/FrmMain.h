@@ -28,5 +28,19 @@ private Q_SLOTS:
 private:
     Ui::CFrmMain *ui;
     QStandardItemModel m_ModelConnect;
+
+Q_SIGNALS:
+    /*!
+     * \~chinese 视图获得焦点
+     * \~english The view is focus
+     * \param pView
+     */
+    void sigViewerFocusIn(QWidget* pView);
+protected:
+    virtual void focusInEvent(QFocusEvent *event) override;
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
