@@ -77,6 +77,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->menubar->show();
 
+    //!\~chinese 当有停泊条且视图类型改变时，使用一个容器窗口，防止视图窗口大小发生改变。
+    //!\~english
+    //!  When there are docking bars and the view type changes,
+    //!  use a container window to prevent the view window size from changing.
+    QWidget* pContain = new QWidget(this);
+    if(pContain) {
+        setCentralWidget(pContain);
+    }
+
     ui->actionKeyboard->setVisible(false);
 #if ANDROID
     bool bVisible = (nullptr != QGuiApplication::inputMethod());
@@ -569,7 +578,26 @@ void MainWindow::SetView(CView* pView)
         m_pView->disconnect();
 
     m_pView = pView;
-    setCentralWidget(m_pView);
+    auto* pContain = centralWidget();
+    if(!pContain) return;
+    auto* pOldLayout = pContain->layout();
+    if(pOldLayout) {
+        pContain->setLayout(nullptr);
+        // Remove all child controls from the layout
+        QLayoutItem* item;
+        while ((item = pOldLayout->takeAt(0)) != nullptr) {
+            if (item->widget()) {
+                item->widget()->deleteLater();
+            }
+            delete item;
+        }
+        delete pOldLayout;
+    }
+    auto* pLayout = new QVBoxLayout(pContain);
+    if(pLayout) {
+        pContain->setLayout(pLayout);
+        pLayout->addWidget(m_pView);
+    }
 
     bool check = false;
     //m_pView->setFocusPolicy(Qt::NoFocus);
@@ -657,10 +685,9 @@ void MainWindow::on_actionUpdate_triggered()
 
 void MainWindow::on_actionFull_screen_F_triggered()
 {
-    CView* pView = qobject_cast<CView*>(this->centralWidget());
-    if(pView)
+    if(m_pView)
     {
-        pView->SetFullScreen(!isFullScreen());
+        m_pView->SetFullScreen(!isFullScreen());
     }
 
     if(isFullScreen())
