@@ -90,7 +90,7 @@ If you want to donate the development devices to me, please contact: (email: kl2
 |        |Windows|Unix/linux|Android|MAC|
 |--------|:-----:|:--------:|:-----:|:-:|
 |vnc     |✓      |✓         |✓      |✓  |
-|RDP     |✓      |✓         |……     |✓  |
+|RDP     |✓      |✓         |✓      |✓  |
 |Spice   |       |          |       |   |
 |Scrcpy  |       |          |       |   |
 
@@ -98,10 +98,10 @@ If you want to donate the development devices to me, please contact: (email: kl2
 
 |             |Windows|Unix/linux|Android|MAC|
 |-------------|-------|----------|-------|---|
-|Terminal     |✓      |✓         |       |✓  |
-|SSH          |✓      |✓         |       |✓  |
-|TELNET       |✓      |✓         |       |✓  |
-|Serial port  |✓      |✓         |       |✓  |
+|Terminal     |✓      |✓         |❌     |✓  |
+|SSH          |✓      |✓         |❌     |✓  |
+|TELNET       |✓      |✓         |❌     |✓  |
+|Serial port  |✓      |✓         |❌     |✓  |
 
 - File Transfer
 
@@ -178,7 +178,7 @@ Legend:
 |RabbitVNC    |✓      | ✓    |
 |TigerVNC     |✓      | ✓    |
 |LibVNC       |       |      |
-|FreeRDP      |       |      |
+|FreeRDP      |…      |      |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported

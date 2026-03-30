@@ -837,7 +837,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
         fi
         pushd lxqt-build-tools
         if [ $MACOS -eq 1 ]; then
-            sed -i '' "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
+            sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
         else
             sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
         fi

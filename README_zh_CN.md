@@ -89,7 +89,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |        |Windows|Unix/linux|Android|MAC|
 |--------|-------|----------|-------|---|
 |vnc     |✓      |✓         |✓      |✓  |
-|RDP     |✓      |✓         | ……    |✓  |
+|RDP     |✓      |✓         |✓      |✓  |
 |Spice   |       |          |       |   |
 |Scrcpy  |       |          |       |   |
 
@@ -114,8 +114,8 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |            |Windows|Unix/linux|Android|MAC|
 |------------|-------|----------|-------|---|
 |播放器       |✓      |✓         |✓      |✓  |
-|局域网唤醒主机 |✓      |✓         |✓      |✓  |
-|截屏         |✓      |✓         |      |✓  |
+|局域网唤醒主机 |✓      |✓         |❌     |✓  |
+|截屏         |✓      |✓         |❌     |✓  |
 |网页浏览器    |✓      |✓         |❌     |✓  |
 
 图例：  
@@ -176,7 +176,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 |RabbitVNC    |✓                 |✓                 |
 |TigerVNC     |✓                 |✓                 |
 |LibVNC       |                  |                  |
-|FreeRDP      |                  |                  |
+|FreeRDP      |……                |                  |
 
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
@@ -282,7 +282,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 
 - [修改日志](ChangeLog_zh_CN.md)
 - 版本号说明： https://semver.org/lang/zh-CN/
-- [用户手册](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual)
+- [用户手册](https://github.com/KangLin/RabbitRemoteControl/wiki/UserManual_zh_CN)
 - 发行版本：
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
