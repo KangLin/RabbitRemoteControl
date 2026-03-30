@@ -3,7 +3,7 @@
 %define   INSTALL_PREFIX /opt/RabbitRemoteControl
 
 Name:           rabbitremotecontrol
-Version:        1.0.0_dev
+Version:        0.1.0_dev
 Release:        1%{?dist}
 Summary:        Rabbit remote control is is a cross-platform, multi-protocol remote control software.
 
