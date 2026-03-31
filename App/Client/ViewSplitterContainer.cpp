@@ -81,16 +81,20 @@ void CViewSplitterContainer::slotTabPositionChanged()
     case QTabWidget::TabPosition::West:
     {
         auto pLayout = layout();
-        pLayout->addWidget(m_pTab);
-        pLayout->addWidget(m_pView);
+        if(pLayout) {
+            pLayout->addWidget(m_pTab);
+            pLayout->addWidget(m_pView);
+        }
         break;
     }
     case QTabWidget::TabPosition::South:
     case QTabWidget::TabPosition::East:
     {
         auto pLayout = layout();
-        pLayout->addWidget(m_pView);
-        pLayout->addWidget(m_pTab);
+        if(pLayout) {
+            pLayout->addWidget(m_pView);
+            pLayout->addWidget(m_pTab);
+        }
         break;
     }
     }

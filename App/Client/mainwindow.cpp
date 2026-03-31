@@ -83,6 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     //!  use a container window to prevent the view window size from changing.
     QWidget* pContain = new QWidget(this);
     if(pContain) {
+        pContain->setContentsMargins(0, 0, 0, 0);
         setCentralWidget(pContain);
     }
 
@@ -595,6 +596,8 @@ void MainWindow::SetView(CView* pView)
     }
     auto* pLayout = new QVBoxLayout(pContain);
     if(pLayout) {
+        pLayout->setContentsMargins(0, 0, 0, 0);
+        pLayout->setSpacing(0);
         pContain->setLayout(pLayout);
         pLayout->addWidget(m_pView);
     }
