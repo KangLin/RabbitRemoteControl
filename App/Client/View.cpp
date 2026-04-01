@@ -10,8 +10,8 @@ CView::CView(CParameterApp *pPara, QWidget *parent) : QWidget(parent)
     qDebug(log) << Q_FUNC_INFO;
     Q_ASSERT(m_pParameterApp);
     //setFocusPolicy(Qt::NoFocus);
-    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setMinimumSize(200, 100);
+    //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //setMinimumSize(200, 100);
 }
 
 CView::~CView()

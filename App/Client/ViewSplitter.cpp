@@ -27,7 +27,7 @@ CViewSplitter::CViewSplitter(CParameterApp *pPara, QWidget *parent)
     setLayout(p);
     m_pMain = new QSplitter(Qt::Vertical, this);
     if(!m_pMain) {
-        m_pMain->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        //m_pMain->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         qCritical(log) << "m_pMain is nullptr";
         return;
     }

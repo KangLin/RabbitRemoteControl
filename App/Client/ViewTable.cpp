@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QLayout>
 #include <QResizeEvent>
 #include <QTabBar>
 #include <QStyleOption>
@@ -87,7 +88,7 @@ void CViewTable::slotTabCloseRequested(int index)
 
 void CViewTable::slotTabPositionChanged()
 {
-    if(!m_pParameterApp)
+    if(!m_pParameterApp || !m_pTab)
         return;
     m_pTab->setTabPosition(m_pParameterApp->GetTabPosition());
 }
