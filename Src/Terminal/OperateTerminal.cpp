@@ -154,9 +154,10 @@ const QString COperateTerminal::Details()
 {
     QString szDetails;
     szDetails = "  - " + tr("QTermWidget") + "\n" +
-                "    - " + tr("Version:") + " " + QString("%1.%2.%3").arg(QTERMWIDGET_VERSION_MAJOR)
-                                                      .arg(QTERMWIDGET_VERSION_MINOR)
-                                                      .arg(QTERMWIDGET_VERSION_PATCH) + "\n";
+                "    - " + tr("Version:") + " "
+                + QString("%1.%2.%3").arg(QTERMWIDGET_VERSION_MAJOR)
+                      .arg(QTERMWIDGET_VERSION_MINOR)
+                      .arg(QTERMWIDGET_VERSION_PATCH) + "\n";
     return szDetails;
 }
 
@@ -447,4 +448,3 @@ void COperateTerminal::SetShotcuts(bool bEnable)
     m_pActionFind->setShortcut(QKeySequence());
     m_pClear->setShortcut(QKeySequence());
 }
-

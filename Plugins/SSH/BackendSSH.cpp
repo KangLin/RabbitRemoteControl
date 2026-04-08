@@ -11,7 +11,8 @@ static Q_LOGGING_CATEGORY(log, "Plugin.SSH.Backend")
 class QEventTerminal: public QEvent
 {
 public:
-    explicit QEventTerminal(char* data, int len) : QEvent((QEvent::Type)TERMWIDGET_EVENT_TYPE)
+    explicit QEventTerminal(char* data, int len)
+        : QEvent((QEvent::Type)TERMWIDGET_EVENT_TYPE)
         , m_Data(data, len)
     {
     }

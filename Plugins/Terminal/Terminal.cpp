@@ -91,7 +91,7 @@ int CTerminal::Initial()
     nRet = COperateTerminal::Initial();
     if(nRet)
         return nRet;
-    
+#if !defined(Q_OS_WIN)
     m_pOpenFolderWithExplorer = m_Menu.addAction(
         QIcon::fromTheme("folder-open"),
         tr("Open working directory with file explorer") + "\tCtrl+O",
@@ -111,6 +111,7 @@ int CTerminal::Initial()
             pClipboard->setText(m_pTerminal->workingDirectory());
         });
     m_Menu.insertAction(m_pActionFind, m_pCopyToClipboard);
+#endif
     return nRet;
 }
 
@@ -125,6 +126,8 @@ const QString CTerminal::Name()
 
 void CTerminal::SetShotcuts(bool bEnable)
 {
+    if(!m_pOpenFolderWithExplorer || !m_pCopyToClipboard)
+        return;
     COperateTerminal::SetShotcuts(bEnable);
     if(bEnable) {
         m_pOpenFolderWithExplorer->setShortcut(QKeySequence(QKeySequence::Open));
@@ -134,16 +137,15 @@ void CTerminal::SetShotcuts(bool bEnable)
     m_pCopyToClipboard->setShortcut(QKeySequence());
 }
 
-
 const QString CTerminal::Description()
 {
     QString szDescription;
     if(!Name().isEmpty())
         szDescription = tr("Name: ") + Name() + "\n";
-    
+
     if(!GetTypeName().isEmpty())
         szDescription += tr("Type: ") + GetTypeName() + "\n";
-    
+
     if(!Protocol().isEmpty()) {
         szDescription += tr("Protocol: ") + Protocol();
 #ifdef DEBUG
@@ -152,7 +154,7 @@ const QString CTerminal::Description()
 #endif
         szDescription += "\n";
     }
-    
+
     if(!m_Parameters.GetShellName().isEmpty())
         szDescription += tr("Shell name: ") + m_Parameters.GetShellName() + "\n";
     if(!m_Parameters.GetShell().isEmpty())
@@ -172,10 +174,10 @@ const QString CTerminal::Description()
             szDescription += sl.GetUnicodeIcon() + " ";
         szDescription += sl.GetString() + "\n";
     }
-    
+
     if(!GetPlugin()->Description().isEmpty())
         szDescription += tr("Description: ") + GetPlugin()->Description();
-    
+
     return szDescription;
 }
 
