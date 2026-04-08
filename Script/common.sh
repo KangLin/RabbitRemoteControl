@@ -149,7 +149,7 @@ validate_directory() {
 
     if [ -n "$dir" ]; then
         if [[ "$dir" =~ ^- ]]; then
-            echo "Error: $type directory parameter '$dir' cannot start with '-'" >&2
+            log_fail "Error: $type directory parameter '$dir' cannot start with '-'"
             exit 1
         fi
     fi
@@ -288,14 +288,20 @@ create_debian_folder() {
                 debian:13)
                     control_source="$repo_root/Package/debian/control.debian.13"
                     ;;
+                deepin*)
+                    control_source="$repo_root/Package/debian/control.deepin.23"
+                    ;;
                 *)
                     control_source="$repo_root/Package/debian/control.default"
                     ;;
             esac
             if [ -f "$control_source" ]; then
                 ln -s $control_source $repo_root/debian/control
+                if [ "$BUILD_VERBOSE" = "ON" ]; then
+                    echo "ln -s $control_source $repo_root/debian/control"
+                fi
             else
-                echo "Error: $control_source is not exist"
+                log_fail "Error: $control_source is not exist"
             fi
         fi
 
@@ -320,7 +326,7 @@ install_debian_depend() {
 #            grep -v '^$' | \
 #            xargs sudo apt install -y
     else
-        echo "Error: $repo_root/debian/control is not exist"
+        log_fail "Error: $repo_root/debian/control is not exist"
     fi
 }
 
@@ -450,17 +456,17 @@ detect_os_info() {
 #    export ARCHITECTURE=$(echo "$system_info" | grep "^Architecture:" | awk -F': ' '{print $2}')
 
     # 如果是 macOS，进行初始化设置
-    if [ "$OS" = "macOS" ]; then
+    if [ "$DISTRO" = "macOS" ]; then
         setup_macos
     fi
 
     if [ "$BUILD_VERBOSE" = "ON" ]; then
         echo "=== OS information (detect_os_info) ==="
-        echo "Detected OS:  $OS"
-        echo "Distribution: $DISTRO"
-        echo "Version:      $DISTRO_VERSION"
-        echo "Package tool: $PACKAGE_TOOL"
-        echo "Architecture: $ARCHITECTURE"
+        echo "Detected OS[OS]:            $OS"
+        echo "Distribution[DISTRO]:       $DISTRO"
+        echo "Version[DISTRO_VERSION]:    $DISTRO_VERSION"
+        echo "Package tool[PACKAGE_TOOL]: $PACKAGE_TOOL"
+        echo "Architecture[ARCHITECTURE]: $ARCHITECTURE"
         echo "======================================="
         echo "PATH: $PATH"
     fi
@@ -495,7 +501,7 @@ version_compare() {
 # Function to check if git is installed
 check_git() {
     if ! command -v git >/dev/null 2>&1; then
-        echo "X Git is not installed" >&2
+        echo_error "X Git is not installed" >&2
         echo "  Git is required for this script to work." >&2
         echo "" >&2
         echo "  Please install Git using one of the following commands:" >&2
@@ -528,10 +534,10 @@ check_git() {
         local git_version=$(git --version | cut -d' ' -f3)
 
         if ! version_compare "$git_version" "$min_version"; then
-            echo "!️ Git version $git_version is installed, but version $min_version or higher is recommended" >&2
+            echo_warn "!️ Git version $git_version is installed, but version $min_version or higher is recommended" >&2
             # Continue anyway, just a warning
         else
-            echo "√ Git $git_version is installed"
+            echo_success "√ Git $git_version is installed"
         fi
     fi
 
@@ -541,7 +547,7 @@ check_git() {
 # Option to automatically install git (with user confirmation)
 install_git_if_missing() {
     if ! command -v git >/dev/null 2>&1; then
-        echo "!️ Git is required but not installed." >&2
+        echo_warn "!️ Git is required but not installed." >&2
         read -p "Would you like to install Git now? (y/n): " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -558,23 +564,23 @@ install_git_if_missing() {
                 if command -v brew >/dev/null 2>&1; then
                     brew install git
                 else
-                    echo "X Homebrew not found. Please install Git manually from https://git-scm.com/download/mac" >&2
+                    echo_error "X Homebrew not found. Please install Git manually from https://git-scm.com/download/mac" >&2
                     return 1
                 fi
             else
-                echo "X Unsupported OS. Please install Git manually." >&2
+                echo_error "X Unsupported OS. Please install Git manually." >&2
                 return 1
             fi
 
             # Verify installation
             if command -v git >/dev/null 2>&1; then
-                echo "√ Git installed successfully!"
+                echo_success "√ Git installed successfully!"
             else
-                echo "X Git installation failed. Please install manually." >&2
+                echo_error "X Git installation failed. Please install manually." >&2
                 return 1
             fi
         else
-            echo "X Git is required. Exiting." >&2
+            echo_error "X Git is required. Exiting." >&2
             return 1
         fi
     fi
@@ -597,17 +603,17 @@ test_sed_pattern() {
 
     # Test with -E flag
     if echo "$test_string" | sed -E "s/${VERSION_PATTERN}/REPLACED/g" | grep -q "REPLACED"; then
-        echo "  √ -E flag: Matches"
+        echo_success "  √ -E flag: Matches"
     else
-        echo "  X -E flag: No match"
+        echo_error "  X -E flag: No match"
     fi
 
     # Convert to BRE and test
     BRE_PATTERN=$(sed_safe_pattern "$VERSION_PATTERN")
     if echo "$test_string" | sed "s/${BRE_PATTERN}/REPLACED/g" | grep -q "REPLACED"; then
-        echo "  √ BRE: Matches"
+        echo_success "  √ BRE: Matches"
     else
-        echo "  X BRE: No match"
+        echo_error "  X BRE: No match"
     fi
 }
 
@@ -656,14 +662,14 @@ version_parser() {
         return 0
     fi
 
-    echo "ERROR: Unable to parse version number '$version'" >&2
+    log_fail "ERROR: Unable to parse version number '$version'" >&2
     return 1
 }
 
 # 辅助函数：显示版本数组
 display_version_info() {
     local -a data=($@)
-    
+
     if [[ ${#data[@]} -ge 8 ]]; then
         cat << EOF
 版本信息:
@@ -677,7 +683,7 @@ display_version_info() {
   是否包含构建: ${data[7]}
 EOF
     else
-        echo "数据不完整"
+        log_fail "数据不完整"
     fi
 }
 
@@ -702,7 +708,7 @@ parse_version_assoc() {
         version_array[build]="${BASH_REMATCH[10]:-}"
         return 0
     else
-        echo "ERROR: Unable to parse version number '$version'" >&2
+        log_fail "ERROR: Unable to parse version number '$version'" >&2
         return 1
     fi
 }
@@ -772,7 +778,7 @@ compare_versions() {
 
     # 检查数组元素个数
     if [ ${#parts1[@]} -lt 3 ] || [ ${#parts2[@]} -lt 3 ]; then
-        echo "version format error" >&2
+        log_fail "version format error" >&2
         return 3
     fi
 

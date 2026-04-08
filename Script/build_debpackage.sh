@@ -13,6 +13,7 @@ fi
 INSTALL_BUILD_DEPEND=0
 
 source $(dirname $(readlink -f $0))/common.sh
+detect_os_info
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
@@ -37,7 +38,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,rabbitcommon::,install-build-depend::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        echo "exec getopt fail: $?"
+        log_fail "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"
@@ -128,8 +129,8 @@ BUILD_DEPS=$(/usr/bin/which mk-build-deps)
 BUILD_PKG=$(/usr/bin/which dpkg-buildpackage)
 
 if [ -z "$BUILD_DEPS" ] || [ -z "$BUILD_PKG" ]; then
-  echo "dpkg-buildpackage [$BUILD_PKG] and dpkg-checkbuilddeps [$BUILD_DEPS] required"
-  echo "Install with 'sudo apt install dpkg-dev'"
+  echo_error "dpkg-buildpackage [$BUILD_PKG] and dpkg-checkbuilddeps [$BUILD_DEPS] required"
+  echo_error "Install with 'sudo apt install dpkg-dev'"
   exit 1
 fi
 

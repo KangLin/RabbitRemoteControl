@@ -8,8 +8,8 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-
 detect_os_info
+check_echo_color_with_tput
 
 install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
@@ -83,7 +83,7 @@ parse_with_getopt() {
         OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,qt:,install:,source:,tools:,build:
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
-            echo "exec getopt fail: $?"
+            log_fail "exec getopt fail: $?"
             exit 1
         fi
         #echo "ARGS=[$ARGS]"
@@ -252,7 +252,7 @@ validate_parameters() {
     for var in DEB RPM DOCKER APPIMAGE; do
         local value="${!var}"
         if [ "$value" != "0" ] && [ "$value" != "1" ]; then
-            echo "Error: Parameter $var must be 0 or 1" >&2
+            log_fail "Error: Parameter $var must be 0 or 1" >&2
             exit 1
         fi
     done
@@ -261,25 +261,25 @@ validate_parameters() {
     case "$DOCKER_IMAGE" in
         "")
             ;;
-        ubuntu*|debian*|kali|*kylin*)
+        ubuntu*|debian*|kali*|*kylin*|*deepin*)
             if [ $RPM -eq 1 ]; then
-              echo "Error: Not recommended build rpm package in $DOCKER_IMAGE"
+              log_fail "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
             fi
             ;;
         fedora*|rhel*|centos*|almalinux*|rocky*)
             if [ $DEB -eq 1 ]; then
-              echo "Error: Not recommended build deb package in $DOCKER_IMAGE"
+              log_fail "Error: Not recommended build deb package in $DOCKER_IMAGE"
               exit 1
             fi
             ;;
         *)
             if [ $RPM -eq 1 ]; then
-              echo "Error: Not recommended build rpm package in $DOCKER_IMAGE"
+              log_fail "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
             fi
             if [ $DEB -eq 1 ]; then
-              echo "Error: Not recommended build deb package in $DOCKER_IMAGE"
+              log_fail "Error: Not recommended build deb package in $DOCKER_IMAGE"
               exit 1
             fi
         ;;
@@ -328,9 +328,11 @@ validate_parameters
 show_configuration
 
 if [ $DOCKER -eq 1 ]; then
-    echo "Start docker ${DOCKER_IMAGE} ......"
+    echo "== Start docker ${DOCKER_IMAGE} ......"
+    ARCH=`dpkg --print-architecture`
+    echo "The host arch: $ARCH"
     if [ -z "$DOCKER_IMAGE" ]; then
-        echo "DOCKER_IMAGE is empty. please set --docker-image"
+        log_fail "DOCKER_IMAGE is empty. please set --docker-image"
         exit 1
     fi
     ## Copy the source code to build directory
@@ -397,6 +399,7 @@ if [ $DOCKER -eq 1 ]; then
             fi
             \${SOURCE_CODE_DIR}/RabbitRemoteControl/Script/build_linux.sh --appimage --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
             # Create install script
+            echo \"== Create install script ......\"
             mkdir -p /home/build/install
             pushd /home/build/install
             cp \${SOURCE_CODE_DIR}/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage .
@@ -430,7 +433,7 @@ fi
 pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
-    echo "build deb package ......"
+    echo "== build deb package ......"
 
     ./build_depend.sh --system_update --base \
         --install=${INSTALL_DIR} \
@@ -459,7 +462,7 @@ if [ $DEB -eq 1 ]; then
 fi
 
 if [ $APPIMAGE -eq 1 ]; then
-    echo "build AppImage ......"
+    echo "== build AppImage ......"
     case "$DISTRO" in
     ubuntu)
 #        case "$DISTRO_VERSION" in
@@ -508,7 +511,7 @@ if [ $APPIMAGE -eq 1 ]; then
 fi
 
 if [ $RPM -eq 1 ]; then
-    echo "build rpm package ......"
+    echo "== build rpm package ......"
     #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --qftpserver \
@@ -525,7 +528,7 @@ if [ $RPM -eq 1 ]; then
 fi
 
 if [ $MACOS -eq 1 ]; then
-    echo "build macos bundle package ......"
+    echo "== build macos bundle package ......"
     ./build_depend.sh --system_update --base --default --macos \
         --rabbitcommon --tigervnc --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \

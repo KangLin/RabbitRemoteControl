@@ -41,7 +41,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        echo "exec getopt fail: $?"
+        log_fail "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"
@@ -203,7 +203,7 @@ if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
     echo "Copy qtermwidget6 resources ......."
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else
-    echo "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+    echo_error "${INSTALL_DIR}/share/qtermwidget6 is not exist"
 fi
 
 echo "Build AppImage ......"
@@ -233,7 +233,7 @@ if [ -n "$QMAKE" ]; then
     if command -v qmake >/dev/null 2>&1; then
         command -v qmake
     else
-        echo "Please set 'QMAKE'"
+        echo_error "Please set 'QMAKE'"
     fi
 fi
 

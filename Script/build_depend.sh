@@ -12,11 +12,10 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-
 detect_os_info
 
 install_gnu_getopt
-if [ "$OS" = "macOS" ]; then
+if [ "$DISTRO" = "macOS" ]; then
     MACOS=1
     setup_macos
 else
@@ -512,7 +511,7 @@ esac
 
 
 if [ $SYSTEM_UPDATE -eq 1 ]; then
-    echo "System update ......"
+    echo "== System update ......"
     case "$PACKAGE_TOOL" in
         brew)
             brew update -q
@@ -531,12 +530,12 @@ if [ $SYSTEM_UPDATE -eq 1 ]; then
 fi
 
 if [ -n "$PACKAGE" ]; then
-    echo "Install package: $PACKAGE"
+    echo "== Install package: $PACKAGE"
     package_install $PACKAGE
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
-    echo "Install base libraries ......"
+    echo "== Install base libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential devscripts equivs debhelper \
@@ -558,11 +557,8 @@ if [ $BASE_LIBS -eq 1 ]; then
             libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
             libxcb-* libxcb-cursor0 \
             libxkbcommon-dev
-        if ! [[ $DISTRO_VERSION =~ 26\.[0-9]+ ]]; then
-            package_install xserver-xorg-input-kbd xserver-xorg-input-mouse
-        fi
         # Base dependency
-        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libtelnet-dev
+        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev
         # RabbitCommon dependency
         package_install libcmark-dev cmark
         # VNC dependency
@@ -573,7 +569,15 @@ if [ $BASE_LIBS -eq 1 ]; then
         # PcapPlusPlus dependency
         package_install libpcap-dev
         # FFmpeg needed by QtMultimedia and freerdp
-        package_install libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+        package_install libavcodec-dev libavformat-dev libswscale-dev
+        case "$DISTRO" in
+        ubuntu|debian)
+            package_install libresample1-dev
+            ;;
+        deepin)
+            package_install libswresample-dev
+            ;;
+        esac
         package_install libx264-dev libx265-dev
         # Needed by QtMultimedia
         package_install pipewire
@@ -582,11 +586,10 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by AppImage and FreeRDP
         package_install libfuse-dev libfuse3-dev fuse
         # Other
-
-        if [ "$OS" = "ubuntu" ]; then
+        if [ "$DISTRO" = "ubuntu" ]; then
             package_install libmysqlclient-dev
         fi
-        if [ "$OS" = "debian" ]; then
+        if [ "$DISTRO" = "debian" ]; then
             # libmysqlclient
             package_install libmariadb-dev libmariadb-dev-compat
         fi
@@ -622,7 +625,7 @@ if [ $BASE_LIBS -eq 1 ]; then
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
-    echo "Install default dependency libraries ......"
+    echo "== Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         package_install libvncserver-dev
         if [ $FREERDP -ne 1 ]; then
@@ -665,7 +668,7 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
 fi
 
 if [ $QT -eq 1 ]; then
-    echo "Install qt ${QT_VERSION} ......"
+    echo "== Install qt ${QT_VERSION} ......"
     pushd "$TOOLS_DIR"
     if [ ! -d qt_`uname -m` ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
@@ -691,7 +694,7 @@ if [ $QT -eq 1 ]; then
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
-    echo "Install RabbitCommon ......"
+    echo "== Install RabbitCommon ......"
     pushd "$SOURCE_DIR"
     if [ ! -d RabbitCommon ]; then
         git clone https://github.com/KangLin/RabbitCommon.git
@@ -704,10 +707,12 @@ if [ $RabbitCommon -eq 1 ]; then
 fi
 
 if [ $LIBSSH -eq 1 ]; then
-    echo "Install libssh ......"
+    echo "== Install libssh ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/libssh ]; then
-        git clone -b libssh-0.11.3 --depth=1 https://git.libssh.org/projects/libssh.git
+        if [ ! -d libssh ]; then
+            git clone -b libssh-0.11.3 --depth=1 https://git.libssh.org/projects/libssh.git
+        fi
         cmake -E make_directory $BUILD_DEPEND_DIR/libssh
         pushd $BUILD_DEPEND_DIR/libssh
         cmake -S $SOURCE_DIR/libssh -DCMAKE_BUILD_TYPE=Release \
@@ -722,10 +727,12 @@ if [ $LIBSSH -eq 1 ]; then
 fi
 
 if [ $FREERDP -eq 1 ]; then
-    echo "Install FreeRDP ......"
+    echo "== Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.24.1 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+        if [ ! -d FreeRDP ]; then
+            git clone -b 3.24.1 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+        fi
         cmake -E make_directory $BUILD_DEPEND_DIR/FreeRDP
         pushd $BUILD_DEPEND_DIR/FreeRDP
         cmake -S $SOURCE_DIR/FreeRDP \
@@ -749,10 +756,12 @@ if [ $FREERDP -eq 1 ]; then
 fi
 
 if [ $TIGERVNC -eq 1 ]; then
-    echo "Install tigervnc ......"
+    echo "== Install tigervnc ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/tigervnc ]; then
-      git clone --depth=1 https://github.com/KangLin/tigervnc.git
+      if [ ! -d tigervnc ]; then
+          git clone --depth=1 https://github.com/KangLin/tigervnc.git
+      fi
       cmake -E make_directory $BUILD_DEPEND_DIR/tigervnc
       pushd $BUILD_DEPEND_DIR/tigervnc
       cmake -S $SOURCE_DIR/tigervnc -DCMAKE_BUILD_TYPE=Release \
@@ -768,10 +777,14 @@ if [ $TIGERVNC -eq 1 ]; then
 fi
 
 if [ $PCAPPLUSPLUS -eq 1 ]; then
-    echo "Install PcapPlusPlus ......"
+    echo "== Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
-        git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
+        if [ ! -d PcapPlusPlus ]; then
+            git clone https://github.com/seladb/PcapPlusPlus.git
+            cd PcapPlusPlus
+            git checkout -b c3cc787829b794b84c6a63734d324c1c487cb696 c3cc787829b794b84c6a63734d324c1c487cb696
+        fi
         cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
         pushd $BUILD_DEPEND_DIR/PcapPlusPlus
         cmake -S $SOURCE_DIR/PcapPlusPlus -DCMAKE_BUILD_TYPE=Release \
@@ -788,10 +801,12 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
 fi
 
 if [ $libdatachannel -eq 1 ]; then
-    echo "Install libdatachannel ......"
+    echo "== Install libdatachannel ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/LibDataChannel ]; then
-      git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
+      if [ ! -d libdatachannel ]; then
+        git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
+      fi
       cd libdatachannel
       git submodule update --init --recursive
       cmake -E make_directory $BUILD_DEPEND_DIR/libdatachannel
@@ -807,10 +822,12 @@ if [ $libdatachannel -eq 1 ]; then
 fi
 
 if [ $QtService -eq 1 ]; then
-    echo "Install QtService ......"
+    echo "== Install QtService ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QtService ]; then
-      git clone --depth=1 https://github.com/KangLin/qt-solutions.git
+      if [ ! -d qt-solutions ]; then
+        git clone --depth=1 https://github.com/KangLin/qt-solutions.git
+      fi
       cd qt-solutions/qtservice
       git submodule update --init --recursive
       cmake -E make_directory $BUILD_DEPEND_DIR/qtservice
@@ -826,12 +843,12 @@ if [ $QtService -eq 1 ]; then
 fi
 
 if [ $QTERMWIDGET -eq 1 ]; then
-    echo "Install qtermwidget ......"
+    echo "== Install qtermwidget ......"
     pushd "$SOURCE_DIR"
     #CMAKE=`/usr/bin/qtpaths6 --query QT_HOST_BINS`/qt-cmake
     #echo "CMAKE: $CMAKE"
     if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
-        echo "Install lxqt-build-tools ......"
+        echo "== Install lxqt-build-tools ......"
         if [ ! -d lxqt-build-tools ]; then
             git clone --branch 2.3.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
         fi
@@ -871,10 +888,12 @@ if [ $QTERMWIDGET -eq 1 ]; then
 fi
 
 if [ $QTKEYCHAIN -eq 1 ]; then
-    echo "Install QtKeyChain ......"
+    echo "== Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/Qt6Keychain ]; then
-        git clone -b 0.15.0 --depth=1 https://github.com/frankosterfeld/qtkeychain.git
+        if [ ! -d qtkeychain ]; then
+            git clone -b 0.15.0 --depth=1 https://github.com/frankosterfeld/qtkeychain.git
+        fi
         cmake -E make_directory $BUILD_DEPEND_DIR/qtkeychain
         pushd $BUILD_DEPEND_DIR/qtkeychain
         cmake -S $SOURCE_DIR/qtkeychain -DCMAKE_BUILD_TYPE=Release \
@@ -889,10 +908,12 @@ if [ $QTKEYCHAIN -eq 1 ]; then
 fi
 
 if [ $QFtpServer -eq 1 ]; then
-    echo "Install QFtpServer ......"
+    echo "== Install QFtpServer ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QFtpServerLib/QFtpServerLib ]; then
-        git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+        if [ ! -d QFtpServer ]; then
+            git clone --depth=1 https://github.com/KangLin/QFtpServer.git
+        fi
         cmake -E make_directory $BUILD_DEPEND_DIR/QFtpServer
         pushd $BUILD_DEPEND_DIR/QFtpServer
         cmake -S $SOURCE_DIR/QFtpServer -DCMAKE_BUILD_TYPE=Release \
