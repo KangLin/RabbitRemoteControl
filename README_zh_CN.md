@@ -210,7 +210,7 @@ https://github.com/user-attachments/assets/9ebdc7e6-ed7a-4813-afcf-7a04cd6f889b
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
 [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
 
-[![Github 所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量)](https://tooomm.github.io/github-release-stats/?username=KangLin&repository=RabbitRemoteControl)
+[![Github 所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量)](http://gra.caldis.me/?user=KangLin&repo=KangLin/RabbitRemoteControl)
 [![从 sourceforge 下载量](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20下载总量)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
