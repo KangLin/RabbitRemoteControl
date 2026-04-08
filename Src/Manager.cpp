@@ -604,7 +604,7 @@ QList<QWidget*> CManager::GetSettingsWidgets(QWidget* parent)
             lstWidget.push_back(pRecord);
     }
 
-    CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(parent);
+    CFrmMediaDevices* pMediaDevices = new CFrmMediaDevices(true, parent);
     if(pMediaDevices) {
         int nRet = pMediaDevices->SetParameter(&m_pParameterPlugin->m_MediaDevices.m_Para);
         if(!nRet)
