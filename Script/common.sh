@@ -204,6 +204,9 @@ get_package_tool() {
         ubuntu|debian|kali)
             echo "apt"
             ;;
+        deepin)
+            echo "apt-get"
+            ;;
         fedora|rhel|centos|almalinux|rocky)
             if command -v dnf >/dev/null 2>&1; then
                 echo "dnf"

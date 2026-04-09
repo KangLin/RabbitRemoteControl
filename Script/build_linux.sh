@@ -48,6 +48,7 @@ Directory options:
 Docker options:
   --docker:             Run docket for build
   --docker-image:       The name of docker image
+  --docker-platform     The docker image platform
 
 Target options:
   --deb:                Build deb package
@@ -80,7 +81,7 @@ parse_with_getopt() {
         # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
         # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
         # -n 选项后接选项解析错误时提示的脚本名字
-        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,qt:,install:,source:,tools:,build:
+        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
             log_fail "exec getopt fail: $?"
@@ -134,6 +135,16 @@ parse_with_getopt() {
                 case $2 in
                     *)
                         DOCKER_IMAGE=$2
+                        DOCKER=1;;
+                esac
+                shift 2
+                ;;
+            --docker-platform)
+                case $2 in
+                    "")
+                        ;;
+                    *)
+                        DOCKER_PLATFORM=$2
                         DOCKER=1;;
                 esac
                 shift 2
@@ -350,6 +361,10 @@ if [ $DOCKER -eq 1 ]; then
     if [ $DEB -eq 1 ]; then
         if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
             DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        fi
+        echo "DOCKER_PLATFORM: $DOCKER_PLATFORM"
+        if [ -n "$DOCKER_PLATFORM" ]; then
+            DOCKER_PARA="$DOCKER_PARA --platform $DOCKER_PLATFORM"
         fi
         docker run --privileged ${DOCKER_PARA} \
             -e CI=${CI} \

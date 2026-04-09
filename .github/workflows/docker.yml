@@ -51,12 +51,13 @@ jobs:
             lable: "13"
             os: ubuntu-24.04-arm
 
-          - PACKAGE: deb
-            image: linuxdeepin/beige
-            lable: "latest"
-            os: ubuntu-24.04
           # - PACKAGE: deb
           #   image: linuxdeepin/beige
+          #   lable: "latest"
+          #   os: ubuntu-24.04
+          # - PACKAGE: deb
+          #   image: linuxdeepin/beige
+          #   platform: linux/arm64
           #   lable: "latest"
           #   os: ubuntu-24.04-arm
 
@@ -151,7 +152,7 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
-          ./Script/build_linux.sh --docker --docker-image="${docker_image}" --${{matrix.variant.PACKAGE}}
+          ./Script/build_linux.sh --docker --docker-image="${docker_image}" --docker-platform="${{matrix.variant.platform}}" --${{matrix.variant.PACKAGE}}
 
       - name: Rename deb file
         if: ${{ matrix.variant.PACKAGE == 'deb' }}
