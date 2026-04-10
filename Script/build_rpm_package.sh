@@ -11,7 +11,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>]"
@@ -28,7 +27,7 @@ usage_long() {
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
 # [【Linux】Shell命令 getopts/getopt用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
 if command -V getopt >/dev/null; then
-    echo "getopt is exits"
+    echo_error "getopt is exits"
     #echo "original parameters=[$@]"
     # -o 或 --options 选项后面是可接受的短选项，如 ab:c:: ，表示可接受的短选项为 -a -b -c ，
     # 其中 -a 选项不接参数，-b 选项后必须接参数，-c 选项的参数为可选的

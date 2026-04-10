@@ -8,8 +8,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
-check_echo_color_with_tput
 
 install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
@@ -84,7 +82,7 @@ parse_with_getopt() {
         OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
-            log_fail "exec getopt fail: $?"
+            echo_error "exec getopt fail: $?"
             exit 1
         fi
         #echo "ARGS=[$ARGS]"
@@ -263,7 +261,7 @@ validate_parameters() {
     for var in DEB RPM DOCKER APPIMAGE; do
         local value="${!var}"
         if [ "$value" != "0" ] && [ "$value" != "1" ]; then
-            log_fail "Error: Parameter $var must be 0 or 1" >&2
+            echo_error "Error: Parameter $var must be 0 or 1" >&2
             exit 1
         fi
     done
@@ -274,23 +272,23 @@ validate_parameters() {
             ;;
         ubuntu*|debian*|kali*|*kylin*|*deepin*)
             if [ $RPM -eq 1 ]; then
-              log_fail "Error: Not recommended build rpm package in $DOCKER_IMAGE"
+              echo_error "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
             fi
             ;;
         fedora*|rhel*|centos*|almalinux*|rocky*)
             if [ $DEB -eq 1 ]; then
-              log_fail "Error: Not recommended build deb package in $DOCKER_IMAGE"
+              echo_error "Error: Not recommended build deb package in $DOCKER_IMAGE"
               exit 1
             fi
             ;;
         *)
             if [ $RPM -eq 1 ]; then
-              log_fail "Error: Not recommended build rpm package in $DOCKER_IMAGE"
+              echo_error "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
             fi
             if [ $DEB -eq 1 ]; then
-              log_fail "Error: Not recommended build deb package in $DOCKER_IMAGE"
+              echo_error "Error: Not recommended build deb package in $DOCKER_IMAGE"
               exit 1
             fi
         ;;
@@ -343,7 +341,7 @@ if [ $DOCKER -eq 1 ]; then
     ARCH=`dpkg --print-architecture`
     echo "The host arch: $ARCH"
     if [ -z "$DOCKER_IMAGE" ]; then
-        log_fail "DOCKER_IMAGE is empty. please set --docker-image"
+        echo_error "DOCKER_IMAGE is empty. please set --docker-image"
         exit 1
     fi
     ## Copy the source code to build directory

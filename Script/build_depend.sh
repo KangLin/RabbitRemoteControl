@@ -12,7 +12,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
 
 install_gnu_getopt
 if [ "$DISTRO" = "macOS" ]; then

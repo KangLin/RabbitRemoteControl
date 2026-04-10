@@ -13,7 +13,6 @@ fi
 INSTALL_BUILD_DEPEND=0
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
@@ -38,7 +37,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,rabbitcommon::,install-build-depend::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        log_fail "exec getopt fail: $?"
+        echo_error "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"

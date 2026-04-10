@@ -115,8 +115,6 @@ check_echo_color_with_tput() {
         BOLD=""; RED=""; GREEN=""; YELLOW=""; BLUE=""; MAGENTA=""; CYAN=""; NC=""
     fi
 }
-#check_echo_color
-#check_echo_color_with_tput
 log_info() {
     echo -e "${GREEN}[i]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1"
 }
@@ -127,18 +125,21 @@ log_error() {
     echo -e "${RED}[X]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" >&2
 }
 log_success() {
-    echo -e "${GREEN}[✓]${NC} $1"
-}
-log_fail() {
-    echo -e "${RED}[X]${NC} $1" >&2
+    echo -e "${GREEN}[✓]${NC} $(date '+%Y-%m-%d %H:%M:%S') -  $1"
 }
 echo_success() {
-    echo -e "${GREEN} $1 ${NC}"
-}
-echo_warn() {
-    echo -e "${YELLOW} $1 ${NC}"
+    echo -e "${GREEN}[✓]${NC} $1"
 }
 echo_error() {
+    echo -e "${RED}[X]${NC} $1" >&2
+}
+echo_color_success() {
+    echo -e "${GREEN} $1 ${NC}"
+}
+echo_color_warn() {
+    echo -e "${YELLOW} $1 ${NC}"
+}
+echo_color_error() {
     echo -e "${RED} $1 ${NC}" >&2
 }
 
@@ -149,7 +150,7 @@ validate_directory() {
 
     if [ -n "$dir" ]; then
         if [[ "$dir" =~ ^- ]]; then
-            log_fail "Error: $type directory parameter '$dir' cannot start with '-'"
+            echo_error "Error: $type directory parameter '$dir' cannot start with '-'"
             exit 1
         fi
     fi
@@ -304,7 +305,7 @@ create_debian_folder() {
                     echo "ln -s $control_source $repo_root/debian/control"
                 fi
             else
-                log_fail "Error: $control_source is not exist"
+                echo_error "Error: $control_source is not exist"
             fi
         fi
 
@@ -329,7 +330,7 @@ install_debian_depend() {
 #            grep -v '^$' | \
 #            xargs sudo apt install -y
     else
-        log_fail "Error: $repo_root/debian/control is not exist"
+        echo_error "Error: $repo_root/debian/control is not exist"
     fi
 }
 
@@ -504,7 +505,7 @@ version_compare() {
 # Function to check if git is installed
 check_git() {
     if ! command -v git >/dev/null 2>&1; then
-        echo_error "X Git is not installed" >&2
+        echo_color_error "X Git is not installed" >&2
         echo "  Git is required for this script to work." >&2
         echo "" >&2
         echo "  Please install Git using one of the following commands:" >&2
@@ -537,10 +538,10 @@ check_git() {
         local git_version=$(git --version | cut -d' ' -f3)
 
         if ! version_compare "$git_version" "$min_version"; then
-            echo_warn "!️ Git version $git_version is installed, but version $min_version or higher is recommended" >&2
+            echo_color_warn "!️ Git version $git_version is installed, but version $min_version or higher is recommended" >&2
             # Continue anyway, just a warning
         else
-            echo_success "√ Git $git_version is installed"
+            echo_color_success "√ Git $git_version is installed"
         fi
     fi
 
@@ -550,7 +551,7 @@ check_git() {
 # Option to automatically install git (with user confirmation)
 install_git_if_missing() {
     if ! command -v git >/dev/null 2>&1; then
-        echo_warn "!️ Git is required but not installed." >&2
+        echo_color_warn "!️ Git is required but not installed." >&2
         read -p "Would you like to install Git now? (y/n): " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -567,23 +568,23 @@ install_git_if_missing() {
                 if command -v brew >/dev/null 2>&1; then
                     brew install git
                 else
-                    echo_error "X Homebrew not found. Please install Git manually from https://git-scm.com/download/mac" >&2
+                    echo_color_error "X Homebrew not found. Please install Git manually from https://git-scm.com/download/mac" >&2
                     return 1
                 fi
             else
-                echo_error "X Unsupported OS. Please install Git manually." >&2
+                echo_color_error "X Unsupported OS. Please install Git manually." >&2
                 return 1
             fi
 
             # Verify installation
             if command -v git >/dev/null 2>&1; then
-                echo_success "√ Git installed successfully!"
+                echo_color_success "√ Git installed successfully!"
             else
-                echo_error "X Git installation failed. Please install manually." >&2
+                echo_color_error "X Git installation failed. Please install manually." >&2
                 return 1
             fi
         else
-            echo_error "X Git is required. Exiting." >&2
+            echo_color_error "X Git is required. Exiting." >&2
             return 1
         fi
     fi
@@ -606,17 +607,17 @@ test_sed_pattern() {
 
     # Test with -E flag
     if echo "$test_string" | sed -E "s/${VERSION_PATTERN}/REPLACED/g" | grep -q "REPLACED"; then
-        echo_success "  √ -E flag: Matches"
+        echo_color_success "  √ -E flag: Matches"
     else
-        echo_error "  X -E flag: No match"
+        echo_color_error "  X -E flag: No match"
     fi
 
     # Convert to BRE and test
     BRE_PATTERN=$(sed_safe_pattern "$VERSION_PATTERN")
     if echo "$test_string" | sed "s/${BRE_PATTERN}/REPLACED/g" | grep -q "REPLACED"; then
-        echo_success "  √ BRE: Matches"
+        echo_color_success "  √ BRE: Matches"
     else
-        echo_error "  X BRE: No match"
+        echo_color_error "  X BRE: No match"
     fi
 }
 
@@ -665,7 +666,7 @@ version_parser() {
         return 0
     fi
 
-    log_fail "ERROR: Unable to parse version number '$version'" >&2
+    echo_error "ERROR: Unable to parse version number '$version'" >&2
     return 1
 }
 
@@ -686,7 +687,7 @@ display_version_info() {
   是否包含构建: ${data[7]}
 EOF
     else
-        log_fail "数据不完整"
+        echo_error "数据不完整"
     fi
 }
 
@@ -711,7 +712,7 @@ parse_version_assoc() {
         version_array[build]="${BASH_REMATCH[10]:-}"
         return 0
     else
-        log_fail "ERROR: Unable to parse version number '$version'" >&2
+        echo_error "ERROR: Unable to parse version number '$version'" >&2
         return 1
     fi
 }
@@ -781,7 +782,7 @@ compare_versions() {
 
     # 检查数组元素个数
     if [ ${#parts1[@]} -lt 3 ] || [ ${#parts2[@]} -lt 3 ]; then
-        log_fail "version format error" >&2
+        echo_error "version format error" >&2
         return 3
     fi
 
@@ -867,7 +868,6 @@ test_version() {
     echo "compare_versions \"v2.0.0-alpha+dev\" \"v2.0.0-alpha+dev.1\": `compare_versions "v2.0.0-alpha+dev" "v2.0.0-alpha+dev.1"; echo $?`"
 }
 
-
 # 获取第一个 ### 到第二个 ### 之间的内容（包括标记行）
 # sed -n '/###/,/###/p' 文件
 # 获取第一个 ### 到第二个 ### 之间的内容（不包括标记行）
@@ -922,3 +922,16 @@ get_section() {
     }
     ' "$file"
 }
+
+# 初始化，必须放在此文件最后
+init_blobal() {
+    if [ ! $INIT_GLOBAL_RABBIT ]; then
+        echo "Init global ......"
+        export INIT_GLOBAL_RABBIT=TRUE
+        #check_echo_color
+        check_echo_color_with_tput
+        detect_os_info
+    fi
+}
+
+init_blobal

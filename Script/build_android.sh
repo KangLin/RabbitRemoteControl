@@ -11,7 +11,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
 
 # modify follow value
 Qt6_DIR=/opt/Qt/6.6.3/android_x86_64

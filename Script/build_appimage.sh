@@ -14,7 +14,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-detect_os_info
 
 usage_long() {
     echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"
@@ -41,7 +40,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        log_fail "exec getopt fail: $?"
+        echo_error "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"

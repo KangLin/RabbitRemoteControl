@@ -11,9 +11,6 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 source $(dirname $(readlink -f $0))/common.sh
-
-detect_os_info
-
 setup_macos
 
 usage_long() {
@@ -41,7 +38,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        echo "exec getopt fail: $?"
+        echo_error "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"
