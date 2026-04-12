@@ -456,7 +456,12 @@ if [ $DEB -eq 1 ]; then
 
     install_debian_depend $REPO_ROOT
 
-    ./build_depend.sh \
+    if [ "$DISTRO" = "deepin" ]; then
+        depend_para=--qtkeychain
+        export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_QTKEYCHAIN=ON"
+    fi
+
+    ./build_depend.sh ${depend_para} \
         --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
@@ -468,7 +473,7 @@ if [ $DEB -eq 1 ]; then
         git config --global --add safe.directory $REPO_ROOT
     fi
 
-    export CMAKE_CONFIG_PARAS="-DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
+    export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DINSTALL_LIBSSH=ON -DRABBIT_ENABLE_INSTALL_TARGETS=ON -DINSTALL_QTERMWIDGET=ON -DINSTALL_QFtpServer=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
         --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
         --verbose=${BUILD_VERBOSE}
