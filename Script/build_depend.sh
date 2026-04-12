@@ -107,7 +107,7 @@ EOF
 parse_with_getopt() {
     local OPTS ARGS
     
-    echo "Using getopt to parse command line arguments..."
+    echo_status "Using getopt to parse command line arguments ....."
     
     # Define supported options
     # Format: long_option_name: (colon indicates required argument)
@@ -125,7 +125,7 @@ parse_with_getopt() {
     # -n: script name for error messages
     ARGS=$(getopt -o h,v:: -l "$OPTS" -n "$(basename "$0")" -- "$@")
     if [ $? != 0 ]; then
-        echo "Error: Command line argument parsing failed" >&2
+        echo_error "Error: Command line argument parsing failed" >&2
         usage_long
     fi
     
@@ -353,7 +353,7 @@ parse_with_getopt() {
             usage_long
             ;;
         *)
-            echo "Error: Unknown option '$1'" >&2
+            echo_error "Error: Unknown option '$1'" >&2
             usage_long
             ;;
         esac
@@ -361,7 +361,7 @@ parse_with_getopt() {
     
     # Handle remaining non-option arguments (if any)
     if [ $# -gt 0 ]; then
-        echo "Warning: Ignoring unknown arguments: $*" >&2
+        echo_warn "Warning: Ignoring unknown arguments: $*" >&2
     fi
 }
 
@@ -371,7 +371,8 @@ parse_command_line() {
     if command -v getopt >/dev/null 2>&1; then
         parse_with_getopt "$@"
     else
-        echo "Install GNU getopt"
+        echo_error "Please install GNU getopt"
+        exit 1
     fi
 }
 
@@ -434,7 +435,7 @@ validate_parameters() {
     
     # If no actions and no packages specified, show error
     if [ $actions -eq 0 ] && [ -z "$PACKAGE" ]; then
-        echo "Warning: No operation specified" >&2
+        echo_warn "Warning: No operation specified" >&2
         #echo "Use '$0 --help' to see available options" >&2
     fi
     
@@ -444,7 +445,7 @@ validate_parameters() {
                QtService QTERMWIDGET QTKEYCHAIN; do
         local value="${!var}"
         if [ "$value" != "0" ] && [ "$value" != "1" ]; then
-            echo "Error: Parameter $var must be 0 or 1" >&2
+            echo_error "Error: Parameter $var must be 0 or 1" >&2
             exit 1
         fi
     done
@@ -510,7 +511,7 @@ esac
 
 
 if [ $SYSTEM_UPDATE -eq 1 ]; then
-    echo "== System update ......"
+    echo_status "System update ......"
     case "$PACKAGE_TOOL" in
         brew)
             brew update -q
@@ -529,12 +530,12 @@ if [ $SYSTEM_UPDATE -eq 1 ]; then
 fi
 
 if [ -n "$PACKAGE" ]; then
-    echo "== Install package: $PACKAGE"
+    echo_status "Install package: $PACKAGE"
     package_install $PACKAGE
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
-    echo "== Install base libraries ......"
+    echo_status "Install base libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential devscripts equivs debhelper \
@@ -624,7 +625,7 @@ if [ $BASE_LIBS -eq 1 ]; then
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
-    echo "== Install default dependency libraries ......"
+    echo_status "Install default dependency libraries ......"
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         package_install libvncserver-dev
         if [ $FREERDP -ne 1 ]; then
@@ -667,7 +668,7 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
 fi
 
 if [ $QT -eq 1 ]; then
-    echo "== Install qt ${QT_VERSION} ......"
+    echo_status "Install qt ${QT_VERSION} ......"
     pushd "$TOOLS_DIR"
     if [ ! -d qt_`uname -m` ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
@@ -693,7 +694,7 @@ if [ $QT -eq 1 ]; then
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
-    echo "== Install RabbitCommon ......"
+    echo_status "Install RabbitCommon ......"
     pushd "$SOURCE_DIR"
     if [ ! -d RabbitCommon ]; then
         git clone https://github.com/KangLin/RabbitCommon.git
@@ -706,7 +707,7 @@ if [ $RabbitCommon -eq 1 ]; then
 fi
 
 if [ $LIBSSH -eq 1 ]; then
-    echo "== Install libssh ......"
+    echo_status "Install libssh ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/libssh ]; then
         if [ ! -d libssh ]; then
@@ -726,7 +727,7 @@ if [ $LIBSSH -eq 1 ]; then
 fi
 
 if [ $FREERDP -eq 1 ]; then
-    echo "== Install FreeRDP ......"
+    echo_status "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
         if [ ! -d FreeRDP ]; then
@@ -755,7 +756,7 @@ if [ $FREERDP -eq 1 ]; then
 fi
 
 if [ $TIGERVNC -eq 1 ]; then
-    echo "== Install tigervnc ......"
+    echo_status "Install tigervnc ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/tigervnc ]; then
       if [ ! -d tigervnc ]; then
@@ -776,7 +777,7 @@ if [ $TIGERVNC -eq 1 ]; then
 fi
 
 if [ $PCAPPLUSPLUS -eq 1 ]; then
-    echo "== Install PcapPlusPlus ......"
+    echo_status "Install PcapPlusPlus ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
         if [ ! -d PcapPlusPlus ]; then
@@ -800,7 +801,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
 fi
 
 if [ $libdatachannel -eq 1 ]; then
-    echo "== Install libdatachannel ......"
+    echo_status "Install libdatachannel ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/LibDataChannel ]; then
       if [ ! -d libdatachannel ]; then
@@ -821,7 +822,7 @@ if [ $libdatachannel -eq 1 ]; then
 fi
 
 if [ $QtService -eq 1 ]; then
-    echo "== Install QtService ......"
+    echo_status "Install QtService ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QtService ]; then
       if [ ! -d qt-solutions ]; then
@@ -842,12 +843,12 @@ if [ $QtService -eq 1 ]; then
 fi
 
 if [ $QTERMWIDGET -eq 1 ]; then
-    echo "== Install qtermwidget ......"
+    echo_status "Install qtermwidget ......"
     pushd "$SOURCE_DIR"
     #CMAKE=`/usr/bin/qtpaths6 --query QT_HOST_BINS`/qt-cmake
     #echo "CMAKE: $CMAKE"
     if [ ! -d ${INSTALL_DIR}/share/cmake/lxqt2-build-tools ]; then
-        echo "== Install lxqt-build-tools ......"
+        echo_status "Install lxqt-build-tools ......"
         if [ ! -d lxqt-build-tools ]; then
             git clone --branch 2.3.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
         fi
@@ -887,7 +888,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
 fi
 
 if [ $QTKEYCHAIN -eq 1 ]; then
-    echo "== Install QtKeyChain ......"
+    echo_status "Install QtKeyChain ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/Qt6Keychain ]; then
         if [ ! -d qtkeychain ]; then
@@ -907,7 +908,7 @@ if [ $QTKEYCHAIN -eq 1 ]; then
 fi
 
 if [ $QFtpServer -eq 1 ]; then
-    echo "== Install QFtpServer ......"
+    echo_status "Install QFtpServer ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/QFtpServerLib/QFtpServerLib ]; then
         if [ ! -d QFtpServer ]; then

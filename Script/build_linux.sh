@@ -337,7 +337,7 @@ validate_parameters
 show_configuration
 
 if [ $DOCKER -eq 1 ]; then
-    echo "== Start docker ${DOCKER_IMAGE} ......"
+    echo_status "Start docker ${DOCKER_IMAGE} ......"
     ARCH=`dpkg --print-architecture`
     echo "The host arch: $ARCH"
     if [ -z "$DOCKER_IMAGE" ]; then
@@ -446,7 +446,7 @@ fi
 pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
-    echo "== build deb package ......"
+    echo_status "build deb package ......"
 
     ./build_depend.sh --system_update --base \
         --install=${INSTALL_DIR} \
@@ -480,7 +480,7 @@ if [ $DEB -eq 1 ]; then
 fi
 
 if [ $APPIMAGE -eq 1 ]; then
-    echo "== build AppImage ......"
+    echo_status "build AppImage ......"
     case "$DISTRO" in
     ubuntu)
 #        case "$DISTRO_VERSION" in
@@ -529,7 +529,7 @@ if [ $APPIMAGE -eq 1 ]; then
 fi
 
 if [ $RPM -eq 1 ]; then
-    echo "== build rpm package ......"
+    echo_status "build rpm package ......"
     #dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus --qftpserver \
@@ -546,7 +546,7 @@ if [ $RPM -eq 1 ]; then
 fi
 
 if [ $MACOS -eq 1 ]; then
-    echo "== build macos bundle package ......"
+    echo_status "build macos bundle package ......"
     ./build_depend.sh --system_update --base --default --macos \
         --rabbitcommon --tigervnc --qtermwidget --qftpserver \
         --install=${INSTALL_DIR} \

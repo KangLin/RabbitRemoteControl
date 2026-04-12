@@ -37,7 +37,7 @@ if command -V getopt >/dev/null; then
     OPTS=help,verbose::,install:,source:,tools:,build:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
-        echo "exec getopt fail: $?"
+        echo_error "exec getopt fail: $?"
         exit 1
     fi
     #echo "ARGS=[$ARGS]"

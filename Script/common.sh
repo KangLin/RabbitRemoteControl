@@ -133,14 +133,20 @@ echo_success() {
 echo_error() {
     echo -e "${RED}[X]${NC} $1" >&2
 }
+echo_warn() {
+    echo -e "${YELLOW} $1 ${NC}"
+}
 echo_color_success() {
-    echo -e "${GREEN} $1 ${NC}"
+    echo -e "${YELLOW}[!]${NC} $1"
 }
 echo_color_warn() {
     echo -e "${YELLOW} $1 ${NC}"
 }
 echo_color_error() {
     echo -e "${RED} $1 ${NC}" >&2
+}
+echo_status() {
+    echo "=== $1"
 }
 
 # Validate directory path

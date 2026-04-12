@@ -199,13 +199,13 @@ cmake --install . --config Release --strip --component Runtime --prefix ${INSTAL
 cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
 if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
-    echo "Copy qtermwidget6 resources ......."
+    echo_status "Copy qtermwidget6 resources ......."
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else
     echo_error "${INSTALL_DIR}/share/qtermwidget6 is not exist"
 fi
 
-echo "Build AppImage ......"
+echo_status "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
@@ -254,7 +254,7 @@ ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir ${DEPLOY_PARA} \
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
 cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage
-echo "--- Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
+echo_status "Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
 
 popd
 popd
