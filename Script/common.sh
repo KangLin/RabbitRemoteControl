@@ -137,7 +137,7 @@ echo_warn() {
     echo -e "${YELLOW} $1 ${NC}"
 }
 echo_color_success() {
-    echo -e "${YELLOW}[!]${NC} $1"
+    echo -e "${GREEN} $1 ${NC}"
 }
 echo_color_warn() {
     echo -e "${YELLOW} $1 ${NC}"
