@@ -136,7 +136,7 @@ Function InstallRuntime
 FunctionEnd
 
 Function InstallNpcap
-    ; NOTE: 如何要修改版本号，需要同时修改 .github\workflows\msvc.yml 中相应的版本
+    ; NOTE: 如果要修改版本号，需要同时修改 .github\workflows\msvc.yml 中相应的版本
     IfFileExists "$OUTDIR\bin\npcap-1.87.exe" ExecNpcap
     MessageBox MB_YESNO|MB_ICONQUESTION "$(LANG_DOWNLOAD_NPCAP)" IDYES Download IDNO ExitNpcap
     Download:
