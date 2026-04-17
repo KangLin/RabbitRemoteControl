@@ -932,7 +932,7 @@ get_section() {
 # 初始化，必须放在此文件最后
 init_blobal() {
     if [ ! $INIT_GLOBAL_RABBIT ]; then
-        echo "Init global ......"
+        echo_status "Init global ......"
         export INIT_GLOBAL_RABBIT=TRUE
         #check_echo_color
         check_echo_color_with_tput

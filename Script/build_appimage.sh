@@ -155,6 +155,7 @@ if [ "$CI" != "" ]; then
     trap cleanup EXIT
 fi
 
+echo_status "download linuxdeploy ......"
 pushd "${TOOLS_DIR}"
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
     wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-`uname -m`.AppImage
@@ -166,7 +167,7 @@ if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
 fi
 popd
 
-echo "Compile RabbitRemoteControl ......"
+echo_status "Compile RabbitRemoteControl ......"
 if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     echo "QT_ROOT: $QT_ROOT"
     echo "Qt6_DIR: $Qt6_DIR"
