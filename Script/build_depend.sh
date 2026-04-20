@@ -584,7 +584,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by QtMultimedia
         #package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
-        package_install libfuse-dev libfuse3-dev fuse
+        package_install libfuse-dev libfuse3-dev fuse3
         # Other
         if [ "$DISTRO" = "ubuntu" ]; then
             package_install libmysqlclient-dev
@@ -781,9 +781,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/${LIB_PATH}/cmake/pcapplusplus ]; then
         if [ ! -d PcapPlusPlus ]; then
-            git clone https://github.com/seladb/PcapPlusPlus.git
-            cd PcapPlusPlus
-            git checkout -b c3cc787829b794b84c6a63734d324c1c487cb696 c3cc787829b794b84c6a63734d324c1c487cb696
+            git clone -b v25.05 --depth=1 https://github.com/seladb/PcapPlusPlus.git
         fi
         cmake -E make_directory $BUILD_DEPEND_DIR/PcapPlusPlus
         pushd $BUILD_DEPEND_DIR/PcapPlusPlus
