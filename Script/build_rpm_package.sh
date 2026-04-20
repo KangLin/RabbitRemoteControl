@@ -134,6 +134,6 @@ fi
 export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 export INSTALL_DIR=${INSTALL_DIR}
-rpmbuild --nodebuginfo -bb Package/rpm/rabbitremotecontrol.spec
+rpmbuild --nodebuginfo -bb Package/rpm/rabbitremotecontrol.spec --define "build_time $(date '+%a %b %d %Y')"
 
 popd

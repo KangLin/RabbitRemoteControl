@@ -179,5 +179,5 @@ rm -fr /usr/bin/rabbitremotecontrol
 
 # 修改历史
 %changelog
-* $RPM_BUILD_TIME Kang Lin <kl222@126.com> - %{version}
+* %{build_time} Kang Lin <kl222@126.com> - %{version}
 - Initial RPM package
