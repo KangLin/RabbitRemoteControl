@@ -141,7 +141,7 @@ QVariantMap CPasswordStore::getCredentials(const QString &host)
 void CPasswordStore::saveCredentials(
     const QString &host, const QString &username, const QString &password)
 {
-    if (host.isEmpty() || username.isEmpty()) return;
+    if (host.isEmpty() || username.isEmpty() || !m_pPara) return;
 
     QString szFile;
     szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
