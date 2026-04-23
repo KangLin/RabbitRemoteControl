@@ -851,7 +851,7 @@ if [ $QTERMWIDGET -eq 1 ]; then
             git clone --branch 2.3.0 --depth=1 https://github.com/lxqt/lxqt-build-tools.git
         fi
         pushd lxqt-build-tools
-        if [ $MACOS -nq 1 ]; then
+        if [ $MACOS -ne 1 ]; then
             sed -i "s/LXQT_MIN_LINGUIST_VERSION \"6.6\"/LXQT_MIN_LINGUIST_VERSION \"6.0\"/g" CMakeLists.txt
         fi
         popd
