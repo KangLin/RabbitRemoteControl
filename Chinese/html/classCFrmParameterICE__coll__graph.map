@@ -1,0 +1,9 @@
+<map id="CFrmParameterICE" name="CFrmParameterICE">
+<area shape="rect" id="Node000001" title="设置参数对话框" alt="" coords="14,168,158,193"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,84,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,117,83,166,78,169,54,119"/>
+<area shape="rect" id="Node000003" href="$classCParameterICE.html" title="ICE 参数辅助类。用于管理 ICE 的参数。" alt="" coords="108,80,227,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,117,99,169,95,166,145,114"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="130,5,205,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="170,45,170,80,165,80,165,45"/>
+</map>

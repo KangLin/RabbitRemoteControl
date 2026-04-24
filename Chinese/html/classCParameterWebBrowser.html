@@ -1,0 +1,1715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameterWebBrowser类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate9</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-slots">Protected 槽</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameterWebBrowser-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameterWebBrowser类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CParameterWebBrowser 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterWebBrowser__inherit__graph.png" border="0" usemap="#aCParameterWebBrowser_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCParameterWebBrowser_inherit__map" id="aCParameterWebBrowser_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,225,184,251"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="19,152,170,177"/>
+<area shape="poly" title=" " alt="" coords="97,191,97,225,92,225,92,191"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="45,79,144,104"/>
+<area shape="poly" title=" " alt="" coords="97,118,97,152,92,152,92,118"/>
+<area shape="rect" title=" " alt="" coords="57,5,132,31"/>
+<area shape="poly" title=" " alt="" coords="97,44,97,79,92,79,92,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CParameterWebBrowser 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCParameterWebBrowser__coll__graph.png" border="0" usemap="#aCParameterWebBrowser_coll__map" alt="Collaboration graph"/></div>
+<map name="aCParameterWebBrowser_coll__map" id="aCParameterWebBrowser_coll__map">
+<area shape="rect" title=" " alt="" coords="2636,361,2815,386"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="294,345,445,370"/>
+<area shape="poly" title=" " alt="" coords="405,376,463,419,475,435,487,447,515,461,539,469,585,473,633,467,693,461,847,452,978,438,1198,408,1305,394,1419,382,1550,374,1705,371,2356,371,2636,371,2636,376,2356,376,1705,376,1550,379,1420,387,1306,399,1199,414,978,444,848,457,694,467,633,473,585,478,538,474,513,466,484,451,471,438,459,423,402,380"/>
+<area shape="poly" title=" " alt="" coords="346,330,353,321,369,318,383,320,391,327,393,336,389,346,385,343,388,336,387,330,381,325,369,323,356,326,350,333"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1013,347,1173,373"/>
+<area shape="poly" title=" " alt="" coords="458,354,485,353,737,351,989,353,1013,354,1013,359,989,359,737,357,485,359,458,359"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="796,375,917,401"/>
+<area shape="poly" title=" " alt="" coords="458,360,796,382,796,387,458,366"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="565,426,693,451"/>
+<area shape="poly" title=" " alt="" coords="425,372,588,423,587,428,423,377"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,173,228,198"/>
+<area shape="poly" title=" " alt="" coords="205,206,254,253,355,343,351,347,250,257,201,210"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2285,174,2424,199"/>
+<area shape="poly" title=" " alt="" coords="220,165,288,143,328,135,368,132,1269,132,1566,137,1857,150,2285,178,2285,184,1857,156,1566,143,1269,137,368,137,329,140,290,148,222,170"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="1636,309,1776,334"/>
+<area shape="poly" title=" " alt="" coords="242,183,368,183,1269,183,1331,187,1394,197,1455,213,1514,232,1614,273,1683,306,1680,311,1612,277,1512,237,1454,218,1393,202,1331,192,1269,188,368,188,242,188"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="1949,303,2079,329"/>
+<area shape="poly" title=" " alt="" coords="222,201,290,222,329,230,368,233,1269,233,1464,241,1655,259,1824,282,1949,302,1948,307,1823,287,1655,265,1463,246,1269,239,368,239,328,236,288,228,220,206"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="1943,21,2085,46"/>
+<area shape="poly" title=" " alt="" coords="192,159,220,121,260,79,284,60,310,45,338,34,368,31,1707,31,1942,31,1942,36,1707,36,368,36,339,40,312,50,287,65,264,83,224,125,197,163"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="1919,71,2109,97"/>
+<area shape="poly" title=" " alt="" coords="197,161,221,136,251,114,281,97,307,88,334,83,368,81,1707,81,1918,81,1918,87,1707,87,368,87,334,88,308,93,283,102,253,118,224,140,200,164"/>
+<area shape="rect" title=" " alt="" coords="5,511,80,537"/>
+<area shape="poly" title=" " alt="" coords="52,498,170,197,175,199,57,500"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1361,523,1455,549"/>
+<area shape="poly" title=" " alt="" coords="94,530,177,537,1095,537,1361,534,1361,540,1095,543,177,543,93,535"/>
+<area shape="poly" title=" " alt="" coords="2272,198,1774,253,1409,289,628,289,563,295,499,311,442,329,399,347,397,342,441,324,497,305,562,290,628,284,1409,284,1773,248,2271,193"/>
+<area shape="poly" title=" " alt="" coords="1789,307,1999,273,2125,248,2250,219,2319,197,2320,202,2251,224,2126,253,2000,278,1790,313"/>
+<area shape="poly" title=" " alt="" coords="1187,351,1635,323,1636,328,1187,357"/>
+<area shape="poly" title=" " alt="" coords="1131,377,1385,521,1383,526,1128,382"/>
+<area shape="poly" title=" " alt="" coords="931,377,1013,367,1013,372,931,382"/>
+<area shape="poly" title=" " alt="" coords="707,430,771,419,828,398,829,403,773,424,708,436"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="277,433,461,458"/>
+<area shape="poly" title=" " alt="" coords="475,443,541,441,565,440,565,446,541,447,475,448"/>
+<area shape="poly" title=" " alt="" coords="1423,510,1447,480,1477,450,1512,427,1543,415,1574,404,1611,386,1687,332,1690,336,1613,390,1576,409,1544,420,1515,432,1480,454,1451,483,1427,513"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="1643,411,1769,437"/>
+<area shape="poly" title=" " alt="" coords="1433,512,1478,483,1655,434,1656,439,1480,488,1436,517"/>
+<area shape="rect" href="classCHistoryDatabase.html" title="The CHistoryDatabase class" alt="" coords="2285,614,2425,639"/>
+<area shape="poly" title=" " alt="" coords="1465,549,1479,552,1709,584,1937,605,2138,617,2284,623,2284,628,2137,622,1937,610,1709,590,1478,557,1464,554"/>
+<area shape="rect" href="classCDatabaseUrl.html" title=" " alt="" coords="1958,665,2070,690"/>
+<area shape="poly" title=" " alt="" coords="1416,562,1424,591,1436,625,1454,657,1480,683,1510,702,1542,717,1611,735,1682,742,1753,739,1822,730,1884,716,1978,688,1980,693,1885,721,1823,735,1754,745,1682,747,1610,741,1540,722,1508,707,1477,687,1450,660,1431,627,1418,593,1411,563"/>
+<area shape="rect" href="classCDatabaseIcon.html" title="Icon database" alt="" coords="1646,665,1766,690"/>
+<area shape="poly" title=" " alt="" coords="1421,560,1443,604,1460,626,1480,643,1520,662,1563,673,1606,679,1646,679,1646,685,1606,684,1562,679,1518,667,1477,648,1456,629,1439,607,1416,563"/>
+<area shape="rect" href="classCBookmarkDatabase.html" title="The CBookmarkDatabase class" alt="" coords="2275,482,2435,507"/>
+<area shape="poly" title=" " alt="" coords="1468,518,1478,516,1557,504,1636,499,1815,491,1992,488,2274,490,2274,495,1992,493,1815,496,1636,504,1557,510,1479,521,1469,523"/>
+<area shape="rect" href="classCDatabaseTree.html" title="The CDatabaseTree class" alt="" coords="1954,513,2074,538"/>
+<area shape="poly" title=" " alt="" coords="1469,538,1636,548,1706,550,1776,548,1954,531,1954,536,1776,553,1706,555,1636,553,1468,544"/>
+<area shape="rect" href="classCDatabaseNode.html" title="The CDatabaseNode class" alt="" coords="1643,513,1769,538"/>
+<area shape="poly" title=" " alt="" coords="1468,531,1643,525,1643,530,1469,537"/>
+<area shape="poly" title=" " alt="" coords="2093,324,2171,322,2212,314,2249,300,2282,278,2309,250,2344,198,2349,201,2313,254,2285,282,2252,305,2213,319,2172,327,2093,329"/>
+<area shape="poly" title=" " alt="" coords="1755,404,1976,326,1977,331,1757,409"/>
+<area shape="poly" title=" " alt="" coords="2099,19,2173,14,2258,15,2348,25,2393,35,2436,48,2492,76,2543,114,2588,159,2628,206,2688,297,2721,359,2716,362,2683,300,2623,210,2584,163,2540,119,2489,81,2434,53,2391,40,2347,30,2258,20,2173,19,2099,24"/>
+<area shape="poly" title=" " alt="" coords="2080,47,2110,56,2183,77,2214,88,2252,107,2302,140,2341,172,2337,176,2299,144,2249,112,2212,93,2181,82,2109,61,2078,52"/>
+<area shape="poly" title=" " alt="" coords="2075,66,2159,54,2206,54,2251,61,2330,87,2406,123,2477,165,2543,210,2650,298,2714,359,2710,362,2646,302,2540,215,2474,169,2403,127,2328,92,2250,67,2205,60,2159,60,2076,71"/>
+<area shape="poly" title=" " alt="" coords="2064,99,2134,121,2251,152,2315,171,2313,176,2250,157,2133,127,2063,104"/>
+<area shape="poly" title=" " alt="" coords="2394,605,2494,551,2553,516,2610,477,2668,427,2710,384,2714,388,2672,431,2614,481,2556,520,2497,556,2396,610"/>
+<area shape="poly" title=" " alt="" coords="2083,674,2164,669,2250,657,2320,637,2322,642,2251,663,2164,674,2084,679"/>
+<area shape="poly" title=" " alt="" coords="2050,656,2328,505,2331,510,2052,660"/>
+<area shape="poly" title=" " alt="" coords="1780,675,1958,675,1958,680,1780,680"/>
+<area shape="poly" title=" " alt="" coords="2407,475,2684,384,2686,389,2408,480"/>
+<area shape="poly" title=" " alt="" coords="2088,518,2250,505,2274,503,2275,508,2251,511,2088,524"/>
+<area shape="poly" title=" " alt="" coords="1783,523,1954,523,1954,528,1783,528"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:a623a229ede384a07cdde10da8dd3356e" id="r_a623a229ede384a07cdde10da8dd3356e"><td class="memItemLeft" align="right" valign="top"><a id="a623a229ede384a07cdde10da8dd3356e" name="a623a229ede384a07cdde10da8dd3356e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigDownloadFolderChanged</b> ()</td></tr>
+<tr class="separator:a623a229ede384a07cdde10da8dd3356e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a2e5750454b66d5ac60140f38c9e9a1ab inherit signals_classCParameterOperate" id="r_a2e5750454b66d5ac60140f38c9e9a1ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a2e5750454b66d5ac60140f38c9e9a1ab">sigSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a2e5750454b66d5ac60140f38c9e9a1ab inherit signals_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">仅由此类使用  <br /></td></tr>
+<tr class="separator:a2e5750454b66d5ac60140f38c9e9a1ab inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate" id="r_a4913c1cb94db4ce44dff54a7366aa468"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigNameChanged</b> (const QString &amp;name=QString())</td></tr>
+<tr class="separator:a4913c1cb94db4ce44dff54a7366aa468 inherit signals_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('signals_classCParameter')"><img src="closed.png" alt="-"/>&#160;信号 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb inherit signals_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae8084c770a038343f268fe76795337e6" id="r_ae8084c770a038343f268fe76795337e6"><td class="memItemLeft" align="right" valign="top"><a id="ae8084c770a038343f268fe76795337e6" name="ae8084c770a038343f268fe76795337e6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CParameterWebBrowser</b> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:ae8084c770a038343f268fe76795337e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500e24a870cede8c38ba1120c7fc1478" id="r_a500e24a870cede8c38ba1120c7fc1478"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a500e24a870cede8c38ba1120c7fc1478">GetHomeUrl</a> ()</td></tr>
+<tr class="separator:a500e24a870cede8c38ba1120c7fc1478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae626252fc536c37956bb66642153ec3" id="r_aae626252fc536c37956bb66642153ec3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aae626252fc536c37956bb66642153ec3">SetHomeUrl</a> (const QString &amp;url)</td></tr>
+<tr class="separator:aae626252fc536c37956bb66642153ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39bf95c3066afca4e2c364860aedd403" id="r_a39bf95c3066afca4e2c364860aedd403"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a39bf95c3066afca4e2c364860aedd403">GetTabUrl</a> ()</td></tr>
+<tr class="separator:a39bf95c3066afca4e2c364860aedd403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf5788580e1f94ca71a2687c672a7ec" id="r_acdf5788580e1f94ca71a2687c672a7ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#acdf5788580e1f94ca71a2687c672a7ec">SetTabUrl</a> (const QString &amp;url)</td></tr>
+<tr class="separator:acdf5788580e1f94ca71a2687c672a7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb4cbb268f4adec51fb5fc1ae8e6510" id="r_a0fb4cbb268f4adec51fb5fc1ae8e6510"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a0fb4cbb268f4adec51fb5fc1ae8e6510">GetOpenPrevious</a> ()</td></tr>
+<tr class="separator:a0fb4cbb268f4adec51fb5fc1ae8e6510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada9393f10bb6f6aac3017d87407725d2" id="r_ada9393f10bb6f6aac3017d87407725d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ada9393f10bb6f6aac3017d87407725d2">SetOpenPrevious</a> (bool bOpen)</td></tr>
+<tr class="separator:ada9393f10bb6f6aac3017d87407725d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e128dde4f8e957a69720377290cb2aa" id="r_a9e128dde4f8e957a69720377290cb2aa"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a9e128dde4f8e957a69720377290cb2aa">GetDownloadFolder</a> ()</td></tr>
+<tr class="separator:a9e128dde4f8e957a69720377290cb2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0177a7601239d88e9951c0c59d63e77d" id="r_a0177a7601239d88e9951c0c59d63e77d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a0177a7601239d88e9951c0c59d63e77d">SetDownloadFolder</a> (const QString &amp;folder)</td></tr>
+<tr class="separator:a0177a7601239d88e9951c0c59d63e77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a06ddd0bf2580aa0c7e24b57acc377" id="r_a39a06ddd0bf2580aa0c7e24b57acc377"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a39a06ddd0bf2580aa0c7e24b57acc377">GetShowDownloadManager</a> () const</td></tr>
+<tr class="separator:a39a06ddd0bf2580aa0c7e24b57acc377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55ffe4d0c92b1db90249860f7ae95902" id="r_a55ffe4d0c92b1db90249860f7ae95902"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a55ffe4d0c92b1db90249860f7ae95902">SetShowDownloadManager</a> (bool newShowDownloadManager)</td></tr>
+<tr class="separator:a55ffe4d0c92b1db90249860f7ae95902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af655c1d7147f8abf89d0edcf8e17147d" id="r_af655c1d7147f8abf89d0edcf8e17147d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#af655c1d7147f8abf89d0edcf8e17147d">GetShowDownloadLocation</a> () const</td></tr>
+<tr class="separator:af655c1d7147f8abf89d0edcf8e17147d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55b04da8fe586190f7e2cca0369235ef" id="r_a55b04da8fe586190f7e2cca0369235ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a55b04da8fe586190f7e2cca0369235ef">SetShowDownloadLocation</a> (bool newShowDownloadLocation)</td></tr>
+<tr class="separator:a55b04da8fe586190f7e2cca0369235ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8daa6df79d2866566bc8804d7a21f4" id="r_aab8daa6df79d2866566bc8804d7a21f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aab8daa6df79d2866566bc8804d7a21f4">GetClearHttpCache</a> () const</td></tr>
+<tr class="separator:aab8daa6df79d2866566bc8804d7a21f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9cbc93ad81bd03b0892cdfffbee84bb" id="r_ac9cbc93ad81bd03b0892cdfffbee84bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ac9cbc93ad81bd03b0892cdfffbee84bb">SetClearHttpCache</a> (bool newClearHttpCache)</td></tr>
+<tr class="separator:ac9cbc93ad81bd03b0892cdfffbee84bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a916be5ab5b7bdfeb42094bd309fa4967" id="r_a916be5ab5b7bdfeb42094bd309fa4967"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a916be5ab5b7bdfeb42094bd309fa4967">GetClearCookie</a> () const</td></tr>
+<tr class="separator:a916be5ab5b7bdfeb42094bd309fa4967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bd15b3ddcb3bc9b985ef79c5249aca" id="r_ac1bd15b3ddcb3bc9b985ef79c5249aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ac1bd15b3ddcb3bc9b985ef79c5249aca">SetClearCookie</a> (bool newClearCookie)</td></tr>
+<tr class="separator:ac1bd15b3ddcb3bc9b985ef79c5249aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad8b88de3a8af4f5f7f966e1e10af36" id="r_a8ad8b88de3a8af4f5f7f966e1e10af36"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a8ad8b88de3a8af4f5f7f966e1e10af36">GetSearchEngine</a> () const</td></tr>
+<tr class="separator:a8ad8b88de3a8af4f5f7f966e1e10af36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb87c09179b7413bb7db00a7b91315b4" id="r_abb87c09179b7413bb7db00a7b91315b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#abb87c09179b7413bb7db00a7b91315b4">SetSearchEngine</a> (const QString &amp;newSearchEngine)</td></tr>
+<tr class="separator:abb87c09179b7413bb7db00a7b91315b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fb16216bb38a1383bcfe2b7f641be2e" id="r_a4fb16216bb38a1383bcfe2b7f641be2e"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a4fb16216bb38a1383bcfe2b7f641be2e">GetSearchRelaceString</a> () const</td></tr>
+<tr class="separator:a4fb16216bb38a1383bcfe2b7f641be2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57d2e30c30a35e75ed826035e4d203e" id="r_ab57d2e30c30a35e75ed826035e4d203e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ab57d2e30c30a35e75ed826035e4d203e">SetSearchRelaceString</a> (const QString &amp;newSearchRelaceString)</td></tr>
+<tr class="separator:ab57d2e30c30a35e75ed826035e4d203e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1548215f1fb414a4071b30a4a6c3c4bd" id="r_a1548215f1fb414a4071b30a4a6c3c4bd"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a1548215f1fb414a4071b30a4a6c3c4bd">GetSearchEngineList</a> () const</td></tr>
+<tr class="separator:a1548215f1fb414a4071b30a4a6c3c4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c4f22a12c88c90fe672e17769ef412e" id="r_a7c4f22a12c88c90fe672e17769ef412e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a7c4f22a12c88c90fe672e17769ef412e">SetSearchEngineList</a> (const QStringList &amp;newSearchEngineList)</td></tr>
+<tr class="separator:a7c4f22a12c88c90fe672e17769ef412e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5e0209b2e9837b8b7b221edc7d87c1" id="r_a9b5e0209b2e9837b8b7b221edc7d87c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a9b5e0209b2e9837b8b7b221edc7d87c1">GetPromptPrintFinished</a> () const</td></tr>
+<tr class="separator:a9b5e0209b2e9837b8b7b221edc7d87c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41318b3a9a592ee9a2ece4d55d434774" id="r_a41318b3a9a592ee9a2ece4d55d434774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a41318b3a9a592ee9a2ece4d55d434774">SetPromptPrintFinished</a> (bool newPromptPrintFinished)</td></tr>
+<tr class="separator:a41318b3a9a592ee9a2ece4d55d434774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b063050a7964609c41ac8b4d4ed092" id="r_a21b063050a7964609c41ac8b4d4ed092"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a21b063050a7964609c41ac8b4d4ed092">GetAutoFillUserAndPassword</a> () const</td></tr>
+<tr class="separator:a21b063050a7964609c41ac8b4d4ed092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2c41b5b1e09022e5bcd7675a82cd82" id="r_adf2c41b5b1e09022e5bcd7675a82cd82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#adf2c41b5b1e09022e5bcd7675a82cd82">SetAutoFillUserAndPassword</a> (bool newAutoFillUserAndPassword)</td></tr>
+<tr class="separator:adf2c41b5b1e09022e5bcd7675a82cd82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0abd3b7c452010e4e58362159443606" id="r_ae0abd3b7c452010e4e58362159443606"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ae0abd3b7c452010e4e58362159443606">GetDatabaseViewLimit</a> () const</td></tr>
+<tr class="separator:ae0abd3b7c452010e4e58362159443606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb401634baa4a059311b8982861d408" id="r_aecb401634baa4a059311b8982861d408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aecb401634baa4a059311b8982861d408">SetDatabaseViewLimit</a> (int newLimit)</td></tr>
+<tr class="separator:aecb401634baa4a059311b8982861d408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8395fa4f04301acbf30b383f1f6f587" id="r_ab8395fa4f04301acbf30b383f1f6f587"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ab8395fa4f04301acbf30b383f1f6f587">GetAddCompleterLines</a> () const</td></tr>
+<tr class="separator:ab8395fa4f04301acbf30b383f1f6f587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2936d7c855364e38f72d3042c4b17131" id="r_a2936d7c855364e38f72d3042c4b17131"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a2936d7c855364e38f72d3042c4b17131">SetAddCompleterLines</a> (int newAddCompleterLines)</td></tr>
+<tr class="separator:a2936d7c855364e38f72d3042c4b17131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4beb21f93dcd4413a0b1e4074593a34e" id="r_a4beb21f93dcd4413a0b1e4074593a34e"><td class="memItemLeft" align="right" valign="top">QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a4beb21f93dcd4413a0b1e4074593a34e">GetWindowSize</a> () const</td></tr>
+<tr class="separator:a4beb21f93dcd4413a0b1e4074593a34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c79175af4e756e36566ec5f9aa20504" id="r_a9c79175af4e756e36566ec5f9aa20504"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a9c79175af4e756e36566ec5f9aa20504">SetWindowSize</a> (const QSize &amp;newWindowSize)</td></tr>
+<tr class="separator:a9c79175af4e756e36566ec5f9aa20504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42162a2b1e8ebb6019437b1fd589883d" id="r_a42162a2b1e8ebb6019437b1fd589883d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a42162a2b1e8ebb6019437b1fd589883d">GetBookmarkCurrentFolder</a> () const</td></tr>
+<tr class="separator:a42162a2b1e8ebb6019437b1fd589883d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c7ca23bb6f578ea276b466afec092b" id="r_a24c7ca23bb6f578ea276b466afec092b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a24c7ca23bb6f578ea276b466afec092b">SetBookmarkCurrentFolder</a> (int newCurrentBookmarkFolder)</td></tr>
+<tr class="separator:a24c7ca23bb6f578ea276b466afec092b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bbbd3f145901b25c76792d7e8cd647f" id="r_a0bbbd3f145901b25c76792d7e8cd647f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a0bbbd3f145901b25c76792d7e8cd647f">GetBookmarkShowEditor</a> () const</td></tr>
+<tr class="separator:a0bbbd3f145901b25c76792d7e8cd647f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48036144b9f953ffa560cea546f2d279" id="r_a48036144b9f953ffa560cea546f2d279"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a48036144b9f953ffa560cea546f2d279">SetBookmarkShowEditor</a> (bool newBookmarkShowEditor)</td></tr>
+<tr class="separator:a48036144b9f953ffa560cea546f2d279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a58bef92def69a3a3d6e42a68ff27a48e inherit pub_methods_classCParameterOperate" id="r_a58bef92def69a3a3d6e42a68ff27a48e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a58bef92def69a3a3d6e42a68ff27a48e">CParameterOperate</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:a58bef92def69a3a3d6e42a68ff27a48e inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bd352215f9624f42b27b32bb0ca6db inherit pub_methods_classCParameterOperate" id="r_a95bd352215f9624f42b27b32bb0ca6db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a95bd352215f9624f42b27b32bb0ca6db">GetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a95bd352215f9624f42b27b32bb0ca6db inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a>  <br /></td></tr>
+<tr class="separator:a95bd352215f9624f42b27b32bb0ca6db inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a427a4b41e546d500a5a0e06f344a6453 inherit pub_methods_classCParameterOperate" id="r_a427a4b41e546d500a5a0e06f344a6453"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a427a4b41e546d500a5a0e06f344a6453">SetPluginParameters</a> (<a class="el" href="classCParameterPlugin.html">CParameterPlugin</a> *p)</td></tr>
+<tr class="separator:a427a4b41e546d500a5a0e06f344a6453 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate" id="r_a5623fbb11de8cb188ed2202e4939f332"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a5623fbb11de8cb188ed2202e4939f332">GetName</a> () const</td></tr>
+<tr class="separator:a5623fbb11de8cb188ed2202e4939f332 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate" id="r_ae48826c9a53d55acbd93e0f962e93bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#ae48826c9a53d55acbd93e0f962e93bfb">SetName</a> (const QString &amp;szName)</td></tr>
+<tr class="separator:ae48826c9a53d55acbd93e0f962e93bfb inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate" id="r_a35bbb29677637c26da961c84e4185406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a35bbb29677637c26da961c84e4185406">LoadPassword</a> (const QString &amp;szTitle, const QString &amp;szKey, QString &amp;password, QSettings &amp;set)</td></tr>
+<tr class="memdesc:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore password  <br /></td></tr>
+<tr class="separator:a35bbb29677637c26da961c84e4185406 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate" id="r_aae8d78719ade689af5d32fe032503a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#aae8d78719ade689af5d32fe032503a44">SavePassword</a> (const QString &amp;szKey, const QString &amp;password, QSettings &amp;set, bool bSave=false)</td></tr>
+<tr class="separator:aae8d78719ade689af5d32fe032503a44 inherit pub_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:aa35b6d1854ae3abc4d6341d31977fc68 inherit pub_methods_classCParameter" id="r_aa35b6d1854ae3abc4d6341d31977fc68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa35b6d1854ae3abc4d6341d31977fc68">CParameter</a> (QObject *parent, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:aa35b6d1854ae3abc4d6341d31977fc68 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from QSettings  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to QSettings  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943 inherit pub_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a32deb26d7b6ee713b6ca18792df8b4a8" id="r_a32deb26d7b6ee713b6ca18792df8b4a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterRecord.html">CParameterRecord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a32deb26d7b6ee713b6ca18792df8b4a8">m_Record</a></td></tr>
+<tr class="separator:a32deb26d7b6ee713b6ca18792df8b4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f72b6922c0ec7b3800194727a1b7b6b" id="r_a6f72b6922c0ec7b3800194727a1b7b6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterMediaDevices.html">CParameterMediaDevices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a6f72b6922c0ec7b3800194727a1b7b6b">m_MediaDevices</a></td></tr>
+<tr class="separator:a6f72b6922c0ec7b3800194727a1b7b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ce048bb2a9887311e0d0a7a136f4dd" id="r_ad1ce048bb2a9887311e0d0a7a136f4dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCHistoryDatabase.html">CHistoryDatabase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ad1ce048bb2a9887311e0d0a7a136f4dd">m_HistoryDatabase</a></td></tr>
+<tr class="separator:ad1ce048bb2a9887311e0d0a7a136f4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64885c4b86e67dcda45e30cdaa7b7c23" id="r_a64885c4b86e67dcda45e30cdaa7b7c23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBookmarkDatabase.html">CBookmarkDatabase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a64885c4b86e67dcda45e30cdaa7b7c23">m_BookmarkDatabase</a></td></tr>
+<tr class="separator:a64885c4b86e67dcda45e30cdaa7b7c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-slots" name="pro-slots"></a>
+Protected 槽</h2></td></tr>
+<tr class="memitem:ade1c0c8469e16e614bdf2eaf7e4043db" id="r_ade1c0c8469e16e614bdf2eaf7e4043db"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ade1c0c8469e16e614bdf2eaf7e4043db">slotSetPluginParameters</a> () override</td></tr>
+<tr class="separator:ade1c0c8469e16e614bdf2eaf7e4043db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_slots_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 槽 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:a8728b70dd9f3c081c7c2bf24ac261c4e inherit pro_slots_classCParameterOperate" id="r_a8728b70dd9f3c081c7c2bf24ac261c4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#a8728b70dd9f3c081c7c2bf24ac261c4e">slotSetPluginParameters</a> ()</td></tr>
+<tr class="memdesc:a8728b70dd9f3c081c7c2bf24ac261c4e inherit pro_slots_classCParameterOperate"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 后调用，用于初始化与 <a class="el" href="classCParameterPlugin.html" title="插件的全局参数。">CParameterPlugin</a> 有关的操作。  <br /></td></tr>
+<tr class="separator:a8728b70dd9f3c081c7c2bf24ac261c4e inherit pro_slots_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a590bec4e5232b39603209cf50988e603" id="r_a590bec4e5232b39603209cf50988e603"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a590bec4e5232b39603209cf50988e603">OnLoad</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a590bec4e5232b39603209cf50988e603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa8e85bfbe7fc4c175a8e36fd3ecf2d" id="r_a4fa8e85bfbe7fc4c175a8e36fd3ecf2d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a4fa8e85bfbe7fc4c175a8e36fd3ecf2d">OnSave</a> (QSettings &amp;set) override</td></tr>
+<tr class="separator:a4fa8e85bfbe7fc4c175a8e36fd3ecf2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameterOperate"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterOperate')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameterOperate.html">CParameterOperate</a></td></tr>
+<tr class="memitem:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate" id="r_af9df5fc726cd293eede2432ac31664c0"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterOperate.html#af9df5fc726cd293eede2432ac31664c0">PasswordSum</a> (const std::string &amp;password, const std::string &amp;key)</td></tr>
+<tr class="separator:af9df5fc726cd293eede2432ac31664c0 inherit pro_methods_classCParameterOperate"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameter')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686 inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca inherit pro_methods_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aff42077952a913fd193f51636207002a" id="r_aff42077952a913fd193f51636207002a"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aff42077952a913fd193f51636207002a">m_szHomeUrl</a></td></tr>
+<tr class="separator:aff42077952a913fd193f51636207002a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad250e79b71348c45054878e2322fa76f" id="r_ad250e79b71348c45054878e2322fa76f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ad250e79b71348c45054878e2322fa76f">m_szTabUrl</a></td></tr>
+<tr class="separator:ad250e79b71348c45054878e2322fa76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5707903f8f2312f413ec61654da74d11" id="r_a5707903f8f2312f413ec61654da74d11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a5707903f8f2312f413ec61654da74d11">m_bOpenPrevious</a></td></tr>
+<tr class="separator:a5707903f8f2312f413ec61654da74d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec44e1f9b0478bec12fbb326a3b09dc4" id="r_aec44e1f9b0478bec12fbb326a3b09dc4"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aec44e1f9b0478bec12fbb326a3b09dc4">m_szDownloadFolder</a></td></tr>
+<tr class="separator:aec44e1f9b0478bec12fbb326a3b09dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4811d3b13816e4f6db70c05b02fc29cb" id="r_a4811d3b13816e4f6db70c05b02fc29cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a4811d3b13816e4f6db70c05b02fc29cb">m_bShowDownloadManager</a></td></tr>
+<tr class="separator:a4811d3b13816e4f6db70c05b02fc29cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8f9db08c5df5bb4baacb58ab099c5e" id="r_a8b8f9db08c5df5bb4baacb58ab099c5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a8b8f9db08c5df5bb4baacb58ab099c5e">m_bShowDownloadLocation</a></td></tr>
+<tr class="separator:a8b8f9db08c5df5bb4baacb58ab099c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00ea13b8df8c940a47533da648343ed" id="r_ab00ea13b8df8c940a47533da648343ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ab00ea13b8df8c940a47533da648343ed">m_ClearHttpCache</a></td></tr>
+<tr class="separator:ab00ea13b8df8c940a47533da648343ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df55e5c32baa6a41edbb205a4cb7af8" id="r_a2df55e5c32baa6a41edbb205a4cb7af8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a2df55e5c32baa6a41edbb205a4cb7af8">m_ClearCookie</a></td></tr>
+<tr class="separator:a2df55e5c32baa6a41edbb205a4cb7af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89afbad13fee3ed78df5fbaf5a811d3a" id="r_a89afbad13fee3ed78df5fbaf5a811d3a"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a89afbad13fee3ed78df5fbaf5a811d3a">m_szSearchEngine</a></td></tr>
+<tr class="separator:a89afbad13fee3ed78df5fbaf5a811d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a990f167dbdcc09097065bc3f0f0ab2ab" id="r_a990f167dbdcc09097065bc3f0f0ab2ab"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a990f167dbdcc09097065bc3f0f0ab2ab">m_szSearchRelaceString</a></td></tr>
+<tr class="separator:a990f167dbdcc09097065bc3f0f0ab2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6293daf1f3e6d57647aec3ca2a3185a" id="r_ae6293daf1f3e6d57647aec3ca2a3185a"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ae6293daf1f3e6d57647aec3ca2a3185a">m_SearchEngineList</a></td></tr>
+<tr class="separator:ae6293daf1f3e6d57647aec3ca2a3185a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2703dfccd26d9d68c6cc55dbda6cf711" id="r_a2703dfccd26d9d68c6cc55dbda6cf711"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a2703dfccd26d9d68c6cc55dbda6cf711">m_bPromptPrintFinished</a></td></tr>
+<tr class="separator:a2703dfccd26d9d68c6cc55dbda6cf711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5b6db047612ecbfa544fa794bda983" id="r_a5b5b6db047612ecbfa544fa794bda983"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a5b5b6db047612ecbfa544fa794bda983">m_bAutoFillUserAndPassword</a></td></tr>
+<tr class="separator:a5b5b6db047612ecbfa544fa794bda983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac52f368b6cb075fd695887431bb43618" id="r_ac52f368b6cb075fd695887431bb43618"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ac52f368b6cb075fd695887431bb43618">m_nDatabaseViewLimit</a></td></tr>
+<tr class="separator:ac52f368b6cb075fd695887431bb43618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc4e47fb039f4c9d068901bfe16d509e" id="r_adc4e47fb039f4c9d068901bfe16d509e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#adc4e47fb039f4c9d068901bfe16d509e">m_nAddCompleterLines</a></td></tr>
+<tr class="separator:adc4e47fb039f4c9d068901bfe16d509e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398dec723a7e147400663eb0f6f14f83" id="r_a398dec723a7e147400663eb0f6f14f83"><td class="memItemLeft" align="right" valign="top">QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#a398dec723a7e147400663eb0f6f14f83">m_WindowSize</a></td></tr>
+<tr class="separator:a398dec723a7e147400663eb0f6f14f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1eabe9a0c5f9da9cf57d2ead410ed79" id="r_ab1eabe9a0c5f9da9cf57d2ead410ed79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#ab1eabe9a0c5f9da9cf57d2ead410ed79">m_nBookmarkCurrentFolder</a></td></tr>
+<tr class="separator:ab1eabe9a0c5f9da9cf57d2ead410ed79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7e4b078a964d089baf25e0cb4cd2d7" id="r_aca7e4b078a964d089baf25e0cb4cd2d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterWebBrowser.html#aca7e4b078a964d089baf25e0cb4cd2d7">m_bBookmarkShowEditor</a></td></tr>
+<tr class="separator:aca7e4b078a964d089baf25e0cb4cd2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header properties_classCParameter"><td colspan="2" onclick="javascript:toggleInherit('properties_classCParameter')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="classCParameter.html">CParameter</a></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7 inherit properties_classCParameter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00011">11</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a835a2b99ee426e3c88c8194b49be6772" name="a835a2b99ee426e3c88c8194b49be6772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a835a2b99ee426e3c88c8194b49be6772">&#9670;&#160;</a></span>~CParameterWebBrowser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameterWebBrowser::~CParameterWebBrowser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ab8395fa4f04301acbf30b383f1f6f587" name="ab8395fa4f04301acbf30b383f1f6f587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8395fa4f04301acbf30b383f1f6f587">&#9670;&#160;</a></span>GetAddCompleterLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::GetAddCompleterLines </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00300">300</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a21b063050a7964609c41ac8b4d4ed092" name="a21b063050a7964609c41ac8b4d4ed092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b063050a7964609c41ac8b4d4ed092">&#9670;&#160;</a></span>GetAutoFillUserAndPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetAutoFillUserAndPassword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00274">274</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42162a2b1e8ebb6019437b1fd589883d" name="a42162a2b1e8ebb6019437b1fd589883d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42162a2b1e8ebb6019437b1fd589883d">&#9670;&#160;</a></span>GetBookmarkCurrentFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::GetBookmarkCurrentFolder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00326">326</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0bbbd3f145901b25c76792d7e8cd647f" name="a0bbbd3f145901b25c76792d7e8cd647f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bbbd3f145901b25c76792d7e8cd647f">&#9670;&#160;</a></span>GetBookmarkShowEditor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetBookmarkShowEditor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00339">339</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a916be5ab5b7bdfeb42094bd309fa4967" name="a916be5ab5b7bdfeb42094bd309fa4967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a916be5ab5b7bdfeb42094bd309fa4967">&#9670;&#160;</a></span>GetClearCookie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetClearCookie </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aab8daa6df79d2866566bc8804d7a21f4" name="aab8daa6df79d2866566bc8804d7a21f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8daa6df79d2866566bc8804d7a21f4">&#9670;&#160;</a></span>GetClearHttpCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetClearHttpCache </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00209">209</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae0abd3b7c452010e4e58362159443606" name="ae0abd3b7c452010e4e58362159443606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0abd3b7c452010e4e58362159443606">&#9670;&#160;</a></span>GetDatabaseViewLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::GetDatabaseViewLimit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00287">287</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9e128dde4f8e957a69720377290cb2aa" name="a9e128dde4f8e957a69720377290cb2aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e128dde4f8e957a69720377290cb2aa">&#9670;&#160;</a></span>GetDownloadFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::GetDownloadFolder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a500e24a870cede8c38ba1120c7fc1478" name="a500e24a870cede8c38ba1120c7fc1478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500e24a870cede8c38ba1120c7fc1478">&#9670;&#160;</a></span>GetHomeUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::GetHomeUrl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0fb4cbb268f4adec51fb5fc1ae8e6510" name="a0fb4cbb268f4adec51fb5fc1ae8e6510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb4cbb268f4adec51fb5fc1ae8e6510">&#9670;&#160;</a></span>GetOpenPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetOpenPrevious </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00142">142</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9b5e0209b2e9837b8b7b221edc7d87c1" name="a9b5e0209b2e9837b8b7b221edc7d87c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b5e0209b2e9837b8b7b221edc7d87c1">&#9670;&#160;</a></span>GetPromptPrintFinished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetPromptPrintFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00261">261</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8ad8b88de3a8af4f5f7f966e1e10af36" name="a8ad8b88de3a8af4f5f7f966e1e10af36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ad8b88de3a8af4f5f7f966e1e10af36">&#9670;&#160;</a></span>GetSearchEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::GetSearchEngine </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00222">222</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1548215f1fb414a4071b30a4a6c3c4bd" name="a1548215f1fb414a4071b30a4a6c3c4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1548215f1fb414a4071b30a4a6c3c4bd">&#9670;&#160;</a></span>GetSearchEngineList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterWebBrowser::GetSearchEngineList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00248">248</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4fb16216bb38a1383bcfe2b7f641be2e" name="a4fb16216bb38a1383bcfe2b7f641be2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fb16216bb38a1383bcfe2b7f641be2e">&#9670;&#160;</a></span>GetSearchRelaceString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::GetSearchRelaceString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af655c1d7147f8abf89d0edcf8e17147d" name="af655c1d7147f8abf89d0edcf8e17147d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af655c1d7147f8abf89d0edcf8e17147d">&#9670;&#160;</a></span>GetShowDownloadLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetShowDownloadLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00183">183</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a39a06ddd0bf2580aa0c7e24b57acc377" name="a39a06ddd0bf2580aa0c7e24b57acc377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39a06ddd0bf2580aa0c7e24b57acc377">&#9670;&#160;</a></span>GetShowDownloadManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::GetShowDownloadManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a39bf95c3066afca4e2c364860aedd403" name="a39bf95c3066afca4e2c364860aedd403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39bf95c3066afca4e2c364860aedd403">&#9670;&#160;</a></span>GetTabUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::GetTabUrl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4beb21f93dcd4413a0b1e4074593a34e" name="a4beb21f93dcd4413a0b1e4074593a34e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4beb21f93dcd4413a0b1e4074593a34e">&#9670;&#160;</a></span>GetWindowSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize CParameterWebBrowser::GetWindowSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00313">313</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a590bec4e5232b39603209cf50988e603" name="a590bec4e5232b39603209cf50988e603"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a590bec4e5232b39603209cf50988e603">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4fa8e85bfbe7fc4c175a8e36fd3ecf2d" name="a4fa8e85bfbe7fc4c175a8e36fd3ecf2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa8e85bfbe7fc4c175a8e36fd3ecf2d">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="classCParameterOperate.html">CParameterOperate</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2936d7c855364e38f72d3042c4b17131" name="a2936d7c855364e38f72d3042c4b17131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2936d7c855364e38f72d3042c4b17131">&#9670;&#160;</a></span>SetAddCompleterLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetAddCompleterLines </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newAddCompleterLines</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00305">305</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf2c41b5b1e09022e5bcd7675a82cd82" name="adf2c41b5b1e09022e5bcd7675a82cd82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2c41b5b1e09022e5bcd7675a82cd82">&#9670;&#160;</a></span>SetAutoFillUserAndPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetAutoFillUserAndPassword </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newAutoFillUserAndPassword</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00279">279</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a24c7ca23bb6f578ea276b466afec092b" name="a24c7ca23bb6f578ea276b466afec092b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c7ca23bb6f578ea276b466afec092b">&#9670;&#160;</a></span>SetBookmarkCurrentFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetBookmarkCurrentFolder </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newCurrentBookmarkFolder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00331">331</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48036144b9f953ffa560cea546f2d279" name="a48036144b9f953ffa560cea546f2d279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48036144b9f953ffa560cea546f2d279">&#9670;&#160;</a></span>SetBookmarkShowEditor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetBookmarkShowEditor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newBookmarkShowEditor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00344">344</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac1bd15b3ddcb3bc9b985ef79c5249aca" name="ac1bd15b3ddcb3bc9b985ef79c5249aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1bd15b3ddcb3bc9b985ef79c5249aca">&#9670;&#160;</a></span>SetClearCookie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetClearCookie </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newClearCookie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00201">201</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac9cbc93ad81bd03b0892cdfffbee84bb" name="ac9cbc93ad81bd03b0892cdfffbee84bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9cbc93ad81bd03b0892cdfffbee84bb">&#9670;&#160;</a></span>SetClearHttpCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetClearHttpCache </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newClearHttpCache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00214">214</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aecb401634baa4a059311b8982861d408" name="aecb401634baa4a059311b8982861d408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb401634baa4a059311b8982861d408">&#9670;&#160;</a></span>SetDatabaseViewLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetDatabaseViewLimit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newLimit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00292">292</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0177a7601239d88e9951c0c59d63e77d" name="a0177a7601239d88e9951c0c59d63e77d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0177a7601239d88e9951c0c59d63e77d">&#9670;&#160;</a></span>SetDownloadFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::SetDownloadFolder </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>folder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aae626252fc536c37956bb66642153ec3" name="aae626252fc536c37956bb66642153ec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae626252fc536c37956bb66642153ec3">&#9670;&#160;</a></span>SetHomeUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::SetHomeUrl </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada9393f10bb6f6aac3017d87407725d2" name="ada9393f10bb6f6aac3017d87407725d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada9393f10bb6f6aac3017d87407725d2">&#9670;&#160;</a></span>SetOpenPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetOpenPrevious </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bOpen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41318b3a9a592ee9a2ece4d55d434774" name="a41318b3a9a592ee9a2ece4d55d434774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41318b3a9a592ee9a2ece4d55d434774">&#9670;&#160;</a></span>SetPromptPrintFinished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetPromptPrintFinished </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newPromptPrintFinished</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abb87c09179b7413bb7db00a7b91315b4" name="abb87c09179b7413bb7db00a7b91315b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb87c09179b7413bb7db00a7b91315b4">&#9670;&#160;</a></span>SetSearchEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetSearchEngine </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newSearchEngine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00227">227</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7c4f22a12c88c90fe672e17769ef412e" name="a7c4f22a12c88c90fe672e17769ef412e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4f22a12c88c90fe672e17769ef412e">&#9670;&#160;</a></span>SetSearchEngineList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetSearchEngineList </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>newSearchEngineList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00253">253</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab57d2e30c30a35e75ed826035e4d203e" name="ab57d2e30c30a35e75ed826035e4d203e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57d2e30c30a35e75ed826035e4d203e">&#9670;&#160;</a></span>SetSearchRelaceString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetSearchRelaceString </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>newSearchRelaceString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00240">240</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a55b04da8fe586190f7e2cca0369235ef" name="a55b04da8fe586190f7e2cca0369235ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55b04da8fe586190f7e2cca0369235ef">&#9670;&#160;</a></span>SetShowDownloadLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetShowDownloadLocation </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newShowDownloadLocation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a55ffe4d0c92b1db90249860f7ae95902" name="a55ffe4d0c92b1db90249860f7ae95902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55ffe4d0c92b1db90249860f7ae95902">&#9670;&#160;</a></span>SetShowDownloadManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetShowDownloadManager </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newShowDownloadManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acdf5788580e1f94ca71a2687c672a7ec" name="acdf5788580e1f94ca71a2687c672a7ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdf5788580e1f94ca71a2687c672a7ec">&#9670;&#160;</a></span>SetTabUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::SetTabUrl </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9c79175af4e756e36566ec5f9aa20504" name="a9c79175af4e756e36566ec5f9aa20504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c79175af4e756e36566ec5f9aa20504">&#9670;&#160;</a></span>SetWindowSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::SetWindowSize </td>
+          <td>(</td>
+          <td class="paramtype">const QSize &amp;&#160;</td>
+          <td class="paramname"><em>newWindowSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00318">318</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ade1c0c8469e16e614bdf2eaf7e4043db" name="ade1c0c8469e16e614bdf2eaf7e4043db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1c0c8469e16e614bdf2eaf7e4043db">&#9670;&#160;</a></span>slotSetPluginParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterWebBrowser::slotSetPluginParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a> 第 <a class="el" href="ParameterWebBrowser_8cpp_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5b5b6db047612ecbfa544fa794bda983" name="a5b5b6db047612ecbfa544fa794bda983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b5b6db047612ecbfa544fa794bda983">&#9670;&#160;</a></span>m_bAutoFillUserAndPassword</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bAutoFillUserAndPassword</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aca7e4b078a964d089baf25e0cb4cd2d7" name="aca7e4b078a964d089baf25e0cb4cd2d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7e4b078a964d089baf25e0cb4cd2d7">&#9670;&#160;</a></span>m_bBookmarkShowEditor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bBookmarkShowEditor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a64885c4b86e67dcda45e30cdaa7b7c23" name="a64885c4b86e67dcda45e30cdaa7b7c23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64885c4b86e67dcda45e30cdaa7b7c23">&#9670;&#160;</a></span>m_BookmarkDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCBookmarkDatabase.html">CBookmarkDatabase</a> CParameterWebBrowser::m_BookmarkDatabase</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5707903f8f2312f413ec61654da74d11" name="a5707903f8f2312f413ec61654da74d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5707903f8f2312f413ec61654da74d11">&#9670;&#160;</a></span>m_bOpenPrevious</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bOpenPrevious</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2703dfccd26d9d68c6cc55dbda6cf711" name="a2703dfccd26d9d68c6cc55dbda6cf711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2703dfccd26d9d68c6cc55dbda6cf711">&#9670;&#160;</a></span>m_bPromptPrintFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bPromptPrintFinished</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8b8f9db08c5df5bb4baacb58ab099c5e" name="a8b8f9db08c5df5bb4baacb58ab099c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b8f9db08c5df5bb4baacb58ab099c5e">&#9670;&#160;</a></span>m_bShowDownloadLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bShowDownloadLocation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4811d3b13816e4f6db70c05b02fc29cb" name="a4811d3b13816e4f6db70c05b02fc29cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4811d3b13816e4f6db70c05b02fc29cb">&#9670;&#160;</a></span>m_bShowDownloadManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_bShowDownloadManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2df55e5c32baa6a41edbb205a4cb7af8" name="a2df55e5c32baa6a41edbb205a4cb7af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df55e5c32baa6a41edbb205a4cb7af8">&#9670;&#160;</a></span>m_ClearCookie</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_ClearCookie</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab00ea13b8df8c940a47533da648343ed" name="ab00ea13b8df8c940a47533da648343ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab00ea13b8df8c940a47533da648343ed">&#9670;&#160;</a></span>m_ClearHttpCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameterWebBrowser::m_ClearHttpCache</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1ce048bb2a9887311e0d0a7a136f4dd" name="ad1ce048bb2a9887311e0d0a7a136f4dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ce048bb2a9887311e0d0a7a136f4dd">&#9670;&#160;</a></span>m_HistoryDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCHistoryDatabase.html">CHistoryDatabase</a> CParameterWebBrowser::m_HistoryDatabase</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6f72b6922c0ec7b3800194727a1b7b6b" name="a6f72b6922c0ec7b3800194727a1b7b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f72b6922c0ec7b3800194727a1b7b6b">&#9670;&#160;</a></span>m_MediaDevices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterMediaDevices.html">CParameterMediaDevices</a> CParameterWebBrowser::m_MediaDevices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adc4e47fb039f4c9d068901bfe16d509e" name="adc4e47fb039f4c9d068901bfe16d509e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc4e47fb039f4c9d068901bfe16d509e">&#9670;&#160;</a></span>m_nAddCompleterLines</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::m_nAddCompleterLines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab1eabe9a0c5f9da9cf57d2ead410ed79" name="ab1eabe9a0c5f9da9cf57d2ead410ed79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1eabe9a0c5f9da9cf57d2ead410ed79">&#9670;&#160;</a></span>m_nBookmarkCurrentFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::m_nBookmarkCurrentFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00118">118</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac52f368b6cb075fd695887431bb43618" name="ac52f368b6cb075fd695887431bb43618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac52f368b6cb075fd695887431bb43618">&#9670;&#160;</a></span>m_nDatabaseViewLimit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameterWebBrowser::m_nDatabaseViewLimit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a32deb26d7b6ee713b6ca18792df8b4a8" name="a32deb26d7b6ee713b6ca18792df8b4a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32deb26d7b6ee713b6ca18792df8b4a8">&#9670;&#160;</a></span>m_Record</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCParameterRecord.html">CParameterRecord</a> CParameterWebBrowser::m_Record</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae6293daf1f3e6d57647aec3ca2a3185a" name="ae6293daf1f3e6d57647aec3ca2a3185a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6293daf1f3e6d57647aec3ca2a3185a">&#9670;&#160;</a></span>m_SearchEngineList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList CParameterWebBrowser::m_SearchEngineList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aec44e1f9b0478bec12fbb326a3b09dc4" name="aec44e1f9b0478bec12fbb326a3b09dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec44e1f9b0478bec12fbb326a3b09dc4">&#9670;&#160;</a></span>m_szDownloadFolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::m_szDownloadFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff42077952a913fd193f51636207002a" name="aff42077952a913fd193f51636207002a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff42077952a913fd193f51636207002a">&#9670;&#160;</a></span>m_szHomeUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::m_szHomeUrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a89afbad13fee3ed78df5fbaf5a811d3a" name="a89afbad13fee3ed78df5fbaf5a811d3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89afbad13fee3ed78df5fbaf5a811d3a">&#9670;&#160;</a></span>m_szSearchEngine</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::m_szSearchEngine</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00074">74</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a990f167dbdcc09097065bc3f0f0ab2ab" name="a990f167dbdcc09097065bc3f0f0ab2ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a990f167dbdcc09097065bc3f0f0ab2ab">&#9670;&#160;</a></span>m_szSearchRelaceString</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::m_szSearchRelaceString</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad250e79b71348c45054878e2322fa76f" name="ad250e79b71348c45054878e2322fa76f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad250e79b71348c45054878e2322fa76f">&#9670;&#160;</a></span>m_szTabUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameterWebBrowser::m_szTabUrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a398dec723a7e147400663eb0f6f14f83" name="a398dec723a7e147400663eb0f6f14f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398dec723a7e147400663eb0f6f14f83">&#9670;&#160;</a></span>m_WindowSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize CParameterWebBrowser::m_WindowSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a> 第 <a class="el" href="ParameterWebBrowser_8h_source.html#l00112">112</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="ParameterWebBrowser_8h_source.html">ParameterWebBrowser.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/WebBrowser/<a class="el" href="ParameterWebBrowser_8cpp_source.html">ParameterWebBrowser.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

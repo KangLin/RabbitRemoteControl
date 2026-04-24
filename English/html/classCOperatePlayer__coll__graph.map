@@ -1,0 +1,84 @@
+<map id="COperatePlayer" name="COperatePlayer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2795,188,2919,213"/>
+<area shape="rect" id="Node000002" href="$classCOperateDesktop.html" title="Remote desktop operate interface." alt="" coords="2510,132,2647,157"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2656,157,2795,186,2794,191,2655,163"/>
+<area shape="rect" id="Node000003" href="$classCOperate.html" title="Operate interface." alt="" coords="413,132,496,157"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="509,136,662,123,849,115,2289,115,2406,121,2510,132,2510,138,2406,126,2289,121,849,121,662,128,510,141"/>
+<area shape="rect" id="Node000023" href="$classCBackendThread.html" title="The backend thread." alt="" coords="785,171,916,196"/>
+<area shape="poly" id="edge44_Node000023_Node000003" title=" " alt="" coords="510,147,785,174,785,180,510,153"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,233,80,259"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="61,221,91,193,128,169,166,156,205,146,283,136,355,134,413,137,413,143,355,140,283,141,205,151,167,161,130,174,94,197,65,225"/>
+<area shape="rect" id="Node000005" href="$classCPlugin.html" title="Plugin interface." alt="" coords="143,183,214,208"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="90,226,143,206,145,211,91,231"/>
+<area shape="rect" id="Node000008" href="$classCParameter.html" title="Parameter interface." alt="" coords="129,749,228,775"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="47,273,51,367,61,497,79,623,91,674,106,710,126,731,149,747,147,751,122,735,102,713,86,675,73,624,56,497,46,368,42,273"/>
+<area shape="rect" id="Node000015" href="$classCDatabase.html" title="Provide interfaces such as opening the database and initializing the database." alt="" coords="1621,700,1714,725"/>
+<area shape="poly" id="edge23_Node000015_Node000004" title=" " alt="" coords="56,270,93,352,122,405,158,463,199,521,248,577,303,626,363,665,533,674,911,687,1621,709,1620,714,911,692,533,679,362,670,300,630,244,580,195,525,153,466,117,408,89,354,51,272"/>
+<area shape="rect" id="Node000025" href="$classCBackend.html" title="Backend interface." alt="" coords="252,227,339,252"/>
+<area shape="poly" id="edge46_Node000025_Node000004" title=" " alt="" coords="94,242,252,238,252,243,94,247"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="227,190,338,175,415,155,416,160,339,181,228,195"/>
+<area shape="rect" id="Node000006" href="$classCParameterBase.html" title="The interface of connecter parameters." alt="" coords="2223,305,2353,331"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="2322,296,2357,276,2484,201,2556,155,2559,160,2487,206,2360,280,2325,301"/>
+<area shape="rect" id="Node000030" href="$classCParameterPlayer.html" title=" " alt="" coords="2509,253,2648,279"/>
+<area shape="poly" id="edge52_Node000030_Node000006" title=" " alt="" coords="2367,301,2509,276,2510,281,2367,307"/>
+<area shape="rect" id="Node000007" href="$classCParameterOperate.html" title="Operational parameter interface." alt="" coords="379,515,530,540"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="470,502,511,451,538,424,569,401,641,361,702,338,767,327,849,325,2005,325,2222,319,2222,324,2005,330,849,330,767,332,704,343,644,366,572,406,542,428,515,454,474,505"/>
+<area shape="poly" id="edge10_Node000007_Node000007" title=" " alt="" coords="424,500,433,491,455,488,473,490,484,497,487,506,481,516,477,513,481,506,480,500,471,495,455,493,435,496,427,504"/>
+<area shape="rect" id="Node000011" href="$classCParameterDatabase.html" title=" " alt="" coords="1236,587,1396,612"/>
+<area shape="poly" id="edge16_Node000011_Node000007" title=" " alt="" coords="514,541,571,554,663,569,756,581,942,595,1108,599,1236,599,1236,604,1108,605,941,600,756,586,662,575,570,559,513,546"/>
+<area shape="rect" id="Node000012" href="$classCParameterNet.html" title="Basic network parameters." alt="" coords="1019,507,1140,532"/>
+<area shape="poly" id="edge18_Node000012_Node000007" title=" " alt="" coords="544,524,1018,517,1018,523,544,529"/>
+<area shape="rect" id="Node000013" href="$classCParameterUser.html" title="It contains user and password It only valid in plugin." alt="" coords="787,547,915,572"/>
+<area shape="poly" id="edge20_Node000013_Node000007" title=" " alt="" coords="544,532,786,552,786,557,544,537"/>
+<area shape="rect" id="Node000020" href="$classCParameterProxy.html" title="The proxy parameters." alt="" coords="1936,393,2071,419"/>
+<area shape="poly" id="edge35_Node000020_Node000007" title=" " alt="" coords="485,505,549,467,637,425,687,406,740,390,795,379,849,375,1669,375,1812,382,1936,394,1935,400,1812,387,1669,381,849,381,795,385,742,395,689,411,639,430,551,472,488,509"/>
+<area shape="rect" id="Node000022" href="$classCParameterSSH.html" title=" " alt="" coords="1254,416,1378,441"/>
+<area shape="poly" id="edge39_Node000022_Node000007" title=" " alt="" coords="528,509,570,502,766,476,959,456,1253,430,1254,436,959,461,766,482,571,507,528,515"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="204,738,437,538,440,542,207,742"/>
+<area shape="rect" id="Node000009" href="$classCParameterPlugin.html" title="Global parameters of plugins." alt="" coords="2509,785,2648,811"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="194,786,218,826,234,846,254,863,304,894,347,912,393,919,453,921,2289,921,2346,918,2390,910,2432,894,2484,869,2529,839,2563,809,2567,813,2532,843,2487,874,2434,899,2392,915,2347,924,2289,926,453,926,393,924,345,917,301,899,250,867,231,849,214,829,189,789"/>
+<area shape="rect" id="Node000010" href="$classCParameterGlobal.html" title="Global parameters." alt="" coords="1933,643,2073,668"/>
+<area shape="poly" id="edge14_Node000010_Node000008" title=" " alt="" coords="242,754,729,716,1070,692,1420,671,1705,660,1933,654,1933,659,1705,665,1420,677,1071,697,729,721,242,759"/>
+<area shape="rect" id="Node000016" href="$classCParameterFilter.html" title=" " alt="" coords="2223,759,2353,784"/>
+<area shape="poly" id="edge26_Node000016_Node000008" title=" " alt="" coords="236,776,336,798,395,807,453,810,1317,810,1581,806,1840,796,2222,773,2223,779,1840,801,1581,811,1317,815,453,815,394,812,336,804,234,781"/>
+<area shape="rect" id="Node000018" href="$classCParameterRecord.html" title=" " alt="" coords="1932,264,2075,289"/>
+<area shape="poly" id="edge30_Node000018_Node000008" title=" " alt="" coords="188,735,213,681,250,610,300,533,329,496,361,463,433,399,501,351,567,317,634,295,705,282,782,276,966,274,1669,274,1932,274,1932,279,1669,279,966,279,782,281,705,287,636,300,569,322,504,355,437,403,365,467,333,500,305,536,255,613,217,684,193,738"/>
+<area shape="rect" id="Node000019" href="$classCParameterMediaDevices.html" title=" " alt="" coords="571,856,761,881"/>
+<area shape="poly" id="edge32_Node000019_Node000008" title=" " alt="" coords="199,784,223,809,253,829,292,844,333,856,417,871,498,876,570,875,570,880,498,881,416,876,332,861,290,849,251,834,220,813,195,787"/>
+<area shape="poly" id="edge11_Node000007_Node000009" title=" " alt="" coords="2496,811,2397,820,2289,825,1840,825,1714,823,1607,816,1513,806,1426,793,1247,755,1018,705,945,688,889,672,761,635,664,617,622,608,570,591,517,567,475,542,477,538,520,562,572,586,624,603,665,612,762,630,890,667,946,682,1019,699,1248,750,1427,787,1514,801,1607,811,1714,817,1840,819,2289,819,2397,815,2495,806"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="2087,660,2172,670,2273,687,2381,711,2486,744,2527,762,2560,783,2557,787,2524,767,2484,748,2379,716,2271,692,2171,676,2086,665"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="1410,594,1513,593,1638,596,1773,605,1909,623,1969,640,1968,645,1907,629,1773,611,1637,601,1513,598,1410,599"/>
+<area shape="poly" id="edge24_Node000015_Node000011" title=" " alt="" coords="1370,614,1628,697,1626,702,1368,619"/>
+<area shape="poly" id="edge33_Node000006_Node000012" title=" " alt="" coords="1154,522,1315,529,2004,529,2053,522,2099,504,2141,478,2179,446,2240,380,2277,329,2281,332,2244,383,2183,450,2144,482,2101,509,2054,527,2005,534,1315,534,1154,528"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="1113,537,1165,562,1242,584,1240,589,1163,567,1111,542"/>
+<area shape="poly" id="edge36_Node000020_Node000012" title=" " alt="" coords="1153,511,1417,489,1750,451,1853,434,1944,416,1945,421,1854,440,1751,457,1418,494,1154,517"/>
+<area shape="poly" id="edge40_Node000022_Node000012" title=" " alt="" coords="1120,499,1163,481,1276,439,1278,444,1165,486,1122,504"/>
+<area shape="poly" id="edge19_Node000012_Node000013" title=" " alt="" coords="928,549,994,539,1035,529,1037,535,995,545,929,555"/>
+<area shape="rect" id="Node000014" href="$structCParameterUser_1_1strData.html" title=" " alt="" coords="363,629,547,655"/>
+<area shape="poly" id="edge21_Node000013_Node000014" title=" " alt="" coords="530,624,788,569,789,575,531,629"/>
+<area shape="poly" id="edge22_Node000010_Node000015" title=" " alt="" coords="1728,710,1814,705,1907,690,1943,679,1975,666,1977,671,1945,684,1909,695,1814,710,1728,715"/>
+<area shape="rect" id="Node000017" href="$classCDatabaseFilter.html" title="The CDatabaseFilter class." alt="" coords="1940,708,2067,733"/>
+<area shape="poly" id="edge28_Node000017_Node000015" title=" " alt="" coords="1728,714,1775,717,1940,719,1940,724,1775,722,1728,720"/>
+<area shape="poly" id="edge25_Node000009_Node000016" title=" " alt="" coords="2367,776,2509,789,2509,794,2367,781"/>
+<area shape="poly" id="edge27_Node000016_Node000017" title=" " alt="" coords="2081,731,2194,751,2223,757,2222,762,2193,757,2080,736"/>
+<area shape="poly" id="edge41_Node000006_Node000018" title=" " alt="" coords="2089,286,2223,306,2222,311,2088,292"/>
+<area shape="poly" id="edge29_Node000009_Node000018" title=" " alt="" coords="2063,258,2130,247,2208,244,2248,248,2288,256,2326,271,2360,292,2391,319,2419,349,2467,416,2504,489,2532,564,2552,635,2566,699,2579,785,2574,786,2561,700,2547,636,2527,565,2499,491,2462,418,2415,352,2388,322,2357,296,2323,276,2287,262,2248,253,2208,249,2130,253,2064,264"/>
+<area shape="poly" id="edge31_Node000009_Node000019" title=" " alt="" coords="775,868,966,870,2289,870,2345,869,2388,864,2485,838,2521,824,2553,808,2556,813,2523,829,2486,843,2389,869,2346,874,2289,875,966,875,775,873"/>
+<area shape="poly" id="edge34_Node000006_Node000020" title=" " alt="" coords="2084,388,2192,358,2261,328,2263,333,2194,363,2085,393"/>
+<area shape="rect" id="Node000021" href="$classCParameterSSHTunnel.html" title=" " alt="" coords="1584,416,1751,441"/>
+<area shape="poly" id="edge37_Node000020_Node000021" title=" " alt="" coords="1765,419,1935,408,1936,413,1765,425"/>
+<area shape="poly" id="edge38_Node000021_Node000022" title=" " alt="" coords="1392,426,1584,426,1584,431,1392,431"/>
+<area shape="poly" id="edge42_Node000002_Node000023" title=" " alt="" coords="930,174,1078,167,2289,167,2406,162,2510,151,2510,157,2406,167,2289,173,1078,173,930,179"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="416,245,493,271"/>
+<area shape="poly" id="edge43_Node000023_Node000024" title=" " alt="" coords="507,252,624,238,693,227,761,213,818,194,820,199,762,218,694,232,625,244,507,257"/>
+<area shape="poly" id="edge45_Node000023_Node000025" title=" " alt="" coords="353,231,785,187,785,192,353,236"/>
+<area shape="rect" id="Node000026" href="$classCFrmViewer.html" title="A widget which displays output image from a CConnectDesktop and sends input keypresses and mouse acti..." alt="" coords="2237,5,2339,31"/>
+<area shape="poly" id="edge47_Node000002_Node000026" title=" " alt="" coords="2353,19,2419,31,2454,42,2487,56,2513,72,2536,93,2570,130,2566,134,2532,96,2509,77,2484,60,2452,47,2418,36,2352,25"/>
+<area shape="rect" id="Node000027" title=" " alt="" coords="1964,5,2043,31"/>
+<area shape="poly" id="edge48_Node000026_Node000027" title=" " alt="" coords="2056,15,2237,15,2237,21,2056,21"/>
+<area shape="rect" id="Node000028" href="$classCFrmScroll.html" title="The scroll form class." alt="" coords="2242,55,2334,80"/>
+<area shape="poly" id="edge49_Node000002_Node000028" title=" " alt="" coords="2348,70,2415,81,2486,98,2524,113,2556,129,2554,134,2522,118,2485,103,2414,86,2347,76"/>
+<area shape="rect" id="Node000029" title=" " alt="" coords="1954,55,2053,80"/>
+<area shape="poly" id="edge50_Node000028_Node000029" title=" " alt="" coords="2067,65,2242,65,2242,70,2067,70"/>
+<area shape="poly" id="edge51_Node000001_Node000030" title=" " alt="" coords="2646,248,2801,211,2802,216,2647,253"/>
+</map>

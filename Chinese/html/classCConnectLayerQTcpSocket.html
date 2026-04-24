@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CConnectLayerQTcpSocket类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.1.0-bate9</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-slots">Private 槽</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCConnectLayerQTcpSocket-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CConnectLayerQTcpSocket类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 CConnectLayerQTcpSocket 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCConnectLayerQTcpSocket__inherit__graph.png" border="0" usemap="#aCConnectLayerQTcpSocket_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCConnectLayerQTcpSocket_inherit__map" id="aCConnectLayerQTcpSocket_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,152,200,177"/>
+<area shape="rect" href="classCConnectLayer.html" title="The connect layer class" alt="" coords="43,79,163,104"/>
+<area shape="poly" title=" " alt="" coords="105,118,105,152,100,152,100,118"/>
+<area shape="rect" title=" " alt="" coords="65,5,140,31"/>
+<area shape="poly" title=" " alt="" coords="105,44,105,79,100,79,100,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+CConnectLayerQTcpSocket 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCConnectLayerQTcpSocket__coll__graph.png" border="0" usemap="#aCConnectLayerQTcpSocket_coll__map" alt="Collaboration graph"/></div>
+<map name="aCConnectLayerQTcpSocket_coll__map" id="aCConnectLayerQTcpSocket_coll__map">
+<area shape="rect" title=" " alt="" coords="3448,461,3643,486"/>
+<area shape="rect" href="classCConnectLayer.html" title="The connect layer class" alt="" coords="3219,461,3339,486"/>
+<area shape="poly" title=" " alt="" coords="3353,471,3448,471,3448,476,3353,476"/>
+<area shape="rect" title=" " alt="" coords="5,318,80,343"/>
+<area shape="poly" title=" " alt="" coords="48,357,62,530,88,781,107,903,128,1006,140,1046,152,1076,165,1095,178,1101,2955,1101,3005,1095,3050,1079,3089,1053,3124,1019,3154,978,3180,931,3202,881,3220,828,3247,721,3264,621,3272,539,3275,486,3280,487,3277,539,3269,622,3253,722,3225,830,3207,883,3185,934,3159,980,3128,1022,3093,1057,3052,1084,3006,1101,2955,1107,177,1107,161,1099,147,1079,135,1048,123,1007,101,904,83,781,56,531,43,357"/>
+<area shape="rect" href="classCBackend.html" title="后端接口。它由协议插件实现。 它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。 详见： Start()、 slotTimeOut()、 OnProcess() 。 当然，它仍然支..." alt="" coords="398,139,485,165"/>
+<area shape="poly" title=" " alt="" coords="56,305,86,265,105,244,128,227,162,209,198,193,271,171,341,158,397,152,398,157,342,163,273,176,199,198,164,213,131,232,109,248,90,268,60,308"/>
+<area shape="rect" href="classCOperate.html" title="操作接口。" alt="" coords="400,270,483,295"/>
+<area shape="poly" title=" " alt="" coords="93,322,400,285,400,290,94,327"/>
+<area shape="rect" href="classCPlugin.html" title="插件接口" alt="" coords="143,242,214,267"/>
+<area shape="poly" title=" " alt="" coords="69,307,103,284,143,265,145,270,105,289,72,311"/>
+<area shape="rect" href="classCParameter.html" title="参数接口" alt="" coords="129,889,228,914"/>
+<area shape="poly" title=" " alt="" coords="48,357,67,581,84,710,95,763,106,802,119,827,135,851,166,887,162,890,131,854,115,830,102,804,90,764,79,711,62,582,43,357"/>
+<area shape="rect" href="classCDatabase.html" title="提供打开数据库和初始化数据库等接口" alt="" coords="1693,729,1786,754"/>
+<area shape="poly" title=" " alt="" coords="49,357,60,465,84,606,101,674,123,730,135,751,148,768,162,778,178,781,654,781,965,777,1268,765,1692,742,1693,747,1269,771,965,782,654,787,177,787,160,783,144,772,130,754,118,732,96,675,78,608,55,465,43,358"/>
+<area shape="rect" href="classCClipboardFreeRDP.html" title=" " alt="" coords="3205,254,3353,279"/>
+<area shape="poly" title=" " alt="" coords="94,342,135,350,177,353,2955,353,3046,352,3086,347,3135,335,3203,307,3257,277,3260,282,3206,312,3137,340,3087,352,3047,358,2955,359,177,359,134,355,93,347"/>
+<area shape="rect" href="classCCursorFreeRDP.html" title=" " alt="" coords="3215,27,3343,53"/>
+<area shape="poly" title=" " alt="" coords="40,304,43,225,48,175,59,125,75,78,100,40,115,24,133,13,154,5,177,3,2955,3,3095,11,3215,27,3215,32,3094,16,2955,8,177,8,155,10,136,17,119,28,104,43,80,81,64,127,53,176,48,225,46,305"/>
+<area shape="rect" href="classCBackendFreeRDP.html" title=" " alt="" coords="2883,186,3024,211"/>
+<area shape="poly" title=" " alt="" coords="2978,220,3050,290,3169,388,3262,458,3259,462,3166,393,3046,294,2974,224"/>
+<area shape="rect" href="structCBackendFreeRDP_1_1ClientContext.html" title=" " alt="" coords="3160,141,3399,166"/>
+<area shape="poly" title=" " alt="" coords="2990,178,3047,157,3103,149,3159,146,3160,151,3104,154,3049,163,2991,183"/>
+<area shape="poly" title=" " alt="" coords="2982,218,3013,239,3049,255,3088,264,3128,269,3205,271,3205,276,3128,275,3087,269,3047,260,3010,243,2979,222"/>
+<area shape="poly" title=" " alt="" coords="2963,172,2995,118,3018,91,3047,68,3088,50,3132,39,3175,34,3215,33,3215,38,3176,39,3133,44,3089,55,3049,73,3022,95,2999,121,2968,175"/>
+<area shape="rect" href="classCBackendDesktop.html" title="远程桌面接口。它由协议插件实现。" alt="" coords="927,95,1067,121"/>
+<area shape="poly" title=" " alt="" coords="1080,103,1259,100,2659,100,2700,103,2740,109,2817,132,2883,159,2931,184,2928,188,2881,164,2815,137,2739,115,2699,108,2659,105,1259,105,1081,108"/>
+<area shape="poly" title=" " alt="" coords="499,142,557,136,926,109,927,114,558,141,499,148"/>
+<area shape="rect" href="classCBackendThread.html" title="The backend thread" alt="" coords="772,161,903,186"/>
+<area shape="poly" title=" " alt="" coords="499,152,772,167,772,173,498,158"/>
+<area shape="rect" href="classCOperateDesktop.html" title="远程桌面操作接口" alt="" coords="2589,227,2727,253"/>
+<area shape="poly" title=" " alt="" coords="2740,226,2882,206,2883,211,2741,231"/>
+<area shape="poly" title=" " alt="" coords="496,285,649,296,836,303,2361,303,2435,297,2507,284,2621,250,2623,255,2508,289,2435,302,2361,308,836,308,649,302,496,290"/>
+<area shape="poly" title=" " alt="" coords="496,271,612,248,747,211,810,184,813,189,749,216,613,253,497,277"/>
+<area shape="poly" title=" " alt="" coords="229,257,400,276,399,281,228,263"/>
+<area shape="rect" href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="" coords="2295,539,2425,565"/>
+<area shape="poly" title=" " alt="" coords="2381,527,2643,251,2647,255,2385,531"/>
+<area shape="rect" href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="" coords="2581,461,2735,486"/>
+<area shape="poly" title=" " alt="" coords="2422,533,2608,483,2610,489,2423,538"/>
+<area shape="rect" href="classCParameterOperate.html" title="操作参数接口。仅在插件内有效。" alt="" coords="366,599,517,625"/>
+<area shape="poly" title=" " alt="" coords="530,612,802,616,1201,616,1669,605,1910,593,2146,576,2294,559,2295,564,2147,581,1910,598,1669,610,1201,621,802,621,530,617"/>
+<area shape="poly" title=" " alt="" coords="411,585,420,576,441,573,459,575,470,581,472,591,467,601,462,598,467,590,465,585,457,580,441,578,423,581,415,589"/>
+<area shape="rect" href="classCParameterDatabase.html" title=" " alt="" coords="1308,669,1468,694"/>
+<area shape="poly" title=" " alt="" coords="486,627,558,648,662,664,769,675,979,687,1166,688,1307,683,1308,689,1166,693,979,692,768,681,661,669,557,653,484,632"/>
+<area shape="rect" href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="" coords="1091,534,1212,559"/>
+<area shape="poly" title=" " alt="" coords="530,601,1090,550,1091,555,531,607"/>
+<area shape="rect" href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="" coords="773,518,901,543"/>
+<area shape="poly" title=" " alt="" coords="481,591,557,564,671,542,773,532,773,537,672,548,558,569,483,596"/>
+<area shape="rect" href="classCParameterProxy.html" title="The proxy parameters." alt="" coords="2008,470,2143,495"/>
+<area shape="poly" title=" " alt="" coords="468,589,500,561,531,528,541,507,546,497,556,488,593,475,651,464,815,451,1026,447,1261,448,1710,462,1980,473,2008,475,2008,480,1980,479,1710,467,1261,454,1026,452,815,457,652,470,595,480,559,493,550,500,546,509,536,531,503,565,471,593"/>
+<area shape="rect" href="classCParameterSSH.html" title=" " alt="" coords="1326,394,1450,419"/>
+<area shape="poly" title=" " alt="" coords="472,589,503,562,531,528,539,503,539,480,540,458,546,447,556,437,582,420,616,407,703,388,807,378,921,375,1038,377,1150,383,1326,397,1325,403,1150,388,1038,383,921,380,807,383,703,393,618,412,585,425,559,441,550,450,545,460,544,480,544,504,536,531,507,566,475,593"/>
+<area shape="poly" title=" " alt="" coords="198,877,426,624,430,627,202,880"/>
+<area shape="rect" href="classCParameterPlugin.html" title="插件的全局参数。" alt="" coords="2589,865,2727,890"/>
+<area shape="poly" title=" " alt="" coords="194,925,218,963,235,982,254,998,300,1027,341,1043,384,1049,440,1051,2361,1051,2419,1048,2464,1039,2506,1020,2556,990,2586,966,2611,938,2647,888,2651,892,2616,941,2589,970,2559,994,2509,1025,2466,1044,2420,1053,2361,1056,440,1056,384,1055,339,1048,298,1032,250,1002,231,985,214,966,190,927"/>
+<area shape="rect" href="classCParameterGlobal.html" title="全局参数" alt="" coords="2005,710,2145,735"/>
+<area shape="poly" title=" " alt="" coords="232,882,328,860,384,851,440,848,1261,848,1384,838,1542,813,1822,764,1980,737,2005,733,2006,738,1980,743,1823,769,1543,819,1385,843,1261,853,440,853,385,857,329,865,234,887"/>
+<area shape="rect" href="classCParameterFilter.html" title=" " alt="" coords="2295,787,2425,813"/>
+<area shape="poly" title=" " alt="" coords="234,915,329,938,385,946,440,949,1915,949,2032,949,2083,942,2146,924,2205,899,2261,867,2341,811,2344,815,2264,872,2208,904,2148,929,2084,947,2033,954,1915,955,440,955,384,951,328,943,232,920"/>
+<area shape="rect" href="classCParameterRecord.html" title=" " alt="" coords="2004,889,2147,914"/>
+<area shape="poly" title=" " alt="" coords="242,899,440,899,1741,899,2004,899,2004,904,1741,904,440,904,242,904"/>
+<area shape="rect" href="classCParameterMediaDevices.html" title=" " alt="" coords="557,990,748,1015"/>
+<area shape="poly" title=" " alt="" coords="199,923,223,948,253,968,290,983,329,994,410,1007,488,1011,557,1010,557,1015,488,1017,409,1012,328,999,289,988,251,973,220,952,195,927"/>
+<area shape="poly" title=" " alt="" coords="2575,869,2473,858,2361,853,1912,853,1778,850,1612,841,1425,826,1228,806,1032,781,847,752,685,720,556,684,500,656,457,627,460,622,503,652,558,679,686,715,848,747,1032,776,1229,801,1426,821,1613,836,1779,845,1912,848,2361,848,2473,853,2575,863"/>
+<area shape="poly" title=" " alt="" coords="2159,712,2245,711,2348,717,2402,724,2456,736,2508,751,2559,772,2589,792,2615,817,2651,863,2647,866,2611,821,2586,796,2556,777,2507,756,2454,741,2401,729,2347,722,2245,716,2159,718"/>
+<area shape="poly" title=" " alt="" coords="1482,673,1584,669,1709,669,1845,675,1981,691,2042,707,2040,712,1979,696,1845,680,1709,674,1584,674,1482,678"/>
+<area shape="poly" title=" " alt="" coords="1454,694,1492,703,1693,733,1692,738,1492,708,1452,700"/>
+<area shape="poly" title=" " alt="" coords="1226,548,1380,554,1561,557,2077,557,2294,552,2294,558,2077,563,1561,563,1380,559,1226,553"/>
+<area shape="poly" title=" " alt="" coords="1188,564,1366,666,1363,671,1185,569"/>
+<area shape="poly" title=" " alt="" coords="1225,539,2007,485,2008,490,1226,544"/>
+<area shape="poly" title=" " alt="" coords="1185,525,1364,417,1367,422,1187,529"/>
+<area shape="poly" title=" " alt="" coords="915,532,1090,541,1090,546,915,537"/>
+<area shape="rect" href="structCParameterUser_1_1strData.html" title=" " alt="" coords="349,491,533,517"/>
+<area shape="poly" title=" " alt="" coords="547,508,773,524,773,529,547,514"/>
+<area shape="poly" title=" " alt="" coords="1800,735,2005,724,2005,729,1800,741"/>
+<area shape="rect" href="classCDatabaseFilter.html" title="The CDatabaseFilter class" alt="" coords="2012,759,2139,785"/>
+<area shape="poly" title=" " alt="" coords="1800,744,2012,764,2012,769,1799,749"/>
+<area shape="poly" title=" " alt="" coords="2439,805,2498,815,2558,829,2599,845,2634,862,2632,867,2597,850,2557,835,2497,820,2439,810"/>
+<area shape="poly" title=" " alt="" coords="2153,777,2295,791,2294,796,2152,782"/>
+<area shape="poly" title=" " alt="" coords="2091,876,2144,796,2169,760,2345,563,2349,567,2173,763,2149,799,2095,879"/>
+<area shape="poly" title=" " alt="" coords="2161,895,2588,877,2589,883,2161,901"/>
+<area shape="poly" title=" " alt="" coords="762,1000,995,1000,2361,1000,2404,997,2446,987,2526,956,2593,919,2638,888,2641,892,2595,924,2528,961,2448,992,2405,1002,2361,1005,995,1005,762,1005"/>
+<area shape="poly" title=" " alt="" coords="2142,496,2307,537,2306,542,2141,501"/>
+<area shape="rect" href="classCParameterSSHTunnel.html" title=" " alt="" coords="1656,394,1823,419"/>
+<area shape="poly" title=" " alt="" coords="1837,411,1908,421,1981,437,2019,452,2052,467,2050,472,2017,456,1979,443,1907,426,1836,416"/>
+<area shape="poly" title=" " alt="" coords="1464,404,1656,404,1656,409,1464,409"/>
+<area shape="poly" title=" " alt="" coords="916,163,1027,156,1150,152,2361,152,2440,160,2517,179,2583,203,2632,225,2630,230,2581,208,2515,185,2439,165,2361,157,1150,157,1027,161,917,169"/>
+<area shape="rect" title=" " alt="" coords="403,189,480,214"/>
+<area shape="poly" title=" " alt="" coords="493,195,772,175,772,181,494,200"/>
+<area shape="rect" href="classCFrmViewer.html" title="用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。" alt="" coords="2309,193,2411,218"/>
+<area shape="poly" title=" " alt="" coords="2425,210,2589,229,2588,235,2424,215"/>
+<area shape="rect" title=" " alt="" coords="2036,193,2115,218"/>
+<area shape="poly" title=" " alt="" coords="2128,203,2309,203,2309,208,2128,208"/>
+<area shape="rect" href="classCFrmScroll.html" title="The scroll form class" alt="" coords="2314,242,2406,267"/>
+<area shape="poly" title=" " alt="" coords="2420,252,2557,248,2589,245,2589,251,2557,253,2420,257"/>
+<area shape="rect" title=" " alt="" coords="2026,242,2125,267"/>
+<area shape="poly" title=" " alt="" coords="2139,252,2314,252,2314,257,2139,257"/>
+<area shape="poly" title=" " alt="" coords="3182,171,3136,177,3024,192,3024,187,3136,172,3181,165"/>
+<area shape="poly" title=" " alt="" coords="2749,471,3219,471,3219,476,2749,476"/>
+<area shape="poly" title=" " alt="" coords="2681,449,2936,210,2940,213,2685,453"/>
+<area shape="poly" title=" " alt="" coords="3203,254,3015,214,3016,209,3205,248"/>
+<area shape="poly" title=" " alt="" coords="3225,59,3141,90,3049,133,3006,161,2971,188,2968,184,3003,157,3047,128,3139,86,3223,54"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5faf11fdb1821a3beba1e718a05885bd" id="r_a5faf11fdb1821a3beba1e718a05885bd"><td class="memItemLeft" align="right" valign="top"><a id="a5faf11fdb1821a3beba1e718a05885bd" name="a5faf11fdb1821a3beba1e718a05885bd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CConnectLayerQTcpSocket</b> (<a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *connect=nullptr)</td></tr>
+<tr class="separator:a5faf11fdb1821a3beba1e718a05885bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCConnectLayer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCConnectLayer')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classCConnectLayer.html">CConnectLayer</a></td></tr>
+<tr class="memitem:a1e23f56379d74ee056abee55a92452e4 inherit pub_methods_classCConnectLayer" id="r_a1e23f56379d74ee056abee55a92452e4"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>CConnectLayer</b> (<a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *pOperate)</td></tr>
+<tr class="separator:a1e23f56379d74ee056abee55a92452e4 inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96793ce31b6e81657147fd117eafe4a7 inherit pub_methods_classCConnectLayer" id="r_a96793ce31b6e81657147fd117eafe4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a96793ce31b6e81657147fd117eafe4a7">Initialize</a> (rdpContext *context)</td></tr>
+<tr class="separator:a96793ce31b6e81657147fd117eafe4a7 inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8431ac024afc2a5f083d14256e1ea72e inherit pub_methods_classCConnectLayer" id="r_a8431ac024afc2a5f083d14256e1ea72e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a8431ac024afc2a5f083d14256e1ea72e">Clean</a> ()</td></tr>
+<tr class="separator:a8431ac024afc2a5f083d14256e1ea72e inherit pub_methods_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
+Private 槽</h2></td></tr>
+<tr class="memitem:ab7a65641839e139c031a0c4f5cb9099b" id="r_ab7a65641839e139c031a0c4f5cb9099b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#ab7a65641839e139c031a0c4f5cb9099b">slotError</a> (QAbstractSocket::SocketError e)</td></tr>
+<tr class="separator:ab7a65641839e139c031a0c4f5cb9099b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48066450eac7be48ddbbf4cf35bbfd3f" id="r_a48066450eac7be48ddbbf4cf35bbfd3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a48066450eac7be48ddbbf4cf35bbfd3f">slotConnected</a> ()</td></tr>
+<tr class="separator:a48066450eac7be48ddbbf4cf35bbfd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a700e7a4e86069c1029567d8f95330" id="r_a66a700e7a4e86069c1029567d8f95330"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a66a700e7a4e86069c1029567d8f95330">slotReadyRead</a> ()</td></tr>
+<tr class="separator:a66a700e7a4e86069c1029567d8f95330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ad2a4828f197ed3868dc0c487516b6c06" id="r_ad2a4828f197ed3868dc0c487516b6c06"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#ad2a4828f197ed3868dc0c487516b6c06">OnInit</a> (rdpContext *context) override</td></tr>
+<tr class="separator:ad2a4828f197ed3868dc0c487516b6c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea749d0931c764a40bf5658cea8cf699" id="r_aea749d0931c764a40bf5658cea8cf699"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#aea749d0931c764a40bf5658cea8cf699">OnClean</a> () override</td></tr>
+<tr class="separator:aea749d0931c764a40bf5658cea8cf699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb76f72d7da27cdb932dd8ba4f606cc" id="r_a1fb76f72d7da27cdb932dd8ba4f606cc"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a1fb76f72d7da27cdb932dd8ba4f606cc">OnLayerRead</a> (void *data, int bytes) override</td></tr>
+<tr class="separator:a1fb76f72d7da27cdb932dd8ba4f606cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756d01a56feda91e45e2326ca4c777d4" id="r_a756d01a56feda91e45e2326ca4c777d4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a756d01a56feda91e45e2326ca4c777d4">OnLayerWrite</a> (const void *data, int bytes) override</td></tr>
+<tr class="separator:a756d01a56feda91e45e2326ca4c777d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48b22a15a500a3fa864df2a2dd085fa2" id="r_a48b22a15a500a3fa864df2a2dd085fa2"><td class="memItemLeft" align="right" valign="top">virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a48b22a15a500a3fa864df2a2dd085fa2">OnLayerWait</a> (BOOL waitWrite, DWORD timeout) override</td></tr>
+<tr class="separator:a48b22a15a500a3fa864df2a2dd085fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa1bda1b82cd7305145914146e041a1" id="r_a4fa1bda1b82cd7305145914146e041a1"><td class="memItemLeft" align="right" valign="top">virtual HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a4fa1bda1b82cd7305145914146e041a1">OnLayerGetEvent</a> () override</td></tr>
+<tr class="separator:a4fa1bda1b82cd7305145914146e041a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ab36362d0a7ae72a693d2b3cfa370ea82" id="r_ab36362d0a7ae72a693d2b3cfa370ea82"><td class="memItemLeft" align="right" valign="top">QTcpSocket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#ab36362d0a7ae72a693d2b3cfa370ea82">m_TcpSocket</a></td></tr>
+<tr class="separator:ab36362d0a7ae72a693d2b3cfa370ea82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19775313baa4060263b9138de9ba454a" id="r_a19775313baa4060263b9138de9ba454a"><td class="memItemLeft" align="right" valign="top">HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayerQTcpSocket.html#a19775313baa4060263b9138de9ba454a">m_hSocket</a></td></tr>
+<tr class="separator:a19775313baa4060263b9138de9ba454a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classCConnectLayer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCConnectLayer')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classCConnectLayer.html">CConnectLayer</a></td></tr>
+<tr class="memitem:a727cfb2fabc5395d748acd0692211bff inherit pro_attribs_classCConnectLayer" id="r_a727cfb2fabc5395d748acd0692211bff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBackendFreeRDP.html">CBackendFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#a727cfb2fabc5395d748acd0692211bff">m_pOperate</a></td></tr>
+<tr class="separator:a727cfb2fabc5395d748acd0692211bff inherit pro_attribs_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4dea98746059883e9576edd5bd7fcdc inherit pro_attribs_classCConnectLayer" id="r_af4dea98746059883e9576edd5bd7fcdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterFreeRDP.html">CParameterFreeRDP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConnectLayer.html#af4dea98746059883e9576edd5bd7fcdc">m_pParameter</a></td></tr>
+<tr class="separator:af4dea98746059883e9576edd5bd7fcdc inherit pro_attribs_classCConnectLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html">ConnectLayerQTcpSocket.h</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html#l00008">8</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="acbbedc9c2fcb68f32effcd1444f99d5e" name="acbbedc9c2fcb68f32effcd1444f99d5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbbedc9c2fcb68f32effcd1444f99d5e">&#9670;&#160;</a></span>~CConnectLayerQTcpSocket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CConnectLayerQTcpSocket::~CConnectLayerQTcpSocket </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00016">16</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aea749d0931c764a40bf5658cea8cf699" name="aea749d0931c764a40bf5658cea8cf699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea749d0931c764a40bf5658cea8cf699">&#9670;&#160;</a></span>OnClean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnectLayerQTcpSocket::OnClean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00126">126</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad2a4828f197ed3868dc0c487516b6c06" name="ad2a4828f197ed3868dc0c487516b6c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a4828f197ed3868dc0c487516b6c06">&#9670;&#160;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnectLayerQTcpSocket::OnInit </td>
+          <td>(</td>
+          <td class="paramtype">rdpContext *&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4fa1bda1b82cd7305145914146e041a1" name="a4fa1bda1b82cd7305145914146e041a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa1bda1b82cd7305145914146e041a1">&#9670;&#160;</a></span>OnLayerGetEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HANDLE CConnectLayerQTcpSocket::OnLayerGetEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00169">169</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1fb76f72d7da27cdb932dd8ba4f606cc" name="a1fb76f72d7da27cdb932dd8ba4f606cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fb76f72d7da27cdb932dd8ba4f606cc">&#9670;&#160;</a></span>OnLayerRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnectLayerQTcpSocket::OnLayerRead </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00139">139</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48b22a15a500a3fa864df2a2dd085fa2" name="a48b22a15a500a3fa864df2a2dd085fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48b22a15a500a3fa864df2a2dd085fa2">&#9670;&#160;</a></span>OnLayerWait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CConnectLayerQTcpSocket::OnLayerWait </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>waitWrite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00156">156</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a756d01a56feda91e45e2326ca4c777d4" name="a756d01a56feda91e45e2326ca4c777d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a756d01a56feda91e45e2326ca4c777d4">&#9670;&#160;</a></span>OnLayerWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CConnectLayerQTcpSocket::OnLayerWrite </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classCConnectLayer.html">CConnectLayer</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48066450eac7be48ddbbf4cf35bbfd3f" name="a48066450eac7be48ddbbf4cf35bbfd3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48066450eac7be48ddbbf4cf35bbfd3f">&#9670;&#160;</a></span>slotConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnectLayerQTcpSocket::slotConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab7a65641839e139c031a0c4f5cb9099b" name="ab7a65641839e139c031a0c4f5cb9099b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7a65641839e139c031a0c4f5cb9099b">&#9670;&#160;</a></span>slotError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnectLayerQTcpSocket::slotError </td>
+          <td>(</td>
+          <td class="paramtype">QAbstractSocket::SocketError&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00021">21</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66a700e7a4e86069c1029567d8f95330" name="a66a700e7a4e86069c1029567d8f95330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a700e7a4e86069c1029567d8f95330">&#9670;&#160;</a></span>slotReadyRead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CConnectLayerQTcpSocket::slotReadyRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a19775313baa4060263b9138de9ba454a" name="a19775313baa4060263b9138de9ba454a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19775313baa4060263b9138de9ba454a">&#9670;&#160;</a></span>m_hSocket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HANDLE CConnectLayerQTcpSocket::m_hSocket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html">ConnectLayerQTcpSocket.h</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab36362d0a7ae72a693d2b3cfa370ea82" name="ab36362d0a7ae72a693d2b3cfa370ea82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36362d0a7ae72a693d2b3cfa370ea82">&#9670;&#160;</a></span>m_TcpSocket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTcpSocket CConnectLayerQTcpSocket::m_TcpSocket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html">ConnectLayerQTcpSocket.h</a> 第 <a class="el" href="ConnectLayerQTcpSocket_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ConnectLayerQTcpSocket_8h_source.html">ConnectLayerQTcpSocket.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Plugins/FreeRDP/Client/<a class="el" href="ConnectLayerQTcpSocket_8cpp_source.html">ConnectLayerQTcpSocket.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

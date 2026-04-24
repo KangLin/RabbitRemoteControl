@@ -1,0 +1,11 @@
+<map id="CFrmParameterRabbitVNC" name="CFrmParameterRabbitVNC">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,199,268"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="41,155,120,180"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,193,102,241,96,243,84,194"/>
+<area shape="rect" id="Node000003" href="$classCParameterServiceRabbitVNC.html" title=" " alt="" coords="145,155,361,180"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,189,124,245,121,240,219,185"/>
+<area shape="rect" id="Node000004" href="$classCParameterService.html" title=" " alt="" coords="179,80,326,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="255,120,255,154,250,154,250,120"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="215,5,290,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,45,255,80,250,80,250,45"/>
+</map>
