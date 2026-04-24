@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 #endif // #ifdef HAVE_UPDATE
 
     CStatsAppUsage* pStats = nullptr;
-    //*
+    /*
     QTimer::singleShot(RabbitCommon::CTools::GetRandomNumber(10, 50), [&](){
         pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
         app.processEvents();
