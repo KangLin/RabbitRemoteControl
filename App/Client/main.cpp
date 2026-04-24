@@ -184,17 +184,8 @@ int main(int argc, char *argv[])
 #endif // #ifdef HAVE_UPDATE
 
     CStatsAppUsage* pStats = nullptr;
-    /*
-    int randomInt = 0;
-    int nMin = 10;
-    int nMax = 50;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    randomInt = QRandomGenerator::global()->bounded(nMin, nMax); 
-#else
-    qsrand(static_cast<uint>(QTime::currentTime().msec())); // 使用当前时间的毫秒数来设置种子
-    randomInt = nMin + qrand() % (nMax - nMin + 1); // 生成一个0到99之间的随机数
-#endif
-    QTimer::singleShot(randomInt, [&](){
+    //*
+    QTimer::singleShot(RabbitCommon::CTools::GetRandomNumber(10, 50), [&](){
         pStats = new CStatsAppUsage("v" + QApplication::applicationVersion());
         app.processEvents();
     });//*/

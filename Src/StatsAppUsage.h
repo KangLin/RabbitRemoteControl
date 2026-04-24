@@ -7,6 +7,14 @@
 #include "plugin_export.h"
 #include "ThreadPool.h"
 
+/*!
+ * \brief 应用使用统计信息
+ * 
+ * 当前使用下载相应资源文件来统计应用的使用信息。
+ * 相关的资源位于：　App/Client/Resource/Stats/
+ * 在 CI 中安装资源 .github/workflows/build.yml 中安装。
+ * 
+ */
 class PLUGIN_EXPORT CStatsAppUsage : public QObject
 {
     Q_OBJECT

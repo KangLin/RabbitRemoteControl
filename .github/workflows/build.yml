@@ -315,9 +315,7 @@ jobs:
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md
-
-#${{github.workspace}}/App/Client/Resource/Stats/*
+          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/update.json ${{github.workspace}}/Release.md ${{github.workspace}}/CheckSum.md ${{github.workspace}}/App/Client/Resource/Stats/*
 
       - name: Upload test tag To Github Release
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
