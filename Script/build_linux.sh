@@ -21,6 +21,7 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
+LINT=0
 
 if [ -z "$QT_VERSION" ]; then
     QT_VERSION=6.10.3
@@ -53,6 +54,7 @@ Target options:
   --rpm:                Build rpm package
   --appimage:           Build AppImage
   --macos:              Build macOS
+  --lint:               Check with lint
   
 Other options:
   --qt=VERSION    Install Qt (can specify version)(only --appimage)
@@ -79,7 +81,7 @@ parse_with_getopt() {
         # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
         # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
         # -n 选项后接选项解析错误时提示的脚本名字
-        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:
+        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:,lint::
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
             echo_error "exec getopt fail: $?"
@@ -183,6 +185,15 @@ parse_with_getopt() {
                 esac
                 shift 2
                 ;;
+            --lint)
+                case $2 in
+                    "")
+                        LINT=1;;
+                    *)
+                        LINT=$2;;
+                esac
+                shift 2
+                ;;
             --qt)
                 case $2 in
                     *)
@@ -235,6 +246,7 @@ show_configuration() {
         echo "  DEB Package: $DEB"
         echo "  RPM Package: $RPM"
         echo "  AppImage Package: $APPIMAGE"
+        echo "  Lint check: $LINT"
         echo ""
         echo "Component Installation:"
         echo "  Qt: $QT_VERSION"
@@ -565,6 +577,36 @@ if [ $MACOS -eq 1 ]; then
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+fi
+
+if [ $LINT -eq 1 ]; then
+    echo_status "Lint check ......"
+    case "$DISTRO" in
+    ubuntu)
+        LIB_PATH="lib"
+        depend_para="$depend_para --freerdp --libssh --qtermwidget --qtkeychain --qftpserver"
+        ;;
+    fedora)
+        LIB_PATH="lib64"
+        depend_para="$depend_para --package-tool=dnf --qftpserver "
+        ;;
+    *)
+    esac
+
+    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    export BUILD_FREERDP=ON
+    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+
+    ./build_depend.sh --system_update --base --default \
+        --rabbitcommon --tigervnc --pcapplusplus ${depend_para} \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    ./build_lint_check.sh
 fi
 
 popd

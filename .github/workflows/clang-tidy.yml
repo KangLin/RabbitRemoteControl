@@ -1,0 +1,64 @@
+name: clang-tidy-review
+
+on:
+  pull_request:
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  clang-tidy-review:
+    strategy:
+      matrix:
+        BUILD_TYPE: [Release]
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ubuntu-latest
+
+    env:
+      BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
+      BUILD_DIR:   ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v5
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+          key: install_ubuntu_${{matrix.BUILD_TYPE}}
+
+      # Run clang-tidy
+      - uses: ZedThree/clang-tidy-review@v0.23.1
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        id: review
+        with:
+          split_workflow: true
+          clang_tidy_checks: ''
+          lgtm_comment_body: 'clang-tidy review says "All clean, LGTM! 👍"'
+          # CMake command to run in order to generate compile_commands.json
+          build_dir: ${{env.BUILD_DIR}}
+          cmake_command: |
+            ./Script/build_linux.sh --lint
+
+      # Uploads an artefact containing clang_fixes.json
+      - uses: ZedThree/clang-tidy-review/upload@v0.19.0
+        id: upload-review
