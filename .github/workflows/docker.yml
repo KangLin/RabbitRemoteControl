@@ -123,7 +123,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
@@ -136,7 +136,7 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
 
       - name: Cache installed
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-installed
         with:
           path: |
@@ -213,7 +213,7 @@ jobs:
 
       - name: Update artifact
         #if: ${{matrix.variant.PACKAGE != 'deb'}}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
           path: |

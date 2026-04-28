@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           fetch-depth: 0
@@ -92,7 +92,7 @@ jobs:
           sudo apt install -y -q ninja-build nasm
 
       - name: Cache installed
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-installed
         with:
           path: |
@@ -523,7 +523,7 @@ jobs:
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
           path: |

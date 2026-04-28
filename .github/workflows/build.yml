@@ -76,7 +76,7 @@ jobs:
     needs: [linux, docker, flatpak, msvc, doxygen, android, macos]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: false
           fetch-depth: 1
@@ -88,7 +88,7 @@ jobs:
           gh release delete test_${{ github.ref_name }} -y --cleanup-tag
 
       - name: Download ubuntu
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         if: false
         with:
           pattern: ${{ needs.ubuntu.outputs.name }}*
@@ -96,7 +96,7 @@ jobs:
           merge-multiple: true
 
       - name: Download appimage
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         if: false
         with:
           pattern: ${{ needs.appimage.outputs.name }}*
@@ -104,28 +104,28 @@ jobs:
           merge-multiple: true
 
       - name: Download linux
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.linux.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download docker
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.docker.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download flatpak
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: RabbitRemoteControl_*.flatpak
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download snap
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         if: false
         with:
           pattern: ${{ needs.snap.outputs.name }}*
@@ -133,7 +133,7 @@ jobs:
           merge-multiple: true
 
       - name: Download msvc
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.msvc.outputs.name }}*
           path: ${{ env.artifact_path }}
@@ -141,28 +141,28 @@ jobs:
 
       - name: Download mingw
         if: false
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ needs.mingw.outputs.name }}
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download macos
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.macos.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download android
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.android.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download doxygen
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ needs.doxygen.outputs.name }}
           path: ${{ env.artifact_path }}
@@ -327,7 +327,7 @@ jobs:
 
       - name: Update artifact
         if: false
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Release.md
           path: |

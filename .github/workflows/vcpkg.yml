@@ -37,9 +37,9 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
 
       # 1. 通过注册表启用长路径支持

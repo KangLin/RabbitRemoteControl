@@ -29,9 +29,9 @@ jobs:
       name: ${{ env.artifact_name }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
-        submodules: true
+        submodules: recursive
 
     - name: make_directory
       run: |
@@ -42,7 +42,7 @@ jobs:
 
     - name: Cache installed
       if: false
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       id: cache-installed
       with:
         path: |
@@ -89,7 +89,7 @@ jobs:
         7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_document.zip Doxygen/*
 
     - name: Update artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ env.artifact_name }}
         path: |

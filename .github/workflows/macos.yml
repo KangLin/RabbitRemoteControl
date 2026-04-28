@@ -65,7 +65,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
@@ -78,7 +78,7 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
 
       - name: Cache installed
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-installed
         with:
           path: |
@@ -423,7 +423,7 @@ jobs:
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}.zip?viasf=1"
 
       - name: Update artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.os}}_${{matrix.WITH_MACOSX_BUNDLE}}
           path: |
