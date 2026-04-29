@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
 
 # ==================== ERROR SYMBOLS REFERENCE ====================
 
@@ -150,6 +151,15 @@ echo_color_warn() {
 }
 echo_color_error() {
     echo -e "${RED}$1${NC}" >&2
+}
+echo_color_red() {
+    echo -e "${RED}$1${NC}"
+}
+echo_color_green() {
+    echo -e "${GREEN}$1${NC}"
+}
+echo_color_yellow() {
+    echo -e "${YELLOW}$1${NC}"
 }
 
 # Validate directory path
@@ -933,7 +943,7 @@ get_section() {
 }
 
 # TODO: 初始化，必须放在此文件最后
-init_blobal() {
+init_global() {
     if [ ! $INIT_GLOBAL_RABBIT ]; then
         echo_status "Init global ......"
         export INIT_GLOBAL_RABBIT=TRUE
@@ -943,4 +953,4 @@ init_blobal() {
     fi
 }
 
-init_blobal
+init_global

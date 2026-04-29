@@ -102,6 +102,12 @@ if(BUILD_FTP_SERVER)
     add_subdirectory(FtpServer)
 endif()
 
+## Template
+option(BUILD_TEMPLATE "Build template" OFF)
+if(BUILD_TEMPLATE)
+    add_subdirectory(Template)
+endif()
+
 message(STATUS "BUILD_RABBITVNC: ${BUILD_RABBITVNC}")
 message(STATUS "BUILD_TigerVNC: ${BUILD_TigerVNC}")
 message(STATUS "BUILD_LibVNCServer: ${BUILD_LibVNCServer}")
@@ -116,3 +122,4 @@ message(STATUS "BUILD_FILE_TRANSFER: ${BUILD_FILE_TRANSFER}")
 message(STATUS "BUILD_WEB_BROWSER: ${BUILD_WEB_BROWSER}; Qt${QT_VERSION_MAJOR}WebEngineWidgets: ${Qt${QT_VERSION_MAJOR}WebEngineWidgets_FOUND}")
 
 message(STATUS "BUILD_FTP_SERVER: ${BUILD_FTP_SERVER}")
+message(STATUS "BUILD_TEMPLATE: ${BUILD_TEMPLATE}")

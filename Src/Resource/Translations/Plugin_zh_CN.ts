@@ -497,135 +497,135 @@ Some features are limited.
 <context>
     <name>COperateDesktop</name>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="121"/>
+        <location filename="../../OperateDesktop.cpp" line="124"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="124"/>
+        <location filename="../../OperateDesktop.cpp" line="127"/>
         <source>Type: </source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="127"/>
+        <location filename="../../OperateDesktop.cpp" line="130"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="136"/>
+        <location filename="../../OperateDesktop.cpp" line="139"/>
         <source>Server name: </source>
         <translation>服务器名：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="140"/>
+        <location filename="../../OperateDesktop.cpp" line="143"/>
         <source>Server address: </source>
         <translation>服务器地址：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="143"/>
+        <location filename="../../OperateDesktop.cpp" line="146"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="149"/>
+        <location filename="../../OperateDesktop.cpp" line="152"/>
         <source>SSH tunnel</source>
         <translation>SSH 隧道</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="156"/>
+        <location filename="../../OperateDesktop.cpp" line="159"/>
         <source>Sockes v5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="171"/>
+        <location filename="../../OperateDesktop.cpp" line="174"/>
         <source>Security level: </source>
         <translation>安全级别：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="178"/>
+        <location filename="../../OperateDesktop.cpp" line="181"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="231"/>
-        <location filename="../../OperateDesktop.cpp" line="233"/>
+        <location filename="../../OperateDesktop.cpp" line="234"/>
+        <location filename="../../OperateDesktop.cpp" line="236"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="236"/>
-        <location filename="../../OperateDesktop.cpp" line="238"/>
         <location filename="../../OperateDesktop.cpp" line="239"/>
+        <location filename="../../OperateDesktop.cpp" line="241"/>
+        <location filename="../../OperateDesktop.cpp" line="242"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="248"/>
-        <location filename="../../OperateDesktop.cpp" line="250"/>
         <location filename="../../OperateDesktop.cpp" line="251"/>
+        <location filename="../../OperateDesktop.cpp" line="253"/>
+        <location filename="../../OperateDesktop.cpp" line="254"/>
         <source>Keep aspect ratio to window</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="259"/>
-        <location filename="../../OperateDesktop.cpp" line="261"/>
         <location filename="../../OperateDesktop.cpp" line="262"/>
+        <location filename="../../OperateDesktop.cpp" line="264"/>
+        <location filename="../../OperateDesktop.cpp" line="265"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="269"/>
-        <location filename="../../OperateDesktop.cpp" line="271"/>
         <location filename="../../OperateDesktop.cpp" line="272"/>
+        <location filename="../../OperateDesktop.cpp" line="274"/>
+        <location filename="../../OperateDesktop.cpp" line="275"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="285"/>
-        <location filename="../../OperateDesktop.cpp" line="287"/>
         <location filename="../../OperateDesktop.cpp" line="288"/>
+        <location filename="../../OperateDesktop.cpp" line="290"/>
+        <location filename="../../OperateDesktop.cpp" line="291"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="331"/>
+        <location filename="../../OperateDesktop.cpp" line="334"/>
         <source>Send shortcut key</source>
         <translation>发送快捷键</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="334"/>
+        <location filename="../../OperateDesktop.cpp" line="337"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>发送 Ctl+Alt+Del</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="336"/>
+        <location filename="../../OperateDesktop.cpp" line="339"/>
         <source>Send lock screen (Win+L)</source>
         <translation>发送锁屏快捷键 (Win+L)</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="340"/>
-        <location filename="../../OperateDesktop.cpp" line="341"/>
-        <location filename="../../OperateDesktop.cpp" line="342"/>
+        <location filename="../../OperateDesktop.cpp" line="343"/>
+        <location filename="../../OperateDesktop.cpp" line="344"/>
+        <location filename="../../OperateDesktop.cpp" line="345"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="349"/>
-        <location filename="../../OperateDesktop.cpp" line="351"/>
         <location filename="../../OperateDesktop.cpp" line="352"/>
-        <location filename="../../OperateDesktop.cpp" line="565"/>
+        <location filename="../../OperateDesktop.cpp" line="354"/>
+        <location filename="../../OperateDesktop.cpp" line="355"/>
+        <location filename="../../OperateDesktop.cpp" line="569"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="358"/>
-        <location filename="../../OperateDesktop.cpp" line="359"/>
-        <location filename="../../OperateDesktop.cpp" line="360"/>
+        <location filename="../../OperateDesktop.cpp" line="361"/>
+        <location filename="../../OperateDesktop.cpp" line="362"/>
+        <location filename="../../OperateDesktop.cpp" line="363"/>
         <source>Record pause</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="562"/>
+        <location filename="../../OperateDesktop.cpp" line="566"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
@@ -633,79 +633,60 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
-        <translation>名称：</translation>
+        <translation type="vanished">名称：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
-        <translation>类型：</translation>
+        <translation type="vanished">类型：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
-        <translation>协议：</translation>
+        <translation type="vanished">协议：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
-        <translation>安全级别：</translation>
+        <translation type="vanished">安全级别：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
-        <translation>描述：</translation>
+        <translation type="vanished">描述：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
-        <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="202"/>
         <source>Copy selection to clipboard</source>
-        <translation>复制选择到剪切板</translation>
+        <translation type="vanished">复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="205"/>
         <source>Paste clipboard</source>
-        <translation>粘贴剪切板</translation>
+        <translation type="vanished">粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="207"/>
         <source>Paste selection</source>
-        <translation>粘贴到选择</translation>
+        <translation type="vanished">粘贴到选择</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="209"/>
         <source>Zoom in</source>
-        <translation>放大</translation>
+        <translation type="vanished">放大</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
         <source>Zoom out</source>
-        <translation>缩小</translation>
+        <translation type="vanished">缩小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="213"/>
         <source>Zoom reset</source>
-        <translation>重置缩放</translation>
+        <translation type="vanished">重置缩放</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="228"/>
         <source>Find ......</source>
-        <translation>查找 ……</translation>
+        <translation type="vanished">查找 ……</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="233"/>
         <source>Clear</source>
-        <translation>清除</translation>
+        <translation type="vanished">清除</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
-        <translation>版本：</translation>
+        <translation type="vanished">版本：</translation>
     </message>
 </context>
 <context>
@@ -1370,131 +1351,100 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation>通用</translation>
+        <translation type="vanished">通用</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation>字体：</translation>
+        <translation type="vanished">字体：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation>颜色方案：</translation>
+        <translation type="vanished">颜色方案：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation>光标形状：</translation>
+        <translation type="vanished">光标形状：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation>透明度：</translation>
+        <translation type="vanished">透明度：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation>背景图像：</translation>
+        <translation type="vanished">背景图像：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation>滚动条位置：</translation>
+        <translation type="vanished">滚动条位置：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
-        <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation>浏览(&amp;B)</translation>
+        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation>键盘绑定：</translation>
+        <translation type="vanished">键盘绑定：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation>窗口大小改变时显示其大小</translation>
+        <translation type="vanished">窗口大小改变时显示其大小</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation>允许双向文本</translation>
+        <translation type="vanished">允许双向文本</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation>历史记录</translation>
+        <translation type="vanished">历史记录</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation>历史记录大小（行数）：</translation>
+        <translation type="vanished">历史记录大小（行数）：</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation>无限制</translation>
+        <translation type="vanished">无限制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation>流量控制</translation>
+        <translation type="vanished">流量控制</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>示例：显示字体</translation>
+        <translation type="vanished">示例：显示字体</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation>背景图像</translation>
+        <translation type="vanished">背景图像</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
+        <translation type="vanished">图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation>方块光标</translation>
+        <translation type="vanished">方块光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation>下划线光标</translation>
+        <translation type="vanished">下划线光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation>I 形光标</translation>
+        <translation type="vanished">I 形光标</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation>左</translation>
+        <translation type="vanished">左</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation>右</translation>
+        <translation type="vanished">右</translation>
     </message>
 </context>
 <context>

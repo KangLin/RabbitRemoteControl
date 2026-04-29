@@ -1,4 +1,6 @@
 #!/bin/bash
+# Build the project in linux
+# Author: Kang Lin <kl222@126.com>
 
 set -e
 #set -x

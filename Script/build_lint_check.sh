@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
 
 set -e
 #set -x

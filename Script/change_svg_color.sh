@@ -1,4 +1,6 @@
 #!/bin/bash
+# Generate icons of different colors
+# Author: Kang Lin <kl222@126.com>
 
 set -e
 
@@ -20,5 +22,5 @@ destination_color=$4
 if [ ! -d $destination_path ]; then
     mkdir -p $destination_path
 fi
-cp -rf $source_path/* $destination_path/ 
+cp -rf $source_path/* $destination_path/
 sed -i "s/fill=\"$source_color\"/fill=\"$destination_color\"/g" `grep "fill=\"$source_color\"" -rl $destination_path`

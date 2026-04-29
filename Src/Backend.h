@@ -86,6 +86,7 @@ public:
     virtual int Stop();
     /*!
      * \brief Wake up. When it is block(a non-Qt event loop)
+     * \note The caller is main thread(UI thread)
      */
     virtual int WakeUp();
 

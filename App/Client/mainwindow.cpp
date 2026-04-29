@@ -620,9 +620,17 @@ void MainWindow::SetView(CView* pView)
     Q_ASSERT(check);
 
     foreach (auto c, m_Operates) {
-        m_pView->AddView(c->GetViewer());
-        m_pView->SetWidowsTitle(
-            c->GetViewer(), c->Name(), c->Icon(), c->Description());
+        if(c->GetViewer()) {
+            m_pView->AddView(c->GetViewer());
+            m_pView->SetWidowsTitle(
+                c->GetViewer(), c->Name(), c->Icon(), c->Description());
+        } else {
+            QString szErr;
+            szErr += c->metaObject()->className();
+            szErr += "::GetViewer() ";
+            szErr += "is nullptr.";
+            qWarning(log) << szErr;
+        }
     }
     m_pView->SetVisibleTab(m_Parameter.GetTabBar());
 }
@@ -1121,16 +1129,33 @@ int MainWindow::Start(COperate *pOperate, bool set, QString szFile)
 
     //* Show view. \see: slotRunning()
     if(m_Operates.contains(pOperate)) {
-        if(m_pView)
-            m_pView->SetCurrentView(pOperate->GetViewer());
+        if(m_pView) {
+            if(pOperate->GetViewer())
+                m_pView->SetCurrentView(pOperate->GetViewer());
+            else {
+                QString szErr;
+                szErr += pOperate->metaObject()->className();
+                szErr += "::GetViewer() ";
+                szErr += "is nullptr.";
+                qWarning(log) << szErr;
+            }
+        }
         return 0;
     }
     if(m_pView)
     {
-        m_pView->AddView(pOperate->GetViewer());
-        m_pView->SetWidowsTitle(pOperate->GetViewer(), pOperate->Name(),
-                                pOperate->Icon(), pOperate->Description());
-        //qDebug(log) << "View:" << p->GetViewer();
+        if(pOperate->GetViewer()) {
+            m_pView->AddView(pOperate->GetViewer());
+            m_pView->SetWidowsTitle(pOperate->GetViewer(), pOperate->Name(),
+                                    pOperate->Icon(), pOperate->Description());
+            //qDebug(log) << "View:" << pOperate->GetViewer();
+        } else {
+            QString szErr;
+            szErr += pOperate->metaObject()->className();
+            szErr += "::GetViewer() ";
+            szErr += "is nullptr.";
+            qWarning(log) << szErr;
+        }
         check = connect(pOperate, SIGNAL(sigViewerFocusIn(QWidget*)),
                         this, SLOT(slotViewerFocusIn(QWidget*)));
         Q_ASSERT(check);
@@ -1422,10 +1447,18 @@ void MainWindow::slotUpdateName()
 {
     foreach (auto p, m_Operates)
     {
-        m_pView->SetWidowsTitle(p->GetViewer(),
-                                p->Name(),
-                                p->Icon(),
-                                p->Description());
+        if(p->GetViewer()) {
+            m_pView->SetWidowsTitle(p->GetViewer(),
+                                    p->Name(),
+                                    p->Icon(),
+                                    p->Description());
+        } else {
+            QString szErr;
+            szErr += p->metaObject()->className();
+            szErr += "::GetViewer() ";
+            szErr += "is nullptr.";
+            qWarning(log) << szErr;
+        }
     }
 }
 

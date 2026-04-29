@@ -100,6 +100,9 @@ const QString COperateDesktop::Name()
         szName += ServerName();
     }
 
+    if(szName.isEmpty())
+        szName = GetPlugin()->Name();
+
     // Show the prefix of security level
     QString szSecurityLevel;
     CSecurityLevel sl(GetSecurityLevel());
@@ -382,6 +385,7 @@ int COperateDesktop::Start()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
+
     m_pThread = new CBackendThread(this);
     if(!m_pThread) {
         qCritical(log) << "new CBackendThread fail";

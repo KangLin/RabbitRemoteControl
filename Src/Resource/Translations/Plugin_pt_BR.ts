@@ -637,135 +637,135 @@ Some features are limited.
 <context>
     <name>COperateDesktop</name>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="121"/>
+        <location filename="../../OperateDesktop.cpp" line="124"/>
         <source>Name: </source>
         <translation>Nome: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="124"/>
+        <location filename="../../OperateDesktop.cpp" line="127"/>
         <source>Type: </source>
         <translation>Tipo: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="127"/>
+        <location filename="../../OperateDesktop.cpp" line="130"/>
         <source>Protocol: </source>
         <translation>Protocolo: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="136"/>
+        <location filename="../../OperateDesktop.cpp" line="139"/>
         <source>Server name: </source>
         <translation>Nome do servidor: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="140"/>
+        <location filename="../../OperateDesktop.cpp" line="143"/>
         <source>Server address: </source>
         <translation>Endereço do servidor: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="143"/>
+        <location filename="../../OperateDesktop.cpp" line="146"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="149"/>
+        <location filename="../../OperateDesktop.cpp" line="152"/>
         <source>SSH tunnel</source>
         <translation>Túnel SSH</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="156"/>
+        <location filename="../../OperateDesktop.cpp" line="159"/>
         <source>Sockes v5</source>
         <translation>Socks V5</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="171"/>
+        <location filename="../../OperateDesktop.cpp" line="174"/>
         <source>Security level: </source>
         <translation>Nível de segurança: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="178"/>
+        <location filename="../../OperateDesktop.cpp" line="181"/>
         <source>Description: </source>
         <translation>Descrição: </translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="231"/>
-        <location filename="../../OperateDesktop.cpp" line="233"/>
+        <location filename="../../OperateDesktop.cpp" line="234"/>
+        <location filename="../../OperateDesktop.cpp" line="236"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="236"/>
-        <location filename="../../OperateDesktop.cpp" line="238"/>
         <location filename="../../OperateDesktop.cpp" line="239"/>
+        <location filename="../../OperateDesktop.cpp" line="241"/>
+        <location filename="../../OperateDesktop.cpp" line="242"/>
         <source>Zoom to window</source>
         <translation>Zoom para a janela</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="358"/>
-        <location filename="../../OperateDesktop.cpp" line="359"/>
-        <location filename="../../OperateDesktop.cpp" line="360"/>
+        <location filename="../../OperateDesktop.cpp" line="361"/>
+        <location filename="../../OperateDesktop.cpp" line="362"/>
+        <location filename="../../OperateDesktop.cpp" line="363"/>
         <source>Record pause</source>
         <translation>Pausar gravação</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="248"/>
-        <location filename="../../OperateDesktop.cpp" line="250"/>
         <location filename="../../OperateDesktop.cpp" line="251"/>
+        <location filename="../../OperateDesktop.cpp" line="253"/>
+        <location filename="../../OperateDesktop.cpp" line="254"/>
         <source>Keep aspect ratio to window</source>
         <translation>Manter a proporção para a janela</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="259"/>
-        <location filename="../../OperateDesktop.cpp" line="261"/>
         <location filename="../../OperateDesktop.cpp" line="262"/>
+        <location filename="../../OperateDesktop.cpp" line="264"/>
+        <location filename="../../OperateDesktop.cpp" line="265"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="269"/>
-        <location filename="../../OperateDesktop.cpp" line="271"/>
         <location filename="../../OperateDesktop.cpp" line="272"/>
+        <location filename="../../OperateDesktop.cpp" line="274"/>
+        <location filename="../../OperateDesktop.cpp" line="275"/>
         <source>Zoom in</source>
         <translation>Ampliar</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="285"/>
-        <location filename="../../OperateDesktop.cpp" line="287"/>
         <location filename="../../OperateDesktop.cpp" line="288"/>
+        <location filename="../../OperateDesktop.cpp" line="290"/>
+        <location filename="../../OperateDesktop.cpp" line="291"/>
         <source>Zoom out</source>
         <translation>Diminuir o zoom</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="331"/>
+        <location filename="../../OperateDesktop.cpp" line="334"/>
         <source>Send shortcut key</source>
         <translation>Enviar tecla de atalho</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="334"/>
+        <location filename="../../OperateDesktop.cpp" line="337"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>Enviar Ctrl+Alt+Del</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="336"/>
+        <location filename="../../OperateDesktop.cpp" line="339"/>
         <source>Send lock screen (Win+L)</source>
         <translation>Enviar bloqueio de tela (Win+L)</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="340"/>
-        <location filename="../../OperateDesktop.cpp" line="341"/>
-        <location filename="../../OperateDesktop.cpp" line="342"/>
+        <location filename="../../OperateDesktop.cpp" line="343"/>
+        <location filename="../../OperateDesktop.cpp" line="344"/>
+        <location filename="../../OperateDesktop.cpp" line="345"/>
         <source>ScreenShot</source>
         <translation>Captura de tela</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="349"/>
-        <location filename="../../OperateDesktop.cpp" line="351"/>
         <location filename="../../OperateDesktop.cpp" line="352"/>
-        <location filename="../../OperateDesktop.cpp" line="565"/>
+        <location filename="../../OperateDesktop.cpp" line="354"/>
+        <location filename="../../OperateDesktop.cpp" line="355"/>
+        <location filename="../../OperateDesktop.cpp" line="569"/>
         <source>Start record</source>
         <translation>Iniciar gravação</translation>
     </message>
     <message>
-        <location filename="../../OperateDesktop.cpp" line="562"/>
+        <location filename="../../OperateDesktop.cpp" line="566"/>
         <source>Stop record</source>
         <translation>Parar gravação</translation>
     </message>
@@ -773,79 +773,60 @@ Some features are limited.
 <context>
     <name>COperateTerminal</name>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="120"/>
         <source>Name: </source>
-        <translation>Nome: </translation>
+        <translation type="vanished">Nome: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="123"/>
         <source>Type: </source>
-        <translation>Tipo: </translation>
+        <translation type="vanished">Tipo: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="126"/>
         <source>Protocol: </source>
-        <translation>Protocolo: </translation>
+        <translation type="vanished">Protocolo: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="136"/>
         <source>Security level: </source>
-        <translation>Nível de segurança: </translation>
+        <translation type="vanished">Nível de segurança: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="143"/>
         <source>Description: </source>
-        <translation>Descrição: </translation>
+        <translation type="vanished">Descrição: </translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="202"/>
         <source>Copy selection to clipboard</source>
-        <translation>Copiar seleção para a área de transferência</translation>
+        <translation type="vanished">Copiar seleção para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="205"/>
         <source>Paste clipboard</source>
-        <translation>Colar da área de transferência</translation>
+        <translation type="vanished">Colar da área de transferência</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="207"/>
         <source>Paste selection</source>
-        <translation>Colar seleção</translation>
+        <translation type="vanished">Colar seleção</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="209"/>
         <source>Zoom in</source>
-        <translation>Ampliar</translation>
+        <translation type="vanished">Ampliar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="211"/>
         <source>Zoom out</source>
-        <translation>Diminuir o zoom</translation>
+        <translation type="vanished">Diminuir o zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="213"/>
         <source>Zoom reset</source>
-        <translation>Redefinição de zoom</translation>
+        <translation type="vanished">Redefinição de zoom</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="228"/>
         <source>Find ......</source>
-        <translation>Localizar ...</translation>
+        <translation type="vanished">Localizar ...</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="233"/>
         <source>Clear</source>
-        <translation>Limpar</translation>
+        <translation type="vanished">Limpar</translation>
     </message>
     <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="156"/>
-        <source>QTermWidget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Terminal/OperateTerminal.cpp" line="157"/>
         <source>Version:</source>
-        <translation type="unfinished">Versão:</translation>
+        <translation type="obsolete">Versão:</translation>
     </message>
     <message>
         <source>QTermWidget:</source>
@@ -894,26 +875,25 @@ Some features are limited.
     </message>
     <message>
         <location filename="../../Database/ParameterDatabaseUI.ui" line="104"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="218"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="223"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="225"/>
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="119"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="113"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>Save operate settings to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="127"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
         <source>Local</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="143"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="137"/>
         <source>Warn: Please ensure that the database you want to access is secure. Otherwise, information such as recent lists and favorites may be leaked.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -928,70 +908,80 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.ui" line="134"/>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="121"/>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.ui" line="128"/>
         <location filename="../../Database/ParameterDatabaseUI.cpp" line="30"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="95"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="34"/>
+        <source>Sharing &quot;Operation Parameters&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="104"/>
         <source>but the database is not set local database &quot;QSQLITE&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="97"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="106"/>
         <source>Please modify database &quot;Type&quot; to &quot;QSQLITE&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="98"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="107"/>
         <source>or modify </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="99"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="108"/>
         <source>Error</source>
         <translation type="unfinished">Erro</translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="131"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
         <source>Set the database name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="136"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="145"/>
         <source>Set the sqlite database file. If is empty, then use default database file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="140"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="149"/>
         <source>The name can either be a DSN, a DSN filename (in which case the file must have a .dsn extension), or a connection string.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="141"/>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="155"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="150"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="164"/>
         <source>Configure database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="171"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="180"/>
         <source>Database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="172"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="181"/>
         <source>Database file (*.db);; All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="216"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="223"/>
         <source>Test is successfully!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Database/ParameterDatabaseUI.cpp" line="219"/>
+        <location filename="../../Database/ParameterDatabaseUI.cpp" line="226"/>
         <source>Test is failed!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1036,7 +1026,7 @@ Some features are limited.
     <name>CParameterPluginUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="14"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="22"/>
         <source>Plugin</source>
         <translation>Plugin</translation>
     </message>
@@ -1045,14 +1035,8 @@ Some features are limited.
         <translation type="vanished">Ativar recebimento de evento de teclado (tecla de atalho)</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="209"/>
         <source>Enable use the system user as the user</source>
-        <translation>Usar o usuário do sistema como o usuário</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="199"/>
-        <source>Store password with system credential manager</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Usar o usuário do sistema como o usuário</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="91"/>
@@ -1060,28 +1044,49 @@ Some features are limited.
         <translation>Zoom do visualizador:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="223"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="137"/>
+        <source>Save the encrypted password in the settings:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="152"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="161"/>
+        <source>&quot;Encryption Key&quot; is used to encrypt saved passwords. If left empty, a random &quot;Encryption Key&quot; will be used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="208"/>
+        <source>Save the password to the system&apos;s credential manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="218"/>
+        <source>Enable use the current system user as the default user in new settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="232"/>
         <source>Operate Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="229"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="238"/>
         <source>Show protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="236"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="245"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="252"/>
         <source>Show Security Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="25"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="262"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
         <source>Prompt administrator privilege</source>
         <translation>Solicitar privilégios de administrador</translation>
     </message>
@@ -1099,7 +1104,7 @@ Some features are limited.
         <translation type="vanished">Mostrar apenas ip:porta no nome</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="216"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="225"/>
         <source>Enable local input method</source>
         <translation>Ativar método de entrada local</translation>
     </message>
@@ -1125,27 +1130,26 @@ Some features are limited.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="134"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>Chave usada para criptografar a senha salva:</translation>
+        <translation type="vanished">Chave usada para criptografar a senha salva:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="145"/>
         <source>Encrypt key:</source>
         <translation>Chave de criptografia:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="173"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="182"/>
         <source>Prompt type:</source>
         <translation>Solicitar tipo:</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="180"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="189"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="187"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="196"/>
         <source>First</source>
         <translation>Primeira vez</translation>
     </message>
@@ -1163,43 +1167,48 @@ Some features are limited.
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="118"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="121"/>
         <source>Enable save password</source>
         <translation>Ativar salvar senha</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="125"/>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="28"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.ui" line="128"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="32"/>
         <source>Enable view password</source>
         <translation>Ativar senha de visualização</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="117"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="35"/>
+        <source>Password Security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="134"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="121"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="138"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="124"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="141"/>
         <source>Zoom to window</source>
         <translation>Zoom para a janela</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="127"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="144"/>
         <source>Keep aspect ratio to window</source>
         <translation>Manter a proporção para a janela</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="172"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="190"/>
         <source>Open disable desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="183"/>
+        <location filename="../../ParameterCompone/ParameterPluginUI.cpp" line="201"/>
         <source>Open restore desktop shortcuts script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1495,131 +1504,104 @@ Some features are limited.
 <context>
     <name>CParameterTerminalUI</name>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="14"/>
         <source>General</source>
-        <translation>Geral</translation>
+        <translation type="vanished">Geral</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="25"/>
         <source>Font:</source>
-        <translation>Fonte:</translation>
+        <translation type="vanished">Fonte:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="65"/>
         <source>Color scheme:</source>
-        <translation>Esquema de cores:</translation>
+        <translation type="vanished">Esquema de cores:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="89"/>
         <source>Cursor shape:</source>
-        <translation>Cursor:</translation>
+        <translation type="vanished">Cursor:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="133"/>
         <source>Terminal Transparency:</source>
-        <translation>Transparência do Terminal:</translation>
+        <translation type="vanished">Transparência do Terminal:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="149"/>
         <source>%</source>
-        <translation>%</translation>
+        <translation type="vanished">%</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="163"/>
         <source>Background Image:</source>
-        <translation>Imagem de Fundo:</translation>
+        <translation type="vanished">Imagem de Fundo:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="200"/>
         <source>Key binding:</source>
-        <translation>Mapeamento de teclas:</translation>
+        <translation type="vanished">Mapeamento de teclas:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="222"/>
         <source>Show terminal size when windows resize</source>
-        <translation>Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
+        <translation type="vanished">Redimensionar o tamanho do terminal quando a janela for redimensionada</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="109"/>
         <source>Scroll bar position:</source>
-        <translation>Barra de rolagem:</translation>
+        <translation type="vanished">Barra de rolagem:</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="189"/>
         <source>Browse(&amp;B)</source>
-        <translation>Procurar(&amp;P)</translation>
+        <translation type="vanished">Procurar(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="229"/>
         <source>Enable bi-directional text support</source>
-        <translation>Habilitar suporte a texto bidirecional</translation>
+        <translation type="vanished">Habilitar suporte a texto bidirecional</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="236"/>
         <source>History</source>
-        <translation>Histórico</translation>
+        <translation type="vanished">Histórico</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="244"/>
         <source>History size(in lines):</source>
-        <translation>Tamanho do histórico (em linhas):</translation>
+        <translation type="vanished">Tamanho do histórico (em linhas):</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="266"/>
         <source>Unlimited</source>
-        <translation>Ilimitado</translation>
+        <translation type="vanished">Ilimitado</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="276"/>
         <source>Flow Control</source>
-        <translation>Controle de fluxo</translation>
+        <translation type="vanished">Controle de fluxo</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.ui" line="283"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="36"/>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="44"/>
         <source>Example: Display font</source>
-        <translation>Exemplo: Fonte de exibição</translation>
+        <translation type="vanished">Exemplo: Fonte de exibição</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="75"/>
         <source>Backgroup image</source>
-        <translation>Imagem de fundo</translation>
+        <translation type="vanished">Imagem de fundo</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="76"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
-        <translation>Imagens (*.png *.xpm *.jpg *.bmp *.jpeg);; Todos os arquivos (*.*)</translation>
+        <translation type="vanished">Imagens (*.png *.xpm *.jpg *.bmp *.jpeg);; Todos os arquivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="99"/>
         <source>BlockCursor</source>
-        <translation>BlockCursor</translation>
+        <translation type="vanished">BlockCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="100"/>
         <source>UnderlineCursor</source>
-        <translation>UnderlineCursor</translation>
+        <translation type="vanished">UnderlineCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="101"/>
         <source>IBeamCursor</source>
-        <translation>IBeamCursor</translation>
+        <translation type="vanished">IBeamCursor</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="108"/>
         <source>None</source>
-        <translation>Nenhum</translation>
+        <translation type="vanished">Nenhum</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="109"/>
         <source>Left</source>
-        <translation>Esquerda</translation>
+        <translation type="vanished">Esquerda</translation>
     </message>
     <message>
-        <location filename="../../Terminal/ParameterTerminalUI.cpp" line="110"/>
         <source>Right</source>
-        <translation>Direita</translation>
+        <translation type="vanished">Direita</translation>
     </message>
 </context>
 <context>

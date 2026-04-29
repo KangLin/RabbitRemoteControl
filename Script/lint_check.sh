@@ -2,6 +2,7 @@
 
 # RabbitRemoteControl Lint 检查脚本
 # 支持 C++ (Clazy) 和 QML (qmllint) 检查
+# Author: Kang Lin <kl222@126.com>
 
 set -e  # 遇到错误立即退出
 
