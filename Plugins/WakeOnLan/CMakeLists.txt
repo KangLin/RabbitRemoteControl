@@ -15,7 +15,7 @@ if(PcapPlusPlus_FOUND)
     list(APPEND WakeOnLan_DEFINITIONS HAVE_PCAPPLUSPLUS)
     list(APPEND WakeOnLan_LIBS PcapPlusPlus::Pcap++)
 else()
-    message("There is no PcapPlusPlus. "
+    message(WARNING "There is no PcapPlusPlus. "
         "Please build and install from "
         "'git clone https://github.com/seladb/PcapPlusPlus.git ${CMAKE_SOURCE_DIR}/../PcapPlusPlus' "
         "And set PcapPlusPlus_ROOT to install root directory")

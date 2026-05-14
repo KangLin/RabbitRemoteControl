@@ -97,9 +97,14 @@ if(WITH_QTERMWIDGET)
 endif()
 
 ## Server
-option(BUILD_FTP_SERVER "Build ftp server" ON)
+option(BUILD_FTP_SERVER "Build FTP server" ON)
 if(BUILD_FTP_SERVER)
     add_subdirectory(FtpServer)
+endif()
+
+option(BUILD_SFTP_SERVER "Build SFTP server" ON)
+if(BUILD_SFTP_SERVER)
+    add_subdirectory(SftpServer)
 endif()
 
 ## Template
@@ -122,4 +127,5 @@ message(STATUS "BUILD_FILE_TRANSFER: ${BUILD_FILE_TRANSFER}")
 message(STATUS "BUILD_WEB_BROWSER: ${BUILD_WEB_BROWSER}; Qt${QT_VERSION_MAJOR}WebEngineWidgets: ${Qt${QT_VERSION_MAJOR}WebEngineWidgets_FOUND}")
 
 message(STATUS "BUILD_FTP_SERVER: ${BUILD_FTP_SERVER}")
+message(STATUS "BUILD_SFTP_SERVER: ${BUILD_SFTP_SERVER}")
 message(STATUS "BUILD_TEMPLATE: ${BUILD_TEMPLATE}")

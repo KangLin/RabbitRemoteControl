@@ -32,7 +32,7 @@ else()
         PATH_SUFFIXES lib
         )
     if(NOT (LibvncIncludeDir AND libvncLibs))
-        message("Install libvnc and set LibVNCServer_DIR variable to install root directory")
+        message(WARNING "Install libvnc and set LibVNCServer_DIR variable to install root directory")
         set(BUILD_LibVNCServer OFF PARENT_SCOPE)
         return()
     endif()

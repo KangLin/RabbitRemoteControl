@@ -476,7 +476,7 @@ if [ $DEB -eq 1 ]; then
     fi
 
     ./build_depend.sh ${depend_para} \
-        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver \
+        --rabbitcommon --tigervnc --pcapplusplus --qtermwidget --qftpserver --libssh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

@@ -10,7 +10,7 @@ if(RabbitVNC_FOUND)
         add_subdirectory(Service)
     endif(BUILD_SERVICE)
 else()
-    message("Don't find RabbitVNC. Please set BUILD_RABBITVNC=OFF "
+    message(WARNING "Don't find RabbitVNC. Please set BUILD_RABBITVNC=OFF "
         "or install RabbitVNC from https://github.com/KangLin/RabbitVNC")
     set(BUILD_RABBITVNC OFF PARENT_SCOPE)
 endif()

@@ -10,7 +10,7 @@ if(tigervnc_FOUND)
         add_subdirectory(Service)
     endif(BUILD_SERVICE)
 else()
-    message("Don't find TigerVNC. Please set BUILD_TigerVNC=OFF "
+    message(WARNING "Don't find TigerVNC. Please set BUILD_TigerVNC=OFF "
         "or install TigerVNC from https://github.com/KangLin/TigerVNC")
     set(BUILD_TigerVNC OFF PARENT_SCOPE)
 endif()
