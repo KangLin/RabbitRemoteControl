@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QDialog>
+#include "ParameterServerUI.h"
 
 namespace Ui {
 class CDlgSettingsSftpServer;
@@ -25,4 +26,5 @@ public slots:
 private:
     Ui::CDlgSettingsSftpServer *ui;
     CParameterSftpServer* m_pPara;
+    CParameterServerUI* m_pServerUI;
 };

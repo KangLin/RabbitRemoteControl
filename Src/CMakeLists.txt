@@ -54,6 +54,8 @@ list(APPEND PLUGIN_INSTALL_HEADER_FILES
     ParameterCompone/ParameterMediaDevices.h
     ParameterCompone/ParameterSSH.h
     ParameterCompone/ParameterSSHTunnelUI.h
+    ParameterCompone/ParameterServer.h
+    ParameterCompone/ParameterServerUI.h
     ParameterCompone/Stats.h
     CheckBoxHeader.h
     Database/Database.h
@@ -106,6 +108,8 @@ list(APPEND PLUGIN_SOURCE_FILES
     ParameterCompone/ParameterMediaDevices.cpp
     ParameterCompone/ParameterSSH.cpp
     ParameterCompone/ParameterSSHTunnelUI.cpp
+    ParameterCompone/ParameterServer.cpp
+    ParameterCompone/ParameterServerUI.cpp
     ParameterCompone/Stats.cpp
     DlgInputPassword.cpp
     DlgUserPassword.cpp
@@ -129,6 +133,7 @@ set(PLUGIN_UI_FILES
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
     ParameterCompone/ParameterSSHTunnelUI.ui
+    ParameterCompone/ParameterServerUI.ui
     Database/ParameterDatabaseUI.ui
     )
 

@@ -84,9 +84,7 @@ static bool GetClientAddressAndPort(ssh_session session, QString& ip, quint16& p
 CBackendSftpServer::CBackendSftpServer(COperateSftpServer *pOperate, bool bStopSignal)
     : CBackend(pOperate, bStopSignal)
     , m_pPara(pOperate->GetParameter())
-    , m_sshBind(nullptr)
     , m_event(nullptr)
-    , m_pListenNotifier(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -111,37 +109,19 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
         return ret;
     }
 
-    m_sshBind = ssh_bind_new();
-    if (!m_sshBind) {
-        qCritical(log) << "Failed to create SSH bind";
+    qint16 port = m_pPara->m_Net.GetPort();
+    if(m_pPara->GetListenAll()) {
+        Listen("0.0.0.0", port);
+        qInfo(log) << "SFTP Server is listend on port:" << port
+                   << "; Root path:" << root.absolutePath();
+    } else if(!m_pPara->GetListen().isEmpty()){
+        foreach (auto add, m_pPara->GetListen()) {
+            Listen(add, port);
+        }
+        qInfo(log) << "SFTP Server is listend on port:" << port << m_pPara->GetListen()
+                   << "; Root path:" << root.absolutePath();
+    } else
         return ret;
-    }
-
-    auto &net = m_pPara->m_Net;
-    quint16 port = net.GetPort();
-    ssh_bind_options_set(m_sshBind, SSH_BIND_OPTIONS_BINDPORT, &port);
-    if(!net.GetHost().isEmpty())
-        ssh_bind_options_set(m_sshBind, SSH_BIND_OPTIONS_BINDADDR, net.GetHost().toStdString().c_str());
-    if (!InitHostKey()) {
-        ssh_bind_free(m_sshBind);
-        return ret;
-    }
-
-    if (ssh_bind_listen(m_sshBind) < 0) {
-        qCritical(log) << "Failed to bind:" << ssh_get_error(m_sshBind);
-        ssh_bind_free(m_sshBind);
-        return ret;
-    }
-
-    auto fd = ssh_bind_get_fd(m_sshBind);
-    m_pListenNotifier = new QSocketNotifier(fd, QSocketNotifier::Read, this);
-    if(m_pListenNotifier) {
-        bool check = connect(m_pListenNotifier, &QSocketNotifier::activated,
-                             this, &CBackendSftpServer::slotNewConnection);
-        Q_ASSERT(check);
-    }
-
-    qInfo(log) << "SFTP Server is listend on port:" << port << "; Root path:" << root.absolutePath();
 
     emit sigRunning();
     return OnInitReturnValue::UseOnProcess;
@@ -151,22 +131,20 @@ int CBackendSftpServer::OnClean()
 {
     int nRet = 0;
 
-    if (m_pListenNotifier) {
-        delete m_pListenNotifier;
-        m_pListenNotifier = nullptr;
+    foreach(auto d, m_lstListen) {
+        ssh_bind_free(d->sshBind);
+        delete d->pListenNotifier;
+        delete d;
     }
-
-    if (m_sshBind) {
-        ssh_bind_free(m_sshBind);
-        m_sshBind = nullptr;
-    }
+    m_lstListen.clear();
 
     if(m_event)
         ssh_event_free(m_event);
 
-    foreach (auto c, m_Clients) {
+    foreach (auto c, m_lstClients) {
         RemoveClient(c);
     }
+    m_lstClients.clear();
 
     emit sigFinished();
     return nRet;
@@ -197,7 +175,7 @@ int CBackendSftpServer::OnProcess()
 {
     int nRet = 0;
 
-    if(m_Clients.isEmpty())
+    if(m_lstClients.isEmpty())
         return 10;
 
     nRet = ssh_event_dopoll(m_event, 100);
@@ -207,7 +185,7 @@ int CBackendSftpServer::OnProcess()
     }
 
     QList<sClientData*> toRemove;
-    foreach(auto pData, m_Clients) {
+    foreach(auto pData, m_lstClients) {
         if(!pData) {
             toRemove.push_back(pData);
             continue;
@@ -232,16 +210,18 @@ int CBackendSftpServer::OnProcess()
     }
 
     foreach(auto pData, toRemove) {
-        m_Clients.removeAll(pData);
+        m_lstClients.removeAll(pData);
         RemoveClient(pData);
     }
 
     return 0;
 }
 
-bool CBackendSftpServer::InitHostKey()
+bool CBackendSftpServer::InitHostKey(ssh_bind ssdBind)
 {
     qDebug(log) << Q_FUNC_INFO;
+    if(!ssdBind) return false;
+
     // 检查主机密钥文件
     QString szPath;
     szPath = m_pPara->GetHostKeyFile();
@@ -251,19 +231,76 @@ bool CBackendSftpServer::InitHostKey()
     }
 
     // 尝试加载 RSA 密钥
-    if (ssh_bind_options_set(m_sshBind, SSH_BIND_OPTIONS_HOSTKEY,
+    if (ssh_bind_options_set(ssdBind, SSH_BIND_OPTIONS_HOSTKEY,
                              szPath.toStdString().c_str()) < 0) {
-        qCritical(log) << "Failed to set RSA host key" << ssh_get_error(m_sshBind);
+        qCritical(log) << "Failed to set RSA host key" << ssh_get_error(ssdBind);
         return false;
     }
 
     return true;
 }
 
+int CBackendSftpServer::Listen(const QString &szIp, qint16 nPort)
+{
+    int ret = -1;
+    sBindData* pData = new sBindData();
+    if(!pData) return ret;
+    do {
+        auto sshBind = ssh_bind_new();
+        if (!sshBind) {
+            qCritical(log) << "Failed to create SSH bind";
+            return ret;
+        }
+
+        auto &net = m_pPara->m_Net;
+        quint16 port = net.GetPort();
+        ssh_bind_options_set(sshBind, SSH_BIND_OPTIONS_BINDPORT, &port);
+        ssh_bind_options_set(sshBind, SSH_BIND_OPTIONS_BINDADDR, szIp.toStdString().c_str());
+
+        if (!InitHostKey(sshBind)) {
+            ssh_bind_free(sshBind);
+            return ret;
+        }
+
+        if (ssh_bind_listen(sshBind) < 0) {
+            qCritical(log) << "Failed to bind:" << ssh_get_error(sshBind);
+            ssh_bind_free(sshBind);
+            return ret;
+        }
+
+        auto fd = ssh_bind_get_fd(sshBind);
+        auto pListenNotifier = new QSocketNotifier(fd, QSocketNotifier::Read, this);
+        if(pListenNotifier) {
+            bool check = connect(pListenNotifier, &QSocketNotifier::activated,
+                                 this, &CBackendSftpServer::slotNewConnection);
+            Q_ASSERT(check);
+        }
+        pData->sshBind = sshBind;
+        pData->pListenNotifier = pListenNotifier;
+        m_lstListen.push_back(pData);
+        return 0;
+    } while(0);
+    delete pData;
+    return -1;
+}
+
+ssh_bind CBackendSftpServer::GetSshBind(QSocketNotifier* pNotifier)
+{
+    foreach(auto d, m_lstListen) {
+        if(d->pListenNotifier == pNotifier)
+            return d->sshBind;
+    }
+    return nullptr;
+}
+
 void CBackendSftpServer::slotNewConnection()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = SSH_ERROR;
+
+    QSocketNotifier* pSocketNotifier = qobject_cast<QSocketNotifier*>(sender());
+    if(!pSocketNotifier) return;
+
     // 接受新连接
     ssh_session session = ssh_new();
     if (!session) {
@@ -276,7 +313,7 @@ void CBackendSftpServer::slotNewConnection()
     pData->session = session;
     pData->m_Time = QTime::currentTime();
     pData->pPara = m_pPara;
-    m_Clients.push_back(pData);
+    m_lstClients.push_back(pData);
 
     memset(&pData->channel_cb, 0, sizeof(ssh_channel_callbacks_struct));
     pData->channel_cb.userdata = &(pData->sftp);
@@ -305,8 +342,9 @@ void CBackendSftpServer::slotNewConnection()
     // 设置为非阻塞模式
     ssh_set_blocking(session, 0);
 
-    if (ssh_bind_accept(m_sshBind, session) == SSH_ERROR) {
-        qCritical(log) << "Failed to accept connection:" << ssh_get_error(m_sshBind);
+    ssh_bind sshBind = GetSshBind(pSocketNotifier);
+    if (ssh_bind_accept(sshBind, session) == SSH_ERROR) {
+        qCritical(log) << "Failed to accept connection:" << ssh_get_error(sshBind);
         ssh_free(session);
         return;
     }

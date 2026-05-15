@@ -32,10 +32,13 @@ private Q_SLOTS:
 
 private:
     CParameterSftpServer* m_pPara;
-    ssh_bind m_sshBind;
     ssh_event m_event;
-    QSocketNotifier* m_pListenNotifier;
 
+    struct sBindData {
+        ssh_bind sshBind;
+        QSocketNotifier* pListenNotifier;
+    };
+    QList<sBindData*> m_lstListen;
     struct sClientData
     {
         ssh_session session;
@@ -47,7 +50,7 @@ private:
         struct ssh_server_callbacks_struct server_cb;
         CParameterSftpServer* pPara;
     };
-    QList<sClientData*> m_Clients;
+    QList<sClientData*> m_lstClients;
 
     static int cbAuthPassword(ssh_session session, const char *user,
                               const char *pass, void *userdata);
@@ -58,7 +61,9 @@ private:
                                void *userdata);
     static ssh_channel cbChannelOpen(ssh_session session, void *userdata);
 
-    bool InitHostKey();
+    int Listen(const QString &szIp, qint16 nPort);
+    ssh_bind GetSshBind(QSocketNotifier* notifier);
+    bool InitHostKey(ssh_bind ssdBind);
     int RemoveClient(sClientData* pClient);
     static void SendBanner(ssh_session session, const QString& user);
 };
