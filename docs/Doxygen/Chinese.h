@@ -109,6 +109,10 @@
     + 实现远程控制台，可以从 \ref COperateTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref COperate 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP
++ 用脚本从模板生成插件： Script/create_plugin.sh
+  \code
+  ./create_plugin.sh -h
+  \endcode
 
 \defgroup LIBAPI_THREAD 线程模型
 \ingroup LIBAPI_PLUGIN

@@ -121,6 +121,10 @@
     - Implement remote console, which can be derived from COperateTerminal
     - If the above two cannot meet your needs, you  can be derived from COperate
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP
++ Generate plugin from template using a script: Script/create_plugin.sh
+  \code
+  ./create_plugin.sh -h
+  \endcode
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_PLUGIN
