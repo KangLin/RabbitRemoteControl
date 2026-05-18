@@ -442,7 +442,8 @@ jobs:
             -DBUILD_FREERDP=ON ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
             -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^
-            -DINSTALL_QTKEYCHAIN=ON
+            -DINSTALL_QTKEYCHAIN=ON ^
+            -DBUILD_SFTP_SERVER=OFF
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
