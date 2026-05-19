@@ -445,6 +445,7 @@ It is dependent on PcapPlusPlus
       + Qt5_ROOT: Is same QT_ROOT
       + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
   + RabbitCommon_ROOT: RabbitCommon source code location
+  + ENABLE_UPDATE_TRANSLATIONS: Update translations. the default is OFF
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
   + BUILD_PLUGINS: Compile plugins. the default is ON
@@ -521,3 +522,9 @@ The plugin's dependencies may not be installed on the system.
 You can add the path of the dependency libraries to the environment variable `LD_LIBRARY_PATH` and/or `DYLD_FRAMEWORK_PATH`.
 You can also add the path of the dependency libraries to the `/etc/ld.so.conf` file,
 and then run ldconfig to add the dependency libraries to the system.
+
+#### Translation
+
+CMake uses the parameter -DENABLE_UPDATE_TRANSLATIONS=ON
+to automatically generate resource files and update the resource files.
+After updating, you can directly modify the .ts files.

@@ -350,6 +350,7 @@ See: [msvc.yml](.github\workflows\msvc.yml)
   + QT_ROOT: Qt install root
   + Qt6_DIR or Qt5_DIR: Is same QT_ROOT
   + RabbitCommon_ROOT: RabbitCommon source-code location
+  + ENABLE_UPDATE_TRANSLATIONS: Update translations. the default is OFF
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
   + BUILD_PLUGINS: Compile plugins. the default is ON
@@ -413,3 +414,9 @@ It may be that the plugin's dependencies are not installed on the system.
 You can copy the dependency libraries into the application's bin directory.
 
 See: [Compile integration](../../.github/workflows/msvc.yml)
+
+- Translation
+
+CMake uses the parameter -DENABLE_UPDATE_TRANSLATIONS=ON
+to automatically generate resource files and update the resource files.
+After updating, you can directly modify the .ts files.

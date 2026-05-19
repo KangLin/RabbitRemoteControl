@@ -355,6 +355,7 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
   + QT_ROOT: Qt 安装位置
   + Qt6_DIR 或者 Qt5_DRI: 与 QT_ROOT 相同
   + RabbitCommon_ROOT：RabbitCommon 源码位置
+  + ENABLE_UPDATE_TRANSLATIONS: 更新翻译资源。默认为：OFF
   + BUILD_CLIENT: 编译客户端。默认为 ON
   + BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
   + BUILD_PLUGINS: 编译插件。默认为 ON
@@ -416,3 +417,8 @@ Windows10 及以后的版本需要 [npcap](https://npcap.com)
 **注意：** 如果插件没有加载。则可能是插件的依赖库没有安装到系统。你可以把依赖库复制到程序的 bin 中。
 
 参见：[编译集成](../../.github/workflows/msvc.yml)
+
+- 翻译
+
+CMake 使用参数 -DENABLE_UPDATE_TRANSLATIONS=ON 会自行产生资源文件，并更新资源文件。
+更新后，你可以直接修改 .ts 文件。

@@ -495,6 +495,7 @@ PcapPlusPlus 依赖此库。
       + Qt5_ROOT: 与 QT_ROOT 相同
       + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
   + RabbitCommon_ROOT: RabbitCommon 源码位置
+  + ENABLE_UPDATE_TRANSLATIONS: 更新翻译资源。默认为：OFF
   + BUILD_CLIENT: 编译客户端。默认为 ON
   + BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
   + BUILD_PLUGINS: 编译插件。默认为 ON
@@ -584,6 +585,11 @@ PcapPlusPlus 依赖此库。
     [vnc](https://github.com/qt-rick/qtbase-vnc-platform-plug)
 
         export QT_QPA_PLATFORM=vnc
+
+### 翻译
+
+CMake 使用参数 -DENABLE_UPDATE_TRANSLATIONS=ON 会自行产生资源文件，并更新资源文件。
+更新后，你可以直接修改 .ts 文件。
 
 ### 编译例子
 
