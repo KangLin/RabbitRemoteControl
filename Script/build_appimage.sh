@@ -193,6 +193,7 @@ cmake "$REPO_ROOT" \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
   -DBUILD_FREERDP=ON
 cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --strip --component DependLibraries --prefix ${INSTALL_APP_DIR}
@@ -203,7 +204,7 @@ if [ -d "${INSTALL_DIR}/share/qtermwidget6" ]; then
     echo_status "Copy qtermwidget6 resources ......."
     cp -r ${INSTALL_DIR}/share/qtermwidget6 ${INSTALL_APP_DIR}/share/
 else
-    echo_error "${INSTALL_DIR}/share/qtermwidget6 is not exist"
+    echo_warn "${INSTALL_DIR}/share/qtermwidget6 is not exist"
 fi
 
 echo_status "Build AppImage ......"

@@ -63,11 +63,11 @@ jobs:
 
           - PACKAGE: appimage
             image: ubuntu
-            lable: "25.04"
+            lable: "26.04"
             os: ubuntu-24.04
           - PACKAGE: appimage
             image: ubuntu
-            lable: "25.04"
+            lable: "26.04"
             os: ubuntu-24.04-arm
           # - PACKAGE: appimage
           #   image: fedora
@@ -185,18 +185,21 @@ jobs:
           mv install RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
           zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup/*
 
-          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum
-          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
-          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip: ${MD5SUM}"
-          echo "Generate update configure file ......"
-          pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
-          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
-             -f "${{github.workspace}}/update_appimage_${{matrix.variant.os}}.json" \
-             --foc 1 \
-             --file-name ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip \
-             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip?viasf=1" \
-             --md5 "${MD5SUM}"
-          popd
+          if [ "matrix.variant.lable" == "25.04" ]; then
+            md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum
+            MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
+            echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip: ${MD5SUM}"
+            echo "Generate update configure file ......"
+            pushd RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup
+            ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage \
+               -f "${{github.workspace}}/update_appimage_${{matrix.variant.os}}.json" \
+               --foc 1 \
+               --file-name ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip \
+               -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/rabbitremotecontrol/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}_Setup.zip?viasf=1" \
+               --md5 "${MD5SUM}"
+            popd
+          fi
+
           popd
 
       - name: AppIagme update configure file

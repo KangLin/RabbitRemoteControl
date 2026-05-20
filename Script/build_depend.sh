@@ -584,7 +584,14 @@ if [ $BASE_LIBS -eq 1 ]; then
         # Needed by QtMultimedia
         #package_install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
         # Needed by AppImage and FreeRDP
-        package_install libfuse-dev libfuse3-dev fuse3
+        case "$DISTRO_VERSION" in
+            24.*)
+                package_install libfuse-dev fuse
+                ;;
+            26.*|25.*)
+                package_install libfuse3-dev fuse3
+                ;;
+        esac
         # Other
         if [ "$DISTRO" = "ubuntu" ]; then
             package_install libmysqlclient-dev
