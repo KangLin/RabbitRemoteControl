@@ -661,7 +661,7 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
         if [ $QT -ne 1 ]; then
             package_install qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
-                qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
+                qt6-qt5compat-devel qt6-qtscxml-devel \
                 qt6-qtserialport-devel qt6-qtsvg-devel qt6-qtwebsockets-devel \
                 qt6-qtwebengine-devel qt6-qtwebengine-devtools qt6-qtpositioning-devel qt6-qtwebchannel-devel
         fi

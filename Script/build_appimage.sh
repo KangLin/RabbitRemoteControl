@@ -212,7 +212,7 @@ echo_status "Build AppImage ......"
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
-export DEPLOY_PLATFORM_THEMES=true
+#export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 # qtmodules: https://doc.qt.io/archives/qt-6.7/qtmodules.html
 export EXTRA_QT_MODULES="svg;sql;multimedia;statemachine;webchannel;WebEngineCore;WebEngineWidgets"
