@@ -236,7 +236,7 @@ jobs:
       - name: Add download
         run: |
           export BRANCH_NAME=${{ github.ref_name }}
-          if [ "${{ github.ref_name }}" == "master" ]; then
+          if [ "${{ github.ref_name }}" = "master" ]; then
               export BRANCH_NAME=test_${{ github.ref_name }}
           fi
           echo "## Download:" >> ${{github.workspace}}/Release.md
@@ -266,7 +266,7 @@ jobs:
       - name: Add snap and flathub donwload in Release.md file
         run: |
           export BRANCH_NAME=${{ github.ref_name }}
-          if [ "${{ github.ref_name }}" == "master" ]; then
+          if [ "${{ github.ref_name }}" = "master" ]; then
             export BRANCH_NAME=test_${{ github.ref_name }}
           fi
           echo "" >> ${{github.workspace}}/Release.md
