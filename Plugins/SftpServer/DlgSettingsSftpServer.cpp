@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QHBoxLayout>
 #include "ParameterServerUI.h"
 #include "ParameterSftpServer.h"
 #include "DlgSettingsSftpServer.h"
@@ -12,10 +13,16 @@ CDlgSettingsSftpServer::CDlgSettingsSftpServer(CParameterSftpServer *pPara, QWid
     , m_pServerUI(nullptr)
 {
     ui->setupUi(this);
-    m_pServerUI = new CParameterServerUI();
+    setContentsMargins(0, 0, 0, 0);
+    QHBoxLayout* layout = new QHBoxLayout(ui->wContain);
+    if(layout) {
+        ui->wContain->setLayout(layout);
+        layout->setContentsMargins(0, 0, 0, 0);
+    }
+    m_pServerUI = new CParameterServerUI(ui->wContain);
     if(m_pServerUI) {
         m_pServerUI->SetParameter(pPara);
-        ui->tabWidget->addTab(m_pServerUI, m_pServerUI->windowTitle());
+        layout->addWidget(m_pServerUI);
     }
 }
 

@@ -14,6 +14,9 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QWidget" name="wContain" native="true"/>
+   </item>
    <item row="1" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
@@ -21,13 +24,6 @@
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>-1</number>
      </property>
     </widget>
    </item>

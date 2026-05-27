@@ -24,11 +24,19 @@ public:
 
 private slots:
     void on_pbRoot_clicked();
-
     void on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1);
+    void on_pbAddWhitelist_clicked();
+    void on_pbDeleteWhitelist_clicked();
+    void on_pbAddBlacklist_clicked();
+    void on_pbDeleteBlacklist_clicked();
+    void slotWhiteListContextMenuRequested(const QPoint& pos);
+    void slotBlackListContextMenuRequested(const QPoint& pos);
 
 private:
     Ui::CParameterServerUI *ui;
     CParameterServer* m_pPara;
     QStandardItemModel m_ModelNetWorkInterface;
+    QStandardItemModel m_ModelBlack;
+    QStandardItemModel m_ModelWhite;
+    QString m_szFilteListPrompt;
 };

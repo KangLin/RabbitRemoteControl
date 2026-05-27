@@ -5,6 +5,8 @@
 CParameterServer::CParameterServer(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_Net(this)
+    , m_bAnonymousLogin(false)
+    , m_bReadOnly(true)
     , m_tmAuthenticate(600000)
     , m_AuthAttempts(3)
     , m_ConnectCount(-1)
@@ -25,6 +27,8 @@ CParameterServer::CParameterServer(QObject *parent, const QString &szPrefix)
 int CParameterServer::OnLoad(QSettings &set)
 {
     int nRet = 0;
+    SetAnonymousLogin(set.value("AnonemousLogin", GetAnonymousLogin()).toBool());
+    SetReadOnly(set.value("ReadOnly", GetReadOnly()).toBool());
     SetRoot(set.value("Root", GetRoot()).toString());
     SetHostKeyFile(set.value("HostKeyFile", GetHostKeyFile()).toString());
     SetAuthenticateTime(set.value("AuthenticateTime", GetAuthenticateTime()).toDouble());
@@ -40,6 +44,8 @@ int CParameterServer::OnLoad(QSettings &set)
 int CParameterServer::OnSave(QSettings &set)
 {
     int nRet = 0;
+    set.setValue("AnonemousLogin", GetAnonymousLogin());
+    set.setValue("ReadOnly", GetReadOnly());
     set.setValue("Root", GetRoot());
     set.setValue("HostKeyFile", GetHostKeyFile());
     set.setValue("AuthenticateTime", GetAuthenticateTime());
@@ -50,6 +56,32 @@ int CParameterServer::OnSave(QSettings &set)
     set.setValue("List/White", GetWhitelist());
     set.setValue("List/Black", GetBlacklist());
     return nRet;
+}
+
+bool CParameterServer::GetAnonymousLogin() const
+{
+    return m_bAnonymousLogin;
+}
+
+void CParameterServer::SetAnonymousLogin(bool newAnonymousLogin)
+{
+    if(m_bAnonymousLogin == newAnonymousLogin)
+        return;
+    m_bAnonymousLogin = newAnonymousLogin;
+    SetModified(true);
+}
+
+bool CParameterServer::GetReadOnly() const
+{
+    return m_bReadOnly;
+}
+
+void CParameterServer::SetReadOnly(bool newReadOnly)
+{
+    if(m_bReadOnly == newReadOnly)
+        return;
+    m_bReadOnly = newReadOnly;
+    SetModified(true);
 }
 
 QString CParameterServer::GetRoot() const
