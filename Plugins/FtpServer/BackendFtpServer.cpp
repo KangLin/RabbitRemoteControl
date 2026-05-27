@@ -5,6 +5,7 @@
 #include <QLoggingCategory>
 #include "BackendFtpServer.h"
 #include "OperateFtpServer.h"
+#include "ParameterFilter.h"
 
 static Q_LOGGING_CATEGORY(log, "FtpServer.Backend")
 CBackendFtpServer::CBackendFtpServer(COperateFtpServer *pOperate)
@@ -119,29 +120,33 @@ bool CBackendFtpServer::onFilter(QSslSocket *socket)
     if(!socket) return true;
     QString szIP = socket->peerAddress().toString();
     
-    QStringList white = m_pPara->GetWhitelist();
-    QStringList black = m_pPara->GetBlacklist();
+    auto& white = m_pPara->m_WhiteFilter;
+    auto& black = m_pPara->m_BlackFilter;
+
     bool bInWhite = false;
     if(!white.isEmpty()) {
-        foreach(auto i, white) {
+        white.OnProcess([&](const QString& szKey)->int {
             QHostAddress addr(szIP);
-            auto sub = QHostAddress::parseSubnet(i);
+            auto sub = QHostAddress::parseSubnet(szKey);
             if(addr.isInSubnet(sub.first, sub.second)) {
                 bInWhite = true;
-                break;
+                return -1;
             }
-        }
+            return 0;
+        }, true);
     }
 
     if(!bInWhite && !black.isEmpty()) {
-        foreach(auto i, black) {
+        black.OnProcess([&](const QString& szKey)->int {
             QHostAddress addr(szIP);
-            auto sub = QHostAddress::parseSubnet(i);
+            auto sub = QHostAddress::parseSubnet(szKey);
             if(addr.isInSubnet(sub.first, sub.second)) {
-                qInfo(log) << "Filet" << szIP << "in blacklist";
-                return true;
+                qInfo(log) << "Filtered" << szIP << "in blacklist";
+                bFilte = true;
+                return -1;
             }
-        }
+            return 0;
+        }, true);
     }
 
     if(bFilte) return true;

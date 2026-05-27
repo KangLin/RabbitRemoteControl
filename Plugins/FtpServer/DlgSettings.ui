@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QWidget" name="wContain" native="true"/>
+    <widget class="QTabWidget" name="wContain"/>
    </item>
   </layout>
  </widget>

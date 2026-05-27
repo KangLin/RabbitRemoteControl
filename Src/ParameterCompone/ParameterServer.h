@@ -14,6 +14,8 @@ public:
         const QString& szPrefix = QString());
 
     CParameterNet m_Net;
+    CParameterFilter m_WhiteFilter;
+    CParameterFilter m_BlackFilter;
 
 public:
     bool GetAnonymousLogin() const;
@@ -50,14 +52,6 @@ public:
     void SetListen(const QStringList &newListen);
 private:
     QStringList m_Listen;
-public:
-    QStringList GetWhitelist() const;
-    void SetWhitelist(const QStringList &newWhitelist);
-    QStringList GetBlacklist() const;
-    void SetBlacklist(const QStringList &newBlacklist);
-private:
-    QStringList m_Whitelist;
-    QStringList m_Blacklist;
 public:
     QString GetHostKeyFile() const;
     void SetHostKeyFile(const QString& key);

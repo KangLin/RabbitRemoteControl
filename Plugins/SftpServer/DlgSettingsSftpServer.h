@@ -4,6 +4,7 @@
 
 #include <QDialog>
 #include "ParameterServerUI.h"
+#include "ParameterFilterUI.h"
 
 namespace Ui {
 class CDlgSettingsSftpServer;
@@ -27,4 +28,6 @@ private:
     Ui::CDlgSettingsSftpServer *ui;
     CParameterSftpServer* m_pPara;
     CParameterServerUI* m_pServerUI;
+    CParameterFilterUI* m_pWhitelist;
+    CParameterFilterUI* m_pBlacklist;
 };

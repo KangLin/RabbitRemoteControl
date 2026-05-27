@@ -8,7 +8,7 @@
 class CDatabase;
 class CDatabaseFilter;
 class CParameterDatabase;
-class CParameterFilter : public CParameter
+class PLUGIN_EXPORT CParameterFilter : public CParameter
 {
     Q_OBJECT
 

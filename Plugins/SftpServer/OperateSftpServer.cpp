@@ -70,7 +70,11 @@ CBackend* COperateSftpServer::InstanceBackend()
 int COperateSftpServer::SetPluginParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
-    m_pPara->SetPluginParameters(pPara);
+    if(m_pPara) {
+        m_pPara->SetPluginParameters(pPara);
+        m_pPara->m_Net.m_User.SetSavePassword(true);
+        m_pPara->m_Net.m_User.SetSavePassphrase(true);
+    }
     return nRet;
 }
 

@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QHostAddress>
 #include <QLoggingCategory>
 #include <QDir>
 #include <QFile>
@@ -111,9 +112,10 @@ CBackend::OnInitReturnValue CBackendSftpServer::OnInit()
 
     qint16 port = m_pPara->m_Net.GetPort();
     if(m_pPara->GetListenAll()) {
-        Listen("0.0.0.0", port);
-        qInfo(log) << "SFTP Server is listend on port:" << port
-                   << "; Root path:" << root.absolutePath();
+        int nRet = Listen("0.0.0.0", port);
+        if(0 == nRet)
+            qInfo(log) << "SFTP Server is listend on port:" << port
+                       << "; Root path:" << root.absolutePath();
     } else if(!m_pPara->GetListen().isEmpty()){
         foreach (auto add, m_pPara->GetListen()) {
             Listen(add, port);
@@ -309,55 +311,100 @@ void CBackendSftpServer::slotNewConnection()
     }
 
     struct sClientData* pData = new sClientData();
-    memset(pData, 0, sizeof(struct sClientData));
-    pData->session = session;
-    pData->m_Time = QTime::currentTime();
-    pData->pPara = m_pPara;
-    m_lstClients.push_back(pData);
+    do {
+        memset(pData, 0, sizeof(struct sClientData));
+        pData->session = session;
+        pData->m_Time = QTime::currentTime();
+        pData->pPara = m_pPara;
 
-    memset(&pData->channel_cb, 0, sizeof(ssh_channel_callbacks_struct));
-    pData->channel_cb.userdata = &(pData->sftp);
-    pData->channel_cb.channel_data_function = sftp_channel_default_data_callback;
-    pData->channel_cb.channel_subsystem_request_function = sftp_channel_default_subsystem_request;
-    ssh_callbacks_init(&pData->channel_cb);
+        memset(&pData->channel_cb, 0, sizeof(ssh_channel_callbacks_struct));
+        pData->channel_cb.userdata = &(pData->sftp);
+        pData->channel_cb.channel_data_function = sftp_channel_default_data_callback;
+        pData->channel_cb.channel_subsystem_request_function = sftp_channel_default_subsystem_request;
+        ssh_callbacks_init(&pData->channel_cb);
 
-    memset(&pData->server_cb, 0, sizeof(ssh_server_callbacks_struct));
-    pData->server_cb.userdata = pData;
-    pData->server_cb.auth_password_function = cbAuthPassword;
-    pData->server_cb.channel_open_request_session_function = cbChannelOpen;
-    ssh_callbacks_init(&pData->server_cb);
+        memset(&pData->server_cb, 0, sizeof(ssh_server_callbacks_struct));
+        pData->server_cb.userdata = pData;
+        pData->server_cb.auth_password_function = cbAuthPassword;
+        pData->server_cb.channel_open_request_session_function = cbChannelOpen;
+        ssh_callbacks_init(&pData->server_cb);
 
-    if (authorizedkeys[0])
-    {
-        pData->server_cb.auth_pubkey_function = cbAuthPublickey;
-        ssh_set_auth_methods(session, SSH_AUTH_METHOD_PASSWORD | SSH_AUTH_METHOD_PUBLICKEY);
-    }
-    else
-        ssh_set_auth_methods(session, SSH_AUTH_METHOD_PASSWORD);
+        if (authorizedkeys[0])
+        {
+            pData->server_cb.auth_pubkey_function = cbAuthPublickey;
+            ssh_set_auth_methods(session, SSH_AUTH_METHOD_PASSWORD | SSH_AUTH_METHOD_PUBLICKEY);
+        }
+        else
+            ssh_set_auth_methods(session, SSH_AUTH_METHOD_PASSWORD);
 
-    nRet = ssh_set_server_callbacks(session, &pData->server_cb);
-    if(SSH_OK != nRet)
-        qCritical(log) << "Failed: Set server callbacks";
+        nRet = ssh_set_server_callbacks(session, &pData->server_cb);
+        if(SSH_OK != nRet)
+            qCritical(log) << "Failed: Set server callbacks";
 
-    // 设置为非阻塞模式
-    ssh_set_blocking(session, 0);
+        // 设置为非阻塞模式
+        ssh_set_blocking(session, 0);
 
-    ssh_bind sshBind = GetSshBind(pSocketNotifier);
-    if (ssh_bind_accept(sshBind, session) == SSH_ERROR) {
-        qCritical(log) << "Failed to accept connection:" << ssh_get_error(sshBind);
-        ssh_free(session);
+        ssh_bind sshBind = GetSshBind(pSocketNotifier);
+        if (ssh_bind_accept(sshBind, session) == SSH_ERROR) {
+            qCritical(log) << "Failed to accept connection:" << ssh_get_error(sshBind);
+            break;
+        }
+
+        // Check filter
+        QString szIp = GetClientAddress(session);
+        qDebug(log) << "IP:" << szIp;
+        auto& white = m_pPara->m_WhiteFilter;
+        auto& black = m_pPara->m_BlackFilter;
+        bool bFilte = false;
+        bool bInWhite = false;
+        if(!white.isEmpty()) {
+            white.OnProcess([&](const QString& szKey)->int {
+                QHostAddress addr(szIp);
+                auto sub = QHostAddress::parseSubnet(szKey);
+                if(addr.isInSubnet(sub.first, sub.second)) {
+                    bInWhite = true;
+                    return -1;
+                }
+                return 0;
+            }, true);
+        }
+
+        if(!bInWhite && !black.isEmpty()) {
+            black.OnProcess([&](const QString& szKey)->int {
+                QHostAddress addr(szIp);
+                auto sub = QHostAddress::parseSubnet(szKey);
+                if(addr.isInSubnet(sub.first, sub.second)) {
+                    qInfo(log) << "Filtered" << szIp << "in blacklist";
+                    bFilte = true;
+                    return -1;
+                }
+                return 0;
+            }, true);
+        }
+
+        if(bFilte)
+            break;
+
+        if (ssh_handle_key_exchange(session) != SSH_OK)
+        {
+            qCritical(log) << "Failed: Key exchange:" << ssh_get_error(session);
+            //return;
+        }
+
+        nRet = ssh_event_add_session(m_event, session);
+        if(SSH_OK != nRet)
+            qCritical(log) << "Failed: event add session";
+
+        m_lstClients.push_back(pData);
         return;
-    }
+    } while(0);
 
-    if (ssh_handle_key_exchange(session) != SSH_OK)
-    {
-        qCritical(log) << "Failed: Key exchange:" << ssh_get_error(session);
-        //return;
+    if(pData)
+        delete pData;
+    if(session) {
+        ssh_disconnect(session);
+        ssh_free(session);
     }
-
-    nRet = ssh_event_add_session(m_event, session);
-    if(SSH_OK != nRet)
-        qCritical(log) << "Failed: event add session";
 }
 
 int CBackendSftpServer::cbAuthPassword(ssh_session session, const char *userName,

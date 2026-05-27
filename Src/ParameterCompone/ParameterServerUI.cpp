@@ -15,30 +15,7 @@ CParameterServerUI::CParameterServerUI(QWidget *parent)
     , ui(new Ui::CParameterServerUI)
     , m_pPara(nullptr)
 {
-    bool check = false;
-
     ui->setupUi(this);
-
-    m_szFilteListPrompt = tr("The IP address and the netmask must be separated by a slash (/).") + "\n\n"
-                          + tr("ag:") + "\n"
-                          + "- 123.123.123.123/n " + tr("where n is any value between 0 and 32") + "\n"
-                          + "- 123.123.123.123/255.255.255.255" + "\n"
-                          + "- <ipv6-address>/n " + tr("where n is any value between 0 and 128") + "\n\n"
-                          + tr("For IP version 4, accepts as well missing trailing components") + "\n"
-                          + tr("(i.e., less than 4 octets, like \"192.168.1\"), followed or not by a dot. ") + "\n"
-                          + tr("If the netmask is also missing in that case,") + "\n"
-                          + tr("it is set to the number of octets actually passed") + "\n"
-                          + tr("(in the example above, it would be 24, for 3 octets).") + "\n\n"
-                          + tr("Add IP address and the netmask:");
-
-    ui->lvBlacklist->setModel(&m_ModelBlack);
-    check = connect(ui->lvBlacklist, SIGNAL(customContextMenuRequested(const QPoint&)),
-                    this, SLOT(slotBlackListContextMenuRequested(const QPoint&)));
-    Q_ASSERT(check);
-    ui->lvWhtelist->setModel(&m_ModelWhite);
-    check = connect(ui->lvWhtelist, SIGNAL(customContextMenuRequested(const QPoint&)),
-                    this, SLOT(slotWhiteListContextMenuRequested(const QPoint&)));
-    Q_ASSERT(check);
 }
 
 CParameterServerUI::~CParameterServerUI()
@@ -89,14 +66,6 @@ int CParameterServerUI::SetParameter(CParameter *pParameter)
         }
     }
 
-    foreach (auto ip, m_pPara->GetBlacklist()) {
-        m_ModelBlack.appendRow(new QStandardItem(ip));
-    }
-
-    foreach (auto ip, m_pPara->GetWhitelist()) {
-        m_ModelWhite.appendRow(new QStandardItem(ip));
-    }
-
     return 0;
 }
 
@@ -122,17 +91,6 @@ int CParameterServerUI::Accept()
     }
     m_pPara->SetListen(lstInterface);
 
-    QStringList lstBlack;
-    for (int i = 0; i < m_ModelBlack.rowCount(); ++i) {
-        lstBlack << m_ModelBlack.item(i)->text();
-    }
-    m_pPara->SetBlacklist(lstBlack);
-    QStringList lstWhite;
-    for (int i = 0; i < m_ModelWhite.rowCount(); ++i) {
-        lstWhite << m_ModelWhite.item(i)->text();
-    }
-    m_pPara->SetWhitelist(lstWhite);
-
     return nRet;
 }
 
@@ -155,65 +113,4 @@ void CParameterServerUI::on_pbRoot_clicked()
 void CParameterServerUI::on_cbListenAll_checkStateChanged(const Qt::CheckState &arg1)
 {
     ui->lvListen->setEnabled(Qt::Checked != arg1);
-}
-
-void CParameterServerUI::slotWhiteListContextMenuRequested(const QPoint& pos)
-{
-    QMenu m;
-    QItemSelectionModel* pSelect = ui->lvWhtelist->selectionModel();
-    QModelIndexList lstIndex = pSelect->selectedRows();
-    m.addAction(tr("Add"), this, SLOT(on_pbAddWhitelist_clicked()));
-    if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Delete"), this, SLOT(on_pbDeleteWhitelist_clicked()));
-    }
-
-    QPoint p = ui->lvWhtelist->mapToGlobal(pos);
-    m.exec(p);
-}
-
-void CParameterServerUI::slotBlackListContextMenuRequested(const QPoint& pos)
-{
-    QMenu m;
-    QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
-    QModelIndexList lstIndex = pSelect->selectedRows();
-    m.addAction(tr("Add"), this, SLOT(on_pbAddBlacklist_clicked()));
-    if(!lstIndex.isEmpty()) {
-        m.addAction(tr("Delete"), this, SLOT(on_pbDeleteBlacklist_clicked()));
-    }
-
-    QPoint p = ui->lvBlacklist->mapToGlobal(pos);
-    m.exec(p);
-}
-
-void CParameterServerUI::on_pbAddWhitelist_clicked()
-{
-    QString szIp = QInputDialog::getText(this, tr("Add whilte list"), m_szFilteListPrompt);
-    QStandardItem* item = new QStandardItem(szIp);
-    m_ModelWhite.appendRow(item);
-}
-
-void CParameterServerUI::on_pbDeleteWhitelist_clicked()
-{
-    QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
-    QModelIndexList lstIndex = pSelect->selectedRows();
-    foreach(auto idx, lstIndex) {
-        m_ModelWhite.removeRow(idx.row());
-    }
-}
-
-void CParameterServerUI::on_pbAddBlacklist_clicked()
-{
-    QString szIp = QInputDialog::getText(this, tr("Add black list"), m_szFilteListPrompt);
-    QStandardItem* item = new QStandardItem(szIp);
-    m_ModelBlack.appendRow(item);
-}
-
-void CParameterServerUI::on_pbDeleteBlacklist_clicked()
-{
-    QItemSelectionModel* pSelect = ui->lvBlacklist->selectionModel();
-    if(!pSelect) return;
-    QModelIndexList lstIndex = pSelect->selectedRows();
-    foreach(auto idx, lstIndex) {
-        m_ModelBlack.removeRow(idx.row());
-    }
 }

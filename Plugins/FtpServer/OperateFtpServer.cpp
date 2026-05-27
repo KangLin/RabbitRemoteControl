@@ -72,6 +72,7 @@ int COperateFtpServer::SetPluginParameters(CParameterPlugin *pPara)
     if(GetParameter()) {
         GetParameter()->SetPluginParameters(pPara);
         GetParameter()->m_Net.m_User.SetSavePassword(true);
+        GetParameter()->m_Net.m_User.SetSavePassphrase(true);
         if(pPara) {
             bool check = connect(pPara, SIGNAL(sigNameStylesChanged()),
                                  this, SLOT(slotUpdateName()));

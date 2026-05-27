@@ -5,6 +5,8 @@
 CParameterServer::CParameterServer(QObject *parent, const QString &szPrefix)
     : CParameterOperate{parent, szPrefix}
     , m_Net(this)
+    , m_WhiteFilter(this, "WhiteFilter")
+    , m_BlackFilter(this, "BlackFilter")
     , m_bAnonymousLogin(false)
     , m_bReadOnly(true)
     , m_tmAuthenticate(600000)
@@ -27,8 +29,6 @@ int CParameterServer::OnLoad(QSettings &set)
     SetConnectCount(set.value("ConnectCount", GetConnectCount()).toInt());
     SetListenAll(set.value("ListenAll", GetListenAll()).toBool());
     SetListen(set.value("Listen", GetListen()).toStringList());
-    SetWhitelist(set.value("List/White", GetWhitelist()).toStringList());
-    SetBlacklist(set.value("List/Black", GetBlacklist()).toStringList());
     return nRet;
 }
 
@@ -44,8 +44,6 @@ int CParameterServer::OnSave(QSettings &set)
     set.setValue("ConnectCount", GetConnectCount());
     set.setValue("ListenAll", GetListenAll());
     set.setValue("Listen", GetListen());
-    set.setValue("List/White", GetWhitelist());
-    set.setValue("List/Black", GetBlacklist());
     return nRet;
 }
 
@@ -166,35 +164,8 @@ void CParameterServer::SetListen(const QStringList &newListen)
     SetModified(true);
 }
 
-QStringList CParameterServer::GetWhitelist() const
-{
-    return m_Whitelist;
-}
-
-void CParameterServer::SetWhitelist(const QStringList &newWhitelist)
-{
-    if(m_Whitelist == newWhitelist)
-        return;
-    m_Whitelist = newWhitelist;
-    SetModified(true);
-}
-
-QStringList CParameterServer::GetBlacklist() const
-{
-    return m_Blacklist;
-}
-
-void CParameterServer::SetBlacklist(const QStringList &newBlacklist)
-{
-    if(m_Blacklist == newBlacklist)
-        return;
-    m_Blacklist = newBlacklist;
-    SetModified(true);
-}
-
 void CParameterServer::slotSetPluginParameters()
 {
-    CParameterOperate::slotSetPluginParameters();
     m_Net.m_User.SetSavePassword(true);
     m_Net.m_User.SetSavePassphrase(true);
 }

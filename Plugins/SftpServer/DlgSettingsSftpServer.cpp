@@ -12,16 +12,20 @@ CDlgSettingsSftpServer::CDlgSettingsSftpServer(CParameterSftpServer *pPara, QWid
     , m_pServerUI(nullptr)
 {
     ui->setupUi(this);
-    setContentsMargins(0, 0, 0, 0);
-    QHBoxLayout* layout = new QHBoxLayout(ui->wContain);
-    if(layout) {
-        ui->wContain->setLayout(layout);
-        layout->setContentsMargins(0, 0, 0, 0);
-    }
-    m_pServerUI = new CParameterServerUI(ui->wContain);
+    m_pServerUI = new CParameterServerUI(ui->tabWidget);
     if(m_pServerUI) {
         m_pServerUI->SetParameter(pPara);
-        layout->addWidget(m_pServerUI);
+        ui->tabWidget->addTab(m_pServerUI, m_pServerUI->windowTitle());
+    }
+    m_pWhitelist = new CParameterFilterUI(ui->tabWidget);
+    if(m_pWhitelist) {
+        m_pWhitelist->SetParameter(&m_pPara->m_WhiteFilter);
+        ui->tabWidget->addTab(m_pWhitelist, tr("Whitelist"));
+    }
+    m_pBlacklist = new CParameterFilterUI(ui->tabWidget);
+    if(m_pBlacklist) {
+        m_pBlacklist->SetParameter(&m_pPara->m_BlackFilter);
+        ui->tabWidget->addTab(m_pBlacklist, tr("Blacklist"));
     }
 }
 
@@ -35,7 +39,11 @@ void CDlgSettingsSftpServer::accept()
     bool nRet = 0;
     nRet = m_pServerUI->CheckValidity(true);
     if(!nRet) return;
-    m_pServerUI->Accept();
-
+    if(m_pServerUI)
+        m_pServerUI->Accept();
+    if(m_pWhitelist)
+        m_pWhitelist->Accept();
+    if(m_pBlacklist)
+        m_pBlacklist->Accept();
     QDialog::accept();
 }

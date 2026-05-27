@@ -75,7 +75,9 @@ int COperateTemplateBase::SetPluginParameters(CParameterPlugin *pPara)
 {
     int nRet = 0;
     // TODO: Modify apply plugin parameters
-    m_pPara->SetPluginParameters(pPara);
+    if(m_pPara) {
+        m_pPara->SetPluginParameters(pPara);
+    }
     return nRet;
 }
 

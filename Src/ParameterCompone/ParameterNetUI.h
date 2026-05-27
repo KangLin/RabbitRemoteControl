@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #pragma once
-#include <QWidget>
 #include "ParameterNet.h"
 #include "ParameterUI.h"
 
