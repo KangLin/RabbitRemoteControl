@@ -12,16 +12,7 @@ CParameterServer::CParameterServer(QObject *parent, const QString &szPrefix)
     , m_ConnectCount(-1)
     , m_bListenAll(true)
 {
-#if defined(Q_OS_UNIX)
-    m_Net.SetPort(2222);
-    // TODO: modify host key file
-    //m_szHostKeyFile = "/etc/ssh/ssh_host_rsa_key";
-    m_szHostKeyFile = "/data/libssh/tests/keys/ssh_host_rsa_key";
-#else
-    m_Net.SetPort(22);
-    m_szHostKeyFile = "D:\\source\\vcpkg\\buildtrees\\libssh\\src\\libssh-0-8f8fad1532.clean\\tests\\keys\\ssh_host_rsa_key";
-#endif
-    m_Net.SetEnablleUI(CParameterNet::SHOW_UI::Port | CParameterNet::SHOW_UI::User);
+    m_szHostKeyFile = "ssh_host_rsa_key";
 }
 
 int CParameterServer::OnLoad(QSettings &set)
@@ -199,4 +190,11 @@ void CParameterServer::SetBlacklist(const QStringList &newBlacklist)
         return;
     m_Blacklist = newBlacklist;
     SetModified(true);
+}
+
+void CParameterServer::slotSetPluginParameters()
+{
+    CParameterOperate::slotSetPluginParameters();
+    m_Net.m_User.SetSavePassword(true);
+    m_Net.m_User.SetSavePassphrase(true);
 }

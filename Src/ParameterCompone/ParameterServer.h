@@ -94,4 +94,8 @@ private:
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
+
+    // CParameterOperate interface
+protected slots:
+    virtual void slotSetPluginParameters() override;
 };
